@@ -31,7 +31,6 @@
     "express": "~4.13.3",
     "findup": "~0.1.5",
     "glob": "~5.0.14",
-    "loader-utils": "~0.2.11",
     "lodash": "~3.10.1",
     "marked": "~0.3.5",
     "react": "~0.13.3",
@@ -51,7 +50,7 @@
     "start": "node src/server.js"
   },
   "keywords": [
-  	"react",
-  	"styleguide"
+    "react",
+    "styleguide"
   ]
 }
