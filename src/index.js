@@ -7,6 +7,10 @@ import StyleGuide from './components/StyleGuide';
 
 global.React = React;
 
+if (module.hot) {
+	module.hot.accept();
+}
+
 // Load components
 let components = require('styleguide!');
 

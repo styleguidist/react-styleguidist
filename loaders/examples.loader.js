@@ -15,11 +15,7 @@ var MARKED_BLOCK_METHODS = [
 	'table'
 ];
 
-function readExamples(filepath) {
-	if (!fs.existsSync(filepath)) {
-		return null;
-	}
-
+function readExamples(markdown) {
 	var chunks = [];
 	var htmlChunks = [];
 
@@ -35,7 +31,6 @@ function readExamples(filepath) {
 		chunks.push({type: 'code', content: code});
 	};
 
-	var markdown = fs.readFileSync(filepath, {encoding: 'utf8'});
 	marked(markdown, {renderer: renderer});
 
 	if (htmlChunks.length) {
@@ -53,11 +48,15 @@ function wrapRendererMethods(to, from, methods, wrapper) {
 	});
 }
 
-module.exports = function() {};
-module.exports.pitch = function(filepath) {
+module.exports = function (source, map) {
 	this.cacheable && this.cacheable();
 
-	var examples = readExamples(filepath);
+	var examples = readExamples(source);
 
-	return 'module.exports = ' + JSON.stringify(examples);
+	return [
+			'if (module.hot) {',
+			'	module.hot.accept([]);',
+			'}',
+			'module.exports = ' + JSON.stringify(examples)
+		].join('\n');
 };

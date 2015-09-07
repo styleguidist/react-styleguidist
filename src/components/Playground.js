@@ -14,6 +14,15 @@ export default React.createClass({
 		};
 	},
 
+	componentWillReceiveProps(nextProps) {
+		let { code } = nextProps;
+		if (code) {
+			this.setState({
+				code
+			});
+		}
+	},
+
 	handleChange(newCode) {
 		this.setState({
 			code: newCode
