@@ -35,6 +35,7 @@
     "marked": "~0.3.5",
     "react": "~0.13.3",
     "react-codemirror": "~0.1.5",
+    "react-docgen": "~2.1.2",
     "react-tools": "~0.13.3",
     "react-transform-catch-errors": "~0.1.1",
     "react-transform-webpack-hmr": "~0.1.4",

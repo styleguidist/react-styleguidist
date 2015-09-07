@@ -8,12 +8,16 @@ function processComponent(filepath) {
 	if (!fs.existsSync(examplesFile)) {
 		return null;
 	}
-	var pathJson = JSON.stringify(filepath);
 	return '{' + [
-			'filepath: ' + pathJson,
-			'module: require(' + pathJson + ')',
+			'filepath: ' + JSON.stringify(filepath),
+			'module: ' + requireIt(filepath),
+			'props: require(' + JSON.stringify('!!props!' + filepath) + ')',
 			'examples: require(' + JSON.stringify('examples!' + examplesFile) + ')'
 		].join(',') + '}';
+}
+
+function requireIt(filepath) {
+	return 'require(' + JSON.stringify(filepath) + ')';
 }
 
 module.exports = function() {};

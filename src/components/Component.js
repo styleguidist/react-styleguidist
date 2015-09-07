@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import Props from './Props';
 import Playground from './Playground';
 
 export default React.createClass({
@@ -27,6 +28,7 @@ export default React.createClass({
 		return (
 			<div>
 				<h2>{component.name}</h2>
+				<Props props={component.props}/>
 				{this.renderExamples()}
 			</div>
 		);

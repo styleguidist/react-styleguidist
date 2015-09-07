@@ -3,6 +3,9 @@ import React, { PropTypes } from 'react';
 export default React.createClass({
 	displayName: 'Button',
 	propTypes: {
+		/**
+		 * Button label.
+		 */
 		children: PropTypes.string.isRequired,
 		color: PropTypes.string,
 		size: PropTypes.oneOf(['small', 'normal', 'large']),
