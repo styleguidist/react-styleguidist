@@ -1,9 +1,15 @@
 import React, { PropTypes } from 'react';
 
+import s from './styles.css';
+
 export default React.createClass({
 	displayName: 'Props',
 	propTypes: {
 		props: PropTypes.object.isRequired
+	},
+
+	unquote(string) {
+		return string.replace(/^'|'$/g, '');
 	},
 
 	renderRows() {
@@ -12,46 +18,73 @@ export default React.createClass({
 		for (var name in props) {
 			var prop = props[name];
 			rows.push(
-				<li key={name}>
-					{this.renderName(name, prop)}
-					{this.renderType(prop)}
-					{this.renderDescription(prop)}
-				</li>
+				<tr key={name}>
+					<td className={s.cell}><code>{name}</code></td>
+					<td className={s.cell}><code>{prop.type.name}</code></td>
+					<td className={s.cell}>{this.renderDefault(prop)}</td>
+					<td className={s.cell + ' ' + s.cellDesc}>{this.renderDescription(prop)}</td>
+				</tr>
 			);
 		}
 		return rows;
 	},
 
-	renderName(name, prop) {
+	renderDefault(prop) {
 		if (prop.required) {
-			return name;
+			return '';
+		}
+		else if (prop.defaultValue) {
+			return (
+				<code>{this.unquote(prop.defaultValue.value)}</code>
+			);
 		}
 		else {
 			return (
-				<span>[{name}=<code>{prop.defaultValue.value}</code>]</span>
+				<span className={s.optional}>Optional</span>
 			);
 		}
 	},
 
-	renderType(prop) {
-		// TODO: enums
-		return `: ${prop.type.name}`;
+	renderDescription(prop) {
+		let isEnum = prop.type.name === 'enum';
+		return (
+			<div>
+				{prop.description}
+				{prop.description && isEnum && ' '}
+				{isEnum && this.renderEnum(prop)}
+			</div>
+		);
 	},
 
-	renderDescription(prop) {
-		if (prop.description) {
-			return ` — ${prop.description}`;
-		}
-		else {
-			return '';
-		}
+	renderEnum(prop) {
+		let values = prop.type.value.map(val => (
+			<li className={s.listItem}>
+				<code>{this.unquote(val.value)}</code>
+			</li>
+		));
+		return (
+			<span>One of: <ul className={s.list}>{values}</ul></span>
+		)
 	},
 
 	render() {
 		return (
-			<ul>
-				{this.renderRows()}
-			</ul>
+			<div className={s.root}>
+				<h3 className={s.heading}>Props</h3>
+				<table className={s.table}>
+					<thead className={s.tableHead}>
+						<tr>
+							<th className={s.cellHeading}>Name</th>
+							<th className={s.cellHeading}>Type</th>
+							<th className={s.cellHeading}>Default</th>
+							<th className={s.cellHeading + ' ' + s.cellDesc}>Description</th>
+						</tr>
+					</thead>
+					<tbody className={s.tableBody}>
+						{this.renderRows()}
+					</tbody>
+				</table>
+			</div>
 		);
 	}
 });

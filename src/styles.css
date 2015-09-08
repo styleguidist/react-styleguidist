@@ -1,5 +1,10 @@
 @import 'sanitize.css/dist/sanitize.css';
 
+:global body {
+	color: #333;
+	background: #fff;
+}
+
 :global p,
 :global ul,
 :global ol,

@@ -1,0 +1,51 @@
+.root {
+	margin-bottom: 2rem;
+	font-size: .9rem;
+}
+
+.heading {
+	margin-bottom: .5rem;
+	font-size: 1.3rem;
+	font-weight: normal;
+}
+
+.table {
+	width: 100%;
+}
+.tableHead {
+	margin-bottom: 1.5rem;
+	border-bottom: 1px solid #ccc;
+}
+.tableBody {
+}
+.cell {
+	padding-right: 1rem;
+	padding-top: .5em;
+}
+.cellHeading {
+	padding-right: 1rem;
+	padding-bottom: .5em;
+	text-align:left;
+}
+.cellDesc {
+	width: 99%;
+	padding-left: 1rem;
+}
+
+.optional {
+	color: #999;
+}
+
+.list {
+	display: inline;
+	list-style-type: none;
+}
+.listItem {
+	display: inline;
+}
+.listItem:after {
+	content: ", ";
+}
+.listItem:last-child:after {
+	content: "";
+}
