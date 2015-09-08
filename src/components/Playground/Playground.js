@@ -36,11 +36,11 @@ export default React.createClass({
 
 		return (
 			<div className={s.root}>
-				<div className={s.editor}>
-					<Editor code={code} onChange={this.handleChange}/>
-				</div>
 				<div className={s.preview}>
 					<Preview code={code}/>
+				</div>
+				<div className={s.editor}>
+					<Editor code={code} onChange={this.handleChange}/>
 				</div>
 			</div>
 		);

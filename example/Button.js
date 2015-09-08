@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 
+import s from './Button.styles.css';
+
 export default React.createClass({
 	displayName: 'Button',
 	propTypes: {
@@ -11,14 +13,14 @@ export default React.createClass({
 		size: PropTypes.oneOf(['small', 'normal', 'large']),
 	},
 	sizes: {
-		small: '14px',
-		normal: '18px',
-		large: '24px'
+		small: '10px',
+		normal: '14px',
+		large: '18px'
 	},
 
 	getDefaultProps() {
 		return {
-			color: 'black',
+			color: '#333',
 			size: 'normal'
 		};
 	},
@@ -30,7 +32,7 @@ export default React.createClass({
 		};
 
 		return (
-			<button style={styles}>{this.props.children}</button>
+			<button className={s.root} style={styles}>{this.props.children}</button>
 		);
 	}
 });

@@ -1,11 +1,14 @@
 .root {
+	overflow: hidden;
 	margin-bottom: 1.5rem;
+	border: 1px solid #e8e8e8;
+	border-radius: .25rem;
 }
 
 .editor {
-	margin-bottom: .2rem;
 }
 
 .preview {
 	margin-bottom: .2rem;
+	padding: 1rem;
 }
