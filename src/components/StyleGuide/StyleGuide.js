@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
-import Components from './Components';
+import Components from 'components/Components/Components';
+
+import s from './styles.css';
 
 export default React.createClass({
 	displayName: 'StyleGuide',
@@ -11,8 +13,8 @@ export default React.createClass({
 
 	render() {
 		return (
-			<div>
-				<h1>Style guide</h1>
+			<div className={s.root}>
+				<h1 className={s.heading}>Style guide</h1>
 				<div>
 					<Components components={this.props.components}/>
 				</div>

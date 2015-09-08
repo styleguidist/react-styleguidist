@@ -3,7 +3,9 @@ import 'codemirror/mode/xml/xml';
 
 import React from 'react';
 import { setComponentsNames, globalizeComponents } from './utils/utils';
-import StyleGuide from './components/StyleGuide';
+import StyleGuide from 'components/StyleGuide/StyleGuide';
+
+import './styles.css';
 
 global.React = React;
 

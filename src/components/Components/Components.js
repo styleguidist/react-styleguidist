@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Component from './Component';
+import Component from 'components/Component/Component';
 
 export default React.createClass({
 	displayName: 'Components',

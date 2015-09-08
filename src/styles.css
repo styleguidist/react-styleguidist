@@ -1,0 +1,17 @@
+@import 'sanitize.css/dist/sanitize.css';
+
+:global p,
+:global ul,
+:global ol,
+:global blockquote {
+	margin-bottom: 1rem;
+}
+
+:global .CodeMirror {
+	height: auto;
+}
+:global .CodeMirror-scroll {
+	height: auto;
+	overflow-y: hidden;
+	overflow-x: auto;
+}

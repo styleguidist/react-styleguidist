@@ -16,6 +16,7 @@ export default React.createClass({
 		lineWrapping: true,
 		smartIndent: false,
 		matchBrackets: true,
+		viewportMargin: Infinity,
 		theme: 'base16-light'
 	},
 

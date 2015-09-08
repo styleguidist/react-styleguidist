@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
-import Editor from './Editor';
-import Preview from './Preview';
+import Editor from 'components/Editor/Editor';
+import Preview from 'components/Preview/Preview';
+
+import s from './styles.css';
 
 export default React.createClass({
 	displayName: 'Playground',
@@ -33,9 +35,13 @@ export default React.createClass({
 		let { code } = this.state;
 
 		return (
-			<div>
-				<Editor code={code} onChange={this.handleChange}/>
-				<Preview code={code}/>
+			<div className={s.root}>
+				<div className={s.editor}>
+					<Editor code={code} onChange={this.handleChange}/>
+				</div>
+				<div className={s.preview}>
+					<Preview code={code}/>
+				</div>
 			</div>
 		);
 	}
