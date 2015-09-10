@@ -20,7 +20,14 @@
       "url": "https://github.com/sapegin/react-styleguidist/blob/master/License.md"
     }
   ],
-  "main": "server.js",
+  "main": "src/server.js",
+  "bin": "bin/styleguidist",
+  "preferGlobal": true,
+  "files": [
+    "bin",
+    "src",
+    "loaders"
+  ],
   "engines": {
     "node": ">=0.10.0"
   },
@@ -34,6 +41,7 @@
     "glob": "~5.0.14",
     "lodash": "~3.10.1",
     "marked": "~0.3.5",
+    "minimist": "~1.2.0",
     "postcss-advanced-variables": "~1.0.0",
     "postcss-loader": "~0.6.0",
     "react": "~0.13.3",

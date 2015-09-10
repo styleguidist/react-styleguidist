@@ -1,0 +1,39 @@
+#!/usr/bin/env node
+'use strict';
+
+var minimist = require('minimist');
+
+var argv = minimist(process.argv.slice(2));
+
+switch (argv._[0]) {
+	case 'build':
+		commandBuild();
+		break;
+	case 'server':
+		commandServer();
+		break;
+	case 'help':
+	default:
+		commandHelp();
+}
+
+function commandBuild() {
+}
+
+function commandServer() {
+	require('../src/server');
+}
+
+function commandHelp() {
+	console.log([
+		'Usage:',
+		'',
+		'    styleguidist <command>',
+		'',
+		'Commands:',
+		'',
+		'    build                   Build style guide',
+		'    server                  Run development server',
+		'    help                    Display help information about React Styleguidist',
+	].join('\n'));
+}
