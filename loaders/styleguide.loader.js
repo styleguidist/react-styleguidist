@@ -11,8 +11,8 @@ function processComponent(filepath) {
 	return '{' + [
 			'filepath: ' + JSON.stringify(filepath),
 			'module: ' + requireIt(filepath),
-			'props: require(' + JSON.stringify('!!props!' + filepath) + ')',
-			'examples: require(' + JSON.stringify('examples!' + examplesFile) + ')'
+			'props: ' + requireIt('!!props!' + filepath),
+			'examples: ' + requireIt('examples!' + examplesFile)
 		].join(',') + '}';
 }
 
