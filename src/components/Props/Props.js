@@ -57,9 +57,9 @@ export default React.createClass({
 	},
 
 	renderEnum(prop) {
-		let values = prop.type.value.map(val => (
-			<li className={s.listItem}>
-				<code>{this.unquote(val.value)}</code>
+		let values = prop.type.value.map(({ value }) => (
+			<li className={s.listItem} key={value}>
+				<code>{this.unquote(value)}</code>
 			</li>
 		));
 		return (
