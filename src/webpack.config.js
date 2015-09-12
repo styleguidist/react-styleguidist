@@ -70,7 +70,7 @@ var webpackConfig = {
 };
 
 if (config.updateWebpackConfig) {
-	webpackConfig = config.updateWebpackConfig(webpackConfig);
+	webpackConfig = config.updateWebpackConfig(webpackConfig, 'development');
 }
 
 module.exports = webpackConfig;

@@ -5,7 +5,7 @@ module.exports = {
 	getExampleFilename: function(componentpath) {
 		return componentpath.replace(/\.js$/, '.examples.md');
 	},
-	updateWebpackConfig: function(config) {
+	updateWebpackConfig: function(config, env) {
 		return config;
 	}
 };
