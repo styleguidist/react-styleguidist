@@ -11,7 +11,12 @@ export default React.createClass({
 	},
 
 	renderExamples() {
-		return this.props.component.examples.map((example, index) => {
+		let { examples } = this.props.component;
+		if (!examples) {
+			return null;
+		}
+
+		return examples.map((example, index) => {
 			switch (example.type) {
 				case 'code':
 					return (
