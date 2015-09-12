@@ -8,7 +8,7 @@ var includes = [
 	config.rootDir
 ];
 
-module.exports = {
+var webpackConfig = {
 	entry: [
 		'webpack-hot-middleware/client',
 		'./src/index'
@@ -57,3 +57,9 @@ module.exports = {
         ];
     }
 };
+
+if (config.updateWebpackConfig) {
+	webpackConfig = config.updateWebpackConfig(webpackConfig);
+}
+
+module.exports = webpackConfig;

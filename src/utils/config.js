@@ -38,6 +38,9 @@ function validateConfig(options) {
 	if (options.getExampleFilename && typeof options.getExampleFilename !== 'function') {
 		throw Error('Styleguidist: "getExampleFilename" options must be a function.');
 	}
+	if (options.updateWebpackConfig && typeof options.updateWebpackConfig !== 'function') {
+		throw Error('Styleguidist: "updateWebpackConfig" options must be a function.');
+	}
 }
 
 module.exports = readConfig();
