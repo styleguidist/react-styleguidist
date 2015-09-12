@@ -1,10 +1,11 @@
 var path = require('path');
 var webpack = require('webpack');
 var AdvancedVariables = require('postcss-advanced-variables');
+var config = require('../src/utils/config');
 
 var includes = [
 	__dirname,
-	path.join(__dirname, '../example') // TODO: config
+	config.rootDir
 ];
 
 module.exports = {
@@ -23,7 +24,6 @@ module.exports = {
 			path.join(__dirname)
 		],
 		alias: {
-			// 'components': path.join(__dirname, 'components'),
 			'codemirror': path.join(__dirname, '../node_modules/react-codemirror/node_modules/codemirror')
 		}
 	},

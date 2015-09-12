@@ -11,24 +11,27 @@ var DEFAULT_CONFIG = {
 
 function readConfig() {
 	try {
-		var rootDir = findup.sync(__dirname, CONFIG_FILENAME);
+		var configDir = findup.sync(__dirname, CONFIG_FILENAME);
 	}
 	catch (e) {
 		throw Error('Styleguidist config not found: ' + CONFIG_FILENAME + '.');
 	}
 
-	var options = require(path.join(rootDir, CONFIG_FILENAME));
+	var options = require(path.join(configDir, CONFIG_FILENAME));
 
 	validateConfig(options);
 
 	options = _.merge({}, DEFAULT_CONFIG, options, {
-		rootDir: rootDir
+		rootDir: path.join(configDir, options.rootDir)
 	});
 
 	return options;
 }
 
 function validateConfig(options) {
+	if (!options.rootDir) {
+		throw Error('Styleguidist: "rootDir" options is required.');
+	}
 	if (!options.components) {
 		throw Error('Styleguidist: "components" options is required.');
 	}

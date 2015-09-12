@@ -1,5 +1,6 @@
 module.exports = {
-	components: './example/**/*.js',
+	rootDir: './example',
+	components: './**/*.js',
 	getExampleFilename: function(componentpath) {
 		return componentpath.replace(/\.js$/, '.examples.md');
 	}
