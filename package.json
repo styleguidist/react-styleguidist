@@ -22,7 +22,6 @@
   ],
   "main": "src/server.js",
   "bin": "bin/styleguidist",
-  "preferGlobal": true,
   "files": [
     "bin",
     "src",
