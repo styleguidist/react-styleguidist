@@ -7,6 +7,7 @@ var includes = [
 	__dirname,
 	config.rootDir
 ];
+var codeMirrorPath = path.join(__dirname, '../node_modules/react-codemirror/node_modules/codemirror');
 
 var webpackConfig = {
 	entry: [
@@ -24,7 +25,7 @@ var webpackConfig = {
 			path.join(__dirname)
 		],
 		alias: {
-			'codemirror': path.join(__dirname, '../node_modules/react-codemirror/node_modules/codemirror')
+			'codemirror': codeMirrorPath
 		}
 	},
 	resolveLoader: {
@@ -48,6 +49,11 @@ var webpackConfig = {
 				test: /\.css$/,
 				include: includes,
 				loader: 'style!css?modules!postcss'
+			},
+			{
+				test: /\.css$/,
+				include: codeMirrorPath,
+				loader: 'style!css'
 			}
 		]
 	},
