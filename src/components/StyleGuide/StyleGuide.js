@@ -6,17 +6,20 @@ import s from './styles.css';
 export default React.createClass({
 	displayName: 'StyleGuide',
 	propTypes: {
+		title: PropTypes.string.isRequired,
 		components: PropTypes.array.isRequired
 	},
 
 	// TODO: Blank slate
 
 	render() {
+		let { title, components } = this.props;
+
 		return (
 			<div className={s.root}>
-				<h1 className={s.heading}>Style guide</h1>
+				<h1 className={s.heading}>{title}</h1>
 				<div>
-					<Components components={this.props.components}/>
+					<Components components={components}/>
 				</div>
 			</div>
 		);

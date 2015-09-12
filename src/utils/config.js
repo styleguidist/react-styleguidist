@@ -4,6 +4,7 @@ var _ = require('lodash');
 
 var CONFIG_FILENAME = 'styleguide.config.js';
 var DEFAULT_CONFIG = {
+	title: 'Style guide',
 	serverHost: 'localhost',
 	serverPort: 3000,
 	getExampleFilename: function(componentpath) {

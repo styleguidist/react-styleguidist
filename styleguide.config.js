@@ -1,4 +1,5 @@
 module.exports = {
+	title: 'Style guide example',
 	rootDir: './example',
 	components: './**/*.js',
 	getExampleFilename: function(componentpath) {

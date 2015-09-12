@@ -15,12 +15,10 @@ if (module.hot) {
 	module.hot.accept();
 }
 
-// Load components
-let components = require('styleguide!');
+// Load styleguide
+let { title, components } = require('styleguide!');
 
 components = setComponentsNames(components);
 globalizeComponents(components);
 
-// console.log('CCC', components);
-
-React.render(<StyleGuide components={components}/>, document.getElementById('app'));
+React.render(<StyleGuide title={title} components={components}/>, document.getElementById('app'));

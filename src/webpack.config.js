@@ -38,7 +38,7 @@ var webpackConfig = {
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoErrorsPlugin(),
 		new HtmlWebpackPlugin({
-			title: 'Style guide',
+			title: config.title,
 			template: './src/templates/index.html',
 			inject: true
 		})

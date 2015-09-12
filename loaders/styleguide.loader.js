@@ -33,5 +33,10 @@ module.exports.pitch = function() {
 		return !!component
 	});
 
-	return 'module.exports = [' + components.join(',') + ']';
+	return [
+		'module.exports = {',
+		'	title: ' + JSON.stringify(config.title) + ',',
+		'	components: [' + components.join(',') + ']',
+		'};'
+	].join('\n');
 };
