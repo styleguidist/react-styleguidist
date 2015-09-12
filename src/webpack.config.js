@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var AdvancedVariables = require('postcss-advanced-variables');
 var config = require('../src/utils/config');
 
@@ -17,8 +18,7 @@ var webpackConfig = {
 	devtool: 'eval-source-map',
 	output: {
 		path: __dirname,
-		filename: 'bundle.js',
-		publicPath: '/static/'
+		filename: 'bundle.js'
 	},
 	resolve: {
 		root: [
@@ -36,7 +36,12 @@ var webpackConfig = {
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoErrorsPlugin()
+		new webpack.NoErrorsPlugin(),
+		new HtmlWebpackPlugin({
+			title: 'Style guide',
+			template: './src/templates/index.html',
+			inject: true
+		})
 	],
 	module: {
 		loaders: [
