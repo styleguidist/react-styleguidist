@@ -1,6 +1,7 @@
 var path = require('path');
 var findup = require('findup');
 var _ = require('lodash');
+var utils = require('./server');
 
 var CONFIG_FILENAME = 'styleguide.config.js';
 var DEFAULT_CONFIG = {
@@ -30,6 +31,10 @@ function readConfig() {
 	options = _.merge({}, DEFAULT_CONFIG, options, {
 		rootDir: path.join(configDir, options.rootDir)
 	});
+
+	if (!utils.isDirectoryExists(options.rootDir)) {
+		throw Error('Styleguidist: rootDir directory not found: ' + options.rootDir);
+	}
 
 	return options;
 }
