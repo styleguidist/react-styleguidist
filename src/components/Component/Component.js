@@ -10,6 +10,17 @@ export default React.createClass({
 		component: PropTypes.object.isRequired
 	},
 
+	renderDescription() {
+		let { description } = this.props.component.props;
+		if (!description) {
+			return null;
+		}
+
+		return (
+			<div className={s.description}>{description}</div>
+		);
+	},
+
 	renderExamples() {
 		let { examples } = this.props.component;
 		if (!examples) {
@@ -35,6 +46,7 @@ export default React.createClass({
 		return (
 			<div className={s.root}>
 				<h2 className={s.heading}>{component.name}</h2>
+				{this.renderDescription()}
 				<Props props={component.props}/>
 				{this.renderExamples()}
 			</div>
