@@ -2,6 +2,8 @@
 
 React components style guide generator with a hot reloaded (style guide) dev server.
 
+[Example style guide](http://sapegin.github.io/react-styleguidist/).
+
 ![](https://s3.amazonaws.com/f.cl.ly/items/3e0u2n271y182F1N0k3K/Screen%20Recording%202015-09-07%20at%2010.30%20AM.gif)
 
 ## Installation
@@ -25,7 +27,8 @@ Add these scripts to your `package.json`:
 
 ```json
 "scripts": {
-  "styleguide-server": "styleguidist server"
+  "styleguide-server": "styleguidist server",
+  "styleguide-build": "styleguidist build"
 },
 ```
 
@@ -74,6 +77,12 @@ For example, all JavaScript files in the `components` folder:
 ```javascript
 components: './components/**/*.js',
 ```
+
+### styleguideDir
+
+Type: `String`, default: `styleguide`
+
+Folder for static HTML style guide generated with `styleguidist build` command.
 
 ### title
 
@@ -135,11 +144,25 @@ module.exports = {
 };
 ```
 
-### CLI commands and options
+## CLI commands and options
 
-### server
+### styleguidist server
 
-Runs dev server.
+Run dev server.
+
+### styleguidist build
+
+Generate a static HTML style guide.
+
+### Options
+
+#### --config
+
+Specify path to a config file: `styleguidist server --config dir/styleguide.config.js`.
+
+#### --verbose
+
+Print debug information.
 
 ## Changelog
 
