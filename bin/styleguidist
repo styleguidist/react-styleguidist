@@ -40,5 +40,6 @@ function commandHelp() {
 		chalk.underline('Options'),
 		'',
 		'    ' + chalk.yellow('--config') + '        Config file path',
+		'    ' + chalk.yellow('--verbose') + '       Print debug information',
 	].join('\n'));
 }

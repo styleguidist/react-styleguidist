@@ -2,6 +2,7 @@ var fs = require('fs');
 var path = require('path');
 var findup = require('findup');
 var minimist = require('minimist');
+var prettyjson = require('prettyjson');
 var _ = require('lodash');
 var utils = require('./server');
 
@@ -13,6 +14,7 @@ var DEFAULT_CONFIG = {
 	styleguideDir: 'styleguide',
 	serverHost: 'localhost',
 	serverPort: 3000,
+	verbose: false,
 	getExampleFilename: function(componentpath) {
 		return path.join(path.dirname(componentpath),  'Readme.md');
 	},
@@ -31,12 +33,18 @@ function readConfig() {
 	var rootDir = path.resolve(configDir, options.rootDir);
 	options = _.merge({}, DEFAULT_CONFIG, options);
 	options = _.merge({}, options, {
+		verbose: !!argv.verbose,
 		rootDir: rootDir,
 		styleguideDir: path.resolve(rootDir, options.styleguideDir)
 	});
 
 	if (!utils.isDirectoryExists(options.rootDir)) {
 		throw Error('Styleguidist: rootDir directory not found: ' + options.rootDir);
+	}
+
+	if (options.verbose) {
+		console.log('Using config file:', configFilepath);
+		console.log(prettyjson.render(options));
 	}
 
 	return options;

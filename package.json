@@ -46,6 +46,7 @@
     "minimist": "~1.2.0",
     "postcss-advanced-variables": "~1.0.0",
     "postcss-loader": "~0.6.0",
+    "prettyjson": "~1.1.3",
     "react-codemirror": "~0.1.5",
     "react-docgen": "~2.1.2",
     "react-tools": "~0.13.3",
