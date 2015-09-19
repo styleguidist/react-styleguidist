@@ -12,7 +12,6 @@ switch (argv._[0]) {
 	case 'server':
 		commandServer();
 		break;
-	case 'help':
 	default:
 		commandHelp();
 }
@@ -28,12 +27,16 @@ function commandHelp() {
 	console.log([
 		'Usage:',
 		'',
-		'    styleguidist <command>',
+		'    styleguidist <command> [<options>]',
 		'',
 		'Commands:',
 		'',
 		'    build                   Build style guide',
 		'    server                  Run development server',
 		'    help                    Display help information about React Styleguidist',
+		'',
+		'Options:',
+		'',
+		'    --config                Config file path',
 	].join('\n'));
 }

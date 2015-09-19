@@ -1,5 +1,7 @@
+var fs = require('fs');
 var path = require('path');
 var findup = require('findup');
+var minimist = require('minimist');
 var _ = require('lodash');
 var utils = require('./server');
 
@@ -17,17 +19,13 @@ var DEFAULT_CONFIG = {
 };
 
 function readConfig() {
-	try {
-		var configDir = findup.sync(__dirname, CONFIG_FILENAME);
-	}
-	catch (e) {
-		throw Error('Styleguidist config not found: ' + CONFIG_FILENAME + '.');
-	}
+	var configFilepath = findConfig();
 
-	var options = require(path.join(configDir, CONFIG_FILENAME));
+	var options = require(configFilepath);
 
 	validateConfig(options);
 
+	var configDir = path.dirname(configFilepath);
 	options = _.merge({}, DEFAULT_CONFIG, options, {
 		rootDir: path.join(configDir, options.rootDir)
 	});
@@ -37,6 +35,32 @@ function readConfig() {
 	}
 
 	return options;
+}
+
+function findConfig() {
+	var argv = minimist(process.argv.slice(2));
+	if (argv.config) {
+		// Custom config location
+
+		var configFilepath = path.join(process.cwd(), argv.config);
+		if (!fs.existsSync(configFilepath)) {
+			throw Error('Styleguidist config not found: ' + configFilepath + '.');
+		}
+
+		return configFilepath;
+	}
+	else {
+		// Search config file in all parent directories
+
+		try {
+			var configDir = findup.sync(__dirname, CONFIG_FILENAME);
+		}
+		catch (e) {
+			throw Error('Styleguidist config not found: ' + CONFIG_FILENAME + '.');
+		}
+
+		return path.join(configDir, CONFIG_FILENAME);
+	}
 }
 
 function validateConfig(options) {
