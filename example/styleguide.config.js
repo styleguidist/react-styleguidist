@@ -1,11 +1,12 @@
 module.exports = {
 	title: 'Style guide example',
 	rootDir: '.',
-	components: './components/**/*.js',
-	getExampleFilename: function(componentpath) {
-		return componentpath.replace(/\.js$/, '.examples.md');
+	components: function(config, glob) {
+		return glob.sync(config.rootDir + '/components/**/*.js').filter(function(module) {
+			return /\/[A-Z][a-z]*\.js$/.test(module);
+		});
 	},
-	updateWebpackConfig: function(config, env) {
-		return config;
+	updateWebpackConfig: function(webpackConfig, env) {
+		return webpackConfig;
 	}
 };
