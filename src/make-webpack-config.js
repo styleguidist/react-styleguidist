@@ -18,8 +18,7 @@ module.exports = function(env) {
 	var webpackConfig = {
 		output: {
 			path: config.styleguideDir,
-			filename: 'build/bundle.js',
-			// publicPath: '/build/'
+			filename: 'build/bundle.js'
 		},
 		resolve: {
 			root: [
