@@ -64,11 +64,15 @@
   "peerDependencies": {
     "react": ">=0.13.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp": "~3.9.0",
+    "gulp-gh-pages": "~0.5.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "./bin/styleguidist server --config example/styleguide.config.js",
-    "build": "./bin/styleguidist build --config example/styleguide.config.js"
+    "build": "./bin/styleguidist build --config example/styleguide.config.js",
+    "publish": "npm run build && gulp gh-pages"
   },
   "keywords": [
     "react",
