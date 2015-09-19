@@ -141,8 +141,10 @@ module.exports = function(env) {
 	}
 
 	if (config.verbose) {
+		console.log();
 		console.log('Using Webpack config:');
  		console.log(prettyjson.render(webpackConfig));
+ 		console.log();
  	}
 
 	return webpackConfig;

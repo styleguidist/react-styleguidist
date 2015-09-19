@@ -32,8 +32,10 @@ module.exports.pitch = function() {
 	}
 
 	if (config.verbose) {
+		console.log();
 		console.log('Loading components:');
 		console.log(prettyjson.render(componentSources));
+		console.log();
 	}
 
 	var components = componentSources.map(processComponent);

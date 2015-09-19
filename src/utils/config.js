@@ -43,8 +43,10 @@ function readConfig() {
 	}
 
 	if (options.verbose) {
+		console.log();
 		console.log('Using config file:', configFilepath);
 		console.log(prettyjson.render(options));
+		console.log();
 	}
 
 	return options;
