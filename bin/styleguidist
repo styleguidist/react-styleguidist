@@ -28,7 +28,7 @@ function commandHelp() {
 	console.log([
 		chalk.underline('Usage'),
 		'',
-		'    ' + chalk.bold('styleguidist') + '  ' + chalk.cyan('<command>') + ' ' + chalk.yellow('[<options>]'),
+		'    ' + chalk.bold('styleguidist') + ' ' + chalk.cyan('<command>') + ' ' + chalk.yellow('[<options>]'),
 		'',
 		chalk.underline('Commands'),
 		'',
