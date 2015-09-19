@@ -70,12 +70,23 @@ Your app’s code root folder.
 
 Type: `String`, required
 
-A glob pattern that matches all your component files. Relative to the `rootDir`.
+- String: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules. Relative to the `rootDir`.
+- Function: function that returns an array of modules.
 
-For example, all JavaScript files in the `components` folder:
+If your components look like `components/Button.js` or `components/Button/Button.js` or `components/Button/index.js`:
 
 ```javascript
 components: './components/**/*.js',
+```
+
+If your components look like `components/Button/Button.js` + `components/Button/index.js`:
+
+```javascript
+components: function(config, glob) {
+	return glob.sync(config.rootDir + '/components/**/*.js').filter(function(module) {
+		return /\/[A-Z][a-z]*\.js$/.test(module);
+	});
+},
 ```
 
 ### styleguideDir
@@ -123,11 +134,11 @@ Type: `Function`, optional
 Function that allows you to modify Webpack config for style guide:
 
 ```javascript
-updateWebpackConfig: function(config, env) {
+updateWebpackConfig: function(cwebpackConfigonfig, env) {
 	if (env === 'development') {
 		/* ... modify config ... */
 	}
-	return config;
+	return webpackConfig;
 }
 ```
 

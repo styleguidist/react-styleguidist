@@ -1,6 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var glob = require('glob');
+var prettyjson = require('prettyjson');
 var config = require('../src/utils/config');
 
 function processComponent(filepath) {
@@ -22,7 +23,19 @@ module.exports = function() {};
 module.exports.pitch = function() {
 	this.cacheable && this.cacheable();
 
-	var componentSources = glob.sync(path.join(config.rootDir, config.components));
+	var componentSources;
+	if (typeof config.components === 'function') {
+		componentSources = config.components(config, glob);
+	}
+	else {
+		componentSources = glob.sync(path.join(config.rootDir, config.components));
+	}
+
+	if (config.verbose) {
+		console.log('Loading components:');
+		console.log(prettyjson.render(componentSources));
+	}
+
 	var components = componentSources.map(processComponent);
 
 	return [
