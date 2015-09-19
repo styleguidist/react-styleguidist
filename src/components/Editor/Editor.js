@@ -1,6 +1,13 @@
+// CodeMirror
+import 'codemirror/mode/xml/xml';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/base16-light.css';
+
 import React, { PropTypes } from 'react';
 import debounce from 'lodash/function/debounce';
 import Codemirror from 'react-codemirror';
+
+import s from './styles.css';
 
 let UPDATE_DELAY = 100;
 
@@ -31,7 +38,9 @@ export default React.createClass({
 		let handleChange = debounce(this.handleChange, UPDATE_DELAY);
 
 		return (
-			<Codemirror value={this.props.code} onChange={handleChange} options={this.codemirrorOptions}/>
+			<div className={s.root}>
+				<Codemirror value={this.props.code} onChange={handleChange} options={this.codemirrorOptions}/>
+			</div>
 		);
 	}
 });

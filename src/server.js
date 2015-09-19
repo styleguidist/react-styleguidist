@@ -1,10 +1,10 @@
 var express = require('express');
 var webpack = require('webpack');
-var webpackConfig = require('./webpack.config');
+var makeWebpackConfig = require('./make-webpack-config');
 var config = require('./utils/config');
 
 var app = express();
-var compiler = webpack(webpackConfig);
+var compiler = webpack(makeWebpackConfig('development'));
 
 app.use(require('webpack-dev-middleware')(compiler, {
 	noInfo: true

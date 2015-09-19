@@ -1,0 +1,11 @@
+/* Tweak CodeMirror styles */
+.root :global .CodeMirror {
+	height: auto;
+	padding: .3rem .8rem;
+	font-size: .9rem;
+}
+.root :global .CodeMirror-scroll {
+	height: auto;
+	overflow-y: hidden;
+	overflow-x: auto;
+}

@@ -10,6 +10,7 @@ var DEFAULT_CONFIG = {
 	rootDir: null,
 	components: null,
 	title: 'Style guide',
+	styleguideDir: 'styleguide',
 	serverHost: 'localhost',
 	serverPort: 3000,
 	getExampleFilename: function(componentpath) {
@@ -19,15 +20,19 @@ var DEFAULT_CONFIG = {
 };
 
 function readConfig() {
-	var configFilepath = findConfig();
+	var argv = minimist(process.argv.slice(2));
+	var configFilepath = findConfig(argv);
 
 	var options = require(configFilepath);
 
 	validateConfig(options);
 
 	var configDir = path.dirname(configFilepath);
-	options = _.merge({}, DEFAULT_CONFIG, options, {
-		rootDir: path.join(configDir, options.rootDir)
+	var rootDir = path.resolve(configDir, options.rootDir);
+	options = _.merge({}, DEFAULT_CONFIG, options);
+	options = _.merge({}, options, {
+		rootDir: rootDir,
+		styleguideDir: path.resolve(rootDir, options.styleguideDir)
 	});
 
 	if (!utils.isDirectoryExists(options.rootDir)) {
@@ -37,8 +42,7 @@ function readConfig() {
 	return options;
 }
 
-function findConfig() {
-	var argv = minimist(process.argv.slice(2));
+function findConfig(argv) {
 	if (argv.config) {
 		// Custom config location
 

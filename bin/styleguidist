@@ -18,6 +18,7 @@ switch (argv._[0]) {
 }
 
 function commandBuild() {
+	require('../src/build');
 }
 
 function commandServer() {

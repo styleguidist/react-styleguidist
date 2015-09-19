@@ -37,6 +37,7 @@
     "chalk": "~1.1.1",
     "css-loader": "~0.17.0",
     "express": "~4.13.3",
+    "extract-text-webpack-plugin": "~0.8.2",
     "findup": "~0.1.5",
     "glob": "~5.0.14",
     "html-webpack-plugin": "~1.6.1",
@@ -56,7 +57,8 @@
     "webpack": "~1.12.1",
     "webpack-dev-middleware": "~1.2.0",
     "webpack-dev-server": "~1.10.1",
-    "webpack-hot-middleware": "~2.0.0"
+    "webpack-hot-middleware": "~2.0.0",
+    "webpack-merge": "~0.2.0"
   },
   "peerDependencies": {
     "react": ">=0.13.0"
@@ -64,7 +66,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./bin/styleguidist server --config example/styleguide.config.js"
+    "start": "./bin/styleguidist server --config example/styleguide.config.js",
+    "build": "./bin/styleguidist build --config example/styleguide.config.js"
   },
   "keywords": [
     "react",
