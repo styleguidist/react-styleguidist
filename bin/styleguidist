@@ -32,7 +32,16 @@ function commandBuild() {
 }
 
 function commandServer() {
-	require('../src/server');
+	var server = require('../src/server');
+	server(function(err, config) {
+		if (err) {
+			console.log(err);
+		}
+		else {
+			console.log('Listening at', chalk.underline('http://' + config.serverHost + ':' + config.serverPort));
+			console.log();
+		}
+	});
 }
 
 function commandHelp() {
