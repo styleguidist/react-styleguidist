@@ -1,31 +1,31 @@
 // Based on https://github.com/joelburget/react-live-editor/blob/master/live-compile.jsx
 
-import React, { PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 import reactTools from 'react-tools';
 
-export default React.createClass({
-	displayName: 'Preview',
-	propTypes: {
+export default class Preview extends Component {
+	static propTypes = {
 		code: PropTypes.string.isRequired
-	},
+	}
 
-	getInitialState() {
-		return {
+	constructor() {
+		super();
+		this.state = {
 			error: null
 		};
-	},
+	}
 
-	componentDidMount: function() {
+	componentDidMount() {
 		this.executeCode();
-	},
+	}
 
-	componentDidUpdate: function(prevProps) {
+	componentDidUpdate(prevProps) {
 		if (this.props.code !== prevProps.code) {
 			this.executeCode();
 		}
-	},
+	}
 
-	compileCode: function() {
+	compileCode() {
 		// TODO: Babel
 		return reactTools.transform(
 			// '(function() {' +
@@ -35,9 +35,9 @@ export default React.createClass({
 				harmony: true
 			}
 		);
-	},
+	}
 
-	executeCode: function() {
+	executeCode() {
 		var mountNode = this.refs.mount.getDOMNode();
 
 		try {
@@ -60,7 +60,7 @@ export default React.createClass({
 				error: err.toString()
 			});
 		}
-	},
+	}
 
 	renderError() {
 		let { error } = this.state;
@@ -72,9 +72,9 @@ export default React.createClass({
 		else {
 			return null;
 		}
-	},
+	}
 
-	render: function() {
+	render() {
 		return (
 			<div>
 				<div ref="mount"></div>
@@ -82,4 +82,4 @@ export default React.createClass({
 			</div>
 		);
 	}
-});
+}

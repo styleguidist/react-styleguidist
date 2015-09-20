@@ -1,16 +1,15 @@
-import React, { PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 
 import s from './Props.css';
 
-export default React.createClass({
-	displayName: 'Props',
-	propTypes: {
+export default class Props extends Component {
+	static propTypes = {
 		props: PropTypes.object.isRequired
-	},
+	}
 
 	unquote(string) {
 		return string.replace(/^'|'$/g, '');
-	},
+	}
 
 	renderRows() {
 		let rows = [];
@@ -27,7 +26,7 @@ export default React.createClass({
 			);
 		}
 		return rows;
-	},
+	}
 
 	renderDefault(prop) {
 		if (prop.required) {
@@ -43,7 +42,7 @@ export default React.createClass({
 				<span className={s.optional}>Optional</span>
 			);
 		}
-	},
+	}
 
 	renderDescription(prop) {
 		let isEnum = prop.type.name === 'enum';
@@ -54,7 +53,7 @@ export default React.createClass({
 				{isEnum && this.renderEnum(prop)}
 			</div>
 		);
-	},
+	}
 
 	renderEnum(prop) {
 		let values = prop.type.value.map(({ value }) => (
@@ -65,7 +64,7 @@ export default React.createClass({
 		return (
 			<span>One of: <ul className={s.list}>{values}</ul></span>
 		)
-	},
+	}
 
 	render() {
 		return (
@@ -87,4 +86,4 @@ export default React.createClass({
 			</div>
 		);
 	}
-});
+}

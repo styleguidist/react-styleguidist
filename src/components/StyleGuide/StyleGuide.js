@@ -1,14 +1,13 @@
-import React, { PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 import Components from 'components/Components';
 
 import s from './StyleGuide.css';
 
-export default React.createClass({
-	displayName: 'StyleGuide',
-	propTypes: {
+export default class StyleGuide extends Component {
+	static propTypes = {
 		title: PropTypes.string.isRequired,
 		components: PropTypes.array.isRequired
-	},
+	}
 
 	// TODO: Blank slate
 
@@ -24,4 +23,4 @@ export default React.createClass({
 			</div>
 		);
 	}
-});
+}

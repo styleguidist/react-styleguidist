@@ -1,20 +1,26 @@
-import React, { PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 import Editor from 'components/Editor';
 import Preview from 'components/Preview';
 
 import s from './Playground.css';
 
-export default React.createClass({
-	displayName: 'Playground',
-	propTypes: {
-		code: PropTypes.string.isRequired,
-	},
+export default class Playground extends Component {
+	static propTypes = {
+		code: PropTypes.string.isRequired
+	}
 
-	getInitialState() {
-		return {
-			code: this.props.code
+	constructor(props) {
+		super();
+		this.state = {
+			code: props.code
 		};
-	},
+	}
+
+	handleChange = (newCode) => {
+		this.setState({
+			code: newCode
+		});
+	}
 
 	componentWillReceiveProps(nextProps) {
 		let { code } = nextProps;
@@ -23,13 +29,7 @@ export default React.createClass({
 				code
 			});
 		}
-	},
-
-	handleChange(newCode) {
-		this.setState({
-			code: newCode
-		});
-	},
+	}
 
 	render() {
 		let { code } = this.state;
@@ -45,4 +45,4 @@ export default React.createClass({
 			</div>
 		);
 	}
-});
+}

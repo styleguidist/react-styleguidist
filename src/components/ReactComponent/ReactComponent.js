@@ -1,14 +1,13 @@
-import React, { PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 import Props from 'components/Props';
 import Playground from 'components/Playground';
 
-import s from './Component.css';
+import s from './ReactComponent.css';
 
-export default React.createClass({
-	displayName: 'Component',
-	propTypes: {
+export default class ReactComponent extends Component {
+	static propTypes = {
 		component: PropTypes.object.isRequired
-	},
+	}
 
 	renderDescription() {
 		let { description } = this.props.component.props;
@@ -19,7 +18,7 @@ export default React.createClass({
 		return (
 			<div className={s.description}>{description}</div>
 		);
-	},
+	}
 
 	renderExamples() {
 		let { examples } = this.props.component;
@@ -39,7 +38,7 @@ export default React.createClass({
 					);
 			}
 		});
-	},
+	}
 
 	render() {
 		let { component } = this.props;
@@ -52,4 +51,4 @@ export default React.createClass({
 			</div>
 		);
 	}
-});
+}

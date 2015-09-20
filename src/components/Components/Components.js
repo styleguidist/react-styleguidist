@@ -1,19 +1,18 @@
-import React, { PropTypes } from 'react';
-import Component from 'components/Component';
+import { Component, PropTypes } from 'react';
+import ReactComponent from 'components/ReactComponent';
 
-export default React.createClass({
-	displayName: 'Components',
-	propTypes: {
+export default class Components extends Component {
+	static propTypes = {
 		components: PropTypes.array.isRequired
-	},
+	}
 
 	renderComponents() {
 		return this.props.components.map((component) => {
 			return (
-				<Component component={component} key={component.name}/>
+				<ReactComponent component={component} key={component.name}/>
 			)
 		});
-	},
+	}
 
 	render() {
 		return (
@@ -22,4 +21,4 @@ export default React.createClass({
 			</div>
 		);
 	}
-});
+}
