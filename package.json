@@ -20,7 +20,7 @@
       "url": "https://github.com/sapegin/react-styleguidist/blob/master/License.md"
     }
   ],
-  "main": "src/server.js",
+  "main": "src/build.js",
   "bin": "bin/styleguidist",
   "files": [
     "bin",
