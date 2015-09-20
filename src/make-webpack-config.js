@@ -79,7 +79,8 @@ module.exports = function(env) {
 					},
 					output: {
 						comments: false
-					}
+					},
+					mangle: false
 				}),
 				new webpack.optimize.DedupePlugin(),
 				new ExtractTextPlugin('build/styles.css', {

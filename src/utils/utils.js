@@ -1,10 +1,10 @@
 export function setComponentsNames(components) {
 	components.map((component) => {
 		let module = component.module;
-		if (!module.displayName) {
-			throw Error(`displayName not found for ${component.filepath}`);
+		component.name = module.displayName || module.name;
+		if (!component.name) {
+			throw Error(`Cannot detect component name for ${component.filepath}`);
 		}
-		component.name = module.displayName;
 	});
 	return components;
 }
