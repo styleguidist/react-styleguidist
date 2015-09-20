@@ -1,25 +1,22 @@
-import React, { PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 
 import s from './Placeholder.css';
 
 /**
  * Image placeholders.
  */
-export default React.createClass({
-	displayName: 'Placeholder',
-	propTypes: {
+export default class Placeholder extends Component {
+	static propTypes = {
 		type: PropTypes.oneOf(['animal', 'bacon', 'beard', 'bear', 'cat', 'food', 'city', 'nature', 'people']),
 		width: PropTypes.number,
 		height: PropTypes.number
-	},
+	}
 
-	getDefaultProps() {
-		return {
-			type: 'animal',
-			width: 150,
-			height: 150
-		};
-	},
+	static defaultProps = {
+		type: 'animal',
+		width: 150,
+		height: 150
+	}
 
 	getImageUrl() {
 		let { type, width, height } = this.props;
@@ -35,7 +32,7 @@ export default React.createClass({
 			people: `http://lorempixel.com/${width}/${height}/people`,
 		};
 		return types[type];
-	},
+	}
 
 	render() {
 		let { width, height } = this.props;
@@ -43,4 +40,4 @@ export default React.createClass({
 			<img className={s.root} src={this.getImageUrl()} width={width} height={height}/>
 		);
 	}
-});
+}

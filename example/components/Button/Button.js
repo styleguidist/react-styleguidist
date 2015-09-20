@@ -1,41 +1,37 @@
-import React, { PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 
 import s from './Button.css';
 
 /**
  * The only true button.
  */
-export default React.createClass({
-	displayName: 'Button',
-	propTypes: {
+export default class Button extends Component {
+	static propTypes = {
 		/**
 		 * Button label.
 		 */
 		children: PropTypes.string.isRequired,
 		color: PropTypes.string,
 		size: PropTypes.oneOf(['small', 'normal', 'large']),
-	},
-	sizes: {
+	}
+	static defaultProps = {
+		color: '#333',
+		size: 'normal'
+	}
+	static sizes = {
 		small: '10px',
 		normal: '14px',
 		large: '18px'
-	},
-
-	getDefaultProps() {
-		return {
-			color: '#333',
-			size: 'normal'
-		};
-	},
+	}
 
 	render() {
 		let styles = {
 			color: this.props.color,
-			fontSize: this.sizes[this.props.size]
+			fontSize: Button.sizes[this.props.size]
 		};
 
 		return (
 			<button className={s.root} style={styles}>{this.props.children}</button>
 		);
 	}
-});
+}
