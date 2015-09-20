@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import Editor from 'components/Editor/Editor';
-import Preview from 'components/Preview/Preview';
+import Editor from 'components/Editor';
+import Preview from 'components/Preview';
 
 import s from './Playground.css';
 

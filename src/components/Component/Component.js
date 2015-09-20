@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import Props from 'components/Props/Props';
-import Playground from 'components/Playground/Playground';
+import Props from 'components/Props';
+import Playground from 'components/Playground';
 
 import s from './Component.css';
 

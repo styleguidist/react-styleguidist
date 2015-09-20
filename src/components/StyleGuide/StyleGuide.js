@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Components from 'components/Components/Components';
+import Components from 'components/Components';
 
 import s from './StyleGuide.css';
 

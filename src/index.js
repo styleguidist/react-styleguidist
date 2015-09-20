@@ -1,6 +1,6 @@
 import React from 'react';
 import { setComponentsNames, globalizeComponents } from './utils/utils';
-import StyleGuide from 'components/StyleGuide/StyleGuide';
+import StyleGuide from 'components/StyleGuide';
 
 import './styles.css';
 
