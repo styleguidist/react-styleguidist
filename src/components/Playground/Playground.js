@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Editor from 'components/Editor/Editor';
 import Preview from 'components/Preview/Preview';
 
-import s from './styles.css';
+import s from './Playground.css';
 
 export default React.createClass({
 	displayName: 'Playground',

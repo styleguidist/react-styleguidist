@@ -7,7 +7,7 @@ import React, { PropTypes } from 'react';
 import debounce from 'lodash/function/debounce';
 import Codemirror from 'react-codemirror';
 
-import s from './styles.css';
+import s from './Editor.css';
 
 let UPDATE_DELAY = 100;
 

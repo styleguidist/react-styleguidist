@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import s from './styles.css';
+import s from './Props.css';
 
 export default React.createClass({
 	displayName: 'Props',

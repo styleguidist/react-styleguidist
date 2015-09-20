@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Components from 'components/Components/Components';
 
-import s from './styles.css';
+import s from './StyleGuide.css';
 
 export default React.createClass({
 	displayName: 'StyleGuide',
