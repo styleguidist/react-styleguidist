@@ -5,9 +5,69 @@
 	background: #fff;
 }
 
+:global a,
+:global a:link,
+:global a:visited {
+	color: #1978c8;
+	text-decoration: none;
+}
+
+:global a:hover,
+:global a:focus,
+:global a:active {
+	color: #f28a25;
+}
+
 :global p,
 :global ul,
 :global ol,
-:global blockquote {
+:global blockquote,
+:global table,
+:global hr,
+:global h3,
+:global h4,
+:global h5,
+:global h6 {
 	margin-bottom: 1rem;
+}
+
+:global h3 {
+	font-size: 1.6rem;
+	font-weight: normal;
+}
+:global h4 {
+	font-size: 1.4rem;
+	font-weight: normal;
+}
+:global h5 {
+	font-size: 1rem;
+	font-weight: bold;
+}
+:global h6 {
+	font-size: 1rem;
+	font-weight: normal;
+	font-style: italic;
+}
+
+:global blockquote {
+	font-size: .85rem;
+	padding: 0 2rem;
+}
+
+:global hr {
+	border-bottom: 1px solid #e8e8e8;
+}
+
+:global thead {
+	margin-bottom: 1.5rem;
+	border-bottom: 1px solid #e8e8e8;
+}
+:global td {
+	padding-right: 1rem;
+	padding-top: .5em;
+}
+:global th {
+	padding-right: 1rem;
+	padding-bottom: .5em;
+	text-align:left;
 }

@@ -2,12 +2,8 @@ Basic button:
 
 	<Button>Push Me</Button>
 
-Color button:
+Big red button:
 
-	<Button color="red">Lick Me</Button>
+	<Button size="large" color="red">Lick Me</Button>
 
-Some list:
-
-* Ein;
-* Zwei;
-* Drei.
+And you *can* **use** `any` [Markdown](http://daringfireball.net/projects/markdown/) here.
