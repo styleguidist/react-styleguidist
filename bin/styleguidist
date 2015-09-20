@@ -26,7 +26,7 @@ function commandBuild() {
 			console.log(err);
 		}
 		else {
-			console.log('Style guide publised to', chalk.underline(config.styleguideDir));
+			console.log('Style guide published to', chalk.underline(config.styleguideDir));
 		}
 	});
 }
