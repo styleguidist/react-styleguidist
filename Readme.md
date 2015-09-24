@@ -6,7 +6,7 @@ React components style guide generator with a hot reloaded (style guide) dev ser
 
 [Example style guide](http://sapegin.github.io/react-styleguidist/).
 
-![](https://s3.amazonaws.com/f.cl.ly/items/3e0u2n271y182F1N0k3K/Screen%20Recording%202015-09-07%20at%2010.30%20AM.gif)
+![](https://s3.amazonaws.com/f.cl.ly/items/3i0E1D1L1c1m1s2G1d0y/Screen%20Recording%202015-09-24%20at%2009.49%20AM.gif)
 
 ## Installation
 
