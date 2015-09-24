@@ -1,5 +1,7 @@
 # React Styleguidist :skull: work in progress :skull:
 
+[![Build Status](https://travis-ci.org/sapegin/react-styleguidist.svg)](https://travis-ci.org/sapegin/react-styleguidist)
+
 React components style guide generator with a hot reloaded (style guide) dev server.
 
 [Example style guide](http://sapegin.github.io/react-styleguidist/).
