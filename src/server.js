@@ -13,7 +13,7 @@ module.exports = function server(callback) {
 
 	app.use(require('webpack-hot-middleware')(compiler));
 
-	app.listen(config.serverPort, config.serverHost, function (err) {
+	app.listen(config.serverPort, config.serverHost, function(err) {
 		callback(err, config);
 	});
-}
+};

@@ -10,7 +10,7 @@ export default class ReactComponent extends Component {
 	}
 
 	renderDescription() {
-		let { description } = this.props.component.props;
+		let description = this.props.component.props.description;
 		if (!description) {
 			return null;
 		}

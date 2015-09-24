@@ -63,7 +63,7 @@ export default class Props extends Component {
 		));
 		return (
 			<span>One of: <ul className={s.list}>{values}</ul></span>
-		)
+		);
 	}
 
 	render() {

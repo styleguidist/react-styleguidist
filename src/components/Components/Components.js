@@ -10,7 +10,7 @@ export default class Components extends Component {
 		return this.props.components.map((component) => {
 			return (
 				<ReactComponent component={component} key={component.name}/>
-			)
+			);
 		});
 	}
 

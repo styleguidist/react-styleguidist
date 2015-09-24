@@ -55,11 +55,11 @@ module.exports = function(env) {
 				}
 			]
 		},
-	    postcss: function() {
-	        return [
-	            AdvancedVariables
-	        ];
-	    }
+		postcss: function() {
+			return [
+				AdvancedVariables
+			];
+		}
 	};
 
 	var entryScript = './src/index';
@@ -144,9 +144,9 @@ module.exports = function(env) {
 	if (config.verbose) {
 		console.log();
 		console.log('Using Webpack config:');
- 		console.log(prettyjson.render(webpackConfig));
- 		console.log();
- 	}
+		console.log(prettyjson.render(webpackConfig));
+		console.log();
+	}
 
 	return webpackConfig;
 };

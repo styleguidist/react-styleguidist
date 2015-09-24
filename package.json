@@ -65,12 +65,16 @@
     "react": ">=0.13.0"
   },
   "devDependencies": {
+    "babel-eslint": "~4.1.3",
+    "eslint": "~1.5.0",
+    "eslint-plugin-react": "~3.4.2",
     "gulp": "~3.9.0",
     "gulp-gh-pages": "~0.5.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run lint",
     "start": "./bin/styleguidist server --config example/styleguide.config.js",
+    "lint": "eslint src --ext .js",
     "build": "./bin/styleguidist build --config example/styleguide.config.js",
     "publish": "npm run build && gulp gh-pages"
   },

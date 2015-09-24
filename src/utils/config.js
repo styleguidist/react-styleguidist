@@ -16,7 +16,7 @@ var DEFAULT_CONFIG = {
 	serverPort: 3000,
 	verbose: false,
 	getExampleFilename: function(componentpath) {
-		return path.join(path.dirname(componentpath),  'Readme.md');
+		return path.join(path.dirname(componentpath), 'Readme.md');
 	},
 	updateWebpackConfig: null
 };
@@ -66,8 +66,9 @@ function findConfig(argv) {
 	else {
 		// Search config file in all parent directories
 
+		var configDir;
 		try {
-			var configDir = findup.sync(__dirname, CONFIG_FILENAME);
+			configDir = findup.sync(__dirname, CONFIG_FILENAME);
 		}
 		catch (e) {
 			throw Error('Styleguidist config not found: ' + CONFIG_FILENAME + '.');
