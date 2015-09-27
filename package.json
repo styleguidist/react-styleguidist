@@ -74,7 +74,7 @@
     "gulp-gh-pages": "~0.5.2"
   },
   "scripts": {
-    "test": "npm run lint",
+    "test": "npm run lint && npm run build",
     "start": "./bin/styleguidist server --config example/styleguide.config.js",
     "lint": "eslint src --ext .js",
     "build": "./bin/styleguidist build --config example/styleguide.config.js",
