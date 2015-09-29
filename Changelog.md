@@ -1,3 +1,7 @@
+### 2015-09-29 v0.1.3
+
+* Make Webpack import modules from the Styleguidist instead of the host project (#5).
+
 ### 2015-09-29 v0.1.2
 
 * Now peerDependencies should not fail with React 0.14.0-rc1.
