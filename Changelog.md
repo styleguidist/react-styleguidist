@@ -1,3 +1,7 @@
+### 2015-09-29 v0.1.4
+
+* Respect modules required by the host project but prefer modules from the Styleguidist (#5, #6).
+
 ### 2015-09-29 v0.1.3
 
 * Make Webpack import modules from the Styleguidist instead of the host project (#5).
