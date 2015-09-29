@@ -1,3 +1,8 @@
+### 2015-09-29 v0.1.2
+
+* Now peerDependencies should not fail with React 0.14.0-rc1.
+* Update dependencies.
+
 ### 2015-09-27 v0.1.1
 
 * Fix the name of bin script.
