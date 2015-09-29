@@ -14,12 +14,7 @@
   "bugs": {
     "url": "https://github.com/sapegin/react-styleguidist/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/sapegin/react-styleguidist/blob/master/License.md"
-    }
-  ],
+  "license": "MIT",
   "main": "src/build.js",
   "bin": {
     "styleguidist": "bin/styleguidist"
