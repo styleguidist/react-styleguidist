@@ -60,7 +60,7 @@
     "webpack": "1.12.2",
     "webpack-dev-middleware": "1.2.0",
     "webpack-dev-server": "1.10.1",
-    "webpack-hot-middleware": "2.0.2",
+    "webpack-hot-middleware": "2.3.0",
     "webpack-merge": "0.2.0"
   },
   "peerDependencies": {
