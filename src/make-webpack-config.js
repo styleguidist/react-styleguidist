@@ -21,17 +21,15 @@ module.exports = function(env) {
 			filename: 'build/bundle.js'
 		},
 		resolve: {
-			root: [
-				__dirname
-			],
+			root: path.join(__dirname),
 			alias: {
 				'codemirror': codeMirrorPath
 			}
 		},
 		resolveLoader: {
 			modulesDirectories: [
-				'loaders',
-				'node_modules'
+				path.resolve(__dirname, '../loaders'),
+				path.resolve(__dirname, '../node_modules')
 			]
 		},
 		plugins: [
@@ -62,7 +60,7 @@ module.exports = function(env) {
 		}
 	};
 
-	var entryScript = './src/index';
+	var entryScript = path.join(__dirname, 'index');
 
 	if (isProd) {
 		webpackConfig = merge(webpackConfig, {
@@ -106,7 +104,7 @@ module.exports = function(env) {
 	else {
 		webpackConfig = merge(webpackConfig, {
 			entry: [
-				'webpack-hot-middleware/client',
+				path.resolve(__dirname, '../node_modules/webpack-hot-middleware/client'),
 				entryScript
 			],
 			debug: true,
