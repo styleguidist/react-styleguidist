@@ -22,6 +22,10 @@ module.exports = function(env) {
 		},
 		resolve: {
 			root: path.join(__dirname),
+			modulesDirectories: [
+				path.resolve(__dirname, '../node_modules'),
+				'node_modules'
+			],
 			alias: {
 				'codemirror': codeMirrorPath
 			}
@@ -29,7 +33,8 @@ module.exports = function(env) {
 		resolveLoader: {
 			modulesDirectories: [
 				path.resolve(__dirname, '../loaders'),
-				path.resolve(__dirname, '../node_modules')
+				path.resolve(__dirname, '../node_modules'),
+				'node_modules'
 			]
 		},
 		plugins: [
@@ -104,7 +109,7 @@ module.exports = function(env) {
 	else {
 		webpackConfig = merge(webpackConfig, {
 			entry: [
-				path.resolve(__dirname, '../node_modules/webpack-hot-middleware/client'),
+				'webpack-hot-middleware/client',
 				entryScript
 			],
 			debug: true,
