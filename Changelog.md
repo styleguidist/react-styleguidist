@@ -1,3 +1,8 @@
+### 2015-10-03 v0.1.5
+
+* Add JSX extension (#10).
+* Move Babel configuration to Webpack config (probably fixes #9).
+
 ### 2015-09-29 v0.1.4
 
 * Respect modules required by the host project but prefer modules from the Styleguidist (#5, #6).
