@@ -22,6 +22,7 @@ module.exports = function(env) {
 		},
 		resolve: {
 			root: path.join(__dirname),
+			extensions: ['', '.js', '.jsx'],
 			modulesDirectories: [
 				path.resolve(__dirname, '../node_modules'),
 				'node_modules'
@@ -52,7 +53,7 @@ module.exports = function(env) {
 		module: {
 			loaders: [
 				{
-					test: /\.js$/,
+					test: /\.jsx?$/,
 					include: includes,
 					loader: 'babel'
 				}
