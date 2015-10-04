@@ -35,7 +35,7 @@ function readConfig() {
 	options = _.merge({}, options, {
 		verbose: !!argv.verbose,
 		rootDir: rootDir,
-		styleguideDir: path.resolve(rootDir, options.styleguideDir)
+		styleguideDir: path.resolve(configDir, options.styleguideDir)
 	});
 
 	if (!utils.isDirectoryExists(options.rootDir)) {
