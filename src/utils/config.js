@@ -82,6 +82,9 @@ function validateConfig(options) {
 	if (!options.rootDir) {
 		throw Error('Styleguidist: "rootDir" options is required.');
 	}
+	if (options.rootDir === '.') {
+		throw Error('Styleguidist: "rootDir" should point to a project’s descendant directory: eg. "./lib".');
+	}
 	if (!options.components) {
 		throw Error('Styleguidist: "components" options is required.');
 	}
