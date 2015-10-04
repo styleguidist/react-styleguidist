@@ -31,16 +31,20 @@ function readConfig() {
 
 	var configDir = path.dirname(configFilepath);
 	var rootDir = path.resolve(configDir, options.rootDir);
+
+	if (rootDir === configDir) {
+		throw Error('Styleguidist: "rootDir" should not point to a folder with the Styleguidist config and node_modules folder');
+	}
+	if (!utils.isDirectoryExists(rootDir)) {
+		throw Error('Styleguidist: "rootDir" directory not found: ' + rootDir);
+	}
+
 	options = _.merge({}, DEFAULT_CONFIG, options);
 	options = _.merge({}, options, {
 		verbose: !!argv.verbose,
 		rootDir: rootDir,
 		styleguideDir: path.resolve(configDir, options.styleguideDir)
 	});
-
-	if (!utils.isDirectoryExists(options.rootDir)) {
-		throw Error('Styleguidist: rootDir directory not found: ' + options.rootDir);
-	}
 
 	if (options.verbose) {
 		console.log();
@@ -81,9 +85,6 @@ function findConfig(argv) {
 function validateConfig(options) {
 	if (!options.rootDir) {
 		throw Error('Styleguidist: "rootDir" options is required.');
-	}
-	if (options.rootDir === '.') {
-		throw Error('Styleguidist: "rootDir" should point to a project’s descendant directory: eg. "./lib".');
 	}
 	if (!options.components) {
 		throw Error('Styleguidist: "components" options is required.');
