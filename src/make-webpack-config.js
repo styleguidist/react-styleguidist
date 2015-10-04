@@ -58,19 +58,21 @@ module.exports = function(env) {
 					loader: 'babel',
 					query: {
 						stage: 0,
-						plugins: ['react-transform'],
+						plugins: [path.resolve(__dirname, '../node_modules/babel-plugin-react-transform')],
 						extra: {
-							'react-transform': [
-								{
-									target: 'react-transform-webpack-hmr',
-									imports: ['react'],
-									locals: ['module']
-								},
-								{
-									target: 'react-transform-catch-errors',
-									imports: ['react', 'redbox-react']
-								}
-							]
+							'react-transform': {
+								transforms: [
+									{
+										transform: 'react-transform-hmr',
+										imports: ['react'],
+										locals: ['module']
+									},
+									{
+										transform: 'react-transform-catch-errors',
+										imports: ['react', 'redbox-react']
+									}
+								]
+							}
 						}
 					}
 				}
