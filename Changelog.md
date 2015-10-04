@@ -1,3 +1,7 @@
+### 2015-10-04 v0.1.7
+
+* Fix HTML template path.
+
 ### 2015-10-04 v0.1.6
 
 * Fix babel-plugin-react-transform import, update config format (#9).
