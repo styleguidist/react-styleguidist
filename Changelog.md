@@ -1,3 +1,9 @@
+### 2015-10-04 v0.1.6
+
+* Fix babel-plugin-react-transform import, update config format (#9).
+* Include babel-plugin-react-transform only in development.
+* styleguideDir option should be relative to config file.
+
 ### 2015-10-03 v0.1.5
 
 * Add JSX extension (#10).
