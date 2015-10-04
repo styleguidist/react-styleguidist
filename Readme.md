@@ -18,7 +18,7 @@ Add a `styleguide.config.js` file into your project’s root folder:
 
 ```javascript
 module.exports = {
-	rootDir: './example',
+	rootDir: './lib',
 	components: './components/**/*.js'
 };
 ```
@@ -66,7 +66,7 @@ You can change some settings in the `styleguide.config.js` file in your project�
 
 Type: `String`, required
 
-Your app’s code root folder.
+Your app’s frontend root folder (eg. `./lib`). Should not point to a folder with the Styleguidist config and `node_modules` folder.
 
 ### components
 
