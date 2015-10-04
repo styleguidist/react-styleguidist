@@ -41,7 +41,7 @@ module.exports = function(env) {
 		plugins: [
 			new HtmlWebpackPlugin({
 				title: config.title,
-				template: './src/templates/index.html',
+				template: path.join(__dirname, 'templates/index.html'),
 				inject: true
 			}),
 			new webpack.DefinePlugin({
