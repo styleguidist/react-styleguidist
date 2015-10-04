@@ -52,30 +52,6 @@ module.exports = function(env) {
 		],
 		module: {
 			loaders: [
-				{
-					test: /\.jsx?$/,
-					include: includes,
-					loader: 'babel',
-					query: {
-						stage: 0,
-						plugins: [path.resolve(__dirname, '../node_modules/babel-plugin-react-transform')],
-						extra: {
-							'react-transform': {
-								transforms: [
-									{
-										transform: 'react-transform-hmr',
-										imports: ['react'],
-										locals: ['module']
-									},
-									{
-										transform: 'react-transform-catch-errors',
-										imports: ['react', 'redbox-react']
-									}
-								]
-							}
-						}
-					}
-				}
 			]
 		},
 		postcss: function() {
@@ -113,6 +89,14 @@ module.exports = function(env) {
 			module: {
 				loaders: [
 					{
+						test: /\.jsx?$/,
+						include: includes,
+						loader: 'babel',
+						query: {
+							stage: 0
+						}
+					},
+					{
 						test: /\.css$/,
 						include: codeMirrorPath,
 						loader: ExtractTextPlugin.extract('style', 'css')
@@ -146,6 +130,30 @@ module.exports = function(env) {
 			],
 			module: {
 				loaders: [
+					{
+						test: /\.jsx?$/,
+						include: includes,
+						loader: 'babel',
+						query: {
+							stage: 0,
+							plugins: [path.resolve(__dirname, '../node_modules/babel-plugin-react-transform')],
+							extra: {
+								'react-transform': {
+									transforms: [
+										{
+											transform: 'react-transform-hmr',
+											imports: ['react'],
+											locals: ['module']
+										},
+										{
+											transform: 'react-transform-catch-errors',
+											imports: ['react', 'redbox-react']
+										}
+									]
+								}
+							}
+						}
+					},
 					{
 						test: /\.css$/,
 						include: codeMirrorPath,
