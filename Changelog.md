@@ -1,3 +1,7 @@
+### 2015-10-04 v0.1.9
+
+* Added template setting to config.
+
 ### 2015-10-04 v0.1.8
 
 * Improve rootDir option check.
