@@ -1,4 +1,4 @@
-### 2015-10-04 v0.1.9
+### 2015-10-05 v0.1.9
 
 * Added template setting to config.
 
