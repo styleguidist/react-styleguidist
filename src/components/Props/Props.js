@@ -46,11 +46,13 @@ export default class Props extends Component {
 
 	renderDescription(prop) {
 		let isEnum = prop.type.name === 'enum';
+		let isUnion = prop.type.name === 'union';
 		return (
 			<div>
 				{prop.description}
 				{prop.description && isEnum && ' '}
 				{isEnum && this.renderEnum(prop)}
+				{isUnion && this.renderUnion(prop)}
 			</div>
 		);
 	}
@@ -63,6 +65,31 @@ export default class Props extends Component {
 		));
 		return (
 			<span>One of: <ul className={s.list}>{values}</ul></span>
+		);
+	}
+
+	renderUnion(prop) {
+		let values = prop.type.value.map((value) => (
+			<li className={s.listItem} key={value.name}>
+				<code>
+				{(() => {
+					switch (value.name) {
+						case 'arrayOf':
+							return `arrayOf ${value.value.name}`;
+
+						case 'instanceOf':
+							return `instanceOf ${value.value}`;
+
+						default:
+							return value.name;
+					}
+				})()}
+				</code>
+			</li>
+		));
+
+		return (
+			<span>One of type: <ul className={s.list}>{values}</ul></span>
 		);
 	}
 
