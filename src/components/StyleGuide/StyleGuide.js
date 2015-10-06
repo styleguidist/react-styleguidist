@@ -6,20 +6,20 @@ import s from './StyleGuide.css';
 export default class StyleGuide extends Component {
 	static propTypes = {
 		title: PropTypes.string.isRequired,
-		syntaxTheme: PropTypes.string,
+		highlightTheme: PropTypes.string.isRequired,
 		components: PropTypes.array.isRequired
 	}
 
 	// TODO: Blank slate
 
 	render() {
-		let { title, components, syntaxTheme } = this.props;
+		let { title, components, highlightTheme } = this.props;
 
 		return (
 			<div className={s.root}>
 				<h1 className={s.heading}>{title}</h1>
 				<div>
-					<Components syntaxTheme={syntaxTheme} components={components}/>
+					<Components highlightTheme={highlightTheme} components={components}/>
 				</div>
 			</div>
 		);

@@ -3,16 +3,16 @@ import ReactComponent from 'components/ReactComponent';
 
 export default class Components extends Component {
 	static propTypes = {
-		syntaxTheme: PropTypes.string,
+		highlightTheme: PropTypes.string.isRequired,
 		components: PropTypes.array.isRequired
 	}
 
 	renderComponents() {
-		let { syntaxTheme, components } = this.props;
+		let { highlightTheme, components } = this.props;
 
 		return components.map((component) => {
 			return (
-				<ReactComponent syntaxTheme={syntaxTheme} component={component} key={component.name}/>
+				<ReactComponent highlightTheme={highlightTheme} component={component} key={component.name}/>
 			);
 		});
 	}

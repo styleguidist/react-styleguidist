@@ -2,7 +2,6 @@
 import 'codemirror/mode/xml/xml';
 import 'codemirror/lib/codemirror.css';
 
-import _ from 'lodash';
 import { Component, PropTypes } from 'react';
 import debounce from 'lodash/function/debounce';
 import Codemirror from 'react-codemirror';
@@ -16,7 +15,7 @@ let UPDATE_DELAY = 100;
 export default class Editor extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
-		syntaxTheme: PropTypes.string,
+		highlightTheme: PropTypes.string.isRequired,
 		onChange: PropTypes.func
 	}
 	static codemirrorOptions = {
@@ -25,8 +24,7 @@ export default class Editor extends Component {
 		lineWrapping: true,
 		smartIndent: false,
 		matchBrackets: true,
-		viewportMargin: Infinity,
-		theme: 'base16-light'
+		viewportMargin: Infinity
 	}
 
 	constructor() {
@@ -35,13 +33,9 @@ export default class Editor extends Component {
 	}
 
 	componentWillMount() {
-		let { syntaxTheme } = this.props;
+		let { highlightTheme } = this.props;
 
-		if (!_.isUndefined(syntaxTheme)) {
-			_.assign(Editor.codemirrorOptions, {theme: syntaxTheme});
-		}
-
-		cssRequire(`./${Editor.codemirrorOptions.theme}.css`);
+		cssRequire(`./${highlightTheme}.css`);
 	}
 
 	handleChange(newCode) {
@@ -52,9 +46,14 @@ export default class Editor extends Component {
 	}
 
 	render() {
+		let { highlightTheme } = this.props;
+		let options = Editor.codemirrorOptions;
+
+		options.theme = highlightTheme;
+
 		return (
 			<div className={s.root}>
-				<Codemirror value={this.props.code} onChange={this._handleChange} options={Editor.codemirrorOptions}/>
+				<Codemirror value={this.props.code} onChange={this._handleChange} options={options}/>
 			</div>
 		);
 	}

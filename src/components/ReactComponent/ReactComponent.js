@@ -6,7 +6,7 @@ import s from './ReactComponent.css';
 
 export default class ReactComponent extends Component {
 	static propTypes = {
-		syntaxTheme: PropTypes.string,
+		highlightTheme: PropTypes.string.isRequired,
 		component: PropTypes.object.isRequired
 	}
 
@@ -22,7 +22,7 @@ export default class ReactComponent extends Component {
 	}
 
 	renderExamples() {
-		let { syntaxTheme, component } = this.props;
+		let { highlightTheme, component } = this.props;
 		if (!component.examples) {
 			return null;
 		}
@@ -31,7 +31,7 @@ export default class ReactComponent extends Component {
 			switch (example.type) {
 				case 'code':
 					return (
-						<Playground code={example.content} syntaxTheme={syntaxTheme} key={index}/>
+						<Playground code={example.content} highlightTheme={highlightTheme} key={index}/>
 					);
 				case 'html':
 					return (

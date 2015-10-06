@@ -15,6 +15,7 @@ var DEFAULT_CONFIG = {
 	template: path.join(__dirname, '../templates/index.html'),
 	serverHost: 'localhost',
 	serverPort: 3000,
+	highlightTheme: 'base16-light',
 	verbose: false,
 	getExampleFilename: function(componentpath) {
 		return path.join(path.dirname(componentpath), 'Readme.md');

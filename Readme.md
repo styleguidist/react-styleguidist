@@ -121,7 +121,7 @@ Type: `Number`, default: `3000`
 
 Dev server port.
 
-### syntaxTheme
+### highlightTheme
 
 Type: `String`, default: `base16-light`
 
