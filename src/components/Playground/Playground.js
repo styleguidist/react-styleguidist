@@ -6,6 +6,7 @@ import s from './Playground.css';
 
 export default class Playground extends Component {
 	static propTypes = {
+		syntaxTheme: PropTypes.string,
 		code: PropTypes.string.isRequired
 	}
 
@@ -33,6 +34,7 @@ export default class Playground extends Component {
 
 	render() {
 		let { code } = this.state;
+		let { syntaxTheme } = this.props;
 
 		return (
 			<div className={s.root}>
@@ -40,7 +42,7 @@ export default class Playground extends Component {
 					<Preview code={code}/>
 				</div>
 				<div className={s.editor}>
-					<Editor code={code} onChange={this.handleChange}/>
+					<Editor code={code} syntaxTheme={syntaxTheme} onChange={this.handleChange}/>
 				</div>
 			</div>
 		);
