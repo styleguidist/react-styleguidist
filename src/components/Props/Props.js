@@ -67,6 +67,7 @@ export default class Props extends Component {
 	}
 
 	render() {
+		console.log(this.props);
 		return (
 			<div className={s.root}>
 				<h3 className={s.heading}>Props</h3>
