@@ -97,6 +97,12 @@ Type: `String`, default: `styleguide`
 
 Folder for static HTML style guide generated with `styleguidist build` command.
 
+### template
+
+Type: `String`, default: `./node_modules/react-styleguidist/src/templates/index.html`
+
+HTML file to use as the template for the output.
+
 ### title
 
 Type: `String`, default: `Style guide`

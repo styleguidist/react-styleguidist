@@ -12,6 +12,7 @@ var DEFAULT_CONFIG = {
 	components: null,
 	title: 'Style guide',
 	styleguideDir: 'styleguide',
+	template: path.join(__dirname, '../templates/index.html'),
 	serverHost: 'localhost',
 	serverPort: 3000,
 	verbose: false,
