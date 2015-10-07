@@ -11,9 +11,9 @@ if (module.hot) {
 }
 
 // Load styleguide
-let { title, components } = require('styleguide!');
+let { title, components, highlightTheme } = require('styleguide!');
 
 components = setComponentsNames(components);
 globalizeComponents(components);
 
-React.render(<StyleGuide title={title} components={components}/>, document.getElementById('app'));
+React.render(<StyleGuide title={title} highlightTheme={highlightTheme} components={components}/>, document.getElementById('app'));

@@ -121,6 +121,12 @@ Type: `Number`, default: `3000`
 
 Dev server port.
 
+### highlightTheme
+
+Type: `String`, default: `base16-light`
+
+The name of the [CodeMirror theme](http://codemirror.net/demo/theme.html) to use for syntax highlighting in examples.
+
 ### getExampleFilename
 
 Type: `Function`, default: finds `Readme.md` in the component folder

@@ -43,6 +43,7 @@ module.exports.pitch = function() {
 	return [
 		'module.exports = {',
 		'	title: ' + JSON.stringify(config.title) + ',',
+		'	highlightTheme: ' + JSON.stringify(config.highlightTheme) + ',',
 		'	components: [' + components.join(',') + ']',
 		'};'
 	].join('\n');
