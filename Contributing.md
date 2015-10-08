@@ -15,7 +15,7 @@ I love pull requests. And following this simple guidelines will make your pull r
 
 ## JavaScript code style
 
-See [JSHint](.jshintrc) and [JSCS](.jscs.json) config files for more details.
+See [ESLint](.eslintrc) config files for more details.
 
 - Tab indentation.
 - Single-quotes.
@@ -29,6 +29,7 @@ See [JSHint](.jshintrc) and [JSCS](.jscs.json) config files for more details.
 - Return early.
 - Limit line lengths to 120 chars.
 - Prefer readability over religion.
+- Use ES6.
 
 Example:
 
@@ -36,11 +37,13 @@ Example:
 'use strict';
 
 function foo(bar, fum) {
-    if (!bar) return;
+    if (!bar) {
+    	return;
+    }
 
-    var hello = 'Hello';
-    var ret = 0;
-    for (var barIdx = 0; barIdx < bar.length; barIdx++) {
+    let hello = 'Hello';
+    let ret = 0;
+    for (let barIdx = 0; barIdx < bar.length; barIdx++) {
         if (bar[barIdx] === hello) {
             ret += fum(bar[barIdx]);
         }
@@ -57,7 +60,7 @@ function foo(bar, fum) {
 - Don’t commit generated files: compiled from Stylus CSS, minified JavaScript, etc.
 - Don’t change version number and changelog.
 - Install [EditorConfig](http://editorconfig.org/) plugin for your code editor.
-- Feel free to [ask me](http://sapegin.me/contacts) anything you need.
+- Feel free to [ask me](http://sapegin.me) anything you need.
 
 
 ## Building and running tests
@@ -65,12 +68,11 @@ function foo(bar, fum) {
 Install dependencies:
 
 ```bash
-npm install grunt-cli -g
 npm install
 ```
 
 Build / run tests:
 
 ```bash
-grunt
+npm test
 ```
