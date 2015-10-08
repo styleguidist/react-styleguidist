@@ -99,7 +99,7 @@ Folder for static HTML style guide generated with `styleguidist build` command.
 
 ### template
 
-Type: `String`, default: `./node_modules/react-styleguidist/src/templates/index.html`
+Type: `String`, default: [src/templates/index.html](src/templates/index.html)
 
 HTML file to use as the template for the output.
 
@@ -125,7 +125,7 @@ Dev server port.
 
 Type: `String`, default: `base16-light`
 
-The name of the [CodeMirror theme](http://codemirror.net/demo/theme.html) to use for syntax highlighting in examples.
+[CodeMirror theme](http://codemirror.net/demo/theme.html) name to use for syntax highlighting in examples.
 
 ### getExampleFilename
 
