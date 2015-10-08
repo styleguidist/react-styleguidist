@@ -1,3 +1,8 @@
+### 2015-10-08 v0.2.0
+
+* New config options: template (#14), highlightTheme (#15) (by [reintroducing](https://github.com/reintroducing)).
+* Union type support in PropTypes (#17, by [reintroducing](https://github.com/reintroducing))
+
 ### 2015-10-04 v0.1.8
 
 * Improve rootDir option check.
