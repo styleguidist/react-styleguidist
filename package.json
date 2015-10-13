@@ -1,7 +1,7 @@
 {
   "name": "react-styleguidist",
   "description": "React components styleguide",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://github.com/sapegin/react-styleguidist",
   "author": {
     "name": "Artem Sapegin",
