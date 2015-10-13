@@ -1,3 +1,7 @@
+### 2015-10-13 v0.2.1
+
+* npm 3 support.
+
 ### 2015-10-08 v0.2.0
 
 * New config options: template (#14), highlightTheme (#15) (by [reintroducing](https://github.com/reintroducing)).
