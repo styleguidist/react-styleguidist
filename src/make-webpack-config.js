@@ -1,3 +1,4 @@
+var fs = require('fs');
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -10,11 +11,20 @@ var config = require('../src/utils/config');
 module.exports = function(env) {
 	var isProd = env === 'production';
 
+	var codeMirrorPath = path.join(__dirname, '../../codemirror');  // npm 3
+	if (!fs.existsSync(codeMirrorPath)) {
+		codeMirrorPath = path.join(__dirname, '../node_modules/react-codemirror/node_modules/codemirror');  // npm 2
+	}
+
+	var reactTransformPath = path.join(__dirname, '../../babel-plugin-react-transform');  // npm 3
+	if (!fs.existsSync(reactTransformPath)) {
+		reactTransformPath = path.resolve(__dirname, '../node_modules/babel-plugin-react-transform');  // npm 2
+	}
+
 	var includes = [
 		__dirname,
 		config.rootDir
 	];
-	var codeMirrorPath = path.join(__dirname, '../node_modules/react-codemirror/node_modules/codemirror');
 	var webpackConfig = {
 		output: {
 			path: config.styleguideDir,
@@ -136,7 +146,7 @@ module.exports = function(env) {
 						loader: 'babel',
 						query: {
 							stage: 0,
-							plugins: [path.resolve(__dirname, '../node_modules/babel-plugin-react-transform')],
+							plugins: [reactTransformPath],
 							extra: {
 								'react-transform': {
 									transforms: [
