@@ -148,7 +148,7 @@ Type: `Function`, optional
 Function that allows you to modify Webpack config for style guide:
 
 ```javascript
-updateWebpackConfig: function(cwebpackConfigonfig, env) {
+updateWebpackConfig: function(webpackConfig, env) {
 	if (env === 'development') {
 		/* ... modify config ... */
 	}
