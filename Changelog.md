@@ -1,5 +1,9 @@
 ### 2015-10-28 v0.1.1
 
+* Fix Wrapper component import to make Webpack’s aliases work with it.
+
+### 2015-10-28 v0.1.0
+
 * Add a new Wrapper component that wraps every component in the style guide. It allows you to provide necessary context (e.g. react-intl) for every component.
 * Nicer errors in the playground.
 
