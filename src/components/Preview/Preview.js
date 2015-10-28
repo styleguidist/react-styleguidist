@@ -3,7 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import reactTools from 'react-tools';
-import Wrapper from '../Wrapper';
+import Wrapper from 'components/Wrapper';
 
 import s from './Preview.css';
 
