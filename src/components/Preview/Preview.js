@@ -3,6 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import reactTools from 'react-tools';
+import Wrapper from '../Wrapper';
 
 export default class Preview extends Component {
 	static propTypes = {
@@ -28,18 +29,13 @@ export default class Preview extends Component {
 
 	compileCode() {
 		// TODO: Babel
-		return reactTools.transform(
-			// '(function() {' +
-				this.props.code,
-			// '\n})();'
-			{
-				harmony: true
-			}
-		);
+		return reactTools.transform(this.props.code, {
+			harmony: true
+		});
 	}
 
 	executeCode() {
-		var mountNode = this.refs.mount;
+		let mountNode = this.refs.mount;
 
 		try {
 			ReactDOM.unmountComponentAtNode(mountNode);
@@ -53,8 +49,14 @@ export default class Preview extends Component {
 		});
 
 		try {
-			var compiledCode = this.compileCode();
-			ReactDOM.render(eval(compiledCode), mountNode);  /* eslint no-eval:0 */
+			let compiledCode = this.compileCode();
+			let component = eval(compiledCode);  /* eslint no-eval:0 */
+			let wrappedComponent = (
+				<Wrapper>
+					{component}
+				</Wrapper>
+			);
+			ReactDOM.render(wrappedComponent, mountNode);
 		}
 		catch (err) {
 			ReactDOM.unmountComponentAtNode(mountNode);
