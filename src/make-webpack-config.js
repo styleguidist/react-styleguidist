@@ -13,12 +13,12 @@ module.exports = function(env) {
 
 	var codeMirrorPath = path.join(__dirname, '../../codemirror');  // npm 3
 	if (!fs.existsSync(codeMirrorPath)) {
-		codeMirrorPath = path.join(__dirname, '../node_modules/react-codemirror/node_modules/codemirror');  // npm 2
+		codeMirrorPath = path.join(__dirname, '../node_modules/codemirror');  // npm 2 or react-styleguidist develop
 	}
 
 	var reactTransformPath = path.join(__dirname, '../../babel-plugin-react-transform');  // npm 3
 	if (!fs.existsSync(reactTransformPath)) {
-		reactTransformPath = path.resolve(__dirname, '../node_modules/babel-plugin-react-transform');  // npm 2
+		reactTransformPath = path.resolve(__dirname, '../node_modules/babel-plugin-react-transform');  // npm 2 or react-styleguidist develop
 	}
 
 	var includes = [
