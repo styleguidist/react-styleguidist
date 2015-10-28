@@ -5,6 +5,8 @@ import ReactDOM from 'react-dom';
 import reactTools from 'react-tools';
 import Wrapper from '../Wrapper';
 
+import s from './Preview.css';
+
 export default class Preview extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired
@@ -70,7 +72,7 @@ export default class Preview extends Component {
 		let { error } = this.state;
 		if (error) {
 			return (
-				<div className="playgroundError">{error}</div>
+				<div className={s.playgroundError}>{error}</div>
 			);
 		}
 		else {
