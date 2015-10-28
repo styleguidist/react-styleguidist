@@ -1,3 +1,8 @@
+### 2015-10-28 v0.1.1
+
+* Add a new Wrapper component that wraps every component in the style guide. It allows you to provide necessary context (e.g. react-intl) for every component.
+* Nicer errors in the playground.
+
 ### 2015-10-28 v1.0.0
 
 * Require React 0.14, drop React 0.13 support.
