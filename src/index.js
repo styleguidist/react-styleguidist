@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { setComponentsNames, globalizeComponents } from './utils/utils';
 import StyleGuide from 'components/StyleGuide';
 
@@ -16,4 +17,4 @@ let { config, components } = require('styleguide!');
 components = setComponentsNames(components);
 globalizeComponents(components);
 
-React.render(<StyleGuide config={config} components={components}/>, document.getElementById('app'));
+ReactDOM.render(<StyleGuide config={config} components={components}/>, document.getElementById('app'));

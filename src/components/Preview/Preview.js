@@ -1,6 +1,7 @@
 // Based on https://github.com/joelburget/react-live-editor/blob/master/live-compile.jsx
 
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import reactTools from 'react-tools';
 
 export default class Preview extends Component {
@@ -38,10 +39,10 @@ export default class Preview extends Component {
 	}
 
 	executeCode() {
-		var mountNode = this.refs.mount.getDOMNode();
+		var mountNode = this.refs.mount;
 
 		try {
-			React.unmountComponentAtNode(mountNode);
+			ReactDOM.unmountComponentAtNode(mountNode);
 		}
 		finally {
 			/* */
@@ -53,10 +54,10 @@ export default class Preview extends Component {
 
 		try {
 			var compiledCode = this.compileCode();
-			React.render(eval(compiledCode), mountNode);  /* eslint no-eval:0 */
+			ReactDOM.render(eval(compiledCode), mountNode);  /* eslint no-eval:0 */
 		}
 		catch (err) {
-			React.unmountComponentAtNode(mountNode);
+			ReactDOM.unmountComponentAtNode(mountNode);
 			this.setState({
 				error: err.toString()
 			});
