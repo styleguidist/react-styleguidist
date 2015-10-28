@@ -1,3 +1,9 @@
+### 2015-10-28 v1.0.0
+
+* Require React 0.14, drop React 0.13 support.
+* The `StyleGuide` component is just a container now (layout is now in the `Layout` component). It should make injecting your own components easier.
+* Better error handling when react-docgen cannot parse component source.
+
 ### 2015-10-13 v0.2.1
 
 * npm 3 support.
