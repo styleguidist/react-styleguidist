@@ -5,15 +5,15 @@ import s from './StyleGuide.css';
 
 export default class StyleGuide extends Component {
 	static propTypes = {
-		title: PropTypes.string.isRequired,
-		highlightTheme: PropTypes.string.isRequired,
+		config: PropTypes.object.isRequired,
 		components: PropTypes.array.isRequired
 	}
 
 	// TODO: Blank slate
 
 	render() {
-		let { title, components, highlightTheme } = this.props;
+		let { config, components } = this.props;
+		let { title, highlightTheme } = config;
 
 		return (
 			<div className={s.root}>

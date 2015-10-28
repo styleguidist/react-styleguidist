@@ -2,6 +2,7 @@ var fs = require('fs');
 var path = require('path');
 var glob = require('glob');
 var prettyjson = require('prettyjson');
+var _ = require('lodash');
 var config = require('../src/utils/config');
 
 function processComponent(filepath) {
@@ -40,10 +41,14 @@ module.exports.pitch = function() {
 
 	var components = componentSources.map(processComponent);
 
+	var simplifiedConfig = _.pick(config, [
+		'title',
+		'highlightTheme'
+	]);
+
 	return [
 		'module.exports = {',
-		'	title: ' + JSON.stringify(config.title) + ',',
-		'	highlightTheme: ' + JSON.stringify(config.highlightTheme) + ',',
+		'	config: ' + JSON.stringify(simplifiedConfig) + ',',
 		'	components: [' + components.join(',') + ']',
 		'};'
 	].join('\n');
