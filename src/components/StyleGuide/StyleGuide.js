@@ -1,4 +1,4 @@
-import { Component, PropTypes } from 'react';
+import { Component } from 'react';
 import Layout from 'components/Layout';
 
 export default class StyleGuide extends Component {
