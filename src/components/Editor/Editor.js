@@ -1,5 +1,5 @@
 // CodeMirror
-import 'codemirror/mode/xml/xml';
+import '../../utils/codemirror-jsx';
 import 'codemirror/lib/codemirror.css';
 
 import _ from 'lodash';
@@ -20,7 +20,7 @@ export default class Editor extends Component {
 		onChange: PropTypes.func
 	}
 	static codemirrorOptions = {
-		mode: 'xml',
+		mode: 'jsx',
 		lineNumbers: false,
 		lineWrapping: true,
 		smartIndent: false,
