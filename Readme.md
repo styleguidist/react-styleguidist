@@ -38,11 +38,13 @@ And run `npm run styleguide-server` to start styleguide dev server.
 
 ## Documenting components
 
-### PropTypes
+Styleguidist generates documentation from 2 sources:
 
-Components `PropTypes` are parsed by the [react-docgen](https://github.com/reactjs/react-docgen) library. Have a look at [their example](https://github.com/reactjs/react-docgen#example) of a component documentation.
+### PropTypes and component description
 
-### Usage examples
+Components' `PropTypes` and documentation comments are parsed by the [react-docgen](https://github.com/reactjs/react-docgen) library. Have a look at [their example](https://github.com/reactjs/react-docgen#example) of a component documentation.
+
+### Usage examples and further documentation
 
 Examples are written in Markdown where any code blocks will be rendered as a react components. By default any `Readme.md` in the component folder is treated as an examples file but you can change it with the `getExampleFilename` option.
 
@@ -62,99 +64,79 @@ Any [Markdown](http://daringfireball.net/projects/markdown/):
 
 You can change some settings in the `styleguide.config.js` file in your project’s root folder.
 
-### rootDir
+* **`rootDir`**  
+  Type: `String`, required  
+  Your app’s frontend root folder (eg. `./lib`). Should not point to a folder with the Styleguidist config and `node_modules` folder.
 
-Type: `String`, required
+* **`components`**  
+  Type: `String` or `Function`, required  
+  - when `String`: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules. Relative to the `rootDir`.
+  - when `Function`: function that returns an array of modules.
 
-Your app’s frontend root folder (eg. `./lib`). Should not point to a folder with the Styleguidist config and `node_modules` folder.
+  If your components look like `components/Button.js` or `components/Button/Button.js` or `components/Button/index.js`:
 
-### components
+  ```javascript
+  components: './components/**/*.js',
+  ```
 
-Type: `String`, required
+  If your components look like `components/Button/Button.js` + `components/Button/index.js`:
 
-- String: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules. Relative to the `rootDir`.
-- Function: function that returns an array of modules.
+  ```javascript
+  components: function(config, glob) {
+  	return glob.sync(config.rootDir + '/components/**/*.js').filter(function(module) {
+  		return /\/[A-Z][a-z]*\.js$/.test(module);
+  	});
+  },
+  ```
 
-If your components look like `components/Button.js` or `components/Button/Button.js` or `components/Button/index.js`:
+* **`styleguideDir`**  
+  Type: `String`, default: `styleguide`  
+  Folder for static HTML style guide generated with `styleguidist build` command.
 
-```javascript
-components: './components/**/*.js',
-```
+* **`template`**  
+  Type: `String`, default: [src/templates/index.html](src/templates/index.html)  
+  HTML file to use as the template for the output.
 
-If your components look like `components/Button/Button.js` + `components/Button/index.js`:
+* **`title`**  
+  Type: `String`, default: `Style guide`  
+  Style guide title.
 
-```javascript
-components: function(config, glob) {
-	return glob.sync(config.rootDir + '/components/**/*.js').filter(function(module) {
-		return /\/[A-Z][a-z]*\.js$/.test(module);
-	});
-},
-```
+* **`serverHost`**  
+  Type: `String`, default: `localhost`  
+  Dev server host name.
 
-### styleguideDir
+* **`serverPort`**  
+  Type: `Number`, default: `3000`  
+  Dev server port.
 
-Type: `String`, default: `styleguide`
+* **`highlightTheme`**  
+  Type: `String`, default: `base16-light`  
+  [CodeMirror theme](http://codemirror.net/demo/theme.html) name to use for syntax highlighting in examples.
 
-Folder for static HTML style guide generated with `styleguidist build` command.
+* **`getExampleFilename`**  
+  Type: `Function`, default: finds `Readme.md` in the component folder  
+  Function that returns examples file path for a given component path.
 
-### template
+  For example, instead of `Readme.md` you can use `ComponentName.examples.md`:
 
-Type: `String`, default: [src/templates/index.html](src/templates/index.html)
+  ```javascript
+  getExampleFilename: function(componentpath) {
+  	return componentpath.replace(/\.jsx?$/,   '.examples.md');
+  }
+  ```
 
-HTML file to use as the template for the output.
+* **`updateWebpackConfig`**  
+  Type: `Function`, optional  
+  Function that allows you to modify Webpack config for style guide:
 
-### title
-
-Type: `String`, default: `Style guide`
-
-Style guide title.
-
-### serverHost
-
-Type: `String`, default: `localhost`
-
-Dev server host name.
-
-### serverPort
-
-Type: `Number`, default: `3000`
-
-Dev server port.
-
-### highlightTheme
-
-Type: `String`, default: `base16-light`
-
-[CodeMirror theme](http://codemirror.net/demo/theme.html) name to use for syntax highlighting in examples.
-
-### getExampleFilename
-
-Type: `Function`, default: finds `Readme.md` in the component folder
-
-Function that returns examples file path for a given component path.
-
-For example, instead of `Readme.md` you can use `ComponentName.examples.md`:
-
-```javascript
-getExampleFilename: function(componentpath) {
-	return componentpath.replace(/\.jsx?$/, '.examples.md');
-}
-```
-
-### updateWebpackConfig
-
-Type: `Function`, optional
-
-Function that allows you to modify Webpack config for style guide:
-
-```javascript
-updateWebpackConfig: function(webpackConfig, env) {
-	if (env === 'development') {
-		/* ... modify config ... */
-	}
-	return webpackConfig;
-}
-```
+  ```javascript
+  updateWebpackConfig: function(webpackConfig, env) {
+  	if (env === 'development') {
+  		/* ... modify config ... */
+  	}
+  	return webpackConfig;
+  }
+  ```
 
 ### Config example
 
@@ -165,29 +147,21 @@ module.exports = {
 	components: './**/*.js',
 	getExampleFilename: function(componentpath) {
 		return componentpath.replace(/\.js$/, '.examples.md');
-	}
+	},
 };
 ```
 
 ## CLI commands and options
 
-### styleguidist server
+`styleguidist server`: Run dev server.
 
-Run dev server.
-
-### styleguidist build
-
-Generate a static HTML style guide.
+`styleguidist build`: Generate a static HTML style guide.
 
 ### Options
 
-#### --config
+* `--config`: Specify path to a config file: `styleguidist server --config dir/styleguide.config.js`.
 
-Specify path to a config file: `styleguidist server --config dir/styleguide.config.js`.
-
-#### --verbose
-
-Print debug information.
+* `--verbose`: Print debug information.
 
 ## Changelog
 
