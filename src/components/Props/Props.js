@@ -58,6 +58,9 @@ export default class Props extends Component {
 	}
 
 	renderEnum(prop) {
+		if (!Array.isArray(prop.type.value)) {
+			return <span>{prop.type.value}</span>;
+		}
 		let values = prop.type.value.map(({ value }) => (
 			<li className={s.listItem} key={value}>
 				<code>{this.unquote(value)}</code>
@@ -69,6 +72,9 @@ export default class Props extends Component {
 	}
 
 	renderUnion(prop) {
+		if (!Array.isArray(prop.type.value)) {
+			return <span>{prop.type.value}</span>;
+		}
 		let values = prop.type.value.map((value) => (
 			<li className={s.listItem} key={value.name}>
 				<code>
