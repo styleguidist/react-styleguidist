@@ -7,7 +7,8 @@ import s from './Playground.css';
 export default class Playground extends Component {
 	static propTypes = {
 		highlightTheme: PropTypes.string.isRequired,
-		code: PropTypes.string.isRequired
+		code: PropTypes.string.isRequired,
+		evalInContext: PropTypes.func.isRequired,
 	}
 
 	constructor(props) {
@@ -39,7 +40,7 @@ export default class Playground extends Component {
 		return (
 			<div className={s.root}>
 				<div className={s.preview}>
-					<Preview code={code}/>
+					<Preview code={code} evalInContext={this.props.evalInContext}/>
 				</div>
 				<div className={s.editor}>
 					<Editor code={code} highlightTheme={highlightTheme} onChange={this.handleChange}/>

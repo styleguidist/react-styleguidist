@@ -9,7 +9,8 @@ import s from './Preview.css';
 
 export default class Preview extends Component {
 	static propTypes = {
-		code: PropTypes.string.isRequired
+		code: PropTypes.string.isRequired,
+		evalInContext: PropTypes.func.isRequired,
 	}
 
 	constructor() {
@@ -49,7 +50,7 @@ export default class Preview extends Component {
 
 		try {
 			let compiledCode = this.compileCode(code);
-			let component = eval(compiledCode);  /* eslint no-eval:0 */
+			let component = this.props.evalInContext(compiledCode);
 			let wrappedComponent = (
 				<Wrapper>
 					{component}
