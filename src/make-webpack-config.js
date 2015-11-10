@@ -64,6 +64,9 @@ module.exports = function(env) {
 		],
 		module: {
 			loaders: [
+			],
+			noParse: [
+				/babel-core\/browser.js/
 			]
 		},
 		postcss: function() {

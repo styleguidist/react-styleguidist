@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import reactTools from 'react-tools';
+import babel from 'babel-core/browser';
 import Wrapper from 'components/Wrapper';
 
 import s from './Preview.css';
@@ -29,29 +29,26 @@ export default class Preview extends Component {
 		}
 	}
 
-	compileCode() {
-		// TODO: Babel
-		return reactTools.transform(this.props.code, {
-			harmony: true
-		});
+	compileCode(code) {
+		return babel.transform(code, {stage: 0}).code;
 	}
 
 	executeCode() {
 		let mountNode = this.refs.mount;
 
-		try {
-			ReactDOM.unmountComponentAtNode(mountNode);
-		}
-		finally {
-			/* */
-		}
+		ReactDOM.unmountComponentAtNode(mountNode);
 
 		this.setState({
 			error: null
 		});
 
+		let { code } = this.props;
+		if (!code) {
+			return;
+		}
+
 		try {
-			let compiledCode = this.compileCode();
+			let compiledCode = this.compileCode(code);
 			let component = eval(compiledCode);  /* eslint no-eval:0 */
 			let wrappedComponent = (
 				<Wrapper>
@@ -72,7 +69,7 @@ export default class Preview extends Component {
 		let { error } = this.state;
 		if (error) {
 			return (
-				<div className={s.playgroundError}>{error}</div>
+				<pre className={s.playgroundError}>{error}</pre>
 			);
 		}
 		else {
