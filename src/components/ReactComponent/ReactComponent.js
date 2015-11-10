@@ -46,6 +46,7 @@ export default class ReactComponent extends Component {
 		return (
 			<div className={s.root}>
 				<h2 className={s.heading}>{component.name}</h2>
+				<div className={s.sourcePath}>{component.relativePath}</div>
 				{this.renderDescription()}
 				<Props props={component.props}/>
 				{this.renderExamples()}

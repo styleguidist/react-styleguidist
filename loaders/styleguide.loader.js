@@ -10,6 +10,7 @@ function processComponent(filepath) {
 	var hasExamples = !!fs.existsSync(examplesFile);
 	return '{' + [
 			'filepath: ' + JSON.stringify(filepath),
+			'relativePath: ' + JSON.stringify(path.relative(config.rootDir, filepath)),
 			'module: ' + requireIt(filepath),
 			'props: ' + requireIt('!!props!' + filepath),
 			'examples: ' + (hasExamples ? requireIt('examples!' + examplesFile) : null)
