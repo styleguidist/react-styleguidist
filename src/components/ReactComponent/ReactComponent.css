@@ -1,11 +1,17 @@
 .root {
-	margin-bottom: 2rem;
+	margin-bottom: 3rem;
 }
 
 .heading {
-	margin-bottom: 1rem;
 	font-size: 2rem;
 	font-weight: normal;
+}
+
+.sourcePath {
+	color: #aaa;
+	font-size: 0.8rem;
+	margin-bottom: 1rem;
+	font-family: monospace;
 }
 
 .description {
