@@ -31,7 +31,7 @@ export default class ReactComponent extends Component {
 			switch (example.type) {
 				case 'code':
 					return (
-						<Playground code={example.content} highlightTheme={highlightTheme} key={index}/>
+						<Playground code={example.content} evalInContext={example.evalInContext} highlightTheme={highlightTheme} key={index} />
 					);
 				case 'html':
 					return (
