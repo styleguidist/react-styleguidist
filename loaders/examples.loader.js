@@ -4,7 +4,7 @@ var marked = require('marked');
 var evalPlaceholder = '<%{#eval#}%>';
 var codePlaceholder = '<%{#code#}%>';
 
-var requireAnythingRegex = /require\s*\((.+)\)/g;
+var requireAnythingRegex = /require\s*\(([^)]+)\)/g;
 var simpleStringRegex = /^"([^"]+)"$|^'([^']+)'$/;
 
 function readExamples(markdown) {

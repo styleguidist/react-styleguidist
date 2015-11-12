@@ -30,6 +30,11 @@ describe('examples loader', () => {
 			expect(`var f = require;`).not.to.match(regex);
 			expect(`require.call(module, "foo")`).not.to.match(regex);
 		});
+
+		it('should match many requires in the same line correctly', () => {
+			var replaced = `require('foo');require('bar')`.replace(examplesLoader.requireAnythingRegex, 'x');
+			expect(replaced).to.equal('x;x');
+		});
 	});
 
 	describe('simpleStringRegex', () => {
@@ -59,6 +64,9 @@ describe('examples loader', () => {
 		it('should find calls to require in code', () => {
 			let findRequires = examplesLoader.findRequires;
 			expect(findRequires(`require('foo')`)).to.deep.equal(['foo']);
+			expect(findRequires(`require('./foo')`)).to.deep.equal(['./foo']);
+			expect(findRequires(`require('foo');require('bar')`)).to.deep.equal(['foo', 'bar']);
+			expect(() => findRequires(`require('foo' + 'bar')`)).to.throw(Error);
 		});
 	});
 
