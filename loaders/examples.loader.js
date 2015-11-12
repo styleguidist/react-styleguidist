@@ -52,8 +52,7 @@ function findRequires(codeString) {
 	return Object.keys(requires);
 }
 
-
-module.exports = function(source, map) {
+function examplesLoader(source, map) {
 	this.cacheable && this.cacheable();
 
 	var examples = readExamples(source);
@@ -86,4 +85,13 @@ module.exports = function(source, map) {
 			'function(code) {var require=requireInRuntime; return eval(code);}'
 		) + ';',
 	].join('\n');
-};
+}
+
+_.assign(examplesLoader, {
+	requireAnythingRegex: requireAnythingRegex,
+	simpleStringRegex: simpleStringRegex,
+	readExamples: readExamples,
+	findRequires: findRequires,
+});
+
+module.exports = examplesLoader;
