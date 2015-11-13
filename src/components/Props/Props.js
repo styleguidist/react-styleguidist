@@ -19,13 +19,24 @@ export default class Props extends Component {
 			rows.push(
 				<tr key={name}>
 					<td className={s.cell}><code>{name}</code></td>
-					<td className={s.cell}><code>{prop.type.name}</code></td>
+					<td className={s.cell}><code>{this.renderType(prop.type)}</code></td>
 					<td className={s.cell}>{this.renderDefault(prop)}</td>
 					<td className={s.cell + ' ' + s.cellDesc}>{this.renderDescription(prop)}</td>
 				</tr>
 			);
 		}
 		return rows;
+	}
+
+	renderType(type) {
+		let { name } = type;
+		switch (name) {
+			case 'arrayOf':
+				return `${type.value.name}[]`;
+			case 'instanceOf':
+				return type.value;
+		}
+		return name;
 	}
 
 	renderDefault(prop) {
@@ -77,20 +88,7 @@ export default class Props extends Component {
 		}
 		let values = prop.type.value.map((value) => (
 			<li className={s.listItem} key={value.name}>
-				<code>
-				{(() => {
-					switch (value.name) {
-						case 'arrayOf':
-							return `arrayOf ${value.value.name}`;
-
-						case 'instanceOf':
-							return `instanceOf ${value.value}`;
-
-						default:
-							return value.name;
-					}
-				})()}
-				</code>
+				<code>{this.renderType(value)}</code>
 			</li>
 		));
 
