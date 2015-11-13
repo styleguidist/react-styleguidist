@@ -74,8 +74,8 @@
   },
   "scripts": {
     "test": "npm run lint && npm run mocha && npm run build",
-    "mocha": "mocha --compilers js:babel-core/register test",
-    "mocha:watch": "mocha --watch --reporter min --compilers js:babel/register test",
+    "mocha": "mocha test",
+    "mocha:watch": "mocha --watch --reporter min test",
     "start": "./bin/styleguidist server --config example/styleguide.config.js",
     "lint": "eslint src --ext .js",
     "build": "./bin/styleguidist build --config example/styleguide.config.js",
