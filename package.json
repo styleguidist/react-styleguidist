@@ -83,11 +83,13 @@
   },
   "keywords": [
     "react",
+    "jsx",
     "styleguide",
     "style guide",
     "documentation",
     "docs",
     "generator",
+    "component",
     "components"
   ]
 }
