@@ -56,7 +56,8 @@
     "webpack": "1.12.2",
     "webpack-dev-middleware": "1.2.0",
     "webpack-hot-middleware": "2.4.1",
-    "webpack-merge": "0.2.0"
+    "webpack-merge": "0.2.0",
+    "react-dom": "~0.14.2"
   },
   "peerDependencies": {
     "react": ">=0.14.0",
@@ -75,8 +76,7 @@
     "mocha": "~2.3.3",
     "postcss-modules-extract-imports": "~1.0.0",
     "postcss-modules-scope": "~1.0.0",
-    "react": "~0.14.2",
-    "react-dom": "~0.14.2"
+    "react": "~0.14.2"
   },
   "scripts": {
     "test": "npm run lint && npm run mocha && npm run build",
