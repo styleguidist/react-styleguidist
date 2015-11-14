@@ -17,6 +17,11 @@ function processComponent(filepath) {
 		].join(',') + '}';
 }
 
+function hasExamples(filepath) {
+	var examplesFile = config.getExampleFilename(filepath);
+	return !!fs.existsSync(examplesFile);
+}
+
 function requireIt(filepath) {
 	return 'require(' + JSON.stringify(filepath) + ')';
 }
@@ -38,6 +43,10 @@ module.exports.pitch = function() {
 		console.log('Loading components:');
 		console.log(prettyjson.render(componentSources));
 		console.log();
+	}
+
+	if (config.skipComponentsWithoutReadme) {
+		componentSources = _.filter(componentSources, hasExamples);
 	}
 
 	var components = componentSources.map(processComponent);

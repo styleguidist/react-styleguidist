@@ -10,6 +10,7 @@ var CONFIG_FILENAME = 'styleguide.config.js';
 var DEFAULT_CONFIG = {
 	rootDir: null,
 	components: null,
+	skipComponentsWithoutReadme: false,
 	title: 'Style guide',
 	styleguideDir: 'styleguide',
 	template: path.join(__dirname, '../templates/index.html'),
