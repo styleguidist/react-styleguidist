@@ -11,7 +11,7 @@ React components style guide generator with a hot reloaded (style guide) dev ser
 ## Installation
 
 ```
-npm install --save-dev react-styleguidist
+npm install --save-dev react react-dom react-styleguidist
 ```
 
 Add a `styleguide.config.js` file into your projectâ€™s root folder:
@@ -64,12 +64,12 @@ Any [Markdown](http://daringfireball.net/projects/markdown/):
 
 You can change some settings in the `styleguide.config.js` file in your projectâ€™s root folder.
 
-* **`rootDir`**  
-  Type: `String`, required  
+* **`rootDir`**
+  Type: `String`, required
   Your appâ€™s frontend root folder (eg. `./lib`). Should not point to a folder with the Styleguidist config and `node_modules` folder.
 
-* **`components`**  
-  Type: `String` or `Function`, required  
+* **`components`**
+  Type: `String` or `Function`, required
   - when `String`: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules. Relative to the `rootDir`.
   - when `Function`: function that returns an array of modules.
 
@@ -89,32 +89,32 @@ You can change some settings in the `styleguide.config.js` file in your projectâ
   },
   ```
 
-* **`styleguideDir`**  
-  Type: `String`, default: `styleguide`  
+* **`styleguideDir`**
+  Type: `String`, default: `styleguide`
   Folder for static HTML style guide generated with `styleguidist build` command.
 
-* **`template`**  
-  Type: `String`, default: [src/templates/index.html](src/templates/index.html)  
+* **`template`**
+  Type: `String`, default: [src/templates/index.html](src/templates/index.html)
   HTML file to use as the template for the output.
 
-* **`title`**  
-  Type: `String`, default: `Style guide`  
+* **`title`**
+  Type: `String`, default: `Style guide`
   Style guide title.
 
-* **`serverHost`**  
-  Type: `String`, default: `localhost`  
+* **`serverHost`**
+  Type: `String`, default: `localhost`
   Dev server host name.
 
-* **`serverPort`**  
-  Type: `Number`, default: `3000`  
+* **`serverPort`**
+  Type: `Number`, default: `3000`
   Dev server port.
 
-* **`highlightTheme`**  
-  Type: `String`, default: `base16-light`  
+* **`highlightTheme`**
+  Type: `String`, default: `base16-light`
   [CodeMirror theme](http://codemirror.net/demo/theme.html) name to use for syntax highlighting in examples.
 
-* **`getExampleFilename`**  
-  Type: `Function`, default: finds `Readme.md` in the component folder  
+* **`getExampleFilename`**
+  Type: `Function`, default: finds `Readme.md` in the component folder
   Function that returns examples file path for a given component path.
 
   For example, instead of `Readme.md` you can use `ComponentName.examples.md`:
@@ -125,8 +125,8 @@ You can change some settings in the `styleguide.config.js` file in your projectâ
   }
   ```
 
-* **`updateWebpackConfig`**  
-  Type: `Function`, optional  
+* **`updateWebpackConfig`**
+  Type: `Function`, optional
   Function that allows you to modify Webpack config for style guide:
 
   ```javascript
@@ -152,6 +152,8 @@ module.exports = {
 ```
 
 ## CLI commands and options
+
+These commands supposed to be placed in `package.json` `scripts` (see Installation section above). If you want to run them from command line do it like this: `./node_modules/.bin/styleguidist`.
 
 `styleguidist server`: Run dev server.
 
