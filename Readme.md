@@ -89,7 +89,7 @@ You can change some settings in the `styleguide.config.js` file in your projectâ
   },
   ```
 
-* **`skipComponentsWithoutReadme`**
+* **`skipComponentsWithoutExample`**
   Type: `Boolean`, default: `false`
 	When set to `true`, ignore components that don't have an example file (as determined by `getExampleFilename`).
 

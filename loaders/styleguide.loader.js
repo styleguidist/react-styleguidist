@@ -45,7 +45,7 @@ module.exports.pitch = function() {
 		console.log();
 	}
 
-	if (config.skipComponentsWithoutReadme) {
+	if (config.skipComponentsWithoutExample) {
 		componentSources = _.filter(componentSources, hasExamples);
 	}
 
