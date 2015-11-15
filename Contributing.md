@@ -19,8 +19,7 @@ See [ESLint](.eslintrc) config files for more details.
 
 - Tab indentation.
 - Single-quotes.
-- Semicolon.
-- Strict mode.
+- Semicolons.
 - No trailing whitespace.
 - Variables where needed.
 - Multiple variable statements.
@@ -34,8 +33,6 @@ See [ESLint](.eslintrc) config files for more details.
 Example:
 
 ```js
-'use strict';
-
 function foo(bar, fum) {
     if (!bar) {
     	return;
