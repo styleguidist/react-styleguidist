@@ -1,3 +1,16 @@
+# 1.2.0 - 2015-11-16
+
+* New feature: require() support in code examples (#25, by [lovelybooks](https://github.com/lovelybooks)).
+* Show file name under component title (#29, by [lovelybooks](https://github.com/lovelybooks)).
+* New option: skipComponentsWithoutExample (#38, by [panayi](https://github.com/panayi)).
+* PropTypes.arrayOf and PropTypes.instanceOf support (#13, #17, #20).
+* A bit better JSX syntax highlighting (#19).
+* Add babel-plugin-react-display-name. Should preserve displayName when using React.createComponent (#18).
+* Use Babel instead of JSXTransformer to compile examples in the browser (#16).
+* Update react-codemirror, fix warnings in React 0.14 (#39).
+* Add react-dom as a peer dependency.
+* Drop Node 0.10 support.
+
 ### 2015-10-28 v1.1.1
 
 * Fix Wrapper component import to make Webpack’s aliases work with it.
