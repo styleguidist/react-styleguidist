@@ -64,12 +64,12 @@ Any [Markdown](http://daringfireball.net/projects/markdown/):
 
 You can change some settings in the `styleguide.config.js` file in your projectâ€™s root folder.
 
-* **`rootDir`**
-  Type: `String`, required
+* **`rootDir`**<br>
+  Type: `String`, required<br>
   Your appâ€™s frontend root folder (eg. `./lib`). Should not point to a folder with the Styleguidist config and `node_modules` folder.
 
-* **`components`**
-  Type: `String` or `Function`, required
+* **`components`**<br>
+  Type: `String` or `Function`, required<br>
   - when `String`: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules. Relative to the `rootDir`.
   - when `Function`: function that returns an array of modules.
 
@@ -89,36 +89,36 @@ You can change some settings in the `styleguide.config.js` file in your projectâ
   },
   ```
 
-* **`skipComponentsWithoutExample`**
-  Type: `Boolean`, default: `false`
+* **`skipComponentsWithoutExample`**<br>
+  Type: `Boolean`, default: `false`<br>
 	When set to `true`, ignore components that don't have an example file (as determined by `getExampleFilename`).
 
-* **`styleguideDir`**
-  Type: `String`, default: `styleguide`
+* **`styleguideDir`**<br>
+  Type: `String`, default: `styleguide`<br>
   Folder for static HTML style guide generated with `styleguidist build` command.
 
-* **`template`**
-  Type: `String`, default: [src/templates/index.html](src/templates/index.html)
+* **`template`**<br>
+  Type: `String`, default: [src/templates/index.html](src/templates/index.html)<br>
   HTML file to use as the template for the output.
 
-* **`title`**
-  Type: `String`, default: `Style guide`
+* **`title`**<br>
+  Type: `String`, default: `Style guide`<br>
   Style guide title.
 
-* **`serverHost`**
-  Type: `String`, default: `localhost`
+* **`serverHost`**<br>
+  Type: `String`, default: `localhost`<br>
   Dev server host name.
 
-* **`serverPort`**
-  Type: `Number`, default: `3000`
+* **`serverPort`**<br>
+  Type: `Number`, default: `3000`<br>
   Dev server port.
 
-* **`highlightTheme`**
-  Type: `String`, default: `base16-light`
+* **`highlightTheme`**<br>
+  Type: `String`, default: `base16-light`<br>
   [CodeMirror theme](http://codemirror.net/demo/theme.html) name to use for syntax highlighting in examples.
 
-* **`getExampleFilename`**
-  Type: `Function`, default: finds `Readme.md` in the component folder
+* **`getExampleFilename`**<br>
+  Type: `Function`, default: finds `Readme.md` in the component folder<br>
   Function that returns examples file path for a given component path.
 
   For example, instead of `Readme.md` you can use `ComponentName.examples.md`:
@@ -129,8 +129,8 @@ You can change some settings in the `styleguide.config.js` file in your projectâ
   }
   ```
 
-* **`updateWebpackConfig`**
-  Type: `Function`, optional
+* **`updateWebpackConfig`**<br>
+  Type: `Function`, optional<br>
   Function that allows you to modify Webpack config for style guide:
 
   ```javascript
