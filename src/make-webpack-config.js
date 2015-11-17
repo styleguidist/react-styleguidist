@@ -12,6 +12,7 @@ module.exports = function(env) {
 	var isProd = env === 'production';
 
 	var codeMirrorPath = path.join(__dirname, '../../codemirror');  // npm 3
+	var componentsPath = path.join(__dirname, 'components');
 	if (!fs.existsSync(codeMirrorPath)) {
 		codeMirrorPath = path.join(__dirname, '../node_modules/codemirror');  // npm 2 or react-styleguidist develop
 	}
@@ -40,7 +41,8 @@ module.exports = function(env) {
 				'node_modules'
 			],
 			alias: {
-				'codemirror': codeMirrorPath
+				'codemirror': codeMirrorPath,
+				'react-styleguidist/components': componentsPath
 			}
 		},
 		resolveLoader: {
