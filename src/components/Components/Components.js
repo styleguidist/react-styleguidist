@@ -1,5 +1,5 @@
 import { Component, PropTypes } from 'react';
-import ReactComponent from 'components/ReactComponent';
+import ReactComponent from 'react-styleguidist/components/ReactComponent';
 
 export default class Components extends Component {
 	static propTypes = {

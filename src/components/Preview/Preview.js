@@ -3,7 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import babel from 'babel-core/browser';
-import Wrapper from 'components/Wrapper';
+import Wrapper from 'react-styleguidist/components/Wrapper';
 
 import s from './Preview.css';
 
