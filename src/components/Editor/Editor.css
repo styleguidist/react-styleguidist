@@ -9,3 +9,6 @@
 	overflow-y: hidden;
 	overflow-x: auto;
 }
+.root :global .cm-error {
+	background: none !important;
+}
