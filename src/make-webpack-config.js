@@ -10,6 +10,7 @@ var config = require('../src/utils/config');
 
 module.exports = function(env) {
 	var isProd = env === 'production';
+	var cssLoader = 'css?modules&importLoaders=1&localIdentName=ReactStyleGuidist-[name]__[local]!postcss';
 
 	var codeMirrorPath = path.join(__dirname, '../../codemirror');  // npm 3
 	var componentsPath = path.join(__dirname, 'components');
@@ -121,7 +122,7 @@ module.exports = function(env) {
 					{
 						test: /\.css$/,
 						include: includes,
-						loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1!postcss')
+						loader: ExtractTextPlugin.extract('style', cssLoader)
 					}
 				]
 			}
@@ -181,7 +182,7 @@ module.exports = function(env) {
 					{
 						test: /\.css$/,
 						include: includes,
-						loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss'
+						loader: 'style!' + cssLoader
 					}
 				]
 			}
