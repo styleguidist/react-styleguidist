@@ -1,7 +1,7 @@
 .root {
+	composes: border from "../../styles/colors.css";
 	overflow: hidden;
 	margin-bottom: 1.5rem;
-	border: 1px solid #e8e8e8;
 	border-radius: .25rem;
 }
 

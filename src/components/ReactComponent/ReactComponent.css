@@ -16,7 +16,7 @@
 
 .sourcePath {
 	composes: monospace from "../../styles/common.css";
-	color: #aaa;
+	composes: light from "../../styles/colors.css";
 	font-size: .9rem;
 }
 
@@ -73,18 +73,24 @@
 	font-style: italic;
 }
 
+.markdown :global code {
+	font-family: Consolas, "Liberation Mono", Menlo, monospace;
+}
+
 .markdown :global blockquote {
 	font-size: .85rem;
 	padding: 0 2rem;
 }
 
 .markdown :global hr {
-	border-bottom: 1px solid #e8e8e8;
+	border: 1px solid #e8e8e8;
+	border-width: 0 0 1px 0;
 }
 
 .markdown :global thead {
+	border: 1px solid #e8e8e8;
+	border-width: 0 0 1px 0;
 	margin-bottom: 1.5rem;
-	border-bottom: 1px solid #e8e8e8;
 }
 .markdown :global td {
 	padding-right: 1rem;

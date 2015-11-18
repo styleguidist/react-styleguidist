@@ -15,8 +15,9 @@
 	border-collapse: collapse;
 }
 .tableHead {
+	composes: border from "../../styles/colors.css";
 	margin-bottom: 1.5rem;
-	border-bottom: 1px solid #e8e8e8;
+	border-width: 0 0 1px 0;
 }
 .tableBody {
 }
@@ -35,11 +36,13 @@
 }
 
 .optional {
-	color: #999;
+	composes: light from "../../styles/colors.css";
 }
 
 .list {
 	display: inline;
+	margin: 0;
+	padding: 0;
 	list-style-type: none;
 }
 .listItem {

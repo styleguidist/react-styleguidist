@@ -17,9 +17,11 @@ export default class Layout extends Component {
 
 		return (
 			<div className={s.root}>
-				<h1 className={s.heading}>{title}</h1>
-				<div>
-					<Components highlightTheme={highlightTheme} components={components}/>
+				<div className={s.content}>
+					<h1 className={s.heading}>{title}</h1>
+					<div>
+						<Components highlightTheme={highlightTheme} components={components}/>
+					</div>
 				</div>
 			</div>
 		);

@@ -1,4 +1,8 @@
 .root {
+	composes: base base-bg from "../../styles/colors.css";
+}
+
+.content {
 	max-width: 1200px;
 	padding: 1rem 2rem;
 	margin-left: auto;
