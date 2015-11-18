@@ -22,8 +22,8 @@ export default class ReactComponent extends Component {
 	}
 
 	renderProps() {
-		let props = this.props.component.props.props;
-		if (!props) {
+		let props = this.props.component.props;
+		if (!props.props) {
 			return null;
 		}
 
