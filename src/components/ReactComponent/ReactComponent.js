@@ -21,6 +21,17 @@ export default class ReactComponent extends Component {
 		);
 	}
 
+	renderProps() {
+		let props = this.props.component.props.props;
+		if (!props) {
+			return null;
+		}
+
+		return (
+			<Props props={props}/>
+		);
+	}
+
 	renderExamples() {
 		let { highlightTheme, component } = this.props;
 		if (!component.examples) {
@@ -50,7 +61,7 @@ export default class ReactComponent extends Component {
 					<div className={s.sourcePath}>{component.relativePath}</div>
 				</header>
 				{this.renderDescription()}
-				<Props props={component.props}/>
+				{this.renderProps()}
 				{this.renderExamples()}
 			</div>
 		);
