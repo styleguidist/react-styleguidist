@@ -1,3 +1,8 @@
+# 1.2.1 - 2015-11-18
+
+* Stateless React components support (#44, #46, by @sunesimonsen).
+* Avoid conflicts with host projects when using the same component names as in react-styleguidist (#48, by @sunesimonsen).
+
 # 1.2.0 - 2015-11-16
 
 * New feature: require() support in code examples (#25, by [lovelybooks](https://github.com/lovelybooks)).
