@@ -121,7 +121,7 @@ module.exports = function(env) {
 					{
 						test: /\.css$/,
 						include: includes,
-						loader: ExtractTextPlugin.extract('style', 'css?modules&-minimize&importLoaders=1!postcss')
+						loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1!postcss')
 					}
 				]
 			}
