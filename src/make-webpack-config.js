@@ -3,7 +3,7 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var AdvancedVariables = require('postcss-advanced-variables');
+var Initial = require('postcss-initial');
 var merge = require('webpack-merge');
 var prettyjson = require('prettyjson');
 var config = require('../src/utils/config');
@@ -71,7 +71,9 @@ module.exports = function(env) {
 		},
 		postcss: function() {
 			return [
-				AdvancedVariables
+				Initial({
+					reset: 'inherited'
+				})
 			];
 		}
 	};

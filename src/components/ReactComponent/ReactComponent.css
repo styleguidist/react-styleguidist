@@ -2,18 +2,96 @@
 	margin-bottom: 3rem;
 }
 
+.header {
+	composes: font from "../../styles/common.css";
+	margin-bottom: 1rem;
+	font-weight: normal;
+}
+
 .heading {
-	font-size: 2rem;
+	margin: 0 0 .3rem 0;
+	font-size: 2.2rem;
 	font-weight: normal;
 }
 
 .sourcePath {
+	composes: monospace from "../../styles/common.css";
 	color: #aaa;
-	font-size: 0.8rem;
-	margin-bottom: 1rem;
-	font-family: monospace;
+	font-size: .9rem;
 }
 
 .description {
+	composes: font from "../../styles/common.css";
 	margin-bottom: 1rem;
+}
+
+.markdown {
+	composes: reset font from "../../styles/common.css";
+}
+
+.markdown :global a,
+.markdown :global a:link,
+.markdown :global a:visited {
+	color: #1978c8;
+	text-decoration: none;
+}
+
+.markdown :global a:hover,
+.markdown :global a:focus,
+.markdown :global a:active {
+	color: #f28a25;
+}
+
+.markdown :global p,
+.markdown :global ul,
+.markdown :global ol,
+.markdown :global blockquote,
+.markdown :global table,
+.markdown :global hr,
+.markdown :global h3,
+.markdown :global h4,
+.markdown :global h5,
+.markdown :global h6 {
+	margin-bottom: 1rem;
+}
+
+.markdown :global h3 {
+	font-size: 1.6rem;
+	font-weight: normal;
+}
+.markdown :global h4 {
+	font-size: 1.4rem;
+	font-weight: normal;
+}
+.markdown :global h5 {
+	font-size: 1rem;
+	font-weight: bold;
+}
+.markdown :global h6 {
+	font-size: 1rem;
+	font-weight: normal;
+	font-style: italic;
+}
+
+.markdown :global blockquote {
+	font-size: .85rem;
+	padding: 0 2rem;
+}
+
+.markdown :global hr {
+	border-bottom: 1px solid #e8e8e8;
+}
+
+.markdown :global thead {
+	margin-bottom: 1.5rem;
+	border-bottom: 1px solid #e8e8e8;
+}
+.markdown :global td {
+	padding-right: 1rem;
+	padding-top: .5em;
+}
+.markdown :global th {
+	padding-right: 1rem;
+	padding-bottom: .5em;
+	text-align:left;
 }

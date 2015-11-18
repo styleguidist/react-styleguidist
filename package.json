@@ -42,7 +42,7 @@
     "lodash": "3.10.1",
     "marked": "0.3.5",
     "minimist": "1.2.0",
-    "postcss-advanced-variables": "1.2.2",
+    "postcss-initial": "1.4.0",
     "postcss-loader": "0.7.0",
     "prettyjson": "1.1.3",
     "react-codemirror": "0.2.0",

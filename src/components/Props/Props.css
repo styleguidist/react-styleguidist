@@ -1,4 +1,5 @@
 .root {
+	composes: reset font from "../../styles/common.css";
 	margin-bottom: 2rem;
 	font-size: .9rem;
 }
@@ -11,6 +12,7 @@
 
 .table {
 	width: 100%;
+	border-collapse: collapse;
 }
 .tableHead {
 	margin-bottom: 1.5rem;

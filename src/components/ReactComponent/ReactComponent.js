@@ -35,7 +35,7 @@ export default class ReactComponent extends Component {
 					);
 				case 'html':
 					return (
-						<div dangerouslySetInnerHTML={{__html: example.content}} key={index}></div>
+						<div className={s.markdown} dangerouslySetInnerHTML={{__html: example.content}} key={index}></div>
 					);
 			}
 		});
@@ -45,8 +45,10 @@ export default class ReactComponent extends Component {
 		let { component } = this.props;
 		return (
 			<div className={s.root}>
-				<h2 className={s.heading}>{component.name}</h2>
-				<div className={s.sourcePath}>{component.relativePath}</div>
+				<header className={s.header}>
+					<h2 className={s.heading}>{component.name}</h2>
+					<div className={s.sourcePath}>{component.relativePath}</div>
+				</header>
 				{this.renderDescription()}
 				<Props props={component.props}/>
 				{this.renderExamples()}
