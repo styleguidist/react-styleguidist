@@ -1,14 +1,14 @@
 .root {
 	composes: border from "../../styles/colors.css";
 	overflow: hidden;
-	margin-bottom: 1.5rem;
-	border-radius: .25rem;
+	margin-bottom: 30px;
+	border-radius: 3px;
 }
 
 .editor {
 }
 
 .preview {
-	margin-bottom: .2rem;
-	padding: 1rem;
+	margin-bottom: 3px;
+	padding: 15px;
 }

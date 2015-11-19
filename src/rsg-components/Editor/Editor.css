@@ -1,8 +1,8 @@
 /* Tweak CodeMirror styles */
 .root :global .CodeMirror {
 	height: auto;
-	padding: .3rem .8rem;
-	font-size: .9rem;
+	padding: 5px 12px;
+	font-size: 12px;
 }
 .root :global .CodeMirror-scroll {
 	height: auto;

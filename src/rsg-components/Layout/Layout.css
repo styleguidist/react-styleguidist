@@ -4,14 +4,14 @@
 
 .content {
 	max-width: 1200px;
-	padding: 1rem 2rem;
+	padding: 15px 30px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
 .heading {
 	composes: reset font from "../../styles/common.css";
-	margin: 0 0 2rem 0;
-	font-size: 3rem;
+	margin: 0 0 30px 0;
+	font-size: 48px;
 	font-weight: normal;
 }

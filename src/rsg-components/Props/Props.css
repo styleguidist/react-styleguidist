@@ -1,12 +1,12 @@
 .root {
 	composes: reset font from "../../styles/common.css";
-	margin-bottom: 2rem;
-	font-size: .9rem;
+	margin-bottom: 30px;
+	font-size: 13px;
 }
 
 .heading {
-	margin-bottom: .5rem;
-	font-size: 1.3rem;
+	margin-bottom: 8px;
+	font-size: 20px;
 	font-weight: normal;
 }
 
@@ -16,23 +16,24 @@
 }
 .tableHead {
 	composes: border from "../../styles/colors.css";
-	margin-bottom: 1.5rem;
 	border-width: 0 0 1px 0;
 }
 .tableBody {
 }
 .cell {
-	padding-right: 1rem;
-	padding-top: .5em;
+	padding-right: 15px;
+	padding-top: 6px;
+	font-size: 13px;
 }
 .cellHeading {
-	padding-right: 1rem;
-	padding-bottom: .5em;
-	text-align:left;
+	padding-right: 15px;
+	padding-bottom: 6px;
+	text-align: left;
+	font-size: 13px;
 }
 .cellDesc {
 	width: 99%;
-	padding-left: 1rem;
+	padding-left: 15px;
 }
 
 .optional {

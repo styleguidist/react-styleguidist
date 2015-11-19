@@ -1,8 +1,8 @@
 .playgroundError {
 	composes: monospace from "../../styles/common.css";
 	composes: white erorr-bg from "../../styles/colors.css";
-	margin: -1rem -1rem -1.2rem;
-	padding: 1rem;
+	margin: -15px -15px -18px;
+	padding: 15px;
 	line-height: 1.2;
-	font-size: .9rem;
+	font-size: 13px;
 }
