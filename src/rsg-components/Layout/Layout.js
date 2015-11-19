@@ -1,5 +1,5 @@
 import { Component, PropTypes } from 'react';
-import Components from 'react-styleguidist/components/Components';
+import Components from 'rsg-components/Components';
 
 import s from './Layout.css';
 

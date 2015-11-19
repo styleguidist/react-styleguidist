@@ -1,6 +1,6 @@
 import { Component, PropTypes } from 'react';
-import Editor from 'react-styleguidist/components/Editor';
-import Preview from 'react-styleguidist/components/Preview';
+import Editor from 'rsg-components/Editor';
+import Preview from 'rsg-components/Preview';
 
 import s from './Playground.css';
 

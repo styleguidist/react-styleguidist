@@ -13,7 +13,6 @@ module.exports = function(env) {
 	var cssLoader = 'css?modules&importLoaders=1&localIdentName=ReactStyleGuidist-[name]__[local]!postcss';
 
 	var codeMirrorPath = path.join(__dirname, '../../codemirror');  // npm 3
-	var componentsPath = path.join(__dirname, 'components');
 	if (!fs.existsSync(codeMirrorPath)) {
 		codeMirrorPath = path.join(__dirname, '../node_modules/codemirror');  // npm 2 or react-styleguidist develop
 	}
@@ -40,8 +39,7 @@ module.exports = function(env) {
 				'node_modules'
 			],
 			alias: {
-				'codemirror': codeMirrorPath,
-				'react-styleguidist/components': componentsPath
+				'codemirror': codeMirrorPath
 			}
 		},
 		resolveLoader: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { setComponentsNames, globalizeComponents } from './utils/utils';
-import StyleGuide from 'react-styleguidist/components/StyleGuide';
+import StyleGuide from 'rsg-components/StyleGuide';
 
 import './styles.css';
 
