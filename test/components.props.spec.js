@@ -1,6 +1,6 @@
 import { parse } from 'react-docgen';
 
-import Props from '../src/components/Props';
+import Props from '../src/rsg-components/Props';
 
 function render(propTypes) {
 	let props = parse(`
