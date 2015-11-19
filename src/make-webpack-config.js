@@ -10,7 +10,7 @@ var config = require('../src/utils/config');
 
 module.exports = function(env) {
 	var isProd = env === 'production';
-	var cssLoader = 'css?modules&importLoaders=1&localIdentName=ReactStyleGuidist-[name]__[local]!postcss';
+	var cssLoader = 'css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]!postcss';
 
 	var codeMirrorPath = path.join(__dirname, '../../codemirror');  // npm 3
 	if (!fs.existsSync(codeMirrorPath)) {
