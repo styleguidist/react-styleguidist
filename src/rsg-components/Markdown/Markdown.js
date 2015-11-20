@@ -17,8 +17,6 @@ function handleIterate(Tag, props, children) {
 		props.className = s[Tag];
 	}
 
-	console.log(Tag, props, children);
-
 	return <Tag {...props}>{children}</Tag>;
 }
 
