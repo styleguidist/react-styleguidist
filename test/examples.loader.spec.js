@@ -1,5 +1,3 @@
-import { expect } from 'chai';
-
 import examplesLoader from '../loaders/examples.loader';
 
 /* eslint max-nested-callbacks: [1, 5] */
@@ -11,7 +9,7 @@ describe('examples loader', () => {
 		let regex;
 		beforeEach(() => {
 			expect(examplesLoader.requireAnythingRegex).to.be.an.instanceof(RegExp);
-			// we make a version without the /g flag
+			// We make a version without the /g flag
 			regex = new RegExp(examplesLoader.requireAnythingRegex, '');
 		});
 
@@ -51,7 +49,7 @@ describe('examples loader', () => {
 			expect(`'foo"`).not.to.match(regex);
 			expect(`"foo'`).not.to.match(regex);
 
-			// these 2 are actually valid in JS, but don't work with this regex.
+			// These 2 are actually valid in JS, but don't work with this regex.
 			// But you shouldn't be using these in your requires anyway.
 			expect(`"fo\\"o"`).not.to.match(regex);
 			expect(`'fo\\'o'`).not.to.match(regex);
@@ -71,21 +69,42 @@ describe('examples loader', () => {
 	});
 
 	describe('readExamples', () => {
-		it('should separate code and html chunks', () => {
-			let examplesMarkdown = '# header\n\n    <div />\n\ntext';
+		it('should separate code and Markdown chunks', () => {
+			let examplesMarkdown = `
+# header
+
+	<div/>
+
+text with some \`code\`.
+
+\`\`\`
+<span/>
+\`\`\`
+`;
 			let examples = examplesLoader.readExamples(examplesMarkdown);
-			expect(examples).to.have.length(3);
-			expect(examples[0].type).to.equal('html');
+			expect(examples).to.have.length(4);
+			expect(examples[0].type).to.equal('markdown');
 			expect(examples[1].type).to.equal('code');
-			expect(examples[2].type).to.equal('html');
+			expect(examples[2].type).to.equal('markdown');
+			expect(examples[3].type).to.equal('code');
 		});
 	});
 
 	describe('loader', () => {
-		it('should return valid, parsable js', () => {
-			let exampleMarkdown = '# header\n\n    <div />\n\ntext';
+		it('should return valid, parsable JS', () => {
+			let exampleMarkdown = `
+# header
+
+	<div/>
+
+text
+
+\`\`\`
+<span/>
+\`\`\`
+`;
 			let output = examplesLoader.call({}, exampleMarkdown);
-			expect(() => new Function(output)).not.to.throw(SyntaxError); // eslint-disable-line no-new-func
+			expect(() => new Function(output)).not.to.throw(SyntaxError);  // eslint-disable-line no-new-func
 		});
 	});
 

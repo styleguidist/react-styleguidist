@@ -1,5 +1,7 @@
 var _ = require('lodash');
-var marked = require('marked');
+var createRenderer = require('../src/utils/markdown.js');
+
+var md = createRenderer();
 
 var evalPlaceholder = '<%{#eval#}%>';
 var codePlaceholder = '<%{#code#}%>';
@@ -10,23 +12,19 @@ var simpleStringRegex = /^"([^"]+)"$|^'([^']+)'$/;
 function readExamples(markdown) {
 	var codeChunks = [];
 
-	var renderer = new marked.Renderer();
-	renderer.heading = function(text, level, raw) {
-		var tag = 'h' + (level + 2);
-		return '<' + tag + '>' + text + '</' + tag + '>\n';
-	};
-	renderer.code = function(code) {
-		codeChunks.push(code);
+	// Collect code blocks and replace them with placeholders
+	md.renderer.rules.code_block = md.renderer.rules.fence = function(tokens, idx) {
+		codeChunks.push(tokens[idx].content.trim());
 		return codePlaceholder;
 	};
 
-	var html = marked(markdown, {renderer: renderer});
+	var rendered = md.render(markdown);
 
 	var chunks = [];
-	var textChunks = html.split(codePlaceholder);
+	var textChunks = rendered.split(codePlaceholder);
 	textChunks.forEach(function(chunk) {
 		if (chunk) {
-			chunks.push({type: 'html', content: chunk});
+			chunks.push({type: 'markdown', content: chunk});
 		}
 		var code = codeChunks.shift();
 		if (code) {

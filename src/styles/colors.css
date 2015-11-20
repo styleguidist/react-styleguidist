@@ -2,6 +2,17 @@
 	border: 1px solid #e8e8e8;
 }
 
+.link,
+.link:link,
+.link:visited {
+	color: #1978c8;
+	text-decoration: none;
+}
+.link:hover,
+.link:active {
+	color: #f28a25;
+}
+
 .base {
 	color: #333;
 }
@@ -12,15 +23,6 @@
 
 .white {
 	color: #fff;
-}
-
-.link {
-	color: #1978c8;
-	text-decoration: none;
-}
-
-.hover {
-	color: #f28a25;
 }
 
 .base-bg {

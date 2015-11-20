@@ -1,4 +1,5 @@
 import { Component, PropTypes } from 'react';
+import Markdown from 'rsg-components/Markdown';
 import Props from 'rsg-components/Props';
 import Playground from 'rsg-components/Playground';
 
@@ -42,11 +43,19 @@ export default class ReactComponent extends Component {
 			switch (example.type) {
 				case 'code':
 					return (
-						<Playground code={example.content} evalInContext={example.evalInContext} highlightTheme={highlightTheme} key={index} />
+						<Playground
+							code={example.content}
+							evalInContext={example.evalInContext}
+							highlightTheme={highlightTheme}
+							key={index}
+						/>
 					);
-				case 'html':
+				case 'markdown':
 					return (
-						<div className={s.markdown} dangerouslySetInnerHTML={{__html: example.content}} key={index}></div>
+						<Markdown
+							text={example.content}
+							key={index}
+						/>
 					);
 			}
 		});

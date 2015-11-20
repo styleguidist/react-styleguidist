@@ -113,6 +113,10 @@ module.exports = function(env) {
 						}
 					},
 					{
+						test: /\.json$/,
+						loader: 'json'
+					},
+					{
 						test: /\.css$/,
 						include: codeMirrorPath,
 						loader: ExtractTextPlugin.extract('style', 'css')
@@ -171,6 +175,10 @@ module.exports = function(env) {
 								}
 							}
 						}
+					},
+					{
+						test: /\.json$/,
+						loader: 'json'
 					},
 					{
 						test: /\.css$/,

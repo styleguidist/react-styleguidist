@@ -171,7 +171,7 @@
 			"location": "tag-aligned"
 		}],
 		"react/jsx-curly-spacing": [1, "never"],
-		"react/jsx-indent-props": [1, 4],
+		"react/jsx-indent-props": [1, "tab"],
 		"react/jsx-no-duplicate-props": 2,
 		"react/jsx-no-undef": 2,
 		"react/jsx-sort-prop-types": 0,
