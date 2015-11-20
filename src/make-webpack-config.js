@@ -6,21 +6,15 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var Initial = require('postcss-initial');
 var merge = require('webpack-merge');
 var prettyjson = require('prettyjson');
+var getInstalledPath = require('get-installed-path');
 var config = require('../src/utils/config');
 
 module.exports = function(env) {
 	var isProd = env === 'production';
 	var cssLoader = 'css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]!postcss';
 
-	var codeMirrorPath = path.join(__dirname, '../../codemirror');  // npm 3
-	if (!fs.existsSync(codeMirrorPath)) {
-		codeMirrorPath = path.join(__dirname, '../node_modules/codemirror');  // npm 2 or react-styleguidist develop
-	}
-
-	var reactTransformPath = path.join(__dirname, '../../babel-plugin-react-transform');  // npm 3
-	if (!fs.existsSync(reactTransformPath)) {
-		reactTransformPath = path.resolve(__dirname, '../node_modules/babel-plugin-react-transform');  // npm 2 or react-styleguidist develop
-	}
+	var codeMirrorPath = getInstalledPath('codemirror', true);
+	var reactTransformPath = getInstalledPath('babel-plugin-react-transform', true);
 
 	var includes = [
 		__dirname,
