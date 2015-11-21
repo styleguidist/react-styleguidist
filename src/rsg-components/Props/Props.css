@@ -10,6 +10,10 @@
 	font-weight: normal;
 }
 
+.inline {
+	display: inline-block;
+}
+
 .table {
 	width: 100%;
 	border-collapse: collapse;
@@ -23,6 +27,7 @@
 .cell {
 	padding-right: 15px;
 	padding-top: 6px;
+	vertical-align: top;
 	font-size: 13px;
 }
 .cellHeading {

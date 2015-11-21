@@ -1,4 +1,5 @@
 import { Component, PropTypes } from 'react';
+import cx from 'classnames';
 import MDReactComponent from 'markdown-react-js';
 
 import s from './Markdown.css';
@@ -22,14 +23,16 @@ function handleIterate(Tag, props, children) {
 
 export default class Markdown extends Component {
 	static propTypes = {
-		text: PropTypes.string.isRequired
+		text: PropTypes.string.isRequired,
+		className: PropTypes.string
 	}
 
 	render() {
+		let classes = cx(s.root, this.props.className);
 		return (
 			<MDReactComponent
 				text={this.props.text}
-				className={s.root}
+				className={classes}
 				onIterate={handleIterate}
 			/>
 		);

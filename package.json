@@ -33,6 +33,7 @@
     "babel-plugin-react-transform": "1.1.1",
     "babel-runtime": "5.8.25",
     "chalk": "1.1.1",
+    "classnames": "~2.2.0",
     "codemirror": "5.8.0",
     "css-loader": "0.21.0",
     "express": "4.13.3",
