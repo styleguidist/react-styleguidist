@@ -2,6 +2,11 @@ import { Component, PropTypes } from 'react';
 import Markdown from 'rsg-components/Markdown';
 
 import s from './Props.css';
+import sMarkdown from '../Markdown/Markdown.css';
+
+export let Code = ({ children }) => {
+	return <code className={sMarkdown.code}>{children}</code>;
+};
 
 export default class Props extends Component {
 	static propTypes = {
@@ -19,8 +24,8 @@ export default class Props extends Component {
 			var prop = props[name];
 			rows.push(
 				<tr key={name}>
-					<td className={s.cell}><code>{name}</code></td>
-					<td className={s.cell}><code>{this.renderType(prop.type)}</code></td>
+					<td className={s.cell}><Code>{name}</Code></td>
+					<td className={s.cell}><Code>{this.renderType(prop.type)}</Code></td>
 					<td className={s.cell}>{this.renderDefault(prop)}</td>
 					<td className={s.cell + ' ' + s.cellDesc}>{this.renderDescription(prop)}</td>
 				</tr>
@@ -46,7 +51,7 @@ export default class Props extends Component {
 		}
 		else if (prop.defaultValue) {
 			return (
-				<code>{this.unquote(prop.defaultValue.value)}</code>
+				<Code>{this.unquote(prop.defaultValue.value)}</Code>
 			);
 		}
 		else {
@@ -75,7 +80,7 @@ export default class Props extends Component {
 		}
 		let values = prop.type.value.map(({ value }) => (
 			<li className={s.listItem} key={value}>
-				<code>{this.unquote(value)}</code>
+				<Code>{this.unquote(value)}</Code>
 			</li>
 		));
 		return (
@@ -89,7 +94,7 @@ export default class Props extends Component {
 		}
 		let values = prop.type.value.map((value) => (
 			<li className={s.listItem} key={value.name}>
-				<code>{this.renderType(value)}</code>
+				<Code>{this.renderType(value)}</Code>
 			</li>
 		));
 

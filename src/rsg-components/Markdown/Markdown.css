@@ -39,7 +39,9 @@
 }
 
 .code {
-	composes: monospace from "../../styles/common.css";
+	composes: reset monospace from "../../styles/common.css";
+	display: inline;
+	font-size: inherit;
 }
 
 .blockquote {
