@@ -6,7 +6,7 @@ describe('ReactComponent', () => {
 	it('should render component properties', () => {
 		let component = {
 			name: 'Foo',
-			relativePath: 'foo/bar.js',
+			pathLine: 'foo/bar.js',
 			props: {
 				description: 'Bar'
 			}

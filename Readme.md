@@ -18,8 +18,8 @@ Add a `styleguide.config.js` file into your projectâ€™s root folder:
 
 ```javascript
 module.exports = {
-	rootDir: './lib',
-	components: './components/**/*.js'
+  rootDir: './lib',
+  components: './components/**/*.js'
 };
 ```
 
@@ -51,7 +51,7 @@ Examples are written in Markdown where any code blocks will be rendered as a rea
 ```markdown
 React component example:
 
-	<Button size="large">Push Me</Button>
+  <Button size="large">Push Me</Button>
 
 Any [Markdown](http://daringfireball.net/projects/markdown/):
 
@@ -83,15 +83,15 @@ You can change some settings in the `styleguide.config.js` file in your projectâ
 
   ```javascript
   components: function(config, glob) {
-  	return glob.sync(config.rootDir + '/components/**/*.js').filter(function(module) {
-  		return /\/[A-Z][a-z]*\.js$/.test(module);
-  	});
+    return glob.sync(config.rootDir + '/components/**/*.js').filter(function(module) {
+      return /\/[A-Z][a-z]*\.js$/.test(module);
+    });
   },
   ```
 
 * **`skipComponentsWithoutExample`**<br>
   Type: `Boolean`, default: `false`<br>
-	When set to `true`, ignore components that don't have an example file (as determined by `getExampleFilename`).
+  When set to `true`, ignore components that don't have an example file (as determined by `getExampleFilename`).
 
 * **`styleguideDir`**<br>
   Type: `String`, default: `styleguide`<br>
@@ -125,7 +125,23 @@ You can change some settings in the `styleguide.config.js` file in your projectâ
 
   ```javascript
   getExampleFilename: function(componentpath) {
-  	return componentpath.replace(/\.jsx?$/,   '.examples.md');
+    return componentpath.replace(/\.jsx?$/,   '.examples.md');
+  }
+  ```
+
+* **`getComponentPathLine`**<br>
+  Type: `Function`, default: optional<br>
+  Function that returns a component path line (a component path under a component name in a style guide).
+
+  For example, instead of `components/Button/Button.js` you can print `import Button from 'components/Button';`:
+
+  ```javascript
+  var path = require('path');
+  // ...
+  getComponentPathLine: function(componentpath) {
+    var name = path.basename(componentpath, '.js');
+    var dir = path.dirname(componentpath);
+    return 'import ' + name + ' from \'' + dir + '\';';
   }
   ```
 
@@ -135,10 +151,10 @@ You can change some settings in the `styleguide.config.js` file in your projectâ
 
   ```javascript
   updateWebpackConfig: function(webpackConfig, env) {
-  	if (env === 'development') {
-  		/* ... modify config ... */
-  	}
-  	return webpackConfig;
+    if (env === 'development') {
+      /* ... modify config ... */
+    }
+    return webpackConfig;
   }
   ```
 
@@ -146,12 +162,12 @@ You can change some settings in the `styleguide.config.js` file in your projectâ
 
 ```javascript
 module.exports = {
-	title: 'Style guide example',
-	rootDir: './example',
-	components: './**/*.js',
-	getExampleFilename: function(componentpath) {
-		return componentpath.replace(/\.js$/, '.examples.md');
-	},
+  title: 'Style guide example',
+  rootDir: './example',
+  components: './**/*.js',
+  getExampleFilename: function(componentpath) {
+    return componentpath.replace(/\.js$/, '.examples.md');
+  },
 };
 ```
 

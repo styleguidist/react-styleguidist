@@ -15,7 +15,7 @@
 	font-weight: normal;
 }
 
-.sourcePath {
+.pathLine {
 	composes: monospace from "../../styles/common.css";
 	composes: light from "../../styles/colors.css";
 	font-size: 14px;

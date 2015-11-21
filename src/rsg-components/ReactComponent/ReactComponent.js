@@ -69,7 +69,7 @@ export default class ReactComponent extends Component {
 			<div className={s.root}>
 				<header className={s.header}>
 					<h2 className={s.heading}>{component.name}</h2>
-					<div className={s.sourcePath}>{component.relativePath}</div>
+					<div className={s.pathLine}>{component.pathLine}</div>
 				</header>
 				{this.renderDescription()}
 				{this.renderProps()}

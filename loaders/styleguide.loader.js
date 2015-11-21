@@ -7,14 +7,13 @@ var config = require('../src/utils/config');
 
 function processComponent(filepath) {
 	var examplesFile = config.getExampleFilename(filepath);
-	var hasExamples = !!fs.existsSync(examplesFile);
 	return '{' + [
-			'filepath: ' + JSON.stringify(filepath),
-			'relativePath: ' + JSON.stringify(path.relative(config.rootDir, filepath)),
-			'module: ' + requireIt(filepath),
-			'props: ' + requireIt('!!props!' + filepath),
-			'examples: ' + (hasExamples ? requireIt('examples!' + examplesFile) : null)
-		].join(',') + '}';
+		'filepath: ' + JSON.stringify(filepath),
+		'pathLine: ' + JSON.stringify(config.getComponentPathLine(path.relative(config.rootDir, filepath))),
+		'module: ' + requireIt(filepath),
+		'props: ' + requireIt('!!props!' + filepath),
+		'examples: ' + (hasExamples(filepath) ? requireIt('examples!' + examplesFile) : null)
+	].join(',') + '}';
 }
 
 function hasExamples(filepath) {

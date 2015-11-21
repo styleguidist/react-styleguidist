@@ -21,6 +21,9 @@ var DEFAULT_CONFIG = {
 	getExampleFilename: function(componentpath) {
 		return path.join(path.dirname(componentpath), 'Readme.md');
 	},
+	getComponentPathLine: function(componentpath) {
+		return componentpath;
+	},
 	updateWebpackConfig: null
 };
 
@@ -94,6 +97,9 @@ function validateConfig(options) {
 	}
 	if (options.getExampleFilename && typeof options.getExampleFilename !== 'function') {
 		throw Error('Styleguidist: "getExampleFilename" option must be a function.');
+	}
+	if (options.getComponentPathLine && typeof options.getComponentPathLine !== 'function') {
+		throw Error('Styleguidist: "getComponentPathLine" option must be a function.');
 	}
 	if (options.updateWebpackConfig && typeof options.updateWebpackConfig !== 'function') {
 		throw Error('Styleguidist: "updateWebpackConfig" option must be a function.');
