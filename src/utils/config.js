@@ -87,16 +87,16 @@ function findConfig(argv) {
 
 function validateConfig(options) {
 	if (!options.rootDir) {
-		throw Error('Styleguidist: "rootDir" options is required.');
+		throw Error('Styleguidist: "rootDir" option is required.');
 	}
 	if (!options.components) {
-		throw Error('Styleguidist: "components" options is required.');
+		throw Error('Styleguidist: "components" option is required.');
 	}
 	if (options.getExampleFilename && typeof options.getExampleFilename !== 'function') {
-		throw Error('Styleguidist: "getExampleFilename" options must be a function.');
+		throw Error('Styleguidist: "getExampleFilename" option must be a function.');
 	}
 	if (options.updateWebpackConfig && typeof options.updateWebpackConfig !== 'function') {
-		throw Error('Styleguidist: "updateWebpackConfig" options must be a function.');
+		throw Error('Styleguidist: "updateWebpackConfig" option must be a function.');
 	}
 }
 
