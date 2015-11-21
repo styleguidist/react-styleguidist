@@ -79,9 +79,9 @@ function examplesLoader(source, map) {
 		'	return requireMap[path];',
 		'}',
 		'module.exports = ' + JSON.stringify(examples).replace(
-			new RegExp(_.escapeRegExp('"' + evalPlaceholder + '"'), 'g'),
-			'function(code) {var require=requireInRuntime; return eval(code);}'
-		) + ';',
+			new RegExp(_.escapeRegExp(JSON.stringify(evalPlaceholder)), 'g'),
+			'function(code) { var require = requireInRuntime; return eval(code); }'
+		) + ';'
 	].join('\n');
 }
 
