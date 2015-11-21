@@ -1,5 +1,5 @@
 .root {
-	composes: reset font from "../../styles/common.css";
+	composes: font from "../../styles/common.css";
 }
 
 .a {

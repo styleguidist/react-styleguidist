@@ -18,7 +18,9 @@ export default class ReactComponent extends Component {
 		}
 
 		return (
-			<div className={s.description}>{description}</div>
+			<div className={s.description}>
+				<Markdown text={description}/>
+			</div>
 		);
 	}
 

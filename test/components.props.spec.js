@@ -1,6 +1,7 @@
 import { parse } from 'react-docgen';
 
-import Props from '../src/rsg-components/Props';
+import Props from 'rsg-components/Props';
+import Markdown from 'rsg-components/Markdown';
 
 function render(propTypes) {
 	let props = parse(`
@@ -50,6 +51,18 @@ describe('Props', () => {
 				<td><code>string[]</code></td>
 				<td><span>Optional</span></td>
 				<td><div/></td>
+			</tr>
+		);
+	});
+
+	it('should render description in Markdown', () => {
+		let result = render(['/**\n * Label\n */\ncolor: PropTypes.string']);
+		expectReactShallow(result).to.contain(
+			<tr>
+				<td><code>color</code></td>
+				<td><code>string</code></td>
+				<td><span>Optional</span></td>
+				<td><div><Markdown text="Label"/></div></td>
 			</tr>
 		);
 	});

@@ -75,6 +75,7 @@
     "gulp": "3.9.0",
     "gulp-gh-pages": "0.5.4",
     "mocha": "~2.3.3",
+    "mock-require": "~1.2.0",
     "postcss-modules-extract-imports": "~1.0.0",
     "postcss-modules-scope": "~1.0.0",
     "react": "~0.14.2",

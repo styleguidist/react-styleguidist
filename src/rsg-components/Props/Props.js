@@ -1,4 +1,5 @@
 import { Component, PropTypes } from 'react';
+import Markdown from 'rsg-components/Markdown';
 
 import s from './Props.css';
 
@@ -60,7 +61,7 @@ export default class Props extends Component {
 		let isUnion = prop.type.name === 'union';
 		return (
 			<div>
-				{prop.description}
+				<Markdown text={prop.description}/>
 				{prop.description && isEnum && ' '}
 				{isEnum && this.renderEnum(prop)}
 				{isUnion && this.renderUnion(prop)}
