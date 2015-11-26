@@ -55,11 +55,10 @@ function examplesLoader(source, map) {
 
 	var examples = readExamples(source);
 
-	// We're analysing the examples' source code to figure out the requires. We do it manually with
-	// regexes, because webpack unfortunately doesn't expose its smart logic for rewriting requires
-	// (https://webpack.github.io/docs/context.html). Note that we can't just use require(...)
-	// directly in runtime, because webpack changes its name to __webpack__require__ or sth.
-	// Related PR: https://github.com/sapegin/react-styleguidist/pull/25
+	// We're analysing the examples' source code to figure out the require statements. We do it manually with regexes,
+	// because webpack unfortunately doesn't expose its smart logic for rewriting requires
+	// (https://webpack.github.io/docs/context.html). Note that we can't just use require(...) directly in runtime,
+	// because webpack changes its name to __webpack__require__ or sth.
 	var codeFromAllExamples = _.map(_.filter(examples, {type: 'code'}), 'content').join('\n');
 	var requiresFromExamples = findRequires(codeFromAllExamples);
 
@@ -69,12 +68,12 @@ function examplesLoader(source, map) {
 		'}',
 		'var requireMap = {',
 		requiresFromExamples.map(function(requireRequest) {
-			return '    ' + JSON.stringify(requireRequest) + ': require(' + JSON.stringify(requireRequest) + ')';
+			return JSON.stringify(requireRequest) + ': require(' + JSON.stringify(requireRequest) + ')';
 		}).join(',\n'),
 		'};',
 		'function requireInRuntime(path) {',
 		'	if (!requireMap.hasOwnProperty(path)) {',
-		'		throw new Error("Sorry, changing requires in runtime is currently not supported.")',
+		'		throw new Error("require() statements can be added only by editing a Markdown example file.")',
 		'	}',
 		'	return requireMap[path];',
 		'}',
