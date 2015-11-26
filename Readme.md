@@ -86,7 +86,7 @@ You can change some settings in the `styleguide.config.js` file in your projectâ
     // ...
     components: function(config, glob) {
       return glob.sync(config.rootDir + '/components/**/*.js').filter(function(module) {
-        return /\/[A-Z][a-z]*\.js$/.test(module);
+        return /\/[A-Z]\w*\.js$/.test(module);
       });
     }
   };
