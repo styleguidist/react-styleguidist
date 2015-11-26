@@ -13,6 +13,9 @@
 .inline {
 	display: inline-block;
 }
+.inline p:last-child {
+	margin: 0;
+}
 
 .table {
 	width: 100%;

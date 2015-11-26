@@ -66,7 +66,7 @@ export default class Props extends Component {
 		let extra = this.renderExtra(prop);
 		return (
 			<div>
-				{description && <Markdown text={description}/>}
+				{description && <Markdown className={s.inline} text={description}/>}
 				{description && extra && ' '}
 				{extra}
 			</div>
