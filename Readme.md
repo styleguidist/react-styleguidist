@@ -82,11 +82,14 @@ You can change some settings in the `styleguide.config.js` file in your project�
   If your components look like `components/Button/Button.js` + `components/Button/index.js`:
 
   ```javascript
-  components: function(config, glob) {
-    return glob.sync(config.rootDir + '/components/**/*.js').filter(function(module) {
-      return /\/[A-Z][a-z]*\.js$/.test(module);
-    });
-  },
+  module.exports = {
+    // ...
+    components: function(config, glob) {
+      return glob.sync(config.rootDir + '/components/**/*.js').filter(function(module) {
+        return /\/[A-Z][a-z]*\.js$/.test(module);
+      });
+    }
+  };
   ```
 
 * **`skipComponentsWithoutExample`**<br>
@@ -124,9 +127,12 @@ You can change some settings in the `styleguide.config.js` file in your project�
   For example, instead of `Readme.md` you can use `ComponentName.examples.md`:
 
   ```javascript
-  getExampleFilename: function(componentpath) {
-    return componentpath.replace(/\.jsx?$/,   '.examples.md');
-  }
+  module.exports = {
+    // ...
+    getExampleFilename: function(componentpath) {
+      return componentpath.replace(/\.jsx?$/,   '.examples.md');
+    }
+  };
   ```
 
 * **`getComponentPathLine`**<br>
@@ -137,12 +143,14 @@ You can change some settings in the `styleguide.config.js` file in your project�
 
   ```javascript
   var path = require('path');
-  // ...
-  getComponentPathLine: function(componentpath) {
-    var name = path.basename(componentpath, '.js');
-    var dir = path.dirname(componentpath);
-    return 'import ' + name + ' from \'' + dir + '\';';
-  }
+  module.exports = {
+    // ...
+    getComponentPathLine: function(componentpath) {
+      var name = path.basename(componentpath, '.js');
+      var dir = path.dirname(componentpath);
+      return 'import ' + name + ' from \'' + dir + '\';';
+    }
+  };
   ```
 
 * **`updateWebpackConfig`**<br>
@@ -150,12 +158,15 @@ You can change some settings in the `styleguide.config.js` file in your project�
   Function that allows you to modify Webpack config for style guide:
 
   ```javascript
-  updateWebpackConfig: function(webpackConfig, env) {
-    if (env === 'development') {
-      /* ... modify config ... */
+  module.exports = {
+    // ...
+    updateWebpackConfig: function(webpackConfig, env) {
+      if (env === 'development') {
+        // Modify config...
+      }
+      return webpackConfig;
     }
-    return webpackConfig;
-  }
+  };
   ```
 
 ### Config example
@@ -184,6 +195,115 @@ These commands supposed to be placed in `package.json` `scripts` (see Installati
 * `--config`: Specify path to a config file: `styleguidist server --config dir/styleguide.config.js`.
 
 * `--verbose`: Print debug information.
+
+## FAQ
+
+### How to add custom JS and CSS?
+
+Add a new Webpack entry point. In your style guide config:
+
+```javascript
+var path = require('path');
+module.exports = {
+  // ...
+  updateWebpackConfig: function(webpackConfig, env) {
+    webpackConfig.entry.push(path.join(__dirname, 'path/to/script.js'));
+    webpackConfig.entry.push(path.join(__dirname, 'path/to/styles.css'));
+    return webpackConfig;
+  }
+};
+```
+
+You may need an appropriate Webpack loader to handle these files.
+
+### How to change styles of a style guide?
+
+Add a new Webpack entry point in your style guide config:
+
+```javascript
+var path = require('path');
+module.exports = {
+  // ...
+  updateWebpackConfig: function(webpackConfig, env) {
+    webpackConfig.entry.push(path.join(__dirname, 'lib/styleguide/styles.css'));
+    return webpackConfig;
+  }
+};
+```
+
+Now you can change almost any piece of a style guide. For example you can change a font and a background color:
+
+```css
+.ReactStyleguidist-common__font {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+.ReactStyleguidist-colors__base-bg {
+  background: hotpink;
+}
+```
+
+Use your browser’s developer tools to find CSS class names of the elements you want to change.
+
+### How to change the behaviour of a style guide?
+
+You can replace any Styleguidist React component. In your style guide config:
+
+```javascript
+var path = require('path');
+module.exports = {
+  // ...
+  updateWebpackConfig: function(webpackConfig, env) {
+    webpackConfig.resolve.alias['rsg-components/StyleGuide'] = path.join(__dirname, 'lib/styleguide/StyleGuide');
+    return webpackConfig;
+  }
+};
+```
+
+Also there are two special wrapper components. They do nothing by themeselves and were made specifically to be replaced with a custom logic:
+
+* `StyleGuide` — the root component of a style gude React app.
+* `Wrapper` — wraps every example component.
+
+For example you can replace the `Wrapper` component to wrap any example component in the [React Intl’s](http://formatjs.io/react/) provider component. You can’t wrap the whole style guide because every example component is compiled separately in a browser.
+
+```javascript
+// styleguide.config.js
+var path = require('path');
+module.exports = {
+  // ...
+  updateWebpackConfig: function(webpackConfig, env) {
+    webpackConfig.resolve.alias['rsg-components/Wrapper'] = path.join(__dirname, 'lib/styleguide/Wrapper');
+    return webpackConfig;
+  }
+};
+
+// lib/styleguide/Wrapper.js
+import React, { Component } from 'react';
+import { IntlProvider } from 'react-intl';
+export default class Wrapper extends Component {
+  render() {
+    return (
+      <IntlProvider locale="en">
+        {this.props.children}
+      </IntlProvider>
+    );
+  }
+}
+```
+
+### How to debug my components and examples?
+
+Open your browser’s developer tools and click the ![Debugger](http://wow.sapegin.me/image/2n2z0b0l320m/debugger.png) button to make the debugger stop execution on any exception.
+
+Then write `debugger;` statement wherewhere you want: in a component source, a Markdown example or even in an editor in a browser. Like this:
+
+![](http://wow.sapegin.me/image/002N2q01470J/debugging.png)
+
+## Similar projects
+
+* [heatpack](https://github.com/insin/react-heatpack), a quick to setup hot-reloaded development server for React components.
+* [Demobox](https://github.com/jaredly/demobox), a component for making component showcases for landing pages.
+* [SourceJS](https://github.com/sourcejs/Source), a platform to unify all your frontend documentation. It has a [Styleguidist plugin](https://github.com/sourcejs/sourcejs-react-styleguidist).
 
 ## Changelog
 
