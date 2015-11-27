@@ -18,6 +18,7 @@ export default class Preview extends Component {
 		this.state = {
 			error: null
 		};
+		this.componentState = {};
 	}
 
 	componentDidMount() {
@@ -28,6 +29,11 @@ export default class Preview extends Component {
 		if (this.props.code !== prevProps.code) {
 			this.executeCode();
 		}
+	}
+
+	setComponentState(newState) {
+		this.componentState = {...this.componentState, ...newState};
+		this.executeCode();
 	}
 
 	compileCode(code) {
@@ -49,8 +55,12 @@ export default class Preview extends Component {
 		}
 
 		try {
+			code = `
+				const state = Object.freeze(${JSON.stringify(this.componentState)});
+				${code}
+			`;
 			let compiledCode = this.compileCode(code);
-			let component = this.props.evalInContext(compiledCode);
+			let component = this.props.evalInContext(compiledCode, this.setComponentState.bind(this));
 			let wrappedComponent = (
 				<Wrapper>
 					{component}

@@ -79,7 +79,10 @@ function examplesLoader(source, map) {
 		'}',
 		'module.exports = ' + JSON.stringify(examples).replace(
 			new RegExp(_.escapeRegExp(JSON.stringify(evalPlaceholder)), 'g'),
-			'function(code) { var require = requireInRuntime; return eval(code); }'
+			'function(code, setState) {' +
+			'   var require = requireInRuntime;' +
+			'   return eval(code);' +
+			'}'
 		) + ';'
 	].join('\n');
 }
@@ -88,7 +91,7 @@ _.assign(examplesLoader, {
 	requireAnythingRegex: requireAnythingRegex,
 	simpleStringRegex: simpleStringRegex,
 	readExamples: readExamples,
-	findRequires: findRequires,
+	findRequires: findRequires
 });
 
 module.exports = examplesLoader;
