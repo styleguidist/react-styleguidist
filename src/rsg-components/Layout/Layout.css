@@ -16,6 +16,11 @@
 	font-weight: normal;
 }
 
+.empty {
+	composes: font from "../../styles/common.css";
+	margin: 0 0 30px 0;
+}
+
 .footer {
 	composes: font from "../../styles/common.css";
 	composes: light from "../../styles/colors.css";

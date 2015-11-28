@@ -9,19 +9,31 @@ export default class Layout extends Component {
 		components: PropTypes.array.isRequired
 	}
 
-	// TODO: Blank slate
+	renderComponens() {
+		let { config, components } = this.props;
+		if (components.length) {
+			return (
+				<Components highlightTheme={config.highlightTheme} components={components}/>
+			);
+		}
+		else {
+			return (
+				<div className={s.empty}>
+					No components found. <a className={s.link} href="https://github.com/sapegin/react-styleguidist#configuration">Check
+					the components function</a> in your style guide config.
+				</div>
+			);
+		}
+	}
 
 	render() {
-		let { config, components } = this.props;
-		let { title, highlightTheme } = config;
+		let { title } = this.props.config;
 
 		return (
 			<div className={s.root}>
 				<div className={s.content}>
 					<h1 className={s.heading}>{title}</h1>
-					<div>
-						<Components highlightTheme={highlightTheme} components={components}/>
-					</div>
+					{this.renderComponens()}
 					<footer className={s.footer}>
 						Generated with <a className={s.link} href="https://github.com/sapegin/react-styleguidist">React Styleguidist</a>
 					</footer>
