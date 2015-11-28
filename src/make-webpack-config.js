@@ -81,6 +81,8 @@ module.exports = function(env) {
 			debug: false,
 			cache: false,
 			plugins: [
+				new webpack.optimize.OccurenceOrderPlugin(),
+				new webpack.optimize.DedupePlugin(),
 				new webpack.optimize.UglifyJsPlugin({
 					compress: {
 						warnings: false
@@ -90,7 +92,6 @@ module.exports = function(env) {
 					},
 					mangle: false
 				}),
-				new webpack.optimize.DedupePlugin(),
 				new ExtractTextPlugin('build/styles.css', {
 					allChunks: true
 				})
@@ -137,7 +138,6 @@ module.exports = function(env) {
 				reasons: true
 			},
 			plugins: [
-				new webpack.optimize.OccurenceOrderPlugin(),
 				new webpack.HotModuleReplacementPlugin(),
 				new webpack.NoErrorsPlugin()
 			],
