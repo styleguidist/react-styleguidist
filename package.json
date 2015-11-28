@@ -80,7 +80,8 @@
     "postcss-modules-extract-imports": "~1.0.0",
     "postcss-modules-scope": "~1.0.0",
     "react": "~0.14.2",
-    "react-dom": "~0.14.2"
+    "react-dom": "~0.14.2",
+    "react-modal": "~0.6.1"
   },
   "scripts": {
     "test": "npm run lint && npm run mocha && npm run build",
