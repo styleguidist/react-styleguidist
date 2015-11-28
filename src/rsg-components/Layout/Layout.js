@@ -22,6 +22,9 @@ export default class Layout extends Component {
 					<div>
 						<Components highlightTheme={highlightTheme} components={components}/>
 					</div>
+					<footer className={s.footer}>
+						Generated with <a className={s.link} href="https://github.com/sapegin/react-styleguidist">React Styleguidist</a>
+					</footer>
 				</div>
 			</div>
 		);

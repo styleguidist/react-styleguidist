@@ -15,3 +15,13 @@
 	font-size: 48px;
 	font-weight: normal;
 }
+
+.footer {
+	composes: font from "../../styles/common.css";
+	composes: light from "../../styles/colors.css";
+	font-size: 12px;
+}
+
+.link {
+	composes: link from "../../styles/colors.css";
+}
