@@ -322,11 +322,17 @@ export default class Wrapper extends Component {
 
 ### How to debug my components and examples?
 
-Open your browser’s developer tools and click the ![Debugger](http://wow.sapegin.me/image/2n2z0b0l320m/debugger.png) button to make the debugger stop execution on any exception.
-
-Then write `debugger;` statement wherewhere you want: in a component source, a Markdown example or even in an editor in a browser. Like this:
+1. Open your browser’s developer tools
+2. Press the ![Debugger](http://wow.sapegin.me/image/2n2z0b0l320m/debugger.png) button to make the debugger stop execution on any exception.
+3. Write `debugger;` statement wherewhere you want: in a component source, a Markdown example or even in an editor in a browser.
 
 ![](http://wow.sapegin.me/image/002N2q01470J/debugging.png)
+
+### How to debug the exceptions thrown from my components?
+
+1. Put `debugger;` statement at the beginning of your code.
+2. Press the ![Debugger](http://wow.sapegin.me/image/2n2z0b0l320m/debugger.png) button in your browser’s developer tools.
+3. Press the ![Continue](http://wow.sapegin.me/image/2d2z1Y2o1z1m/continue.png) button and the debugger will stop exception a the next exception.
 
 ## Similar projects
 
