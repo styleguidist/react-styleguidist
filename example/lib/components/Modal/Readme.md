@@ -7,3 +7,7 @@ Each example has its own state that you can access at the `state` variable and 
         	<button onClick={() => setState({isOpen: false})}>Close</button>
         </Modal>
 	</div>
+
+If you want to set the default state you can do something like that:
+
+	'key' in state || setState({key: 42});

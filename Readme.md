@@ -46,7 +46,7 @@ Components' `PropTypes` and documentation comments are parsed by the [react-docg
 
 ### Usage examples and further documentation
 
-Examples are written in Markdown where any code blocks will be rendered as a react components. By default any `Readme.md` in the component folder is treated as an examples file but you can change it with the `getExampleFilename` option.
+Examples are written in Markdown where any code block will be rendered as a react component. By default any `Readme.md` in the component folder is treated as an examples file but you can change it with the `getExampleFilename` option.
 
 ```markdown
 React component example:
@@ -59,6 +59,35 @@ Any [Markdown](http://daringfireball.net/projects/markdown/):
 * bar;
 * baz.
 ```
+
+You can use any component returned by the `components` function. You can require other modules from examples in Markdown:
+
+```js
+const mockData = require('./mocks');
+<Message content={mockData.hello}/>
+```
+
+This allows you to reuse mock data from your tests in the style guide.
+
+Each example has its own state that you can access at the `state` variable and change with the `setState` function. Default state is `{}`.
+
+```js
+<div>
+  <button onClick={() => setState({isOpen: true})}>Open</button>
+  <Modal isOpen={state.isOpen}>
+    <h1>Hallo!</h1>
+    <button onClick={() => setState({isOpen: false})}>Close</button>
+  </Modal>
+</div>
+```
+
+If you want to set the default state you can do something like that:
+
+```js
+'key' in state || setState({key: 42});
+```
+
+You can use `React.createClass` in your code examples, but it’s often a good idea to define them in a separate JavaScript file instead and then just require them in Markdown.
 
 ## Configuration
 
