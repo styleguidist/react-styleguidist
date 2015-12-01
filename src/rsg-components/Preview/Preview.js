@@ -10,7 +10,7 @@ import s from './Preview.css';
 export default class Preview extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
-		evalInContext: PropTypes.func.isRequired,
+		evalInContext: PropTypes.func.isRequired
 	}
 
 	constructor() {
