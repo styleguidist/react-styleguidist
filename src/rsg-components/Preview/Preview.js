@@ -33,7 +33,7 @@ export default class Preview extends Component {
 
 	setComponentState(newState) {
 		this.componentState = {...this.componentState, ...newState};
-		this.executeCode();
+		setTimeout(this.executeCode.bind(this), 0);
 	}
 
 	compileCode(code) {
