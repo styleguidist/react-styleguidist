@@ -338,6 +338,7 @@ export default class Wrapper extends Component {
 
 * [heatpack](https://github.com/insin/react-heatpack), a quick to setup hot-reloaded development server for React components.
 * [Demobox](https://github.com/jaredly/demobox), a component for making component showcases for landing pages.
+* [React-demo](https://github.com/rpominov/react-demo), a component for creating demos of other components with props editor.
 * [SourceJS](https://github.com/sourcejs/Source), a platform to unify all your frontend documentation. It has a [Styleguidist plugin](https://github.com/sourcejs/sourcejs-react-styleguidist).
 
 ## Changelog
