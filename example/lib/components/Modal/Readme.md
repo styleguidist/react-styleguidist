@@ -10,4 +10,5 @@ Each example has its own state that you can access at the `state` variable and 
 
 If you want to set the default state you can do something like that:
 
-	'key' in state || setState({key: 42});
+	'count' in state || setState({count: 1});
+    <button onClick={() => setState({count: state.count+1})}>{state.count}</button>
