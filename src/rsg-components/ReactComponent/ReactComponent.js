@@ -64,12 +64,16 @@ export default class ReactComponent extends Component {
 	}
 
 	render() {
-		let { component } = this.props;
+		let { name, pathLine } = this.props.component;
+
 		return (
 			<div className={s.root}>
 				<header className={s.header}>
-					<h2 className={s.heading}>{component.name}</h2>
-					<div className={s.pathLine}>{component.pathLine}</div>
+					<h2 className={s.heading} id={name}>
+						<a className={s.anchor} href={'#' + name}></a>
+						{name}
+					</h2>
+					<div className={s.pathLine}>{pathLine}</div>
 				</header>
 				{this.renderDescription()}
 				{this.renderProps()}

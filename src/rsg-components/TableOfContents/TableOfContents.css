@@ -1,0 +1,14 @@
+.root {
+	composes: reset font from "../../styles/common.css";
+	list-style-type: none;
+}
+
+.item {
+	margin: 0 0 7px;
+	padding: 0;
+	font-size: 15px;
+}
+
+.link {
+	composes: link from "../../styles/colors.css";
+}

@@ -1,5 +1,7 @@
 import { Component, PropTypes } from 'react';
+import Sticky from 'react-sticky';
 import Components from 'rsg-components/Components';
+import TableOfContents from 'rsg-components/TableOfContents';
 
 import s from './Layout.css';
 
@@ -27,17 +29,26 @@ export default class Layout extends Component {
 	}
 
 	render() {
-		let { title } = this.props.config;
+		let { config, components } = this.props;
 
 		return (
 			<div className={s.root}>
-				<div className={s.content}>
-					<h1 className={s.heading}>{title}</h1>
-					{this.renderComponens()}
-					<footer className={s.footer}>
-						Generated with <a className={s.link} href="https://github.com/sapegin/react-styleguidist">React Styleguidist</a>
-					</footer>
-				</div>
+				<main className={s.content}>
+					<h1 className={s.heading}>{config.title}</h1>
+					<div className={s.wrapper}>
+						<div className={s.components}>
+							{this.renderComponens()}
+							<footer className={s.footer}>
+								Generated with <a className={s.link} href="https://github.com/sapegin/react-styleguidist">React Styleguidist</a>
+							</footer>
+						</div>
+						<div className={s.sidebar}>
+							<Sticky className={s.sidebar} stickyClass={s.sidebarIsSticky} topOffset={-15} stickyStyle={{}}>
+								<TableOfContents components={components}/>
+							</Sticky>
+						</div>
+					</div>
+				</main>
 			</div>
 		);
 	}
