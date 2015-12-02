@@ -1,3 +1,58 @@
+# 1.3.0 - 2015-12-02
+
+## New features
+
+### Per examples state
+
+Each example has its own state that you can access at the `state` variable and change with the `setState` function. Default state is `{}`.
+
+```js
+<div>
+  <button onClick={() => setState({isOpen: true})}>Open</button>
+  <Modal isOpen={state.isOpen}>
+    <h1>Hallo!</h1>
+    <button onClick={() => setState({isOpen: false})}>Close</button>
+  </Modal>
+</div>
+```
+
+Related issue: #45.
+
+### Ability to style a style guide
+
+Now you can change almost any piece of a style guide. For example you can change a font and a background color:
+
+```css
+.ReactStyleguidist-common__font {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+.ReactStyleguidist-colors__base-bg {
+  background: hotpink;
+}
+```
+
+More [in the docs](https://github.com/sapegin/react-styleguidist#how-to-change-styles-of-a-style-guide).
+
+Related issue: #32
+
+### Other new features
+
+* Table of contents (#28).
+* Ability to use Markdown in components and props descriptions (#32).
+* `PropTypes.shape` support (#20).
+* Ability to change path line via `getComponentPathLine` option (#41).
+
+## Bug fixes
+
+* Improved styles isolation: Styleguidist styles should not interfer with your components styles.
+* Removed sanitize.css that causes a lot of problems with component styles.
+* Fixed issue when using components with the same names as component in Styleguidist.
+
+## Other changes
+
+* Use [markdown-it](https://github.com/markdown-it/markdown-it) and [Markdown React](https://github.com/alexkuz/markdown-react-js) instead of Marked.
+* A lot of [documentation](https://github.com/sapegin/react-styleguidist/blob/master/Readme.md) improvements and new examples [in the demo style guide](http://sapegin.github.io/react-styleguidist/).
+
 # 1.2.1 - 2015-11-18
 
 * Stateless React components support (#44, #46, by @sunesimonsen).
