@@ -13,6 +13,15 @@
 	color: #f28a25;
 }
 
+.link-base,
+.link-base:link,
+.link-base:visited
+.link-base:hover,
+.link-base:active {
+	color: #333;
+	text-decoration: none;
+}
+
 .base {
 	color: #333;
 }

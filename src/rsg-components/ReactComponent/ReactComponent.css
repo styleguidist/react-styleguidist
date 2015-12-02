@@ -17,7 +17,7 @@
 }
 
 .anchor {
-	composes: base from "../../styles/colors.css";
+	composes: link-base from "../../styles/colors.css";
 	position: absolute;
 	left: -.8em;
 	text-decoration: none;
