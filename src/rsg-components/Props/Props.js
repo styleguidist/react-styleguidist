@@ -5,8 +5,8 @@ import Markdown from 'rsg-components/Markdown';
 import s from './Props.css';
 import sMarkdown from '../Markdown/Markdown.css';
 
-export let Code = ({ children }) => {
-	return <code className={sMarkdown.code}>{children}</code>;
+export let Code = ({ className = '', children }) => {
+	return <code className={sMarkdown.code + ' ' + className}>{children}</code>;
 };
 
 export function unquote(string) {
@@ -24,8 +24,8 @@ export default class Props extends Component {
 			let prop = props[name];
 			rows.push(
 				<tr key={name}>
-					<td className={s.cell}><Code>{name}</Code></td>
-					<td className={s.cell}><Code>{this.renderType(prop.type)}</Code></td>
+					<td className={s.cell}><Code className={s.name}>{name}</Code></td>
+					<td className={s.cell}><Code className={s.type}>{this.renderType(prop.type)}</Code></td>
 					<td className={s.cell}>{this.renderDefault(prop)}</td>
 					<td className={s.cell + ' ' + s.cellDesc}>{this.renderDescription(prop)}</td>
 				</tr>
@@ -105,7 +105,7 @@ export default class Props extends Component {
 		}
 		let values = prop.type.value.map((value) => (
 			<li className={s.listItem} key={value.name}>
-				<Code>{this.renderType(value)}</Code>
+				<Code className={s.type}>{this.renderType(value)}</Code>
 			</li>
 		));
 
@@ -123,8 +123,8 @@ export default class Props extends Component {
 			let description = prop.description;
 			rows.push(
 				<div key={name}>
-					<Code>{name}</Code>{': '}
-					<Code>{this.renderType(prop)}</Code>
+					<Code className={s.name}>{name}</Code>{': '}
+					<Code className={s.type}>{this.renderType(prop)}</Code>
 					{defaultValue && ' — '}{defaultValue}
 					{description && ' — '}
 					{description && <Markdown className={s.inline} text={description}/>}
