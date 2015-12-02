@@ -1,4 +1,4 @@
-# React Styleguidist :skull: work in progress :skull:
+# React Styleguidist
 
 [![Build Status](https://travis-ci.org/sapegin/react-styleguidist.svg)](https://travis-ci.org/sapegin/react-styleguidist)
 
