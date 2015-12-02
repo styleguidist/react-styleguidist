@@ -89,6 +89,12 @@ If you want to set the default state you can do something like that:
 
 You can use `React.createClass` in your code examples, but it’s often a good idea to define them in a separate JavaScript file instead and then just require them in Markdown.
 
+[lodash](https://lodash.com/) library is available at the `_` object:
+
+```js
+<List items={_.range(7).map(i => `Item ${i}`)}/>
+```
+
 ## Configuration
 
 You can change some settings in the `styleguide.config.js` file in your project’s root folder.
