@@ -10,7 +10,7 @@ var config = require('../src/utils/config');
 
 module.exports = function(env) {
 	var isProd = env === 'production';
-	var cssLoader = 'css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]!postcss';
+	var cssLoader = 'css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]---[hash:base64:5]!postcss';
 
 	var codeMirrorPath = getInstalledPath('codemirror', true);
 	var reactTransformPath = getInstalledPath('babel-plugin-react-transform', true);
