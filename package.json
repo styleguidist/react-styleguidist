@@ -39,7 +39,6 @@
     "express": "4.13.3",
     "extract-text-webpack-plugin": "0.8.2",
     "findup": "0.1.5",
-    "get-installed-path": "1.0.2",
     "glob": "5.0.15",
     "html-webpack-plugin": "1.6.2",
     "json-loader": "0.5.3",

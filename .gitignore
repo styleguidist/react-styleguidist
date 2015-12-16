@@ -1,2 +1,3 @@
 example/styleguide/
 .publish/
+node_modules/

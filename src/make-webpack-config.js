@@ -5,15 +5,18 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var Initial = require('postcss-initial');
 var merge = require('webpack-merge');
 var prettyjson = require('prettyjson');
-var getInstalledPath = require('get-installed-path');
 var config = require('../src/utils/config');
+
+function getPackagePath(packageName) {
+	return path.dirname(require.resolve(packageName + '/package.json'));
+}
 
 module.exports = function(env) {
 	var isProd = env === 'production';
 	var cssLoader = 'css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]!postcss';
 
-	var codeMirrorPath = getInstalledPath('codemirror', true);
-	var reactTransformPath = getInstalledPath('babel-plugin-react-transform', true);
+	var codeMirrorPath = getPackagePath('codemirror');
+	var reactTransformPath = getPackagePath('babel-plugin-react-transform');
 
 	var includes = [
 		__dirname,
