@@ -1,3 +1,10 @@
+# 1.3.1 - 2015-12-16
+
+Bug fixes by @lovelybooks:
+
+* Fix npm 2 support (#59, #66).
+* Fix layout for wiiide components (#67).
+
 # 1.3.0 - 2015-12-02
 
 ## New features
