@@ -7,12 +7,16 @@ var merge = require('webpack-merge');
 var prettyjson = require('prettyjson');
 var config = require('../src/utils/config');
 
+function getPackagePath(packageName) {
+	return path.dirname(require.resolve(packageName + '/package.json'));
+}
+
 module.exports = function(env) {
 	var isProd = env === 'production';
 	var cssLoader = 'css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]!postcss';
 
-	var codeMirrorPath = path.dirname(require.resolve('codemirror/package.json'));
-	var reactTransformPath = require.resolve('babel-plugin-react-transform');
+	var codeMirrorPath = getPackagePath('codemirror');
+	var reactTransformPath = getPackagePath('babel-plugin-react-transform');
 
 	var includes = [
 		__dirname,
