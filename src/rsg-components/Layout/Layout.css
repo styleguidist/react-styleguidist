@@ -20,6 +20,10 @@
 	padding-left: 15px;
 }
 
+.components {
+	overflow: auto; /* to prevent the pane from growing out of the screen */
+}
+
 .sidebarIsSticky {
 	position: fixed;
 	top: 15px;
