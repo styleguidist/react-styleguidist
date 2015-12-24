@@ -15,7 +15,7 @@
 
 .link-base,
 .link-base:link,
-.link-base:visited
+.link-base:visited,
 .link-base:hover,
 .link-base:active {
 	color: #333;
