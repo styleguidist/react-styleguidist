@@ -5,7 +5,11 @@ import s from './Button.css';
 /**
  * The only true button.
  */
-const Button = ({ color, size, children}) => {
+export default function Button({
+	color,
+	size,
+	children
+}) {
 	let styles = {
 		color: color,
 		fontSize: Button.sizes[size]
@@ -14,8 +18,7 @@ const Button = ({ color, size, children}) => {
 	return (
 		<button className={s.root} style={styles}>{children}</button>
 	);
-
-};
+}
 Button.propTypes = {
 	/**
 	 * Button label.
@@ -33,5 +36,3 @@ Button.sizes = {
 	normal: '14px',
 	large: '18px'
 };
-
-export default Button;
