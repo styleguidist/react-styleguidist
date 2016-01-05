@@ -37,7 +37,6 @@
     "codemirror": "5.10.0",
     "css-loader": "0.23.1",
     "express": "4.13.3",
-    "extract-text-webpack-plugin": "0.8.2",
     "findup": "0.1.5",
     "glob": "6.0.3",
     "html-webpack-plugin": "1.7.0",
