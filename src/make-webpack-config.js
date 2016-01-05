@@ -1,7 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var Initial = require('postcss-initial');
 var merge = require('webpack-merge');
 var prettyjson = require('prettyjson');
@@ -59,6 +58,20 @@ module.exports = function(env) {
 		],
 		module: {
 			loaders: [
+				{
+					test: /\.json$/,
+					loader: 'json'
+				},
+				{
+					test: /\.css$/,
+					include: codeMirrorPath,
+					loader: 'style!css'
+				},
+				{
+					test: /\.css$/,
+					include: includes,
+					loader: 'style!' + cssLoader
+				}
 			],
 			noParse: [
 				/babel-core\/browser.js/
@@ -94,9 +107,6 @@ module.exports = function(env) {
 						comments: false
 					},
 					mangle: false
-				}),
-				new ExtractTextPlugin('build/styles.css', {
-					allChunks: true
 				})
 			],
 			module: {
@@ -108,20 +118,6 @@ module.exports = function(env) {
 						query: {
 							stage: 0
 						}
-					},
-					{
-						test: /\.json$/,
-						loader: 'json'
-					},
-					{
-						test: /\.css$/,
-						include: codeMirrorPath,
-						loader: ExtractTextPlugin.extract('style', 'css')
-					},
-					{
-						test: /\.css$/,
-						include: includes,
-						loader: ExtractTextPlugin.extract('style', cssLoader)
 					}
 				]
 			}
@@ -171,20 +167,6 @@ module.exports = function(env) {
 								}
 							}
 						}
-					},
-					{
-						test: /\.json$/,
-						loader: 'json'
-					},
-					{
-						test: /\.css$/,
-						include: codeMirrorPath,
-						loader: 'style!css'
-					},
-					{
-						test: /\.css$/,
-						include: includes,
-						loader: 'style!' + cssLoader
 					}
 				]
 			}
