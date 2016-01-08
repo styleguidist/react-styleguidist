@@ -1,3 +1,8 @@
+# 1.3.2 - 2016-01-08
+
+* Remove ExtractTextPlugin.
+* Fix typo in CSS.
+
 # 1.3.1 - 2015-12-16
 
 Bug fixes by @lovelybooks:
