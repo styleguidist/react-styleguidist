@@ -27,7 +27,7 @@ module.exports = function(env) {
 			filename: 'build/bundle.js'
 		},
 		resolve: {
-			root: path.join(__dirname),
+			root: __dirname,
 			extensions: ['', '.js', '.jsx'],
 			modulesDirectories: [
 				path.resolve(__dirname, '../node_modules'),
