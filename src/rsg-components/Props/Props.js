@@ -25,7 +25,7 @@ export default class Props extends Component {
 			rows.push(
 				<tr key={name}>
 					<td className={s.cell}><Code className={s.name}>{name}</Code></td>
-					<td className={s.cell}><Code className={s.type}>{this.renderType(prop.type)}</Code></td>
+					<td className={s.cell}><Code className={s.type}>{this.renderType(getType(prop))}</Code></td>
 					<td className={s.cell}>{this.renderDefault(prop)}</td>
 					<td className={s.cell + ' ' + s.cellDesc}>{this.renderDescription(prop)}</td>
 				</tr>
@@ -74,7 +74,7 @@ export default class Props extends Component {
 	}
 
 	renderExtra(prop) {
-		switch (prop.type.name) {
+		switch (getType(prop).name) {
 			case 'enum':
 				return this.renderEnum(prop);
 			case 'union':
@@ -86,10 +86,10 @@ export default class Props extends Component {
 	}
 
 	renderEnum(prop) {
-		if (!Array.isArray(prop.type.value)) {
-			return <span>{prop.type.value}</span>;
+		if (!Array.isArray(getType(prop).value)) {
+			return <span>{getType(prop).value}</span>;
 		}
-		let values = prop.type.value.map(({ value }) => (
+		let values = getType(prop).value.map(({ value }) => (
 			<li className={s.listItem} key={value}>
 				<Code>{unquote(value)}</Code>
 			</li>
@@ -100,10 +100,10 @@ export default class Props extends Component {
 	}
 
 	renderUnion(prop) {
-		if (!Array.isArray(prop.type.value)) {
-			return <span>{prop.type.value}</span>;
+		if (!Array.isArray(getType(prop).value)) {
+			return <span>{getType(prop).value}</span>;
 		}
-		let values = prop.type.value.map((value) => (
+		let values = getType(prop).value.map((value) => (
 			<li className={s.listItem} key={value.name}>
 				<Code className={s.type}>{this.renderType(value)}</Code>
 			</li>
@@ -160,4 +160,8 @@ export default class Props extends Component {
 			</div>
 		);
 	}
+}
+
+function getType(prop) {
+	return prop.flowType || prop.type;
 }
