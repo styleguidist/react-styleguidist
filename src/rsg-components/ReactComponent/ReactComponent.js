@@ -9,7 +9,7 @@ export default class ReactComponent extends Component {
 	static propTypes = {
 		highlightTheme: PropTypes.string.isRequired,
 		component: PropTypes.object.isRequired
-	}
+	};
 
 	renderDescription() {
 		let description = this.props.component.props.description;

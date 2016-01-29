@@ -9,7 +9,7 @@ export default class Playground extends Component {
 		highlightTheme: PropTypes.string.isRequired,
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
-	}
+	};
 
 	constructor(props) {
 		super();
@@ -22,7 +22,7 @@ export default class Playground extends Component {
 		this.setState({
 			code: newCode
 		});
-	}
+	};
 
 	componentWillReceiveProps(nextProps) {
 		let { code } = nextProps;

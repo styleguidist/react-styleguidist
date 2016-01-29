@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import babel from 'babel-core/browser';
+import babel from 'babel-standalone';
 import Wrapper from 'rsg-components/Wrapper';
 
 import s from './Preview.css';
@@ -11,7 +11,7 @@ export default class Preview extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired
-	}
+	};
 
 	constructor() {
 		super();

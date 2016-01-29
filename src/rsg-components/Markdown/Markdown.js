@@ -25,7 +25,7 @@ export default class Markdown extends Component {
 	static propTypes = {
 		text: PropTypes.string.isRequired,
 		className: PropTypes.string
-	}
+	};
 
 	render() {
 		let classes = cx(s.root, this.props.className);

@@ -13,8 +13,6 @@ module.exports = function server(callback) {
 
 	app.use(require('webpack-hot-middleware')(compiler));
 
-	app.use(express.static(config.rootDir));
-
 	app.listen(config.serverPort, config.serverHost, function(err) {
 		callback(err, config);
 	});
