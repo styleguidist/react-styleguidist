@@ -1,5 +1,5 @@
 import { Component, PropTypes } from 'react';
-import trim from 'lodash/string';
+import _ from 'lodash';
 import Markdown from 'rsg-components/Markdown';
 
 import s from './Props.css';
@@ -10,7 +10,7 @@ export let Code = ({ className = '', children }) => {
 };
 
 export function unquote(string) {
-	return trim(string, '"\'');
+	return _.trim(string, '"\'');
 }
 
 export default class Props extends Component {

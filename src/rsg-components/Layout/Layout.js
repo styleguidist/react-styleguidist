@@ -11,7 +11,7 @@ export default class Layout extends Component {
 		components: PropTypes.array.isRequired
 	};
 
-	renderComponens() {
+	renderComponents() {
 		let { config, components } = this.props;
 		if (components.length) {
 			return (
@@ -37,7 +37,7 @@ export default class Layout extends Component {
 					<h1 className={s.heading}>{config.title}</h1>
 					<div className={s.wrapper}>
 						<div className={s.components}>
-							{this.renderComponens()}
+							{this.renderComponents()}
 							<footer className={s.footer}>
 								Generated with <a className={s.link} href="https://github.com/sapegin/react-styleguidist">React Styleguidist</a>
 							</footer>

@@ -2,17 +2,12 @@
 
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import babel from 'babel-standalone';
+import {transform} from 'babel-standalone';
 import Wrapper from 'rsg-components/Wrapper';
 
 import s from './Preview.css';
 
-export default class Preview extends Component {
-	static propTypes = {
-		code: PropTypes.string.isRequired,
-		evalInContext: PropTypes.func.isRequired
-	};
-
+class Preview extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -37,8 +32,28 @@ export default class Preview extends Component {
 	}
 
 	compileCode(code) {
-		return babel.transform(code, {stage: 0}).code;
+		return transform(code, {
+      presets: ['es2015', 'react', 'stage-0'],
+      ignore: [/node_modules/]
+    }).code;
 	}
+
+  getComponent (code) {
+    let compiledCode = this.compileCode(code);
+    let component = this.props.evalInContext(compiledCode, this.setComponentState.bind(this));
+
+    if(component.type.__esModule) {
+      component = React.createElement(component.type.default, component.props);
+    }
+    else {
+      console.log('RAW : component:', component)
+      //component.children.forEach(() => {
+      //  console.log('component.type:', component.type)
+      //})
+    }
+
+    return component;
+  }
 
 	executeCode() {
 		let mountNode = this.refs.mount;
@@ -54,21 +69,28 @@ export default class Preview extends Component {
 			return;
 		}
 
+    code = `
+      const state = Object.freeze(${JSON.stringify(this.componentState)});
+      ${code}
+    `;
+
+
+    let wrappedComponent = (
+      <Wrapper>
+        {this.getComponent(code)}
+      </Wrapper>
+    );
+
 		try {
-			code = `
-				const state = Object.freeze(${JSON.stringify(this.componentState)});
-				${code}
-			`;
-			let compiledCode = this.compileCode(code);
-			let component = this.props.evalInContext(compiledCode, this.setComponentState.bind(this));
-			let wrappedComponent = (
-				<Wrapper>
-					{component}
-				</Wrapper>
-			);
 			ReactDOM.render(wrappedComponent, mountNode);
 		}
 		catch (err) {
+      //console.log(err)
+      //console.log('code:', code)
+      //console.log('compiledCode:', compiledCode)
+      //console.log('component:', component)
+      //console.log('wrappedComponent:', wrappedComponent)
+
 			ReactDOM.unmountComponentAtNode(mountNode);
 			this.setState({
 				error: err.toString()
@@ -97,3 +119,10 @@ export default class Preview extends Component {
 		);
 	}
 }
+
+Preview.propTypes = {
+  code: PropTypes.string.isRequired,
+  evalInContext: PropTypes.func.isRequired
+};
+
+export default Preview;

@@ -4,15 +4,10 @@ import Preview from 'rsg-components/Preview';
 
 import s from './Playground.css';
 
-export default class Playground extends Component {
-	static propTypes = {
-		highlightTheme: PropTypes.string.isRequired,
-		code: PropTypes.string.isRequired,
-		evalInContext: PropTypes.func.isRequired,
-	};
-
+class Playground extends Component {
 	constructor(props) {
-		super();
+		super(props);
+
 		this.state = {
 			code: props.code
 		};
@@ -49,3 +44,11 @@ export default class Playground extends Component {
 		);
 	}
 }
+
+Playground.propTypes = {
+  highlightTheme: PropTypes.string.isRequired,
+  code: PropTypes.string.isRequired,
+  evalInContext: PropTypes.func.isRequired
+};
+
+export default Playground;

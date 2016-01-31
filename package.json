@@ -2,35 +2,32 @@
   "name": "react-styleguidist",
   "description": "React components styleguide generator",
   "version": "1.3.2",
-  "homepage": "https://github.com/sapegin/react-styleguidist",
   "author": {
     "name": "Artem Sapegin",
     "url": "http://sapegin.me/"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:oliverturner/react-styleguidist.git"
+  "_from": "react-styleguidist@latest",
+  "_id": "react-styleguidist@1.3.2",
+  "_nodeVersion": "0.12.8",
+  "_npmUser": {
+    "name": "sapegin",
+    "email": "artem@sapegin.ru"
+  },
+  "_npmVersion": "3.5.2",
+  "_resolved": "https://registry.npmjs.org/react-styleguidist/-/react-styleguidist-1.3.2.tgz",
+  "_shasum": "22576f28a5d077731e3adea70ecef495b550475b",
+  "bin": {
+    "styleguidist": "bin/styleguidist"
   },
   "bugs": {
     "url": "https://github.com/sapegin/react-styleguidist/issues"
   },
-  "license": "MIT",
-  "main": "src/build.js",
-  "bin": {
-    "styleguidist": "bin/styleguidist"
-  },
-  "files": [
-    "bin",
-    "src",
-    "loaders"
-  ],
-  "engines": {
-    "node": ">=0.12.0"
-  },
   "dependencies": {
     "babel-core": "6.4.5",
     "babel-loader": "6.2.1",
-    "babel-plugin-react-transform": "2.0.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
     "babel-runtime": "6.3.19",
     "babel-standalone": "^6.4.4",
     "chalk": "1.1.1",
@@ -50,23 +47,17 @@
     "postcss-loader": "0.8.0",
     "prettyjson": "1.1.3",
     "react-codemirror": "0.2.5",
-    "react-docgen": "2.6.3",
+    "react-docgen": "2.7.0",
     "react-sticky": "~3.0.0",
-    "react-transform-catch-errors": "1.0.1",
-    "react-transform-hmr": "1.0.1",
-    "redbox-react": "1.2.0",
     "style-loader": "0.13.0",
     "webpack": "1.12.12",
     "webpack-dev-middleware": "1.5.1",
     "webpack-hot-middleware": "2.6.4",
     "webpack-merge": "0.7.3"
   },
-  "peerDependencies": {
-    "react": ">=0.14.0",
-    "react-dom": ">=0.14.0"
-  },
   "devDependencies": {
-    "babel-eslint": "5.0.0-beta6",
+    "babel-eslint": "5.0.0-beta8",
+    "babel-preset-react-hmre": "^1.0.1",
     "chai": "~3.5.0",
     "css-modules-require-hook": "~2.1.0",
     "dog-names": "~1.0.2",
@@ -83,46 +74,55 @@
     "react-dom": "~0.14.7",
     "react-modal": "~0.6.1"
   },
-  "scripts": {
-    "test": "npm run lint && npm run mocha && npm run build",
-    "mocha": "mocha test",
-    "mocha:watch": "mocha --watch --reporter min test",
-    "start": "./bin/styleguidist server --config example/styleguide.config.js",
-    "lint": "eslint src --ext .js",
-    "build": "./bin/styleguidist build --config example/styleguide.config.js",
-    "publish": "npm run build && gulp gh-pages"
-  },
-  "keywords": [
-    "react",
-    "jsx",
-    "styleguide",
-    "style guide",
-    "documentation",
-    "docs",
-    "generator",
-    "component",
-    "components"
-  ],
-  "gitHead": "c9b360084a36ba75e501baa712f5464094c26351",
-  "_id": "react-styleguidist@1.3.2",
-  "_shasum": "22576f28a5d077731e3adea70ecef495b550475b",
-  "_from": "react-styleguidist@latest",
-  "_npmVersion": "3.5.2",
-  "_nodeVersion": "0.12.8",
-  "_npmUser": {
-    "name": "sapegin",
-    "email": "artem@sapegin.ru"
-  },
+  "directories": {},
   "dist": {
     "shasum": "22576f28a5d077731e3adea70ecef495b550475b",
     "tarball": "http://registry.npmjs.org/react-styleguidist/-/react-styleguidist-1.3.2.tgz"
   },
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "files": [
+    "bin",
+    "src",
+    "loaders"
+  ],
+  "gitHead": "c9b360084a36ba75e501baa712f5464094c26351",
+  "homepage": "https://github.com/sapegin/react-styleguidist",
+  "keywords": [
+    "component",
+    "components",
+    "docs",
+    "documentation",
+    "generator",
+    "jsx",
+    "react",
+    "style guide",
+    "styleguide"
+  ],
+  "license": "MIT",
+  "main": "src/build.js",
   "maintainers": [
     {
       "name": "sapegin",
       "email": "artem@sapegin.ru"
     }
   ],
-  "directories": {},
-  "_resolved": "https://registry.npmjs.org/react-styleguidist/-/react-styleguidist-1.3.2.tgz"
+  "peerDependencies": {
+    "react": ">=0.14.0",
+    "react-dom": ">=0.14.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:oliverturner/react-styleguidist.git"
+  },
+  "scripts": {
+    "build": "./bin/styleguidist build --config example/styleguide.config.js",
+    "lint": "eslint src --ext .js",
+    "mocha": "mocha test",
+    "mocha:watch": "mocha --watch --reporter min test",
+    "publish": "npm run build && gulp gh-pages",
+    "start": "./bin/styleguidist server --config example/styleguide.config.js",
+    "test": "npm run lint && npm run mocha && npm run build"
+  }
 }

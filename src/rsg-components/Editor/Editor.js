@@ -2,9 +2,8 @@
 import '../../utils/codemirror-jsx';
 import 'codemirror/lib/codemirror.css';
 
-import _ from 'lodash';
+import {debounce} from 'lodash';
 import { Component, PropTypes } from 'react';
-import debounce from 'lodash/function';
 import Codemirror from 'react-codemirror';
 
 import s from './Editor.css';

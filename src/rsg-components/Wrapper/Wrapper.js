@@ -1,11 +1,13 @@
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 
-export default class Wrapper extends Component {
-	static propTypes = {
-		children: PropTypes.node.isRequired
-	};
-
+class Wrapper extends Component {
 	render() {
 		return this.props.children;
 	}
 }
+
+Wrapper.propTypes = {
+  children: PropTypes.node.isRequired
+};
+
+export default Wrapper;
