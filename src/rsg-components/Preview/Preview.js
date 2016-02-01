@@ -3,25 +3,24 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import {transform} from 'babel-standalone';
+import {merge} from 'lodash';
 import Wrapper from 'rsg-components/Wrapper';
 
 import s from './Preview.css';
 
-// TODO: instead, simply return an amended object: map default back to type
-const getComponent = (component) => {
-  //console.log(component)
+const modifyProps = (props) => {
+	if (Array.isArray(props.children) && props.children.length) {
+		props = merge({}, props, {children: props.children.map(getComponentTypes)});
+	}
 
-  if(Array.isArray(component.props.children) && component.props.children.length) {
-    //component.props.children = component.props.children.map(getComponent
-    return <p>lol</p>
-  }
+	return props;
+};
 
-  if(component.type.__esModule) {
-    return React.createElement(component.type.default, component.props);
-  }
+const getComponentTypes = (component) => {
+	const type = component.type.__esModule ? component.type.default : component.type;
 
-  return component;
-}
+	return React.createElement(type, modifyProps(component.props));
+};
 
 class Preview extends Component {
 	constructor() {
@@ -49,9 +48,9 @@ class Preview extends Component {
 
 	compileCode(code) {
 		return transform(code, {
-      presets: ['es2015', 'react', 'stage-0'],
-      ignore: [/node_modules/]
-    }).code;
+			presets: ['es2015', 'react', 'stage-0'],
+			ignore: [/node_modules/]
+		}).code;
 	}
 
 	executeCode() {
@@ -68,32 +67,25 @@ class Preview extends Component {
 			return;
 		}
 
-    code = `
+		code = `
       const state = Object.freeze(${JSON.stringify(this.componentState)});
       ${code}
     `;
 
-    let compiledCode = this.compileCode(code);
-    let component = this.props.evalInContext(compiledCode, this.setComponentState.bind(this));
+		let compiledCode = this.compileCode(code);
+		let component = this.props.evalInContext(compiledCode, this.setComponentState.bind(this));
+		let parsedComponent = getComponentTypes(component);
 
-    console.log('component.type.default:', component.type.default)
-
-    let wrappedComponent = (
-      <Wrapper>
-        {getComponent(component)}
-      </Wrapper>
-    );
+		let wrappedComponent = (
+			<Wrapper>
+				{parsedComponent}
+			</Wrapper>
+		);
 
 		try {
 			ReactDOM.render(wrappedComponent, mountNode);
 		}
 		catch (err) {
-      //console.log(err)
-      //console.log('code:', code)
-      //console.log('compiledCode:', compiledCode)
-      //console.log('component:', component)
-      //console.log('wrappedComponent:', wrappedComponent)
-
 			ReactDOM.unmountComponentAtNode(mountNode);
 			this.setState({
 				error: err.toString()
@@ -124,8 +116,8 @@ class Preview extends Component {
 }
 
 Preview.propTypes = {
-  code: PropTypes.string.isRequired,
-  evalInContext: PropTypes.func.isRequired
+	code: PropTypes.string.isRequired,
+	evalInContext: PropTypes.func.isRequired
 };
 
 export default Preview;

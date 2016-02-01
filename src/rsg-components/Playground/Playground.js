@@ -46,9 +46,9 @@ class Playground extends Component {
 }
 
 Playground.propTypes = {
-  highlightTheme: PropTypes.string.isRequired,
-  code: PropTypes.string.isRequired,
-  evalInContext: PropTypes.func.isRequired
+	highlightTheme: PropTypes.string.isRequired,
+	code: PropTypes.string.isRequired,
+	evalInContext: PropTypes.func.isRequired
 };
 
 export default Playground;
