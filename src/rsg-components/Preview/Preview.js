@@ -7,6 +7,22 @@ import Wrapper from 'rsg-components/Wrapper';
 
 import s from './Preview.css';
 
+// TODO: instead, simply return an amended object: map default back to type
+const getComponent = (component) => {
+  //console.log(component)
+
+  if(Array.isArray(component.props.children) && component.props.children.length) {
+    //component.props.children = component.props.children.map(getComponent
+    return <p>lol</p>
+  }
+
+  if(component.type.__esModule) {
+    return React.createElement(component.type.default, component.props);
+  }
+
+  return component;
+}
+
 class Preview extends Component {
 	constructor() {
 		super();
@@ -38,23 +54,6 @@ class Preview extends Component {
     }).code;
 	}
 
-  getComponent (code) {
-    let compiledCode = this.compileCode(code);
-    let component = this.props.evalInContext(compiledCode, this.setComponentState.bind(this));
-
-    if(component.type.__esModule) {
-      component = React.createElement(component.type.default, component.props);
-    }
-    else {
-      console.log('RAW : component:', component)
-      //component.children.forEach(() => {
-      //  console.log('component.type:', component.type)
-      //})
-    }
-
-    return component;
-  }
-
 	executeCode() {
 		let mountNode = this.refs.mount;
 
@@ -74,10 +73,14 @@ class Preview extends Component {
       ${code}
     `;
 
+    let compiledCode = this.compileCode(code);
+    let component = this.props.evalInContext(compiledCode, this.setComponentState.bind(this));
+
+    console.log('component.type.default:', component.type.default)
 
     let wrappedComponent = (
       <Wrapper>
-        {this.getComponent(code)}
+        {getComponent(component)}
       </Wrapper>
     );
 
