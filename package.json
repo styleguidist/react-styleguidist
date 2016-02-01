@@ -33,6 +33,7 @@
     "chalk": "1.1.1",
     "classnames": "~2.2.3",
     "codemirror": "5.11.0",
+    "cross-env": "^1.0.7",
     "css-loader": "0.23.1",
     "express": "4.13.4",
     "findup": "0.1.5",
@@ -50,7 +51,7 @@
     "react-docgen": "2.7.0",
     "react-sticky": "~3.0.0",
     "style-loader": "0.13.0",
-    "webpack": "1.12.12",
+    "webpack": "^1.12.12",
     "webpack-dev-middleware": "1.5.1",
     "webpack-hot-middleware": "2.6.4",
     "webpack-merge": "0.7.3"
@@ -119,7 +120,7 @@
   "scripts": {
     "build": "./bin/styleguidist build --config example/styleguide.config.js",
     "lint": "eslint src --ext .js",
-    "mocha": "mocha test",
+    "mocha": "cross-env NODE_ENV=test mocha test",
     "mocha:watch": "mocha --watch --reporter min test",
     "publish": "npm run build && gulp gh-pages",
     "start": "./bin/styleguidist server --config example/styleguide.config.js",
