@@ -8,7 +8,8 @@ import s from './Button.css';
 function Button({
 	color,
 	size,
-	children
+	children,
+	onClick
 }) {
 	let styles = {
 		color: color,
@@ -16,17 +17,17 @@ function Button({
 	};
 
 	return (
-		<button className={s.root} style={styles}>{children}</button>
+		<button className={s.root} style={styles} onClick={onClick}>{children}</button>
 	);
 }
 
 Button.propTypes = {
-	/**
-	 * Button label.
-	 */
+	/** Button label */
 	children: PropTypes.string.isRequired,
 	color: PropTypes.string,
-	size: PropTypes.oneOf(['small', 'normal', 'large'])
+	size: PropTypes.oneOf(['small', 'normal', 'large']),
+	/** Callback */
+	onClick: PropTypes.func
 };
 
 Button.defaultProps = {

@@ -16,10 +16,13 @@ const modifyProps = (props) => {
 	return props;
 };
 
-const getComponentTypes = (component) => {
+const getComponentTypes = (component, key = 0) => {
+	// Determine whether this is a mismatch between ES6 and CommonJS export structures
+	// (Babel 5 used to lack the differentiation)
+	// Context: http://www.2ality.com/2014/09/es6-modules-final.html
 	const type = component.type.__esModule ? component.type.default : component.type;
 
-	return React.createElement(type, modifyProps(component.props));
+	return React.createElement(type, modifyProps(merge({key}, component.props)));
 };
 
 class Preview extends Component {

@@ -1,10 +1,6 @@
 Basic button:
 
-    <div>
-        <Button>Push Me</Button>
-        <Button>Push Me Twice</Button>
-        <Button>Push Me</Button>
-    </div>
+    <Button>Push Me</Button>
 
 Big pink button:
 
