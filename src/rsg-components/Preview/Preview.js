@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import babel from 'babel-core/browser';
+import {transform} from 'babel-standalone';
 import Wrapper from 'rsg-components/Wrapper';
 
 import s from './Preview.css';
@@ -37,7 +37,7 @@ export default class Preview extends Component {
 	}
 
 	compileCode(code) {
-		return babel.transform(code, {stage: 0}).code;
+		return transform(code, {stage: 0}).code;
 	}
 
 	executeCode() {
