@@ -10,7 +10,7 @@ describe('examples loader', () => {
 		beforeEach(() => {
 			expect(examplesLoader.requireAnythingRegex).to.be.an.instanceof(RegExp);
 			// We make a version without the /g flag
-			regex = new RegExp(examplesLoader.requireAnythingRegex, '');
+			regex = new RegExp(examplesLoader.requireAnythingTest);
 		});
 
 		it('should match require invocations', () => {
@@ -30,6 +30,8 @@ describe('examples loader', () => {
 		});
 
 		it('should match many requires in the same line correctly', () => {
+			// Revert to the /g flagged version used by examplesLoader
+			regex = new RegExp(examplesLoader.requireAnythingRegex);
 			var replaced = `require('foo');require('bar')`.replace(examplesLoader.requireAnythingRegex, 'x');
 			expect(replaced).to.equal('x;x');
 		});
