@@ -12,7 +12,7 @@ function getPackagePath(packageName) {
 
 module.exports = function(env) {
 	var isProd = env === 'production';
-	var cssLoader = 'css?module&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]!postcss';
+	var cssLoader = 'css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]!postcss';
 
 	var codeMirrorPath = getPackagePath('codemirror');
 
