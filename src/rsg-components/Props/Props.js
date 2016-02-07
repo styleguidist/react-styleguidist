@@ -1,5 +1,5 @@
 import { Component, PropTypes } from 'react';
-import trim from 'lodash/string/trim';
+import trim from 'lodash.trim';
 import Markdown from 'rsg-components/Markdown';
 
 import s from './Props.css';
@@ -16,7 +16,7 @@ export function unquote(string) {
 export default class Props extends Component {
 	static propTypes = {
 		props: PropTypes.object.isRequired
-	}
+	};
 
 	renderRows(props) {
 		let rows = [];

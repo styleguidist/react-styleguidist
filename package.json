@@ -38,6 +38,7 @@
     "chalk": "1.1.1",
     "classnames": "~2.2.3",
     "codemirror": "5.11.0",
+    "cross-env": "^1.0.7",
     "css-loader": "0.23.1",
     "express": "4.13.4",
     "findup": "0.1.5",
@@ -69,7 +70,6 @@
   },
   "devDependencies": {
     "babel-eslint": "4.1.8",
-    "babel-plugin-add-module-exports": "^0.1.2",
     "babel-preset-react-hmre": "^1.1.0",
     "babel-standalone": "^6.4.4",
     "chai": "~3.5.0",
@@ -80,6 +80,10 @@
     "expect-react-shallow": "~1.1.0",
     "gulp": "3.9.0",
     "gulp-gh-pages": "0.5.4",
+    "lodash.debounce": "^4.0.1",
+    "lodash.pluck": "^3.1.2",
+    "lodash.sample": "^4.0.1",
+    "lodash.trim": "^4.0.2",
     "mocha": "~2.4.5",
     "mock-require": "~1.2.1",
     "postcss-modules-extract-imports": "~1.0.0",
@@ -90,11 +94,11 @@
   },
   "scripts": {
     "test": "npm run lint && npm run mocha && npm run build",
-    "mocha": "mocha test",
+    "mocha": "cross-env NODE_ENV=test mocha test",
     "mocha:watch": "mocha --watch --reporter min test",
     "start": "./bin/styleguidist server --config example/styleguide.config.js",
     "lint": "eslint src --ext .js",
-    "build": "./bin/styleguidist build --config example/styleguide.config.js",
+    "build": "cross-env NODE_ENV=production ./bin/styleguidist build --config example/styleguide.config.js",
     "publish": "npm run build && gulp gh-pages"
   },
   "keywords": [

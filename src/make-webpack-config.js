@@ -15,7 +15,6 @@ module.exports = function(env) {
 	var cssLoader = 'css?module&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]!postcss';
 
 	var codeMirrorPath = getPackagePath('codemirror');
-	var reactTransformPath = getPackagePath('babel-plugin-react-transform');
 
 	var includes = [
 		__dirname,
@@ -114,10 +113,7 @@ module.exports = function(env) {
 					{
 						test: /\.jsx?$/,
 						include: includes,
-						loader: 'babel',
-						query: {
-							stage: 0
-						}
+						loader: 'babel'
 					}
 				]
 			}
@@ -145,28 +141,7 @@ module.exports = function(env) {
 					{
 						test: /\.jsx?$/,
 						include: includes,
-						loader: 'babel',
-						query: {
-							stage: 0,
-							plugins: [
-								reactTransformPath
-							],
-							extra: {
-								'react-transform': {
-									transforms: [
-										{
-											transform: 'react-transform-hmr',
-											imports: ['react'],
-											locals: ['module']
-										},
-										{
-											transform: 'react-transform-catch-errors',
-											imports: ['react', 'redbox-react']
-										}
-									]
-								}
-							}
-						}
+						loader: 'babel'
 					}
 				]
 			}

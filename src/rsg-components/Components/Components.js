@@ -5,7 +5,7 @@ export default class Components extends Component {
 	static propTypes = {
 		highlightTheme: PropTypes.string.isRequired,
 		components: PropTypes.array.isRequired
-	}
+	};
 
 	renderComponents() {
 		let { highlightTheme, components } = this.props;

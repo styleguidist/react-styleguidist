@@ -9,7 +9,7 @@ export default class Layout extends Component {
 	static propTypes = {
 		config: PropTypes.object.isRequired,
 		components: PropTypes.array.isRequired
-	}
+	};
 
 	renderComponens() {
 		let { config, components } = this.props;

@@ -10,13 +10,13 @@ export default class Placeholder extends Component {
 		type: PropTypes.oneOf(['animal', 'bacon', 'beard', 'bear', 'cat', 'food', 'city', 'nature', 'people']),
 		width: PropTypes.number,
 		height: PropTypes.number
-	}
+	};
 
 	static defaultProps = {
 		type: 'animal',
 		width: 150,
 		height: 150
-	}
+	};
 
 	getImageUrl() {
 		let { type, width, height } = this.props;

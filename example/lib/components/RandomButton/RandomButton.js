@@ -1,5 +1,5 @@
 import { Component, PropTypes } from 'react';
-import sample from 'lodash/collection/sample';
+import sample from 'lodash.sample';
 
 import s from './RandomButton.css';
 
@@ -12,7 +12,7 @@ export default class RandomButton extends Component {
 		 * List of possible labels.
 		 */
 		variants: PropTypes.array.isRequired
-	}
+	};
 
 	constructor(props) {
 		super();

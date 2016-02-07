@@ -11,7 +11,7 @@ export default class Preview extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired
-	}
+	};
 
 	constructor() {
 		super();
@@ -37,7 +37,10 @@ export default class Preview extends Component {
 	}
 
 	compileCode(code) {
-		return transform(code, {stage: 0}).code;
+		return transform(code, {
+			presets: ['es2015', 'react', 'stage-0'],
+			ignore: [/node_modules/]
+		}).code;
 	}
 
 	executeCode() {

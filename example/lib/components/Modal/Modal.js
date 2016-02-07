@@ -8,7 +8,7 @@ export default class Modal extends Component {
 	static propTypes = {
 		isOpen: PropTypes.bool,
 		children: PropTypes.node.isRequired
-	}
+	};
 
 	render() {
 		let { isOpen, children } = this.props;
