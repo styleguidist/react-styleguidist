@@ -1,5 +1,5 @@
 import { Component, PropTypes } from 'react';
-import trim from 'lodash.trim';
+import trim from 'lodash/trim';
 import Markdown from 'rsg-components/Markdown';
 
 import s from './Props.css';

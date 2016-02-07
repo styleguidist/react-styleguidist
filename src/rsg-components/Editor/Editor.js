@@ -4,7 +4,7 @@ import 'codemirror/lib/codemirror.css';
 
 import _ from 'lodash';
 import { Component, PropTypes } from 'react';
-import debounce from 'lodash.debounce';
+import debounce from 'lodash/debounce';
 import Codemirror from 'react-codemirror';
 
 import s from './Editor.css';
