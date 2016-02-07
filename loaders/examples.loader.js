@@ -6,14 +6,15 @@ var md = createRenderer();
 var evalPlaceholder = '<%{#eval#}%>';
 var codePlaceholder = '<%{#code#}%>';
 
-var requireAnythingRegex = /require\s*\(([^)]+)\)/g;
+var requireAnythingTest = 'require\\s*\\(([^)]+)\\)';
+var requireAnythingRegex = new RegExp(requireAnythingTest, 'g');
 var simpleStringRegex = /^"([^"]+)"$|^'([^']+)'$/;
 
 function readExamples(markdown) {
 	var codeChunks = [];
 
 	// Collect code blocks and replace them with placeholders
-	md.renderer.rules.code_block = md.renderer.rules.fence = function(tokens, idx) {
+	md.renderer.rules.code_block = md.renderer.rules.fence = function (tokens, idx) {
 		codeChunks.push(tokens[idx].content.trim());
 		return codePlaceholder;
 	};
@@ -22,7 +23,7 @@ function readExamples(markdown) {
 
 	var chunks = [];
 	var textChunks = rendered.split(codePlaceholder);
-	textChunks.forEach(function(chunk) {
+	textChunks.forEach(function (chunk) {
 		if (chunk) {
 			chunks.push({type: 'markdown', content: chunk});
 		}
@@ -39,7 +40,7 @@ function readExamples(markdown) {
 // If there is any other expression inside the require call, it throws an error.
 function findRequires(codeString) {
 	var requires = {};
-	codeString.replace(requireAnythingRegex, function(requireExprMatch, requiredExpr) {
+	codeString.replace(requireAnythingRegex, function (requireExprMatch, requiredExpr) {
 		var requireStrMatch = simpleStringRegex.exec(requiredExpr.trim());
 		if (!requireStrMatch) {
 			throw new Error('Requires using expressions are not supported in examples. (Used: ' + requireExprMatch + ')');
@@ -67,7 +68,7 @@ function examplesLoader(source, map) {
 		'	module.hot.accept([]);',
 		'}',
 		'var requireMap = {',
-		requiresFromExamples.map(function(requireRequest) {
+		requiresFromExamples.map(function (requireRequest) {
 			return JSON.stringify(requireRequest) + ': require(' + JSON.stringify(requireRequest) + ')';
 		}).join(',\n'),
 		'};',
@@ -88,6 +89,7 @@ function examplesLoader(source, map) {
 }
 
 _.assign(examplesLoader, {
+	requireAnythingTest: requireAnythingTest,
 	requireAnythingRegex: requireAnythingRegex,
 	simpleStringRegex: simpleStringRegex,
 	readExamples: readExamples,

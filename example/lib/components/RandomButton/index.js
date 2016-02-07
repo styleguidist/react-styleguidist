@@ -28,10 +28,10 @@ class RandomButton extends Component {
 }
 
 RandomButton.propTypes = {
-  /**
-   * List of possible labels.
-   */
-  variants: PropTypes.array.isRequired
+	/**
+	 * List of possible labels.
+	 */
+	variants: PropTypes.array.isRequired
 };
 
 export default RandomButton;

@@ -22,8 +22,8 @@ function Button({
 }
 
 Button.propTypes = {
-	/** Button label */
-	children: PropTypes.string.isRequired,
+	/** Label */
+	children: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 	color: PropTypes.string,
 	size: PropTypes.oneOf(['small', 'normal', 'large']),
 	/** Callback */

@@ -13,11 +13,7 @@ export function unquote(string) {
 	return _.trim(string, '"\'');
 }
 
-export default class Props extends Component {
-	static propTypes = {
-		props: PropTypes.object.isRequired
-	};
-
+class Props extends Component {
 	renderRows(props) {
 		let rows = [];
 		for (let name in props) {
@@ -161,3 +157,9 @@ export default class Props extends Component {
 		);
 	}
 }
+
+Props.propTypes = {
+	props: PropTypes.object.isRequired
+};
+
+export default Props;

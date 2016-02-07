@@ -21,12 +21,7 @@ function handleIterate(Tag, props, children) {
 	return <Tag {...props}>{children}</Tag>;
 }
 
-export default class Markdown extends Component {
-	static propTypes = {
-		text: PropTypes.string.isRequired,
-		className: PropTypes.string
-	};
-
+class Markdown extends Component {
 	render() {
 		let classes = cx(s.root, this.props.className);
 		return (
@@ -38,3 +33,10 @@ export default class Markdown extends Component {
 		);
 	}
 }
+
+Markdown.propTypes = {
+	text: PropTypes.string.isRequired,
+	className: PropTypes.string
+};
+
+export default Markdown;

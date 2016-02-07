@@ -1,4 +1,5 @@
 import examplesLoader from '../loaders/examples.loader';
+import {requireAnythingTest} from '../loaders/examples.loader';
 
 /* eslint max-nested-callbacks: [1, 5] */
 
@@ -10,7 +11,7 @@ describe('examples loader', () => {
 		beforeEach(() => {
 			expect(examplesLoader.requireAnythingRegex).to.be.an.instanceof(RegExp);
 			// We make a version without the /g flag
-			regex = new RegExp(examplesLoader.requireAnythingRegex, '');
+			regex = new RegExp(requireAnythingTest);
 		});
 
 		it('should match require invocations', () => {
@@ -30,7 +31,8 @@ describe('examples loader', () => {
 		});
 
 		it('should match many requires in the same line correctly', () => {
-			var replaced = `require('foo');require('bar')`.replace(examplesLoader.requireAnythingRegex, 'x');
+			regex = new RegExp(requireAnythingTest, 'g');
+			var replaced = `require('foo');require('bar')`.replace(regex, 'x');
 			expect(replaced).to.equal('x;x');
 		});
 	});

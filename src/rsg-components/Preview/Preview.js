@@ -3,27 +3,9 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import {transform} from 'babel-standalone';
-import {merge} from 'lodash';
 import Wrapper from 'rsg-components/Wrapper';
 
 import s from './Preview.css';
-
-const modifyProps = (props) => {
-	if (Array.isArray(props.children) && props.children.length) {
-		props = merge({}, props, {children: props.children.map(getComponentTypes)});
-	}
-
-	return props;
-};
-
-const getComponentTypes = (component, key = 0) => {
-	// Determine whether this is a mismatch between ES6 and CommonJS export structures
-	// (Babel 5 used to lack the differentiation)
-	// Context: http://www.2ality.com/2014/09/es6-modules-final.html
-	const type = component.type.__esModule ? component.type.default : component.type;
-
-	return React.createElement(type, modifyProps(merge({key}, component.props)));
-};
 
 class Preview extends Component {
 	constructor() {
@@ -77,11 +59,10 @@ class Preview extends Component {
 
 		let compiledCode = this.compileCode(code);
 		let component = this.props.evalInContext(compiledCode, this.setComponentState.bind(this));
-		let parsedComponent = getComponentTypes(component);
 
 		let wrappedComponent = (
 			<Wrapper>
-				{parsedComponent}
+				{component}
 			</Wrapper>
 		);
 

@@ -52,6 +52,7 @@ export default class ReactComponent extends Component {
 							key={index}
 						/>
 					);
+
 				case 'markdown':
 					return (
 						<Markdown
@@ -60,6 +61,8 @@ export default class ReactComponent extends Component {
 						/>
 					);
 			}
+
+			return;
 		});
 	}
 

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import {pluck} from 'lodash';
+const pluck = require('lodash.pluck');
 
 import * as utils from '../src/utils/utils';
 

@@ -141,7 +141,7 @@
 			"after": true
 		}],
 		"semi": [2, "always"],  // Require use of semicolons
-		"space-after-keywords": [1, "always"],  // Require space after keywords (if, else, etc.)
+		"keyword-spacing": [1, {"before": true, "after": true}],  // Require space after keywords (if, else, etc.)
 		"space-before-blocks": [1, "always"],  // Require space after blocks
 		"space-before-function-paren": [1, {  // Disallow space before function opening parenthesis
 			"anonymous": "never",
@@ -149,7 +149,6 @@
 		}],
 		"space-in-parens": [1, "never"],  // Disallow spaces inside parentheses
 		"space-infix-ops": 1,  // Require spaces around operators
-		"space-return-throw-case": 1,  // Require space after return, throw, and case
 		"space-unary-ops": [1, {  // Require spaces before/after unary operators
 			"words": true,
 			"nonwords": false

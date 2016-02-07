@@ -12,7 +12,7 @@ function getPackagePath(packageName) {
 
 module.exports = function(env) {
 	var isProd = env === 'production';
-	var cssLoader = 'css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]!postcss';
+	var cssLoader = 'css?module&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]!postcss';
 
 	var codeMirrorPath = getPackagePath('codemirror');
 	// var reactTransformPath = getPackagePath('babel-plugin-react-transform');
@@ -74,7 +74,7 @@ module.exports = function(env) {
 				}
 			],
 			noParse: [
-				/babel-core\/browser.js/
+				/babel-standalone/
 			]
 		},
 		postcss: function() {
@@ -90,9 +90,7 @@ module.exports = function(env) {
 
 	if (isProd) {
 		webpackConfig = merge(webpackConfig, {
-			entry: [
-				entryScript
-			],
+			entry: [entryScript],
 			devtool: false,
 			debug: false,
 			cache: false,
@@ -114,10 +112,7 @@ module.exports = function(env) {
 					{
 						test: /\.jsx?$/,
 						include: includes,
-						loader: 'babel',
-						query: {
-							stage: 0
-						}
+						loader: 'babel'
 					}
 				]
 			}
