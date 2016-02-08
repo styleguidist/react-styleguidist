@@ -1,3 +1,7 @@
+# 2.0.0-rc2 - 2016-02-08
+
+* Move babel-preset-react-hmre and babel-standalone to dependencies.
+
 # 2.0.0-rc - 2016-02-08
 
 ## Breaking changes
