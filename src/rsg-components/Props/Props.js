@@ -5,6 +5,8 @@ import Markdown from 'rsg-components/Markdown';
 import s from './Props.css';
 import sMarkdown from '../Markdown/Markdown.css';
 
+/* eslint-disable react/no-multi-comp */
+
 export let Code = ({ className = '', children }) => {
 	return <code className={sMarkdown.code + ' ' + className}>{children}</code>;
 };

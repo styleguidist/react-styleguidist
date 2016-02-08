@@ -1,8 +1,10 @@
-import { Component, PropTypes } from 'react';
-import cx from 'classnames';
+import React, { PropTypes } from 'react';
 import MDReactComponent from 'markdown-react-js';
+import cx from 'classnames';
 
 import s from './Markdown.css';
+
+/* eslint-disable react/prop-types, react/no-multi-comp */
 
 const headingRegExp = /^h(\d)$/;
 
@@ -21,20 +23,21 @@ function handleIterate(Tag, props, children) {
 	return <Tag {...props}>{children}</Tag>;
 }
 
-export default class Markdown extends Component {
-	static propTypes = {
-		text: PropTypes.string.isRequired,
-		className: PropTypes.string
-	};
-
-	render() {
-		let classes = cx(s.root, this.props.className);
-		return (
-			<MDReactComponent
-				text={this.props.text}
-				className={classes}
-				onIterate={handleIterate}
-			/>
-		);
-	}
+export default function Markdown({
+	text,
+	className
+}) {
+	let classes = cx(s.root, className);
+	return (
+		<MDReactComponent
+			text={text}
+			className={classes}
+			onIterate={handleIterate}
+		/>
+	);
 }
+
+Markdown.propTypes = {
+	text: PropTypes.string.isRequired,
+	className: PropTypes.string
+};
