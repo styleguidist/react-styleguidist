@@ -14,6 +14,9 @@ module.exports = function(env) {
 	var isProd = env === 'production';
 	var cssLoader = 'css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]!postcss';
 
+	process.env.NODE_ENV = env;
+	process.env.BABEL_ENV = isProd ? 'production' : 'styleguidist';
+
 	var codeMirrorPath = getPackagePath('codemirror');
 
 	var includes = [

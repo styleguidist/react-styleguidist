@@ -38,7 +38,6 @@
     "chalk": "1.1.1",
     "classnames": "2.2.3",
     "codemirror": "5.11.0",
-    "cross-env": "1.0.7",
     "css-loader": "0.23.1",
     "express": "4.13.4",
     "findup": "0.1.5",
@@ -89,11 +88,11 @@
   },
   "scripts": {
     "test": "npm run lint && npm run mocha && npm run build",
-    "mocha": "cross-env NODE_ENV=test mocha test",
+    "mocha": "mocha test",
     "mocha:watch": "mocha --watch --reporter min test",
     "start": "./bin/styleguidist server --config example/styleguide.config.js",
     "lint": "eslint src --ext .js",
-    "build": "cross-env NODE_ENV=production ./bin/styleguidist build --config example/styleguide.config.js",
+    "build": "./bin/styleguidist build --config example/styleguide.config.js",
     "publish": "npm run build && gh-pages -d example/styleguide"
   },
   "keywords": [

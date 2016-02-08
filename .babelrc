@@ -1,6 +1,6 @@
 {
 	"env": {
-		"development": {
+		"styleguidist": {
 			"presets": [
 				"react-hmre"
 			]
