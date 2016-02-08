@@ -87,7 +87,7 @@
     "react-modal": "~0.6.1"
   },
   "scripts": {
-    "test": "npm run lint && npm run mocha && npm run build",
+    "test": "npm run lint && npm run mocha",
     "mocha": "mocha test",
     "mocha:watch": "mocha --watch --reporter min test",
     "start": "./bin/styleguidist server --config example/styleguide.config.js",
