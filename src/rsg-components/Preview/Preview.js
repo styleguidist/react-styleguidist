@@ -38,8 +38,7 @@ export default class Preview extends Component {
 
 	compileCode(code) {
 		return transform(code, {
-			presets: ['es2015', 'react', 'stage-0'],
-			ignore: [/node_modules/]
+			presets: ['es2015', 'react', 'stage-0']
 		}).code;
 	}
 
