@@ -1,3 +1,7 @@
+# 2.0.0-rc3 - 2016-02-08
+
+* Try to fix problem with unknown `displayName` (#74).
+
 # 2.0.0-rc2 - 2016-02-08
 
 * Move babel-preset-react-hmre and babel-standalone to dependencies.
