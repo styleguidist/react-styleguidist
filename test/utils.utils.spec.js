@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import _ from 'lodash';
+const _ = require('lodash');
 
 import * as utils from '../src/utils/utils';
 
@@ -15,7 +15,7 @@ describe('utils', () => {
 					module: {name: 'Bar'}
 				}
 			]);
-			expect(_.pluck(result, 'name')).to.eql(['Foo', 'Bar']);
+			expect(_.map(result, 'name')).to.eql(['Foo', 'Bar']);
 		});
 	});
 

@@ -6,7 +6,12 @@ var md = createRenderer();
 var evalPlaceholder = '<%{#eval#}%>';
 var codePlaceholder = '<%{#code#}%>';
 
-var requireAnythingRegex = /require\s*\(([^)]+)\)/g;
+// Need to supply the regex test as a string for reuse in unit tests
+// Currently, trying to change flags throws a TypeError
+// Slated for change in ES6, but not possible now:
+// https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/RegExp#Description
+var requireAnythingTest = 'require\\s*\\(([^)]+)\\)';
+var requireAnythingRegex = new RegExp(requireAnythingTest, 'g');
 var simpleStringRegex = /^"([^"]+)"$|^'([^']+)'$/;
 
 function readExamples(markdown) {
@@ -88,6 +93,7 @@ function examplesLoader(source, map) {
 }
 
 _.assign(examplesLoader, {
+	requireAnythingTest: requireAnythingTest,
 	requireAnythingRegex: requireAnythingRegex,
 	simpleStringRegex: simpleStringRegex,
 	readExamples: readExamples,

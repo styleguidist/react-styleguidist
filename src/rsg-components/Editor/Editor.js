@@ -4,7 +4,7 @@ import 'codemirror/lib/codemirror.css';
 
 import _ from 'lodash';
 import { Component, PropTypes } from 'react';
-import debounce from 'lodash/function/debounce';
+import debounce from 'lodash/debounce';
 import Codemirror from 'react-codemirror';
 
 import s from './Editor.css';
@@ -18,7 +18,8 @@ export default class Editor extends Component {
 		code: PropTypes.string.isRequired,
 		highlightTheme: PropTypes.string.isRequired,
 		onChange: PropTypes.func
-	}
+	};
+
 	static codemirrorOptions = {
 		mode: 'jsx',
 		lineNumbers: false,
@@ -26,7 +27,7 @@ export default class Editor extends Component {
 		smartIndent: false,
 		matchBrackets: true,
 		viewportMargin: Infinity
-	}
+	};
 
 	constructor() {
 		super();
