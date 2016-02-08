@@ -78,8 +78,7 @@
     "eslint": "~1.10.3",
     "eslint-plugin-react": "~3.16.1",
     "expect-react-shallow": "~1.1.0",
-    "gulp": "~3.9.0",
-    "gulp-gh-pages": "~0.5.4",
+    "gh-pages": "~0.9.0",
     "mocha": "~2.4.5",
     "mock-require": "~1.2.1",
     "postcss-modules-extract-imports": "~1.0.0",
@@ -95,7 +94,7 @@
     "start": "./bin/styleguidist server --config example/styleguide.config.js",
     "lint": "eslint src --ext .js",
     "build": "cross-env NODE_ENV=production ./bin/styleguidist build --config example/styleguide.config.js",
-    "publish": "npm run build && gulp gh-pages"
+    "publish": "npm run build && gh-pages -d example/styleguide"
   },
   "keywords": [
     "react",
