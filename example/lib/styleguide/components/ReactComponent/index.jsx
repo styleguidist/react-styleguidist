@@ -3,7 +3,7 @@ import Markdown from 'rsg-components/Markdown';
 import Props from 'rsg-components/Props';
 import Playground from 'rsg-components/Playground';
 
-import s from './style.css';
+import s from './ReactComponent.css';
 
 export default class ReactComponent extends Component {
 	static propTypes = {
@@ -70,10 +70,9 @@ export default class ReactComponent extends Component {
 			<div className={s.root} id={name}>
 				<div className={s.meta}>
 					<header className={s.header}>
-						<h2 className={s.heading}>
-							<a className={s.anchor} href={'#' + name}></a>
-							{name}
-						</h2>
+						<a className={s.anchor} href={'#' + name}>
+							<h2 className={s.heading}>{name}</h2>
+						</a>
 						<div className={s.pathLine}>{pathLine}</div>
 						{this.renderDescription()}
 					</header>

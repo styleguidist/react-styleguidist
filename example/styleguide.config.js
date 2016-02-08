@@ -10,7 +10,8 @@ module.exports = {
 	},
 	updateWebpackConfig: function(webpackConfig, env) {
 		// Uncomment below to enable a customised styleguide based on ./lib/components
-		//webpackConfig.resolve.alias['rsg-components/ReactComponent'] = path.join(__dirname, 'lib/styleguide/components/ReactComponent');
+		webpackConfig.resolve.alias['rsg-components/Layout'] = path.join(__dirname, 'lib/styleguide/components/Layout');
+		webpackConfig.resolve.alias['rsg-components/ReactComponent'] = path.join(__dirname, 'lib/styleguide/components/ReactComponent');
 		return webpackConfig;
 	}
 };

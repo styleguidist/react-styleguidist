@@ -4,9 +4,8 @@
 
 .content {
   max-width: 1200px;
+  margin: auto;
   padding: 15px 30px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .wrapper {
@@ -18,10 +17,6 @@
   width: 200px;
   flex-shrink: 0;
   padding-left: 15px;
-}
-
-.components {
-  overflow: auto; /* to prevent the pane from growing out of the screen */
 }
 
 .sidebarIsSticky {

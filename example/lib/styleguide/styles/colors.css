@@ -1,16 +1,17 @@
 .border {
-	border: 1px solid #e8e8e8;
+  border: 1px solid #e8e8e8;
 }
 
 .link,
 .link:link,
 .link:visited {
-	color: #1978c8;
-	text-decoration: none;
+  color: #1978c8;
+  text-decoration: none;
 }
+
 .link:hover,
 .link:active {
-	color: #f28a25;
+  color: #f28a25;
 }
 
 .link-base,
@@ -18,34 +19,38 @@
 .link-base:visited,
 .link-base:hover,
 .link-base:active {
-	color: #333;
-	text-decoration: none;
+  color: #333;
+  text-decoration: none;
 }
 
 .base {
-	color: #333;
+  color: #333;
 }
 
 .light {
-	color: #999;
+  color: #999;
 }
 
 .white {
-	color: #fff;
+  color: #fff;
 }
 
 .name {
-	color: #7f9a44;
+  color: #7f9a44;
 }
 
 .type {
-	color: #b77daa;
+  color: #b77daa;
 }
 
 .base-bg {
-	background: #fff;
+  background: #fff;
+}
+
+.component-bg {
+  background: #fff;
 }
 
 .error-bg {
-	background: #c00;
+  background: #c00;
 }
