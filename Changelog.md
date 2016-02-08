@@ -1,3 +1,23 @@
+# 2.0.0-rc - 2016-02-08
+
+## Breaking changes
+
+### Babel 6
+
+Please try it and report any issues or ideas how to improve it.
+
+(#81 by @oliverturner).
+
+### Custom Babel environment
+
+* Set `NODE_ENV` to `development` or `production`.
+* Set `BABEL_ENV` to `styleguidist` or `production`. Move hot reload config into `styleguidist` environment to prevent collisions with project’s Babel configuration (#58).
+
+## Other changes
+
+* react-docgen updated to 2.7.0 that support flow proptypes (#79 by @codemix).
+* Serve root directory as static in dev-server (so you can access any files inside the root directory).
+
 # 1.3.2 - 2016-01-08
 
 * Remove ExtractTextPlugin.
