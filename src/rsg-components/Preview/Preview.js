@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import {transform} from 'babel-standalone';
+import { transform } from 'babel-standalone';
 import Wrapper from 'rsg-components/Wrapper';
 
 import s from './Preview.css';
