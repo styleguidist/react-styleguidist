@@ -1,5 +1,5 @@
 import { Component, PropTypes } from 'react';
-const sample = require('lodash/sample');
+import sample from 'lodash/sample';
 
 import s from './RandomButton.css';
 
