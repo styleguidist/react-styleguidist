@@ -1,0 +1,79 @@
+.root {
+  composes: font from "../../styles/common.css";
+
+  margin: 5px 5px 30px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.meta {
+  display: flex;
+
+  margin-bottom: 10px;
+  border-bottom: 1px dotted #ccc;
+}
+
+.header {
+  flex-basis: 40%;
+
+  padding: 10px;
+  font-weight: normal;
+  background: #efefef;
+}
+
+.heading {
+  position: relative;
+  margin: 0;
+  font-size: 36px;
+  font-weight: normal;
+}
+
+.heading:hover .anchor {
+  opacity: 1;
+}
+
+.anchor {
+  composes: link-base from "../../styles/colors.css";
+
+  transition: opacity .2s;
+
+  position: absolute;
+  left: -30px;
+  line-height: 46px;
+  text-decoration: none;
+  font-size: 20px;
+
+  opacity: 0;
+}
+
+.anchor:after {
+  content: "#";
+}
+
+.pathLine {
+  composes: monospace from "../../styles/common.css";
+  composes: light from "../../styles/colors.css";
+
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.props {
+  flex: 0 0 60%;
+
+  padding: 5px 15px;
+  border-left: 1px dotted #ccc;
+}
+
+.props h3 {
+  margin: 0 0 10px;
+}
+
+.description {
+  composes: font from "../../styles/common.css";
+  margin-top: 15px;
+}
+
+.examples {
+  padding: 10px 10px 1px;
+}
