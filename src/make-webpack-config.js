@@ -1,7 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var Initial = require('postcss-initial');
 var merge = require('webpack-merge');
 var prettyjson = require('prettyjson');
 var config = require('../src/utils/config');
@@ -12,7 +11,7 @@ function getPackagePath(packageName) {
 
 module.exports = function(env) {
 	var isProd = env === 'production';
-	var cssLoader = 'css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]!postcss';
+	var cssLoader = 'css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]';
 
 	process.env.NODE_ENV = process.env.BABEL_ENV = env;
 
@@ -77,13 +76,6 @@ module.exports = function(env) {
 			noParse: [
 				/babel-standalone/
 			]
-		},
-		postcss: function() {
-			return [
-				Initial({
-					reset: 'inherited'
-				})
-			];
 		}
 	};
 
