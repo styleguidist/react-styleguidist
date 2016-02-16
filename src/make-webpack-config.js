@@ -15,7 +15,6 @@ module.exports = function(env) {
 	var cssLoader = 'css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]!postcss';
 
 	process.env.NODE_ENV = env;
-	process.env.BABEL_ENV = isProd ? 'production' : 'styleguidist';
 
 	var codeMirrorPath = getPackagePath('codemirror');
 
@@ -116,7 +115,11 @@ module.exports = function(env) {
 					{
 						test: /\.jsx?$/,
 						include: includes,
-						loader: 'babel'
+						loader: 'babel',
+						query: {
+							babelrc: false,
+							presets: ['es2015', 'react', 'stage-0']
+						}
 					}
 				]
 			}
@@ -135,6 +138,7 @@ module.exports = function(env) {
 				colors: true,
 				reasons: true
 			},
+
 			plugins: [
 				new webpack.HotModuleReplacementPlugin(),
 				new webpack.NoErrorsPlugin()
@@ -144,7 +148,11 @@ module.exports = function(env) {
 					{
 						test: /\.jsx?$/,
 						include: includes,
-						loader: 'babel'
+						loader: 'babel',
+						query: {
+							babelrc: false,
+							presets: ['es2015', 'react', 'stage-0', 'react-hmre']
+						}
 					}
 				]
 			}
