@@ -10,9 +10,6 @@ function getPackagePath(packageName) {
 }
 
 module.exports = function(env) {
-	var isProd = env === 'production';
-	var cssLoader = 'css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]';
-
 	process.env.NODE_ENV = process.env.BABEL_ENV = env;
 
 	var codeMirrorPath = getPackagePath('codemirror');
@@ -70,7 +67,7 @@ module.exports = function(env) {
 				{
 					test: /\.css$/,
 					include: __dirname,
-					loader: 'style!' + cssLoader
+					loader: 'style!css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]'
 				}
 			],
 			noParse: [
@@ -81,7 +78,7 @@ module.exports = function(env) {
 
 	var entryScript = path.join(__dirname, 'index');
 
-	if (isProd) {
+	if (env === 'production') {
 		webpackConfig = merge(webpackConfig, {
 			entry: [
 				entryScript
