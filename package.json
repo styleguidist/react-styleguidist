@@ -71,6 +71,7 @@
   },
   "devDependencies": {
     "babel-eslint": "~4.1.8",
+    "babel-register": "~6.5.2",
     "chai": "~3.5.0",
     "css-modules-require-hook": "~2.1.0",
     "dog-names": "~1.0.2",
