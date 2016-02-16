@@ -30,7 +30,6 @@
   "dependencies": {
     "babel-core": "6.5.1",
     "babel-loader": "6.2.2",
-    "babel-plugin-react-transform": "2.0.0",
     "babel-preset-es2015": "6.5.0",
     "babel-preset-react": "6.5.0",
     "babel-preset-react-hmre": "1.1.0",
@@ -54,9 +53,6 @@
     "react-codemirror": "0.2.5",
     "react-docgen": "2.7.0",
     "react-sticky": "3.0.0",
-    "react-transform-catch-errors": "1.0.2",
-    "react-transform-hmr": "1.0.2",
-    "redbox-react": "1.2.2",
     "style-loader": "0.13.0",
     "webpack": "1.12.13",
     "webpack-dev-middleware": "1.5.1",
