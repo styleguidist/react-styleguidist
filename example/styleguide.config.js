@@ -7,6 +7,16 @@ module.exports = {
 		});
 	},
 	updateWebpackConfig: function(webpackConfig, env) {
+		webpackConfig.module.loaders.push({
+			test: /\.jsx?$/,
+			include: __dirname,
+			loader: 'babel'
+		});
+		webpackConfig.module.loaders.push({
+			test: /\.css$/,
+			include: __dirname,
+			loader: 'style!css?modules&importLoaders=1'
+		});
 		return webpackConfig;
 	}
 };

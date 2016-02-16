@@ -14,14 +14,10 @@ module.exports = function(env) {
 	var isProd = env === 'production';
 	var cssLoader = 'css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]!postcss';
 
-	process.env.NODE_ENV = env;
+	process.env.NODE_ENV = process.env.BABEL_ENV = env;
 
 	var codeMirrorPath = getPackagePath('codemirror');
 
-	var includes = [
-		__dirname,
-		config.rootDir
-	];
 	var webpackConfig = {
 		output: {
 			path: config.styleguideDir,
@@ -61,6 +57,10 @@ module.exports = function(env) {
 			loaders: [
 				{
 					test: /\.json$/,
+					include: [
+						getPackagePath('entities'),
+						getPackagePath('dog-names')
+					],
 					loader: 'json'
 				},
 				{
@@ -70,7 +70,7 @@ module.exports = function(env) {
 				},
 				{
 					test: /\.css$/,
-					include: includes,
+					include: __dirname,
 					loader: 'style!' + cssLoader
 				}
 			],
@@ -114,7 +114,7 @@ module.exports = function(env) {
 				loaders: [
 					{
 						test: /\.jsx?$/,
-						include: includes,
+						include: __dirname,
 						loader: 'babel',
 						query: {
 							babelrc: false,
@@ -147,7 +147,7 @@ module.exports = function(env) {
 				loaders: [
 					{
 						test: /\.jsx?$/,
-						include: includes,
+						include: __dirname,
 						loader: 'babel',
 						query: {
 							babelrc: false,
