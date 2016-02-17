@@ -1,3 +1,42 @@
+# 2.0.0-rc4 - 2016-02-17
+
+## Breaking changes
+
+Now you need to explicitly specify all Webpack loaders for your project’s code in `styleguide.config.js`:
+
+```javascript
+module.exports = {
+	// ...
+	updateWebpackConfig: function(webpackConfig, env) {
+		var sourceDir = path.resolve(__dirname, 'src');
+		webpackConfig.module.loaders.push(
+			// Babel (will use your project’s .babelrc)
+			{
+				test: /\.jsx?$/,
+				include: sourceDir,
+				loader: 'babel'
+			},
+			// Sass
+			{
+				test: /\.scss$/,
+				include: sourceDir,
+				loader: 'style!css!sass?precision=10'
+			}
+		);
+		return webpackConfig;
+	}
+};
+```
+
+Your project’s `.babelrc` will not affect Styleguidist, only the loaders you define in `styleguide.config.js`.
+
+When you run dev-server `NODE_ENV` is set to `development` so if you use [React Transform](https://github.com/gaearon/react-transform-hmr) hot module replacement it will be enabled your components. Otherwise you need to set it up manually. When you build style guide `NODE_ENV` is set to `production`.
+
+## Other changes
+
+* Remove postcss to reduce possible conflicts with project’s code: postcss-loader would share plugins.
+* Fallback to file name or folder name if component name can’t be detected in runtime (#84).
+
 # 2.0.0-rc3 - 2016-02-08
 
 * Try to fix problem with unknown `displayName` (#74).
