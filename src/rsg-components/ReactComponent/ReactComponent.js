@@ -2,8 +2,7 @@ import { Component, PropTypes } from 'react';
 import Markdown from 'rsg-components/Markdown';
 import Props from 'rsg-components/Props';
 import Playground from 'rsg-components/Playground';
-
-import s from './ReactComponent.css';
+import Renderer from './Renderer';
 
 export default class ReactComponent extends Component {
 	static propTypes = {
@@ -17,11 +16,7 @@ export default class ReactComponent extends Component {
 			return null;
 		}
 
-		return (
-			<div className={s.description}>
-				<Markdown text={description}/>
-			</div>
-		);
+		return (<Markdown text={description}/>);
 	}
 
 	renderProps() {
@@ -62,23 +57,18 @@ export default class ReactComponent extends Component {
 			}
 		});
 	}
-
+	
 	render() {
 		let { name, pathLine } = this.props.component;
 
 		return (
-			<div className={s.root}>
-				<header className={s.header}>
-					<h2 className={s.heading} id={name}>
-						<a className={s.anchor} href={'#' + name}></a>
-						{name}
-					</h2>
-					<div className={s.pathLine}>{pathLine}</div>
-				</header>
-				{this.renderDescription()}
-				{this.renderProps()}
-				{this.renderExamples()}
-			</div>
+			<Renderer
+				name={name}
+				pathLine={pathLine}
+			  description={this.renderDescription()}
+			  propList={this.renderDescription()}
+			  examples={this.renderExamples()}
+			/>
 		);
 	}
 }
