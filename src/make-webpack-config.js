@@ -54,8 +54,7 @@ module.exports = function(env) {
 				{
 					test: /\.json$/,
 					include: [
-						getPackagePath('entities'),
-						getPackagePath('dog-names')
+						getPackagePath('entities')
 					],
 					loader: 'json'
 				},

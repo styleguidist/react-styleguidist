@@ -1,3 +1,5 @@
+var path = require('path');
+
 module.exports = {
 	title: 'Style guide example',
 	rootDir: './lib',
@@ -7,16 +9,25 @@ module.exports = {
 		});
 	},
 	updateWebpackConfig: function(webpackConfig, env) {
-		webpackConfig.module.loaders.push({
-			test: /\.jsx?$/,
-			include: __dirname,
-			loader: 'babel'
-		});
-		webpackConfig.module.loaders.push({
-			test: /\.css$/,
-			include: __dirname,
-			loader: 'style!css?modules&importLoaders=1'
-		});
+		webpackConfig.module.loaders.push(
+			{
+				test: /\.jsx?$/,
+				include: __dirname,
+				loader: 'babel'
+			},
+			{
+				test: /\.css$/,
+				include: __dirname,
+				loader: 'style!css?modules&importLoaders=1'
+			},
+			{
+				test: /\.json$/,
+				include: path.dirname(require.resolve('dog-names/package.json')),
+				loader: 'json'
+			}
+		);
+
+
 		return webpackConfig;
 	}
 };
