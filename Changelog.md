@@ -1,3 +1,7 @@
+# 2.0.0-rc5 - 2016-02-17
+
+Fix error about dog-names module which is used on the example page and shouldn’t be required when you install `react-styleguidist`.
+
 # 2.0.0-rc4 - 2016-02-17
 
 ## Breaking changes
