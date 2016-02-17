@@ -7,8 +7,14 @@ var config = require('../src/utils/config');
 
 function processComponent(filepath) {
 	var examplesFile = config.getExampleFilename(filepath);
+
+    // If component name can’t be detected in runtime use filename or folder name (if file name is 'index')
+    var filename = path.basename(filepath).replace(/\.\w+$/, '');
+    var nameFallbak = filename === 'index' ? path.basename(path.dirname(filepath)) : filename;
+
 	return '{' + [
-		'filepath: ' + JSON.stringify(filepath),
+        'filepath: ' + JSON.stringify(filepath),
+		'nameFallbak: ' + JSON.stringify(nameFallbak),
 		'pathLine: ' + JSON.stringify(config.getComponentPathLine(path.relative(config.rootDir, filepath))),
 		'module: ' + requireIt(filepath),
 		'props: ' + requireIt('!!props!' + filepath),
