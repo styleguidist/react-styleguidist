@@ -44,6 +44,12 @@
 	font-size: inherit;
 }
 
+.pre {
+  composes: border from "../../styles/colors.css";
+  padding: 15px;
+  border-radius: 3px;
+}
+
 .blockquote {
 	font-size: 13px;
 	margin-top: 0;

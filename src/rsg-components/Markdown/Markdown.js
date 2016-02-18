@@ -18,12 +18,23 @@ function handleIterate(Tag, props, children) {
 
 	// Add class name with tag name to all tags: <span class="span"/>
 	if (!props.className) {
-		props.className = s[Tag];
+		if (s[Tag]) {
+			props.className = s[Tag];
+		}
+		else {
+			console.error(`No CSS class to render tag "${Tag}". Please report this issue at https://github.com/sapegin/react-styleguidist/issues`);
+		}
 	}
 
-	// Unescape inline code blocks
-	if (Tag === 'code' && !props['data-language']) {
-		children = children.map(unescapeHtml);
+	if (Tag === 'code') {
+		if (props['data-language']) {
+			// Render fenced blocks with language flag as highlighted source
+			return <div {...props} dangerouslySetInnerHTML={{__html: children}} />;
+		}
+		else {
+			// Unescape inline code blocks
+			children = children.map(unescapeHtml);
+		}
 	}
 
 	return <Tag {...props}>{children}</Tag>;

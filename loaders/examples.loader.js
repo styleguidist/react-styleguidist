@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var hljs = require('highlight.js');
 var createRenderer = require('../src/utils/markdown.js');
 
 var md = createRenderer();
@@ -19,7 +20,20 @@ function readExamples(markdown) {
 
 	// Collect code blocks and replace them with placeholders
 	md.renderer.rules.code_block = md.renderer.rules.fence = function(tokens, idx) {
-		codeChunks.push(tokens[idx].content.trim());
+		var token = tokens[idx];
+		var code = tokens[idx].content.trim();
+		if (token.type === 'fence' && token.info) {
+			// Render fenced blocks with language flag as regular Markdown code snippets
+			var highlighted;
+			try {
+				highlighted = hljs.highlight(token.info, code).value;
+			}
+			catch(e) {
+				highlighted = e.message;
+			}
+			return '```' + token.info + '\n' + highlighted + '\n```';
+		}
+		codeChunks.push(code);
 		return codePlaceholder;
 	};
 

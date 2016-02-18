@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { setComponentsNames, globalizeComponents } from './utils/utils';
 import StyleGuide from 'rsg-components/StyleGuide';
 
+import 'highlight.js/styles/tomorrow.css';
 import './styles.css';
 
 global.React = React;

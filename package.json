@@ -43,6 +43,7 @@
     "express": "4.13.4",
     "findup": "0.1.5",
     "glob": "6.0.4",
+    "highlight.js": "9.1.0",
     "html-webpack-plugin": "2.8.1",
     "json-loader": "0.5.4",
     "lodash": "4.2.1",
