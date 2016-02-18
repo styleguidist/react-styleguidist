@@ -8,6 +8,7 @@ import s from './Markdown.css';
 /* eslint-disable react/prop-types, react/no-multi-comp */
 
 const headingRegExp = /^h(\d)$/;
+const bugsUrl = 'https://github.com/sapegin/react-styleguidist/issues';
 
 function handleIterate(Tag, props, children) {
 	// Increase the level of headings
@@ -22,7 +23,7 @@ function handleIterate(Tag, props, children) {
 			props.className = s[Tag];
 		}
 		else {
-			console.error(`No CSS class to render tag "${Tag}". Please report this issue at https://github.com/sapegin/react-styleguidist/issues`);
+			console.error(`No CSS class to render tag "${Tag}". Please report this issue at ${bugsUrl}`);
 		}
 	}
 
