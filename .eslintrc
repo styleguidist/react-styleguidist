@@ -133,7 +133,12 @@
 		"no-unneeded-ternary": 1,  // Disallow the use of Boolean literals in conditional expressions
 		"no-useless-concat": 1,  // Disallow unncessary concatenation of strings
 		"operator-assignment": [1, "always"],  // Require assignment operator shorthand where possible
-		"operator-linebreak": [1, "after"],  // Operators should be placed before line breaks
+		"operator-linebreak": [2, 'after', {  // Operators should be placed before line breaks
+			overrides: {
+				'?': 'before',
+				':': 'before',
+			},
+		}],
 		"quote-props": 0,  // Do not require quotes around object literal property names
 		"quotes": [1, "single", "avoid-escape"],  // Single quotes
 		"semi-spacing": [1, {  // No space before semicolon, space after semicolon

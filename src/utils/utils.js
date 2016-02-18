@@ -1,10 +1,12 @@
 export function setComponentsNames(components) {
 	components.map((component) => {
-		let {module} = component;
-		component.name = module.displayName || module.name || module.default.name;
-		if (!component.name) {
-			throw Error(`Cannot detect component name for ${component.filepath}`);
-		}
+        // Try to detect component name or fallback to file name or directory name.
+		let { module } = component;
+		component.name = (
+            module.default
+                ? (module.default.displayName || module.default.name)
+                : (module.displayName || module.name)
+        ) || component.nameFallbak;
 	});
 	return components;
 }

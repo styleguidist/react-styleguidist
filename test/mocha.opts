@@ -1,2 +1,2 @@
---compilers js:babel-core/register
+--compilers js:babel-register
 --require mochasetup

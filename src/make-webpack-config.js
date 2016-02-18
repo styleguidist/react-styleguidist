@@ -1,7 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var Initial = require('postcss-initial');
 var merge = require('webpack-merge');
 var prettyjson = require('prettyjson');
 var config = require('../src/utils/config');
@@ -11,18 +10,10 @@ function getPackagePath(packageName) {
 }
 
 module.exports = function(env) {
-	var isProd = env === 'production';
-	var cssLoader = 'css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]!postcss';
-
-	process.env.NODE_ENV = env;
-	process.env.BABEL_ENV = isProd ? 'production' : 'styleguidist';
+	process.env.NODE_ENV = process.env.BABEL_ENV = env;
 
 	var codeMirrorPath = getPackagePath('codemirror');
 
-	var includes = [
-		__dirname,
-		config.rootDir
-	];
 	var webpackConfig = {
 		output: {
 			path: config.styleguideDir,
@@ -62,6 +53,9 @@ module.exports = function(env) {
 			loaders: [
 				{
 					test: /\.json$/,
+					include: [
+						getPackagePath('entities')
+					],
 					loader: 'json'
 				},
 				{
@@ -71,26 +65,19 @@ module.exports = function(env) {
 				},
 				{
 					test: /\.css$/,
-					include: includes,
-					loader: 'style!' + cssLoader
+					include: __dirname,
+					loader: 'style!css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]'
 				}
 			],
 			noParse: [
 				/babel-standalone/
 			]
-		},
-		postcss: function() {
-			return [
-				Initial({
-					reset: 'inherited'
-				})
-			];
 		}
 	};
 
 	var entryScript = path.join(__dirname, 'index');
 
-	if (isProd) {
+	if (env === 'production') {
 		webpackConfig = merge(webpackConfig, {
 			entry: [
 				entryScript
@@ -115,8 +102,12 @@ module.exports = function(env) {
 				loaders: [
 					{
 						test: /\.jsx?$/,
-						include: includes,
-						loader: 'babel'
+						include: __dirname,
+						loader: 'babel',
+						query: {
+							babelrc: false,
+							presets: ['es2015', 'react', 'stage-0']
+						}
 					}
 				]
 			}
@@ -135,6 +126,7 @@ module.exports = function(env) {
 				colors: true,
 				reasons: true
 			},
+
 			plugins: [
 				new webpack.HotModuleReplacementPlugin(),
 				new webpack.NoErrorsPlugin()
@@ -143,8 +135,12 @@ module.exports = function(env) {
 				loaders: [
 					{
 						test: /\.jsx?$/,
-						include: includes,
-						loader: 'babel'
+						include: __dirname,
+						loader: 'babel',
+						query: {
+							babelrc: false,
+							presets: ['es2015', 'react', 'stage-0', 'react-hmre']
+						}
 					}
 				]
 			}
