@@ -54,6 +54,7 @@
     "react-codemirror": "0.2.5",
     "react-docgen": "2.7.0",
     "react-sticky": "3.0.0",
+    "semver-utils": "1.1.1",
     "style-loader": "0.13.0",
     "webpack": "1.12.13",
     "webpack-dev-middleware": "1.5.1",

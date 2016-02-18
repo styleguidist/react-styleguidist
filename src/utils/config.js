@@ -1,6 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var findup = require('findup');
+var semverUtils = require('semver-utils');
 var minimist = require('minimist');
 var prettyjson = require('prettyjson');
 var _ = require('lodash');
@@ -26,6 +27,21 @@ var DEFAULT_CONFIG = {
 	},
 	updateWebpackConfig: null
 };
+var DEPENDENCIES = [
+	{
+		package: 'babel-core',
+		name: 'Babel',
+		from: 6,
+		to: 6
+	},
+	{
+		package: 'webpack',
+		name: 'Webpack',
+		from: 1,
+		to: 1
+	}
+];
+var BUGS_URL = 'https://github.com/sapegin/react-styleguidist/issues';
 
 function readConfig() {
 	var argv = minimist(process.argv.slice(2));
@@ -37,6 +53,8 @@ function readConfig() {
 
 	var configDir = path.dirname(configFilepath);
 	var rootDir = path.resolve(configDir, options.rootDir);
+
+	validateDependencies(configDir);
 
 	if (rootDir === configDir) {
 		throw Error('Styleguidist: "rootDir" should not point to a folder with the Styleguidist config and node_modules folder');
@@ -104,6 +122,50 @@ function validateConfig(options) {
 	if (options.updateWebpackConfig && typeof options.updateWebpackConfig !== 'function') {
 		throw Error('Styleguidist: "updateWebpackConfig" option must be a function.');
 	}
+}
+
+function validateDependencies(configDir) {
+	var packageJsonPath = path.join(findup.sync(configDir, 'package.json'), 'package.json');
+	var packageJson = require(packageJsonPath);
+	DEPENDENCIES.forEach(validateDependency.bind(null, packageJson));
+}
+
+function validateDependency(packageJson, dependency) {
+	var version = findDependency(dependency.package, packageJson);
+	if (!version) {
+		return;
+	}
+
+	var major;
+	try {
+		major = semverUtils.parseRange(version)[0].major;
+	}
+	catch (e) {
+		console.log('Styleguidist: cannot parse ' + dependency.name + ' version which is "' + version + '".');
+		console.log('Styleguidist might not work properly. Please report this issue at ' + BUGS_URL);
+		console.log();
+	}
+
+	if (major < dependency.from) {
+		throw Error('Styleguidist: ' + dependency.name + ' ' + dependency.from + ' is required, ' +
+			'you are using version ' + major + '.');
+	}
+	else if (major > dependency.to) {
+		console.log('Styleguidist: ' + dependency.name + ' is supported up to version ' + dependency.to + ', ' +
+			'you are using version ' + major + '.');
+		console.log('Styleguidist might not work properly, report bugs at ' + BUGS_URL);
+		console.log();
+	}
+}
+
+function findDependency(name, packageJson) {
+	if (packageJson.dependencies && packageJson.dependencies[name]) {
+		return packageJson.dependencies[name];
+	}
+	if (packageJson.devDependencies && packageJson.devDependencies[name]) {
+		return packageJson.devDependencies[name];
+	}
+	return null;
 }
 
 module.exports = readConfig();
