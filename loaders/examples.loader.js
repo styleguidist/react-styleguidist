@@ -28,7 +28,7 @@ function readExamples(markdown) {
 			try {
 				highlighted = hljs.highlight(token.info, code).value;
 			}
-			catch(e) {
+			catch (e) {
 				highlighted = e.message;
 			}
 			return '```' + token.info + '\n' + highlighted + '\n```';
