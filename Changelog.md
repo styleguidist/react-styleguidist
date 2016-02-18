@@ -1,3 +1,25 @@
+# 2.0.0-rc6 - 2016-02-18
+
+## Breaking changes
+
+Render fenced blocks with language flag as regular Markdown code snippets.
+
+If you define a fenced code block with a language flag like this:
+
+	```javascript
+	import React from 'react';
+	```
+
+it will be rendered as a regular Markdown code snippet:
+
+```javascript
+import React from 'react';
+```
+
+## Fixes
+
+* Do not escape inline code blocks (#71).
+
 # 2.0.0-rc5 - 2016-02-17
 
 Fix error about dog-names module which is used on the example page and shouldn’t be required when you install `react-styleguidist`.
