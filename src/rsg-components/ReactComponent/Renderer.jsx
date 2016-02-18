@@ -1,3 +1,5 @@
+import {PropTypes} from 'react';
+
 const s = require('./ReactComponent.css');
 
 const Renderer = ({ name, pathLine, description, propList, examples }) => {
@@ -8,15 +10,24 @@ const Renderer = ({ name, pathLine, description, propList, examples }) => {
 					<a className={s.anchor} href={'#' + name}></a>
 					{name}
 				</h2>
-				<div className={s.pathLine}>{pathLine}</div>
+				<p className={s.pathLine}>{pathLine}</p>
+				<div className={s.description}>
+					{description}
+				</div>
 			</header>
-			<div className={s.description}>
-				{description}
-			</div>
 			{propList}
 			{examples}
 		</div>
 	);
 };
+
+Renderer.propTypes = {
+	name: PropTypes.string.isRequired,
+	pathLine: PropTypes.string.isRequired,
+	description: PropTypes.object,
+	propList: PropTypes.object,
+	examples: PropTypes.array
+};
+
 
 export default Renderer;

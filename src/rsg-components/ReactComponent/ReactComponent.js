@@ -1,10 +1,9 @@
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Markdown from 'rsg-components/Markdown';
 import Props from 'rsg-components/Props';
 import Playground from 'rsg-components/Playground';
-import Renderer from './Renderer';
 
-export default class ReactComponent extends Component {
+class ReactComponent extends Component {
 	static propTypes = {
 		highlightTheme: PropTypes.string.isRequired,
 		component: PropTypes.object.isRequired
@@ -57,18 +56,28 @@ export default class ReactComponent extends Component {
 			}
 		});
 	}
-	
+
 	render() {
 		let { name, pathLine } = this.props.component;
 
-		return (
-			<Renderer
-				name={name}
-				pathLine={pathLine}
-			  description={this.renderDescription()}
-			  propList={this.renderDescription()}
-			  examples={this.renderExamples()}
-			/>
-		);
+		//return (
+		//	<Renderer
+		//		name={name}
+		//		pathLine={pathLine}
+		//	  description={this.renderDescription()}
+		//	  propList={this.renderProps()}
+		//	  examples={this.renderExamples()}
+		//	/>
+		//);
+
+		return React.createElement(this.props.renderer, {
+			name,
+			pathLine,
+			description: this.renderDescription(),
+			propList: this.renderProps(),
+			examples: this.renderExamples()
+		});
 	}
 }
+
+export default ReactComponent;
