@@ -29,7 +29,7 @@ function handleIterate(Tag, props, children) {
 	if (Tag === 'code') {
 		if (props['data-language']) {
 			// Render fenced blocks with language flag as highlighted source
-			return <div {...props} dangerouslySetInnerHTML={{__html: children}} />;
+			return <div key={props.key} dangerouslySetInnerHTML={{__html: children}} />;
 		}
 		else {
 			// Unescape inline code blocks
