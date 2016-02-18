@@ -38,7 +38,8 @@
 		"no-unreachable": 1,  // Disallow unreachable statements after a return, throw, continue, or break statement
 		"use-isnan": 2,  // Disallow comparisons with the value NaN
 		"valid-jsdoc": [1, {  // Ensure JSDoc comments are valid
-			"requireReturnDescription": false
+			"requireReturnDescription": false,
+			"requireReturn": false
 		}],
 		"valid-typeof": 2,  // Ensure that the results of typeof are compared against a valid string
 		"no-unexpected-multiline": 1,  // Avoid code that looks like two expressions but is actually one

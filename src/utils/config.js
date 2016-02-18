@@ -43,6 +43,10 @@ var DEPENDENCIES = [
 ];
 var BUGS_URL = 'https://github.com/sapegin/react-styleguidist/issues';
 
+/**
+ * Read, parse and validate config file.
+ * @returns {Object}
+ */
 function readConfig() {
 	var argv = minimist(process.argv.slice(2));
 	var configFilepath = findConfig(argv);
@@ -80,6 +84,12 @@ function readConfig() {
 	return options;
 }
 
+/**
+ * Find config file: use file specified in the command line or try to find up the file tree.
+ *
+ * @param {Object} argv CLI arguments
+ * @return {string} Config file path.
+ */
 function findConfig(argv) {
 	if (argv.config) {
 		// Custom config location
@@ -106,6 +116,11 @@ function findConfig(argv) {
 	}
 }
 
+/**
+ * Validate config.
+ *
+ * @param {Object} options Config options.
+ */
 function validateConfig(options) {
 	if (!options.rootDir) {
 		throw Error('Styleguidist: "rootDir" option is required.');
@@ -124,12 +139,23 @@ function validateConfig(options) {
 	}
 }
 
+/**
+ * Validate project’s Babel and Webpack versions.
+ *
+ * @param {string} configDir Config file directory.
+ */
 function validateDependencies(configDir) {
 	var packageJsonPath = path.join(findup.sync(configDir, 'package.json'), 'package.json');
 	var packageJson = require(packageJsonPath);
 	DEPENDENCIES.forEach(validateDependency.bind(null, packageJson));
 }
 
+/**
+ * Check versions of a project dependency.
+ *
+ * @param {Object} packageJson package.json.
+ * @param {Object} dependency Dependency details.
+ */
 function validateDependency(packageJson, dependency) {
 	var version = findDependency(dependency.package, packageJson);
 	if (!version) {
@@ -158,6 +184,13 @@ function validateDependency(packageJson, dependency) {
 	}
 }
 
+/**
+ * Find package in project’s dependencies or devDependencies.
+ *
+ * @param {string} name Package name.
+ * @param {Object} packageJson package.json.
+ * @returns {string}
+ */
 function findDependency(name, packageJson) {
 	if (packageJson.dependencies && packageJson.dependencies[name]) {
 		return packageJson.dependencies[name];
