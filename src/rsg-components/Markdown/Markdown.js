@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import MDReactComponent from 'markdown-react-js';
 import cx from 'classnames';
+import unescapeHtml from 'lodash/unescape';
 
 import s from './Markdown.css';
 
@@ -20,6 +21,11 @@ function handleIterate(Tag, props, children) {
 		props.className = s[Tag];
 	}
 
+	// Unescape inline code blocks
+	if (Tag === 'code' && !props['data-language']) {
+		children = children.map(unescapeHtml);
+	}
+
 	return <Tag {...props}>{children}</Tag>;
 }
 
@@ -28,6 +34,7 @@ export default function Markdown({
 	className
 }) {
 	let classes = cx(s.root, className);
+
 	return (
 		<MDReactComponent
 			text={text}
