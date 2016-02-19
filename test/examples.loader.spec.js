@@ -90,6 +90,33 @@ text with some \`code\`.
 			expect(examples[2].type).to.equal('markdown');
 			expect(examples[3].type).to.equal('code');
 		});
+
+		it('should render fenced blocks with language flag as regular Markdown code snippets with highlighted code', () => {
+			let examplesMarkdown = `
+# header
+
+\`\`\`javascript
+import React from 'react';
+\`\`\`
+
+text with some \`code\`.
+
+\`\`\`
+<span/>
+\`\`\`
+`;
+			let examples = examplesLoader.readExamples(examplesMarkdown);
+			expect(examples).to.have.length(2);
+			expect(examples[0].type).to.equal('markdown');
+			expect(examples[1].type).to.equal('code');
+			expect(examples[0].content).to.equal(`
+# header
+\`\`\`javascript
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+\`\`\`
+text with some \`code\`.
+`);
+		});
 	});
 
 	describe('loader', () => {

@@ -16,7 +16,7 @@ Text with *some* **formatting** and a [link](/foo).
 <span class="_src_rsg_components_Markdown_Markdown__root _src_styles_common__font">
 	<h3 class="_src_rsg_components_Markdown_Markdown__h3">Header</h3>
 	<p class="_src_rsg_components_Markdown_Markdown__p">Text with <em class="_src_rsg_components_Markdown_Markdown__em">some</em> <strong class="_src_rsg_components_Markdown_Markdown__strong">formatting</strong> and a <a href="/foo" class="_src_rsg_components_Markdown_Markdown__a _src_styles_colors__link">link</a>.</p>
-	<p class="_src_rsg_components_Markdown_Markdown__p"><img alt="Image" src="/bar.png"/></p>
+	<p class="_src_rsg_components_Markdown_Markdown__p"><img alt="Image" src="/bar.png" class="_src_rsg_components_Markdown_Markdown__img"/></p>
 </span>`.replace(/[\n\t]/g, '');
 		let actual = ReactDOMServer.renderToStaticMarkup(<Markdown text={markdown}/>);
 

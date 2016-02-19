@@ -60,7 +60,10 @@ module.exports = function(env) {
 				},
 				{
 					test: /\.css$/,
-					include: codeMirrorPath,
+					include: [
+						codeMirrorPath,
+						getPackagePath('highlight.js')
+					],
 					loader: 'style!css'
 				},
 				{
