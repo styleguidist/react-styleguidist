@@ -1,22 +1,19 @@
+import Markdown from 'rsg-components/Markdown';
 import ReactComponent from 'rsg-components/ReactComponent';
 import Renderer from 'rsg-components/ReactComponent/Renderer';
-import Markdown from 'rsg-components/Markdown';
-
-import {createRenderer} from 'react-addons-test-utils';
-
-const ComponentRenderer = ReactComponent(Renderer);
 
 describe('ReactComponent', () => {
 
 	it('should render component properties', () => {
-		let component = {
+		const component = {
 			name: 'Foo',
 			pathLine: 'foo/bar.js',
 			props: {
 				description: 'Bar'
 			}
 		};
-		let result = <ComponentRenderer highlightTheme="foo" component={component}/>;
+
+		const result = <Renderer {...component} />;
 
 		expectReactShallow(result).to.have.rendered(
 			<div>
