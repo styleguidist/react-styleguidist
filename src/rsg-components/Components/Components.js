@@ -9,12 +9,11 @@ export default class Components extends Component {
 	};
 
 	renderComponents() {
-		let { highlightTheme, components } = this.props;
+		const { highlightTheme, components } = this.props;
+		const ComponentRenderer = ReactComponent(Renderer);
 
 		return components.map((component) => {
-			return (
-				<ReactComponent highlightTheme={highlightTheme} component={component} key={component.name} renderer={Renderer} />
-			);
+			return (<ComponentRenderer key={component.name} highlightTheme={highlightTheme} component={component} />);
 		});
 	}
 

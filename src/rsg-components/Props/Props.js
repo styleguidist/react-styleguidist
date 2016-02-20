@@ -155,8 +155,6 @@ export default class Props extends Component {
 	}
 
 	render() {
-		console.log('whoah:', this.props.props.props)
-
 		return (
 			<div className={s.root}>
 				<h3 className={s.heading}>Props</h3>

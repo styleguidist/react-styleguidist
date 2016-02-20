@@ -1,5 +1,10 @@
 import ReactComponent from 'rsg-components/ReactComponent';
+import Renderer from 'rsg-components/ReactComponent/Renderer';
 import Markdown from 'rsg-components/Markdown';
+
+import {createRenderer} from 'react-addons-test-utils';
+
+const ComponentRenderer = ReactComponent(Renderer);
 
 describe('ReactComponent', () => {
 
@@ -11,7 +16,8 @@ describe('ReactComponent', () => {
 				description: 'Bar'
 			}
 		};
-		let result = <ReactComponent highlightTheme="foo" component={component}/>;
+		let result = <ComponentRenderer highlightTheme="foo" component={component}/>;
+
 		expectReactShallow(result).to.have.rendered(
 			<div>
 				<header>

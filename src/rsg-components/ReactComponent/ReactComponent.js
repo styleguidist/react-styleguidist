@@ -3,14 +3,13 @@ import Markdown from 'rsg-components/Markdown';
 import Props from 'rsg-components/Props';
 import Playground from 'rsg-components/Playground';
 
-class ReactComponent extends Component {
+const ReactComponent = (Renderer) => class extends Component {
 	static propTypes = {
 		highlightTheme: PropTypes.string.isRequired,
 		component: PropTypes.object.isRequired
 	};
 
-	renderDescription() {
-		let description = this.props.component.props.description;
+	renderDescription(description) {
 		if (!description) {
 			return null;
 		}
@@ -18,8 +17,7 @@ class ReactComponent extends Component {
 		return (<Markdown text={description}/>);
 	}
 
-	renderProps() {
-		let props = this.props.component.props;
+	renderProps(props) {
 		if (!props.props) {
 			return null;
 		}
@@ -29,13 +27,12 @@ class ReactComponent extends Component {
 		);
 	}
 
-	renderExamples() {
-		let { highlightTheme, component } = this.props;
-		if (!component.examples) {
+	renderExamples(highlightTheme, examples) {
+		if (!examples) {
 			return null;
 		}
 
-		return component.examples.map((example, index) => {
+		return examples.map((example, index) => {
 			switch (example.type) {
 				case 'code':
 					return (
@@ -58,26 +55,18 @@ class ReactComponent extends Component {
 	}
 
 	render() {
-		let { name, pathLine } = this.props.component;
+		const {highlightTheme, component} = this.props;
 
-		//return (
-		//	<Renderer
-		//		name={name}
-		//		pathLine={pathLine}
-		//	  description={this.renderDescription()}
-		//	  propList={this.renderProps()}
-		//	  examples={this.renderExamples()}
-		//	/>
-		//);
-
-		return React.createElement(this.props.renderer, {
-			name,
-			pathLine,
-			description: this.renderDescription(),
-			propList: this.renderProps(),
-			examples: this.renderExamples()
-		});
+		return (
+			<Renderer
+				name={component.name}
+				pathLine={component.pathLine}
+				description={this.renderDescription(component.props.description)}
+				propList={this.renderProps(component.props)}
+				examples={this.renderExamples(highlightTheme, component.examples)}
+			/>
+		);
 	}
-}
+};
 
 export default ReactComponent;
