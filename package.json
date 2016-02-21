@@ -40,6 +40,7 @@
     "classnames": "2.2.3",
     "codemirror": "5.11.0",
     "css-loader": "0.23.1",
+    "entities": "~1.1.1",
     "express": "4.13.4",
     "findup": "0.1.5",
     "glob": "6.0.4",
