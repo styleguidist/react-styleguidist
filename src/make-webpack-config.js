@@ -5,7 +5,15 @@ var merge = require('webpack-merge');
 var prettyjson = require('prettyjson');
 var config = require('../src/utils/config');
 
+/**
+ * Return npm package path.
+ * In npm2 works only with packages required directly by this package.
+ *
+ * @param {string} packageName Package name.
+ * @return {string}
+ */
 function getPackagePath(packageName) {
+	// We resolve package.json because otherwise path.resolve returns main module path
 	return path.dirname(require.resolve(packageName + '/package.json'));
 }
 
