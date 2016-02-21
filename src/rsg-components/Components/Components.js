@@ -1,5 +1,6 @@
 import { Component, PropTypes } from 'react';
 import ReactComponent from 'rsg-components/ReactComponent';
+import Renderer from 'rsg-components/ReactComponent/Renderer';
 
 export default class Components extends Component {
 	static propTypes = {
@@ -8,12 +9,11 @@ export default class Components extends Component {
 	};
 
 	renderComponents() {
-		let { highlightTheme, components } = this.props;
+		const { highlightTheme, components } = this.props;
+		const ComponentRenderer = ReactComponent(Renderer);
 
 		return components.map((component) => {
-			return (
-				<ReactComponent highlightTheme={highlightTheme} component={component} key={component.name}/>
-			);
+			return (<ComponentRenderer key={component.name} highlightTheme={highlightTheme} component={component} />);
 		});
 	}
 

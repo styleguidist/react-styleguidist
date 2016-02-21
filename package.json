@@ -86,10 +86,11 @@
     "test": "npm run lint && npm run mocha",
     "mocha": "cross-env NODE_ENV=test mocha test",
     "mocha:watch": "cross-env NODE_ENV=test mocha --watch --reporter min test",
-    "start": "./bin/styleguidist server --config example/styleguide.config.js",
+    "start": "./bin/styleguidist server --config examples/basic/styleguide.config.js",
+    "start:customised": "./bin/styleguidist server --config examples/customised/styleguide.config.js",
     "lint": "eslint src --ext .js",
-    "build": "./bin/styleguidist build --config example/styleguide.config.js",
-    "publish": "npm run build && gh-pages -d example/styleguide"
+    "build": "./bin/styleguidist build --config examples/basic/styleguide.config.js",
+    "publish": "npm run build && gh-pages -d examples/basic/styleguide"
   },
   "keywords": [
     "react",
