@@ -1,7 +1,7 @@
 var path = require('path');
 
 module.exports = {
-	title: 'Style guide example',
+	title: 'React Style Guide Example',
 	rootDir: './lib',
 	components: function(config, glob) {
 		return glob.sync(config.rootDir + '/components/**/*.js').filter(function(module) {
