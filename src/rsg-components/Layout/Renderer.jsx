@@ -1,7 +1,7 @@
-import { PropTypes } from 'react';
+import {PropTypes} from 'react';
 import Sticky from 'react-sticky';
 
-import s from './Layout.css';
+const s = require('./Layout.css');
 
 const Renderer = ({ title, components, toc }) => (
 	<div className={s.root}>

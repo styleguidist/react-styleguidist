@@ -10,11 +10,11 @@ const Renderer = ({ name, pathLine, description, propList, examples }) => {
 					<a className={s.anchor} href={'#' + name}></a>
 					{name}
 				</h2>
-				<p className={s.pathLine}>{pathLine}</p>
-				<div className={s.description}>
-					{description}
-				</div>
+				<div className={s.pathLine}>{pathLine}</div>
 			</header>
+			<div>
+				{description}
+			</div>
 			{propList}
 			{examples}
 		</div>

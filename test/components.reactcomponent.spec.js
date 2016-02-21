@@ -13,9 +13,10 @@ describe('ReactComponent', () => {
 			}
 		};
 
-		const result = <Renderer {...component} />;
+		const RCComponentHOC = ReactComponent(Renderer);
+		const RCComponent = new RCComponentHOC({component});
 
-		expectReactShallow(result).to.have.rendered(
+		expectReactShallow(RCComponent.render()).to.have.rendered(
 			<div>
 				<header>
 					<h2>Foo</h2>
