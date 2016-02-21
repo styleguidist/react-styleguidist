@@ -26,7 +26,7 @@ const Layout = (Renderer) => class extends Component {
 		}
 	}
 
-	renderToC(components) {
+	renderTableOfContents(components) {
 		return <TableOfContents components={components}/>;
 	}
 
@@ -37,7 +37,7 @@ const Layout = (Renderer) => class extends Component {
 			<Renderer
 				title={config.title}
 				components={this.renderComponents(config, components)}
-				toc={this.renderToC(components)}
+				toc={this.renderTableOfContents(components)}
 			/>
 		);
 	}
