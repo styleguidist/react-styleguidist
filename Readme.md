@@ -11,30 +11,77 @@ React components style guide generator with a hot reloaded (style guide) dev ser
 ## Installation
 
 ```
-npm install --save-dev react react-dom react-styleguidist
+npm install --save-dev react-styleguidist
 ```
 
 Add a `styleguide.config.js` file into your project’s root folder:
 
 ```javascript
 module.exports = {
-  rootDir: './lib',
-  components: './components/**/*.js'
+  title: 'React Style Guide Example',
+  components: './components/**/*.js',
+  updateWebpackConfig: function(webpackConfig, env) {
+    // Add loaders for all your project’s files
+    webpackConfig.module.loaders.push(
+      {
+        test: /\.jsx?$/,
+        // Affect only your project’s files
+        include: __dirname,
+        // Babel loader will use your project’s .babelrc
+        loader: 'babel'
+      },
+      {
+        test: /\.css$/,
+        include: __dirname,
+        loader: 'style!css?modules&importLoaders=1'
+      }
+    );
+    return webpackConfig;
+  }
 };
 ```
 
-See Configuration section below for the list of available options.
+**Note**: don’t forget `include` option for your Webpack loaders, otherwise they will interfere with Styleguidist’s loaders.
+
+To enable hot reload of your project’s JavaScript you need [babel-plugin-react-transform](https://github.com/gaearon/babel-plugin-react-transform) plugin. If you already have it for `development` environment it should work as is. Otherwise:
+
+```bash
+npm install --save-dev babel-preset-react-hmre
+```
+
+And update your `.babelrc`:
+
+```json
+{
+  "presets": [
+    "es2015",
+    "react"
+  ],
+  "env": {
+    "development": {
+      "presets": [
+        "react-hmre"
+      ]
+    }
+  }
+}
+```
+
+See the *Configuration* section below for the list of available options.
 
 Add these scripts to your `package.json`:
 
 ```json
-"scripts": {
-  "styleguide-server": "styleguidist server",
-  "styleguide-build": "styleguidist build"
-},
+{
+  // ...
+  "scripts": {
+    "styleguide-server": "styleguidist server",
+    "styleguide-build": "styleguidist build"
+  }
+}
 ```
 
-And run `npm run styleguide-server` to start styleguide dev server.
+And run `npm run styleguide-server` to start style guide dev server.
 
 ## Documenting components
 
@@ -99,13 +146,9 @@ You can use `React.createClass` in your code examples, but it’s often a good i
 
 You can change some settings in the `styleguide.config.js` file in your project’s root folder.
 
-* **`rootDir`**<br>
-  Type: `String`, required<br>
-  Your app’s frontend root folder (eg. `./lib`). Should not point to a folder with the Styleguidist config and `node_modules` folder.
-
 * **`components`**<br>
   Type: `String` or `Function`, required<br>
-  - when `String`: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules. Relative to the `rootDir`.
+  - when `String`: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules. Relative to config folder.
   - when `Function`: function that returns an array of modules.
 
   If your components look like `components/Button.js` or `components/Button/Button.js` or `components/Button/index.js`:
@@ -117,10 +160,12 @@ You can change some settings in the `styleguide.config.js` file in your project�
   If your components look like `components/Button/Button.js` + `components/Button/index.js`:
 
   ```javascript
+  var path = require('path');
+  var glob = require('glob');
   module.exports = {
     // ...
-    components: function(config, glob) {
-      return glob.sync(config.rootDir + '/components/**/*.js').filter(function(module) {
+    components: function() {
+      return glob.sync(path.resolve(__dirname, 'lib/components/**/*.js')).filter(function(module) {
         return /\/[A-Z]\w*\.js$/.test(module);
       });
     }
@@ -134,6 +179,10 @@ You can change some settings in the `styleguide.config.js` file in your project�
 * **`styleguideDir`**<br>
   Type: `String`, default: `styleguide`<br>
   Folder for static HTML style guide generated with `styleguidist build` command.
+
+* **`assetsDir`**<br>
+  Type: `String`, optional<br>
+  Your application static assets folder, will be accessible as `/` in the style guide dev-server.
 
 * **`template`**<br>
   Type: `String`, default: [src/templates/index.html](src/templates/index.html)<br>
@@ -209,8 +258,7 @@ You can change some settings in the `styleguide.config.js` file in your project�
 ```javascript
 module.exports = {
   title: 'Style guide example',
-  rootDir: './example',
-  components: './**/*.js',
+  components: '.example/**/*.js',
   getExampleFilename: function(componentpath) {
     return componentpath.replace(/\.js$/, '.examples.md');
   },
