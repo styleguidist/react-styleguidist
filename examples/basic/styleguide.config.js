@@ -26,8 +26,6 @@ module.exports = {
 				loader: 'json'
 			}
 		);
-
-
 		return webpackConfig;
 	}
 };

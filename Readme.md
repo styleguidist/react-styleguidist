@@ -19,7 +19,7 @@ Add a `styleguide.config.js` file into your project’s root folder:
 ```javascript
 module.exports = {
   title: 'React Style Guide Example',
-  components: './components/**/*.js',
+  components: './lib/components/**/*.js',
   updateWebpackConfig: function(webpackConfig, env) {
     // Add loaders for all your project’s files
     webpackConfig.module.loaders.push(
@@ -43,7 +43,9 @@ module.exports = {
 
 **Note**: don’t forget `include` option for your Webpack loaders, otherwise they will interfere with Styleguidist’s loaders.
 
-To enable hot reload of your project’s JavaScript you need [babel-plugin-react-transform](https://github.com/gaearon/babel-plugin-react-transform) plugin. If you already have it for `development` environment it should work as is. Otherwise:
+When you run dev-server `NODE_ENV` is set to `development` so if you use [React Transform](https://github.com/gaearon/react-transform-hmr) hot module replacement it will be enabled for your components. When you build style guide `NODE_ENV` is set to `production`.
+
+If you don’t use React Transform yet:
 
 ```bash
 npm install --save-dev babel-preset-react-hmre
