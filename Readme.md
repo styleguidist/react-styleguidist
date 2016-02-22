@@ -1,124 +1,127 @@
 # React Styleguidist
 
-[![Build Status](https://travis-ci.org/sapegin/react-styleguidist.svg)](https://travis-ci.org/sapegin/react-styleguidist)
+[![Build Status](https://travis-ci.org/sapegin/react-styleguidist.svg)](https://travis-ci.org/sapegin/react-styleguidist) [![Dependency Status](https://david-dm.org/sapegin/react-styleguidist.svg)](https://david-dm.org/sapegin/react-styleguidist) [![npm](https://img.shields.io/npm/v/react-styleguidist.svg)](https://www.npmjs.com/package/react-styleguidist) [![npm](https://img.shields.io/npm/dm/react-styleguidist.svg)]()
 
-React components style guide generator with a hot reloaded (style guide) dev server.
+React Styleguidist is a React components style guide generator. It lists component `propTypes` and shows live, editable usage examples based on Markdown files. You can use it as both in a hot reloaded (style guide) dev server during development and a static site generator (which makes a great deliverable). Check out [**the demo styleguide**](http://sapegin.github.io/react-styleguidist/).
 
-[Example style guide](http://sapegin.github.io/react-styleguidist/).
+Based on Webpack, webpack-dev-server and Babel.
 
 ![](https://s3.amazonaws.com/f.cl.ly/items/3i0E1D1L1c1m1s2G1d0y/Screen%20Recording%202015-09-24%20at%2009.49%20AM.gif)
 
 ## Installation
 
-Only Babel 6 is supported in Styleguidist 2.0.0+. It means if you use Babel you need to use Babel 6 but you don’t have use Babel to use Styleguidist.
+**Requirements:** Only Babel 6 is supported in [Styleguidist 2.0.0](https://github.com/sapegin/react-styleguidist/releases/tag/2.0.0)+. If you don't use Babel in your project, that's fine, but if you use Babel 5, please use Styleguidist 1.3.2. Webpack is recommended, but not required.
 
-```
-npm install --save-dev react-styleguidist
-```
+1. Install from npm:
 
-Add a `styleguide.config.js` file into your project’s root folder:
+   ```bash
+   npm install --save-dev react-styleguidist
+   ```
 
-```javascript
-module.exports = {
-  title: 'React Style Guide Example',
-  components: './lib/components/**/*.js',
-  updateWebpackConfig: function(webpackConfig, env) {
-    // Add loaders for all your project’s files
-    webpackConfig.module.loaders.push(
-      {
-        test: /\.jsx?$/,
-        // Affect only your project’s files
-        include: __dirname,
-        // Babel loader will use your project’s .babelrc
-        loader: 'babel'
-      },
-      {
-        test: /\.css$/,
-        include: __dirname,
-        loader: 'style!css?modules&importLoaders=1'
-      }
-    );
-    return webpackConfig;
-  }
-};
-```
+2. Add a **`styleguide.config.js`** file into your project’s root folder. A simplest possible config looks like this:
 
-**Note**: don’t forget `include` option for your Webpack loaders, otherwise they will interfere with Styleguidist’s loaders.
+   ```javascript
+   module.exports = {
+     title: 'My Great Style Guide',
+     components: './lib/components/**/*.js',
+     // Put other configuration options here...
+   };
+  ```
 
-When you run dev-server `NODE_ENV` is set to `development` so if you use [React Transform](https://github.com/gaearon/react-transform-hmr) hot module replacement it will be enabled for your components. When you build style guide `NODE_ENV` is set to `production`.
+  All the configuration options are documented in the [Configuration section](#configuration) below. But you don't need all of them to start. Just read on.
 
-If you don’t use React Transform yet:
+3. If you use transpilers to run your project files (JSX → JS, SCSS → CSS, etc), you need to set them up for the styleguide too.
 
-```bash
-npm install --save-dev babel-preset-react-hmre
-```
+   Styleguidist generates a webpack config that contains all that is needed for the styleguide, but you need to configure the [webpack loaders](https://webpack.github.io/docs/configuration.html#module-loaders) for your project code.
 
-And update your `.babelrc`:
+   Put the `updateWebpackConfig` function in your config:
 
-```json
-{
-  "presets": [
-    "es2015",
-    "react"
-  ],
-  "env": {
-    "development": {
-      "presets": [
-        "react-hmre"
-      ]
+   ```javascript
+   updateWebpackConfig: function(webpackConfig, env) {
+     webpackConfig.module.loaders.push(
+       {
+         test: /\.jsx?$/,
+         // Affect only your project’s files
+         include: __dirname,
+         // Babel loader will use your project’s .babelrc
+         loader: 'babel'
+       },
+       {
+         test: /\.css$/,
+         include: __dirname,
+         loader: 'style!css?modules&importLoaders=1'
+       }
+     );
+     return webpackConfig;
+   }
+   ```
+
+   **Note**: don’t forget `include` option for your Webpack loaders, as otherwise they will interfere with Styleguidist’s loaders.
+
+4. Configure [React Transform](https://github.com/gaearon/react-transform-hmr) HMR (hot module replacement). This is optional, but highly recommended.
+
+   Install React Transform for Babel (if you don't have it yet): `npm install --save-dev babel-preset-react-hmre`.
+
+   When you run the styleguidist server, `NODE_ENV` is set to `development` and when you build style guide `NODE_ENV` is set to `production`. You can use this fact to enable HMR only in development. So update your `.babelrc`:
+
+   ```json
+   {
+     "presets": ["es2015", "react"],
+     "env": {
+       "development": {
+         "presets": ["react-hmre"]
+       }
+     }
+   }
+   ```
+
+5. Add these scripts to your `package.json`:
+
+  ```javascript
+  {
+    // ...
+    "scripts": {
+      "styleguide-server": "styleguidist server",
+      "styleguide-build": "styleguidist build"
     }
   }
-}
-```
+  ```
 
-See the *Configuration* section below for the list of available options.
+6. Run **`npm run styleguide-server`** to start style guide dev server.
 
-Add these scripts to your `package.json`:
-
-```json
-{
-  // ...
-  "scripts": {
-    "styleguide-server": "styleguidist server",
-    "styleguide-build": "styleguidist build"
-  }
-}
-```
-
-And run `npm run styleguide-server` to start style guide dev server.
 
 ## Documenting components
 
 Styleguidist generates documentation from 2 sources:
 
-### PropTypes and component description
+* **PropTypes and component description** in the source code
 
-Components' `PropTypes` and documentation comments are parsed by the [react-docgen](https://github.com/reactjs/react-docgen) library. Have a look at [their example](https://github.com/reactjs/react-docgen#example) of a component documentation.
+  Components' `PropTypes` and documentation comments are parsed by the [react-docgen](https://github.com/reactjs/react-docgen) library. Have a look at [their example](https://github.com/reactjs/react-docgen#example) of a component documentation.
 
-### Usage examples and further documentation
+* **Usage examples and further documentation** in Markdown
 
-Examples are written in Markdown where any code block will be rendered as a react component. By default any `Readme.md` in the component folder is treated as an examples file but you can change it with the `getExampleFilename` option.
+  Examples are written in Markdown where any code block without a tag will be rendered as a react component. By default any   `Readme.md` in the component folder is treated as an examples file but you can change it with the `getExampleFilename` option.
 
-```markdown
-React component example:
+  ```markdown
+  React component example:
 
-  <Button size="large">Push Me</Button>
+      <Button size="large">Push Me</Button>
 
-Any [Markdown](http://daringfireball.net/projects/markdown/):
+  Any [Markdown](http://daringfireball.net/projects/markdown/) is **allowed** _here_.
+  ```
 
-* Foo;
-* bar;
-* baz.
-```
+### Writing code examples
 
-You can use any component returned by the `components` function. You can require other modules from examples in Markdown:
+The code examples can access all the components listed, they are exposed as global variables.
+
+You can also require other modules (e.g. mock data that you use in your unit tests) from examples in Markdown:
 
 ```js
 const mockData = require('./mocks');
 <Message content={mockData.hello}/>
 ```
 
-This allows you to reuse mock data from your tests in the style guide.
+As an utility, also the [lodash](https://lodash.com/) library is available globally as `_`.
 
 Each example has its own state that you can access at the `state` variable and change with the `setState` function. Default state is `{}`.
 
@@ -132,19 +135,14 @@ Each example has its own state that you can access at the `state` variable and 
 </div>
 ```
 
-If you want to set the default state you can do something like that:
+If you want to set the default state you can do:
 
 ```js
 'key' in state || setState({key: 42});
 ```
 
-You can use `React.createClass` in your code examples, but it’s often a good idea to define them in a separate JavaScript file instead and then just require them in Markdown.
+You *can* use `React.createClass` in your code examples, but if you need a more complex demo it’s often a good idea to define it in a separate JavaScript file instead and then just `require` it in Markdown.
 
-[lodash](https://lodash.com/) library is available at the `_` object:
-
-```js
-<List items={_.range(7).map(i => `Item ${i}`)}/>
-```
 
 ## Configuration
 
@@ -153,7 +151,7 @@ You can change some settings in the `styleguide.config.js` file in your project�
 * **`components`**<br>
   Type: `String` or `Function`, required<br>
   - when `String`: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules. Relative to config folder.
-  - when `Function`: function that returns an array of modules.
+  - when `Function`: a function that returns an array of module paths.
 
   If your components look like `components/Button.js` or `components/Button/Button.js` or `components/Button/index.js`:
 
@@ -257,31 +255,20 @@ You can change some settings in the `styleguide.config.js` file in your project�
   };
   ```
 
-### Config example
-
-```javascript
-module.exports = {
-  title: 'Style guide example',
-  components: '.example/**/*.js',
-  getExampleFilename: function(componentpath) {
-    return componentpath.replace(/\.js$/, '.examples.md');
-  },
-};
-```
 
 ## CLI commands and options
 
-These commands supposed to be placed in `package.json` `scripts` (see Installation section above). If you want to run them from command line do it like this: `./node_modules/.bin/styleguidist`.
+These commands supposed to be placed in `package.json` `scripts` (see Installation section above). If you want to run them directly, use `./node_modules/.bin/styleguidist` or `$(npm bin)/styleguidist`.
 
 `styleguidist server`: Run dev server.
 
 `styleguidist build`: Generate a static HTML style guide.
 
-### Options
+CLI Options:
 
-* `--config`: Specify path to a config file: `styleguidist server --config dir/styleguide.config.js`.
-
+* `--config <file>`: Specify path to the config file.
 * `--verbose`: Print debug information.
+
 
 ## FAQ
 
@@ -346,9 +333,9 @@ module.exports = {
 };
 ```
 
-Also there are two special wrapper components. They do nothing by themeselves and were made specifically to be replaced with a custom logic:
+Also there are two special wrapper components. They do nothing by themselves and were made specifically to be replaced with a custom logic:
 
-* `StyleGuide` — the root component of a style gude React app.
+* `StyleGuide` — the root component of a style guide React app.
 * `Wrapper` — wraps every example component.
 
 For example you can replace the `Wrapper` component to wrap any example component in the [React Intl’s](http://formatjs.io/react/) provider component. You can’t wrap the whole style guide because every example component is compiled separately in a browser.
@@ -381,8 +368,7 @@ export default class Wrapper extends Component {
 ### How to debug my components and examples?
 
 1. Open your browser’s developer tools
-2. Press the ![Debugger](http://wow.sapegin.me/image/2n2z0b0l320m/debugger.png) button to make the debugger stop execution on any exception.
-3. Write `debugger;` statement wherewhere you want: in a component source, a Markdown example or even in an editor in a browser.
+2. Write `debugger;` statement wherewhere you want: in a component source, a Markdown example or even in an editor in a browser.
 
 ![](http://wow.sapegin.me/image/002N2q01470J/debugging.png)
 
@@ -407,12 +393,8 @@ The changelog can be found on the [Releases page](https://github.com/sapegin/rea
 
 Everyone is welcome to contribute. Please take a moment to review the [contributing guidelines](Contributing.md).
 
-## Author
+## Author and License
 
-* [Artem Sapegin](http://sapegin.me)
+[Artem Sapegin](http://sapegin.me) and [contributors](https://github.com/sapegin/react-styleguidist/graphs/contributors).
 
----
-
-## License
-
-The MIT License, see the included [License.md](License.md) file.
+MIT Licenses, see the included [License.md](License.md) file.
