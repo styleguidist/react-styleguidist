@@ -20,7 +20,7 @@ const Layout = (Renderer) => class extends Component {
 			return (
 				<div className={s.empty}>
 					No components found. <a className={s.link} href="https://github.com/sapegin/react-styleguidist#configuration">Check
-					the components function</a> in your style guide config.
+					the components option</a> in your style guide config.
 				</div>
 			);
 		}

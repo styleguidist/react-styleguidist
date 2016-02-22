@@ -15,7 +15,7 @@ function processComponent(filepath) {
 	return '{' + [
         'filepath: ' + JSON.stringify(filepath),
 		'nameFallbak: ' + JSON.stringify(nameFallbak),
-		'pathLine: ' + JSON.stringify(config.getComponentPathLine(path.relative(config.rootDir, filepath))),
+		'pathLine: ' + JSON.stringify(config.getComponentPathLine(path.relative(config.configDir, filepath))),
 		'module: ' + requireIt(filepath),
 		'props: ' + requireIt('!!props!' + filepath),
 		'examples: ' + (hasExamples(filepath) ? requireIt('examples!' + examplesFile) : null)
@@ -37,10 +37,10 @@ module.exports.pitch = function() {
 
 	var componentSources;
 	if (typeof config.components === 'function') {
-		componentSources = config.components(config, glob);
+		componentSources = config.components();
 	}
 	else {
-		componentSources = glob.sync(path.join(config.rootDir, config.components));
+		componentSources = glob.sync(path.resolve(config.configDir, config.components));
 	}
 
 	if (config.verbose) {

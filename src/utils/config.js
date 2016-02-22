@@ -9,11 +9,11 @@ var utils = require('./server');
 
 var CONFIG_FILENAME = 'styleguide.config.js';
 var DEFAULT_CONFIG = {
-	rootDir: null,
 	components: null,
 	skipComponentsWithoutExample: false,
 	title: 'Style guide',
 	styleguideDir: 'styleguide',
+	assetsDir: null,
 	template: path.join(__dirname, '../templates/index.html'),
 	serverHost: 'localhost',
 	serverPort: 3000,
@@ -56,21 +56,22 @@ function readConfig() {
 	validateConfig(options);
 
 	var configDir = path.dirname(configFilepath);
-	var rootDir = path.resolve(configDir, options.rootDir);
 
 	validateDependencies(configDir);
 
-	if (rootDir === configDir) {
-		throw Error('Styleguidist: "rootDir" should not point to a folder with the Styleguidist config and node_modules folder');
-	}
-	if (!utils.isDirectoryExists(rootDir)) {
-		throw Error('Styleguidist: "rootDir" directory not found: ' + rootDir);
+	var assetsDir = options.assetsDir;
+	if (assetsDir) {
+		assetsDir = path.resolve(configDir, assetsDir);
+		if (!utils.isDirectoryExists(assetsDir)) {
+			throw Error('Styleguidist: "assetsRoot" directory not found: ' + assetsDir);
+		}
 	}
 
 	options = _.merge({}, DEFAULT_CONFIG, options);
 	options = _.merge({}, options, {
 		verbose: !!argv.verbose,
-		rootDir: rootDir,
+		configDir: configDir,
+		assetsDir: assetsDir,
 		styleguideDir: path.resolve(configDir, options.styleguideDir)
 	});
 
@@ -122,9 +123,6 @@ function findConfig(argv) {
  * @param {Object} options Config options.
  */
 function validateConfig(options) {
-	if (!options.rootDir) {
-		throw Error('Styleguidist: "rootDir" option is required.');
-	}
 	if (!options.components) {
 		throw Error('Styleguidist: "components" option is required.');
 	}

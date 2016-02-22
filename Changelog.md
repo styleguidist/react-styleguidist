@@ -1,3 +1,125 @@
+# 2.0.0 - 2016-02-22
+
+*Here is a list of changes since 1.3.2 (changes since 2.0.0-rc6: fixed npm2 compatibility, removed rootDir, added assetsDir, no params are passed to components function).*
+
+## Breaking changes
+
+### No default Webpack loaders for your project’s code
+
+Now you need to explicitly specify all Webpack loaders for your project’s code in `styleguide.config.js`:
+
+```javascript
+module.exports = {
+	// ...
+	updateWebpackConfig: function(webpackConfig, env) {
+		var sourceDir = path.resolve(__dirname, 'src');  // Affect only your project’s files
+		webpackConfig.module.loaders.push(
+			// Babel (will use your project’s .babelrc)
+			{
+				test: /\.jsx?$/,
+				include: sourceDir,
+				loader: 'babel'
+			},
+			// Sass
+			{
+				test: /\.scss$/,
+				include: sourceDir,
+				loader: 'style!css!sass?precision=10'
+			}
+		);
+		return webpackConfig;
+	}
+};
+```
+
+Your project’s `.babelrc` will not affect Styleguidist, only the loaders you define in `styleguide.config.js`.
+
+When you run dev-server `NODE_ENV` is set to `development` so if you use [React Transform](https://github.com/gaearon/react-transform-hmr) hot module replacement it will be enabled for your components. Otherwise you need to [set it up manually](https://github.com/sapegin/react-styleguidist#installation). When you build style guide `NODE_ENV` is set to `production`.
+
+This change should reduce the number of conflicts between your code and Styleguidist’s.
+
+### Babel 6
+
+Babel 6 is required now.
+
+### No `rootDir` config option
+
+`component` option is now relative to config file location.
+
+```javascript
+// 1.3.2
+module.exports = {
+  rootDir: './lib',
+  components: './components/**/*.js',
+  // ...
+};
+
+// 2.0.0
+module.exports = {
+  components: './lib/components/**/*.js',
+  // ...
+};
+```
+
+### No params are passed to `components` function
+
+Less magic, just use your own [glob](https://github.com/isaacs/node-glob):
+
+```javascript
+// 1.3.2
+module.exports = {
+  // ...
+  components: function(config, glob) {
+    return glob.sync(config.rootDir + '/components/**/*.js').filter(function(module) {
+      return /\/[A-Z]\w*\.js$/.test(module);
+    });
+  }
+};
+
+// 2.0.0
+var path = require('path');
+var glob = require('glob');
+module.exports = {
+  // ...
+  components: function() {
+    return glob.sync(path.resolve(__dirname, 'lib/components/**/*.js')).filter(function(module) {
+      return /\/[A-Z]\w*\.js$/.test(module);
+    });
+  }
+};
+```
+
+### Code examples without React playground
+
+Render fenced blocks with language flag as regular Markdown code snippets.
+
+If you define a fenced code block with a language flag like this:
+
+	```javascript
+	import React from 'react';
+	```
+
+it will be rendered as a regular Markdown code snippet:
+
+```javascript
+import React from 'react';
+```
+
+## New features
+
+* `assetsDir` config option. Serve this directory as static in dev-server, you can access any files at `/`.
+
+## Other changes
+
+* react-docgen updated to 2.7.0 that support flow proptypes (#79 by @codemix).
+
+## Fixes
+
+* Do not escape inline code blocks (#71).
+* Fallback to file name or folder name if component name can’t be detected in runtime (#84).
+* Styleguidist Babel loader should not read project’s `.babelrc` file.
+
+
 # 2.0.0-rc6 - 2016-02-18
 
 ## Breaking changes
