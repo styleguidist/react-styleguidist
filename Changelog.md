@@ -1,11 +1,6 @@
 # 2.0.0 - 2016-02-22
 
-* Do not pass config and glob instance to components function, less magic.
-* Remove rootDir, add assetsDir.
-* Hopefully fix npm2 compatibility.
-
-
-*Here are a list of changes since 1.3.2 (changes since 2.0.0-rc6: fixed npm2 compatibility, removed rootDir, added assetsDir, no params are passed to components function).*
+*Here is a list of changes since 1.3.2 (changes since 2.0.0-rc6: fixed npm2 compatibility, removed rootDir, added assetsDir, no params are passed to components function).*
 
 ## Breaking changes
 
