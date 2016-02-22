@@ -60,7 +60,7 @@ Based on Webpack, webpack-dev-server and Babel.
 
    **Note**: don’t forget `include` option for your Webpack loaders, as otherwise they will interfere with Styleguidist’s loaders.
 
-4. Configure [React Transform](https://github.com/gaearon/react-transform-hmr) HMR (hot module replacement). This is optional, but highly recommended.
+4. Configure [React Transform HMR](https://github.com/gaearon/react-transform-hmr) (hot module replacement). This is optional, but highly recommended.
 
    Install React Transform for Babel (if you don't have it yet): `npm install --save-dev babel-preset-react-hmre`.
 
