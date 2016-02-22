@@ -17,6 +17,14 @@ function getPackagePath(packageName) {
 	return path.dirname(require.resolve(packageName + '/package.json'));
 }
 
+function validateWebpackConfig(webpackConfig) {
+	webpackConfig.module.loaders.forEach((loader) => {
+		if (!loader.include && !loader.exclude) {
+			throw Error('Styleguidist: "include" option is missed for ' + loader.test + ' Webpack loader.');
+		}
+	});
+}
+
 module.exports = function(env) {
 	process.env.NODE_ENV = process.env.BABEL_ENV = env;
 
@@ -160,6 +168,7 @@ module.exports = function(env) {
 
 	if (config.updateWebpackConfig) {
 		webpackConfig = config.updateWebpackConfig(webpackConfig, env);
+		validateWebpackConfig(webpackConfig);
 	}
 
 	if (config.verbose) {
