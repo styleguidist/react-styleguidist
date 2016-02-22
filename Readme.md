@@ -397,4 +397,4 @@ Everyone is welcome to contribute. Please take a moment to review the [contribut
 
 [Artem Sapegin](http://sapegin.me) and [contributors](https://github.com/sapegin/react-styleguidist/graphs/contributors).
 
-MIT Licenses, see the included [License.md](License.md) file.
+MIT License, see the included [License.md](License.md) file.
