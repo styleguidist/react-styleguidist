@@ -1,10 +1,10 @@
 var path = require('path');
-var glob = require('glob');
 
 module.exports = {
 	title: 'Style guide example',
-	components: function() {
-		return glob.sync(path.resolve(__dirname, 'lib/components/**/*.js')).filter(function(module) {
+	rootDir: './lib',
+	components: function(config, glob) {
+		return glob.sync(config.rootDir + '/components/**/*.js').filter(function(module) {
 			return /\/[A-Z]\w*\.js$/.test(module);
 		});
 	},
