@@ -10,6 +10,8 @@ React components style guide generator with a hot reloaded (style guide) dev ser
 
 ## Installation
 
+Only Babel 6 is supported in Styleguidist 2.0.0+. It means if you use Babel you need to use Babel 6 but you don’t have use Babel to use Styleguidist.
+
 ```
 npm install --save-dev react-styleguidist
 ```
