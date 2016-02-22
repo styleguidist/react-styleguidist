@@ -112,9 +112,9 @@ Styleguidist generates documentation from 2 sources:
 
 ### Writing code examples
 
-The code examples can access all the components listed, they are exposed as global variables.
+Code examples in Markdown use the ES6+JSX syntax. They can access all the components listed, they are exposed as global variables.
 
-You can also require other modules (e.g. mock data that you use in your unit tests) from examples in Markdown:
+You can also `require` other modules (e.g. mock data that you use in your unit tests) from examples in Markdown:
 
 ```js
 const mockData = require('./mocks');
