@@ -1,8 +1,8 @@
 # React Styleguidist
 
-[![Build Status](https://travis-ci.org/sapegin/react-styleguidist.svg)](https://travis-ci.org/sapegin/react-styleguidist) [![Dependency Status](https://david-dm.org/sapegin/react-styleguidist.svg)](https://david-dm.org/sapegin/react-styleguidist) [![npm](https://img.shields.io/npm/v/react-styleguidist.svg)](https://www.npmjs.com/package/react-styleguidist) [![npm](https://img.shields.io/npm/dm/react-styleguidist.svg)]()
+[![Build Status](https://travis-ci.org/sapegin/react-styleguidist.svg)](https://travis-ci.org/sapegin/react-styleguidist) [![Dependency Status](https://david-dm.org/sapegin/react-styleguidist.svg)](https://david-dm.org/sapegin/react-styleguidist) [![npm](https://img.shields.io/npm/v/react-styleguidist.svg)](https://www.npmjs.com/package/react-styleguidist)
 
-React Styleguidist is a React components style guide generator. It lists component `propTypes` and shows live, editable usage examples based on Markdown files. You can use it as both in a hot reloaded (style guide) dev server during development and a static site generator (which makes a great deliverable). Check out [**the demo styleguide**](http://sapegin.github.io/react-styleguidist/).
+React Styleguidist is a React components style guide generator. It lists component `propTypes` and shows live, editable usage examples based on Markdown files. You can use it to generate a static HTML page to share and publish or as a workbench for developing new components using hot reloaded dev server. Check out [**the demo styleguide**](http://sapegin.github.io/react-styleguidist/).
 
 Based on Webpack, webpack-dev-server and Babel.
 
@@ -28,32 +28,34 @@ Based on Webpack, webpack-dev-server and Babel.
    };
   ```
 
-  All the configuration options are documented in the [Configuration section](#configuration) below. But you don't need all of them to start. Just read on.
-
 3. If you use transpilers to run your project files (JSX → JS, SCSS → CSS, etc), you need to set them up for the styleguide too.
 
    Styleguidist generates a webpack config that contains all that is needed for the styleguide, but you need to configure the [webpack loaders](https://webpack.github.io/docs/configuration.html#module-loaders) for your project code.
 
-   Put the `updateWebpackConfig` function in your config:
+   Put the `updateWebpackConfig` function in your `styleguide.config.js`:
 
    ```javascript
-   updateWebpackConfig: function(webpackConfig, env) {
-     webpackConfig.module.loaders.push(
-       {
-         test: /\.jsx?$/,
-         // Affect only your project’s files
-         include: __dirname,
-         // Babel loader will use your project’s .babelrc
-         loader: 'babel'
-       },
-       {
-         test: /\.css$/,
-         include: __dirname,
-         loader: 'style!css?modules&importLoaders=1'
-       }
-     );
-     return webpackConfig;
-   }
+   module.exports = {
+     // other options...
+
+     updateWebpackConfig: function(webpackConfig, env) {
+       webpackConfig.module.loaders.push(
+         {
+           test: /\.jsx?$/,
+           // Affect only your project’s files
+           include: __dirname,
+           // Babel loader will use your project’s .babelrc
+           loader: 'babel'
+         },
+         {
+           test: /\.css$/,
+           include: __dirname,
+           loader: 'style!css?modules&importLoaders=1'
+         }
+       );
+       return webpackConfig;
+     },
+   };
    ```
 
    **Note**: don’t forget `include` option for your Webpack loaders, as otherwise they will interfere with Styleguidist’s loaders.
@@ -88,6 +90,8 @@ Based on Webpack, webpack-dev-server and Babel.
   ```
 
 6. Run **`npm run styleguide-server`** to start style guide dev server.
+
+To customize your styleguide, head to the [Configuration section](#configuration) below.
 
 
 ## Documenting components
@@ -258,7 +262,7 @@ You can change some settings in the `styleguide.config.js` file in your project�
 
 ## CLI commands and options
 
-These commands supposed to be placed in `package.json` `scripts` (see Installation section above). If you want to run them directly, use `./node_modules/.bin/styleguidist` or `$(npm bin)/styleguidist`.
+These commands supposed to be placed in `package.json` `scripts` (see Installation section above). If you want to run them directly, use `./node_modules/.bin/styleguidist`.
 
 `styleguidist server`: Run dev server.
 
