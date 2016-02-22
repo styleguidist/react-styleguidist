@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/sapegin/react-styleguidist.svg)](https://travis-ci.org/sapegin/react-styleguidist) [![Dependency Status](https://david-dm.org/sapegin/react-styleguidist.svg)](https://david-dm.org/sapegin/react-styleguidist) [![npm](https://img.shields.io/npm/v/react-styleguidist.svg)](https://www.npmjs.com/package/react-styleguidist)
 
-React Styleguidist is a React components style guide generator. It lists component `propTypes` and shows live, editable usage examples based on Markdown files. You can use it to generate a static HTML page to share and publish or as a workbench for developing new components using hot reloaded dev server. Check out [**the demo styleguide**](http://sapegin.github.io/react-styleguidist/).
+React Styleguidist is a style guide generator for React components. It lists component `propTypes` and shows live, editable usage examples based on Markdown files. You can use it to generate a static HTML page to share and publish or as a workbench for developing new components using hot reloaded dev server. Check out [**the demo styleguide**](http://sapegin.github.io/react-styleguidist/).
 
 Based on Webpack, webpack-dev-server and Babel.
 
@@ -227,7 +227,7 @@ You can change some settings in the `styleguide.config.js` file in your project�
 
 * **`getComponentPathLine`**<br>
   Type: `Function`, default: optional<br>
-  Function that returns a component path line (a component path under a component name in a style guide).
+  Function that returns a component path line (displayed under the component name).
 
   For example, instead of `components/Button/Button.js` you can print `import Button from 'components/Button';`:
 
@@ -235,9 +235,9 @@ You can change some settings in the `styleguide.config.js` file in your project�
   var path = require('path');
   module.exports = {
     // ...
-    getComponentPathLine: function(componentpath) {
-      var name = path.basename(componentpath, '.js');
-      var dir = path.dirname(componentpath);
+    getComponentPathLine: function(componentPath) {
+      var name = path.basename(componentPath, '.js');
+      var dir = path.dirname(componentPath);
       return 'import ' + name + ' from \'' + dir + '\';';
     }
   };
@@ -339,10 +339,10 @@ module.exports = {
 
 Also there are two special wrapper components. They do nothing by themselves and were made specifically to be replaced with a custom logic:
 
-* `StyleGuide` — the root component of a style guide React app.
-* `Wrapper` — wraps every example component.
+* `StyleGuide` — the root component of a style guide React app.
+* `Wrapper` — wraps every example component.
 
-For example you can replace the `Wrapper` component to wrap any example component in the [React Intl’s](http://formatjs.io/react/) provider component. You can’t wrap the whole style guide because every example component is compiled separately in a browser.
+For example you can replace the `Wrapper` component to wrap any example in the [React Intl’s](http://formatjs.io/react/) provider component. You can’t wrap the whole style guide because every example is compiled separately in a browser.
 
 ```javascript
 // styleguide.config.js
@@ -372,7 +372,7 @@ export default class Wrapper extends Component {
 ### How to debug my components and examples?
 
 1. Open your browser’s developer tools
-2. Write `debugger;` statement wherewhere you want: in a component source, a Markdown example or even in an editor in a browser.
+2. Write `debugger;` statement wherever you want: in a component source, a Markdown example or even in an editor in a browser.
 
 ![](http://wow.sapegin.me/image/002N2q01470J/debugging.png)
 
