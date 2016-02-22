@@ -37,7 +37,7 @@ module.exports.pitch = function() {
 
 	var componentSources;
 	if (typeof config.components === 'function') {
-		componentSources = config.components(config, glob);
+		componentSources = config.components();
 	}
 	else {
 		componentSources = glob.sync(path.resolve(config.configDir, config.components));

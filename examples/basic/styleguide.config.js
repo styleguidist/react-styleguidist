@@ -1,8 +1,9 @@
 var path = require('path');
+var glob = require('glob');
 
 module.exports = {
 	title: 'React Style Guide Example',
-	components: function(config, glob) {
+	components: function() {
 		return glob.sync(path.resolve(__dirname, 'lib/components/**/*.js')).filter(function(module) {
 			return /\/[A-Z]\w*\.js$/.test(module);
 		});
