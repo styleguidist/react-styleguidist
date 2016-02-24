@@ -4,4 +4,4 @@ node_js:
   - "4"
   - "5"
 after_script:
-  - "npm run build -- --bail"
+  - "npm run build"
