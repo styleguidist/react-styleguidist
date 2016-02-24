@@ -18,7 +18,7 @@ function getPackagePath(packageName) {
 }
 
 function validateWebpackConfig(webpackConfig) {
-	webpackConfig.module.loaders.forEach((loader) => {
+	webpackConfig.module.loaders.forEach(function(loader) {
 		if (!loader.include && !loader.exclude) {
 			throw Error('Styleguidist: "include" option is missed for ' + loader.test + ' Webpack loader.');
 		}
