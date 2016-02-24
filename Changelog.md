@@ -1,3 +1,8 @@
+# 2.0.1 - 2016-02-24
+
+* Fix Node 0.12 compatibility.
+* `styleguidist build` exits with an error code when build fails.
+
 # 2.0.0 - 2016-02-22
 
 *Here is a list of changes since 1.3.2 (changes since 2.0.0-rc6: fixed npm2 compatibility, removed rootDir, added assetsDir, no params are passed to components function).*
