@@ -11,8 +11,6 @@ export let Code = ({ className = '', children }) => {
 	return <code className={sMarkdown.code + ' ' + className}>{children}</code>;
 };
 
-export let UnknownPropType = () => <span>unknown</span>;
-
 export function unquote(string) {
 	return trim(string, '"\'');
 }
