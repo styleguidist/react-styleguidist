@@ -12,7 +12,7 @@ if (module.hot) {
 	module.hot.accept();
 }
 
-// Load styleguide
+// Load style guide
 let { config, components } = require('styleguide!');
 
 components = setComponentsNames(components);
