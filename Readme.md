@@ -382,6 +382,23 @@ export default class Wrapper extends Component {
 2. Press the ![Debugger](http://wow.sapegin.me/image/2n2z0b0l320m/debugger.png) button in your browser’s developer tools.
 3. Press the ![Continue](http://wow.sapegin.me/image/2d2z1Y2o1z1m/continue.png) button and the debugger will stop exception a the next exception.
 
+### Why does the style guide list one of my prop types as unknown?
+
+This occurs when you are assigning props via getDefaultProps that are not listed within the components propTypes.
+
+For example, the color prop here is assigned via getDefaultProps but missing from the propTypes, therefore the styleguide is unable to display the correct propType.
+
+```javascript
+Button.propTypes = {
+	children: PropTypes.string.isRequired,
+	size: PropTypes.oneOf(['small', 'normal', 'large']),
+};
+
+Button.defaultProps = {
+	color: '#333',
+	size: 'normal'
+};
+```
 ## Similar projects
 
 * [heatpack](https://github.com/insin/react-heatpack), a quick to setup hot-reloaded development server for React components.
