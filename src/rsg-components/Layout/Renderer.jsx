@@ -1,24 +1,21 @@
 import {PropTypes} from 'react';
-import Sticky from 'react-sticky';
 
 const s = require('./Layout.css');
 
 const Renderer = ({ title, components, toc }) => (
 	<div className={s.root}>
-		<main className={s.content}>
-			<h1 className={s.heading}>{title}</h1>
-			<div className={s.wrapper}>
+		<main className={s.wrapper}>
+			<div className={s.content}>
 				<div className={s.components}>
 					{components}
 					<footer className={s.footer}>
 						Generated with <a className={s.link} href="https://github.com/sapegin/react-styleguidist">React Styleguidist</a>
 					</footer>
 				</div>
-				<div className={s.sidebar}>
-					<Sticky className={s.sidebar} stickyClass={s.sidebarIsSticky} topOffset={-15} stickyStyle={{}}>
-						{toc}
-					</Sticky>
-				</div>
+			</div>
+			<div className={s.sidebar}>
+				<h1 className={s.heading}>{title}</h1>
+				{toc}
 			</div>
 		</main>
 	</div>

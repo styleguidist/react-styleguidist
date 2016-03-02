@@ -1,6 +1,7 @@
 .root {
 	composes: reset font from "../../styles/common.css";
 	list-style-type: none;
+	padding: 15px;
 }
 
 .item {

@@ -19,12 +19,6 @@
 	padding-left: 15px;
 }
 
-.sidebarIsSticky {
-	position: fixed;
-	top: 15px;
-	padding-left: 15px;
-}
-
 .heading {
 	composes: reset font from "../../styles/common.css";
 	margin: 0 0 30px 0;

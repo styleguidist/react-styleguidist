@@ -1,5 +1,4 @@
 import { PropTypes } from 'react';
-import Sticky from 'react-sticky';
 
 import s from './Layout.css';
 
@@ -14,11 +13,7 @@ const Renderer = ({ title, components, toc }) => (
 						Generated with <a className={s.link} href="https://github.com/sapegin/react-styleguidist">React Styleguidist</a>
 					</footer>
 				</div>
-				<div className={s.sidebar}>
-					<Sticky className={s.sidebar} stickyClass={s.sidebarIsSticky} topOffset={-15} stickyStyle={{}}>
-						{toc}
-					</Sticky>
-				</div>
+				<div className={s.sidebar}>{toc}</div>
 			</div>
 		</main>
 	</div>
