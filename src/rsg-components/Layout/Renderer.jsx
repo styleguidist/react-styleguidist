@@ -6,7 +6,6 @@ const Renderer = ({ title, components, toc }) => (
 	<div className={s.root}>
 		<main className={s.wrapper}>
 			<div className={s.content}>
-				<h1 className={s.heading}>{title}</h1>
 				<div className={s.components}>
 					{components}
 					<footer className={s.footer}>
@@ -14,7 +13,10 @@ const Renderer = ({ title, components, toc }) => (
 					</footer>
 				</div>
 			</div>
-			<div className={s.sidebar}>{toc}</div>
+			<div className={s.sidebar}>
+				<h1 className={s.heading}>{title}</h1>
+				{toc}
+			</div>
 		</main>
 	</div>
 );
