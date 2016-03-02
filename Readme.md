@@ -384,9 +384,9 @@ export default class Wrapper extends Component {
 
 ### Why does the style guide list one of my prop types as unknown?
 
-This occurs when you are assigning props via getDefaultProps that are not listed within the components propTypes.
+This occurs when you are assigning props via `getDefaultProps` that are not listed within the components `propTypes`.
 
-For example, the color prop here is assigned via getDefaultProps but missing from the propTypes, therefore the styleguide is unable to display the correct propType.
+For example, the color prop here is assigned via `getDefaultProps` but missing from the `propTypes`, therefore the styleguide is unable to display the correct prop type.
 
 ```javascript
 Button.propTypes = {
