@@ -9,6 +9,7 @@
 .content {
 	max-width: 1000px;
 	padding: 15px 30px;
+	margin: 0 auto;
 }
 
 .sidebar {
