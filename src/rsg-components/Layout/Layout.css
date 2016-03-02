@@ -2,32 +2,29 @@
 	composes: base base-bg from "../../styles/colors.css";
 }
 
-.content {
-	max-width: 1200px;
-	padding: 15px 30px;
-	margin-left: auto;
-	margin-right: auto;
+.wrapper {
+	padding-left: 200px;
 }
 
-.wrapper {
-	display: flex;
+.content {
+	max-width: 1000px;
+	padding: 15px 30px;
 }
 
 .sidebar {
-	position: relative;
+	composes: border from "../../styles/colors.css";
+	border-width: 0 1px 0 0;
+	background: #f5f5f5;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
 	width: 200px;
-	flex-shrink: 0;
-	padding-left: 15px;
+	overflow: scroll;
 }
 
 .components {
 	overflow: auto; /* to prevent the pane from growing out of the screen */
-}
-
-.sidebarIsSticky {
-	position: fixed;
-	top: 15px;
-	padding-left: 15px;
 }
 
 .heading {
