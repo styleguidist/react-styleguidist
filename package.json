@@ -90,6 +90,7 @@
     "start:customised": "./bin/styleguidist server --config examples/customised/styleguide.config.js",
     "lint": "eslint src --ext .js",
     "build": "./bin/styleguidist build --config examples/basic/styleguide.config.js",
+    "build:customised": "./bin/styleguidist build --config examples/customised/styleguide.config.js",
     "publish": "npm run build && gh-pages -d examples/basic/styleguide"
   },
   "keywords": [
