@@ -115,4 +115,16 @@ describe('Props', () => {
 		);
 	});
 
+	it('should render unknown proptype for a prop when a relevant proptype is not assigned', () => {
+		let result = render([], ['color: "pink"']);
+		expectReactShallow(result).to.contain(
+			<tr>
+				<td><Code>color</Code></td>
+				<td><Code>unknown</Code></td>
+				<td><Code>pink</Code></td>
+				<td><div/></td>
+			</tr>
+		);
+	});
+
 });
