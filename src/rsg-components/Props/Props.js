@@ -11,7 +11,7 @@ export let Code = ({ className = '', children }) => {
 	return <code className={sMarkdown.code + ' ' + className}>{children}</code>;
 };
 
-export let UnknownPropType = () => <span>unknown</span>
+export let UnknownPropType = () => <span>unknown</span>;
 
 export function unquote(string) {
 	return trim(string, '"\'');
@@ -39,7 +39,9 @@ export default class Props extends Component {
 	}
 
 	renderType(type) {
-		if (!type) return 'unknown'
+		if (!type) {
+			return 'unknown';
+		}
 
 		let { name } = type;
 
@@ -81,8 +83,11 @@ export default class Props extends Component {
 	}
 
 	renderExtra(prop) {
-		const type = getType(prop)
-		if (!type) return null
+		const type = getType(prop);
+
+		if (!type) {
+			return null;
+		}
 
 		switch (type.name) {
 			case 'enum':
