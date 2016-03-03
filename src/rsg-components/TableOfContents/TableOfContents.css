@@ -1,6 +1,10 @@
 .root {
 	composes: reset font from "../../styles/common.css";
+}
+
+.list {
 	list-style-type: none;
+	margin: 0;
 	padding: 15px;
 }
 
@@ -12,4 +16,18 @@
 
 .link {
 	composes: link from "../../styles/colors.css";
+}
+
+.search {
+	box-sizing: border-box;
+	display: block;
+	margin: 15px 0 0 15px;
+	font-size: 15px;
+	width: 170px;
+	padding: 6px 12px;
+	composes: base from "../../styles/colors.css";
+	composes: base-bg from "../../styles/colors.css";
+	composes: border from "../../styles/colors.css";
+	border-radius: 2px;
+	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
