@@ -17,9 +17,8 @@ class TableOfContents extends Component {
 
 		searchTerm = searchTerm.trim();
 		if (searchTerm !== '') {
-			components = components.filter(
-				component => component.name.match(new RegExp(searchTerm, 'gi'))
-			);
+			let regExp = new RegExp(searchTerm.split('').join('.*'), 'gi');
+			components = components.filter(component => component.name.match(regExp));
 		}
 
 		return (
