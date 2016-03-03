@@ -1,3 +1,15 @@
+# 2.1.0 - 2016-03-03
+
+## New features
+
+* You can filter componets by name in the sidebar (#95 by @zammer).
+
+## Other changes and fixes
+
+* Improved default style (#92 by @karlbright).
+* Ensure components list is scrollable (#92 by @karlbright).
+* Ensure missing proptypes do not throw errors (#91 by @karlbright).
+
 # 2.0.1 - 2016-02-24
 
 * Fix Node 0.12 compatibility.
