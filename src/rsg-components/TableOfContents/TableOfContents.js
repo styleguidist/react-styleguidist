@@ -8,48 +8,31 @@ class TableOfContents extends Component {
 		super(props);
 
 		this.state = {
-			searchTerm: '',
-			filteredComponents:[]
+			searchTerm: ''
 		};
-
-		this.handleChange = this.handleChange.bind(this);
-	}
-
-	searchFilter(value, component) {
-		const regex = new RegExp(value.toLowerCase().toString(), 'g');
-		return component.name.toLowerCase().match(regex);
-	}
-
-	handleChange(e) {
-
-		let components = this.props.components;
-
-		if(e.target.value !== '') {
-			components = components.filter(this.searchFilter.bind(null, e.target.value));
-		}
-
-		this.setState({
-			searchTerm: e.target.value,
-			filteredComponents: components
-		})
-	}
-
-	componentDidMount() {
-		this.setState({
-			filteredComponents: this.props.components
-		 })
 	}
 
 	render() {
-		const { filteredComponents, searchTerm } = this.state;
+		const { searchTerm } = this.state;
+		const { components } = this.props;
+
+		let filteredComponents = components;
+
+		if (searchTerm !== '') {
+			filteredComponents = components.filter(
+				(component) => component.name.match(new RegExp(searchTerm, 'gi'))
+			);
+		}
+
 		return (
-			<div>
+			<div className={s.root}>
 				<input
-					className={s.find}
+					className={s.search}
 					placeholder="Find component..."
-					onChange={this.handleChange}
-					value={searchTerm} />
-				<ul className={s.root}>
+					onChange={(e) => this.setState({ searchTerm: e.target.value })}
+					value={searchTerm}
+				/>
+				<ul className={s.list}>
 					{filteredComponents.map(({name}) => (
 						<li className={s.item} key={name}>
 							<a className={s.link} href={'#' + name}>{name}</a>
@@ -59,7 +42,7 @@ class TableOfContents extends Component {
 			</div>
 		);
 	}
-};
+}
 
 TableOfContents.propTypes = {
 	components: PropTypes.array.isRequired
