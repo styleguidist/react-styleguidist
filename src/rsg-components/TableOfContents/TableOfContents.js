@@ -3,7 +3,6 @@ import React, { Component, PropTypes } from 'react';
 import s from './TableOfContents.css';
 
 class TableOfContents extends Component {
-
 	constructor(props) {
 		super(props);
 
@@ -13,14 +12,13 @@ class TableOfContents extends Component {
 	}
 
 	render() {
-		const { searchTerm } = this.state;
-		const { components } = this.props;
+		let { searchTerm } = this.state;
+		let { components } = this.props;
 
-		let filteredComponents = components;
-
+		searchTerm = searchTerm.trim();
 		if (searchTerm !== '') {
-			filteredComponents = components.filter(
-				(component) => component.name.match(new RegExp(searchTerm, 'gi'))
+			components = components.filter(
+				component => component.name.match(new RegExp(searchTerm, 'gi'))
 			);
 		}
 
@@ -33,7 +31,7 @@ class TableOfContents extends Component {
 					value={searchTerm}
 				/>
 				<ul className={s.list}>
-					{filteredComponents.map(({name}) => (
+					{components.map(({ name }) => (
 						<li className={s.item} key={name}>
 							<a className={s.link} href={'#' + name}>{name}</a>
 						</li>
