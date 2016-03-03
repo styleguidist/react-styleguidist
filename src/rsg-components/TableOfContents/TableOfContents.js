@@ -26,7 +26,7 @@ class TableOfContents extends Component {
 			<div className={s.root}>
 				<input
 					className={s.search}
-					placeholder="Find component..."
+					placeholder="Filter by name"
 					onChange={(e) => this.setState({ searchTerm: e.target.value })}
 					value={searchTerm}
 				/>

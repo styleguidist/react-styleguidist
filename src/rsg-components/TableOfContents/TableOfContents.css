@@ -29,4 +29,7 @@
 	border-radius: 2px;
 	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
+.search:focus {
+	border-color: #1978c8;
+	outline: 0;
 }
