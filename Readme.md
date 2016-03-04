@@ -35,21 +35,22 @@ Based on Webpack, webpack-dev-server and Babel.
    Put the `updateWebpackConfig` function in your `styleguide.config.js`:
 
    ```javascript
+   var path = require('path');
    module.exports = {
-     // other options...
-
      updateWebpackConfig: function(webpackConfig, env) {
+       // Your source files folder or array of folders, should not include node_modules
+       let dir = path.join(__dirname, 'src');
        webpackConfig.module.loaders.push(
+         // Babel loader will use your project’s .babelrc
          {
            test: /\.jsx?$/,
-           // Affect only your project’s files
-           include: __dirname,
-           // Babel loader will use your project’s .babelrc
+           include: dir,
            loader: 'babel'
          },
+         // Other loaders that is needed for your components
          {
            test: /\.css$/,
-           include: __dirname,
+           include: dir,
            loader: 'style!css?modules&importLoaders=1'
          }
        );
@@ -58,7 +59,7 @@ Based on Webpack, webpack-dev-server and Babel.
    };
    ```
 
-   **Note**: don’t forget `include` option for your Webpack loaders, as otherwise they will interfere with Styleguidist’s loaders.
+   **Note**: don’t forget `include` or `exclude` options for your Webpack loaders, otherwise they will interfere with Styleguidist’s loaders. Also do not include `node_modules` folder.
 
 4. Configure [React Transform HMR](https://github.com/gaearon/react-transform-hmr) (hot module replacement). This is optional, but highly recommended.
 
