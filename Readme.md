@@ -391,13 +391,13 @@ For example, the color prop here is assigned via `getDefaultProps` but missing f
 
 ```javascript
 Button.propTypes = {
-	children: PropTypes.string.isRequired,
-	size: PropTypes.oneOf(['small', 'normal', 'large']),
+  children: PropTypes.string.isRequired,
+  size: PropTypes.oneOf(['small', 'normal', 'large']),
 };
 
 Button.defaultProps = {
-	color: '#333',
-	size: 'normal'
+  color: '#333',
+  size: 'normal'
 };
 ```
 
