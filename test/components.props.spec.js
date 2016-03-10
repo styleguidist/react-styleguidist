@@ -52,7 +52,7 @@ describe('Props', () => {
 			<tr>
 				<td><Code>color</Code></td>
 				<td><Code>string</Code></td>
-				<td></td>
+				<td><span>Required</span></td>
 				<td><div/></td>
 			</tr>
 		);

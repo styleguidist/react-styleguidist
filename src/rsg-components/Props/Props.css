@@ -47,6 +47,9 @@
 .optional {
 	composes: light from "../../styles/colors.css";
 }
+.required {
+	composes: light from "../../styles/colors.css";
+}
 .name {
 	composes: name from "../../styles/colors.css";
 }
