@@ -64,9 +64,7 @@ export default class Props extends Component {
 			);
 		}
 		else {
-			return (
-				<span className={s.optional}>Optional</span>
-			);
+			return '';
 		}
 	}
 

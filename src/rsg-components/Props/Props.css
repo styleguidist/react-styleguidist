@@ -44,9 +44,6 @@
 	padding-left: 15px;
 }
 
-.optional {
-	composes: light from "../../styles/colors.css";
-}
 .required {
 	composes: light from "../../styles/colors.css";
 }

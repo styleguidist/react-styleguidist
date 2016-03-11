@@ -28,7 +28,7 @@ describe('Props', () => {
 			<tr>
 				<td><Code>color</Code></td>
 				<td><Code>string</Code></td>
-				<td><span>Optional</span></td>
+				<td></td>
 				<td><div/></td>
 			</tr>
 		);
@@ -64,7 +64,7 @@ describe('Props', () => {
 			<tr>
 				<td><Code>colors</Code></td>
 				<td><Code>string[]</Code></td>
-				<td><span>Optional</span></td>
+				<td></td>
 				<td><div/></td>
 			</tr>
 		);
@@ -76,7 +76,7 @@ describe('Props', () => {
 			<tr>
 				<td><Code>num</Code></td>
 				<td><Code>Number</Code></td>
-				<td><span>Optional</span></td>
+				<td></td>
 				<td><div/></td>
 			</tr>
 		);
@@ -88,14 +88,14 @@ describe('Props', () => {
 			<tr>
 				<td><Code>foo</Code></td>
 				<td><Code>shape</Code></td>
-				<td><span>Optional</span></td>
+				<td></td>
 				<td>
 					<div>
 						<div>
-							<Code>bar</Code>: <Code>number</Code>
+							<Code>bar</Code>: <Code>number</Code> — <span>Required</span>
 						</div>
 						<div>
-							<Code>baz</Code>: <Code>any</Code> — <span>Optional</span>
+							<Code>baz</Code>: <Code>any</Code>
 						</div>
 					</div>
 				</td>
@@ -109,7 +109,7 @@ describe('Props', () => {
 			<tr>
 				<td><Code>color</Code></td>
 				<td><Code>string</Code></td>
-				<td><span>Optional</span></td>
+				<td></td>
 				<td><div><Markdown text="Label"/></div></td>
 			</tr>
 		);
