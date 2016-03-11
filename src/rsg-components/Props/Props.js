@@ -54,7 +54,9 @@ export default class Props extends Component {
 
 	renderDefault(prop) {
 		if (prop.required) {
-			return '';
+			return (
+				<span className={s.required}>Required</span>
+			);
 		}
 		else if (prop.defaultValue) {
 			return (
@@ -62,9 +64,7 @@ export default class Props extends Component {
 			);
 		}
 		else {
-			return (
-				<span className={s.optional}>Optional</span>
-			);
+			return '';
 		}
 	}
 

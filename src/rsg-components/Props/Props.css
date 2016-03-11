@@ -44,7 +44,7 @@
 	padding-left: 15px;
 }
 
-.optional {
+.required {
 	composes: light from "../../styles/colors.css";
 }
 .name {
