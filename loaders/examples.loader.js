@@ -12,6 +12,7 @@ var codePlaceholder = '<%{#code#}%>';
 // Slated for change in ES6, but not possible now:
 // https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/RegExp#Description
 var requireAnythingTest = 'require\\s*\\(([^)]+)\\)';
+var importAnythingRegex = /import\s*.+\s*from\s*([^;]+);/g;
 var requireAnythingRegex = new RegExp(requireAnythingTest, 'g');
 var simpleStringRegex = /^"([^"]+)"$|^'([^']+)'$/;
 
@@ -57,15 +58,16 @@ function readExamples(markdown) {
 // Returns a list of all strings used in require(...) calls in the given source code.
 // If there is any other expression inside the require call, it throws an error.
 function findRequires(codeString) {
-	var requires = {};
-	codeString.replace(requireAnythingRegex, function(requireExprMatch, requiredExpr) {
+	var requires = {}, processMatch = function(requireExprMatch, requiredExpr) {
 		var requireStrMatch = simpleStringRegex.exec(requiredExpr.trim());
 		if (!requireStrMatch) {
 			throw new Error('Requires using expressions are not supported in examples. (Used: ' + requireExprMatch + ')');
 		}
 		var requiredString = requireStrMatch[1] ? requireStrMatch[1] : requireStrMatch[2];
 		requires[requiredString] = true;
-	});
+    };
+	codeString.replace(requireAnythingRegex, processMatch);
+	codeString.replace(importAnythingRegex, processMatch);
 	return Object.keys(requires);
 }
 
