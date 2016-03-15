@@ -126,6 +126,11 @@ const mockData = require('./mocks');
 <Message content={mockData.hello}/>
 ```
 
+Or you can `import` external files into your examples:
+
+  import {female} from "dog-names";
+  <RandomButton variants={female}/>
+
 As an utility, also the [lodash](https://lodash.com/) library is available globally as `_`.
 
 Each example has its own state that you can access at the `state` variable and change with the `setState` function. Default state is `{}`.
