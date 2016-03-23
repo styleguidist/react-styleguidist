@@ -18,11 +18,12 @@ let { config, components } = require('styleguide!');
 
 // If any of the components have multiple children, flatten them.
 components = _.flatMap(components, c => {
-  if (_.isArray(c.props)) {
-    return c.props.map(props => _.extend({}, c, {props: props}))
-  } else {
-    return c;
-  }
+	if (_.isArray(c.props)) {
+		return c.props.map(props => _.extend({}, c, {props: props}));
+	}
+	else {
+		return c;
+	}
 });
 
 components = setComponentsNames(components);
