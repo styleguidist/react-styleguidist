@@ -260,6 +260,51 @@ You can change some settings in the `styleguide.config.js` file in your projectâ
   };
   ```
 
+* **`resolver`**<br>
+  Type: `Function`, optional<br>
+  Function that allows you to override the mechanism used to identify classes/components to analyze. Default
+  behaviour is to find a single exported component in each file (and failing if more than one export is found).
+  Other behaviours can be configured, such as finding all components or writing a custom detection method. See
+  the [react-docgen resolver documentation](https://github.com/reactjs/react-docgen#resolver) for more
+  information about resolvers.
+
+  ```javascript
+  module.exports = {
+    // ...
+    resolver: require('react-docgen').resolver.findAllComponentDefinitions
+  }
+  ```
+
+* **`handlers`**<br>
+  Type: `Array of Function`, optional<br>
+  Array of functions used to process the discovered components and generate documentation objects. Default
+  behaviours include discovering component documentation blocks, prop types and defaults. If setting this
+  property, it is best to build from the default `react-docgen` handler list, such as in the example below.
+  See the [react-docgen handler documentation](https://github.com/reactjs/react-docgen#handlers) for more
+  information about handlers.
+
+  ```javascript
+  module.exports = {
+    // ...
+    handlers: require('react-docgen').defaultHandlers.concat(function(documentation, path) {
+      // Calculate a display name for components based upon the declared class name.
+      if (path.value.type == 'ClassDeclaration' && path.value.id.type == 'Identifier') {
+        documentation.set('displayName', path.value.id.name);
+
+        // Calculate the key required to find the component in the module exports
+        if (path.parentPath.value.type == 'ExportNamedDeclaration') {
+          documentation.set('path', path.value.id.name);
+        }
+      }
+
+      // The component is the default export
+      if (path.parentPath.value.type == 'ExportDefaultDeclaration') {
+        documentation.set('path', 'default');
+      }
+    }))
+  }
+  ```
+
 
 ## CLI commands and options
 
