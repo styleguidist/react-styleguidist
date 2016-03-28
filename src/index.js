@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { setComponentsNames, globalizeComponents, promoteInlineExamples } from './utils/utils';
+import { setComponentsNames, globalizeComponents, promoteInlineExamples, flattenChildren } from './utils/utils';
 import StyleGuide from 'rsg-components/StyleGuide';
 
 import 'highlight.js/styles/tomorrow.css';
@@ -16,6 +16,7 @@ if (module.hot) {
 let { config, components, sections } = require('styleguide!');
 
 function processComponents(cs) {
+	cs = flattenChildren(cs);
 	cs = promoteInlineExamples(cs);
 	cs = setComponentsNames(cs);
 	globalizeComponents(cs);
