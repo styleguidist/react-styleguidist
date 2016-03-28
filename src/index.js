@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { setComponentsNames, globalizeComponents } from './utils/utils';
+import { setComponentsNames, globalizeComponents, promoteInlineExamples, flattenChildren } from './utils/utils';
 import StyleGuide from 'rsg-components/StyleGuide';
 import _ from 'lodash';
 
@@ -16,16 +16,8 @@ if (module.hot) {
 // Load style guide
 let { config, components } = require('styleguide!');
 
-// If any of the components have multiple children, flatten them.
-components = _.flatMap(components, c => {
-	if (_.isArray(c.props)) {
-		return c.props.map(props => _.extend({}, c, {props: props}));
-	}
-	else {
-		return c;
-	}
-});
-
+components = flattenChildren(components);
+components = promoteInlineExamples(components);
 components = setComponentsNames(components);
 globalizeComponents(components);
 
