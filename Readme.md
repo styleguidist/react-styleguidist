@@ -115,6 +115,22 @@ Styleguidist generates documentation from 2 sources:
   Any [Markdown](http://daringfireball.net/projects/markdown/) is **allowed** _here_.
   ```
 
+* **Loading examples using doclet tags**
+
+  Additional example files can be specifically associated with components using doclet (`@example`) syntax.
+  The following component will also have an example as loaded from the `extra.examples.md` file.
+
+  ```js
+  /**
+   * Component is described here.
+   *
+   * @example ./extra.examples.md
+   */
+  export default class SomeComponent extends React.Component {
+    // ...
+  }
+  ```
+
 ### Writing code examples
 
 Code examples in Markdown use the ES6+JSX syntax. They can access all the components listed, they are exposed as global variables.
