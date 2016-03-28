@@ -4,7 +4,7 @@ import TableOfContents from 'rsg-components/TableOfContents';
 
 import s from './Layout.css';
 
-import _ from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 
 const Layout = (Renderer) => class extends Component {
 	static propTypes = {
@@ -14,7 +14,7 @@ const Layout = (Renderer) => class extends Component {
 	};
 
 	renderComponents(config, components, sections) {
-		if (!_.isEmpty(components) || !_.isEmpty(sections)) {
+		if (!isEmpty(components) || !isEmpty(sections)) {
 			return (
 				<Components highlightTheme={config.highlightTheme} components={components} sections={sections} />
 			);
