@@ -4,16 +4,19 @@ import TableOfContents from 'rsg-components/TableOfContents';
 
 import s from './Layout.css';
 
+import _ from 'lodash';
+
 const Layout = (Renderer) => class extends Component {
 	static propTypes = {
 		config: PropTypes.object.isRequired,
-		components: PropTypes.array.isRequired
+		components: PropTypes.array.isRequired,
+		sections: PropTypes.array.isRequired
 	};
 
-	renderComponents(config, components) {
-		if (components.length) {
+	renderComponents(config, components, sections) {
+		if (!_.isEmpty(components) || !_.isEmpty(sections)) {
 			return (
-				<Components highlightTheme={config.highlightTheme} components={components}/>
+				<Components highlightTheme={config.highlightTheme} components={components} sections={sections} />
 			);
 		}
 		else {
@@ -26,18 +29,19 @@ const Layout = (Renderer) => class extends Component {
 		}
 	}
 
-	renderTableOfContents(components) {
-		return <TableOfContents components={components}/>;
+	renderTableOfContents(components, sections) {
+		return <TableOfContents components={components} sections={sections} />;
 	}
 
 	render() {
-		let { config, components } = this.props;
+		let { config, components, sections } = this.props;
 
 		return (
 			<Renderer
 				title={config.title}
-				components={this.renderComponents(config, components)}
-				toc={this.renderTableOfContents(components)}
+				components={this.renderComponents(config, components, sections)}
+				sections={this.props.sections}
+				toc={this.renderTableOfContents(components, sections)}
 			/>
 		);
 	}

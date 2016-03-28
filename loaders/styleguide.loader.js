@@ -31,16 +31,15 @@ function requireIt(filepath) {
 	return 'require(' + JSON.stringify(filepath) + ')';
 }
 
-module.exports = function() {};
-module.exports.pitch = function() {
-	this.cacheable && this.cacheable();
+function processComponentsSource(components, config) {
+	if (!components) return null;
 
 	var componentSources;
-	if (typeof config.components === 'function') {
-		componentSources = config.components();
+	if (typeof components === 'function') {
+		componentSources = components();
 	}
 	else {
-		componentSources = glob.sync(path.resolve(config.configDir, config.components));
+		componentSources = glob.sync(path.resolve(config.configDir, components));
 	}
 
 	if (config.verbose) {
@@ -54,7 +53,29 @@ module.exports.pitch = function() {
 		componentSources = _.filter(componentSources, hasExamples);
 	}
 
-	var components = componentSources.map(processComponent);
+	return '[' + componentSources.map(processComponent).join(',') + ']';
+}
+
+function processSection(section, config) {
+	return '{' + [
+		'name: ' + JSON.stringify(section.name),
+		'content: ' + (section.content ? requireIt('examples!' + section.content) : null),
+		'components: ' + processComponentsSource(section.components, config),
+		'sections: ' + processSectionsList(section.sections, config)
+	].join(',') + '}'
+}
+
+function processSectionsList(sections, config) {
+	if (!sections) return null;
+
+	return '[' + 
+		sections.map(function(section) { return processSection(section, config); }).join(',') +
+	']';
+}
+
+module.exports = function() {};
+module.exports.pitch = function() {
+	this.cacheable && this.cacheable();
 
 	var simplifiedConfig = _.pick(config, [
 		'title',
@@ -64,7 +85,8 @@ module.exports.pitch = function() {
 	return [
 		'module.exports = {',
 		'	config: ' + JSON.stringify(simplifiedConfig) + ',',
-		'	components: [' + components.join(',') + ']',
+		'	components: ' + processComponentsSource(config.components, config) + ',',
+		'	sections: ' + processSectionsList(config.sections, config),
 		'};'
 	].join('\n');
 };
