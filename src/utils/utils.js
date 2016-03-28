@@ -16,3 +16,12 @@ export function globalizeComponents(components) {
 		global[component.name] = component.module.default || component.module;
 	});
 }
+
+export function promoteInlineExamples(components) {
+	components.map(c => {
+		if (c.props.example) {
+			c.examples = (c.examples || []).concat(c.props.example);
+		}
+	});
+	return components;
+}
