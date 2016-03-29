@@ -10,6 +10,7 @@ var utils = require('./server');
 var CONFIG_FILENAME = 'styleguide.config.js';
 var DEFAULT_CONFIG = {
 	components: null,
+	sections: null,
 	skipComponentsWithoutExample: false,
 	title: 'Style guide',
 	styleguideDir: 'styleguide',
@@ -123,8 +124,11 @@ function findConfig(argv) {
  * @param {Object} options Config options.
  */
 function validateConfig(options) {
-	if (!options.components) {
-		throw Error('Styleguidist: "components" option is required.');
+	if (!options.components && !options.sections) {
+		throw Error('Styleguidist: "components" or "sections" option is required.');
+	}
+	if (options.sections && !_.isArray(options.sections)) {
+		throw Error('Styleguidist: "sections" option must be an array.');
 	}
 	if (options.getExampleFilename && typeof options.getExampleFilename !== 'function') {
 		throw Error('Styleguidist: "getExampleFilename" option must be a function.');

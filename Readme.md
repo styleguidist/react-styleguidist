@@ -170,7 +170,7 @@ You *can* use `React.createClass` in your code examples, but if you need a more 
 You can change some settings in the `styleguide.config.js` file in your projectâ€™s root folder.
 
 * **`components`**<br>
-  Type: `String` or `Function`, required<br>
+  Type: `String` or `Function`, required unless `sections` is provided<br>
   - when `String`: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules. Relative to config folder.
   - when `Function`: a function that returns an array of module paths.
 
@@ -193,6 +193,28 @@ You can change some settings in the `styleguide.config.js` file in your projectâ
       });
     }
   };
+  ```
+
+* **`sections`**<br>
+  Type: `Array`
+
+  Allows components to be grouped into sections with a title and optional overview content. Sections
+  can also be content only, with no associated components (for example, a textual introduction). A section
+  definition consists of:<br>
+  - `name` - the title of the section.
+  - `content` (optional) - location of a Markdown file containing the overview content.
+  - `components` (optional) - a string or function providing a list of components. The same rules apply as for the root `components` option.
+
+  Configuring a guide with a textual introduction section, then a UI section would look like:
+
+  ```javascript
+  module.exports = {
+    // ...
+    sections: [
+      {name: 'Introduction', content: 'docs/introduction.md'},
+      {name: 'UI Components', content: 'docs/ui.md', components: 'lib/components/ui/*.js'}
+    ]
+  }
   ```
 
 * **`skipComponentsWithoutExample`**<br>

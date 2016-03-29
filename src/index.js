@@ -13,11 +13,27 @@ if (module.hot) {
 }
 
 // Load style guide
-let { config, components } = require('styleguide!');
+let { config, components, sections } = require('styleguide!');
 
-components = flattenChildren(components);
-components = promoteInlineExamples(components);
-components = setComponentsNames(components);
-globalizeComponents(components);
+function processComponents(cs) {
+	cs = flattenChildren(cs);
+	cs = promoteInlineExamples(cs);
+	cs = setComponentsNames(cs);
+	globalizeComponents(cs);
 
-ReactDOM.render(<StyleGuide config={config} components={components}/>, document.getElementById('app'));
+	return cs;
+}
+
+function processSections(ss) {
+	return ss.map(section => {
+		section.components = processComponents(section.components || []);
+		section.sections = processSections(section.sections || []);
+
+		return section;
+	});
+}
+
+components = processComponents(components);
+sections = processSections(sections);
+
+ReactDOM.render(<StyleGuide config={config} components={components} sections={sections} />, document.getElementById('app'));
