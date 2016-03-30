@@ -116,8 +116,8 @@ export default class Props extends Component {
 		if (!Array.isArray(getType(prop).value)) {
 			return <span>{getType(prop).value}</span>;
 		}
-		let values = getType(prop).value.map((value) => (
-			<li className={s.listItem} key={value.name}>
+		let values = getType(prop).value.map((value, i) => (
+			<li className={s.listItem} key={value.name + i}>
 				<Code className={s.type}>{this.renderType(value)}</Code>
 			</li>
 		));
