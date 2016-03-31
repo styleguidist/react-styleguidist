@@ -298,6 +298,11 @@ You can change some settings in the `styleguide.config.js` file in your projectâ
   };
   ```
 
+* **`namedExport`**<br>
+  Type: `bool`, optional<br>
+  If set the named export is used instead of the default export for resolving components in examples. 
+  The name of the file is used as name of the export. 
+
 * **`resolver`**<br>
   Type: `Function`, optional<br>
   Function that allows you to override the mechanism used to identify classes/components to analyze. Default
