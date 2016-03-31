@@ -5,6 +5,10 @@ var prettyjson = require('prettyjson');
 var _ = require('lodash');
 var config = require('../src/utils/config');
 
+function getNamedExport(filepath) {
+	return path.parse(filepath).name;	
+}
+
 function processComponent(filepath) {
 	var examplesFile = config.getExampleFilename(filepath);
 
@@ -16,7 +20,7 @@ function processComponent(filepath) {
         'filepath: ' + JSON.stringify(filepath),
 		'nameFallbak: ' + JSON.stringify(nameFallbak),
 		'pathLine: ' + JSON.stringify(config.getComponentPathLine(path.relative(config.configDir, filepath))),
-		'module: ' + requireIt(filepath),
+		'module: ' + requireIt(filepath, config.namedExport ? getNamedExport : null),
 		'props: ' + requireIt('!!props!' + filepath),
 		'examples: ' + (hasExamples(filepath) ? requireIt('examples!' + examplesFile) : null)
 	].join(',') + '}';
@@ -27,8 +31,13 @@ function hasExamples(filepath) {
 	return !!fs.existsSync(examplesFile);
 }
 
-function requireIt(filepath) {
-	return 'require(' + JSON.stringify(filepath) + ')';
+function requireIt(filepath, getName) {
+	var namedExportPart = '';
+	if (getName) {
+		namedExportPart = '.' + getName(filepath);
+	}
+
+	return 'require(' + JSON.stringify(filepath) + ')' + namedExportPart;
 }
 
 function processComponentsSource(components, config) {
