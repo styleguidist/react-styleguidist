@@ -8,9 +8,14 @@ var requirePlaceholder = '<%{#require#}%>';
 module.exports = function (source) {
 	this.cacheable && this.cacheable();
 
+	var defaultPropsParser = function(filePath, source) {
+		return reactDocs.parse(source, config.resolver, config.handlers);
+	};
+
 	var jsonProps;
 	try {
-		var props = reactDocs.parse(source, config.resolver, config.handlers);
+		var propsParser = config.propsParser || defaultPropsParser;
+		var props = propsParser(this.request.split('!').pop(), source);
 
 		jsonProps = (isArray(props) ? props : [props]).map(function(doc) {
 			if (doc.description) {
@@ -25,7 +30,7 @@ module.exports = function (source) {
 			}
 
 			return JSON.stringify(doc).replace(
-				'"' + requirePlaceholder + '"', 
+				'"' + requirePlaceholder + '"',
 				doc.doclets.example && 'require(' + JSON.stringify('examples!' + doc.doclets.example) + ')'
 			);
 		});
