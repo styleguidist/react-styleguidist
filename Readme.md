@@ -298,6 +298,20 @@ You can change some settings in the `styleguide.config.js` file in your projectâ
   };
   ```
 
+* **`propsParser`**<br>
+  Type: `Function`, optional<br>
+  Function that allows you to override the mechanism used to parse props from a source file. Default mechanism is using
+  [react-docgen](https://github.com/reactjs/react-docgen) to parse props.
+
+  ```javascript
+  module.exports = {
+    // ...
+    propsParser: function(filePath, source) {
+      return require('react-docgen').parse(source);
+    }
+  }
+  ```
+
 * **`resolver`**<br>
   Type: `Function`, optional<br>
   Function that allows you to override the mechanism used to identify classes/components to analyze. Default
