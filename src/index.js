@@ -34,6 +34,6 @@ function processSections(ss) {
 }
 
 components = processComponents(components);
-sections = processSections(sections);
+sections = processSections(sections || []);
 
 ReactDOM.render(<StyleGuide config={config} components={components} sections={sections} />, document.getElementById('app'));
