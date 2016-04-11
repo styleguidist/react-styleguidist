@@ -35,13 +35,12 @@ function processSections(ss) {
 
 // Components are required unless sections are provided
 if (sections) {
-	sections = processSections(sections)
-	components = []
-} else {
-	components = processComponents(components)
-	sections = []
+	sections = processSections(sections);
+	components = [];
 }
-components = components ? processComponents(components) : [];
-sections = sections ? processSections(sections) : [];
+else {
+	components = processComponents(components);
+	sections = [];
+}
 
 ReactDOM.render(<StyleGuide config={config} components={components} sections={sections} />, document.getElementById('app'));
