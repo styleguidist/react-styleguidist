@@ -10,7 +10,9 @@ const Layout = (Renderer) => class extends Component {
 	static propTypes = {
 		config: PropTypes.object.isRequired,
 		components: PropTypes.array.isRequired,
-		sections: PropTypes.array.isRequired
+		sections: PropTypes.array.isRequired,
+		onSearchChange: PropTypes.func.isRequired,
+		onItemFocus: PropTypes.func.isRequired
 	};
 
 	renderComponents(config, components, sections) {
@@ -30,7 +32,14 @@ const Layout = (Renderer) => class extends Component {
 	}
 
 	renderTableOfContents(components, sections) {
-		return <TableOfContents components={components} sections={sections} />;
+		return (
+			<TableOfContents
+				components={components}
+				sections={sections}
+				onInputChange={this.props.onSearchChange}
+				onItemDoubleClick={this.props.onItemFocus}
+			/>
+		);
 	}
 
 	render() {

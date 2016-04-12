@@ -12,16 +12,11 @@ class TableOfContents extends Component {
 	}
 
 	renderLevel(components, sections, searchTerm) {
-		if (searchTerm !== '') {
-			let regExp = new RegExp(searchTerm.split('').join('.*'), 'gi');
-			components = components.filter(component => component.name.match(regExp));
-		}
-
 		return (
 			<ul className={s.list}>
 				{(components || []).map(({ name }) => (
 					<li className={s.item} key={name}>
-						<a className={s.link} href={'#' + name}>{name}</a>
+						<a className={s.link} href={'#' + name} onDoubleClick={this.props.onItemDoubleClick}>{name}</a>
 					</li>
 				))}
 				{(sections || []).map(({ name, components: subComponents, sections: subSections }) => (
@@ -32,6 +27,11 @@ class TableOfContents extends Component {
 				))}
 			</ul>
 		);
+	}
+
+	handleInputChange (e) {
+		this.setState({ searchTerm: e.target.value })
+		this.props.onInputChange(e)
 	}
 
 	render() {
@@ -45,7 +45,7 @@ class TableOfContents extends Component {
 				<input
 					className={s.search}
 					placeholder="Filter by name"
-					onChange={(e) => this.setState({ searchTerm: e.target.value })}
+					onChange={this.handleInputChange.bind(this)}
 					value={searchTerm}
 				/>
 				{this.renderLevel(components, sections, searchTerm)}
@@ -56,7 +56,9 @@ class TableOfContents extends Component {
 
 TableOfContents.propTypes = {
 	components: PropTypes.array.isRequired,
-	sections: PropTypes.array.isRequired
+	sections: PropTypes.array.isRequired,
+	onInputChange: PropTypes.func.isRequired,
+	onItemDoubleClick: PropTypes.func.isRequired
 };
 
 export default TableOfContents;
