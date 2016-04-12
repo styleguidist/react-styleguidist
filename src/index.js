@@ -1,4 +1,5 @@
 import React from 'react';
+import filter from 'lodash/filter';
 import ReactDOM from 'react-dom';
 import { setComponentsNames, globalizeComponents, promoteInlineExamples, flattenChildren } from './utils/utils';
 import StyleGuide from 'rsg-components/StyleGuide';
@@ -36,4 +37,13 @@ function processSections(ss) {
 components = processComponents(components);
 sections = processSections(sections || []);
 
-ReactDOM.render(<StyleGuide config={config} components={components} sections={sections} />, document.getElementById('app'));
+if (window.location.hash.substr(0, 3) === '#!/') {
+	const targetComponentName = window.location.hash.substr(3);
+	const filteredComponents = filter(components, function (component) {
+		return component.name === targetComponentName
+	})
+	ReactDOM.render(<StyleGuide config={config} components={filteredComponents} sections={[]} />, document.getElementById('app'));
+} else {
+	ReactDOM.render(<StyleGuide config={config} components={components} sections={sections} />, document.getElementById('app'));
+}
+
