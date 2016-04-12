@@ -3,10 +3,11 @@ import Markdown from 'rsg-components/Markdown';
 import Props from 'rsg-components/Props';
 import Playground from 'rsg-components/Playground';
 
-const ReactComponent = (Renderer) => class extends Component {
+class ReactComponent extends Component {
 	static propTypes = {
 		highlightTheme: PropTypes.string.isRequired,
-		component: PropTypes.object.isRequired
+		component: PropTypes.object.isRequired,
+		renderer: PropTypes.func.isRequired
 	};
 
 	renderDescription(description) {
@@ -57,15 +58,15 @@ const ReactComponent = (Renderer) => class extends Component {
 	render() {
 		const {highlightTheme, component} = this.props;
 
-		return (
-			<Renderer
-				name={component.name}
-				pathLine={component.pathLine}
-				description={this.renderDescription(component.props.description)}
-				propList={this.renderProps(component.props)}
-				examples={this.renderExamples(highlightTheme, component.examples)}
-			/>
-		);
+		return this.props.renderer({
+			name: component.name,
+			pathLine: component.pathLine,
+			description: this.renderDescription(component.props.description),
+			propList: this.renderProps(component.props),
+			examples: this.renderExamples(highlightTheme, component.examples),
+			visible: component.visible,
+			active: component.active
+		});
 	}
 };
 

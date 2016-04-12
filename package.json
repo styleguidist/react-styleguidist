@@ -46,6 +46,7 @@
     "glob": "6.0.4",
     "highlight.js": "9.1.0",
     "html-webpack-plugin": "2.8.1",
+    "immutable": "^3.7.6",
     "json-loader": "0.5.4",
     "lodash": "4.2.1",
     "markdown-it": "5.1.0",
