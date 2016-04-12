@@ -14,6 +14,10 @@ const Layout = (Renderer) => class extends Component {
 		sidebar: PropTypes.bool
 	};
 
+	static defaultProps = {
+		sidebar: true
+	};
+
 	renderComponents(config, components, sections) {
 		if (!isEmpty(components) || !isEmpty(sections)) {
 			return (
