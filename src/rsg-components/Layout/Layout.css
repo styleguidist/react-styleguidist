@@ -53,3 +53,6 @@
 .link {
 	composes: link from "../../styles/colors.css";
 }
+
+.withoutSidebar .wrapper { padding-left: 0; }
+.withoutSidebar .sidebar { display: none; }

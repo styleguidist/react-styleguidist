@@ -37,7 +37,7 @@
     "babel-runtime": "6.5.0",
     "babel-standalone": "6.4.4",
     "chalk": "1.1.1",
-    "classnames": "2.2.3",
+    "classnames": "^2.2.3",
     "codemirror": "5.11.0",
     "css-loader": "0.23.1",
     "entities": "~1.1.1",
