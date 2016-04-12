@@ -9,6 +9,11 @@ module.exports = {
 		});
 	},
 	updateWebpackConfig: function(webpackConfig, env) {
+		var dirs = [
+			path.resolve(__dirname, 'lib'),
+			path.resolve(__dirname, 'styleguide'),
+		];
+
 		// Supply your own renderers and styles below
 		webpackConfig.resolve.alias['rsg-components/Layout/Renderer'] = path.join(__dirname, 'styleguide/components/Layout');
 		webpackConfig.resolve.alias['rsg-components/ReactComponent/Renderer'] = path.join(__dirname, 'styleguide/components/ReactComponent');
@@ -16,12 +21,12 @@ module.exports = {
 		webpackConfig.module.loaders.push(
 			{
 				test: /\.jsx?$/,
-				include: __dirname,
+				include: dirs,
 				loader: 'babel'
 			},
 			{
 				test: /\.css$/,
-				include: __dirname,
+				include: dirs,
 				loader: 'style!css?modules&importLoaders=1'
 			},
 			{

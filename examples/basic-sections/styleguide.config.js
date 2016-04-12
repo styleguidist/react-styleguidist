@@ -15,15 +15,16 @@ module.exports = {
 		}
 	],
 	updateWebpackConfig: function(webpackConfig, env) {
+		var dir = path.resolve(__dirname, 'lib');
 		webpackConfig.module.loaders.push(
 			{
 				test: /\.jsx?$/,
-				include: __dirname,
+				include: dir,
 				loader: 'babel'
 			},
 			{
 				test: /\.css$/,
-				include: __dirname,
+				include: dir,
 				loader: 'style!css?modules&importLoaders=1'
 			},
 			{
