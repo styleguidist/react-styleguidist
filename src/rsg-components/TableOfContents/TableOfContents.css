@@ -33,3 +33,5 @@
 	border-color: #1978c8;
 	outline: 0;
 }
+
+.inactive { opacity: 0.5; }

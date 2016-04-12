@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import classnames from 'classnames';
 
 import s from './TableOfContents.css';
 
@@ -22,8 +23,9 @@ class TableOfContents extends Component {
 		if (!components || !components.map) return null;
 		return components.map((component) => {
 			if (!component.visible) return null;
+			console.log(component.active);
 			return (
-				<li className={s.item} key={component.name}>
+				<li className={classnames(s.item, {[s.inactive]: !component.active })} key={component.name}>
 					<a className={s.link} href={'#' + component.name} onDoubleClick={this.props.onItemDoubleClick.bind(null, component)}>{component.name}</a>
 				</li>
 			)

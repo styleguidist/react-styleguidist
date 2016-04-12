@@ -13,18 +13,33 @@ export default class StyleGuide extends Component {
 	}
 
 	handleSearchChange(e) {
-		this.setState({ filter: e.target.value })
+		this.setState({ filter: e.target.value });
 	}
 
-	handleItemFocus(e) {
-		console.log('item focus')
+	handleItemFocus(item, e) {
+		if (this.state.active && this.state.active.name === item.name) {
+			this.setState({ active: null });
+		}
+		else {
+			this.setState({ active: item });
+		}
 	}
 
 	render() {
 		const components = this.state.components.map(component => {
 			const regexp = new RegExp(this.state.filter, 'gi');
-			return component.set('visible', regexp.test(component.get('name')));
+			component = component.set('visible', regexp.test(component.get('name')));
+
+			if (this.state.active && this.state.active !== null) {
+				component = component.set('active', this.state.active.name === component.get('name'));
+			} else {
+				component = component.set('active', true);
+			}
+
+			return component
 		})
+
+		console.log(components.toJS())
 
 		return (
 			<Layout
