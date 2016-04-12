@@ -7,11 +7,7 @@ class TableOfContents extends Component {
 	renderLevel(components, sections) {
 		return (
 			<ul className={s.list}>
-				{(components || []).map(({ name }) => (
-					<li className={s.item} key={name}>
-						<a className={s.link} href={'#' + name} onDoubleClick={this.props.onItemDoubleClick}>{name}</a>
-					</li>
-				))}
+				{this.renderComponents(components)}
 				{(sections || []).map(({ name, components: subComponents, sections: subSections }) => (
 					<li key={name}>
 						<a className={s.section} href={'#' + name}>{name}</a>
@@ -20,6 +16,18 @@ class TableOfContents extends Component {
 				))}
 			</ul>
 		);
+	}
+
+	renderComponents (components) {
+		if (!components || !components.map) return null;
+		return components.map((component) => {
+			if (!component.visible) return null;
+			return (
+				<li className={s.item} key={component.name}>
+					<a className={s.link} href={'#' + component.name} onDoubleClick={this.props.onItemDoubleClick.bind(null, component)}>{component.name}</a>
+				</li>
+			)
+		})
 	}
 
 	render() {
