@@ -4,13 +4,17 @@
 }
 
 .header {
-
+	composes: font from "../../styles/common.css";
+	margin-bottom: 20px;
+	font-weight: bold;
 }
 
 .heading {
-
+	margin: 0 0 6px 0;
+	font-size: 38px;
+	font-weight: bold;
 }
 
 .anchor {
-  
+
 }
