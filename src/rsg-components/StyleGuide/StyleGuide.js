@@ -1,19 +1,19 @@
 import { Component } from 'react';
 import Immutable from 'immutable';
 import Layout from 'rsg-components/Layout';
-import Renderer from 'rsg-components/Layout/Renderer';
 
 export default class StyleGuide extends Component {
 	constructor (props){
 		super(props)
 		this.state = {
 			components: Immutable.fromJS(this.props.components),
-			sections: Immutable.fromJS(this.props.sections)
+			sections: Immutable.fromJS(this.props.sections),
+			filter: ''
 		}
 	}
 
 	handleSearchChange(e) {
-		console.log('search change')
+		this.setState({ filter: e.target.value })
 	}
 
 	handleItemFocus(e) {
@@ -21,15 +21,19 @@ export default class StyleGuide extends Component {
 	}
 
 	render() {
-		const LayoutRenderer = Layout(Renderer);
+		const components = this.state.components.map(component => {
+			const regexp = new RegExp(this.state.filter, 'gi');
+			return component.set('visible', regexp.test(component.get('name')));
+		})
 
 		return (
-			<LayoutRenderer
+			<Layout
 				{...this.props}
-				components={this.state.components.toJS()}
+				components={components.toJS()}
 				sections={this.state.sections.toJS()}
 				onSearchChange={this.handleSearchChange.bind(this)}
 				onItemFocus={this.handleItemFocus.bind(this)}
+				filter={this.state.filter}
 			/>
 		);
 	}

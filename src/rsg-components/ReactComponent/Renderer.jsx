@@ -1,10 +1,11 @@
 import {PropTypes} from 'react';
+import classnames from 'classnames';
 
 const s = require('./ReactComponent.css');
 
-const Renderer = ({ name, pathLine, description, propList, examples }) => {
+const Renderer = ({ name, pathLine, description, propList, examples, visible }) => {
 	return (
-		<div className={s.root}>
+		<div className={classnames(s.root, { [s.visible]: visible })}>
 			<header className={s.header}>
 				<h2 className={s.heading} id={name}>
 					<a className={s.anchor} href={'#' + name}></a>
@@ -26,7 +27,8 @@ Renderer.propTypes = {
 	pathLine: PropTypes.string.isRequired,
 	description: PropTypes.object,
 	propList: PropTypes.object,
-	examples: PropTypes.array
+	examples: PropTypes.array,
+	visible: PropTypes.bool
 };
 
 

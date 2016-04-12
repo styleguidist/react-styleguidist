@@ -1,6 +1,6 @@
 import { Component, PropTypes } from 'react';
 import ReactComponent from 'rsg-components/ReactComponent';
-import Renderer from 'rsg-components/ReactComponent/Renderer';
+import ReactComponentRenderer from 'rsg-components/ReactComponent/Renderer';
 import Sections from 'rsg-components/Sections';
 
 export default class Components extends Component {
@@ -12,10 +12,16 @@ export default class Components extends Component {
 
 	renderComponents() {
 		const { highlightTheme, components } = this.props;
-		const ComponentRenderer = ReactComponent(Renderer);
 
 		return components.map((component) => {
-			return (<ComponentRenderer key={component.name} highlightTheme={highlightTheme} component={component} />);
+			return (
+				<ReactComponent
+					renderer={ReactComponentRenderer}
+					key={component.name}
+					highlightTheme={highlightTheme}
+					component={component}
+				/>
+			);
 		});
 	}
 

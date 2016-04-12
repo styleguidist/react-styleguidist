@@ -1,17 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 
 import s from './TableOfContents.css';
 
 class TableOfContents extends Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			searchTerm: ''
-		};
-	}
-
-	renderLevel(components, sections, searchTerm) {
+	renderLevel(components, sections) {
 		return (
 			<ul className={s.list}>
 				{(components || []).map(({ name }) => (
@@ -22,39 +15,33 @@ class TableOfContents extends Component {
 				{(sections || []).map(({ name, components: subComponents, sections: subSections }) => (
 					<li key={name}>
 						<a className={s.section} href={'#' + name}>{name}</a>
-						{this.renderLevel(subComponents, subSections, searchTerm)}
+						{this.renderLevel(subComponents, subSections)}
 					</li>
 				))}
 			</ul>
 		);
 	}
 
-	handleInputChange (e) {
-		this.setState({ searchTerm: e.target.value })
-		this.props.onInputChange(e)
-	}
-
 	render() {
-		let { searchTerm } = this.state;
 		let { components, sections } = this.props;
-
-		searchTerm = searchTerm.trim();
 
 		return (
 			<div className={s.root}>
 				<input
 					className={s.search}
 					placeholder="Filter by name"
-					onChange={this.handleInputChange.bind(this)}
-					value={searchTerm}
+					onChange={this.props.onInputChange}
+					value={this.props.filter}
+					ref='search'
 				/>
-				{this.renderLevel(components, sections, searchTerm)}
+				{this.renderLevel(components, sections)}
 			</div>
 		);
 	}
 }
 
 TableOfContents.propTypes = {
+	filter: PropTypes.string.isRequired,
 	components: PropTypes.array.isRequired,
 	sections: PropTypes.array.isRequired,
 	onInputChange: PropTypes.func.isRequired,

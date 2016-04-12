@@ -1,18 +1,20 @@
 import { Component, PropTypes } from 'react';
 import Components from 'rsg-components/Components';
 import TableOfContents from 'rsg-components/TableOfContents';
+import Renderer from './Renderer';
 
 import s from './Layout.css';
 
 import isEmpty from 'lodash/isEmpty';
 
-const Layout = (Renderer) => class extends Component {
+class Layout extends Component {
 	static propTypes = {
 		config: PropTypes.object.isRequired,
 		components: PropTypes.array.isRequired,
 		sections: PropTypes.array.isRequired,
 		onSearchChange: PropTypes.func.isRequired,
-		onItemFocus: PropTypes.func.isRequired
+		onItemFocus: PropTypes.func.isRequired,
+		filter: PropTypes.string.isRequired
 	};
 
 	renderComponents(config, components, sections) {
@@ -38,6 +40,7 @@ const Layout = (Renderer) => class extends Component {
 				sections={sections}
 				onInputChange={this.props.onSearchChange}
 				onItemDoubleClick={this.props.onItemFocus}
+				filter={this.props.filter}
 			/>
 		);
 	}
