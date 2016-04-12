@@ -1,5 +1,5 @@
 import React from 'react';
-import merge from 'lodash/merge'
+import merge from 'lodash/merge';
 import filter from 'lodash/filter';
 import forEach from 'lodash/forEach';
 import ReactDOM from 'react-dom';
@@ -40,25 +40,26 @@ components = processComponents(components);
 sections = processSections(sections || []);
 
 
-function renderStyleguide () {
+function renderStyleguide() {
 	if (window.location.hash.substr(0, 3) === '#!/') {
 		const targetComponentName = window.location.hash.substr(3);
 
-		const filteredComponents = filter(components, function (component) {
-			return component.name === targetComponentName
-		})
+		const filteredComponents = filter(components, function(component) {
+			return component.name === targetComponentName;
+		});
 
-		forEach(sections, function (section) {
-			merge(filteredComponents, filter(section.components, function (component) {
-				return component.name === targetComponentName
-			}))
-		})
+		forEach(sections, function(section) {
+			merge(filteredComponents, filter(section.components, function(component) {
+				return component.name === targetComponentName;
+			}));
+		});
 
 		ReactDOM.render(<StyleGuide config={config} components={filteredComponents} sections={[]} sidebar={false} />, document.getElementById('app'));
-	} else {
+	}
+	else {
 		ReactDOM.render(<StyleGuide config={config} components={components} sections={sections} />, document.getElementById('app'));
 	}
 }
 
-window.addEventListener("hashchange", renderStyleguide);
+window.addEventListener('hashchange', renderStyleguide);
 renderStyleguide();
