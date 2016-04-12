@@ -3,9 +3,9 @@ import classnames from 'classnames';
 
 const s = require('./ReactComponent.css');
 
-const Renderer = ({ name, pathLine, description, propList, examples, visible }) => {
+const Renderer = ({ name, pathLine, description, propList, examples, visible, active }) => {
 	return (
-		<div className={classnames(s.root, { [s.visible]: visible })}>
+		<div className={classnames(s.root, { [s.visible]: visible && active })}>
 			<header className={s.header}>
 				<h2 className={s.heading} id={name}>
 					<a className={s.anchor} href={'#' + name}></a>

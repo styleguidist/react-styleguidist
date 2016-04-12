@@ -64,7 +64,8 @@ class ReactComponent extends Component {
 			description: this.renderDescription(component.props.description),
 			propList: this.renderProps(component.props),
 			examples: this.renderExamples(highlightTheme, component.examples),
-			visible: component.visible
+			visible: component.visible,
+			active: component.active
 		});
 	}
 };
