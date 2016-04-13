@@ -10,7 +10,12 @@ const Layout = (Renderer) => class extends Component {
 	static propTypes = {
 		config: PropTypes.object.isRequired,
 		components: PropTypes.array.isRequired,
-		sections: PropTypes.array.isRequired
+		sections: PropTypes.array.isRequired,
+		sidebar: PropTypes.bool
+	};
+
+	static defaultProps = {
+		sidebar: true
 	};
 
 	renderComponents(config, components, sections) {
@@ -42,6 +47,7 @@ const Layout = (Renderer) => class extends Component {
 				components={this.renderComponents(config, components, sections)}
 				sections={this.props.sections}
 				toc={this.renderTableOfContents(components, sections)}
+				sidebar={this.props.sidebar}
 			/>
 		);
 	}

@@ -1,9 +1,10 @@
 import {PropTypes} from 'react';
+import classnames from 'classnames';
 
 const s = require('./Layout.css');
 
-const Renderer = ({ title, components, toc }) => (
-	<div className={s.root}>
+const Renderer = ({ title, components, toc, sidebar }) => (
+	<div className={classnames(s.root, { [s.withoutSidebar]: !sidebar })}>
 		<main className={s.wrapper}>
 			<div className={s.content}>
 				<div className={s.components}>
@@ -24,7 +25,8 @@ const Renderer = ({ title, components, toc }) => (
 Renderer.propTypes = {
 	title: PropTypes.string.isRequired,
 	components: PropTypes.object.isRequired,
-	toc: PropTypes.node.isRequired
+	toc: PropTypes.node.isRequired,
+	sidebar: PropTypes.bool
 };
 
 export default Renderer;
