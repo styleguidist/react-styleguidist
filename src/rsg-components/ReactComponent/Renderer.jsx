@@ -7,7 +7,6 @@ const Renderer = ({ name, pathLine, description, propList, examples }) => {
 		<div className={s.root}>
 			<header className={s.header}>
 				<h2 className={s.heading} id={name}>
-					<a className={s.anchor} href={'#' + name}></a>
 					{name}
 				</h2>
 				<div className={s.pathLine}>{pathLine}</div>

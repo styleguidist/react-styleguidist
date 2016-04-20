@@ -16,25 +16,6 @@
 	font-weight: normal;
 }
 
-.anchor {
-	composes: link-base from "../../styles/colors.css";
-	position: absolute;
-	left: -.8em;
-	text-decoration: none;
-	font-size: 20px;
-	line-height: 46px;
-	opacity: 0;
-	transition: opacity .2s ease-in-out;
-}
-
-.anchor:after {
-	content: "#";
-}
-
-.heading:hover .anchor {
-	opacity: 1;
-}
-
 .pathLine {
 	composes: monospace from "../../styles/common.css";
 	composes: light from "../../styles/colors.css";
