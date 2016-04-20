@@ -18,6 +18,11 @@
 	composes: link from "../../styles/colors.css";
 }
 
+.section {
+	composes: link from "../../styles/colors.css";
+	font-weight: bold;
+}
+
 .search {
 	composes: base base-bg border from "../../styles/colors.css";
 	display: block;
