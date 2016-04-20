@@ -3,7 +3,9 @@ import React from 'react';
 import { expect } from 'chai';
 import expectReactShallow from 'expect-react-shallow';
 import mock from 'mock-require';
-import 'css-modules-require-hook';
+import hook from 'css-modules-require-hook';
+
+hook({});
 
 global.React = React;
 global.expect = expect;
