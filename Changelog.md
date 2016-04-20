@@ -1,3 +1,61 @@
+# 2.2.0 - 2016-04-20
+
+## New features
+
+### Sections
+
+Allows you to group components into sections and add random Markdown files to your style guide:
+
+```javascript
+module.exports = {
+  // ...
+  sections: [
+    {name: 'Introduction', content: 'docs/introduction.md'},
+    {name: 'UI Components', content: 'docs/ui.md', components: 'lib/components/ui/*.js'}
+  ]
+}
+```
+
+![](http://wow.sapegin.me/3F1u0m1g2w07/Image%202016-04-20%20at%209.15.24%20AM.png)
+
+[See example style guide](https://github.com/sapegin/react-styleguidist/tree/master/examples/basic-sections).
+
+PRs: #108 by @paulj, #119, #120 by @karlbright.
+
+### Experimental isolated mode
+
+Try to open your styleguide like `http://localhost:3000/#!/Button` and only one component will be rendered (#123 by @karlbright).
+
+### Example doclets support
+
+Now you can add additional examples to your components from external files:
+
+```js
+/**
+ * Component is described here.
+ * @example ./extra.examples.md
+ */
+export default class SomeComponent extends React.Component {
+  // ...
+}
+```
+
+PRs: #109 by @paulj.
+
+### Ability to change react-docgen behavior
+
+New options: resolver, handler, propsParser.
+
+PRs: #106 by @paulj, #118 by @vslinko.
+
+## Other changes and fixes
+
+* Should work fine in React 15.0.
+* Filter in the sidebar uses fuzzy search.
+* Mark required props insted of optional in a props table (#102 by @CompuIves)
+* Fixed: union elements share same key (#111, #112).
+* Fixed CSS hook for Li tag (#101).
+
 # 2.1.0 - 2016-03-03
 
 ## New features
