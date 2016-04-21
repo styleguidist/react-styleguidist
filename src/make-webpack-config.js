@@ -20,7 +20,7 @@ function getPackagePath(packageName) {
 function validateWebpackConfig(webpackConfig) {
 	webpackConfig.module.loaders.forEach(function(loader) {
 		if (!loader.include && !loader.exclude) {
-			throw Error('Styleguidist: "include" option is missed for ' + loader.test + ' Webpack loader.');
+			throw Error('Styleguidist: "include" option is missing for ' + loader.test + ' Webpack loader.');
 		}
 	});
 }
@@ -68,10 +68,9 @@ module.exports = function(env) {
 		module: {
 			loaders: [
 				{
-					test: /\.json$/,
-					include: [
-						getPackagePath('entities')
-					],
+					// TODO: remove this when entities module is fixed (https://github.com/fb55/entities/pull/26)
+					test: /node_modules\/entities\/.*\.json$/,
+					include: /node_modules/,
 					loader: 'json'
 				},
 				{
