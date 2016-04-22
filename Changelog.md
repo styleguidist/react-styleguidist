@@ -1,3 +1,8 @@
+# 2.2.1 - 2016-04-22
+
+* **Fixed**: npm2 compatibility (#131, #132 by @mik01aj).
+* Add classes for styling `TR` and `TBODY` tags in Markdown (#130).
+
 # 2.2.0 - 2016-04-20
 
 ## New features
