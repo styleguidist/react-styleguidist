@@ -77,7 +77,8 @@ export default class Preview extends Component {
 				render() {
 					const setState = partialState => this.setState(partialState);
 					const state = this.state;
-					return render(state, setState);
+					// pass through props form the wrapper component
+					return React.cloneElement(render(state, setState), this.props);
 				}
 			}
 
