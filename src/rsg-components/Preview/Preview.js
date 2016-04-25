@@ -31,11 +31,6 @@ export default class Preview extends Component {
 		}
 	}
 
-	setComponentState(newState) {
-		this.componentState = {...this.componentState, ...newState};
-		setTimeout(this.executeCode.bind(this), 0);
-	}
-
 	compileCode(code) {
 		return transform(code, {
 			presets: ['es2015', 'react', 'stage-0']
@@ -44,9 +39,9 @@ export default class Preview extends Component {
 
 	executeCode() {
 		let mountNode = this.refs.mount;
-
+		
 		ReactDOM.unmountComponentAtNode(mountNode);
-
+		
 		this.setState({
 			error: null
 		});
@@ -57,15 +52,38 @@ export default class Preview extends Component {
 		}
 
 		try {
-			code = `
-				const state = Object.freeze(${JSON.stringify(this.componentState)});
-				${code}
-			`;
-			let compiledCode = this.compileCode(code);
-			let component = this.props.evalInContext(compiledCode, this.setComponentState.bind(this));
+			let compiledCode = this.compileCode(this.props.code);
+
+			// the code contains the setup of the state and the react component to render.
+			// we split the setup of the state and the react component, since calling setState
+			// in render is not allowed.
+
+			const splitIndex = compiledCode.indexOf('React.createElement');
+
+			// evalInContext returns a function which takes state and setState and returns the evaluated code
+			const preambel = this.props.evalInContext(compiledCode.substring(0, splitIndex));
+			const render = this.props.evalInContext('return ' + compiledCode.substring(splitIndex));
+
+			// wrap everything in a react component, such that we can leverage the state management of this component
+			class PreviewComponent extends React.Component {
+
+				componentWillMount() {
+					// use the autobinding of arrow functions 
+					const setState = partialState => this.setState(partialState);
+					const state = this.state;
+					preambel(state, setState);
+				}
+
+				render() {
+					const setState = partialState => this.setState(partialState);
+					const state = this.state;
+					return render(state, setState);
+				}
+			}
+
 			let wrappedComponent = (
 				<Wrapper>
-					{component}
+					<PreviewComponent />
 				</Wrapper>
 			);
 			ReactDOM.render(wrappedComponent, mountNode);

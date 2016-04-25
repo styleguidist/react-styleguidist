@@ -98,9 +98,9 @@ function examplesLoader(source, map) {
 		'}',
 		'module.exports = ' + JSON.stringify(examples).replace(
 			new RegExp(_.escapeRegExp(JSON.stringify(evalPlaceholder)), 'g'),
-			'function(code, setState) {' +
+			'function(code) {' +
 			'   var require = requireInRuntime;' +
-			'   return eval(code);' +
+			'   return new Function (\"state\", \"setState\", code);' +
 			'}'
 		) + ';'
 	].join('\n');
