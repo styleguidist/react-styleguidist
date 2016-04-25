@@ -61,7 +61,7 @@ export default class Preview extends Component {
 			const splitIndex = compiledCode.indexOf('React.createElement');
 
 			// evalInContext returns a function which takes state and setState and returns the evaluated code
-			const preambel = this.props.evalInContext(compiledCode.substring(0, splitIndex));
+			const initState = this.props.evalInContext(compiledCode.substring(0, splitIndex));
 			const render = this.props.evalInContext('return ' + compiledCode.substring(splitIndex));
 
 			// wrap everything in a react component, such that we can leverage the state management of this component
@@ -71,7 +71,7 @@ export default class Preview extends Component {
 					// use the autobinding of arrow functions 
 					const setState = partialState => this.setState(partialState);
 					const state = this.state;
-					preambel(state, setState);
+					initState(state, setState);
 				}
 
 				render() {
