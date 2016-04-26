@@ -39,9 +39,9 @@ export default class Preview extends Component {
 
 	executeCode() {
 		let mountNode = this.refs.mount;
-		
+
 		ReactDOM.unmountComponentAtNode(mountNode);
-		
+
 		this.setState({
 			error: null
 		});
@@ -68,7 +68,7 @@ export default class Preview extends Component {
 			class PreviewComponent extends React.Component {
 
 				componentWillMount() {
-					// use the autobinding of arrow functions 
+					// use the autobinding of arrow functions
 					const setState = partialState => this.setState(partialState);
 					const state = this.state;
 					initState(state, setState);
