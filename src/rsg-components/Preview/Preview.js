@@ -55,30 +55,56 @@ export default class Preview extends Component {
 			let compiledCode = this.compileCode(this.props.code);
 
 			// the code contains the setup of the state and the react component to render.
-			// we split the setup of the state and the react component, since calling setState
-			// in render is not allowed.
+			// we split the setup of the state and the react component;
 
 			const splitIndex = compiledCode.indexOf('React.createElement');
 
-			// evalInContext returns a function which takes state and setState and returns the evaluated code
-			const initState = this.props.evalInContext(compiledCode.substring(0, splitIndex));
-			const render = this.props.evalInContext('return ' + compiledCode.substring(splitIndex));
+			// initiate state and set with the callback in the bottom component;
+			const initCode = `
+				var initialState = {};
+				${compiledCode.substring(0, splitIndex)}
+				__initialStateCB(initialState);
+			`;
+			// evalInContext returns a function which takes state, setState and a callback to handle the
+			// initial state and returns the evaluated code
+			const initial = this.props.evalInContext(initCode);
+
+			// 1) setup initialState so that we don't get an error;
+			// 2) use require data or make other setup for the example component;
+			// 3) return the example component
+			const renderCode = `
+				var initialState = {};
+				${compiledCode.substring(0, splitIndex)}
+				return ${compiledCode.substring(splitIndex)};
+			`;
+			const render = this.props.evalInContext(renderCode);
 
 			// wrap everything in a react component, such that we can leverage the state management of this component
 			class PreviewComponent extends React.Component {
 
-				componentWillMount() {
-					// use the autobinding of arrow functions
-					const setState = partialState => this.setState(partialState);
-					const state = this.state;
-					initState(state, setState);
+				constructor(props) {
+					super(props);
+
+					const state = {};
+					const initialStateCB = (initialState) => {
+						Object.assign(state, initialState);
+					};
+					const setStateError = (partialState) => {
+						const err = 'Calling setState to setup the initial state is deprecated. Use\ninitialState = ';
+						Object.assign(state, {error: err + JSON.stringify(partialState) + ';'});
+					};
+					initial({}, setStateError, initialStateCB);
+					this.state = state;
 				}
 
 				render() {
+					if (this.state.error) {
+						return <pre className={s.playgroundError}>{this.state.error}</pre>;
+					}
 					const setState = partialState => this.setState(partialState);
 					const state = this.state;
-					// pass through props form the wrapper component
-					return React.cloneElement(render(state, setState), this.props);
+					// pass through props from the wrapper component
+					return React.cloneElement(render(state, setState, null), this.props);
 				}
 			}
 

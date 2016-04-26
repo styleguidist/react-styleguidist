@@ -99,8 +99,8 @@ function examplesLoader(source, map) {
 		'module.exports = ' + JSON.stringify(examples).replace(
 			new RegExp(_.escapeRegExp(JSON.stringify(evalPlaceholder)), 'g'),
 			'function(code) {' +
-			'   var func = new Function (\"require\", \"state\", \"setState\", code);' +
-			'	return func.bind(null, requireInRuntime);' +
+			'   var func = new Function (\"require\", \"state\", \"setState\", \"__initialStateCB\", code);' +
+			'		return func.bind(null, requireInRuntime);' +
 			'}'
 		) + ';'
 	].join('\n');
