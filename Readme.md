@@ -138,8 +138,7 @@ Code examples in Markdown use the ES6+JSX syntax. They can access all the compon
 You can also `require` other modules (e.g. mock data that you use in your unit tests) from examples in Markdown:
 
 ```js
-const mockData = require('./mocks');
-<Message content={mockData.hello}/>
+<Message content={require('./mocks').hello}/>
 ```
 
 As an utility, also the [lodash](https://lodash.com/) library is available globally as `_`.
@@ -159,7 +158,7 @@ Each example has its own state that you can access at the `state` variable and 
 If you want to set the default state you can do:
 
 ```js
-'key' in state || setState({key: 42});
+setState({key: 42});
 ```
 
 You *can* use `React.createClass` in your code examples, but if you need a more complex demo it’s often a good idea to define it in a separate JavaScript file instead and then just `require` it in Markdown.
