@@ -69,7 +69,7 @@ module.exports = function(env) {
 			loaders: [
 				{
 					// TODO: remove this when entities module is fixed (https://github.com/fb55/entities/pull/26)
-					test: /node_modules\/entities\/.*\.json$/,
+					test: /node_modules[/\\]entities[/\\].*\.json$/,
 					include: /node_modules/,
 					loader: 'json'
 				},
