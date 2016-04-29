@@ -4,7 +4,7 @@ var findup = require('findup');
 var semverUtils = require('semver-utils');
 var minimist = require('minimist');
 var prettyjson = require('prettyjson');
-var _ = require('lodash');
+var merge = require('lodash/merge');
 var utils = require('./server');
 
 var CONFIG_FILENAME = 'styleguide.config.js';
@@ -68,8 +68,8 @@ function readConfig() {
 		}
 	}
 
-	options = _.merge({}, DEFAULT_CONFIG, options);
-	options = _.merge({}, options, {
+	options = merge({}, DEFAULT_CONFIG, options);
+	options = merge({}, options, {
 		verbose: !!argv.verbose,
 		configDir: configDir,
 		assetsDir: assetsDir,
@@ -127,7 +127,7 @@ function validateConfig(options) {
 	if (!options.components && !options.sections) {
 		throw Error('Styleguidist: "components" or "sections" option is required.');
 	}
-	if (options.sections && !_.isArray(options.sections)) {
+	if (options.sections && !Array.isArray(options.sections)) {
 		throw Error('Styleguidist: "sections" option must be an array.');
 	}
 	if (options.getExampleFilename && typeof options.getExampleFilename !== 'function') {

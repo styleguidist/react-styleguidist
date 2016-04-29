@@ -2,9 +2,9 @@
 import '../../utils/codemirror-jsx';
 import 'codemirror/lib/codemirror.css';
 
-import _ from 'lodash';
 import { Component, PropTypes } from 'react';
 import debounce from 'lodash/debounce';
+import merge from 'lodash/merge';
 import Codemirror from 'react-codemirror';
 
 import s from './Editor.css';
@@ -49,7 +49,7 @@ export default class Editor extends Component {
 
 	render() {
 		let { highlightTheme } = this.props;
-		let options = _.merge({}, Editor.codemirrorOptions, {theme: highlightTheme});
+		let options = merge({}, Editor.codemirrorOptions, {theme: highlightTheme});
 
 		return (
 			<div className={s.root}>
