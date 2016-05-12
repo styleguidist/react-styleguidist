@@ -1,3 +1,7 @@
+# 2.2.2 - 2016-05-12
+
+* **Fixed**: Windows compatibility (#138 by @mdhgriffiths).
+
 # 2.2.1 - 2016-04-22
 
 * **Fixed**: npm2 compatibility (#131, #132 by @mik01aj).
