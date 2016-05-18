@@ -12,6 +12,7 @@ var DEFAULT_CONFIG = {
 	components: null,
 	sections: null,
 	skipComponentsWithoutExample: false,
+	defaultExample: path.join(__dirname, '../templates/DefaultExample.md'),
 	title: 'Style guide',
 	styleguideDir: 'styleguide',
 	assetsDir: null,
@@ -139,6 +140,7 @@ function validateConfig(options) {
 	if (options.updateWebpackConfig && typeof options.updateWebpackConfig !== 'function') {
 		throw Error('Styleguidist: "updateWebpackConfig" option must be a function.');
 	}
+	// TODO: validate options.defaultConfig
 }
 
 /**

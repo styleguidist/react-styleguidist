@@ -6,20 +6,32 @@ var _ = require('lodash');
 var config = require('../src/utils/config');
 
 function processComponent(filepath) {
-	var examplesFile = config.getExampleFilename(filepath);
-
     // If component name can’t be detected in runtime use filename or folder name (if file name is 'index')
-    var filename = path.basename(filepath).replace(/\.\w+$/, '');
-    var nameFallbak = filename === 'index' ? path.basename(path.dirname(filepath)) : filename;
+	var filename = path.basename(filepath).replace(/\.\w+$/, '');
+	var nameFallbak = filename === 'index' ? path.basename(path.dirname(filepath)) : filename;
 
 	return '{' + [
-        'filepath: ' + JSON.stringify(filepath),
+		'filepath: ' + JSON.stringify(filepath),
 		'nameFallbak: ' + JSON.stringify(nameFallbak),
 		'pathLine: ' + JSON.stringify(config.getComponentPathLine(path.relative(config.configDir, filepath))),
 		'module: ' + requireIt(filepath),
 		'props: ' + requireIt('!!props!' + filepath),
-		'examples: ' + (hasExamples(filepath) ? requireIt('examples!' + examplesFile) : null)
+		'examples: ' + getExamples(filepath, nameFallbak)
 	].join(',') + '}';
+}
+
+function getExamples(filepath, nameFallbak) {
+	var examplesFile = config.getExampleFilename(filepath);
+
+	if (hasExamples(filepath)) {
+		return requireIt('examples!' + examplesFile);
+	}
+
+	if (config.defaultExample) {
+		return requireIt('examples?componentName=' + nameFallbak + '!' + config.defaultExample);
+	}
+
+	return null;
 }
 
 function hasExamples(filepath) {
@@ -62,13 +74,13 @@ function processSection(section, config) {
 		'content: ' + (section.content ? requireIt('examples!' + section.content) : null),
 		'components: ' + processComponentsSource(section.components, config),
 		'sections: ' + processSectionsList(section.sections, config)
-	].join(',') + '}'
+	].join(',') + '}';
 }
 
 function processSectionsList(sections, config) {
 	if (!sections) return null;
 
-	return '[' + 
+	return '[' +
 		sections.map(function(section) { return processSection(section, config); }).join(',') +
 	']';
 }
