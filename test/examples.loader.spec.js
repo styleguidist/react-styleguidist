@@ -137,4 +137,23 @@ text
 		});
 	});
 
+	describe.only('componentName query option', () => {
+		it('should replace all occurances of __COMPONENT__ with provided query.componentName', () => {
+			const exampleMarkdown = `
+<div>
+	<__COMPONENT__>
+		<span>text</span>
+		<span>Name of component: __COMPONENT__</span>
+	</__COMPONENT__>
+	<__COMPONENT__ />
+</div>
+`;
+
+			const output = examplesLoader.call({query: '?componentName=FooComponent'}, exampleMarkdown);
+			expect(output).to.not.include('__COMPONENT__');
+			expect(output).to.include('FooComponent');
+			expect(output.match(/FooComponent/g).length).to.equal(4);
+		});
+	});
+
 });
