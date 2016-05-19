@@ -20,7 +20,7 @@ function getPackagePath(packageName) {
 function validateWebpackConfig(webpackConfig) {
 	webpackConfig.module.loaders.forEach(function(loader) {
 		if (!loader.include && !loader.exclude) {
-			throw Error('Styleguidist: "include" option is missing for ' + loader.test + ' Webpack loader.');
+			throw Error('Styleguidist: "include" (or "exclude") option is missing for ' + loader.test + ' Webpack loader.');
 		}
 	});
 }
