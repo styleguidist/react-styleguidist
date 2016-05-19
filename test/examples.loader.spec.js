@@ -137,7 +137,7 @@ text
 		});
 	});
 
-	describe.only('componentName query option', () => {
+	describe('componentName query option', () => {
 		it('should replace all occurances of __COMPONENT__ with provided query.componentName', () => {
 			const exampleMarkdown = `
 <div>
