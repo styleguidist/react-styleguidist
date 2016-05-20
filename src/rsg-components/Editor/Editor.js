@@ -11,7 +11,7 @@ import s from './Editor.css';
 
 var cssRequire = require.context('codemirror/theme/', false, /^\.\/.*\.css$/);
 
-let UPDATE_DELAY = 100;
+let UPDATE_DELAY = 10;
 
 export default class Editor extends Component {
 	static propTypes = {
@@ -38,6 +38,10 @@ export default class Editor extends Component {
 		let { highlightTheme } = this.props;
 
 		cssRequire(`./${highlightTheme}.css`);
+	}
+
+	shouldComponentUpdate() {
+		return false;
 	}
 
 	handleChange(newCode) {
