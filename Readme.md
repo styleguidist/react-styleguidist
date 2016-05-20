@@ -15,6 +15,20 @@ Based on Webpack, webpack-dev-server and Babel.
 * [CLI commands and options](./docs/CLI.md)
 * [FAQ](./docs/FAQ.md)
 
+## Examples
+
+* [Basic styleg uide](http://sapegin.github.io/react-styleguidist/), [source](./examples/basic)
+* Style guide with sections, [source](./examples/basic-sections)
+* Style guide with customized styles, [source](./examples/customised)
+
+## Showcase
+
+Real projects using React Styleguidist:
+
+* [Rumble Charts](http://rumbleinc.github.io/rumble-js-charts/)
+* [Semantic UI Components for React](http://hallister.github.io/semantic-react/)
+* [More projects](https://github.com/sapegin/react-styleguidist/issues/127)
+
 ## Changelog
 
 The changelog can be found on the [Releases page](https://github.com/sapegin/react-styleguidist/releases).
