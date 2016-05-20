@@ -15,18 +15,6 @@ Based on Webpack, webpack-dev-server and Babel.
 * [CLI commands and options](./docs/CLI.md)
 * [FAQ](./docs/FAQ.md)
 
-## Similar projects
-
-* [React Styleguide Generator](https://github.com/pocotan001/react-styleguide-generator), a React style guide generator.
-* [heatpack](https://github.com/insin/react-heatpack), a quick to setup hot-reloaded development server for React components.
-* [Demobox](https://github.com/jaredly/demobox), a component for making component showcases for landing pages.
-* [React-demo](https://github.com/rpominov/react-demo), a component for creating demos of other components with props editor.
-* [Atellier](https://github.com/scup/atellier), a React components emulator.
-* [Cosmos](https://github.com/skidding/cosmos), a tool for designing truly encapsulated React components.
-* [React Storybook](https://github.com/kadirahq/react-storybook), isolate your React UI Component development from the main app.
-* [React Cards](https://github.com/steos/reactcards), devcards for React.
-* [SourceJS](https://github.com/sourcejs/Source), a platform to unify all your frontend documentation. It has a [Styleguidist plugin](https://github.com/sourcejs/sourcejs-react-styleguidist).
-
 ## Changelog
 
 The changelog can be found on the [Releases page](https://github.com/sapegin/react-styleguidist/releases).
@@ -34,6 +22,10 @@ The changelog can be found on the [Releases page](https://github.com/sapegin/rea
 ## Contributing
 
 Everyone is welcome to contribute. Please take a moment to review the [contributing guidelines](Contributing.md).
+
+## Similar projects
+
+There are [other projects](https://github.com/sapegin/react-styleguidist/wiki/Similar-projects) that might be a better fit for your project.
 
 ## Author and License
 
