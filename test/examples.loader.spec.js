@@ -23,7 +23,7 @@ describe('examples loader', () => {
 			expect(`function f() { require("foo"); }`).to.match(regex);
 		});
 
-		it('should not match other occurences of require', () => {
+		it('should not match other occurrences of require', () => {
 			expect(`"required field"`).not.to.match(regex);
 			expect(`var f = require;`).not.to.match(regex);
 			expect(`require.call(module, "foo")`).not.to.match(regex);
@@ -138,7 +138,7 @@ text
 	});
 
 	describe('componentName query option', () => {
-		it('should replace all occurances of __COMPONENT__ with provided query.componentName', () => {
+		it('should replace all occurrences of __COMPONENT__ with provided query.componentName', () => {
 			const exampleMarkdown = `
 <div>
 	<__COMPONENT__>
