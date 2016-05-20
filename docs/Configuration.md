@@ -54,6 +54,12 @@ You can change some settings in the `styleguide.config.js` file in your projectâ
   Type: `Boolean`, default: `false`<br>
   When set to `true`, ignore components that don't have an example file (as determined by `getExampleFilename`).
 
+* **`defaultExample`**<br>
+  Type: `Boolean` or `String`, default: `false`<br>
+  For components that do not have an example, a default one can be used. When set to `true`, the [src/templates/DefaultExample.md](../src/templates/DefaultExample.md) is used, or you can provide the path to your own example markdown file as a `String`.
+
+  When writing your own default example file, `__COMPONENT__` will be replaced by the actual component name at compile-time.
+
 * **`styleguideDir`**<br>
   Type: `String`, default: `styleguide`<br>
   Folder for static HTML style guide generated with `styleguidist build` command.

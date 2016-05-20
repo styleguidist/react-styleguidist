@@ -23,7 +23,7 @@ describe('examples loader', () => {
 			expect(`function f() { require("foo"); }`).to.match(regex);
 		});
 
-		it('should not match other occurences of require', () => {
+		it('should not match other occurrences of require', () => {
 			expect(`"required field"`).not.to.match(regex);
 			expect(`var f = require;`).not.to.match(regex);
 			expect(`require.call(module, "foo")`).not.to.match(regex);
@@ -134,6 +134,25 @@ text
 `;
 			let output = examplesLoader.call({}, exampleMarkdown);
 			expect(() => new Function(output)).not.to.throw(SyntaxError);  // eslint-disable-line no-new-func
+		});
+	});
+
+	describe('componentName query option', () => {
+		it('should replace all occurrences of __COMPONENT__ with provided query.componentName', () => {
+			const exampleMarkdown = `
+<div>
+	<__COMPONENT__>
+		<span>text</span>
+		<span>Name of component: __COMPONENT__</span>
+	</__COMPONENT__>
+	<__COMPONENT__ />
+</div>
+`;
+
+			const output = examplesLoader.call({query: '?componentName=FooComponent'}, exampleMarkdown);
+			expect(output).to.not.include('__COMPONENT__');
+			expect(output).to.include('FooComponent');
+			expect(output.match(/FooComponent/g).length).to.equal(4);
 		});
 	});
 

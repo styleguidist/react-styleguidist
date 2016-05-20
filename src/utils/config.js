@@ -12,6 +12,7 @@ var DEFAULT_CONFIG = {
 	components: null,
 	sections: null,
 	skipComponentsWithoutExample: false,
+	defaultExample: false,
 	title: 'Style guide',
 	styleguideDir: 'styleguide',
 	assetsDir: null,
@@ -68,11 +69,22 @@ function readConfig() {
 		}
 	}
 
+	var defaultExample = options.defaultExample;
+	if (defaultExample === true) {
+		defaultExample = path.join(__dirname, '../templates/DefaultExample.md');
+	} else if (typeof defaultExample === 'string') {
+		defaultExample = path.resolve(configDir, defaultExample);
+		if (!fs.existsSync(defaultExample)) {
+			throw Error('Styleguidist: "defaultExample" file not found: ' + defaultExample);
+		}
+	}
+
 	options = merge({}, DEFAULT_CONFIG, options);
 	options = merge({}, options, {
 		verbose: !!argv.verbose,
 		configDir: configDir,
 		assetsDir: assetsDir,
+		defaultExample: defaultExample,
 		styleguideDir: path.resolve(configDir, options.styleguideDir)
 	});
 
@@ -138,6 +150,9 @@ function validateConfig(options) {
 	}
 	if (options.updateWebpackConfig && typeof options.updateWebpackConfig !== 'function') {
 		throw Error('Styleguidist: "updateWebpackConfig" option must be a function.');
+	}
+	if (options.defaultExample && (options.defaultExample !== true && typeof options.defaultExample !== 'string')) {
+		throw Error('Styleguidist: "defaultExample" option must be either false, true, or a string path to a markdown file.');
 	}
 }
 

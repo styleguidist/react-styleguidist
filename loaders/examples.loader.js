@@ -1,6 +1,7 @@
 var _ = require('lodash');
 var hljs = require('highlight.js');
 var createRenderer = require('../src/utils/markdown.js');
+var loaderUtils = require('loader-utils');
 
 var md = createRenderer();
 
@@ -72,7 +73,9 @@ function findRequires(codeString) {
 function examplesLoader(source, map) {
 	this.cacheable && this.cacheable();
 
-	var examples = readExamples(source);
+	// Replace __COMPONENT__ placeholders with the passed-in componentName
+	var componentName = loaderUtils.parseQuery(this.query).componentName || '__COMPONENT__';
+	var examples = readExamples(source.replace(/__COMPONENT__/g, componentName));
 
 	// We're analysing the examples' source code to figure out the require statements. We do it manually with regexes,
 	// because webpack unfortunately doesn't expose its smart logic for rewriting requires
