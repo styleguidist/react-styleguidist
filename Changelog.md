@@ -1,3 +1,17 @@
+# 2.3.0 - 2016-05-24
+
+## New features
+
+### Default examples
+
+For components that do not have an example, a default one can be used. See [defaultExample](https://github.com/sapegin/react-styleguidist/blob/master/docs/Configuration.md) option for details.
+
+(#144 by @tizmagik)
+
+## Other changes and fixes
+
+* Fixed cursor jumping while editing in CodeMirror (#139, #145 by @tizmagik).
+
 # 2.2.2 - 2016-05-12
 
 * **Fixed**: Windows compatibility (#138 by @mdhgriffiths).
