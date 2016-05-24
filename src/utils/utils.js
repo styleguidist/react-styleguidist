@@ -34,12 +34,10 @@ export function promoteInlineExamples(components) {
 
 export function flattenChildren(components) {
 	// If any of the components have multiple children, flatten them.
-	return flatMap(components, c => {
-		if (isArray(c.props)) {
-			return c.props.map(props => extend({}, c, {props: props}));
+	return flatMap(components, component => {
+		if (isArray(component.props)) {
+			return component.props.map(props => extend({}, component, { props }));
 		}
-		else {
-			return c;
-		}
+		return component;
 	});
 }

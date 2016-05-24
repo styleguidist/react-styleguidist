@@ -1,3 +1,5 @@
+/* eslint-disable no-var */
+
 var webpack = require('webpack');
 var makeWebpackConfig = require('./make-webpack-config');
 var config = require('./utils/config');

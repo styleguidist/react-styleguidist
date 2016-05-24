@@ -10,13 +10,13 @@ import s from './Preview.css';
 export default class Preview extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
-		evalInContext: PropTypes.func.isRequired
+		evalInContext: PropTypes.func.isRequired,
 	};
 
 	constructor() {
 		super();
 		this.state = {
-			error: null
+			error: null,
 		};
 		this.componentState = {};
 	}
@@ -32,13 +32,13 @@ export default class Preview extends Component {
 	}
 
 	setComponentState(newState) {
-		this.componentState = {...this.componentState, ...newState};
+		this.componentState = { ...this.componentState, ...newState };
 		setTimeout(this.executeCode.bind(this), 0);
 	}
 
 	compileCode(code) {
 		return transform(code, {
-			presets: ['es2015', 'react', 'stage-0']
+			presets: ['es2015', 'react', 'stage-0'],
 		}).code;
 	}
 
@@ -48,7 +48,7 @@ export default class Preview extends Component {
 		ReactDOM.unmountComponentAtNode(mountNode);
 
 		this.setState({
-			error: null
+			error: null,
 		});
 
 		let { code } = this.props;
@@ -73,7 +73,7 @@ export default class Preview extends Component {
 		catch (err) {
 			ReactDOM.unmountComponentAtNode(mountNode);
 			this.setState({
-				error: err.toString()
+				error: err.toString(),
 			});
 		}
 	}
@@ -85,9 +85,8 @@ export default class Preview extends Component {
 				<pre className={s.playgroundError}>{error}</pre>
 			);
 		}
-		else {
-			return null;
-		}
+
+		return null;
 	}
 
 	render() {

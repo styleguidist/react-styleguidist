@@ -1,4 +1,4 @@
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Editor from 'rsg-components/Editor';
 import Preview from 'rsg-components/Preview';
 
@@ -14,23 +14,23 @@ export default class Playground extends Component {
 	constructor(props) {
 		super();
 		this.state = {
-			code: props.code
+			code: props.code,
 		};
 	}
-
-	handleChange = (newCode) => {
-		this.setState({
-			code: newCode
-		});
-	};
 
 	componentWillReceiveProps(nextProps) {
 		let { code } = nextProps;
 		if (code) {
 			this.setState({
-				code
+				code,
 			});
 		}
+	}
+
+	handleChange(newCode) {
+		this.setState({
+			code: newCode,
+		});
 	}
 
 	render() {
@@ -40,10 +40,10 @@ export default class Playground extends Component {
 		return (
 			<div className={s.root}>
 				<div className={s.preview}>
-					<Preview code={code} evalInContext={this.props.evalInContext}/>
+					<Preview code={code} evalInContext={this.props.evalInContext} />
 				</div>
 				<div className={s.editor}>
-					<Editor code={code} highlightTheme={highlightTheme} onChange={this.handleChange}/>
+					<Editor code={code} highlightTheme={highlightTheme} onChange={code => this.handleChange(code)} />
 				</div>
 			</div>
 		);

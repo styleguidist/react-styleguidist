@@ -1,4 +1,4 @@
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactComponent from 'rsg-components/ReactComponent';
 import Renderer from 'rsg-components/ReactComponent/Renderer';
 import Sections from 'rsg-components/Sections';
@@ -7,7 +7,7 @@ export default class Components extends Component {
 	static propTypes = {
 		highlightTheme: PropTypes.string.isRequired,
 		components: PropTypes.array.isRequired,
-		sections: PropTypes.array.isRequired
+		sections: PropTypes.array.isRequired,
 	};
 
 	renderComponents() {

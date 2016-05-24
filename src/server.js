@@ -1,3 +1,5 @@
+/* eslint-disable no-var */
+
 var express = require('express');
 var webpack = require('webpack');
 var makeWebpackConfig = require('./make-webpack-config');
@@ -8,7 +10,7 @@ module.exports = function server(callback) {
 	var compiler = webpack(makeWebpackConfig('development'));
 
 	app.use(require('webpack-dev-middleware')(compiler, {
-		noInfo: true
+		noInfo: true,
 	}));
 
 	app.use(require('webpack-hot-middleware')(compiler));

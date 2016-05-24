@@ -67,14 +67,15 @@
     "react-dom": ">=0.14.0"
   },
   "devDependencies": {
-    "babel-eslint": "~4.1.8",
+    "babel-eslint": "~6.0.4",
     "babel-register": "~6.7.2",
     "chai": "~3.5.0",
     "cross-env": "~1.0.7",
     "css-modules-require-hook": "~4.0.0",
     "dog-names": "~1.0.2",
-    "eslint": "~1.10.3",
-    "eslint-plugin-react": "~3.16.1",
+    "eslint": "~2.10.2",
+    "eslint-config-tamia": "~2.0.1",
+    "eslint-plugin-react": "~5.1.1",
     "expect-react-shallow": "~1.2.0",
     "gh-pages": "~0.11.0",
     "mocha": "~2.4.5",

@@ -7,7 +7,7 @@ class TableOfContents extends Component {
 		super(props);
 
 		this.state = {
-			searchTerm: ''
+			searchTerm: '',
 		};
 	}
 
@@ -45,7 +45,7 @@ class TableOfContents extends Component {
 				<input
 					className={s.search}
 					placeholder="Filter by name"
-					onChange={(e) => this.setState({ searchTerm: e.target.value })}
+					onChange={event => this.setState({ searchTerm: event.target.value })}
 					value={searchTerm}
 				/>
 				{this.renderLevel(components, sections, searchTerm)}
@@ -56,7 +56,7 @@ class TableOfContents extends Component {
 
 TableOfContents.propTypes = {
 	components: PropTypes.array.isRequired,
-	sections: PropTypes.array.isRequired
+	sections: PropTypes.array.isRequired,
 };
 
 export default TableOfContents;

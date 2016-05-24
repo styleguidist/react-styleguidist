@@ -10,6 +10,6 @@ CodeMirror.defineMode('jsx', (config) => {
 		open: '{',
 		close: '}',
 		delimStyle: 'delimit',
-		mode: CodeMirror.getMode(config, 'javascript')
+		mode: CodeMirror.getMode(config, 'javascript'),
 	});
 });

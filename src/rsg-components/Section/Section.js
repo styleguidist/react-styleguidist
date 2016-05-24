@@ -6,7 +6,7 @@ import Components from 'rsg-components/Components';
 const Section = (Renderer) => class extends Component {
 	static propTypes = {
 		highlightTheme: PropTypes.string.isRequired,
-		section: PropTypes.object.isRequired
+		section: PropTypes.object.isRequired,
 	};
 
 	renderContent(highlightTheme, examples) {
@@ -32,6 +32,8 @@ const Section = (Renderer) => class extends Component {
 							key={index}
 						/>
 					);
+				default:
+					return null;
 			}
 		});
 	}
@@ -50,7 +52,7 @@ const Section = (Renderer) => class extends Component {
 	}
 
 	render() {
-		const {highlightTheme, section} = this.props;
+		const { highlightTheme, section } = this.props;
 
 		return (
 			<Renderer

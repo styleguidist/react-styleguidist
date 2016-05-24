@@ -1,3 +1,5 @@
+/* eslint-disable no-var */
+
 var fs = require('fs');
 
 module.exports.isDirectoryExists = function(dir) {
