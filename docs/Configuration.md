@@ -1,6 +1,6 @@
 # Configuration
 
-You can change some settings in the `styleguide.config.js` file in your projectâ€™s root folder.
+You can change settings in the `styleguide.config.js` file in your projectâ€™s root folder.
 
 * **`components`**<br>
   Type: `String` or `Function`, required unless `sections` is provided<br>
@@ -10,7 +10,10 @@ You can change some settings in the `styleguide.config.js` file in your projectâ
   If your components look like `components/Button.js` or `components/Button/Button.js` or `components/Button/index.js`:
 
   ```javascript
-  components: './components/**/*.js',
+  module.exports = {
+    // ...
+    components: './components/**/*.js',
+  };
   ```
 
   If your components look like `components/Button/Button.js` + `components/Button/index.js`:
@@ -24,39 +27,37 @@ You can change some settings in the `styleguide.config.js` file in your projectâ
       return glob.sync(path.resolve(__dirname, 'lib/components/**/*.js')).filter(function(module) {
         return /\/[A-Z]\w*\.js$/.test(module);
       });
-    }
+    },
   };
   ```
 
 * **`sections`**<br>
   Type: `Array`
 
-  Allows components to be grouped into sections with a title and optional overview content. Sections
-  can also be content only, with no associated components (for example, a textual introduction). A section
-  definition consists of:<br>
-  - `name` - the title of the section.
-  - `content` (optional) - location of a Markdown file containing the overview content.
-  - `components` (optional) - a string or function providing a list of components. The same rules apply as for the root `components` option.
+  Allows components to be grouped into sections with a title and optional overview content. Sections can also be content only, with no associated components (for example, a textual introduction). A section definition consists of:<br>
+  - `name` â€” the title of the section.
+  - `content` (optional) â€” location of a Markdown file containing the overview content.
+  - `components` (optional) â€” a string or function returning a list of components. The same rules apply as for the root `components` option.
 
-  Configuring a guide with a textual introduction section, then a UI section would look like:
+  Configuring a style guide with a textual introduction section, then a UI section would look like:
 
   ```javascript
   module.exports = {
     // ...
     sections: [
       {name: 'Introduction', content: 'docs/introduction.md'},
-      {name: 'UI Components', content: 'docs/ui.md', components: 'lib/components/ui/*.js'}
-    ]
-  }
+      {name: 'UI Components', content: 'docs/ui.md', components: 'lib/components/ui/*.js'},
+    ],
+  };
   ```
 
 * **`skipComponentsWithoutExample`**<br>
   Type: `Boolean`, default: `false`<br>
-  When set to `true`, ignore components that don't have an example file (as determined by `getExampleFilename`).
+  Ignore components that donâ€™t have an example file (as determined by `getExampleFilename`).
 
 * **`defaultExample`**<br>
   Type: `Boolean` or `String`, default: `false`<br>
-  For components that do not have an example, a default one can be used. When set to `true`, the [src/templates/DefaultExample.md](../src/templates/DefaultExample.md) is used, or you can provide the path to your own example markdown file as a `String`.
+  For components that do not have an example, a default one can be used. When set to `true`, the [DefaultExample.md](../src/templates/DefaultExample.md) is used, or you can provide the path to your own example Markdown file as a `String`.
 
   When writing your own default example file, `__COMPONENT__` will be replaced by the actual component name at compile-time.
 
@@ -99,7 +100,7 @@ You can change some settings in the `styleguide.config.js` file in your projectâ
     // ...
     getExampleFilename: function(componentpath) {
       return componentpath.replace(/\.jsx?$/,   '.examples.md');
-    }
+    },
   };
   ```
 
@@ -117,7 +118,7 @@ You can change some settings in the `styleguide.config.js` file in your projectâ
       var name = path.basename(componentPath, '.js');
       var dir = path.dirname(componentPath);
       return 'import ' + name + ' from \'' + dir + '\';';
-    }
+    },
   };
   ```
 
@@ -137,61 +138,54 @@ You can change some settings in the `styleguide.config.js` file in your projectâ
   };
   ```
 
+  See [FAQ](./FAQ.md) for examples.
+
 * **`propsParser`**<br>
   Type: `Function`, optional<br>
-  Function that allows you to override the mechanism used to parse props from a source file. Default mechanism is using
-  [react-docgen](https://github.com/reactjs/react-docgen) to parse props.
+  Function that allows you to override the mechanism used to parse props from a source file. Default mechanism is using [react-docgen](https://github.com/reactjs/react-docgen) to parse props.
 
   ```javascript
   module.exports = {
     // ...
     propsParser: function(filePath, source) {
       return require('react-docgen').parse(source);
-    }
-  }
+    },
+  };
   ```
 
 * **`resolver`**<br>
   Type: `Function`, optional<br>
-  Function that allows you to override the mechanism used to identify classes/components to analyze. Default
-  behaviour is to find a single exported component in each file (and failing if more than one export is found).
-  Other behaviours can be configured, such as finding all components or writing a custom detection method. See
-  the [react-docgen resolver documentation](https://github.com/reactjs/react-docgen#resolver) for more
-  information about resolvers.
+  Function that allows you to override the mechanism used to identify classes/components to analyze. Default behaviour is to find a single exported component in each file and fail if more than one export is found. You can configure it to find all components or use a custom detection method. See the [react-docgen resolver documentation](https://github.com/reactjs/react-docgen#resolver) for more information about resolvers.
 
   ```javascript
   module.exports = {
     // ...
-    resolver: require('react-docgen').resolver.findAllComponentDefinitions
-  }
+    resolver: require('react-docgen').resolver.findAllComponentDefinitions,
+  };
   ```
 
 * **`handlers`**<br>
   Type: `Array of Function`, optional<br>
-  Array of functions used to process the discovered components and generate documentation objects. Default
-  behaviours include discovering component documentation blocks, prop types and defaults. If setting this
-  property, it is best to build from the default `react-docgen` handler list, such as in the example below.
-  See the [react-docgen handler documentation](https://github.com/reactjs/react-docgen#handlers) for more
-  information about handlers.
+  Array of functions used to process the discovered components and generate documentation objects. Default behaviours include discovering component documentation blocks, prop types and defaults. If setting this property, it is best to build from the default `react-docgen` handler list, such as in the example below. See the [react-docgen handler documentation](https://github.com/reactjs/react-docgen#handlers) for more information about handlers.
 
   ```javascript
   module.exports = {
     // ...
     handlers: require('react-docgen').defaultHandlers.concat(function(documentation, path) {
       // Calculate a display name for components based upon the declared class name.
-      if (path.value.type == 'ClassDeclaration' && path.value.id.type == 'Identifier') {
+      if (path.value.type == 'ClassDeclaration' && path.value.id.type === 'Identifier') {
         documentation.set('displayName', path.value.id.name);
 
         // Calculate the key required to find the component in the module exports
-        if (path.parentPath.value.type == 'ExportNamedDeclaration') {
+        if (path.parentPath.value.type === 'ExportNamedDeclaration') {
           documentation.set('path', path.value.id.name);
         }
       }
 
       // The component is the default export
-      if (path.parentPath.value.type == 'ExportDefaultDeclaration') {
+      if (path.parentPath.value.type === 'ExportDefaultDeclaration') {
         documentation.set('path', 'default');
       }
-    }))
-  }
+    }),
+  };
   ```

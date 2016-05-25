@@ -12,7 +12,7 @@ module.exports = {
     webpackConfig.entry.push(path.join(__dirname, 'path/to/script.js'));
     webpackConfig.entry.push(path.join(__dirname, 'path/to/styles.css'));
     return webpackConfig;
-  }
+  },
 };
 ```
 
@@ -29,7 +29,7 @@ module.exports = {
   updateWebpackConfig: function(webpackConfig, env) {
     webpackConfig.entry.push(path.join(__dirname, 'lib/styleguide/styles.css'));
     return webpackConfig;
-  }
+  },
 };
 ```
 
@@ -57,7 +57,7 @@ module.exports = {
   updateWebpackConfig: function(webpackConfig, env) {
     webpackConfig.resolve.alias['rsg-components/StyleGuide'] = path.join(__dirname, 'lib/styleguide/StyleGuide');
     return webpackConfig;
-  }
+  },
 };
 ```
 
@@ -76,7 +76,7 @@ module.exports = {
   updateWebpackConfig: function(webpackConfig, env) {
     webpackConfig.resolve.alias['rsg-components/Wrapper'] = path.join(__dirname, 'lib/styleguide/Wrapper');
     return webpackConfig;
-  }
+  },
 };
 
 // lib/styleguide/Wrapper.js
@@ -120,7 +120,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   color: '#333',
-  size: 'normal'
+  size: 'normal',
 };
 ```
 

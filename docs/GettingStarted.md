@@ -14,15 +14,14 @@
    module.exports = {
      title: 'My Great Style Guide',
      components: './lib/components/**/*.js',
-     // Put other configuration options here...
    };
   ```
 
-3. If you use transpilers to run your project files (JSX → JS, SCSS → CSS, etc), you need to set them up for the style guide too.
+3. If you use transpilers to run your project files (JSX → JS, SCSS → CSS, etc.), you need to set them up for the style guide too.
 
-   Styleguidist generates a webpack config that contains all that is needed for the style guide, but you need to configure the [webpack loaders](https://webpack.github.io/docs/configuration.html#module-loaders) for your project code.
+   Styleguidist generates a Webpack config required for the style guide itself but you need to configure [Webpack loaders](https://webpack.github.io/docs/configuration.html#module-loaders) for your project.
 
-   Put the `updateWebpackConfig` function in your `styleguide.config.js`:
+   Add the `updateWebpackConfig` function to your `styleguide.config.js`:
 
    ```javascript
    var path = require('path');
@@ -51,11 +50,11 @@
 
    **Note**: don’t forget `include` or `exclude` options for your Webpack loaders, otherwise they will interfere with Styleguidist’s loaders. Also do not include `node_modules` folder.
 
-4. Configure [React Transform HMR](https://github.com/gaearon/react-transform-hmr) (hot module replacement). This is optional, but highly recommended.
+4. Configure [hot module replacement](https://github.com/gaearon/react-transform-hmr). This is optional, but highly recommended.
 
-   Install React Transform for Babel (if you don't have it yet): `npm install --save-dev babel-preset-react-hmre`.
+   Install React Transform for Babel, if you don’t have it yet: `npm install --save-dev babel-preset-react-hmre`.
 
-   When you run the styleguidist server, `NODE_ENV` is set to `development` and when you build style guide `NODE_ENV` is set to `production`. You can use this fact to enable HMR only in development. So update your `.babelrc`:
+   When you run the Styleguidist server, `NODE_ENV` is set to `development` and when you build style guide `NODE_ENV` is set to `production`, so you can enable hot module replacement only in development. Update your `.babelrc`:
 
    ```json
    {
@@ -87,30 +86,41 @@ To customize your style guide, head to the [Configuration section](Configuration
 
 # Documenting components
 
-Styleguidist generates documentation from 2 sources:
+Styleguidist generates documentation from three sources:
 
 * **PropTypes and component description** in the source code
 
-  Components' `PropTypes` and documentation comments are parsed by the [react-docgen](https://github.com/reactjs/react-docgen) library. Have a look at [their example](https://github.com/reactjs/react-docgen#example) of a component documentation.
+  Components’ `PropTypes` and documentation comments are parsed by the [react-docgen](https://github.com/reactjs/react-docgen) library. Have a look at [their example](https://github.com/reactjs/react-docgen#example) of a component documentation. You can change its behaviour using `propsParser` and `resolver` [options](Configuration.md).
 
 * **Usage examples and further documentation** in Markdown
 
-  Examples are written in Markdown where any code block without a tag will be rendered as a react component. By default any   `Readme.md` in the component folder is treated as an examples file but you can change it with the `getExampleFilename` option.
+  Examples are written in Markdown where any code block without a language tag will be rendered as a React component. By default any `Readme.md` in the component’s folder is treated as an examples file but you can change it with the `getExampleFilename` [option](Configuration.md).
 
   ```markdown
   React component example:
 
       <Button size="large">Push Me</Button>
 
+  One more:
+
+  \`\`\`
+  <Button size="large">Push Me</Button>
+  \`\`\`
+
+  This example be rendered just as highlighted source code:
+
+  \`\`\`html
+  <Button size="large">Push Me</Button>
+  \`\`\`
+
   Any [Markdown](http://daringfireball.net/projects/markdown/) is **allowed** _here_.
   ```
 
-* **Loading examples using doclet tags**
+* **External examples using doclet tags**
 
-  Additional example files can be specifically associated with components using doclet (`@example`) syntax.
-  The following component will also have an example as loaded from the `extra.examples.md` file.
+  Additional example files can be associated with components using doclet (`@example`) syntax. The following component will also have an example as loaded from the `extra.examples.md` file:
 
-  ```js
+  ```javascript
   /**
    * Component is described here.
    *
@@ -123,20 +133,20 @@ Styleguidist generates documentation from 2 sources:
 
 # Writing code examples
 
-Code examples in Markdown use the ES6+JSX syntax. They can access all the components listed, they are exposed as global variables.
+Code examples in Markdown use the ES6+JSX syntax. They can access all the components of your style guide using global variables.
 
 You can also `require` other modules (e.g. mock data that you use in your unit tests) from examples in Markdown:
 
-```js
+```javascript
 const mockData = require('./mocks');
-<Message content={mockData.hello}/>
+<Message content={mockData.hello} />
 ```
 
-As an utility, also the [lodash](https://lodash.com/) library is available globally as `_`.
+As an utility, also the [Lodash](https://lodash.com/) library is available globally as `_`.
 
 Each example has its own state that you can access at the `state` variable and change with the `setState` function. Default state is `{}`.
 
-```js
+```html
 <div>
   <button onClick={() => setState({isOpen: true})}>Open</button>
   <Modal isOpen={state.isOpen}>
@@ -148,7 +158,7 @@ Each example has its own state that you can access at the `state` variable and 
 
 If you want to set the default state you can do:
 
-```js
+```javascript
 'key' in state || setState({key: 42});
 ```
 
