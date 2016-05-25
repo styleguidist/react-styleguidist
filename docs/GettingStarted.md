@@ -82,7 +82,7 @@
 
 6. Run **`npm run styleguide-server`** to start style guide dev server.
 
-To customize your style guide, head to the [Configuration section](#configuration) below.
+To customize your style guide, head to the [Configuration section](Configuration.md).
 
 
 # Documenting components

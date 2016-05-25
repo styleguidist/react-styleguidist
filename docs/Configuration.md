@@ -69,7 +69,7 @@ You can change some settings in the `styleguide.config.js` file in your projectâ
   Your application static assets folder, will be accessible as `/` in the style guide dev-server.
 
 * **`template`**<br>
-  Type: `String`, default: [src/templates/index.html](src/templates/index.html)<br>
+  Type: `String`, default: [src/templates/index.html](../src/templates/index.html)<br>
   HTML file to use as the template for the output.
 
 * **`title`**<br>
