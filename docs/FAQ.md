@@ -123,3 +123,15 @@ Button.defaultProps = {
   size: 'normal'
 };
 ```
+
+## Are there any other projects like this?
+
+* [React Styleguide Generator](https://github.com/pocotan001/react-styleguide-generator), a React style guide generator.
+* [heatpack](https://github.com/insin/react-heatpack), a quick to setup hot-reloaded development server for React components.
+* [Demobox](https://github.com/jaredly/demobox), a component for making component showcases for landing pages.
+* [React-demo](https://github.com/rpominov/react-demo), a component for creating demos of other components with props editor.
+* [Atellier](https://github.com/scup/atellier), a React components emulator.
+* [Cosmos](https://github.com/skidding/cosmos), a tool for designing truly encapsulated React components.
+* [React Storybook](https://github.com/kadirahq/react-storybook), isolate your React UI Component development from the main app.
+* [React Cards](https://github.com/steos/reactcards), devcards for React.
+* [SourceJS](https://github.com/sourcejs/Source), a platform to unify all your frontend documentation. It has a [Styleguidist plugin](https://github.com/sourcejs/sourcejs-react-styleguidist).

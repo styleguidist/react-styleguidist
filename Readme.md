@@ -37,10 +37,6 @@ The changelog can be found on the [Releases page](https://github.com/sapegin/rea
 
 Everyone is welcome to contribute. Please take a moment to review the [contributing guidelines](Contributing.md).
 
-## Similar projects
-
-There are [other projects](https://github.com/sapegin/react-styleguidist/wiki/Similar-projects) that might be a better fit for your project.
-
 ## Authors and license
 
 [Artem Sapegin](http://sapegin.me) and [contributors](https://github.com/sapegin/react-styleguidist/graphs/contributors).
