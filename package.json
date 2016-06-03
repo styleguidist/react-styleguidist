@@ -63,8 +63,8 @@
     "webpack-merge": "0.11.0"
   },
   "peerDependencies": {
-    "react": ">=0.14.0",
-    "react-dom": ">=0.14.0"
+    "react": ">=0.14.0 || ^15.0.0",
+    "react-dom": ">=0.14.0 || ^15.0.0"
   },
   "devDependencies": {
     "babel-eslint": "~6.0.4",
@@ -80,8 +80,8 @@
     "gh-pages": "~0.11.0",
     "mocha": "~2.4.5",
     "mock-require": "~1.2.1",
-    "react": "~0.14.8",
-    "react-dom": "~0.14.8",
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
     "react-modal": "~1.1.2"
   },
   "scripts": {
