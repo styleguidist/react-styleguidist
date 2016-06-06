@@ -89,6 +89,13 @@ module.exports = function() {};
 module.exports.pitch = function() {
 	this.cacheable && this.cacheable();
 
+	if (this.query) {
+		var query = JSON.parse(this.query.substring(1));
+		if (query.configFilepath) {
+			config.initialize(query.configFilepath);
+		}
+	}
+
 	var simplifiedConfig = _.pick(config, [
 		'title',
 		'highlightTheme'
