@@ -1,3 +1,7 @@
+# 2.3.1 - 2016-06-06
+
+* **Internal**: ability to change config file location.
+
 # 2.3.0 - 2016-05-24
 
 ## New features
