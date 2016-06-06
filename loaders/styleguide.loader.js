@@ -89,6 +89,15 @@ module.exports = function() {};
 module.exports.pitch = function() {
 	this.cacheable && this.cacheable();
 
+	// Example usage of query options:
+	// require('!!styleguide?{"configFilepath":"/path/to/config.js"}!');
+	if (this.query) {
+		var query = JSON.parse(this.query.substring(1)); // getting rid of '?'
+		if (query.configFilepath) {
+			config.initialize(query.configFilepath);
+		}
+	}
+
 	var simplifiedConfig = _.pick(config, [
 		'title',
 		'highlightTheme'

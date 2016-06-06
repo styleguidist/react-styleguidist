@@ -1,8 +1,11 @@
 /* eslint-disable no-var */
 
 var webpack = require('webpack');
-var makeWebpackConfig = require('./make-webpack-config');
+
 var config = require('./utils/config');
+config.initialize(); // we need to initialize config before requiring anything else from the project
+
+var makeWebpackConfig = require('./make-webpack-config');
 
 module.exports = function build(callback) {
 	webpack(makeWebpackConfig('production'), function(err, stats) {
