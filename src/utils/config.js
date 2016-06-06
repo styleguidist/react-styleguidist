@@ -1,5 +1,6 @@
 /* eslint-disable no-var, no-console, object-shorthand */
 
+var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var findup = require('findup');
@@ -47,14 +48,23 @@ var DEPENDENCIES = [
 ];
 var BUGS_URL = 'https://github.com/sapegin/react-styleguidist/issues';
 
+
+function initialize(configFilepath) {
+	var options = {};
+	if (!configFilepath) {
+		options = minimist(process.argv.slice(2));
+		configFilepath = findConfig(options);
+	}
+	_.assign(module.exports, readConfig(configFilepath, options));
+}
+
 /**
  * Read, parse and validate config file.
+ * @param {string} configFilepath path to the config file.
+ * @param {Object} cliOptions e.g. {verbose: true}
  * @returns {Object}
  */
-function readConfig() {
-	var argv = minimist(process.argv.slice(2));
-	var configFilepath = findConfig(argv);
-
+function readConfig(configFilepath, cliOptions) {
 	var options = require(configFilepath);
 
 	validateConfig(options);
@@ -84,7 +94,7 @@ function readConfig() {
 
 	options = merge({}, DEFAULT_CONFIG, options);
 	options = merge({}, options, {
-		verbose: !!argv.verbose,
+		verbose: !!cliOptions.verbose,
 		configDir: configDir,
 		assetsDir: assetsDir,
 		defaultExample: defaultExample,
@@ -221,4 +231,6 @@ function findDependency(name, packageJson) {
 	return null;
 }
 
-module.exports = readConfig();
+module.exports = {
+	initialize: initialize,
+};
