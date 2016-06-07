@@ -14,8 +14,7 @@
 
 .codeToggle {
 	composes: font from "../../styles/common.css";
-	composes: border from "../../styles/colors.css";
-	composes: link from "../../styles/colors.css";
+	composes: border link from "../../styles/colors.css";
 	cursor: pointer;
 	display: inline-block;
 	float: right;
