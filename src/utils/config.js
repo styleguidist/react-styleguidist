@@ -232,4 +232,6 @@ function findDependency(name, packageJson) {
 	return null;
 }
 
-module.exports = { initialize };
+module.exports = {
+	initialize: initialize,
+};
