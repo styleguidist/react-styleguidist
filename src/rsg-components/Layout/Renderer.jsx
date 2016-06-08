@@ -1,4 +1,4 @@
-import {PropTypes} from 'react';
+import { PropTypes } from 'react';
 import classnames from 'classnames';
 
 const s = require('./Layout.css');
@@ -26,7 +26,7 @@ Renderer.propTypes = {
 	title: PropTypes.string.isRequired,
 	components: PropTypes.object.isRequired,
 	toc: PropTypes.node.isRequired,
-	sidebar: PropTypes.bool
+	sidebar: PropTypes.bool,
 };
 
 export default Renderer;

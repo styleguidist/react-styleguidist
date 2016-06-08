@@ -8,14 +8,20 @@ export default class Components extends Component {
 		highlightTheme: PropTypes.string.isRequired,
 		components: PropTypes.array.isRequired,
 		sections: PropTypes.array.isRequired,
+		showCode: PropTypes.bool.isRequired,
 	};
 
 	renderComponents() {
-		const { highlightTheme, components } = this.props;
+		const { highlightTheme, components, showCode } = this.props;
 		const ComponentRenderer = ReactComponent(Renderer);
 
 		return components.map((component) => {
-			return (<ComponentRenderer key={component.name} highlightTheme={highlightTheme} component={component} />);
+			return (<ComponentRenderer
+						key={component.name}
+						highlightTheme={highlightTheme}
+						component={component}
+						showCode={showCode}
+					/>);
 		});
 	}
 

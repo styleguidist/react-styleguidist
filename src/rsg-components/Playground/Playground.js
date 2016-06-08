@@ -9,14 +9,15 @@ export default class Playground extends Component {
 		highlightTheme: PropTypes.string.isRequired,
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
-		showCode: PropTypes.bool,
+		showCode: PropTypes.bool.isRequired,
 	};
 
 	constructor(props) {
-		super();
+		super(props);
+		const { code, showCode } = props;
 		this.state = {
-			code: props.code,
-			showCode: false,
+			code,
+			showCode,
 		};
 	}
 
@@ -29,9 +30,9 @@ export default class Playground extends Component {
 		}
 	}
 
-	handleChange(newCode) {
+	handleChange(code) {
 		this.setState({
-			code: newCode,
+			code,
 		});
 	}
 
@@ -42,7 +43,7 @@ export default class Playground extends Component {
 	}
 
 	render() {
-		let { code } = this.state;
+		let { code, showCode } = this.state;
 		let { highlightTheme } = this.props;
 
 		return (
@@ -50,7 +51,7 @@ export default class Playground extends Component {
 				<div className={s.preview}>
 					<Preview code={code} evalInContext={this.props.evalInContext} />
 				</div>
-				{this.state.showCode ? (
+				{showCode ? (
 					<div className={s.editor}>
 						<Editor code={code} highlightTheme={highlightTheme} onChange={code => this.handleChange(code)} />
 						<div className={s.hideCode} onClick={() => this.handleCodeToggle()}>

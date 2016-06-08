@@ -16,6 +16,7 @@ var DEFAULT_CONFIG = {
 	sections: null,
 	skipComponentsWithoutExample: false,
 	defaultExample: false,
+	showCode: false,
 	title: 'Style guide',
 	styleguideDir: 'styleguide',
 	assetsDir: null,
@@ -231,6 +232,4 @@ function findDependency(name, packageJson) {
 	return null;
 }
 
-module.exports = {
-	initialize: initialize,
-};
+module.exports = { initialize };
