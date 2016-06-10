@@ -11,7 +11,7 @@ export default class Components extends Component {
 	};
 
 	renderComponents() {
-		const { highlightTheme, components, showCode } = this.props;
+		const { highlightTheme, components } = this.props;
 		const ComponentRenderer = ReactComponent(Renderer);
 
 		return components.map((component) => {
