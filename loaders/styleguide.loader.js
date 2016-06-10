@@ -100,7 +100,8 @@ module.exports.pitch = function() {
 
 	var simplifiedConfig = _.pick(config, [
 		'title',
-		'highlightTheme'
+		'highlightTheme',
+		'showCode'
 	]);
 
 	return [

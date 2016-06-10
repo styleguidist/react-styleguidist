@@ -7,7 +7,6 @@ const ReactComponent = (Renderer) => class extends Component {
 	static propTypes = {
 		highlightTheme: PropTypes.string.isRequired,
 		component: PropTypes.object.isRequired,
-		showCode: PropTypes.bool.isRequired,
 	};
 
 	renderDescription(description) {
@@ -28,7 +27,7 @@ const ReactComponent = (Renderer) => class extends Component {
 		);
 	}
 
-	renderExamples(highlightTheme, examples, showCode) {
+	renderExamples(highlightTheme, examples) {
 		if (!examples) {
 			return null;
 		}
@@ -42,7 +41,6 @@ const ReactComponent = (Renderer) => class extends Component {
 							evalInContext={example.evalInContext}
 							highlightTheme={highlightTheme}
 							key={index}
-							showCode={showCode}
 						/>
 					);
 				case 'markdown':
@@ -59,7 +57,7 @@ const ReactComponent = (Renderer) => class extends Component {
 	}
 
 	render() {
-		const { highlightTheme, component, showCode } = this.props;
+		const { highlightTheme, component } = this.props;
 
 		return (
 			<Renderer
@@ -67,7 +65,7 @@ const ReactComponent = (Renderer) => class extends Component {
 				pathLine={component.pathLine}
 				description={this.renderDescription(component.props.description)}
 				propList={this.renderProps(component.props)}
-				examples={this.renderExamples(highlightTheme, component.examples, showCode)}
+				examples={this.renderExamples(highlightTheme, component.examples)}
 			/>
 		);
 	}

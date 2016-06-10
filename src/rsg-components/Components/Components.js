@@ -8,7 +8,6 @@ export default class Components extends Component {
 		highlightTheme: PropTypes.string.isRequired,
 		components: PropTypes.array.isRequired,
 		sections: PropTypes.array.isRequired,
-		showCode: PropTypes.bool.isRequired,
 	};
 
 	renderComponents() {
@@ -21,7 +20,6 @@ export default class Components extends Component {
 					key={component.name}
 					highlightTheme={highlightTheme}
 					component={component}
-					showCode={showCode}
 				/>
 			);
 		});

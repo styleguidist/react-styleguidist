@@ -9,12 +9,16 @@ export default class Playground extends Component {
 		highlightTheme: PropTypes.string.isRequired,
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
-		showCode: PropTypes.bool.isRequired,
 	};
 
-	constructor(props) {
-		super(props);
-		const { code, showCode } = props;
+	static contextTypes = {
+		config: PropTypes.object.isRequired,
+	};
+
+	constructor(props, context) {
+		super(props, context);
+		const { code } = props;
+		const { config: { showCode } } = context;
 		this.state = {
 			code,
 			showCode,
