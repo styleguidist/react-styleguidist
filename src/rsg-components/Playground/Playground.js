@@ -18,7 +18,7 @@ export default class Playground extends Component {
 	constructor(props, context) {
 		super(props, context);
 		const { code } = props;
-		const { config: { showCode } } = context;
+		const { showCode } = context.config;
 		this.state = {
 			code,
 			showCode,
