@@ -16,6 +16,7 @@ var DEFAULT_CONFIG = {
 	sections: null,
 	skipComponentsWithoutExample: false,
 	defaultExample: false,
+	showCode: false,
 	title: 'Style guide',
 	styleguideDir: 'styleguide',
 	assetsDir: null,

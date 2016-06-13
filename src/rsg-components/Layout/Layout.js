@@ -18,6 +18,16 @@ const Layout = (Renderer) => class extends Component {
 		sidebar: true,
 	};
 
+	static childContextTypes = {
+		config: PropTypes.object.isRequired,
+	};
+
+	getChildContext() {
+		return {
+			config: this.props.config,
+		};
+	}
+
 	renderComponents(config, components, sections) {
 		if (!isEmpty(components) || !isEmpty(sections)) {
 			return (

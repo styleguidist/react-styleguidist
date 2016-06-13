@@ -15,7 +15,13 @@ export default class Components extends Component {
 		const ComponentRenderer = ReactComponent(Renderer);
 
 		return components.map((component) => {
-			return (<ComponentRenderer key={component.name} highlightTheme={highlightTheme} component={component} />);
+			return (
+				<ComponentRenderer
+					key={component.name}
+					highlightTheme={highlightTheme}
+					component={component}
+				/>
+			);
 		});
 	}
 

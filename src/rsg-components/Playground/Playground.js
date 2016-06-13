@@ -11,10 +11,17 @@ export default class Playground extends Component {
 		evalInContext: PropTypes.func.isRequired,
 	};
 
-	constructor(props) {
-		super();
+	static contextTypes = {
+		config: PropTypes.object.isRequired,
+	};
+
+	constructor(props, context) {
+		super(props, context);
+		const { code } = props;
+		const { showCode } = context.config;
 		this.state = {
-			code: props.code,
+			code,
+			showCode,
 		};
 	}
 
@@ -27,14 +34,20 @@ export default class Playground extends Component {
 		}
 	}
 
-	handleChange(newCode) {
+	handleChange(code) {
 		this.setState({
-			code: newCode,
+			code,
+		});
+	}
+
+	handleCodeToggle() {
+		this.setState({
+			showCode: !this.state.showCode,
 		});
 	}
 
 	render() {
-		let { code } = this.state;
+		let { code, showCode } = this.state;
 		let { highlightTheme } = this.props;
 
 		return (
@@ -42,9 +55,18 @@ export default class Playground extends Component {
 				<div className={s.preview}>
 					<Preview code={code} evalInContext={this.props.evalInContext} />
 				</div>
-				<div className={s.editor}>
-					<Editor code={code} highlightTheme={highlightTheme} onChange={code => this.handleChange(code)} />
-				</div>
+				{showCode ? (
+					<div className={s.editor}>
+						<Editor code={code} highlightTheme={highlightTheme} onChange={code => this.handleChange(code)} />
+						<div className={s.hideCode} onClick={() => this.handleCodeToggle()}>
+							hide code
+						</div>
+					</div>
+				) : (
+					<div className={s.showCode} onClick={() => this.handleCodeToggle()}>
+						show code
+					</div>
+				)}
 			</div>
 		);
 	}

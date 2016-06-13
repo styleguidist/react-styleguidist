@@ -61,6 +61,10 @@ You can change settings in the `styleguide.config.js` file in your project’s r
 
   When writing your own default example file, `__COMPONENT__` will be replaced by the actual component name at compile-time.
 
+* **`showCode`**<br>
+  Type: `Boolean`, default: `false`<br>
+  Show or hide example code initially. It can be toggled in the UI by clicking the show/hide code toggle button underneath each example.
+
 * **`styleguideDir`**<br>
   Type: `String`, default: `styleguide`<br>
   Folder for static HTML style guide generated with `styleguidist build` command.

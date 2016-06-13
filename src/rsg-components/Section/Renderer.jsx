@@ -1,9 +1,9 @@
-import {PropTypes} from 'react';
+import { PropTypes } from 'react';
 
 const s = require('./Section.css');
 
-const Renderer = ({ name, content, components}) => {
-  return (
+const Renderer = ({ name, content, components }) => {
+  										return (
     <div className={s.root}>
       <header className={s.header}>
         <h1 className={s.heading} id={name}>
@@ -22,9 +22,9 @@ const Renderer = ({ name, content, components}) => {
 };
 
 Renderer.propTypes = {
-  name: PropTypes.string.isRequired,
-  content: PropTypes.array,
-  components: PropTypes.object
+  										name: PropTypes.string.isRequired,
+  										content: PropTypes.array,
+  										components: PropTypes.object,
 };
 
 
