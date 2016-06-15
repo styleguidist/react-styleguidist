@@ -23,7 +23,7 @@ function readExamples(markdown) {
 	md.renderer.rules.code_block = md.renderer.rules.fence = function(tokens, idx) {
 		var token = tokens[idx];
 		var code = tokens[idx].content.trim();
-		if (token.type === 'fence' && token.info && token.info !== 'jsx') {
+		if (token.type === 'fence' && token.info && token.info !== 'example') {
 			// Render fenced blocks with language flag as regular Markdown code snippets
 			var highlighted;
 			try {
