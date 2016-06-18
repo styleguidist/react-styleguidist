@@ -52,7 +52,7 @@ export default class Preview extends Component {
 		}
 
 		try {
-			let compiledCode = this.compileCode(this.props.code);
+			const compiledCode = this.compileCode(this.props.code);
 			// initiate state and set with the callback in the bottom component;
 			const initCode = `
 				var initialState = {};
@@ -101,7 +101,7 @@ export default class Preview extends Component {
 				}
 			}
 
-			let wrappedComponent = (
+			const wrappedComponent = (
 				<Wrapper>
 					<PreviewComponent />
 				</Wrapper>
