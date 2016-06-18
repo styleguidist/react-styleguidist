@@ -1,4 +1,4 @@
-import { PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
 const s = require('./Layout.css');
