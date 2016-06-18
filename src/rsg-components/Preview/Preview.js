@@ -53,16 +53,10 @@ export default class Preview extends Component {
 
 		try {
 			let compiledCode = this.compileCode(this.props.code);
-
-			// the code contains the setup of the state and the react component to render.
-			// we split the setup of the state and the react component;
-
-			const splitIndex = compiledCode.indexOf('React.createElement');
-
 			// initiate state and set with the callback in the bottom component;
 			const initCode = `
 				var initialState = {};
-				${compiledCode.substring(0, splitIndex)}
+				${compiledCode}
 				__initialStateCB(initialState);
 			`;
 			// evalInContext returns a function which takes state, setState and a callback to handle the
@@ -72,13 +66,12 @@ export default class Preview extends Component {
 			// 1) setup initialState so that we don't get an error;
 			// 2) use require data or make other setup for the example component;
 			// 3) return the example component
-			const renderCode = `
+			const exampleComponentCode = `
 				var initialState = {};
-				${compiledCode.substring(0, splitIndex)}
-				return ${compiledCode.substring(splitIndex)};
+				return eval(${JSON.stringify(compiledCode)});
 			`;
-			const render = this.props.evalInContext(renderCode);
 
+			const exampleComponent = this.props.evalInContext(exampleComponentCode);
 			// wrap everything in a react component, such that we can leverage the state management of this component
 			class PreviewComponent extends React.Component {
 
@@ -101,10 +94,10 @@ export default class Preview extends Component {
 					if (this.state.error) {
 						return <pre className={s.playgroundError}>{this.state.error}</pre>;
 					}
-					const setState = partialState => this.setState(partialState);
+					const setState = (nextState, callback) => this.setState(nextState, callback);
 					const state = this.state;
 					// pass through props from the wrapper component
-					return React.cloneElement(render(state, setState, null), this.props);
+					return React.cloneElement(exampleComponent(state, setState, null), this.props);
 				}
 			}
 
