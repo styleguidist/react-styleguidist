@@ -25,7 +25,6 @@ Based on Webpack, webpack-dev-server and Babel.
 
 Real projects using React Styleguidist:
 
-
 * [Rumble Charts](http://rumbleinc.github.io/rumble-js-charts/)
 * [Semantic UI Components for React](http://hallister.github.io/semantic-react/)
 * [More projects](https://github.com/sapegin/react-styleguidist/issues/127)
