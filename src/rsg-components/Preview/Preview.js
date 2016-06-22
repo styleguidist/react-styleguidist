@@ -73,7 +73,7 @@ export default class Preview extends Component {
 
 			const exampleComponent = this.props.evalInContext(exampleComponentCode);
 			// wrap everything in a react component, such that we can leverage the state management of this component
-			class PreviewComponent extends React.Component {
+			class PreviewComponent extends React.Component { // eslint-disable-line react/no-multi-comp
 
 				constructor(props) {
 					super(props);
@@ -84,7 +84,7 @@ export default class Preview extends Component {
 					};
 					const setStateError = (partialState) => {
 						const err = 'Calling setState to setup the initial state is deprecated. Use\ninitialState = ';
-						Object.assign(state, {error: err + JSON.stringify(partialState) + ';'});
+						Object.assign(state, { error: err + JSON.stringify(partialState) + ';' });
 					};
 					initial({}, setStateError, initialStateCB);
 					this.state = state;
