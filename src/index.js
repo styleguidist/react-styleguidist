@@ -54,11 +54,26 @@ function renderStyleguide() {
 			}));
 		});
 
-		ReactDOM.render(<StyleGuide config={config} components={filteredComponents} sections={[]} sidebar={false} />, document.getElementById('app'));
+		ReactDOM.render(
+			<StyleGuide
+				config={config}
+				components={filteredComponents}
+				sections={[]}
+				sidebar={false}
+			/>,
+			document.getElementById('app')
+		);
 		hasRenderedFullStyleguide = false;
 	}
 	else if (!hasRenderedFullStyleguide) {
-		ReactDOM.render(<StyleGuide config={config} components={components} sections={sections} />, document.getElementById('app'));
+		ReactDOM.render(
+			<StyleGuide
+				config={config}
+				components={components}
+				sections={sections}
+			/>,
+			document.getElementById('app')
+		);
 		hasRenderedFullStyleguide = true;
 	}
 }

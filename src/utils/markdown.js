@@ -1,3 +1,5 @@
+/* eslint-disable no-var, no-invalid-this */
+
 /**
  * Customized markdown-it renderer that renders only code blocks.
  */
@@ -13,34 +15,34 @@ var preset = {
 		linkify: false,
 		typographer: false,
 		highlight: null,
-		maxNesting: 20
+		maxNesting: 20,
 	},
 	components: {
 		core: {
 			rules: [
 				'normalize',
 				'block',
-				'inline'
-			]
+				'inline',
+			],
 		},
 		block: {
 			rules: [
 				'code',
 				'fence',
-				'paragraph'
-			]
+				'paragraph',
+			],
 		},
 		inline: {
 			rules: [
 				'backticks',
-				'text'
+				'text',
 			],
 			rules2: [
 				'balance_pairs',
-				'text_collapse'
-			]
-		}
-	}
+				'text_collapse',
+			],
+		},
+	},
 };
 
 // Copy pasted from markdown-it but prints \n instead of <p> tags and do not render inline `code` blocks
@@ -48,12 +50,12 @@ function render(tokens, options, env) {
 	var result = '';
 	var rules = this.rules;
 
-	for (var i = 0, len = tokens.length; i < len; i++) {
-		var type = tokens[i].type;
+	for (var tokenIdx = 0, len = tokens.length; tokenIdx < len; tokenIdx++) {
+		var type = tokens[tokenIdx].type;
 
 		// Revert inline code blocks
 		if (type === 'inline') {
-			tokens[i].children = tokens[i].children.map(function(child) {
+			tokens[tokenIdx].children = tokens[tokenIdx].children.map(function(child) {
 				if (child.type === 'code_inline') {
 					child.type = 'text';
 					child.tag = '';
@@ -68,13 +70,13 @@ function render(tokens, options, env) {
 			result += '\n';
 		}
 		else if (type === 'inline') {
-			result += this.renderInline(tokens[i].children, options, env);
+			result += this.renderInline(tokens[tokenIdx].children, options, env);
 		}
 		else if (typeof rules[type] !== 'undefined') {
-			result += rules[tokens[i].type](tokens, i, options, env, this);
+			result += rules[tokens[tokenIdx].type](tokens, tokenIdx, options, env, this);
 		}
 		else {
-			result += this.renderToken(tokens, i, options, env);
+			result += this.renderToken(tokens, tokenIdx, options, env);
 		}
 	}
 

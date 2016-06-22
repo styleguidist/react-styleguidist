@@ -1,3 +1,5 @@
+/* eslint-disable no-var, no-console */
+
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -33,64 +35,64 @@ module.exports = function(env) {
 	var webpackConfig = {
 		output: {
 			path: config.styleguideDir,
-			filename: 'build/bundle.js'
+			filename: 'build/bundle.js',
 		},
 		resolve: {
 			root: __dirname,
 			extensions: ['', '.js', '.jsx'],
 			modulesDirectories: [
 				path.resolve(__dirname, '../node_modules'),
-				'node_modules'
+				'node_modules',
 			],
 			alias: {
-				'codemirror': codeMirrorPath
-			}
+				codemirror: codeMirrorPath,
+			},
 		},
 		resolveLoader: {
 			modulesDirectories: [
 				path.resolve(__dirname, '../loaders'),
 				path.resolve(__dirname, '../node_modules'),
-				'node_modules'
-			]
+				'node_modules',
+			],
 		},
 		plugins: [
 			new HtmlWebpackPlugin({
 				title: config.title,
 				template: config.template,
-				inject: true
+				inject: true,
 			}),
 			new webpack.DefinePlugin({
 				'process.env': {
-					NODE_ENV: JSON.stringify(env)
-				}
-			})
+					NODE_ENV: JSON.stringify(env),
+				},
+			}),
 		],
 		module: {
 			loaders: [
 				{
 					// TODO: remove this when entities module is fixed (https://github.com/fb55/entities/pull/26)
-					test: /node_modules\/entities\/.*\.json$/,
+					test: /node_modules[/\\]entities[/\\].*\.json$/,
 					include: /node_modules/,
-					loader: 'json'
+					loader: 'json',
 				},
 				{
 					test: /\.css$/,
 					include: [
 						codeMirrorPath,
-						getPackagePath('highlight.js')
+						getPackagePath('highlight.js'),
 					],
-					loader: 'style!css'
+					loader: 'style!css',
 				},
 				{
 					test: /\.css$/,
 					include: __dirname,
-					loader: 'style!css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]'
-				}
+					loader: 'style!css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]',
+				},
 			],
 			noParse: [
-				/babel-standalone/
-			]
-		}
+				/babel-standalone/,
+			],
+		},
 	};
 
 	var entryScript = path.join(__dirname, 'index');
@@ -98,7 +100,7 @@ module.exports = function(env) {
 	if (env === 'production') {
 		webpackConfig = merge(webpackConfig, {
 			entry: [
-				entryScript
+				entryScript,
 			],
 			devtool: false,
 			debug: false,
@@ -108,13 +110,13 @@ module.exports = function(env) {
 				new webpack.optimize.DedupePlugin(),
 				new webpack.optimize.UglifyJsPlugin({
 					compress: {
-						warnings: false
+						warnings: false,
 					},
 					output: {
-						comments: false
+						comments: false,
 					},
-					mangle: false
-				})
+					mangle: false,
+				}),
 			],
 			module: {
 				loaders: [
@@ -124,30 +126,30 @@ module.exports = function(env) {
 						loader: 'babel',
 						query: {
 							babelrc: false,
-							presets: ['es2015', 'react', 'stage-0']
-						}
-					}
-				]
-			}
+							presets: ['es2015', 'react', 'stage-0'],
+						},
+					},
+				],
+			},
 		});
 	}
 	else {
 		webpackConfig = merge(webpackConfig, {
 			entry: [
 				'webpack-hot-middleware/client',
-				entryScript
+				entryScript,
 			],
 			debug: true,
 			cache: true,
 			devtool: 'eval-source-map',
 			stats: {
 				colors: true,
-				reasons: true
+				reasons: true,
 			},
 
 			plugins: [
 				new webpack.HotModuleReplacementPlugin(),
-				new webpack.NoErrorsPlugin()
+				new webpack.NoErrorsPlugin(),
 			],
 			module: {
 				loaders: [
@@ -157,11 +159,11 @@ module.exports = function(env) {
 						loader: 'babel',
 						query: {
 							babelrc: false,
-							presets: ['es2015', 'react', 'stage-0', 'react-hmre']
-						}
-					}
-				]
-			}
+							presets: ['es2015', 'react', 'stage-0', 'react-hmre'],
+						},
+					},
+				],
+			},
 		});
 	}
 

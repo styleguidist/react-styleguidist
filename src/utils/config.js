@@ -1,10 +1,13 @@
+/* eslint-disable no-var, no-console, object-shorthand */
+
+var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var findup = require('findup');
 var semverUtils = require('semver-utils');
 var minimist = require('minimist');
 var prettyjson = require('prettyjson');
-var _ = require('lodash');
+var merge = require('lodash/merge');
 var utils = require('./server');
 
 var CONFIG_FILENAME = 'styleguide.config.js';
@@ -12,6 +15,8 @@ var DEFAULT_CONFIG = {
 	components: null,
 	sections: null,
 	skipComponentsWithoutExample: false,
+	defaultExample: false,
+	showCode: false,
 	title: 'Style guide',
 	styleguideDir: 'styleguide',
 	assetsDir: null,
@@ -26,32 +31,41 @@ var DEFAULT_CONFIG = {
 	getComponentPathLine: function(componentpath) {
 		return componentpath;
 	},
-	updateWebpackConfig: null
+	updateWebpackConfig: null,
 };
 var DEPENDENCIES = [
 	{
 		package: 'babel-core',
 		name: 'Babel',
 		from: 6,
-		to: 6
+		to: 6,
 	},
 	{
 		package: 'webpack',
 		name: 'Webpack',
 		from: 1,
-		to: 1
-	}
+		to: 1,
+	},
 ];
 var BUGS_URL = 'https://github.com/sapegin/react-styleguidist/issues';
 
+
+function initialize(configFilepath) {
+	var options = {};
+	if (!configFilepath) {
+		options = minimist(process.argv.slice(2));
+		configFilepath = findConfig(options);
+	}
+	_.assign(module.exports, readConfig(configFilepath, options));
+}
+
 /**
  * Read, parse and validate config file.
+ * @param {string} configFilepath path to the config file.
+ * @param {Object} cliOptions e.g. {verbose: true}
  * @returns {Object}
  */
-function readConfig() {
-	var argv = minimist(process.argv.slice(2));
-	var configFilepath = findConfig(argv);
-
+function readConfig(configFilepath, cliOptions) {
 	var options = require(configFilepath);
 
 	validateConfig(options);
@@ -68,12 +82,24 @@ function readConfig() {
 		}
 	}
 
-	options = _.merge({}, DEFAULT_CONFIG, options);
-	options = _.merge({}, options, {
-		verbose: !!argv.verbose,
+	var defaultExample = options.defaultExample;
+	if (defaultExample === true) {
+		defaultExample = path.join(__dirname, '../templates/DefaultExample.md');
+	}
+	else if (typeof defaultExample === 'string') {
+		defaultExample = path.resolve(configDir, defaultExample);
+		if (!fs.existsSync(defaultExample)) {
+			throw Error('Styleguidist: "defaultExample" file not found: ' + defaultExample);
+		}
+	}
+
+	options = merge({}, DEFAULT_CONFIG, options);
+	options = merge({}, options, {
+		verbose: !!cliOptions.verbose,
 		configDir: configDir,
 		assetsDir: assetsDir,
-		styleguideDir: path.resolve(configDir, options.styleguideDir)
+		defaultExample: defaultExample,
+		styleguideDir: path.resolve(configDir, options.styleguideDir),
 	});
 
 	if (options.verbose) {
@@ -103,19 +129,18 @@ function findConfig(argv) {
 
 		return configFilepath;
 	}
-	else {
-		// Search config file in all parent directories
 
-		var configDir;
-		try {
-			configDir = findup.sync(__dirname, CONFIG_FILENAME);
-		}
-		catch (e) {
-			throw Error('Styleguidist config not found: ' + CONFIG_FILENAME + '.');
-		}
+	// Search config file in all parent directories
 
-		return path.join(configDir, CONFIG_FILENAME);
+	var configDir;
+	try {
+		configDir = findup.sync(__dirname, CONFIG_FILENAME);
 	}
+	catch (exception) {
+		throw Error('Styleguidist config not found: ' + CONFIG_FILENAME + '.');
+	}
+
+	return path.join(configDir, CONFIG_FILENAME);
 }
 
 /**
@@ -127,7 +152,7 @@ function validateConfig(options) {
 	if (!options.components && !options.sections) {
 		throw Error('Styleguidist: "components" or "sections" option is required.');
 	}
-	if (options.sections && !_.isArray(options.sections)) {
+	if (options.sections && !Array.isArray(options.sections)) {
 		throw Error('Styleguidist: "sections" option must be an array.');
 	}
 	if (options.getExampleFilename && typeof options.getExampleFilename !== 'function') {
@@ -138,6 +163,10 @@ function validateConfig(options) {
 	}
 	if (options.updateWebpackConfig && typeof options.updateWebpackConfig !== 'function') {
 		throw Error('Styleguidist: "updateWebpackConfig" option must be a function.');
+	}
+	if (options.defaultExample && (options.defaultExample !== true && typeof options.defaultExample !== 'string')) {
+		throw Error('Styleguidist: "defaultExample" option must be either false, true, ' +
+			'or a string path to a markdown file.');
 	}
 }
 
@@ -168,7 +197,7 @@ function validateDependency(packageJson, dependency) {
 	try {
 		major = semverUtils.parseRange(version)[0].major;
 	}
-	catch (e) {
+	catch (exception) {
 		console.log('Styleguidist: cannot parse ' + dependency.name + ' version which is "' + version + '".');
 		console.log('Styleguidist might not work properly. Please report this issue at ' + BUGS_URL);
 		console.log();
@@ -203,4 +232,6 @@ function findDependency(name, packageJson) {
 	return null;
 }
 
-module.exports = readConfig();
+module.exports = {
+	initialize: initialize,
+};

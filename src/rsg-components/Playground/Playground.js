@@ -1,4 +1,4 @@
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Editor from 'rsg-components/Editor';
 import Preview from 'rsg-components/Preview';
 
@@ -11,40 +11,62 @@ export default class Playground extends Component {
 		evalInContext: PropTypes.func.isRequired,
 	};
 
-	constructor(props) {
-		super();
+	static contextTypes = {
+		config: PropTypes.object.isRequired,
+	};
+
+	constructor(props, context) {
+		super(props, context);
+		const { code } = props;
+		const { showCode } = context.config;
 		this.state = {
-			code: props.code
+			code,
+			showCode,
 		};
 	}
-
-	handleChange = (newCode) => {
-		this.setState({
-			code: newCode
-		});
-	};
 
 	componentWillReceiveProps(nextProps) {
 		let { code } = nextProps;
 		if (code) {
 			this.setState({
-				code
+				code,
 			});
 		}
 	}
 
+	handleChange(code) {
+		this.setState({
+			code,
+		});
+	}
+
+	handleCodeToggle() {
+		this.setState({
+			showCode: !this.state.showCode,
+		});
+	}
+
 	render() {
-		let { code } = this.state;
+		let { code, showCode } = this.state;
 		let { highlightTheme } = this.props;
 
 		return (
 			<div className={s.root}>
 				<div className={s.preview}>
-					<Preview code={code} evalInContext={this.props.evalInContext}/>
+					<Preview code={code} evalInContext={this.props.evalInContext} />
 				</div>
-				<div className={s.editor}>
-					<Editor code={code} highlightTheme={highlightTheme} onChange={this.handleChange}/>
-				</div>
+				{showCode ? (
+					<div className={s.editor}>
+						<Editor code={code} highlightTheme={highlightTheme} onChange={code => this.handleChange(code)} />
+						<div className={s.hideCode} onClick={() => this.handleCodeToggle()}>
+							hide code
+						</div>
+					</div>
+				) : (
+					<div className={s.showCode} onClick={() => this.handleCodeToggle()}>
+						show code
+					</div>
+				)}
 			</div>
 		);
 	}

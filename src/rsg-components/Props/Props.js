@@ -1,11 +1,11 @@
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import trim from 'lodash/trim';
 import Markdown from 'rsg-components/Markdown';
 
 import s from './Props.css';
 import sMarkdown from '../Markdown/Markdown.css';
 
-/* eslint-disable react/no-multi-comp */
+/* eslint-disable react/prop-types */
 
 export let Code = ({ className = '', children }) => {
 	return <code className={sMarkdown.code + ' ' + className}>{children}</code>;
@@ -17,7 +17,7 @@ export function unquote(string) {
 
 export default class Props extends Component {
 	static propTypes = {
-		props: PropTypes.object.isRequired
+		props: PropTypes.object.isRequired,
 	};
 
 	renderRows(props) {
@@ -48,8 +48,9 @@ export default class Props extends Component {
 				return `${type.value.name}[]`;
 			case 'instanceOf':
 				return type.value;
+			default:
+				return name;
 		}
-		return name;
 	}
 
 	renderDefault(prop) {
@@ -63,9 +64,7 @@ export default class Props extends Component {
 				<Code>{unquote(prop.defaultValue.value)}</Code>
 			);
 		}
-		else {
-			return '';
-		}
+		return '';
 	}
 
 	renderDescription(prop) {
@@ -73,7 +72,7 @@ export default class Props extends Component {
 		let extra = this.renderExtra(prop);
 		return (
 			<div>
-				{description && <Markdown className={s.inline} text={description}/>}
+				{description && <Markdown className={s.inline} text={description} />}
 				{description && extra && ' '}
 				{extra}
 			</div>
@@ -94,8 +93,9 @@ export default class Props extends Component {
 				return this.renderUnion(prop);
 			case 'shape':
 				return this.renderShape(prop);
+			default:
+				return null;
 		}
-		return null;
 	}
 
 	renderEnum(prop) {
@@ -116,8 +116,8 @@ export default class Props extends Component {
 		if (!Array.isArray(getType(prop).value)) {
 			return <span>{getType(prop).value}</span>;
 		}
-		let values = getType(prop).value.map((value, i) => (
-			<li className={s.listItem} key={value.name + i}>
+		let values = getType(prop).value.map((value, index) => (
+			<li className={s.listItem} key={value.name + index}>
 				<Code className={s.type}>{this.renderType(value)}</Code>
 			</li>
 		));
@@ -140,7 +140,7 @@ export default class Props extends Component {
 					<Code className={s.type}>{this.renderType(prop)}</Code>
 					{defaultValue && ' — '}{defaultValue}
 					{description && ' — '}
-					{description && <Markdown className={s.inline} text={description}/>}
+					{description && <Markdown className={s.inline} text={description} />}
 				</div>
 			);
 		}
@@ -151,12 +151,12 @@ export default class Props extends Component {
 		return (
 			<table className={s.table}>
 				<thead className={s.tableHead}>
-				<tr>
-					<th className={s.cellHeading}>Name</th>
-					<th className={s.cellHeading}>Type</th>
-					<th className={s.cellHeading}>Default</th>
-					<th className={s.cellHeading + ' ' + s.cellDesc}>Description</th>
-				</tr>
+					<tr>
+						<th className={s.cellHeading}>Name</th>
+						<th className={s.cellHeading}>Type</th>
+						<th className={s.cellHeading}>Default</th>
+						<th className={s.cellHeading + ' ' + s.cellDesc}>Description</th>
+					</tr>
 				</thead>
 				<tbody className={s.tableBody}>
 					{this.renderRows(props)}

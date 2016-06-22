@@ -2,7 +2,7 @@ import { Component, PropTypes } from 'react';
 
 export default class Wrapper extends Component {
 	static propTypes = {
-		children: PropTypes.node.isRequired
+		children: PropTypes.node.isRequired,
 	};
 
 	render() {

@@ -1,7 +1,7 @@
 {
   "name": "react-styleguidist",
   "description": "React components style guide generator",
-  "version": "2.2.1",
+  "version": "2.3.1",
   "homepage": "https://github.com/sapegin/react-styleguidist",
   "author": {
     "name": "Artem Sapegin",
@@ -47,6 +47,7 @@
     "highlight.js": "9.3.0",
     "html-webpack-plugin": "2.16.0",
     "json-loader": "0.5.4",
+    "loader-utils": "^0.2.15",
     "lodash": "4.11.1",
     "markdown-it": "6.0.1",
     "markdown-react-js": "0.3.0",
@@ -66,14 +67,15 @@
     "react-dom": ">=0.14.0"
   },
   "devDependencies": {
-    "babel-eslint": "~4.1.8",
+    "babel-eslint": "~6.0.4",
     "babel-register": "~6.7.2",
     "chai": "~3.5.0",
     "cross-env": "~1.0.7",
     "css-modules-require-hook": "~4.0.0",
     "dog-names": "~1.0.2",
-    "eslint": "~1.10.3",
-    "eslint-plugin-react": "~3.16.1",
+    "eslint": "~2.10.2",
+    "eslint-config-tamia": "~2.0.1",
+    "eslint-plugin-react": "~5.1.1",
     "expect-react-shallow": "~1.2.0",
     "gh-pages": "~0.11.0",
     "mocha": "~2.4.5",
@@ -89,7 +91,7 @@
     "start": "./bin/styleguidist server --config examples/basic/styleguide.config.js",
     "start:customised": "./bin/styleguidist server --config examples/customised/styleguide.config.js",
     "start:sections": "./bin/styleguidist server --config examples/basic-sections/styleguide.config.js",
-    "lint": "eslint src --ext .js",
+    "lint": "eslint ./src --ext .js,.jsx",
     "build": "./bin/styleguidist build --config examples/basic/styleguide.config.js",
     "build:customised": "./bin/styleguidist build --config examples/customised/styleguide.config.js",
     "publish": "npm run build && gh-pages -d examples/basic/styleguide"

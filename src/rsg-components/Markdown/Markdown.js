@@ -5,7 +5,7 @@ import unescapeHtml from 'lodash/unescape';
 
 import s from './Markdown.css';
 
-/* eslint-disable react/prop-types, react/no-multi-comp */
+/* eslint-disable no-console, react/prop-types */
 
 const headingRegExp = /^h(\d)$/;
 const bugsUrl = 'https://github.com/sapegin/react-styleguidist/issues';
@@ -30,12 +30,11 @@ function handleIterate(Tag, props, children) {
 	if (Tag === 'code') {
 		if (props['data-language']) {
 			// Render fenced blocks with language flag as highlighted source
-			return <div key={props.key} dangerouslySetInnerHTML={{__html: children}} />;
+			return <div key={props.key} dangerouslySetInnerHTML={{ __html: children }} />;
 		}
-		else {
-			// Unescape inline code blocks
-			children = children.map(unescapeHtml);
-		}
+
+		// Unescape inline code blocks
+		children = children.map(unescapeHtml);
 	}
 
 	return <Tag {...props}>{children}</Tag>;
@@ -43,7 +42,7 @@ function handleIterate(Tag, props, children) {
 
 export default function Markdown({
 	text,
-	className
+	className,
 }) {
 	let classes = cx(s.root, className);
 
@@ -58,5 +57,5 @@ export default function Markdown({
 
 Markdown.propTypes = {
 	text: PropTypes.string.isRequired,
-	className: PropTypes.string
+	className: PropTypes.string,
 };

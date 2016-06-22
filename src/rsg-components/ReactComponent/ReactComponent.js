@@ -6,7 +6,7 @@ import Playground from 'rsg-components/Playground';
 const ReactComponent = (Renderer) => class extends Component {
 	static propTypes = {
 		highlightTheme: PropTypes.string.isRequired,
-		component: PropTypes.object.isRequired
+		component: PropTypes.object.isRequired,
 	};
 
 	renderDescription(description) {
@@ -14,7 +14,7 @@ const ReactComponent = (Renderer) => class extends Component {
 			return null;
 		}
 
-		return (<Markdown text={description}/>);
+		return (<Markdown text={description} />);
 	}
 
 	renderProps(props) {
@@ -23,7 +23,7 @@ const ReactComponent = (Renderer) => class extends Component {
 		}
 
 		return (
-			<Props props={props}/>
+			<Props props={props} />
 		);
 	}
 
@@ -50,12 +50,14 @@ const ReactComponent = (Renderer) => class extends Component {
 							key={index}
 						/>
 					);
+				default:
+					return null;
 			}
 		});
 	}
 
 	render() {
-		const {highlightTheme, component} = this.props;
+		const { highlightTheme, component } = this.props;
 
 		return (
 			<Renderer

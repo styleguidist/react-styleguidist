@@ -1,4 +1,4 @@
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Components from 'rsg-components/Components';
 import TableOfContents from 'rsg-components/TableOfContents';
 
@@ -11,12 +11,22 @@ const Layout = (Renderer) => class extends Component {
 		config: PropTypes.object.isRequired,
 		components: PropTypes.array.isRequired,
 		sections: PropTypes.array.isRequired,
-		sidebar: PropTypes.bool
+		sidebar: PropTypes.bool,
 	};
 
 	static defaultProps = {
-		sidebar: true
+		sidebar: true,
 	};
+
+	static childContextTypes = {
+		config: PropTypes.object.isRequired,
+	};
+
+	getChildContext() {
+		return {
+			config: this.props.config,
+		};
+	}
 
 	renderComponents(config, components, sections) {
 		if (!isEmpty(components) || !isEmpty(sections)) {
@@ -24,14 +34,13 @@ const Layout = (Renderer) => class extends Component {
 				<Components highlightTheme={config.highlightTheme} components={components} sections={sections} />
 			);
 		}
-		else {
-			return (
-				<div className={s.empty}>
-					No components found. <a className={s.link} href="https://github.com/sapegin/react-styleguidist#configuration">Check
-					the components option</a> in your style guide config.
-				</div>
-			);
-		}
+
+		return (
+			<div className={s.empty}>
+				No components found. <a className={s.link} href="https://github.com/sapegin/react-styleguidist#configuration">Check
+				the components option</a> in your style guide config.
+			</div>
+		);
 	}
 
 	renderTableOfContents(components, sections) {

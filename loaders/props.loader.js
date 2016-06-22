@@ -14,8 +14,9 @@ module.exports = function (source) {
 
 	var jsonProps;
 	try {
+		const file = this.request.split('!').pop()
 		var propsParser = config.propsParser || defaultPropsParser;
-		var props = propsParser(this.request.split('!').pop(), source);
+		var props = propsParser(file, source);
 
 		jsonProps = (isArray(props) ? props : [props]).map(function(doc) {
 			if (doc.description) {
@@ -36,7 +37,7 @@ module.exports = function (source) {
 		});
 	}
 	catch (e) {
-		console.log('Error when parsing', path.basename(this.request));
+		console.log('Error when parsing', path.relative(process.cwd(), file));
 		console.log(e.toString());
 		console.log();
 		jsonProps = [];
