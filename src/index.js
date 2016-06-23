@@ -39,10 +39,10 @@ sections = processSections(sections || []);
 
 let hasRenderedFullStyleguide = false;
 function renderStyleguide() {
-    const app = document.getElementById('app');
+	const app = document.getElementById('app');
 
 	if (window.location.hash.substr(0, 3) === '#!/') {
-        const filterTargetComponents = list => list.filter(component => component.name === targetComponentName);;
+		const filterTargetComponents = list => list.filter(component => component.name === targetComponentName);
 
 		const targetComponentName = window.location.hash.substr(3);
 		const filteredComponents = filterTargetComponents(components);
