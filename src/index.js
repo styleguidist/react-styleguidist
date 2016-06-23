@@ -1,7 +1,5 @@
 import React from 'react';
-import merge from 'lodash/merge';
-import filter from 'lodash/filter';
-import forEach from 'lodash/forEach';
+import _ from 'lodash';
 import ReactDOM from 'react-dom';
 import { setComponentsNames, globalizeComponents, promoteInlineExamples, flattenChildren } from './utils/utils';
 import StyleGuide from 'rsg-components/StyleGuide';
@@ -9,7 +7,9 @@ import StyleGuide from 'rsg-components/StyleGuide';
 import 'highlight.js/styles/tomorrow.css';
 import './styles.css';
 
+// Make libraries available in examples
 global.React = React;
+global._ = _;
 
 if (module.hot) {
 	module.hot.accept();
@@ -44,12 +44,12 @@ function renderStyleguide() {
 	if (window.location.hash.substr(0, 3) === '#!/') {
 		const targetComponentName = window.location.hash.substr(3);
 
-		const filteredComponents = filter(components, function(component) {
+		const filteredComponents = _.filter(components, function(component) {
 			return component.name === targetComponentName;
 		});
 
-		forEach(sections, function(section) {
-			merge(filteredComponents, filter(section.components, function(component) {
+		_.forEach(sections, function(section) {
+			_.merge(filteredComponents, _.filter(section.components, function(component) {
 				return component.name === targetComponentName;
 			}));
 		});
