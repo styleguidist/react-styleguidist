@@ -7,6 +7,7 @@ const Section = (Renderer) => class extends Component {
 	static propTypes = {
 		highlightTheme: PropTypes.string.isRequired,
 		section: PropTypes.object.isRequired,
+		sidebar: PropTypes.bool,
 	};
 
 	renderContent(highlightTheme, examples) {
@@ -38,7 +39,7 @@ const Section = (Renderer) => class extends Component {
 		});
 	}
 
-	renderComponents(highlightTheme, components, sections) {
+	renderComponents(highlightTheme, components, sections, sidebar) {
 		if (!components && !sections) {
 			return null;
 		}
@@ -47,18 +48,19 @@ const Section = (Renderer) => class extends Component {
 			<Components highlightTheme={highlightTheme}
 				components={components || []}
 				sections={sections || []}
+				sidebar={sidebar}
 			/>
 		);
 	}
 
 	render() {
-		const { highlightTheme, section } = this.props;
+		const { highlightTheme, section, sidebar } = this.props;
 
 		return (
 			<Renderer
 				name={section.name}
 				content={this.renderContent(highlightTheme, section.content)}
-				components={this.renderComponents(highlightTheme, section.components, section.sections)}
+				components={this.renderComponents(highlightTheme, section.components, section.sections, sidebar)}
 			/>
 		);
 	}

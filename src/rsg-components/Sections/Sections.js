@@ -6,15 +6,21 @@ export default class Sections extends Component {
 	static propTypes = {
 		highlightTheme: PropTypes.string.isRequired,
 		sections: PropTypes.array.isRequired,
+		sidebar: PropTypes.bool,
 	};
 
 	renderSections() {
-		const { highlightTheme, sections } = this.props;
+		const { highlightTheme, sections, sidebar } = this.props;
 		const SectionRenderer = Section(Renderer);
 
-		return sections.map((section) => {
-			return (<SectionRenderer key={section.name} highlightTheme={highlightTheme} section={section} />);
-		});
+		return sections.map(section => (
+			<SectionRenderer
+				key={section.name}
+				highlightTheme={highlightTheme}
+				section={section}
+				sidebar={sidebar}
+			/>
+		));
 	}
 
 	render() {

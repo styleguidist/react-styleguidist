@@ -28,10 +28,15 @@ const Layout = (Renderer) => class extends Component {
 		};
 	}
 
-	renderComponents(config, components, sections) {
+	renderComponents(config, components, sections, sidebar) {
 		if (!isEmpty(components) || !isEmpty(sections)) {
 			return (
-				<Components highlightTheme={config.highlightTheme} components={components} sections={sections} />
+				<Components
+					highlightTheme={config.highlightTheme}
+					components={components}
+					sections={sections}
+					sidebar={sidebar}
+				/>
 			);
 		}
 
@@ -48,15 +53,15 @@ const Layout = (Renderer) => class extends Component {
 	}
 
 	render() {
-		let { config, components, sections } = this.props;
+		let { config, components, sections, sidebar } = this.props;
 
 		return (
 			<Renderer
 				title={config.title}
-				components={this.renderComponents(config, components, sections)}
-				sections={this.props.sections}
+				components={this.renderComponents(config, components, sections, sidebar)}
+				sections={sections}
 				toc={this.renderTableOfContents(components, sections)}
-				sidebar={this.props.sidebar}
+				sidebar={sidebar}
 			/>
 		);
 	}

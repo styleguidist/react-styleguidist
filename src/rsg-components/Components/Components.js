@@ -8,10 +8,11 @@ export default class Components extends Component {
 		highlightTheme: PropTypes.string.isRequired,
 		components: PropTypes.array.isRequired,
 		sections: PropTypes.array.isRequired,
+		sidebar: PropTypes.bool,
 	};
 
 	renderComponents() {
-		const { highlightTheme, components } = this.props;
+		const { highlightTheme, components, sidebar } = this.props;
 		const ComponentRenderer = ReactComponent(Renderer);
 
 		return components.map((component) => {
@@ -20,16 +21,21 @@ export default class Components extends Component {
 					key={component.name}
 					highlightTheme={highlightTheme}
 					component={component}
+					sidebar={sidebar}
 				/>
 			);
 		});
 	}
 
 	renderSections() {
-		const { highlightTheme, sections } = this.props;
+		const { highlightTheme, sections, sidebar } = this.props;
 
 		return (
-			<Sections highlightTheme={highlightTheme} sections={sections} />
+			<Sections
+				highlightTheme={highlightTheme}
+				sections={sections}
+				sidebar={sidebar}
+			/>
 		);
 	}
 
