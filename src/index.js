@@ -18,20 +18,18 @@ if (module.hot) {
 // Load style guide
 let { config, components, sections } = require('styleguide!');
 
-function processComponents(cs) {
-	cs = flattenChildren(cs);
-	cs = promoteInlineExamples(cs);
-	cs = setComponentsNames(cs);
-	globalizeComponents(cs);
-
-	return cs;
+function processComponents(components) {
+	components = flattenChildren(components);
+	components = promoteInlineExamples(components);
+	components = setComponentsNames(components);
+	globalizeComponents(components);
+	return components;
 }
 
-function processSections(ss) {
-	return ss.map(section => {
+function processSections(sections) {
+	return sections.map(section => {
 		section.components = processComponents(section.components || []);
 		section.sections = processSections(section.sections || []);
-
 		return section;
 	});
 }
@@ -41,17 +39,16 @@ sections = processSections(sections || []);
 
 let hasRenderedFullStyleguide = false;
 function renderStyleguide() {
+    const app = document.getElementById('app');
+
 	if (window.location.hash.substr(0, 3) === '#!/') {
+        const filterTargetComponents = list => list.filter(component => component.name === targetComponentName);;
+
 		const targetComponentName = window.location.hash.substr(3);
+		const filteredComponents = filterTargetComponents(components);
 
-		const filteredComponents = _.filter(components, function(component) {
-			return component.name === targetComponentName;
-		});
-
-		_.forEach(sections, function(section) {
-			_.merge(filteredComponents, _.filter(section.components, function(component) {
-				return component.name === targetComponentName;
-			}));
+		sections.forEach(section => {
+			_.merge(filteredComponents, filterTargetComponents(section.components));
 		});
 
 		ReactDOM.render(
@@ -61,7 +58,7 @@ function renderStyleguide() {
 				sections={[]}
 				sidebar={false}
 			/>,
-			document.getElementById('app')
+			app
 		);
 		hasRenderedFullStyleguide = false;
 	}
@@ -72,11 +69,12 @@ function renderStyleguide() {
 				components={components}
 				sections={sections}
 			/>,
-			document.getElementById('app')
+			app
 		);
 		hasRenderedFullStyleguide = true;
 	}
 }
 
 window.addEventListener('hashchange', renderStyleguide);
+
 renderStyleguide();
