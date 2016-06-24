@@ -1,5 +1,4 @@
 // CodeMirror
-import CodeMirror from 'codemirror/lib/codemirror';
 import 'codemirror/mode/jsx/jsx';
 import 'codemirror/lib/codemirror.css';
 
