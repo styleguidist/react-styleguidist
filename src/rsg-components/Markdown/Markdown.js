@@ -9,7 +9,7 @@ import s from './Markdown.css';
 
 const headingRegExp = /^h(\d)$/;
 const voidTags = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta',
-    'param', 'source', 'track', 'wbr'];
+	'param', 'source', 'track', 'wbr'];
 const bugsUrl = 'https://github.com/sapegin/react-styleguidist/issues';
 
 function handleIterate(Tag, props, children) {
@@ -39,13 +39,11 @@ function handleIterate(Tag, props, children) {
 		children = children.map(unescapeHtml);
 	}
 
-    // Avoid React warning about void elements with children
-    if (voidTags.indexOf(Tag) !== -1) {
-        return <Tag {...props} />;
-    }
-    else {
-    	return <Tag {...props}>{children}</Tag>;
-    }
+	// Avoid React warning about void elements with children
+	if (voidTags.indexOf(Tag) !== -1) {
+		return <Tag {...props} />;
+	}
+	return <Tag {...props}>{children}</Tag>;
 }
 
 export default function Markdown({
