@@ -1,5 +1,6 @@
 // CodeMirror
-import '../../utils/codemirror-jsx';
+import CodeMirror from 'codemirror/lib/codemirror';
+import 'codemirror/mode/jsx/jsx';
 import 'codemirror/lib/codemirror.css';
 
 import React, { Component, PropTypes } from 'react';
