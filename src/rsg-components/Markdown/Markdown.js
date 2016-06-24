@@ -39,6 +39,11 @@ function handleIterate(Tag, props, children) {
 		children = children.map(unescapeHtml);
 	}
 
+	// Very basic HTML support
+	if (Tag === 'p' && children[0] && children[0][0] === '<') {
+		return <div key={props.key} dangerouslySetInnerHTML={{ __html: children }} />;
+	}
+
 	// Avoid React warning about void elements with children
 	if (voidTags.indexOf(Tag) !== -1) {
 		return <Tag {...props} />;
