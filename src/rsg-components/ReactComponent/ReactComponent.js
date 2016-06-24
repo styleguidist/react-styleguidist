@@ -7,6 +7,7 @@ const ReactComponent = (Renderer) => class extends Component {
 	static propTypes = {
 		highlightTheme: PropTypes.string.isRequired,
 		component: PropTypes.object.isRequired,
+		sidebar: PropTypes.bool,
 	};
 
 	renderDescription(description) {
@@ -57,7 +58,7 @@ const ReactComponent = (Renderer) => class extends Component {
 	}
 
 	render() {
-		const { highlightTheme, component } = this.props;
+		const { highlightTheme, component, sidebar } = this.props;
 
 		return (
 			<Renderer
@@ -66,6 +67,7 @@ const ReactComponent = (Renderer) => class extends Component {
 				description={this.renderDescription(component.props.description)}
 				propList={this.renderProps(component.props)}
 				examples={this.renderExamples(highlightTheme, component.examples)}
+				sidebar={sidebar}
 			/>
 		);
 	}

@@ -5,8 +5,23 @@
 
 .header {
 	composes: font from "../../styles/common.css";
+	position: relative;
 	margin-bottom: 20px;
 	font-weight: normal;
+}
+
+.isolatedLink {
+	composes: link from "../../styles/colors.css";
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 14px;
+	opacity: 0;
+	transition: opacity ease-in-out .15s .2s;
+}
+
+.root:hover .isolatedLink {
+	opacity: 1;
 }
 
 .heading {
