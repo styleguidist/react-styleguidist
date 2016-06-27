@@ -12,6 +12,13 @@ const voidTags = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 
 	'param', 'source', 'track', 'wbr'];
 const bugsUrl = 'https://github.com/sapegin/react-styleguidist/issues';
 
+// Fixing malformed HTML (closing tags, fixing entities)
+function fixHTML(html) {
+	const div = document.createElement('div');
+	div.innerHTML = html;
+	return { __html: div.innerHTML };
+}
+
 function handleIterate(Tag, props, children) {
 	// Increase the level of headings
 	let m = Tag.match(headingRegExp);
@@ -41,7 +48,7 @@ function handleIterate(Tag, props, children) {
 
 	// Very basic HTML support
 	if (Tag === 'p' && children[0] && children[0][0] === '<') {
-		return <div key={props.key} dangerouslySetInnerHTML={{ __html: children }} />;
+		return <div key={props.key} dangerouslySetInnerHTML={fixHTML(children)} />;
 	}
 
 	// Avoid React warning about void elements with children
