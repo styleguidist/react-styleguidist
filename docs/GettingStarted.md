@@ -111,13 +111,13 @@ Styleguidist generates documentation from three sources:
   \`\`\`example
   <Button size="large">Push Me</Button>
   \`\`\`
-  
+
   This example rendered only as highlighted source code:
 
   \`\`\`html
   <Button size="large">Push Me</Button>
   \`\`\`
-  
+
   Any [Markdown](http://daringfireball.net/projects/markdown/) is **allowed** _here_.
   ```
 
@@ -164,7 +164,7 @@ Each example has its own state that you can access at the `state` variable and 
 If you want to set the default state you can do:
 
 ```javascript
-'key' in state || setState({key: 42});
+initialState = { key: 42 };
 ```
 
 You *can* use `React.createClass` in your code examples, but if you need a more complex demo it’s often a good idea to define it in a separate JavaScript file instead and then just `require` it in Markdown.
