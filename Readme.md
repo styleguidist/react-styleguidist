@@ -32,6 +32,11 @@ Real projects using React Styleguidist:
 * [Bulma Components](http://bokuweb.github.io/re-bulma/)
 * [More projects…](https://github.com/sapegin/react-styleguidist/issues/127)
 
+## Resources
+
+* [Building React Components Library](https://skillsmatter.com/skillscasts/8140-building-react-components-library) talk by [Robert Haritonov](https://github.com/operatino)
+* [Interview with Artem Sapegin](http://survivejs.com/blog/styleguidist-interview/) about React Styleguidist.
+
 ## Changelog
 
 The changelog can be found on the [Releases page](https://github.com/sapegin/react-styleguidist/releases).
