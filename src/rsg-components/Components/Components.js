@@ -18,7 +18,7 @@ export default class Components extends Component {
 		return components.map((component) => {
 			return (
 				<ComponentRenderer
-					key={component.name}
+					key={component.filepath}
 					highlightTheme={highlightTheme}
 					component={component}
 					sidebar={sidebar}
