@@ -92,7 +92,12 @@ export default class Props extends Component {
 			case 'union':
 				return this.renderUnion(prop);
 			case 'shape':
-				return this.renderShape(prop);
+				return this.renderShape(prop.type.value);
+			case 'arrayOf':
+				if (type.value.name === 'shape') {
+					return this.renderShape(prop.type.value.value);
+				}
+				return null;
 			default:
 				return null;
 		}
@@ -127,8 +132,7 @@ export default class Props extends Component {
 		);
 	}
 
-	renderShape(shape) {
-		let props = shape.type.value;
+	renderShape(props) {
 		let rows = [];
 		for (let name in props) {
 			let prop = props[name];
