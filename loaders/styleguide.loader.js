@@ -71,7 +71,7 @@ function processComponentsSource(components, config) {
 function processSection(section, config) {
 	return '{' + [
 		'name: ' + JSON.stringify(section.name),
-		'content: ' + (section.content ? requireIt('examples!' + section.content) : null),
+		'content: ' + (section.content ? requireIt('examples!' + path.resolve(config.configDir, section.content)) : null),
 		'components: ' + processComponentsSource(section.components, config),
 		'sections: ' + processSectionsList(section.sections, config)
 	].join(',') + '}';
