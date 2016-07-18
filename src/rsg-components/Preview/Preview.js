@@ -84,9 +84,9 @@ export default class Preview extends Component {
 			`;
 
 			const exampleComponent = this.props.evalInContext(exampleComponentCode);
-			// wrap everything in a react component, such that we can leverage the state management of this component
-			class PreviewComponent extends React.Component { // eslint-disable-line react/no-multi-comp
 
+			// Wrap everything in a react component, such that we can leverage the state management of this component
+			class PreviewComponent extends Component { // eslint-disable-line react/no-multi-comp
 				constructor(props) {
 					super(props);
 
@@ -98,6 +98,7 @@ export default class Preview extends Component {
 						const err = 'Calling setState to setup the initial state is deprecated. Use\ninitialState = ';
 						Object.assign(state, { error: err + JSON.stringify(partialState) + ';' });
 					};
+
 					initial({}, setStateError, initialStateCB);
 					this.state = state;
 				}
@@ -106,9 +107,11 @@ export default class Preview extends Component {
 					if (this.state.error) {
 						return <pre className={s.playgroundError}>{this.state.error}</pre>;
 					}
+
 					const setState = (nextState, callback) => this.setState(nextState, callback);
 					const state = this.state;
-					// pass through props from the wrapper component
+
+					// Pass through props from the wrapper component
 					return React.cloneElement(exampleComponent(state, setState, null), this.props);
 				}
 			}
@@ -118,6 +121,7 @@ export default class Preview extends Component {
 					<PreviewComponent />
 				</Wrapper>
 			);
+
 			ReactDOM.render(wrappedComponent, mountNode);
 		}
 		catch (err) {
