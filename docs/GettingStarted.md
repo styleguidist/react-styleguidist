@@ -92,6 +92,8 @@ Styleguidist generates documentation from three sources:
 
   Components’ `PropTypes` and documentation comments are parsed by the [react-docgen](https://github.com/reactjs/react-docgen) library. Have a look at [their example](https://github.com/reactjs/react-docgen#example) of a component documentation. You can change its behaviour using `propsParser` and `resolver` [options](Configuration.md).
 
+  [Flow](https://flowtype.org/) type annotations are supported too.
+
 * **Usage examples and further documentation** in Markdown
 
   Examples are written in Markdown where any code block without a language tag will be rendered as a React component. By default any `Readme.md` in the component’s folder is treated as an examples file but you can change it with the `getExampleFilename` [option](Configuration.md).
