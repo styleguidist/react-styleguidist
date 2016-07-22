@@ -61,7 +61,7 @@ module.exports = {
 };
 ```
 
-Also there are two special wrapper components. They do nothing by themselves and were made specifically to be replaced with a custom logic:
+There are two special wrapper components. They do nothing by themselves and were made specifically to be replaced with a custom logic:
 
 * `StyleGuide` — the root component of a style guide React app.
 * `Wrapper` — wraps every example component.
@@ -92,6 +92,22 @@ export default class Wrapper extends Component {
   }
 }
 ```
+
+You can replace the `StyleGuide` component like this:
+
+```javascript
+import React from 'react';
+import Layout from 'react-styleguidist/src/rsg-components/Layout';
+import Renderer from 'react-styleguidist/src/rsg-components/Layout/Renderer';
+
+export default function StyleGuide(props) {
+  const LayoutRenderer = Layout(Renderer);
+  return (
+    <div style={{border: '10px solid red'}}>
+      <LayoutRenderer {...props} />
+    </div>
+  );
+}```
 
 ## How to debug my components and examples?
 
