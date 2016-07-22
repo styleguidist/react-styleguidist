@@ -22,6 +22,7 @@ class TableOfContents extends Component {
 				{(components || []).map(({ name }) => (
 					<li className={s.item} key={name}>
 						<a className={s.link} href={'#' + name}>{name}</a>
+						<a className={s.isolatedLink} href={'#!/' + name}>⇢</a>
 					</li>
 				))}
 				{(sections || []).map(({ name, components: subComponents, sections: subSections }) => (
