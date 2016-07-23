@@ -101,12 +101,14 @@ import Layout from 'react-styleguidist/src/rsg-components/Layout';
 import Renderer from 'react-styleguidist/src/rsg-components/Layout/Renderer';
 
 export default function StyleGuide(props) {
-  const LayoutRenderer = Layout(Renderer);
-  return (
-    <div style={{border: '10px solid red'}}>
-      <LayoutRenderer {...props} />
-    </div>
-  );
+  render() {
+    const LayoutRenderer = Layout(Renderer);
+    return (
+      <div style={{border: '10px solid red'}}>
+        <LayoutRenderer {...props} />
+      </div>
+    );
+  }
 }
 ```
 
