@@ -96,17 +96,19 @@ export default class Wrapper extends Component {
 You can replace the `StyleGuide` component like this:
 
 ```javascript
-import React from 'react';
+import React, { Component } from 'react';
 import Layout from 'react-styleguidist/src/rsg-components/Layout';
 import Renderer from 'react-styleguidist/src/rsg-components/Layout/Renderer';
 
-export default function StyleGuide(props) {
+export default class StyleGuide extends Component {
+  componentDidMount() {
+    /*_*/
+  }
+  
   render() {
     const LayoutRenderer = Layout(Renderer);
     return (
-      <div style={{border: '10px solid red'}}>
-        <LayoutRenderer {...props} />
-      </div>
+      <LayoutRenderer {...this.props} />
     );
   }
 }
