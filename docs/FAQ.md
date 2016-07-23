@@ -107,7 +107,8 @@ export default function StyleGuide(props) {
       <LayoutRenderer {...props} />
     </div>
   );
-}```
+}
+```
 
 ## How to debug my components and examples?
 
