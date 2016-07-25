@@ -85,10 +85,10 @@ export default class Preview extends Component {
 
 			const exampleComponent = this.props.evalInContext(exampleComponentCode);
 
-			// Wrap everything in a react component, such that we can leverage the state management of this component
+			// Wrap everything in a react component to leverage the state management of this component
 			class PreviewComponent extends Component { // eslint-disable-line react/no-multi-comp
-				constructor(props) {
-					super(props);
+				constructor() {
+					super();
 
 					const state = {};
 					const initialStateCB = (initialState) => {
@@ -108,11 +108,7 @@ export default class Preview extends Component {
 						return <pre className={s.playgroundError}>{this.state.error}</pre>;
 					}
 
-					const setState = (nextState, callback) => this.setState(nextState, callback);
-					const state = this.state;
-
-					// Pass through props from the wrapper component
-					return React.cloneElement(exampleComponent(state, setState, null), this.props);
+					return exampleComponent(this.state, this.setState.bind(this), null);
 				}
 			}
 
