@@ -4,6 +4,7 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { transform } from 'babel-standalone';
 import Wrapper from 'rsg-components/Wrapper';
+import ResponsiveContainer from 'rsg-components/Responsive/Container';
 
 import s from './Preview.css';
 
@@ -142,7 +143,9 @@ export default class Preview extends Component {
 	render() {
 		return (
 			<div>
-				<div ref="mount"></div>
+				<ResponsiveContainer>
+					<div ref="mount"></div>
+				</ResponsiveContainer>
 				{this.renderError()}
 			</div>
 		);
