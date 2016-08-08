@@ -57,7 +57,7 @@
     "react-docgen": "2.9.1",
     "semver-utils": "1.1.1",
     "style-loader": "0.13.1",
-    "webpack": "1.13.1",
+    "webpack": "1.13.1 || ^2.1.0-beta",
     "webpack-dev-middleware": "1.6.1",
     "webpack-hot-middleware": "2.12.1",
     "webpack-merge": "0.14.0"

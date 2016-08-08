@@ -38,14 +38,15 @@ module.exports = function(env) {
 			filename: 'build/bundle.js',
 		},
 		resolve: {
-			root: __dirname,
 			extensions: ['', '.js', '.jsx'],
-			modulesDirectories: [
+			modules: [
+				__dirname,
 				path.resolve(__dirname, '../node_modules'),
 				'node_modules',
 			],
 			alias: {
-				codemirror: codeMirrorPath,
+				'codemirror': codeMirrorPath,
+				'rsg-components': path.resolve(__dirname, 'rsg-components'),
 			},
 		},
 		resolveLoader: {
@@ -141,7 +142,7 @@ module.exports = function(env) {
 			],
 			debug: true,
 			cache: true,
-			devtool: 'eval-source-map',
+			devtool: 'eval',
 			stats: {
 				colors: true,
 				reasons: true,
