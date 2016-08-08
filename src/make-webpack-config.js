@@ -50,11 +50,17 @@ module.exports = function(env) {
 			},
 		},
 		resolveLoader: {
+			modules: [
+				path.resolve(__dirname, '../loaders'),
+				path.resolve(__dirname, '../node_modules'),
+				'node_modules',
+			],
 			modulesDirectories: [
 				path.resolve(__dirname, '../loaders'),
 				path.resolve(__dirname, '../node_modules'),
 				'node_modules',
 			],
+			moduleExtensions: ['-loader', '.loader'],
 		},
 		plugins: [
 			new HtmlWebpackPlugin({
