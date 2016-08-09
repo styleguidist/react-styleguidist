@@ -39,23 +39,31 @@ module.exports = function(env) {
 		},
 		resolve: {
 			extensions: ['', '.js', '.jsx'],
+			// Webpack 1
+			root: __dirname,
+			moduleDirectories: [
+				path.resolve(__dirname, '../node_modules'),
+				'node_modules',
+			],
+			// Webpack 2
 			modules: [
-				__dirname,
+				path.resolve(__dirname),
 				path.resolve(__dirname, '../node_modules'),
 				'node_modules',
 			],
 			alias: {
-				'codemirror': codeMirrorPath,
-				'rsg-components': path.resolve(__dirname, 'rsg-components'),
+				codemirror: codeMirrorPath,
 			},
 		},
 		resolveLoader: {
-			modules: [
+			// Webpack 1
+			modulesDirectories: [
 				path.resolve(__dirname, '../loaders'),
 				path.resolve(__dirname, '../node_modules'),
 				'node_modules',
 			],
-			modulesDirectories: [
+			// Webpack 2
+			modules: [
 				path.resolve(__dirname, '../loaders'),
 				path.resolve(__dirname, '../node_modules'),
 				'node_modules',
