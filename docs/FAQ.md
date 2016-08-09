@@ -1,5 +1,18 @@
 # FAQ
 
+## How to use `ref`s in examples?
+
+Use `ref` prop as a function and assign a reference to a local variable:
+
+```javascript
+initialState = { value: '' };
+let textarea;
+<div>
+  <Button onClick={() => textarea.insertAtCursor('Pizza')}>Insert</Button>
+  <Textarea value={state.value} onChange={e => setState({ value: e.target.value })} ref={ref => textarea = ref} />
+</div>
+```
+
 ## How to add custom JS and CSS?
 
 Add a new Webpack entry point. In your style guide config:
@@ -104,7 +117,7 @@ export default class StyleGuide extends Component {
   componentDidMount() {
     /*_*/
   }
-  
+
   render() {
     const LayoutRenderer = Layout(Renderer);
     return (
