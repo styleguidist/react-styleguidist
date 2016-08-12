@@ -96,6 +96,8 @@ You can change settings in the `styleguide.config.js` file in your project’s r
 * **`getExampleFilename`**<br>
   Type: `Function`, default: finds `Readme.md` in the component folder<br>
   Function that returns examples file path for a given component path.
+  
+  *Note that case sensitivity of filename is determined by the operating system the build is running on.*
 
   For example, instead of `Readme.md` you can use `ComponentName.examples.md`:
 
