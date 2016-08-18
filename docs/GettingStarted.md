@@ -1,6 +1,6 @@
 # Installation
 
-**Requirements:** Only Babel 6 is supported in [Styleguidist 2.0.0](https://github.com/sapegin/react-styleguidist/releases/tag/2.0.0)+. If you don't use Babel in your project, that's fine, but if you use Babel 5, please use Styleguidist 1.3.2. Webpack is recommended, but not required.
+**Requirements:** Only Babel 6 is supported in [Styleguidist 2.0.0](https://github.com/sapegin/react-styleguidist/releases/tag/2.0.0)+. If you don't use Babel in your project, that's fine, but if you use Babel 5, please use Styleguidist 1.3.2. Webpack is recommended, but not required. Should work with Webpack 1 and Webpack 2.
 
 1. Install from npm:
 

@@ -13,6 +13,29 @@ let textarea;
 </div>
 ```
 
+## How to exclude some components from style guide?
+
+Filter them out in the `components` option:
+
+```javascript
+components: function() {
+  return glob.sync(path.resolve(__dirname, 'lib/components/**/*.js')).filter(function(module) {
+    return !/\/(foo|bar).js$/.test(module);  // Ignore foo.js and bar.js
+  });
+},
+```
+
+## How to hide some components in style guide but make them available in examples?
+
+Enable [skipComponentsWithoutExample](Configuration.md) option and do not add example file (`Readme.md` by default) to components you want to ignore.
+
+Require these components in your examples:
+
+```javascript
+const Button = require('../common/Button');
+<Button>Push Me Tender</Button>
+```
+
 ## How to add custom JS and CSS?
 
 Add a new Webpack entry point. In your style guide config:

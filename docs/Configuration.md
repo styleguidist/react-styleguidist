@@ -53,7 +53,7 @@ You can change settings in the `styleguide.config.js` file in your project’s r
 
 * **`skipComponentsWithoutExample`**<br>
   Type: `Boolean`, default: `false`<br>
-  Ignore components that don’t have an example file (as determined by `getExampleFilename`).
+  Ignore components that don’t have an example file (as determined by `getExampleFilename`). These components won’t be accessible from other examples unless you manually `require` them.
 
 * **`defaultExample`**<br>
   Type: `Boolean` or `String`, default: `false`<br>
