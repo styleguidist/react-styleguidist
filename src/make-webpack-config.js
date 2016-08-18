@@ -38,9 +38,16 @@ module.exports = function(env) {
 			filename: 'build/bundle.js',
 		},
 		resolve: {
-			root: __dirname,
 			extensions: ['', '.js', '.jsx'],
-			modulesDirectories: [
+			// Webpack 1
+			root: __dirname,
+			moduleDirectories: [
+				path.resolve(__dirname, '../node_modules'),
+				'node_modules',
+			],
+			// Webpack 2
+			modules: [
+				path.resolve(__dirname),
 				path.resolve(__dirname, '../node_modules'),
 				'node_modules',
 			],
@@ -49,11 +56,19 @@ module.exports = function(env) {
 			},
 		},
 		resolveLoader: {
+			// Webpack 1
 			modulesDirectories: [
 				path.resolve(__dirname, '../loaders'),
 				path.resolve(__dirname, '../node_modules'),
 				'node_modules',
 			],
+			// Webpack 2
+			modules: [
+				path.resolve(__dirname, '../loaders'),
+				path.resolve(__dirname, '../node_modules'),
+				'node_modules',
+			],
+			moduleExtensions: ['-loader', '.loader'],
 		},
 		plugins: [
 			new HtmlWebpackPlugin({
@@ -141,7 +156,7 @@ module.exports = function(env) {
 			],
 			debug: true,
 			cache: true,
-			devtool: 'eval-source-map',
+			devtool: 'eval',
 			stats: {
 				colors: true,
 				reasons: true,

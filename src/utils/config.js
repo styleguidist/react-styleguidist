@@ -44,7 +44,7 @@ var DEPENDENCIES = [
 		package: 'webpack',
 		name: 'Webpack',
 		from: 1,
-		to: 1,
+		to: 2,
 	},
 ];
 var BUGS_URL = 'https://github.com/sapegin/react-styleguidist/issues';
