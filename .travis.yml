@@ -3,7 +3,12 @@ node_js:
   - "4"
   - "5"
   - "6"
+env:
+  - export WEBPACK_VERSION="2.1.0-beta"
+  - export WEBPACK_VERSION="1"
 script:
   - npm test
   - npm run build
   - npm run build:customised
+before_script:
+  - 'if [ "$WEBPACK_VERSION" ]; then npm install webpack@^$WEBPACK_VERSION; fi'
