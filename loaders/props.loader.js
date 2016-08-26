@@ -13,8 +13,8 @@ module.exports = function (source) {
 	};
 
 	var jsonProps;
+	const file = this.request.split('!').pop()
 	try {
-		const file = this.request.split('!').pop()
 		var propsParser = config.propsParser || defaultPropsParser;
 		var props = propsParser(file, source);
 
