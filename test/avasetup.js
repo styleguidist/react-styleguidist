@@ -30,5 +30,5 @@ mock('rsg-components/Editor', {});
  */
 cssModulesHook({
 	extensions: ['.css'],
-	generateScopedName: name => `Test__${name}`,
+	generateScopedName: 'Test__[local]',
 });
