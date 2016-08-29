@@ -67,27 +67,31 @@
     "react-dom": ">=0.14.0"
   },
   "devDependencies": {
+    "ava": "~0.16.0",
     "babel-eslint": "~6.1.2",
     "babel-register": "~6.14.0",
-    "chai": "~3.5.0",
     "cross-env": "~1.0.8",
     "css-modules-require-hook": "~4.0.2",
     "dog-names": "~1.0.2",
+    "enzyme": "~2.4.1",
     "eslint": "~3.0.1",
     "eslint-config-tamia": "~3.0.0",
     "eslint-plugin-react": "~5.2.2",
     "expect-react-shallow": "~1.2.1",
     "gh-pages": "~0.11.0",
-    "mocha": "~2.5.3",
     "mock-require": "~1.3.0",
     "react": "~15.3.1",
+    "react-addons-test-utils": "~15.3.1",
     "react-dom": "~15.3.1",
-    "react-modal": "~1.4.0"
+    "react-modal": "~1.4.0",
+    "sinon": "~1.17.5",
+    "unexpected": "~10.16.0",
+    "unexpected-react": "~3.2.3"
   },
   "scripts": {
-    "test": "npm run lint && npm run mocha",
-    "mocha": "cross-env NODE_ENV=test mocha test",
-    "mocha:watch": "cross-env NODE_ENV=test mocha --watch --reporter min test",
+    "test": "npm run lint && npm run test:ava",
+    "test:ava": "cross-env NODE_ENV=test ava",
+    "test:watch": "cross-env NODE_ENV=test ava --watch",
     "start": "./bin/styleguidist server --config examples/basic/styleguide.config.js",
     "start:customised": "./bin/styleguidist server --config examples/customised/styleguide.config.js",
     "start:sections": "./bin/styleguidist server --config examples/basic-sections/styleguide.config.js",
@@ -95,6 +99,20 @@
     "build": "./bin/styleguidist build --config examples/basic/styleguide.config.js",
     "build:customised": "./bin/styleguidist build --config examples/customised/styleguide.config.js",
     "publish": "npm run build && gh-pages -d examples/basic/styleguide"
+  },
+  "ava": {
+    "files": [
+      "src/**/*.spec.js",
+      "test/*.spec.js"
+    ],
+    "source": [
+      "src/**/*.js"
+    ],
+    "require": [
+      "babel-register",
+      "./test/avasetup"
+    ],
+    "babel": "inherit"
   },
   "keywords": [
     "react",

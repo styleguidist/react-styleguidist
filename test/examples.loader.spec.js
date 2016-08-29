@@ -1,78 +1,70 @@
+import test from 'ava';
 import examplesLoader from '../loaders/examples.loader';
 
-/* eslint max-nested-callbacks: [1, 5] */
+/* eslint-disable max-len, quotes */
 
-describe('examples loader', () => {
+const regex = new RegExp(examplesLoader.requireAnythingTest);
 
-	describe('requireAnythingRegex', () => {
+// requireAnythingRegex
 
-		let regex;
-		beforeEach(() => {
-			expect(examplesLoader.requireAnythingRegex).to.be.an.instanceof(RegExp);
-			// We make a version without the /g flag
-			regex = new RegExp(examplesLoader.requireAnythingTest);
-		});
+test('should match require invocations', t => {
+	t.regex(`require("foo")`, regex);
+	t.regex(`require ( "foo" )`, regex);
+	t.regex(`require('foo')`, regex);
+	t.regex(`require(foo)`, regex);
+	t.regex(`require("f" + "o" + "o")`, regex);
+	t.regex(`require("f" + ("o" + "o"))`, regex);
+	t.regex(`function f() { require("foo"); }`, regex);
+});
 
-		it('should match require invocations', () => {
-			expect(`require("foo")`).to.match(regex);
-			expect(`require ( "foo" )`).to.match(regex);
-			expect(`require('foo')`).to.match(regex);
-			expect(`require(foo)`).to.match(regex);
-			expect(`require("f" + "o" + "o")`).to.match(regex);
-			expect(`require("f" + ("o" + "o"))`).to.match(regex);
-			expect(`function f() { require("foo"); }`).to.match(regex);
-		});
+test('should not match other occurrences of require', t => {
+	t.notRegex(`"required field"`, regex);
+	t.notRegex(`var f = require;`, regex);
+	t.notRegex(`require.call(module, "foo")`, regex);
+});
 
-		it('should not match other occurrences of require', () => {
-			expect(`"required field"`).not.to.match(regex);
-			expect(`var f = require;`).not.to.match(regex);
-			expect(`require.call(module, "foo")`).not.to.match(regex);
-		});
+test('should match many requires in the same line correctly', t => {
+	const replaced = `require('foo');require('bar')`.replace(examplesLoader.requireAnythingRegex, 'x');
+	t.is(replaced, 'x;x');
+});
 
-		it('should match many requires in the same line correctly', () => {
-			// Revert to the /g flagged version used by examplesLoader
-			regex = new RegExp(examplesLoader.requireAnythingRegex);
-			var replaced = `require('foo');require('bar')`.replace(examplesLoader.requireAnythingRegex, 'x');
-			expect(replaced).to.equal('x;x');
-		});
-	});
+// simpleStringRegex
 
-	describe('simpleStringRegex', () => {
-		it('should match simple strings and nothing else', () => {
-			let regex = examplesLoader.simpleStringRegex;
+test('should match simple strings and nothing else', t => {
+	const regex = examplesLoader.simpleStringRegex;
 
-			expect(`"foo"`).to.match(regex);
-			expect(`'foo'`).to.match(regex);
-			expect(`"fo'o"`).to.match(regex);
-			expect(`'fo"o'`).to.match(regex);
-			expect(`'.,:;!§$&/()=@^12345'`).to.match(regex);
+	t.regex(`"foo"`, regex);
+	t.regex(`'foo'`, regex);
+	t.regex(`"fo'o"`, regex);
+	t.regex(`'fo"o'`, regex);
+	t.regex(`'.,:;!§$&/()=@^12345'`, regex);
 
-			expect(`foo`).not.to.match(regex);
-			expect(`'foo"`).not.to.match(regex);
-			expect(`"foo'`).not.to.match(regex);
+	t.notRegex(`foo`, regex);
+	t.notRegex(`'foo"`, regex);
+	t.notRegex(`"foo'`, regex);
 
-			// These 2 are actually valid in JS, but don't work with this regex.
-			// But you shouldn't be using these in your requires anyway.
-			expect(`"fo\\"o"`).not.to.match(regex);
-			expect(`'fo\\'o'`).not.to.match(regex);
+	// These 2 are actually valid in JS, but don't work with this regex.
+	// But you shouldn't be using these in your requires anyway.
+	t.notRegex(`"fo\\"o"`, regex);
+	t.notRegex(`'fo\\'o'`, regex);
 
-			expect(`"foo" + "bar"`).not.to.match(regex);
-		});
-	});
+	t.notRegex(`"foo" + "bar"`, regex);
+});
 
-	describe('findRequires', () => {
-		it('should find calls to require in code', () => {
-			let findRequires = examplesLoader.findRequires;
-			expect(findRequires(`require('foo')`)).to.deep.equal(['foo']);
-			expect(findRequires(`require('./foo')`)).to.deep.equal(['./foo']);
-			expect(findRequires(`require('foo');require('bar')`)).to.deep.equal(['foo', 'bar']);
-			expect(() => findRequires(`require('foo' + 'bar')`)).to.throw(Error);
-		});
-	});
+// findRequires
 
-	describe('readExamples', () => {
-		it('should separate code and Markdown chunks', () => {
-			let examplesMarkdown = `
+test('should find calls to require in code', t => {
+	const findRequires = examplesLoader.findRequires;
+	t.deepEqual(findRequires(`require('foo')`), ['foo']);
+	t.deepEqual(findRequires(`require('./foo')`), ['./foo']);
+	t.deepEqual(findRequires(`require('foo');require('bar')`), ['foo', 'bar']);
+	t.throws(() => findRequires(`require('foo' + 'bar')`), Error);
+});
+
+// readExamples
+
+test('should separate code and Markdown chunks', t => {
+	let examplesMarkdown = `
 # header
 
 	<div/>
@@ -83,16 +75,16 @@ text with some \`code\`.
 <span/>
 \`\`\`
 `;
-			let examples = examplesLoader.readExamples(examplesMarkdown);
-			expect(examples).to.have.length(4);
-			expect(examples[0].type).to.equal('markdown');
-			expect(examples[1].type).to.equal('code');
-			expect(examples[2].type).to.equal('markdown');
-			expect(examples[3].type).to.equal('code');
-		});
+	let examples = examplesLoader.readExamples(examplesMarkdown);
+	t.is(examples.length, 4);
+	t.is(examples[0].type, 'markdown');
+	t.is(examples[1].type, 'code');
+	t.is(examples[2].type, 'markdown');
+	t.is(examples[3].type, 'code');
+});
 
-		it('should render fenced blocks with language flag as regular Markdown code snippets with highlighted code', () => {
-			let examplesMarkdown = `
+test('should render fenced blocks with language flag as regular Markdown code snippets with highlighted code', t => {
+	let examplesMarkdown = `
 # header
 
 \`\`\`javascript
@@ -105,23 +97,23 @@ text with some \`code\`.
 <span/>
 \`\`\`
 `;
-			let examples = examplesLoader.readExamples(examplesMarkdown);
-			expect(examples).to.have.length(2);
-			expect(examples[0].type).to.equal('markdown');
-			expect(examples[1].type).to.equal('code');
-			expect(examples[0].content).to.equal(`
+	let examples = examplesLoader.readExamples(examplesMarkdown);
+	t.is(examples.length, 2);
+	t.is(examples[0].type, 'markdown');
+	t.is(examples[1].type, 'code');
+	t.is(examples[0].content, `
 # header
 \`\`\`javascript
 <span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 \`\`\`
 text with some \`code\`.
 `);
-		});
-	});
+});
 
-	describe('loader', () => {
-		it('should return valid, parsable JS', () => {
-			let exampleMarkdown = `
+// loader
+
+test('should return valid, parsable JS', t => {
+	let exampleMarkdown = `
 # header
 
 	<div/>
@@ -132,14 +124,14 @@ text
 <span/>
 \`\`\`
 `;
-			let output = examplesLoader.call({}, exampleMarkdown);
-			expect(() => new Function(output)).not.to.throw(SyntaxError);  // eslint-disable-line no-new-func
-		});
-	});
+	let output = examplesLoader.call({}, exampleMarkdown);
+	t.notThrows(() => new Function(output), SyntaxError);  // eslint-disable-line no-new-func
+});
 
-	describe('componentName query option', () => {
-		it('should replace all occurrences of __COMPONENT__ with provided query.componentName', () => {
-			const exampleMarkdown = `
+// componentName query option
+
+test('should replace all occurrences of __COMPONENT__ with provided query.componentName', t => {
+	const exampleMarkdown = `
 <div>
 	<__COMPONENT__>
 		<span>text</span>
@@ -149,11 +141,8 @@ text
 </div>
 `;
 
-			const output = examplesLoader.call({query: '?componentName=FooComponent'}, exampleMarkdown);
-			expect(output).to.not.include('__COMPONENT__');
-			expect(output).to.include('FooComponent');
-			expect(output.match(/FooComponent/g).length).to.equal(4);
-		});
-	});
-
+	const output = examplesLoader.call({ query: '?componentName=FooComponent' }, exampleMarkdown);
+	t.notRegex(output, /__COMPONENT__/);
+	t.regex(output, /FooComponent/);
+	t.is(output.match(/FooComponent/g).length, 4);
 });

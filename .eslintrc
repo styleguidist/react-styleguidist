@@ -1,4 +1,9 @@
 {
 	"parser": "babel-eslint",
-	"extends": "tamia/react"
+	"extends": "tamia/react",
+	"globals": {
+		"expect": false,
+		"shallow": false,
+		"render": false
+	}
 }
