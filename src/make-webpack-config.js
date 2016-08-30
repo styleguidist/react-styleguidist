@@ -151,7 +151,7 @@ module.exports = function(env) {
 	else {
 		webpackConfig = merge(webpackConfig, {
 			entry: [
-				'webpack-hot-middleware/client',
+				require.resolve('webpack-hot-middleware/client'),
 				entryScript,
 			],
 			debug: true,
