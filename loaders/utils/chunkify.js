@@ -10,7 +10,7 @@ const CODE_PLACEHOLDER = '<%{#code#}%>';
  * @param {string} markdown
  * @returns {Array}
  */
-module.exports = function(markdown) {
+module.exports = function chunkify(markdown) {
 	let codeChunks = [];
 
 	/*

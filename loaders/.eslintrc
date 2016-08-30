@@ -1,0 +1,8 @@
+{
+	"parser": "babel-eslint",
+	"extends": "tamia/react",
+	"rules": {
+		"object-shorthand": 0,
+		"no-invalid-this": 0
+	}
+}
