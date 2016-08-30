@@ -16,7 +16,7 @@ module.exports = function server(callback) {
 
 	app.use(require('webpack-dev-middleware')(compiler, {
 		noInfo: true,
-		stats: stats,
+		stats,
 	}));
 
 	app.use(require('webpack-hot-middleware')(compiler));
