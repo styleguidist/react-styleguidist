@@ -1,3 +1,10 @@
+# Mobify Fork
+
+* Clone this repo and check out #pattern-library branch
+* Run `npm link`
+* Inside SDK repo: `npm link react-styleguidist && npm run styleguide`
+* Make any necessary changes to react-styleguidist (you may need to re-run npm run styleguide inside SDK repo)
+
 # React Styleguidist
 
 [![Build Status](https://travis-ci.org/sapegin/react-styleguidist.svg)](https://travis-ci.org/sapegin/react-styleguidist) [![Dependency Status](https://david-dm.org/sapegin/react-styleguidist.svg)](https://david-dm.org/sapegin/react-styleguidist) [![npm](https://img.shields.io/npm/v/react-styleguidist.svg)](https://www.npmjs.com/package/react-styleguidist)
