@@ -1,10 +1,11 @@
 import React, { Component, PropTypes } from 'react';
+import isEmpty from 'lodash/isEmpty';
 import Components from 'rsg-components/Components';
 import TableOfContents from 'rsg-components/TableOfContents';
 
 import s from './Layout.css';
 
-import isEmpty from 'lodash/isEmpty';
+const DOCS_URL = 'https://github.com/sapegin/react-styleguidist/blob/master/docs/Configuration.md';
 
 const Layout = (Renderer) => class extends Component {
 	static propTypes = {
@@ -42,8 +43,8 @@ const Layout = (Renderer) => class extends Component {
 
 		return (
 			<div className={s.empty}>
-				No components found. <a className={s.link} href="https://github.com/sapegin/react-styleguidist#configuration">Check
-				the components option</a> in your style guide config.
+				No components found. <a className={s.link} href={DOCS_URL}>Check
+					the <code>components</code> option</a> in your style guide config.
 			</div>
 		);
 	}
