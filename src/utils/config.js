@@ -121,7 +121,6 @@ function readConfig(configFilepath, cliOptions) {
 function findConfig(argv) {
 	if (argv.config) {
 		// Custom config location
-
 		var configFilepath = path.join(process.cwd(), argv.config);
 		if (!fs.existsSync(configFilepath)) {
 			throw Error('Styleguidist config not found: ' + configFilepath + '.');
@@ -131,10 +130,9 @@ function findConfig(argv) {
 	}
 
 	// Search config file in all parent directories
-
 	var configDir;
 	try {
-		configDir = findup.sync(__dirname, CONFIG_FILENAME);
+		configDir = findup.sync(process.cwd(), CONFIG_FILENAME);
 	}
 	catch (exception) {
 		throw Error('Styleguidist config not found: ' + CONFIG_FILENAME + '.');
