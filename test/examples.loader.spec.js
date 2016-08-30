@@ -61,55 +61,6 @@ test('should find calls to require in code', t => {
 	t.throws(() => findRequires(`require('foo' + 'bar')`), Error);
 });
 
-// readExamples
-
-test('should separate code and Markdown chunks', t => {
-	let examplesMarkdown = `
-# header
-
-	<div/>
-
-text with some \`code\`.
-
-\`\`\`
-<span/>
-\`\`\`
-`;
-	let examples = examplesLoader.readExamples(examplesMarkdown);
-	t.is(examples.length, 4);
-	t.is(examples[0].type, 'markdown');
-	t.is(examples[1].type, 'code');
-	t.is(examples[2].type, 'markdown');
-	t.is(examples[3].type, 'code');
-});
-
-test('should render fenced blocks with language flag as regular Markdown code snippets with highlighted code', t => {
-	let examplesMarkdown = `
-# header
-
-\`\`\`javascript
-import React from 'react';
-\`\`\`
-
-text with some \`code\`.
-
-\`\`\`
-<span/>
-\`\`\`
-`;
-	let examples = examplesLoader.readExamples(examplesMarkdown);
-	t.is(examples.length, 2);
-	t.is(examples[0].type, 'markdown');
-	t.is(examples[1].type, 'code');
-	t.is(examples[0].content, `
-# header
-\`\`\`javascript
-<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
-\`\`\`
-text with some \`code\`.
-`);
-});
-
 // loader
 
 test('should return valid, parsable JS', t => {

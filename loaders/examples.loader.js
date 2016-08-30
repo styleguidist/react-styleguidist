@@ -1,12 +1,8 @@
 var _ = require('lodash');
-var hljs = require('highlight.js');
-var createRenderer = require('../src/utils/markdown.js');
 var loaderUtils = require('loader-utils');
+var chunkify = require('./utils/chunkify');
 
-var md = createRenderer();
-
-var evalPlaceholder = '<%{#eval#}%>';
-var codePlaceholder = '<%{#code#}%>';
+const EVAL_PLACEHOLDER = '<%{#eval#}%>';
 
 // Need to supply the regex test as a string for reuse in unit tests
 // Currently, trying to change flags throws a TypeError
@@ -15,45 +11,6 @@ var codePlaceholder = '<%{#code#}%>';
 var requireAnythingTest = 'require\\s*\\(([^)]+)\\)';
 var requireAnythingRegex = new RegExp(requireAnythingTest, 'g');
 var simpleStringRegex = /^"([^"]+)"$|^'([^']+)'$/;
-
-function readExamples(markdown) {
-	var codeChunks = [];
-
-	// Collect code blocks and replace them with placeholders
-	md.renderer.rules.code_block = md.renderer.rules.fence = function(tokens, idx) {
-		var token = tokens[idx];
-		var code = tokens[idx].content.trim();
-		if (token.type === 'fence' && token.info && token.info !== 'example') {
-			// Render fenced blocks with language flag as regular Markdown code snippets
-			var highlighted;
-			try {
-				highlighted = hljs.highlight(token.info, code).value;
-			}
-			catch (e) {
-				highlighted = e.message;
-			}
-			return '```' + token.info + '\n' + highlighted + '\n```';
-		}
-		codeChunks.push(code);
-		return codePlaceholder;
-	};
-
-	var rendered = md.render(markdown);
-
-	var chunks = [];
-	var textChunks = rendered.split(codePlaceholder);
-	textChunks.forEach(function(chunk) {
-		if (chunk) {
-			chunks.push({type: 'markdown', content: chunk});
-		}
-		var code = codeChunks.shift();
-		if (code) {
-			chunks.push({type: 'code', content: code, evalInContext: evalPlaceholder});
-		}
-	});
-
-	return chunks;
-}
 
 // Returns a list of all strings used in require(...) calls in the given source code.
 // If there is any other expression inside the require call, it throws an error.
@@ -70,18 +27,27 @@ function findRequires(codeString) {
 	return Object.keys(requires);
 }
 
-function examplesLoader(source, map) {
+function examplesLoader(source) {
 	this.cacheable && this.cacheable();
 
 	// Replace __COMPONENT__ placeholders with the passed-in componentName
 	var componentName = loaderUtils.parseQuery(this.query).componentName || '__COMPONENT__';
-	var examples = readExamples(source.replace(/__COMPONENT__/g, componentName));
+	source = source.replace(/__COMPONENT__/g, componentName);
+
+	// Load examples
+	var examples = chunkify(source);
+	examples = examples.map(example => {
+		if (example.type === 'code') {
+			example.evalInContext = EVAL_PLACEHOLDER;
+		}
+		return example;
+	});
 
 	// We're analysing the examples' source code to figure out the require statements. We do it manually with regexes,
 	// because webpack unfortunately doesn't expose its smart logic for rewriting requires
 	// (https://webpack.github.io/docs/context.html). Note that we can't just use require(...) directly in runtime,
 	// because webpack changes its name to __webpack__require__ or sth.
-	var codeFromAllExamples = _.map(_.filter(examples, {type: 'code'}), 'content').join('\n');
+	var codeFromAllExamples = _.map(_.filter(examples, { type: 'code' }), 'content').join('\n');
 	var requiresFromExamples = findRequires(codeFromAllExamples);
 
 	return [
@@ -100,7 +66,7 @@ function examplesLoader(source, map) {
 		'	return requireMap[path];',
 		'}',
 		'module.exports = ' + JSON.stringify(examples).replace(
-			new RegExp(_.escapeRegExp(JSON.stringify(evalPlaceholder)), 'g'),
+			new RegExp(_.escapeRegExp(JSON.stringify(EVAL_PLACEHOLDER)), 'g'),
 			'function(code) {' +
 			'   var func = new Function (\"require\", \"state\", \"setState\", \"__initialStateCB\", code);' +
 			'		return func.bind(null, requireInRuntime);' +
@@ -113,7 +79,6 @@ _.assign(examplesLoader, {
 	requireAnythingTest: requireAnythingTest,
 	requireAnythingRegex: requireAnythingRegex,
 	simpleStringRegex: simpleStringRegex,
-	readExamples: readExamples,
 	findRequires: findRequires
 });
 

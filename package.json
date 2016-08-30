@@ -55,8 +55,10 @@
     "prettyjson": "1.1.3",
     "react-codemirror": "0.2.6",
     "react-docgen": "2.9.1",
+    "remark": "~6.0.0",
     "semver-utils": "1.1.1",
     "style-loader": "0.13.1",
+    "unist-util-visit": "~1.1.0",
     "webpack": "1.13.2 || ^2.1.0-beta",
     "webpack-dev-middleware": "1.6.1",
     "webpack-hot-middleware": "2.12.2",
@@ -106,7 +108,8 @@
       "test/*.spec.js"
     ],
     "source": [
-      "src/**/*.js"
+      "src/**/*.js",
+      "loaders/**/*.js"
     ],
     "require": [
       "babel-register",
