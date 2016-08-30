@@ -10,10 +10,13 @@ var makeWebpackConfig = require('./make-webpack-config');
 
 module.exports = function server(callback) {
 	var app = express();
-	var compiler = webpack(makeWebpackConfig('development'));
+	var webpackConfig = makeWebpackConfig('development');
+	var stats = webpackConfig.stats || {};
+	var compiler = webpack(webpackConfig);
 
 	app.use(require('webpack-dev-middleware')(compiler, {
 		noInfo: true,
+		stats,
 	}));
 
 	app.use(require('webpack-hot-middleware')(compiler));
