@@ -12,3 +12,5 @@ script:
   - npm run build:customised
 before_script:
   - 'if [ "$WEBPACK_VERSION" ]; then npm install webpack@^$WEBPACK_VERSION; fi'
+before_install:
+  npm install -g npm@'>=3'
