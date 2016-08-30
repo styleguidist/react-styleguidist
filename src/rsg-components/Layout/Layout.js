@@ -53,7 +53,7 @@ const Layout = (Renderer) => class extends Component {
 	}
 
 	render() {
-		let { config, components, sections, sidebar } = this.props;
+		let { config, components, sections, sidebar, routeName } = this.props;
 
 		return (
 			<Renderer
@@ -62,6 +62,7 @@ const Layout = (Renderer) => class extends Component {
 				sections={sections}
 				toc={this.renderTableOfContents(components, sections)}
 				sidebar={sidebar}
+				routeName={routeName}
 			/>
 		);
 	}

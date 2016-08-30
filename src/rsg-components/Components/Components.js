@@ -2,48 +2,166 @@ import React, { Component, PropTypes } from 'react';
 import ReactComponent from 'rsg-components/ReactComponent';
 import Renderer from 'rsg-components/ReactComponent/Renderer';
 import Sections from 'rsg-components/Sections';
+import merge from 'lodash/merge';
+import flatMapDeep from 'lodash/flatMapDeep';
+
+const componentFileNameRegEx = /([\w-]+)\/[\w-]+\.jsx?$/i;
+const tagParseRegEx = /@tags(\{.*\})/;
+
+const checkTags = (tagList, regExp) => {
+	for (let i = 0; i < tagList.length; i++) {
+		if (tagList[i].match(regExp)) {
+			return true;
+		}
+	}
+
+	return false;
+};
 
 export default class Components extends Component {
-	static propTypes = {
-		highlightTheme: PropTypes.string.isRequired,
-		components: PropTypes.array.isRequired,
-		sections: PropTypes.array.isRequired,
-		sidebar: PropTypes.bool,
-	};
+	constructor(props) {
+		super(props);
 
-	renderComponents() {
-		const { highlightTheme, components, sidebar } = this.props;
+		this.onFocus = this.onFocus.bind(this);
+		this.onBlur = this.onBlur.bind(this);
+		this.onTagClicked = this.onTagClicked.bind(this);
+
+		let allTags = {};
+		let componentParents = [];
+
+		props.components.forEach(component => {
+			const folderName = component.pathLine.match(componentFileNameRegEx)[1];
+			const designContent = require('examples!sdk-components/' + folderName + '/README_DES.md')[0];
+			const match = designContent.content.match(tagParseRegEx);
+			let tags = {};
+
+			if (match) {
+				const decoded = match[1].replace(/&quot;/g, '"');
+				tags = JSON.parse(decoded);
+				merge(allTags, tags);
+			}
+
+			componentParents.push({
+				designContent,
+				component,
+				tags: flatMapDeep(tags)
+			});
+		});
+
+		const selectedTags = {};
+		const tagTypes = Object.keys(allTags);
+
+		tagTypes.forEach(type => {
+			selectedTags[type] = '';
+		});
+
+		this.state = {
+			searchTerm: '',
+			searchFocused: false,
+			tags: allTags,
+			selectedTags,
+			componentParents
+		};
+	}
+
+	renderComponents(searchTerm) {
+		const { highlightTheme, sidebar } = this.props;
 		const ComponentRenderer = ReactComponent(Renderer);
+		let filteredComponents = this.state.componentParents;
 
-		return components.map((component) => {
+		if (searchTerm !== '') {
+			let regExp = new RegExp(searchTerm.split('').join('.*'), 'gi');
+			filteredComponents = filteredComponents.filter(componentParent => {
+				return componentParent.component.name.match(regExp) ||
+					checkTags(componentParent.tags, regExp);
+			});
+		};
+
+		return filteredComponents.map((componentParent) => {
+			const newSidebar = {
+				isIsolated: sidebar,
+				designContent: componentParent.designContent.content,
+				tags: componentParent.tags
+			};
+
 			return (
 				<ComponentRenderer
-					key={component.filepath}
+					key={componentParent.component.filepath}
 					highlightTheme={highlightTheme}
-					component={component}
-					sidebar={sidebar}
+					component={componentParent.component}
+					sidebar={newSidebar}
 				/>
 			);
 		});
 	}
 
-	renderSections() {
-		const { highlightTheme, sections, sidebar } = this.props;
+	onFocus() {
+		this.setState({
+			searchFocused: true
+		});
+	}
 
-		return (
-			<Sections
-				highlightTheme={highlightTheme}
-				sections={sections}
-				sidebar={sidebar}
-			/>
-		);
+	onBlur() {
+		// this.setState({
+		//     searchFocused: false
+		// })
+	}
+
+	onTagClicked(isTag, name, type) {
+		if (!isTag) {
+			type = name;
+		}
+
+		var obj = {
+			[type]: isTag ? name : true
+		};
+
+		this.setState({
+			selectedTags: merge(this.state.selectedTags, obj)
+		});
 	}
 
 	render() {
+		const { searchTerm } = this.state;
+		const tagTypes = Object.keys(this.state.tags);
+
+		const tagHTML = tagTypes.map(type => {
+			const tags = this.state.tags[type];
+
+			return (
+				<div key={type}>
+					<div onClick={() => { this.onTagClicked(false, type) }}>{type}</div>
+					{tags.map(tag => <div key={tag} onClick={() => { this.onTagClicked(true, tag, type) }}>{tag}</div>)}
+				</div>
+			);
+		});
+
+		let selectedSearchTags = [];
+		for (let tagType in this.state.selectedTags) {
+			if (!!this.state.selectedTags[tagType]) {
+				selectedSearchTags.push((<span key={tagType}>{tagType}: {this.state.selectedTags[tagType]}</span>));
+			}
+		}
+
 		return (
 			<div>
-				{this.renderComponents()}
-				{this.renderSections()}
+				{this.props.sidebar && (
+					<div>
+						<div>Library</div>
+						<div>
+							{selectedSearchTags}
+						</div>
+						<input
+							placeholder="Search"
+							onFocus={this.onFocus}
+							onBlur={this.onBlur}
+							onChange={event => this.setState({ searchTerm: event.target.value })}
+							value={searchTerm}
+						/>
+					</div>
+				)}
+				{this.state.searchFocused && tagHTML}
+				{this.renderComponents(searchTerm)}
 			</div>
 		);
 	}
