@@ -97,3 +97,17 @@ test('should render a filtered list, should hide empty sections', t => {
 	const items = actual.find('.Test__link');
 	t.is(items.length, 2);
 });
+
+test('should filter section names', t => {
+	const actual = shallow(
+		<TableOfContents components={[]} sections={SECTIONS} />
+	);
+
+	const input = actual.find('.Test__search');
+	input.simulate('change', { target: { value: 'frm' } });
+
+	const sections = actual.find('.Test__section');
+	t.is(sections.length, 1);
+	const items = actual.find('.Test__link');
+	t.is(items.length, 1);
+});

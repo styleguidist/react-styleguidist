@@ -45,12 +45,25 @@ export function flattenChildren(components) {
 /**
  * Fuzzy filters components list by component name.
  *
+ * @param {string} query
+ * @return {RegExp}
+ */
+export function getFilterRegExp(query) {
+	query = query
+		.replace(/[^a-z0-9]/gi, '')
+		.split('')
+		.join('.*')
+	;
+	return new RegExp(query, 'gi');
+}
+
+/**
+ * Fuzzy filters components list by component name.
+ *
  * @param {array} components
- * @param {string} searchTerm
+ * @param {string} query
  * @return {array}
  */
-export function filterComponentsByName(components, searchTerm) {
-	searchTerm = searchTerm.replace(/[^a-z0-9]/gi, '');
-	const regExp = new RegExp(searchTerm.split('').join('.*'), 'gi');
-	return components.filter(component => component.name.match(regExp));
+export function filterComponentsByName(components, query) {
+	return components.filter(({ name }) => name.match(getFilterRegExp(query)));
 }

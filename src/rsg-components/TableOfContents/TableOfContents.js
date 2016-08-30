@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { filterComponentsByName } from '../../utils/utils';
+import { filterComponentsByName, getFilterRegExp } from '../../utils/utils';
 
 import s from './TableOfContents.css';
 
@@ -30,7 +30,8 @@ export default class TableOfContents extends Component {
 		sections = sections || [];
 		return (sections || []).map(({ name, components: subComponents = [], sections: subSections }) => {
 			subComponents = filterComponentsByName(subComponents, searchTerm);
-			if (subComponents.length || !searchTerm) {
+			const regExp = getFilterRegExp(searchTerm);
+			if (subComponents.length || !searchTerm || regExp.test(name)) {
 				return (
 					<li key={name}>
 						<a className={s.section} href={'#' + name}>{name}</a>
