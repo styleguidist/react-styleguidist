@@ -41,3 +41,16 @@ export function flattenChildren(components) {
 		return component;
 	});
 }
+
+/**
+ * Fuzzy filters components list by component name.
+ *
+ * @param {array} components
+ * @param {string} searchTerm
+ * @return {array}
+ */
+export function filterComponentsByName(components, searchTerm) {
+	searchTerm = searchTerm.replace(/[^a-z0-9]/gi, '');
+	const regExp = new RegExp(searchTerm.split('').join('.*'), 'gi');
+	return components.filter(component => component.name.match(regExp));
+}

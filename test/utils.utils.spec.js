@@ -62,3 +62,43 @@ test('should set each component’s module as a global variable', t => {
 	t.is(global.Bar, 27);
 	t.is(global.PathedFoo, 32);
 });
+
+// filterComponentsByName
+
+const COMPONENTS = [
+	{
+		name: 'Button',
+	},
+	{
+		name: 'Image',
+	},
+	{
+		name: 'Input',
+	},
+	{
+		name: 'Link',
+	},
+	{
+		name: 'Textarea',
+	},
+];
+
+test('should return initial list with empty query', t => {
+	const result = utils.filterComponentsByName(COMPONENTS, '');
+	t.deepEqual(result, COMPONENTS);
+});
+
+test('should return filtered list, should ignore case', t => {
+	const result = utils.filterComponentsByName(COMPONENTS, 'button');
+	t.deepEqual(result, [{ name: 'Button' }]);
+});
+
+test('should return empty list when nothing found', t => {
+	const result = utils.filterComponentsByName(COMPONENTS, 'pizza');
+	t.deepEqual(result, []);
+});
+
+test('should not throw when query contains special characters', t => {
+	const fn = () => utils.filterComponentsByName(COMPONENTS, '\\');
+	t.notThrows(fn);
+});
