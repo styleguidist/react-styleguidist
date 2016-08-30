@@ -9,23 +9,23 @@ config.initialize(); // we need to initialize config before requiring anything e
 var makeWebpackConfig = require('./make-webpack-config');
 
 module.exports = function server(callback) {
-	var app = express();
-       var webpackConfig = makeWebpackConfig('development');
-       var stats = webpackConfig.stats || {};
-	var compiler = webpack(webpackConfig);
+  var app = express();
+  var webpackConfig = makeWebpackConfig('development');
+  var stats = webpackConfig.stats || {};
+  var compiler = webpack(webpackConfig);
 
-	app.use(require('webpack-dev-middleware')(compiler, {
-		noInfo: true,
-               stats: stats,
-	}));
+  app.use(require('webpack-dev-middleware')(compiler, {
+    noInfo: true,
+    stats: stats,
+  }));
 
-	app.use(require('webpack-hot-middleware')(compiler));
+  app.use(require('webpack-hot-middleware')(compiler));
 
-	if (config.assetsDir) {
-		app.use(express.static(config.assetsDir));
-	}
+  if (config.assetsDir) {
+    app.use(express.static(config.assetsDir));
+  }
 
-	app.listen(config.serverPort, config.serverHost, function(err) {
-		callback(err, config);
-	});
+  app.listen(config.serverPort, config.serverHost, function(err) {
+    callback(err, config);
+  });
 };

@@ -142,6 +142,22 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   };
   ```
 
+  You can also modify webpack dev server logs format passing `webpack.stats` options
+  inside `updateWebpackConfig`.
+  ```javascript
+  module.exports = {
+    // ...
+    updateWebpackConfig: function(webpackConfig, env) {
+      if (env === 'development') {
+        webpackConfig.stats.chunks = false;
+        webpackConfig.stats.chunkModules = false;
+        webpackConfig.stats.chunkOrigins = false;
+      }
+      return webpackConfig;
+    }
+  };
+  ```
+
   See [FAQ](./FAQ.md) for examples.
 
 * **`propsParser`**<br>
