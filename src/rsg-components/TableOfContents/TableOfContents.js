@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 
-import s from './TableOfContents.css';
-
 class TableOfContents extends Component {
 	constructor(props) {
 		super(props);
@@ -18,15 +16,15 @@ class TableOfContents extends Component {
 		}
 
 		return (
-			<ul className={s.list}>
+			<ul>
 				{(components || []).map(({ name }) => (
-					<li className={s.item} key={name}>
-						<a className={s.link} href={'#' + name}>{name}</a>
+					<li key={name}>
+						<a href={'#' + name}>{name}</a>
 					</li>
 				))}
 				{(sections || []).map(({ name, components: subComponents, sections: subSections }) => (
 					<li key={name}>
-						<a className={s.section} href={'#' + name}>{name}</a>
+						<a href={'#' + name}>{name}</a>
 						{this.renderLevel(subComponents, subSections, searchTerm)}
 					</li>
 				))}
@@ -41,9 +39,8 @@ class TableOfContents extends Component {
 		searchTerm = searchTerm.trim();
 
 		return (
-			<div className={s.root}>
+			<div>
 				<input
-					className={s.search}
 					placeholder="Filter by name"
 					onChange={event => this.setState({ searchTerm: event.target.value })}
 					value={searchTerm}

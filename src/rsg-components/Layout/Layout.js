@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import Components from 'rsg-components/Components';
 import TableOfContents from 'rsg-components/TableOfContents';
 
-import s from './Layout.css';
-
 import isEmpty from 'lodash/isEmpty';
 
 const Layout = (Renderer) => class extends Component {
@@ -41,8 +39,8 @@ const Layout = (Renderer) => class extends Component {
 		}
 
 		return (
-			<div className={s.empty}>
-				No components found. <a className={s.link} href="https://github.com/sapegin/react-styleguidist#configuration">Check
+			<div>
+				No components found. <a href="https://github.com/sapegin/react-styleguidist#configuration">Check
 				the components option</a> in your style guide config.
 			</div>
 		);

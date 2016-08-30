@@ -2,13 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import trim from 'lodash/trim';
 import Markdown from 'rsg-components/Markdown';
 
-import s from './Props.css';
-import sMarkdown from '../Markdown/Markdown.css';
-
 /* eslint-disable react/prop-types */
 
 export let Code = ({ className = '', children }) => {
-	return <code className={sMarkdown.code + ' ' + className}>{children}</code>;
+	return <code>{children}</code>;
 };
 
 export function unquote(string) {
@@ -26,10 +23,10 @@ export default class Props extends Component {
 			let prop = props[name];
 			rows.push(
 				<tr key={name}>
-					<td className={s.cell}><Code className={s.name}>{name}</Code></td>
-					<td className={s.cell}><Code className={s.type}>{this.renderType(getType(prop))}</Code></td>
-					<td className={s.cell}>{this.renderDefault(prop)}</td>
-					<td className={s.cell + ' ' + s.cellDesc}>{this.renderDescription(prop)}</td>
+					<td><Code>{name}</Code></td>
+					<td><Code>{this.renderType(getType(prop))}</Code></td>
+					<td>{this.renderDefault(prop)}</td>
+					<td>{this.renderDescription(prop)}</td>
 				</tr>
 			);
 		}
@@ -56,7 +53,7 @@ export default class Props extends Component {
 	renderDefault(prop) {
 		if (prop.required) {
 			return (
-				<span className={s.required}>Required</span>
+				<span>Required</span>
 			);
 		}
 		else if (prop.defaultValue) {
@@ -72,7 +69,7 @@ export default class Props extends Component {
 		let extra = this.renderExtra(prop);
 		return (
 			<div>
-				{description && <Markdown className={s.inline} text={description} />}
+				{description && <Markdown text={description} />}
 				{description && extra && ' '}
 				{extra}
 			</div>
@@ -108,12 +105,12 @@ export default class Props extends Component {
 			return <span>{getType(prop).value}</span>;
 		}
 		let values = getType(prop).value.map(({ value }) => (
-			<li className={s.listItem} key={value}>
+			<li key={value}>
 				<Code>{unquote(value)}</Code>
 			</li>
 		));
 		return (
-			<span>One of: <ul className={s.list}>{values}</ul></span>
+			<span>One of: <ul>{values}</ul></span>
 		);
 	}
 
@@ -122,13 +119,13 @@ export default class Props extends Component {
 			return <span>{getType(prop).value}</span>;
 		}
 		let values = getType(prop).value.map((value, index) => (
-			<li className={s.listItem} key={value.name + index}>
-				<Code className={s.type}>{this.renderType(value)}</Code>
+			<li key={value.name + index}>
+				<Code>{this.renderType(value)}</Code>
 			</li>
 		));
 
 		return (
-			<span>One of type: <ul className={s.list}>{values}</ul></span>
+			<span>One of type: <ul>{values}</ul></span>
 		);
 	}
 
@@ -140,11 +137,11 @@ export default class Props extends Component {
 			let description = prop.description;
 			rows.push(
 				<div key={name}>
-					<Code className={s.name}>{name}</Code>{': '}
-					<Code className={s.type}>{this.renderType(prop)}</Code>
+					<Code>{name}</Code>{': '}
+					<Code>{this.renderType(prop)}</Code>
 					{defaultValue && ' — '}{defaultValue}
 					{description && ' — '}
-					{description && <Markdown className={s.inline} text={description} />}
+					{description && <Markdown text={description} />}
 				</div>
 			);
 		}
@@ -153,16 +150,16 @@ export default class Props extends Component {
 
 	renderTable(props) {
 		return (
-			<table className={s.table}>
-				<thead className={s.tableHead}>
+			<table>
+				<thead>
 					<tr>
-						<th className={s.cellHeading}>Name</th>
-						<th className={s.cellHeading}>Type</th>
-						<th className={s.cellHeading}>Default</th>
-						<th className={s.cellHeading + ' ' + s.cellDesc}>Description</th>
+						<th>Name</th>
+						<th>Type</th>
+						<th>Default</th>
+						<th>Description</th>
 					</tr>
 				</thead>
-				<tbody className={s.tableBody}>
+				<tbody>
 					{this.renderRows(props)}
 				</tbody>
 			</table>
@@ -171,8 +168,8 @@ export default class Props extends Component {
 
 	render() {
 		return (
-			<div className={s.root}>
-				<h3 className={s.heading}>Props</h3>
+			<div>
+				<h3>Props</h3>
 				{this.renderTable(this.props.props.props)}
 			</div>
 		);

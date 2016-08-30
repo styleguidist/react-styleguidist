@@ -1,8 +1,6 @@
 import React, { PropTypes } from 'react';
 import Markdown from 'rsg-components/Markdown';
 
-const s = require('./ReactComponent.css');
-
 const Renderer = ({ name, pathLine, description, propList, examples, sidebar }) => {
 	let designContent = sidebar.designContent;
 	let tags = sidebar.tags;
@@ -34,27 +32,27 @@ const Renderer = ({ name, pathLine, description, propList, examples, sidebar }) 
 	`;
 
 	return (
-		<div className={s.root + ' grid'}>
+		<div>
 			{!sidebar &&
-				<div className="col">
+				<div>
 					<style>{string}</style>
 					<Markdown text={designContent} />
 				</div>
 			}
-			<div className="col">
-				<header className={s.header}>
-					<h2 className={s.heading} id={name}>
+			<div>
+				<header>
+					<h2 id={name}>
 						{name}
 					</h2>
 					{sidebar && 
-						<div className={s.pathLine}>
-							{tags && tags.map(tag => <span key={tag} style={{border: '2px solid blue', padding: '2px', marginRight: '5px'}}>{tag}</span>)}
+						<div>
+							{tags && tags.map(tag => <span key={tag}>{tag}</span>)}
 						</div>
 					}
 					{sidebar ? (
-						<a className={s.isolatedLink} href={'#!/' + name}>Open isolated ⇢</a>
+						<a href={'#!/' + name}>Open isolated ⇢</a>
 					) : (
-						<a className={s.isolatedLink} href="#">← Back</a>
+						<a href="#">← Back</a>
 					)}
 				</header>
 				{!sidebar &&

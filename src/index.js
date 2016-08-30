@@ -5,7 +5,6 @@ import { setComponentsNames, globalizeComponents, promoteInlineExamples, flatten
 import StyleGuide from 'rsg-components/StyleGuide';
 
 import 'highlight.js/styles/tomorrow.css';
-import './styles.css';
 
 // Make libraries available in examples
 global.React = React;
