@@ -1,13 +1,15 @@
-const _ = require('lodash');
+const escapeRegExp = require('lodash/escapeRegExp');
+const filter = require('lodash/filter');
+const map = require('lodash/map');
 const loaderUtils = require('loader-utils');
 const chunkify = require('./utils/chunkify');
 const getRequires = require('./utils/getRequires');
 
 const EVAL_PLACEHOLDER = '<%{#eval#}%>';
-const EVAL_PLACEHOLDER_REGEXP = new RegExp(_.escapeRegExp(JSON.stringify(EVAL_PLACEHOLDER)), 'g');
+const EVAL_PLACEHOLDER_REGEXP = new RegExp(escapeRegExp(JSON.stringify(EVAL_PLACEHOLDER)), 'g');
 
 const COMPONENT_PLACEHOLDER = '__COMPONENT__';
-const COMPONENT_PLACEHOLDER_REGEXP = new RegExp(_.escapeRegExp(COMPONENT_PLACEHOLDER), 'g');
+const COMPONENT_PLACEHOLDER_REGEXP = new RegExp(escapeRegExp(COMPONENT_PLACEHOLDER), 'g');
 
 function examplesLoader(source) {
 	if (this.cacheable) {
@@ -26,7 +28,7 @@ function examplesLoader(source) {
 	// because webpack unfortunately doesn't expose its smart logic for rewriting requires
 	// (https://webpack.github.io/docs/context.html). Note that we can't just use require(...) directly in runtime,
 	// because webpack changes its name to __webpack__require__ or something.
-	const codeFromAllExamples = _.map(_.filter(examples, { type: 'code' }), 'content').join('\n');
+	const codeFromAllExamples = map(filter(examples, { type: 'code' }), 'content').join('\n');
 	const requiresFromExamples = getRequires(codeFromAllExamples);
 
 	const requireMapCode = requiresFromExamples.map(requireRequest => {
