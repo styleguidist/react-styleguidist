@@ -43,7 +43,7 @@ const Button = React.createClass({
 
     let styles = {
       color: color,
-      fontSize: Button.sizes[size]
+      fontSize: ButtonSizes[size]
     };
 
     return (
