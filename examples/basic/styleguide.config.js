@@ -4,6 +4,7 @@ var glob = require('glob');
 module.exports = {
 	title: 'React Style Guide Example',
 	defaultExample: true,
+  serverPort: 4000,
 	components: function() {
 		return glob.sync(path.resolve(__dirname, 'lib/components/**/*.js')).filter(function(module) {
 			return /\/[A-Z]\w*\.js$/.test(module);
