@@ -1,4 +1,4 @@
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactModal from 'react-modal';
 
 /**
@@ -7,15 +7,15 @@ import ReactModal from 'react-modal';
 export default class Modal extends Component {
 	static propTypes = {
 		isOpen: PropTypes.bool,
-		children: PropTypes.node.isRequired
+		children: PropTypes.node.isRequired,
 	};
 
 	render() {
 		let { isOpen, children } = this.props;
 		let style = {
 			overlay: {
-				zIndex: 999
-			}
+				zIndex: 999,
+			},
 		};
 		return (
 			<ReactModal isOpen={isOpen} style={style}>{children}</ReactModal>

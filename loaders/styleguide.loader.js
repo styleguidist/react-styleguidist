@@ -4,6 +4,8 @@ const glob = require('glob');
 const prettyjson = require('prettyjson');
 const pick = require('lodash/pick');
 
+/* eslint-disable no-console */
+
 const config = require('../src/utils/config');
 
 function processComponent(filepath) {

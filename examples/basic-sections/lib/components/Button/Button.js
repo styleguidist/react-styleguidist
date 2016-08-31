@@ -1,4 +1,4 @@
-import { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
 import s from './Button.css';
 
@@ -8,11 +8,11 @@ import s from './Button.css';
 export default function Button({
 	color,
 	size,
-	children
+	children,
 }) {
 	let styles = {
-		color: color,
-		fontSize: Button.sizes[size]
+		color,
+		fontSize: Button.sizes[size],
 	};
 
 	return (
@@ -29,10 +29,10 @@ Button.propTypes = {
 };
 Button.defaultProps = {
 	color: '#333',
-	size: 'normal'
+	size: 'normal',
 };
 Button.sizes = {
 	small: '10px',
 	normal: '14px',
-	large: '18px'
+	large: '18px',
 };
