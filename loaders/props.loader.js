@@ -1,52 +1,60 @@
-var path = require('path');
-var reactDocs = require('react-docgen');
-var config = require('../src/utils/config');
-var isArray = require('lodash/isArray');
+const path = require('path');
+const reactDocs = require('react-docgen');
+const removeDoclets = require('./utils/removeDoclets');
 
-var requirePlaceholder = '<%{#require#}%>';
+/* eslint-disable no-console */
 
-module.exports = function (source) {
-	this.cacheable && this.cacheable();
+const config = require('../src/utils/config');
 
-	var defaultPropsParser = function(filePath, source) {
-		return reactDocs.parse(source, config.resolver, config.handlers);
-	};
+const defaultPropsParser = (filePath, source) => reactDocs.parse(source, config.resolver, config.handlers);
 
-	var jsonProps;
-	const file = this.request.split('!').pop()
+const REQUIRE_PLACEHOLDER = '<%{#require#}%>';
+
+module.exports = function(source) {
+	if (this.cacheable) {
+		this.cacheable();
+	}
+
+	const file = this.request.split('!').pop();
+
+	let jsonProps;
 	try {
-		var propsParser = config.propsParser || defaultPropsParser;
-		var props = propsParser(file, source);
-
-		jsonProps = (isArray(props) ? props : [props]).map(function(doc) {
+		const propsParser = config.propsParser || defaultPropsParser;
+		let props = propsParser(file, source);
+		if (!Array.isArray(props)) {
+			props = [props];
+		}
+		jsonProps = props.map(doc => {
 			if (doc.description) {
+				// Read doclets from the description and remove them
 				doc.doclets = reactDocs.utils.docblock.getDoclets(doc.description);
-				doc.description = doc.description.replace(/^@(\w+)(?:$|\s((?:[^](?!^@\w))*))/gmi, '');
-			} else {
+				doc.description = removeDoclets(doc.description);
+			}
+			else {
 				doc.doclets = {};
 			}
 
 			if (doc.doclets.example) {
-				doc.example = requirePlaceholder;
+				doc.example = REQUIRE_PLACEHOLDER;
 			}
 
 			return JSON.stringify(doc).replace(
-				'"' + requirePlaceholder + '"',
+				JSON.stringify(REQUIRE_PLACEHOLDER),
 				doc.doclets.example && 'require(' + JSON.stringify('examples!' + doc.doclets.example) + ')'
 			);
 		});
 	}
-	catch (e) {
+	catch (exception) {
 		console.log('Error when parsing', path.relative(process.cwd(), file));
-		console.log(e.toString());
+		console.log(exception.toString());
 		console.log();
 		jsonProps = [];
 	}
 
-	return [
-		'if (module.hot) {',
-		'	module.hot.accept([]);',
-		'}',
-		'module.exports = [' + jsonProps.join(',') + '];'
-	].join('\n');
+	return `
+		if (module.hot) {
+			module.hot.accept([]);
+		}
+		module.exports = [${jsonProps.join(',')}];
+	`;
 };
