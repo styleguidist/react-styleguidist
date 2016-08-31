@@ -105,9 +105,9 @@ Styleguidist generates documentation from three sources:
 
   One more with generic code fence:
 
-  \`\`\`
+  ```
   <Button size="large">Push Me</Button>
-  \`\`\`
+  ```
 
   One more with `example` code fence (text editors may alias to `jsx` or `javascript`):
   \`\`\`example
