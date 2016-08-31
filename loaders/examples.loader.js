@@ -6,28 +6,26 @@ const getRequires = require('./utils/getRequires');
 const EVAL_PLACEHOLDER = '<%{#eval#}%>';
 const EVAL_PLACEHOLDER_REGEXP = new RegExp(_.escapeRegExp(JSON.stringify(EVAL_PLACEHOLDER)), 'g');
 
+const COMPONENT_PLACEHOLDER = '__COMPONENT__';
+const COMPONENT_PLACEHOLDER_REGEXP = new RegExp(_.escapeRegExp(COMPONENT_PLACEHOLDER), 'g');
+
 function examplesLoader(source) {
 	if (this.cacheable) {
 		this.cacheable();
 	}
 
 	// Replace __COMPONENT__ placeholders with the passed-in componentName
-	const componentName = loaderUtils.parseQuery(this.query).componentName || '__COMPONENT__';
-	source = source.replace(/__COMPONENT__/g, componentName);
+	const query = loaderUtils.parseQuery(this.query);
+	const componentName = query.componentName || COMPONENT_PLACEHOLDER;
+	source = source.replace(COMPONENT_PLACEHOLDER_REGEXP, componentName);
 
 	// Load examples
 	let examples = chunkify(source);
-	examples = examples.map(example => {
-		if (example.type === 'code') {
-			example.evalInContext = EVAL_PLACEHOLDER;
-		}
-		return example;
-	});
 
 	// We're analysing the examples' source code to figure out the require statements. We do it manually with regexes,
 	// because webpack unfortunately doesn't expose its smart logic for rewriting requires
 	// (https://webpack.github.io/docs/context.html). Note that we can't just use require(...) directly in runtime,
-	// because webpack changes its name to __webpack__require__ or sth.
+	// because webpack changes its name to __webpack__require__ or something.
 	const codeFromAllExamples = _.map(_.filter(examples, { type: 'code' }), 'content').join('\n');
 	const requiresFromExamples = getRequires(codeFromAllExamples);
 
@@ -36,6 +34,12 @@ function examplesLoader(source) {
 		return `${requireRequest}: require(${requireRequest})`;
 	}).join(',\n');
 
+	examples = examples.map(example => {
+		if (example.type === 'code') {
+			example.evalInContext = EVAL_PLACEHOLDER;
+		}
+		return example;
+	});
 	const examplesCode = JSON.stringify(examples).replace(
 		EVAL_PLACEHOLDER_REGEXP,
 		`
