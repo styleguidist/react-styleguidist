@@ -13,8 +13,9 @@ text
 <span/>
 \`\`\`
 `;
-	let output = examplesLoader.call({}, exampleMarkdown);
-	t.notThrows(() => new Function(output), SyntaxError);  // eslint-disable-line no-new-func
+	let result = examplesLoader.call({}, exampleMarkdown);
+	t.truthy(result);
+	t.notThrows(() => new Function(result), SyntaxError);  // eslint-disable-line no-new-func
 });
 
 // componentName query option
@@ -30,8 +31,8 @@ test('should replace all occurrences of __COMPONENT__ with provided query.compon
 </div>
 `;
 
-	const output = examplesLoader.call({ query: '?componentName=FooComponent' }, exampleMarkdown);
-	t.notRegex(output, /__COMPONENT__/);
-	t.regex(output, /FooComponent/);
-	t.is(output.match(/FooComponent/g).length, 4);
+	const result = examplesLoader.call({ query: '?componentName=FooComponent' }, exampleMarkdown);
+	t.notRegex(result, /__COMPONENT__/);
+	t.regex(result, /FooComponent/);
+	t.is(result.match(/FooComponent/g).length, 4);
 });
