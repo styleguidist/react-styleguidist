@@ -36,6 +36,21 @@ const Button = require('../common/Button');
 <Button>Push Me Tender</Button>
 ```
 
+## How to add babel-polyfill?
+
+Add a new Webpack entry point. In your style guide config:
+
+```javascript
+var path = require('path');
+module.exports = {
+  updateWebpackConfig: function(webpackConfig, env) {
+    // Babel loader, etc.
+    webpackConfig.entry.push('babel-polyfill');
+    return webpackConfig;
+  },
+};
+```
+
 ## How to add custom JS and CSS?
 
 Add a new Webpack entry point. In your style guide config:
