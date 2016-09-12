@@ -1,6 +1,6 @@
 # React Styleguidist Documentation
 
-* [Getting started](./docs/GettingStarted.md): installation and documenting components
-* [Configuration](./docs/Configuration.md)
-* [CLI commands and options](./docs/CLI.md)
-* [FAQ](./docs/FAQ.md)
+* [Getting started](./GettingStarted.md): installation and documenting components
+* [Configuration](./Configuration.md)
+* [CLI commands and options](./CLI.md)
+* [FAQ](./FAQ.md)
