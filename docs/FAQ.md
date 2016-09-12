@@ -45,7 +45,7 @@ var path = require('path');
 module.exports = {
   updateWebpackConfig: function(webpackConfig, env) {
     // Babel loader, etc.
-    webpackConfig.entry.push('babel-polyfill');
+    webpackConfig.entry.unshift('babel-polyfill');
     return webpackConfig;
   },
 };
