@@ -1,14 +1,10 @@
 const express = require('express');
 const webpack = require('webpack');
-
-const config = require('./../src/utils/config');
-config.initialize(); // we need to initialize config before requiring anything else from the project
-
 const makeWebpackConfig = require('./make-webpack-config');
 
-module.exports = function server(callback) {
+module.exports = function server(config, callback) {
 	const app = express();
-	const webpackConfig = makeWebpackConfig('development');
+	const webpackConfig = makeWebpackConfig(config, 'development');
 	const stats = webpackConfig.stats || {};
 	const compiler = webpack(webpackConfig);
 
@@ -23,7 +19,5 @@ module.exports = function server(callback) {
 		app.use(express.static(config.assetsDir));
 	}
 
-	app.listen(config.serverPort, config.serverHost, (err) => {
-		callback(err, config);
-	});
+	app.listen(config.serverPort, config.serverHost, callback);
 };

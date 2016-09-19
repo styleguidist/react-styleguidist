@@ -5,9 +5,9 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const prettyjson = require('prettyjson');
-const config = require('../src/utils/config');
 
 const sourceDir = path.resolve(__dirname, '../src');
+const codeMirrorPath = getPackagePath('codemirror');
 
 /**
  * Return npm package path.
@@ -29,10 +29,8 @@ function validateWebpackConfig(webpackConfig) {
 	});
 }
 
-module.exports = function(env) {
+module.exports = function(config, env) {
 	process.env.NODE_ENV = process.env.BABEL_ENV = env;
-
-	const codeMirrorPath = getPackagePath('codemirror');
 
 	let webpackConfig = {
 		output: {

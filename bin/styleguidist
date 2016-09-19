@@ -7,6 +7,9 @@ const chalk = require('chalk');
 
 const argv = minimist(process.argv.slice(2));
 
+const config = require('./../src/utils/config');
+config.initialize();
+
 switch (argv._[0]) {
 	case 'build':
 		commandBuild();
@@ -22,7 +25,7 @@ function commandBuild() {
 	console.log('Building style guide...');
 
 	const build = require('../scripts/build');
-	build((err, stats, config) => {
+	build(config, err => {
 		if (err) {
 			console.log(err);
 			process.exit(1);
@@ -35,7 +38,7 @@ function commandBuild() {
 
 function commandServer() {
 	const server = require('../scripts/server');
-	server((err, config) => {
+	server(config, err => {
 		if (err) {
 			console.log(err);
 		}
