@@ -6,9 +6,7 @@ const pick = require('lodash/pick');
 
 /* eslint-disable no-console */
 
-const config = require('../src/utils/config');
-
-function processComponent(filepath) {
+function processComponent(filepath, config) {
     // If component name can’t be detected in runtime use filename or folder name (if file name is 'index')
 	const filename = path.basename(filepath).replace(/\.\w+$/, '');
 	const nameFallback = filename === 'index' ? path.basename(path.dirname(filepath)) : filename;
@@ -19,25 +17,25 @@ function processComponent(filepath) {
 		'pathLine: ' + JSON.stringify(config.getComponentPathLine(path.relative(config.configDir, filepath))),
 		'module: ' + requireIt(filepath),
 		'props: ' + requireIt('!!props!' + filepath),
-		'examples: ' + getExamples(filepath, nameFallback),
+		'examples: ' + getExamples(filepath, nameFallback, config),
 	].join(',') + '}';
 }
 
-function getExamples(filepath, nameFallbak) {
+function getExamples(filepath, nameFallback, config) {
 	const examplesFile = config.getExampleFilename(filepath);
 
-	if (hasExamples(filepath)) {
+	if (hasExamples(filepath, config)) {
 		return requireIt('examples!' + examplesFile);
 	}
 
 	if (config.defaultExample) {
-		return requireIt('examples?componentName=' + nameFallbak + '!' + config.defaultExample);
+		return requireIt('examples?componentName=' + nameFallback + '!' + config.defaultExample);
 	}
 
 	return null;
 }
 
-function hasExamples(filepath) {
+function hasExamples(filepath, config) {
 	const examplesFile = config.getExampleFilename(filepath);
 	return !!fs.existsSync(examplesFile);
 }
@@ -70,7 +68,7 @@ function processComponentsSource(components, config) {
 		componentSources = componentSources.filter(hasExamples);
 	}
 
-	return '[' + componentSources.map(processComponent).join(',') + ']';
+	return '[' + componentSources.map(component => processComponent(component, config)).join(',') + ']';
 }
 
 function processSection(section, config) {
@@ -97,6 +95,8 @@ module.exports.pitch = function() {
 	if (this.cacheable) {
 		this.cacheable();
 	}
+
+	const config = this.options.styleguidist;
 
 	// Example usage of query options:
 	// require('!!styleguide?{"configFilepath":"/path/to/config.js"}!');

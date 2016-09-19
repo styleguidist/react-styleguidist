@@ -4,10 +4,6 @@ const removeDoclets = require('./utils/removeDoclets');
 
 /* eslint-disable no-console */
 
-const config = require('../src/utils/config');
-
-const defaultPropsParser = (filePath, source) => reactDocs.parse(source, config.resolver, config.handlers);
-
 const REQUIRE_PLACEHOLDER = '<%{#require#}%>';
 
 module.exports = function(source) {
@@ -16,10 +12,13 @@ module.exports = function(source) {
 	}
 
 	const file = this.request.split('!').pop();
+	const config = this.options.styleguidist;
+
+	const propsParser = config.propsParser ||
+		((filePath, source) => reactDocs.parse(source, config.resolver, config.handlers));
 
 	let jsonProps;
 	try {
-		const propsParser = config.propsParser || defaultPropsParser;
 		let props = propsParser(file, source);
 		if (!Array.isArray(props)) {
 			props = [props];

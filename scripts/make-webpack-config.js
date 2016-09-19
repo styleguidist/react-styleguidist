@@ -33,6 +33,7 @@ module.exports = function(config, env) {
 	process.env.NODE_ENV = process.env.BABEL_ENV = env;
 
 	let webpackConfig = {
+		styleguidist: config,
 		output: {
 			path: config.styleguideDir,
 			filename: 'build/bundle.js',
