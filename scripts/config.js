@@ -1,16 +1,16 @@
-/* eslint-disable no-var, no-console, object-shorthand */
+/* eslint-disable no-console */
 
-var _ = require('lodash');
-var fs = require('fs');
-var path = require('path');
-var findup = require('findup');
-var semverUtils = require('semver-utils');
-var prettyjson = require('prettyjson');
-var merge = require('lodash/merge');
-var utils = require('./utils/utils');
+const _ = require('lodash');
+const fs = require('fs');
+const path = require('path');
+const findup = require('findup');
+const semverUtils = require('semver-utils');
+const prettyjson = require('prettyjson');
+const merge = require('lodash/merge');
+const utils = require('./utils/utils');
 
-var CONFIG_FILENAME = 'styleguide.config.js';
-var DEFAULT_CONFIG = {
+const CONFIG_FILENAME = 'styleguide.config.js';
+const DEFAULT_CONFIG = {
 	components: null,
 	sections: null,
 	skipComponentsWithoutExample: false,
@@ -24,15 +24,11 @@ var DEFAULT_CONFIG = {
 	serverPort: 3000,
 	highlightTheme: 'base16-light',
 	verbose: false,
-	getExampleFilename: function(componentpath) {
-		return path.join(path.dirname(componentpath), 'Readme.md');
-	},
-	getComponentPathLine: function(componentpath) {
-		return componentpath;
-	},
+	getExampleFilename: componentpath => path.join(path.dirname(componentpath), 'Readme.md'),
+	getComponentPathLine: componentpath => componentpath,
 	updateWebpackConfig: null,
 };
-var DEPENDENCIES = [
+const DEPENDENCIES = [
 	{
 		package: 'babel-core',
 		name: 'Babel',
@@ -46,7 +42,7 @@ var DEPENDENCIES = [
 		to: 2,
 	},
 ];
-var BUGS_URL = 'https://github.com/sapegin/react-styleguidist/issues';
+const BUGS_URL = 'https://github.com/sapegin/react-styleguidist/issues';
 
 /**
  * Find and read config file.
@@ -64,15 +60,15 @@ function initialize(cliOptions) {
  */
 function readConfig(cliOptions) {
 	const configFilepath = findConfig(cliOptions);
-	var options = require(configFilepath);
+	let options = require(configFilepath);
 
 	validateConfig(options);
 
-	var configDir = path.dirname(configFilepath);
+	const configDir = path.dirname(configFilepath);
 
 	validateDependencies(configDir);
 
-	var assetsDir = options.assetsDir;
+	let assetsDir = options.assetsDir;
 	if (assetsDir) {
 		assetsDir = path.resolve(configDir, assetsDir);
 		if (!utils.isDirectoryExists(assetsDir)) {
@@ -80,7 +76,7 @@ function readConfig(cliOptions) {
 		}
 	}
 
-	var defaultExample = options.defaultExample;
+	let defaultExample = options.defaultExample;
 	if (defaultExample === true) {
 		defaultExample = path.join(__dirname, './templates/DefaultExample.md');
 	}
@@ -94,10 +90,10 @@ function readConfig(cliOptions) {
 	options = merge({}, DEFAULT_CONFIG, options);
 	options = merge({}, options, {
 		verbose: !!cliOptions.verbose,
-		configDir: configDir,
-		assetsDir: assetsDir,
-		defaultExample: defaultExample,
 		styleguideDir: path.resolve(configDir, options.styleguideDir),
+		configDir,
+		assetsDir,
+		defaultExample,
 	});
 
 	if (options.verbose) {
@@ -120,7 +116,7 @@ function findConfig(cliOptions) {
 	if (cliOptions.config) {
 		// Custom config location
 
-		var configFilepath = path.join(process.cwd(), cliOptions.config);
+		const configFilepath = path.join(process.cwd(), cliOptions.config);
 		if (!fs.existsSync(configFilepath)) {
 			throw Error('Styleguidist config not found: ' + configFilepath + '.');
 		}
@@ -130,7 +126,7 @@ function findConfig(cliOptions) {
 
 	// Search config file in all parent directories
 
-	var configDir;
+	let configDir;
 	try {
 		configDir = findup.sync(__dirname, CONFIG_FILENAME);
 	}
@@ -174,8 +170,8 @@ function validateConfig(options) {
  * @param {string} configDir Config file directory.
  */
 function validateDependencies(configDir) {
-	var packageJsonPath = path.join(findup.sync(configDir, 'package.json'), 'package.json');
-	var packageJson = require(packageJsonPath);
+	const packageJsonPath = path.join(findup.sync(configDir, 'package.json'), 'package.json');
+	const packageJson = require(packageJsonPath);
 	DEPENDENCIES.forEach(validateDependency.bind(null, packageJson));
 }
 
@@ -186,12 +182,12 @@ function validateDependencies(configDir) {
  * @param {Object} dependency Dependency details.
  */
 function validateDependency(packageJson, dependency) {
-	var version = findDependency(dependency.package, packageJson);
+	const version = findDependency(dependency.package, packageJson);
 	if (!version) {
 		return;
 	}
 
-	var major;
+	let major;
 	try {
 		major = semverUtils.parseRange(version)[0].major;
 	}
@@ -231,5 +227,5 @@ function findDependency(name, packageJson) {
 }
 
 module.exports = {
-	initialize: initialize,
+	initialize,
 };

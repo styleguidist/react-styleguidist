@@ -1,10 +1,8 @@
-/* eslint-disable no-var */
-
-var fs = require('fs');
+const fs = require('fs');
 
 module.exports.isDirectoryExists = function(dir) {
 	try {
-		var stats = fs.lstatSync(dir);
+		const stats = fs.lstatSync(dir);
 		if (stats.isDirectory()) {
 			return true;
 		}
