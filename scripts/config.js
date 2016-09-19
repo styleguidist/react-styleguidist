@@ -7,7 +7,7 @@ var findup = require('findup');
 var semverUtils = require('semver-utils');
 var prettyjson = require('prettyjson');
 var merge = require('lodash/merge');
-var utils = require('./server');
+var utils = require('./utils/utils');
 
 var CONFIG_FILENAME = 'styleguide.config.js';
 var DEFAULT_CONFIG = {
@@ -19,7 +19,7 @@ var DEFAULT_CONFIG = {
 	title: 'Style guide',
 	styleguideDir: 'styleguide',
 	assetsDir: null,
-	template: path.join(__dirname, '../templates/index.html'),
+	template: path.join(__dirname, './templates/index.html'),
 	serverHost: 'localhost',
 	serverPort: 3000,
 	highlightTheme: 'base16-light',
@@ -82,7 +82,7 @@ function readConfig(cliOptions) {
 
 	var defaultExample = options.defaultExample;
 	if (defaultExample === true) {
-		defaultExample = path.join(__dirname, '../templates/DefaultExample.md');
+		defaultExample = path.join(__dirname, './templates/DefaultExample.md');
 	}
 	else if (typeof defaultExample === 'string') {
 		defaultExample = path.resolve(configDir, defaultExample);
