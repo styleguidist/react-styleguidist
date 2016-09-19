@@ -7,6 +7,8 @@ var merge = require('webpack-merge');
 var prettyjson = require('prettyjson');
 var config = require('../src/utils/config');
 
+var sourceDir = path.resolve(__dirname, '../src');
+
 /**
  * Return npm package path.
  * In npm2 works only with packages required directly by this package.
@@ -40,14 +42,14 @@ module.exports = function(env) {
 		resolve: {
 			extensions: ['', '.js', '.jsx'],
 			// Webpack 1
-			root: __dirname,
+			root: sourceDir,
 			moduleDirectories: [
 				path.resolve(__dirname, '../node_modules'),
 				'node_modules',
 			],
 			// Webpack 2
 			modules: [
-				path.resolve(__dirname),
+				sourceDir,
 				path.resolve(__dirname, '../node_modules'),
 				'node_modules',
 			],
@@ -100,7 +102,7 @@ module.exports = function(env) {
 				},
 				{
 					test: /\.css$/,
-					include: __dirname,
+					include: sourceDir,
 					loader: 'style!css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]',
 				},
 			],
@@ -110,7 +112,7 @@ module.exports = function(env) {
 		},
 	};
 
-	var entryScript = path.join(__dirname, 'index');
+	var entryScript = path.resolve(sourceDir, 'index');
 
 	if (env === 'production') {
 		webpackConfig = merge(webpackConfig, {
@@ -137,7 +139,7 @@ module.exports = function(env) {
 				loaders: [
 					{
 						test: /\.jsx?$/,
-						include: __dirname,
+						include: sourceDir,
 						loader: 'babel',
 						query: {
 							babelrc: false,
@@ -170,7 +172,7 @@ module.exports = function(env) {
 				loaders: [
 					{
 						test: /\.jsx?$/,
-						include: __dirname,
+						include: sourceDir,
 						loader: 'babel',
 						query: {
 							babelrc: false,

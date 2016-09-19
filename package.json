@@ -15,14 +15,15 @@
     "url": "https://github.com/sapegin/react-styleguidist/issues"
   },
   "license": "MIT",
-  "main": "src/build.js",
+  "main": "scripts/build.js",
   "bin": {
     "styleguidist": "bin/styleguidist"
   },
   "files": [
     "bin",
     "src",
-    "loaders"
+    "loaders",
+    "scripts"
   ],
   "engines": {
     "node": ">=4"

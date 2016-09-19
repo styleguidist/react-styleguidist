@@ -3,7 +3,7 @@
 var express = require('express');
 var webpack = require('webpack');
 
-var config = require('./utils/config');
+var config = require('./../src/utils/config');
 config.initialize(); // we need to initialize config before requiring anything else from the project
 
 var makeWebpackConfig = require('./make-webpack-config');

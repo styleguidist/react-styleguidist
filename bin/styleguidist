@@ -20,7 +20,7 @@ switch (argv._[0]) {
 function commandBuild() {
 	console.log('Building style guide...');
 
-	var build = require('../src/build');
+	var build = require('../scripts/build');
 	build(function(err, stats, config) {
 		if (err) {
 			console.log(err);
@@ -33,7 +33,7 @@ function commandBuild() {
 }
 
 function commandServer() {
-	var server = require('../src/server');
+	var server = require('../scripts/server');
 	server(function(err, config) {
 		if (err) {
 			console.log(err);
