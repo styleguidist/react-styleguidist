@@ -1,10 +1,11 @@
 #!/usr/bin/env node
-'use strict';
 
-var minimist = require('minimist');
-var chalk = require('chalk');
+/* eslint-disable no-console */
 
-var argv = minimist(process.argv.slice(2));
+const minimist = require('minimist');
+const chalk = require('chalk');
+
+const argv = minimist(process.argv.slice(2));
 
 switch (argv._[0]) {
 	case 'build':
@@ -20,8 +21,8 @@ switch (argv._[0]) {
 function commandBuild() {
 	console.log('Building style guide...');
 
-	var build = require('../scripts/build');
-	build(function(err, stats, config) {
+	const build = require('../scripts/build');
+	build((err, stats, config) => {
 		if (err) {
 			console.log(err);
 			process.exit(1);
@@ -33,8 +34,8 @@ function commandBuild() {
 }
 
 function commandServer() {
-	var server = require('../scripts/server');
-	server(function(err, config) {
+	const server = require('../scripts/server');
+	server((err, config) => {
 		if (err) {
 			console.log(err);
 		}

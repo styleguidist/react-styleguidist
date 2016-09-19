@@ -1,13 +1,13 @@
-/* eslint-disable no-var, no-console */
+/* eslint-disable no-console */
 
-var path = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var merge = require('webpack-merge');
-var prettyjson = require('prettyjson');
-var config = require('../src/utils/config');
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const merge = require('webpack-merge');
+const prettyjson = require('prettyjson');
+const config = require('../src/utils/config');
 
-var sourceDir = path.resolve(__dirname, '../src');
+const sourceDir = path.resolve(__dirname, '../src');
 
 /**
  * Return npm package path.
@@ -22,7 +22,7 @@ function getPackagePath(packageName) {
 }
 
 function validateWebpackConfig(webpackConfig) {
-	webpackConfig.module.loaders.forEach(function(loader) {
+	webpackConfig.module.loaders.forEach(loader => {
 		if (!loader.include && !loader.exclude) {
 			throw Error('Styleguidist: "include" option is missing for ' + loader.test + ' Webpack loader.');
 		}
@@ -32,9 +32,9 @@ function validateWebpackConfig(webpackConfig) {
 module.exports = function(env) {
 	process.env.NODE_ENV = process.env.BABEL_ENV = env;
 
-	var codeMirrorPath = getPackagePath('codemirror');
+	const codeMirrorPath = getPackagePath('codemirror');
 
-	var webpackConfig = {
+	let webpackConfig = {
 		output: {
 			path: config.styleguideDir,
 			filename: 'build/bundle.js',
@@ -112,7 +112,7 @@ module.exports = function(env) {
 		},
 	};
 
-	var entryScript = path.resolve(sourceDir, 'index');
+	const entryScript = path.resolve(sourceDir, 'index');
 
 	if (env === 'production') {
 		webpackConfig = merge(webpackConfig, {

@@ -1,18 +1,16 @@
-/* eslint-disable no-var */
+const express = require('express');
+const webpack = require('webpack');
 
-var express = require('express');
-var webpack = require('webpack');
-
-var config = require('./../src/utils/config');
+const config = require('./../src/utils/config');
 config.initialize(); // we need to initialize config before requiring anything else from the project
 
-var makeWebpackConfig = require('./make-webpack-config');
+const makeWebpackConfig = require('./make-webpack-config');
 
 module.exports = function server(callback) {
-	var app = express();
-	var webpackConfig = makeWebpackConfig('development');
-	var stats = webpackConfig.stats || {};
-	var compiler = webpack(webpackConfig);
+	const app = express();
+	const webpackConfig = makeWebpackConfig('development');
+	const stats = webpackConfig.stats || {};
+	const compiler = webpack(webpackConfig);
 
 	app.use(require('webpack-dev-middleware')(compiler, {
 		noInfo: true,
@@ -25,7 +23,7 @@ module.exports = function server(callback) {
 		app.use(express.static(config.assetsDir));
 	}
 
-	app.listen(config.serverPort, config.serverHost, function(err) {
+	app.listen(config.serverPort, config.serverHost, (err) => {
 		callback(err, config);
 	});
 };
