@@ -8,7 +8,7 @@ const chalk = require('chalk');
 const argv = minimist(process.argv.slice(2));
 
 const config = require('./../src/utils/config');
-config.initialize();
+config.initialize(argv);
 
 switch (argv._[0]) {
 	case 'build':

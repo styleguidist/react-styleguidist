@@ -5,7 +5,6 @@ var fs = require('fs');
 var path = require('path');
 var findup = require('findup');
 var semverUtils = require('semver-utils');
-var minimist = require('minimist');
 var prettyjson = require('prettyjson');
 var merge = require('lodash/merge');
 var utils = require('./server');
@@ -49,23 +48,22 @@ var DEPENDENCIES = [
 ];
 var BUGS_URL = 'https://github.com/sapegin/react-styleguidist/issues';
 
-
-function initialize(configFilepath) {
-	var options = {};
-	if (!configFilepath) {
-		options = minimist(process.argv.slice(2));
-		configFilepath = findConfig(options);
-	}
-	_.assign(module.exports, readConfig(configFilepath, options));
+/**
+ * Find and read config file.
+ *
+ * @param {object} cliOptions command line arguments.
+ */
+function initialize(cliOptions) {
+	_.assign(module.exports, readConfig(cliOptions));
 }
 
 /**
  * Read, parse and validate config file.
- * @param {string} configFilepath path to the config file.
  * @param {Object} cliOptions e.g. {verbose: true}
  * @returns {Object}
  */
-function readConfig(configFilepath, cliOptions) {
+function readConfig(cliOptions) {
+	const configFilepath = findConfig(cliOptions);
 	var options = require(configFilepath);
 
 	validateConfig(options);
@@ -115,14 +113,14 @@ function readConfig(configFilepath, cliOptions) {
 /**
  * Find config file: use file specified in the command line or try to find up the file tree.
  *
- * @param {Object} argv CLI arguments
+ * @param {Object} cliOptions Command line arguments
  * @return {string} Config file path.
  */
-function findConfig(argv) {
-	if (argv.config) {
+function findConfig(cliOptions) {
+	if (cliOptions.config) {
 		// Custom config location
 
-		var configFilepath = path.join(process.cwd(), argv.config);
+		var configFilepath = path.join(process.cwd(), cliOptions.config);
 		if (!fs.existsSync(configFilepath)) {
 			throw Error('Styleguidist config not found: ' + configFilepath + '.');
 		}

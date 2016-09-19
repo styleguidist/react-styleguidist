@@ -103,7 +103,7 @@ module.exports.pitch = function() {
 	if (this.query) {
 		const query = JSON.parse(this.query.substring(1));  // getting rid of '?'
 		if (query.configFilepath) {
-			config.initialize(query.configFilepath);
+			config.initialize({ config: query.configFilepath });
 		}
 	}
 
