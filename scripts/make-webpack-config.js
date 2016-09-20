@@ -47,7 +47,6 @@ module.exports = function(config, env) {
 			filename: 'build/bundle.js',
 		},
 		resolve: {
-			extensions: ['.js', '.jsx'],
 			alias: {
 				codemirror: codeMirrorPath,
 			},
@@ -102,6 +101,7 @@ module.exports = function(config, env) {
 	if (isWebpack2) {
 		webpackConfig = merge(webpackConfig, {
 			resolve: {
+				extensions: ['.js', '.jsx'],
 				modules: [
 					sourceDir,
 					nodeModulesDir,
@@ -127,6 +127,7 @@ module.exports = function(config, env) {
 		webpackConfig = merge(webpackConfig, {
 			styleguidist: config,
 			resolve: {
+				extensions: ['', '.js', '.jsx'],
 				root: sourceDir,
 				moduleDirectories: [
 					nodeModulesDir,
