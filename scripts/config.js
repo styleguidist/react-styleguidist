@@ -51,7 +51,7 @@ const BUGS_URL = 'https://github.com/sapegin/react-styleguidist/issues';
  * @param {object} options CLI options (e.g. {verbose: true} or {config: 'filename'}) or all config options.
  * @returns {object}
  */
-function getConfig(options = {}) {
+function getConfig(options) {
 	let configFilepath;
 	let config;
 	if (options.components || options.sections) {
