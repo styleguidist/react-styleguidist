@@ -1,3 +1,5 @@
+'use strict';
+
 const remark = require('remark');
 const visit = require('unist-util-visit');
 const hljs = require('highlight.js');

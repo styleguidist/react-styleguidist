@@ -1,3 +1,5 @@
+'use strict';
+
 const escapeRegExp = require('lodash/escapeRegExp');
 const filter = require('lodash/filter');
 const map = require('lodash/map');
@@ -56,18 +58,18 @@ function examplesLoader(source) {
 		if (module.hot) {
 			module.hot.accept([]);
 		}
-		
+
 		var requireMap = {
 			${requireMapCode}
 		};
-		
+
 		function requireInRuntime(path) {
 			if (!requireMap.hasOwnProperty(path)) {
 				throw new Error('require() statements can be added only by editing a Markdown example file.');
 			}
 			return requireMap[path];
 		}
-		
+
 		module.exports = ${examplesCode};
 	`;
 }

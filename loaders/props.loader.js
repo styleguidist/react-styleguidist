@@ -1,3 +1,5 @@
+'use strict';
+
 const path = require('path');
 const reactDocs = require('react-docgen');
 const removeDoclets = require('./utils/removeDoclets');
