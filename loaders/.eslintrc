@@ -5,6 +5,7 @@
 		"sourceType": "script"
 	},
 	"rules": {
-		"no-invalid-this": 0
+		"no-invalid-this": 0,
+		"strict": [2, "global"]
 	}
 }
