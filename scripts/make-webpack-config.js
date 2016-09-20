@@ -7,7 +7,12 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const prettyjson = require('prettyjson');
+const semverUtils = require('semver-utils');
 
+const webpackVersion = semverUtils.parseRange(require('webpack/package.json').version)[0].major;
+const isWebpack2 = webpackVersion === '2';
+
+const nodeModulesDir = path.resolve(__dirname, '../node_modules');
 const sourceDir = path.resolve(__dirname, '../src');
 const codeMirrorPath = getPackagePath('codemirror');
 
@@ -34,43 +39,20 @@ function validateWebpackConfig(webpackConfig) {
 module.exports = function(config, env) {
 	process.env.NODE_ENV = process.env.BABEL_ENV = env;
 
+	const isProd = env === 'production';
+
 	let webpackConfig = {
-		styleguidist: config,
 		output: {
 			path: config.styleguideDir,
 			filename: 'build/bundle.js',
 		},
 		resolve: {
-			extensions: ['', '.js', '.jsx'],
-			// Webpack 1
-			root: sourceDir,
-			moduleDirectories: [
-				path.resolve(__dirname, '../node_modules'),
-				'node_modules',
-			],
-			// Webpack 2
-			modules: [
-				sourceDir,
-				path.resolve(__dirname, '../node_modules'),
-				'node_modules',
-			],
+			extensions: ['.js', '.jsx'],
 			alias: {
 				codemirror: codeMirrorPath,
 			},
 		},
 		resolveLoader: {
-			// Webpack 1
-			modulesDirectories: [
-				path.resolve(__dirname, '../loaders'),
-				path.resolve(__dirname, '../node_modules'),
-				'node_modules',
-			],
-			// Webpack 2
-			modules: [
-				path.resolve(__dirname, '../loaders'),
-				path.resolve(__dirname, '../node_modules'),
-				'node_modules',
-			],
 			moduleExtensions: ['-loader', '.loader'],
 		},
 		plugins: [
@@ -107,21 +89,65 @@ module.exports = function(config, env) {
 					loader: 'style!css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]',
 				},
 			],
-			noParse: [
-				/babel-standalone/,
-			],
+			noParse: /babel-standalone/,
 		},
 	};
 
+	const loaderModulesDirectories = [
+		path.resolve(__dirname, '../loaders'),
+		nodeModulesDir,
+		'node_modules',
+	];
+
+	if (isWebpack2) {
+		webpackConfig = merge(webpackConfig, {
+			resolve: {
+				modules: [
+					sourceDir,
+					nodeModulesDir,
+					'node_modules',
+				],
+			},
+			resolveLoader: {
+				modules: loaderModulesDirectories,
+			},
+			plugins: [
+				new webpack.LoaderOptionsPlugin({
+					options: {
+						styleguidist: config,
+					},
+					styleguidist: config,
+					minimize: isProd,
+					debug: !isProd,
+				}),
+			],
+		});
+	}
+	else {
+		webpackConfig = merge(webpackConfig, {
+			styleguidist: config,
+			resolve: {
+				root: sourceDir,
+				moduleDirectories: [
+					nodeModulesDir,
+					'node_modules',
+				],
+			},
+			resolveLoader: {
+				modulesDirectories: loaderModulesDirectories,
+			},
+			debug: !isProd,
+		});
+	}
+
 	const entryScript = path.resolve(sourceDir, 'index');
 
-	if (env === 'production') {
+	if (isProd) {
 		webpackConfig = merge(webpackConfig, {
 			entry: [
 				entryScript,
 			],
 			devtool: false,
-			debug: false,
 			cache: false,
 			plugins: [
 				new webpack.optimize.OccurrenceOrderPlugin(),
@@ -157,7 +183,6 @@ module.exports = function(config, env) {
 				'webpack-hot-middleware/client',
 				entryScript,
 			],
-			debug: true,
 			cache: true,
 			devtool: 'eval',
 			stats: {
