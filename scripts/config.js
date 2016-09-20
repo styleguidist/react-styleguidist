@@ -1,3 +1,5 @@
+'use strict';
+
 /* eslint-disable no-console */
 
 const _ = require('lodash');

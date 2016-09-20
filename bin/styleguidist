@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+'use strict';
+
 /* eslint-disable no-console */
 
 const minimist = require('minimist');
@@ -7,7 +9,7 @@ const chalk = require('chalk');
 
 const argv = minimist(process.argv.slice(2));
 
-const config = require('./../scripts/config');
+const config = require('./config');
 config.initialize(argv);
 
 switch (argv._[0]) {
