@@ -110,7 +110,8 @@
     ],
     "source": [
       "src/**/*.js",
-      "loaders/**/*.js"
+      "loaders/**/*.js",
+      "scripts/**/*.js"
     ],
     "require": [
       "babel-register",

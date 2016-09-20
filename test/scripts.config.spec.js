@@ -12,3 +12,10 @@ test('should throw when config file not found', t => {
 	t.throws(fn);
 });
 
+test('should accept config as an object', t => {
+	const result = getConfig({
+		components: [],
+	});
+	t.truthy(result);
+	t.is(result.title, 'Style guide');
+});

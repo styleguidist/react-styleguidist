@@ -46,21 +46,31 @@ const DEPENDENCIES = [
 const BUGS_URL = 'https://github.com/sapegin/react-styleguidist/issues';
 
 /**
- * Read, parse and validate config file.
- * @param {Object} cliOptions e.g. {verbose: true}
- * @returns {Object}
+ * Read, parse and validate config file or passed config.
+ *
+ * @param {object} options CLI options (e.g. {verbose: true} or {config: 'filename'}) or all config options.
+ * @returns {object}
  */
-function getConfig(cliOptions) {
-	const configFilepath = findConfig(cliOptions);
-	let options = require(configFilepath);
+function getConfig(options = {}) {
+	let configFilepath;
+	let config;
+	if (options.components || options.sections) {
+		// Config options was passed to a function
+		config = options;
+	}
+	else {
+		// Read config options from a file
+		configFilepath = findConfig(options.config);
+		config = require(configFilepath);
+	}
 
-	validateConfig(options);
+	validateConfig(config);
 
-	const configDir = path.dirname(configFilepath);
+	const configDir = configFilepath ? path.dirname(configFilepath) : process.cwd();
 
 	validateDependencies(configDir);
 
-	let assetsDir = options.assetsDir;
+	let assetsDir = config.assetsDir;
 	if (assetsDir) {
 		assetsDir = path.resolve(configDir, assetsDir);
 		if (!utils.isDirectoryExists(assetsDir)) {
@@ -68,7 +78,7 @@ function getConfig(cliOptions) {
 		}
 	}
 
-	let defaultExample = options.defaultExample;
+	let defaultExample = config.defaultExample;
 	if (defaultExample === true) {
 		defaultExample = path.join(__dirname, './templates/DefaultExample.md');
 	}
@@ -79,36 +89,36 @@ function getConfig(cliOptions) {
 		}
 	}
 
-	options = merge({}, DEFAULT_CONFIG, options);
-	options = merge({}, options, {
-		verbose: !!cliOptions.verbose,
-		styleguideDir: path.resolve(configDir, options.styleguideDir),
+	config = merge({}, DEFAULT_CONFIG, config);
+	config = merge({}, config, {
+		verbose: !!options.verbose,
+		styleguideDir: path.resolve(configDir, config.styleguideDir),
 		configDir,
 		assetsDir,
 		defaultExample,
 	});
 
-	if (options.verbose) {
+	if (config.verbose) {
 		console.log();
 		console.log('Using config file:', configFilepath);
-		console.log(prettyjson.render(options));
+		console.log(prettyjson.render(config));
 		console.log();
 	}
 
-	return options;
+	return config;
 }
 
 /**
  * Find config file: use file specified in the command line or try to find up the file tree.
  *
- * @param {Object} cliOptions Command line arguments
- * @return {string} Config file path.
+ * @param {Object} [file] File name.
+ * @return {string} Config absolute file path.
  */
-function findConfig(cliOptions) {
-	if (cliOptions.config) {
+function findConfig(file) {
+	if (file) {
 		// Custom config location
 
-		const configFilepath = path.join(process.cwd(), cliOptions.config);
+		const configFilepath = path.join(process.cwd(), file);
 		if (!fs.existsSync(configFilepath)) {
 			throw Error('Styleguidist config not found: ' + configFilepath + '.');
 		}
@@ -132,25 +142,25 @@ function findConfig(cliOptions) {
 /**
  * Validate config.
  *
- * @param {Object} options Config options.
+ * @param {Object} config Config options.
  */
-function validateConfig(options) {
-	if (!options.components && !options.sections) {
+function validateConfig(config) {
+	if (!config.components && !config.sections) {
 		throw Error('Styleguidist: "components" or "sections" option is required.');
 	}
-	if (options.sections && !Array.isArray(options.sections)) {
+	if (config.sections && !Array.isArray(config.sections)) {
 		throw Error('Styleguidist: "sections" option must be an array.');
 	}
-	if (options.getExampleFilename && typeof options.getExampleFilename !== 'function') {
+	if (config.getExampleFilename && typeof config.getExampleFilename !== 'function') {
 		throw Error('Styleguidist: "getExampleFilename" option must be a function.');
 	}
-	if (options.getComponentPathLine && typeof options.getComponentPathLine !== 'function') {
+	if (config.getComponentPathLine && typeof config.getComponentPathLine !== 'function') {
 		throw Error('Styleguidist: "getComponentPathLine" option must be a function.');
 	}
-	if (options.updateWebpackConfig && typeof options.updateWebpackConfig !== 'function') {
+	if (config.updateWebpackConfig && typeof config.updateWebpackConfig !== 'function') {
 		throw Error('Styleguidist: "updateWebpackConfig" option must be a function.');
 	}
-	if (options.defaultExample && (options.defaultExample !== true && typeof options.defaultExample !== 'string')) {
+	if (config.defaultExample && (config.defaultExample !== true && typeof config.defaultExample !== 'string')) {
 		throw Error('Styleguidist: "defaultExample" option must be either false, true, ' +
 			'or a string path to a markdown file.');
 	}
