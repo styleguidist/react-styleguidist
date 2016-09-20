@@ -100,15 +100,6 @@ module.exports.pitch = function() {
 
 	const config = this.options.styleguidist;
 
-	// Example usage of query options:
-	// require('!!styleguide?{"configFilepath":"/path/to/config.js"}!');
-	if (this.query) {
-		const query = JSON.parse(this.query.substring(1));  // getting rid of '?'
-		if (query.configFilepath) {
-			config.initialize({ config: query.configFilepath });
-		}
-	}
-
 	const simplifiedConfig = pick(config, [
 		'title',
 		'highlightTheme',
