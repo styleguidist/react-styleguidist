@@ -118,7 +118,7 @@ function findConfig(file) {
 	if (file) {
 		// Custom config location
 
-		const configFilepath = path.join(process.cwd(), file);
+		const configFilepath = file[0] === '/' ? file : path.join(process.cwd(), file);
 		if (!fs.existsSync(configFilepath)) {
 			throw Error('Styleguidist config not found: ' + configFilepath + '.');
 		}
