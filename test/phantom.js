@@ -19,4 +19,5 @@ page.open(system.args[1], function(status) {
 		console.log('Cannot load the page');
 		phantom.exit(1);
 	}
+	phantom.exit(0);
 });
