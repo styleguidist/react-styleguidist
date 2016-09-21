@@ -4,7 +4,7 @@ const styleguidist = require('../scripts');
 
 /* eslint-disable no-console */
 
-styleguidist.server({
+styleguidist({
 	components() {
 		return glob.sync(path.resolve(__dirname, '../examples/basic/lib/components/**/*.js'))
 			.filter(module => /\/[A-Z]\w*\.js$/.test(module))
@@ -31,7 +31,7 @@ styleguidist.server({
 		);
 		return webpackConfig;
 	},
-}, (err, config) => {
+}).server((err, config) => {
 	if (err) {
 		console.log(err);
 	}

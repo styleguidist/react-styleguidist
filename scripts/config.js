@@ -48,10 +48,12 @@ const BUGS_URL = 'https://github.com/sapegin/react-styleguidist/issues';
 /**
  * Read, parse and validate config file or passed config.
  *
- * @param {object} options CLI options (e.g. {verbose: true} or {config: 'filename'}) or all config options.
+ * @param {object} [options] CLI options (e.g. {verbose: true} or {config: 'filename'}) or all config options.
  * @returns {object}
  */
 function getConfig(options) {
+	options = options || {};
+
 	let configFilepath;
 	let config;
 	if (options.components || options.sections) {

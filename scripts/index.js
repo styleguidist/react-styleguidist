@@ -5,40 +5,44 @@ const server = require('./server');
 const makeWebpackConfig = require('./make-webpack-config');
 const getConfig = require('./config');
 
-module.exports = {
-	/**
-	 * Build style guide.
-	 *
-	 * @param {object} config Styleguidist config.
-	 * @param {Function} callback callback(err, config, stats).
-	 * @return {Compiler} Webpack Compiler instance.
-	 */
-	build(config, callback) {
-		config = getConfig(config);
-		return build(config, (err, stats) => callback(err, config, stats));
-	},
+/**
+ * Initialize Styleguide API.
+ *
+ * @param {object} [config] Styleguidist config.
+ * @returns {object} API.
+ */
+module.exports = function(config) {
+	config = getConfig(config);
 
-	/**
-	 * Start style guide dev server.
-	 *
-	 * @param {object} config Styleguidist config.
-	 * @param {Function} callback callback(err, config).
-	 * @return {Compiler} Webpack Compiler instance.
-	 */
-	server(config, callback) {
-		config = getConfig(config);
-		return server(config, err => callback(err, config));
-	},
+	return {
+		/**
+		 * Build style guide.
+		 *
+		 * @param {Function} callback callback(err, config, stats).
+		 * @return {Compiler} Webpack Compiler instance.
+		 */
+		build(callback) {
+			return build(config, (err, stats) => callback(err, config, stats));
+		},
 
-	/**
-	 * Return Styleguidist Webpack config.
-	 *
-	 * @param {object} config Styleguidist config.
-	 * @param {string} env 'production' or 'development'.
-	 * @return {object}
-	 */
-	makeWebpackConfig(config, env) {
-		config = getConfig(config);
-		return makeWebpackConfig(config, env);
-	},
+		/**
+		 * Start style guide dev server.
+		 *
+		 * @param {Function} callback callback(err, config).
+		 * @return {Compiler} Webpack Compiler instance.
+		 */
+		server(callback) {
+			return server(config, err => callback(err, config));
+		},
+
+		/**
+		 * Return Styleguidist Webpack config.
+		 *
+		 * @param {string} [env=production] 'production' or 'development'.
+		 * @return {object}
+		 */
+		makeWebpackConfig(env) {
+			return makeWebpackConfig(config, env || 'production');
+		},
+	};
 };
