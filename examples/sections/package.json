@@ -13,7 +13,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=0.12.0"
+    "node": ">=4"
   },
   "dependencies": {
     "babel-preset-es2015": "6.5.0",
