@@ -97,7 +97,7 @@
     "test:watch": "cross-env NODE_ENV=test ava --watch",
     "start": "bin/styleguidist.js server --config examples/basic/styleguide.config.js",
     "start:customised": "bin/styleguidist.js server --config examples/customised/styleguide.config.js",
-    "start:sections": "bin/styleguidist.js server --config examples/basic-sections/styleguide.config.js",
+    "start:sections": "bin/styleguidist.js server --config examples/sections/styleguide.config.js",
     "lint": "eslint . --ext .js",
     "build": "bin/styleguidist.js build --config examples/basic/styleguide.config.js",
     "build:customised": "bin/styleguidist.js build --config examples/customised/styleguide.config.js",

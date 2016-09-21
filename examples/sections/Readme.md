@@ -6,7 +6,7 @@ How to start locally:
 
 ```
 git clone https://github.com/sapegin/react-styleguidist.git
-cd react-styleguidist/examples/basic-sections
+cd react-styleguidist/examples/sections
 npm install
 npm run styleguide-server
 ```
