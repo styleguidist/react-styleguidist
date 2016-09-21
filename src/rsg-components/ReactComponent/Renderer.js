@@ -1,12 +1,7 @@
 import React, { PropTypes } from 'react';
 import Markdown from 'rsg-components/Markdown';
 
-const Renderer = ({ name, pathLine, description, propList, examples, sidebar }) => {
-	let designContent = sidebar.designContent;
-	let tags = sidebar.tags;
-
-	sidebar = sidebar.isIsolated;
-
+const Renderer = ({ name, pathLine, description, propList, examples, sidebar, designContent, tags }) => {
 	const string = `
 		*, *:after, *:before {
 		  -webkit-box-sizing: border-box;
@@ -36,7 +31,7 @@ const Renderer = ({ name, pathLine, description, propList, examples, sidebar }) 
 			{!sidebar &&
 				<div>
 					<style>{string}</style>
-					<Markdown text={designContent} />
+					{designContent && <Markdown text={designContent.content} />}
 				</div>
 			}
 			<div>
@@ -73,7 +68,7 @@ Renderer.propTypes = {
 	description: PropTypes.object,
 	propList: PropTypes.object,
 	examples: PropTypes.array,
-	sidebar: PropTypes.object,
+	sidebar: PropTypes.bool,
 };
 
 export default Renderer;

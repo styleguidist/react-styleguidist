@@ -18,8 +18,18 @@ const checkTags = (tagList, regExp) => {
 	return false;
 };
 
+// It's possible that for a given component, we don't have a README_DES.md file
+const requireExample = (folderName) => {
+	try {
+		return require(`examples!sdk-components/${folderName}/README_DES.md`)[0];
+	} catch(e) {
+		return false;
+	}
+};
+
 export default class Components extends Component {
 	constructor(props) {
+		console.log('Constructor ran')
 		super(props);
 
 		this.onFocus = this.onFocus.bind(this);
@@ -31,14 +41,18 @@ export default class Components extends Component {
 
 		props.components.forEach(component => {
 			const folderName = component.pathLine.match(componentFileNameRegEx)[1];
-			const designContent = require('examples!sdk-components/' + folderName + '/README_DES.md')[0];
-			const match = designContent.content.match(tagParseRegEx);
+			const designContent = requireExample(folderName);
 			let tags = {};
 
-			if (match) {
-				const decoded = match[1].replace(/&quot;/g, '"');
-				tags = JSON.parse(decoded);
-				merge(allTags, tags);
+			// requireExample will return false if the file wasn't found
+			if (designContent !== false) {
+				const match = designContent.content.match(tagParseRegEx);
+
+				if (match) {
+					const decoded = match[1].replace(/&quot;/g, '"');
+					tags = JSON.parse(decoded);
+					merge(allTags, tags);
+				}
 			}
 
 			componentParents.push({
@@ -78,18 +92,14 @@ export default class Components extends Component {
 		};
 
 		return filteredComponents.map((componentParent) => {
-			const newSidebar = {
-				isIsolated: sidebar,
-				designContent: componentParent.designContent.content,
-				tags: componentParent.tags
-			};
-
 			return (
 				<ComponentRenderer
 					key={componentParent.component.filepath}
 					highlightTheme={highlightTheme}
 					component={componentParent.component}
-					sidebar={newSidebar}
+					sidebar={sidebar}
+					designContent={componentParent.designContent}
+					tags={componentParent.tags}
 				/>
 			);
 		});

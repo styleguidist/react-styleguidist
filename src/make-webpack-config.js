@@ -35,7 +35,7 @@ module.exports = function(env) {
 	var webpackConfig = {
 		output: {
 			path: config.styleguideDir,
-			filename: 'build/bundle.js',
+			filename: 'styleguidist.js',
 		},
 		resolve: {
 			extensions: ['', '.js', '.jsx'],
