@@ -101,6 +101,7 @@
     "lint": "eslint . --ext .js",
     "build": "bin/styleguidist.js build --config examples/basic/styleguide.config.js",
     "build:customised": "bin/styleguidist.js build --config examples/customised/styleguide.config.js",
+    "build:sections": "bin/styleguidist.js build --config examples/sections/styleguide.config.js",
     "publish": "npm run build && gh-pages -d examples/basic/styleguide",
     "phantomjs": "phantomjs test/phantom.js examples/basic/styleguide/index.html",
     "phantomjs:customised": "phantomjs test/phantom.js examples/customised/styleguide/index.html",
