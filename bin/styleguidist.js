@@ -61,7 +61,7 @@ function commandHelp() {
 		'',
 		'    ' + chalk.cyan('build') + '           Build style guide',
 		'    ' + chalk.cyan('server') + '          Run development server',
-		'    ' + chalk.cyan('help') + '            Display help information about React Styleguidist',
+		'    ' + chalk.cyan('help') + '            Display React Styleguidist help',
 		'',
 		chalk.underline('Options'),
 		'',
