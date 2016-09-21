@@ -58,7 +58,7 @@ const ReactComponent = (Renderer) => class extends Component {
 	}
 
 	render() {
-		const { highlightTheme, component, sidebar, designContent, tags } = this.props;
+		const { highlightTheme, component, sidebar, designContent } = this.props;
 
 		return (
 			<Renderer
@@ -69,7 +69,6 @@ const ReactComponent = (Renderer) => class extends Component {
 				examples={this.renderExamples(highlightTheme, component.examples)}
 				sidebar={sidebar}
 				designContent={designContent}
-				tags={tags}
 			/>
 		);
 	}
