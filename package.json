@@ -15,7 +15,7 @@
     "url": "https://github.com/sapegin/react-styleguidist/issues"
   },
   "license": "MIT",
-  "main": "scripts/build.js",
+  "main": "scripts/index.js",
   "bin": {
     "styleguidist": "bin/styleguidist.js"
   },

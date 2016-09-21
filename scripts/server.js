@@ -22,4 +22,6 @@ module.exports = function server(config, callback) {
 	}
 
 	app.listen(config.serverPort, config.serverHost, callback);
+
+	return compiler;
 };
