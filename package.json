@@ -101,7 +101,10 @@
     "lint": "eslint . --ext .js",
     "build": "bin/styleguidist.js build --config examples/basic/styleguide.config.js",
     "build:customised": "bin/styleguidist.js build --config examples/customised/styleguide.config.js",
-    "publish": "npm run build && gh-pages -d examples/basic/styleguide"
+    "publish": "npm run build && gh-pages -d examples/basic/styleguide",
+    "phantomjs": "phantomjs test/phantom.js examples/basic/styleguide/index.html",
+    "phantomjs:customised": "phantomjs test/phantom.js examples/customised/styleguide/index.html",
+    "phantomjs:sections": "phantomjs test/phantom.js examples/sections/styleguide/index.html"
   },
   "ava": {
     "files": [

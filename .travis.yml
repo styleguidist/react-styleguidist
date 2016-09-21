@@ -4,13 +4,28 @@ node_js:
   - "5"
   - "6"
 env:
+  # Test everything in Webpack 1 and 2
   - export WEBPACK_VERSION="2.1.0-beta"
   - export WEBPACK_VERSION="1"
 script:
+  # Run tests
   - npm test
+  # Build all examples
   - npm run build
   - npm run build:customised
+  - npm run build:sections
+  # Check that examples really works: no JS errors on load
+  - npm run phantomjs
+  - npm run phantomjs:customised
+  - npm run phantomjs:sections
 before_script:
+  # Manually install Webpack 1 or 2
   - 'if [ "$WEBPACK_VERSION" ]; then npm install webpack@^$WEBPACK_VERSION; fi'
 before_install:
-  npm install -g npm@'>=3'
+  # Update npm to version 3
+  - npm install -g npm@'>=3'
+  # Install PhantomJS
+  - mkdir travis-phantomjs
+  - wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 -O $PWD/travis-phantomjs/phantomjs-2.1.1-linux-x86_64.tar.bz2
+  - tar -xvf $PWD/travis-phantomjs/phantomjs-2.1.1-linux-x86_64.tar.bz2 -C $PWD/travis-phantomjs
+  - export PATH=$PWD/travis-phantomjs/phantomjs-2.1.1-linux-x86_64/bin:$PATH
