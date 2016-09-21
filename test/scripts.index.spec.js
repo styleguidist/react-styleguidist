@@ -2,7 +2,7 @@ import test from 'ava';
 import styleguidist from '../scripts';
 
 test('should return API methods', t => {
-	const api = styleguidist(require('../examples/basic/styleguide.config.js'));
+	const api = styleguidist(require('./data/styleguide.config.js'));
 	t.truthy(api);
 	t.is(typeof api.build, 'function');
 	t.is(typeof api.server, 'function');
