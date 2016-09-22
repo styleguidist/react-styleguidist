@@ -5,6 +5,7 @@ test('should return valid, parsable JS', t => {
 	let exampleMarkdown = `
 # header
 
+	const _ = require('lodash');
 	<div/>
 
 text
