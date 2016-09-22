@@ -72,7 +72,7 @@ export default class Components extends Component {
 		return (
 			<div>
 				{this.props.sidebar && (
-					<div>
+					<div className="fixed">
 						<header className="w-content-ns bg-white flex justify-start items-center h4 bb b--black-20">
 							<div className="w-100 mw8 center ph3">
 								<h1 className="ma0">Components</h1>
@@ -91,7 +91,7 @@ export default class Components extends Component {
 						</div>
 					</div>
 				)}
-				<div className="w-100 mw8 center ph3">
+				<div className="w-100 mw8 center ph3 pt-appbar-searchbar">
 					{this.renderComponents(searchTerm)}
 				</div>
 			</div>
