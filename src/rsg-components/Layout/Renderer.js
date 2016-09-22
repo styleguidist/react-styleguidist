@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 
 const Renderer = ({ title, components }) => (
-	<main>
+	<div>
 		{components}
-	</main>
+	</div>
 );
 
 Renderer.propTypes = {
