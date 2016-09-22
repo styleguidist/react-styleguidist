@@ -72,13 +72,21 @@ export default class Components extends Component {
 		return (
 			<div>
 				{this.props.sidebar && (
-					<input
-						placeholder="Search"
-						onChange={this.onSearchTermChange}
-						value={searchTerm}
-					/>
+					<div className="bg-white w-100 pv2">
+						<div className="mw8 center ph3">
+							<input
+								className="db w-100 pa2"
+								placeholder="Search"
+								onChange={this.onSearchTermChange}
+								value={searchTerm}
+								type="search"
+							/>
+						</div>
+					</div>
 				)}
-				{this.renderComponents(searchTerm)}
+				<div className="w-100 mw8 center ph3">
+					{this.renderComponents(searchTerm)}
+				</div>
 			</div>
 		);
 	}
