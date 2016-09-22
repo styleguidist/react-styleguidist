@@ -1,21 +1,30 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+
+let context = require.context('./styleguidist-loader!.', true, /Readme\.md$/)
+let components = context.keys().map(context)
+
+class Styleguide extends Component {
+	render() {
+		return (
+			<div>
+				<h1>{this.props.title}</h1>
+				<ul>
+					{this.props.components.map(
+						 (component, key) => <li key={key}><pre>{component}</pre></li>)}
+				</ul>
+			</div>
+		)
+	}
+}
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+			<div className="App">
+				<Styleguide title="React Style Guide Example" components={components} />
+			</div>
     );
   }
 }
 
-export default App;
+export default App
