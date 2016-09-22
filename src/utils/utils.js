@@ -10,7 +10,7 @@ export function setComponentsNames(components) {
 			module.default
 				? (module.default.displayName || module.default.name)
 				: (module.displayName || module.name)
-		) || component.nameFallbak;
+		) || component.nameFallback;
 	});
 	return components;
 }
