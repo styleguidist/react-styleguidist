@@ -5,10 +5,10 @@ import Sections from 'rsg-components/Sections';
 
 const componentFileNameRegEx = /([\w-]+)\/[\w-]+\.jsx?$/i;
 
-// It's possible that for a given component, we don't have a README_DES.md file
+// It's possible that for a given component, we don't have a DESIGN_README.md file
 const requireExample = (folderName) => {
 	try {
-		return require(`examples!sdk-components/${folderName}/README_DES.md`)[0];
+		return require(`examples!sdk-components/${folderName}/DESIGN_README.md`)[0];
 	} catch(e) {
 		return false;
 	}
