@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 const Renderer = ({ title, components }) => (
-	<div>
+	<div className="pb3">
 		{components}
 	</div>
 );
