@@ -12,6 +12,15 @@ const Renderer = ({ name, pathLine, description, propList, examples, sidebar, de
 				</a>
 			:
 				<div>
+					<div className="fixed">
+						<header className="w-content-ns bg-white  h3 bb b--black-20">
+							<div className="w-100 h-100 mw8 flex items-center justify-end center ph3">
+								<a href="#">
+									👊
+								</a>
+							</div>
+						</header>
+					</div>
 					<a href="#">← Back</a>
 					<h2 id={name}>
 						{name}
