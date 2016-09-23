@@ -70,7 +70,7 @@ export default class Components extends Component {
 		const { searchTerm } = this.state;
 
 		return (
-			<div>
+			<div className={this.props.sidebar ? "" : "bg-white"}>
 				{this.props.sidebar ?
 					<div className="fixed">
 						<header className="w-content-ns bg-white flex justify-start items-center h4 bb b--black-20">
