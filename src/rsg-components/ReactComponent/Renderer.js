@@ -16,7 +16,7 @@ const Renderer = ({ name, pathLine, description, propList, examples, sidebar, de
 						<header className="w-content-ns bg-white  h3 bb b--black-20">
 							<div className="w-100 h-100 mw8 flex items-center justify-end center ph3">
 								<a href="#">
-									👊
+									🙅
 								</a>
 							</div>
 						</header>
