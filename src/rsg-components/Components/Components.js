@@ -14,10 +14,13 @@ const requireExample = (folderName) => {
 	}
 };
 
+let searchFocused = false
+
 export default class Components extends Component {
 	constructor(props) {
 		super(props);
 		this.onSearchTermChange = this.onSearchTermChange.bind(this)
+		this.onKeyPress = this.onKeyPress.bind(this)
 
 		let componentParents = [];
 
@@ -35,6 +38,14 @@ export default class Components extends Component {
 			searchTerm: '',
 			componentParents
 		};
+	}
+
+	componentDidMount() {
+		this.props.sidebar && window.addEventListener('keypress', this.onKeyPress)
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('keypress', this.onKeyPress)
 	}
 
 	renderComponents(searchTerm) {
@@ -62,8 +73,20 @@ export default class Components extends Component {
 		});
 	}
 
+	onKeyPress(e) {
+		if (e.key === 'f' && !searchFocused) {
+			searchFocused = true
+			e.preventDefault()
+			this.refs['search-input'].focus()
+		}
+	}
+
 	onSearchTermChange(event) {
 		this.setState({ searchTerm: event.target.value })
+	}
+
+	onSearchBlur() {
+		searchFocused = false
 	}
 
 	render() {
@@ -81,11 +104,13 @@ export default class Components extends Component {
 						<div className="bg-white w-100 pv2 bb b--black-20">
 							<div className="mw8 center ph3">
 								<input
+									ref="search-input"
 									className="db w-100 pa2 bw1 br1 b--solid b--black-20"
 									placeholder="What Are You Looking For?"
 									onChange={this.onSearchTermChange}
 									value={searchTerm}
 									type="search"
+									onBlur={this.onSearchBlur}
 								/>
 							</div>
 						</div>
