@@ -1,0 +1,7 @@
+{
+	"parser": "babel-eslint",
+	"extends": "tamia/react",
+	"rules": {
+		"valid-jsdoc": 0
+	}
+}

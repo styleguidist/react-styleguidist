@@ -1,7 +1,5 @@
 import React, { PropTypes } from 'react';
 
-import s from './Button.css';
-
 /**
  * The only true button.
  */
@@ -16,7 +14,7 @@ export default function Button({
 	};
 
 	return (
-		<button className={s.root} style={styles}>{children}</button>
+		<button style={styles}>{children}</button>
 	);
 }
 Button.propTypes = {
