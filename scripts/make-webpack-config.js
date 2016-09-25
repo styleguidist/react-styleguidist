@@ -16,6 +16,16 @@ const nodeModulesDir = path.resolve(__dirname, '../node_modules');
 const sourceDir = path.resolve(__dirname, '../src');
 const codeMirrorPath = getPackagePath('codemirror');
 
+// These modules are used by Remark and they need json-loader
+const jsonModules = [
+	'remark-parse',
+	'character-entities-html4',
+	'character-reference-invalid',
+	'character-entities-legacy',
+	'character-entities',
+	'hast-util-sanitize',
+];
+
 /**
  * Return npm package path.
  * In npm2 works only with packages required directly by this package.
@@ -69,8 +79,7 @@ module.exports = function(config, env) {
 		module: {
 			loaders: [
 				{
-					// TODO: remove this when entities module is fixed (https://github.com/fb55/entities/pull/26)
-					test: /node_modules[/\\]entities[/\\].*\.json$/,
+					test: new RegExp(`node_modules[/\\\\](${jsonModules.join('|')})[/\\\\].*\.json$`),
 					include: /node_modules/,
 					loader: 'json',
 				},
@@ -101,7 +110,7 @@ module.exports = function(config, env) {
 	if (isWebpack2) {
 		webpackConfig = merge(webpackConfig, {
 			resolve: {
-				extensions: ['.js', '.jsx'],
+				extensions: ['.js', '.jsx', '.json'],
 				modules: [
 					sourceDir,
 					nodeModulesDir,
@@ -127,7 +136,7 @@ module.exports = function(config, env) {
 		webpackConfig = merge(webpackConfig, {
 			styleguidist: config,
 			resolve: {
-				extensions: ['', '.js', '.jsx'],
+				extensions: ['', '.js', '.jsx', '.json'],
 				root: sourceDir,
 				moduleDirectories: [
 					nodeModulesDir,

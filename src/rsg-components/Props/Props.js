@@ -72,7 +72,7 @@ export default class Props extends Component {
 		let extra = this.renderExtra(prop);
 		return (
 			<div>
-				{description && <Markdown className={s.inline} text={description} />}
+				{description && <Markdown text={description} inline />}
 				{description && extra && ' '}
 				{extra}
 			</div>
@@ -144,7 +144,7 @@ export default class Props extends Component {
 					<Code className={s.type}>{this.renderType(prop)}</Code>
 					{defaultValue && ' — '}{defaultValue}
 					{description && ' — '}
-					{description && <Markdown className={s.inline} text={description} />}
+					{description && <Markdown text={description} inline />}
 				</div>
 			);
 		}
