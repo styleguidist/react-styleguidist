@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames';
+
 import ReactComponent from 'rsg-components/ReactComponent';
 import Renderer from 'rsg-components/ReactComponent/Renderer';
 import Sections from 'rsg-components/Sections';
@@ -91,10 +93,15 @@ export default class Components extends Component {
 
 	render() {
 		const { searchTerm } = this.state;
+		const isListPage = this.props.sidebar;
+		const componentSectionClasses = classNames('w-100 mw8 center ph3', {
+			'pt-appbar-searchbar': isListPage,
+			'pt-appbar': !isListPage
+		});
 
 		return (
-			<div className={this.props.sidebar ? "" : "bg-white"}>
-				{this.props.sidebar ?
+			<div className={isListPage ? '' : 'bg-white'}>
+				{isListPage ?
 					<div className="fixed">
 						<header className="w-content-ns bg-white flex justify-start items-center h4 bb b--black-20">
 							<div className="w-100 mw8 center ph3">
@@ -126,7 +133,7 @@ export default class Components extends Component {
 						</header>
 					</div>
 				}
-				<div className="w-100 mw8 center ph3 pt-appbar-searchbar">
+				<div className={componentSectionClasses}>
 					{this.renderComponents(searchTerm)}
 				</div>
 			</div>
