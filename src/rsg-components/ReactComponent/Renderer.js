@@ -10,17 +10,21 @@ const Renderer = ({ name, pathLine, description, propList, examples, sidebar, de
 		</a>
 	:
 		<div>
-			<h2 id={name}>
+			<h1 id={name}>
 				{name}
-			</h2>
-			<div>
-				{designContent && <Markdown text={designContent.content} />}
-			</div>
-			<div>
-				{description}
-				{propList}
-				{examples}
-			</div>
+			</h1>
+			<article className="cf">
+				<div className="fl pr3-ns w-100 w-50-ns">
+					<h2>Design</h2>
+					{designContent && <Markdown text={designContent.content} />}
+				</div>
+			    <div className="fl pl3-ns w-100 w-50-ns">
+			    	<h2>Code</h2>
+					{propList}
+					{description}
+					{examples}
+			  	</div>
+			</article>
 		</div>
 };
 

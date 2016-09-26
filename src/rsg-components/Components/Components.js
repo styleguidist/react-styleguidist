@@ -116,8 +116,8 @@ export default class Components extends Component {
 						</div>
 					</div>
 				:
-					<div className="fixed">
-						<header className="w-content-ns bg-white h3 bb b--black-20">
+					<div>
+						<header className="fixed w-100 bg-white h3 bb b--black-20">
 							<div className="w-100 h-100 mw8 flex items-center justify-end center ph3">
 								<a href="#">
 									🙅
