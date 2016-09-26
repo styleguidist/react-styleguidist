@@ -21,8 +21,8 @@ let searchFocused = false
 export default class Components extends Component {
 	constructor(props) {
 		super(props);
-		this.onSearchTermChange = this.onSearchTermChange.bind(this)
-		this.onKeyPress = this.onKeyPress.bind(this)
+		this.onSearchTermChange = this.onSearchTermChange.bind(this);
+		this.onKeyPress = this.onKeyPress.bind(this);
 
 		let componentParents = [];
 
@@ -43,11 +43,11 @@ export default class Components extends Component {
 	}
 
 	componentDidMount() {
-		this.props.sidebar && window.addEventListener('keypress', this.onKeyPress)
+		this.props.sidebar && window.addEventListener('keypress', this.onKeyPress);
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener('keypress', this.onKeyPress)
+		window.removeEventListener('keypress', this.onKeyPress);
 	}
 
 	renderComponents(searchTerm) {
@@ -77,18 +77,18 @@ export default class Components extends Component {
 
 	onKeyPress(e) {
 		if (e.key === 'f' && !searchFocused) {
-			searchFocused = true
-			e.preventDefault()
-			this.refs['search-input'].focus()
+			searchFocused = true;
+			e.preventDefault();
+			this.refs['search-input'].focus();
 		}
 	}
 
 	onSearchTermChange(event) {
-		this.setState({ searchTerm: event.target.value })
+		this.setState({ searchTerm: event.target.value });
 	}
 
 	onSearchBlur() {
-		searchFocused = false
+		searchFocused = false;
 	}
 
 	render() {
