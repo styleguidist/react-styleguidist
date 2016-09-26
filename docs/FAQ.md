@@ -36,6 +36,21 @@ const Button = require('../common/Button');
 <Button>Push Me Tender</Button>
 ```
 
+## How to add babel-polyfill?
+
+Add a new Webpack entry point. In your style guide config:
+
+```javascript
+var path = require('path');
+module.exports = {
+  updateWebpackConfig: function(webpackConfig, env) {
+    // Babel loader, etc.
+    webpackConfig.entry.unshift('babel-polyfill');
+    return webpackConfig;
+  },
+};
+```
+
 ## How to add custom JS and CSS?
 
 Add a new Webpack entry point. In your style guide config:
@@ -162,6 +177,22 @@ export default class StyleGuide extends Component {
 1. Put `debugger;` statement at the beginning of your code.
 2. Press the ![Debugger](http://wow.sapegin.me/image/2n2z0b0l320m/debugger.png) button in your browser’s developer tools.
 3. Press the ![Continue](http://wow.sapegin.me/image/2d2z1Y2o1z1m/continue.png) button and the debugger will stop execution at the next exception.
+
+## How to change style guide dev server logs output?
+You can modify webpack dev server logs format passing `webpack.stats` options inside `updateWebpackConfig`.
+```javascript
+module.exports = {
+  // ...
+  updateWebpackConfig: function(webpackConfig, env) {
+    if (env === 'development') {
+      webpackConfig.stats.chunks = false;
+      webpackConfig.stats.chunkModules = false;
+      webpackConfig.stats.chunkOrigins = false;
+    }
+    return webpackConfig;
+  }
+};
+```
 
 ## Why does the style guide list one of my prop types as `unknown`?
 

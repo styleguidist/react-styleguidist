@@ -62,3 +62,65 @@ test('should set each component’s module as a global variable', t => {
 	t.is(global.Bar, 27);
 	t.is(global.PathedFoo, 32);
 });
+
+// getFilterRegExp
+
+test('should return a RegExp', t => {
+	const result = utils.getFilterRegExp('');
+	t.true(result instanceof RegExp);
+});
+
+test('RegExp should fuzzy match a string', t => {
+	const result = utils.getFilterRegExp('btn');
+	t.regex('button', result);
+});
+
+test('RegExp should not match when string is different', t => {
+	const result = utils.getFilterRegExp('buttons');
+	t.notRegex('button', result);
+});
+
+test('should not throw when query contains special characters', t => {
+	const fn = () => utils.getFilterRegExp('\\');
+	t.notThrows(fn);
+});
+
+test('RegExp should ignore non-alphanumeric characters', t => {
+	const result = utils.getFilterRegExp('#$b()tn');
+	t.regex('button', result);
+});
+
+// filterComponentsByName
+
+const COMPONENTS = [
+	{
+		name: 'Button',
+	},
+	{
+		name: 'Image',
+	},
+	{
+		name: 'Input',
+	},
+	{
+		name: 'Link',
+	},
+	{
+		name: 'Textarea',
+	},
+];
+
+test('should return initial list with empty query', t => {
+	const result = utils.filterComponentsByName(COMPONENTS, '');
+	t.deepEqual(result, COMPONENTS);
+});
+
+test('should return filtered list, should ignore case', t => {
+	const result = utils.filterComponentsByName(COMPONENTS, 'button');
+	t.deepEqual(result, [{ name: 'Button' }]);
+});
+
+test('should return empty list when nothing found', t => {
+	const result = utils.filterComponentsByName(COMPONENTS, 'pizza');
+	t.deepEqual(result, []);
+});

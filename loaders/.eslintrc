@@ -1,0 +1,11 @@
+{
+	"root": true,
+	"extends": "tamia",
+	"parserOptions": {
+		"sourceType": "script"
+	},
+	"rules": {
+		"no-invalid-this": 0,
+		"strict": [2, "global"]
+	}
+}

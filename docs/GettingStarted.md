@@ -1,6 +1,6 @@
 # Installation
 
-**Requirements:** Only Babel 6 is supported in [Styleguidist 2.0.0](https://github.com/sapegin/react-styleguidist/releases/tag/2.0.0)+. If you don't use Babel in your project, that's fine, but if you use Babel 5, please use Styleguidist 1.3.2. Webpack is recommended, but not required. Should work with Webpack 1 and Webpack 2.
+ Babel and Webpack are recommended but not required. React Styleguidist works with Webpack 1 and Webpack 2.
 
 1. Install from npm:
 
@@ -98,30 +98,29 @@ Styleguidist generates documentation from three sources:
 
   Examples are written in Markdown where any code block without a language tag will be rendered as a React component. By default any `Readme.md` in the component’s folder is treated as an examples file but you can change it with the `getExampleFilename` [option](Configuration.md).
 
-  ```markdown
-  React component example:
+      React component example:
 
+          <Button size="large">Push Me</Button>
+
+      One more with generic code fence:
+
+      ```
       <Button size="large">Push Me</Button>
+      ```
 
-  One more with generic code fence:
+      One more with `example` code fence (text editors may alias to `jsx` or `javascript`):
+    
+      ```example
+      <Button size="large">Push Me</Button>
+      ```
 
-  \`\`\`
-  <Button size="large">Push Me</Button>
-  \`\`\`
+      This example rendered only as highlighted source code:
 
-  One more with `example` code fence (text editors may alias to `jsx` or `javascript`):
-  \`\`\`example
-  <Button size="large">Push Me</Button>
-  \`\`\`
+      ```html
+      <Button size="large">Push Me</Button>
+      ```
 
-  This example rendered only as highlighted source code:
-
-  \`\`\`html
-  <Button size="large">Push Me</Button>
-  \`\`\`
-
-  Any [Markdown](http://daringfireball.net/projects/markdown/) is **allowed** _here_.
-  ```
+      Any [Markdown](http://daringfireball.net/projects/markdown/) is **allowed** _here_.
 
 * **External examples using doclet tags**
 

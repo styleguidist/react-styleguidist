@@ -10,7 +10,7 @@ export function setComponentsNames(components) {
 			module.default
 				? (module.default.displayName || module.default.name)
 				: (module.displayName || module.name)
-		) || component.nameFallbak;
+		) || component.nameFallback;
 	});
 	return components;
 }
@@ -40,4 +40,30 @@ export function flattenChildren(components) {
 		}
 		return component;
 	});
+}
+
+/**
+ * Fuzzy filters components list by component name.
+ *
+ * @param {string} query
+ * @return {RegExp}
+ */
+export function getFilterRegExp(query) {
+	query = query
+		.replace(/[^a-z0-9]/gi, '')
+		.split('')
+		.join('.*')
+	;
+	return new RegExp(query, 'gi');
+}
+
+/**
+ * Fuzzy filters components list by component name.
+ *
+ * @param {array} components
+ * @param {string} query
+ * @return {array}
+ */
+export function filterComponentsByName(components, query) {
+	return components.filter(({ name }) => name.match(getFilterRegExp(query)));
 }

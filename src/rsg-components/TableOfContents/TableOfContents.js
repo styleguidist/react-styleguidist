@@ -1,6 +1,14 @@
 import React, { Component, PropTypes } from 'react';
+import { filterComponentsByName, getFilterRegExp } from '../../utils/utils';
 
-class TableOfContents extends Component {
+import s from './TableOfContents.css';
+
+export default class TableOfContents extends Component {
+	static propTypes = {
+		components: PropTypes.array.isRequired,
+		sections: PropTypes.array.isRequired,
+	};
+
 	constructor(props) {
 		super(props);
 
@@ -9,25 +17,37 @@ class TableOfContents extends Component {
 		};
 	}
 
-	renderLevel(components, sections, searchTerm) {
-		if (searchTerm !== '') {
-			let regExp = new RegExp(searchTerm.split('').join('.*'), 'gi');
-			components = components.filter(component => component.name.match(regExp));
-		}
+	renderComponents(components, searchTerm) {
+		components = filterComponentsByName(components || [], searchTerm);
+		return components.map(({ name }) => (
+			<li className={s.item} key={name}>
+				<a className={s.link} href={'#' + name}>{name}</a>
+			</li>
+		));
+	}
 
-		return (
-			<ul>
-				{(components || []).map(({ name }) => (
+	renderSection(sections, searchTerm) {
+		sections = sections || [];
+		return (sections || []).map(({ name, components: subComponents = [], sections: subSections }) => {
+			subComponents = filterComponentsByName(subComponents, searchTerm);
+			const regExp = getFilterRegExp(searchTerm);
+			if (subComponents.length || !searchTerm || regExp.test(name)) {
+				return (
 					<li key={name}>
-						<a href={'#' + name}>{name}</a>
-					</li>
-				))}
-				{(sections || []).map(({ name, components: subComponents, sections: subSections }) => (
-					<li key={name}>
-						<a href={'#' + name}>{name}</a>
+						<a className={s.section} href={'#' + name}>{name}</a>
 						{this.renderLevel(subComponents, subSections, searchTerm)}
 					</li>
-				))}
+				);
+			}
+			return null;
+		});
+	}
+
+	renderLevel(components, sections, searchTerm) {
+		return (
+			<ul className={s.list}>
+				{this.renderComponents(components, searchTerm)}
+				{this.renderSection(sections, searchTerm)}
 			</ul>
 		);
 	}
@@ -35,25 +55,16 @@ class TableOfContents extends Component {
 	render() {
 		let { searchTerm } = this.state;
 		let { components, sections } = this.props;
-
-		searchTerm = searchTerm.trim();
-
 		return (
-			<div>
+			<div className={s.root}>
 				<input
+					value={searchTerm}
+					className={s.search}
 					placeholder="Filter by name"
 					onChange={event => this.setState({ searchTerm: event.target.value })}
-					value={searchTerm}
 				/>
 				{this.renderLevel(components, sections, searchTerm)}
 			</div>
 		);
 	}
 }
-
-TableOfContents.propTypes = {
-	components: PropTypes.array.isRequired,
-	sections: PropTypes.array.isRequired,
-};
-
-export default TableOfContents;
