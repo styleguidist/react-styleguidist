@@ -12,6 +12,12 @@ const Layout = (Renderer) => class extends Component {
 		sidebar: PropTypes.bool,
 	};
 
+	componentDidMount() {
+		// We aren't using anything fancy like react-router, so we can't just use
+		// a scroll-handling library. Here we go ...
+		window.scrollTo(0, 0)
+	}
+
 	static defaultProps = {
 		sidebar: true,
 	};
