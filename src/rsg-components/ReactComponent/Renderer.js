@@ -1,7 +1,21 @@
 import React, { PropTypes } from 'react';
 import Markdown from 'rsg-components/Markdown';
 
+import classNames from 'classnames';
+
 const Renderer = ({ name, pathLine, description, propList, examples, designMarkdown, sidebar }) => {
+	const isSingleColumn = !designMarkdown || !propList;
+
+	const designClasses = classNames('pr3-ns w-100 w-50-ns', {
+		'fl': !isSingleColumn,
+		'center': isSingleColumn
+	})
+
+	const codeClasses = classNames('pl3-ns w-100 w-50-ns', {
+		'fl': !isSingleColumn,
+		'center': isSingleColumn
+	})
+
 	return sidebar ?
 		<a href={`#!/${name}`} className="bg-white db b--black-30 br2 ba pa4 mt3 no-underline">
 			<h3 className="ma0 black f3 fw4">
@@ -14,16 +28,20 @@ const Renderer = ({ name, pathLine, description, propList, examples, designMarkd
 				{name}
 			</h1>
 			<article className="cf">
-				<div className="fl pr3-ns w-100 w-50-ns">
-					<h2>Design</h2>
-					{designMarkdown}
-				</div>
-				<div className="fl pl3-ns w-100 w-50-ns">
-					<h2>Code</h2>
-					{description}
-					{propList}
-					{examples}
-				</div>
+				{designMarkdown &&
+					<div className={designClasses}>
+						<h2>Design</h2>
+						{designMarkdown}
+					</div>
+				}
+				{propList &&
+					<div className={codeClasses}>
+						<h2>Code</h2>
+						{description}
+						{propList}
+						{examples}
+					</div>
+				}
 			</article>
 		</div>
 };
