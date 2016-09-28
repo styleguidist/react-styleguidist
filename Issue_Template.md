@@ -13,4 +13,4 @@ When something isn’t working, include:
   2. Modify it to reproduce the issue.
   3. Push to GitHub and paste the link here.
 
-By doing this, you’re saving us a lot of time! Reproducible issues gets fixed faster.
+By doing this, you’re saving us a lot of time! Reproducible issues get fixed faster.
