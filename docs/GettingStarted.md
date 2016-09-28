@@ -24,11 +24,11 @@
    Add the `updateWebpackConfig` function to your `styleguide.config.js`:
 
    ```javascript
-   var path = require('path');
+   const path = require('path');
    module.exports = {
-     updateWebpackConfig: function(webpackConfig, env) {
+     updateWebpackConfig(webpackConfig) {
        // Your source files folder or array of folders, should not include node_modules
-       let dir = path.join(__dirname, 'src');
+       const dir = path.join(__dirname, 'src');
        webpackConfig.module.loaders.push(
          // Babel loader will use your project’s .babelrc
          {
@@ -109,7 +109,7 @@ Styleguidist generates documentation from three sources:
       ```
 
       One more with `example` code fence (text editors may alias to `jsx` or `javascript`):
-    
+
       ```example
       <Button size="large">Push Me</Button>
       ```

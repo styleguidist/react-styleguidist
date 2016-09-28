@@ -18,10 +18,8 @@ let textarea;
 Filter them out in the `components` option:
 
 ```javascript
-components: function() {
-  return glob.sync(path.resolve(__dirname, 'lib/components/**/*.js')).filter(function(module) {
-    return !/\/(foo|bar).js$/.test(module);  // Ignore foo.js and bar.js
-  });
+components() {
+  return glob.sync(path.resolve(__dirname, 'lib/components/**/*.js')).filter(module => !/\/(foo|bar).js$/.test(module));  // Ignore foo.js and bar.js
 },
 ```
 
@@ -41,9 +39,9 @@ const Button = require('../common/Button');
 Add a new Webpack entry point. In your style guide config:
 
 ```javascript
-var path = require('path');
+const path = require('path');
 module.exports = {
-  updateWebpackConfig: function(webpackConfig, env) {
+  updateWebpackConfig(webpackConfig) {
     // Babel loader, etc.
     webpackConfig.entry.unshift('babel-polyfill');
     return webpackConfig;
@@ -56,10 +54,10 @@ module.exports = {
 Add a new Webpack entry point. In your style guide config:
 
 ```javascript
-var path = require('path');
+const path = require('path');
 module.exports = {
   // ...
-  updateWebpackConfig: function(webpackConfig, env) {
+  updateWebpackConfig(webpackConfig) {
     webpackConfig.entry.push(path.join(__dirname, 'path/to/script.js'));
     webpackConfig.entry.push(path.join(__dirname, 'path/to/styles.css'));
     return webpackConfig;
@@ -74,10 +72,10 @@ You may need an appropriate Webpack loader to handle these files.
 Add a new Webpack entry point in your style guide config:
 
 ```javascript
-var path = require('path');
+const path = require('path');
 module.exports = {
   // ...
-  updateWebpackConfig: function(webpackConfig, env) {
+  updateWebpackConfig(webpackConfig) {
     webpackConfig.entry.push(path.join(__dirname, 'lib/styleguide/styles.css'));
     return webpackConfig;
   },
@@ -102,10 +100,10 @@ Use your browser’s developer tools to find CSS class names of the elements you
 You can replace any Styleguidist React component. In your style guide config:
 
 ```javascript
-var path = require('path');
+const path = require('path');
 module.exports = {
   // ...
-  updateWebpackConfig: function(webpackConfig, env) {
+  updateWebpackConfig(webpackConfig) {
     webpackConfig.resolve.alias['rsg-components/StyleGuide'] = path.join(__dirname, 'lib/styleguide/StyleGuide');
     return webpackConfig;
   },
@@ -121,10 +119,10 @@ For example you can replace the `Wrapper` component to wrap any example in the [
 
 ```javascript
 // styleguide.config.js
-var path = require('path');
+const path = require('path');
 module.exports = {
   // ...
-  updateWebpackConfig: function(webpackConfig, env) {
+  updateWebpackConfig(webpackConfig) {
     webpackConfig.resolve.alias['rsg-components/Wrapper'] = path.join(__dirname, 'lib/styleguide/Wrapper');
     return webpackConfig;
   },
@@ -183,7 +181,7 @@ You can modify webpack dev server logs format passing `webpack.stats` options in
 ```javascript
 module.exports = {
   // ...
-  updateWebpackConfig: function(webpackConfig, env) {
+  updateWebpackConfig(webpackConfig, env) {
     if (env === 'development') {
       webpackConfig.stats.chunks = false;
       webpackConfig.stats.chunkModules = false;
