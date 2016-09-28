@@ -8,7 +8,7 @@ import Sections from 'rsg-components/Sections';
 const componentFileNameRegEx = /([\w-]+)\/[\w-]+\.jsx?$/i;
 const KEY_CODES = {
 	F_KEY: 102
-}
+};
 
 // It's possible that for a given component, we don't have a DESIGN_README.md file
 const requireExample = (folderName) => {
@@ -19,7 +19,7 @@ const requireExample = (folderName) => {
 	}
 };
 
-let searchFocused = false
+let searchFocused = false;
 
 export default class Components extends Component {
 	constructor(props) {
@@ -30,13 +30,18 @@ export default class Components extends Component {
 		let componentParents = [];
 
 		props.components.forEach(component => {
-			const folderName = component.pathLine.match(componentFileNameRegEx)[1];
-			const designContent = requireExample(folderName);
+			const folderNameMatch = component.pathLine.match(componentFileNameRegEx);
+			let componentParent = {
+				component,
+				designContent: false
+			};
 
-			componentParents.push({
-				designContent,
-				component
-			});
+			if (folderNameMatch) {
+				const folderName = folderNameMatch[1];
+				componentParent.designContent = requireExample(folderName);
+			}
+
+			componentParents.push(componentParent);
 		});
 
 		this.state = {

@@ -1,22 +1,33 @@
 import flatMap from 'lodash/flatMap';
 import isArray from 'lodash/isArray';
 import extend from 'lodash/extend';
+import camelCase from 'lodash/camelCase';
+import upperFirst from 'lodash/upperFirst';
+
+const upperFirstCamelCase = (name) => {
+	var tmp = camelCase(name)
+	return upperFirst(tmp);
+}
 
 export function setComponentsNames(components) {
 	components.map((component) => {
 		// Try to detect component name or fallback to file name or directory name.
 		let { module } = component;
-		component.name = (component.props && component.props.displayName) || (
+		component.name = (component.props && component.props.displayName) || (module && (
 			module.default
 				? (module.default.displayName || module.default.name)
 				: (module.displayName || module.name)
-		) || component.nameFallback;
+		)) || upperFirstCamelCase(component.nameFallback);
 	});
 	return components;
 }
 
 export function globalizeComponents(components) {
 	components.map((component) => {
+		if (typeof component.module === 'undefined') {
+			return;
+		}
+
 		global[component.name] = (!component.props || !component.props.path || component.props.path === 'default')
 			? (component.module.default || component.module)
 			: component.module[component.props.path];
@@ -25,7 +36,7 @@ export function globalizeComponents(components) {
 
 export function promoteInlineExamples(components) {
 	components.map(c => {
-		if (c.props.example) {
+		if (c.props && c.props.example) {
 			c.examples = (c.examples || []).concat(c.props.example);
 		}
 	});

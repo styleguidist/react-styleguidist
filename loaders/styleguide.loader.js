@@ -20,17 +20,27 @@ const toCode = utils.toCode;
  */
 function processComponent(filepath, config) {
 	const nameFallback = getNameFallback(filepath);
-	const examplesFile = config.getExampleFilename(filepath);
 	const componentPath = path.relative(config.configDir, filepath);
+	var examplesFile;
 
-	return toCode({
+	var code = {
 		filepath: JSON.stringify(filepath),
 		nameFallback: JSON.stringify(nameFallback),
-		pathLine: JSON.stringify(config.getComponentPathLine(componentPath)),
-		module: requireIt(filepath),
-		props: requireIt('!!props!' + filepath),
-		examples: getExamples(examplesFile, nameFallback, config.defaultExample),
-	});
+		pathLine: JSON.stringify(config.getComponentPathLine(componentPath))
+	};
+
+	if (path.basename(filepath) !== 'DESIGN_README.md') {
+		examplesFile = config.getExampleFilename(filepath);
+
+		code.module = requireIt(filepath);
+		code.props = requireIt('!!props!' + filepath);
+	} else {
+		examplesFile = config.getExampleFilename(filepath, 'DESIGN_README.md');
+	}
+
+	code.examples = getExamples(examplesFile, nameFallback, config.defaultExample);
+
+	return toCode(code);
 }
 
 /**
@@ -41,7 +51,7 @@ function processComponent(filepath, config) {
  */
 function getNameFallback(filepath) {
 	const filename = path.parse(filepath).name;
-	return filename === 'index' ? path.basename(path.dirname(filepath)) : filename;
+	return (filename === 'index' || filename === 'DESIGN_README') ? path.basename(path.dirname(filepath)) : filename;
 }
 
 /**

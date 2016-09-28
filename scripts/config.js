@@ -25,7 +25,11 @@ const DEFAULT_CONFIG = {
 	serverPort: 3000,
 	highlightTheme: 'base16-light',
 	verbose: false,
-	getExampleFilename: componentpath => path.join(path.dirname(componentpath), 'Readme.md'),
+	getExampleFilename: (componentpath, fileName) => {
+		fileName = fileName ? fileName : 'Readme.md';
+
+		return path.join(path.dirname(componentpath), fileName);
+	},
 	getComponentPathLine: componentpath => componentpath,
 	updateWebpackConfig: null,
 };

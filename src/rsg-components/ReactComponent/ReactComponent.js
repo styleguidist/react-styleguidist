@@ -10,16 +10,16 @@ const ReactComponent = (Renderer) => class extends Component {
 		sidebar: PropTypes.bool.isRequired,
 	};
 
-	renderDescription(description) {
-		if (!description) {
+	renderDescription(props) {
+		if (!props || !props.description) {
 			return null;
 		}
 
-		return (<Markdown text={description} />);
+		return (<Markdown text={props.description} />);
 	}
 
 	renderProps(props) {
-		if (!props.props) {
+		if (!props || !props.props) {
 			return null;
 		}
 
@@ -64,7 +64,7 @@ const ReactComponent = (Renderer) => class extends Component {
 			<Renderer
 				name={component.name}
 				pathLine={component.pathLine}
-				description={this.renderDescription(component.props.description)}
+				description={this.renderDescription(component.props)}
 				propList={this.renderProps(component.props)}
 				examples={this.renderExamples(highlightTheme, component.examples)}
 				sidebar={sidebar}
