@@ -16,7 +16,7 @@ if (module.hot) {
 }
 
 // Load style guide
-let { config, components, sections } = require('styleguide!');
+let { config, components, sections } = require('styleguide!index.js');
 
 function processComponents(components) {
 	components = flattenChildren(components);

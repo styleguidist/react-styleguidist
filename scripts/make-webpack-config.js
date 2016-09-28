@@ -122,12 +122,11 @@ module.exports = function(config, env) {
 			},
 			plugins: [
 				new webpack.LoaderOptionsPlugin({
+					minimize: isProd,
+					debug: !isProd,
 					options: {
 						styleguidist: config,
 					},
-					styleguidist: config,
-					minimize: isProd,
-					debug: !isProd,
 				}),
 			],
 		});
