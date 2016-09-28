@@ -6,6 +6,9 @@ import Renderer from 'rsg-components/ReactComponent/Renderer';
 import Sections from 'rsg-components/Sections';
 
 const componentFileNameRegEx = /([\w-]+)\/[\w-]+\.jsx?$/i;
+const KEY_CODES = {
+	F_KEY: 102
+}
 
 // It's possible that for a given component, we don't have a DESIGN_README.md file
 const requireExample = (folderName) => {
@@ -76,7 +79,7 @@ export default class Components extends Component {
 	}
 
 	onKeyPress(e) {
-		if (e.key === 'f' && !searchFocused) {
+		if (e.keyCode === KEY_CODES.F_KEY && !searchFocused) {
 			searchFocused = true;
 			e.preventDefault();
 			this.refs['search-input'].focus();
