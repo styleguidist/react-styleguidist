@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Markdown from 'rsg-components/Markdown';
 
-const Renderer = ({ name, pathLine, description, propList, examples, sidebar, designContent }) => {
+const Renderer = ({ name, pathLine, description, propList, examples, designMarkdown, sidebar }) => {
 	return sidebar ?
 		<a href={`#!/${name}`} className="bg-white db b--black-30 br2 ba pa4 mt3 no-underline">
 			<h3 className="ma0 black f3 fw4">
@@ -16,7 +16,7 @@ const Renderer = ({ name, pathLine, description, propList, examples, sidebar, de
 			<article className="cf">
 				<div className="fl pr3-ns w-100 w-50-ns">
 					<h2>Design</h2>
-					{designContent && <Markdown text={designContent.content} />}
+					{designMarkdown}
 				</div>
 				<div className="fl pl3-ns w-100 w-50-ns">
 					<h2>Code</h2>

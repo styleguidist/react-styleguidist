@@ -9,6 +9,8 @@ const utils = require('./utils/js');
 const requireIt = utils.requireIt;
 const toCode = utils.toCode;
 
+const DESIGN_CONTENT_NAME = 'DESIGN_README'
+
 /* eslint-disable no-console */
 
 /**
@@ -21,24 +23,22 @@ const toCode = utils.toCode;
 function processComponent(filepath, config) {
 	const nameFallback = getNameFallback(filepath);
 	const componentPath = path.relative(config.configDir, filepath);
-	var examplesFile;
+	const designMarkdownFileName = config.getExampleFilename(filepath, `${DESIGN_CONTENT_NAME}.md`)
 
-	var code = {
+	const code = {
 		filepath: JSON.stringify(filepath),
 		nameFallback: JSON.stringify(nameFallback),
-		pathLine: JSON.stringify(config.getComponentPathLine(componentPath))
+		pathLine: JSON.stringify(config.getComponentPathLine(componentPath)),
+		designMarkdown: getExamples(designMarkdownFileName, nameFallback, config.defaultExample)
 	};
 
-	if (path.basename(filepath) !== 'DESIGN_README.md') {
-		examplesFile = config.getExampleFilename(filepath);
+	if (path.basename(filepath) !== `${DESIGN_CONTENT_NAME}.md`) {
+		const examplesFileName = config.getExampleFilename(filepath);
 
+		code.examples = getExamples(examplesFileName, nameFallback, config.defaultExample);
 		code.module = requireIt(filepath);
 		code.props = requireIt('!!props!' + filepath);
-	} else {
-		examplesFile = config.getExampleFilename(filepath, 'DESIGN_README.md');
 	}
-
-	code.examples = getExamples(examplesFile, nameFallback, config.defaultExample);
 
 	return toCode(code);
 }
@@ -51,7 +51,7 @@ function processComponent(filepath, config) {
  */
 function getNameFallback(filepath) {
 	const filename = path.parse(filepath).name;
-	return (filename === 'index' || filename === 'DESIGN_README') ? path.basename(path.dirname(filepath)) : filename;
+	return (filename === 'index' || filename === DESIGN_CONTENT_NAME) ? path.basename(path.dirname(filepath)) : filename;
 }
 
 /**

@@ -5,18 +5,8 @@ import ReactComponent from 'rsg-components/ReactComponent';
 import Renderer from 'rsg-components/ReactComponent/Renderer';
 import Sections from 'rsg-components/Sections';
 
-const componentFileNameRegEx = /([\w-]+)\/[\w-]+\.jsx?$/i;
 const KEY_CODES = {
 	F_KEY: 102
-};
-
-// It's possible that for a given component, we don't have a DESIGN_README.md file
-const requireExample = (folderName) => {
-	try {
-		return require(`examples!sdk-components/${folderName}/DESIGN_README.md`)[0];
-	} catch(e) {
-		return false;
-	}
 };
 
 let searchFocused = false;
@@ -27,26 +17,8 @@ export default class Components extends Component {
 		this.onSearchTermChange = this.onSearchTermChange.bind(this);
 		this.onKeyPress = this.onKeyPress.bind(this);
 
-		let componentParents = [];
-
-		props.components.forEach(component => {
-			const folderNameMatch = component.pathLine.match(componentFileNameRegEx);
-			let componentParent = {
-				component,
-				designContent: false
-			};
-
-			if (folderNameMatch) {
-				const folderName = folderNameMatch[1];
-				componentParent.designContent = requireExample(folderName);
-			}
-
-			componentParents.push(componentParent);
-		});
-
 		this.state = {
-			searchTerm: '',
-			componentParents
+			searchTerm: ''
 		};
 	}
 
@@ -59,25 +31,24 @@ export default class Components extends Component {
 	}
 
 	renderComponents(searchTerm) {
-		const { highlightTheme, sidebar } = this.props;
+		const { highlightTheme, components, sidebar } = this.props;
 		const ComponentRenderer = ReactComponent(Renderer);
-		let filteredComponents = this.state.componentParents;
+		let filteredComponents = components;
 
 		if (searchTerm !== '') {
 			let regExp = new RegExp(searchTerm.split('').join('.*'), 'gi');
-			filteredComponents = filteredComponents.filter(componentParent => {
-				return componentParent.component.name.match(regExp);
+			filteredComponents = components.filter(component => {
+				return component.name.match(regExp);
 			});
 		};
 
-		return filteredComponents.map((componentParent) => {
+		return filteredComponents.map((component) => {
 			return (
 				<ComponentRenderer
-					key={componentParent.component.filepath}
+					key={component.filepath}
 					highlightTheme={highlightTheme}
-					component={componentParent.component}
+					component={component}
 					sidebar={sidebar}
-					designContent={componentParent.designContent}
 				/>
 			);
 		});
