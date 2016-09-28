@@ -7,7 +7,7 @@ First you need to initialize the API with your style guide config.
 Using a JavaScript object:
 
 ```javascript
-const styleguidist = require('../scripts');
+const styleguidist = require('react-styleguidist');
 const styleguide = styleguidist({
   components: './lib/components/**/*.js',
   updateWebpackConfig(webpackConfig) {
@@ -32,14 +32,14 @@ const styleguide = styleguidist({
 Using a config file:
 
 ```javascript
-const styleguidist = require('../scripts');
+const styleguidist = require('react-styleguidist');
 const styleguide = styleguidist(require('../styleguide.config.js'));
 ```
 
 Or auto searching a config file:
 
 ```javascript
-const styleguidist = require('../scripts');
+const styleguidist = require('react-styleguidist');
 const styleguide = styleguidist();
 ```
 
@@ -63,7 +63,7 @@ See all available [config options](./Configuration.md).
 #### Example
 
 ```javascript
-const styleguidist = require('../scripts');
+const styleguidist = require('react-styleguidist');
 styleguidist(require('../styleguide.config.js')).build((err, config) => {
   if (err) {
     console.log(err);
@@ -90,7 +90,7 @@ styleguidist(require('../styleguide.config.js')).build((err, config) => {
 #### Example
 
 ```javascript
-const styleguidist = require('../scripts');
+const styleguidist = require('react-styleguidist');
 styleguidist(require('../styleguide.config.js')).build((err, config) => {
   if (err) {
     console.log(err);
