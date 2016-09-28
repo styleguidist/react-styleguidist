@@ -1,9 +1,9 @@
 # Mobify Fork
 
-* Clone this repo and check out #pattern-library branch
+* Clone this repo and check out #ui-dev branch
 * Run `npm link`
-* Inside SDK repo: `npm link react-styleguidist && npm run styleguide`
-* Make any necessary changes to react-styleguidist (you may need to re-run npm run styleguide inside SDK repo)
+* Inside SDK repo: `npm link react-styleguidist && npm run docs:dev`
+* Make any necessary changes to react-styleguidist
 
 # React Styleguidist
 
