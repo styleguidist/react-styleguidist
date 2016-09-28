@@ -105,7 +105,7 @@ styleguidist(require('../styleguide.config.js')).build((err, config) => {
 
 #### Arguments
 
-1. [`env`=`'production'`] (*String*): `production` or `development`.
+1. \[`env`=`'production'`\] (*String*): `production` or `development`.
 
 #### Returns
 
