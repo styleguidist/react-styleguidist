@@ -39,6 +39,23 @@ function commandBuild() {
 }
 
 function commandServer() {
+	process.on('uncaughtException', err => {
+		if (err.code === 'EADDRINUSE') {
+			console.error(chalk.bold.red(
+				`You have another server running at port ${config.serverPort} somewhere, shut it down first`
+			));
+			console.log();
+			console.log('You can change the port using the `serverPort` option in your style guide config:');
+			console.log(chalk.underline(
+				'https://github.com/sapegin/react-styleguidist/blob/master/docs/Configuration.md'
+			));
+			process.exit(1);
+		}
+		else {
+			throw err;
+		}
+	});
+
 	const server = require('../scripts/server');
 	server(config, err => {
 		if (err) {
