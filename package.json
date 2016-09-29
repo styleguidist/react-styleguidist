@@ -58,6 +58,7 @@
     "remark-parse": "~2.0.1",
     "semver-utils": "1.1.1",
     "style-loader": "0.13.1",
+    "svg-react-loader": "0.3.7",
     "unified": "~5.0.0",
     "unist-util-visit": "~1.1.0",
     "webpack": "1.13.2",

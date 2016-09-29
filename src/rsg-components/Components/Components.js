@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import ReactComponent from 'rsg-components/ReactComponent';
 import Renderer from 'rsg-components/ReactComponent/Renderer';
 import Sections from 'rsg-components/Sections';
+import Icon from 'rsg-components/Icon';
 
 const KEY_CODES = {
 	F_KEY: 102
@@ -105,8 +106,8 @@ export default class Components extends Component {
 					<div>
 						<header className="fixed w-100 bg-white h3 bb b--black-20">
 							<div className="w-100 h-100 mw8 flex items-center justify-end center ph3">
-								<a href="#">
-									🙅
+								<a href="#" className="db flex items-center justify-center" style={{ height: '44px', width: '44px' }}>
+									<Icon glyph="close" />
 								</a>
 							</div>
 						</header>

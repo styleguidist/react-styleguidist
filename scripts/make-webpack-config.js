@@ -96,6 +96,11 @@ module.exports = function(config, env) {
 					include: sourceDir,
 					loader: 'style!css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]',
 				},
+				{
+					test: /\.svg$/,
+					include: sourceDir,
+					loader: 'babel!svg-react',
+				},
 			],
 			noParse: /babel-standalone/,
 		},
