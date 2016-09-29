@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 const Renderer = ({ title, components }) => (
-	<div className="pb3">
+	<div className="rsg-layout__renderer pb3">
 		{components}
 	</div>
 );

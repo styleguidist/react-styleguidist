@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 const Renderer = ({ name, content, components }) => {
 	return (
-		<div>
+		<div className="rsg-section__renderer">
 			<header>
 				<h1 id={name}>
 					<a href={'#' + name}></a>

@@ -168,7 +168,7 @@ export default class Props extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="rsg-props">
 				<h3>Props</h3>
 				{this.renderTable(this.props.props.props)}
 			</div>

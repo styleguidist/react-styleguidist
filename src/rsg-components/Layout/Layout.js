@@ -56,12 +56,14 @@ const Layout = (Renderer) => class extends Component {
 		let { config, components, sections, sidebar } = this.props;
 
 		return (
-			<Renderer
-				title={config.title}
-				components={this.renderComponents(config, components, sections, sidebar)}
-				sections={sections}
-				sidebar={sidebar}
-			/>
+            <div className="rsg-layout">
+                <Renderer
+    				title={config.title}
+    				components={this.renderComponents(config, components, sections, sidebar)}
+    				sections={sections}
+    				sidebar={sidebar}
+    			/>
+            </div>
 		);
 	}
 };

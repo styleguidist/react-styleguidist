@@ -51,7 +51,7 @@ export default class Playground extends Component {
 		let { highlightTheme } = this.props;
 
 		return (
-			<div className={s.root}>
+			<div className={`rsg-playground ${s.root}`}>
 				<div className={s.preview}>
 					<Preview code={code} evalInContext={this.props.evalInContext} />
 				</div>

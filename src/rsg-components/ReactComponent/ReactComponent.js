@@ -61,15 +61,17 @@ const ReactComponent = (Renderer) => class extends Component {
 		const { highlightTheme, component, sidebar } = this.props;
 
 		return (
-			<Renderer
-				name={component.name}
-				pathLine={component.pathLine}
-				description={this.renderDescription(component.props)}
-				propList={this.renderProps(component.props)}
-				designMarkdown={this.renderExamples(highlightTheme, component.designMarkdown)}
-				examples={this.renderExamples(highlightTheme, component.examples)}
-				sidebar={sidebar}
-			/>
+            <div className="rsg-react-component">
+                <Renderer
+    				name={component.name}
+    				pathLine={component.pathLine}
+    				description={this.renderDescription(component.props)}
+    				propList={this.renderProps(component.props)}
+    				designMarkdown={this.renderExamples(highlightTheme, component.designMarkdown)}
+    				examples={this.renderExamples(highlightTheme, component.examples)}
+    				sidebar={sidebar}
+    			/>
+            </div>
 		);
 	}
 };

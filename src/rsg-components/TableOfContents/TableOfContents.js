@@ -56,7 +56,7 @@ export default class TableOfContents extends Component {
 		let { searchTerm } = this.state;
 		let { components, sections } = this.props;
 		return (
-			<div className={s.root}>
+			<div className={`rsg-table-of-contents ${s.root}`}>
 				<input
 					value={searchTerm}
 					className={s.search}

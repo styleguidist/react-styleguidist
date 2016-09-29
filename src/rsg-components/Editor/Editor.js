@@ -56,7 +56,7 @@ export default class Editor extends Component {
 		let options = merge({}, codemirrorOptions, { theme: highlightTheme });
 
 		return (
-			<div className={s.root}>
+			<div className={`rsg-editor ${s.root}`}>
 				<Codemirror value={this.props.code} onChange={this.handleChange} options={options} />
 			</div>
 		);

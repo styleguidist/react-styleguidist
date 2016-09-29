@@ -6,6 +6,10 @@ export default class Wrapper extends Component {
 	};
 
 	render() {
-		return this.props.children;
+		return (
+            <div className="rsg-wrapper">
+                {this.props.children}
+            </div>
+        );
 	}
 }

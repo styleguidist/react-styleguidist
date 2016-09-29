@@ -11,7 +11,7 @@ const glyphs = {
 
 const Icon = ({glyph}) => {
     return (
-        <div style={{ lineHeight: '0' }}>
+        <div className="rsg-icon" style={{ lineHeight: '0' }}>
             {glyphs[glyph]}
         </div>
     );

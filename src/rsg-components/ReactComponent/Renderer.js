@@ -6,6 +6,8 @@ import classNames from 'classnames';
 const Renderer = ({ name, pathLine, description, propList, examples, designMarkdown, sidebar }) => {
 	const isSingleColumn = !designMarkdown || !propList;
 
+    const rendererClass = 'rsg-react-component__renderer'
+
 	const designClasses = classNames('pr3-ns w-100 w-50-ns', {
 		'fl': !isSingleColumn,
 		'center': isSingleColumn
@@ -17,13 +19,13 @@ const Renderer = ({ name, pathLine, description, propList, examples, designMarkd
 	})
 
 	return sidebar ?
-		<a href={`#!/${name}`} className="bg-white db b--black-30 br2 ba pa4 mt3 no-underline">
+		<a href={`#!/${name}`} className={`${rendererClass} bg-white db b--black-30 br2 ba pa4 mt3 no-underline`}>
 			<h3 className="ma0 black f3 fw4">
 				{name}
 			</h3>
 		</a>
 	:
-		<div>
+		<div className={rendererClass}>
 			<h1 id={name}>
 				{name}
 			</h1>
