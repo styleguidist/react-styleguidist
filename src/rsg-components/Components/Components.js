@@ -59,13 +59,13 @@ export default class Components extends Component {
         return (
             <div className="rsg-components__search-header fixed">
                 <header className="w-content-ns bg-white flex justify-start items-center h4 bb b--black-20">
-                    <div className="w-100 mw8 center ph3">
+                    <div className="w-100 mw8 center ph2">
                         <h1 className="ma0 f2">Components</h1>
                     </div>
                 </header>
 
                 <div className="bg-white w-100 pv2 bb b--black-20">
-                    <div className="mw8 center ph3">
+                    <div className="mw8 center ph2">
                         <input
                             ref="search-input"
                             className="db w-100 pa2 bw1 br1 b--solid b--black-20"
@@ -78,7 +78,7 @@ export default class Components extends Component {
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 
     renderPlainHeader() {
@@ -92,7 +92,7 @@ export default class Components extends Component {
                     </div>
                 </header>
             </div>
-        )
+        );
     }
 
 	onKeyPress(e) {
@@ -120,11 +120,11 @@ export default class Components extends Component {
 		});
         const classes = classNames('rsg-components', {
             'bg-white': isListPage
-        })
+        });
 
 		return (
 			<div className={classes}>
-				{isListPage ? this.renderSearchHeader(searchTerm) : this.renderPlainHeader() }
+				{isListPage ? this.renderSearchHeader(searchTerm) : this.renderPlainHeader()}
 
 				<div className={componentSectionClasses}>
 					{this.renderComponentSection(searchTerm)}
