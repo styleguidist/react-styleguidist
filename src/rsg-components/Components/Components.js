@@ -64,11 +64,11 @@ export default class Components extends Component {
                     </div>
                 </header>
 
-                <div className="bg-white w-100 pv2 bb b--black-20">
+                <div className="bg-white w-100 pv1 bb b--black-20">
                     <div className="mw8 center ph2">
                         <input
                             ref="search-input"
-                            className="db w-100 pa2 bw1 br1 b--solid b--black-20"
+                            className="db w-100 pa1 bw1 br1 b--solid b--black-20"
                             placeholder="What Are You Looking For?"
                             onChange={this.onSearchTermChange}
                             value={searchTerm}
@@ -114,12 +114,12 @@ export default class Components extends Component {
 	render() {
 		const { searchTerm } = this.state;
 		const isListPage = this.props.sidebar;
-		const componentSectionClasses = classNames('rsg-components__component-section w-100 mw8 center ph3', {
+		const componentSectionClasses = classNames('rsg-components__component-section w-100 mw8 center ph2', {
 			'pt-appbar-searchbar': isListPage,
 			'pt-appbar': !isListPage
 		});
         const classes = classNames('rsg-components', {
-            'bg-white': isListPage
+            'bg-white': !isListPage
         });
 
 		return (
