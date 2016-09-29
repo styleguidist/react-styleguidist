@@ -31,7 +31,7 @@ export default class Components extends Component {
 		window.removeEventListener('keypress', this.onKeyPress);
 	}
 
-	renderComponents(searchTerm) {
+	renderComponentSection(searchTerm) {
 		const { highlightTheme, components, sidebar } = this.props;
 		const ComponentRenderer = ReactComponent(Renderer);
 		let filteredComponents = components;
@@ -55,6 +55,44 @@ export default class Components extends Component {
 		});
 	}
 
+    renderFixedHeader(searchTerm) {
+        return (
+            <div className="rsg-components__fixed-header fixed">
+                <header className="w-content-ns bg-white flex justify-start items-center h4 bb b--black-20">
+                    <div className="w-100 mw8 center ph3">
+                        <h1 className="ma0 f2">Components</h1>
+                    </div>
+                </header>
+
+                <div className="bg-white w-100 pv2 bb b--black-20">
+                    <div className="mw8 center ph3">
+                        <input
+                            ref="search-input"
+                            className="db w-100 pa2 bw1 br1 b--solid b--black-20"
+                            placeholder="What Are You Looking For?"
+                            onChange={this.onSearchTermChange}
+                            value={searchTerm}
+                            type="search"
+                            onBlur={this.onSearchBlur}
+                        />
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    renderStaticHeader() {
+        <div className="rsg-components__static-header">
+            <header className="fixed w-100 bg-white h3 bb b--black-20">
+                <div className="w-100 h-100 mw8 flex items-center justify-end center ph3">
+                    <a href="#" className="db flex items-center justify-center" style={{ height: '44px', width: '44px' }}>
+                        <Icon glyph="close" />
+                    </a>
+                </div>
+            </header>
+        </div>
+    }
+
 	onKeyPress(e) {
 		if (e.keyCode === KEY_CODES.F_KEY && !searchFocused) {
 			searchFocused = true;
@@ -74,47 +112,20 @@ export default class Components extends Component {
 	render() {
 		const { searchTerm } = this.state;
 		const isListPage = this.props.sidebar;
-		const componentSectionClasses = classNames('w-100 mw8 center ph3', {
+		const componentSectionClasses = classNames('rsg-components__component-section w-100 mw8 center ph3', {
 			'pt-appbar-searchbar': isListPage,
 			'pt-appbar': !isListPage
 		});
+        const classes = classNames('rsg-components', {
+            'bg-white': isListPage
+        })
 
 		return (
-			<div className={isListPage ? '' : 'bg-white'}>
-				{isListPage ?
-					<div className="fixed">
-						<header className="w-content-ns bg-white flex justify-start items-center h4 bb b--black-20">
-							<div className="w-100 mw8 center ph3">
-								<h1 className="ma0 f2">Components</h1>
-							</div>
-						</header>
-						<div className="bg-white w-100 pv2 bb b--black-20">
-							<div className="mw8 center ph3">
-								<input
-									ref="search-input"
-									className="db w-100 pa2 bw1 br1 b--solid b--black-20"
-									placeholder="What Are You Looking For?"
-									onChange={this.onSearchTermChange}
-									value={searchTerm}
-									type="search"
-									onBlur={this.onSearchBlur}
-								/>
-							</div>
-						</div>
-					</div>
-				:
-					<div>
-						<header className="fixed w-100 bg-white h3 bb b--black-20">
-							<div className="w-100 h-100 mw8 flex items-center justify-end center ph3">
-								<a href="#" className="db flex items-center justify-center" style={{ height: '44px', width: '44px' }}>
-									<Icon glyph="close" />
-								</a>
-							</div>
-						</header>
-					</div>
-				}
+			<div className={classes}>
+				{isListPage ? this.renderFixedHeader(searchTerm) : this.renderStaticHeader() }
+
 				<div className={componentSectionClasses}>
-					{this.renderComponents(searchTerm)}
+					{this.renderComponentSection(searchTerm)}
 				</div>
 			</div>
 		);
