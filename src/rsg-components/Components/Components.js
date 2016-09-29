@@ -68,7 +68,7 @@ export default class Components extends Component {
                     <div className="mw8 center ph2">
                         <input
                             ref="search-input"
-                            className="db w-100 pa1 bw1 br1 b--solid b--black-20"
+                            className="db w-100 ph1 h2_5 bw1 br1 b--solid b--black-20 lh-input"
                             placeholder="What Are You Looking For?"
                             onChange={this.onSearchTermChange}
                             value={searchTerm}
