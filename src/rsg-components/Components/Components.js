@@ -55,9 +55,9 @@ export default class Components extends Component {
 		});
 	}
 
-    renderFixedHeader(searchTerm) {
+    renderSearchHeader(searchTerm) {
         return (
-            <div className="rsg-components__fixed-header fixed">
+            <div className="rsg-components__search-header fixed">
                 <header className="w-content-ns bg-white flex justify-start items-center h4 bb b--black-20">
                     <div className="w-100 mw8 center ph3">
                         <h1 className="ma0 f2">Components</h1>
@@ -81,16 +81,18 @@ export default class Components extends Component {
         )
     }
 
-    renderStaticHeader() {
-        <div className="rsg-components__static-header">
-            <header className="fixed w-100 bg-white h3 bb b--black-20">
-                <div className="w-100 h-100 mw8 flex items-center justify-end center ph3">
-                    <a href="#" className="db flex items-center justify-center" style={{ height: '44px', width: '44px' }}>
-                        <Icon glyph="close" />
-                    </a>
-                </div>
-            </header>
-        </div>
+    renderPlainHeader() {
+        return (
+            <div className="rsg-components__plain-header">
+                <header className="fixed w-100 bg-white h3 bb b--black-20">
+                    <div className="w-100 h-100 mw8 flex items-center justify-end center ph3">
+                        <a href="#" className="db flex items-center justify-center" style={{ height: '44px', width: '44px' }}>
+                            <Icon glyph="close" />
+                        </a>
+                    </div>
+                </header>
+            </div>
+        )
     }
 
 	onKeyPress(e) {
@@ -122,7 +124,7 @@ export default class Components extends Component {
 
 		return (
 			<div className={classes}>
-				{isListPage ? this.renderFixedHeader(searchTerm) : this.renderStaticHeader() }
+				{isListPage ? this.renderSearchHeader(searchTerm) : this.renderPlainHeader() }
 
 				<div className={componentSectionClasses}>
 					{this.renderComponentSection(searchTerm)}
