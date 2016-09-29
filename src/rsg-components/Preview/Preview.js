@@ -4,8 +4,32 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { transform } from 'babel-standalone';
 import Wrapper from 'rsg-components/Wrapper';
+import { responsiveContextTypes } from 'rsg-components/Responsive/Provider';
 
 import s from './Preview.css';
+
+function makeStyle({ width, height }) {
+	return {
+		width: width === 'auto' ? '100%' : `${width}px`,
+		height: height === 'auto' ? 'auto' : `${height}px`,
+		border: 0,
+	};
+}
+
+function setInitialHtml(document) {
+	document.open('text/htmlreplace');
+	document.write(`
+		<!doctype html>
+		<html>
+			<body>
+				<div id="preview"></div>
+			</body>
+		</html>
+	`);
+	document.close();
+
+	return document;
+}
 
 export default class Preview extends Component {
 	static propTypes = {
@@ -13,10 +37,14 @@ export default class Preview extends Component {
 		evalInContext: PropTypes.func.isRequired,
 	};
 
-	constructor() {
+	static contextTypes = responsiveContextTypes;
+
+	constructor(props, context) {
 		super();
 		this.state = {
 			error: null,
+			width: context.responsiveConfig.width,
+			height: 'auto',
 		};
 		this.componentState = {};
 	}
@@ -37,10 +65,14 @@ export default class Preview extends Component {
 		}).code;
 	}
 
-	executeCode() {
-		let mountNode = this.refs.mount;
+	initializeIframe() {
+		const iframeDocument = this.iframe.contentWindow.document;
+		setInitialHtml(iframeDocument);
+		return iframeDocument;
+	}
 
-		ReactDOM.unmountComponentAtNode(mountNode);
+	executeCode() {
+		const iframeDocument = this.initializeIframe();
 
 		this.setState({
 			error: null,
@@ -118,10 +150,10 @@ export default class Preview extends Component {
 				</Wrapper>
 			);
 
-			ReactDOM.render(wrappedComponent, mountNode);
+			ReactDOM.render(wrappedComponent, iframeDocument.getElementById('preview'));
+			this.setState({ height: iframeDocument.documentElement.offsetHeight });
 		}
 		catch (err) {
-			ReactDOM.unmountComponentAtNode(mountNode);
 			this.setState({
 				error: err.toString(),
 			});
@@ -142,7 +174,13 @@ export default class Preview extends Component {
 	render() {
 		return (
 			<div>
-				<div ref="mount"></div>
+				<iframe
+					ref={(ref) => {
+						this.iframe = ref;
+					}}
+					src="about:blank"
+					style={ makeStyle(this.state) }
+				/>
 				{this.renderError()}
 			</div>
 		);
