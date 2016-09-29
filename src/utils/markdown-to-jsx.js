@@ -425,8 +425,8 @@ export default function markdownToJSX(markdown, { overrides = {} } = {}) {
 		if (ast.type === 'code' && ast.value) {
 			const className = get(overrides, 'pre.props.className');
 			return (
-				<pre key={key} className={className}>
-					<code className={`lang-${ast.lang}`} dangerouslySetInnerHTML={{ __html: ast.value }} ></code>
+				<pre key={key} className={`${className} language-${ast.lang}`}>
+					<code className={`lang-${ast.lang} language-${ast.lang}`} dangerouslySetInnerHTML={{ __html: ast.value }} ></code>
 				</pre>
 			);
 		}
