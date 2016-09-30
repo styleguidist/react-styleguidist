@@ -7,7 +7,9 @@ import Sections from 'rsg-components/Sections';
 import Icon from 'rsg-components/Icon';
 
 const KEY_CODES = {
-	F_KEY: 102
+	F_KEY: 102,
+	ESC_KEY: 27,
+	ENTER_KEY: 13
 };
 
 let searchFocused = false;
@@ -24,7 +26,7 @@ export default class Components extends Component {
 	}
 
 	componentDidMount() {
-		this.props.sidebar && window.addEventListener('keypress', this.onKeyPress);
+		window.addEventListener('keypress', this.onKeyPress);
 	}
 
 	componentWillUnmount() {
@@ -100,6 +102,10 @@ export default class Components extends Component {
 			searchFocused = true;
 			e.preventDefault();
 			this.refs['search-input'].focus();
+		}
+		if (e.keyCode === KEY_CODES.ESC_KEY) {
+			e.preventDefault();
+			window.location.hash = "#";
 		}
 	}
 
