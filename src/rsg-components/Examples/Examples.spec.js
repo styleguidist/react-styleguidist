@@ -20,7 +20,6 @@ const examples = [
 test('should render examples', () => {
 	const actual = shallow(
 		<Examples
-			highlightTheme="base16-light"
 			examples={examples}
 		/>
 	);
@@ -29,7 +28,6 @@ test('should render examples', () => {
 		<Playground
 			code={examples[0].content}
 			evalInContext={examples[0].evalInContext}
-			highlightTheme="base16-light"
 		/>
 	);
 	expect(actual.node, 'to contain',

@@ -14,11 +14,9 @@ export default class StyleGuide extends Component {
 		sections: PropTypes.array.isRequired,
 		sidebar: PropTypes.bool,
 	};
-
 	static defaultProps = {
 		sidebar: true,
 	};
-
 	static childContextTypes = {
 		config: PropTypes.object.isRequired,
 	};
@@ -29,11 +27,10 @@ export default class StyleGuide extends Component {
 		};
 	}
 
-	renderComponents(config, components, sections, sidebar) {
+	renderComponents(components, sections, sidebar) {
 		if (!isEmpty(components) || !isEmpty(sections)) {
 			return (
 				<Components
-					highlightTheme={config.highlightTheme}
 					components={components}
 					sections={sections}
 					sidebar={sidebar}
@@ -59,7 +56,7 @@ export default class StyleGuide extends Component {
 		return (
 			<StyleGuideRenderer
 				title={config.title}
-				components={this.renderComponents(config, components, sections, sidebar)}
+				components={this.renderComponents(components, sections, sidebar)}
 				sections={sections}
 				toc={this.renderTableOfContents(components, sections)}
 				sidebar={sidebar}

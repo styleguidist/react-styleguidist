@@ -3,7 +3,6 @@ import PlaygroundRenderer from 'rsg-components/Playground/PlaygroundRenderer';
 
 export default class Playground extends Component {
 	static propTypes = {
-		highlightTheme: PropTypes.string.isRequired,
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
 	};
@@ -43,14 +42,12 @@ export default class Playground extends Component {
 	}
 
 	render() {
-		let { code, showCode } = this.state;
-		let { highlightTheme, evalInContext } = this.props;
-
+		const { code, showCode } = this.state;
+		const { evalInContext } = this.props;
 		return (
 			<PlaygroundRenderer
 				code={code}
 				showCode={showCode}
-				highlightTheme={highlightTheme}
 				evalInContext={evalInContext}
 				onChange={code => this.handleChange(code)}
 				onCodeToggle={() => this.handleCodeToggle()}

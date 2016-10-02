@@ -25,7 +25,6 @@ const section = {
 test('should render component renderer', () => {
 	const actual = shallow(
 		<Section
-			highlightTheme="base16-light"
 			section={section}
 		/>
 	);
@@ -33,8 +32,8 @@ test('should render component renderer', () => {
 	expect(actual.node, 'to contain',
 		<SectionRenderer
 			name={section.name}
-			content={<Examples highlightTheme="base16-light" examples={section.content} />}
-			components={<Components highlightTheme="base16-light" components={[]} sections={[]} />}
+			content={<Examples examples={section.content} />}
+			components={<Components components={[]} sections={[]} />}
 		/>
 	);
 });
@@ -43,8 +42,8 @@ test('render should render component', () => {
 	const actual = shallow(
 		<SectionRenderer
 			name={section.name}
-			content={<Examples highlightTheme="base16-light" examples={section.content} />}
-			components={<Components highlightTheme="base16-light" components={[]} sections={[]} />}
+			content={<Examples examples={section.content} />}
+			components={<Components components={[]} sections={[]} />}
 		/>
 	);
 
@@ -52,9 +51,9 @@ test('render should render component', () => {
 		<h1>{section.name}</h1>
 	);
 	expect(actual.node, 'to contain',
-		<Examples highlightTheme="base16-light" examples={section.content} />
+		<Examples examples={section.content} />
 	);
 	expect(actual.node, 'to contain',
-		<Components highlightTheme="base16-light" components={[]} sections={[]} />
+		<Components components={[]} sections={[]} />
 	);
 });

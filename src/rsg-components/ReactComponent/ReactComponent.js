@@ -6,7 +6,6 @@ import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponent
 
 export default class ReactComponent extends Component {
 	static propTypes = {
-		highlightTheme: PropTypes.string.isRequired,
 		component: PropTypes.object.isRequired,
 		sidebar: PropTypes.bool,
 	};
@@ -31,25 +30,25 @@ export default class ReactComponent extends Component {
 		);
 	}
 
-	renderExamples(highlightTheme, examples) {
+	renderExamples(examples) {
 		if (!examples) {
 			return null;
 		}
 
 		return (
-			<Examples highlightTheme={highlightTheme} examples={examples} />
+			<Examples examples={examples} />
 		);
 	}
 
 	render() {
-		const { highlightTheme, component, sidebar } = this.props;
+		const { component, sidebar } = this.props;
 		return (
 			<ReactComponentRenderer
 				name={component.name}
 				pathLine={component.pathLine}
 				description={this.renderDescription(component.props.description)}
 				props={this.renderProps(component.props)}
-				examples={this.renderExamples(highlightTheme, component.examples)}
+				examples={this.renderExamples(component.examples)}
 				sidebar={sidebar}
 			/>
 		);

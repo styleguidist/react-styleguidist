@@ -10,7 +10,6 @@ const code = '<button>OK</button>';
 test('should render component renderer', () => {
 	const actual = shallow(
 		<Playground
-			highlightTheme="base16-light"
 			code={code}
 			evalInContext={noop}
 		/>,
@@ -27,7 +26,6 @@ test('should render component renderer', () => {
 		<PlaygroundRenderer
 			code={code}
 			showCode={false}
-			highlightTheme="base16-light"
 			evalInContext={noop}
 		/>
 	);
@@ -38,7 +36,6 @@ test('renderer should render preview', () => {
 		<PlaygroundRenderer
 			code={code}
 			showCode={false}
-			highlightTheme="base16-light"
 			evalInContext={noop}
 		/>
 	);

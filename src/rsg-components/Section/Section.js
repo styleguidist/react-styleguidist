@@ -5,29 +5,27 @@ import SectionRenderer from 'rsg-components/Section/SectionRenderer';
 
 export default class Section extends Component {
 	static propTypes = {
-		highlightTheme: PropTypes.string.isRequired,
 		section: PropTypes.object.isRequired,
 		sidebar: PropTypes.bool,
 	};
 
-	renderContent(highlightTheme, examples) {
+	renderContent(examples) {
 		if (!examples) {
 			return null;
 		}
 
 		return (
-			<Examples highlightTheme={highlightTheme} examples={examples} />
+			<Examples examples={examples} />
 		);
 	}
 
-	renderComponents(highlightTheme, components, sections, sidebar) {
+	renderComponents(components, sections, sidebar) {
 		if (!components && !sections) {
 			return null;
 		}
 
 		return (
 			<Components
-				highlightTheme={highlightTheme}
 				components={components || []}
 				sections={sections || []}
 				sidebar={sidebar}
@@ -36,13 +34,12 @@ export default class Section extends Component {
 	}
 
 	render() {
-		const { highlightTheme, section, sidebar } = this.props;
-
+		const { section, sidebar } = this.props;
 		return (
 			<SectionRenderer
 				name={section.name}
-				content={this.renderContent(highlightTheme, section.content)}
-				components={this.renderComponents(highlightTheme, section.components, section.sections, sidebar)}
+				content={this.renderContent(section.content)}
+				components={this.renderComponents(section.components, section.sections, sidebar)}
 			/>
 		);
 	}

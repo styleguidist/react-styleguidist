@@ -24,8 +24,10 @@ const UPDATE_DELAY = 10;
 export default class Editor extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
-		highlightTheme: PropTypes.string.isRequired,
 		onChange: PropTypes.func,
+	};
+	static contextTypes = {
+		config: PropTypes.object.isRequired,
 	};
 
 	constructor() {
@@ -34,7 +36,7 @@ export default class Editor extends Component {
 	}
 
 	componentWillMount() {
-		const { highlightTheme } = this.props;
+		const { highlightTheme } = this.context.config;
 		cssRequire(`./${highlightTheme}.css`);
 	}
 
@@ -50,7 +52,7 @@ export default class Editor extends Component {
 	}
 
 	render() {
-		const { highlightTheme } = this.props;
+		const { highlightTheme } = this.context.config;
 		const options = merge({}, codemirrorOptions, { theme: highlightTheme });
 		return (
 			<EditorRenderer>

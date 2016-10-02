@@ -27,7 +27,6 @@ const components = [
 const sections = [];
 const config = {
 	title: 'Hello',
-	highlightTheme: 'base16-light',
 };
 
 test('should render components list', () => {
@@ -42,7 +41,7 @@ test('should render components list', () => {
 	expect(actual.node, 'to contain',
 		<StyleGuideRenderer
 			title={config.title}
-			components={<Components highlightTheme="base16-light" components={components} sections={sections} />}
+			components={<Components components={components} sections={sections} />}
 			sections={sections}
 			toc={<TableOfContents components={components} sections={sections} />}
 			sidebar
@@ -74,7 +73,7 @@ test('renderer should render title, table on contents and components', () => {
 	const actual = shallow(
 		<StyleGuideRenderer
 			title={config.title}
-			components={<Components highlightTheme="base16-light" components={components} sections={sections} />}
+			components={<Components components={components} sections={sections} />}
 			sections={sections}
 			toc={<TableOfContents components={components} sections={sections} />}
 			sidebar
@@ -88,6 +87,6 @@ test('renderer should render title, table on contents and components', () => {
 		<TableOfContents components={components} sections={sections} />
 	);
 	expect(actual.node, 'to contain',
-		<Components highlightTheme="base16-light" components={components} sections={sections} />
+		<Components components={components} sections={sections} />
 	);
 });

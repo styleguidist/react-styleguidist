@@ -27,7 +27,6 @@ const components = [
 test('should render components list', () => {
 	const actual = shallow(
 		<Components
-			highlightTheme="base16-light"
 			components={components}
 			sections={[]}
 		/>
@@ -36,10 +35,10 @@ test('should render components list', () => {
 	expect(actual.node, 'to contain',
 		<ComponentsRenderer
 			components={[
-				<ReactComponent highlightTheme="base16-light" component={components[0]} />,
-				<ReactComponent highlightTheme="base16-light" component={components[1]} />,
+				<ReactComponent component={components[0]} />,
+				<ReactComponent component={components[1]} />,
 			]}
-			sections={<Sections highlightTheme="base16-light" sections={[]} />}
+			sections={<Sections sections={[]} />}
 		/>
 	);
 });
@@ -48,18 +47,18 @@ test('renderer should render components list layout', () => {
 	const actual = shallow(
 		<ComponentsRenderer
 			components={[
-				<ReactComponent highlightTheme="base16-light" component={components[0]} />,
-				<ReactComponent highlightTheme="base16-light" component={components[1]} />,
+				<ReactComponent component={components[0]} />,
+				<ReactComponent component={components[1]} />,
 			]}
-			sections={<Sections highlightTheme="base16-light" sections={[]} />}
+			sections={<Sections sections={[]} />}
 		/>
 	);
 
 	expect(actual.node, 'to contain',
 		<div>
-			<ReactComponent highlightTheme="base16-light" component={components[0]} />
-			<ReactComponent highlightTheme="base16-light" component={components[1]} />
-			<Sections highlightTheme="base16-light" sections={[]} />
+			<ReactComponent component={components[0]} />
+			<ReactComponent component={components[1]} />
+			<Sections sections={[]} />
 		</div>
 	);
 });

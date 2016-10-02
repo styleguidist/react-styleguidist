@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Playground from 'rsg-components/Playground';
 import Markdown from 'rsg-components/Markdown';
 
-const Examples = ({ highlightTheme, examples }) => {
+const Examples = ({ examples }) => {
 	return (
 		<div>
 			{examples.map((example, index) => {
@@ -12,7 +12,6 @@ const Examples = ({ highlightTheme, examples }) => {
 							<Playground
 								code={example.content}
 								evalInContext={example.evalInContext}
-								highlightTheme={highlightTheme}
 								key={index}
 							/>
 						);
@@ -32,7 +31,6 @@ const Examples = ({ highlightTheme, examples }) => {
 };
 
 Examples.propTypes = {
-	highlightTheme: PropTypes.string.isRequired,
 	examples: PropTypes.array.isRequired,
 };
 

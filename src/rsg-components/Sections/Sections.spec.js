@@ -31,17 +31,14 @@ const sections = [
 
 test('should render component renderer', () => {
 	const actual = shallow(
-		<Sections
-			highlightTheme="base16-light"
-			sections={sections}
-		/>
+		<Sections sections={sections} />
 	);
 
 	expect(actual.node, 'to contain',
 		<SectionsRenderer
 			sections={[
-				<Section highlightTheme="base16-light" section={sections[0]} />,
-				<Section highlightTheme="base16-light" section={sections[1]} />,
+				<Section section={sections[0]} />,
+				<Section section={sections[1]} />,
 			]}
 		/>
 	);
@@ -51,16 +48,16 @@ test('render should render component', () => {
 	const actual = shallow(
 		<SectionsRenderer
 			sections={[
-				<Section highlightTheme="base16-light" section={sections[0]} />,
-				<Section highlightTheme="base16-light" section={sections[1]} />,
+				<Section section={sections[0]} />,
+				<Section section={sections[1]} />,
 			]}
 		/>
 	);
 
 	expect(actual.node, 'to contain',
-		<Section highlightTheme="base16-light" section={sections[0]} />
+		<Section section={sections[0]} />
 	);
 	expect(actual.node, 'to contain',
-		<Section highlightTheme="base16-light" section={sections[1]} />
+		<Section section={sections[1]} />
 	);
 });

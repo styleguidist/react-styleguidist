@@ -29,7 +29,6 @@ const component = {
 test('should render component renderer', () => {
 	const actual = shallow(
 		<ReactComponent
-			highlightTheme="base16-light"
 			component={component}
 		/>
 	);
@@ -39,7 +38,7 @@ test('should render component renderer', () => {
 			name={component.name}
 			pathLine={component.pathLine}
 			description={<Markdown text={component.props.description} />}
-			examples={<Examples highlightTheme="base16-light" examples={component.examples} />}
+			examples={<Examples examples={component.examples} />}
 		/>
 	);
 });
@@ -54,7 +53,6 @@ test('render should render component', () => {
 				<Playground
 					code={component.examples[0].content}
 					evalInContext={component.examples[0].evalInContext}
-					highlightTheme="base16-light"
 				/>,
 				<Markdown
 					text={component.examples[1].content}
@@ -76,7 +74,6 @@ test('render should render component', () => {
 		<Playground
 			code={component.examples[0].content}
 			evalInContext={component.examples[0].evalInContext}
-			highlightTheme="base16-light"
 		/>
 	);
 	expect(actual.node, 'to contain',
