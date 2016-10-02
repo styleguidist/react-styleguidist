@@ -21,12 +21,17 @@ export default class Playground extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		let { code } = nextProps;
-		if (code) {
-			this.setState({
-				code,
-			});
-		}
+		const { code } = nextProps;
+		this.setState({
+			code,
+		});
+	}
+
+	shouldComponentUpdate(nextProps, nextState) {
+		return (
+			nextState.code !== this.state.code ||
+			nextState.showCode !== this.state.showCode
+		);
 	}
 
 	handleChange(code) {
