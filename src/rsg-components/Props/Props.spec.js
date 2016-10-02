@@ -20,7 +20,7 @@ function render(propTypes, defaultProps = []) {
 			}
 		}
 	`);
-	return shallow(<PropsRenderer props={props} />);
+	return shallow(<PropsRenderer props={props.props} />);
 }
 
 test('should render PropTypes.string', () => {
@@ -158,3 +158,4 @@ test('getType() should return .type or .flowType property', t => {
 	});
 	t.is(result, 'bar');
 });
+
