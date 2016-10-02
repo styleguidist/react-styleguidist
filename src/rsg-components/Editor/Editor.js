@@ -4,7 +4,6 @@ import 'codemirror/lib/codemirror.css';
 
 import React, { Component, PropTypes } from 'react';
 import debounce from 'lodash/debounce';
-import merge from 'lodash/merge';
 import Codemirror from 'react-codemirror';
 import EditorRenderer from 'rsg-components/Editor/EditorRenderer';
 
@@ -24,7 +23,7 @@ const UPDATE_DELAY = 10;
 export default class Editor extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
-		onChange: PropTypes.func,
+		onChange: PropTypes.func.isRequired,
 	};
 	static contextTypes = {
 		config: PropTypes.object.isRequired,
@@ -45,18 +44,19 @@ export default class Editor extends Component {
 	}
 
 	handleChange(newCode) {
-		const { onChange } = this.props;
-		if (onChange) {
-			onChange(newCode);
-		}
+		this.props.onChange(newCode);
 	}
 
 	render() {
+		const { code } = this.props;
 		const { highlightTheme } = this.context.config;
-		const options = merge({}, codemirrorOptions, { theme: highlightTheme });
+		const options = {
+			...codemirrorOptions,
+			theme: highlightTheme,
+		};
 		return (
 			<EditorRenderer>
-				<Codemirror value={this.props.code} onChange={this.handleChange} options={options} />
+				<Codemirror value={code} onChange={this.handleChange} options={options} />
 			</EditorRenderer>
 		);
 	}
