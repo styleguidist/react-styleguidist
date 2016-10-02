@@ -6,8 +6,7 @@ import React, { Component, PropTypes } from 'react';
 import debounce from 'lodash/debounce';
 import merge from 'lodash/merge';
 import Codemirror from 'react-codemirror';
-
-import s from './Editor.css';
+import EditorRenderer from 'rsg-components/Editor/EditorRenderer';
 
 const codemirrorOptions = {
 	mode: 'jsx',
@@ -20,7 +19,7 @@ const codemirrorOptions = {
 
 const cssRequire = require.context('codemirror/theme/', false, /^\.\/.*\.css$/);
 
-let UPDATE_DELAY = 10;
+const UPDATE_DELAY = 10;
 
 export default class Editor extends Component {
 	static propTypes = {
@@ -35,8 +34,7 @@ export default class Editor extends Component {
 	}
 
 	componentWillMount() {
-		let { highlightTheme } = this.props;
-
+		const { highlightTheme } = this.props;
 		cssRequire(`./${highlightTheme}.css`);
 	}
 
@@ -45,20 +43,19 @@ export default class Editor extends Component {
 	}
 
 	handleChange(newCode) {
-		let { onChange } = this.props;
+		const { onChange } = this.props;
 		if (onChange) {
 			onChange(newCode);
 		}
 	}
 
 	render() {
-		let { highlightTheme } = this.props;
-		let options = merge({}, codemirrorOptions, { theme: highlightTheme });
-
+		const { highlightTheme } = this.props;
+		const options = merge({}, codemirrorOptions, { theme: highlightTheme });
 		return (
-			<div className={s.root}>
+			<EditorRenderer>
 				<Codemirror value={this.props.code} onChange={this.handleChange} options={options} />
-			</div>
+			</EditorRenderer>
 		);
 	}
 }

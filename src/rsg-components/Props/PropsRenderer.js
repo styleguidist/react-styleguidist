@@ -1,21 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import trim from 'lodash/trim';
+import Code from 'rsg-components/Code';
 import Markdown from 'rsg-components/Markdown';
+import { unquote, getType } from './util';
 
 import s from './Props.css';
-import sMarkdown from '../Markdown/Markdown.css';
 
-/* eslint-disable react/prop-types */
-
-export let Code = ({ className = '', children }) => {
-	return <code className={sMarkdown.code + ' ' + className}>{children}</code>;
-};
-
-export function unquote(string) {
-	return trim(string, '"\'');
-}
-
-export default class Props extends Component {
+export default class PropsRenderer extends Component {
 	static propTypes = {
 		props: PropTypes.object.isRequired,
 	};
@@ -151,7 +141,7 @@ export default class Props extends Component {
 		return rows;
 	}
 
-	renderTable(props) {
+	render() {
 		return (
 			<table className={s.table}>
 				<thead className={s.tableHead}>
@@ -163,22 +153,9 @@ export default class Props extends Component {
 					</tr>
 				</thead>
 				<tbody className={s.tableBody}>
-					{this.renderRows(props)}
+					{this.renderRows(this.props.props.props)}
 				</tbody>
 			</table>
 		);
 	}
-
-	render() {
-		return (
-			<div className={s.root}>
-				<h3 className={s.heading}>Props</h3>
-				{this.renderTable(this.props.props.props)}
-			</div>
-		);
-	}
-}
-
-function getType(prop) {
-	return prop.flowType || prop.type;
 }

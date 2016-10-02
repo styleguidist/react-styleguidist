@@ -1,7 +1,6 @@
 .root {
 	composes: font from "../../styles/common.css";
 	composes: component-bg from "../../styles/colors.css";
-
 	margin-bottom: 20px;
 	border-radius: 5px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
@@ -10,14 +9,12 @@
 
 .meta {
 	display: flex;
-
 	margin-bottom: 10px;
 	border-bottom: 1px dotted #ccc;
 }
 
 .header {
 	flex-basis: 40%;
-
 	padding: 10px;
 	font-weight: normal;
 	background: #efefef;
@@ -39,7 +36,6 @@
 
 .anchor:before {
 	transition: margin-left .2s;
-
 	content: '#';
 	position: absolute;
 	display: block;
@@ -58,17 +54,19 @@
 	margin-left: -28px;
 }
 
+.isolatedLink {
+	margin-right: .5em;
+}
+
 .pathLine {
 	composes: monospace from "../../styles/common.css";
 	composes: light from "../../styles/colors.css";
-
 	margin-top: 5px;
 	font-size: 14px;
 }
 
 .props {
 	flex: 0 0 60%;
-
 	padding: 5px 15px;
 	border-left: 1px dotted #ccc;
 }

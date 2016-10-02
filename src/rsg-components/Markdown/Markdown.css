@@ -43,6 +43,7 @@
 	composes: reset monospace from "../../styles/common.css";
 	display: inline;
 	font-size: inherit;
+	color: inherit;
 }
 
 .pre {

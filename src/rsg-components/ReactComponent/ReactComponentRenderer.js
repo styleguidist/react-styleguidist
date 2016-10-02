@@ -2,11 +2,11 @@ import React, { PropTypes } from 'react';
 
 const s = require('./ReactComponent.css');
 
-const Renderer = ({ name, pathLine, description, propList, examples, sidebar }) => {
+const ReactComponentRenderer = ({ name, pathLine, description, props, examples, sidebar }) => {
 	return (
 		<div className={s.root}>
 			<header className={s.header}>
-				<h2 className={s.heading} id={name}>
+				<h2 className={s.primaryHeading} id={name}>
 					{name}
 				</h2>
 				<div className={s.pathLine}>{pathLine}</div>
@@ -19,19 +19,22 @@ const Renderer = ({ name, pathLine, description, propList, examples, sidebar }) 
 			<div>
 				{description}
 			</div>
-			{propList}
+			<div className={s.props}>
+				<h3 className={s.heading}>Props</h3>
+				{props}
+			</div>
 			{examples}
 		</div>
 	);
 };
 
-Renderer.propTypes = {
+ReactComponentRenderer.propTypes = {
 	name: PropTypes.string.isRequired,
 	pathLine: PropTypes.string.isRequired,
-	description: PropTypes.object,
-	propList: PropTypes.object,
-	examples: PropTypes.array,
+	description: PropTypes.node,
+	props: PropTypes.node,
+	examples: PropTypes.node,
 	sidebar: PropTypes.bool,
 };
 
-export default Renderer;
+export default ReactComponentRenderer;

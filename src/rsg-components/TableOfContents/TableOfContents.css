@@ -2,27 +2,6 @@
 	composes: reset font from "../../styles/common.css";
 }
 
-.list {
-	margin: 0;
-	padding: 15px;
-	list-style-type: none;
-}
-
-.item {
-	margin: 0 0 7px;
-	padding: 0;
-	font-size: 15px;
-}
-
-.link {
-	composes: link from "../../styles/colors.css";
-}
-
-.section {
-	composes: link from "../../styles/colors.css";
-	font-weight: bold;
-}
-
 .search {
 	composes: base base-bg border from "../../styles/colors.css";
 	display: block;

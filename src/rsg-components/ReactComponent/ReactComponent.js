@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import Markdown from 'rsg-components/Markdown';
 import Props from 'rsg-components/Props';
-import Playground from 'rsg-components/Playground';
+import Examples from 'rsg-components/Examples';
+import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponentRenderer';
 
-const ReactComponent = (Renderer) => class extends Component {
+export default class ReactComponent extends Component {
 	static propTypes = {
 		highlightTheme: PropTypes.string.isRequired,
 		component: PropTypes.object.isRequired,
@@ -15,7 +16,9 @@ const ReactComponent = (Renderer) => class extends Component {
 			return null;
 		}
 
-		return (<Markdown text={description} />);
+		return (
+			<Markdown text={description} />
+		);
 	}
 
 	renderProps(props) {
@@ -33,44 +36,22 @@ const ReactComponent = (Renderer) => class extends Component {
 			return null;
 		}
 
-		return examples.map((example, index) => {
-			switch (example.type) {
-				case 'code':
-					return (
-						<Playground
-							code={example.content}
-							evalInContext={example.evalInContext}
-							highlightTheme={highlightTheme}
-							key={index}
-						/>
-					);
-				case 'markdown':
-					return (
-						<Markdown
-							text={example.content}
-							key={index}
-						/>
-					);
-				default:
-					return null;
-			}
-		});
+		return (
+			<Examples highlightTheme={highlightTheme} examples={examples} />
+		);
 	}
 
 	render() {
 		const { highlightTheme, component, sidebar } = this.props;
-
 		return (
-			<Renderer
+			<ReactComponentRenderer
 				name={component.name}
 				pathLine={component.pathLine}
 				description={this.renderDescription(component.props.description)}
-				propList={this.renderProps(component.props)}
+				props={this.renderProps(component.props)}
 				examples={this.renderExamples(highlightTheme, component.examples)}
 				sidebar={sidebar}
 			/>
 		);
 	}
-};
-
-export default ReactComponent;
+}

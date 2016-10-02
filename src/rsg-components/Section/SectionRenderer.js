@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 const s = require('./Section.css');
 
-const Renderer = ({ name, content, components }) => {
+const SectionRenderer = ({ name, content, components }) => {
 	return (
 		<div className={s.root}>
 			<header className={s.header}>
@@ -21,10 +21,10 @@ const Renderer = ({ name, content, components }) => {
   );
 };
 
-Renderer.propTypes = {
+SectionRenderer.propTypes = {
 	name: PropTypes.string.isRequired,
 	content: PropTypes.array,
 	components: PropTypes.object,
 };
 
-export default Renderer;
+export default SectionRenderer;

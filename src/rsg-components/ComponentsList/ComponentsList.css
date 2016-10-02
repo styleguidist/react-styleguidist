@@ -1,0 +1,18 @@
+.list {
+	margin: 0;
+	padding: 15px;
+}
+
+.item {
+	margin: 0 0 7px;
+	padding: 0;
+	font-size: 15px;
+}
+
+.link {
+	composes: link from "../../styles/colors.css";
+}
+
+.heading {
+	font-weight: bold;
+}

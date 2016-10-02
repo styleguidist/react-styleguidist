@@ -95,25 +95,11 @@ Now you can change almost any piece of a style guide. For example you can change
 
 Use your browser’s developer tools to find CSS class names of the elements you want to change.
 
-## How to change the behaviour of a style guide?
+## How to change the layout of a style guide?
 
-You can replace any Styleguidist React component. In your style guide config:
+You can replace any Styleguidist React component. But in most of the cases you will want to replace `*Renderer` components — all HTML is rendered by these components. For example `ReactComponentRenderer`, `ComponentsListRenderer`, `PropsRenderer`, etc. — [check the source](https://github.com/sapegin/react-styleguidist/tree/master/src/rsg-components) to see what components are available.
 
-```javascript
-const path = require('path');
-module.exports = {
-  // ...
-  updateWebpackConfig(webpackConfig) {
-    webpackConfig.resolve.alias['rsg-components/StyleGuide'] = path.join(__dirname, 'lib/styleguide/StyleGuide');
-    return webpackConfig;
-  },
-};
-```
-
-There are two special wrapper components. They do nothing by themselves and were made specifically to be replaced with a custom logic:
-
-* `StyleGuide` — the root component of a style guide React app.
-* `Wrapper` — wraps every example component.
+There‘s also a special wrapper component — `Wrapper` — that wraps every example component. By default it just renders `children` as is but you can use it to provide a custom logic.
 
 For example you can replace the `Wrapper` component to wrap any example in the [React Intl’s](http://formatjs.io/react/) provider component. You can’t wrap the whole style guide because every example is compiled separately in a browser.
 
@@ -142,26 +128,42 @@ export default class Wrapper extends Component {
 }
 ```
 
-You can replace the `StyleGuide` component like this:
+You can replace the `StyleGuideRenderer` component like this:
 
 ```javascript
-import React, { Component } from 'react';
-import Layout from 'react-styleguidist/src/rsg-components/Layout';
-import Renderer from 'react-styleguidist/src/rsg-components/Layout/Renderer';
+// styleguide.config.js
+const path = require('path');
+module.exports = {
+  // ...
+  updateWebpackConfig(webpackConfig) {
+    webpackConfig.resolve.alias['rsg-components/StyleGuide/StyleGuideRenderer'] = path.join(__dirname, 'lib/styleguide/StyleGuideRenderer');
+    return webpackConfig;
+  },
+};
 
-export default class StyleGuide extends Component {
-  componentDidMount() {
-    /*_*/
-  }
-
-  render() {
-    const LayoutRenderer = Layout(Renderer);
-    return (
-      <LayoutRenderer {...this.props} />
-    );
-  }
-}
+// lib/styleguide/StyleGuideRenderer.js
+import React from 'react';
+const StyleGuideRenderer = ({ title, components, toc, sidebar }) => (
+	<div className="root">
+		<h1>{title}</h1>
+		<main className="wrapper">
+			<div className="content">
+        {components}
+        <footer className="footer">
+          <Markdown
+            text="Generated with [React Styleguidist](https://github.com/sapegin/react-styleguidist)"
+          />
+        </footer>
+			</div>
+			<div className="sidebar">
+				{toc}
+			</div>
+		</main>
+	</div>
+);
 ```
+
+We have [an example style guide](https://github.com/sapegin/react-styleguidist/tree/master/examples/customised) with custom components.
 
 ## How to debug my components and examples?
 

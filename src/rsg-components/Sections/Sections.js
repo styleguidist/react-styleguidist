@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Section from 'rsg-components/Section';
-import Renderer from 'rsg-components/Section/Renderer';
+import SectionsRenderer from 'rsg-components/Sections/SectionsRenderer';
 
 export default class Sections extends Component {
 	static propTypes = {
@@ -11,10 +11,9 @@ export default class Sections extends Component {
 
 	renderSections() {
 		const { highlightTheme, sections, sidebar } = this.props;
-		const SectionRenderer = Section(Renderer);
 
 		return sections.map(section => (
-			<SectionRenderer
+			<Section
 				key={section.name}
 				highlightTheme={highlightTheme}
 				section={section}
@@ -25,9 +24,7 @@ export default class Sections extends Component {
 
 	render() {
 		return (
-			<div>
-				{this.renderSections()}
-			</div>
+			<SectionsRenderer sections={this.renderSections()} />
 		);
 	}
 }

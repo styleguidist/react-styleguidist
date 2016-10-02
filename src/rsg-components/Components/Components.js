@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactComponent from 'rsg-components/ReactComponent';
-import Renderer from 'rsg-components/ReactComponent/Renderer';
 import Sections from 'rsg-components/Sections';
+import ComponentsRenderer from 'rsg-components/Components/ComponentsRenderer';
 
 export default class Components extends Component {
 	static propTypes = {
@@ -13,11 +13,10 @@ export default class Components extends Component {
 
 	renderComponents() {
 		const { highlightTheme, components, sidebar } = this.props;
-		const ComponentRenderer = ReactComponent(Renderer);
 
-		return components.map((component) => {
+		return components.map(component => {
 			return (
-				<ComponentRenderer
+				<ReactComponent
 					key={component.filepath}
 					highlightTheme={highlightTheme}
 					component={component}
@@ -41,10 +40,10 @@ export default class Components extends Component {
 
 	render() {
 		return (
-			<div>
-				{this.renderComponents()}
-				{this.renderSections()}
-			</div>
+			<ComponentsRenderer
+				components={this.renderComponents()}
+				sections={this.renderSections()}
+			/>
 		);
 	}
 }

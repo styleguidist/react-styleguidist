@@ -3,9 +3,10 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { transform } from 'babel-standalone';
+import PlaygroundError from 'rsg-components/PlaygroundError';
 import Wrapper from 'rsg-components/Wrapper';
 
-import s from './Preview.css';
+// TODO: extract compiler to a separate module
 
 export default class Preview extends Component {
 	static propTypes = {
@@ -104,8 +105,9 @@ export default class Preview extends Component {
 				}
 
 				render() {
-					if (this.state.error) {
-						return <pre className={s.playgroundError}>{this.state.error}</pre>;
+					const { error } = this.state;
+					if (error) {
+						return <PlaygroundError message={error} />;
 					}
 
 					return exampleComponent(this.state, this.setState.bind(this), null);
@@ -128,22 +130,12 @@ export default class Preview extends Component {
 		}
 	}
 
-	renderError() {
-		let { error } = this.state;
-		if (error) {
-			return (
-				<pre className={s.playgroundError}>{error}</pre>
-			);
-		}
-
-		return null;
-	}
-
 	render() {
+		const { error } = this.state;
 		return (
 			<div>
 				<div ref="mount"></div>
-				{this.renderError()}
+				{error && <PlaygroundError message={error} />}
 			</div>
 		);
 	}

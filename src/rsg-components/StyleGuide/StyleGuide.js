@@ -1,11 +1,69 @@
-import React from 'react';
-import Layout from 'rsg-components/Layout';
-import Renderer from 'rsg-components/Layout/Renderer';
+import React, { Component, PropTypes } from 'react';
+import isEmpty from 'lodash/isEmpty';
+import Components from 'rsg-components/Components';
+import TableOfContents from 'rsg-components/TableOfContents';
+import Message from 'rsg-components/Message';
+import StyleGuideRenderer from 'rsg-components/StyleGuide/StyleGuideRenderer';
 
-export default function StyleGuide(props) {
-	const LayoutRenderer = Layout(Renderer);
+const DOCS_URL = 'https://github.com/sapegin/react-styleguidist/blob/master/docs/Configuration.md';
 
-	return (
-		<LayoutRenderer {...props} />
-	);
+export default class StyleGuide extends Component {
+	static propTypes = {
+		config: PropTypes.object.isRequired,
+		components: PropTypes.array.isRequired,
+		sections: PropTypes.array.isRequired,
+		sidebar: PropTypes.bool,
+	};
+
+	static defaultProps = {
+		sidebar: true,
+	};
+
+	static childContextTypes = {
+		config: PropTypes.object.isRequired,
+	};
+
+	getChildContext() {
+		return {
+			config: this.props.config,
+		};
+	}
+
+	renderComponents(config, components, sections, sidebar) {
+		if (!isEmpty(components) || !isEmpty(sections)) {
+			return (
+				<Components
+					highlightTheme={config.highlightTheme}
+					components={components}
+					sections={sections}
+					sidebar={sidebar}
+				/>
+			);
+		}
+
+		return (
+			<Message>
+				No components or sections found.
+				Check [the `components` and `sections` options]({DOCS_URL}) in your style guide config.
+			</Message>
+		);
+	}
+
+	renderTableOfContents(components, sections) {
+		return <TableOfContents components={components} sections={sections} />;
+	}
+
+	render() {
+		let { config, components, sections, sidebar } = this.props;
+
+		return (
+			<StyleGuideRenderer
+				title={config.title}
+				components={this.renderComponents(config, components, sections, sidebar)}
+				sections={sections}
+				toc={this.renderTableOfContents(components, sections)}
+				sidebar={sidebar}
+			/>
+		);
+	}
 }
