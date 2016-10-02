@@ -13,9 +13,8 @@
 }
 
 .sidebar {
-	composes: border from "../../styles/colors.css";
+	composes: code-bg border from "../../styles/colors.css";
 	border-width: 0 1px 0 0;
-	background: #f5f5f5;
 	position: fixed;
 	top: 0;
 	left: 0;
