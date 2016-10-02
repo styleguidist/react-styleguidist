@@ -10,16 +10,16 @@ const PlaygroundRenderer = ({ code, showCode, evalInContext, onChange, onCodeTog
 			<Preview code={code} evalInContext={evalInContext} />
 		</div>
 		{showCode ? (
-			<div className={s.editor}>
+			<div>
 				<Editor code={code} onChange={onChange} />
-				<div className={s.hideCode} onClick={onCodeToggle}>
-					hide code
-				</div>
+				<button type="button" className={s.hideCode} onClick={onCodeToggle}>
+					Hide code
+				</button>
 			</div>
 		) : (
-			<div className={s.showCode} onClick={onCodeToggle}>
-				show code
-			</div>
+			<button type="button" className={s.showCode} onClick={onCodeToggle}>
+				Show code
+			</button>
 		)}
 	</div>
 );
