@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import Markdown from 'rsg-components/Markdown';
-import classnames from 'classnames';
+import cx from 'classnames';
 
 const s = require('./StyleGuide.css');
 
 const StyleGuideRenderer = ({ title, components, toc, sidebar }) => (
-	<div className={classnames(s.root, { [s.withoutSidebar]: !sidebar })}>
+	<div className={cx(s.root, { [s.withoutSidebar]: !sidebar })}>
 		<main className={s.wrapper}>
 			<div className={s.content}>
 				<div className={s.components}>
