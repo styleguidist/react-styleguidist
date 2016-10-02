@@ -2,7 +2,7 @@
 	composes: base base-bg from "../../styles/colors.css";
 }
 
-.wrapper {
+.root.hasSidebar {
 	padding-left: 200px;
 }
 
@@ -44,6 +44,3 @@
 	composes: light from "../../styles/colors.css";
 	font-size: 12px;
 }
-
-.withoutSidebar .wrapper { padding-left: 0; }
-.withoutSidebar .sidebar { display: none; }

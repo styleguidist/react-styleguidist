@@ -5,23 +5,23 @@ import cx from 'classnames';
 const s = require('./StyleGuide.css');
 
 const StyleGuideRenderer = ({ title, components, toc, sidebar }) => (
-	<div className={cx(s.root, { [s.withoutSidebar]: !sidebar })}>
-		<main className={s.wrapper}>
-			<div className={s.content}>
-				<div className={s.components}>
-					{components}
-					<footer className={s.footer}>
-						<Markdown
-							text="Generated with [React Styleguidist](https://github.com/sapegin/react-styleguidist)"
-						/>
-					</footer>
-				</div>
+	<div className={cx(s.root, sidebar && s.hasSidebar)}>
+		<main className={s.content}>
+			<div className={s.components}>
+				{components}
+				<footer className={s.footer}>
+					<Markdown
+						text="Generated with [React Styleguidist](https://github.com/sapegin/react-styleguidist)"
+					/>
+				</footer>
 			</div>
+		</main>
+		{sidebar &&
 			<div className={s.sidebar}>
 				<h1 className={s.heading}>{title}</h1>
 				{toc}
 			</div>
-		</main>
+		}
 	</div>
 );
 
