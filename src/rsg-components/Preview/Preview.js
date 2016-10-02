@@ -39,9 +39,7 @@ export default class Preview extends Component {
 	}
 
 	executeCode() {
-		let mountNode = this.refs.mount;
-
-		ReactDOM.unmountComponentAtNode(mountNode);
+		ReactDOM.unmountComponentAtNode(this.mountNode);
 
 		this.setState({
 			error: null,
@@ -120,10 +118,10 @@ export default class Preview extends Component {
 				</Wrapper>
 			);
 
-			ReactDOM.render(wrappedComponent, mountNode);
+			ReactDOM.render(wrappedComponent, this.mountNode);
 		}
 		catch (err) {
-			ReactDOM.unmountComponentAtNode(mountNode);
+			ReactDOM.unmountComponentAtNode(this.mountNode);
 			this.setState({
 				error: err.toString(),
 			});
@@ -134,7 +132,7 @@ export default class Preview extends Component {
 		const { error } = this.state;
 		return (
 			<div>
-				<div ref="mount"></div>
+				<div ref={ref => (this.mountNode = ref)}></div>
 				{error && <PlaygroundError message={error} />}
 			</div>
 		);
