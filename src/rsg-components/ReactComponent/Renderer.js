@@ -3,7 +3,9 @@ import Markdown from 'rsg-components/Markdown';
 
 import classNames from 'classnames';
 
-const Renderer = ({ name, pathLine, description, propList, examples, designMarkdown, sidebar }) => {
+const BUILD_ORIGIN = process.env.NODE_ENV === 'development' ? DEV_BUILD_ORIGIN : PROD_BUILD_ORIGIN
+
+const Renderer = ({ name, nameFallback, pathLine, description, propList, examples, designMarkdown, sidebar }) => {
 	const isSingleColumn = !designMarkdown || !propList;
 
     const rendererClass = 'rsg-react-component__renderer'
@@ -33,6 +35,10 @@ const Renderer = ({ name, pathLine, description, propList, examples, designMarkd
 				{designMarkdown &&
 					<div className={designClasses}>
 						<h2>Design</h2>
+						<h4 className="ReactStyleguidist-Markdown__h4 ReactStyleguidist-common__font">
+							Exported Slice
+						</h4>
+						<img className="mb2" src={`${BUILD_ORIGIN}slices/${nameFallback}/slice.png`} />
 						{designMarkdown}
 					</div>
 				}

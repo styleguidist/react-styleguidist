@@ -64,6 +64,7 @@ const ReactComponent = (Renderer) => class extends Component {
             <div className="rsg-react-component">
                 <Renderer
     				name={component.name}
+    				nameFallback={component.nameFallback}
     				pathLine={component.pathLine}
     				description={this.renderDescription(component.props)}
     				propList={this.renderProps(component.props)}
