@@ -19,7 +19,7 @@ const Renderer = ({ name, pathLine, description, propList, examples, designMarkd
 	})
 
 	return sidebar ?
-		<a href={`#!/${name}`} className={`${rendererClass} bg-white db b--black-30 br2 ba pa4 mt3 no-underline`}>
+		<a href={`#!/${name}`} className={`${rendererClass} bg-white db b--black-30 br2 ba pa4 mt3 no-underline shadow-hover`}>
 			<h3 className="ma0 black f3 fw4">
 				{name}
 			</h3>
