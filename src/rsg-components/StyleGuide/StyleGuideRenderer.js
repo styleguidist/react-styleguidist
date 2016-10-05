@@ -4,15 +4,13 @@ import cx from 'classnames';
 
 const s = require('./StyleGuide.css');
 
-const StyleGuideRenderer = ({ title, components, toc, sidebar }) => (
+const StyleGuideRenderer = ({ title, homepageUrl, components, toc, sidebar }) => (
 	<div className={cx(s.root, sidebar && s.hasSidebar)}>
 		<main className={s.content}>
 			<div className={s.components}>
 				{components}
 				<footer className={s.footer}>
-					<Markdown
-						text="Generated with [React Styleguidist](https://github.com/sapegin/react-styleguidist)"
-					/>
+					<Markdown text={`Generated with [React Styleguidist](${homepageUrl})`} />
 				</footer>
 			</div>
 		</main>
@@ -27,6 +25,7 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar }) => (
 
 StyleGuideRenderer.propTypes = {
 	title: PropTypes.string.isRequired,
+	homepageUrl: PropTypes.string.isRequired,
 	components: PropTypes.object.isRequired,
 	toc: PropTypes.node.isRequired,
 	sidebar: PropTypes.bool,

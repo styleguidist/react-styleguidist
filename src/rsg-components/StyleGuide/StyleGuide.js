@@ -4,8 +4,7 @@ import Components from 'rsg-components/Components';
 import TableOfContents from 'rsg-components/TableOfContents';
 import Message from 'rsg-components/Message';
 import StyleGuideRenderer from 'rsg-components/StyleGuide/StyleGuideRenderer';
-
-const DOCS_URL = 'https://github.com/sapegin/react-styleguidist/blob/master/docs/Configuration.md';
+import { HOMEPAGE, DOCS_CONFIG } from '../../../scripts/consts';
 
 export default class StyleGuide extends Component {
 	static propTypes = {
@@ -41,7 +40,7 @@ export default class StyleGuide extends Component {
 		return (
 			<Message>
 				No components or sections found.
-				Check [the `components` and `sections` options]({DOCS_URL}) in your style guide config.
+				Check [the `components` and `sections` options]({DOCS_CONFIG}) in your style guide config.
 			</Message>
 		);
 	}
@@ -56,6 +55,7 @@ export default class StyleGuide extends Component {
 		return (
 			<StyleGuideRenderer
 				title={config.title}
+				homepageUrl={HOMEPAGE}
 				components={this.renderComponents(components, sections, sidebar)}
 				sections={sections}
 				toc={this.renderTableOfContents(components, sections)}

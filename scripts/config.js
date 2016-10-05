@@ -9,6 +9,7 @@ const semverUtils = require('semver-utils');
 const prettyjson = require('prettyjson');
 const merge = require('lodash/merge');
 const utils = require('./utils/utils');
+const consts = require('./consts');
 
 const CONFIG_FILENAME = 'styleguide.config.js';
 const DEFAULT_CONFIG = {
@@ -43,7 +44,6 @@ const DEPENDENCIES = [
 		to: 2,
 	},
 ];
-const BUGS_URL = 'https://github.com/sapegin/react-styleguidist/issues';
 
 /**
  * Read, parse and validate config file or passed config.
@@ -197,7 +197,7 @@ function validateDependency(packageJson, dependency) {
 	}
 	catch (exception) {
 		console.log('Styleguidist: cannot parse ' + dependency.name + ' version which is "' + version + '".');
-		console.log('Styleguidist might not work properly. Please report this issue at ' + BUGS_URL);
+		console.log('Styleguidist might not work properly. Please report this issue at ' + consts.BUGS_URL);
 		console.log();
 	}
 
@@ -208,7 +208,7 @@ function validateDependency(packageJson, dependency) {
 	else if (major > dependency.to) {
 		console.log('Styleguidist: ' + dependency.name + ' is supported up to version ' + dependency.to + ', ' +
 			'you are using version ' + major + '.');
-		console.log('Styleguidist might not work properly, report bugs at ' + BUGS_URL);
+		console.log('Styleguidist might not work properly, report bugs at ' + consts.BUGS_URL);
 		console.log();
 	}
 }

@@ -6,6 +6,7 @@
 
 const minimist = require('minimist');
 const chalk = require('chalk');
+const consts = require('../scripts/consts');
 
 const argv = minimist(process.argv.slice(2));
 
@@ -46,9 +47,7 @@ function commandServer() {
 			));
 			console.log();
 			console.log('You can change the port using the `serverPort` option in your style guide config:');
-			console.log(chalk.underline(
-				'https://github.com/sapegin/react-styleguidist/blob/master/docs/Configuration.md'
-			));
+			console.log(chalk.underline(consts.DOCS_CONFIG));
 			process.exit(1);
 		}
 		else {
