@@ -10,8 +10,20 @@ const requireIt = utils.requireIt;
 const toCode = utils.toCode;
 
 const DESIGN_CONTENT_NAME = 'DESIGN_README'
+const SLICE_NAME = 'slice'
 
 /* eslint-disable no-console */
+
+function hasSlice(filepath, config) {
+	const sliceFileName = config.getExampleFilename(filepath, `${SLICE_NAME}.png`)
+	const filename = path.parse(filepath).name;
+
+	if (filename === 'index' || filename === DESIGN_CONTENT_NAME) {
+		return fs.existsSync(sliceFileName);
+	} else {
+		return path.basename(path.dirname(filepath)) === filename && fs.existsSync(sliceFileName)
+	}
+}
 
 /**
  * Return JS code as a string for a component with all required for style guide information.
@@ -24,8 +36,10 @@ function processComponent(filepath, config) {
 	const nameFallback = getNameFallback(filepath);
 	const componentPath = path.relative(config.configDir, filepath);
 	const designMarkdownFileName = config.getExampleFilename(filepath, `${DESIGN_CONTENT_NAME}.md`)
+	const sliceFileName = config.getExampleFilename(filepath, 'slice.png')
 
 	const code = {
+		hasSlice: hasSlice(filepath, config),
 		filepath: JSON.stringify(filepath),
 		nameFallback: JSON.stringify(nameFallback),
 		pathLine: JSON.stringify(config.getComponentPathLine(componentPath)),
