@@ -22,7 +22,7 @@ const Renderer = ({ name, hasSlice, nameFallback, pathLine, description, propLis
 	})
 
 	return sidebar ?
-		<a href={`#!/${name}`} className={`${rendererClass} bg-white db b--black-30 br2 ba pa4 mt3 no-underline trans-all shadow-hover`}>
+		<a href={`#!/${name}`} className={`${rendererClass} bg-white db b--black-30 br2 ba pa4 mt2 no-underline trans-all shadow-hover`}>
 			<h3 className="ma0 black f3 fw4">
 				{name}
 			</h3>
