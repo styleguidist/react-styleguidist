@@ -1,11 +1,11 @@
 # Installation
 
- Babel and Webpack are recommended but not required. React Styleguidist works with Webpack 1 and Webpack 2.
+*Webpack is a peer dependency but your project doesn’t have to use it. React Styleguidist works with Webpack 1 and Webpack 2. Babel is recommended but not required.*
 
-1. Install from npm:
+1. Install Styleguidist and peer dependencies from npm:
 
    ```bash
-   npm install --save-dev react-styleguidist
+   npm install --save-dev react-styleguidist react react-dom webpack
    ```
 
 2. Add a **`styleguide.config.js`** file into your project’s root folder. A simplest possible config looks like this:
