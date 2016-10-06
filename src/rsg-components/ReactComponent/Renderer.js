@@ -9,13 +9,14 @@ const Renderer = ({ name, hasSlice, nameFallback, pathLine, description, propLis
 	const isSingleColumn = !designMarkdown || !propList;
 
     const rendererClass = 'rsg-react-component__renderer'
+    const containerClass = 'rsg-react-component__renderer-container'
 
-	const designClasses = classNames('pr3-ns w-100 w-50-ns', {
+	const designClasses = classNames(containerClass, 'pr3-ns w-100 w-50-ns', {
 		'fl': !isSingleColumn,
 		'center': isSingleColumn
 	})
 
-	const codeClasses = classNames('pl3-ns w-100 w-50-ns', {
+	const codeClasses = classNames(containerClass, 'pl3-ns w-100 w-50-ns', {
 		'fl': !isSingleColumn,
 		'center': isSingleColumn
 	})
