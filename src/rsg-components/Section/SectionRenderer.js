@@ -23,7 +23,7 @@ const SectionRenderer = ({ name, content, components }) => {
 
 SectionRenderer.propTypes = {
 	name: PropTypes.string.isRequired,
-	content: PropTypes.array,
+	content: PropTypes.node,
 	components: PropTypes.object,
 };
 
