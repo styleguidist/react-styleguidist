@@ -6,12 +6,28 @@
 
 const minimist = require('minimist');
 const chalk = require('chalk');
+const getConfig = require('../scripts/config');
 const consts = require('../scripts/consts');
+const StyleguidistError = require('../scripts/utils/error');
 
 const argv = minimist(process.argv.slice(2));
 
-const getConfig = require('../scripts/config');
-const config = getConfig(argv);
+let config;
+try {
+	config = getConfig(argv);
+}
+catch (err) {
+	if (err instanceof StyleguidistError) {
+		console.error(chalk.bold.red(err.message));
+		console.log();
+		console.log('Learn how to configure your style guide:');
+		console.log(chalk.underline(consts.DOCS_CONFIG));
+		process.exit(1);
+	}
+	else {
+		throw err;
+	}
+}
 
 switch (argv._[0]) {
 	case 'build':
