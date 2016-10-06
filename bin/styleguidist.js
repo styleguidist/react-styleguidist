@@ -50,7 +50,8 @@ function commandBuild() {
 			process.exit(1);
 		}
 		else {
-			console.log('Style guide published to', chalk.underline(config.styleguideDir));
+			console.log('Style guide published to:');
+			console.log(chalk.underline(config.styleguideDir));
 		}
 	});
 }
@@ -77,7 +78,8 @@ function commandServer() {
 			console.log(err);
 		}
 		else {
-			console.log('Listening at', chalk.underline('http://' + config.serverHost + ':' + config.serverPort));
+			console.log('Style guide server started at:');
+			console.log(chalk.underline('http://' + config.serverHost + ':' + config.serverPort));
 			console.log();
 		}
 	});
