@@ -143,23 +143,23 @@ module.exports = {
 
 // lib/styleguide/StyleGuideRenderer.js
 import React from 'react';
-const StyleGuideRenderer = ({ title, components, toc, sidebar }) => (
-	<div className="root">
-		<h1>{title}</h1>
-		<main className="wrapper">
-			<div className="content">
+const StyleGuideRenderer = ({ title, homepageUrl, components, toc, sidebar }) => (
+  <div className="root">
+    <h1>{title}</h1>
+    <main className="wrapper">
+      <div className="content">
         {components}
         <footer className="footer">
-          <Markdown
-            text="Generated with [React Styleguidist](https://github.com/sapegin/react-styleguidist)"
-          />
+          <Markdown text={`Generated with [React Styleguidist](${homepageUrl})`} />
         </footer>
-			</div>
-			<div className="sidebar">
-				{toc}
-			</div>
-		</main>
-	</div>
+      </div>
+      {sidebar &&
+        <div className="sidebar">
+          {toc}
+        </div>
+      }
+    </main>
+  </div>
 );
 ```
 
