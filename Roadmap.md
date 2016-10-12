@@ -20,4 +20,4 @@
 
 ## 4.2.0
 
-* [ ]  Code splitting: do not load CodeMirror and Babel (?) until first code editor opened.
+* [ ]  Code splitting: do not load CodeMirror until first code editor opened — #198
