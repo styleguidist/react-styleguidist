@@ -2,7 +2,7 @@
 
 ## Initialization
 
-First you need to initialize the API with your style guide config.
+First, you need to initialize the API with your style guide config.
 
 Using a JavaScript object:
 

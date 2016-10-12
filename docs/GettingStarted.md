@@ -148,7 +148,7 @@ const mockData = require('./mocks');
 <Message content={mockData.hello} />
 ```
 
-As an utility, also the [Lodash](https://lodash.com/) library is available globally as `_`.
+As a utility, also the [Lodash](https://lodash.com/) library is available globally as `_`.
 
 Each example has its own state that you can access at the `state` variable and change with the `setState` function. Default state is `{}`.
 
