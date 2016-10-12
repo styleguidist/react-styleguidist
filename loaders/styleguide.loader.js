@@ -15,7 +15,7 @@ const SLICE_NAME = 'slice'
 /* eslint-disable no-console */
 
 function hasSlice(filepath, config) {
-	const sliceFileName = config.getExampleFilename(filepath, `${SLICE_NAME}.png`)
+	const sliceFileName = config.getExampleFilename(filepath, `assets/${SLICE_NAME}.png`)
 	const filename = path.parse(filepath).name;
 
 	if (filename === 'index' || filename === DESIGN_CONTENT_NAME) {
@@ -38,18 +38,20 @@ function processComponent(filepath, config) {
 	const designMarkdownFileName = config.getExampleFilename(filepath, `${DESIGN_CONTENT_NAME}.md`)
 	const sliceFileName = config.getExampleFilename(filepath, 'slice.png')
 
+	// You need to stringify these - otherwise you'll get a compilation error!
 	const code = {
+		imagePath: JSON.stringify(config.imagePath),
 		hasSlice: hasSlice(filepath, config),
 		filepath: JSON.stringify(filepath),
 		nameFallback: JSON.stringify(nameFallback),
 		pathLine: JSON.stringify(config.getComponentPathLine(componentPath)),
-		designMarkdown: getExamples(designMarkdownFileName, nameFallback, config.defaultExample)
+		designMarkdown: getExamples(designMarkdownFileName, nameFallback, config.defaultExample, config.imagePath)
 	};
 
 	if (path.basename(filepath) !== `${DESIGN_CONTENT_NAME}.md`) {
 		const examplesFileName = config.getExampleFilename(filepath);
 
-		code.examples = getExamples(examplesFileName, nameFallback, config.defaultExample);
+		code.examples = getExamples(examplesFileName, nameFallback, config.defaultExample, config.imagePath);
 		code.module = requireIt(filepath);
 		code.props = requireIt('!!props!' + filepath);
 	}
@@ -76,13 +78,13 @@ function getNameFallback(filepath) {
  * @param {string} defaultExample
  * @returns {string}
  */
-function getExamples(examplesFile, nameFallback, defaultExample) {
+function getExamples(examplesFile, nameFallback, defaultExample, imagePath) {
 	if (fs.existsSync(examplesFile)) {
-		return requireIt('examples!' + examplesFile);
+		return requireIt('examples?imagePath=' + imagePath + '!' + examplesFile);
 	}
 
 	if (defaultExample) {
-		return requireIt('examples?componentName=' + nameFallback + '!' + defaultExample);
+		return requireIt('examples?imagePath=' + imagePath + '&componentName=' + nameFallback + '!' + defaultExample);
 	}
 
 	return null;

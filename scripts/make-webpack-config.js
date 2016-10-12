@@ -51,6 +51,20 @@ module.exports = function(config, env) {
 
 	const isProd = env === 'production';
 
+	// Allow for users to provide production or dev-based image origins for embedded
+	// assets in markdown files
+	let assetBuildOrigin = ''
+
+	if (config.assetBuildOrigin) {
+		assetBuildOrigin = isProd ? config.assetBuildOrigin.prod : config.assetBuildOrigin.dev
+	}
+
+	if (config.imagePath) {
+		config.imagePath = assetBuildOrigin + '/' + path.join(config.imagePath, '/');
+	} else {
+		config.imagePath = ''
+	}
+
 	let webpackConfig = {
 		output: {
 			path: config.styleguideDir,
