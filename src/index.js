@@ -1,7 +1,16 @@
 import React from 'react';
 import _ from 'lodash';
 import ReactDOM from 'react-dom';
-import { setComponentsNames, globalizeComponents, promoteInlineExamples, flattenChildren } from './utils/utils';
+import {
+	filterComponentsByExactName,
+	filterComponentsInSectionsByExactName,
+	flattenChildren,
+	globalizeComponents,
+	processComponents,
+	processSections,
+	promoteInlineExamples,
+	setComponentsNames,
+} from './utils/utils';
 import StyleGuide from 'rsg-components/StyleGuide';
 
 import 'highlight.js/styles/tomorrow.css';
@@ -18,22 +27,6 @@ if (module.hot) {
 // Load style guide
 let { config, components, sections } = require('styleguide!index.js');
 
-function processComponents(components) {
-	components = flattenChildren(components);
-	components = promoteInlineExamples(components);
-	components = setComponentsNames(components);
-	globalizeComponents(components);
-	return components;
-}
-
-function processSections(sections) {
-	return sections.map(section => {
-		section.components = processComponents(section.components || []);
-		section.sections = processSections(section.sections || []);
-		return section;
-	});
-}
-
 components = processComponents(components);
 sections = processSections(sections || []);
 
@@ -42,14 +35,12 @@ function renderStyleguide() {
 	const app = document.getElementById('app');
 
 	if (window.location.hash.substr(0, 3) === '#!/') {
-		const filterTargetComponents = list => list.filter(component => component.name === targetComponentName);
-
 		const targetComponentName = window.location.hash.substr(3);
-		const filteredComponents = filterTargetComponents(components);
 
-		sections.forEach(section => {
-			_.merge(filteredComponents, filterTargetComponents(section.components));
-		});
+		const filteredComponents = [
+			...filterComponentsByExactName(components, targetComponentName),
+			...filterComponentsInSectionsByExactName(sections, targetComponentName),
+		];
 
 		ReactDOM.render(
 			<StyleGuide
