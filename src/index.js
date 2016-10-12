@@ -4,12 +4,8 @@ import ReactDOM from 'react-dom';
 import {
 	filterComponentsByExactName,
 	filterComponentsInSectionsByExactName,
-	flattenChildren,
-	globalizeComponents,
 	processComponents,
 	processSections,
-	promoteInlineExamples,
-	setComponentsNames,
 } from './utils/utils';
 import StyleGuide from 'rsg-components/StyleGuide';
 

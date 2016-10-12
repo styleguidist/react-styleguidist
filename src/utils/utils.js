@@ -102,7 +102,7 @@ export function filterComponentsByExactName(componens, name) {
  * @param {string} name
  * @return {Array}
  */
- export function filterComponentsInSectionsByExactName(sections, name) {
+export function filterComponentsInSectionsByExactName(sections, name) {
 	let components = [];
 	sections.forEach(section => {
 		if (section.components) {
