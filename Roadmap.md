@@ -9,12 +9,14 @@
 * [x] Refactoring: Markdown It → Remark on backend and front-end.
 * [x] Refactoring: consistent usage of `*Renderer` components.
 * [x] Refactoring: consistent usage of config via `context` in React components.
-* [ ] Refactoring: move all URLs (docs, homepage, etc.) in code to a single file.
+* [x] Refactoring: move all URLs (docs, homepage, etc.) in code to a single file.
 
 ## 4.1.0
 
-* [ ] Improve single-component usage: new props: disable sidebar, getComponentName(), fork me ribbon, hide isolated link, hide pathLine.
-* [ ] Improve default props: show whitespace, do not show function source.
+* [ ] Refactoring: use [react-group](https://github.com/sapegin/react-group) for lists in `Props` component — #194
+* [ ] Improve single-component usage — #195
+* [ ] Improve default props: show whitespace — #196
+* [ ] Improve default props: do not show function source — #197
 
 ## 4.2.0
 
