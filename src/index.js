@@ -16,17 +16,29 @@ import './styles.css';
 global.React = React;
 global._ = _;
 
-if (module.hot) {
-	module.hot.accept();
+// Load style guide
+let config;
+let components;
+let sections;
+let hasRenderedFullStyleguide;
+let key = 0;
+
+function loadStyleguide() {
+	const styleguide = require('styleguide!index.js');
+	config = styleguide.config;
+	components = processComponents(styleguide.components);
+	sections = processSections(styleguide.sections || []);
+	hasRenderedFullStyleguide = false;
+	key += 1;
 }
 
-// Load style guide
-let { config, components, sections } = require('styleguide!index.js');
+if (module.hot) {
+	module.hot.accept('styleguide!index.js', () => {
+		loadStyleguide();
+		renderStyleguide();
+	});
+}
 
-components = processComponents(components);
-sections = processSections(sections || []);
-
-let hasRenderedFullStyleguide = false;
 function renderStyleguide() {
 	const app = document.getElementById('app');
 
@@ -40,6 +52,7 @@ function renderStyleguide() {
 
 		ReactDOM.render(
 			<StyleGuide
+				key={key}
 				config={config}
 				components={filteredComponents}
 				sections={[]}
@@ -52,6 +65,7 @@ function renderStyleguide() {
 	else if (!hasRenderedFullStyleguide) {
 		ReactDOM.render(
 			<StyleGuide
+				key={key}
 				config={config}
 				components={components}
 				sections={sections}
@@ -64,4 +78,5 @@ function renderStyleguide() {
 
 window.addEventListener('hashchange', renderStyleguide);
 
+loadStyleguide();
 renderStyleguide();
