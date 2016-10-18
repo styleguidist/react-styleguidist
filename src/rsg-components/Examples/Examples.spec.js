@@ -24,9 +24,7 @@ test('should render examples', () => {
 		/>,
 		{
 			context: {
-				config: {
-					codeKey: 1,
-				},
+				codeKey: 1,
 			},
 		}
 	);

@@ -17,11 +17,13 @@ export default class StyleGuide extends Component {
 		sidebar: true,
 	};
 	static childContextTypes = {
+		codeKey: PropTypes.number.isRequired,
 		config: PropTypes.object.isRequired,
 	};
 
 	getChildContext() {
 		return {
+			codeKey: this.props.codeKey,
 			config: this.props.config,
 		};
 	}

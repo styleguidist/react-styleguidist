@@ -21,10 +21,6 @@ let codeKey = 0;
 
 function renderStyleguide() {
 	const styleguide = require('styleguide!index.js');
-	const config = {
-		...styleguide.config,
-		codeKey,
-	};
 
 	let components = processComponents(styleguide.components);
 	let sections = processSections(styleguide.sections || []);
@@ -42,7 +38,8 @@ function renderStyleguide() {
 
 	ReactDOM.render(
 		<StyleGuide
-			config={config}
+			codeKey={codeKey}
+			config={styleguide.config}
 			components={components}
 			sections={sections}
 			sidebar={sidebar}
