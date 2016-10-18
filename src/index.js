@@ -16,18 +16,18 @@ import './styles.css';
 global.React = React;
 global._ = _;
 
-if (module.hot) {
-	module.hot.accept();
-}
-
-// Load style guide
-let { config, components, sections } = require('styleguide!index.js');
-
-components = processComponents(components);
-sections = processSections(sections || []);
-
 let hasRenderedFullStyleguide = false;
+let codeKey = 0;
+
 function renderStyleguide() {
+	const styleguide = require('styleguide!index.js');
+	const config = {
+		...styleguide.config,
+		codeKey,
+	};
+	const components = processComponents(styleguide.components);
+	const sections = processSections(styleguide.sections || []);
+
 	const app = document.getElementById('app');
 
 	if (window.location.hash.substr(0, 3) === '#!/') {
@@ -63,5 +63,13 @@ function renderStyleguide() {
 }
 
 window.addEventListener('hashchange', renderStyleguide);
+
+if (module.hot) {
+	module.hot.accept('styleguide!index.js', () => {
+		codeKey += 1;
+		hasRenderedFullStyleguide = false;
+		renderStyleguide();
+	});
+}
 
 renderStyleguide();
