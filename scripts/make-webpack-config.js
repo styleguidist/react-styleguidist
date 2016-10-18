@@ -211,7 +211,7 @@ module.exports = function(config, env) {
 						loader: 'babel',
 						query: {
 							babelrc: false,
-							presets: ['es2015', 'react', 'stage-0', 'react-hmre'],
+							presets: ['es2015', 'react', 'stage-0'],
 						},
 					},
 				],

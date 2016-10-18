@@ -50,24 +50,7 @@
 
    **Note**: don’t forget `include` or `exclude` options for your Webpack loaders, otherwise they will interfere with Styleguidist’s loaders. Also do not include `node_modules` folder.
 
-4. Configure [hot module replacement](https://github.com/gaearon/react-transform-hmr). This is optional, but highly recommended.
-
-   Install React Transform for Babel, if you don’t have it yet: `npm install --save-dev babel-preset-react-hmre`.
-
-   When you run the Styleguidist server, `NODE_ENV` is set to `development` and when you build style guide `NODE_ENV` is set to `production`, so you can enable hot module replacement only in development. Update your `.babelrc`:
-
-   ```json
-   {
-     "presets": ["es2015", "react"],
-     "env": {
-       "development": {
-         "presets": ["react-hmre"]
-       }
-     }
-   }
-   ```
-
-5. Add these scripts to your `package.json`:
+4. Add these scripts to your `package.json`:
 
   ```javascript
   {
@@ -79,7 +62,7 @@
   }
   ```
 
-6. Run **`npm run styleguide-server`** to start style guide dev server.
+5. Run **`npm run styleguide-server`** to start style guide dev server.
 
 To customize your style guide, head to the [Configuration section](Configuration.md).
 
