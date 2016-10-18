@@ -157,3 +157,15 @@ test('should return components at any level with exact name', t => {
 	const result = utils.filterComponentsInSectionsByExactName(SECTIONS, 'Image');
 	t.deepEqual(result, [COMPONENTS[1]]);
 });
+
+// getComponentNameFromHash
+
+test('should return important part of hash if it contains component name', t => {
+	const result = utils.getComponentNameFromHash('#!/Button');
+	t.deepEqual(result, 'Button');
+});
+
+test('should return null if hash contains no component name', t => {
+	const result = utils.getComponentNameFromHash('Button');
+	t.deepEqual(result, null);
+});

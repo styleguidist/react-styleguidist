@@ -114,3 +114,17 @@ export function filterComponentsInSectionsByExactName(sections, name) {
 	});
 	return components;
 }
+
+/**
+ * Returns component name from hash part or page URL:
+ * http://localhost:3000/#!/Button → Button
+ *
+ * @param {string} [hash]
+ * @returns {string}
+ */
+export function getComponentNameFromHash(hash = window.location.hash) {
+	return hash.substr(0, 3) === '#!/'
+		? hash.substr(3)
+		: null
+	;
+}

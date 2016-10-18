@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import ReactDOM from 'react-dom';
 import {
+	getComponentNameFromHash,
 	filterComponentsByExactName,
 	filterComponentsInSectionsByExactName,
 	processComponents,
@@ -29,8 +30,8 @@ function renderStyleguide() {
 	let sections = processSections(styleguide.sections || []);
 	let sidebar = true;
 
-	if (window.location.hash.substr(0, 3) === '#!/') {
-		const targetComponentName = window.location.hash.substr(3);
+	const targetComponentName = getComponentNameFromHash();
+	if (targetComponentName) {
 		components = [
 			...filterComponentsByExactName(components, targetComponentName),
 			...filterComponentsInSectionsByExactName(sections, targetComponentName),
