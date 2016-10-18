@@ -21,7 +21,14 @@ test('should render examples', () => {
 	const actual = shallow(
 		<Examples
 			examples={examples}
-		/>
+		/>,
+		{
+			context: {
+				config: {
+					codeKey: 1,
+				},
+			},
+		}
 	);
 
 	expect(actual.node, 'to contain',
