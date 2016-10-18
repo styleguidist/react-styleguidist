@@ -16,7 +16,6 @@ import './styles.css';
 global.React = React;
 global._ = _;
 
-let hasRenderedFullStyleguide = false;
 let codeKey = 0;
 
 function renderStyleguide() {
@@ -25,41 +24,30 @@ function renderStyleguide() {
 		...styleguide.config,
 		codeKey,
 	};
-	const components = processComponents(styleguide.components);
-	const sections = processSections(styleguide.sections || []);
 
-	const app = document.getElementById('app');
+	let components = processComponents(styleguide.components);
+	let sections = processSections(styleguide.sections || []);
+	let sidebar = true;
 
 	if (window.location.hash.substr(0, 3) === '#!/') {
 		const targetComponentName = window.location.hash.substr(3);
-
-		const filteredComponents = [
+		components = [
 			...filterComponentsByExactName(components, targetComponentName),
 			...filterComponentsInSectionsByExactName(sections, targetComponentName),
 		];
+		sections = [];
+		sidebar = false;
+	}
 
-		ReactDOM.render(
-			<StyleGuide
-				config={config}
-				components={filteredComponents}
-				sections={[]}
-				sidebar={false}
-			/>,
-			app
-		);
-		hasRenderedFullStyleguide = false;
-	}
-	else if (!hasRenderedFullStyleguide) {
-		ReactDOM.render(
-			<StyleGuide
-				config={config}
-				components={components}
-				sections={sections}
-			/>,
-			app
-		);
-		hasRenderedFullStyleguide = true;
-	}
+	ReactDOM.render(
+		<StyleGuide
+			config={config}
+			components={components}
+			sections={sections}
+			sidebar={sidebar}
+		/>,
+		document.getElementById('app')
+	);
 }
 
 window.addEventListener('hashchange', renderStyleguide);
@@ -67,7 +55,6 @@ window.addEventListener('hashchange', renderStyleguide);
 if (module.hot) {
 	module.hot.accept('styleguide!index.js', () => {
 		codeKey += 1;
-		hasRenderedFullStyleguide = false;
 		renderStyleguide();
 	});
 }
