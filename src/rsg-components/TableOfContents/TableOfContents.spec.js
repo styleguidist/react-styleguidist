@@ -61,11 +61,15 @@ test('should render renderer with sections with nested components', () => {
 
 	expect(actual.node, 'to contain',
 		<TableOfContentsRenderer
-			items={<ComponentsList items={[
-				{ heading: true, name: 'Introduction', content: <ComponentsList items={[]} /> },
-				{ heading: true, name: 'Buttons', content: <ComponentsList items={sections[1].components} /> },
-				{ heading: true, name: 'Forms', content: <ComponentsList items={sections[2].components} /> },
-			]} />}
+			items={
+				<ComponentsList
+					items={[
+						{ heading: true, name: 'Introduction', content: <ComponentsList items={[]} /> },
+						{ heading: true, name: 'Buttons', content: <ComponentsList items={sections[1].components} /> },
+						{ heading: true, name: 'Forms', content: <ComponentsList items={sections[2].components} /> },
+					]}
+				/>
+			}
 		/>
 	);
 });
@@ -97,9 +101,13 @@ test('should render a filtered list, should hide empty sections', () => {
 
 	expect(actual.node, 'to contain',
 		<TableOfContentsRenderer
-			items={<ComponentsList items={[
-				{ heading: true, name: 'Forms', content: <ComponentsList items={[sections[2].components[0]]} /> },
-			]} />}
+			items={
+				<ComponentsList
+					items={[
+						{ heading: true, name: 'Forms', content: <ComponentsList items={[sections[2].components[0]]} /> },
+					]}
+				/>
+			}
 		/>
 	);
 });
@@ -114,9 +122,13 @@ test('should filter section names', () => {
 
 	expect(actual.node, 'to contain',
 		<TableOfContentsRenderer
-			items={<ComponentsList items={[
-				{ heading: true, name: 'Forms', content: <ComponentsList items={[]} /> },
-			]} />}
+			items={
+				<ComponentsList
+					items={[
+						{ heading: true, name: 'Forms', content: <ComponentsList items={[]} /> },
+					]}
+				/>
+			}
 		/>
 	);
 });
