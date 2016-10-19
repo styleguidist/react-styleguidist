@@ -79,7 +79,7 @@ module.exports = function(config, env) {
 		module: {
 			loaders: [
 				{
-					test: new RegExp(`node_modules[/\\\\](${jsonModules.join('|')})[/\\\\].*\.json$`),
+					test: new RegExp(`node_modules[/\\\\](${jsonModules.join('|')})[/\\\\].*\\.json$`),
 					include: /node_modules/,
 					loader: 'json',
 				},
