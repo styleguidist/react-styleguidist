@@ -19,13 +19,9 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   If your components look like `components/Button/Button.js` + `components/Button/index.js`:
 
   ```javascript
-  const path = require('path');
-  const glob = require('glob');
   module.exports = {
     // ...
-    components() {
-      return glob.sync(path.resolve(__dirname, 'lib/components/**/*.js')).filter(module => /\/[A-Z]\w*\.js$/.test(module));
-    },
+    components: './components/**/[A-Z]*.js',
   };
   ```
 

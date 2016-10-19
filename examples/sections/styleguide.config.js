@@ -1,16 +1,11 @@
 const path = require('path');
-const glob = require('glob');
 
 module.exports = {
 	title: 'React Style Guide Example',
 	sections: [
 		{
 			name: 'Example Section',
-			components() {
-				return glob.sync(path.resolve(__dirname, 'lib/components/**/*.js'))
-					.filter(module => /\/[A-Z]\w*\.js$/.test(module))
-				;
-			},
+			components: './components/**/[A-Z]*.js',
 		},
 	],
 	updateWebpackConfig(webpackConfig) {

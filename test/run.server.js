@@ -1,15 +1,10 @@
 const path = require('path');
-const glob = require('glob');
 const styleguidist = require('../scripts');
 
 /* eslint-disable no-console */
 
 styleguidist({
-	components() {
-		return glob.sync(path.resolve(__dirname, '../examples/basic/lib/components/**/*.js'))
-			.filter(module => /\/[A-Z]\w*\.js$/.test(module))
-		;
-	},
+	components: './components/**/[A-Z]*.js',
 	updateWebpackConfig(webpackConfig) {
 		const dir = path.resolve(__dirname, '../examples/basic/lib');
 		webpackConfig.module.loaders.push(
