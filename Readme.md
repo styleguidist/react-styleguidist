@@ -33,6 +33,12 @@ Real projects using React Styleguidist:
 * [Bulma Components](http://bokuweb.github.io/re-bulma/)
 * [More projects…](https://github.com/sapegin/react-styleguidist/issues/127)
 
+## Integration with other tools
+
+* [create-react-app](https://github.com/just-boris/react-app-styleguidist)
+* [TypeScript](https://github.com/pvasek/react-docgen-typescript)
+* [SourceJS](https://github.com/sourcejs/sourcejs-react-styleguidist)
+
 ## Resources
 
 * [Building React Components Library](https://skillsmatter.com/skillscasts/8140-building-react-components-library) talk by [Robert Haritonov](https://github.com/operatino)
