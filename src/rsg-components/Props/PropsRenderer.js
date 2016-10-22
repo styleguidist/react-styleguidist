@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import Code from 'rsg-components/Code';
 import Markdown from 'rsg-components/Markdown';
+import Group from 'react-group';
 import { unquote, getType } from './util';
 
 import s from './Props.css';
@@ -93,12 +94,11 @@ function renderEnum(prop) {
 		return <span>{getType(prop).value}</span>;
 	}
 	let values = getType(prop).value.map(({ value }) => (
-		<li className={s.listItem} key={value}>
-			<Code>{unquote(value)}</Code>
-		</li>
+		<Code>{unquote(value)}</Code>
 	));
+
 	return (
-		<span>One of: <ul className={s.list}>{values}</ul></span>
+		<span> One of: <Group className={s.list} separator=", ">children={values}</Group></span>
 	);
 }
 
@@ -106,14 +106,12 @@ function renderUnion(prop) {
 	if (!Array.isArray(getType(prop).value)) {
 		return <span>{getType(prop).value}</span>;
 	}
-	let values = getType(prop).value.map((value, index) => (
-		<li className={s.listItem} key={value.name + index}>
-			<Code className={s.type}>{renderType(value)}</Code>
-		</li>
+	let values = getType(prop).value.map((value) => (
+		<Code className={s.type}>{renderType(value)}</Code>
 	));
 
 	return (
-		<span>One of type: <ul className={s.list}>{values}</ul></span>
+		<span>One of type: <Group className={s.list} seperator=", ">children{values}</Group></span>
 	);
 }
 
