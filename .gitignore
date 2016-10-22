@@ -3,3 +3,4 @@ examples/**/styleguide/index.html
 .publish/
 node_modules/
 Changelog.md
+*.build/
