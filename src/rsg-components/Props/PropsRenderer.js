@@ -57,11 +57,10 @@ function renderDescription(prop) {
 	let { description } = prop;
 	let extra = renderExtra(prop);
 	return (
-		<div>
-			{description && <Markdown text={description} inline />}
-			{description && extra && ' '}
+		<Group separator=" ">
+			{description && <Markdown text={description} inline/>}
 			{extra}
-		</div>
+		</Group>
 	);
 }
 
@@ -127,7 +126,7 @@ function renderShape(props) {
 				<Code className={s.type}>{renderType(prop)}</Code>
 				{defaultValue && ' — '}{defaultValue}
 				{description && ' — '}
-				{description && <Markdown text={description} inline />}
+				{description && <Markdown text={description} inline/>}
 			</div>
 		);
 	}
@@ -138,15 +137,15 @@ export default function PropsRenderer({ props }) {
 	return (
 		<table className={s.table}>
 			<thead className={s.tableHead}>
-				<tr>
-					<th className={s.cellHeading}>Name</th>
-					<th className={s.cellHeading}>Type</th>
-					<th className={s.cellHeading}>Default</th>
-					<th className={s.cellHeading + ' ' + s.cellDesc}>Description</th>
-				</tr>
+			<tr>
+				<th className={s.cellHeading}>Name</th>
+				<th className={s.cellHeading}>Type</th>
+				<th className={s.cellHeading}>Default</th>
+				<th className={s.cellHeading + ' ' + s.cellDesc}>Description</th>
+			</tr>
 			</thead>
 			<tbody className={s.tableBody}>
-				{renderRows(props)}
+			{renderRows(props)}
 			</tbody>
 		</table>
 	);
