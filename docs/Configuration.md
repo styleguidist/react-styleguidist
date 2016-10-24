@@ -163,8 +163,10 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   ```
 
 * **`handlers`**<br>
-  Type: `Array of Function`, optional<br>
+  Type: `Array of Function`, optional, default: [[react-docgen-displayname-handler](https://github.com/nerdlabs/react-docgen-displayname-handler)]<br>
   Array of functions used to process the discovered components and generate documentation objects. Default behaviours include discovering component documentation blocks, prop types, and defaults. If setting this property, it is best to build from the default `react-docgen` handler list, such as in the example below. See the [react-docgen handler documentation](https://github.com/reactjs/react-docgen#handlers) for more information about handlers.
+
+  > NOTE: By default, `react-docgen-displayname-handler` is included which provides better support for Higher Order Components. If you'd like to add additional handlers, be sure to _add_ to the Array rather than replace entirely.
 
   ```javascript
   module.exports = {
