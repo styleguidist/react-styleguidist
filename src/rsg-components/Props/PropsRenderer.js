@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Code from 'rsg-components/Code';
 import Markdown from 'rsg-components/Markdown';
 import Group from 'react-group';
-import { unquote, getType } from './util';
+import { unquote, getType, showSpaces } from './util';
 
 import s from './Props.css';
 
@@ -47,7 +47,7 @@ function renderDefault(prop) {
 	}
 	else if (prop.defaultValue) {
 		return (
-			<Code>{unquote(prop.defaultValue.value)}</Code>
+			<Code>{showSpaces(unquote(prop.defaultValue.value))}</Code>
 		);
 	}
 	return '';
@@ -58,7 +58,7 @@ function renderDescription(prop) {
 	let extra = renderExtra(prop);
 	return (
 		<Group separator=" ">
-			{description && <Markdown text={description} inline/>}
+			{description && <Markdown text={description} inline />}
 			{extra}
 		</Group>
 	);
@@ -93,7 +93,7 @@ function renderEnum(prop) {
 		return <span>{getType(prop).value}</span>;
 	}
 	let values = getType(prop).value.map(({ value }) => (
-		<Code>{unquote(value)}</Code>
+		<Code>{showSpaces(unquote(value))}</Code>
 	));
 
 	return (
@@ -126,7 +126,7 @@ function renderShape(props) {
 				<Code className={s.type}>{renderType(prop)}</Code>
 				{defaultValue && ' — '}{defaultValue}
 				{description && ' — '}
-				{description && <Markdown text={description} inline/>}
+				{description && <Markdown text={description} inline />}
 			</div>
 		);
 	}
@@ -137,15 +137,15 @@ export default function PropsRenderer({ props }) {
 	return (
 		<table className={s.table}>
 			<thead className={s.tableHead}>
-			<tr>
-				<th className={s.cellHeading}>Name</th>
-				<th className={s.cellHeading}>Type</th>
-				<th className={s.cellHeading}>Default</th>
-				<th className={s.cellHeading + ' ' + s.cellDesc}>Description</th>
-			</tr>
+				<tr>
+					<th className={s.cellHeading}>Name</th>
+					<th className={s.cellHeading}>Type</th>
+					<th className={s.cellHeading}>Default</th>
+					<th className={s.cellHeading + ' ' + s.cellDesc}>Description</th>
+				</tr>
 			</thead>
 			<tbody className={s.tableBody}>
-			{renderRows(props)}
+				{renderRows(props)}
 			</tbody>
 		</table>
 	);

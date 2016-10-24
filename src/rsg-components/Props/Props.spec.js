@@ -21,7 +21,7 @@ function render(propTypes, defaultProps = []) {
 			}
 		}
 	`);
-	return shallow(<PropsRenderer props={props.props}/>);
+	return shallow(<PropsRenderer props={props.props} />);
 }
 
 test('should render PropTypes.string', () => {
@@ -118,7 +118,7 @@ test('should render description in Markdown', () => {
 			<td><Code>color</Code></td>
 			<td><Code>string</Code></td>
 			<td></td>
-			<td><Group><Markdown text="Label"/></Group></td>
+			<td><Group><Markdown text="Label" /></Group></td>
 		</tr>
 	);
 });

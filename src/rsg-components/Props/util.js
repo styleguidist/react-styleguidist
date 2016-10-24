@@ -1,5 +1,3 @@
-import trim from 'lodash/trim';
-
 /**
  * Remove quotes around given string.
  *
@@ -7,7 +5,7 @@ import trim from 'lodash/trim';
  * @returns {string}
  */
 export function unquote(string) {
-	return trim(string, '"\'');
+	return string.replace(/^'|^"|"$|'$/g, '');
 }
 
 /**
@@ -18,4 +16,14 @@ export function unquote(string) {
  */
 export function getType(prop) {
 	return prop.flowType || prop.type;
+}
+
+/**
+ * Show starting and ending whitespace around given string.
+ *
+ * @param {string} string
+ * @returns {string}
+ */
+export function showSpaces(string) {
+	return string.replace(/^\s|\s$/g, '␣');
 }
