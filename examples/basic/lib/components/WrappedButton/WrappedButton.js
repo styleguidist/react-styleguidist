@@ -12,7 +12,7 @@ const WrappedButton = ({
 }) => {
 	let styles = {
 		color,
-		fontSize: Button.sizes[size],
+		fontSize: WrappedButton.sizes[size],
 	};
 
 	return (
