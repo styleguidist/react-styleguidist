@@ -97,7 +97,7 @@ function renderEnum(prop) {
 	));
 
 	return (
-		<span> One of: <Group className={s.list} separator=", ">children={values}</Group></span>
+		<span>One of: <Group separator=", ">{values}</Group></span>
 	);
 }
 
@@ -110,7 +110,7 @@ function renderUnion(prop) {
 	));
 
 	return (
-		<span>One of type: <Group className={s.list} seperator=", ">children{values}</Group></span>
+		<span>One of type: <Group seperator=", ">{values}</Group></span>
 	);
 }
 
@@ -132,6 +132,7 @@ function renderShape(props) {
 	}
 	return rows;
 }
+
 
 export default function PropsRenderer({ props }) {
 	return (
