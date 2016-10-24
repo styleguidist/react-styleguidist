@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Editor from 'rsg-components/Editor';
+import EditorLoader from 'rsg-components/Editor/EditorLoader';
 import Preview from 'rsg-components/Preview';
 
 const s = require('./Playground.css');
@@ -11,7 +11,7 @@ const PlaygroundRenderer = ({ code, showCode, evalInContext, onChange, onCodeTog
 		</div>
 		{showCode ? (
 			<div>
-				<Editor code={code} onChange={onChange} />
+				<EditorLoader code={code} onChange={onChange} />
 				<button type="button" className={s.hideCode} onClick={onCodeToggle}>
 					Hide code
 				</button>
