@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Code from 'rsg-components/Code';
 import Markdown from 'rsg-components/Markdown';
-import { unquote, getType } from './util';
+import { unquote, showSpaces, getType } from './util';
 
 import s from './Props.css';
 
@@ -46,7 +46,7 @@ function renderDefault(prop) {
 	}
 	else if (prop.defaultValue) {
 		return (
-			<Code>{unquote(prop.defaultValue.value)}</Code>
+			<Code>{showSpaces(unquote(prop.defaultValue.value))}</Code>
 		);
 	}
 	return '';
@@ -94,7 +94,7 @@ function renderEnum(prop) {
 	}
 	let values = getType(prop).value.map(({ value }) => (
 		<li className={s.listItem} key={value}>
-			<Code>{unquote(value)}</Code>
+			<Code>{showSpaces(unquote(value))}</Code>
 		</li>
 	));
 	return (
