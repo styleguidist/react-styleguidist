@@ -1,6 +1,7 @@
 import test from 'ava';
 import React from 'react';
 import { parse } from 'react-docgen';
+import Group from 'react-group';
 import Code from '../Code';
 import Markdown from '../Markdown';
 import PropsRenderer from './PropsRenderer';
@@ -20,7 +21,7 @@ function render(propTypes, defaultProps = []) {
 			}
 		}
 	`);
-	return shallow(<PropsRenderer props={props.props} />);
+	return shallow(<PropsRenderer props={props.props}/>);
 }
 
 test('should render PropTypes.string', () => {
@@ -31,7 +32,7 @@ test('should render PropTypes.string', () => {
 			<td><Code>color</Code></td>
 			<td><Code>string</Code></td>
 			<td></td>
-			<td><div /></td>
+			<td><Group /></td>
 		</tr>
 	);
 });
@@ -44,7 +45,7 @@ test('should render PropTypes.string with a default value', () => {
 			<td><Code>color</Code></td>
 			<td><Code>string</Code></td>
 			<td><Code>pink</Code></td>
-			<td><div /></td>
+			<td><Group /></td>
 		</tr>
 	);
 });
@@ -57,7 +58,7 @@ test('should render PropTypes.string.isRequired', () => {
 			<td><Code>color</Code></td>
 			<td><Code>string</Code></td>
 			<td><span>Required</span></td>
-			<td><div /></td>
+			<td><Group /></td>
 		</tr>
 	);
 });
@@ -70,7 +71,7 @@ test('should render PropTypes.arrayOf', () => {
 			<td><Code>colors</Code></td>
 			<td><Code>string[]</Code></td>
 			<td></td>
-			<td><div /></td>
+			<td><Group /></td>
 		</tr>
 	);
 });
@@ -83,28 +84,27 @@ test('should render PropTypes.instanceOf', () => {
 			<td><Code>num</Code></td>
 			<td><Code>Number</Code></td>
 			<td></td>
-			<td><div /></td>
+			<td><Group /></td>
 		</tr>
 	);
 });
 
 test('should render PropTypes.shape', () => {
 	const actual = render(['foo: PropTypes.shape({bar: PropTypes.number.isRequired, baz: PropTypes.any})']);
-
 	expect(actual.node, 'to contain',
 		<tr>
 			<td><Code>foo</Code></td>
 			<td><Code>shape</Code></td>
 			<td></td>
 			<td>
-				<div>
+				<Group>
 					<div>
 						<Code>bar</Code>: <Code>number</Code> — <span>Required</span>
 					</div>
 					<div>
 						<Code>baz</Code>: <Code>any</Code>
 					</div>
-				</div>
+				</Group>
 			</td>
 		</tr>
 	);
@@ -118,7 +118,7 @@ test('should render description in Markdown', () => {
 			<td><Code>color</Code></td>
 			<td><Code>string</Code></td>
 			<td></td>
-			<td><div><Markdown text="Label" /></div></td>
+			<td><Group><Markdown text="Label"/></Group></td>
 		</tr>
 	);
 });
@@ -131,7 +131,7 @@ test('should render unknown proptype for a prop when a relevant proptype is not 
 			<td><Code>color</Code></td>
 			<td><Code>unknown</Code></td>
 			<td><Code>pink</Code></td>
-			<td><div /></td>
+			<td><Group /></td>
 		</tr>
 	);
 });
