@@ -57,7 +57,7 @@ function renderDescription(prop) {
 	let { description } = prop;
 	let extra = renderExtra(prop);
 	return (
-		<Group separator=" ">
+		<Group>
 			{description && <Markdown text={description} inline />}
 			{extra}
 		</Group>
@@ -97,7 +97,7 @@ function renderEnum(prop) {
 	));
 
 	return (
-		<span>One of: <Group separator=", ">{values}</Group></span>
+		<span>One of: <Group separator=", " inline>{values}</Group></span>
 	);
 }
 
@@ -110,7 +110,7 @@ function renderUnion(prop) {
 	));
 
 	return (
-		<span>One of type: <Group seperator=", ">{values}</Group></span>
+		<span>One of type: <Group seperator=", " inline>{values}</Group></span>
 	);
 }
 
@@ -132,7 +132,6 @@ function renderShape(props) {
 	}
 	return rows;
 }
-
 
 export default function PropsRenderer({ props }) {
 	return (
