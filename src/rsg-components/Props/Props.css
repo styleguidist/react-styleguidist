@@ -41,19 +41,3 @@
 .type {
 	composes: type from "../../styles/colors.css";
 }
-
-.list {
-	display: inline;
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-}
-.listItem {
-	display: inline;
-}
-.listItem:after {
-	content: ", ";
-}
-.listItem:last-child:after {
-	content: "";
-}
