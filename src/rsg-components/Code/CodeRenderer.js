@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react';
-import cx from 'classnames';
 
 import s from '../Markdown/Markdown.css';
 
 const CodeRenderer = ({ className, children }) => (
-	<code className={cx(s.code, className)}>{children}</code>
+	<span className={className}>
+		<code className={s.code}>{children}</code>
+	</span>
 );
 
 CodeRenderer.propTypes = {
