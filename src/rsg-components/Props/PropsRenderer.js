@@ -106,7 +106,7 @@ function renderUnion(prop) {
 		return <span>{getType(prop).value}</span>;
 	}
 	let values = getType(prop).value.map((value) => (
-		<Code className={s.type}>{renderType(value)}</Code>
+		<Code>{renderType(value)}</Code>
 	));
 
 	return (
