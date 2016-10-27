@@ -166,26 +166,30 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   Type: `Array of Function`, optional, default: [[react-docgen-displayname-handler](https://github.com/nerdlabs/react-docgen-displayname-handler)]<br>
   Array of functions used to process the discovered components and generate documentation objects. Default behaviours include discovering component documentation blocks, prop types, and defaults. If setting this property, it is best to build from the default `react-docgen` handler list, such as in the example below. See the [react-docgen handler documentation](https://github.com/reactjs/react-docgen#handlers) for more information about handlers.
 
-  > NOTE: By default, `react-docgen-displayname-handler` is included which provides better support for Higher Order Components. If you'd like to add additional handlers, be sure to _add_ to the Array rather than replace entirely.
+  Also note that the default handler, `react-docgen-displayname-handler` should be included to better support higher order components.
 
   ```javascript
   module.exports = {
     // ...
-    handlers: require('react-docgen').defaultHandlers.concat((documentation, path) => {
-      // Calculate a display name for components based upon the declared class name.
-      if (path.value.type === 'ClassDeclaration' && path.value.id.type === 'Identifier') {
-        documentation.set('displayName', path.value.id.name);
+    handlers: require('react-docgen').defaultHandlers.concat(
+      (documentation, path) => {
+        // Calculate a display name for components based upon the declared class name.
+        if (path.value.type === 'ClassDeclaration' && path.value.id.type === 'Identifier') {
+          documentation.set('displayName', path.value.id.name);
 
-        // Calculate the key required to find the component in the module exports
-        if (path.parentPath.value.type === 'ExportNamedDeclaration') {
-          documentation.set('path', path.value.id.name);
+          // Calculate the key required to find the component in the module exports
+          if (path.parentPath.value.type === 'ExportNamedDeclaration') {
+            documentation.set('path', path.value.id.name);
+          }
         }
-      }
 
-      // The component is the default export
-      if (path.parentPath.value.type === 'ExportDefaultDeclaration') {
-        documentation.set('path', 'default');
-      }
-    }),
+        // The component is the default export
+        if (path.parentPath.value.type === 'ExportDefaultDeclaration') {
+          documentation.set('path', 'default');
+        }
+      },
+      // To better support higher order components
+      require('react-docgen-displayname-handler').default,
+    ),
   };
   ```
