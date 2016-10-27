@@ -90,7 +90,7 @@
     "sinon": "~1.17.6",
     "unexpected": "~10.18.1",
     "unexpected-react": "~3.2.4",
-    "webpack": "1.13.2 || ^2.1.0-beta"
+    "webpack": "1.13.3 || ^2.1.0-beta"
   },
   "scripts": {
     "test": "npm run lint && npm run test:ava",
