@@ -11,6 +11,7 @@ const merge = require('lodash/merge');
 const utils = require('./utils/utils');
 const consts = require('./consts');
 const StyleguidistError = require('./utils/error');
+const reactDocgen = require('react-docgen');
 const displayNameHandler = require('react-docgen-displayname-handler').default;
 
 const CONFIG_FILENAME = 'styleguide.config.js';
@@ -31,9 +32,7 @@ const DEFAULT_CONFIG = {
 	getExampleFilename: componentpath => path.join(path.dirname(componentpath), 'Readme.md'),
 	getComponentPathLine: componentpath => componentpath,
 	updateWebpackConfig: null,
-	handlers: [
-		displayNameHandler,
-	],
+	handlers: reactDocgen.defaultHandlers.concat(displayNameHandler),
 };
 const DEPENDENCIES = [
 	{
