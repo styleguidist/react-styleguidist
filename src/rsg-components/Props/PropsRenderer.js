@@ -92,10 +92,10 @@ function renderEnum(prop) {
 	if (!Array.isArray(getType(prop).value)) {
 		return <span>{getType(prop).value}</span>;
 	}
-	let values = getType(prop).value.map(({ value }) => (
-		<Code>{showSpaces(unquote(value))}</Code>
-	));
 
+	const values = getType(prop).value.map(({ value }) => (
+		<Code key={value}>{showSpaces(unquote(value))}</Code>
+	));
 	return (
 		<span>One of: <Group separator=", " inline>{values}</Group></span>
 	);
@@ -105,12 +105,12 @@ function renderUnion(prop) {
 	if (!Array.isArray(getType(prop).value)) {
 		return <span>{getType(prop).value}</span>;
 	}
-	let values = getType(prop).value.map((value) => (
-		<Code className={s.type}>{renderType(value)}</Code>
-	));
 
+	const values = getType(prop).value.map(value => (
+		<Code key={value.name} className={s.type}>{renderType(value)}</Code>
+	));
 	return (
-		<span>One of type: <Group seperator=", " inline>{values}</Group></span>
+		<span>One of type: <Group separator=", " inline>{values}</Group></span>
 	);
 }
 
