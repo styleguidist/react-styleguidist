@@ -98,7 +98,6 @@ module.exports = function(config, env) {
 					loader: 'style!css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]',
 				},
 			],
-			noParse: /babel-standalone/,
 		},
 	};
 

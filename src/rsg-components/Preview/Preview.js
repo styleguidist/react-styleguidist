@@ -2,11 +2,11 @@
 
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import { transform } from 'babel-standalone';
+import { transform } from 'buble';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import Wrapper from 'rsg-components/Wrapper';
 
-// TODO: extract compiler to a separate module
+const compileCode = code => transform(code).code;
 
 export default class Preview extends Component {
 	static propTypes = {
@@ -32,12 +32,6 @@ export default class Preview extends Component {
 		}
 	}
 
-	compileCode(code) {
-		return transform(code, {
-			presets: ['es2015', 'react', 'stage-0'],
-		}).code;
-	}
-
 	executeCode() {
 		ReactDOM.unmountComponentAtNode(this.mountNode);
 
@@ -51,7 +45,7 @@ export default class Preview extends Component {
 		}
 
 		try {
-			const compiledCode = this.compileCode(this.props.code);
+			const compiledCode = compileCode(this.props.code);
 
 			// Initiate state and set with the callback in the bottom component;
 			// Workaround for https://github.com/sapegin/react-styleguidist/issues/155 - missed props on first render
