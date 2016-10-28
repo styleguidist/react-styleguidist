@@ -55,6 +55,7 @@ module.exports = function(config, env) {
 		output: {
 			path: config.styleguideDir,
 			filename: 'build/bundle.js',
+			chunkFilename: 'build/[name].js',
 		},
 		resolve: {
 			alias: {
