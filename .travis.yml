@@ -7,6 +7,7 @@ cache:
   directories:
     - $HOME/.npm
     - $HOME/.yarn-cache
+    - travis_phantomjs
 env:
   # Test everything in Webpack 1 and 2
   - export WEBPACK_VERSION="2.1.0-beta.25"
@@ -31,10 +32,16 @@ before_install:
   - npm set progress false
   - npm install -g yarn
   - yarn --version
-  # Install PhantomJS from https://github.com/Medium/phantomjs
-  - mkdir travis-phantomjs
-  - wget https://github.com/Medium/phantomjs/releases/download/v2.1.1/phantomjs-2.1.1-linux-x86_64.tar.bz2 -O $PWD/travis-phantomjs/phantomjs-2.1.1-linux-x86_64.tar.bz2
-  - tar -xvf $PWD/travis-phantomjs/phantomjs-2.1.1-linux-x86_64.tar.bz2 -C $PWD/travis-phantomjs
-  - export PATH=$PWD/travis-phantomjs/phantomjs-2.1.1-linux-x86_64/bin:$PATH
+  # Upgrade PhantomJS
+  - |
+      export PHANTOMJS_VERSION=2.1.1
+      export PATH=$PWD/travis_phantomjs/phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin:$PATH
+      if [ $(phantomjs --version) != $PHANTOMJS_VERSION ]; then
+        rm -rf $PWD/travis_phantomjs
+        mkdir -p $PWD/travis_phantomjs
+        wget https://github.com/Medium/phantomjs/releases/download/v$PHANTOMJS_VERSION/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2
+        tar -xvf phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 -C $PWD/travis_phantomjs
+      fi
+      phantomjs -v
 install:
   - yarn
