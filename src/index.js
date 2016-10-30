@@ -1,6 +1,8 @@
+import 'styles';
+
 import React from 'react';
-import _ from 'lodash';
 import ReactDOM from 'react-dom';
+import _ from 'lodash';
 import {
 	getComponentNameFromHash,
 	filterComponentsByExactName,
@@ -9,9 +11,6 @@ import {
 	processSections,
 } from './utils/utils';
 import StyleGuide from 'rsg-components/StyleGuide';
-
-import 'highlight.js/styles/tomorrow.css';
-import './styles.css';
 
 // Make libraries available in examples
 global.React = React;

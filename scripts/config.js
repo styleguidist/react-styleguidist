@@ -33,6 +33,8 @@ const DEFAULT_CONFIG = {
 	getComponentPathLine: componentpath => componentpath,
 	updateWebpackConfig: null,
 	handlers: reactDocgen.defaultHandlers.concat(displayNameHandler),
+	theme: {},
+	styles: {},
 };
 const DEPENDENCIES = [
 	{
