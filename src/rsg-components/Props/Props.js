@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import trim from 'lodash/trim';
 import Markdown from 'rsg-components/Markdown';
 
+import s from './Props.css';
+
 /* eslint-disable react/prop-types */
 
 export let Code = ({ className = '', children }) => {
@@ -22,7 +24,7 @@ export default class Props extends Component {
 		for (let name in props) {
 			let prop = props[name];
 			rows.push(
-				<tr key={name}>
+				<tr className="rsg-code-props-table-row" key={name}>
 					<td><Code>{name}</Code></td>
 					<td><Code>{this.renderType(getType(prop))}</Code></td>
 					<td>{this.renderDefault(prop)}</td>
@@ -152,7 +154,7 @@ export default class Props extends Component {
 		return (
 			<table>
 				<thead>
-					<tr>
+					<tr class="rsg-code-props-table-heading-row">
 						<th>Name</th>
 						<th>Type</th>
 						<th>Default</th>
