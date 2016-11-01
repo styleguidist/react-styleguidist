@@ -1,15 +1,19 @@
-.rsg-code-props-table-heading-row {
-	display: block;
+.root :global .rsg-code-props-table-heading-row {
 	border-color: #000;
 }
 
-.rsg-code-props-table-heading-row {
+.root :global tr.rsg-code-props-table-heading-row > th:nth-child(2n){
+    display: none;
+}
+
+
+.root :global .rsg-code-props-table-heading-row {
 	> th:nth-child(2n), > th:nth-child(3n) {
     	display: none;
 	}
 }
 
-.rsg-code-props-table-row {
+.root :global .rsg-code-props-table-row {
 	> td:nth-child(2n), > td:nth-child(3n) {
     	display: none;
 	}
