@@ -1,11 +1,11 @@
 .root :global .rsg-code-props-table-heading-row {
-	th:nth-child(2), th:nth-child(3) {
-    display: none;
+	> th:nth-child(2), > th:nth-child(3) {
+    	display: none;
 	}
 }
 
 .root :global .rsg-code-props-table-row {
-	th:nth-child(2), th:nth-child(3) {
-    display: none;
+	> td:nth-child(2), > td:nth-child(3) {
+    	display: none;
 	}
 }
