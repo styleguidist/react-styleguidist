@@ -154,7 +154,7 @@ export default class Props extends Component {
 		return (
 			<table>
 				<thead>
-					<tr class="rsg-code-props-table-heading-row">
+					<tr className="rsg-code-props-table-heading-row">
 						<th>Name</th>
 						<th>Type</th>
 						<th>Default</th>
