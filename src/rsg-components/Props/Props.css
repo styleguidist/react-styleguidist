@@ -6,7 +6,7 @@
     display: none;
 }
 
-.root :global .rsg-code-props-table-row td:nth-child(3){
+.root :global .rsg-code-props-table-row td:nth-child(2){
     display: none;
 }
 
