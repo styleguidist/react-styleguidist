@@ -152,7 +152,7 @@ export default class Props extends Component {
 
 	renderTable(props) {
 		return (
-			<table>
+			<table className={s.root}>
 				<thead>
 					<tr className="rsg-code-props-table-heading-row">
 						<th>Name</th>
