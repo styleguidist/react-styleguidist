@@ -1,7 +1,15 @@
-.root :global tr.rsg-code-props-table-heading-row > th:nth-child(2){
+.root :global .rsg-code-props-table-heading-row th:nth-child(2){
     display: none;
 }
 
-.root :global tr.rsg-code-props-table-heading-row > th:nth-child(3){
+.root :global .rsg-code-props-table-heading-row th:nth-child(3){
+    display: none;
+}
+
+.root :global .rsg-code-props-table-row td:nth-child(3){
+    display: none;
+}
+
+.root :global .rsg-code-props-table-row td:nth-child(3){
     display: none;
 }
