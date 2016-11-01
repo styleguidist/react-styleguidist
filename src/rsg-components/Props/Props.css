@@ -1,4 +1,9 @@
 .root :global .rsg-code-props-table-heading-row {
+	display: block;
+	border-color: #000;
+}
+
+.root :global .rsg-code-props-table-heading-row {
 	> th:nth-child(2n), > th:nth-child(3n) {
     	display: none;
 	}
