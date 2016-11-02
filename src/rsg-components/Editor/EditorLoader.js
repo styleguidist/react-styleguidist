@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import EditorLoaderRenderer from 'rsg-components/Editor/EditorLoaderRenderer';
 
 export default class EditorLoader extends Component {
 	constructor(props) {
@@ -19,7 +20,7 @@ export default class EditorLoader extends Component {
 	render() {
 		const Editor = this.state.editor;
 		if (!Editor) {
-			return <div>Loading...</div>;
+			return <EditorLoaderRenderer />;
 		}
 
 		return <Editor {...this.props} />;
