@@ -1,0 +1,11 @@
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="nav-/-app-bar-/-full-page" transform="translate(-970.000000, -13.000000)" fill="#797979">
+            <g id="container" transform="translate(42.000000, 0.000000)">
+                <g id="close" transform="translate(916.000000, 2.000000)">
+                    <polygon id="icon" transform="translate(22.000000, 21.000000) rotate(45.000000) translate(-22.000000, -21.000000) " points="21 22 10 22 10 20 21 20 21 9 23 9 23 20 34 20 34 22 23 22 23 33 21 33"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -57,11 +57,13 @@ const Section = (Renderer) => class extends Component {
 		const { highlightTheme, section, sidebar } = this.props;
 
 		return (
-			<Renderer
-				name={section.name}
-				content={this.renderContent(highlightTheme, section.content)}
-				components={this.renderComponents(highlightTheme, section.components, section.sections, sidebar)}
-			/>
+            <div className="rsg-section">
+                <Renderer
+    				name={section.name}
+    				content={this.renderContent(highlightTheme, section.content)}
+    				components={this.renderComponents(highlightTheme, section.components, section.sections, sidebar)}
+    			/>
+            </div>
 		);
 	}
 };

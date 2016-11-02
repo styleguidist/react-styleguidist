@@ -45,8 +45,8 @@ function commandServer() {
 			console.log(err);
 		}
 		else {
-			console.log('Listening at', chalk.underline('http://' + config.serverHost + ':' + config.serverPort));
-			console.log();
+			// console.log('Listening at', chalk.underline('http://' + config.serverHost + ':' + config.serverPort));
+			console.log('React Styleguidist is building...');
 		}
 	});
 }

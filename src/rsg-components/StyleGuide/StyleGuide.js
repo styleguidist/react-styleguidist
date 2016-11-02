@@ -6,6 +6,8 @@ export default function StyleGuide(props) {
 	const LayoutRenderer = Layout(Renderer);
 
 	return (
-		<LayoutRenderer {...props} />
+        <div className="rsg-style-guide">
+            <LayoutRenderer {...props} />
+        </div>
 	);
 }

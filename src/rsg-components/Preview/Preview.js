@@ -141,7 +141,7 @@ export default class Preview extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="rsg-preview">
 				<div ref="mount"></div>
 				{this.renderError()}
 			</div>

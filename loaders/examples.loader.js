@@ -13,6 +13,9 @@ const EVAL_PLACEHOLDER_REGEXP = new RegExp(escapeRegExp(JSON.stringify(EVAL_PLAC
 const COMPONENT_PLACEHOLDER = '__COMPONENT__';
 const COMPONENT_PLACEHOLDER_REGEXP = new RegExp(escapeRegExp(COMPONENT_PLACEHOLDER), 'g');
 
+const IMAGE_PLACEHOLDER = '__IMG_ORIGIN__';
+const IMAGE_PLACEHOLDER_REGEXP = new RegExp(escapeRegExp(IMAGE_PLACEHOLDER), 'g');
+
 function examplesLoader(source) {
 	if (this.cacheable) {
 		this.cacheable();
@@ -22,6 +25,9 @@ function examplesLoader(source) {
 	const query = loaderUtils.parseQuery(this.query);
 	const componentName = query.componentName || COMPONENT_PLACEHOLDER;
 	source = source.replace(COMPONENT_PLACEHOLDER_REGEXP, componentName);
+
+	// Replace __IMAGE_ORIGIN__ with the passed-in image path
+	source = source.replace(IMAGE_PLACEHOLDER_REGEXP, query.imagePath)
 
 	// Load examples
 	let examples = chunkify(source);

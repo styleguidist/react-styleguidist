@@ -1,3 +1,10 @@
+# Mobify Fork
+
+* Clone this repo and check out #ui-dev branch
+* Run `npm link`
+* Inside SDK repo: `npm link react-styleguidist && npm run docs:dev`
+* Make any necessary changes to react-styleguidist
+
 # React Styleguidist
 
 [![Build Status](https://travis-ci.org/sapegin/react-styleguidist.svg)](https://travis-ci.org/sapegin/react-styleguidist) [![Dependency Status](https://david-dm.org/sapegin/react-styleguidist.svg)](https://david-dm.org/sapegin/react-styleguidist) [![npm](https://img.shields.io/npm/v/react-styleguidist.svg)](https://www.npmjs.com/package/react-styleguidist)

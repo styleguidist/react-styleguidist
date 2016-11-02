@@ -9,7 +9,21 @@ const utils = require('./utils/js');
 const requireIt = utils.requireIt;
 const toCode = utils.toCode;
 
+const DESIGN_CONTENT_NAME = 'DESIGN_README'
+const SLICE_NAME = 'slice'
+
 /* eslint-disable no-console */
+
+function hasSlice(filepath, config) {
+	const sliceFileName = config.getExampleFilename(filepath, `assets/${SLICE_NAME}.png`)
+	const filename = path.parse(filepath).name;
+
+	if (filename === 'index' || filename === DESIGN_CONTENT_NAME) {
+		return fs.existsSync(sliceFileName);
+	} else {
+		return path.basename(path.dirname(filepath)) === filename && fs.existsSync(sliceFileName)
+	}
+}
 
 /**
  * Return JS code as a string for a component with all required for style guide information.
@@ -20,17 +34,29 @@ const toCode = utils.toCode;
  */
 function processComponent(filepath, config) {
 	const nameFallback = getNameFallback(filepath);
-	const examplesFile = config.getExampleFilename(filepath);
 	const componentPath = path.relative(config.configDir, filepath);
+	const designMarkdownFileName = config.getExampleFilename(filepath, `${DESIGN_CONTENT_NAME}.md`)
+	const sliceFileName = config.getExampleFilename(filepath, 'slice.png')
 
-	return toCode({
+	// You need to stringify these - otherwise you'll get a compilation error!
+	const code = {
+		imagePath: JSON.stringify(config.imagePath),
+		hasSlice: hasSlice(filepath, config),
 		filepath: JSON.stringify(filepath),
 		nameFallback: JSON.stringify(nameFallback),
 		pathLine: JSON.stringify(config.getComponentPathLine(componentPath)),
-		module: requireIt(filepath),
-		props: requireIt('!!props!' + filepath),
-		examples: getExamples(examplesFile, nameFallback, config.defaultExample),
-	});
+		designMarkdown: getExamples(designMarkdownFileName, nameFallback, config.defaultExample, config.imagePath)
+	};
+
+	if (path.basename(filepath) !== `${DESIGN_CONTENT_NAME}.md`) {
+		const examplesFileName = config.getExampleFilename(filepath);
+
+		code.examples = getExamples(examplesFileName, nameFallback, config.defaultExample, config.imagePath);
+		code.module = requireIt(filepath);
+		code.props = requireIt('!!props!' + filepath);
+	}
+
+	return toCode(code);
 }
 
 /**
@@ -41,7 +67,7 @@ function processComponent(filepath, config) {
  */
 function getNameFallback(filepath) {
 	const filename = path.parse(filepath).name;
-	return filename === 'index' ? path.basename(path.dirname(filepath)) : filename;
+	return (filename === 'index' || filename === DESIGN_CONTENT_NAME) ? path.basename(path.dirname(filepath)) : filename;
 }
 
 /**
@@ -52,13 +78,13 @@ function getNameFallback(filepath) {
  * @param {string} defaultExample
  * @returns {string}
  */
-function getExamples(examplesFile, nameFallback, defaultExample) {
+function getExamples(examplesFile, nameFallback, defaultExample, imagePath) {
 	if (fs.existsSync(examplesFile)) {
-		return requireIt('examples!' + examplesFile);
+		return requireIt('examples?imagePath=' + imagePath + '!' + examplesFile);
 	}
 
 	if (defaultExample) {
-		return requireIt('examples?componentName=' + nameFallback + '!' + defaultExample);
+		return requireIt('examples?imagePath=' + imagePath + '&componentName=' + nameFallback + '!' + defaultExample);
 	}
 
 	return null;

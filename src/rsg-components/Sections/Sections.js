@@ -25,7 +25,7 @@ export default class Sections extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="rsg-sections">
 				{this.renderSections()}
 			</div>
 		);

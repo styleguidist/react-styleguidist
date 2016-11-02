@@ -51,10 +51,24 @@ module.exports = function(config, env) {
 
 	const isProd = env === 'production';
 
+	// Allow for users to provide production or dev-based image origins for embedded
+	// assets in markdown files
+	let assetBuildOrigin = ''
+
+	if (config.assetBuildOrigin) {
+		assetBuildOrigin = isProd ? config.assetBuildOrigin.prod : config.assetBuildOrigin.dev
+	}
+
+	if (config.imagePath) {
+		config.imagePath = assetBuildOrigin + '/' + path.join(config.imagePath, '/');
+	} else {
+		config.imagePath = ''
+	}
+
 	let webpackConfig = {
 		output: {
 			path: config.styleguideDir,
-			filename: 'build/bundle.js',
+			filename: 'styleguidist.js',
 		},
 		resolve: {
 			alias: {
@@ -95,6 +109,11 @@ module.exports = function(config, env) {
 					test: /\.css$/,
 					include: sourceDir,
 					loader: 'style!css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]',
+				},
+				{
+					test: /\.svg$/,
+					include: sourceDir,
+					loader: 'babel!svg-react',
 				},
 			],
 			noParse: /babel-standalone/,
@@ -190,7 +209,7 @@ module.exports = function(config, env) {
 	else {
 		webpackConfig = merge(webpackConfig, {
 			entry: [
-				'webpack-hot-middleware/client',
+				require.resolve('webpack-hot-middleware/client'),
 				entryScript,
 			],
 			cache: true,

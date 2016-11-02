@@ -7,19 +7,19 @@ const ReactComponent = (Renderer) => class extends Component {
 	static propTypes = {
 		highlightTheme: PropTypes.string.isRequired,
 		component: PropTypes.object.isRequired,
-		sidebar: PropTypes.bool,
+		sidebar: PropTypes.bool.isRequired,
 	};
 
-	renderDescription(description) {
-		if (!description) {
+	renderDescription(props) {
+		if (!props || !props.description) {
 			return null;
 		}
 
-		return (<Markdown text={description} />);
+		return (<Markdown text={props.description} />);
 	}
 
 	renderProps(props) {
-		if (!props.props) {
+		if (!props || !props.props) {
 			return null;
 		}
 
@@ -61,14 +61,20 @@ const ReactComponent = (Renderer) => class extends Component {
 		const { highlightTheme, component, sidebar } = this.props;
 
 		return (
-			<Renderer
-				name={component.name}
-				pathLine={component.pathLine}
-				description={this.renderDescription(component.props.description)}
-				propList={this.renderProps(component.props)}
-				examples={this.renderExamples(highlightTheme, component.examples)}
-				sidebar={sidebar}
-			/>
+            <div className="rsg-react-component">
+                <Renderer
+                    imagePath={component.imagePath}
+    				name={component.name}
+    				hasSlice={component.hasSlice}
+    				nameFallback={component.nameFallback}
+    				pathLine={component.pathLine}
+    				description={this.renderDescription(component.props)}
+    				propList={this.renderProps(component.props)}
+    				designMarkdown={this.renderExamples(highlightTheme, component.designMarkdown)}
+    				examples={this.renderExamples(highlightTheme, component.examples)}
+    				sidebar={sidebar}
+    			/>
+            </div>
 		);
 	}
 };

@@ -9,9 +9,6 @@ const Renderer = ({ title, components, toc }) => (
 			<div className={s.wrapper}>
 				<div className={s.components}>
 					{components}
-					<footer className={s.footer}>
-						Generated with <a className={s.link} href="https://github.com/sapegin/react-styleguidist">React Styleguidist</a>
-					</footer>
 				</div>
 				<div className={s.sidebar}>{toc}</div>
 			</div>

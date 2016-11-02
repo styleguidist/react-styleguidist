@@ -25,7 +25,11 @@ const DEFAULT_CONFIG = {
 	serverPort: 3000,
 	highlightTheme: 'base16-light',
 	verbose: false,
-	getExampleFilename: componentpath => path.join(path.dirname(componentpath), 'Readme.md'),
+	getExampleFilename: (componentpath, fileName) => {
+		fileName = fileName ? fileName : 'Readme.md';
+
+		return path.join(path.dirname(componentpath), fileName);
+	},
 	getComponentPathLine: componentpath => componentpath,
 	updateWebpackConfig: null,
 };
@@ -119,8 +123,8 @@ function getConfig(options) {
 function findConfig(file) {
 	if (file) {
 		// Custom config location
-
 		const configFilepath = file[0] === '/' ? file : path.join(process.cwd(), file);
+
 		if (!fs.existsSync(configFilepath)) {
 			throw Error('Styleguidist config not found: ' + configFilepath + '.');
 		}
@@ -129,10 +133,10 @@ function findConfig(file) {
 	}
 
 	// Search config file in all parent directories
-
 	let configDir;
+
 	try {
-		configDir = findup.sync(__dirname, CONFIG_FILENAME);
+		configDir = findup.sync(process.cwd(), CONFIG_FILENAME);
 	}
 	catch (exception) {
 		throw Error('Styleguidist config not found: ' + CONFIG_FILENAME + '.');
