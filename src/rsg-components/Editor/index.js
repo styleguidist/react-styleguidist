@@ -1,1 +1,1 @@
-export { default } from './Editor.js';
+export { default } from './EditorLoader.js';

@@ -9,18 +9,19 @@ export default class EditorLoader extends Component {
 	}
 
 	componentDidMount() {
-		require.ensure(['rsg-components/Editor'], require => {
+		require.ensure(['rsg-components/Editor/Editor'], require => {
 			this.setState({
-				editor: require('rsg-components/Editor').default,
+				editor: require('rsg-components/Editor/Editor').default,
 			});
 		});
 	}
 
 	render() {
-		if (!this.state.editor) {
+		const Editor = this.state.editor;
+		if (!Editor) {
 			return <div>Loading...</div>;
 		}
 
-		return <this.state.editor {...this.props} />;
+		return <Editor {...this.props} />;
 	}
 }
