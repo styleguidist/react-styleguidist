@@ -68,7 +68,7 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   Your application static assets folder, will be accessible as `/` in the style guide dev-server.
 
 * **`template`**<br>
-  Type: `String`, default: [src/templates/index.html](../src/templates/index.html)<br>
+  Type: `String`, default: [src/templates/index.html](https://github.com/sapegin/react-styleguidist/blob/master/scripts/templates/index.html)<br>
   HTML file to use as the template for the output.
 
 * **`title`**<br>
