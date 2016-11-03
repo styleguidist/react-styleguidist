@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import Icon from 'rsg-components/Icon';
 
-const renderSearchHeader = (searchTerm, onSearchTermChange, onSearchBlur) => {
+const renderSearchHeader = (searchTerm, onInputMount, onSearchTermChange, onSearchBlur) => {
 	return (
 		<div className="rsg-components__search-header fixed">
 			<header className="w-content-ns bg-white flex justify-start items-center h4 bb b--black-20">
@@ -15,7 +15,7 @@ const renderSearchHeader = (searchTerm, onSearchTermChange, onSearchBlur) => {
 			<div className="bg-white w-100 pv1 bb b--black-20">
 				<div className="mw8 center ph2">
 					<input
-						ref="search-input"
+						ref={onInputMount}
 						className="db w-100 ph1 h2_5 bw1 br1 b--solid b--black-20 lh-input trans-all shadow-hover"
 						placeholder="What Are You Looking For?"
 						onChange={onSearchTermChange}
@@ -43,7 +43,7 @@ const renderPlainHeader = () => {
 	);
 };
 
-const ComponentsRenderer = ({ isListPage, searchTerm, components, sections, onSearchTermChange, onSearchBlur }) => {
+const ComponentsRenderer = ({ isListPage, searchTerm, components, sections, onInputMount, onSearchTermChange, onSearchBlur }) => {
 	const componentSectionClasses = classNames('rsg-components__component-section w-100 mw8 center ph2', {
 		'pt-appbar-searchbar': isListPage,
 		'pt-appbar': !isListPage,
@@ -54,7 +54,7 @@ const ComponentsRenderer = ({ isListPage, searchTerm, components, sections, onSe
 
 	return (
 		<div className={classes}>
-			{isListPage ? renderSearchHeader(searchTerm, onSearchTermChange, onSearchBlur) : renderPlainHeader()}
+			{isListPage ? renderSearchHeader(searchTerm, onInputMount, onSearchTermChange, onSearchBlur) : renderPlainHeader()}
 			<div className={componentSectionClasses}>
 				{components}
 			</div>
@@ -67,6 +67,7 @@ ComponentsRenderer.propTypes = {
 	components: PropTypes.array.isRequired,
 	sections: PropTypes.node.isRequired,
 	isListPage: PropTypes.bool.isRequired,
+	onInputMount: PropTypes.func.isRequired,
 	onSearchTermChange: PropTypes.func.isRequired,
 	onSearchBlur: PropTypes.func.isRequired,
 	searchTerm: PropTypes.string.isRequired,

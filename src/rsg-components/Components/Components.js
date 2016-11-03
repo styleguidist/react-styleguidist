@@ -17,7 +17,7 @@ const handleSearchBlur = () => {
 
 export default class Components extends Component {
 	static propTypes = {
-		highlightTheme: PropTypes.string.isRequired,
+		highlightTheme: PropTypes.string,
 		components: PropTypes.array.isRequired,
 		sections: PropTypes.array.isRequired,
 		sidebar: PropTypes.bool,
@@ -25,6 +25,7 @@ export default class Components extends Component {
 
 	constructor(props) {
 		super(props);
+		this.handleInputMount = this.handleInputMount.bind(this);
 		this.handleSearchTermChange = this.handleSearchTermChange.bind(this);
 		this.handleKeyPress = this.handleKeyPress.bind(this);
 
@@ -41,11 +42,17 @@ export default class Components extends Component {
 		window.removeEventListener('keypress', this.handleKeyPress);
 	}
 
+	handleInputMount(inputNode) {
+		this.setState({
+			searchInput: inputNode,
+		});
+	}
+
 	handleKeyPress(ev) {
 		if (ev.keyCode === KEY_CODES.F_KEY && !searchFocused) {
 			searchFocused = true;
 			ev.preventDefault();
-			this.refs['search-input'].focus();
+			this.state.searchInput && this.state.searchInput.focus();
 		}
 		if (ev.keyCode === KEY_CODES.ESC_KEY) {
 			ev.preventDefault();
@@ -99,6 +106,7 @@ export default class Components extends Component {
 				searchTerm={this.state.searchTerm}
 				components={this.renderComponents()}
 				sections={this.renderSections()}
+				onInputMount={this.handleInputMount}
 				onSearchTermChange={this.handleSearchTermChange}
 				onSearchBlur={handleSearchBlur}
 			/>
