@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import isEmpty from 'lodash/isEmpty';
 import Components from 'rsg-components/Components';
-import TableOfContents from 'rsg-components/TableOfContents';
 import Message from 'rsg-components/Message';
 import StyleGuideRenderer from 'rsg-components/StyleGuide/StyleGuideRenderer';
 import { HOMEPAGE, DOCS_CONFIG } from '../../../scripts/consts';
@@ -52,10 +51,6 @@ export default class StyleGuide extends Component {
 				Check [the `components` and `sections` options]({DOCS_CONFIG}) in your style guide config.
 			</Message>
 		);
-	}
-
-	renderTableOfContents(components, sections) {
-		return <TableOfContents components={components} sections={sections} />;
 	}
 
 	render() {
