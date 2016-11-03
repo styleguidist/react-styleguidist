@@ -93,7 +93,7 @@ module.exports = function(config, env) {
 		module: {
 			loaders: [
 				{
-					test: new RegExp(`node_modules[/\\\\](${jsonModules.join('|')})[/\\\\].*\.json$`),
+					test: new RegExp(`node_modules[/\\\\](${jsonModules.join('|')})[/\\\\].*\\.json$`),
 					include: /node_modules/,
 					loader: 'json',
 				},
@@ -141,12 +141,11 @@ module.exports = function(config, env) {
 			},
 			plugins: [
 				new webpack.LoaderOptionsPlugin({
+					minimize: isProd,
+					debug: !isProd,
 					options: {
 						styleguidist: config,
 					},
-					styleguidist: config,
-					minimize: isProd,
-					debug: !isProd,
 				}),
 			],
 		});
@@ -231,7 +230,7 @@ module.exports = function(config, env) {
 						loader: 'babel',
 						query: {
 							babelrc: false,
-							presets: ['es2015', 'react', 'stage-0', 'react-hmre'],
+							presets: ['es2015', 'react', 'stage-0'],
 						},
 					},
 				],

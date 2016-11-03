@@ -1,8 +1,8 @@
 import { PropTypes } from 'react';
 
-import s from './Layout.css';
+import s from './StyleGuide.css';
 
-const Renderer = ({ title, components, toc }) => (
+const StyleGuideRenderer = ({ title, components, toc, sidebar }) => (
 	<div className={s.root}>
 		<main className={s.content}>
 			<h1 className={s.heading}>{title}</h1>
@@ -10,16 +10,19 @@ const Renderer = ({ title, components, toc }) => (
 				<div className={s.components}>
 					{components}
 				</div>
-				<div className={s.sidebar}>{toc}</div>
+				{sidebar &&
+					<div className={s.sidebar}>{toc}</div>
+				}
 			</div>
 		</main>
 	</div>
 );
 
-Renderer.propTypes = {
+StyleGuideRenderer.propTypes = {
 	title: PropTypes.string.isRequired,
 	components: PropTypes.object.isRequired,
-	toc: PropTypes.node.isRequired
+	toc: PropTypes.node.isRequired,
+	sidebar: PropTypes.bool,
 };
 
-export default Renderer;
+export default StyleGuideRenderer;

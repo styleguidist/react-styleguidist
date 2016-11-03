@@ -109,6 +109,7 @@ function processComponentsSource(components, config) {
 	else {
 		componentFiles = glob.sync(path.resolve(config.configDir, components));
 	}
+	componentFiles = componentFiles.map(file => path.resolve(config.configDir, file));
 
 	if (config.verbose) {
 		console.log();

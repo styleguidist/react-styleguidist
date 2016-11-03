@@ -9,6 +9,8 @@ const semverUtils = require('semver-utils');
 const prettyjson = require('prettyjson');
 const merge = require('lodash/merge');
 const utils = require('./utils/utils');
+const consts = require('./consts');
+const StyleguidistError = require('./utils/error');
 
 const CONFIG_FILENAME = 'styleguide.config.js';
 const DEFAULT_CONFIG = {
@@ -47,7 +49,6 @@ const DEPENDENCIES = [
 		to: 2,
 	},
 ];
-const BUGS_URL = 'https://github.com/sapegin/react-styleguidist/issues';
 
 /**
  * Read, parse and validate config file or passed config.
@@ -80,7 +81,7 @@ function getConfig(options) {
 	if (assetsDir) {
 		assetsDir = path.resolve(configDir, assetsDir);
 		if (!utils.isDirectoryExists(assetsDir)) {
-			throw Error('Styleguidist: "assetsRoot" directory not found: ' + assetsDir);
+			throw new StyleguidistError('Styleguidist: "assetsRoot" directory not found: ' + assetsDir);
 		}
 	}
 
@@ -91,7 +92,7 @@ function getConfig(options) {
 	else if (typeof defaultExample === 'string') {
 		defaultExample = path.resolve(configDir, defaultExample);
 		if (!fs.existsSync(defaultExample)) {
-			throw Error('Styleguidist: "defaultExample" file not found: ' + defaultExample);
+			throw new StyleguidistError('Styleguidist: "defaultExample" file not found: ' + defaultExample);
 		}
 	}
 
@@ -126,7 +127,7 @@ function findConfig(file) {
 		const configFilepath = file[0] === '/' ? file : path.join(process.cwd(), file);
 
 		if (!fs.existsSync(configFilepath)) {
-			throw Error('Styleguidist config not found: ' + configFilepath + '.');
+			throw new StyleguidistError('Styleguidist config not found: ' + configFilepath + '.');
 		}
 
 		return configFilepath;
@@ -139,7 +140,7 @@ function findConfig(file) {
 		configDir = findup.sync(process.cwd(), CONFIG_FILENAME);
 	}
 	catch (exception) {
-		throw Error('Styleguidist config not found: ' + CONFIG_FILENAME + '.');
+		throw new StyleguidistError('Styleguidist config not found: ' + CONFIG_FILENAME + '.');
 	}
 
 	return path.join(configDir, CONFIG_FILENAME);
@@ -152,22 +153,22 @@ function findConfig(file) {
  */
 function validateConfig(config) {
 	if (!config.components && !config.sections) {
-		throw Error('Styleguidist: "components" or "sections" option is required.');
+		throw new StyleguidistError('Styleguidist: "components" or "sections" option is required.');
 	}
 	if (config.sections && !Array.isArray(config.sections)) {
-		throw Error('Styleguidist: "sections" option must be an array.');
+		throw new StyleguidistError('Styleguidist: "sections" option must be an array.');
 	}
 	if (config.getExampleFilename && typeof config.getExampleFilename !== 'function') {
-		throw Error('Styleguidist: "getExampleFilename" option must be a function.');
+		throw new StyleguidistError('Styleguidist: "getExampleFilename" option must be a function.');
 	}
 	if (config.getComponentPathLine && typeof config.getComponentPathLine !== 'function') {
-		throw Error('Styleguidist: "getComponentPathLine" option must be a function.');
+		throw new StyleguidistError('Styleguidist: "getComponentPathLine" option must be a function.');
 	}
 	if (config.updateWebpackConfig && typeof config.updateWebpackConfig !== 'function') {
-		throw Error('Styleguidist: "updateWebpackConfig" option must be a function.');
+		throw new StyleguidistError('Styleguidist: "updateWebpackConfig" option must be a function.');
 	}
 	if (config.defaultExample && (config.defaultExample !== true && typeof config.defaultExample !== 'string')) {
-		throw Error('Styleguidist: "defaultExample" option must be either false, true, ' +
+		throw new StyleguidistError('Styleguidist: "defaultExample" option must be either false, true, ' +
 			'or a string path to a markdown file.');
 	}
 }
@@ -201,18 +202,18 @@ function validateDependency(packageJson, dependency) {
 	}
 	catch (exception) {
 		console.log('Styleguidist: cannot parse ' + dependency.name + ' version which is "' + version + '".');
-		console.log('Styleguidist might not work properly. Please report this issue at ' + BUGS_URL);
+		console.log('Styleguidist might not work properly. Please report this issue at ' + consts.BUGS_URL);
 		console.log();
 	}
 
 	if (major < dependency.from) {
-		throw Error('Styleguidist: ' + dependency.name + ' ' + dependency.from + ' is required, ' +
+		throw new StyleguidistError('Styleguidist: ' + dependency.name + ' ' + dependency.from + ' is required, ' +
 			'you are using version ' + major + '.');
 	}
 	else if (major > dependency.to) {
 		console.log('Styleguidist: ' + dependency.name + ' is supported up to version ' + dependency.to + ', ' +
 			'you are using version ' + major + '.');
-		console.log('Styleguidist might not work properly, report bugs at ' + BUGS_URL);
+		console.log('Styleguidist might not work properly, report bugs at ' + consts.BUGS_URL);
 		console.log();
 	}
 }

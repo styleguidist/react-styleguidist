@@ -19,14 +19,12 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   If your components look like `components/Button/Button.js` + `components/Button/index.js`:
 
   ```javascript
-  var path = require('path');
-  var glob = require('glob');
+  const path = require('path');
+  const glob = require('glob');
   module.exports = {
     // ...
-    components: function() {
-      return glob.sync(path.resolve(__dirname, 'lib/components/**/*.js')).filter(function(module) {
-        return /\/[A-Z]\w*\.js$/.test(module);
-      });
+    components() {
+      return glob.sync(path.resolve(__dirname, 'lib/components/**/*.js')).filter(module => /\/[A-Z]\w*\.js$/.test(module));
     },
   };
   ```
@@ -45,8 +43,8 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   module.exports = {
     // ...
     sections: [
-      {name: 'Introduction', content: 'docs/introduction.md'},
-      {name: 'UI Components', content: 'docs/ui.md', components: 'lib/components/ui/*.js'},
+      { name: 'Introduction', content: 'docs/introduction.md' },
+      { name: 'UI Components', content: 'docs/ui.md', components: 'lib/components/ui/*.js' },
     ],
   };
   ```
@@ -102,8 +100,8 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   ```javascript
   module.exports = {
     // ...
-    getExampleFilename: function(componentpath) {
-      return componentpath.replace(/\.jsx?$/,   '.examples.md');
+    getExampleFilename(componentpath) {
+      return componentpath.replace(/\.jsx?$/, '.examples.md');
     },
   };
   ```
@@ -115,12 +113,12 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   For example, instead of `components/Button/Button.js` you can print `import Button from 'components/Button';`:
 
   ```javascript
-  var path = require('path');
+  const path = require('path');
   module.exports = {
     // ...
     getComponentPathLine: function(componentPath) {
-      var name = path.basename(componentPath, '.js');
-      var dir = path.dirname(componentPath);
+      const name = path.basename(componentPath, '.js');
+      const dir = path.dirname(componentPath);
       return 'import ' + name + ' from \'' + dir + '\';';
     },
   };
@@ -133,12 +131,12 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   ```javascript
   module.exports = {
     // ...
-    updateWebpackConfig: function(webpackConfig, env) {
+    updateWebpackConfig(webpackConfig, env) {
       if (env === 'development') {
         // Modify config...
       }
       return webpackConfig;
-    }
+    },
   };
   ```
 
@@ -151,7 +149,7 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   ```javascript
   module.exports = {
     // ...
-    propsParser: function(filePath, source) {
+    propsParser(filePath, source) {
       return require('react-docgen').parse(source);
     },
   };
@@ -170,14 +168,14 @@ You can change settings in the `styleguide.config.js` file in your project’s r
 
 * **`handlers`**<br>
   Type: `Array of Function`, optional<br>
-  Array of functions used to process the discovered components and generate documentation objects. Default behaviours include discovering component documentation blocks, prop types and defaults. If setting this property, it is best to build from the default `react-docgen` handler list, such as in the example below. See the [react-docgen handler documentation](https://github.com/reactjs/react-docgen#handlers) for more information about handlers.
+  Array of functions used to process the discovered components and generate documentation objects. Default behaviours include discovering component documentation blocks, prop types, and defaults. If setting this property, it is best to build from the default `react-docgen` handler list, such as in the example below. See the [react-docgen handler documentation](https://github.com/reactjs/react-docgen#handlers) for more information about handlers.
 
   ```javascript
   module.exports = {
     // ...
-    handlers: require('react-docgen').defaultHandlers.concat(function(documentation, path) {
+    handlers: require('react-docgen').defaultHandlers.concat((documentation, path) => {
       // Calculate a display name for components based upon the declared class name.
-      if (path.value.type == 'ClassDeclaration' && path.value.id.type === 'Identifier') {
+      if (path.value.type === 'ClassDeclaration' && path.value.id.type === 'Identifier') {
         documentation.set('displayName', path.value.id.name);
 
         // Calculate the key required to find the component in the module exports

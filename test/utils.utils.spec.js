@@ -2,6 +2,43 @@ import test from 'ava';
 const _ = require('lodash');
 import * as utils from '../src/utils/utils';
 
+const COMPONENTS = [
+	{
+		name: 'Button',
+	},
+	{
+		name: 'Image',
+	},
+	{
+		name: 'Input',
+	},
+	{
+		name: 'Link',
+	},
+	{
+		name: 'Textarea',
+	},
+];
+
+const SECTIONS = [
+	{
+		name: 'General',
+		sections: [
+			{
+				name: 'Particles',
+				components: [
+					{
+						name: 'Button',
+					},
+					{
+						name: 'Image',
+					},
+				],
+			},
+		],
+	},
+];
+
 let sourceGlobalLength;
 test.beforeEach(() => {
 	sourceGlobalLength = Object.keys(global).length;
@@ -92,24 +129,6 @@ test('RegExp should ignore non-alphanumeric characters', t => {
 
 // filterComponentsByName
 
-const COMPONENTS = [
-	{
-		name: 'Button',
-	},
-	{
-		name: 'Image',
-	},
-	{
-		name: 'Input',
-	},
-	{
-		name: 'Link',
-	},
-	{
-		name: 'Textarea',
-	},
-];
-
 test('should return initial list with empty query', t => {
 	const result = utils.filterComponentsByName(COMPONENTS, '');
 	t.deepEqual(result, COMPONENTS);
@@ -123,4 +142,30 @@ test('should return filtered list, should ignore case', t => {
 test('should return empty list when nothing found', t => {
 	const result = utils.filterComponentsByName(COMPONENTS, 'pizza');
 	t.deepEqual(result, []);
+});
+
+// filterComponentsByExactName
+
+test('should return components with exact name', t => {
+	const result = utils.filterComponentsByExactName(COMPONENTS, 'Image');
+	t.deepEqual(result, [COMPONENTS[1]]);
+});
+
+// filterComponentsInSectionsByExactName
+
+test('should return components at any level with exact name', t => {
+	const result = utils.filterComponentsInSectionsByExactName(SECTIONS, 'Image');
+	t.deepEqual(result, [COMPONENTS[1]]);
+});
+
+// getComponentNameFromHash
+
+test('should return important part of hash if it contains component name', t => {
+	const result = utils.getComponentNameFromHash('#!/Button');
+	t.deepEqual(result, 'Button');
+});
+
+test('should return null if hash contains no component name', t => {
+	const result = utils.getComponentNameFromHash('Button');
+	t.deepEqual(result, null);
 });

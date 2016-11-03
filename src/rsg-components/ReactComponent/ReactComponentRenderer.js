@@ -1,23 +1,21 @@
 import React, { PropTypes } from 'react';
-import Markdown from 'rsg-components/Markdown';
-
 import classNames from 'classnames';
 
-const Renderer = ({ name, imagePath, hasSlice, nameFallback, pathLine, description, propList, examples, designMarkdown, sidebar }) => {
-	const isSingleColumn = !designMarkdown || !propList;
+const ReactComponentRenderer = ({ imagePath, hasSlice, nameFallback, designMarkdown, name, pathLine, description, props, examples, sidebar }) => {
+	const isSingleColumn = !designMarkdown || !props;
 
-    const rendererClass = 'rsg-react-component__renderer'
-    const containerClass = 'rsg-react-component__renderer-container'
+	const rendererClass = 'rsg-react-component__renderer';
+	const containerClass = 'rsg-react-component__renderer-container';
 
 	const designClasses = classNames(containerClass, 'pr3-ns w-100 w-50-ns', {
-		'fl': !isSingleColumn,
-		'center': isSingleColumn
-	})
+		fl: !isSingleColumn,
+		center: isSingleColumn,
+	});
 
 	const codeClasses = classNames(containerClass, 'pl3-ns w-100 w-50-ns', {
-		'fl': !isSingleColumn,
-		'center': isSingleColumn
-	})
+		fl: !isSingleColumn,
+		center: isSingleColumn,
+	});
 
 	return sidebar ?
 		<a href={`#!/${name}`} className={`${rendererClass} bg-white db b--black-30 br2 ba pa4 mt2 no-underline trans-all shadow-hover`}>
@@ -45,25 +43,27 @@ const Renderer = ({ name, imagePath, hasSlice, nameFallback, pathLine, descripti
 						{designMarkdown}
 					</div>
 				}
-				{propList &&
-					<div className={codeClasses}>
-						<h2>Code</h2>
-						{description}
-						{propList}
-						{examples}
-					</div>
-				}
+				<div className={codeClasses}>
+					<h2>Code</h2>
+					{description}
+					{props}
+					{examples}
+				</div>
 			</article>
-		</div>
+		</div>;
 };
 
-Renderer.propTypes = {
+ReactComponentRenderer.propTypes = {
+	imagePath: PropTypes.string.isRequired,
+	hasSlice: PropTypes.bool.isRequired,
+	nameFallback: PropTypes.string.isRequired,
+	designMarkdown: PropTypes.node,
 	name: PropTypes.string.isRequired,
 	pathLine: PropTypes.string.isRequired,
-	description: PropTypes.object,
-	propList: PropTypes.object,
-	examples: PropTypes.array,
+	description: PropTypes.node,
+	props: PropTypes.node,
+	examples: PropTypes.node,
 	sidebar: PropTypes.bool,
 };
 
-export default Renderer;
+export default ReactComponentRenderer;
