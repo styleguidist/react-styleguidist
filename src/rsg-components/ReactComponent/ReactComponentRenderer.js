@@ -43,12 +43,14 @@ const ReactComponentRenderer = ({ imagePath, hasSlice, nameFallback, designMarkd
 						{designMarkdown}
 					</div>
 				}
-				<div className={codeClasses}>
-					<h2>Code</h2>
-					{description}
-					{props}
-					{examples}
-				</div>
+				{props &&
+					<div className={codeClasses}>
+						<h2>Code</h2>
+						{description}
+						{props}
+						{examples}
+					</div>
+				}
 			</article>
 		</div>;
 };
