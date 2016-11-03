@@ -5,7 +5,7 @@ const SectionsRenderer = ({ sections }) => {
 		<div>
 			{sections}
 		</div>
-  );
+	);
 };
 
 SectionsRenderer.propTypes = {

@@ -15,7 +15,7 @@ const TableOfContentsRenderer = ({ items, searchTerm, onSearchTermChange }) => {
 				{items}
 			</div>
 		</div>
-  );
+	);
 };
 
 TableOfContentsRenderer.propTypes = {

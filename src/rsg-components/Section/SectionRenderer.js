@@ -18,7 +18,7 @@ const SectionRenderer = ({ name, content, components }) => {
 				{components}
 			</div>
 		</div>
-  );
+	);
 };
 
 SectionRenderer.propTypes = {
