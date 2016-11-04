@@ -1,11 +1,11 @@
 # Installation
 
- Babel and Webpack are recommended but not required. React Styleguidist works with Webpack 1 and Webpack 2.
+*Webpack is a peer dependency but your project doesn’t have to use it. React Styleguidist works with Webpack 1 and Webpack 2. Babel is recommended but not required.*
 
-1. Install from npm:
+1. Install Styleguidist and peer dependencies from npm:
 
    ```bash
-   npm install --save-dev react-styleguidist
+   npm install --save-dev react-styleguidist react react-dom webpack
    ```
 
 2. Add a **`styleguide.config.js`** file into your project’s root folder. A simplest possible config looks like this:
@@ -24,11 +24,11 @@
    Add the `updateWebpackConfig` function to your `styleguide.config.js`:
 
    ```javascript
-   var path = require('path');
+   const path = require('path');
    module.exports = {
-     updateWebpackConfig: function(webpackConfig, env) {
+     updateWebpackConfig(webpackConfig) {
        // Your source files folder or array of folders, should not include node_modules
-       let dir = path.join(__dirname, 'src');
+       const dir = path.join(__dirname, 'src');
        webpackConfig.module.loaders.push(
          // Babel loader will use your project’s .babelrc
          {
@@ -50,24 +50,7 @@
 
    **Note**: don’t forget `include` or `exclude` options for your Webpack loaders, otherwise they will interfere with Styleguidist’s loaders. Also do not include `node_modules` folder.
 
-4. Configure [hot module replacement](https://github.com/gaearon/react-transform-hmr). This is optional, but highly recommended.
-
-   Install React Transform for Babel, if you don’t have it yet: `npm install --save-dev babel-preset-react-hmre`.
-
-   When you run the Styleguidist server, `NODE_ENV` is set to `development` and when you build style guide `NODE_ENV` is set to `production`, so you can enable hot module replacement only in development. Update your `.babelrc`:
-
-   ```json
-   {
-     "presets": ["es2015", "react"],
-     "env": {
-       "development": {
-         "presets": ["react-hmre"]
-       }
-     }
-   }
-   ```
-
-5. Add these scripts to your `package.json`:
+4. Add these scripts to your `package.json`:
 
   ```javascript
   {
@@ -79,7 +62,7 @@
   }
   ```
 
-6. Run **`npm run styleguide-server`** to start style guide dev server.
+5. Run **`npm run styleguide-server`** to start style guide dev server.
 
 To customize your style guide, head to the [Configuration section](Configuration.md).
 
@@ -109,7 +92,7 @@ Styleguidist generates documentation from three sources:
       ```
 
       One more with `example` code fence (text editors may alias to `jsx` or `javascript`):
-    
+
       ```example
       <Button size="large">Push Me</Button>
       ```
@@ -148,7 +131,7 @@ const mockData = require('./mocks');
 <Message content={mockData.hello} />
 ```
 
-As an utility, also the [Lodash](https://lodash.com/) library is available globally as `_`.
+As a utility, also the [Lodash](https://lodash.com/) library is available globally as `_`.
 
 Each example has its own state that you can access at the `state` variable and change with the `setState` function. Default state is `{}`.
 

@@ -1,8 +1,10 @@
 import test from 'ava';
 import React from 'react';
 import { parse } from 'react-docgen';
+import Code from '../Code';
 import Markdown from '../Markdown';
-import Props, { Code } from './Props';
+import PropsRenderer from './PropsRenderer';
+import { unquote, getType } from './util';
 
 function render(propTypes, defaultProps = []) {
 	let props = parse(`
@@ -18,7 +20,7 @@ function render(propTypes, defaultProps = []) {
 			}
 		}
 	`);
-	return shallow(<Props props={props} />);
+	return shallow(<PropsRenderer props={props.props} />);
 }
 
 test('should render PropTypes.string', () => {
@@ -133,3 +135,27 @@ test('should render unknown proptype for a prop when a relevant proptype is not 
 		</tr>
 	);
 });
+
+test('unquote() should remove double quotes around the string', t => {
+	const result = unquote('"foo"');
+	t.is(result, 'foo');
+});
+
+test('unquote() should remove single quotes around the string', t => {
+	const result = unquote("'foo'");
+	t.is(result, 'foo');
+});
+
+test('unquote() should not remove quotes in the middle of the string', t => {
+	const result = unquote('foo"bar');
+	t.is(result, 'foo"bar');
+});
+
+test('getType() should return .type or .flowType property', t => {
+	const result = getType({
+		type: 'foo',
+		flowType: 'bar',
+	});
+	t.is(result, 'bar');
+});
+

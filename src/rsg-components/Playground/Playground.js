@@ -1,16 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import Editor from 'rsg-components/Editor';
-import Preview from 'rsg-components/Preview';
-
-import s from './Playground.css';
+import PlaygroundRenderer from 'rsg-components/Playground/PlaygroundRenderer';
 
 export default class Playground extends Component {
 	static propTypes = {
-		highlightTheme: PropTypes.string.isRequired,
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
 	};
-
 	static contextTypes = {
 		config: PropTypes.object.isRequired,
 	};
@@ -26,12 +21,17 @@ export default class Playground extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		let { code } = nextProps;
-		if (code) {
-			this.setState({
-				code,
-			});
-		}
+		const { code } = nextProps;
+		this.setState({
+			code,
+		});
+	}
+
+	shouldComponentUpdate(nextProps, nextState) {
+		return (
+			nextState.code !== this.state.code ||
+			nextState.showCode !== this.state.showCode
+		);
 	}
 
 	handleChange(code) {
@@ -47,27 +47,16 @@ export default class Playground extends Component {
 	}
 
 	render() {
-		let { code, showCode } = this.state;
-		let { highlightTheme } = this.props;
-
+		const { code, showCode } = this.state;
+		const { evalInContext } = this.props;
 		return (
-			<div className={`rsg-playground ${s.root}`}>
-				<div className={s.preview}>
-					<Preview code={code} evalInContext={this.props.evalInContext} />
-				</div>
-				{showCode ? (
-					<div className={s.editor}>
-						<Editor code={code} highlightTheme={highlightTheme} onChange={code => this.handleChange(code)} />
-						<div className={s.hideCode} onClick={() => this.handleCodeToggle()}>
-							hide code
-						</div>
-					</div>
-				) : (
-					<div className={s.showCode} onClick={() => this.handleCodeToggle()}>
-						show code
-					</div>
-				)}
-			</div>
+			<PlaygroundRenderer
+				code={code}
+				showCode={showCode}
+				evalInContext={evalInContext}
+				onChange={code => this.handleChange(code)}
+				onCodeToggle={() => this.handleCodeToggle()}
+			/>
 		);
 	}
 }

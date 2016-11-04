@@ -1,33 +1,24 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import Section from 'rsg-components/Section';
-import Renderer from 'rsg-components/Section/Renderer';
+import SectionsRenderer from 'rsg-components/Sections/SectionsRenderer';
 
-export default class Sections extends Component {
-	static propTypes = {
-		highlightTheme: PropTypes.string.isRequired,
-		sections: PropTypes.array.isRequired,
-		sidebar: PropTypes.bool,
-	};
-
-	renderSections() {
-		const { highlightTheme, sections, sidebar } = this.props;
-		const SectionRenderer = Section(Renderer);
-
-		return sections.map(section => (
-			<SectionRenderer
-				key={section.name}
-				highlightTheme={highlightTheme}
-				section={section}
-				sidebar={sidebar}
-			/>
-		));
-	}
-
-	render() {
-		return (
-			<div className="rsg-sections">
-				{this.renderSections()}
-			</div>
-		);
-	}
+export default function Sections({
+	sections,
+	sidebar,
+}) {
+	const sectionsJsx = sections.map(section => (
+		<Section
+			key={section.name}
+			section={section}
+			sidebar={sidebar}
+		/>
+	));
+	return (
+		<SectionsRenderer sections={sectionsJsx} />
+	);
 }
+
+Sections.propTypes = {
+	sections: PropTypes.array.isRequired,
+	sidebar: PropTypes.bool,
+};

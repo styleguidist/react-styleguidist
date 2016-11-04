@@ -54,6 +54,10 @@ function processComponent(filepath, config) {
 		code.examples = getExamples(examplesFileName, nameFallback, config.defaultExample, config.imagePath);
 		code.module = requireIt(filepath);
 		code.props = requireIt('!!props!' + filepath);
+	} else {
+		// Later on in the application, we'll deconstruct this property and accessing
+		// an undefined property will explode - so let's give it an empty object
+		code.props = JSON.stringify({})
 	}
 
 	return toCode(code);
@@ -109,6 +113,7 @@ function processComponentsSource(components, config) {
 	else {
 		componentFiles = glob.sync(path.resolve(config.configDir, components));
 	}
+	componentFiles = componentFiles.map(file => path.resolve(config.configDir, file));
 
 	if (config.verbose) {
 		console.log();

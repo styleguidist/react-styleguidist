@@ -4,10 +4,8 @@ import 'codemirror/lib/codemirror.css';
 
 import React, { Component, PropTypes } from 'react';
 import debounce from 'lodash/debounce';
-import merge from 'lodash/merge';
 import Codemirror from 'react-codemirror';
-
-import s from './Editor.css';
+import EditorRenderer from 'rsg-components/Editor/EditorRenderer';
 
 const codemirrorOptions = {
 	mode: 'jsx',
@@ -20,13 +18,15 @@ const codemirrorOptions = {
 
 const cssRequire = require.context('codemirror/theme/', false, /^\.\/.*\.css$/);
 
-let UPDATE_DELAY = 10;
+const UPDATE_DELAY = 10;
 
 export default class Editor extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
-		highlightTheme: PropTypes.string.isRequired,
-		onChange: PropTypes.func,
+		onChange: PropTypes.func.isRequired,
+	};
+	static contextTypes = {
+		config: PropTypes.object.isRequired,
 	};
 
 	constructor() {
@@ -35,8 +35,7 @@ export default class Editor extends Component {
 	}
 
 	componentWillMount() {
-		let { highlightTheme } = this.props;
-
+		const { highlightTheme } = this.context.config;
 		cssRequire(`./${highlightTheme}.css`);
 	}
 
@@ -45,20 +44,20 @@ export default class Editor extends Component {
 	}
 
 	handleChange(newCode) {
-		let { onChange } = this.props;
-		if (onChange) {
-			onChange(newCode);
-		}
+		this.props.onChange(newCode);
 	}
 
 	render() {
-		let { highlightTheme } = this.props;
-		let options = merge({}, codemirrorOptions, { theme: highlightTheme });
-
+		const { code } = this.props;
+		const { highlightTheme } = this.context.config;
+		const options = {
+			...codemirrorOptions,
+			theme: highlightTheme,
+		};
 		return (
-			<div className={`rsg-editor ${s.root}`}>
-				<Codemirror value={this.props.code} onChange={this.handleChange} options={options} />
-			</div>
+			<EditorRenderer>
+				<Codemirror value={code} onChange={this.handleChange} options={options} />
+			</EditorRenderer>
 		);
 	}
 }

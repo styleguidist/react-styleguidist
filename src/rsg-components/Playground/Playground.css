@@ -1,10 +1,8 @@
 .root {
+	position: relative;
 	composes: border from "../../styles/colors.css";
 	margin-bottom: 30px;
-	border-radius: 3px;
-}
-
-.editor {
+	border-radius: 3px 3px 0 3px;
 }
 
 .preview {
@@ -15,24 +13,24 @@
 .codeToggle {
 	composes: font from "../../styles/common.css";
 	composes: border link from "../../styles/colors.css";
+	position: absolute;
+	right: -1px;
+	bottom: -27px;
 	cursor: pointer;
-	display: inline-block;
-	float: right;
-	margin-bottom: -30px;
-	margin-right: -1px;
 	border-bottom-left-radius: 3px;
 	border-bottom-right-radius: 3px;
 	border-top: 0;
-	padding: 4px 8px;
-	font-size: small;
+	padding: 6px 8px;
+	font-size: 14px;
+	line-height: 1;
 }
 
 .showCode {
+	composes: base-bg from "../../styles/colors.css";
 	composes: codeToggle;
-	background: #fafafa;
 }
 
 .hideCode {
+	composes: code-bg from "../../styles/colors.css";
 	composes: codeToggle;
-	background: #f5f5f5;
 }

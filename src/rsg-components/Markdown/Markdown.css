@@ -25,14 +25,14 @@
 	composes: reset monospace from "../../styles/common.css";
 	display: inline;
 	font-size: inherit;
+	color: inherit;
 }
 
 .pre {
-	composes: border from "../../styles/colors.css";
+	composes: code-bg border from "../../styles/colors.css";
 	padding: 12px 15px;
 	font-size: 12px;
 	border-radius: 3px;
-	background-color: #f5f5f5;;
 }
 
 .blockquote {

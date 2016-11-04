@@ -1,1 +1,1 @@
-export { default } from './Props.js';
+export { default } from './PropsRenderer.js';

@@ -1,8 +1,10 @@
 import test from 'ava';
 import React from 'react';
+import ComponentsList from '../ComponentsList';
 import TableOfContents from './TableOfContents';
+import TableOfContentsRenderer from './TableOfContentsRenderer';
 
-const COMPONENTS = [
+const components = [
 	{
 		name: 'Button',
 	},
@@ -14,7 +16,7 @@ const COMPONENTS = [
 	},
 ];
 
-const SECTIONS = [
+const sections = [
 	{
 		name: 'Introduction',
 		content: 'intro.md',
@@ -40,74 +42,93 @@ const SECTIONS = [
 	},
 ];
 
-test('should render a list with each component', t => {
+test('should render a renderer', () => {
 	const actual = shallow(
-		<TableOfContents components={COMPONENTS} sections={[]} />
-	);
-
-	const items = actual.find('.Test__link');
-	t.is(items.length, COMPONENTS.length);
-});
-
-test('should render sections with nested components', () => {
-	const actual = shallow(
-		<TableOfContents components={[]} sections={SECTIONS} />
+		<TableOfContents components={components} sections={[]} />
 	);
 
 	expect(actual.node, 'to contain',
-		<ul>
-			<li>Introduction</li>
-			<li>Buttons
-				<ul>
-					<li>Button</li>
-				</ul>
-			</li>
-			<li>Forms
-				<ul>
-					<li>Input</li>
-					<li>Textarea</li>
-				</ul>
-			</li>
-		</ul>
+		<TableOfContentsRenderer
+			items={<ComponentsList items={components} />}
+		/>
 	);
 });
 
-test('should render a filtered list when search field contains a query', t => {
+test('should render renderer with sections with nested components', () => {
 	const actual = shallow(
-		<TableOfContents components={COMPONENTS} sections={[]} />
+		<TableOfContents components={[]} sections={sections} />
 	);
 
-	const input = actual.find('.Test__search');
-	input.simulate('change', { target: { value: 'but' } });
-
-	const items = actual.find('.Test__link');
-	t.is(items.length, 1);
+	expect(actual.node, 'to contain',
+		<TableOfContentsRenderer
+			items={
+				<ComponentsList
+					items={[
+						{ heading: true, name: 'Introduction', content: <ComponentsList items={[]} /> },
+						{ heading: true, name: 'Buttons', content: <ComponentsList items={sections[1].components} /> },
+						{ heading: true, name: 'Forms', content: <ComponentsList items={sections[2].components} /> },
+					]}
+				/>
+			}
+		/>
+	);
 });
 
-test('should render a filtered list, should hide empty sections', t => {
+
+test('should filter list when search field contains a query', () => {
+	const searchTerm = 'but';
 	const actual = shallow(
-		<TableOfContents components={[]} sections={SECTIONS} />
+		<TableOfContents components={components} sections={[]} />
 	);
 
-	const input = actual.find('.Test__search');
-	input.simulate('change', { target: { value: 'inp' } });
+	actual.setState({ searchTerm });
 
-	const sections = actual.find('.Test__section');
-	t.is(sections.length, 1);
-	const items = actual.find('.Test__link');
-	t.is(items.length, 2);
+	expect(actual.node, 'to contain',
+		<TableOfContentsRenderer
+			searchTerm={searchTerm}
+			items={<ComponentsList items={[components[0]]} />}
+		/>
+	);
 });
 
-test('should filter section names', t => {
+test('should render a filtered list, should hide empty sections', () => {
+	const searchTerm = 'inp';
 	const actual = shallow(
-		<TableOfContents components={[]} sections={SECTIONS} />
+		<TableOfContents components={[]} sections={sections} />
 	);
 
-	const input = actual.find('.Test__search');
-	input.simulate('change', { target: { value: 'frm' } });
+	actual.setState({ searchTerm });
 
-	const sections = actual.find('.Test__section');
-	t.is(sections.length, 1);
-	const items = actual.find('.Test__link');
-	t.is(items.length, 1);
+	expect(actual.node, 'to contain',
+		<TableOfContentsRenderer
+			items={
+				<ComponentsList
+					items={[
+						{ heading: true, name: 'Forms', content: <ComponentsList items={[sections[2].components[0]]} /> },
+					]}
+				/>
+			}
+		/>
+	);
+});
+
+test('should filter section names', () => {
+	const searchTerm = 'frm';
+	const actual = shallow(
+		<TableOfContents components={[]} sections={sections} />
+	);
+
+	actual.setState({ searchTerm });
+
+	expect(actual.node, 'to contain',
+		<TableOfContentsRenderer
+			items={
+				<ComponentsList
+					items={[
+						{ heading: true, name: 'Forms', content: <ComponentsList items={[]} /> },
+					]}
+				/>
+			}
+		/>
+	);
 });

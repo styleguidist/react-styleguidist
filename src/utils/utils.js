@@ -53,6 +53,22 @@ export function flattenChildren(components) {
 	});
 }
 
+export function processComponents(components) {
+	components = flattenChildren(components);
+	components = promoteInlineExamples(components);
+	components = setComponentsNames(components);
+	globalizeComponents(components);
+	return components;
+}
+
+export function processSections(sections) {
+	return sections.map(section => {
+		section.components = processComponents(section.components || []);
+		section.sections = processSections(section.sections || []);
+		return section;
+	});
+}
+
 /**
  * Fuzzy filters components list by component name.
  *
@@ -77,4 +93,49 @@ export function getFilterRegExp(query) {
  */
 export function filterComponentsByName(components, query) {
 	return components.filter(({ name }) => name.match(getFilterRegExp(query)));
+}
+
+/**
+ * Filters list of components by component name.
+ *
+ * @param {Array} componens
+ * @param {string} name
+ * @return {Array}
+ */
+export function filterComponentsByExactName(componens, name) {
+	return componens.filter(component => component.name === name);
+}
+
+/**
+ * Recursively filters all components in all sections by component name.
+ *
+ * @param {object} sections
+ * @param {string} name
+ * @return {Array}
+ */
+export function filterComponentsInSectionsByExactName(sections, name) {
+	let components = [];
+	sections.forEach(section => {
+		if (section.components) {
+			components.push(...filterComponentsByExactName(section.components, name));
+		}
+		if (section.sections) {
+			components.push(...filterComponentsInSectionsByExactName(section.sections, name));
+		}
+	});
+	return components;
+}
+
+/**
+ * Returns component name from hash part or page URL:
+ * http://localhost:3000/#!/Button → Button
+ *
+ * @param {string} [hash]
+ * @returns {string}
+ */
+export function getComponentNameFromHash(hash = window.location.hash) {
+	return hash.substr(0, 3) === '#!/'
+		? hash.substr(3)
+		: null
+	;
 }
