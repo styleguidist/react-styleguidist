@@ -2351,9 +2351,9 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint-config-tamia@~3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-tamia/-/eslint-config-tamia-3.2.0.tgz#4fc5e2559a1ddf0b608cecd7d295e80f588f0b17"
+eslint-config-tamia@~3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-tamia/-/eslint-config-tamia-3.2.1.tgz#94e82b4b6e5e93388c90b1367cb72765793a65e2"
 
 eslint-plugin-react@~6.5.0:
   version "6.5.0"
