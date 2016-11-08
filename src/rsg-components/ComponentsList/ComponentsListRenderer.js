@@ -4,14 +4,18 @@ import cx from 'classnames';
 import s from './ComponentsList.css';
 
 const ComponentsListRenderer = ({ items }) => (
-	<div className={s.list}>
-		{items.map(({ heading, name, content }) => (
-			<div className={s.item} key={name}>
-				<a className={cx(s.link, heading && s.heading)} href={'#' + name}>{name}</a>
-				{content}
-			</div>
-		))}
-	</div>
+	items.length ? (
+		<div className={s.list}>
+			{items.map(({ heading, name, content }) => (
+				<div className={s.item} key={name}>
+					<a className={cx(s.link, heading && s.heading)} href={'#' + name}>{name}</a>
+					{content}
+				</div>
+			))}
+		</div>
+	) : (
+		null
+	)
 );
 
 ComponentsListRenderer.propTypes = {

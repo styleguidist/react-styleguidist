@@ -27,3 +27,11 @@ test('should render sections with nested components', () => {
 		</div>
 	);
 });
+
+test('should return null when the list is empty', t => {
+	const actual = shallow(
+		<ComponentsListRenderer items={[]} />
+	);
+
+	t.is(actual.node, null);
+});
