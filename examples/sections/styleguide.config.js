@@ -4,8 +4,21 @@ module.exports = {
 	title: 'React Style Guide Example',
 	sections: [
 		{
-			name: 'Example Section',
-			components: './components/**/[A-Z]*.js',
+			name: 'Components',
+			components: './lib/components/**/[A-Z]*.js',
+		},
+		{
+			name: 'Documentation',
+			sections: [
+				{
+					name: 'First File',
+					content: 'docs/One.md',
+				},
+				{
+					name: 'Second File',
+					content: 'docs/Two.md',
+				},
+			],
 		},
 	],
 	updateWebpackConfig(webpackConfig) {

@@ -32,6 +32,7 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   - `name` — the title of the section.
   - `content` (optional) — location of a Markdown file containing the overview content.
   - `components` (optional) — a string or function returning a list of components. The same rules apply as for the root `components` option.
+  - `sections` (optional) — array of subsections.
 
   Configuring a style guide with a textual introduction section, then a UI section would look like:
 
@@ -39,8 +40,28 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   module.exports = {
     // ...
     sections: [
-      { name: 'Introduction', content: 'docs/introduction.md' },
-      { name: 'UI Components', content: 'docs/ui.md', components: 'lib/components/ui/*.js' },
+      {
+        name: 'Introduction',
+        content: 'docs/introduction.md',
+      },
+      {
+        name: 'Documentation',
+        sections: [
+          {
+            name: 'Installation',
+            content: 'docs/installation.md',
+          },
+          {
+            name: 'Configuration',
+            content: 'docs/configuration.md',
+          },
+        ],
+      },
+      {
+        name: 'UI Components',
+        content: 'docs/ui.md',
+        components: 'lib/components/ui/*.js',
+      },
     ],
   };
   ```
