@@ -65,11 +65,11 @@ function commandServer() {
 			console.log();
 			console.log('You can change the port using the `serverPort` option in your style guide config:');
 			console.log(chalk.underline(consts.DOCS_CONFIG));
-			process.exit(1);
 		}
 		else {
-			throw err;
+			console.error(chalk.bold.red(err.message));
 		}
+		process.exit(1);
 	});
 
 	const server = require('../scripts/server');
