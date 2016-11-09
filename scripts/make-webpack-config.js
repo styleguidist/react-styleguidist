@@ -38,10 +38,33 @@ function getPackagePath(packageName) {
 	return path.dirname(require.resolve(packageName + '/package.json'));
 }
 
+/**
+ * Return true if given regexp matches files of given type.
+ *
+ * @param {RegExp} matcher
+ * @param {string} extension
+ * @return {boolean}
+ */
+function matchesFileType(matcher, extension) {
+	return matcher.test('test.' + extension);
+}
+
+/**
+ * Check if Webpack loaders in user’s config will not interfere with our own loaders: they must have "include"
+ * or "exclude" option.
+ *
+ * @param {object} webpackConfig
+ */
 function validateWebpackConfig(webpackConfig) {
 	webpackConfig.module.loaders.forEach(loader => {
-		if (!loader.include && !loader.exclude) {
-			throw Error('Styleguidist: "include" option is missing for ' + loader.test + ' Webpack loader.');
+		if (
+			!loader.include && !loader.exclude &&
+			(matchesFileType(loader.test, 'js') || matchesFileType(loader.test, 'css'))
+		) {
+			throw Error(
+				'Either "include" or "exclude" option is required for ' + loader.test + ' Webpack loader.\n' +
+				'Otherwise your loader might interfere with loaders used by Styleguidist and cause obscure issues.'
+			);
 		}
 	});
 }
