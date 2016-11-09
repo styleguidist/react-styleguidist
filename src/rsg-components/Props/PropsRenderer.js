@@ -138,7 +138,7 @@ function renderShape(props) {
 
 export default function PropsRenderer({ props }) {
 	return (
-		<table className={s.table}>
+		<table className={s.root}>
 			<thead>
 				<tr className="rsg-code-props-table-heading-row">
 					<th>Name</th>
