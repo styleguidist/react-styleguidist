@@ -59,7 +59,8 @@ module.exports = function(config, env) {
 		},
 		resolve: {
 			alias: {
-				codemirror: codeMirrorPath,
+				'codemirror': codeMirrorPath,
+				'rsg-codemirror-theme.css': path.join(codeMirrorPath, `theme/${config.highlightTheme}.css`),
 			},
 		},
 		resolveLoader: {

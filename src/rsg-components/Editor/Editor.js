@@ -1,6 +1,7 @@
 // CodeMirror
 import 'codemirror/mode/jsx/jsx';
 import 'codemirror/lib/codemirror.css';
+import 'rsg-codemirror-theme.css';
 
 import React, { Component, PropTypes } from 'react';
 import debounce from 'lodash/debounce';
@@ -16,8 +17,6 @@ const codemirrorOptions = {
 	viewportMargin: Infinity,
 };
 
-const cssRequire = require.context('codemirror/theme/', false, /^\.\/.*\.css$/);
-
 const UPDATE_DELAY = 10;
 
 export default class Editor extends Component {
@@ -32,11 +31,6 @@ export default class Editor extends Component {
 	constructor() {
 		super();
 		this.handleChange = debounce(this.handleChange.bind(this), UPDATE_DELAY);
-	}
-
-	componentWillMount() {
-		const { highlightTheme } = this.context.config;
-		cssRequire(`./${highlightTheme}.css`);
 	}
 
 	shouldComponentUpdate() {
