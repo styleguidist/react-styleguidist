@@ -47,6 +47,8 @@ before_install:
 install:
   - yarn
 after_success:
+  - git config --global user.email "artem+travis@sapegin.ru"
+  - git config --global user.name "Travis CI"
   - 'curl -Lo travis_after_all.py https://git.io/travis_after_all'
   - python travis_after_all.py
   - export $(cat .to_export_back) &> /dev/null
