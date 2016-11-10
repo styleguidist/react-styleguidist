@@ -1,7 +1,6 @@
 {
   "name": "react-styleguidist",
   "description": "React components style guide generator",
-  "version": "4.2.0",
   "homepage": "https://github.com/sapegin/react-styleguidist",
   "author": {
     "name": "Artem Sapegin",
@@ -9,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/sapegin/react-styleguidist.git"
+    "url": "https://github.com/sapegin/react-styleguidist.git"
   },
   "bugs": {
     "url": "https://github.com/sapegin/react-styleguidist/issues"
@@ -89,6 +88,8 @@
     "react-addons-test-utils": "~15.3.2",
     "react-dom": "~15.3.2",
     "react-modal": "~1.5.2",
+    "semantic-release": "~4.3.5",
+    "semantic-release-tamia": "~1.0.0",
     "sinon": "~1.17.6",
     "unexpected": "~10.18.1",
     "unexpected-react": "~3.2.4",
@@ -109,7 +110,13 @@
     "publish": "npm run build && gh-pages -d examples/basic/styleguide",
     "phantomjs": "phantomjs test/phantom.js examples/basic/styleguide/index.html",
     "phantomjs:customised": "phantomjs test/phantom.js examples/customised/styleguide/index.html",
-    "phantomjs:sections": "phantomjs test/phantom.js examples/sections/styleguide/index.html"
+    "phantomjs:sections": "phantomjs test/phantom.js examples/sections/styleguide/index.html",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "release": {
+    "analyzeCommits": "semantic-release-tamia/analyzeCommits",
+    "generateNotes": "semantic-release-tamia/generateNotes",
+    "verifyRelease": "semantic-release-tamia/verifyRelease"
   },
   "pre-commit": "lint-staged",
   "ava": {
