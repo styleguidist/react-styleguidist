@@ -58,7 +58,7 @@ function propsToCode(doc) {
 	if (doc.doclets.example) {
 		return code.replace(
 			JSON.stringify(REQUIRE_PLACEHOLDER),
-			requireIt(JSON.stringify('examples!' + doc.doclets.example))
+			requireIt('examples!' + doc.doclets.example)
 		);
 	}
 	return code;
