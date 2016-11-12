@@ -8,6 +8,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const prettyjson = require('prettyjson');
 const semverUtils = require('semver-utils');
+const isFunction = require('lodash/isFunction');
+const omit = require('lodash/omit');
 
 const webpackVersion = semverUtils.parseRange(require('webpack/package.json').version)[0].major;
 const isWebpack2 = webpackVersion === '2';
@@ -220,10 +222,23 @@ module.exports = function(config, env) {
 		});
 	}
 
+	if (config.webpackConfig) {
+		const userConfig = isFunction(config.webpackConfig)
+			? config.webpackConfig(env)
+			: config.webpackConfig
+		;
+		const filteredUserConfig = omit(
+			userConfig,
+			['output', 'resolveLoader', 'styleguidist']
+		);
+		webpackConfig = merge(webpackConfig, filteredUserConfig);
+	}
+
 	if (config.updateWebpackConfig) {
 		webpackConfig = config.updateWebpackConfig(webpackConfig, env);
-		validateWebpackConfig(webpackConfig);
 	}
+
+	validateWebpackConfig(webpackConfig);
 
 	if (config.verbose) {
 		console.log();

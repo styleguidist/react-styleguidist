@@ -7,6 +7,9 @@ const path = require('path');
 const findup = require('findup');
 const semverUtils = require('semver-utils');
 const prettyjson = require('prettyjson');
+const isFunction = require('lodash/isFunction');
+const isPlainObject = require('lodash/isPlainObject');
+const isString = require('lodash/isString');
 const merge = require('lodash/merge');
 const isFinite = require('lodash/isFinite');
 const isUndefined = require('lodash/isUndefined');
@@ -34,6 +37,7 @@ const DEFAULT_CONFIG = {
 	verbose: false,
 	getExampleFilename: componentpath => path.join(path.dirname(componentpath), 'Readme.md'),
 	getComponentPathLine: componentpath => componentpath,
+	webpackConfig: null,
 	updateWebpackConfig: null,
 	handlers: reactDocgen.defaultHandlers.concat(displayNameHandler),
 	theme: {},
@@ -93,7 +97,7 @@ function getConfig(options) {
 	if (defaultExample === true) {
 		defaultExample = path.join(__dirname, './templates/DefaultExample.md');
 	}
-	else if (typeof defaultExample === 'string') {
+	else if (isString(defaultExample)) {
 		defaultExample = path.resolve(configDir, defaultExample);
 		if (!fs.existsSync(defaultExample)) {
 			throw new StyleguidistError('Styleguidist: "defaultExample" file not found: ' + defaultExample);
@@ -162,16 +166,19 @@ function validateConfig(config) {
 	if (config.sections && !Array.isArray(config.sections)) {
 		throw new StyleguidistError('Styleguidist: "sections" option must be an array.');
 	}
-	if (config.getExampleFilename && typeof config.getExampleFilename !== 'function') {
+	if (config.getExampleFilename && !isFunction(config.getExampleFilename)) {
 		throw new StyleguidistError('Styleguidist: "getExampleFilename" option must be a function.');
 	}
-	if (config.getComponentPathLine && typeof config.getComponentPathLine !== 'function') {
+	if (config.getComponentPathLine && !isFunction(config.getComponentPathLine)) {
 		throw new StyleguidistError('Styleguidist: "getComponentPathLine" option must be a function.');
 	}
-	if (config.updateWebpackConfig && typeof config.updateWebpackConfig !== 'function') {
+	if (config.updateWebpackConfig && !isFunction(config.updateWebpackConfig)) {
 		throw new StyleguidistError('Styleguidist: "updateWebpackConfig" option must be a function.');
 	}
-	if (config.defaultExample && (config.defaultExample !== true && typeof config.defaultExample !== 'string')) {
+	if (config.webpackConfig && !isPlainObject(config.webpackConfig) && !isFunction(config.webpackConfig)) {
+		throw new StyleguidistError('Styleguidist: "webpackConfig" option must be an object or a function.');
+	}
+	if (config.defaultExample && (config.defaultExample !== true && !isString(config.defaultExample))) {
 		throw new StyleguidistError('Styleguidist: "defaultExample" option must be either false, true, ' +
 			'or a string path to a markdown file.');
 	}
