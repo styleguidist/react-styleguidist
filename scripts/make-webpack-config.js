@@ -77,6 +77,7 @@ module.exports = function(config, env) {
 	const isProd = env === 'production';
 
 	let webpackConfig = {
+		entry: [],
 		output: {
 			path: config.styleguideDir,
 			filename: 'build/bundle.js',
@@ -179,13 +180,8 @@ module.exports = function(config, env) {
 		});
 	}
 
-	const entryScript = path.resolve(sourceDir, 'index');
-
 	if (isProd) {
 		webpackConfig = merge(webpackConfig, {
-			entry: [
-				entryScript,
-			],
 			devtool: false,
 			cache: false,
 			plugins: [
@@ -207,7 +203,6 @@ module.exports = function(config, env) {
 		webpackConfig = merge(webpackConfig, {
 			entry: [
 				'webpack-hot-middleware/client',
-				entryScript,
 			],
 			cache: true,
 			devtool: 'eval',
@@ -233,6 +228,9 @@ module.exports = function(config, env) {
 		);
 		webpackConfig = merge(webpackConfig, filteredUserConfig);
 	}
+
+	// Add Styleguidist’s entry point after user’s entry points so things like polyfills would work
+	webpackConfig.entry.push(path.resolve(sourceDir, 'index'));
 
 	if (config.updateWebpackConfig) {
 		webpackConfig = config.updateWebpackConfig(webpackConfig, env);
