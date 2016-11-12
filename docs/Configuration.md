@@ -145,14 +145,64 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   };
   ```
 
+* **`webpackConfig`**<br>
+  Type: `Object or Function`, optional<br>
+  Custom Webpack config options: loaders, extensions, plugins, etc. required for your project.
+
+  Can be an object:
+
+  ```javascript
+  module.exports = {
+    // ...
+    webpackConfig: {
+      module: {
+    		resolve: {
+          extensions: ['.es6'],
+        },
+        loaders: [
+          {
+            test: /\.scss$/,
+            include: path.resolve(__dirname, 'lib'),
+            loaders: ['style', 'css', 'sass?precision=10'],
+          },
+        ],
+      },
+    },
+  };
+  ```
+  
+  Or a function:
+
+  ```javascript
+  module.exports = {
+    // ...
+    webpackConfig(env) {
+      if (env === 'development') {
+          return {
+              // custom options 
+          };
+      }
+      return {};
+    },
+  };
+  ```
+
+  **Note:**: `output` and `resolveLoader` options will be ignored.
+
+  See [FAQ](./FAQ.md) for examples.
+
 * **`updateWebpackConfig`**<br>
   Type: `Function`, optional<br>
-  Function that allows you to modify Webpack config for style guide:
+  Function that allows you to modify Webpack config for style guide.
+  
+  *Warning:* in most cases you should use `webpackConfig` option. You should be very careful and don’t overwrite any config options used by Styleguidist itself. Inspect `webpackConfig` before making any changes, otherwise you may break Styleguidist.
 
   ```javascript
   module.exports = {
     // ...
     updateWebpackConfig(webpackConfig, env) {
+      // WARNING: inspect Styleguidist Webpack config before modifying it, otherwise you may break Styleguidist
+      console.log(webpackConfig);
       if (env === 'development') {
         // Modify config...
       }
@@ -160,8 +210,6 @@ You can change settings in the `styleguide.config.js` file in your project’s r
     },
   };
   ```
-
-  See [FAQ](./FAQ.md) for examples.
 
 * **`propsParser`**<br>
   Type: `Function`, optional<br>

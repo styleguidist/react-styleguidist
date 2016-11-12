@@ -39,12 +39,11 @@ const Button = require('../common/Button');
 Add a new Webpack entry point. In your style guide config:
 
 ```javascript
-const path = require('path');
 module.exports = {
-  updateWebpackConfig(webpackConfig) {
-    // Babel loader, etc.
-    webpackConfig.entry.unshift('babel-polyfill');
-    return webpackConfig;
+  webpackConfig: {
+    entry: [
+      'babel-polyfill',
+    ],
   },
 };
 ```
@@ -56,11 +55,11 @@ Add a new Webpack entry point. In your style guide config:
 ```javascript
 const path = require('path');
 module.exports = {
-  // ...
-  updateWebpackConfig(webpackConfig) {
-    webpackConfig.entry.push(path.join(__dirname, 'path/to/script.js'));
-    webpackConfig.entry.push(path.join(__dirname, 'path/to/styles.css'));
-    return webpackConfig;
+  webpackConfig: {
+    entry: [
+      path.join(__dirname, 'path/to/script.js'),
+      path.join(__dirname, 'path/to/styles.css'),
+    ],
   },
 };
 ```
@@ -106,10 +105,12 @@ For example you can replace the `Wrapper` component to wrap any example in the [
 // styleguide.config.js
 const path = require('path');
 module.exports = {
-  // ...
-  updateWebpackConfig(webpackConfig) {
-    webpackConfig.resolve.alias['rsg-components/Wrapper'] = path.join(__dirname, 'lib/styleguide/Wrapper');
-    return webpackConfig;
+  webpackConfig: {
+    resolve: {
+      alias: {
+        'rsg-components/Wrapper': path.join(__dirname, 'lib/styleguide/Wrapper'),
+      },
+    },
   },
 };
 
@@ -133,10 +134,12 @@ You can replace the `StyleGuideRenderer` component like this:
 // styleguide.config.js
 const path = require('path');
 module.exports = {
-  // ...
-  updateWebpackConfig(webpackConfig) {
-    webpackConfig.resolve.alias['rsg-components/StyleGuide/StyleGuideRenderer'] = path.join(__dirname, 'lib/styleguide/StyleGuideRenderer');
-    return webpackConfig;
+  webpackConfig: {
+    resolve: {
+      alias: {
+        'rsg-components/StyleGuide/StyleGuideRenderer': path.join(__dirname, 'lib/styleguide/StyleGuideRenderer'),
+      },
+    },
   },
 };
 
@@ -178,17 +181,23 @@ We have [an example style guide](https://github.com/styleguidist/react-styleguid
 3. Press the ![Continue](http://wow.sapegin.me/image/2d2z1Y2o1z1m/continue.png) button and the debugger will stop execution at the next exception.
 
 ## How to change style guide dev server logs output?
-You can modify webpack dev server logs format passing `webpack.stats` options inside `updateWebpackConfig`.
+
+You can modify Webpack dev server logs format changing `stats` option of Webpack config:
+
 ```javascript
 module.exports = {
   // ...
-  updateWebpackConfig(webpackConfig, env) {
+  webpackConfig(env) {
     if (env === 'development') {
-      webpackConfig.stats.chunks = false;
-      webpackConfig.stats.chunkModules = false;
-      webpackConfig.stats.chunkOrigins = false;
+      return {
+        stats: {
+          chunks: false,
+          chunkModules: false,
+          chunkOrigins: false,
+        },
+      };
     }
-    return webpackConfig;
+    return {};
   }
 };
 ```

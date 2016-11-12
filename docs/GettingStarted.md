@@ -21,29 +21,30 @@
 
    Styleguidist generates a Webpack config required for the style guide itself but you need to configure [Webpack loaders](https://webpack.github.io/docs/configuration.html#module-loaders) for your project.
 
-   Add the `updateWebpackConfig` function to your `styleguide.config.js`:
+   Add a `webpackConfig` section to your `styleguide.config.js`:
 
    ```javascript
    const path = require('path');
+   // Your source files folder or array of folders, should not include node_modules
+   const dir = path.join(__dirname, 'src');
    module.exports = {
-     updateWebpackConfig(webpackConfig) {
-       // Your source files folder or array of folders, should not include node_modules
-       const dir = path.join(__dirname, 'src');
-       webpackConfig.module.loaders.push(
-         // Babel loader will use your project’s .babelrc
-         {
-           test: /\.jsx?$/,
-           include: dir,
-           loader: 'babel'
-         },
-         // Other loaders that is needed for your components
-         {
-           test: /\.css$/,
-           include: dir,
-           loader: 'style!css?modules&importLoaders=1'
-         }
-       );
-       return webpackConfig;
+     webpackConfig: {
+       module: {
+         loaders: [
+           // Babel loader will use your project’s .babelrc
+           {
+             test: /\.jsx?$/,
+             include: dir,
+             loader: 'babel',
+           },
+           // Other loaders that is needed for your components
+           {
+             test: /\.css$/,
+             include: dir,
+             loader: 'style!css?modules&importLoaders=1',
+           },
+         ],
+       },
      },
    };
    ```
