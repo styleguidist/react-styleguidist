@@ -222,11 +222,11 @@ module.exports = function(config, env) {
 			? config.webpackConfig(env)
 			: config.webpackConfig
 		;
-		const filteredUserConfig = omit(
+		const safeUserConfig = omit(
 			userConfig,
 			['output', 'resolveLoader', 'styleguidist']
 		);
-		webpackConfig = merge(webpackConfig, filteredUserConfig);
+		webpackConfig = merge(webpackConfig, safeUserConfig);
 	}
 
 	// Add Styleguidist’s entry point after user’s entry points so things like polyfills would work
