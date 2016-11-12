@@ -53,7 +53,7 @@
 
 4. Add these scripts to your `package.json`:
 
-  ```javascript
+  ```json
   {
     // ...
     "scripts": {
