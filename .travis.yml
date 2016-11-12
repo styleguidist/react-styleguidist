@@ -11,12 +11,8 @@ cache:
     - travis_phantomjs
 env:
   # Test everything in Webpack 1 and 2
-  matrix:
-    - export WEBPACK_VERSION="2.1.0-beta.25"
-    - export WEBPACK_VERSION="1"
-  global:
-    GH_REF: github.com:sapegin/react-styleguidist.git
-    secure: "L4obW+LWNFANZJP/1yf6lnk8Sxpsp8/XGqZ0icEe0MjbigsLSvP0u/32hNOAzqg6J1gr+eD9Pq92PM4d+Yt2alZ0W3tZNts/ZbKq4HAuQ/mThifyjMPGuU0G3A0eK5z/csDEsQVQ6biM0hODGMpa1eAjsIQMOLQaX9+RlgnkVHE+yyHXF3n1r2Yr/t9t6ffSBiVzp8NyvmCsmOpm0jvujUvPt8y1k/rz/GqIIVBZWRUWqmoUzvpVc1/DCtthXXFKGqFeLJGJbPj3ZFS2k/UDXsOnVkcozyxE9HvRcgCv15vqF2bBmACuk40W3E+lkbm/DALIEByfcFgTCH7pfnqZ5sF86NjLTwL5/Npw/P7b4/b86Lbleum8ou88LZyhBjFuKpkz3zM8jPAcnwNBEU/ru1mX7CvkLApcN6+3JCNgPN+9ex6Xn+C6j9mExrmEsHTdPIcnSIOJkAcSYNEgi/dtUQwqyzlWiu8YLb3QaG+e95+Yi5JhAV71/QrsCQpLbuBQMLXIf1dJzO54wPqEo1ecHeuSNCgDoYdOkklgkpZUocsHJ9vs74wWPJ/kZGJPn4DZByVKPdNCE+wXtXma8k/4J/oJ4uODVnAc8jDtE8MMYq64Ng0QnGhTia1+f4y0EgTo0hxU7BaYfKHnuJSItZCTt2uL9ffLW0MDFne6mQnW19w=script:"
+  - export WEBPACK_VERSION="2.1.0-beta.25"
+  - export WEBPACK_VERSION="1"
 script:
   # Run tests
   - yarn run test
@@ -51,8 +47,6 @@ before_install:
 install:
   - yarn
 after_success:
-  - git config --global user.email "artem+travis@sapegin.ru"
-  - git config --global user.name "Travis CI"
   - 'curl -Lo travis_after_all.py https://git.io/travis_after_all'
   - python travis_after_all.py
   - export $(cat .to_export_back) &> /dev/null
