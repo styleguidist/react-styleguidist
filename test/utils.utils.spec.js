@@ -162,10 +162,19 @@ test('should return components at any level with exact name', t => {
 
 test('should return important part of hash if it contains component name', t => {
 	const result = utils.getComponentNameFromHash('#!/Button');
-	t.deepEqual(result, 'Button');
+	t.deepEqual(result, { targetComponentName: 'Button', targetComponentIndex: null });
 });
 
-test('should return null if hash contains no component name', t => {
+test('should return an empty object if hash contains no component name', t => {
 	const result = utils.getComponentNameFromHash('Button');
-	t.deepEqual(result, null);
+	t.deepEqual(result, {});
+});
+
+// filterComponentExamples
+
+test('should return a shallow copy of the component with example filtered by given index', t => {
+	const comp = { examples: ['a', 'b', 'c', 'd'], other: 'info' };
+	const expectedOutput = { examples: ['c'], other: 'info' };
+	const result = utils.filterComponentExamples(comp, 2);
+	t.deepEqual(result, expectedOutput);
 });

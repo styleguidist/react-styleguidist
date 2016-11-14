@@ -12,6 +12,7 @@ export default class StyleGuide extends Component {
 		components: PropTypes.array.isRequired,
 		sections: PropTypes.array.isRequired,
 		sidebar: PropTypes.bool,
+		singleExample: PropTypes.bool,
 	};
 	static defaultProps = {
 		sidebar: true,
@@ -19,16 +20,18 @@ export default class StyleGuide extends Component {
 	static childContextTypes = {
 		codeKey: PropTypes.number.isRequired,
 		config: PropTypes.object.isRequired,
+		singleExample: PropTypes.bool,
 	};
 
 	getChildContext() {
 		return {
 			codeKey: this.props.codeKey,
 			config: this.props.config,
+			singleExample: this.props.singleExample,
 		};
 	}
 
-	renderComponents(components, sections, sidebar) {
+	renderComponents(components, sections, sidebar, singleExample) {
 		if (!isEmpty(components) || !isEmpty(sections)) {
 			return (
 				<Components
@@ -52,13 +55,13 @@ export default class StyleGuide extends Component {
 	}
 
 	render() {
-		let { config, components, sections, sidebar } = this.props;
+		let { config, components, sections, sidebar, singleExample } = this.props;
 
 		return (
 			<StyleGuideRenderer
 				title={config.title}
 				homepageUrl={HOMEPAGE}
-				components={this.renderComponents(components, sections, sidebar)}
+				components={this.renderComponents(components, sections, sidebar, singleExample)}
 				sections={sections}
 				toc={this.renderTableOfContents(components, sections)}
 				sidebar={sidebar}

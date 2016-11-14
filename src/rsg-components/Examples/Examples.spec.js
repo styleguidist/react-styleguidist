@@ -21,10 +21,12 @@ test('should render examples', () => {
 	const actual = shallow(
 		<Examples
 			examples={examples}
+			name="button"
 		/>,
 		{
 			context: {
 				codeKey: 1,
+				singleExample: false,
 			},
 		}
 	);
@@ -33,6 +35,8 @@ test('should render examples', () => {
 		<Playground
 			code={examples[0].content}
 			evalInContext={examples[0].evalInContext}
+			name="button"
+			index={0}
 		/>
 	);
 	expect(actual.node, 'to contain',

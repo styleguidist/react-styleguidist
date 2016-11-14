@@ -5,9 +5,12 @@ export default class Playground extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
+		index: PropTypes.number.isRequired,
+		name: PropTypes.string.isRequired,
 	};
 	static contextTypes = {
 		config: PropTypes.object.isRequired,
+		singleExample: PropTypes.bool,
 	};
 
 	constructor(props, context) {
@@ -48,11 +51,15 @@ export default class Playground extends Component {
 
 	render() {
 		const { code, showCode } = this.state;
-		const { evalInContext } = this.props;
+		const { evalInContext, index, name } = this.props;
+		const { singleExample } = this.context;
 		return (
 			<PlaygroundRenderer
 				code={code}
 				showCode={showCode}
+				index={index}
+				name={name}
+				singleExample={singleExample}
 				evalInContext={evalInContext}
 				onChange={code => this.handleChange(code)}
 				onCodeToggle={() => this.handleCodeToggle()}
