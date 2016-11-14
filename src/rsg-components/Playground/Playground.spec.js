@@ -12,6 +12,8 @@ test('should render component renderer', () => {
 		<Playground
 			code={code}
 			evalInContext={noop}
+			name="name"
+			index={0}
 		/>,
 		{
 			context: {
@@ -27,6 +29,8 @@ test('should render component renderer', () => {
 			code={code}
 			showCode={false}
 			evalInContext={noop}
+			name="name"
+			index={0}
 		/>
 	);
 });
@@ -37,6 +41,8 @@ test('renderer should render preview', () => {
 			code={code}
 			showCode={false}
 			evalInContext={noop}
+			name="name"
+			index={0}
 		/>
 	);
 

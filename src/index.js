@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import {
 	getComponentNameFromHash,
 	filterComponentsByExactName,
+	filterComponentExamples,
 	filterComponentsInSectionsByExactName,
 	processComponents,
 	processSections,
@@ -25,8 +26,9 @@ function renderStyleguide() {
 	let components = processComponents(styleguide.components);
 	let sections = processSections(styleguide.sections || []);
 	let sidebar = true;
+	let singleExample = false;
 
-	const targetComponentName = getComponentNameFromHash();
+	const { targetComponentName, targetComponentIndex } = getComponentNameFromHash();
 	if (targetComponentName) {
 		components = [
 			...filterComponentsByExactName(components, targetComponentName),
@@ -34,6 +36,11 @@ function renderStyleguide() {
 		];
 		sections = [];
 		sidebar = false;
+
+		if (components.length === 1 && _.isFinite(targetComponentIndex)) {
+			components[0] = filterComponentExamples(components[0], targetComponentIndex);
+			singleExample = true;
+		}
 	}
 
 	ReactDOM.render(
@@ -43,6 +50,7 @@ function renderStyleguide() {
 			components={components}
 			sections={sections}
 			sidebar={sidebar}
+			singleExample={singleExample}
 		/>,
 		document.getElementById('app')
 	);

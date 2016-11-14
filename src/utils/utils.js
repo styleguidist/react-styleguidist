@@ -1,6 +1,7 @@
 import flatMap from 'lodash/flatMap';
 import isArray from 'lodash/isArray';
 import extend from 'lodash/extend';
+import isNaN from 'lodash/isNaN';
 
 export function setComponentsNames(components) {
 	components.map((component) => {
@@ -116,15 +117,37 @@ export function filterComponentsInSectionsByExactName(sections, name) {
 }
 
 /**
- * Returns component name from hash part or page URL:
- * http://localhost:3000/#!/Button → Button
+ * Returns an object containing component name and, optionally, an example index
+ * from hash part or page URL:
+ * http://localhost:3000/#!/Button → { targetComponentName: 'Button' }
+ * http://localhost:3000/#!/Button/1 → { targetComponentName: 'Button', targetComponentIndex: 1 }
  *
  * @param {string} [hash]
- * @returns {string}
+ * @returns {object}
  */
 export function getComponentNameFromHash(hash = window.location.hash) {
-	return hash.substr(0, 3) === '#!/'
-		? hash.substr(3)
-		: null
-	;
+	if (hash.substr(0, 3) === '#!/') {
+		const tokens = hash.substr(3).split('/');
+		const index = parseInt(tokens[1], 10);
+		return {
+			targetComponentName: tokens[0],
+			targetComponentIndex: isNaN(index) ? null : index,
+		};
+	}
+	return {};
+}
+
+/**
+ * Reurn a shallow copy of the given component with the examples array filtered
+ * to contain only the specified index:
+ * filterComponentExamples({ examples: [1,2,3], ...other }, 2) → { examples: [3], ...other }
+ *
+ * @param {object} component
+ * @param {number} index
+ * @returns {object}
+ */
+export function filterComponentExamples(component, index) {
+	const newComponent = Object.assign({}, component);
+	newComponent.examples = [component.examples[index]];
+	return newComponent;
 }
