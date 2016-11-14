@@ -8,6 +8,7 @@ const findup = require('findup');
 const semverUtils = require('semver-utils');
 const prettyjson = require('prettyjson');
 const merge = require('lodash/merge');
+const isFinite = require('lodash/isFinite');
 const utils = require('./utils/utils');
 const consts = require('./consts');
 const StyleguidistError = require('./utils/error');
@@ -28,6 +29,7 @@ const DEFAULT_CONFIG = {
 	serverHost: 'localhost',
 	serverPort: 3000,
 	highlightTheme: 'base16-light',
+	previewDelay: 500,
 	verbose: false,
 	getExampleFilename: componentpath => path.join(path.dirname(componentpath), 'Readme.md'),
 	getComponentPathLine: componentpath => componentpath,
@@ -169,6 +171,9 @@ function validateConfig(config) {
 	if (config.defaultExample && (config.defaultExample !== true && typeof config.defaultExample !== 'string')) {
 		throw new StyleguidistError('Styleguidist: "defaultExample" option must be either false, true, ' +
 			'or a string path to a markdown file.');
+	}
+	if (!isFinite(config.previewDelay)) {
+		throw new StyleguidistError('Styleguidist: "previewDelay" option must be a positive number.');
 	}
 }
 

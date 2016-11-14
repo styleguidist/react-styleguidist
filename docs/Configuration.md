@@ -109,7 +109,7 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   [CodeMirror theme](http://codemirror.net/demo/theme.html) name to use for syntax highlighting in examples.
 
 * **`previewDelay`**<br>
-  Type: `Number`, default: 0<br>
+  Type: `Number`, default: 500<br>
   Debounce time used before render the changes from the editor. While inserting code the preview will not be updated.
 
 * **`getExampleFilename`**<br>
