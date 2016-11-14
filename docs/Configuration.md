@@ -108,6 +108,10 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   Type: `String`, default: `base16-light`<br>
   [CodeMirror theme](http://codemirror.net/demo/theme.html) name to use for syntax highlighting in examples.
 
+* **`previewDelay`**<br>
+  Type: `Number`, default: 0<br>
+  Debounce time used before render the changes from the editor. While inserting code the preview will not be updated.
+
 * **`getExampleFilename`**<br>
   Type: `Function`, default: finds `Readme.md` in the component folder<br>
   Function that returns examples file path for a given component path.
