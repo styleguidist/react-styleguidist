@@ -7,14 +7,12 @@ export default function Components({
 	components,
 	sections,
 	sidebar,
-	singleExample,
 }) {
 	const componentsJsx = components.map(component => (
 		<ReactComponent
 			key={component.filepath}
 			component={component}
 			sidebar={sidebar}
-			singleExample={singleExample}
 		/>
 	));
 
@@ -37,5 +35,4 @@ Components.propTypes = {
 	components: PropTypes.array.isRequired,
 	sections: PropTypes.array.isRequired,
 	sidebar: PropTypes.bool,
-	singleExample: PropTypes.bool,
 };

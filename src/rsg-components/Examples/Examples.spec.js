@@ -26,6 +26,7 @@ test('should render examples', () => {
 		{
 			context: {
 				codeKey: 1,
+				singleExample: false,
 			},
 		}
 	);

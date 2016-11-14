@@ -7,7 +7,6 @@ import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponent
 export default function ReactComponent({
 	component,
 	sidebar,
-	singleExample,
 }) {
 	const { name, pathLine, examples } = component;
 	const { description, props } = component.props;
@@ -17,7 +16,7 @@ export default function ReactComponent({
 			pathLine={pathLine}
 			description={description && <Markdown text={description} />}
 			props={props && <Props props={props} />}
-			examples={examples && <Examples examples={examples} name={name} singleExample={singleExample} />}
+			examples={examples && <Examples examples={examples} name={name} />}
 			sidebar={sidebar}
 		/>
 	);
@@ -26,5 +25,4 @@ export default function ReactComponent({
 ReactComponent.propTypes = {
 	component: PropTypes.object.isRequired,
 	sidebar: PropTypes.bool,
-	singleExample: PropTypes.bool,
 };

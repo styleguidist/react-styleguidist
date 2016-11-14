@@ -7,10 +7,10 @@ export default class Playground extends Component {
 		evalInContext: PropTypes.func.isRequired,
 		index: PropTypes.number.isRequired,
 		name: PropTypes.string.isRequired,
-		singleExample: PropTypes.bool,
 	};
 	static contextTypes = {
 		config: PropTypes.object.isRequired,
+		singleExample: PropTypes.bool,
 	};
 
 	constructor(props, context) {
@@ -51,7 +51,8 @@ export default class Playground extends Component {
 
 	render() {
 		const { code, showCode } = this.state;
-		const { evalInContext, index, name, singleExample } = this.props;
+		const { evalInContext, index, name } = this.props;
+		const { singleExample } = this.context;
 		return (
 			<PlaygroundRenderer
 				code={code}

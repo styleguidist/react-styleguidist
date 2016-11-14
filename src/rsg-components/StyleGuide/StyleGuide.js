@@ -20,12 +20,14 @@ export default class StyleGuide extends Component {
 	static childContextTypes = {
 		codeKey: PropTypes.number.isRequired,
 		config: PropTypes.object.isRequired,
+		singleExample: PropTypes.bool,
 	};
 
 	getChildContext() {
 		return {
 			codeKey: this.props.codeKey,
 			config: this.props.config,
+			singleExample: this.props.singleExample,
 		};
 	}
 
@@ -36,7 +38,6 @@ export default class StyleGuide extends Component {
 					components={components}
 					sections={sections}
 					sidebar={sidebar}
-					singleExample={singleExample}
 				/>
 			);
 		}

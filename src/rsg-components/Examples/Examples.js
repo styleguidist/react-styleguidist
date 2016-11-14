@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Playground from 'rsg-components/Playground';
 import Markdown from 'rsg-components/Markdown';
 
-const Examples = ({ examples, name, singleExample }, { codeKey }) => {
+const Examples = ({ examples, name }, { codeKey }) => {
 	return (
 		<div>
 			{examples.map((example, index) => {
@@ -15,7 +15,6 @@ const Examples = ({ examples, name, singleExample }, { codeKey }) => {
 								key={`${codeKey}/${index}`}
 								name={name}
 								index={index}
-								singleExample={singleExample}
 							/>
 						);
 					case 'markdown':
@@ -36,7 +35,6 @@ const Examples = ({ examples, name, singleExample }, { codeKey }) => {
 Examples.propTypes = {
 	examples: PropTypes.array.isRequired,
 	name: PropTypes.string.isRequired,
-	singleExample: PropTypes.bool,
 };
 Examples.contextTypes = {
 	codeKey: PropTypes.number.isRequired,
