@@ -25,26 +25,6 @@
 	line-height: 1;
 }
 
-.showCodeTotoRight {
-	right: -1px;
-}
-
-.showCodeToLeft {
-	right: 138px;
-}
-
-.isolateExample {
-	composes: base-bg from "../../styles/colors.css";
-	composes: codeToggle;
-	composes: showCodeTotoRight;
-}
-
-.exitIsolation {
-	composes: base-bg from "../../styles/colors.css";
-	composes: codeToggle;
-	right: 90px;
-}
-
 .showCode {
 	composes: base-bg from "../../styles/colors.css";
 	composes: codeToggle;
@@ -53,4 +33,20 @@
 .hideCode {
 	composes: code-bg from "../../styles/colors.css";
 	composes: codeToggle;
+}
+
+.isolatedLink {
+	composes: font from "../../styles/common.css";
+	composes: link from "../../styles/colors.css";
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 14px;
+	padding: 6px 8px;
+	opacity: 0;
+	transition: opacity ease-in-out .15s .2s;
+}
+
+.root:hover .isolatedLink {
+	opacity: 1;
 }

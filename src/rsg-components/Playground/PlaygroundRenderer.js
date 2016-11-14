@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import cx from 'classnames';
 import Editor from 'rsg-components/Editor';
 import Preview from 'rsg-components/Preview';
 
@@ -14,34 +13,30 @@ const PlaygroundRenderer = ({
 	evalInContext,
 	onChange,
 	onCodeToggle,
-}) => {
-	const positionCode = {
-		[s.showCodeTotoRight]: singleExample,
-		[s.showCodeToLeft]: !singleExample,
-	};
-
-	return (
-		<div className={s.root}>
-			<div className={s.preview}>
-				<Preview code={code} evalInContext={evalInContext} />
-			</div>
-			{singleExample && <a className={s.exitIsolation} href={'#!/' + name}>⇽ Exit Isolation</a>}
-			{showCode ? (
-				<div>
-					<Editor code={code} onChange={onChange} />
-					<button type="button" className={cx(s.hideCode, positionCode)} onClick={onCodeToggle}>
-						Hide code
-					</button>
-				</div>
+}) => (
+	<div className={s.root}>
+		<div className={s.preview}>
+			{singleExample ? (
+				<a className={s.isolatedLink} href={'#!/' + name}>⇽ Exit Isolation</a>
 			) : (
-				<button type="button" className={cx(s.showCode, positionCode)} onClick={onCodeToggle}>
-					Show code
-				</button>
+				<a className={s.isolatedLink} href={'#!/' + name + '/' + index}>Open isolated ⇢</a>
 			)}
-			{!singleExample && <a className={s.isolateExample} href={'#!/' + name + '/' + index}>Isolate Example ⇢</a>}
+			<Preview code={code} evalInContext={evalInContext} />
 		</div>
-	);
-};
+		{showCode ? (
+			<div>
+				<Editor code={code} onChange={onChange} />
+				<button type="button" className={s.hideCode} onClick={onCodeToggle}>
+					Hide code
+				</button>
+			</div>
+		) : (
+			<button type="button" className={s.showCode} onClick={onCodeToggle}>
+				Show code
+			</button>
+		)}
+	</div>
+);
 
 PlaygroundRenderer.propTypes = {
 	code: PropTypes.string.isRequired,
