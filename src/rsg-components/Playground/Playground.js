@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import debounce from 'lodash/debounce';
-import isFinite from 'lodash/isFinite';
 import PlaygroundRenderer from 'rsg-components/Playground/PlaygroundRenderer';
 
 export default class Playground extends Component {
@@ -18,10 +17,7 @@ export default class Playground extends Component {
 	constructor(props, context) {
 		super(props, context);
 		const { code } = props;
-		const { previewDelay, showCode } = context.config;
-
-		// `previewDelay` may not be defined or have an invalid value, by defayult is disabled.
-		this.previewDelay = isFinite(previewDelay) && previewDelay > 0 ? previewDelay : 0;
+		const { showCode } = context.config;
 
 		this.state = {
 			code,
@@ -61,9 +57,11 @@ export default class Playground extends Component {
 			code,
 		});
 
-		if (this.previewDelay) {
+		const { previewDelay } = context.config;
+
+		if (previewDelay) {
 			// if previewDelay is enabled debounce the code
-			this.queuedChange = debounce(queuedChange, 1000);
+			this.queuedChange = debounce(queuedChange, previewDelay);
 			this.queuedChange();
 		}
 		else {
