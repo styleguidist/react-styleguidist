@@ -7,7 +7,7 @@ node_js:
 cache:
   directories:
     - $HOME/.npm
-    - $HOME/.yarn-cache
+    - $HOME/.cache/yarn
     - travis_phantomjs
 env:
   # Test everything in Webpack 1 and 2
