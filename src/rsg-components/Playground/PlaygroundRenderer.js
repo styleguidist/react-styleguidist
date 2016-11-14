@@ -14,27 +14,34 @@ const PlaygroundRenderer = ({
 	evalInContext,
 	onChange,
 	onCodeToggle,
-}) => (
-	<div className={s.root}>
-		<div className={s.preview}>
-			<Preview code={code} evalInContext={evalInContext} />
-		</div>
-		{singleExample && <a className={s.exitIsolation} href={'#!/' + name}>⇽ Exit Isolation</a>}
-		{showCode ? (
-			<div>
-				<Editor code={code} onChange={onChange} />
-				<button type="button" className={cx(s.hideCode, { [s.toRight]: singleExample })} onClick={onCodeToggle}>
-					Hide code
-				</button>
+}) => {
+	const positionCode = {
+		[s.showCodeTotoRight]: singleExample,
+		[s.showCodeToLeft]: !singleExample,
+	};
+
+	return (
+		<div className={s.root}>
+			<div className={s.preview}>
+				<Preview code={code} evalInContext={evalInContext} />
 			</div>
-		) : (
-			<button type="button" className={cx(s.showCode, { [s.toRight]: singleExample })} onClick={onCodeToggle}>
-				Show code
-			</button>
-		)}
-		{!singleExample && <a className={s.isolateExample} href={'#!/' + name + '/' + index}>Isolate Example ⇢</a>}
-	</div>
-);
+			{singleExample && <a className={s.exitIsolation} href={'#!/' + name}>⇽ Exit Isolation</a>}
+			{showCode ? (
+				<div>
+					<Editor code={code} onChange={onChange} />
+					<button type="button" className={cx(s.hideCode, positionCode)} onClick={onCodeToggle}>
+						Hide code
+					</button>
+				</div>
+			) : (
+				<button type="button" className={cx(s.showCode, positionCode)} onClick={onCodeToggle}>
+					Show code
+				</button>
+			)}
+			{!singleExample && <a className={s.isolateExample} href={'#!/' + name + '/' + index}>Isolate Example ⇢</a>}
+		</div>
+	);
+};
 
 PlaygroundRenderer.propTypes = {
 	code: PropTypes.string.isRequired,

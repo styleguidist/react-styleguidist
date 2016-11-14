@@ -14,7 +14,7 @@
 	composes: font from "../../styles/common.css";
 	composes: border link from "../../styles/colors.css";
 	position: absolute;
-	right: 138px;
+	right: -1px;
 	bottom: -27px;
 	cursor: pointer;
 	border-bottom-left-radius: 3px;
@@ -25,10 +25,18 @@
 	line-height: 1;
 }
 
+.showCodeTotoRight {
+	right: -1px;
+}
+
+.showCodeToLeft {
+	right: 138px;
+}
+
 .isolateExample {
 	composes: base-bg from "../../styles/colors.css";
 	composes: codeToggle;
-	right: -1px;
+	composes: showCodeTotoRight;
 }
 
 .exitIsolation {
@@ -45,8 +53,4 @@
 .hideCode {
 	composes: code-bg from "../../styles/colors.css";
 	composes: codeToggle;
-}
-
-.toRight {
-	right: -1px;
 }
