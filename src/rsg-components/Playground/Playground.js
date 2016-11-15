@@ -57,7 +57,7 @@ export default class Playground extends Component {
 			code,
 		});
 
-		const { previewDelay } = context.config;
+		const { previewDelay } = this.context.config;
 
 		if (previewDelay) {
 			// if previewDelay is enabled debounce the code
