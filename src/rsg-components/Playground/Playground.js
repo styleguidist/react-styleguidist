@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import debounce from 'lodash/debounce';
 import PlaygroundRenderer from 'rsg-components/Playground/PlaygroundRenderer';
 
 export default class Playground extends Component {
@@ -17,6 +18,7 @@ export default class Playground extends Component {
 		super(props, context);
 		const { code } = props;
 		const { showCode } = context.config;
+
 		this.state = {
 			code,
 			showCode,
@@ -37,10 +39,35 @@ export default class Playground extends Component {
 		);
 	}
 
+	componentWillUnmount() {
+		// clear pending changes before unmount
+		if (this.queuedChange) {
+			this.queuedChange.cancel();
+		}
+	}
+
 	handleChange(code) {
-		this.setState({
+		// clear pending changes before proceed
+		if (this.queuedChange) {
+			this.queuedChange.cancel();
+		}
+
+		// stored update action
+		const queuedChange = () => this.setState({
 			code,
 		});
+
+		const { previewDelay } = context.config;
+
+		if (previewDelay) {
+			// if previewDelay is enabled debounce the code
+			this.queuedChange = debounce(queuedChange, previewDelay);
+			this.queuedChange();
+		}
+		else {
+			// otherwise execute it
+			queuedChange();
+		}
 	}
 
 	handleCodeToggle() {

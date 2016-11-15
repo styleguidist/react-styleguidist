@@ -141,6 +141,7 @@ module.exports.pitch = function() {
 		'title',
 		'highlightTheme',
 		'showCode',
+		'previewDelay',
 	]);
 
 	const code = toCode({
