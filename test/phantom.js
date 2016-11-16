@@ -9,12 +9,19 @@ if (system.args.length !== 2) {
 }
 
 const page = require('webpage').create();
-phantom.onError = page.onError = function(err) {
+phantom.onError = page.onError = page.onResourceError = page.onResourceTimeout = function(err) {
 	console.log(err);
 	phantom.exit(1);
 };
 
+page.onConsoleMessage = function(msg) {
+	console.log(msg);
+};
+
+page.viewportSize = { width: 1024, height: 768 };
+
 page.open(system.args[1], function(status) {
+	// page.render('screenshot.png');
 	if (status !== 'success') {
 		console.log('Cannot load the page');
 		phantom.exit(1);
