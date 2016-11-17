@@ -7,6 +7,7 @@ const prettyjson = require('prettyjson');
 const pick = require('lodash/pick');
 const utils = require('./utils/js');
 const requireIt = utils.requireIt;
+const requireMaybe = utils.requireMaybe;
 const toCode = utils.toCode;
 
 /* eslint-disable no-console */
@@ -53,15 +54,11 @@ function getNameFallback(filepath) {
  * @returns {string}
  */
 function getExamples(examplesFile, nameFallback, defaultExample) {
-	if (fs.existsSync(examplesFile)) {
-		return requireIt('examples!' + examplesFile);
-	}
+	const alternate = defaultExample
+		? 'examples?componentName=' + nameFallback + '!' + defaultExample
+		: null;
 
-	if (defaultExample) {
-		return requireIt('examples?componentName=' + nameFallback + '!' + defaultExample);
-	}
-
-	return null;
+	return requireMaybe('examples!' + examplesFile, alternate);
 }
 
 /**
