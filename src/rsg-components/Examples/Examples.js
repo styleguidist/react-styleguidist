@@ -34,7 +34,7 @@ const Examples = ({ examples, name }, { codeKey }) => {
 
 Examples.propTypes = {
 	examples: PropTypes.array.isRequired,
-	name: PropTypes.string.isRequired,
+	name: PropTypes.string,
 };
 Examples.contextTypes = {
 	codeKey: PropTypes.number.isRequired,
