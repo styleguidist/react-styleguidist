@@ -1,5 +1,7 @@
 # React Styleguidist
 
+[![Join the chat at https://gitter.im/styleguidist/styleguidist](https://badges.gitter.im/styleguidist/styleguidist.svg)](https://gitter.im/styleguidist/styleguidist?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/sapegin/react-styleguidist.svg)](https://travis-ci.org/sapegin/react-styleguidist) [![Dependency Status](https://david-dm.org/sapegin/react-styleguidist.svg)](https://david-dm.org/sapegin/react-styleguidist) [![npm](https://img.shields.io/npm/v/react-styleguidist.svg)](https://www.npmjs.com/package/react-styleguidist)
 
 React Styleguidist is a style guide generator for React components. It lists component `propTypes` and shows live, editable usage examples based on Markdown files. You can use it to generate a static HTML page to share and publish or as a workbench for developing new components using hot reloaded dev server. Check out [**the demo style guide**](http://sapegin.github.io/react-styleguidist/).
