@@ -29,7 +29,7 @@ Based on Webpack, webpack-dev-server and Babel.
 
 Real projects using React Styleguidist:
 
-* [Rumble Charts](http://rumbleinc.github.io/rumble-js-charts/)
+* [Rumble Charts](https://rumble-charts.github.io/rumble-charts/)
 * [better-react-spinkit](http://better-react-spinkit.benjamintatum.com/)
 * [Semantic UI Components for React](http://hallister.github.io/semantic-react/)
 * [Dialog Components](https://dialogs.github.io/dialog-web-components/)
