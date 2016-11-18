@@ -1,7 +1,7 @@
 # React Styleguidist
 
-[![Build Status](https://travis-ci.org/sapegin/react-styleguidist.svg)](https://travis-ci.org/sapegin/react-styleguidist)
-[![npm](https://img.shields.io/npm/v/react-styleguidist.svg)](https://www.npmjs.com/package/react-styleguidist) 
+[![Build Status](https://travis-ci.org/styleguidist/react-styleguidist.svg)](https://travis-ci.org/styleguidist/react-styleguidist)
+[![npm](https://img.shields.io/npm/v/react-styleguidist.svg)](https://www.npmjs.com/package/react-styleguidist)
 [![Join the chat at https://gitter.im/styleguidist/styleguidist](https://badges.gitter.im/styleguidist/styleguidist.svg)](https://gitter.im/styleguidist/styleguidist?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
@@ -34,7 +34,7 @@ Real projects using React Styleguidist:
 * [Semantic UI Components for React](http://hallister.github.io/semantic-react/)
 * [Dialog Components](https://dialogs.github.io/dialog-web-components/)
 * [Bulma Components](http://bokuweb.github.io/re-bulma/)
-* [More projects…](https://github.com/sapegin/react-styleguidist/issues/127)
+* [More projects…](https://github.com/styleguidist/react-styleguidist/issues/127)
 
 ## Integration with other tools
 
@@ -49,7 +49,7 @@ Real projects using React Styleguidist:
 
 ## Changelog
 
-The changelog can be found on the [Releases page](https://github.com/sapegin/react-styleguidist/releases).
+The changelog can be found on the [Releases page](https://github.com/styleguidist/react-styleguidist/releases).
 
 ## Contributing
 
@@ -57,6 +57,6 @@ Everyone is welcome to contribute. Please take a moment to review the [contribut
 
 ## Authors and license
 
-[Artem Sapegin](http://sapegin.me) and [contributors](https://github.com/sapegin/react-styleguidist/graphs/contributors).
+[Artem Sapegin](http://sapegin.me) and [contributors](https://github.com/styleguidist/react-styleguidist/graphs/contributors).
 
 MIT License, see the included [License.md](License.md) file.

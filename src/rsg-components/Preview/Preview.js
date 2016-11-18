@@ -48,7 +48,7 @@ export default class Preview extends Component {
 			const compiledCode = compileCode(this.props.code);
 
 			// Initiate state and set with the callback in the bottom component;
-			// Workaround for https://github.com/sapegin/react-styleguidist/issues/155 - missed props on first render
+			// Workaround for https://github.com/styleguidist/react-styleguidist/issues/155 - missed props on first render
 			// when using initialState
 			const initCode = `
 				var React = {};  // React.createElement will throw on first load

@@ -10,7 +10,7 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar }) => (
 				<div className={s.components}>
 					{components}
 					<footer className={s.footer}>
-						Generated with <a className={s.link} href="https://github.com/sapegin/react-styleguidist">React Styleguidist</a>
+						Generated with <a className={s.link} href="https://github.com/styleguidist/react-styleguidist">React Styleguidist</a>
 					</footer>
 				</div>
 				{sidebar &&

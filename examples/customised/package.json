@@ -2,14 +2,14 @@
   "name": "react-styleguidist-example-customised",
   "description": "React styleguidist customised example",
   "version": "1.0.0",
-  "homepage": "https://github.com/sapegin/react-styleguidist",
+  "homepage": "https://github.com/styleguidist/react-styleguidist",
   "author": {
     "name": "Artem Sapegin",
     "url": "http://sapegin.me/"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/sapegin/react-styleguidist.git"
+    "url": "git://github.com/styleguidist/react-styleguidist.git"
   },
   "license": "MIT",
   "engines": {
