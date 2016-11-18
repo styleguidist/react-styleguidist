@@ -144,6 +144,10 @@ module.exports.pitch = function() {
 		'previewDelay',
 	]);
 
+	if (config.contextDependencies) {
+		config.contextDependencies.forEach(d => this.addContextDependency(d));
+	}
+
 	const code = toCode({
 		config: JSON.stringify(simplifiedConfig),
 		components: processComponentsSource(config.components, config),

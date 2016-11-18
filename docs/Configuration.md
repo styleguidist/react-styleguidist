@@ -76,6 +76,22 @@ You can change settings in the `styleguide.config.js` file in your project’s r
 
   When writing your own default example file, `__COMPONENT__` will be replaced by the actual component name at compile-time.
 
+* **`contextDependencies`**<br>
+  Type: `Array of String`, optional<br>
+  Array of strings that allow you to specify absolute paths of directories to
+  watch for additions or removals of components. If you do not set this, you
+  will need to restart styleguidist every time you add or remove a component.
+
+  ```javascript
+  module.exports = {
+    // ...
+    contextDependencies: [
+      path.resolve(__dirname, 'lib/components'),
+    ],
+    // ...
+  }
+  ```
+
 * **`showCode`**<br>
   Type: `Boolean`, default: `false`<br>
   Show or hide example code initially. It can be toggled in the UI by clicking the show/hide code toggle button underneath each example.
