@@ -6,7 +6,7 @@ import isNaN from 'lodash/isNaN';
 export function setComponentsNames(components) {
 	components.map((component) => {
 		// Try to detect component name or fallback to file name or directory name.
-		let { module } = component;
+		const { module } = component;
 		component.name = (component.props && component.props.displayName) || (
 			module.default
 				? (module.default.displayName || module.default.name)
@@ -104,7 +104,7 @@ export function filterComponentsByExactName(componens, name) {
  * @return {Array}
  */
 export function filterComponentsInSectionsByExactName(sections, name) {
-	let components = [];
+	const components = [];
 	sections.forEach(section => {
 		if (section.components) {
 			components.push(...filterComponentsByExactName(section.components, name));

@@ -6,7 +6,6 @@ import 'rsg-codemirror-theme.css';
 import React, { Component, PropTypes } from 'react';
 import debounce from 'lodash/debounce';
 import Codemirror from 'react-codemirror';
-import EditorRenderer from 'rsg-components/Editor/EditorRenderer';
 
 const codemirrorOptions = {
 	mode: 'jsx',
@@ -49,9 +48,7 @@ export default class Editor extends Component {
 			theme: highlightTheme,
 		};
 		return (
-			<EditorRenderer>
-				<Codemirror value={code} onChange={this.handleChange} options={options} />
-			</EditorRenderer>
+			<Codemirror value={code} onChange={this.handleChange} options={options} />
 		);
 	}
 }

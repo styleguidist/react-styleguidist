@@ -1,8 +1,0 @@
-.root {
-	composes: monospace from "../../styles/common.css";
-	composes: white error-bg from "../../styles/colors.css";
-	margin: -15px -15px -18px;
-	padding: 15px;
-	line-height: 1.2;
-	font-size: 13px;
-}

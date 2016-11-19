@@ -5,7 +5,7 @@ import Examples from '../Examples';
 import Markdown from '../Markdown';
 import Playground from '../Playground';
 import ReactComponent from './ReactComponent';
-import ReactComponentRenderer from './ReactComponentRenderer';
+import ReactComponentRendererHoC, { ReactComponentRenderer } from './ReactComponentRenderer';
 
 const component = {
 	name: 'Foo',
@@ -34,7 +34,7 @@ test('should render component renderer', () => {
 	);
 
 	expect(actual.node, 'to contain',
-		<ReactComponentRenderer
+		<ReactComponentRendererHoC
 			name={component.name}
 			pathLine={component.pathLine}
 			description={<Markdown text={component.props.description} />}
@@ -46,6 +46,7 @@ test('should render component renderer', () => {
 test('render should render component', () => {
 	const actual = shallow(
 		<ReactComponentRenderer
+			classes={{}}
 			name={component.name}
 			pathLine={component.pathLine}
 			description={component.props.description}

@@ -10,7 +10,7 @@ export default function PushButton({
 	size,
 	children,
 }) {
-	let styles = {
+	const styles = {
 		color,
 		fontSize: PushButton.sizes[size],
 	};

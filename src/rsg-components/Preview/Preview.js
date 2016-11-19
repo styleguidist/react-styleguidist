@@ -39,7 +39,7 @@ export default class Preview extends Component {
 			error: null,
 		});
 
-		let { code } = this.props;
+		const { code } = this.props;
 		if (!code) {
 			return;
 		}
