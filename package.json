@@ -80,7 +80,6 @@
     "babel-loader": "~6.2.8",
     "babel-register": "~6.18.0",
     "cross-env": "~3.1.3",
-    "css-modules-require-hook": "~4.0.5",
     "dog-names": "~1.0.2",
     "enzyme": "~2.5.1",
     "eslint": "~3.10.2",
