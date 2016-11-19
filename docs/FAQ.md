@@ -1,5 +1,25 @@
 # FAQ
 
+## How to reuse project’s Webpack config?
+
+Require it from your style guide config and pass sections you need to `webpackConfig` option:
+
+```javascript
+const webpackConfig = require('./webpack.config.js');
+module.exports = {
+  components: 'lib/components/**/[A-Z]*.js',
+  webpackConfig: {
+    resolve: {
+      extensions: webpackConfig.resolve.extensions,
+    },
+    module: {
+      loaders: webpackConfig.module.loaders,
+    },
+    postcss: webpackConfig.postcss,
+  },
+};
+```
+
 ## How to use `ref`s in examples?
 
 Use `ref` prop as a function and assign a reference to a local variable:
@@ -91,7 +111,7 @@ module.exports = {
 
 * See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/styles/theme.js).
 * Styles use [JSS syntax](https://github.com/cssinjs/jss/blob/master/docs/json-api.md).
-* [Check sources](https://github.com/styleguidist/react-styleguidist/tree/master/src/rsg-components) to find component and style names. 
+* [Check sources](https://github.com/styleguidist/react-styleguidist/tree/master/src/rsg-components) to find component and style names.
 
 ## How to change the layout of a style guide?
 
