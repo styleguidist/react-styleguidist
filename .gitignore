@@ -2,4 +2,5 @@ examples/**/styleguide/build
 examples/**/styleguide/index.html
 .publish/
 node_modules/
+lib/
 Changelog.md

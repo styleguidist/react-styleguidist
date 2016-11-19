@@ -15,7 +15,7 @@ const webpackVersion = semverUtils.parseRange(require('webpack/package.json').ve
 const isWebpack2 = webpackVersion === '2';
 
 const nodeModulesDir = path.resolve(__dirname, '../node_modules');
-const sourceDir = path.resolve(__dirname, '../src');
+const sourceDir = path.resolve(__dirname, '../lib');
 const codeMirrorPath = getPackagePath('codemirror');
 
 // These modules are used by Remark and they need json-loader
@@ -72,7 +72,7 @@ function validateWebpackConfig(webpackConfig) {
 }
 
 module.exports = function(config, env) {
-	process.env.NODE_ENV = process.env.BABEL_ENV = env;
+	process.env.NODE_ENV = env;
 
 	const isProd = env === 'production';
 
@@ -106,15 +106,6 @@ module.exports = function(config, env) {
 		],
 		module: {
 			loaders: [
-				{
-					test: /\.js$/,
-					include: sourceDir,
-					loader: 'babel',
-					query: {
-						babelrc: false,
-						presets: ['es2015', 'react', 'stage-0'],
-					},
-				},
 				{
 					test: new RegExp(`node_modules[/\\\\](${jsonModules.join('|')})[/\\\\].*\\.json$`),
 					include: /node_modules/,
