@@ -28,7 +28,7 @@ function processComponent(filepath, config) {
 		nameFallback: JSON.stringify(nameFallback),
 		pathLine: JSON.stringify(config.getComponentPathLine(componentPath)),
 		module: requireIt(filepath),
-		props: requireIt('!!props!' + filepath),
+		props: requireIt('!!props-loader!' + filepath),
 		examples: getExamples(examplesFile, nameFallback, config.defaultExample),
 	});
 }
@@ -54,11 +54,11 @@ function getNameFallback(filepath) {
  */
 function getExamples(examplesFile, nameFallback, defaultExample) {
 	if (fs.existsSync(examplesFile)) {
-		return requireIt('examples!' + examplesFile);
+		return requireIt('!!examples-loader!' + examplesFile);
 	}
 
 	if (defaultExample) {
-		return requireIt('examples?componentName=' + nameFallback + '!' + defaultExample);
+		return requireIt('!!examples-loader?componentName=' + nameFallback + '!' + defaultExample);
 	}
 
 	return null;

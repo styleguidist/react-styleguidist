@@ -21,7 +21,7 @@ global._ = _;
 let codeKey = 0;
 
 function renderStyleguide() {
-	const styleguide = require('styleguide!index.js');
+	const styleguide = require('!!styleguide-loader!index.js');
 
 	let components = processComponents(styleguide.components);
 	let sections = processSections(styleguide.sections || []);
@@ -68,7 +68,7 @@ function renderStyleguide() {
 window.addEventListener('hashchange', renderStyleguide);
 
 if (module.hot) {
-	module.hot.accept('styleguide!index.js', () => {
+	module.hot.accept('!!styleguide-loader!index.js', () => {
 		codeKey += 1;
 		renderStyleguide();
 	});

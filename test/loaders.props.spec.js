@@ -1,6 +1,6 @@
 import test from 'ava';
 import { readFileSync } from 'fs';
-import propsLoader from '../loaders/props.loader';
+import propsLoader from '../loaders/props-loader';
 
 test('should return valid, parsable JS', t => {
 	const file = 'components/Button/Button.js';

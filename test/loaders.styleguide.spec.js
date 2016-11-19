@@ -1,6 +1,6 @@
 import test from 'ava';
 import { readFileSync } from 'fs';
-import styleguideLoader from '../loaders/styleguide.loader';
+import styleguideLoader from '../loaders/styleguide-loader';
 
 test('should return valid, parsable JS', t => {
 	const file = 'components/Button/Button.js';

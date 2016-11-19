@@ -1,5 +1,5 @@
 import test from 'ava';
-import examplesLoader from '../loaders/examples.loader';
+import examplesLoader from '../loaders/examples-loader';
 
 test('should return valid, parsable JS', t => {
 	const exampleMarkdown = `

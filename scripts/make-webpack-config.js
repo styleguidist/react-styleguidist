@@ -15,7 +15,6 @@ const omit = require('lodash/omit');
 const webpackVersion = semverUtils.parseRange(require('webpack/package.json').version)[0].major;
 const isWebpack2 = webpackVersion === '2';
 
-const nodeModulesDir = path.resolve(__dirname, '../node_modules');
 const sourceDir = path.resolve(__dirname, '../lib');
 
 /**
@@ -60,9 +59,6 @@ module.exports = function(config, env) {
 				'rsg-codemirror-theme.css': `codemirror/theme/${config.highlightTheme}.css`,
 			},
 		},
-		resolveLoader: {
-			moduleExtensions: ['-loader', '.loader'],
-		},
 		plugins: [
 			new HtmlWebpackPlugin({
 				title: config.title,
@@ -82,7 +78,6 @@ module.exports = function(config, env) {
 
 	const loaderModulesDirectories = [
 		path.resolve(__dirname, '../loaders'),
-		nodeModulesDir,
 		'node_modules',
 	];
 
@@ -92,7 +87,6 @@ module.exports = function(config, env) {
 				extensions: ['.js', '.jsx', '.json'],
 				modules: [
 					sourceDir,
-					nodeModulesDir,
 					'node_modules',
 				],
 			},
@@ -117,7 +111,6 @@ module.exports = function(config, env) {
 				extensions: ['.js', '.jsx', '.json', ''],
 				root: sourceDir,
 				moduleDirectories: [
-					nodeModulesDir,
 					'node_modules',
 				],
 			},
