@@ -75,6 +75,22 @@ You can change settings in the `styleguide.config.js` file in your project’s r
 
   When writing your own default example file, `__COMPONENT__` will be replaced by the actual component name at compile-time.
 
+* **`contextDependencies`**<br>
+  Type: `Array of String`, optional<br>
+  Array of strings that allow you to specify absolute paths of directories to
+  watch for additions or removals of components. If you do not set this,
+  styleguidist will determine the single directory that all of your components
+  have in common and watch that.
+
+  ```javascript
+  module.exports = {
+    // ...
+    contextDependencies: [
+      path.resolve(__dirname, 'lib/components'),
+    ],
+  }
+  ```
+
 * **`showCode`**<br>
   Type: `Boolean`, default: `false`<br>
   Show or hide example code initially. It can be toggled in the UI by clicking the show/hide code toggle button underneath each example.
@@ -157,13 +173,13 @@ You can change settings in the `styleguide.config.js` file in your project’s r
     },
   };
   ```
-  
+
   Then you can use them in any example:
-  
+
   ```javascript
   <Message>{map(users, 'name').join(', ')}</Message>
   ```
-    
+
 * **`webpackConfig`**<br>
   Type: `Object` or `Function`, optional<br>
   Custom Webpack config options: loaders, extensions, plugins, etc. required for your project.
@@ -188,7 +204,7 @@ You can change settings in the `styleguide.config.js` file in your project’s r
     },
   };
   ```
-  
+
   Or a function:
 
   ```javascript
@@ -197,7 +213,7 @@ You can change settings in the `styleguide.config.js` file in your project’s r
     webpackConfig(env) {
       if (env === 'development') {
           return {
-              // custom options 
+              // custom options
           };
       }
       return {};
@@ -206,9 +222,9 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   ```
 
   > **Note:**: `output` option will be ignored.
-  
+
   > **Note:** this option disables Webpack config auto load, use `webpackConfigFile` option to load your project’s Webpack config from file.
-  
+
   > **Note:** run style guide in verbose mode to see the actual Webpack config used by Styleguidist: `npm run styleguide -- --verbose`.
 
   See [FAQ](./FAQ.md) for examples.
@@ -223,7 +239,7 @@ You can change settings in the `styleguide.config.js` file in your project’s r
 * **`updateWebpackConfig`**<br>
   Type: `Function`, optional<br>
   Function that allows you to modify Webpack config for style guide.
-  
+
   > **Warning:** deprecated, use `webpackConfigFile` or `webpackConfig` options instead.
 
   ```javascript
@@ -239,8 +255,8 @@ You can change settings in the `styleguide.config.js` file in your project’s r
     },
   };
   ```
-  
-  > **Note:** this option disables Webpack config auto load. 
+
+  > **Note:** this option disables Webpack config auto load.
 
 * **`propsParser`**<br>
   Type: `Function`, optional<br>

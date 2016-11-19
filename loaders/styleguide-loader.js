@@ -2,9 +2,11 @@
 
 const pick = require('lodash/pick');
 const isFunction = require('lodash/isFunction');
+const commonDir = require('common-dir');
 const toCode = require('./utils/toCode');
 const getComponents = require('./utils/getComponents');
 const getComponentsCode = require('./utils/getComponentsCode');
+const getComponentsFromSections = require('./utils/getComponentsFromSections');
 const getSectionsCode = require('./utils/getSectionsCode');
 
 /* eslint-disable no-console */
@@ -44,6 +46,20 @@ module.exports.pitch = function() {
 		console.log('Loading components:');
 		console.log(componentFiles.join('\n'));
 		console.log();
+	}
+
+	// Setup Webpack context dependencies to enable hot reload when adding new files
+	if (config.contextDependencies) {
+		config.contextDependencies.forEach(dir => this.addContextDependency(dir));
+	}
+	else {
+		// Get list of all component files including components in sections,
+		// and use their common parent directory as a context
+		const sectionComponentFiles = getComponentsFromSections(config.sections, config);
+		const allComponentFiles = componentFiles.concat(sectionComponentFiles);
+		if (allComponentFiles.length) {
+			this.addContextDependency(commonDir(allComponentFiles));
+		}
 	}
 
 	const code = toCode({

@@ -23,6 +23,9 @@ module.exports = {
 			React: 'react',
 		},
 	},
+	concontextDependencies: {
+		type: 'array',
+	},
 	defaultExample: {
 		type: ['boolean', 'existing file path'],
 		default: false,
