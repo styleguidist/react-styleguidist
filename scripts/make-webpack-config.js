@@ -88,7 +88,6 @@ module.exports = function(config, env) {
 				{
 					test: /\.css$/,
 					include: [
-						sourceDir,
 						codeMirrorPath,
 						getPackagePath('highlight.js'),
 					],
