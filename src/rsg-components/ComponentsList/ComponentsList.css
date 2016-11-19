@@ -16,3 +16,10 @@
 .heading {
 	font-weight: bold;
 }
+
+@media (max-width: 600px) {
+	.item .item {
+		display: inline-block;
+		margin: 0 7px 0 0;
+	}
+}
