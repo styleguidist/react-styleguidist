@@ -79,8 +79,9 @@ You can change settings in the `styleguide.config.js` file in your project’s r
 * **`contextDependencies`**<br>
   Type: `Array of String`, optional<br>
   Array of strings that allow you to specify absolute paths of directories to
-  watch for additions or removals of components. If you do not set this, you
-  will need to restart styleguidist every time you add or remove a component.
+  watch for additions or removals of components. If you do not set this,
+  styleguidist will determine the single directory that all of your components
+  have in common and watch that.
 
   ```javascript
   module.exports = {

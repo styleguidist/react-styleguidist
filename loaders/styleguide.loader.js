@@ -4,6 +4,8 @@ const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 const prettyjson = require('prettyjson');
+const flatMapDeep = require('lodash/flatMapDeep');
+const commonDir = require('common-dir');
 const pick = require('lodash/pick');
 const utils = require('./utils/js');
 const requireIt = utils.requireIt;
@@ -173,6 +175,25 @@ function processSectionsList(sections, config) {
 	return toCode(sections.map(section => processSection(section, config)));
 }
 
+/**
+ * Return a flat array of all component files, including those within sections
+ *
+ * @param {Array} componentFiles
+ * @param {object} sectionsWithFiles
+ * @returns {Array}
+ */
+function flattenComponentFiles(componentFiles, sectionsWithFiles) {
+	const getFilesFromSection = ({ sections = [], componentFiles }) => ([
+		componentFiles,
+		sections.map(getFilesFromSection),
+	]);
+
+	return flatMapDeep([
+		...componentFiles,
+		sectionsWithFiles.map(getFilesFromSection),
+	]);
+}
+
 module.exports = function() {};
 module.exports.pitch = function() {
 	if (this.cacheable) {
@@ -194,6 +215,13 @@ module.exports.pitch = function() {
 
 	if (config.contextDependencies) {
 		config.contextDependencies.forEach(d => this.addContextDependency(d));
+	}
+	else {
+		const allComponentFiles = flattenComponentFiles(componentFiles, sectionsWithFiles);
+		if (allComponentFiles.length) {
+			const contextDir = commonDir(allComponentFiles);
+			this.addContextDependency(contextDir);
+		}
 	}
 
 	const code = toCode({
