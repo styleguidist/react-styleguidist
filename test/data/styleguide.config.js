@@ -12,17 +12,12 @@ module.exports = {
 				{
 					test: /\.jsx?$/,
 					include: dir,
-					loader: 'babel',
+					loader: 'babel-loader',
 				},
 				{
 					test: /\.css$/,
 					include: dir,
-					loader: 'style!css?modules&importLoaders=1',
-				},
-				{
-					test: /\.json$/,
-					include: path.dirname(require.resolve('dog-names/package.json')),
-					loader: 'json',
+					loader: 'style-loader!css-loader?modules',
 				},
 			],
 		},

@@ -1,7 +1,3 @@
-const path = require('path');
-
-const dir = path.resolve(__dirname, 'lib');
-
 module.exports = {
 	title: 'React Style Guide Example',
 	sections: [
@@ -28,18 +24,12 @@ module.exports = {
 			loaders: [
 				{
 					test: /\.jsx?$/,
-					include: dir,
-					loader: 'babel',
+					exclude: /node_modules/,
+					loader: 'babel-loader',
 				},
 				{
 					test: /\.css$/,
-					include: dir,
-					loader: 'style!css?modules&importLoaders=1',
-				},
-				{
-					test: /\.json$/,
-					include: path.dirname(require.resolve('dog-names/package.json')),
-					loader: 'json',
+					loader: 'style-loader!css-loader?modules',
 				},
 			],
 		},

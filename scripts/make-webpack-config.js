@@ -9,6 +9,7 @@ const merge = require('webpack-merge');
 const prettyjson = require('prettyjson');
 const semverUtils = require('semver-utils');
 const isFunction = require('lodash/isFunction');
+const isRegExp = require('lodash/isRegExp');
 const omit = require('lodash/omit');
 
 const webpackVersion = semverUtils.parseRange(require('webpack/package.json').version)[0].major;
@@ -16,59 +17,30 @@ const isWebpack2 = webpackVersion === '2';
 
 const nodeModulesDir = path.resolve(__dirname, '../node_modules');
 const sourceDir = path.resolve(__dirname, '../lib');
-const codeMirrorPath = getPackagePath('codemirror');
-
-// These modules are used by Remark and they need json-loader
-const jsonModules = [
-	'remark-parse',
-	'character-entities-html4',
-	'character-reference-invalid',
-	'character-entities-legacy',
-	'character-entities',
-	'hast-util-sanitize',
-];
 
 /**
- * Return npm package path.
- * In npm2 works only with packages required directly by this package.
- *
- * @param {string} packageName Package name.
- * @return {string}
- */
-function getPackagePath(packageName) {
-	// We resolve package.json because otherwise path.resolve returns main module path
-	return path.dirname(require.resolve(packageName + '/package.json'));
-}
-
-/**
- * Return true if given regexp matches files of given type.
- *
- * @param {RegExp} matcher
- * @param {string} extension
- * @return {boolean}
- */
-function matchesFileType(matcher, extension) {
-	return matcher.test('test.' + extension);
-}
-
-/**
- * Check if Webpack loaders in user’s config will not interfere with our own loaders: they must have "include"
- * or "exclude" option.
+ * Check if given Webpack config has JSON loader.
+ * Based on react-storybook.
  *
  * @param {object} webpackConfig
+ * @return {boolean}
  */
-function validateWebpackConfig(webpackConfig) {
-	webpackConfig.module.loaders.forEach(loader => {
-		if (
-			!loader.include && !loader.exclude &&
-			(matchesFileType(loader.test, 'js') || matchesFileType(loader.test, 'css'))
-		) {
-			throw Error(
-				'Either "include" or "exclude" option is required for ' + loader.test + ' Webpack loader.\n' +
-				'Otherwise your loader might interfere with loaders used by Styleguidist and cause obscure issues.'
-			);
-		}
-	});
+function hasJsonLoader(webpackConfig) {
+	const testString = 'test.json';
+	return webpackConfig.module.loaders.reduce(
+		(value, loader) => {
+			return value || [].concat(loader.test).some(matcher => {
+				if (isRegExp(matcher)) {
+					return matcher.test(testString);
+				}
+				if (isFunction(matcher)) {
+					return matcher(testString);
+				}
+				return false;
+			});
+		},
+		false
+	);
 }
 
 module.exports = function(config, env) {
@@ -85,8 +57,7 @@ module.exports = function(config, env) {
 		},
 		resolve: {
 			alias: {
-				codemirror: codeMirrorPath,
-				'rsg-codemirror-theme.css': path.join(codeMirrorPath, `theme/${config.highlightTheme}.css`),
+				'rsg-codemirror-theme.css': `codemirror/theme/${config.highlightTheme}.css`,
 			},
 		},
 		resolveLoader: {
@@ -105,21 +76,7 @@ module.exports = function(config, env) {
 			}),
 		],
 		module: {
-			loaders: [
-				{
-					test: new RegExp(`node_modules[/\\\\](${jsonModules.join('|')})[/\\\\].*\\.json$`),
-					include: /node_modules/,
-					loader: 'json',
-				},
-				{
-					test: /\.css$/,
-					include: [
-						codeMirrorPath,
-						getPackagePath('highlight.js'),
-					],
-					loader: 'style!css',
-				},
-			],
+			loaders: [],
 		},
 	};
 
@@ -220,14 +177,20 @@ module.exports = function(config, env) {
 		webpackConfig = merge(webpackConfig, safeUserConfig);
 	}
 
+	// Add JSON loader if user config has no one
+	if (!hasJsonLoader(webpackConfig)) {
+		webpackConfig.module.loaders.push({
+			test: /\.json$/,
+			loader: 'json-loader',
+		});
+	}
+
 	// Add Styleguidist’s entry point after user’s entry points so things like polyfills would work
 	webpackConfig.entry.push(path.resolve(sourceDir, 'index'));
 
 	if (config.updateWebpackConfig) {
 		webpackConfig = config.updateWebpackConfig(webpackConfig, env);
 	}
-
-	validateWebpackConfig(webpackConfig);
 
 	if (config.verbose) {
 		console.log();

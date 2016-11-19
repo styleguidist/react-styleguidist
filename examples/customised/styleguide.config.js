@@ -1,10 +1,5 @@
 const path = require('path');
 
-const dirs = [
-	path.resolve(__dirname, 'lib'),
-	path.resolve(__dirname, 'styleguide'),
-];
-
 module.exports = {
 	title: 'Style guide example',
 	components: './lib/components/**/[A-Z]*.js',
@@ -22,18 +17,12 @@ module.exports = {
 			loaders: [
 				{
 					test: /\.jsx?$/,
-					include: dirs,
-					loader: 'babel',
+					exclude: /node_modules/,
+					loader: 'babel-loader',
 				},
 				{
 					test: /\.css$/,
-					include: dirs,
-					loader: 'style!css?modules&importLoaders=1',
-				},
-				{
-					test: /\.json$/,
-					include: path.dirname(require.resolve('dog-names/package.json')),
-					loader: 'json',
+					loader: 'style-loader!css-loader?modules',
 				},
 			],
 		},

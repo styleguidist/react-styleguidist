@@ -23,3 +23,4 @@ require('module').Module._initPaths();
  * Mock Editor component because CodeMirror doesn’t work in Node.
  */
 mock('rsg-components/Editor', {});
+mock('!!style-loader!css-loader!highlight.js/styles/tomorrow.css', {});

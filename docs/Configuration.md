@@ -162,8 +162,7 @@ You can change settings in the `styleguide.config.js` file in your project’s r
         loaders: [
           {
             test: /\.scss$/,
-            include: path.resolve(__dirname, 'lib'),
-            loaders: ['style', 'css', 'sass?precision=10'],
+            loaders: ['style-loader', 'css-loader', 'sass-loader?precision=10'],
           },
         ],
       },

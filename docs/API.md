@@ -8,8 +8,6 @@ Using a JavaScript object:
 
 ```javascript
 const styleguidist = require('react-styleguidist');
-const path = require('path');
-const dir = path.resolve(__dirname, 'lib/components');
 const styleguide = styleguidist({
   components: './lib/components/**/*.js',
   webpackConfig: {
@@ -17,15 +15,14 @@ const styleguide = styleguidist({
       loaders: [
         {
           test: /\.jsx?$/,
-          include: dir,
-          loader: 'babel',
+          exclude: /node_modules/,
+          loader: 'babel-loader',
         },
         {
           test: /\.css$/,
-          include: dir,
-          loader: 'style!css?modules&importLoaders=1',
+          loader: 'style-loader!css-loader?modules',
         },
-       ],
+      ],
     },
   },
 });
