@@ -4,6 +4,8 @@ const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 const prettyjson = require('prettyjson');
+const flatMapDeep = require('lodash/flatMapDeep');
+const commonDir = require('common-dir');
 const pick = require('lodash/pick');
 const utils = require('./utils/js');
 const requireIt = utils.requireIt;
@@ -65,15 +67,15 @@ function getExamples(examplesFile, nameFallback, defaultExample) {
 }
 
 /**
- * Return JS code as a string for given components.
+ * Return expanded paths of components
  *
  * @param {string|Function} components Function or glob pattern.
  * @param {object} config
- * @returns {string}
+ * @returns {array}
  */
-function processComponentsSource(components, config) {
+function getComponentFiles(components, config) {
 	if (!components) {
-		return null;
+		return [];
 	}
 
 	let componentFiles;
@@ -85,6 +87,50 @@ function processComponentsSource(components, config) {
 	}
 	componentFiles = componentFiles.map(file => path.resolve(config.configDir, file));
 
+	return componentFiles;
+}
+
+/**
+ * Returns sections with components expanded to the paths of the components
+ *
+ * @param {array} sections
+ * @param {object} config
+ * @returns {array}
+ */
+function mapSectionsToSectionsWithComponentFiles(sections, config) {
+	if (!sections) {
+		return [];
+	}
+
+	return sections.map(section => expandSectionComponents(section, config));
+}
+
+/**
+ * Returns section with additional componentFiles property
+ *
+ * @param {object} section
+ * @param {object} config
+ * @returns {object}
+ */
+function expandSectionComponents(section, config) {
+	return Object.assign(
+		{},
+		section,
+		{
+			componentFiles: getComponentFiles(section.components, config),
+			sections: mapSectionsToSectionsWithComponentFiles(section.sections, config),
+		}
+	);
+}
+
+/**
+ * Return JS code as a string for given components.
+ *
+ * @param {string} componentFiles Array of component files.
+ * @param {object} config
+ * @returns {string}
+ */
+function processComponentsSource(componentFiles, config) {
 	if (config.verbose) {
 		console.log();
 		console.log('Loading components:');
@@ -109,7 +155,7 @@ function processSection(section, config) {
 	return toCode({
 		name: JSON.stringify(section.name),
 		content: (section.content ? requireIt('examples!' + path.resolve(config.configDir, section.content)) : null),
-		components: processComponentsSource(section.components, config),
+		components: processComponentsSource(section.componentFiles, config),
 		sections: processSectionsList(section.sections, config),
 	});
 }
@@ -129,6 +175,25 @@ function processSectionsList(sections, config) {
 	return toCode(sections.map(section => processSection(section, config)));
 }
 
+/**
+ * Return a flat array of all component files, including those within sections
+ *
+ * @param {Array} componentFiles
+ * @param {object} sectionsWithFiles
+ * @returns {Array}
+ */
+function flattenComponentFiles(componentFiles, sectionsWithFiles) {
+	const getFilesFromSection = ({ sections = [], componentFiles }) => ([
+		componentFiles,
+		sections.map(getFilesFromSection),
+	]);
+
+	return flatMapDeep([
+		...componentFiles,
+		sectionsWithFiles.map(getFilesFromSection),
+	]);
+}
+
 module.exports = function() {};
 module.exports.pitch = function() {
 	if (this.cacheable) {
@@ -144,10 +209,25 @@ module.exports.pitch = function() {
 		'previewDelay',
 	]);
 
+	const componentFiles = getComponentFiles(config.components, config);
+	const sectionsWithFiles =
+		mapSectionsToSectionsWithComponentFiles(config.sections, config);
+
+	if (config.contextDependencies) {
+		config.contextDependencies.forEach(d => this.addContextDependency(d));
+	}
+	else {
+		const allComponentFiles = flattenComponentFiles(componentFiles, sectionsWithFiles);
+		if (allComponentFiles.length) {
+			const contextDir = commonDir(allComponentFiles);
+			this.addContextDependency(contextDir);
+		}
+	}
+
 	const code = toCode({
 		config: JSON.stringify(simplifiedConfig),
-		components: processComponentsSource(config.components, config),
-		sections: processSectionsList(config.sections, config),
+		components: processComponentsSource(componentFiles, config),
+		sections: processSectionsList(sectionsWithFiles, config),
 	});
 	return `module.exports = ${code};`;
 };

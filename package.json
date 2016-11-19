@@ -37,6 +37,7 @@
     "chalk": "1.1.3",
     "classnames": "2.2.5",
     "codemirror": "5.20.2",
+    "common-dir": "^1.0.0",
     "css-loader": "0.25.0",
     "entities": "1.1.1",
     "express": "4.14.0",
