@@ -4,11 +4,11 @@ import { parse } from 'react-docgen';
 import Group from 'react-group';
 import Code from '../Code';
 import Markdown from '../Markdown';
-import PropsRenderer from './PropsRenderer';
+import { PropsRenderer } from './PropsRenderer';
 import { unquote, getType } from './util';
 
 function render(propTypes, defaultProps = []) {
-	let props = parse(`
+	const props = parse(`
 		import { Component, PropTypes } from 'react';
 		export default class Cmpnt extends Component {
 			static propTypes = {
@@ -21,7 +21,7 @@ function render(propTypes, defaultProps = []) {
 			}
 		}
 	`);
-	return shallow(<PropsRenderer props={props.props} />);
+	return shallow(<PropsRenderer props={props.props} classes={{}} />);
 }
 
 test('should render PropTypes.string', () => {

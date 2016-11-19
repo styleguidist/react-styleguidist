@@ -69,31 +69,30 @@ You may need an appropriate Webpack loader to handle these files.
 
 ## How to change styles of a style guide?
 
-Add a new Webpack entry point in your style guide config:
+Use config option `theme` to change fonts, colors, etc. and option `styles` to tweak style of particular Styleguidist’s components:
 
 ```javascript
-const path = require('path');
 module.exports = {
-  // ...
-  updateWebpackConfig(webpackConfig) {
-    webpackConfig.entry.push(path.join(__dirname, 'lib/styleguide/styles.css'));
-    return webpackConfig;
-  },
+	theme: {
+		base: 'palevioletred',
+		font: '"Comic Sans MS", "Comic Sans", cursive',
+	},
+	styles: {
+		Logo: {
+			logo: {
+				animation: 'blink ease-in-out 300ms infinite',
+			},
+			'@keyframes blink': {
+				to: { opacity: 0 },
+			},
+		},
+	},
 };
 ```
 
-Now you can change almost any piece of a style guide. For example you can change a font and a background color:
-
-```css
-.ReactStyleguidist-common__font {
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-}
-.ReactStyleguidist-colors__base-bg {
-  background: hotpink;
-}
-```
-
-Use your browser’s developer tools to find CSS class names of the elements you want to change.
+* See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/styles/theme.js).
+* Styles use [JSS syntax](https://github.com/cssinjs/jss/blob/master/docs/json-api.md).
+* [Check sources](https://github.com/styleguidist/react-styleguidist/tree/master/src/rsg-components) to find component and style names. 
 
 ## How to change the layout of a style guide?
 

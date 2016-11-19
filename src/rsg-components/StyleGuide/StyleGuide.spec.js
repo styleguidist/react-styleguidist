@@ -1,10 +1,11 @@
 import test from 'ava';
 import React from 'react';
 import Components from '../Components';
+import Logo from '../Logo';
 import Message from '../Message';
 import TableOfContents from '../TableOfContents';
 import StyleGuide from './StyleGuide';
-import StyleGuideRenderer from './StyleGuideRenderer';
+import StyleGuideRendererHoC, { StyleGuideRenderer } from './StyleGuideRenderer';
 
 const components = [
 	{
@@ -39,7 +40,7 @@ test('should render components list', () => {
 	);
 
 	expect(actual.node, 'to contain',
-		<StyleGuideRenderer
+		<StyleGuideRendererHoC
 			title={config.title}
 			components={<Components components={components} sections={sections} />}
 			sections={sections}
@@ -59,7 +60,7 @@ test('should pass error message instead of components list when there is no comp
 	);
 
 	expect(actual.node, 'to contain',
-		<StyleGuideRenderer
+		<StyleGuideRendererHoC
 			title={config.title}
 			components={<Message />}
 			sections={[]}
@@ -69,9 +70,10 @@ test('should pass error message instead of components list when there is no comp
 	);
 });
 
-test('renderer should render title, table on contents and components', () => {
+test('renderer should render logo, table on contents and components', () => {
 	const actual = shallow(
 		<StyleGuideRenderer
+			classes={{}}
 			title={config.title}
 			components={<Components components={components} sections={sections} />}
 			sections={sections}
@@ -81,7 +83,7 @@ test('renderer should render title, table on contents and components', () => {
 	);
 
 	expect(actual.node, 'to contain',
-		<h1>{config.title}</h1>
+		<Logo>{config.title}</Logo>
 	);
 	expect(actual.node, 'to contain',
 		<TableOfContents components={components} sections={sections} />

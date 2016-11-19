@@ -13,7 +13,7 @@ const CODE_PLACEHOLDER = '<%{#code#}%>';
  * @returns {Array}
  */
 module.exports = function chunkify(markdown) {
-	let codeChunks = [];
+	const codeChunks = [];
 
 	/*
 	 * - Highlight code in fenced code blocks with defined language (```html) if the language is not `example`.
@@ -48,7 +48,7 @@ module.exports = function chunkify(markdown) {
 		.contents
 	;
 
-	let chunks = [];
+	const chunks = [];
 	const textChunks = rendered.split(CODE_PLACEHOLDER);
 	textChunks.forEach(chunk => {
 		if (chunk) {

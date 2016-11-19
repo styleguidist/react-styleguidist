@@ -1,16 +1,26 @@
 import React, { PropTypes } from 'react';
+import Styled from 'rsg-components/Styled';
 
-import s from '../Markdown/Markdown.css';
+const styles = ({ monospace }) => ({
+	code: {
+		display: 'inline',
+		fontFamily: monospace,
+		fontSize: 'inherit',
+		color: 'inherit',
+		background: 'transparent',
+	},
+});
 
-const CodeRenderer = ({ className, children }) => (
+export const CodeRenderer = ({ classes, className, children }) => (
 	<span className={className}>
-		<code className={s.code}>{children}</code>
+		<code className={classes.code}>{children}</code>
 	</span>
 );
 
 CodeRenderer.propTypes = {
+	classes: PropTypes.object.isRequired,
 	className: PropTypes.string,
 	children: PropTypes.node,
 };
 
-export default CodeRenderer;
+export default Styled(styles)(CodeRenderer);

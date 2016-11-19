@@ -1,6 +1,6 @@
 import test from 'ava';
 import React from 'react';
-import ComponentsListRenderer from './ComponentsListRenderer';
+import { ComponentsListRenderer } from './ComponentsListRenderer';
 
 const components = [
 	{
@@ -16,7 +16,7 @@ const components = [
 
 test('should render sections with nested components', () => {
 	const actual = shallow(
-		<ComponentsListRenderer items={components} />
+		<ComponentsListRenderer items={components} classes={{}} />
 	);
 
 	expect(actual.node, 'to contain',

@@ -14,13 +14,13 @@ Text with *some* **formatting** and a [link](/foo).
 	);
 	const expected = render(
 		<div>
-			<h3 className="Test__h3 Test__font">Header</h3>
-			<p className="Test__p Test__font">
-				Text with <em className="Test__em">some</em> <strong className="Test__strong">
-				formatting</strong> and a <a className="Test__a Test__link" href="/foo">link</a>.
+			<h3 className="h3-1020946680">Header</h3>
+			<p className="p-1228578410">
+				Text with <em className="em-2315792072">some</em> <strong className="strong-2315792072">
+					formatting</strong> and a <a className="a-1274117877" href="/foo">link</a>.
 			</p>
-			<p className="Test__p Test__font">
-				<img className="Test__img" alt="Image" src="/bar.png" />
+			<p className="p-1228578410">
+				<img className="img-2315792072" alt="Image" src="/bar.png" />
 			</p>
 		</div>
 	);
@@ -34,8 +34,8 @@ test('should render Markdown in span in inline mode', t => {
 		<Markdown text={markdown} inline />
 	);
 	const expected = render(
-		<span className="Test__base Test__font">
-			Hello <em className="Test__em">world</em>!
+		<span className="base-47030919">
+			Hello <em className="em-2315792072">world</em>!
 		</span>
 	);
 

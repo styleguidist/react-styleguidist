@@ -1,14 +1,30 @@
 import React, { PropTypes } from 'react';
-import cx from 'classnames';
+import Link from 'rsg-components/Link';
+import Styled from 'rsg-components/Styled';
 
-import s from './ComponentsList.css';
+const styles = ({ font }) => ({
+	list: {
+		padding: 15,
+	},
+	item: {
+		fontFamily: font,
+		marginBottom: 7,
+		fontSize: 15,
+	},
+	heading: {
+		fontFamily: font,
+		fontWeight: 'bold',
+	},
+});
 
-const ComponentsListRenderer = ({ items }) => (
+export const ComponentsListRenderer = ({ classes, items }) => (
 	items.length ? (
-		<div className={s.list}>
+		<div className={classes.list}>
 			{items.map(({ heading, name, content }) => (
-				<div className={s.item} key={name}>
-					<a className={cx(s.link, heading && s.heading)} href={'#' + name}>{name}</a>
+				<div className={classes.item} key={name}>
+					<span className={heading && classes.heading}>
+						<Link href={'#' + name}>{name}</Link>
+					</span>
 					{content}
 				</div>
 			))}
@@ -20,6 +36,7 @@ const ComponentsListRenderer = ({ items }) => (
 
 ComponentsListRenderer.propTypes = {
 	items: PropTypes.array.isRequired,
+	classes: PropTypes.object.isRequired,
 };
 
-export default ComponentsListRenderer;
+export default Styled(styles)(ComponentsListRenderer);

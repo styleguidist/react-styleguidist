@@ -11,8 +11,8 @@ export default class Modal extends Component {
 	};
 
 	render() {
-		let { isOpen, children } = this.props;
-		let style = {
+		const { isOpen, children } = this.props;
+		const style = {
 			overlay: {
 				zIndex: 999,
 			},
