@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import Styled from 'rsg-components/Styled';
 
-import s from './EditorLoader.css';
+const styles = ({ font, light, codeBackground }) => ({
+	root: {
+		padding: [[7, 16, 10, 7]],
+		fontFamily: font,
+		fontSize: 12,
+		color: light,
+		backgroundColor: codeBackground,
+	},
+});
 
-const EditorRenderer = () => (
-	<div className={s.root}>
+export const EditorLoaderRenderer = ({ classes }) => (
+	<div className={classes.root}>
 		Loading…
 	</div>
 );
 
-export default EditorRenderer;
+EditorLoaderRenderer.propTypes = {
+	classes: PropTypes.object.isRequired,
+};
+
+export default Styled(styles)(EditorLoaderRenderer);

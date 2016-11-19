@@ -2,8 +2,8 @@ import jss from 'jss';
 import nested from 'jss-nested';
 import camelCase from 'jss-camel-case';
 import defaultUnit from 'jss-default-unit';
-import vendorPrefixer from 'jss-vendor-prefixer';
 import isolate from 'jss-isolate';
+import compose from 'jss-compose';
 
 import 'highlight.js/styles/tomorrow.css';
 import './styles.css';
@@ -14,7 +14,7 @@ jss.setup({
 		nested(),
 		camelCase(),
 		defaultUnit(),
-		vendorPrefixer(),
 		isolate(),
+		compose(),
 	],
 });

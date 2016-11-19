@@ -3,7 +3,7 @@ import React from 'react';
 import noop from 'lodash/noop';
 import Preview from '../Preview';
 import Playground from './Playground';
-import PlaygroundRenderer from './PlaygroundRenderer';
+import PlaygroundRendererHoC, { PlaygroundRenderer } from './PlaygroundRenderer';
 
 const code = '<button>OK</button>';
 
@@ -25,7 +25,7 @@ test('should render component renderer', () => {
 	);
 
 	expect(actual.node, 'to contain',
-		<PlaygroundRenderer
+		<PlaygroundRendererHoC
 			code={code}
 			showCode={false}
 			evalInContext={noop}
@@ -38,6 +38,7 @@ test('should render component renderer', () => {
 test('renderer should render preview', () => {
 	const actual = shallow(
 		<PlaygroundRenderer
+			classes={{}}
 			code={code}
 			showCode={false}
 			evalInContext={noop}

@@ -1,16 +1,19 @@
 import React, { PropTypes } from 'react';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ link, linkHover }) => ({
+export const styles = ({ link, linkHover }) => ({
 	link: {
 		'&, &:link, &:visited': {
 			fontFamily: 'inherit',
 			fontWeight: 'inherit',
+			fontSize: 'inherit',
 			color: link,
 			textDecoration: 'none',
 		},
 		'&:hover, &:active': {
+			isolate: false,
 			color: linkHover,
+			cursor: 'pointer',
 		},
 	},
 });

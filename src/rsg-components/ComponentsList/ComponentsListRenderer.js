@@ -12,7 +12,7 @@ const styles = ({ font }) => ({
 		fontSize: 15,
 	},
 	heading: {
-		fontFamily: 'inherit',
+		fontFamily: font,
 		fontWeight: 'bold',
 	},
 });

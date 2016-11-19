@@ -4,7 +4,7 @@ import noop from 'lodash/noop';
 import Examples from '../Examples';
 import Components from '../Components';
 import Section from './Section';
-import SectionRenderer from './SectionRenderer';
+import SectionRendererHoC, { SectionRenderer } from './SectionRenderer';
 
 const section = {
 	name: 'Foo',
@@ -30,7 +30,7 @@ test('should render component renderer', () => {
 	);
 
 	expect(actual.node, 'to contain',
-		<SectionRenderer
+		<SectionRendererHoC
 			name={section.name}
 			content={<Examples examples={section.content} />}
 			components={<Components components={[]} sections={[]} />}
@@ -41,6 +41,7 @@ test('should render component renderer', () => {
 test('render should render component', () => {
 	const actual = shallow(
 		<SectionRenderer
+			classes={{}}
 			name={section.name}
 			content={<Examples examples={section.content} />}
 			components={<Components components={[]} sections={[]} />}
@@ -48,7 +49,7 @@ test('render should render component', () => {
 	);
 
 	expect(actual.node, 'to contain',
-		<h1>{section.name}</h1>
+		<h2>{section.name}</h2>
 	);
 	expect(actual.node, 'to contain',
 		<Examples examples={section.content} />

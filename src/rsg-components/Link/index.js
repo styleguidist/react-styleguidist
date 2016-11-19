@@ -1,1 +1,1 @@
-export { default } from './LinkRenderer.js';
+export { default, styles } from './LinkRenderer.js';

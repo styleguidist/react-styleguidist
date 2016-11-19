@@ -8,7 +8,7 @@ export default styles => WrappedComponent => class extends Component {
 
 	componentWillMount() {
 		const componentName = WrappedComponent.name.replace(/Renderer$/, '');
-		this.classes = addStyles(styles, this.context.config, componentName);
+		this.classes = addStyles(styles, this.context.config || {}, componentName);
 	}
 
 	render() {

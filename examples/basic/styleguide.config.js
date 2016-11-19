@@ -1,16 +1,6 @@
 const path = require('path');
 
 module.exports = {
-	theme: {
-		link: 'red',
-	},
-	styles: {
-		ComponentsList: {
-			item: {
-				borderLeft: '1px solid blue',
-			},
-		},
-	},
 	title: 'React Style Guide Example',
 	defaultExample: true,
 	components: 'lib/components/**/[A-Z]*.js',

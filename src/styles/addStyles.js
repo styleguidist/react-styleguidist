@@ -1,12 +1,13 @@
 import jss from 'jss';
 import merge from 'lodash/merge';
+import memoize from 'lodash/memoize';
 import * as theme from './theme';
 
-export default function addStyles(styles, config, componentName) {
+export default memoize((styles, config, componentName) => {
 	const mergedTheme = merge(theme, config.theme);
 	const mergedStyles = merge(
 		styles(mergedTheme),
-		config.styles[componentName] || {}
+		config.styles && config.styles[componentName]
 	);
 	return jss.createStyleSheet(mergedStyles).attach().classes;
-}
+});

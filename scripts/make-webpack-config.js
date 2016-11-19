@@ -59,7 +59,7 @@ module.exports = function(config, env) {
 		},
 		resolve: {
 			alias: {
-				'codemirror': codeMirrorPath,
+				codemirror: codeMirrorPath,
 				'rsg-codemirror-theme.css': path.join(codeMirrorPath, `theme/${config.highlightTheme}.css`),
 			},
 		},
@@ -88,15 +88,11 @@ module.exports = function(config, env) {
 				{
 					test: /\.css$/,
 					include: [
+						sourceDir,
 						codeMirrorPath,
 						getPackagePath('highlight.js'),
 					],
 					loader: 'style!css',
-				},
-				{
-					test: /\.css$/,
-					include: sourceDir,
-					loader: 'style!css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]',
 				},
 			],
 		},

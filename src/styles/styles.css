@@ -1,4 +1,19 @@
-:global body {
+body {
 	margin: 0;
 	padding: 0;
+}
+
+/* Tweak CodeMirror styles */
+.ReactCodeMirror .CodeMirror {
+	height: auto;
+	padding: 5px 12px;
+	font-size: 12px;
+}
+.ReactCodeMirror .CodeMirror-scroll {
+	height: auto;
+	overflow-y: hidden;
+	overflow-x: auto;
+}
+.ReactCodeMirror .cm-error {
+	background: none !important;
 }
