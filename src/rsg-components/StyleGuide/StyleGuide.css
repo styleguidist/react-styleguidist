@@ -20,7 +20,7 @@
 	left: 0;
 	bottom: 0;
 	width: 200px;
-	overflow: scroll;
+	overflow: auto;
 }
 
 .components {
@@ -42,4 +42,22 @@
 	composes: font from "../../styles/common.css";
 	composes: light from "../../styles/colors.css";
 	font-size: 12px;
+}
+
+@media (max-width: 600px) {
+	.root.hasSidebar {
+		padding-left: 0;
+		display: flex;
+		flex-direction: column;
+	}
+	.content {
+		padding: 15px;
+		order: 2;
+	}
+	.sidebar {
+		position: static;
+		width: auto;
+		border-width: 0 0 1px 0;
+		order: 1;
+	}
 }

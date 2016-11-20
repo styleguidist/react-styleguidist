@@ -1,6 +1,5 @@
 .list {
-	margin: 0;
-	padding: 15px;
+	margin: 15px;
 }
 
 .item {
@@ -15,4 +14,11 @@
 
 .heading {
 	font-weight: bold;
+}
+
+@media (max-width: 600px) {
+	:not(.isParent).item {
+		display: inline-block;
+		margin: 0 7px 0 0;
+	}
 }
