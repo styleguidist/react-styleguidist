@@ -64,7 +64,7 @@ export default class StyleGuide extends Component {
 				components={this.renderComponents(components, sections, sidebar, singleExample)}
 				sections={sections}
 				toc={this.renderTableOfContents(components, sections)}
-				sidebar={sidebar}
+				sidebar={(isEmpty(components) && isEmpty(sections)) ? false : sidebar}
 			/>
 		);
 	}
