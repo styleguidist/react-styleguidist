@@ -143,7 +143,7 @@ module.exports = function(config, env) {
 	else {
 		webpackConfig = merge(webpackConfig, {
 			entry: [
-				'webpack-hot-middleware/client',
+				require.resolve('react-dev-utils/webpackHotDevClient'),
 			],
 			cache: true,
 			devtool: 'eval',
@@ -153,7 +153,6 @@ module.exports = function(config, env) {
 			},
 			plugins: [
 				new webpack.HotModuleReplacementPlugin(),
-				new webpack.NoErrorsPlugin(),
 			],
 		});
 	}

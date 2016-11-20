@@ -8,7 +8,18 @@ const minimist = require('minimist');
 const chalk = require('chalk');
 const getConfig = require('../scripts/config');
 const consts = require('../scripts/consts');
+const clearConsole = require('react-dev-utils/clearConsole');
+const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const StyleguidistError = require('../scripts/utils/error');
+
+function printErrors(header, errors, printer) {
+	console.log(printer(header));
+	console.log();
+	errors.forEach(message => {
+		console.log(message);
+		console.log();
+	});
+}
 
 const argv = minimist(process.argv.slice(2));
 
@@ -57,6 +68,8 @@ function commandBuild() {
 }
 
 function commandServer() {
+	let firstCompile = true;
+
 	process.on('uncaughtException', err => {
 		if (err.code === 'EADDRINUSE') {
 			console.error(chalk.bold.red(
@@ -73,7 +86,7 @@ function commandServer() {
 	});
 
 	const server = require('../scripts/server');
-	server(config, err => {
+	const compiler = server(config, err => {
 		if (err) {
 			console.log(err);
 		}
@@ -81,6 +94,38 @@ function commandServer() {
 			console.log('Style guide server started at:');
 			console.log(chalk.underline('http://' + config.serverHost + ':' + config.serverPort));
 			console.log();
+		}
+	});
+
+	// Show message when Webpack is recompiling the bundle
+	compiler.plugin('invalid', function() {
+		clearConsole();
+		console.log('Compiling…');
+	});
+
+	// Custom error reporting
+	compiler.plugin('done', function(stats) {
+		const messages = formatWebpackMessages(stats.toJson({}, true));
+
+		if (!firstCompile) {
+			clearConsole();
+		}
+		firstCompile = false;
+
+		if (!messages.errors.length && !messages.warnings.length) {
+			console.log(chalk.green('Compiled successfully!'));
+			console.log();
+		}
+
+		// If errors exist, only show errors.
+		if (messages.errors.length) {
+			printErrors('Failed to compile.', messages.errors, chalk.red);
+			return;
+		}
+
+		// Show warnings if no errors were found.
+		if (messages.warnings.length) {
+			printErrors('Compiled with warnings.', messages.warnings, chalk.yellow);
 		}
 	});
 }

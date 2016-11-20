@@ -28,7 +28,7 @@ const DEFAULT_CONFIG = {
 	showCode: false,
 	title: 'Style guide',
 	styleguideDir: 'styleguide',
-	assetsDir: null,
+	assetsDir: undefined,
 	template: path.join(__dirname, './templates/index.html'),
 	serverHost: 'localhost',
 	serverPort: 3000,
@@ -89,7 +89,7 @@ function getConfig(options) {
 	if (assetsDir) {
 		assetsDir = path.resolve(configDir, assetsDir);
 		if (!utils.isDirectoryExists(assetsDir)) {
-			throw new StyleguidistError('Styleguidist: "assetsRoot" directory not found: ' + assetsDir);
+			throw new StyleguidistError('Styleguidist: "assetsDir" directory not found: ' + assetsDir);
 		}
 	}
 

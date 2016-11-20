@@ -1,27 +1,26 @@
 'use strict';
 
-const express = require('express');
 const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
 const makeWebpackConfig = require('./make-webpack-config');
 
 module.exports = function server(config, callback) {
-	const app = express();
 	const webpackConfig = makeWebpackConfig(config, 'development');
-	const stats = webpackConfig.stats || {};
 	const compiler = webpack(webpackConfig);
 
-	app.use(require('webpack-dev-middleware')(compiler, {
-		noInfo: true,
-		stats,
-	}));
+	const devServer = new WebpackDevServer(compiler, {
+		compress: true,
+		clientLogLevel: 'none',
+		hot: true,
+		quiet: true,
+		watchOptions: {
+			ignored: /node_modules/,
+		},
+		contentBase: config.assetsDir,
+		stats: webpackConfig.stats,
+	});
 
-	app.use(require('webpack-hot-middleware')(compiler));
-
-	if (config.assetsDir) {
-		app.use(express.static(config.assetsDir));
-	}
-
-	app.listen(config.serverPort, config.serverHost, callback);
+	devServer.listen(config.serverPort, config.serverHost, callback);
 
 	return compiler;
 };
