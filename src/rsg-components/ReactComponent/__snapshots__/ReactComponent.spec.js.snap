@@ -1,5 +1,6 @@
 exports[`test render should render component 1`] = `
-<div>
+<div
+  id="Foo-container">
   <header>
     <h2
       id="Foo">

@@ -62,7 +62,7 @@ export function ReactComponentRenderer({
 	sidebar,
 }) {
 	return (
-		<div className={classes.root}>
+		<div className={classes.root} id={name + '-container'}>
 			<header className={classes.header}>
 				<h2 className={classes.primaryHeading} id={name}>
 					{name}
