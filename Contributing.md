@@ -15,40 +15,7 @@ I love pull requests. And following this simple guidelines will make your pull r
 
 ## JavaScript code style
 
-See [ESLint](.eslintrc) config files for more details.
-
-- Tab indentation.
-- Single-quotes.
-- Semicolons.
-- No trailing whitespace.
-- Variables where needed.
-- Multiple variable statements.
-- Space after keywords and between arguments and operators.
-- Use === and !== over == and !=.
-- Return early.
-- Limit line lengths to 120 chars.
-- Prefer readability over religion.
-- Use ES6.
-
-Example:
-
-```js
-function foo(bar, fum) {
-    if (!bar) {
-    	return;
-    }
-
-    let hello = 'Hello';
-    let ret = 0;
-    for (let barIdx = 0; barIdx < bar.length; barIdx++) {
-        if (bar[barIdx] === hello) {
-            ret += fum(bar[barIdx]);
-        }
-    }
-
-    return ret;
-}
-```
+[See here](https://github.com/tamiadev/eslint-config-tamia#code-style-at-a-glance).
 
 
 ## Other notes
@@ -68,7 +35,13 @@ Install dependencies:
 npm install
 ```
 
-Build / run tests:
+Run example style guide:
+
+```bash
+npm start
+```
+
+Run tests:
 
 ```bash
 npm test
