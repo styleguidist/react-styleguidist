@@ -15,7 +15,7 @@ const PlaygroundRenderer = ({
 	onCodeToggle,
 }) => (
 	<div className={s.root}>
-		<div className={s.preview}>
+		<div className={s.preview + ' rsg--example-preview'}>
 			{singleExample ? (
 				<a className={s.isolatedLink} href={'#!/' + name}>⇽ Exit Isolation</a>
 			) : (

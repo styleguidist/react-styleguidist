@@ -4,7 +4,7 @@ const s = require('./ReactComponent.css');
 
 const ReactComponentRenderer = ({ name, pathLine, description, props, examples, sidebar }) => {
 	return (
-		<div className={s.root}>
+		<div className={s.root} id={name + '-container'}>
 			<header className={s.header}>
 				<h2 className={s.primaryHeading} id={name}>
 					{name}
