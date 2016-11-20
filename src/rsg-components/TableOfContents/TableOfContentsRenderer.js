@@ -5,11 +5,13 @@ const styles = ({ font, base, border, link, baseBackground }) => ({
 	root: {
 		fontFamily: font,
 	},
+	search: {
+		padding: 15,
+	},
 	input: {
 		display: 'block',
 		boxSizing: 'border-box',
-		width: 170,
-		margin: [[15, 0, 0, 15]],
+		width: '100%',
 		padding: [[6, 12]],
 		color: base,
 		backgroundColor: baseBackground,
@@ -35,12 +37,14 @@ export function TableOfContentsRenderer({
 	return (
 		<div>
 			<div className={classes.root}>
-				<input
-					value={searchTerm}
-					className={classes.input}
-					placeholder="Filter by name"
-					onChange={event => onSearchTermChange(event.target.value)}
-				/>
+				<div className={classes.search}>
+					<input
+						value={searchTerm}
+						className={classes.input}
+						placeholder="Filter by name"
+						onChange={event => onSearchTermChange(event.target.value)}
+					/>
+				</div>
 				{items}
 			</div>
 		</div>

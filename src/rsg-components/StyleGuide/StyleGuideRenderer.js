@@ -4,7 +4,7 @@ import Markdown from 'rsg-components/Markdown';
 import Styled from 'rsg-components/Styled';
 import cx from 'classnames';
 
-const styles = ({ font, base, light, border, baseBackground, codeBackground }) => ({
+const styles = ({ font, base, light, border, baseBackground, codeBackground, small }) => ({
 	root: {
 		isolate: false,
 		color: base,
@@ -13,22 +13,34 @@ const styles = ({ font, base, light, border, baseBackground, codeBackground }) =
 	hasSidebar: {
 		isolate: false,
 		paddingLeft: 200,
+		[small]: {
+			paddingLeft: 0,
+		},
 	},
 	content: {
 		isolate: false,
 		maxWidth: 1000,
 		padding: [[15, 30]],
 		margin: [[0, 'auto']],
+		[small]: {
+			padding: 15,
+		},
 	},
 	sidebar: {
 		backgroundColor: codeBackground,
-		borderRight: [[1, border, 'solid']],
+		border: [[border, 'solid']],
+		borderWidth: [[0, 1, 0, 0]],
 		position: 'fixed',
 		top: 0,
 		left: 0,
 		bottom: 0,
 		width: 200,
-		overflow: 'scroll',
+		overflow: 'auto',
+		[small]: {
+			position: 'static',
+			width: 'auto',
+			borderWidth: [[1, 0, 0, 0]],
+		},
 	},
 	components: {
 		isolate: false,

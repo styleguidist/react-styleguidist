@@ -1,10 +1,12 @@
 exports[`test renderer should render table of contents 1`] = `
 <div>
   <div>
-    <input
-      onChange={[Function]}
-      placeholder="Filter by name"
-      value="foo" />
+    <div>
+      <input
+        onChange={[Function]}
+        placeholder="Filter by name"
+        value="foo" />
+    </div>
     <div>
       foo
     </div>
