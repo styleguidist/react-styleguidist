@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
 	title: 'Style guide example',
-	components: './components/**/[A-Z]*.js',
+	components: './lib/components/**/[A-Z]*.js',
 	updateWebpackConfig(webpackConfig) {
 		const dirs = [
 			path.resolve(__dirname, 'lib'),
