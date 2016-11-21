@@ -93,7 +93,8 @@ Use config option `theme` to change fonts, colors, etc. and option `styles` to t
 ```javascript
 module.exports = {
 	theme: {
-		base: 'palevioletred',
+		link: 'firebrick',
+		linkHover: 'salmon',
 		font: '"Comic Sans MS", "Comic Sans", cursive',
 	},
 	styles: {
@@ -111,7 +112,7 @@ module.exports = {
 
 * See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/styles/theme.js).
 * Styles use [JSS syntax](https://github.com/cssinjs/jss/blob/master/docs/json-api.md).
-* [Check sources](https://github.com/styleguidist/react-styleguidist/tree/master/src/rsg-components) to find component and style names.
+* Use your browser’s developer tools to find component and style names. For example class name `.rsg--Logo--logo` corresponds to an example above.
 
 ## How to change the layout of a style guide?
 
