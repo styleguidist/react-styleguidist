@@ -1,4 +1,5 @@
 const path = require('path');
+const loaders = require('loaders');
 
 module.exports = {
 	title: 'Style guide example',
@@ -15,11 +16,7 @@ module.exports = {
 		},
 		module: {
 			loaders: [
-				{
-					test: /\.jsx?$/,
-					exclude: /node_modules/,
-					loader: 'babel-loader',
-				},
+				loaders.babel,
 				{
 					test: /\.css$/,
 					loader: 'style-loader!css-loader?modules',

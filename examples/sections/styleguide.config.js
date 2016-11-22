@@ -1,3 +1,4 @@
+const loaders = require('loaders');
 module.exports = {
 	title: 'React Style Guide Example',
 	sections: [
@@ -21,17 +22,7 @@ module.exports = {
 	],
 	webpackConfig: {
 		module: {
-			loaders: [
-				{
-					test: /\.jsx?$/,
-					exclude: /node_modules/,
-					loader: 'babel-loader',
-				},
-				{
-					test: /\.css$/,
-					loader: 'style-loader!css-loader?modules',
-				},
-			],
+			loaders: loaders.all,
 		},
 	},
 };

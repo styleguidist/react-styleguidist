@@ -16,7 +16,7 @@ const WrappedButton = ({
 	};
 
 	return (
-		<button className={s.root} style={styles}>{children}</button>
+		<button className="wrapped-button" style={styles}>{children}</button>
 	);
 };
 WrappedButton.propTypes = {

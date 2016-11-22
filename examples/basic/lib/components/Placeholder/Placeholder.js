@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import s from './Placeholder.css';
+import './Placeholder.css';
 
 /**
  * Image placeholders.
@@ -37,7 +37,7 @@ export default class Placeholder extends Component {
 	render() {
 		const { width, height } = this.props;
 		return (
-			<img className={s.root} src={this.getImageUrl()} width={width} height={height} />
+			<img className="placeholder" src={this.getImageUrl()} width={width} height={height} />
 		);
 	}
 }

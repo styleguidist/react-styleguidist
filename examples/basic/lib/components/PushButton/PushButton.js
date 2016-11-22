@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import s from './PushButton.css';
+import './PushButton.css';
 
 /**
  * An example-less button.
@@ -16,7 +16,7 @@ export default function PushButton({
 	};
 
 	return (
-		<button className={s.root} style={styles}>{children}</button>
+		<button className="push-button" style={styles}>{children}</button>
 	);
 }
 PushButton.propTypes = {
