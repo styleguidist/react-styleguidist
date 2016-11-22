@@ -5,6 +5,7 @@ import styleguideLoader from '../loaders/styleguide.loader';
 test('should return valid, parsable JS', t => {
 	const file = 'components/Button/Button.js';
 	const result = styleguideLoader.pitch.call({
+		addContextDependency: () => {},
 		request: file,
 		options: {
 			styleguidist: {
@@ -22,6 +23,7 @@ test('should return valid, parsable JS', t => {
 test('should return correct component paths: glob', t => {
 	const file = 'components/Button/Button.js';
 	const result = styleguideLoader.pitch.call({
+		addContextDependency: () => {},
 		request: file,
 		options: {
 			styleguidist: {
@@ -41,6 +43,7 @@ test('should return correct component paths: glob', t => {
 test('should return correct component paths: function returning absolute paths', t => {
 	const file = 'components/Button/Button.js';
 	const result = styleguideLoader.pitch.call({
+		addContextDependency: () => {},
 		request: file,
 		options: {
 			styleguidist: {
@@ -63,6 +66,7 @@ test('should return correct component paths: function returning absolute paths',
 test('should return correct component paths: function returning relative paths', t => {
 	const file = 'components/Button/Button.js';
 	const result = styleguideLoader.pitch.call({
+		addContextDependency: () => {},
 		request: file,
 		options: {
 			styleguidist: {

@@ -64,7 +64,6 @@ test('should pass error message instead of components list when there is no comp
 			components={<Message />}
 			sections={[]}
 			toc={<TableOfContents components={[]} sections={[]}/>}
-			sidebar
 		/>
 	);
 });
