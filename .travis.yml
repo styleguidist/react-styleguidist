@@ -5,9 +5,9 @@ node_js:
   - "6"
   - "7"
 cache:
+  yarn: true
   directories:
     - $HOME/.npm
-    - $HOME/.cache/yarn
     - travis_phantomjs
 env:
   # Test everything in Webpack 1 and 2
@@ -28,11 +28,6 @@ before_script:
   # Manually install Webpack 1 or 2
   - 'if [ "$WEBPACK_VERSION" ]; then yarn add webpack@^$WEBPACK_VERSION; fi'
 before_install:
-  # Install Yarn
-  - npm set loglevel error
-  - npm set progress false
-  - npm install -g yarn
-  - yarn --version
   # Upgrade PhantomJS
   - |
       export PHANTOMJS_VERSION=2.1.1
@@ -44,8 +39,6 @@ before_install:
         tar -xvf phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 -C $PWD/travis_phantomjs
       fi
       phantomjs -v
-install:
-  - yarn
 after_success:
   - 'curl -Lo travis_after_all.py https://git.io/travis_after_all'
   - python travis_after_all.py
