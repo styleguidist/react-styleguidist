@@ -108,7 +108,9 @@ function processComponentsSource(components, config) {
 function processSection(section, config) {
 	return toCode({
 		name: JSON.stringify(section.name),
-		content: (section.content ? requireIt('examples!' + path.resolve(config.configDir, section.content)) : null),
+		content: section.content
+			? requireIt('!!examples-loader!' + path.resolve(config.configDir, section.content))
+			: null,
 		components: processComponentsSource(section.components, config),
 		sections: processSectionsList(section.sections, config),
 	});

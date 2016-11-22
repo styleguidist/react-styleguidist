@@ -24,5 +24,5 @@ test('should extract doclets', t => {
 	}, readFileSync(file, 'utf8'));
 	t.truthy(result);
 	t.notThrows(() => new Function(result), SyntaxError);  // eslint-disable-line no-new-func
-	t.true(result.includes('require("examples!./examples.md")'));
+	t.true(result.includes('require("!!examples-loader!./examples.md")'));
 });
