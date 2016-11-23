@@ -70,10 +70,6 @@ module.exports = function(config, env) {
 					NODE_ENV: JSON.stringify(env),
 				},
 			}),
-			new webpack.ProvidePlugin({
-				React: 'React',
-				_: 'lodash',
-			}),
 		],
 		module: {
 			loaders: [],

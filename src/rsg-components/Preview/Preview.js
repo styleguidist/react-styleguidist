@@ -51,7 +51,6 @@ export default class Preview extends Component {
 			// Workaround for https://github.com/styleguidist/react-styleguidist/issues/155 - missed props on first render
 			// when using initialState
 			const initCode = `
-				var React = {};  // React.createElement will throw on first load
 				var initialState = {};
 				try {
 					${compiledCode}

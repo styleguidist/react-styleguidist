@@ -39,6 +39,10 @@ const DEFAULT_CONFIG = {
 	getComponentPathLine: componentpath => componentpath,
 	webpackConfig: null,
 	updateWebpackConfig: null,
+	context: {
+		React: 'react',
+		_: 'lodash',
+	},
 	handlers: reactDocgen.defaultHandlers.concat(displayNameHandler),
 	theme: {},
 	styles: {},
@@ -178,9 +182,12 @@ function validateConfig(config) {
 	if (config.webpackConfig && !isPlainObject(config.webpackConfig) && !isFunction(config.webpackConfig)) {
 		throw new StyleguidistError('Styleguidist: "webpackConfig" option must be an object or a function.');
 	}
+	if (config.context && !isPlainObject(config.context)) {
+		throw new StyleguidistError('Styleguidist: "context" option must be an object.');
+	}
 	if (config.defaultExample && (config.defaultExample !== true && !isString(config.defaultExample))) {
 		throw new StyleguidistError('Styleguidist: "defaultExample" option must be either false, true, ' +
-			'or a string path to a markdown file.');
+			'or a string path to a Markdown file.');
 	}
 	if (!isUndefined(config.previewDelay) && !isFinite(config.previewDelay)) {
 		throw new StyleguidistError('Styleguidist: "previewDelay" option must be a positive number.');

@@ -14,7 +14,11 @@ text
 <span/>
 \`\`\`
 `;
-	const result = examplesLoader.call({}, exampleMarkdown);
+	const result = examplesLoader.call({
+		options: {
+			styleguidist: {},
+		},
+	}, exampleMarkdown);
 	t.truthy(result);
 	t.notThrows(() => new Function(result), SyntaxError);  // eslint-disable-line no-new-func
 });
@@ -32,7 +36,12 @@ test('should replace all occurrences of __COMPONENT__ with provided query.compon
 </div>
 `;
 
-	const result = examplesLoader.call({ query: '?componentName=FooComponent' }, exampleMarkdown);
+	const result = examplesLoader.call({
+		query: '?componentName=FooComponent',
+		options: {
+			styleguidist: {},
+		},
+	}, exampleMarkdown);
 	t.notRegex(result, /__COMPONENT__/);
 	t.regex(result, /FooComponent/);
 	t.is(result.match(/FooComponent/g).length, 4);

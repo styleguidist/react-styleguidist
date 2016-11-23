@@ -18,6 +18,8 @@ function examplesLoader(source) {
 		this.cacheable();
 	}
 
+	const config = this.options.styleguidist;
+
 	// Replace __COMPONENT__ placeholders with the passed-in componentName
 	const query = loaderUtils.parseQuery(this.query);
 	const componentName = query.componentName || COMPONENT_PLACEHOLDER;
@@ -32,27 +34,53 @@ function examplesLoader(source) {
 	// because webpack changes its name to __webpack__require__ or something.
 	const codeFromAllExamples = map(filter(examples, { type: 'code' }), 'content').join('\n');
 	const requiresFromExamples = getRequires(codeFromAllExamples);
+	const allRequires = Object.assign({}, requiresFromExamples, config.context);
 
-	const requireMapCode = requiresFromExamples.map(requireRequest => {
-		requireRequest = JSON.stringify(requireRequest);
-		return `${requireRequest}: require(${requireRequest})`;
+	// “Prerequire” modules required in Markdown examples and context so they end up in a bundle and be available at runtime
+	const requireMapCode = map(allRequires, requireRequest => {
+		const safeRequest = JSON.stringify(requireRequest);
+		return `${safeRequest}: require(${safeRequest})`;
 	}).join(',\n');
 
+	// Require context modules so they are available in an example
+	const requireContextCode = map(config.context, (requireRequest, name) =>
+		`var ${name} = require(${JSON.stringify(requireRequest)})`
+	).join(';\\n');
+
+	// Require module if it was “prerequired”
+	const requireInRuntimeCode = `
+		function requireInRuntime(path) {
+			if (!requireMap.hasOwnProperty(path)) {
+				throw new Error('require() statements can be added only by editing a Markdown example file.');
+			}
+			return requireMap[path];
+		}
+	`;
+
+	// 1. Prepend the example code with requires for context modules
+	// 2. Create a function from the code
+	// 3. Partially apply the first parameter to map our custom requireInRuntime function to the require local variable
+	const evalInContextCode = `
+		function evalInContext(code) {
+			var func = new Function(
+				'require',
+				'state',
+				'setState',
+				'__initialStateCB',
+				'${requireContextCode}\\n' + code
+			);
+			return func.bind(null, requireInRuntime);
+		}
+	`;
+
+	// Stringify examples object except the evalInContext
 	examples = examples.map(example => {
 		if (example.type === 'code') {
 			example.evalInContext = EVAL_PLACEHOLDER;
 		}
 		return example;
 	});
-	const examplesCode = JSON.stringify(examples).replace(
-		EVAL_PLACEHOLDER_REGEXP,
-		`
-		function(code) {
-			var func = new Function ('require', 'state', 'setState', '__initialStateCB', code);
-			return func.bind(null, requireInRuntime);
-		}
-		`
-	);
+	const examplesCode = JSON.stringify(examples, null, '  ').replace(EVAL_PLACEHOLDER_REGEXP, 'evalInContext');
 
 	return `
 		if (module.hot) {
@@ -63,12 +91,9 @@ function examplesLoader(source) {
 			${requireMapCode}
 		};
 
-		function requireInRuntime(path) {
-			if (!requireMap.hasOwnProperty(path)) {
-				throw new Error('require() statements can be added only by editing a Markdown example file.');
-			}
-			return requireMap[path];
-		}
+		${requireInRuntimeCode}
+
+		${evalInContextCode}
 
 		module.exports = ${examplesCode};
 	`;

@@ -58,8 +58,15 @@ test('should match simple strings and nothing else', t => {
 // getRequires
 
 test('should find calls to require in code', t => {
-	t.deepEqual(getRequires(`require('foo')`), ['foo']);
-	t.deepEqual(getRequires(`require('./foo')`), ['./foo']);
-	t.deepEqual(getRequires(`require('foo');require('bar')`), ['foo', 'bar']);
+	t.deepEqual(getRequires(`require('foo')`), {
+		foo: 'foo',
+	});
+	t.deepEqual(getRequires(`require('./foo')`), {
+		'./foo': './foo',
+	});
+	t.deepEqual(getRequires(`require('foo');require('bar')`), {
+		foo: 'foo',
+		bar: 'bar',
+	});
 	t.throws(() => getRequires(`require('foo' + 'bar')`), Error);
 });
