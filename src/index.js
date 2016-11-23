@@ -1,9 +1,7 @@
-import 'styles';
-
+import './styles';
 import React from 'react';
 import isFinite from 'lodash/isFinite';
 import ReactDOM from 'react-dom';
-import _ from 'lodash';
 import {
 	getComponentNameFromHash,
 	filterComponentsByExactName,
@@ -13,10 +11,6 @@ import {
 	processSections,
 } from './utils/utils';
 import StyleGuide from 'rsg-components/StyleGuide';
-
-// Make libraries available in examples
-global.React = React;
-global._ = _;
 
 let codeKey = 0;
 
