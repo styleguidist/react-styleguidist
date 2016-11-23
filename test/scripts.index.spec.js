@@ -1,5 +1,8 @@
 import test from 'ava';
+import last from 'lodash/last';
 import styleguidist from '../scripts';
+
+const getDefaultWebpackConfig = () => styleguidist({ components: '*.js' }).makeWebpackConfig();
 
 test('should return API methods', t => {
 	const api = styleguidist(require('./data/styleguide.config.js'));
@@ -26,6 +29,7 @@ test('makeWebpackConfig should return production Webpack config', t => {
 });
 
 test('makeWebpackConfig should merge webpackConfig config option', t => {
+	const defaultWebpackConfig = getDefaultWebpackConfig();
 	const api = styleguidist({
 		components: '*.js',
 		webpackConfig: {
@@ -37,12 +41,13 @@ test('makeWebpackConfig should merge webpackConfig config option', t => {
 	const result = api.makeWebpackConfig();
 
 	t.truthy(result);
-	t.deepEqual(result.resolve.extensions, ['.js', '.jsx', '.json', '.scss']);
+	t.deepEqual(result.resolve.extensions.length, defaultWebpackConfig.resolve.extensions.length + 1);
+	t.deepEqual(last(result.resolve.extensions), '.scss');
 });
 
 
 test('makeWebpackConfig should merge webpackConfig but ignore output, resolveLoader sections', t => {
-	const defaultWebpackConfig = styleguidist({ components: '*.js' }).makeWebpackConfig();
+	const defaultWebpackConfig = getDefaultWebpackConfig();
 	const api = styleguidist({
 		components: '*.js',
 		webpackConfig: {
@@ -67,18 +72,17 @@ test('makeWebpackConfig should merge webpackConfig config option as a function',
 	const api = styleguidist({
 		components: '*.js',
 		webpackConfig: env => ({
-			resolve: {
-				extensions: [env],
-			},
+			_env: env,
 		}),
 	});
 	const result = api.makeWebpackConfig();
 
 	t.truthy(result);
-	t.deepEqual(result.resolve.extensions, ['.js', '.jsx', '.json', 'production']);
+	t.deepEqual(result._env, 'production');
 });
 
 test('makeWebpackConfig should apply updateWebpackConfig config option', t => {
+	const defaultWebpackConfig = getDefaultWebpackConfig();
 	const api = styleguidist({
 		components: '*.js',
 		updateWebpackConfig: (webpackConfig, env) => {
@@ -89,5 +93,6 @@ test('makeWebpackConfig should apply updateWebpackConfig config option', t => {
 	const result = api.makeWebpackConfig();
 
 	t.truthy(result);
-	t.deepEqual(result.resolve.extensions, ['.js', '.jsx', '.json', 'production']);
+	t.deepEqual(result.resolve.extensions.length, defaultWebpackConfig.resolve.extensions.length + 1);
+	t.deepEqual(last(result.resolve.extensions), 'production');
 });
