@@ -1,5 +1,5 @@
 import test from 'ava';
-const _ = require('lodash');
+const map = require('lodash/map');
 import * as utils from '../src/utils/utils';
 
 const COMPONENTS = [
@@ -71,7 +71,7 @@ test('should set name property to each component', t => {
 			},
 		},
 	]);
-	t.deepEqual(_.map(result, 'name'), ['Foo', 'Bar', 'FooOverride']);
+	t.deepEqual(map(result, 'name'), ['Foo', 'Bar', 'FooOverride']);
 });
 
 // globalizeComponents
