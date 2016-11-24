@@ -5832,9 +5832,9 @@ react-dom@~15.3.2:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.3.2.tgz#c46b0aa5380d7b838e7a59c4a7beff2ed315531f"
 
-react-group@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-group/-/react-group-1.0.0.tgz#7caca468604ad3066d1309cdfd2489a16af6d456"
+react-group@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-group/-/react-group-1.0.1.tgz#b2a8d9eaa1a75f7c630df241bb80ad80a65de7fa"
 
 react-modal@~1.5.2:
   version "1.5.2"
@@ -5887,7 +5887,7 @@ readable-stream@1.0:
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
-readable-stream@^2.0.0, readable-stream@~2.1.4:
+readable-stream@^2.0.0, readable-stream@^2.0.5, readable-stream@~2.1.4:
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.1.5.tgz#66fa8b720e1438b364681f2ad1a63c618448c9d0"
   dependencies:
@@ -5899,7 +5899,7 @@ readable-stream@^2.0.0, readable-stream@~2.1.4:
     string_decoder "~0.10.x"
     util-deprecate "~1.0.1"
 
-"readable-stream@^2.0.0 || ^1.1.13", readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.5, readable-stream@~2.0.0:
+"readable-stream@^2.0.0 || ^1.1.13", readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@~2.0.0:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.0.6.tgz#8f90341e68a53ccc928788dacfcd11b36eb9b78e"
   dependencies:
@@ -7255,8 +7255,8 @@ webpack-sources@^0.1.0:
     source-map "~0.5.3"
 
 "webpack@1.13.3 || ^2.1.0-beta":
-  version "2.1.0-beta.26"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-2.1.0-beta.26.tgz#770eed2b04ce9863107ff138caa701a85e7b4e12"
+  version "2.1.0-beta.27"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-2.1.0-beta.27.tgz#06cb802e44118159e46b7533ae76b0d84c8c89d8"
   dependencies:
     acorn "^4.0.3"
     ajv "^4.7.0"
