@@ -6,7 +6,9 @@ import { transform } from 'buble';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import Wrapper from 'rsg-components/Wrapper';
 
-const compileCode = code => transform(code).code;
+const compileCode = code => transform(code, {
+	objectAssign: 'Object.assign',
+}).code;
 
 export default class Preview extends Component {
 	static propTypes = {
