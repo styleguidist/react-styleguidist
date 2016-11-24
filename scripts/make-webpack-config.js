@@ -127,7 +127,6 @@ module.exports = function(config, env) {
 			cache: false,
 			plugins: [
 				new webpack.optimize.OccurrenceOrderPlugin(),
-				new webpack.optimize.DedupePlugin(),
 				new webpack.optimize.UglifyJsPlugin({
 					compress: {
 						keep_fnames: true,
@@ -141,6 +140,9 @@ module.exports = function(config, env) {
 				}),
 			],
 		});
+		if (!isWebpack2) {
+			webpackConfig.plugins.push(new webpack.optimize.DedupePlugin());
+		}
 	}
 	else {
 		webpackConfig = merge(webpackConfig, {
