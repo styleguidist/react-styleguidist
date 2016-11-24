@@ -23,7 +23,7 @@ function processComponent(filepath, config) {
 	const componentPath = path.relative(config.configDir, filepath);
 
 	return toCode({
-		filepath: JSON.stringify(filepath),
+		filepath: JSON.stringify(componentPath),
 		nameFallback: JSON.stringify(nameFallback),
 		pathLine: JSON.stringify(config.getComponentPathLine(componentPath)),
 		module: requireIt(filepath),
