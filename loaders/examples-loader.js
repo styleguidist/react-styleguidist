@@ -5,9 +5,8 @@ const map = require('lodash/map');
 const loaderUtils = require('loader-utils');
 const chunkify = require('./utils/chunkify');
 const getRequires = require('./utils/getRequires');
-const utils = require('./utils/js');
-const requireIt = utils.requireIt;
-const serialize = utils.serialize;
+const requireIt = require('./utils/requireIt');
+const serialize = require('./utils/serialize');
 
 const COMPONENT_PLACEHOLDER = '__COMPONENT__';
 const COMPONENT_PLACEHOLDER_REGEXP = new RegExp(COMPONENT_PLACEHOLDER, 'g');

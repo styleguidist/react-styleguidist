@@ -4,9 +4,8 @@ const path = require('path');
 const castArray = require('lodash/castArray');
 const reactDocs = require('react-docgen');
 const removeDoclets = require('./utils/removeDoclets');
-const utils = require('./utils/js');
-const requireIt = utils.requireIt;
-const toCode = utils.toCode;
+const requireIt = require('./utils/requireIt');
+const toCode = require('./utils/toCode');
 
 
 /* eslint-disable no-console */

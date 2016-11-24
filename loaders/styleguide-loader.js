@@ -5,9 +5,8 @@ const path = require('path');
 const glob = require('glob');
 const prettyjson = require('prettyjson');
 const pick = require('lodash/pick');
-const utils = require('./utils/js');
-const requireIt = utils.requireIt;
-const toCode = utils.toCode;
+const requireIt = require('./utils/requireIt');
+const toCode = require('./utils/toCode');
 
 /* eslint-disable no-console */
 
