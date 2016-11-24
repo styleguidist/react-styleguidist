@@ -41,7 +41,6 @@ const DEFAULT_CONFIG = {
 	updateWebpackConfig: null,
 	context: {
 		React: 'react',
-		_: 'lodash',
 	},
 	handlers: reactDocgen.defaultHandlers.concat(displayNameHandler),
 	theme: {},
