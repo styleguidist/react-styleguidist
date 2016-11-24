@@ -1,17 +1,16 @@
 'use strict';
 
-const escapeRegExp = require('lodash/escapeRegExp');
 const filter = require('lodash/filter');
 const map = require('lodash/map');
 const loaderUtils = require('loader-utils');
 const chunkify = require('./utils/chunkify');
 const getRequires = require('./utils/getRequires');
-
-const EVAL_PLACEHOLDER = '<%{#eval#}%>';
-const EVAL_PLACEHOLDER_REGEXP = new RegExp(escapeRegExp(JSON.stringify(EVAL_PLACEHOLDER)), 'g');
+const utils = require('./utils/js');
+const requireIt = utils.requireIt;
+const serialize = utils.serialize;
 
 const COMPONENT_PLACEHOLDER = '__COMPONENT__';
-const COMPONENT_PLACEHOLDER_REGEXP = new RegExp(escapeRegExp(COMPONENT_PLACEHOLDER), 'g');
+const COMPONENT_PLACEHOLDER_REGEXP = new RegExp(COMPONENT_PLACEHOLDER, 'g');
 
 function examplesLoader(source) {
 	if (this.cacheable) {
@@ -26,7 +25,7 @@ function examplesLoader(source) {
 	source = source.replace(COMPONENT_PLACEHOLDER_REGEXP, componentName);
 
 	// Load examples
-	let examples = chunkify(source);
+	const examples = chunkify(source);
 
 	// We're analysing the examples' source code to figure out the require statements. We do it manually with regexes,
 	// because webpack unfortunately doesn't expose its smart logic for rewriting requires
@@ -37,14 +36,13 @@ function examplesLoader(source) {
 	const allRequires = Object.assign({}, requiresFromExamples, config.context);
 
 	// “Prerequire” modules required in Markdown examples and context so they end up in a bundle and be available at runtime
-	const requireMapCode = map(allRequires, requireRequest => {
-		const safeRequest = JSON.stringify(requireRequest);
-		return `${safeRequest}: require(${safeRequest})`;
-	}).join(',\n');
+	const requireMapCode = map(allRequires, requireRequest =>
+		`${JSON.stringify(requireRequest)}: ${requireIt(requireRequest)}`
+	).join(',\n');
 
 	// Require context modules so they are available in an example
 	const requireContextCode = map(config.context, (requireRequest, name) =>
-		`var ${name} = require(${JSON.stringify(requireRequest)})`
+		`var ${name} = ${requireIt(requireRequest)}`
 	).join(';\\n');
 
 	// Require module if it was “prerequired”
@@ -74,13 +72,13 @@ function examplesLoader(source) {
 	`;
 
 	// Stringify examples object except the evalInContext
-	examples = examples.map(example => {
+	const examplesWithEval = examples.map(example => {
 		if (example.type === 'code') {
-			example.evalInContext = EVAL_PLACEHOLDER;
+			example.evalInContext = 'evalInContext';
 		}
 		return example;
 	});
-	const examplesCode = JSON.stringify(examples, null, '  ').replace(EVAL_PLACEHOLDER_REGEXP, 'evalInContext');
+	const examplesCode = serialize(examplesWithEval, key => key === 'evalInContext');
 
 	return `
 		if (module.hot) {
