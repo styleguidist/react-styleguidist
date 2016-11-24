@@ -145,6 +145,26 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   };
   ```
 
+* **`context`**<br>
+  Type: `Object`, optional<br>
+  Modules that will be available for examples. You can use it for utility functions like Lodash or for data fixtures.
+
+  ```javascript
+  module.exports = {
+    // ...
+    context: {
+      map: 'lodash/map',
+      users: './fixtures/users',
+    },
+  };
+  ```
+  
+  Then you can use them in any example:
+  
+  ```javascript
+  <Message>{map(users, 'name').join(', ')}</Message>
+  ```
+    
 * **`webpackConfig`**<br>
   Type: `Object or Function`, optional<br>
   Custom Webpack config options: loaders, extensions, plugins, etc. required for your project.
