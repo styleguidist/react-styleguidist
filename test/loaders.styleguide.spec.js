@@ -2,6 +2,8 @@ import test from 'ava';
 import { readFileSync } from 'fs';
 import styleguideLoader from '../loaders/styleguide-loader';
 
+/* eslint-disable quotes */
+
 test('should return valid, parsable JS', t => {
 	const file = 'components/Button/Button.js';
 	const result = styleguideLoader.pitch.call({
@@ -34,8 +36,8 @@ test('should return correct component paths: glob', t => {
 	}, readFileSync(file, 'utf8'));
 	t.truthy(result);
 	t.notThrows(() => new Function(result), SyntaxError);  // eslint-disable-line no-new-func
-	t.true(result.includes(`'filepath': "${__dirname}/components/Button/Button.js"`));
-	t.true(result.includes(`'filepath': "${__dirname}/components/Placeholder/Placeholder.js"`));
+	t.true(result.includes(`'filepath': "components/Button/Button.js"`));
+	t.true(result.includes(`'filepath': "components/Placeholder/Placeholder.js"`));
 });
 
 test('should return correct component paths: function returning absolute paths', t => {
@@ -56,8 +58,8 @@ test('should return correct component paths: function returning absolute paths',
 	}, readFileSync(file, 'utf8'));
 	t.truthy(result);
 	t.notThrows(() => new Function(result), SyntaxError);  // eslint-disable-line no-new-func
-	t.true(result.includes(`'filepath': "${__dirname}/components/Button/Button.js"`));
-	t.true(result.includes(`'filepath': "${__dirname}/components/Placeholder/Placeholder.js"`));
+	t.true(result.includes(`'filepath': "components/Button/Button.js"`));
+	t.true(result.includes(`'filepath': "components/Placeholder/Placeholder.js"`));
 });
 
 test('should return correct component paths: function returning relative paths', t => {
@@ -78,6 +80,6 @@ test('should return correct component paths: function returning relative paths',
 	}, readFileSync(file, 'utf8'));
 	t.truthy(result);
 	t.notThrows(() => new Function(result), SyntaxError);  // eslint-disable-line no-new-func
-	t.true(result.includes(`'filepath': "${__dirname}/components/Button/Button.js"`));
-	t.true(result.includes(`'filepath': "${__dirname}/components/Placeholder/Placeholder.js"`));
+	t.true(result.includes(`'filepath': "components/Button/Button.js"`));
+	t.true(result.includes(`'filepath': "components/Placeholder/Placeholder.js"`));
 });
