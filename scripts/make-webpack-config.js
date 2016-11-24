@@ -130,6 +130,8 @@ module.exports = function(config, env) {
 				new webpack.optimize.DedupePlugin(),
 				new webpack.optimize.UglifyJsPlugin({
 					compress: {
+						keep_fnames: true,
+						screw_ie8: true,
 						warnings: false,
 					},
 					output: {
