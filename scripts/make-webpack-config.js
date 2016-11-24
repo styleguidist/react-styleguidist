@@ -136,7 +136,9 @@ module.exports = function(config, env) {
 					output: {
 						comments: false,
 					},
-					mangle: false,
+					mangle: {
+						keep_fnames: true,
+					},
 				}),
 			],
 		});
