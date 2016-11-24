@@ -4,24 +4,23 @@ const filter = require('lodash/filter');
 const map = require('lodash/map');
 const loaderUtils = require('loader-utils');
 const chunkify = require('./utils/chunkify');
+const expandDefaultComponent = require('./utils/expandDefaultComponent');
 const getRequires = require('./utils/getRequires');
 const requireIt = require('./utils/requireIt');
 const serialize = require('./utils/serialize');
-
-const COMPONENT_PLACEHOLDER = '__COMPONENT__';
-const COMPONENT_PLACEHOLDER_REGEXP = new RegExp(COMPONENT_PLACEHOLDER, 'g');
 
 function examplesLoader(source) {
 	if (this.cacheable) {
 		this.cacheable();
 	}
 
+	const query = loaderUtils.parseQuery(this.query);
 	const config = this.options.styleguidist;
 
-	// Replace __COMPONENT__ placeholders with the passed-in componentName
-	const query = loaderUtils.parseQuery(this.query);
-	const componentName = query.componentName || COMPONENT_PLACEHOLDER;
-	source = source.replace(COMPONENT_PLACEHOLDER_REGEXP, componentName);
+	// Replace placeholders (__COMPONENT__) with the passed-in component name
+	if (query.componentName) {
+		source = expandDefaultComponent(source, query.componentName);
+	}
 
 	// Load examples
 	const examples = chunkify(source);
@@ -70,7 +69,7 @@ function examplesLoader(source) {
 		}
 	`;
 
-	// Stringify examples object except the evalInContext
+	// Stringify examples object except the evalInContext function
 	const examplesWithEval = examples.map(example => {
 		if (example.type === 'code') {
 			example.evalInContext = 'evalInContext';
