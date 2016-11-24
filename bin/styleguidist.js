@@ -55,7 +55,7 @@ function commandBuild() {
 	console.log('Building style guide...');
 
 	const build = require('../scripts/build');
-	build(config, err => {
+	const compiler = build(config, err => {
 		if (err) {
 			console.log(err);
 			process.exit(1);
@@ -63,6 +63,22 @@ function commandBuild() {
 		else {
 			console.log('Style guide published to:');
 			console.log(chalk.underline(config.styleguideDir));
+		}
+	});
+
+	// Custom error reporting
+	compiler.plugin('done', function(stats) {
+		const messages = formatWebpackMessages(stats.toJson({}, true));
+
+		// If errors exist, only show errors.
+		if (messages.errors.length) {
+			printErrors('Failed to compile.', messages.errors, chalk.red);
+			return;
+		}
+
+		// Show warnings if no errors were found.
+		if (messages.warnings.length) {
+			printErrors('Compiled with warnings.', messages.warnings, chalk.yellow);
 		}
 	});
 }
