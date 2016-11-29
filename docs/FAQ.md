@@ -68,6 +68,29 @@ module.exports = {
 };
 ```
 
+## How to use React Styleguidist with styled-components?
+
+The [recommened way](https://github.com/styleguidist/react-styleguidist/issues/37#issuecomment-263502454) of using [styled-components](https://styled-components.com/) is like this:
+
+```javascript
+import React, { Component } from 'react';
+import styled from 'styled-components';
+
+const SalmonButton = styled.button`
+  background-color: salmon;
+  border: 1px solid indianred;
+  color: snow;
+`;
+
+class Button extends Component {
+  render() {
+    return <SalmonButton>{this.props.children}</SalmonButton>;
+  }
+}
+
+export default Button;
+```
+
 ## How to add custom JS and CSS?
 
 Add a new Webpack entry point. In your style guide config:
