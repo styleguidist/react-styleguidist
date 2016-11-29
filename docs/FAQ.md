@@ -49,6 +49,29 @@ module.exports = {
 };
 ```
 
+## How to use React Styleguidist with styled-components?
+
+The [recommened way](https://github.com/styleguidist/react-styleguidist/issues/37#issuecomment-263502454) of using [styled-components](https://styled-components.com/) is like this:
+
+```javascript
+import React, { Component } from 'react';
+import styled from 'styled-components';
+
+const SalmonButton = styled.button`
+  background-color: salmon;
+  border: 1px solid indianred;
+  color: snow;
+`;
+
+class Button extends Component {
+  render() {
+    return <SalmonButton>{this.props.children}</SalmonButton>;
+  }
+}
+
+export default Button;
+```
+
 ## How to add custom JS and CSS?
 
 Add a new Webpack entry point. In your style guide config:
@@ -179,6 +202,7 @@ We have [an example style guide](https://github.com/styleguidist/react-styleguid
 3. Press the ![Continue](http://wow.sapegin.me/image/2d2z1Y2o1z1m/continue.png) button and the debugger will stop execution at the next exception.
 
 ## How to change style guide dev server logs output?
+
 You can modify webpack dev server logs format passing `webpack.stats` options inside `updateWebpackConfig`.
 ```javascript
 module.exports = {
