@@ -23,6 +23,10 @@ script:
   - yarn run phantomjs:customised
   - yarn run phantomjs:sections
 before_script:
+  # Enable proxies for Node 5
+  if [ "$TRAVIS_NODE_VERSION" == "5" ]; then
+      export NODE_BIN="$NODE_BIN --harmony-proxies"
+  fi
   # Manually install Webpack 1 or 2
   - 'if [ "$WEBPACK_VERSION" ]; then yarn add webpack@^$WEBPACK_VERSION; fi'
 before_install:
