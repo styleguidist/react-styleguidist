@@ -13,7 +13,14 @@ env:
   - export WEBPACK_VERSION="1"
 script:
   # Run tests
-  - yarn run test
+  - |
+    yarn run lint
+    echo "TRAVIS_NODE_VERSION=$TRAVIS_NODE_VERSION"
+    if [ "$TRAVIS_NODE_VERSION" == "5" ]; then
+      NODE_ENV=test node --harmony-proxies $(npm bin)/jest
+    else
+      yarn run test:jest
+    fi
   # Build all examples
   - yarn run build
   - yarn run build:customised
@@ -22,12 +29,6 @@ script:
   - yarn run phantomjs
   - yarn run phantomjs:customised
   - yarn run phantomjs:sections
-before_script:
-  # Enable proxies for Node 5
-  - |
-    if [ "$TRAVIS_NODE_VERSION" == "5" ]; then
-        export NODE_BIN="$NODE_BIN --harmony-proxies"
-    fi
   # Manually install Webpack 1 or 2
   - 'if [ "$WEBPACK_VERSION" ]; then yarn add webpack@^$WEBPACK_VERSION; fi'
 before_install:
