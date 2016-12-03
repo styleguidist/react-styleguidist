@@ -1,0 +1,374 @@
+exports[`test should render PropTypes.arrayOf 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Default
+      </th>
+      <th
+        className="undefined undefined">
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class>
+          colors
+        </_class>
+      </td>
+      <td>
+        <_class>
+          string[]
+        </_class>
+      </td>
+      <td />
+      <td
+        className="undefined undefined">
+        <Group
+          separator=" " />
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`test should render PropTypes.instanceOf 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Default
+      </th>
+      <th
+        className="undefined undefined">
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class>
+          num
+        </_class>
+      </td>
+      <td>
+        <_class>
+          Number
+        </_class>
+      </td>
+      <td />
+      <td
+        className="undefined undefined">
+        <Group
+          separator=" " />
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`test should render PropTypes.shape 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Default
+      </th>
+      <th
+        className="undefined undefined">
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class>
+          foo
+        </_class>
+      </td>
+      <td>
+        <_class>
+          shape
+        </_class>
+      </td>
+      <td />
+      <td
+        className="undefined undefined">
+        <Group
+          separator=" ">
+          <div>
+            <_class>
+              bar
+            </_class>
+            : 
+            <_class>
+              number
+            </_class>
+             — 
+            <span>
+              Required
+            </span>
+          </div>
+          <div>
+            <_class>
+              baz
+            </_class>
+            : 
+            <_class>
+              any
+            </_class>
+          </div>
+        </Group>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`test should render PropTypes.string 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Default
+      </th>
+      <th
+        className="undefined undefined">
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class>
+          color
+        </_class>
+      </td>
+      <td>
+        <_class>
+          string
+        </_class>
+      </td>
+      <td />
+      <td
+        className="undefined undefined">
+        <Group
+          separator=" " />
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`test should render PropTypes.string with a default value 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Default
+      </th>
+      <th
+        className="undefined undefined">
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class>
+          color
+        </_class>
+      </td>
+      <td>
+        <_class>
+          string
+        </_class>
+      </td>
+      <td>
+        <_class>
+          pink
+        </_class>
+      </td>
+      <td
+        className="undefined undefined">
+        <Group
+          separator=" " />
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`test should render PropTypes.string.isRequired 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Default
+      </th>
+      <th
+        className="undefined undefined">
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class>
+          color
+        </_class>
+      </td>
+      <td>
+        <_class>
+          string
+        </_class>
+      </td>
+      <td>
+        <span>
+          Required
+        </span>
+      </td>
+      <td
+        className="undefined undefined">
+        <Group
+          separator=" " />
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`test should render description in Markdown 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Default
+      </th>
+      <th
+        className="undefined undefined">
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class>
+          color
+        </_class>
+      </td>
+      <td>
+        <_class>
+          string
+        </_class>
+      </td>
+      <td />
+      <td
+        className="undefined undefined">
+        <Group
+          separator=" ">
+          <_class
+            inline={true}
+            text="Label" />
+        </Group>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`test should render unknown proptype for a prop when a relevant proptype is not assigned 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Default
+      </th>
+      <th
+        className="undefined undefined">
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class>
+          color
+        </_class>
+      </td>
+      <td>
+        <_class>
+          unknown
+        </_class>
+      </td>
+      <td>
+        <_class>
+          pink
+        </_class>
+      </td>
+      <td
+        className="undefined undefined">
+        <Group
+          separator=" " />
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

@@ -1,0 +1,66 @@
+exports[`test render should render component 1`] = `
+<div>
+  <Section
+    section={
+      Object {
+        "components": Array [],
+        "content": Array [
+          Object {
+            "content": "<button>OK</button>",
+            "evalInContext": [Function],
+            "type": "code",
+          },
+        ],
+        "name": "Foo",
+      }
+    } />
+  <Section
+    section={
+      Object {
+        "components": Array [],
+        "content": Array [
+          Object {
+            "content": "Hello *world*!",
+            "type": "markdown",
+          },
+        ],
+        "name": "Bar",
+      }
+    } />
+</div>
+`;
+
+exports[`test should render component renderer 1`] = `
+<SectionsRenderer
+  sections={
+    Array [
+      <Section
+        section={
+            Object {
+                "components": Array [],
+                "content": Array [
+                  Object {
+                    "content": "<button>OK</button>",
+                    "evalInContext": [Function],
+                    "type": "code",
+                  },
+                ],
+                "name": "Foo",
+              }
+        } />,
+      <Section
+        section={
+            Object {
+                "components": Array [],
+                "content": Array [
+                  Object {
+                    "content": "Hello *world*!",
+                    "type": "markdown",
+                  },
+                ],
+                "name": "Bar",
+              }
+        } />,
+    ]
+  } />
+`;

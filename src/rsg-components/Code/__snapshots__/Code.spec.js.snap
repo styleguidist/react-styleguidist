@@ -1,0 +1,7 @@
+exports[`test renderer should render code 1`] = `
+<span>
+  <code>
+    <button>OK</button>
+  </code>
+</span>
+`;

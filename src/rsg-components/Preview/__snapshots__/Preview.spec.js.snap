@@ -1,0 +1,5 @@
+exports[`test should render component renderer 1`] = `
+<div>
+  <div />
+</div>
+`;

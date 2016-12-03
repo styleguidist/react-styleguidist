@@ -1,7 +1,6 @@
-import test from 'ava';
 import expandDefaultComponent from '../loaders/utils/expandDefaultComponent';
 
-test('expandDefaultComponent() replace placeholders with component name', t => {
+it('expandDefaultComponent() replace placeholders with component name', () => {
 	const exampleMarkdown = `
 <div>
 	<__COMPONENT__>
@@ -12,7 +11,7 @@ test('expandDefaultComponent() replace placeholders with component name', t => {
 </div>
 `;
 	const result = expandDefaultComponent(exampleMarkdown, 'FooComponent');
-	t.notRegex(result, /__COMPONENT__/);
-	t.regex(result, /FooComponent/);
-	t.is(result.match(/FooComponent/g).length, 4);
+	expect(result).not.toMatch(/__COMPONENT__/);
+	expect(result).toMatch(/FooComponent/);
+	expect(result.match(/FooComponent/g).length).toBe(4);
 });

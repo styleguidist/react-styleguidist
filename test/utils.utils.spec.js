@@ -1,4 +1,3 @@
-import test from 'ava';
 const map = require('lodash/map');
 import * as utils from '../src/utils/utils';
 
@@ -40,17 +39,17 @@ const SECTIONS = [
 ];
 
 let sourceGlobalLength;
-test.beforeEach(() => {
+beforeEach(() => {
 	sourceGlobalLength = Object.keys(global).length;
 });
-test.afterEach(() => {
+afterEach(() => {
 	delete global.Foo;
 	delete global.Bar;
 });
 
 // setComponentsNames
 
-test('should set name property to each component', t => {
+it('should set name property to each component', () => {
 	const result = utils.setComponentsNames([
 		{
 			module: {
@@ -71,12 +70,12 @@ test('should set name property to each component', t => {
 			},
 		},
 	]);
-	t.deepEqual(map(result, 'name'), ['Foo', 'Bar', 'FooOverride']);
+	expect(map(result, 'name')).toEqual(['Foo', 'Bar', 'FooOverride']);
 });
 
 // globalizeComponents
 
-test('should set each component’s module as a global variable', t => {
+it('should set each component’s module as a global variable', () => {
 	utils.globalizeComponents([
 		{
 			name: 'Foo',
@@ -94,87 +93,87 @@ test('should set each component’s module as a global variable', t => {
 			},
 		},
 	]);
-	t.is(Object.keys(global).length, sourceGlobalLength + 3);
-	t.is(global.Foo, 13);
-	t.is(global.Bar, 27);
-	t.is(global.PathedFoo, 32);
+	expect(Object.keys(global).length).toBe(sourceGlobalLength + 3);
+	expect(global.Foo).toBe(13);
+	expect(global.Bar).toBe(27);
+	expect(global.PathedFoo).toBe(32);
 });
 
 // getFilterRegExp
 
-test('should return a RegExp', t => {
+it('should return a RegExp', () => {
 	const result = utils.getFilterRegExp('');
-	t.true(result instanceof RegExp);
+	expect(result instanceof RegExp).toBe(true);
 });
 
-test('RegExp should fuzzy match a string', t => {
+it('RegExp should fuzzy match a string', () => {
 	const result = utils.getFilterRegExp('btn');
-	t.regex('button', result);
+	expect('button').toMatch(result);
 });
 
-test('RegExp should not match when string is different', t => {
+it('RegExp should not match when string is different', () => {
 	const result = utils.getFilterRegExp('buttons');
-	t.notRegex('button', result);
+	expect('button').not.toMatch(result);
 });
 
-test('should not throw when query contains special characters', t => {
+it('should not throw when query contains special characters', () => {
 	const fn = () => utils.getFilterRegExp('\\');
-	t.notThrows(fn);
+	expect(fn).not.toThrow();
 });
 
-test('RegExp should ignore non-alphanumeric characters', t => {
+it('RegExp should ignore non-alphanumeric characters', () => {
 	const result = utils.getFilterRegExp('#$b()tn');
-	t.regex('button', result);
+	expect('button').toMatch(result);
 });
 
 // filterComponentsByName
 
-test('should return initial list with empty query', t => {
+it('should return initial list with empty query', () => {
 	const result = utils.filterComponentsByName(COMPONENTS, '');
-	t.deepEqual(result, COMPONENTS);
+	expect(result).toEqual(COMPONENTS);
 });
 
-test('should return filtered list, should ignore case', t => {
+it('should return filtered list, should ignore case', () => {
 	const result = utils.filterComponentsByName(COMPONENTS, 'button');
-	t.deepEqual(result, [{ name: 'Button' }]);
+	expect(result).toEqual([{ name: 'Button' }]);
 });
 
-test('should return empty list when nothing found', t => {
+it('should return empty list when nothing found', () => {
 	const result = utils.filterComponentsByName(COMPONENTS, 'pizza');
-	t.deepEqual(result, []);
+	expect(result).toEqual([]);
 });
 
 // filterComponentsByExactName
 
-test('should return components with exact name', t => {
+it('should return components with exact name', () => {
 	const result = utils.filterComponentsByExactName(COMPONENTS, 'Image');
-	t.deepEqual(result, [COMPONENTS[1]]);
+	expect(result).toEqual([COMPONENTS[1]]);
 });
 
 // filterComponentsInSectionsByExactName
 
-test('should return components at any level with exact name', t => {
+it('should return components at any level with exact name', () => {
 	const result = utils.filterComponentsInSectionsByExactName(SECTIONS, 'Image');
-	t.deepEqual(result, [COMPONENTS[1]]);
+	expect(result).toEqual([COMPONENTS[1]]);
 });
 
 // getComponentNameFromHash
 
-test('should return important part of hash if it contains component name', t => {
+it('should return important part of hash if it contains component name', () => {
 	const result = utils.getComponentNameFromHash('#!/Button');
-	t.deepEqual(result, { targetComponentName: 'Button', targetComponentIndex: null });
+	expect(result).toEqual({ targetComponentName: 'Button', targetComponentIndex: null });
 });
 
-test('should return an empty object if hash contains no component name', t => {
+it('should return an empty object if hash contains no component name', () => {
 	const result = utils.getComponentNameFromHash('Button');
-	t.deepEqual(result, {});
+	expect(result).toEqual({});
 });
 
 // filterComponentExamples
 
-test('should return a shallow copy of the component with example filtered by given index', t => {
+it('should return a shallow copy of the component with example filtered by given index', () => {
 	const comp = { examples: ['a', 'b', 'c', 'd'], other: 'info' };
 	const expectedOutput = { examples: ['c'], other: 'info' };
 	const result = utils.filterComponentExamples(comp, 2);
-	t.deepEqual(result, expectedOutput);
+	expect(result).toEqual(expectedOutput);
 });

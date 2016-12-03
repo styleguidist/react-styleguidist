@@ -73,37 +73,37 @@
     "webpack": "1 || ^2.1.0-beta"
   },
   "devDependencies": {
-    "ava": "~0.16.0",
     "babel-eslint": "~7.1.0",
+    "babel-jest": "~17.0.2",
     "babel-loader": "~6.2.8",
     "babel-register": "~6.18.0",
     "cross-env": "~3.1.3",
     "dog-names": "~1.0.2",
-    "enzyme": "~2.5.1",
+    "enzyme": "~2.6.0",
+    "enzyme-to-json": "~1.3.0",
     "eslint": "~3.10.2",
     "eslint-config-tamia": "~3.3.0",
     "eslint-plugin-react": "~6.7.1",
     "expect-react-shallow": "~1.2.1",
     "gh-pages": "~0.11.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "~17.0.3",
     "lint-staged": "~3.2.1",
     "loaders": "~1.1.0",
-    "mock-require": "~1.3.0",
     "pre-commit": "~1.1.3",
-    "react": "~15.3.2",
-    "react-addons-test-utils": "~15.3.2",
-    "react-dom": "~15.3.2",
+    "react": "~15.4.0",
+    "react-addons-test-utils": "~15.4.0",
+    "react-dom": "~15.4.0",
     "react-modal": "~1.5.2",
     "semantic-release": "~4.3.5",
     "semantic-release-tamia": "~1.0.0",
-    "sinon": "~1.17.6",
-    "unexpected": "~10.18.1",
-    "unexpected-react": "~3.2.4",
     "webpack": "1.13.3 || ^2.1.0-beta"
   },
   "scripts": {
-    "test": "npm run lint && npm run test:ava",
-    "test:ava": "cross-env NODE_ENV=test ava",
-    "test:watch": "cross-env NODE_ENV=test ava --watch",
+    "test": "npm run lint && npm run test:jest",
+    "test:jest": "cross-env NODE_ENV=test jest",
+    "test:watch": "cross-env NODE_ENV=test jest --watch",
+    "test:coverage": "cross-env NODE_ENV=test jest --coverage",
     "start": "bin/styleguidist.js server --config examples/basic/styleguide.config.js",
     "start:customised": "bin/styleguidist.js server --config examples/customised/styleguide.config.js",
     "start:sections": "bin/styleguidist.js server --config examples/sections/styleguide.config.js",
@@ -128,21 +128,20 @@
     "verifyRelease": "semantic-release-tamia/verifyRelease"
   },
   "pre-commit": "lint-staged",
-  "ava": {
-    "files": [
-      "src/**/*.spec.js",
-      "test/*.spec.js"
+  "jest": {
+    "setupFiles": [
+      "./test/jestsetup.js"
     ],
-    "source": [
-      "src/**/*.js",
-      "loaders/**/*.js",
-      "scripts/**/*.js"
+    "modulePaths": [
+      "./src"
     ],
-    "require": [
-      "babel-register",
-      "./test/avasetup"
-    ],
-    "babel": "inherit"
+    "moduleNameMapper": {
+      "^.+\\.css$": "identity-obj-proxy"
+    },
+    "testRegex": "\\.spec\\.js$",
+    "testPathIgnorePatterns": [
+      "<rootDir>/lib/"
+    ]
   },
   "keywords": [
     "react",

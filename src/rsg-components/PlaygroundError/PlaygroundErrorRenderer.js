@@ -13,9 +13,11 @@ const styles = ({ monospace, white, errorBackground }) => ({
 	},
 });
 
-export const PlaygroundErrorRenderer = ({ classes, message }) => (
-	<pre className={classes.root}>{message}</pre>
-);
+export function PlaygroundErrorRenderer({ classes, message }) {
+	return (
+		<pre className={classes.root}>{message}</pre>
+	);
+}
 
 PlaygroundErrorRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,

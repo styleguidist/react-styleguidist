@@ -1,11 +1,10 @@
-import test from 'ava';
 import React from 'react';
 import Components from '../Components';
 import Logo from '../Logo';
 import Message from '../Message';
 import TableOfContents from '../TableOfContents';
 import StyleGuide from './StyleGuide';
-import StyleGuideRendererHoC, { StyleGuideRenderer } from './StyleGuideRenderer';
+import { StyleGuideRenderer } from './StyleGuideRenderer';
 
 const components = [
 	{
@@ -30,47 +29,33 @@ const config = {
 	title: 'Hello',
 };
 
-test('should render components list', () => {
+it('should render components list', () => {
 	const actual = shallow(
 		<StyleGuide
+			codeKey={1}
 			config={config}
 			components={components}
 			sections={sections}
 		/>
 	);
 
-	expect(actual.node, 'to contain',
-		<StyleGuideRendererHoC
-			title={config.title}
-			components={<Components components={components} sections={sections} />}
-			sections={sections}
-			toc={<TableOfContents components={components} sections={sections} />}
-			sidebar
-		/>
-	);
+	expect(shallowToJson(actual)).toMatchSnapshot();
 });
 
-test('should pass error message instead of components list when there is no components and sections', () => {
+it('should pass error message instead of components list when there is no components and sections', () => {
 	const actual = shallow(
 		<StyleGuide
+			codeKey={1}
 			config={config}
 			components={[]}
 			sections={[]}
 		/>
 	);
 
-	expect(actual.node, 'to contain',
-		<StyleGuideRendererHoC
-			title={config.title}
-			components={<Message />}
-			sections={[]}
-			toc={<TableOfContents components={[]} sections={[]}/>}
-			sidebar
-		/>
-	);
+	expect(shallowToJson(actual)).toMatchSnapshot();
 });
 
-test('renderer should render logo, table on contents and components', () => {
+it('renderer should render logo, table on contents and components', () => {
 	const actual = shallow(
 		<StyleGuideRenderer
 			classes={{}}
@@ -78,17 +63,10 @@ test('renderer should render logo, table on contents and components', () => {
 			components={<Components components={components} sections={sections} />}
 			sections={sections}
 			toc={<TableOfContents components={components} sections={sections} />}
+			homepageUrl="http://react-styleguidist.js.org/"
 			sidebar
 		/>
 	);
 
-	expect(actual.node, 'to contain',
-		<Logo>{config.title}</Logo>
-	);
-	expect(actual.node, 'to contain',
-		<TableOfContents components={components} sections={sections} />
-	);
-	expect(actual.node, 'to contain',
-		<Components components={components} sections={sections} />
-	);
+	expect(shallowToJson(actual)).toMatchSnapshot();
 });

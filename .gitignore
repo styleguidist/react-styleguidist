@@ -3,4 +3,5 @@ examples/**/styleguide/index.html
 .publish/
 node_modules/
 /lib
+/coverage
 Changelog.md

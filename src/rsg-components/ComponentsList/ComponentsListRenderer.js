@@ -17,8 +17,12 @@ const styles = ({ font }) => ({
 	},
 });
 
-export const ComponentsListRenderer = ({ classes, items }) => (
-	items.length ? (
+export function ComponentsListRenderer({ classes, items }) {
+	if (!items.length) {
+		return null;
+	}
+
+	return (
 		<div className={classes.list}>
 			{items.map(({ heading, name, content }) => (
 				<div className={classes.item} key={name}>
@@ -29,10 +33,8 @@ export const ComponentsListRenderer = ({ classes, items }) => (
 				</div>
 			))}
 		</div>
-	) : (
-		null
-	)
-);
+	);
+}
 
 ComponentsListRenderer.propTypes = {
 	items: PropTypes.array.isRequired,

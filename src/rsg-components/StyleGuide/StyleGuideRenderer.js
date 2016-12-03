@@ -45,26 +45,35 @@ const styles = ({ font, base, light, border, baseBackground, codeBackground }) =
 	},
 });
 
-export const StyleGuideRenderer = ({ classes, title, homepageUrl, components, toc, sidebar }) => (
-	<div className={cx(classes.root, sidebar && classes.hasSidebar)}>
-		<main className={classes.content}>
-			<div className={classes.components}>
-				{components}
-				<footer className={classes.footer}>
-					<Markdown text={`Generated with [React Styleguidist](${homepageUrl})`} />
-				</footer>
-			</div>
-		</main>
-		{sidebar &&
-			<div className={classes.sidebar}>
-				<div className={classes.logo}>
-					<Logo>{title}</Logo>
+export function StyleGuideRenderer({
+	classes,
+	title,
+	homepageUrl,
+	components,
+	toc,
+	sidebar,
+}) {
+	return (
+		<div className={cx(classes.root, sidebar && classes.hasSidebar)}>
+			<main className={classes.content}>
+				<div className={classes.components}>
+					{components}
+					<footer className={classes.footer}>
+						<Markdown text={`Generated with [React Styleguidist](${homepageUrl})`} />
+					</footer>
 				</div>
-				{toc}
-			</div>
-		}
-	</div>
-);
+			</main>
+			{sidebar &&
+				<div className={classes.sidebar}>
+					<div className={classes.logo}>
+						<Logo>{title}</Logo>
+					</div>
+					{toc}
+				</div>
+			}
+		</div>
+	);
+}
 
 StyleGuideRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,

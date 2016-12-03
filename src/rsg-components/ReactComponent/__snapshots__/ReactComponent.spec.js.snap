@@ -1,0 +1,61 @@
+exports[`test render should render component 1`] = `
+<div>
+  <header>
+    <h2
+      id="Foo">
+      Foo
+    </h2>
+    <div>
+      foo/bar.js
+    </div>
+    <div>
+      <_class
+        href="/">
+        ← Back
+      </_class>
+    </div>
+  </header>
+  <div>
+    Bar
+  </div>
+  <div>
+    <h3>
+      Props
+    </h3>
+  </div>
+  <Playground
+    code="<button>OK</button>"
+    evalInContext={[Function]}
+    index={0}
+    name="Component" />
+  <_class
+    text="Hello *world*!" />
+</div>
+`;
+
+exports[`test should render component renderer 1`] = `
+<_class
+  description={
+    <_class
+      text="Bar" />
+  }
+  examples={
+    <Examples
+      examples={
+        Array [
+          Object {
+            "content": "<button>OK</button>",
+            "evalInContext": [Function],
+            "type": "code",
+          },
+          Object {
+            "content": "Hello *world*!",
+            "type": "markdown",
+          },
+        ]
+      }
+      name="Foo" />
+  }
+  name="Foo"
+  pathLine="foo/bar.js" />
+`;

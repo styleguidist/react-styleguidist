@@ -1,9 +1,8 @@
-import test from 'ava';
 import removeDoclets from '../loaders/utils/removeDoclets';
 
 /* eslint-disable quotes */
 
-test('should find calls to require in code', t => {
+it('should find calls to require in code', () => {
 	const text = `
 Component is described here.
 
@@ -16,5 +15,5 @@ Component is described here.
 
 `;
 	const actual = removeDoclets(text);
-	t.is(actual, expected);
+	expect(actual).toBe(expected);
 });

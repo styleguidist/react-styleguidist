@@ -61,7 +61,7 @@ const styles = ({ font, link, linkHover, border, baseBackground, codeBackground 
 	},
 });
 
-export const PlaygroundRenderer = ({
+export function PlaygroundRenderer({
 	classes,
 	code,
 	showCode,
@@ -71,33 +71,34 @@ export const PlaygroundRenderer = ({
 	evalInContext,
 	onChange,
 	onCodeToggle,
-}
-) => (
-	<div className={classes.root}>
-		<div className={classes.preview}>
-			<div className={classes.isolatedLink}>
-				{singleExample ? (
-					<Link href={'#!/' + name}>⇽ Exit Isolation</Link>
-				) : (
-					<Link href={'#!/' + name + '/' + index}>Open isolated ⇢</Link>
-				)}
+}) {
+	return (
+		<div className={classes.root}>
+			<div className={classes.preview}>
+				<div className={classes.isolatedLink}>
+					{singleExample ? (
+						<Link href={'#!/' + name}>⇽ Exit Isolation</Link>
+					) : (
+						<Link href={'#!/' + name + '/' + index}>Open isolated ⇢</Link>
+					)}
+				</div>
+				<Preview code={code} evalInContext={evalInContext} />
 			</div>
-			<Preview code={code} evalInContext={evalInContext} />
-		</div>
-		{showCode ? (
-			<div>
-				<Editor code={code} onChange={onChange} />
-				<button type="button" className={classes.hideCode} onClick={onCodeToggle}>
-					Hide code
+			{showCode ? (
+				<div>
+					<Editor code={code} onChange={onChange} />
+					<button type="button" className={classes.hideCode} onClick={onCodeToggle}>
+						Hide code
+					</button>
+				</div>
+			) : (
+				<button type="button" className={classes.showCode} onClick={onCodeToggle}>
+					Show code
 				</button>
-			</div>
-		) : (
-			<button type="button" className={classes.showCode} onClick={onCodeToggle}>
-				Show code
-			</button>
-		)}
-	</div>
-);
+			)}
+		</div>
+	);
+}
 
 PlaygroundRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,

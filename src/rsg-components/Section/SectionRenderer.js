@@ -14,7 +14,7 @@ const styles = ({ font }) => ({
 	},
 });
 
-export const SectionRenderer = ({ classes, name, content, components }) => {
+export function SectionRenderer({ classes, name, content, components }) {
 	return (
 		<div className={classes.root}>
 			<h2 className={classes.heading} id={name}>{name}</h2>
@@ -22,7 +22,7 @@ export const SectionRenderer = ({ classes, name, content, components }) => {
 			{components}
 		</div>
 	);
-};
+}
 
 SectionRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,

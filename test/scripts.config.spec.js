@@ -1,28 +1,27 @@
-import test from 'ava';
 import path from 'path';
 import getConfig from '../scripts/config';
 
-test('should read a config file', t => {
-	const result = getConfig({ config: 'data/styleguide.config.js' });
-	t.truthy(result);
-	t.is(result.title, 'React Style Guide Example');
+it('should read a config file', () => {
+	const result = getConfig({ config: './test/data/styleguide.config.js' });
+	expect(result).toBeTruthy();
+	expect(result.title).toBe('React Style Guide Example');
 });
 
-test('should accept absolute path', t => {
+it('should accept absolute path', () => {
 	const result = getConfig({ config: path.join(__dirname, 'data/styleguide.config.js') });
-	t.truthy(result);
-	t.is(result.title, 'React Style Guide Example');
+	expect(result).toBeTruthy();
+	expect(result.title).toBe('React Style Guide Example');
 });
 
-test('should throw when config file not found', t => {
+it('should throw when config file not found', () => {
 	const fn = () => getConfig({});
-	t.throws(fn);
+	expect(fn).toThrow();
 });
 
-test('should accept config as an object', t => {
+it('should accept config as an object', () => {
 	const result = getConfig({
 		components: '*.js',
 	});
-	t.truthy(result);
-	t.is(result.title, 'Style guide');
+	expect(result).toBeTruthy();
+	expect(result.title).toBe('Style guide');
 });

@@ -11,11 +11,13 @@ const styles = ({ monospace }) => ({
 	},
 });
 
-export const CodeRenderer = ({ classes, className, children }) => (
-	<span className={className}>
-		<code className={classes.code}>{children}</code>
-	</span>
-);
+export function CodeRenderer({ classes, className, children }) {
+	return (
+		<span className={className}>
+			<code className={classes.code}>{children}</code>
+		</span>
+	);
+}
 
 CodeRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,

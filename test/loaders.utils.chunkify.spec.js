@@ -1,9 +1,8 @@
-import test from 'ava';
 import chunkify from '../loaders/utils/chunkify';
 
 /* eslint-disable max-len */
 
-test('should separate Markdown and component examples', t => {
+it('should separate Markdown and component examples', () => {
 	const markdown = `
 # Header
 
@@ -65,5 +64,5 @@ This should be highlighted:
 	];
 
 	const actual = chunkify(markdown);
-	t.deepEqual(actual, expected);
+	expect(actual).toEqual(expected);
 });

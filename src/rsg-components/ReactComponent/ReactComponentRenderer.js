@@ -52,7 +52,15 @@ const styles = ({ font, monospace, light }) => ({
 	},
 });
 
-export const ReactComponentRenderer = ({ classes, name, pathLine, description, props, examples, sidebar }) => {
+export function ReactComponentRenderer({
+	classes,
+	name,
+	pathLine,
+	description,
+	props,
+	examples,
+	sidebar,
+}) {
 	return (
 		<div className={classes.root}>
 			<header className={classes.header}>
@@ -78,7 +86,7 @@ export const ReactComponentRenderer = ({ classes, name, pathLine, description, p
 			{examples}
 		</div>
 	);
-};
+}
 
 ReactComponentRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,

@@ -1,0 +1,5 @@
+exports[`test renderer should render header 1`] = `
+<h1>
+  <button>OK</button>
+</h1>
+`;

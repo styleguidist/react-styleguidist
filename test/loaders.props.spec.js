@@ -1,28 +1,27 @@
-import test from 'ava';
 import { readFileSync } from 'fs';
 import propsLoader from '../loaders/props-loader';
 
-test('should return valid, parsable JS', t => {
-	const file = 'components/Button/Button.js';
+it('should return valid, parsable JS', () => {
+	const file = './test/components/Button/Button.js';
 	const result = propsLoader.call({
 		request: file,
 		options: {
 			styleguidist: {},
 		},
 	}, readFileSync(file, 'utf8'));
-	t.truthy(result);
-	t.notThrows(() => new Function(result), SyntaxError);  // eslint-disable-line no-new-func
+	expect(result).toBeTruthy();
+	expect(() => new Function(result)).not.toThrowError(SyntaxError);  // eslint-disable-line no-new-func
 });
 
-test('should extract doclets', t => {
-	const file = 'components/Placeholder/Placeholder.js';
+it('should extract doclets', () => {
+	const file = './test/components/Placeholder/Placeholder.js';
 	const result = propsLoader.call({
 		request: file,
 		options: {
 			styleguidist: {},
 		},
 	}, readFileSync(file, 'utf8'));
-	t.truthy(result);
-	t.notThrows(() => new Function(result), SyntaxError);  // eslint-disable-line no-new-func
-	t.true(result.includes('require("!!examples-loader!./examples.md")'));
+	expect(result).toBeTruthy();
+	expect(() => new Function(result)).not.toThrowError(SyntaxError);  // eslint-disable-line no-new-func
+	expect(result.includes('require("!!examples-loader!./examples.md")')).toBe(true);
 });

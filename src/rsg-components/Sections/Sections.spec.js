@@ -1,4 +1,3 @@
-import test from 'ava';
 import React from 'react';
 import noop from 'lodash/noop';
 import Section from '../Section';
@@ -29,35 +28,23 @@ const sections = [
 	},
 ];
 
-test('should render component renderer', () => {
+it('should render component renderer', () => {
 	const actual = shallow(
 		<Sections sections={sections} />
 	);
 
-	expect(actual.node, 'to contain',
-		<SectionsRenderer
-			sections={[
-				<Section section={sections[0]} />,
-				<Section section={sections[1]} />,
-			]}
-		/>
-	);
+	expect(shallowToJson(actual)).toMatchSnapshot();
 });
 
-test('render should render component', () => {
+it('render should render component', () => {
 	const actual = shallow(
 		<SectionsRenderer
 			sections={[
-				<Section section={sections[0]} />,
-				<Section section={sections[1]} />,
+				<Section key={1} section={sections[0]} />,
+				<Section key={2} section={sections[1]} />,
 			]}
 		/>
 	);
 
-	expect(actual.node, 'to contain',
-		<Section section={sections[0]} />
-	);
-	expect(actual.node, 'to contain',
-		<Section section={sections[1]} />
-	);
+	expect(shallowToJson(actual)).toMatchSnapshot();
 });

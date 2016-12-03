@@ -3,7 +3,7 @@ import addStyles from '../../styles/addStyles';
 
 export default styles => WrappedComponent => class extends Component {
 	static contextTypes = {
-		config: PropTypes.object.isRequired,
+		config: PropTypes.object,
 	};
 
 	componentWillMount() {

@@ -1,4 +1,5 @@
 node_modules
 styleguide
 lib
+coverage
 travis_phantomjs

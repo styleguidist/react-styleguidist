@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Playground from 'rsg-components/Playground';
 import Markdown from 'rsg-components/Markdown';
 
-const Examples = ({ examples, name }, { codeKey }) => {
+export default function Examples({ examples, name }, { codeKey }) {
 	return (
 		<div>
 			{examples.map((example, index) => {
@@ -30,8 +30,7 @@ const Examples = ({ examples, name }, { codeKey }) => {
 			})}
 		</div>
 	);
-};
-
+}
 Examples.propTypes = {
 	examples: PropTypes.array.isRequired,
 	name: PropTypes.string,
@@ -39,6 +38,3 @@ Examples.propTypes = {
 Examples.contextTypes = {
 	codeKey: PropTypes.number.isRequired,
 };
-
-
-export default Examples;

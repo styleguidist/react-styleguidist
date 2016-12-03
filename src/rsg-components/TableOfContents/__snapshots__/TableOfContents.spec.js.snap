@@ -1,0 +1,241 @@
+exports[`test should filter list when search field contains a query 1`] = `
+<_class
+  items={
+    <_class
+      items={
+        Array [
+          Object {
+            "name": "Button",
+          },
+          Object {
+            "name": "Input",
+          },
+          Object {
+            "name": "Textarea",
+          },
+        ]
+      } />
+  }
+  onSearchTermChange={[Function]}
+  searchTerm="" />
+`;
+
+exports[`test should filter list when search field contains a query 2`] = `
+<_class
+  items={
+    <_class
+      items={
+        Array [
+          Object {
+            "name": "Button",
+          },
+        ]
+      } />
+  }
+  onSearchTermChange={[Function]}
+  searchTerm="but" />
+`;
+
+exports[`test should filter section names 1`] = `
+<_class
+  items={
+    <_class
+      items={
+        Array [
+          Object {
+            "content": <_class
+              items={Array []} />,
+            "heading": true,
+            "name": "Introduction",
+          },
+          Object {
+            "content": <_class
+              items={
+                    Array [
+                          Object {
+                            "name": "Button",
+                          },
+                        ]
+              } />,
+            "heading": true,
+            "name": "Buttons",
+          },
+          Object {
+            "content": <_class
+              items={
+                    Array [
+                          Object {
+                            "name": "Input",
+                          },
+                          Object {
+                            "name": "Textarea",
+                          },
+                        ]
+              } />,
+            "heading": true,
+            "name": "Forms",
+          },
+        ]
+      } />
+  }
+  onSearchTermChange={[Function]}
+  searchTerm="" />
+`;
+
+exports[`test should filter section names 2`] = `
+<_class
+  items={
+    <_class
+      items={
+        Array [
+          Object {
+            "content": <_class
+              items={Array []} />,
+            "heading": true,
+            "name": "Forms",
+          },
+        ]
+      } />
+  }
+  onSearchTermChange={[Function]}
+  searchTerm="frm" />
+`;
+
+exports[`test should render a filtered list, should hide empty sections 1`] = `
+<_class
+  items={
+    <_class
+      items={
+        Array [
+          Object {
+            "content": <_class
+              items={Array []} />,
+            "heading": true,
+            "name": "Introduction",
+          },
+          Object {
+            "content": <_class
+              items={
+                    Array [
+                          Object {
+                            "name": "Button",
+                          },
+                        ]
+              } />,
+            "heading": true,
+            "name": "Buttons",
+          },
+          Object {
+            "content": <_class
+              items={
+                    Array [
+                          Object {
+                            "name": "Input",
+                          },
+                          Object {
+                            "name": "Textarea",
+                          },
+                        ]
+              } />,
+            "heading": true,
+            "name": "Forms",
+          },
+        ]
+      } />
+  }
+  onSearchTermChange={[Function]}
+  searchTerm="" />
+`;
+
+exports[`test should render a filtered list, should hide empty sections 2`] = `
+<_class
+  items={
+    <_class
+      items={
+        Array [
+          Object {
+            "content": <_class
+              items={
+                    Array [
+                          Object {
+                            "name": "Input",
+                          },
+                        ]
+              } />,
+            "heading": true,
+            "name": "Forms",
+          },
+        ]
+      } />
+  }
+  onSearchTermChange={[Function]}
+  searchTerm="inp" />
+`;
+
+exports[`test should render a renderer 1`] = `
+<_class
+  items={
+    <_class
+      items={
+        Array [
+          Object {
+            "name": "Button",
+          },
+          Object {
+            "name": "Input",
+          },
+          Object {
+            "name": "Textarea",
+          },
+        ]
+      } />
+  }
+  onSearchTermChange={[Function]}
+  searchTerm="" />
+`;
+
+exports[`test should render renderer with sections with nested components 1`] = `
+<_class
+  items={
+    <_class
+      items={
+        Array [
+          Object {
+            "content": <_class
+              items={Array []} />,
+            "heading": true,
+            "name": "Introduction",
+          },
+          Object {
+            "content": <_class
+              items={
+                    Array [
+                          Object {
+                            "name": "Button",
+                          },
+                        ]
+              } />,
+            "heading": true,
+            "name": "Buttons",
+          },
+          Object {
+            "content": <_class
+              items={
+                    Array [
+                          Object {
+                            "name": "Input",
+                          },
+                          Object {
+                            "name": "Textarea",
+                          },
+                        ]
+              } />,
+            "heading": true,
+            "name": "Forms",
+          },
+        ]
+      } />
+  }
+  onSearchTermChange={[Function]}
+  searchTerm="" />
+`;

@@ -1,4 +1,3 @@
-import test from 'ava';
 import React from 'react';
 import ReactComponent from '../ReactComponent';
 import Sections from '../Sections';
@@ -24,7 +23,7 @@ const components = [
 	},
 ];
 
-test('should render components list', () => {
+it('should render components list', () => {
 	const actual = shallow(
 		<Components
 			components={components}
@@ -32,33 +31,19 @@ test('should render components list', () => {
 		/>
 	);
 
-	expect(actual.node, 'to contain',
-		<ComponentsRenderer
-			components={[
-				<ReactComponent component={components[0]} />,
-				<ReactComponent component={components[1]} />,
-			]}
-			sections={<Sections sections={[]} />}
-		/>
-	);
+	expect(shallowToJson(actual)).toMatchSnapshot();
 });
 
-test('renderer should render components list layout', () => {
+it('renderer should render components list layout', () => {
 	const actual = shallow(
 		<ComponentsRenderer
 			components={[
-				<ReactComponent component={components[0]} />,
-				<ReactComponent component={components[1]} />,
+				<ReactComponent key={0} component={components[0]} />,
+				<ReactComponent key={1} component={components[1]} />,
 			]}
 			sections={<Sections sections={[]} />}
 		/>
 	);
 
-	expect(actual.node, 'to contain',
-		<div>
-			<ReactComponent component={components[0]} />
-			<ReactComponent component={components[1]} />
-			<Sections sections={[]} />
-		</div>
-	);
+	expect(shallowToJson(actual)).toMatchSnapshot();
 });

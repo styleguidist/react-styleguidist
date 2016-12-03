@@ -1,34 +1,33 @@
-import test from 'ava';
 import last from 'lodash/last';
 import styleguidist from '../scripts';
 
 const getDefaultWebpackConfig = () => styleguidist({ components: '*.js' }).makeWebpackConfig();
 
-test('should return API methods', t => {
+it('should return API methods', () => {
 	const api = styleguidist(require('./data/styleguide.config.js'));
-	t.truthy(api);
-	t.is(typeof api.build, 'function');
-	t.is(typeof api.server, 'function');
-	t.is(typeof api.makeWebpackConfig, 'function');
+	expect(api).toBeTruthy();
+	expect(typeof api.build).toBe('function');
+	expect(typeof api.server).toBe('function');
+	expect(typeof api.makeWebpackConfig).toBe('function');
 });
 
-test('makeWebpackConfig should return development Webpack config', t => {
+it('makeWebpackConfig should return development Webpack config', () => {
 	const api = styleguidist({ components: '*.js' });
 	const result = api.makeWebpackConfig('development');
-	t.truthy(result);
-	t.is(result.output.filename, 'build/bundle.js');
-	t.true(result.cache);
+	expect(result).toBeTruthy();
+	expect(result.output.filename).toBe('build/bundle.js');
+	expect(result.cache).toBe(true);
 });
 
-test('makeWebpackConfig should return production Webpack config', t => {
+it('makeWebpackConfig should return production Webpack config', () => {
 	const api = styleguidist({ components: '*.js' });
 	const result = api.makeWebpackConfig('production');
-	t.truthy(result);
-	t.is(result.output.filename, 'build/bundle.js');
-	t.false(result.cache);
+	expect(result).toBeTruthy();
+	expect(result.output.filename).toBe('build/bundle.js');
+	expect(result.cache).toBe(false);
 });
 
-test('makeWebpackConfig should merge webpackConfig config option', t => {
+it('makeWebpackConfig should merge webpackConfig config option', () => {
 	const defaultWebpackConfig = getDefaultWebpackConfig();
 	const api = styleguidist({
 		components: '*.js',
@@ -40,13 +39,13 @@ test('makeWebpackConfig should merge webpackConfig config option', t => {
 	});
 	const result = api.makeWebpackConfig();
 
-	t.truthy(result);
-	t.deepEqual(result.resolve.extensions.length, defaultWebpackConfig.resolve.extensions.length + 1);
-	t.deepEqual(last(result.resolve.extensions), '.scss');
+	expect(result).toBeTruthy();
+	expect(result.resolve.extensions.length).toEqual(defaultWebpackConfig.resolve.extensions.length + 1);
+	expect(last(result.resolve.extensions)).toEqual('.scss');
 });
 
 
-test('makeWebpackConfig should merge webpackConfig but ignore output, resolveLoader sections', t => {
+it('makeWebpackConfig should merge webpackConfig but ignore output, resolveLoader sections', () => {
 	const defaultWebpackConfig = getDefaultWebpackConfig();
 	const api = styleguidist({
 		components: '*.js',
@@ -64,11 +63,11 @@ test('makeWebpackConfig should merge webpackConfig but ignore output, resolveLoa
 	});
 	const result = api.makeWebpackConfig();
 
-	t.deepEqual(result.output.filename, defaultWebpackConfig.output.filename);
-	t.deepEqual(result.resolveLoader.moduleExtensions, defaultWebpackConfig.resolveLoader.moduleExtensions);
+	expect(result.output.filename).toEqual(defaultWebpackConfig.output.filename);
+	expect(result.resolveLoader.moduleExtensions).toEqual(defaultWebpackConfig.resolveLoader.moduleExtensions);
 });
 
-test('makeWebpackConfig should merge webpackConfig config option as a function', t => {
+it('makeWebpackConfig should merge webpackConfig config option as a function', () => {
 	const api = styleguidist({
 		components: '*.js',
 		webpackConfig: env => ({
@@ -77,11 +76,11 @@ test('makeWebpackConfig should merge webpackConfig config option as a function',
 	});
 	const result = api.makeWebpackConfig();
 
-	t.truthy(result);
-	t.deepEqual(result._env, 'production');
+	expect(result).toBeTruthy();
+	expect(result._env).toEqual('production');
 });
 
-test('makeWebpackConfig should apply updateWebpackConfig config option', t => {
+it('makeWebpackConfig should apply updateWebpackConfig config option', () => {
 	const defaultWebpackConfig = getDefaultWebpackConfig();
 	const api = styleguidist({
 		components: '*.js',
@@ -92,7 +91,7 @@ test('makeWebpackConfig should apply updateWebpackConfig config option', t => {
 	});
 	const result = api.makeWebpackConfig();
 
-	t.truthy(result);
-	t.deepEqual(result.resolve.extensions.length, defaultWebpackConfig.resolve.extensions.length + 1);
-	t.deepEqual(last(result.resolve.extensions), 'production');
+	expect(result).toBeTruthy();
+	expect(result.resolve.extensions.length).toEqual(defaultWebpackConfig.resolve.extensions.length + 1);
+	expect(last(result.resolve.extensions)).toEqual('production');
 });

@@ -1,4 +1,3 @@
-import test from 'ava';
 import React from 'react';
 import { ComponentsListRenderer } from './ComponentsListRenderer';
 
@@ -14,24 +13,18 @@ const components = [
 	},
 ];
 
-test('should render sections with nested components', () => {
+it('should render sections with nested components', () => {
 	const actual = shallow(
 		<ComponentsListRenderer items={components} classes={{}} />
 	);
 
-	expect(actual.node, 'to contain',
-		<div>
-			<div>Button</div>
-			<div>Input</div>
-			<div>Textarea</div>
-		</div>
-	);
+	expect(shallowToJson(actual)).toMatchSnapshot();
 });
 
-test('should return null when the list is empty', t => {
+it('should return null when the list is empty', () => {
 	const actual = shallow(
-		<ComponentsListRenderer items={[]} />
+		<ComponentsListRenderer classes={{}} items={[]} />
 	);
 
-	t.is(actual.node, null);
+	expect(actual.node).toBe(null);
 });

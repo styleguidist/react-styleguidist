@@ -4,6 +4,7 @@
 	"globals": {
 		"expect": false,
 		"shallow": false,
-		"render": false
+		"render": false,
+		"shallowToJson": false
 	}
 }

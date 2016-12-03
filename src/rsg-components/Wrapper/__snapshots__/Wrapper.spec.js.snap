@@ -1,0 +1,5 @@
+exports[`test should render children 1`] = `
+<span>
+  Hello
+</span>
+`;

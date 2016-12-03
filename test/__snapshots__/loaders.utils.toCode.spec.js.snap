@@ -1,0 +1,15 @@
+exports[`test toCode() should convert JavaScript array to string 1`] = `
+"[42,
+\"coffee\",
+function (n) {
+		return n * n;
+	}]"
+`;
+
+exports[`test toCode() should convert JavaScript object to string 1`] = `
+"{\'num\': 42,
+\'drink\': \"coffee\",
+\'js\': function js(n) {
+			return n * n;
+		}}"
+`;

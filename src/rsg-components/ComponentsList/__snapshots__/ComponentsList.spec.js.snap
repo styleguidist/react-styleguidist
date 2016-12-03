@@ -1,0 +1,28 @@
+exports[`test should render sections with nested components 1`] = `
+<div>
+  <div>
+    <span>
+      <_class
+        href="#Button">
+        Button
+      </_class>
+    </span>
+  </div>
+  <div>
+    <span>
+      <_class
+        href="#Input">
+        Input
+      </_class>
+    </span>
+  </div>
+  <div>
+    <span>
+      <_class
+        href="#Textarea">
+        Textarea
+      </_class>
+    </span>
+  </div>
+</div>
+`;

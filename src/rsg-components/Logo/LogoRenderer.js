@@ -10,9 +10,11 @@ const styles = ({ font }) => ({
 	},
 });
 
-export const LogoRenderer = ({ classes, children }) => (
-	<h1 className={classes.logo}>{children}</h1>
-);
+export function LogoRenderer({ classes, children }) {
+	return (
+		<h1 className={classes.logo}>{children}</h1>
+	);
+}
 
 LogoRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,

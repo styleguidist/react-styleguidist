@@ -26,7 +26,12 @@ const styles = ({ font, base, border, link, baseBackground }) => ({
 	},
 });
 
-export const TableOfContentsRenderer = ({ classes, items, searchTerm, onSearchTermChange }) => {
+export function TableOfContentsRenderer({
+	classes,
+	items,
+	searchTerm,
+	onSearchTermChange,
+}) {
 	return (
 		<div>
 			<div className={classes.root}>
@@ -40,7 +45,7 @@ export const TableOfContentsRenderer = ({ classes, items, searchTerm, onSearchTe
 			</div>
 		</div>
 	);
-};
+}
 
 TableOfContentsRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,

@@ -1,7 +1,6 @@
-import test from 'ava';
 import examplesLoader from '../loaders/examples-loader';
 
-test('should return valid, parsable JS', t => {
+it('should return valid, parsable JS', () => {
 	const exampleMarkdown = `
 # header
 
@@ -19,13 +18,13 @@ text
 			styleguidist: {},
 		},
 	}, exampleMarkdown);
-	t.truthy(result);
-	t.notThrows(() => new Function(result), SyntaxError);  // eslint-disable-line no-new-func
+	expect(result).toBeTruthy();
+	expect(() => new Function(result)).not.toThrowError(SyntaxError);  // eslint-disable-line no-new-func
 });
 
 // componentName query option
 
-test('should replace all occurrences of __COMPONENT__ with provided query.componentName', t => {
+it('should replace all occurrences of __COMPONENT__ with provided query.componentName', () => {
 	const exampleMarkdown = `
 <div>
 	<__COMPONENT__>
@@ -42,7 +41,7 @@ test('should replace all occurrences of __COMPONENT__ with provided query.compon
 			styleguidist: {},
 		},
 	}, exampleMarkdown);
-	t.notRegex(result, /__COMPONENT__/);
-	t.regex(result, /FooComponent/);
-	t.is(result.match(/FooComponent/g).length, 4);
+	expect(result).not.toMatch(/__COMPONENT__/);
+	expect(result).toMatch(/FooComponent/);
+	expect(result.match(/FooComponent/g).length).toBe(4);
 });

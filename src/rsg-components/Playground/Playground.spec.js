@@ -1,13 +1,11 @@
-import test from 'ava';
 import React from 'react';
 import noop from 'lodash/noop';
-import Preview from '../Preview';
 import Playground from './Playground';
-import PlaygroundRendererHoC, { PlaygroundRenderer } from './PlaygroundRenderer';
+import { PlaygroundRenderer } from './PlaygroundRenderer';
 
 const code = '<button>OK</button>';
 
-test('should render component renderer', () => {
+it('should render component renderer', () => {
 	const actual = shallow(
 		<Playground
 			code={code}
@@ -24,18 +22,10 @@ test('should render component renderer', () => {
 		}
 	);
 
-	expect(actual.node, 'to contain',
-		<PlaygroundRendererHoC
-			code={code}
-			showCode={false}
-			evalInContext={noop}
-			name="name"
-			index={0}
-		/>
-	);
+	expect(shallowToJson(actual)).toMatchSnapshot();
 });
 
-test('renderer should render preview', () => {
+it('renderer should render preview', () => {
 	const actual = shallow(
 		<PlaygroundRenderer
 			classes={{}}
@@ -44,10 +34,10 @@ test('renderer should render preview', () => {
 			evalInContext={noop}
 			name="name"
 			index={0}
+			onChange={noop}
+			onCodeToggle={noop}
 		/>
 	);
 
-	expect(actual.node, 'to contain',
-		<Preview code={code} />
-	);
+	expect(shallowToJson(actual)).toMatchSnapshot();
 });

@@ -18,11 +18,13 @@ export const styles = ({ link, linkHover }) => ({
 	},
 });
 
-export const LinkRenderer = ({ classes, children, ...props }) => (
-	<a {...props} className={classes.link}>
-		{children}
-	</a>
-);
+export function LinkRenderer({ classes, children, ...props }) {
+	return (
+		<a {...props} className={classes.link}>
+			{children}
+		</a>
+	);
+}
 
 LinkRenderer.propTypes = {
 	children: PropTypes.node,

@@ -1,20 +1,23 @@
-import test from 'ava';
 import toCode from '../loaders/utils/toCode';
 
-test('toCode() should convert JavaScript object to string', t => {
+it('toCode() should convert JavaScript object to string', () => {
 	const result = toCode({
 		num: 42,
 		drink: JSON.stringify('coffee'),
-		js: n => n * n,
+		js(n) {
+			return n * n;
+		},
 	});
-	t.is(result, "{'num': 42,\n'drink': \"coffee\",\n'js': function js(n) {\n\t\t\treturn n * n;\n\t\t}}");
+	expect(result).toMatchSnapshot();
 });
 
-test('toCode() should convert JavaScript array to string', t => {
+it('toCode() should convert JavaScript array to string', () => {
 	const result = toCode([
 		42,
 		JSON.stringify('coffee'),
-		n => n * n,
+		function(n) {
+			return n * n;
+		},
 	]);
-	t.is(result, '[42,\n"coffee",\nfunction (n) {\n\t\treturn n * n;\n\t}]');
+	expect(result).toMatchSnapshot();
 });

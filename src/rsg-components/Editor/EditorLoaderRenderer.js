@@ -11,11 +11,13 @@ const styles = ({ font, light, codeBackground }) => ({
 	},
 });
 
-export const EditorLoaderRenderer = ({ classes }) => (
-	<div className={classes.root}>
-		Loading…
-	</div>
-);
+export function EditorLoaderRenderer({ classes }) {
+	return (
+		<div className={classes.root}>
+			Loading…
+		</div>
+	);
+}
 
 EditorLoaderRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,

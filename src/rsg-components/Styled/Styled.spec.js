@@ -1,4 +1,3 @@
-import test from 'ava';
 import React, { Component } from 'react';
 import Styled from './Styled';
 
@@ -18,7 +17,7 @@ class Cmpnt extends Component {
 	}
 }
 
-test('should wrap a component and pass classes', t => {
+it('should wrap a component and pass classes', () => {
 	const WrappedComponent = Styled(styles)(Cmpnt);
 
 	const actual = shallow(
@@ -33,8 +32,8 @@ test('should wrap a component and pass classes', t => {
 		}
 	);
 
-	t.is(actual.name(), 'Cmpnt');
-	t.is(actual.prop('bar'), 'baz');
-	t.is(typeof actual.prop('classes'), 'object');
-	t.regex(actual.prop('classes').foo, /^foo-\d+$/);
+	expect(actual.name()).toBe('Cmpnt');
+	expect(actual.prop('bar')).toBe('baz');
+	expect(typeof actual.prop('classes')).toBe('object');
+	expect(actual.prop('classes').foo).toMatch(/^foo-\d+$/);
 });

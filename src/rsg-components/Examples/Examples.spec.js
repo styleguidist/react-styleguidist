@@ -1,8 +1,5 @@
-import test from 'ava';
 import React from 'react';
 import noop from 'lodash/noop';
-import Markdown from '../Markdown';
-import Playground from '../Playground';
 import Examples from '../Examples';
 
 const examples = [
@@ -17,7 +14,7 @@ const examples = [
 	},
 ];
 
-test('should render examples', () => {
+it('should render examples', () => {
 	const actual = shallow(
 		<Examples
 			examples={examples}
@@ -31,17 +28,5 @@ test('should render examples', () => {
 		}
 	);
 
-	expect(actual.node, 'to contain',
-		<Playground
-			code={examples[0].content}
-			evalInContext={examples[0].evalInContext}
-			name="button"
-			index={0}
-		/>
-	);
-	expect(actual.node, 'to contain',
-		<Markdown
-			text={examples[1].content}
-		/>
-	);
+	expect(shallowToJson(actual)).toMatchSnapshot();
 });

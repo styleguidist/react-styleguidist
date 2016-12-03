@@ -1,7 +1,6 @@
-import test from 'ava';
 import requireIt from '../loaders/utils/requireIt';
 
-test('requireIt() should return a require statement', t => {
+it('requireIt() should return a require statement', () => {
 	const result = requireIt('foo');
-	t.is(result, 'require("foo")');
+	expect(result).toBe('require("foo")');
 });

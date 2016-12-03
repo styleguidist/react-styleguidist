@@ -8,11 +8,13 @@ const styles = () => ({
 	},
 });
 
-export const MessageRenderer = ({ classes, children }) => (
-	<div className={classes.root}>
-		<Markdown text={Array.isArray(children) ? children.join('\n') : children} />
-	</div>
-);
+export function MessageRenderer({ classes, children }) {
+	return (
+		<div className={classes.root}>
+			<Markdown text={Array.isArray(children) ? children.join('\n') : children} />
+		</div>
+	);
+}
 
 MessageRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,

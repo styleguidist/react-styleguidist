@@ -138,7 +138,7 @@ export function getComponentNameFromHash(hash = window.location.hash) {
 }
 
 /**
- * Reurn a shallow copy of the given component with the examples array filtered
+ * Return a shallow copy of the given component with the examples array filtered
  * to contain only the specified index:
  * filterComponentExamples({ examples: [1,2,3], ...other }, 2) → { examples: [3], ...other }
  *

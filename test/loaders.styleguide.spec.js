@@ -1,11 +1,11 @@
-import test from 'ava';
 import { readFileSync } from 'fs';
 import styleguideLoader from '../loaders/styleguide-loader';
 
+const file = './test/components/Button/Button.js';
+
 /* eslint-disable quotes */
 
-test('should return valid, parsable JS', t => {
-	const file = 'components/Button/Button.js';
+it('should return valid, parsable JS', () => {
 	const result = styleguideLoader.pitch.call({
 		request: file,
 		options: {
@@ -17,12 +17,11 @@ test('should return valid, parsable JS', t => {
 			},
 		},
 	}, readFileSync(file, 'utf8'));
-	t.truthy(result);
-	t.notThrows(() => new Function(result), SyntaxError);  // eslint-disable-line no-new-func
+	expect(result).toBeTruthy();
+	expect(() => new Function(result)).not.toThrowError(SyntaxError);  // eslint-disable-line no-new-func
 });
 
-test('should return correct component paths: glob', t => {
-	const file = 'components/Button/Button.js';
+it('should return correct component paths: glob', () => {
 	const result = styleguideLoader.pitch.call({
 		request: file,
 		options: {
@@ -34,14 +33,13 @@ test('should return correct component paths: glob', t => {
 			},
 		},
 	}, readFileSync(file, 'utf8'));
-	t.truthy(result);
-	t.notThrows(() => new Function(result), SyntaxError);  // eslint-disable-line no-new-func
-	t.true(result.includes(`'filepath': "components/Button/Button.js"`));
-	t.true(result.includes(`'filepath': "components/Placeholder/Placeholder.js"`));
+	expect(result).toBeTruthy();
+	expect(() => new Function(result)).not.toThrowError(SyntaxError);  // eslint-disable-line no-new-func
+	expect(result.includes(`'filepath': "components/Button/Button.js"`)).toBe(true);
+	expect(result.includes(`'filepath': "components/Placeholder/Placeholder.js"`)).toBe(true);
 });
 
-test('should return correct component paths: function returning absolute paths', t => {
-	const file = 'components/Button/Button.js';
+it('should return correct component paths: function returning absolute paths', () => {
 	const result = styleguideLoader.pitch.call({
 		request: file,
 		options: {
@@ -56,14 +54,13 @@ test('should return correct component paths: function returning absolute paths',
 			},
 		},
 	}, readFileSync(file, 'utf8'));
-	t.truthy(result);
-	t.notThrows(() => new Function(result), SyntaxError);  // eslint-disable-line no-new-func
-	t.true(result.includes(`'filepath': "components/Button/Button.js"`));
-	t.true(result.includes(`'filepath': "components/Placeholder/Placeholder.js"`));
+	expect(result).toBeTruthy();
+	expect(() => new Function(result)).not.toThrowError(SyntaxError);  // eslint-disable-line no-new-func
+	expect(result.includes(`'filepath': "components/Button/Button.js"`)).toBe(true);
+	expect(result.includes(`'filepath': "components/Placeholder/Placeholder.js"`)).toBe(true);
 });
 
-test('should return correct component paths: function returning relative paths', t => {
-	const file = 'components/Button/Button.js';
+it('should return correct component paths: function returning relative paths', () => {
 	const result = styleguideLoader.pitch.call({
 		request: file,
 		options: {
@@ -78,8 +75,8 @@ test('should return correct component paths: function returning relative paths',
 			},
 		},
 	}, readFileSync(file, 'utf8'));
-	t.truthy(result);
-	t.notThrows(() => new Function(result), SyntaxError);  // eslint-disable-line no-new-func
-	t.true(result.includes(`'filepath': "components/Button/Button.js"`));
-	t.true(result.includes(`'filepath': "components/Placeholder/Placeholder.js"`));
+	expect(result).toBeTruthy();
+	expect(() => new Function(result)).not.toThrowError(SyntaxError);  // eslint-disable-line no-new-func
+	expect(result.includes(`'filepath': "components/Button/Button.js"`)).toBe(true);
+	expect(result.includes(`'filepath': "components/Placeholder/Placeholder.js"`)).toBe(true);
 });
