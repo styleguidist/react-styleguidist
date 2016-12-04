@@ -42,6 +42,7 @@
     "glob": "7.1.1",
     "highlight.js": "9.8.0",
     "html-webpack-plugin": "2.24.1",
+    "is-directory": "~0.3.1",
     "json-loader": "0.5.4",
     "jss": "5.5.6",
     "jss-camel-case": "2.0.2",
@@ -52,6 +53,7 @@
     "loader-utils": "^0.2.16",
     "lodash": "4.16.6",
     "minimist": "1.2.0",
+    "pretty-format": "~4.3.1",
     "prettyjson": "1.1.3",
     "react-codemirror": "0.2.6",
     "react-dev-utils": "~0.3.0",
@@ -141,6 +143,11 @@
     "testRegex": "\\.spec\\.js$",
     "testPathIgnorePatterns": [
       "<rootDir>/lib/"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/utils/markdown-to-jsx.js",
+      "<rootDir>/scripts/server.js",
+      "<rootDir>/scripts/build.js"
     ]
   },
   "keywords": [

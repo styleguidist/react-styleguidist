@@ -10,6 +10,7 @@ const requireIt = require('./utils/requireIt');
 const serialize = require('./utils/serialize');
 
 function examplesLoader(source) {
+	/* istanbul ignore if */
 	if (this.cacheable) {
 		this.cacheable();
 	}

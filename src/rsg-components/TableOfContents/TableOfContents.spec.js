@@ -1,5 +1,7 @@
 import React from 'react';
+import noop from 'lodash/noop';
 import TableOfContents from './TableOfContents';
+import { TableOfContentsRenderer } from './TableOfContentsRenderer';
 
 const components = [
 	{
@@ -93,4 +95,40 @@ it('should filter section names', () => {
 	actual.setState({ searchTerm });
 
 	expect(shallowToJson(actual)).toMatchSnapshot();
+});
+
+it('renderer should render table of contents', () => {
+	const searchTerm = 'foo';
+	const actual = shallow(
+		<TableOfContentsRenderer
+			classes={{}}
+			items={<div>foo</div>}
+			searchTerm={searchTerm}
+			onSearchTermChange={noop}
+		/>
+	);
+
+	expect(shallowToJson(actual)).toMatchSnapshot();
+});
+
+it('should call a callback when input value changed', () => {
+	const onSearchTermChange = jest.fn();
+	const searchTerm = 'foo';
+	const newSearchTerm = 'bar';
+	const actual = shallow(
+		<TableOfContentsRenderer
+			classes={{}}
+			items={<div>foo</div>}
+			searchTerm={searchTerm}
+			onSearchTermChange={onSearchTermChange}
+		/>
+	);
+
+	actual.find('input').simulate('change', {
+		target: {
+			value: newSearchTerm,
+		},
+	});
+
+	expect(onSearchTermChange).toBeCalledWith(newSearchTerm);
 });

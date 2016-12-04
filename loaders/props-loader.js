@@ -3,67 +3,13 @@
 const path = require('path');
 const castArray = require('lodash/castArray');
 const reactDocs = require('react-docgen');
-const removeDoclets = require('./utils/removeDoclets');
-const requireIt = require('./utils/requireIt');
 const toCode = require('./utils/toCode');
-
+const getPropsCode = require('./utils/getPropsCode');
 
 /* eslint-disable no-console */
 
-const REQUIRE_PLACEHOLDER = '<%{#require#}%>';
-
-/**
- * Extract props from JavaScript source code.
- *
- * @param {string} file File path.
- * @param {string} source Source code.
- * @param {Function} propsParser react-docgen parser.
- * @returns {Array}
- */
-function parseProps(file, source, propsParser) {
-	try {
-		return castArray(propsParser(file, source)).map(propsToCode);
-	}
-	catch (exception) {
-		console.log('Error when parsing', path.relative(process.cwd(), file));
-		console.log(exception.toString());
-		console.log();
-		return [];
-	}
-}
-
-/**
- * Convert props to JavaScript code as a string, extract doclets.
- *
- * @param {object} doc
- * @returns {string}
- */
-function propsToCode(doc) {
-	if (doc.description) {
-		// Read doclets from the description and remove them
-		doc.doclets = reactDocs.utils.docblock.getDoclets(doc.description);
-		doc.description = removeDoclets(doc.description);
-
-		if (doc.doclets.example) {
-			doc.example = REQUIRE_PLACEHOLDER;
-		}
-	}
-	else {
-		doc.doclets = {};
-	}
-
-	const code = JSON.stringify(doc);
-
-	if (doc.doclets.example) {
-		return code.replace(
-			JSON.stringify(REQUIRE_PLACEHOLDER),
-			requireIt('!!examples-loader!' + doc.doclets.example)
-		);
-	}
-	return code;
-}
-
 module.exports = function(source) {
+	/* istanbul ignore if */
 	if (this.cacheable) {
 		this.cacheable();
 	}
@@ -74,7 +20,18 @@ module.exports = function(source) {
 	const defaultParser = (filePath, source) => reactDocs.parse(source, config.resolver, config.handlers);
 	const propsParser = config.propsParser || defaultParser;
 
-	const jsonProps = parseProps(file, source, propsParser);
+	let parsedProps;
+	try {
+		parsedProps = propsParser(file, source);
+	}
+	catch (exception) {
+		parsedProps = [];
+		console.log('Error when parsing', path.relative(process.cwd(), file));
+		console.log(exception.toString());
+		console.log();
+	}
+
+	const jsonProps = castArray(parsedProps).map(getPropsCode);
 
 	return `
 		if (module.hot) {

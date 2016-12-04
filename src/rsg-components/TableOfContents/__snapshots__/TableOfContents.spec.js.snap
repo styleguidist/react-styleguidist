@@ -1,3 +1,17 @@
+exports[`test renderer should render table of contents 1`] = `
+<div>
+  <div>
+    <input
+      onChange={[Function]}
+      placeholder="Filter by name"
+      value="foo" />
+    <div>
+      foo
+    </div>
+  </div>
+</div>
+`;
+
 exports[`test should filter list when search field contains a query 1`] = `
 <_class
   items={

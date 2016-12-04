@@ -1,0 +1,42 @@
+exports[`test getPropsCode() should return valid JS for props 1`] = `
+"{
+  \"description\": \"The only true button.\",
+  \"methods\": [],
+  \"props\": {
+    \"children\": {
+      \"type\": {},
+      \"required\": true,
+      \"description\": \"Button label.\"
+    },
+    \"color\": {
+      \"type\": {},
+      \"required\": false,
+      \"description\": \"\"
+    }
+  },
+  \"doclets\": {}
+}"
+`;
+
+exports[`test getPropsCode() should return valid JS for props with doclets 1`] = `
+"{
+  \"description\": \"\\nThe only true button.\\n\\n\",
+  \"doclets\": {
+    \"example\": \"example.md\\n\"
+  },
+  \"example\": require(\"!!examples-loader!example.md\\n\")
+}"
+`;
+
+exports[`test getPropsCode() should return valid JS for props without description 1`] = `
+"{
+  \"props\": {
+    \"children\": {
+      \"type\": {},
+      \"required\": true,
+      \"description\": \"Button label.\"
+    }
+  },
+  \"doclets\": {}
+}"
+`;

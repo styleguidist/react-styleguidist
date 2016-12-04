@@ -5,6 +5,7 @@
 const fs = require('fs');
 const path = require('path');
 const findup = require('findup');
+const isDirectory = require('is-directory');
 const semverUtils = require('semver-utils');
 const prettyjson = require('prettyjson');
 const isFunction = require('lodash/isFunction');
@@ -13,7 +14,6 @@ const isString = require('lodash/isString');
 const merge = require('lodash/merge');
 const isFinite = require('lodash/isFinite');
 const isUndefined = require('lodash/isUndefined');
-const utils = require('./utils/utils');
 const consts = require('./consts');
 const StyleguidistError = require('./utils/error');
 const reactDocgen = require('react-docgen');
@@ -91,7 +91,7 @@ function getConfig(options) {
 	let assetsDir = config.assetsDir;
 	if (assetsDir) {
 		assetsDir = path.resolve(configDir, assetsDir);
-		if (!utils.isDirectoryExists(assetsDir)) {
+		if (!isDirectory(assetsDir)) {
 			throw new StyleguidistError('Styleguidist: "assetsDir" directory not found: ' + assetsDir);
 		}
 	}
@@ -116,6 +116,7 @@ function getConfig(options) {
 		defaultExample,
 	});
 
+	/* istanbul ignore if */
 	if (config.verbose) {
 		console.log();
 		console.log('Using config file:', configFilepath);

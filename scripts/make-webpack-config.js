@@ -190,6 +190,7 @@ module.exports = function(config, env) {
 		webpackConfig = config.updateWebpackConfig(webpackConfig, env);
 	}
 
+	/* istanbul ignore if */
 	if (config.verbose) {
 		console.log();
 		console.log('Using Webpack config:');

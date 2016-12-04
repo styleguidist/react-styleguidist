@@ -1,0 +1,46 @@
+exports[`test getSectionsCode() should return valid JS 1`] = `
+"[{\'name\': \"Readme\",
+\'content\': require(\"!!examples-loader!./Readme.md\"),
+\'components\': null,
+\'sections\': null},
+{\'name\': \"Components\",
+\'content\': null,
+\'components\': [{\'filepath\': \"components/Button/Button.js\",
+\'nameFallback\': \"Button\",
+\'pathLine\': \"components/Button/Button.js\",
+\'module\': require(\"./components/Button/Button.js\"),
+\'props\': require(\"!!props-loader!./components/Button/Button.js\"),
+\'examples\': require(\"!!examples-loader!./components/Button/Readme.md\")},
+{\'filepath\': \"components/Placeholder/Placeholder.js\",
+\'nameFallback\': \"Placeholder\",
+\'pathLine\': \"components/Placeholder/Placeholder.js\",
+\'module\': require(\"./components/Placeholder/Placeholder.js\"),
+\'props\': require(\"!!props-loader!./components/Placeholder/Placeholder.js\"),
+\'examples\': require(\"!!examples-loader!./components/Placeholder/Readme.md\")}],
+\'sections\': null}]"
+`;
+
+exports[`test processSection() should return valid JS for section with components 1`] = `
+"{\'name\': \"Components\",
+\'content\': null,
+\'components\': [{\'filepath\': \"components/Button/Button.js\",
+\'nameFallback\': \"Button\",
+\'pathLine\': \"components/Button/Button.js\",
+\'module\': require(\"./components/Button/Button.js\"),
+\'props\': require(\"!!props-loader!./components/Button/Button.js\"),
+\'examples\': require(\"!!examples-loader!./components/Button/Readme.md\")},
+{\'filepath\': \"components/Placeholder/Placeholder.js\",
+\'nameFallback\': \"Placeholder\",
+\'pathLine\': \"components/Placeholder/Placeholder.js\",
+\'module\': require(\"./components/Placeholder/Placeholder.js\"),
+\'props\': require(\"!!props-loader!./components/Placeholder/Placeholder.js\"),
+\'examples\': require(\"!!examples-loader!./components/Placeholder/Readme.md\")}],
+\'sections\': null}"
+`;
+
+exports[`test processSection() should return valid JS for section with content 1`] = `
+"{\'name\': \"Readme\",
+\'content\': require(\"!!examples-loader!./Readme.md\"),
+\'components\': null,
+\'sections\': null}"
+`;

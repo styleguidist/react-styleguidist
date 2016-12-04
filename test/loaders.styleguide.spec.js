@@ -1,3 +1,4 @@
+import vm from 'vm';
 import { readFileSync } from 'fs';
 import styleguideLoader from '../loaders/styleguide-loader';
 
@@ -18,7 +19,7 @@ it('should return valid, parsable JS', () => {
 		},
 	}, readFileSync(file, 'utf8'));
 	expect(result).toBeTruthy();
-	expect(() => new Function(result)).not.toThrowError(SyntaxError);  // eslint-disable-line no-new-func
+	expect(new vm.Script(result)).not.toThrowError(SyntaxError);
 });
 
 it('should return correct component paths: glob', () => {
@@ -34,7 +35,7 @@ it('should return correct component paths: glob', () => {
 		},
 	}, readFileSync(file, 'utf8'));
 	expect(result).toBeTruthy();
-	expect(() => new Function(result)).not.toThrowError(SyntaxError);  // eslint-disable-line no-new-func
+	expect(new vm.Script(result)).not.toThrowError(SyntaxError);
 	expect(result.includes(`'filepath': "components/Button/Button.js"`)).toBe(true);
 	expect(result.includes(`'filepath': "components/Placeholder/Placeholder.js"`)).toBe(true);
 });
@@ -55,7 +56,7 @@ it('should return correct component paths: function returning absolute paths', (
 		},
 	}, readFileSync(file, 'utf8'));
 	expect(result).toBeTruthy();
-	expect(() => new Function(result)).not.toThrowError(SyntaxError);  // eslint-disable-line no-new-func
+	expect(new vm.Script(result)).not.toThrowError(SyntaxError);
 	expect(result.includes(`'filepath': "components/Button/Button.js"`)).toBe(true);
 	expect(result.includes(`'filepath': "components/Placeholder/Placeholder.js"`)).toBe(true);
 });
@@ -76,7 +77,7 @@ it('should return correct component paths: function returning relative paths', (
 		},
 	}, readFileSync(file, 'utf8'));
 	expect(result).toBeTruthy();
-	expect(() => new Function(result)).not.toThrowError(SyntaxError);  // eslint-disable-line no-new-func
+	expect(new vm.Script(result)).not.toThrowError(SyntaxError);
 	expect(result.includes(`'filepath': "components/Button/Button.js"`)).toBe(true);
 	expect(result.includes(`'filepath': "components/Placeholder/Placeholder.js"`)).toBe(true);
 });

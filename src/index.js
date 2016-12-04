@@ -61,6 +61,7 @@ function renderStyleguide() {
 
 window.addEventListener('hashchange', renderStyleguide);
 
+/* istanbul ignore if */
 if (module.hot) {
 	module.hot.accept('!!styleguide-loader!index.js', () => {
 		codeKey += 1;

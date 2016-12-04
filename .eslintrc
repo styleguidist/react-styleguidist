@@ -2,9 +2,12 @@
 	"parser": "babel-eslint",
 	"extends": "tamia/react",
 	"globals": {
+		"jest": false,
 		"expect": false,
 		"shallow": false,
 		"render": false,
-		"shallowToJson": false
+		"mount": false,
+		"shallowToJson": false,
+		"html": false
 	}
 }
