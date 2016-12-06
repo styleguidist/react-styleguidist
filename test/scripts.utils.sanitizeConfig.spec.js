@@ -308,5 +308,5 @@ it('should throw for unknown options with suggestion', () => {
 		drink: {},
 		food: {},
 	});
-	expect(fn).toThrowError('Did you mean drink');
+	expect(fn).toThrowError('Did you mean "drink"');
 });
