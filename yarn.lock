@@ -4120,6 +4120,10 @@ leven@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/leven/-/leven-1.0.0.tgz#ab55e2765c6434485e13d1603bfbe4b434412908"
 
+leven@~2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/leven/-/leven-2.0.0.tgz#74c45744439550da185801912829f61d22071bc1"
+
 levn@^0.3.0, levn@~0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/levn/-/levn-0.3.0.tgz#3b09924edf9f083c0490fdd4c0bc4421e04764ee"
@@ -4139,6 +4143,10 @@ lint-staged@~3.2.1:
     npm-which "^3.0.1"
     staged-git-files "0.0.4"
     which "^1.2.11"
+
+listify@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/listify/-/listify-1.0.0.tgz#03ca7ba2d150d4267773f74e57558d1053d2bee3"
 
 listr-silent-renderer@^1.0.0:
   version "1.0.0"

@@ -24,6 +24,7 @@ module.exports = function(source) {
 	try {
 		parsedProps = propsParser(file, source);
 	}
+	/* istanbul ignore next */
 	catch (exception) {
 		parsedProps = [];
 		console.log('Error when parsing', path.relative(process.cwd(), file));

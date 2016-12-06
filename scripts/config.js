@@ -5,61 +5,13 @@
 const fs = require('fs');
 const path = require('path');
 const findup = require('findup');
-const isDirectory = require('is-directory');
-const semverUtils = require('semver-utils');
 const prettyjson = require('prettyjson');
-const isFunction = require('lodash/isFunction');
-const isPlainObject = require('lodash/isPlainObject');
-const isString = require('lodash/isString');
 const merge = require('lodash/merge');
-const isFinite = require('lodash/isFinite');
-const isUndefined = require('lodash/isUndefined');
-const consts = require('./consts');
 const StyleguidistError = require('./utils/error');
-const reactDocgen = require('react-docgen');
-const displayNameHandler = require('react-docgen-displayname-handler').default;
+const sanitizeConfig = require('./utils/sanitizeConfig');
+const schema = require('./schemas/config');
 
 const CONFIG_FILENAME = 'styleguide.config.js';
-const DEFAULT_CONFIG = {
-	components: null,
-	sections: null,
-	skipComponentsWithoutExample: false,
-	defaultExample: false,
-	showCode: false,
-	title: 'Style guide',
-	styleguideDir: 'styleguide',
-	assetsDir: undefined,
-	template: path.join(__dirname, './templates/index.html'),
-	serverHost: 'localhost',
-	serverPort: 3000,
-	highlightTheme: 'base16-light',
-	previewDelay: 500,
-	verbose: false,
-	getExampleFilename: componentpath => path.join(path.dirname(componentpath), 'Readme.md'),
-	getComponentPathLine: componentpath => componentpath,
-	webpackConfig: null,
-	updateWebpackConfig: null,
-	context: {
-		React: 'react',
-	},
-	handlers: reactDocgen.defaultHandlers.concat(displayNameHandler),
-	theme: {},
-	styles: {},
-};
-const DEPENDENCIES = [
-	{
-		package: 'babel-core',
-		name: 'Babel',
-		from: 6,
-		to: 6,
-	},
-	{
-		package: 'webpack',
-		name: 'Webpack',
-		from: 1,
-		to: 2,
-	},
-];
 
 /**
  * Read, parse and validate config file or passed config.
@@ -82,49 +34,38 @@ function getConfig(options) {
 		config = require(configFilepath);
 	}
 
-	validateConfig(config);
-
 	const configDir = configFilepath ? path.dirname(configFilepath) : process.cwd();
 
-	validateDependencies(configDir);
-
-	let assetsDir = config.assetsDir;
-	if (assetsDir) {
-		assetsDir = path.resolve(configDir, assetsDir);
-		if (!isDirectory(assetsDir)) {
-			throw new StyleguidistError('Styleguidist: "assetsDir" directory not found: ' + assetsDir);
+	let sanitizedConfig;
+	try {
+		sanitizedConfig = sanitizeConfig(config, schema, configDir);
+	}
+	catch (exception) {
+		if (exception instanceof StyleguidistError) {
+			throw new StyleguidistError(
+				'Something is wrong with your style guide config:\n' +
+				exception.message
+			);
+		}
+		else {
+			throw exception;
 		}
 	}
 
-	let defaultExample = config.defaultExample;
-	if (defaultExample === true) {
-		defaultExample = path.join(__dirname, './templates/DefaultExample.md');
-	}
-	else if (isString(defaultExample)) {
-		defaultExample = path.resolve(configDir, defaultExample);
-		if (!fs.existsSync(defaultExample)) {
-			throw new StyleguidistError('Styleguidist: "defaultExample" file not found: ' + defaultExample);
-		}
-	}
-
-	config = merge({}, DEFAULT_CONFIG, config);
-	config = merge({}, config, {
+	const mergedConfig = merge({}, sanitizedConfig, {
 		verbose: !!options.verbose,
-		styleguideDir: path.resolve(configDir, config.styleguideDir),
 		configDir,
-		assetsDir,
-		defaultExample,
 	});
 
 	/* istanbul ignore if */
-	if (config.verbose) {
+	if (mergedConfig.verbose) {
 		console.log();
 		console.log('Using config file:', configFilepath);
 		console.log(prettyjson.render(config));
 		console.log();
 	}
 
-	return config;
+	return mergedConfig;
 }
 
 /**
@@ -149,111 +90,13 @@ function findConfig(file) {
 
 	let configDir;
 	try {
-		configDir = findup.sync(__dirname, CONFIG_FILENAME);
+		configDir = findup.sync(process.cwd(), CONFIG_FILENAME);
 	}
 	catch (exception) {
 		throw new StyleguidistError('Styleguidist config not found: ' + CONFIG_FILENAME + '.');
 	}
 
 	return path.join(configDir, CONFIG_FILENAME);
-}
-
-/**
- * Validate config.
- *
- * @param {Object} config Config options.
- */
-function validateConfig(config) {
-	if (!config.components && !config.sections) {
-		throw new StyleguidistError('Styleguidist: "components" or "sections" option is required.');
-	}
-	if (config.sections && !Array.isArray(config.sections)) {
-		throw new StyleguidistError('Styleguidist: "sections" option must be an array.');
-	}
-	if (config.getExampleFilename && !isFunction(config.getExampleFilename)) {
-		throw new StyleguidistError('Styleguidist: "getExampleFilename" option must be a function.');
-	}
-	if (config.getComponentPathLine && !isFunction(config.getComponentPathLine)) {
-		throw new StyleguidistError('Styleguidist: "getComponentPathLine" option must be a function.');
-	}
-	if (config.updateWebpackConfig && !isFunction(config.updateWebpackConfig)) {
-		throw new StyleguidistError('Styleguidist: "updateWebpackConfig" option must be a function.');
-	}
-	if (config.webpackConfig && !isPlainObject(config.webpackConfig) && !isFunction(config.webpackConfig)) {
-		throw new StyleguidistError('Styleguidist: "webpackConfig" option must be an object or a function.');
-	}
-	if (config.context && !isPlainObject(config.context)) {
-		throw new StyleguidistError('Styleguidist: "context" option must be an object.');
-	}
-	if (config.defaultExample && (config.defaultExample !== true && !isString(config.defaultExample))) {
-		throw new StyleguidistError('Styleguidist: "defaultExample" option must be either false, true, ' +
-			'or a string path to a Markdown file.');
-	}
-	if (!isUndefined(config.previewDelay) && !isFinite(config.previewDelay)) {
-		throw new StyleguidistError('Styleguidist: "previewDelay" option must be a positive number.');
-	}
-}
-
-/**
- * Validate project’s Babel and Webpack versions.
- *
- * @param {string} configDir Config file directory.
- */
-function validateDependencies(configDir) {
-	const packageJsonPath = path.join(findup.sync(configDir, 'package.json'), 'package.json');
-	const packageJson = require(packageJsonPath);
-	DEPENDENCIES.forEach(validateDependency.bind(null, packageJson));
-}
-
-/**
- * Check versions of a project dependency.
- *
- * @param {Object} packageJson package.json.
- * @param {Object} dependency Dependency details.
- */
-function validateDependency(packageJson, dependency) {
-	const version = findDependency(dependency.package, packageJson);
-	if (!version) {
-		return;
-	}
-
-	let major;
-	try {
-		major = semverUtils.parseRange(version)[0].major;
-	}
-	catch (exception) {
-		console.log('Styleguidist: cannot parse ' + dependency.name + ' version which is "' + version + '".');
-		console.log('Styleguidist might not work properly. Please report this issue at ' + consts.BUGS_URL);
-		console.log();
-	}
-
-	if (major < dependency.from) {
-		throw new StyleguidistError('Styleguidist: ' + dependency.name + ' ' + dependency.from + ' is required, ' +
-			'you are using version ' + major + '.');
-	}
-	else if (major > dependency.to) {
-		console.log('Styleguidist: ' + dependency.name + ' is supported up to version ' + dependency.to + ', ' +
-			'you are using version ' + major + '.');
-		console.log('Styleguidist might not work properly, report bugs at ' + consts.BUGS_URL);
-		console.log();
-	}
-}
-
-/**
- * Find package in project’s dependencies or devDependencies.
- *
- * @param {string} name Package name.
- * @param {Object} packageJson package.json.
- * @returns {string}
- */
-function findDependency(name, packageJson) {
-	if (packageJson.dependencies && packageJson.dependencies[name]) {
-		return packageJson.dependencies[name];
-	}
-	if (packageJson.devDependencies && packageJson.devDependencies[name]) {
-		return packageJson.devDependencies[name];
-	}
-	return null;
 }
 
 module.exports = getConfig;
