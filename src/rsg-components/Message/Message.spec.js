@@ -7,5 +7,5 @@ it('renderer should render message', () => {
 		<MessageRenderer classes={{}}>{message}</MessageRenderer>
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });

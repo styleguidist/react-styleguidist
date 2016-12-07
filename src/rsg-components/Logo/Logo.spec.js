@@ -7,5 +7,5 @@ it('renderer should render header', () => {
 		<LogoRenderer classes={{}}>{children}</LogoRenderer>
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });

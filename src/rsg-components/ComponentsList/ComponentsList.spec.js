@@ -18,7 +18,7 @@ it('should render sections with nested components', () => {
 		<ComponentsListRenderer items={components} classes={{}} />
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });
 
 it('should return null when the list is empty', () => {

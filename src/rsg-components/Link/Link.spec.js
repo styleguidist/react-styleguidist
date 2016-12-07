@@ -8,5 +8,5 @@ it('renderer should render link', () => {
 		<LinkRenderer href={href} classes={{}}>{children}</LinkRenderer>
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });

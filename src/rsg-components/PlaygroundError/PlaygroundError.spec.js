@@ -7,5 +7,5 @@ it('renderer should render message', () => {
 		<PlaygroundErrorRenderer classes={{}} message={message} />
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });

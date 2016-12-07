@@ -8,5 +8,5 @@ it('renderer should render loader', () => {
 		<EditorLoaderRenderer classes={{}} />
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });

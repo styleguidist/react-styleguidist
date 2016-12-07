@@ -39,7 +39,7 @@ it('should render components list', () => {
 		/>
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });
 
 it('should pass error message instead of components list when there is no components and sections', () => {
@@ -52,7 +52,7 @@ it('should pass error message instead of components list when there is no compon
 		/>
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });
 
 it('renderer should render logo, table on contents and components', () => {
@@ -68,5 +68,5 @@ it('renderer should render logo, table on contents and components', () => {
 		/>
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });

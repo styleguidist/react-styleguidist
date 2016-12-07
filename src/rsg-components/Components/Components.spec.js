@@ -31,7 +31,7 @@ it('should render components list', () => {
 		/>
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });
 
 it('renderer should render components list layout', () => {
@@ -45,5 +45,5 @@ it('renderer should render components list layout', () => {
 		/>
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });

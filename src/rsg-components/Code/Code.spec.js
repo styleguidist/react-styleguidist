@@ -7,5 +7,5 @@ it('renderer should render code', () => {
 		<CodeRenderer classes={{}}>{code}</CodeRenderer>
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });

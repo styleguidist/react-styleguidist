@@ -28,5 +28,5 @@ it('should render examples', () => {
 		}
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });

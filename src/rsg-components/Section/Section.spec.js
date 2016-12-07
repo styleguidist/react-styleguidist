@@ -28,7 +28,7 @@ it('should render component renderer', () => {
 		/>
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });
 
 it('render should render component', () => {
@@ -41,5 +41,5 @@ it('render should render component', () => {
 		/>
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });

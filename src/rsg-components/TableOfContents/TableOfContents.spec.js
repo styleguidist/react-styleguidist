@@ -46,7 +46,7 @@ it('should render a renderer', () => {
 		<TableOfContents components={components} sections={[]} />
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });
 
 it('should render renderer with sections with nested components', () => {
@@ -54,7 +54,7 @@ it('should render renderer with sections with nested components', () => {
 		<TableOfContents components={[]} sections={sections} />
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });
 
 
@@ -64,11 +64,11 @@ it('should filter list when search field contains a query', () => {
 		<TableOfContents components={components} sections={[]} />
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 
 	actual.setState({ searchTerm });
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });
 
 it('should render a filtered list, should hide empty sections', () => {
@@ -77,11 +77,11 @@ it('should render a filtered list, should hide empty sections', () => {
 		<TableOfContents components={[]} sections={sections} />
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 
 	actual.setState({ searchTerm });
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });
 
 it('should filter section names', () => {
@@ -90,11 +90,11 @@ it('should filter section names', () => {
 		<TableOfContents components={[]} sections={sections} />
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 
 	actual.setState({ searchTerm });
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });
 
 it('renderer should render table of contents', () => {
@@ -108,7 +108,7 @@ it('renderer should render table of contents', () => {
 		/>
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });
 
 it('should call a callback when input value changed', () => {

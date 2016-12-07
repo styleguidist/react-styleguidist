@@ -12,5 +12,5 @@ it('should render component renderer', () => {
 		/>
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });

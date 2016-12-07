@@ -7,5 +7,5 @@ it('should render children', () => {
 		<Wrapper>{children}</Wrapper>
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });

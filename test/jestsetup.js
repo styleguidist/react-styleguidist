@@ -2,17 +2,15 @@
 
 // Make Enzyme functions available in all test files without importing
 import { shallow, render, mount } from 'enzyme';
-import { shallowToJson } from 'enzyme-to-json';
 global.shallow = shallow;
 global.render = render;
 global.mount = mount;
-global.shallowToJson = shallowToJson;
 
 // Pretty print shallow rendering output for debugging
 import prettyFormat from 'pretty-format';
 import reactTestPlugin from 'pretty-format/plugins/ReactTestComponent';
 global.html = function(wrapper) {
-	console.log(prettyFormat(shallowToJson(wrapper), {
+	console.log(prettyFormat(wrapper, {
 		plugins: [reactTestPlugin],
 	}));
 };

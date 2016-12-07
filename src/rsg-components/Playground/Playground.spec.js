@@ -25,7 +25,7 @@ it('should render component renderer', () => {
 		options
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });
 
 it('should update code', () => {
@@ -107,5 +107,5 @@ it('renderer should render preview', () => {
 		/>
 	);
 
-	expect(shallowToJson(actual)).toMatchSnapshot();
+	expect(actual).toMatchSnapshot();
 });
