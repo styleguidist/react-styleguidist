@@ -9,38 +9,13 @@ const merge = require('webpack-merge');
 const prettyjson = require('prettyjson');
 const semverUtils = require('semver-utils');
 const isFunction = require('lodash/isFunction');
-const isRegExp = require('lodash/isRegExp');
 const omit = require('lodash/omit');
+const hasJsonLoader = require('./utils/hasJsonLoader');
 
 const webpackVersion = semverUtils.parseRange(require('webpack/package.json').version)[0].major;
 const isWebpack2 = webpackVersion === '2';
 
 const sourceDir = path.resolve(__dirname, '../lib');
-
-/**
- * Check if given Webpack config has JSON loader.
- * Based on react-storybook.
- *
- * @param {object} webpackConfig
- * @return {boolean}
- */
-function hasJsonLoader(webpackConfig) {
-	const testString = 'test.json';
-	return webpackConfig.module.loaders.reduce(
-		(value, loader) => {
-			return value || [].concat(loader.test).some(matcher => {
-				if (isRegExp(matcher)) {
-					return matcher.test(testString);
-				}
-				if (isFunction(matcher)) {
-					return matcher(testString);
-				}
-				return false;
-			});
-		},
-		false
-	);
-}
 
 module.exports = function(config, env) {
 	process.env.NODE_ENV = env;

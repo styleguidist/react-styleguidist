@@ -4120,7 +4120,7 @@ leven@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/leven/-/leven-1.0.0.tgz#ab55e2765c6434485e13d1603bfbe4b434412908"
 
-leven@~2.0.0:
+leven@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/leven/-/leven-2.0.0.tgz#74c45744439550da185801912829f61d22071bc1"
 
@@ -4144,7 +4144,7 @@ lint-staged@~3.2.1:
     staged-git-files "0.0.4"
     which "^1.2.11"
 
-listify@~1.0.0:
+listify@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/listify/-/listify-1.0.0.tgz#03ca7ba2d150d4267773f74e57558d1053d2bee3"
 
@@ -4214,7 +4214,7 @@ loader-runner@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-2.2.0.tgz#824c1b699c4e7a2b6501b85902d5b862bf45b3fa"
 
-loader-utils@0.2.x, loader-utils@^0.2.11, loader-utils@^0.2.16, loader-utils@^0.2.7, loader-utils@~0.2.2:
+loader-utils@0.2.16, loader-utils@0.2.x, loader-utils@^0.2.11, loader-utils@^0.2.16, loader-utils@^0.2.7, loader-utils@~0.2.2:
   version "0.2.16"
   resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-0.2.16.tgz#f08632066ed8282835dff88dfb52704765adee6d"
   dependencies:

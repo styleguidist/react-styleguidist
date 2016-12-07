@@ -44,6 +44,13 @@ it('should accept config as an object', () => {
 	expect(result.title).toBe('Style guide');
 });
 
+it('should throw if config has errors', () => {
+	const fn = () => getConfig({
+		components: 42,
+	});
+	expect(fn).toThrowError('should be string or function');
+});
+
 it('should have default getExampleFilename implementation', () => {
 	const result = getConfig({
 		components: '*.js',

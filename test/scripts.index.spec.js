@@ -1,3 +1,6 @@
+jest.mock('../scripts/build');
+jest.mock('../scripts/server');
+
 import last from 'lodash/last';
 import styleguidist from '../scripts';
 
@@ -94,4 +97,29 @@ it('makeWebpackConfig should apply updateWebpackConfig config option', () => {
 	expect(result).toBeTruthy();
 	expect(result.resolve.extensions.length).toEqual(defaultWebpackConfig.resolve.extensions.length + 1);
 	expect(last(result.resolve.extensions)).toEqual('production');
+});
+
+it('build() should pass style guide config and stats to callback', () => {
+	const config = {
+		components: '*.js',
+	};
+	const callback = jest.fn();
+	const api = styleguidist(config);
+	api.build(callback);
+
+	expect(callback).toBeCalled();
+	expect(callback.mock.calls[0][1].components).toBe(config.components);
+	expect(callback.mock.calls[0][2]).toEqual({ stats: true });
+});
+
+it('server() should pass style guide config to callback', () => {
+	const config = {
+		components: '*.js',
+	};
+	const callback = jest.fn();
+	const api = styleguidist(config);
+	api.server(callback);
+
+	expect(callback).toBeCalled();
+	expect(callback.mock.calls[0][1].components).toBe(config.components);
 });
