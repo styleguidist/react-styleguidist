@@ -1,4 +1,4 @@
-import chunkify from '../loaders/utils/chunkify';
+import chunkify from '../chunkify';
 
 /* eslint-disable max-len */
 

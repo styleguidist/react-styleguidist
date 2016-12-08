@@ -1,6 +1,6 @@
 import vm from 'vm';
 import path from 'path';
-import getSectionsCode, { processSection } from '../loaders/utils/getSectionsCode';
+import getSectionsCode, { processSection } from '../getSectionsCode';
 
 const sections = [
 	{

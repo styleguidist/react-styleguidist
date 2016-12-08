@@ -1,6 +1,7 @@
 import vm from 'vm';
+import path from 'path';
 import { readFileSync } from 'fs';
-import styleguideLoader from '../loaders/styleguide-loader';
+import styleguideLoader from '../styleguide-loader';
 
 const file = './test/components/Button/Button.js';
 
@@ -28,7 +29,7 @@ it('should return correct component paths: glob', () => {
 		options: {
 			styleguidist: {
 				components: 'components/**/*.js',
-				configDir: __dirname,
+				configDir: path.resolve(__dirname, '../../test'),
 				getExampleFilename: () => 'Readme.md',
 				getComponentPathLine: filepath => filepath,
 			},

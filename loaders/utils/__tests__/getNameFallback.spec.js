@@ -1,4 +1,4 @@
-import getNameFallback from '../loaders/utils/getNameFallback';
+import getNameFallback from '../getNameFallback';
 
 it('getNameFallback() should return file name without extension', () => {
 	const result = getNameFallback('burger/Pizza/Coffee.js');

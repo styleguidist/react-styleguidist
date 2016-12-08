@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import getConfig from '../scripts/config';
+import getConfig from '../config';
 
 const cwd = process.cwd();
 afterEach(() => {
@@ -14,7 +14,7 @@ it('should read a config file', () => {
 });
 
 it('should accept absolute path', () => {
-	const result = getConfig({ config: path.join(__dirname, 'data/styleguide.config.js') });
+	const result = getConfig({ config: path.join(__dirname, '../../test/data/styleguide.config.js') });
 	expect(result).toBeTruthy();
 	expect(result.title).toBe('React Style Guide Example');
 });
@@ -70,7 +70,7 @@ it('should have default getComponentPathLine implementation', () => {
 it('should absolutize assetsDir if it exists', () => {
 	const result = getConfig({
 		components: '*.js',
-		assetsDir: 'test',
+		assetsDir: 'scripts/__tests__',
 	});
 	expect(result.assetsDir).toEqual(__dirname);
 });
@@ -110,7 +110,7 @@ it('should throw if defaultExample does not exist', () => {
 
 it('should throw if config has no components and sections options', () => {
 	const fn = () => getConfig({
-		config: path.join(__dirname, 'data/badconfig.config.js'),
+		config: path.join(__dirname, '../../test/data/badconfig.config.js'),
 	});
 	expect(fn).toThrowError('"components" or "sections" option is required');
 });

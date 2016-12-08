@@ -1,13 +1,14 @@
 import path from 'path';
-import getComponents from '../loaders/utils/getComponents';
+import getComponents from '../getComponents';
 
+const configDir = path.resolve(__dirname, '../../../test');
 const components = ['one.js', 'two.js'];
 const glob = 'components/**/[A-Z]*.js';
 const config = {
-	configDir: __dirname,
+	configDir,
 };
 
-const absolutize = files => files.map(file => path.join(__dirname, file));
+const absolutize = files => files.map(file => path.join(configDir, file));
 
 it('getComponents() should return an empty array if components is null', () => {
 	const result = getComponents();

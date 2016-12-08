@@ -1,4 +1,4 @@
-import expandDefaultComponent from '../loaders/utils/expandDefaultComponent';
+import expandDefaultComponent from '../expandDefaultComponent';
 
 it('expandDefaultComponent() replace placeholders with component name', () => {
 	const exampleMarkdown = `

@@ -2,7 +2,7 @@ import getRequires, {
 	REQUIRE_ANYTHING_BASE,
 	REQUIRE_ANYTHING_REGEX,
 	SIMPLE_STRING_REGEX,
-} from '../loaders/utils/getRequires';
+} from '../getRequires';
 
 /* eslint-disable quotes */
 

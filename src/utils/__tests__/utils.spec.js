@@ -1,5 +1,5 @@
 const map = require('lodash/map');
-import * as utils from '../src/utils/utils';
+import * as utils from '../utils';
 
 const COMPONENTS = [
 	{

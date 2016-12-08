@@ -1,5 +1,5 @@
 import path from 'path';
-import sanitizeConfig from '../scripts/utils/sanitizeConfig';
+import sanitizeConfig from '../sanitizeConfig';
 
 const cwd = process.cwd();
 afterEach(() => {

@@ -1,4 +1,4 @@
-import removeDoclets from '../loaders/utils/removeDoclets';
+import removeDoclets from '../removeDoclets';
 
 /* eslint-disable quotes */
 

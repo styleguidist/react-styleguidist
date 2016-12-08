@@ -1,4 +1,4 @@
-import serialize from '../loaders/utils/serialize';
+import serialize from '../serialize';
 
 it('serialize() should convert JavaScript object to string', () => {
 	const result = serialize({

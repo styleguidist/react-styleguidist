@@ -1,4 +1,4 @@
-import examplesLoader from '../loaders/examples-loader';
+import examplesLoader from '../examples-loader';
 
 it('should return valid, parsable JS', () => {
 	const exampleMarkdown = `

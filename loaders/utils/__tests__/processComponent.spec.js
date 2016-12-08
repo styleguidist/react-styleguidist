@@ -1,6 +1,6 @@
 import vm from 'vm';
 import path from 'path';
-import processComponent from '../loaders/utils/processComponent';
+import processComponent from '../processComponent';
 
 const config = {
 	configDir: __dirname,

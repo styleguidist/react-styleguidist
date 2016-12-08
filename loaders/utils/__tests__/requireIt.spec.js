@@ -1,4 +1,4 @@
-import requireIt from '../loaders/utils/requireIt';
+import requireIt from '../requireIt';
 
 it('requireIt() should return a require statement', () => {
 	const result = requireIt('foo');

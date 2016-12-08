@@ -1,5 +1,5 @@
 import vm from 'vm';
-import getPropsCode from '../loaders/utils/getPropsCode';
+import getPropsCode from '../getPropsCode';
 
 it('getPropsCode() should return valid JS for props', () => {
 	const result = getPropsCode({

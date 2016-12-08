@@ -1,4 +1,4 @@
-import toCode from '../loaders/utils/toCode';
+import toCode from '../toCode';
 
 it('toCode() should convert JavaScript object to string', () => {
 	const result = toCode({

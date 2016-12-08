@@ -1,4 +1,4 @@
-import getExamples from '../loaders/utils/getExamples';
+import getExamples from '../getExamples';
 
 it('getExamples() should return require with examples-loader is component ha example file', () => {
 	const examplesFile = __filename;

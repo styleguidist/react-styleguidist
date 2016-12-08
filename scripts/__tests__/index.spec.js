@@ -1,13 +1,13 @@
-jest.mock('../scripts/build');
-jest.mock('../scripts/server');
+jest.mock('../build');
+jest.mock('../server');
 
 import last from 'lodash/last';
-import styleguidist from '../scripts';
+import styleguidist from '../index';
 
 const getDefaultWebpackConfig = () => styleguidist({ components: '*.js' }).makeWebpackConfig();
 
 it('should return API methods', () => {
-	const api = styleguidist(require('./data/styleguide.config.js'));
+	const api = styleguidist(require('./../../test/data/styleguide.config.js'));
 	expect(api).toBeTruthy();
 	expect(typeof api.build).toBe('function');
 	expect(typeof api.server).toBe('function');

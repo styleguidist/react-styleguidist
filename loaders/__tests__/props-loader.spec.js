@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs';
-import propsLoader from '../loaders/props-loader';
+import propsLoader from '../props-loader';
 
 it('should return valid, parsable JS', () => {
 	const file = './test/components/Button/Button.js';
