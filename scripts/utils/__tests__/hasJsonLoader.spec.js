@@ -1,4 +1,4 @@
-import hasJsonLoader from '../scripts/utils/hasJsonLoader';
+import hasJsonLoader from '../hasJsonLoader';
 
 it('should return true if given Webpack config has JSON loader', () => {
 	const result = hasJsonLoader({
@@ -14,7 +14,7 @@ it('should return true if given Webpack config has JSON loader', () => {
 					},
 				},
 				{
-					test: /\.css$/,
+					test: p => /\.css$/.test(p),
 					loader: 'style-loader!css-loader',
 				},
 				{

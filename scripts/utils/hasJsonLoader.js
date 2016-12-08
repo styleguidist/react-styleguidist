@@ -1,5 +1,6 @@
 'use strict';
 
+const get = require('lodash/get');
 const isFunction = require('lodash/isFunction');
 const isRegExp = require('lodash/isRegExp');
 
@@ -12,7 +13,8 @@ const isRegExp = require('lodash/isRegExp');
  */
 module.exports = function hasJsonLoader(webpackConfig) {
 	const testString = 'test.json';
-	return webpackConfig.module.loaders.reduce(
+	const loaders = get(webpackConfig, 'module.loaders', []);
+	return loaders.reduce(
 		(value, loader) => {
 			return value || [].concat(loader.test).some(matcher => {
 				if (isRegExp(matcher)) {
