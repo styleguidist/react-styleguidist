@@ -7,7 +7,6 @@
 		"shallow": false,
 		"render": false,
 		"mount": false,
-		"shallowToJson": false,
 		"html": false
 	}
 }
