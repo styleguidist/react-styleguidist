@@ -152,3 +152,26 @@ initialState = { key: 42 };
 ```
 
 You *can* use `React.createClass` in your code examples, but if you need a more complex demo it’s often a good idea to define it in a separate JavaScript file instead and then just `require` it in Markdown.
+
+## Code examples caveat
+
+Object references will not work as expected in examples state due to how the examples code is evaluated.
+
+```
+const items = [
+  {id: 0},
+  {id: 1}
+];
+
+initialState = {
+  activeItemByReference: items[0],
+  activeItemByPrimitive: items[0].id
+};
+
+<div>
+  {/* Will render "not active" because of object reference: */}
+  {state.activeItemByReference === items[0] ? 'active' : 'not active'}
+  {/* But this will render "active" as expected: */}
+  {state.activeItemByPrimitive === items[0].id ? 'active' : 'not active'}
+</div>
+```
