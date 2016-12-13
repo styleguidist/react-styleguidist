@@ -4,13 +4,13 @@
 
 ### 1. Install Styleguidist
 
-Install Styleguidist and peer dependencies from npm: 
+Install Styleguidist and peer dependencies from npm:
 
 ```bash
 npm install --save-dev react-styleguidist react react-dom webpack
 ```
 
-### 2. Point Styleguidist to your React components 
+### 2. Point Styleguidist to your React components
 
 > **Note**: If you’re using [create-react-app](https://github.com/facebookincubator/create-react-app), go directly to step 4.
 
@@ -34,7 +34,7 @@ module.exports = {
 
 ### 3. Configure transpilers and loaders for your project
 
-Styleguidist uses Webpack under the hood to load your project‘s files, and needs to know how to precess each file type.  
+Styleguidist uses Webpack under the hood to load your project‘s files, and needs to know how to precess each file type.
 
 #### Reusing your project’s Webpack config
 
@@ -52,7 +52,7 @@ module.exports = {
 
 > **Note:**: it may not work with your project, see below for other options.
 
-#### Custom Webpack config  
+#### Custom Webpack config
 
 Add a `webpackConfig` section to your `styleguide.config.js`:
 
@@ -78,7 +78,7 @@ module.exports = {
 };
 ```
 
-#### Basic loaders for non-Webpack projects 
+#### Basic loaders for non-Webpack projects
 
 If your project don’t use Webpack you still need loaders for your files. You can use [loaders](https://github.com/styleguidist/loaders) module. It contains loaders for .js/.jsx (Babel), .css, .json and universal loader for all other files.
 
@@ -108,8 +108,8 @@ module.exports = {
   },
 };
 ```
- 
-### 4. Add npm scripts for convenience 
+
+### 4. Add npm scripts for convenience
 
 Add these scripts to your `package.json`:
 
