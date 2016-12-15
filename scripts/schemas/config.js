@@ -94,4 +94,7 @@ module.exports = {
 	webpackConfig: {
 		type: ['object', 'function'],
 	},
+	webpackConfigFile: {
+		type: ['existing file path'],
+	},
 };

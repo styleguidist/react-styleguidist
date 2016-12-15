@@ -7,7 +7,7 @@ import styleguidist from '../index';
 const getDefaultWebpackConfig = () => styleguidist({ components: '*.js' }).makeWebpackConfig();
 
 it('should return API methods', () => {
-	const api = styleguidist(require('./../../test/data/styleguide.config.js'));
+	const api = styleguidist(require('../../test/data/styleguide.config.js'));
 	expect(api).toBeTruthy();
 	expect(typeof api.build).toBe('function');
 	expect(typeof api.server).toBe('function');
@@ -81,6 +81,30 @@ it('makeWebpackConfig should merge webpackConfig config option as a function', (
 
 	expect(result).toBeTruthy();
 	expect(result._env).toEqual('production');
+});
+
+it('makeWebpackConfig should merge config from webpackConfigFile config option', () => {
+	const defaultWebpackConfig = getDefaultWebpackConfig();
+	const api = styleguidist({
+		components: '*.js',
+		webpackConfigFile: 'test/data/webpack.config.js',
+	});
+	const result = api.makeWebpackConfig();
+
+	expect(result).toBeTruthy();
+	expect(result.output.filename).toEqual(defaultWebpackConfig.output.filename);
+	expect(last(result.resolve.extensions)).toEqual('.scss');
+});
+
+it('makeWebpackConfig should merge config from webpackConfigFile config option as a function', () => {
+	const api = styleguidist({
+		components: '*.js',
+		webpackConfigFile: 'test/data/webpack.config.func.js',
+	});
+	const result = api.makeWebpackConfig();
+
+	expect(result).toBeTruthy();
+	expect(last(result.resolve.extensions)).toEqual('production');
 });
 
 it('makeWebpackConfig should apply updateWebpackConfig config option', () => {

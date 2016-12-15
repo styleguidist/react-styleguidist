@@ -141,6 +141,19 @@ module.exports = function(config, env) {
 		});
 	}
 
+	if (config.webpackConfigFile) {
+		const userConfigModule = require(config.webpackConfigFile);
+		const userConfig = isFunction(userConfigModule)
+			? userConfigModule(env)
+			: userConfigModule
+		;
+		const safeUserConfig = omit(
+			userConfig,
+			['entry', 'output', 'plugins']
+		);
+		webpackConfig = merge(webpackConfig, safeUserConfig);
+	}
+
 	if (config.webpackConfig) {
 		const userConfig = isFunction(config.webpackConfig)
 			? config.webpackConfig(env)
