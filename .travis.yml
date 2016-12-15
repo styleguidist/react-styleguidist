@@ -10,7 +10,7 @@ cache:
     - travis_phantomjs
 env:
   # Test everything in Webpack 1 and 2
-  - export WEBPACK_VERSION="2.1.0-beta.28"
+  - export WEBPACK_VERSION="2.2.0-rc.0"
   - export WEBPACK_VERSION="1"
 script:
   # Run tests

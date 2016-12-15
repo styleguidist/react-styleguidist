@@ -49,6 +49,9 @@ module.exports = function(config, env) {
 		module: {
 			loaders: [],
 		},
+		performance: {
+			hints: false,
+		},
 	};
 
 	const loaderModulesDirectories = [

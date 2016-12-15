@@ -76,7 +76,7 @@
   "peerDependencies": {
     "react": ">=0.14.0",
     "react-dom": ">=0.14.0",
-    "webpack": "1 || ^2.1.0-beta"
+    "webpack": "1 || ^2.2.0-rc"
   },
   "devDependencies": {
     "babel-eslint": "~7.1.0",
@@ -103,7 +103,7 @@
     "react-modal": "~1.5.2",
     "semantic-release": "~4.3.5",
     "semantic-release-tamia": "~1.0.0",
-    "webpack": "1.13.3 || ^2.1.0-beta"
+    "webpack": "1.14.0 || ^2.2.0-rc"
   },
   "scripts": {
     "test": "npm run lint && npm run test:jest",
