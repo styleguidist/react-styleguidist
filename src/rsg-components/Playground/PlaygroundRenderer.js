@@ -76,10 +76,12 @@ export function PlaygroundRenderer({
 		<div className={classes.root}>
 			<div className={classes.preview}>
 				<div className={classes.isolatedLink}>
-					{singleExample ? (
-						<Link href={'#!/' + name}>⇽ Exit Isolation</Link>
-					) : (
-						<Link href={'#!/' + name + '/' + index}>Open isolated ⇢</Link>
+					{name && (
+						singleExample ? (
+							<Link href={'#!/' + name}>⇽ Exit Isolation</Link>
+						) : (
+							<Link href={'#!/' + name + '/' + index}>Open isolated ⇢</Link>
+						)
 					)}
 				</div>
 				<Preview code={code} evalInContext={evalInContext} />
@@ -104,11 +106,11 @@ PlaygroundRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	code: PropTypes.string.isRequired,
 	showCode: PropTypes.bool.isRequired,
-	name: PropTypes.string.isRequired,
 	index: PropTypes.number.isRequired,
 	evalInContext: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
 	onCodeToggle: PropTypes.func.isRequired,
+	name: PropTypes.string,
 	singleExample: PropTypes.bool,
 };
 
