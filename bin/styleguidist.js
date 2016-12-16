@@ -97,6 +97,10 @@ function commandServer() {
 		}
 		else {
 			console.error(chalk.bold.red(err.message));
+			if (argv.verbose) {
+				console.log();
+				console.log(err.stack);
+			}
 		}
 		process.exit(1);
 	});
