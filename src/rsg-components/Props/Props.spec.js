@@ -8,7 +8,7 @@ import PropsRenderer from './PropsRenderer';
 import { unquote, getType } from './util';
 
 function render(propTypes, defaultProps = []) {
-	let props = parse(`
+	const props = parse(`
 		import { Component, PropTypes } from 'react';
 		export default class Cmpnt extends Component {
 			static propTypes = {

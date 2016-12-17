@@ -8,7 +8,7 @@ export default function Button({
 	size,
 	children,
 }) {
-	let styles = {
+	const styles = {
 		color,
 		fontSize: Button.sizes[size],
 	};

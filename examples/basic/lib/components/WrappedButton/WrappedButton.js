@@ -10,7 +10,7 @@ const WrappedButton = ({
 	size,
 	children,
 }) => {
-	let styles = {
+	const styles = {
 		color,
 		fontSize: WrappedButton.sizes[size],
 	};

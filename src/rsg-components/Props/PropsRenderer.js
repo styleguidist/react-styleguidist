@@ -7,9 +7,9 @@ import { unquote, getType, showSpaces } from './util';
 import s from './Props.css';
 
 function renderRows(props) {
-	let rows = [];
-	for (let name in props) {
-		let prop = props[name];
+	const rows = [];
+	for (const name in props) {
+		const prop = props[name];
 		rows.push(
 			<tr key={name}>
 				<td className={s.cell}><Code className={s.name}>{name}</Code></td>
@@ -27,7 +27,7 @@ function renderType(type) {
 		return 'unknown';
 	}
 
-	let { name } = type;
+	const { name } = type;
 
 	switch (name) {
 		case 'arrayOf':
@@ -54,8 +54,8 @@ function renderDefault(prop) {
 }
 
 function renderDescription(prop) {
-	let { description } = prop;
-	let extra = renderExtra(prop);
+	const { description } = prop;
+	const extra = renderExtra(prop);
 	return (
 		<Group>
 			{description && <Markdown text={description} inline />}
@@ -115,11 +115,11 @@ function renderUnion(prop) {
 }
 
 function renderShape(props) {
-	let rows = [];
-	for (let name in props) {
-		let prop = props[name];
-		let defaultValue = renderDefault(prop);
-		let description = prop.description;
+	const rows = [];
+	for (const name in props) {
+		const prop = props[name];
+		const defaultValue = renderDefault(prop);
+		const description = prop.description;
 		rows.push(
 			<div key={name}>
 				<Code className={s.name}>{name}</Code>{': '}
