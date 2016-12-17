@@ -153,7 +153,8 @@
     "coveragePathIgnorePatterns": [
       "<rootDir>/src/utils/markdown-to-jsx.js",
       "<rootDir>/scripts/server.js",
-      "<rootDir>/scripts/build.js"
+      "<rootDir>/scripts/build.js",
+      "<rootDir>/test/jestsetup.js"
     ],
     "snapshotSerializers": [
       "<rootDir>/node_modules/enzyme-to-json/serializer"
