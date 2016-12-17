@@ -5,7 +5,7 @@
 const fs = require('fs');
 const path = require('path');
 const findup = require('findup');
-const prettyjson = require('prettyjson');
+const isString = require('lodash/isString');
 const merge = require('lodash/merge');
 const StyleguidistError = require('./utils/error');
 const sanitizeConfig = require('./utils/sanitizeConfig');
@@ -16,21 +16,25 @@ const CONFIG_FILENAME = 'styleguide.config.js';
 /**
  * Read, parse and validate config file or passed config.
  *
- * @param {object} [options] CLI options (e.g. {verbose: true} or {config: 'filename'}) or all config options.
+ * @param {object|string} [config] All config options or config file name or nothing.
  * @returns {object}
  */
-function getConfig(options) {
-	options = options || {};
-
+function getConfig(config = {}) {
 	let configFilepath;
-	let config;
-	if (options.components || options.sections) {
-		// Config options was passed to a function
-		config = options;
+	if (isString(config)) {
+		// Load config from a given file
+		configFilepath = path.resolve(process.cwd(), config);
+		if (!fs.existsSync(configFilepath)) {
+			throw new StyleguidistError('Styleguidist config not found: ' + configFilepath + '.');
+		}
+		config = {};
 	}
 	else {
-		// Read config options from a file
-		configFilepath = findConfig(options.config);
+		// Try to read config options from a file
+		configFilepath = findConfigFile();
+	}
+
+	if (configFilepath) {
 		config = require(configFilepath);
 	}
 
@@ -53,47 +57,24 @@ function getConfig(options) {
 	}
 
 	const mergedConfig = merge({}, sanitizedConfig, {
-		verbose: !!options.verbose,
 		configDir,
 	});
-
-	/* istanbul ignore if */
-	if (mergedConfig.verbose) {
-		console.log();
-		console.log('Using config file:', configFilepath);
-		console.log(prettyjson.render(config));
-		console.log();
-	}
 
 	return mergedConfig;
 }
 
 /**
- * Find config file: use file specified in the command line or try to find up the file tree.
+ * Try to find config file up the file tree.
  *
- * @param {Object} [file] File name.
- * @return {string} Config absolute file path.
+ * @return {string|boolean} Config absolute file path.
  */
-function findConfig(file) {
-	if (file) {
-		// Custom config location
-
-		const configFilepath = file[0] === '/' ? file : path.join(process.cwd(), file);
-		if (!fs.existsSync(configFilepath)) {
-			throw new StyleguidistError('Styleguidist config not found: ' + configFilepath + '.');
-		}
-
-		return configFilepath;
-	}
-
-	// Search config file in all parent directories
-
+function findConfigFile() {
 	let configDir;
 	try {
 		configDir = findup.sync(process.cwd(), CONFIG_FILENAME);
 	}
 	catch (exception) {
-		throw new StyleguidistError('Styleguidist config not found: ' + CONFIG_FILENAME + '.');
+		return false;
 	}
 
 	return path.join(configDir, CONFIG_FILENAME);

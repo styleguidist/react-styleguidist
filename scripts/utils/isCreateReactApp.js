@@ -1,14 +1,14 @@
 'use strict';
 
 const get = require('lodash/get');
+const getUserPackageJson = require('./getUserPackageJson');
 
 /**
  * Check if project uses Create React App.
  *
- * @param {object} packageJson
  * @return {boolean}
  */
-module.exports = function isCreateReactApp(packageJson) {
-	const dependencies = get(packageJson, 'dependencies', {});
-	return !!dependencies['react-scripts'];
+module.exports = function isCreateReactApp() {
+	const packageJson = getUserPackageJson();
+	return !!get(packageJson, 'devDependencies.react-scripts');
 };

@@ -13,11 +13,11 @@ const requireIt = require('./requireIt');
  */
 module.exports = function getExamples(examplesFile, nameFallback, defaultExample) {
 	if (fs.existsSync(examplesFile)) {
-		return requireIt('!!examples-loader!' + examplesFile);
+		return requireIt('!!../loaders/examples-loader!' + examplesFile);
 	}
 
 	if (defaultExample) {
-		return requireIt('!!examples-loader?componentName=' + nameFallback + '!' + defaultExample);
+		return requireIt('!!../loaders/examples-loader?componentName=' + nameFallback + '!' + defaultExample);
 	}
 
 	return null;

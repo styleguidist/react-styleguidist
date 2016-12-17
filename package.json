@@ -101,6 +101,7 @@
     "react-addons-test-utils": "~15.4.1",
     "react-dom": "~15.4.1",
     "react-modal": "~1.5.2",
+    "react-scripts": "~0.8.4",
     "semantic-release": "~4.3.5",
     "semantic-release-tamia": "~1.0.0",
     "webpack": "2.2.0-rc.0"
@@ -113,7 +114,8 @@
     "start": "bin/styleguidist.js server --config examples/basic/styleguide.config.js",
     "start:customised": "bin/styleguidist.js server --config examples/customised/styleguide.config.js",
     "start:sections": "bin/styleguidist.js server --config examples/sections/styleguide.config.js",
-    "lint": "eslint . --ext .js",
+    "start:cra": "cd examples/cra && ../../bin/styleguidist.js server",
+    "lint": "eslint . --ext .js --fix",
     "lint-staged": "lint-staged",
     "compile": "babel -d lib/ src/",
     "compile:watch": "babel --watch -d lib/ src/",

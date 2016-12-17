@@ -31,7 +31,7 @@ module.exports = function getPropsCode(doc) {
 	if (doc.doclets.example) {
 		return code.replace(
 			JSON.stringify(REQUIRE_PLACEHOLDER),
-			requireIt('!!examples-loader!' + doc.doclets.example)
+			requireIt('!!../loaders/examples-loader!' + doc.doclets.example)
 		);
 	}
 	return code;

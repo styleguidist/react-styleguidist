@@ -6,6 +6,8 @@
 
 const minimist = require('minimist');
 const chalk = require('chalk');
+const prettyjson = require('prettyjson');
+const merge = require('lodash/merge');
 const getConfig = require('../scripts/config');
 const consts = require('../scripts/consts');
 const clearConsole = require('react-dev-utils/clearConsole');
@@ -25,7 +27,7 @@ const argv = minimist(process.argv.slice(2));
 
 let config;
 try {
-	config = getConfig(argv);
+	config = getConfig(argv.config);
 }
 catch (err) {
 	if (err instanceof StyleguidistError) {
@@ -38,6 +40,18 @@ catch (err) {
 	else {
 		throw err;
 	}
+}
+
+config = merge({}, config, {
+	verbose: !!argv.verbose,
+});
+
+/* istanbul ignore if */
+if (argv.verbose) {
+	console.log();
+	console.log('Using config:');
+	console.log(prettyjson.render(config));
+	console.log();
 }
 
 switch (argv._[0]) {

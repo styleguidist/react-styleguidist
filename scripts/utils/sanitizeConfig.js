@@ -66,23 +66,26 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 	map(schema, (props, key) => {
 		let value = config[key];
 
+		// Custom processing
+		if (props.process) {
+			value = props.process(value, config);
+		}
+
 		if (value === undefined) {
 			// Default value
 			value = props.default;
 
 			// Check if the field is required
-			const isRequired = isFunction(props.required) ? props.required(config) : props.required;
+			const isRequired = isFunction(props.required)
+				? props.required(config)
+				: props.required
+			;
 			if (isRequired) {
 				const message = isString(isRequired)
 					? isRequired
 					: `"${key}" config option is required.`;
 				throw new StyleguidistError(message);
 			}
-		}
-
-		// Custom processing
-		if (props.process) {
-			value = props.process(value);
 		}
 
 		if (value !== undefined && props.type) {

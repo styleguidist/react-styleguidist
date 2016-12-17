@@ -2,6 +2,7 @@
   "name": "react-styleguidist-example-customised",
   "description": "React styleguidist customised example",
   "version": "1.0.0",
+  "private": true,
   "homepage": "https://github.com/styleguidist/react-styleguidist",
   "author": {
     "name": "Artem Sapegin",

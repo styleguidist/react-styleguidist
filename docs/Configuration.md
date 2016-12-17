@@ -206,7 +206,7 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   };
   ```
 
-  **Note:**: `output` and `resolveLoader` options will be ignored.
+  **Note:**: `output` option will be ignored.
 
   See [FAQ](./FAQ.md) for examples.
 

@@ -20,6 +20,7 @@ module.exports = {
 			],
 		},
 	],
+	webpackConfigFile: false,
 	webpackConfig: {
 		module: {
 			loaders: loaders.all,

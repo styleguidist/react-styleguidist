@@ -11,6 +11,7 @@ const semverUtils = require('semver-utils');
 const isFunction = require('lodash/isFunction');
 const omit = require('lodash/omit');
 const hasJsonLoader = require('./utils/hasJsonLoader');
+const requireUserWebpackConfig = require('./utils/requireUserWebpackConfig');
 
 const webpackVersion = semverUtils.parseRange(require('webpack/package.json').version)[0].major;
 const isWebpack2 = webpackVersion === '2';
@@ -54,11 +55,6 @@ module.exports = function(config, env) {
 		},
 	};
 
-	const loaderModulesDirectories = [
-		path.resolve(__dirname, '../loaders'),
-		'node_modules',
-	];
-
 	if (isWebpack2) {
 		webpackConfig = merge(webpackConfig, {
 			resolve: {
@@ -67,9 +63,6 @@ module.exports = function(config, env) {
 					sourceDir,
 					'node_modules',
 				],
-			},
-			resolveLoader: {
-				modules: loaderModulesDirectories,
 			},
 			plugins: [
 				new webpack.LoaderOptionsPlugin({
@@ -91,9 +84,6 @@ module.exports = function(config, env) {
 				moduleDirectories: [
 					'node_modules',
 				],
-			},
-			resolveLoader: {
-				modulesDirectories: loaderModulesDirectories,
 			},
 			debug: !isProd,
 		});
@@ -142,7 +132,7 @@ module.exports = function(config, env) {
 	}
 
 	if (config.webpackConfigFile) {
-		const userConfigModule = require(config.webpackConfigFile);
+		const userConfigModule = requireUserWebpackConfig(config.webpackConfigFile);
 		const userConfig = isFunction(userConfigModule)
 			? userConfigModule(env)
 			: userConfigModule
@@ -161,7 +151,7 @@ module.exports = function(config, env) {
 		;
 		const safeUserConfig = omit(
 			userConfig,
-			['output', 'resolveLoader', 'styleguidist']
+			['output', 'styleguidist']
 		);
 		webpackConfig = merge(webpackConfig, safeUserConfig);
 	}

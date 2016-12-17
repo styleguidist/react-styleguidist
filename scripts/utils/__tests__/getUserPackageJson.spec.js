@@ -5,7 +5,9 @@ afterEach(() => {
 	process.chdir(cwd);
 });
 
-it('should return true if given package.json depends on create-react-app', () => {
+it('should return object with package.json contents', () => {
+	process.chdir('test/apps/cra');
 	const result = getUserPackageJson();
 	expect(result).toBeTruthy();
+	expect(result.name).toBe('pizza');
 });

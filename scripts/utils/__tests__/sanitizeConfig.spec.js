@@ -1,11 +1,6 @@
 import path from 'path';
 import sanitizeConfig from '../sanitizeConfig';
 
-const cwd = process.cwd();
-afterEach(() => {
-	process.chdir(cwd);
-});
-
 it('should return non-empty required field as is', () => {
 	const result = sanitizeConfig({
 		food: 'pizza',
@@ -19,8 +14,7 @@ it('should return non-empty required field as is', () => {
 });
 
 it('should return default value for empty non-required field', () => {
-	const result = sanitizeConfig({
-	}, {
+	const result = sanitizeConfig({}, {
 		food: {
 			default: 'pizza',
 		},
@@ -51,8 +45,7 @@ it('should accept required as a function', () => {
 });
 
 it('should throw if required field is undefined', () => {
-	const fn = () => sanitizeConfig({
-	}, {
+	const fn = () => sanitizeConfig({}, {
 		food: {
 			required: true,
 		},
@@ -61,8 +54,7 @@ it('should throw if required field is undefined', () => {
 });
 
 it('should throw with custom message returned by required function', () => {
-	const fn = () => sanitizeConfig({
-	}, {
+	const fn = () => sanitizeConfig({}, {
 		food: {
 			required: () => 'Not good',
 		},
@@ -278,6 +270,16 @@ it('should pass value to a custom process function', () => {
 		},
 	});
 	expect(result.food).toEqual('pizza');
+});
+
+it('should not throw if process function returns value for undefined required field', () => {
+	const fn = () => sanitizeConfig({}, {
+		food: {
+			required: true,
+			process: () => 'pizza',
+		},
+	});
+	expect(fn).not.toThrowError('config option is required');
 });
 
 it('should throw when directory does not exist', () => {

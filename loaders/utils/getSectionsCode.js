@@ -33,7 +33,7 @@ function processSection(section, config) {
 	return toCode({
 		name: JSON.stringify(section.name),
 		content: section.content
-			? requireIt('!!examples-loader!' + path.resolve(config.configDir, section.content))
+			? requireIt('!!../loaders/examples-loader!' + path.resolve(config.configDir, section.content))
 			: null,
 		components: getComponentsCode(getComponents(section.components, config), config),
 		sections: getSectionsCode(section.sections, config),

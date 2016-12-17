@@ -30,6 +30,7 @@ it('getComponents() should accept components as a glob', () => {
 	expect(result).toEqual(absolutize([
 		'components/Button/Button.js',
 		'components/Placeholder/Placeholder.js',
+		'components/RandomButton/RandomButton.js',
 	]));
 });
 

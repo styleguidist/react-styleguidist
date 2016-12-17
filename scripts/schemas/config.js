@@ -1,10 +1,9 @@
 'use strict';
 
+const fs = require('fs');
 const path = require('path');
 const reactDocgen = require('react-docgen');
 const displayNameHandler = require('react-docgen-displayname-handler').default;
-
-const componentsOrSectionsMessage = '"components" or "sections" option is required';
 
 module.exports = {
 	assetsDir: {
@@ -12,7 +11,7 @@ module.exports = {
 	},
 	components: {
 		type: ['string', 'function'],
-		required: config => !config.sections && componentsOrSectionsMessage,
+		process: (val, config) => ((!val && !config.sections) ? 'src/components/**/*.js' : val),
 	},
 	context: {
 		type: 'object',
@@ -31,7 +30,20 @@ module.exports = {
 	},
 	getExampleFilename: {
 		type: 'function',
-		default: componentPath => path.join(path.dirname(componentPath), 'Readme.md'),
+		default: componentPath => {
+			const files = [
+				path.join(path.dirname(componentPath), 'Readme.md'),
+				componentPath.replace(/\.jsx?$/, '.md'),
+			];
+
+			for (const file of files) {
+				if (fs.existsSync(file)) {
+					return file;
+				}
+			}
+
+			return false;
+		},
 	},
 	handlers: {
 		default: reactDocgen.defaultHandlers.concat(displayNameHandler),
@@ -46,7 +58,7 @@ module.exports = {
 	},
 	sections: {
 		type: 'array',
-		required: config => !config.components && componentsOrSectionsMessage,
+		default: [],
 	},
 	serverHost: {
 		type: 'string',
@@ -95,6 +107,7 @@ module.exports = {
 		type: ['object', 'function'],
 	},
 	webpackConfigFile: {
-		type: ['existing file path'],
+		type: ['boolean', 'existing file path'],
+		default: true,
 	},
 };

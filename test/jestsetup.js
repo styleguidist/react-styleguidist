@@ -40,3 +40,6 @@ document.createRange = function() {
 		},
 	};
 };
+
+// Mock create-react-app
+jest.mock('react-scripts/config/webpack.config.dev', () => ({ cra: true }));

@@ -22,7 +22,7 @@ module.exports = function processComponent(filepath, config) {
 		nameFallback: JSON.stringify(nameFallback),
 		pathLine: JSON.stringify(config.getComponentPathLine(componentPath)),
 		module: requireIt(filepath),
-		props: requireIt('!!props-loader!' + filepath),
+		props: requireIt('!!../loaders/props-loader!' + filepath),
 		examples: getExamples(examplesFile, nameFallback, config.defaultExample),
 	});
 };

@@ -24,7 +24,7 @@ exports[`test getPropsCode() should return valid JS for props with doclets 1`] =
   \"doclets\": {
     \"example\": \"example.md\\n\"
   },
-  \"example\": require(\"!!examples-loader!example.md\\n\")
+  \"example\": require(\"!!../loaders/examples-loader!example.md\\n\")
 }"
 `;
 

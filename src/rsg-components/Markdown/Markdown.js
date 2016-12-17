@@ -6,7 +6,7 @@ import renderMarkdown from '../../utils/markdown-to-jsx';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
 // That way we could avoid clashes between our loaders and user loaders.
-require('!!style-loader!css-loader!highlight.js/styles/tomorrow.css');
+require('!!../../../loaders/style-loader!../../../loaders/css-loader!highlight.js/styles/tomorrow.css');
 
 const styles = ({ font, monospace, link, linkHover, border, codeBackground }) => ({
 	base: {

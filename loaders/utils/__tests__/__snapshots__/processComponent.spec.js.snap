@@ -3,6 +3,6 @@ exports[`test processComponent() should return valid JS for section with content
 \'nameFallback\': \"pizza\",
 \'pathLine\': \"../../../pizza.js\",
 \'module\': require(\"pizza.js\"),
-\'props\': require(\"!!props-loader!pizza.js\"),
-\'examples\': require(\"!!examples-loader!Readme.md\")}"
+\'props\': require(\"!!../loaders/props-loader!pizza.js\"),
+\'examples\': require(\"!!../loaders/examples-loader!Readme.md\")}"
 `;

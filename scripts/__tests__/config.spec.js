@@ -8,38 +8,31 @@ afterEach(() => {
 });
 
 it('should read a config file', () => {
-	const result = getConfig({ config: './test/data/styleguide.config.js' });
+	const result = getConfig('./test/data/styleguide.config.js');
 	expect(result).toBeTruthy();
 	expect(result.title).toBe('React Style Guide Example');
 });
 
 it('should accept absolute path', () => {
-	const result = getConfig({ config: path.join(__dirname, '../../test/data/styleguide.config.js') });
+	const result = getConfig(path.join(__dirname, '../../test/data/styleguide.config.js'));
 	expect(result).toBeTruthy();
 	expect(result.title).toBe('React Style Guide Example');
 });
 
 it('should throw when passed config file not found', () => {
-	const fn = () => getConfig({ config: 'pizza' });
+	const fn = () => getConfig('pizza');
 	expect(fn).toThrow();
 });
 
 it('should find config file automatically', () => {
-	process.chdir('test/data');
+	process.chdir('test/apps/basic');
 	const result = getConfig({});
 	expect(result).toBeTruthy();
 	expect(result.title).toBe('React Style Guide Example');
 });
 
-it('should throw when default config file not found', () => {
-	const fn = () => getConfig({});
-	expect(fn).toThrow();
-});
-
 it('should accept config as an object', () => {
-	const result = getConfig({
-		components: '*.js',
-	});
+	const result = getConfig();
 	expect(result).toBeTruthy();
 	expect(result.title).toBe('Style guide');
 });
@@ -52,24 +45,43 @@ it('should throw if config has errors', () => {
 });
 
 it('should have default getExampleFilename implementation', () => {
-	const result = getConfig({
-		components: '*.js',
-	});
+	const result = getConfig();
 	expect(typeof result.getExampleFilename).toEqual('function');
-	expect(result.getExampleFilename('components/Button.js')).toEqual('components/Readme.md');
+});
+
+it('default getExampleFilename should return Readme.md path if it exists', () => {
+	const result = getConfig();
+	expect(result.getExampleFilename(
+		path.resolve('test/components/Button/Button.js')
+	)).toEqual(
+		path.resolve('test/components/Button/Readme.md')
+	);
+});
+
+it('default getExampleFilename should return Component.md path if it exists', () => {
+	const result = getConfig();
+	expect(result.getExampleFilename(
+		path.resolve('test/components/Placeholder/Placeholder.js')
+	)).toEqual(
+		path.resolve('test/components/Placeholder/Placeholder.md')
+	);
+});
+
+it('default getExampleFilename should return false if no examples file found', () => {
+	const result = getConfig();
+	expect(result.getExampleFilename(
+		path.resolve('test/components/RandomButton/RandomButton.js')
+	)).toBeFalsy();
 });
 
 it('should have default getComponentPathLine implementation', () => {
-	const result = getConfig({
-		components: '*.js',
-	});
+	const result = getConfig();
 	expect(typeof result.getComponentPathLine).toEqual('function');
 	expect(result.getComponentPathLine('components/Button.js')).toEqual('components/Button.js');
 });
 
 it('should absolutize assetsDir if it exists', () => {
 	const result = getConfig({
-		components: '*.js',
 		assetsDir: 'scripts/__tests__',
 	});
 	expect(result.assetsDir).toEqual(__dirname);
@@ -77,7 +89,6 @@ it('should absolutize assetsDir if it exists', () => {
 
 it('should throw if assetsDir does not exist', () => {
 	const fn = () => getConfig({
-		components: '*.js',
 		assetsDir: 'pizza',
 	});
 	expect(fn).toThrow();
@@ -85,7 +96,6 @@ it('should throw if assetsDir does not exist', () => {
 
 it('should use embedded default example template if defaultExample=true', () => {
 	const result = getConfig({
-		components: '*.js',
 		defaultExample: true,
 	});
 	expect(typeof result.defaultExample).toEqual('string');
@@ -94,7 +104,6 @@ it('should use embedded default example template if defaultExample=true', () => 
 
 it('should absolutize defaultExample if it is a string', () => {
 	const result = getConfig({
-		components: '*.js',
 		defaultExample: 'test/components/Button/Readme.md',
 	});
 	expect(result.defaultExample[0]).toEqual('/');
@@ -102,15 +111,7 @@ it('should absolutize defaultExample if it is a string', () => {
 
 it('should throw if defaultExample does not exist', () => {
 	const fn = () => getConfig({
-		components: '*.js',
 		defaultExample: 'pizza',
 	});
 	expect(fn).toThrowError('does not exist');
-});
-
-it('should throw if config has no components and sections options', () => {
-	const fn = () => getConfig({
-		config: path.join(__dirname, '../../test/data/badconfig.config.js'),
-	});
-	expect(fn).toThrowError('"components" or "sections" option is required');
 });

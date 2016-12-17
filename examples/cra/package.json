@@ -1,0 +1,36 @@
+{
+  "name": "react-styleguidist-example-cra",
+  "version": "1.0.0",
+  "private": true,
+  "homepage": "https://github.com/styleguidist/react-styleguidist",
+  "author": {
+    "name": "Artem Sapegin",
+    "url": "http://sapegin.me/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/styleguidist/react-styleguidist.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=4"
+  },
+  "devDependencies": {
+    "react-scripts": "^0.8.4",
+    "react-styleguidist": "^4.4.1",
+    "webpack": "^1.14.0"
+  },
+  "dependencies": {
+    "dog-names": "~1.0.2",
+    "react": "~15.4.1",
+    "react-dom": "~15.4.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "styleguide-server": "styleguidist server",
+    "styleguide-build": "styleguidist build"
+  }
+}
