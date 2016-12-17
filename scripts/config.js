@@ -19,7 +19,9 @@ const CONFIG_FILENAME = 'styleguide.config.js';
  * @param {object|string} [config] All config options or config file name or nothing.
  * @returns {object}
  */
-function getConfig(config = {}) {
+function getConfig(config) {
+	config = config || {};
+
 	let configFilepath;
 	if (isString(config)) {
 		// Load config from a given file
