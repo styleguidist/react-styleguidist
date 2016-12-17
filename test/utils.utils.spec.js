@@ -51,7 +51,7 @@ test.afterEach(() => {
 // setComponentsNames
 
 test('should set name property to each component', t => {
-	let result = utils.setComponentsNames([
+	const result = utils.setComponentsNames([
 		{
 			module: {
 				displayName: 'Foo',

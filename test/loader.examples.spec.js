@@ -2,7 +2,7 @@ import test from 'ava';
 import examplesLoader from '../loaders/examples.loader';
 
 test('should return valid, parsable JS', t => {
-	let exampleMarkdown = `
+	const exampleMarkdown = `
 # header
 
 	const _ = require('lodash');
@@ -14,7 +14,7 @@ text
 <span/>
 \`\`\`
 `;
-	let result = examplesLoader.call({}, exampleMarkdown);
+	const result = examplesLoader.call({}, exampleMarkdown);
 	t.truthy(result);
 	t.notThrows(() => new Function(result), SyntaxError);  // eslint-disable-line no-new-func
 });

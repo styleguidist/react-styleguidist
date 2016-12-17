@@ -412,9 +412,6 @@ function coalesceInlineHTML(ast) {
 }
 
 export default function markdownToJSX(markdown, { overrides = {} } = {}) {
-	let definitions;
-	let footnotes;
-
 	function astToJSX(ast, index) { /* `this` is the dictionary of definitions */
 		if (TEXT_AST_TYPES.indexOf(ast.type) !== -1) {
 			return ast.value;
@@ -600,8 +597,8 @@ export default function markdownToJSX(markdown, { overrides = {} } = {}) {
 
 	const extracted = extractDefinitionsFromASTTree(remarkAST, astToJSX);
 
-	definitions = extracted.definitions;
-	footnotes = extracted.footnotes;
+	const definitions = extracted.definitions;
+	const footnotes = extracted.footnotes;
 
 	coalesceInlineHTML(remarkAST);
 
