@@ -23,6 +23,7 @@ const toCode = utils.toCode;
 function processComponent(filepath, config) {
 	const nameFallback = getNameFallback(filepath);
 	const examplesFile = config.getExampleFilename(filepath);
+	const changelogFile = config.getChangelogFilename(filepath);
 	const componentPath = path.relative(config.configDir, filepath);
 
 	return toCode({
@@ -32,6 +33,7 @@ function processComponent(filepath, config) {
 		module: requireIt(filepath),
 		props: requireIt('!!props!' + filepath),
 		examples: getExamples(examplesFile, nameFallback, config.defaultExample),
+		changelog: getChangelog(changelogFile),
 	});
 }
 
@@ -63,6 +65,21 @@ function getExamples(examplesFile, nameFallback, defaultExample) {
 		return requireIt('examples?componentName=' + nameFallback + '!' + defaultExample);
 	}
 
+	return null;
+}
+
+/**
+ * Get require statement for changelog file if it exists.
+ *
+ * @param {string} examplesFile
+ * @param {string} nameFallback
+ * @param {string} defaultExample
+ * @returns {string}
+ */
+function getChangelog(changelogFile) {
+	if (fs.existsSync(changelogFile)) {
+		return requireIt('examples!' + changelogFile);
+	}
 	return null;
 }
 
