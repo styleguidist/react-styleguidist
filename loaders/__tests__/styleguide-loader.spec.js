@@ -12,7 +12,8 @@ it('should return valid, parsable JS', () => {
 		request: file,
 		options: {
 			styleguidist: {
-				components: 'components/**/*.js',
+				components: '../../test/components/**/*.js',
+				sections: [],
 				configDir: __dirname,
 				getExampleFilename: () => 'Readme.md',
 				getComponentPathLine: filepath => filepath,
@@ -23,12 +24,27 @@ it('should return valid, parsable JS', () => {
 	expect(new vm.Script(result)).not.toThrowError(SyntaxError);
 });
 
+it('should throw when components not found', () => {
+	const fn = () => styleguideLoader.pitch.call({
+		request: file,
+		options: {
+			styleguidist: {
+				components: 'pizza/*.js',
+				sections: [],
+				configDir: __dirname,
+			},
+		},
+	}, readFileSync(file, 'utf8'));
+	expect(fn).toThrowError('No components found');
+});
+
 it('should return correct component paths: glob', () => {
 	const result = styleguideLoader.pitch.call({
 		request: file,
 		options: {
 			styleguidist: {
 				components: 'components/**/*.js',
+				sections: [],
 				configDir: path.resolve(__dirname, '../../test'),
 				getExampleFilename: () => 'Readme.md',
 				getComponentPathLine: filepath => filepath,
@@ -50,6 +66,7 @@ it('should return correct component paths: function returning absolute paths', (
 					`${__dirname}/components/Button/Button.js`,
 					`${__dirname}/components/Placeholder/Placeholder.js`,
 				]),
+				sections: [],
 				configDir: __dirname,
 				getExampleFilename: () => 'Readme.md',
 				getComponentPathLine: filepath => filepath,
@@ -71,6 +88,7 @@ it('should return correct component paths: function returning relative paths', (
 					'components/Button/Button.js',
 					'components/Placeholder/Placeholder.js',
 				]),
+				sections: [],
 				configDir: __dirname,
 				getExampleFilename: () => 'Readme.md',
 				getComponentPathLine: filepath => filepath,

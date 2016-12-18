@@ -1,6 +1,7 @@
 'use strict';
 
 const pick = require('lodash/pick');
+const isFunction = require('lodash/isFunction');
 const prettyjson = require('prettyjson');
 const toCode = require('./utils/toCode');
 const getComponents = require('./utils/getComponents');
@@ -29,6 +30,14 @@ module.exports.pitch = function() {
 	const config = this.options.styleguidist;
 	const clientConfig = pick(config, CLIENT_CONFIG_OPTIONS);
 	const componentFiles = getComponents(config.components, config);
+
+	if (componentFiles.length === 0 && config.sections.length === 0) {
+		const message = isFunction(config.components)
+			? 'Styleguidist: No components found using a `components` function.'
+			: `Styleguidist: No components found using a mask: ${config.components}.`
+		;
+		throw new Error(message);
+	}
 
 	/* istanbul ignore if */
 	if (config.verbose) {

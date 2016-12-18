@@ -14,6 +14,14 @@ const clearConsole = require('react-dev-utils/clearConsole');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const StyleguidistError = require('../scripts/utils/error');
 
+function printErrorWithLink(message, linkTitle, linkUrl) {
+	console.error(chalk.bold.red(message));
+	console.log();
+	console.log(linkTitle);
+	console.log(chalk.underline(linkUrl));
+	console.log();
+}
+
 function printErrors(header, errors, printer) {
 	console.log(printer(header));
 	console.log();
@@ -21,6 +29,21 @@ function printErrors(header, errors, printer) {
 		console.log(message);
 		console.log();
 	});
+}
+
+function printStyleguidistError(errors) {
+	const styleguidistError = errors.find(message => message.includes('Module build failed: Error: Styleguidist:'));
+	if (!styleguidistError) {
+		return;
+	}
+
+	const m = styleguidistError.match(/Styleguidist: (.*?)\n/);
+	printErrorWithLink(
+		m[1],
+		'Learn how to configure your style guide:',
+		consts.DOCS_CONFIG
+	);
+	process.exit(1);
 }
 
 const argv = minimist(process.argv.slice(2));
@@ -31,10 +54,11 @@ try {
 }
 catch (err) {
 	if (err instanceof StyleguidistError) {
-		console.error(chalk.bold.red(err.message));
-		console.log();
-		console.log('Learn how to configure your style guide:');
-		console.log(chalk.underline(consts.DOCS_CONFIG));
+		printErrorWithLink(
+			err.message,
+			'Learn how to configure your style guide:',
+			consts.DOCS_CONFIG
+		);
 		process.exit(1);
 	}
 	else {
@@ -86,6 +110,7 @@ function commandBuild() {
 
 		// If errors exist, only show errors.
 		if (messages.errors.length) {
+			printStyleguidistError(messages.errors);
 			printErrors('Failed to compile.', messages.errors, chalk.red);
 			return;
 		}
@@ -102,12 +127,11 @@ function commandServer() {
 
 	process.on('uncaughtException', err => {
 		if (err.code === 'EADDRINUSE') {
-			console.error(chalk.bold.red(
-				`You have another server running at port ${config.serverPort} somewhere, shut it down first`
-			));
-			console.log();
-			console.log('You can change the port using the `serverPort` option in your style guide config:');
-			console.log(chalk.underline(consts.DOCS_CONFIG));
+			printErrorWithLink(
+				`You have another server running at port ${config.serverPort} somewhere, shut it down first`,
+				'You can change the port using the `serverPort` option in your style guide config:',
+				consts.DOCS_CONFIG
+			);
 		}
 		else {
 			console.error(chalk.bold.red(err.message));
@@ -153,6 +177,7 @@ function commandServer() {
 
 		// If errors exist, only show errors.
 		if (messages.errors.length) {
+			printStyleguidistError(messages.errors);
 			printErrors('Failed to compile.', messages.errors, chalk.red);
 			return;
 		}
