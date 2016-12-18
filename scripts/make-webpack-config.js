@@ -6,7 +6,6 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
-const prettyjson = require('prettyjson');
 const semverUtils = require('semver-utils');
 const isFunction = require('lodash/isFunction');
 const omit = require('lodash/omit');
@@ -67,7 +66,7 @@ module.exports = function(config, env) {
 			plugins: [
 				new webpack.LoaderOptionsPlugin({
 					minimize: isProd,
-					debug: !isProd,
+					debug: config.verbose,
 					options: {
 						styleguidist: config,
 					},
@@ -85,7 +84,7 @@ module.exports = function(config, env) {
 					'node_modules',
 				],
 			},
-			debug: !isProd,
+			debug: config.verbose,
 		});
 	}
 
@@ -175,14 +174,6 @@ module.exports = function(config, env) {
 
 	if (config.updateWebpackConfig) {
 		webpackConfig = config.updateWebpackConfig(webpackConfig, env);
-	}
-
-	/* istanbul ignore if */
-	if (config.verbose) {
-		console.log();
-		console.log('Using Webpack config:');
-		console.log(prettyjson.render(webpackConfig));
-		console.log();
 	}
 
 	return webpackConfig;

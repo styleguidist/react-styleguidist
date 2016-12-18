@@ -2,7 +2,6 @@
 
 const pick = require('lodash/pick');
 const isFunction = require('lodash/isFunction');
-const prettyjson = require('prettyjson');
 const toCode = require('./utils/toCode');
 const getComponents = require('./utils/getComponents');
 const getComponentsCode = require('./utils/getComponentsCode');
@@ -43,7 +42,7 @@ module.exports.pitch = function() {
 	if (config.verbose) {
 		console.log();
 		console.log('Loading components:');
-		console.log(prettyjson.render(componentFiles));
+		console.log(componentFiles.join('\n'));
 		console.log();
 	}
 

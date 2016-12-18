@@ -6,8 +6,7 @@
 
 const minimist = require('minimist');
 const chalk = require('chalk');
-const prettyjson = require('prettyjson');
-const merge = require('lodash/merge');
+const prettyFormat = require('pretty-format');
 const getConfig = require('../scripts/config');
 const consts = require('../scripts/consts');
 const clearConsole = require('react-dev-utils/clearConsole');
@@ -46,6 +45,16 @@ function printStyleguidistError(errors) {
 	process.exit(1);
 }
 
+function verbose(header, object) {
+	/* istanbul ignore if */
+	if (argv.verbose) {
+		console.log();
+		console.log(chalk.bold(header));
+		console.log(prettyFormat(object));
+		console.log();
+	}
+}
+
 const argv = minimist(process.argv.slice(2));
 
 let config;
@@ -66,17 +75,8 @@ catch (err) {
 	}
 }
 
-config = merge({}, config, {
-	verbose: !!argv.verbose,
-});
-
-/* istanbul ignore if */
-if (argv.verbose) {
-	console.log();
-	console.log('Using config:');
-	console.log(prettyjson.render(config));
-	console.log();
-}
+verbose('Styleguidist config:', config);
+config.verbose = argv.verbose;
 
 switch (argv._[0]) {
 	case 'build':
@@ -103,6 +103,8 @@ function commandBuild() {
 			console.log(chalk.underline(config.styleguideDir));
 		}
 	});
+
+	verbose('Webpack config:', compiler.options);
 
 	// Custom error reporting
 	compiler.plugin('done', function(stats) {
@@ -154,6 +156,8 @@ function commandServer() {
 			console.log();
 		}
 	});
+
+	verbose('Webpack config:', compiler.options);
 
 	// Show message when Webpack is recompiling the bundle
 	compiler.plugin('invalid', function() {
