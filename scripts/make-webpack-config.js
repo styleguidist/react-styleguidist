@@ -161,8 +161,8 @@ module.exports = function(config, env) {
 		webpackConfig = merge(webpackConfig, safeUserConfig);
 	}
 
-	// Add JSON loader if user config has no one
-	if (!hasJsonLoader(webpackConfig)) {
+	// Add JSON loader if user config has no one (Webpack 2 includes it by default)
+	if (!isWebpack2 && !hasJsonLoader(webpackConfig)) {
 		webpackConfig.module.loaders.push({
 			test: /\.json$/,
 			loader: 'json-loader',
