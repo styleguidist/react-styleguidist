@@ -11,7 +11,7 @@ const semverUtils = require('semver-utils');
 const isFunction = require('lodash/isFunction');
 const omit = require('lodash/omit');
 const hasJsonLoader = require('./utils/hasJsonLoader');
-const requireUserWebpackConfig = require('./utils/requireUserWebpackConfig');
+const findUserWebpackConfig = require('./utils/findUserWebpackConfig');
 
 const webpackVersion = semverUtils.parseRange(require('webpack/package.json').version)[0].major;
 const isWebpack2 = webpackVersion === '2';
@@ -132,16 +132,22 @@ module.exports = function(config, env) {
 	}
 
 	if (config.webpackConfigFile) {
-		const userConfigModule = requireUserWebpackConfig(config.webpackConfigFile);
-		const userConfig = isFunction(userConfigModule)
-			? userConfigModule(env)
-			: userConfigModule
+		const userConfigFile = config.webpackConfigFile === true
+			? findUserWebpackConfig()
+			: config.webpackConfigFile
 		;
-		const safeUserConfig = omit(
-			userConfig,
-			['entry', 'output', 'plugins']
-		);
-		webpackConfig = merge(webpackConfig, safeUserConfig);
+		if (userConfigFile) {
+			const userConfigModule = require(userConfigFile);
+			const userConfig = isFunction(userConfigModule)
+				? userConfigModule(env)
+				: userConfigModule
+			;
+			const safeUserConfig = omit(
+				userConfig,
+				['entry', 'output', 'plugins']
+			);
+			webpackConfig = merge(webpackConfig, safeUserConfig);
+		}
 	}
 
 	if (config.webpackConfig) {
