@@ -58,10 +58,6 @@ module.exports = function(config, env) {
 		webpackConfig = merge(webpackConfig, {
 			resolve: {
 				extensions: ['.js', '.jsx', '.json'],
-				modules: [
-					sourceDir,
-					'node_modules',
-				],
 			},
 			plugins: [
 				new webpack.LoaderOptionsPlugin({
@@ -79,10 +75,6 @@ module.exports = function(config, env) {
 			styleguidist: config,
 			resolve: {
 				extensions: ['.js', '.jsx', '.json', ''],
-				root: sourceDir,
-				moduleDirectories: [
-					'node_modules',
-				],
 			},
 			debug: config.verbose,
 		});
@@ -171,6 +163,11 @@ module.exports = function(config, env) {
 
 	// Add Styleguidist’s entry point after user’s entry points so things like polyfills would work
 	webpackConfig.entry.push(path.resolve(sourceDir, 'index'));
+
+	// Add components folder alias at the end so users can override our components to customize the style guide
+	// (their aliases should be before this one)
+	webpackConfig.resolve.alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
+
 
 	if (config.updateWebpackConfig) {
 		webpackConfig = config.updateWebpackConfig(webpackConfig, env);

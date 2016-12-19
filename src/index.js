@@ -15,7 +15,7 @@ import StyleGuide from 'rsg-components/StyleGuide';
 let codeKey = 0;
 
 function renderStyleguide() {
-	const styleguide = require('!!../loaders/styleguide-loader!index.js');
+	const styleguide = require('!!../loaders/styleguide-loader!./index.js');
 
 	let components = processComponents(styleguide.components);
 	let sections = processSections(styleguide.sections || []);
@@ -63,7 +63,7 @@ window.addEventListener('hashchange', renderStyleguide);
 
 /* istanbul ignore if */
 if (module.hot) {
-	module.hot.accept('!!../loaders/styleguide-loader!index.js', () => {
+	module.hot.accept('!!../loaders/styleguide-loader!./index.js', () => {
 		codeKey += 1;
 		renderStyleguide();
 	});
