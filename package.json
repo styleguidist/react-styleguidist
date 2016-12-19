@@ -114,6 +114,7 @@
     "start:customised": "bin/styleguidist.js server --config examples/customised/styleguide.config.js",
     "start:sections": "bin/styleguidist.js server --config examples/sections/styleguide.config.js",
     "start:cra": "cd examples/cra && ../../bin/styleguidist.js server",
+    "start:webpack": "cd examples/webpack && ../../bin/styleguidist.js server",
     "lint": "eslint . --ext .js --fix",
     "lint-staged": "lint-staged",
     "compile": "babel -d lib/ src/",
