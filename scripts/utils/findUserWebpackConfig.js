@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const path = require('path');
 const glob = require('glob');
 const isCreateReactApp = require('./isCreateReactApp');
 
@@ -27,14 +28,14 @@ module.exports = function findUserWebpackConfig() {
 	// Quick check in the root folder
 	for (const configFile of USER_WEBPACK_CONFIG_NAMES) {
 		if (fs.existsSync(configFile)) {
-			return configFile;
+			return path.resolve(configFile);
 		}
 	}
 
 	// Slower glob for ancestor folders
 	const foundConfig = glob.sync(USER_WEBPACK_CONFIG_MASK);
 	if (foundConfig.length) {
-		return foundConfig[0];
+		return path.resolve(foundConfig[0]);
 	}
 
 	return false;
