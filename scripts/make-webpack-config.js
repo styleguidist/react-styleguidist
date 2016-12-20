@@ -6,15 +6,13 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
-const semverUtils = require('semver-utils');
 const isFunction = require('lodash/isFunction');
 const omit = require('lodash/omit');
 const hasJsonLoader = require('./utils/hasJsonLoader');
+const getWebpackVersion = require('./utils/getWebpackVersion');
 const findUserWebpackConfig = require('./utils/findUserWebpackConfig');
 
-const webpackVersion = semverUtils.parseRange(require('webpack/package.json').version)[0].major;
-const isWebpack2 = webpackVersion === '2';
-
+const isWebpack2 = getWebpackVersion() === 2;
 const sourceDir = path.resolve(__dirname, '../lib');
 
 module.exports = function(config, env) {
