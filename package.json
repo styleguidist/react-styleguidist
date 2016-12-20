@@ -103,6 +103,7 @@
     "react-scripts": "~0.8.4",
     "semantic-release": "~4.3.5",
     "semantic-release-tamia": "~1.0.0",
+    "strip-shebang": "~1.0.2",
     "webpack": "2.2.0-rc.1"
   },
   "scripts": {

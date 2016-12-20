@@ -1,16 +1,14 @@
 'use strict';
 
-/* eslint-disable no-console */
+const fs = require('fs');
+const vm = require('vm');
+const path = require('path');
+const stripShebang = require('strip-shebang');
 
-const originalLog = console.log;
-afterEach(() => {
-	console.log = originalLog;
-});
+const BIN_PATH = path.resolve(__dirname, '../styleguidist.js');
 
 // Very simple test to be sure we’re not using any syntax that is not supported in versions of Node we support
-it('should not throw when requiring a file', () => {
-	console.log = jest.fn();
-	delete require.cache[require.resolve('../styleguidist')];  // Flush require cache
-	const fn = () => require('../styleguidist');
-	expect(fn).not.toThrow();
+it('should not throw when parsing a script', () => {
+	const code = stripShebang(fs.readFileSync(BIN_PATH, 'utf8'));
+	expect(new vm.Script(code)).not.toThrowError(SyntaxError);
 });
