@@ -2,8 +2,10 @@
 
 const fs = require('fs');
 const path = require('path');
+const startCase = require('lodash/startCase');
 const reactDocgen = require('react-docgen');
 const displayNameHandler = require('react-docgen-displayname-handler').default;
+const getUserPackageJson = require('../utils/getUserPackageJson');
 
 module.exports = {
 	assetsDir: {
@@ -94,7 +96,14 @@ module.exports = {
 	},
 	title: {
 		type: 'string',
-		default: 'Style guide',
+		process: val => {
+			if (val) {
+				return val;
+			}
+
+			const name = getUserPackageJson().name;
+			return `${startCase(name)} Style Guide`;
+		},
 	},
 	updateWebpackConfig: {
 		type: 'function',

@@ -32,7 +32,9 @@ it('should find config file automatically', () => {
 });
 
 it('should accept config as an object', () => {
-	const result = getConfig();
+	const result = getConfig({
+		title: 'Style guide',
+	});
 	expect(result).toBeTruthy();
 	expect(result.title).toBe('Style guide');
 });
@@ -78,6 +80,11 @@ it('should have default getComponentPathLine implementation', () => {
 	const result = getConfig();
 	expect(typeof result.getComponentPathLine).toEqual('function');
 	expect(result.getComponentPathLine('components/Button.js')).toEqual('components/Button.js');
+});
+
+it('should have default title based on package.json name', () => {
+	const result = getConfig();
+	expect(result.title).toEqual('React Styleguidist Style Guide');
 });
 
 it('should absolutize assetsDir if it exists', () => {
