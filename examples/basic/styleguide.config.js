@@ -7,5 +7,10 @@ module.exports = {
 		module: {
 			loaders: loaders.all,
 		},
+		performance: {
+			maxAssetSize: 650000,  // bytes
+			maxEntrypointSize: 650000,  // bytes
+			hints: 'error',
+		},
 	},
 };
