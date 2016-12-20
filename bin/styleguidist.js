@@ -114,7 +114,7 @@ function commandBuild() {
 		if (messages.errors.length) {
 			printStyleguidistError(messages.errors);
 			printErrors('Failed to compile.', messages.errors, chalk.red);
-			return;
+			process.exit(1);
 		}
 
 		// Show warnings if no errors were found.
