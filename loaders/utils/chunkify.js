@@ -23,7 +23,7 @@ module.exports = function chunkify(markdown) {
 	function processCode() {
 		return (ast) => {
 			visit(ast, 'code', node => {
-				if (node.lang && node.lang !== 'example') {
+				if (node.lang && node.lang !== 'example' && node.lang !== 'js') {
 					let highlighted;
 					try {
 						highlighted = hljs.highlight(node.lang, node.value).value;
