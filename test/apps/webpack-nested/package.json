@@ -1,5 +1,5 @@
 {
-  "name": "pizza",
+  "name": "pizza-webpack-nested",
   "devDependencies": {
     "file-loader": "~0.9.0",
     "postcss-loader": "~0.13.0",
