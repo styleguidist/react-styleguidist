@@ -35,7 +35,7 @@ module.exports = function findUserWebpackConfig() {
 	}
 
 	// Slower glob for ancestor folders
-	const foundConfig = glob.sync(USER_WEBPACK_CONFIG_MASK);
+	const foundConfig = glob.sync(USER_WEBPACK_CONFIG_MASK, { cwd: process.cwd() });
 	if (foundConfig.length) {
 		return absolutize(foundConfig[0]);
 	}
