@@ -12,6 +12,8 @@ const USER_WEBPACK_CONFIG_NAMES = [
 ];
 const USER_WEBPACK_CONFIG_MASK = '!(node_modules)*/**/webpack.config{.dev,}.js';
 
+const absolutize = filePath => path.resolve(process.cwd(), filePath);
+
 /**
  * Find user’s Webpack config and return its path.
  * Fixed location for create-react-app or search for the first webpack.config.dev.js or webpack.config.js.
@@ -28,14 +30,14 @@ module.exports = function findUserWebpackConfig() {
 	// Quick check in the root folder
 	for (const configFile of USER_WEBPACK_CONFIG_NAMES) {
 		if (fs.existsSync(configFile)) {
-			return path.resolve(configFile);
+			return absolutize(configFile);
 		}
 	}
 
 	// Slower glob for ancestor folders
 	const foundConfig = glob.sync(USER_WEBPACK_CONFIG_MASK);
 	if (foundConfig.length) {
-		return path.resolve(foundConfig[0]);
+		return absolutize(foundConfig[0]);
 	}
 
 	return false;
