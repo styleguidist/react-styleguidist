@@ -1,5 +1,6 @@
 {
   "name": "react-styleguidist",
+  "version": "4.4.2",
   "description": "React components style guide generator",
   "homepage": "https://github.com/styleguidist/react-styleguidist",
   "author": {
