@@ -269,6 +269,7 @@ Button.defaultProps = {
 * [Atellier](https://github.com/scup/atellier), a React components emulator.
 * [Carte Blanche](https://github.com/carteb/carte-blanche), an isolated development space with integrated fuzz testing for your components.
 * [Cosmos](https://github.com/skidding/cosmos), a tool for designing truly encapsulated React components.
+* [React BlueKit](http://bluekit.blueberry.io/), render React components with editable source and live preview.
 * [React Cards](https://github.com/steos/reactcards), devcards for React.
 * [React Storybook](https://github.com/kadirahq/react-storybook), isolate your React UI Component development from the main app.
 * [React Styleguide Generator](https://github.com/pocotan001/react-styleguide-generator), a React style guide generator.
