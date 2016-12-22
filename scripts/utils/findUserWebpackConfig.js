@@ -33,7 +33,6 @@ module.exports = function findUserWebpackConfig() {
 	}
 
 	// Slower glob for ancestor folders
-	console.error('CWD', process.cwd());  // eslint-disable-line no-console
 	const foundConfig = glob.sync(USER_WEBPACK_CONFIG_MASK);
 	if (foundConfig.length) {
 		return path.resolve(foundConfig[0]);
