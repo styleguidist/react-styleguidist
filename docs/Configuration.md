@@ -3,31 +3,30 @@
 You can change settings in the `styleguide.config.js` file in your project’s root folder.
 
 * **`components`**<br>
-  Type: `String` or `Function`, required unless `sections` is provided<br>
+  Type: `String` or `Function`, default: `src/components/**/*.js`<br>
   - when `String`: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules. Relative to config folder.
   - when `Function`: a function that returns an array of module paths.
 
-  If your components look like `components/Button.js` or `components/Button/Button.js` or `components/Button/index.js`:
+  If your components look like `components/Button.js` or `components/Button/Button.js` or `components/Button/index.js` (it’s the default behavior, change only if your components are not in `src/components` or files are not `.js`):
 
   ```javascript
   module.exports = {
     // ...
-    components: './components/**/*.js',
+    components: 'components/**/*.js',
   };
   ```
 
-  If your components look like `components/Button/Button.js` + `components/Button/index.js`:
+  If your components look like `components/Button/Button.js` + `components/Button/index.js` (you need to skip `index.js`, otherwise component will be loaded twice):
 
   ```javascript
   module.exports = {
     // ...
-    components: './components/**/[A-Z]*.js',
+    components: 'components/**/[A-Z]*.js',
   };
   ```
 
 * **`sections`**<br>
-  Type: `Array`
-
+  Type: `Array`<br>
   Allows components to be grouped into sections with a title and optional overview content. Sections can also be content only, with no associated components (for example, a textual introduction). A section definition consists of:<br>
   - `name` — the title of the section.
   - `content` (optional) — location of a Markdown file containing the overview content.
@@ -72,7 +71,7 @@ You can change settings in the `styleguide.config.js` file in your project’s r
 
 * **`defaultExample`**<br>
   Type: `Boolean` or `String`, default: `false`<br>
-  For components that do not have an example, a default one can be used. When set to `true`, the [DefaultExample.md](../src/templates/DefaultExample.md) is used, or you can provide the path to your own example Markdown file as a `String`.
+  For components that do not have an example, a default one can be used. When set to `true`, the [DefaultExample.md](../scripts/templates/DefaultExample.md) is used, or you can provide the path to your own example Markdown file as a `String`.
 
   When writing your own default example file, `__COMPONENT__` will be replaced by the actual component name at compile-time.
 
@@ -93,7 +92,7 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   HTML file to use as the template for the output.
 
 * **`title`**<br>
-  Type: `String`, default: `Style guide`<br>
+  Type: `String`, default: `<app name from package.json> Style Guide`<br>
   Style guide title.
 
 * **`serverHost`**<br>
@@ -110,10 +109,10 @@ You can change settings in the `styleguide.config.js` file in your project’s r
 
 * **`previewDelay`**<br>
   Type: `Number`, default: 500<br>
-  Debounce time used before render the changes from the editor. While inserting code the preview will not be updated.
+  Debounce time in milliseconds used before render the changes from the editor. While inserting code the preview will not be updated.
 
 * **`getExampleFilename`**<br>
-  Type: `Function`, default: finds `Readme.md` in the component folder<br>
+  Type: `Function`, default: finds `Readme.md` or `ComponentName.md` in the component folder<br>
   Function that returns examples file path for a given component path.
 
   For example, instead of `Readme.md` you can use `ComponentName.examples.md`:
@@ -166,7 +165,7 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   ```
     
 * **`webpackConfig`**<br>
-  Type: `Object or Function`, optional<br>
+  Type: `Object` or `Function`, optional<br>
   Custom Webpack config options: loaders, extensions, plugins, etc. required for your project.
 
   Can be an object:
@@ -207,14 +206,26 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   ```
 
   **Note:**: `output` option will be ignored.
+  
+  **Note:** you may want to disable Webpack config auto load specifying `webpackConfigFile: false` in your style guide config. 
+  
+  **Note:** run style guide in verbose mode to see the actual Webpack config used by Styleguidist: `npm run styleguide -- --verbose`.
 
   See [FAQ](./FAQ.md) for examples.
+
+* **`webpackConfigFile`**<br>
+  Type: `String` or `Boolean`, default: `true`<br>
+  - By default (`true`) will try to find Webpack config (`webpack.config.dev.js` or `webpack.config.js`) anywhere in your project and use it.
+  - `false` disables auto loading.
+  - String value is a custom path to your Webpack config.
+  
+  **Note:**: `entry`, `externals`, `output` and `plugins` options will be ignored.
 
 * **`updateWebpackConfig`**<br>
   Type: `Function`, optional<br>
   Function that allows you to modify Webpack config for style guide.
   
-  *Warning:* in most cases you should use `webpackConfig` option. You should be very careful and don’t overwrite any config options used by Styleguidist itself. Inspect `webpackConfig` before making any changes, otherwise you may break Styleguidist.
+  **Warning:** in most cases you should use `webpackConfig` option. You should be very careful and don’t overwrite any config options used by Styleguidist itself. Inspect `webpackConfig` before making any changes, otherwise you may break Styleguidist.
 
   ```javascript
   module.exports = {
@@ -229,6 +240,10 @@ You can change settings in the `styleguide.config.js` file in your project’s r
     },
   };
   ```
+  
+  **Note:** you may want to disable Webpack config auto load specifying `webpackConfigFile: false` in your style guide config. 
+  
+  **Note:** run style guide in verbose mode to see the actual Webpack config used by Styleguidist: `npm run styleguide -- --verbose`.
 
 * **`propsParser`**<br>
   Type: `Function`, optional<br>

@@ -8,14 +8,12 @@
 
 React Styleguidist is a style guide generator for React components. It lists component `propTypes` and shows live, editable usage examples based on Markdown files. You can use it to generate a static HTML page to share and publish or as a workbench for developing new components using hot reloaded dev server. Check out [**the demo style guide**](http://sapegin.github.io/react-styleguidist/).
 
-Based on Webpack, webpack-dev-server and Babel.
-
 ![](https://s3.amazonaws.com/f.cl.ly/items/3i0E1D1L1c1m1s2G1d0y/Screen%20Recording%202015-09-24%20at%2009.49%20AM.gif)
 
 ## Documentation
 
-* [Getting started](./docs/GettingStarted.md): installation and documenting components
-* [Configuration](./docs/Configuration.md)
+* [Getting started](./docs/GettingStarted.md): installation and basic configuration
+* [Documenting components](./docs/Documenting.md)
 * [CLI commands and options](./docs/CLI.md)
 * [API](./docs/API.md)
 * [FAQ](./docs/FAQ.md)

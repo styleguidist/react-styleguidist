@@ -30,7 +30,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "styleguide-server": "styleguidist server",
-    "styleguide-build": "styleguidist build"
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build"
   }
 }

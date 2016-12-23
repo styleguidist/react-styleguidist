@@ -1,149 +1,113 @@
 # Installation
 
-*Webpack is a peer dependency but your project doesn’t have to use it. React Styleguidist works with Webpack 1 and Webpack 2. Babel is recommended but not required.*
+*Webpack is a peer dependency but your project doesn’t have to use it. React Styleguidist works with Webpack 1 and Webpack 2.*
 
-1. Install Styleguidist and peer dependencies from npm:
+### 1. Install Styleguidist
 
-   ```bash
-   npm install --save-dev react-styleguidist react react-dom webpack
-   ```
+Install Styleguidist and peer dependencies from npm: 
 
-2. Add a **`styleguide.config.js`** file into your project’s root folder. A simplest possible config looks like this:
+ ```bash
+ npm install --save-dev react-styleguidist react react-dom webpack
+ ```
 
-   ```javascript
-   module.exports = {
-     title: 'My Great Style Guide',
-     components: './lib/components/**/*.js',
-   };
-  ```
+### 2. Point Styleguidist to your React components 
 
-3. If you use transpilers to run your project files (JSX → JS, SCSS → CSS, etc.), you need to set them up for the style guide too.
+> **Note**: If you’re using [create-react-app](https://github.com/facebookincubator/create-react-app), go directly to step 4.
 
-   Styleguidist generates a Webpack config required for the style guide itself but you need to configure [Webpack loaders](https://webpack.github.io/docs/configuration.html#module-loaders) for your project.
+By default Styleguidist will search component using this glob mask: `src/components/**/*.js`. If it doesn’t work for you, create a **`styleguide.config.js`** file in your project’s root folder.
 
-   Add a `webpackConfig` section to your `styleguide.config.js`:
+If your components look like `components/Button.js` or `components/Button/Button.js` or `components/Button/index.js` (it’s the default behavior, change only if your components are not in `src/components` or files are not `.js`):
 
-   ```javascript
-   module.exports = {
-     webpackConfig: {
-       module: {
-         loaders: [
-           // Babel loader, will use your project’s .babelrc
-           {
-             test: /\.jsx?$/,
-             exclude: /node_modules/,
-             loader: 'babel-loader',
-           },
-           // Other loaders that is needed for your components
-           {
-             test: /\.css$/,
-             loader: 'style-loader!css-loader?modules',
-           },
-         ],
+```javascript
+module.exports = {
+  components: 'src/components/**/*.js',
+};
+```
+
+If your components look like `components/Button/Button.js` + `components/Button/index.js` (you need to skip `index.js`, otherwise component will be loaded twice):
+
+```javascript
+module.exports = {
+  components: 'src/components/**/[A-Z]*.js',
+};
+```
+
+### 3. Configure transpilers and loaders for your project
+
+Styleguidist uses Webpack under the hood to load your project‘s files, and needs to know how to precess each file type.  
+
+#### Reusing your project’s Webpack config
+
+By default Styleguidist will try to find Webpack config (`webpack.config.dev.js` or `webpack.config.js`) anywhere in your project and use it.
+
+If your Webpack config is located somewhere else, add its location to your `styleguide.config.js`:
+
+```javascript
+module.exports = {
+  webpackConfigFile: 'configs/webpack.js',
+};
+```
+
+> **Note:**: `entry`, `externals`, `output` and `plugins` options will be ignored.
+
+> **Note:**: it may not work with your project, see below for other options.
+
+#### Custom Webpack config  
+
+Add a `webpackConfig` section to your `styleguide.config.js`:
+
+```javascript
+module.exports = {
+ webpackConfig: {
+   module: {
+     loaders: [
+       // Babel loader, will use your project’s .babelrc
+       {
+         test: /\.jsx?$/,
+         exclude: /node_modules/,
+         loader: 'babel-loader',
        },
-     },
-   };
-   ```
+       // Other loaders that is needed for your components
+       {
+         test: /\.css$/,
+         loader: 'style-loader!css-loader?modules',
+       },
+     ],
+   },
+ },
+};
+```
 
-   **Note**: don’t forget `include` or `exclude` options for your Webpack loaders, otherwise they will interfere with Styleguidist’s loaders. Also do not include `node_modules` folder.
+**Note:**: `output` option will be ignored.
 
-4. Add these scripts to your `package.json`:
+**Note:** you may want to disable Webpack config auto load by specifying `webpackConfigFile: false`.
 
-  ```json
-  {
-    // ...
-    "scripts": {
-      "styleguide-server": "styleguidist server",
-      "styleguide-build": "styleguidist build"
-    }
+#### Basic loaders for non-Webpack projects 
+
+If you use transpilers to run your project files (JSX → JS, SCSS → CSS, etc.), you need to set them up for the style guide too.
+
+Styleguidist generates a Webpack config required for the style guide itself but you need to configure [Webpack loaders](https://webpack.github.io/docs/configuration.html#module-loaders) for your project.
+
+ 
+### 4. Add npm scripts for convenience 
+
+Add these scripts to your `package.json`:
+
+```json
+{
+  "scripts": {
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build"
   }
-  ```
-
-5. Run **`npm run styleguide-server`** to start style guide dev server.
-
-To customize your style guide, head to the [Configuration section](Configuration.md).
-
-
-# Documenting components
-
-Styleguidist generates documentation from three sources:
-
-* **PropTypes and component description** in the source code
-
-  Components’ `PropTypes` and documentation comments are parsed by the [react-docgen](https://github.com/reactjs/react-docgen) library. Have a look at [their example](https://github.com/reactjs/react-docgen#example) of a component documentation. You can change its behaviour using `propsParser` and `resolver` [options](Configuration.md).
-
-  [Flow](https://flowtype.org/) type annotations are supported too.
-
-* **Usage examples and further documentation** in Markdown
-
-  Examples are written in Markdown where any code block without a language tag will be rendered as a React component. By default any `Readme.md` in the component’s folder is treated as an examples file but you can change it with the `getExampleFilename` [option](Configuration.md).
-
-      React component example:
-
-          <Button size="large">Push Me</Button>
-
-      One more with generic code fence:
-
-      ```
-      <Button size="large">Push Me</Button>
-      ```
-
-      One more with `example` code fence (text editors may alias to `jsx` or `javascript`):
-
-      ```example
-      <Button size="large">Push Me</Button>
-      ```
-
-      This example rendered only as highlighted source code:
-
-      ```html
-      <Button size="large">Push Me</Button>
-      ```
-
-      Any [Markdown](http://daringfireball.net/projects/markdown/) is **allowed** _here_.
-
-* **External examples using doclet tags**
-
-  Additional example files can be associated with components using doclet (`@example`) syntax. The following component will also have an example as loaded from the `extra.examples.md` file:
-
-  ```javascript
-  /**
-   * Component is described here.
-   *
-   * @example ./extra.examples.md
-   */
-  export default class SomeComponent extends React.Component {
-    // ...
-  }
-  ```
-
-# Writing code examples
-
-Code examples in Markdown use the ES6+JSX syntax. They can access all the components of your style guide using global variables.
-
-You can also `require` other modules (e.g. mock data that you use in your unit tests) from examples in Markdown:
-
-```javascript
-const mockData = require('./mocks');
-<Message content={mockData.hello} />
+}
 ```
 
-Each example has its own state that you can access at the `state` variable and change with the `setState` function. Default state is `{}`.
+### 5. Start your style guide
 
-```html
-<div>
-  <button onClick={() => setState({isOpen: true})}>Open</button>
-  <Modal isOpen={state.isOpen}>
-    <h1>Hallo!</h1>
-    <button onClick={() => setState({isOpen: false})}>Close</button>
-  </Modal>
-</div>
-```
+Run **`npm run styleguide`** to start style guide dev server.
 
-If you want to set the default state you can do:
+Run **`npm run styleguide:build`** to build static version.
 
-```javascript
-initialState = { key: 42 };
-```
+### 6. What‘s next?
 
-You *can* use `React.createClass` in your code examples, but if you need a more complex demo it’s often a good idea to define it in a separate JavaScript file instead and then just `require` it in Markdown.
+Now [document your components](Documenting.md) or [customize your style guide](Configuration.md) further.

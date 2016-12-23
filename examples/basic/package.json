@@ -24,7 +24,7 @@
     "react-modal": "~1.4.0"
   },
   "scripts": {
-    "styleguide-server": "styleguidist server",
-    "styleguide-build": "styleguidist build"
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build"
   }
 }
