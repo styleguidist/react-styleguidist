@@ -133,7 +133,7 @@ module.exports = function(config, env) {
 			;
 			const safeUserConfig = omit(
 				userConfig,
-				['entry', 'output', 'plugins']
+				['entry', 'externals', 'output', 'plugins']
 			);
 			webpackConfig = merge(webpackConfig, safeUserConfig);
 		}
