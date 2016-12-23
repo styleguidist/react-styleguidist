@@ -78,6 +78,7 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 			fontSize: 12,
 			color: 'inherit',
 			background: 'transparent',
+			whiteSpace: 'pre',
 		},
 	},
 	table: {
