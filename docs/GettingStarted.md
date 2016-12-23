@@ -78,9 +78,9 @@ module.exports = {
 };
 ```
 
-**Note:**: `output` option will be ignored.
+> **Note:**: `output` option will be ignored.
 
-**Note:** you may want to disable Webpack config auto load by specifying `webpackConfigFile: false`.
+> **Note:** you may want to disable Webpack config auto load by specifying `webpackConfigFile: false`.
 
 #### Basic loaders for non-Webpack projects 
 
