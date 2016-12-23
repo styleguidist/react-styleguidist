@@ -29,15 +29,16 @@ module.exports = function findUserWebpackConfig() {
 
 	// Quick check in the root folder
 	for (const configFile of USER_WEBPACK_CONFIG_NAMES) {
-		if (fs.existsSync(configFile)) {
-			return absolutize(configFile);
+		const absoluteConfigFile = absolutize(configFile);
+		if (fs.existsSync(absoluteConfigFile)) {
+			return absoluteConfigFile;
 		}
 	}
 
 	// Slower glob for ancestor folders
-	const foundConfig = glob.sync(USER_WEBPACK_CONFIG_MASK, { cwd: process.cwd() });
+	const foundConfig = glob.sync(absolutize(USER_WEBPACK_CONFIG_MASK));
 	if (foundConfig.length) {
-		return absolutize(foundConfig[0]);
+		return foundConfig[0];
 	}
 
 	return false;
