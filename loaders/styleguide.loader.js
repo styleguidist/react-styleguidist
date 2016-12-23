@@ -183,15 +183,16 @@ function processSectionsList(sections, config) {
  * @returns {Array}
  */
 function flattenComponentFiles(componentFiles, sectionsWithFiles) {
-	const getFilesFromSection = ({ sections = [], componentFiles }) => ([
-		componentFiles,
-		sections.map(getFilesFromSection),
-	]);
+	const getFilesFromSection = section => {
+		return [
+			section.componentFiles,
+			(section.sections || []).map(getFilesFromSection),
+		];
+	};
 
-	return flatMapDeep([
-		...componentFiles,
-		sectionsWithFiles.map(getFilesFromSection),
-	]);
+	return flatMapDeep(
+		componentFiles.concat(sectionsWithFiles.map(getFilesFromSection))
+	);
 }
 
 module.exports = function() {};
@@ -217,6 +218,8 @@ module.exports.pitch = function() {
 		config.contextDependencies.forEach(d => this.addContextDependency(d));
 	}
 	else {
+		// Add common parent folder for all components as a context dependency to enable
+		// hot reload when you create a file
 		const allComponentFiles = flattenComponentFiles(componentFiles, sectionsWithFiles);
 		if (allComponentFiles.length) {
 			const contextDir = commonDir(allComponentFiles);
