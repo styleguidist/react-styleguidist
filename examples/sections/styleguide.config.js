@@ -21,9 +21,14 @@ module.exports = {
 		},
 	],
 	webpackConfigFile: false,
-	webpackConfig: {
+	webpackConfig: env => ({
 		module: {
 			loaders: loaders.all,
 		},
-	},
+		performance: env === 'development' ? false : {
+			maxAssetSize: 650000,  // bytes
+			maxEntrypointSize: 650000,  // bytes
+			hints: 'error',
+		},
+	}),
 };
