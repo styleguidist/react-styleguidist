@@ -4,7 +4,7 @@ jest.mock('../server');
 import last from 'lodash/last';
 import styleguidist from '../index';
 
-const getDefaultWebpackConfig = () => styleguidist({ webpackConfigFile: false }).makeWebpackConfig();
+const getDefaultWebpackConfig = () => styleguidist().makeWebpackConfig();
 
 const cwd = process.cwd();
 afterEach(() => {
@@ -38,7 +38,6 @@ it('makeWebpackConfig should return production Webpack config', () => {
 it('makeWebpackConfig should merge webpackConfig config option', () => {
 	const defaultWebpackConfig = getDefaultWebpackConfig();
 	const api = styleguidist({
-		webpackConfigFile: false,
 		webpackConfig: {
 			resolve: {
 				extensions: ['.scss'],
@@ -85,7 +84,7 @@ it('makeWebpackConfig should merge webpackConfig config option as a function', (
 it('makeWebpackConfig should merge config from webpackConfigFile config option', () => {
 	const defaultWebpackConfig = getDefaultWebpackConfig();
 	const api = styleguidist({
-		webpackConfigFile: 'test/data/webpack.config.js',
+		webpackConfigFile: './test/data/webpack.config.js',
 	});
 	const result = api.makeWebpackConfig();
 
@@ -96,7 +95,7 @@ it('makeWebpackConfig should merge config from webpackConfigFile config option',
 
 it('makeWebpackConfig should merge config from webpackConfigFile config option as a function', () => {
 	const api = styleguidist({
-		webpackConfigFile: 'test/data/webpack.config.func.js',
+		webpackConfigFile: './test/data/webpack.config.func.js',
 	});
 	const result = api.makeWebpackConfig();
 

@@ -6,9 +6,9 @@
 
 Install Styleguidist and peer dependencies from npm: 
 
- ```bash
- npm install --save-dev react-styleguidist react react-dom webpack
- ```
+```bash
+npm install --save-dev react-styleguidist react react-dom webpack
+```
 
 ### 2. Point Styleguidist to your React components 
 
@@ -44,7 +44,7 @@ If your Webpack config is located somewhere else, add its location to your `styl
 
 ```javascript
 module.exports = {
-  webpackConfigFile: 'configs/webpack.js',
+  webpackConfigFile: './configs/webpack.js',
 };
 ```
 
@@ -78,16 +78,36 @@ module.exports = {
 };
 ```
 
-> **Note:**: `output` option will be ignored.
-
-> **Note:** you may want to disable Webpack config auto load by specifying `webpackConfigFile: false`.
-
 #### Basic loaders for non-Webpack projects 
 
-If you use transpilers to run your project files (JSX → JS, SCSS → CSS, etc.), you need to set them up for the style guide too.
+If your project don’t use Webpack you still need loaders for your files. You can use [loaders](https://github.com/styleguidist/loaders) module. It contains loaders for .js/.jsx (Babel), .css, .json and universal loader for all other files.
 
-Styleguidist generates a Webpack config required for the style guide itself but you need to configure [Webpack loaders](https://webpack.github.io/docs/configuration.html#module-loaders) for your project.
+```bash
+npm install --save-dev loaders
+```
 
+Then add a `webpackConfig` section to your `styleguide.config.js`:
+
+```javascript
+const loaders = require('loaders');
+module.exports = {
+  webpackConfig: {
+    module: {
+      // Enable all loaders
+      loaders: loaders.all,
+
+      // OR only needed loaders
+      loaders: [
+        loaders.babel,
+        loaders.css,
+        loaders.json,
+        loaders.url,
+        // Other loaders for your style guide
+      ],
+    },
+  },
+};
+```
  
 ### 4. Add npm scripts for convenience 
 

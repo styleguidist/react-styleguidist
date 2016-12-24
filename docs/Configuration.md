@@ -205,27 +205,26 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   };
   ```
 
-  **Note:**: `output` option will be ignored.
+  > **Note:**: `output` option will be ignored.
   
-  **Note:** you may want to disable Webpack config auto load specifying `webpackConfigFile: false` in your style guide config. 
+  > **Note:** this option disables Webpack config auto load, use `webpackConfigFile` option to load your project’s Webpack config from file.
   
-  **Note:** run style guide in verbose mode to see the actual Webpack config used by Styleguidist: `npm run styleguide -- --verbose`.
+  > **Note:** run style guide in verbose mode to see the actual Webpack config used by Styleguidist: `npm run styleguide -- --verbose`.
 
   See [FAQ](./FAQ.md) for examples.
 
 * **`webpackConfigFile`**<br>
-  Type: `String` or `Boolean`, default: `true`<br>
-  - By default (`true`) will try to find Webpack config (`webpack.config.dev.js` or `webpack.config.js`) anywhere in your project and use it.
-  - `false` disables auto loading.
-  - String value is a custom path to your Webpack config.
-  
-  **Note:**: `entry`, `externals`, `output` and `plugins` options will be ignored.
+  Type: `String`<br>
+  By default Styleguidist will try to find Webpack config (`webpack.config.dev.js` or `webpack.config.js`) anywhere in your project and use it.<br>
+  Use this option to specify a custom path to your Webpack config.
+
+  > **Note:**: `entry`, `externals`, `output` and `plugins` options will be ignored.
 
 * **`updateWebpackConfig`**<br>
   Type: `Function`, optional<br>
   Function that allows you to modify Webpack config for style guide.
   
-  **Warning:** in most cases you should use `webpackConfig` option. You should be very careful and don’t overwrite any config options used by Styleguidist itself. Inspect `webpackConfig` before making any changes, otherwise you may break Styleguidist.
+  > **Warning:** deprecated, use `webpackConfigFile` or `webpackConfig` options instead.
 
   ```javascript
   module.exports = {
@@ -241,9 +240,7 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   };
   ```
   
-  **Note:** you may want to disable Webpack config auto load specifying `webpackConfigFile: false` in your style guide config. 
-  
-  **Note:** run style guide in verbose mode to see the actual Webpack config used by Styleguidist: `npm run styleguide -- --verbose`.
+  > **Note:** this option disables Webpack config auto load. 
 
 * **`propsParser`**<br>
   Type: `Function`, optional<br>

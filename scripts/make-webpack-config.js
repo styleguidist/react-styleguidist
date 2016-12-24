@@ -10,7 +10,6 @@ const isFunction = require('lodash/isFunction');
 const omit = require('lodash/omit');
 const hasJsonLoader = require('./utils/hasJsonLoader');
 const getWebpackVersion = require('./utils/getWebpackVersion');
-const findUserWebpackConfig = require('./utils/findUserWebpackConfig');
 
 const isWebpack2 = getWebpackVersion() === 2;
 const sourceDir = path.resolve(__dirname, '../lib');
@@ -121,22 +120,16 @@ module.exports = function(config, env) {
 	}
 
 	if (config.webpackConfigFile) {
-		const userConfigFile = config.webpackConfigFile === true
-			? findUserWebpackConfig()
-			: config.webpackConfigFile
+		const userConfigModule = require(config.webpackConfigFile);
+		const userConfig = isFunction(userConfigModule)
+			? userConfigModule(env)
+			: userConfigModule
 		;
-		if (userConfigFile) {
-			const userConfigModule = require(userConfigFile);
-			const userConfig = isFunction(userConfigModule)
-				? userConfigModule(env)
-				: userConfigModule
-			;
-			const safeUserConfig = omit(
-				userConfig,
-				['entry', 'externals', 'output', 'plugins']
-			);
-			webpackConfig = merge(webpackConfig, safeUserConfig);
-		}
+		const safeUserConfig = omit(
+			userConfig,
+			['entry', 'externals', 'output', 'plugins']
+		);
+		webpackConfig = merge(webpackConfig, safeUserConfig);
 	}
 
 	if (config.webpackConfig) {
@@ -165,7 +158,6 @@ module.exports = function(config, env) {
 	// Add components folder alias at the end so users can override our components to customize the style guide
 	// (their aliases should be before this one)
 	webpackConfig.resolve.alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
-
 
 	if (config.updateWebpackConfig) {
 		webpackConfig = config.updateWebpackConfig(webpackConfig, env);

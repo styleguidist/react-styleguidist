@@ -21,6 +21,13 @@ function printErrorWithLink(message, linkTitle, linkUrl) {
 	console.log();
 }
 
+function printWebpackConfigFile(webpackConfigFile) {
+	if (webpackConfigFile) {
+		console.log('Loading Webpack config from:\n', webpackConfigFile);
+		console.log();
+	}
+}
+
 function printErrors(header, errors, printer) {
 	console.log(printer(header));
 	console.log();
@@ -104,6 +111,7 @@ function commandBuild() {
 		}
 	});
 
+	printWebpackConfigFile(config.webpackConfigFile);
 	verbose('Webpack config:', compiler.options);
 
 	// Custom error reporting
@@ -157,6 +165,7 @@ function commandServer() {
 		}
 	});
 
+	printWebpackConfigFile(config.webpackConfigFile);
 	verbose('Webpack config:', compiler.options);
 
 	// Show message when Webpack is recompiling the bundle

@@ -312,3 +312,22 @@ it('should throw for unknown options with suggestion', () => {
 	});
 	expect(fn).toThrowError('Did you mean "drink"');
 });
+
+it('should warn for deprecated options', () => {
+	/* eslint-disable no-console */
+	const originalWarn = console.warn;
+
+	console.warn = jest.fn();
+	const result = sanitizeConfig({
+		food: 'pizza',
+	}, {
+		food: {
+			deprecated: 'Don’t use!',
+		},
+	});
+	expect(result.food).toBe('pizza');
+	expect(console.warn).toBeCalledWith('"food" config option is deprecated. Don’t use!');
+
+	console.warn = originalWarn;
+	/* eslint-enable no-console */
+});

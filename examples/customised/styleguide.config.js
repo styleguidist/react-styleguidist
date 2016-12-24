@@ -4,7 +4,6 @@ const loaders = require('loaders');
 module.exports = {
 	title: 'Style guide example',
 	components: './lib/components/**/[A-Z]*.js',
-	webpackConfigFile: false,
 	webpackConfig: {
 		resolve: {
 			alias: {

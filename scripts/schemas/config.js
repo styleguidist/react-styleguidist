@@ -5,7 +5,9 @@ const path = require('path');
 const startCase = require('lodash/startCase');
 const reactDocgen = require('react-docgen');
 const displayNameHandler = require('react-docgen-displayname-handler').default;
+const findUserWebpackConfig = require('../utils/findUserWebpackConfig');
 const getUserPackageJson = require('../utils/getUserPackageJson');
+const consts = require('../consts');
 
 module.exports = {
 	assetsDir: {
@@ -107,6 +109,7 @@ module.exports = {
 	},
 	updateWebpackConfig: {
 		type: 'function',
+		deprecated: `Use "webpackConfigFile" or "webpackConfig" options instead:\n${consts.DOCS_CONFIG}`,
 	},
 	verbose: {
 		type: 'boolean',
@@ -116,7 +119,12 @@ module.exports = {
 		type: ['object', 'function'],
 	},
 	webpackConfigFile: {
-		type: ['boolean', 'existing file path'],
-		default: true,
+		type: ['module path'],
+		process: (val, config) => {
+			if (!val && !config.webpackConfig && !config.updateWebpackConfig) {
+				return findUserWebpackConfig();
+			}
+			return val;
+		},
 	},
 };

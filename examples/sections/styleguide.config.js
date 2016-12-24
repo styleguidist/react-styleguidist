@@ -20,7 +20,6 @@ module.exports = {
 			],
 		},
 	],
-	webpackConfigFile: false,
 	webpackConfig: env => ({
 		module: {
 			loaders: loaders.all,
