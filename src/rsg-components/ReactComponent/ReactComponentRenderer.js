@@ -19,10 +19,14 @@ const ReactComponentRenderer = ({ name, pathLine, description, props, examples, 
 			<div>
 				{description}
 			</div>
-			<div className={s.props}>
-				<h3 className={s.heading}>Props</h3>
-				{props}
-			</div>
+			{
+				props && (
+					<div className={s.props}>
+						<h3 className={s.heading}>Props</h3>
+						{props}
+					</div>
+				)
+			}
 			{examples}
 		</div>
 	);
