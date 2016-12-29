@@ -5,6 +5,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const merge = require('webpack-merge');
 const prettyjson = require('prettyjson');
 const semverUtils = require('semver-utils');
@@ -67,6 +68,11 @@ module.exports = function(config, env) {
 			moduleExtensions: ['-loader', '.loader'],
 		},
 		plugins: [
+			new FaviconsWebpackPlugin({
+				logo: config.favicon,
+				inject: true,
+				title: config.title,
+			}),
 			new HtmlWebpackPlugin({
 				title: config.title,
 				template: config.template,
