@@ -23,8 +23,8 @@ module.exports = function createServer(config, env) {
 	}
 
 	// user defined customizations
-	if (config.configServer) {
-		config.configServer(app, env);
+	if (config.configureServer) {
+		config.configureServer(app, env);
 	}
 
 	return { app, compiler };

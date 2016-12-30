@@ -26,7 +26,7 @@ module.exports = {
 		return webpackConfig;
 	},
 
-	configServer(app) {
+	configureServer(app) {
 		app.get('/custom', (req, res) => {
 			res.status(200).send({ response: 'Server invoked' });
 		});
