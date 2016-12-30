@@ -47,7 +47,7 @@ module.exports = function(config) {
 		},
 
 		/**
-		 * Return an info objected containing the created server instance and the instanced webapck
+		 * Return an info object containing the created server instance and the instanced webapck
 		 * compiler.
 		 *
 		 * @param {string} [env=production] 'production' or 'development'.
