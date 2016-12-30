@@ -180,6 +180,24 @@ You can change settings in the `styleguide.config.js` file in your project’s r
 
   See [FAQ](./FAQ.md) for examples.
 
+* **`configureServer`**<br>
+  Type: `Function`, optional<br>
+  Function that allows you to add endpoints to the underlying `express` server:
+
+  ```javascript
+  module.exports = {
+    // ...
+    configureServer(app) {
+       // `app` is the instance of the express server running react-styleguidist
+    	app.get('/custom-endpoint', (req, res) => {
+			res.status(200).send({ response: 'Server invoked' });
+		});
+    },
+  };
+  ```
+
+  See [FAQ](./FAQ.md) for examples.
+
 * **`propsParser`**<br>
   Type: `Function`, optional<br>
   Function that allows you to override the mechanism used to parse props from a source file. Default mechanism is using [react-docgen](https://github.com/reactjs/react-docgen) to parse props.
