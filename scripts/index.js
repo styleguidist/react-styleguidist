@@ -3,7 +3,6 @@
 const build = require('./build');
 const server = require('./server');
 const makeWebpackConfig = require('./make-webpack-config');
-const createServer = require('./create-server');
 const getConfig = require('./config');
 
 /**
@@ -44,17 +43,6 @@ module.exports = function(config) {
 		 */
 		makeWebpackConfig(env) {
 			return makeWebpackConfig(config, env || 'production');
-		},
-
-		/**
-		 * Return an info object containing the created server instance and the instanced webapck
-		 * compiler.
-		 *
-		 * @param {string} [env=production] 'production' or 'development'.
-		 * @return {object}
-		 */
-		createServer(env) {
-			return createServer(config, env || 'production');
 		},
 	};
 };
