@@ -103,6 +103,7 @@
     "start": "bin/styleguidist.js server --config examples/basic/styleguide.config.js",
     "start:customised": "bin/styleguidist.js server --config examples/customised/styleguide.config.js",
     "start:sections": "bin/styleguidist.js server --config examples/sections/styleguide.config.js",
+    "start:express": "bin/styleguidist.js server --config examples/express/styleguide.config.js",
     "lint": "eslint . --ext .js",
     "lint-staged": "lint-staged",
     "build": "bin/styleguidist.js build --config examples/basic/styleguide.config.js",
