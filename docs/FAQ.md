@@ -211,6 +211,23 @@ const StyleGuideRenderer = ({ title, homepageUrl, components, toc, sidebar }) =>
 
 We have [an example style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/customised) with custom components.
 
+## How to add webservices available to my components?
+You can add new endpoints to the express server running `react-styleguidist`.
+Add a new Webpack entry point in your style guide config:
+
+```javascript
+ module.exports = {
+    // ...
+    configureServer(app) {
+    	app.get('/custom-endpoint', (req, res) => {
+			res.status(200).send({ response: 'Server invoked' });
+		});
+    },
+  };
+```
+
+Your components will be able to invoke the url `http://localhost:3000/custom-endpoint` from their examples.
+
 ## How to debug my components and examples?
 
 1. Open your browser’s developer tools
