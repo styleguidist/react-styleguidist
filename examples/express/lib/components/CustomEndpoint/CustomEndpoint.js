@@ -6,7 +6,7 @@ export default class CustomEndpoint extends Component {
 		super(props);
 
 		this.state = { response: 'No Server Response' };
-		this.handleInvokeEndpoint = this.handleInvokeEndpoint.bind(this, 'custom');
+		this.handleInvokeEndpoint = this.handleInvokeEndpoint.bind(this);
 	}
 
 	handleInvokeEndpoint() {
