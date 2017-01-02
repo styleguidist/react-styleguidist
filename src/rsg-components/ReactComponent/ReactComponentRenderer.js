@@ -79,10 +79,12 @@ export function ReactComponentRenderer({
 			<div className={classes.description}>
 				{description}
 			</div>
-			<div className={classes.props}>
-				<h3 className={classes.heading}>Props</h3>
-				{props}
-			</div>
+			{props && (
+				<div className={classes.props}>
+					<h3 className={classes.heading}>Props</h3>
+					{props}
+				</div>
+			)}
 			{examples}
 		</div>
 	);

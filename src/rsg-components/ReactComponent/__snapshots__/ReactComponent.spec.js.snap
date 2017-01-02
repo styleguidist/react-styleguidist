@@ -1,4 +1,4 @@
-exports[`test render should render component 1`] = `
+exports[`test renderer should render component 1`] = `
 <div
   id="Foo-container">
   <header>
@@ -19,11 +19,6 @@ exports[`test render should render component 1`] = `
   <div>
     Bar
   </div>
-  <div>
-    <h3>
-      Props
-    </h3>
-  </div>
   <Playground
     code="<button>OK</button>"
     evalInContext={[Function]}
@@ -31,6 +26,28 @@ exports[`test render should render component 1`] = `
     name="Component" />
   <_class
     text="Hello *world*!" />
+</div>
+`;
+
+exports[`test should not render props section if there are no props 1`] = `
+<div
+  id="Test-container">
+  <header>
+    <h2
+      id="Test">
+      Test
+    </h2>
+    <div>
+      test
+    </div>
+    <div>
+      <_class
+        href="/">
+        ← Back
+      </_class>
+    </div>
+  </header>
+  <div />
 </div>
 `;
 
@@ -59,4 +76,34 @@ exports[`test should render component renderer 1`] = `
   }
   name="Foo"
   pathLine="foo/bar.js" />
+`;
+
+exports[`test should render props section 1`] = `
+<div
+  id="Test-container">
+  <header>
+    <h2
+      id="Test">
+      Test
+    </h2>
+    <div>
+      test
+    </div>
+    <div>
+      <_class
+        href="/">
+        ← Back
+      </_class>
+    </div>
+  </header>
+  <div />
+  <div>
+    <h3>
+      Props
+    </h3>
+    <div>
+      test
+    </div>
+  </div>
+</div>
 `;

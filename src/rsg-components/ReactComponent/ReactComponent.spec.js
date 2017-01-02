@@ -34,7 +34,7 @@ it('should render component renderer', () => {
 	expect(actual).toMatchSnapshot();
 });
 
-it('render should render component', () => {
+it('renderer should render component', () => {
 	const actual = shallow(
 		<ReactComponentRenderer
 			classes={{}}
@@ -54,6 +54,31 @@ it('render should render component', () => {
 					text={component.examples[1].content}
 				/>,
 			]}
+		/>
+	);
+
+	expect(actual).toMatchSnapshot();
+});
+
+test('should render props section', () => {
+	const actual = shallow(
+		<ReactComponentRenderer
+			classes={{}}
+			name="Test"
+			pathLine="test"
+			props={<div>test</div>}
+		/>
+	);
+
+	expect(actual).toMatchSnapshot();
+});
+
+test('should not render props section if there are no props', () => {
+	const actual = shallow(
+		<ReactComponentRenderer
+			classes={{}}
+			name="Test"
+			pathLine="test"
 		/>
 	);
 
