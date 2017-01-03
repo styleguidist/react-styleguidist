@@ -1,6 +1,7 @@
 import vm from 'vm';
 import path from 'path';
 import { readFileSync } from 'fs';
+import noop from 'lodash/noop';
 import styleguideLoader from '../styleguide-loader';
 
 const file = './test/components/Button/Button.js';
@@ -19,6 +20,7 @@ it('should return valid, parsable JS', () => {
 				getComponentPathLine: filepath => filepath,
 			},
 		},
+		addContextDependency: noop,
 	}, readFileSync(file, 'utf8'));
 	expect(result).toBeTruthy();
 	expect(new vm.Script(result)).not.toThrowError(SyntaxError);
@@ -34,6 +36,7 @@ it('should throw when components not found', () => {
 				configDir: __dirname,
 			},
 		},
+		addContextDependency: noop,
 	}, readFileSync(file, 'utf8'));
 	expect(fn).toThrowError('No components found');
 });
@@ -50,6 +53,7 @@ it('should return correct component paths: glob', () => {
 				getComponentPathLine: filepath => filepath,
 			},
 		},
+		addContextDependency: noop,
 	}, readFileSync(file, 'utf8'));
 	expect(result).toBeTruthy();
 	expect(new vm.Script(result)).not.toThrowError(SyntaxError);
@@ -72,6 +76,7 @@ it('should return correct component paths: function returning absolute paths', (
 				getComponentPathLine: filepath => filepath,
 			},
 		},
+		addContextDependency: noop,
 	}, readFileSync(file, 'utf8'));
 	expect(result).toBeTruthy();
 	expect(new vm.Script(result)).not.toThrowError(SyntaxError);
@@ -94,6 +99,7 @@ it('should return correct component paths: function returning relative paths', (
 				getComponentPathLine: filepath => filepath,
 			},
 		},
+		addContextDependency: noop,
 	}, readFileSync(file, 'utf8'));
 	expect(result).toBeTruthy();
 	expect(new vm.Script(result)).not.toThrowError(SyntaxError);
