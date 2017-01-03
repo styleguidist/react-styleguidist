@@ -74,7 +74,7 @@ exports[`test should pass error message instead of components list when there is
   }
   homepageUrl="https://github.com/styleguidist/react-styleguidist"
   sections={Array []}
-  sidebar={true}
+  sidebar={false}
   title="Hello"
   toc={
     <TableOfContents
