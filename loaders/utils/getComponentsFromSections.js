@@ -12,11 +12,11 @@ const getComponents = require('./getComponents');
 module.exports = function getComponentsFromSections(sections, config) {
 	return sections.reduce((components, section) => {
 		if (section.components) {
-			components.push(...getComponents(section.components, config));
+			return components.concat(getComponents(section.components, config));
 		}
 
 		if (section.sections) {
-			components.push(...getComponentsFromSections(section.sections, config));
+			return components.concat(getComponentsFromSections(section.sections, config));
 		}
 
 		return components;
