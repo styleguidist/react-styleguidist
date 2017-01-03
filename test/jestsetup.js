@@ -41,5 +41,12 @@ document.createRange = function() {
 	};
 };
 
-// Mock create-react-app
+// Mocks
 jest.mock('react-scripts/config/webpack.config.dev', () => ({ cra: true }));
+jest.mock('webpack-dev-server', function() {
+	return function() {
+		return {
+			app: {},
+		};
+	};
+});

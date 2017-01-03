@@ -26,6 +26,9 @@ module.exports = {
 	concontextDependencies: {
 		type: 'array',
 	},
+	configureServer: {
+		type: 'function',
+	},
 	defaultExample: {
 		type: ['boolean', 'existing file path'],
 		default: false,
