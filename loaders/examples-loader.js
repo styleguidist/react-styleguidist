@@ -18,6 +18,9 @@ function examplesLoader(source) {
 	const query = loaderUtils.parseQuery(this.query);
 	const config = this.options.styleguidist;
 
+    // Append React to context modules, since it’s required for JSX
+	const fullContext = Object.assign({ React: 'react' }, config.context);
+
 	// Replace placeholders (__COMPONENT__) with the passed-in component name
 	if (query.componentName) {
 		source = expandDefaultComponent(source, query.componentName);
@@ -32,7 +35,7 @@ function examplesLoader(source) {
 	// because webpack changes its name to __webpack__require__ or something.
 	const codeFromAllExamples = map(filter(examples, { type: 'code' }), 'content').join('\n');
 	const requiresFromExamples = getRequires(codeFromAllExamples);
-	const allRequires = Object.assign({}, requiresFromExamples, config.context);
+	const allRequires = Object.assign({}, requiresFromExamples, fullContext);
 
 	// “Prerequire” modules required in Markdown examples and context so they end up in a bundle and be available at runtime
 	const requireMapCode = map(allRequires, requireRequest =>
@@ -40,7 +43,7 @@ function examplesLoader(source) {
 	).join(',\n');
 
 	// Require context modules so they are available in an example
-	const requireContextCode = map(config.context, (requireRequest, name) =>
+	const requireContextCode = map(fullContext, (requireRequest, name) =>
 		`var ${name} = ${requireIt(requireRequest)}`
 	).join(';\\n');
 

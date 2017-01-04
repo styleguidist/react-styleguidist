@@ -19,9 +19,7 @@ module.exports = {
 	},
 	context: {
 		type: 'object',
-		default: {
-			React: 'react',
-		},
+		default: {},
 	},
 	contextDependencies: {
 		type: 'array',
