@@ -49,6 +49,9 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 	ol: {
 		composes: '$para',
 	},
+	li: {
+		composes: '$base',
+	},
 	blockquote: {
 		composes: '$para',
 		fontSize: 13,
@@ -57,9 +60,17 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 	},
 	hr: {
 		composes: '$para',
-		borderWidth: '0 0 1px 0',
+		borderWidth: [[0, 0, 1, 0]],
 		borderColor: border,
 		borderStyle: 'solid',
+	},
+	em: {
+		composes: '$base',
+		fontStyle: 'italic',
+	},
+	strong: {
+		composes: '$base',
+		fontWeight: 'bold',
 	},
 	code: {
 		display: 'inline',
@@ -99,10 +110,7 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 		textAlign: 'left',
 		fontSize: 13,
 	},
-	em: {},
-	strong: {},
 	img: {},
-	li: {},
 	tr: {},
 	tbody: {},
 });
