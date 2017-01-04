@@ -21,7 +21,7 @@ Based on Webpack, webpack-dev-server and Babel.
 
 ## Examples
 
-* [Basic style guide](http://sapegin.github.io/react-styleguidist/), [source](./examples/basic)
+* [Basic style guide](http://react-styleguidist.js.org), [source](./examples/basic)
 * Style guide with sections, [source](./examples/sections)
 * Style guide with customized styles, [source](./examples/customised)
 * Style guide with custom express endpoints, [source](./examples/express)
