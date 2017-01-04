@@ -23,7 +23,7 @@ module.exports = {
 			React: 'react',
 		},
 	},
-	concontextDependencies: {
+	contextDependencies: {
 		type: 'array',
 	},
 	configureServer: {
@@ -66,6 +66,12 @@ module.exports = {
 		type: 'number',
 		default: 500,
 	},
+	propsParser: {
+		type: 'function',
+	},
+	resolver: {
+		type: 'function',
+	},
 	sections: {
 		type: 'array',
 		default: [],
@@ -87,7 +93,7 @@ module.exports = {
 		default: false,
 	},
 	styleguideDir: {
-		type: 'file path',
+		type: 'directory path',
 		default: 'styleguide',
 	},
 	styles: {
