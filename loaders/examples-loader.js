@@ -66,7 +66,7 @@ function examplesLoader(source) {
 				'require',
 				'state',
 				'setState',
-				'__initialStateCB',
+				'__setInitialState',
 				'${requireContextCode}\\n' + code
 			);
 			return func.bind(null, requireInRuntime);
