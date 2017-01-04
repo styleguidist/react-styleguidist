@@ -71,6 +71,7 @@ module.exports = {
 	},
 	resolver: {
 		type: 'function',
+		default: reactDocgen.resolver.findAllExportedComponentDefinitions,
 	},
 	sections: {
 		type: 'array',

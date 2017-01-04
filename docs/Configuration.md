@@ -291,7 +291,7 @@ You can change settings in the `styleguide.config.js` file in your project’s r
 
 * **`resolver`**<br>
   Type: `Function`, optional<br>
-  Function that allows you to override the mechanism used to identify classes/components to analyze. Default behaviour is to find a single exported component in each file and fail if more than one export is found. You can configure it to find all components or use a custom detection method. See the [react-docgen resolver documentation](https://github.com/reactjs/react-docgen#resolver) for more information about resolvers.
+  Function that allows you to override the mechanism used to identify classes/components to analyze. Default behaviour is to find all exported components in each file. You can configure it to find all components or use a custom detection method. See the [react-docgen resolver documentation](https://github.com/reactjs/react-docgen#resolver) for more information about resolvers.
 
   ```javascript
   module.exports = {
