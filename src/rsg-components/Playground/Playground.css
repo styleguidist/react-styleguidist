@@ -16,7 +16,6 @@
 	composes: border link from "../../styles/colors.css";
 	position: absolute;
 	right: -1px;
-	bottom: -27px;
 	cursor: pointer;
 	border-bottom-left-radius: 3px;
 	border-bottom-right-radius: 3px;
