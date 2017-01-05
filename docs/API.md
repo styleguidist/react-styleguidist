@@ -91,7 +91,7 @@ styleguidist(require('../styleguide.config.js')).build((err, config) => {
 
 ```javascript
 const styleguidist = require('react-styleguidist');
-styleguidist(require('../styleguide.config.js')).build((err, config) => {
+styleguidist(require('../styleguide.config.js')).server((err, config) => {
   if (err) {
     console.log(err);
   }
