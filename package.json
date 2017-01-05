@@ -67,7 +67,7 @@
   "peerDependencies": {
     "react": ">=0.14.0",
     "react-dom": ">=0.14.0",
-    "webpack": "1 || ^2.1.0-beta"
+    "webpack": "1 || 2 || ^2.1.0-beta || ^2.2.0-rc"
   },
   "devDependencies": {
     "ava": "~0.16.0",
