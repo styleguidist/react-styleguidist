@@ -26,7 +26,7 @@ const styles = ({ font, link, linkHover, border, baseBackground, codeBackground 
 	codeToggle: {
 		position: 'absolute',
 		right: -1,
-		bottom: -27,
+		margin: 0,
 		padding: [[6, 8]],
 		fontFamily: font,
 		fontSize: 14,
