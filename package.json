@@ -80,7 +80,7 @@
   "peerDependencies": {
     "react": ">=0.14.0",
     "react-dom": ">=0.14.0",
-    "webpack": "1 || ^2.2.0-rc"
+    "webpack": "1 || 2 || ^2.1.0-beta || ^2.2.0-rc"
   },
   "devDependencies": {
     "babel-eslint": "~7.1.1",
