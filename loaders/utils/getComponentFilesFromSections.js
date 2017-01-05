@@ -1,6 +1,6 @@
 'use strict';
 
-const getComponents = require('./getComponents');
+const getComponentFiles = require('./getComponentFiles');
 
 /**
  * Return absolute paths of all components in sections.
@@ -9,14 +9,14 @@ const getComponents = require('./getComponents');
  * @param {object} config
  * @returns {Array}
  */
-module.exports = function getComponentsFromSections(sections, config) {
+module.exports = function getComponentFilesFromSections(sections, config) {
 	return sections.reduce((components, section) => {
 		if (section.components) {
-			return components.concat(getComponents(section.components, config));
+			return components.concat(getComponentFiles(section.components, config));
 		}
 
 		if (section.sections) {
-			return components.concat(getComponentsFromSections(section.sections, config));
+			return components.concat(getComponentFilesFromSections(section.sections, config));
 		}
 
 		return components;

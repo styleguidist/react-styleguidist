@@ -1,0 +1,46 @@
+exports[`test getProps() should return an object for props 1`] = `
+Object {
+  "description": "The only true button.",
+  "doclets": Object {},
+  "methods": Array [],
+  "props": Object {
+    "children": Object {
+      "description": "Button label.",
+      "required": true,
+      "type": Object {},
+    },
+    "color": Object {
+      "description": "",
+      "required": false,
+      "type": Object {},
+    },
+  },
+}
+`;
+
+exports[`test getProps() should return an object for props with doclets 1`] = `
+Object {
+  "description": "
+The only true button.
+
+",
+  "doclets": Object {},
+  "example": RequireStatement {
+    "filepath": "!!../loaders/examples-loader!example.md
+",
+  },
+}
+`;
+
+exports[`test getProps() should return an object for props without description 1`] = `
+Object {
+  "doclets": Object {},
+  "props": Object {
+    "children": Object {
+      "description": "Button label.",
+      "required": true,
+      "type": Object {},
+    },
+  },
+}
+`;

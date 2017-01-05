@@ -4,35 +4,26 @@ const reactDocs = require('react-docgen');
 const removeDoclets = require('./removeDoclets');
 const requireIt = require('./requireIt');
 
-const REQUIRE_PLACEHOLDER = '<%{#require#}%>';
-
 /**
- * Convert props to JavaScript code as a string, extract doclets.
+ * Replace example doclet with a require statement AST.
  *
  * @param {object} doc
- * @returns {string}
+ * @returns {object}
  */
-module.exports = function getPropsCode(doc) {
+module.exports = function getProps(doc) {
 	if (doc.description) {
 		// Read doclets from the description and remove them
 		doc.doclets = reactDocs.utils.docblock.getDoclets(doc.description);
 		doc.description = removeDoclets(doc.description);
 
 		if (doc.doclets.example) {
-			doc.example = REQUIRE_PLACEHOLDER;
+			doc.example = requireIt('!!../loaders/examples-loader!' + doc.doclets.example);
+			delete doc.doclets.example;
 		}
 	}
 	else {
 		doc.doclets = {};
 	}
 
-	const code = JSON.stringify(doc, null, '  ');
-
-	if (doc.doclets.example) {
-		return code.replace(
-			JSON.stringify(REQUIRE_PLACEHOLDER),
-			requireIt('!!../loaders/examples-loader!' + doc.doclets.example)
-		);
-	}
-	return code;
+	return doc;
 };

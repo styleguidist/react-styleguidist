@@ -57,8 +57,8 @@ it('should return correct component paths: glob', () => {
 	}, readFileSync(file, 'utf8'));
 	expect(result).toBeTruthy();
 	expect(new vm.Script(result)).not.toThrowError(SyntaxError);
-	expect(result.includes(`'filepath': "components/Button/Button.js"`)).toBe(true);
-	expect(result.includes(`'filepath': "components/Placeholder/Placeholder.js"`)).toBe(true);
+	expect(result.includes(`'filepath': 'components/Button/Button.js'`)).toBe(true);
+	expect(result.includes(`'filepath': 'components/Placeholder/Placeholder.js'`)).toBe(true);
 });
 
 it('should return correct component paths: function returning absolute paths', () => {
@@ -80,8 +80,8 @@ it('should return correct component paths: function returning absolute paths', (
 	}, readFileSync(file, 'utf8'));
 	expect(result).toBeTruthy();
 	expect(new vm.Script(result)).not.toThrowError(SyntaxError);
-	expect(result.includes(`'filepath': "components/Button/Button.js"`)).toBe(true);
-	expect(result.includes(`'filepath': "components/Placeholder/Placeholder.js"`)).toBe(true);
+	expect(result.includes(`'filepath': 'components/Button/Button.js'`)).toBe(true);
+	expect(result.includes(`'filepath': 'components/Placeholder/Placeholder.js'`)).toBe(true);
 });
 
 it('should return correct component paths: function returning relative paths', () => {
@@ -103,6 +103,6 @@ it('should return correct component paths: function returning relative paths', (
 	}, readFileSync(file, 'utf8'));
 	expect(result).toBeTruthy();
 	expect(new vm.Script(result)).not.toThrowError(SyntaxError);
-	expect(result.includes(`'filepath': "components/Button/Button.js"`)).toBe(true);
-	expect(result.includes(`'filepath': "components/Placeholder/Placeholder.js"`)).toBe(true);
+	expect(result.includes(`'filepath': 'components/Button/Button.js'`)).toBe(true);
+	expect(result.includes(`'filepath': 'components/Placeholder/Placeholder.js'`)).toBe(true);
 });

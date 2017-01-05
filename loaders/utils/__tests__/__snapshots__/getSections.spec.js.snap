@@ -1,0 +1,124 @@
+exports[`test getSections() should return an object 1`] = `
+Array [
+  Object {
+    "components": null,
+    "content": RequireStatement {
+      "filepath": "!!../loaders/examples-loader!<rootDir>/test/Readme.md",
+    },
+    "name": "Readme",
+    "sections": null,
+  },
+  Object {
+    "components": Array [
+      Object {
+        "examples": RequireStatement {
+          "filepath": "!!../loaders/examples-loader!<rootDir>/test/components/Button/Button.js",
+        },
+        "filepath": "components/Button/Button.js",
+        "module": RequireStatement {
+          "filepath": "<rootDir>/test/components/Button/Button.js",
+        },
+        "nameFallback": "Button",
+        "pathLine": "components/Button/Button.js",
+        "props": RequireStatement {
+          "filepath": "!!../loaders/props-loader!<rootDir>/test/components/Button/Button.js",
+        },
+      },
+      Object {
+        "examples": RequireStatement {
+          "filepath": "!!../loaders/examples-loader!<rootDir>/test/components/Placeholder/Placeholder.js",
+        },
+        "filepath": "components/Placeholder/Placeholder.js",
+        "module": RequireStatement {
+          "filepath": "<rootDir>/test/components/Placeholder/Placeholder.js",
+        },
+        "nameFallback": "Placeholder",
+        "pathLine": "components/Placeholder/Placeholder.js",
+        "props": RequireStatement {
+          "filepath": "!!../loaders/props-loader!<rootDir>/test/components/Placeholder/Placeholder.js",
+        },
+      },
+      Object {
+        "examples": RequireStatement {
+          "filepath": "!!../loaders/examples-loader!<rootDir>/test/components/RandomButton/RandomButton.js",
+        },
+        "filepath": "components/RandomButton/RandomButton.js",
+        "module": RequireStatement {
+          "filepath": "<rootDir>/test/components/RandomButton/RandomButton.js",
+        },
+        "nameFallback": "RandomButton",
+        "pathLine": "components/RandomButton/RandomButton.js",
+        "props": RequireStatement {
+          "filepath": "!!../loaders/props-loader!<rootDir>/test/components/RandomButton/RandomButton.js",
+        },
+      },
+    ],
+    "content": null,
+    "name": "Components",
+    "sections": null,
+  },
+]
+`;
+
+exports[`test processSection() should return an object for section with components 1`] = `
+Object {
+  "components": Array [
+    Object {
+      "examples": RequireStatement {
+        "filepath": "!!../loaders/examples-loader!<rootDir>/test/components/Button/Button.js",
+      },
+      "filepath": "components/Button/Button.js",
+      "module": RequireStatement {
+        "filepath": "<rootDir>/test/components/Button/Button.js",
+      },
+      "nameFallback": "Button",
+      "pathLine": "components/Button/Button.js",
+      "props": RequireStatement {
+        "filepath": "!!../loaders/props-loader!<rootDir>/test/components/Button/Button.js",
+      },
+    },
+    Object {
+      "examples": RequireStatement {
+        "filepath": "!!../loaders/examples-loader!<rootDir>/test/components/Placeholder/Placeholder.js",
+      },
+      "filepath": "components/Placeholder/Placeholder.js",
+      "module": RequireStatement {
+        "filepath": "<rootDir>/test/components/Placeholder/Placeholder.js",
+      },
+      "nameFallback": "Placeholder",
+      "pathLine": "components/Placeholder/Placeholder.js",
+      "props": RequireStatement {
+        "filepath": "!!../loaders/props-loader!<rootDir>/test/components/Placeholder/Placeholder.js",
+      },
+    },
+    Object {
+      "examples": RequireStatement {
+        "filepath": "!!../loaders/examples-loader!<rootDir>/test/components/RandomButton/RandomButton.js",
+      },
+      "filepath": "components/RandomButton/RandomButton.js",
+      "module": RequireStatement {
+        "filepath": "<rootDir>/test/components/RandomButton/RandomButton.js",
+      },
+      "nameFallback": "RandomButton",
+      "pathLine": "components/RandomButton/RandomButton.js",
+      "props": RequireStatement {
+        "filepath": "!!../loaders/props-loader!<rootDir>/test/components/RandomButton/RandomButton.js",
+      },
+    },
+  ],
+  "content": null,
+  "name": "Components",
+  "sections": null,
+}
+`;
+
+exports[`test processSection() should return an object for section with content 1`] = `
+Object {
+  "components": null,
+  "content": RequireStatement {
+    "filepath": "!!../loaders/examples-loader!<rootDir>/test/Readme.md",
+  },
+  "name": "Readme",
+  "sections": null,
+}
+`;

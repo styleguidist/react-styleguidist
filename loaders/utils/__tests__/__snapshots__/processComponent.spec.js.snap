@@ -1,8 +1,16 @@
-exports[`test processComponent() should return valid JS for section with content 1`] = `
-"{\'filepath\': \"../../../pizza.js\",
-\'nameFallback\': \"pizza\",
-\'pathLine\': \"../../../pizza.js\",
-\'module\': require(\"pizza.js\"),
-\'props\': require(\"!!../loaders/props-loader!pizza.js\"),
-\'examples\': require(\"!!../loaders/examples-loader!Readme.md\")}"
+exports[`test processComponent() should return an object for section with content 1`] = `
+Object {
+  "examples": RequireStatement {
+    "filepath": "!!../loaders/examples-loader!Readme.md",
+  },
+  "filepath": "../../../pizza.js",
+  "module": RequireStatement {
+    "filepath": "pizza.js",
+  },
+  "nameFallback": "pizza",
+  "pathLine": "../../../pizza.js",
+  "props": RequireStatement {
+    "filepath": "!!../loaders/props-loader!pizza.js",
+  },
+}
 `;

@@ -1,0 +1,28 @@
+exports[`test getComponents() should return an object for components 1`] = `
+Array [
+  Object {
+    "examples": null,
+    "filepath": "../Foo.js",
+    "module": RequireStatement {
+      "filepath": "Foo.js",
+    },
+    "nameFallback": "Foo",
+    "pathLine": "../Foo.js",
+    "props": RequireStatement {
+      "filepath": "!!../loaders/props-loader!Foo.js",
+    },
+  },
+  Object {
+    "examples": null,
+    "filepath": "../Bar.js",
+    "module": RequireStatement {
+      "filepath": "Bar.js",
+    },
+    "nameFallback": "Bar",
+    "pathLine": "../Bar.js",
+    "props": RequireStatement {
+      "filepath": "!!../loaders/props-loader!Bar.js",
+    },
+  },
+]
+`;

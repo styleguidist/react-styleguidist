@@ -1,11 +1,24 @@
 'use strict';
 
+const b = require('ast-types').builders;
+
+class RequireStatement {
+	constructor(filepath) {
+		this.filepath = filepath;
+	}
+	toAST() {
+		return b.callExpression(b.identifier('require'), [
+			b.literal(this.filepath),
+		]);
+	}
+}
+
 /**
- * Wrap a string with require() statement.
+ * Return a require() statement AST.
  *
- * @param {string} name Module name.
- * @returns {string}
+ * @param {string} filepath Module name.
+ * @returns {object}
  */
-module.exports = function requireIt(name) {
-	return 'require(' + JSON.stringify(name) + ')';
+module.exports = function requireIt(filepath) {
+	return new RequireStatement(filepath);
 };

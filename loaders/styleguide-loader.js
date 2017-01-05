@@ -3,11 +3,12 @@
 const pick = require('lodash/pick');
 const isFunction = require('lodash/isFunction');
 const commonDir = require('common-dir');
-const toCode = require('./utils/toCode');
+const escodegen = require('escodegen');
+const toAst = require('to-ast');
 const getComponents = require('./utils/getComponents');
-const getComponentsCode = require('./utils/getComponentsCode');
-const getComponentsFromSections = require('./utils/getComponentsFromSections');
-const getSectionsCode = require('./utils/getSectionsCode');
+const getSections = require('./utils/getSections');
+const getComponentFiles = require('./utils/getComponentFiles');
+const getComponentFilesFromSections = require('./utils/getComponentFilesFromSections');
 
 /* eslint-disable no-console */
 
@@ -30,7 +31,7 @@ module.exports.pitch = function() {
 
 	const config = this.options.styleguidist;
 	const clientConfig = pick(config, CLIENT_CONFIG_OPTIONS);
-	const componentFiles = getComponents(config.components, config);
+	const componentFiles = getComponentFiles(config.components, config);
 
 	if (componentFiles.length === 0 && config.sections.length === 0) {
 		const message = isFunction(config.components)
@@ -55,17 +56,24 @@ module.exports.pitch = function() {
 	else {
 		// Get list of all component files including components in sections,
 		// and use their common parent directory as a context
-		const sectionComponentFiles = getComponentsFromSections(config.sections, config);
+		const sectionComponentFiles = getComponentFilesFromSections(config.sections, config);
 		const allComponentFiles = componentFiles.concat(sectionComponentFiles);
 		if (allComponentFiles.length) {
 			this.addContextDependency(commonDir(allComponentFiles));
 		}
 	}
 
-	const code = toCode({
-		config: JSON.stringify(clientConfig),
-		components: getComponentsCode(componentFiles, config),
-		sections: getSectionsCode(config.sections, config),
-	});
-	return `module.exports = ${code};`;
+	const styleguide = {
+		config: clientConfig,
+		components: getComponents(componentFiles, config),
+		sections: getSections(config.sections, config),
+	};
+
+	return `
+if (module.hot) {
+	module.hot.accept([])
+}
+
+module.exports = ${escodegen.generate(toAst(styleguide))}
+	`;
 };

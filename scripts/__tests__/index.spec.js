@@ -104,6 +104,10 @@ it('makeWebpackConfig should merge config from webpackConfigFile config option a
 });
 
 it('makeWebpackConfig should apply updateWebpackConfig config option', () => {
+	/* eslint-disable no-console */
+	const originalWarn = console.warn;
+
+	console.warn = jest.fn();
 	const defaultWebpackConfig = getDefaultWebpackConfig();
 	const api = styleguidist({
 		updateWebpackConfig: (webpackConfig, env) => {
@@ -116,6 +120,9 @@ it('makeWebpackConfig should apply updateWebpackConfig config option', () => {
 	expect(result).toBeTruthy();
 	expect(result.resolve.extensions.length).toEqual(defaultWebpackConfig.resolve.extensions.length + 1);
 	expect(last(result.resolve.extensions)).toEqual('production');
+
+	console.warn = originalWarn;
+	/* eslint-enable no-console */
 });
 
 it('makeWebpackConfig should merge create-react-app Webpack config', () => {

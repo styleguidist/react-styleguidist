@@ -3,8 +3,9 @@
 const path = require('path');
 const castArray = require('lodash/castArray');
 const reactDocs = require('react-docgen');
-const toCode = require('./utils/toCode');
-const getPropsCode = require('./utils/getPropsCode');
+const escodegen = require('escodegen');
+const toAst = require('to-ast');
+const getPropsCode = require('./utils/getProps');
 
 /* eslint-disable no-console */
 
@@ -32,12 +33,13 @@ module.exports = function(source) {
 		console.log();
 	}
 
-	const jsonProps = castArray(parsedProps).map(getPropsCode);
+	const props = castArray(parsedProps).map(getPropsCode);
 
 	return `
-		if (module.hot) {
-			module.hot.accept([]);
-		}
-		module.exports = ${toCode(jsonProps)};
+if (module.hot) {
+	module.hot.accept([])
+}
+
+module.exports = ${escodegen.generate(toAst(props))}
 	`;
 };

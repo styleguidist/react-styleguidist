@@ -9,15 +9,15 @@ const requireIt = require('./requireIt');
  * @param {string} examplesFile
  * @param {string} nameFallback
  * @param {string} defaultExample
- * @returns {string}
+ * @returns {object|null}
  */
 module.exports = function getExamples(examplesFile, nameFallback, defaultExample) {
 	if (fs.existsSync(examplesFile)) {
-		return requireIt('!!../loaders/examples-loader!' + examplesFile);
+		return requireIt(`!!../loaders/examples-loader!${examplesFile}`);
 	}
 
 	if (defaultExample) {
-		return requireIt('!!../loaders/examples-loader?componentName=' + nameFallback + '!' + defaultExample);
+		return requireIt(`!!../loaders/examples-loader?componentName=${nameFallback}!${defaultExample}`);
 	}
 
 	return null;

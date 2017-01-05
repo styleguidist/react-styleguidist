@@ -308,6 +308,14 @@ ast-types@0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/ast-types/-/ast-types-0.9.0.tgz#c8721c8747ae4d5b29b929e99c5317b4e8745623"
 
+ast-types@^0.7.2:
+  version "0.7.8"
+  resolved "https://registry.yarnpkg.com/ast-types/-/ast-types-0.7.8.tgz#902d2e0d60d071bdcd46dc115e1809ed11c138a9"
+
+ast-types@~0.9.3:
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/ast-types/-/ast-types-0.9.3.tgz#6c820679d01d91ef31a24d4acab6a4a052e30e74"
+
 async-each@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/async-each/-/async-each-1.0.1.tgz#19d386a1d9edc6e7c1c85d388aedbcc56d33602d"
@@ -2562,7 +2570,7 @@ escape-string-regexp@1.0.5, escape-string-regexp@^1.0.2, escape-string-regexp@^1
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
-escodegen@1.8.x, escodegen@^1.6.1:
+escodegen@1.8.x, escodegen@^1.6.1, escodegen@~1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/escodegen/-/escodegen-1.8.1.tgz#5a5b53af4693110bebb0867aa3430dd3b70a1018"
   dependencies:
@@ -2740,7 +2748,7 @@ espree@^3.3.1:
     acorn "^4.0.1"
     acorn-jsx "^3.0.0"
 
-esprima@2.7.x, esprima@^2.6.0, esprima@^2.7.1, esprima@~2.7.1:
+esprima@2.7.x, esprima@^2.1.0, esprima@^2.6.0, esprima@^2.7.1, esprima@~2.7.1:
   version "2.7.3"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-2.7.3.tgz#96e3b70d5779f6ad49cd032673d1c312767ba581"
 
@@ -4884,11 +4892,11 @@ lodash.words@^3.0.0:
   dependencies:
     lodash._root "^3.0.0"
 
-lodash@4.16.6, lodash@^4.0.0, lodash@^4.16.4, lodash@^4.2.0:
+lodash@4.16.6, lodash@^4.16.4, lodash@^4.2.0:
   version "4.16.6"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.16.6.tgz#d22c9ac660288f3843e16ba7d2b5d06cca27d777"
 
-"lodash@>=3.5 <5", lodash@^4.14.0, lodash@^4.15.0, lodash@^4.16.2, lodash@^4.17.2, lodash@^4.2.1, lodash@^4.3.0:
+"lodash@>=3.5 <5", lodash@^4.0.0, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.16.2, lodash@^4.17.2, lodash@^4.2.1, lodash@^4.3.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -7278,6 +7286,13 @@ tmpl@1.0.x:
 to-arraybuffer@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/to-arraybuffer/-/to-arraybuffer-1.0.1.tgz#7d229b1fcc637e466ca081180836a7aabff83f43"
+
+to-ast@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/to-ast/-/to-ast-1.0.0.tgz#0c4a31c8c98edfde9aaf0192c794b4c8b11ee287"
+  dependencies:
+    ast-types "^0.7.2"
+    esprima "^2.1.0"
 
 to-fast-properties@^1.0.1:
   version "1.0.2"

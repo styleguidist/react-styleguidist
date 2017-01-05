@@ -2,12 +2,15 @@
 
 const filter = require('lodash/filter');
 const map = require('lodash/map');
+const reduce = require('lodash/reduce');
 const loaderUtils = require('loader-utils');
+const escodegen = require('escodegen');
+const toAst = require('to-ast');
+const b = require('ast-types').builders;
 const chunkify = require('./utils/chunkify');
 const expandDefaultComponent = require('./utils/expandDefaultComponent');
 const getRequires = require('./utils/getRequires');
 const requireIt = require('./utils/requireIt');
-const serialize = require('./utils/serialize');
 
 function examplesLoader(source) {
 	/* istanbul ignore if */
@@ -38,64 +41,58 @@ function examplesLoader(source) {
 	const allRequires = Object.assign({}, requiresFromExamples, fullContext);
 
 	// “Prerequire” modules required in Markdown examples and context so they end up in a bundle and be available at runtime
-	const requireMapCode = map(allRequires, requireRequest =>
-		`${JSON.stringify(requireRequest)}: ${requireIt(requireRequest)}`
-	).join(',\n');
+	const allRequiresCode = reduce(allRequires, (requires, requireRequest) => {
+		requires[requireRequest] = requireIt(requireRequest);
+		return requires;
+	}, {});
 
 	// Require context modules so they are available in an example
-	const requireContextCode = map(fullContext, (requireRequest, name) =>
-		`var ${name} = ${requireIt(requireRequest)}`
-	).join(';\\n');
-
-	// Require module if it was “prerequired”
-	const requireInRuntimeCode = `
-		function requireInRuntime(path) {
-			if (!requireMap.hasOwnProperty(path)) {
-				throw new Error('require() statements can be added only by editing a Markdown example file.');
-			}
-			return requireMap[path];
-		}
-	`;
-
-	// 1. Prepend the example code with requires for context modules
-	// 2. Create a function from the code
-	// 3. Partially apply the first parameter to map our custom requireInRuntime function to the require local variable
-	const evalInContextCode = `
-		function evalInContext(code) {
-			var func = new Function(
-				'require',
-				'state',
-				'setState',
-				'__setInitialState',
-				'${requireContextCode}\\n' + code
-			);
-			return func.bind(null, requireInRuntime);
-		}
-	`;
+	const requireContextCode = b.program(map(fullContext, (requireRequest, name) =>
+		b.variableDeclaration('var', [
+			b.variableDeclarator(b.identifier(name), requireIt(requireRequest).toAST()),
+		])
+	));
 
 	// Stringify examples object except the evalInContext function
 	const examplesWithEval = examples.map(example => {
 		if (example.type === 'code') {
-			example.evalInContext = 'evalInContext';
+			example.evalInContext = { toAST: () => b.identifier('evalInContext') };
 		}
 		return example;
 	});
-	const examplesCode = serialize(examplesWithEval, key => key === 'evalInContext');
 
 	return `
-		if (module.hot) {
-			module.hot.accept([]);
-		}
+if (module.hot) {
+	module.hot.accept([])
+}
 
-		var requireMap = {
-			${requireMapCode}
-		};
+var requireMap = ${escodegen.generate(toAst(allRequiresCode))}
 
-		${requireInRuntimeCode}
+// Require module if it was “prerequired”
+function requireInRuntime(path) {
+	if (!requireMap.hasOwnProperty(path)) {
+		throw new Error(
+			'require() statements can be added only by editing a Markdown example file: require("' + path + '")'
+		)
+	}
+	return requireMap[path]
+}
 
-		${evalInContextCode}
+// 1. Prepend the example code with requires for context modules
+// 2. Create a function from the code
+// 3. Partially apply the first parameter to map our custom requireInRuntime function to the require local variable
+function evalInContext(code) {
+	var func = new Function(
+		'require',
+		'state',
+		'setState',
+		'__setInitialState',
+		"${escodegen.generate(requireContextCode)}\\n" + code
+	)
+	return func.bind(null, requireInRuntime)
+}
 
-		module.exports = ${examplesCode};
+module.exports = ${escodegen.generate(toAst(examplesWithEval))}
 	`;
 }
 

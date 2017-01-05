@@ -30,6 +30,7 @@
     "npm": ">=3"
   },
   "dependencies": {
+    "ast-types": "~0.9.3",
     "babel-cli": "~6.18.0",
     "babel-core": "6.20.0",
     "babel-plugin-transform-class-properties": "~6.19.0",
@@ -42,6 +43,7 @@
     "codemirror": "5.20.2",
     "common-dir": "^1.0.0",
     "css-loader": "0.26.1",
+    "escodegen": "~1.8.1",
     "findup": "0.1.5",
     "glob": "7.1.1",
     "highlight.js": "9.8.0",
@@ -69,6 +71,7 @@
     "remark-parse": "~2.2.0",
     "semver-utils": "1.1.1",
     "style-loader": "0.13.1",
+    "to-ast": "~1.0.0",
     "unified": "~5.1.0",
     "unist-util-visit": "~1.1.0",
     "webpack-dev-server": "~1.16.2",

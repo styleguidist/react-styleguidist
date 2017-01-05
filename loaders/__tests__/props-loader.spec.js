@@ -22,6 +22,7 @@ it('should extract doclets', () => {
 		},
 	}, readFileSync(file, 'utf8'));
 	expect(result).toBeTruthy();
+
 	expect(() => new Function(result)).not.toThrowError(SyntaxError);  // eslint-disable-line no-new-func
-	expect(result.includes('require("!!../loaders/examples-loader!./examples.md")')).toBe(true);
+	expect(result.includes("require('!!../loaders/examples-loader!./examples.md')")).toBe(true);
 });
