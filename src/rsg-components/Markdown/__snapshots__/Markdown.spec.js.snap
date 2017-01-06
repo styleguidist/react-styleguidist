@@ -1,3 +1,3 @@
-exports[`test should render Markdown in span in inline mode 1`] = `"<span class=\"base-47030919\">Hello <em class=\"em-4252285267\">world</em>!</span>"`;
+exports[`test should render Markdown in span in inline mode 1`] = `"<span class=\"base-2877968375\">Hello <em class=\"em-2233019579\">world</em>!</span>"`;
 
-exports[`test should render Markdown with custom CSS classes 1`] = `"<div><h3 class=\"h3-1020946680\">Header</h3><p class=\"p-1228578410\">Text with <em class=\"em-4252285267\">some</em> <strong class=\"strong-1538061498\">formatting</strong> and a <a class=\"a-1274117877\" href=\"/foo\">link</a>.</p><p class=\"p-1228578410\"><img class=\"img-2315792072\" alt=\"Image\" src=\"/bar.png\"></p></div>"`;
+exports[`test should render Markdown with custom CSS classes 1`] = `"<div><h3 class=\"h3-2951916027\">Header</h3><p class=\"p-1681777157\">Text with <em class=\"em-2233019579\">some</em> <strong class=\"strong-2282145835\">formatting</strong> and a <a class=\"a-1735303434\" href=\"/foo\">link</a>.</p><p class=\"p-1681777157\"><img class=\"img-2656340033\" alt=\"Image\" src=\"/bar.png\"></p></div>"`;

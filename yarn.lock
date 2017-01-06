@@ -1218,7 +1218,7 @@ babel-runtime@6.11.6:
     core-js "^2.4.0"
     regenerator-runtime "^0.9.5"
 
-babel-runtime@^6.0.0, babel-runtime@^6.11.6, babel-runtime@^6.18.0, babel-runtime@^6.20.0, babel-runtime@^6.9.0, babel-runtime@^6.9.1, babel-runtime@^6.9.2:
+babel-runtime@6.20.0, babel-runtime@^6.0.0, babel-runtime@^6.11.6, babel-runtime@^6.18.0, babel-runtime@^6.20.0, babel-runtime@^6.9.0, babel-runtime@^6.9.1, babel-runtime@^6.9.2:
   version "6.20.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.20.0.tgz#87300bdcf4cd770f09bf0048c64204e17806d16f"
   dependencies:
@@ -4482,24 +4482,25 @@ jss-compose@2.0.0:
   dependencies:
     warning "^3.0.0"
 
-jss-default-unit@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/jss-default-unit/-/jss-default-unit-5.0.0.tgz#2e9196f32f2d54ea95bf78c0a5ca145993f345d3"
+jss-default-unit@5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/jss-default-unit/-/jss-default-unit-5.0.2.tgz#c4d7fd957cb41baab0b4cb37f92016aa1db08667"
 
-jss-isolate@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/jss-isolate/-/jss-isolate-2.0.0.tgz#2c431dbe2d89b05a82278238061af7d0ddbe0a72"
+jss-isolate@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/jss-isolate/-/jss-isolate-2.0.1.tgz#7ee5591e0dc5d358a2fbed25ccf0f2510413c896"
 
-jss-nested@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/jss-nested/-/jss-nested-3.0.0.tgz#bf646cd941ec93a459e88f6f32df239ac7733259"
+jss-nested@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/jss-nested/-/jss-nested-3.0.1.tgz#14c10265c8fc5bd61b450b48f1e9fb36d90ae569"
   dependencies:
     warning "^3.0.0"
 
-jss@6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/jss/-/jss-6.0.0.tgz#f7a4e1731e5591cd849a1d9faa2cbd50efa1c780"
+jss@6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/jss/-/jss-6.1.1.tgz#9126c210045bea79cfd7cd106e96295d9e6864e1"
   dependencies:
+    babel-runtime "6.20.0"
     is-in-browser "1.0.2"
     murmurhash-js "1.0.0"
     warning "3.0.0"
