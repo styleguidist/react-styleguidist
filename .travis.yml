@@ -18,9 +18,9 @@ script:
     yarn run lint
     echo "TRAVIS_NODE_VERSION=$TRAVIS_NODE_VERSION"
     if [[ "$TRAVIS_NODE_VERSION" =~ ^(4|5)$ ]]; then
-      NODE_ENV=test node --harmony-proxies $(npm bin)/jest --coverage
+      NODE_ENV=test node --harmony-proxies $(npm bin)/jest --coverage --runInBand
     else
-      yarn run test:coverage
+      yarn run test:coverage -- --runInBand
     fi
   # Build all examples
   - yarn run build
