@@ -15,9 +15,14 @@ text
 `;
 	const result = examplesLoader.call({
 		options: {
-			styleguidist: {},
+			styleguidist: {
+				context: {
+					_: 'lodash',
+				},
+			},
 		},
 	}, exampleMarkdown);
+
 	expect(result).toBeTruthy();
 	expect(() => new Function(result)).not.toThrowError(SyntaxError);  // eslint-disable-line no-new-func
 });

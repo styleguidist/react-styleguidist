@@ -1,4 +1,4 @@
-const escodegen = require('escodegen');
+import { generate } from 'escodegen';
 import requireIt from '../requireIt';
 
 it('requireIt() should return an AST for require statement', () => {
@@ -6,5 +6,5 @@ it('requireIt() should return an AST for require statement', () => {
 
 	expect(result).toBeTruthy();
 	expect(typeof result.toAST).toBe('function');
-	expect(escodegen.generate(result.toAST())).toBe("require('foo')");
+	expect(generate(result.toAST())).toBe("require('foo')");
 });

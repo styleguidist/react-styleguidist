@@ -3,7 +3,7 @@
 const pick = require('lodash/pick');
 const isFunction = require('lodash/isFunction');
 const commonDir = require('common-dir');
-const escodegen = require('escodegen');
+const generate = require('escodegen').generate;
 const toAst = require('to-ast');
 const getComponents = require('./utils/getComponents');
 const getSections = require('./utils/getSections');
@@ -74,6 +74,6 @@ if (module.hot) {
 	module.hot.accept([])
 }
 
-module.exports = ${escodegen.generate(toAst(styleguide))}
+module.exports = ${generate(toAst(styleguide))}
 	`;
 };

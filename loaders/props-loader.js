@@ -3,7 +3,7 @@
 const path = require('path');
 const castArray = require('lodash/castArray');
 const reactDocs = require('react-docgen');
-const escodegen = require('escodegen');
+const generate = require('escodegen').generate;
 const toAst = require('to-ast');
 const getPropsCode = require('./utils/getProps');
 
@@ -40,6 +40,6 @@ if (module.hot) {
 	module.hot.accept([])
 }
 
-module.exports = ${escodegen.generate(toAst(props))}
+module.exports = ${generate(toAst(props))}
 	`;
 };

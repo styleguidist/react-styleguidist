@@ -1,16 +1,19 @@
 'use strict';
 
+const path = require('path');
 const filter = require('lodash/filter');
 const map = require('lodash/map');
 const reduce = require('lodash/reduce');
 const loaderUtils = require('loader-utils');
-const escodegen = require('escodegen');
+const generate = require('escodegen').generate;
 const toAst = require('to-ast');
 const b = require('ast-types').builders;
 const chunkify = require('./utils/chunkify');
 const expandDefaultComponent = require('./utils/expandDefaultComponent');
 const getRequires = require('./utils/getRequires');
 const requireIt = require('./utils/requireIt');
+
+const absolutize = filepath => path.resolve(__dirname, filepath);
 
 function examplesLoader(source) {
 	/* istanbul ignore if */
@@ -66,33 +69,13 @@ if (module.hot) {
 	module.hot.accept([])
 }
 
-var requireMap = ${escodegen.generate(toAst(allRequiresCode))}
+var requireMap = ${generate(toAst(allRequiresCode))};
+var requireInRuntimeBase = require(${JSON.stringify(absolutize('utils/requireInRuntime'))});
+var requireInRuntime = requireInRuntimeBase.bind(null, requireMap);
+var evalInContextBase = require(${JSON.stringify(absolutize('utils/evalInContext'))});
+var evalInContext = evalInContextBase.bind(null, ${JSON.stringify(generate(requireContextCode))}, requireInRuntime);
 
-// Require module if it was “prerequired”
-function requireInRuntime(path) {
-	if (!requireMap.hasOwnProperty(path)) {
-		throw new Error(
-			'require() statements can be added only by editing a Markdown example file: require("' + path + '")'
-		)
-	}
-	return requireMap[path]
-}
-
-// 1. Prepend the example code with requires for context modules
-// 2. Create a function from the code
-// 3. Partially apply the first parameter to map our custom requireInRuntime function to the require local variable
-function evalInContext(code) {
-	var func = new Function(
-		'require',
-		'state',
-		'setState',
-		'__setInitialState',
-		"${escodegen.generate(requireContextCode)}\\n" + code
-	)
-	return func.bind(null, requireInRuntime)
-}
-
-module.exports = ${escodegen.generate(toAst(examplesWithEval))}
+module.exports = ${generate(toAst(examplesWithEval))}
 	`;
 }
 
