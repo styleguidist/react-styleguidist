@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 const s = require('./ReactComponent.css');
 
-const ReactComponentRenderer = ({ name, pathLine, description, props, examples, sidebar }) => {
+const ReactComponentRenderer = ({ name, pathLine, description, props, methods, examples, sidebar }) => {
 	return (
 		<div className={s.root} id={name + '-container'}>
 			<header className={s.header}>
@@ -27,6 +27,14 @@ const ReactComponentRenderer = ({ name, pathLine, description, props, examples, 
 					</div>
 				)
 			}
+			{
+				methods ? (
+					<div className={s.methods}>
+						<h3 className={s.heading}>Methods</h3>
+						{methods}
+					</div>
+				) : false
+			}
 			{examples}
 		</div>
 	);
@@ -37,6 +45,7 @@ ReactComponentRenderer.propTypes = {
 	pathLine: PropTypes.string.isRequired,
 	description: PropTypes.node,
 	props: PropTypes.node,
+	methods: PropTypes.node,
 	examples: PropTypes.node,
 	sidebar: PropTypes.bool,
 };
