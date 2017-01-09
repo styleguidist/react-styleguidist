@@ -45,10 +45,7 @@ before_install:
       fi
       phantomjs -v
 after_success:
-  # Make release with semantic-release
-  - 'curl -Lo travis_after_all.py https://git.io/travis_after_all'
-  - python travis_after_all.py
-  - export $(cat .to_export_back) &> /dev/null
+  # Make release with semantic-release if needed
   - npm run semantic-release
   # Upload coverage report to Codecov
   - bash <(curl -s https://codecov.io/bash)
