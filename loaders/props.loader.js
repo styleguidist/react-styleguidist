@@ -53,6 +53,13 @@ function propsToCode(doc) {
 		doc.doclets = {};
 	}
 
+	if (doc.methods) {
+		doc.methods = doc.methods.filter((method) => {
+			const doclets = reactDocs.utils.docblock.getDoclets(method.docblock);
+			return doclets && doclets.public;
+		});
+	}
+
 	const code = JSON.stringify(doc);
 
 	if (doc.doclets.example) {

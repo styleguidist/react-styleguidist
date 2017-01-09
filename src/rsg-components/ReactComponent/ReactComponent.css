@@ -53,3 +53,9 @@
 	margin-bottom: 30px;
 	font-size: 13px;
 }
+
+.methods {
+	composes: reset font from "../../styles/common.css";
+	margin-bottom: 30px;
+	font-size: 13px;
+}

@@ -1,0 +1,36 @@
+.table {
+	width: 100%;
+	border-collapse: collapse;
+}
+.tableHead {
+	composes: border from "../../styles/colors.css";
+	border-width: 0 0 1px 0;
+}
+.tableBody {
+}
+.cell {
+	padding-right: 15px;
+	padding-top: 6px;
+	vertical-align: top;
+	font-size: 13px;
+}
+.cellHeading {
+	padding-right: 15px;
+	padding-bottom: 6px;
+	text-align: left;
+	font-size: 13px;
+}
+.cellDesc {
+	padding-left: 15px;
+}
+
+.methodParam {
+	min-width: 200px;
+}
+
+.name {
+	composes: name from "../../styles/colors.css";
+}
+.type {
+	composes: type from "../../styles/colors.css";
+}

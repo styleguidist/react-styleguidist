@@ -253,6 +253,11 @@ Button.defaultProps = {
 };
 ```
 
+## How do I list public methods of my components?
+
+Tag your method with [`@public`](http://usejsdoc.org/tags-public.html) tag and it will be displayed in the guide.
+Use [`@param`](http://usejsdoc.org/tags-param.html) tag to document the method parameters and [`@returns`](http://usejsdoc.org/tags-returns.html) tag to document the return value.
+
 ## Are there any other projects like this?
 
 * [Atellier](https://github.com/scup/atellier), a React components emulator.
