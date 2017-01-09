@@ -6,15 +6,6 @@ global.shallow = shallow;
 global.render = render;
 global.mount = mount;
 
-// Pretty print shallow rendering output for debugging
-import prettyFormat from 'pretty-format';
-import reactTestPlugin from 'pretty-format/plugins/ReactTestComponent';
-global.html = function(wrapper) {
-	console.log(prettyFormat(wrapper, {
-		plugins: [reactTestPlugin],
-	}));
-};
-
 // Skip createElement warnings but fail tests on any other warning
 console.error = message => {
 	if (!/(React.createElement: type should not be null)/.test(message)) {
