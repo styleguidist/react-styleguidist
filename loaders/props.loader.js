@@ -54,8 +54,9 @@ function propsToCode(doc) {
 	}
 
 	if (doc.methods) {
-		doc.methods.forEach((method, index) => {
-			doc.methods[index].doclets = reactDocs.utils.docblock.getDoclets(method.docblock);
+		doc.methods = doc.methods.filter((method) => {
+			const doclets = reactDocs.utils.docblock.getDoclets(method.docblock);
+			return doclets && doclets.public;
 		});
 	}
 

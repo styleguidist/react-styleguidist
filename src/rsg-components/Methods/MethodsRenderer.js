@@ -2,8 +2,9 @@ import React, { PropTypes } from 'react';
 import Code from 'rsg-components/Code';
 import Markdown from 'rsg-components/Markdown';
 import Group from 'react-group';
+import cx from 'classnames';
 
-import s from './methods.css';
+import s from './Methods.css';
 
 function renderRows(methods) {
 	const rows = [];
@@ -12,7 +13,7 @@ function renderRows(methods) {
 			<tr key={method.name}>
 				<td className={s.cell}><Code className={s.name}>{method.name}()</Code></td>
 				<td className={s.cell}>{renderParameters(method)}</td>
-				<td className={s.cell + ' ' + s.cellDesc}>
+				<td className={cx(s.cell, s.cellDesc)}>
 					{renderDescription(method)}
 					{renderReturns(method)}
 				</td>
@@ -68,7 +69,7 @@ export default function MethodsRenderer({ methods }) {
 				<tr>
 					<th className={s.cellHeading}>Name</th>
 					<th className={s.cellHeading}>Parameters</th>
-					<th className={s.cellHeading + ' ' + s.cellDesc}>Description</th>
+					<th className={cx(s.cellHeading, s.cellDesc)}>Description</th>
 				</tr>
 			</thead>
 			<tbody className={s.tableBody}>

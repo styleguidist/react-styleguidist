@@ -10,17 +10,14 @@ export default function ReactComponent({
 	sidebar,
 }) {
 	const { name, pathLine, examples } = component;
-	const { description, props } = component.props;
-	const methods = component.props.methods ? component.props.methods.filter((method) => {
-		return method && method.doclets.public;
-	}) : [];
+	const { description, props, methods } = component.props;
 	return (
 		<ReactComponentRenderer
 			name={name}
 			pathLine={pathLine}
 			description={description && <Markdown text={description} />}
 			props={props && <Props props={props} />}
-			methods={methods.length && <Methods methods={methods} />}
+			methods={methods && <Methods methods={methods} />}
 			examples={examples && <Examples examples={examples} name={name} />}
 			sidebar={sidebar}
 		/>
