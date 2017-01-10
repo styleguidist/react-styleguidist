@@ -2,23 +2,44 @@
 
 ## How to reuse project’s Webpack config?
 
-Require it from your style guide config and pass sections you need to `webpackConfig` option:
+By default Styleguidist will try to find Webpack config (`webpack.config.dev.js` or `webpack.config.js`) anywhere in your project and use it.
+
+Use [webpackConfigFile](Configuration.md) option to specify a custom path to your Webpack config:
 
 ```javascript
-const webpackConfig = require('./webpack.config.js');
 module.exports = {
-  components: 'lib/components/**/[A-Z]*.js',
+  webpackConfigFile: './configs/webpack.js',
+};
+```
+
+> **Note:**: `entry`, `externals`, `output` and `plugins` options will be ignored, use [webpackConfig](Configuration.md) option to change them.
+
+Use [webpackConfig](Configuration.md) option to specify a custom Webpack config options:
+
+```javascript
+module.exports = {
+  webpackConfigFile: './configs/webpack.js',
   webpackConfig: {
-    resolve: {
-      extensions: webpackConfig.resolve.extensions,
-    },
     module: {
-      loaders: webpackConfig.module.loaders,
+      loaders: [
+        // Babel loader, will use your project’s .babelrc
+        {
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader',
+        },
+        // Other loaders that is needed for your components
+        {
+          test: /\.css$/,
+          loader: 'style-loader!css-loader?modules',
+        },
+      ],
     },
-    postcss: webpackConfig.postcss,
   },
 };
 ```
+
+> **Note:** [webpackConfig](Configuration.md) option disables Webpack config auto load, use [webpackConfigFile](Configuration.md) option to load your project’s Webpack config from file.
 
 ## How to use `ref`s in examples?
 
@@ -38,9 +59,14 @@ let textarea;
 Filter them out in the `components` option:
 
 ```javascript
-components() {
-  return glob.sync(path.resolve(__dirname, 'lib/components/**/*.js')).filter(module => !/\/(foo|bar).js$/.test(module));  // Ignore foo.js and bar.js
-},
+const path = require('path');
+const glob = require('glob');
+module.exports = {
+  components() {
+    // Ignore foo.js and bar.js
+    return glob.sync(path.resolve(__dirname, 'lib/components/**/*.js')).filter(module => !/\/(foo|bar).js$/.test(module));
+  },
+};
 ```
 
 ## How to hide some components in style guide but make them available in examples?
@@ -109,9 +135,11 @@ module.exports = {
 
 You may need an appropriate Webpack loader to handle these files.
 
+> **Note:** to change style guide styles use `theme` and `styles` options (see the next question).
+
 ## How to change styles of a style guide?
 
-Use config option `theme` to change fonts, colors, etc. and option `styles` to tweak style of particular Styleguidist’s components:
+Use config option [theme](Configuration.md) to change fonts, colors, etc. and option [styles](Configuration.md) to tweak style of particular Styleguidist’s components:
 
 ```javascript
 module.exports = {
@@ -212,18 +240,17 @@ const StyleGuideRenderer = ({ title, homepageUrl, components, toc, sidebar }) =>
 We have [an example style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/customised) with custom components.
 
 ## How to add webservices available to my components?
-You can add new endpoints to the express server running `react-styleguidist`.
-Add a new Webpack entry point in your style guide config:
+
+You can add new endpoints to the express server running `react-styleguidist`. Add a new Webpack entry point in your style guide config:
 
 ```javascript
- module.exports = {
-    // ...
-    configureServer(app) {
-    	app.get('/custom-endpoint', (req, res) => {
-			res.status(200).send({ response: 'Server invoked' });
-		});
-    },
-  };
+module.exports = {
+  configureServer(app) {
+    app.get('/custom-endpoint', (req, res) => {
+		  res.status(200).send({ response: 'Server invoked' });
+	  });
+  },
+};
 ```
 
 Your components will be able to invoke the url `http://localhost:3000/custom-endpoint` from their examples.
@@ -247,7 +274,6 @@ You can modify Webpack dev server logs format changing `stats` option of Webpack
 
 ```javascript
 module.exports = {
-  // ...
   webpackConfig(env) {
     if (env === 'development') {
       return {

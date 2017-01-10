@@ -48,7 +48,7 @@ module.exports = {
 };
 ```
 
-> **Note:**: `entry`, `externals`, `output` and `plugins` options will be ignored.
+> **Note:**: `entry`, `externals`, `output` and `plugins` options will be ignored, use `webpackConfig` option to change them.
 
 > **Note:**: it may not work with your project, see below for other options.
 
@@ -58,23 +58,23 @@ Add a `webpackConfig` section to your `styleguide.config.js`:
 
 ```javascript
 module.exports = {
- webpackConfig: {
-   module: {
-     loaders: [
-       // Babel loader, will use your project’s .babelrc
-       {
-         test: /\.jsx?$/,
-         exclude: /node_modules/,
-         loader: 'babel-loader',
-       },
-       // Other loaders that is needed for your components
-       {
-         test: /\.css$/,
-         loader: 'style-loader!css-loader?modules',
-       },
-     ],
-   },
- },
+  webpackConfig: {
+    module: {
+      loaders: [
+        // Babel loader, will use your project’s .babelrc
+        {
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader',
+        },
+        // Other loaders that is needed for your components
+        {
+          test: /\.css$/,
+          loader: 'style-loader!css-loader?modules',
+        },
+      ],
+    },
+  },
 };
 ```
 
