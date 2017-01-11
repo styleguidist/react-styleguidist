@@ -10,7 +10,7 @@ const compileCode = code => transform(code, {
 	objectAssign: 'Object.assign',
 }).code;
 
-const IMPORT_REGEX = /(import )(.+)( from )(.+)/g;
+const IMPORT_REGEX = /(import )(.+)( from )(["'`].+["'`])/g;
 const TRANSPILED_CONST_DESTRUCTURE_REGEX = /(\w+) as (\w+)/g;
 const TRANSPILED_CONST_DESTRUCTURE_REPLACEMENT = '$1: $2';
 const JSX_REGEX = /(<(.|\s)+>)/m;
