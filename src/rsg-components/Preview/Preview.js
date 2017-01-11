@@ -10,6 +10,34 @@ const compileCode = code => transform(code, {
 	objectAssign: 'Object.assign',
 }).code;
 
+const IMPORT_REGEX = /(import )(.+)( from )(.+)/g;
+const TRANSPILED_CONST_DESTRUCTURE_REGEX = /(\w+) as (\w+)/g;
+const TRANSPILED_CONST_DESTRUCTURE_REPLACEMENT = '$1: $2';
+const JSX_REGEX = /(<(.|\s)+>)/m;
+const REACT_ELEMENT_REGEX = /(React.createElement\(.+\))/;
+
+/*
+ * Convert `import {foo as bar} from 'something'` to `const { foo: bar } = require('something')`
+ */
+const dumbImportTranspiler = code => code
+	.replace(IMPORT_REGEX, (...matches) => {
+		return `const ${matches[2]
+			.replace(TRANSPILED_CONST_DESTRUCTURE_REGEX, TRANSPILED_CONST_DESTRUCTURE_REPLACEMENT)
+		} = require(${matches[4]});`;
+	});
+
+/*
+ * Enclose JSX/React.createElement in a div
+ */
+const encloseJSX = code => code
+	.replace(JSX_REGEX, '<div>$1</div>');
+
+/*
+ * Make sure React.createElement is returned from enclosing function
+ */
+const returnReactElement = code => code
+	.replace(REACT_ELEMENT_REGEX, 'return $1');
+
 export default class Preview extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
@@ -47,7 +75,15 @@ export default class Preview extends Component {
 		}
 
 		try {
-			const compiledCode = compileCode(this.props.code);
+			const compiledCode = `(function() { ${
+				returnReactElement(
+					compileCode(
+						encloseJSX(
+							dumbImportTranspiler(this.props.code)
+						)
+					)
+				)
+			} })();`;
 
 			// Initiate state and set with the callback in the bottom component;
 			// Workaround for https://github.com/styleguidist/react-styleguidist/issues/155 - missed props on first render
