@@ -32,6 +32,7 @@ function processComponent(filepath, config) {
 		module: requireIt(filepath),
 		props: requireIt('!!props!' + filepath),
 		examples: getExamples(examplesFile, nameFallback, config.defaultExample),
+		examplesFileName: JSON.stringify(examplesFile),
 	});
 }
 

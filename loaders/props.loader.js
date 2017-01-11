@@ -23,7 +23,7 @@ const REQUIRE_PLACEHOLDER = '<%{#require#}%>';
  */
 function parseProps(file, source, propsParser) {
 	try {
-		return castArray(propsParser(file, source)).map(propsToCode);
+		return castArray(propsParser(file, source)).map(propsToCode.bind(null, file));
 	}
 	catch (exception) {
 		console.log('Error when parsing', path.relative(process.cwd(), file));
@@ -34,19 +34,58 @@ function parseProps(file, source, propsParser) {
 }
 
 /**
+ * Returns the section specified in the given example path, or null if a section wasn't provided
+ * e.g ./MyExample.md#SomeSection -> SomeSection
+ * 		 ./MyExample.md -> null
+ *
+ * @param  {string} examplePath
+ * @return {string|null}
+ */
+function getSectionFromExamplePath(examplePath) {
+	if (examplePath.includes('#')) {
+		return examplePath.substring(examplePath.lastIndexOf('#') + 1);
+	}
+
+	return null;
+}
+
+/**
+ * Ensures that the given example path doesn't have a section on the end
+ * e.g ./MyExample.md#SomeSection -> ./MyExample.md
+ *
+ * @param  {string} examplePath
+ * @return {string}
+ */
+function stripSectionFromExamplePath(examplePath) {
+	if (examplePath.includes('#')) {
+		return examplePath.substring(0, examplePath.lastIndexOf('#'));
+	}
+
+	return examplePath;
+}
+
+/**
  * Convert props to JavaScript code as a string, extract doclets.
  *
+ * @param {string} file The file which contains the component
  * @param {object} doc
  * @returns {string}
  */
-function propsToCode(doc) {
+function propsToCode(file, doc) {
+	let exampleSection;
+	let examplePath;
+
 	if (doc.description) {
 		// Read doclets from the description and remove them
 		doc.doclets = reactDocs.utils.docblock.getDoclets(doc.description);
 		doc.description = removeDoclets(doc.description);
 
 		if (doc.doclets.example) {
+			exampleSection = getSectionFromExamplePath(doc.doclets.example);
+			examplePath = stripSectionFromExamplePath(doc.doclets.example);
+
 			doc.example = REQUIRE_PLACEHOLDER;
+			doc.exampleFileName = path.resolve(path.dirname(file), examplePath);
 		}
 	}
 	else {
@@ -65,9 +104,12 @@ function propsToCode(doc) {
 	if (doc.doclets.example) {
 		return code.replace(
 			JSON.stringify(REQUIRE_PLACEHOLDER),
-			requireIt('examples!' + doc.doclets.example)
+			exampleSection != null
+			?	requireIt('examples?section=' + exampleSection + '!' + examplePath)
+			: requireIt('examples!' + examplePath)
 		);
 	}
+
 	return code;
 }
 
