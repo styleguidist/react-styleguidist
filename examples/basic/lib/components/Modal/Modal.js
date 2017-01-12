@@ -18,7 +18,7 @@ export default class Modal extends Component {
 			},
 		};
 		return (
-			<ReactModal isOpen={isOpen} style={style}>{children}</ReactModal>
+			<ReactModal contentLabel="Modal" isOpen={isOpen} style={style}>{children}</ReactModal>
 		);
 	}
 }
