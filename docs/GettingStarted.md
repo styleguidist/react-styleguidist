@@ -48,7 +48,7 @@ module.exports = {
 };
 ```
 
-> **Note:**: `entry`, `externals`, `output` and `plugins` options will be ignored, use `webpackConfig` option to change them.
+> **Note:**: `entry`, `externals` and `output` options will be ignored, use `webpackConfig` option to change them.
 
 > **Note:**: it may not work with your project, see below for other options.
 
@@ -77,6 +77,8 @@ module.exports = {
   },
 };
 ```
+
+> **Note:** this option disables Webpack config auto load, use `webpackConfigFile` option to load your project’s Webpack config from file.
 
 #### Basic loaders for non-Webpack projects
 

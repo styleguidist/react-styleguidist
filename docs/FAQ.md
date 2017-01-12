@@ -12,7 +12,7 @@ module.exports = {
 };
 ```
 
-> **Note:**: `entry`, `externals`, `output` and `plugins` options will be ignored, use [webpackConfig](Configuration.md) option to change them.
+> **Note:**: `entry`, `externals` and `output` options will be ignored, use [webpackConfig](Configuration.md) option to change them.
 
 Use [webpackConfig](Configuration.md) option to specify a custom Webpack config options:
 

@@ -6,10 +6,9 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
-const isFunction = require('lodash/isFunction');
-const omit = require('lodash/omit');
 const hasJsonLoader = require('./utils/hasJsonLoader');
 const getWebpackVersion = require('./utils/getWebpackVersion');
+const mergeWebpackConfig = require('./utils/mergeWebpackConfig');
 
 const isWebpack2 = getWebpackVersion() === 2;
 const sourceDir = path.resolve(__dirname, '../lib');
@@ -121,27 +120,17 @@ module.exports = function(config, env) {
 
 	if (config.webpackConfigFile) {
 		const userConfigModule = require(config.webpackConfigFile);
-		const userConfig = isFunction(userConfigModule)
-			? userConfigModule(env)
-			: userConfigModule
-		;
-		const safeUserConfig = omit(
-			userConfig,
-			['entry', 'externals', 'output', 'plugins']
-		);
-		webpackConfig = merge(webpackConfig, safeUserConfig);
+		webpackConfig = mergeWebpackConfig(webpackConfig, userConfigModule, {
+			ignore: ['entry', 'externals', 'output', 'styleguidist'],
+			env,
+		});
 	}
 
 	if (config.webpackConfig) {
-		const userConfig = isFunction(config.webpackConfig)
-			? config.webpackConfig(env)
-			: config.webpackConfig
-		;
-		const safeUserConfig = omit(
-			userConfig,
-			['output', 'styleguidist']
-		);
-		webpackConfig = merge(webpackConfig, safeUserConfig);
+		webpackConfig = mergeWebpackConfig(webpackConfig, config.webpackConfig, {
+			ignore: ['output', 'styleguidist'],
+			env,
+		});
 	}
 
 	// Add JSON loader if user config has no one (Webpack 2 includes it by default)

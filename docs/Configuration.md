@@ -234,7 +234,7 @@ You can change settings in the `styleguide.config.js` file in your project’s r
   By default Styleguidist will try to find Webpack config (`webpack.config.dev.js` or `webpack.config.js`) anywhere in your project and use it.<br>
   Use this option to specify a custom path to your Webpack config.
 
-  > **Note:**: `entry`, `externals`, `output` and `plugins` options will be ignored, use `webpackConfig` option to change them.
+  > **Note:**: `entry`, `externals` and `output` options will be ignored, use `webpackConfig` option to change them.
 
 * **`updateWebpackConfig`**<br>
   Type: `Function`, optional<br>
