@@ -1,6 +1,7 @@
 exports[`test getProps() should return an object for props 1`] = `
 Object {
-  "description": "The only true button.",
+  "description": "The only true button.
+",
   "doclets": Object {},
   "methods": Array [],
   "props": Object {
@@ -20,9 +21,7 @@ Object {
 
 exports[`test getProps() should return an object for props with doclets 1`] = `
 Object {
-  "description": "
-The only true button.
-
+  "description": "The only true button.
 ",
   "doclets": Object {},
   "example": RequireStatement {
