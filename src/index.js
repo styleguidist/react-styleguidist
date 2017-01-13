@@ -14,6 +14,9 @@ import StyleGuide from 'rsg-components/StyleGuide';
 
 import 'highlight.js/styles/tomorrow.css';
 import './styles.css';
+import es6ObjectAssign from 'es6-object-assign';
+
+es6ObjectAssign.polyfill();
 
 // Make libraries available in examples
 global.React = React;
