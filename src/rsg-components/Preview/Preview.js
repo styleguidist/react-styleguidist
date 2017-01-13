@@ -5,9 +5,6 @@ import ReactDOM from 'react-dom';
 import { transform } from 'buble';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import Wrapper from 'rsg-components/Wrapper';
-import es6ObjectAssign from 'es6-object-assign';
-
-es6ObjectAssign.polyfill();
 
 const compileCode = code => transform(code, {
 	objectAssign: 'Object.assign',
