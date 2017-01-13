@@ -1,7 +1,8 @@
 import './styles';
 import React from 'react';
-import isFinite from 'lodash/isFinite';
 import ReactDOM from 'react-dom';
+import isFinite from 'lodash/isFinite';
+import es6ObjectAssign from 'es6-object-assign';
 import {
 	getComponentNameFromHash,
 	filterComponentsByExactName,
@@ -11,6 +12,8 @@ import {
 	processSections,
 } from './utils/utils';
 import StyleGuide from 'rsg-components/StyleGuide';
+
+es6ObjectAssign.polyfill();
 
 let codeKey = 0;
 

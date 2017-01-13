@@ -43,6 +43,7 @@
     "codemirror": "^5.22.0",
     "common-dir": "^1.0.1",
     "css-loader": "^0.26.1",
+    "es6-object-assign": "~1.0.3",
     "escodegen": "^1.8.1",
     "findup": "^0.1.5",
     "glob": "^7.1.1",
