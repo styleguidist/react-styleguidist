@@ -49,7 +49,7 @@ function getConfig(config) {
 	catch (exception) {
 		if (exception instanceof StyleguidistError) {
 			throw new StyleguidistError(
-				'Something is wrong with your style guide config:\n' +
+				'Something is wrong with your style guide config',
 				exception.message
 			);
 		}

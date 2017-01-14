@@ -12,14 +12,19 @@ const consts = require('../consts');
 module.exports = {
 	assetsDir: {
 		type: 'existing directory path',
+		example: 'assets',
 	},
 	components: {
 		type: ['string', 'function'],
 		process: (val, config) => ((!val && !config.sections) ? 'src/components/**/*.js' : val),
+		example: 'components/**/[A-Z]*.js',
 	},
 	context: {
 		type: 'object',
 		default: {},
+		example: {
+			map: 'lodash/map',
+		},
 	},
 	contextDependencies: {
 		type: 'array',
@@ -52,6 +57,7 @@ module.exports = {
 
 			return false;
 		},
+		example: componentPath => componentPath.replace(/\.jsx?$/, '.examples.md'),
 	},
 	handlers: {
 		default: reactDocgen.defaultHandlers.concat(displayNameHandler),
@@ -74,6 +80,16 @@ module.exports = {
 	sections: {
 		type: 'array',
 		default: [],
+		example: [
+			{
+				name: 'Documentation',
+				content: 'Readme.md',
+			},
+			{
+				name: 'Components',
+				components: './lib/components/**/[A-Z]*.js',
+			},
+		],
 	},
 	serverHost: {
 		type: 'string',
@@ -98,14 +114,26 @@ module.exports = {
 	styles: {
 		type: 'object',
 		default: {},
+		example: {
+			Logo: {
+				logo: {
+					fontStyle: 'italic',
+				},
+			},
+		},
 	},
 	template: {
 		type: 'existing file path',
 		default: path.resolve(__dirname, '../templates/index.html'),
+		example: 'templates/styleguide.html',
 	},
 	theme: {
 		type: 'object',
 		default: {},
+		example: {
+			link: 'firebrick',
+			linkHover: 'salmon',
+		},
 	},
 	title: {
 		type: 'string',
@@ -113,10 +141,10 @@ module.exports = {
 			if (val) {
 				return val;
 			}
-
 			const name = getUserPackageJson().name;
 			return `${startCase(name)} Style Guide`;
 		},
+		example: 'My Style Guide',
 	},
 	updateWebpackConfig: {
 		type: 'function',
@@ -128,6 +156,17 @@ module.exports = {
 	},
 	webpackConfig: {
 		type: ['object', 'function'],
+		example: {
+			module: {
+				loaders: [
+					{
+						test: /\.jsx?$/,
+						exclude: /node_modules/,
+						loader: 'babel-loader',
+					},
+				],
+			},
+		},
 	},
 	webpackConfigFile: {
 		type: ['module path'],
@@ -137,5 +176,6 @@ module.exports = {
 			}
 			return val;
 		},
+		example: './configs/webpack.js',
 	},
 };

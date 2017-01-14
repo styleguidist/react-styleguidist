@@ -310,7 +310,7 @@ it('should throw for unknown options with suggestion', () => {
 		drink: {},
 		food: {},
 	});
-	expect(fn).toThrowError('Did you mean "drink"');
+	expect(fn).toThrowError('Did you mean');
 });
 
 it('should warn for deprecated options', () => {
@@ -326,7 +326,7 @@ it('should warn for deprecated options', () => {
 		},
 	});
 	expect(result.food).toBe('pizza');
-	expect(console.warn).toBeCalledWith('"food" config option is deprecated. Don’t use!');
+	expect(console.warn).toBeCalledWith(expect.stringMatching('config option is deprecated. Don’t use!'));
 
 	console.warn = originalWarn;
 	/* eslint-enable no-console */

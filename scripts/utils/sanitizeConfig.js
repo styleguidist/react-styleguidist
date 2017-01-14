@@ -13,8 +13,12 @@ const isString = require('lodash/isString');
 const isFinite = require('lodash/isFinite');
 const map = require('lodash/map');
 const listify = require('listify');
+const chalk = require('chalk');
 const leven = require('leven');
+const prettyFormat = require('pretty-format');
 const StyleguidistError = require('./error');
+
+const format = value => prettyFormat(value, { min: true });
 
 const typeCheckers = {
 	number: isFinite,
@@ -58,8 +62,8 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 			}, null);
 
 			throw new StyleguidistError(
-				`Unknown config option "${key}".` +
-				(suggestion ? ` Did you mean "${suggestion}"?` : '')
+				`Unknown config option ${chalk.bold(key)} with value "${format(value)}" was found.` +
+				(suggestion ? `\n\nDid you mean ${chalk.bold(suggestion)}?` : '')
 			);
 		}
 	});
@@ -86,12 +90,12 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 			if (isRequired) {
 				const message = isString(isRequired)
 					? isRequired
-					: `"${key}" config option is required.`;
+					: `${chalk.bold(key)} config option is required.`;
 				throw new StyleguidistError(message);
 			}
 		}
 		else if (props.deprecated) {
-			console.warn(`"${key}" config option is deprecated. ${props.deprecated}`);
+			console.warn(`${chalk.bold(key)} config option is deprecated. ${props.deprecated}`);
 			console.log();
 		}
 
@@ -101,13 +105,20 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 			// Check type
 			const hasRightType = types.some(type => {
 				if (!typeCheckers[type]) {
-					throw Error(`Wrong type "${type}" specified for "${key}" in schema.`);
+					throw Error(`Wrong type ${chalk.bold(type)} specified for ${chalk.bold(key)} in schema.`);
 				}
 				return typeCheckers[type](value);
 			});
 			if (!hasRightType) {
+				const exampleValue = props.example || props.default;
 				throw new StyleguidistError(
-					`"${key}" config option should be ${typesList(types)}, received ${typeof value}.`
+					`${chalk.bold(key)} config option should be ${typesList(types)}, received ${typeof value}.\n` +
+					(exampleValue ? `
+Example:
+
+{
+  ${key}: ${isFunction(exampleValue) ? exampleValue.toString() : format(exampleValue)}
+}` : '')
 				);
 			}
 
@@ -119,12 +130,12 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 				if (shouldExist(types)) {
 					if (shouldBeFile(types) && !fs.existsSync(value)) {
 						throw new StyleguidistError(
-							`A file specified in "${key}" config option does not exist:\n${value}`
+							`A file specified in ${chalk.bold(key)} config option does not exist:\n${value}`
 						);
 					}
 					if (shouldBeDirectory(types) && !isDirectory.sync(value)) {
 						throw new StyleguidistError(
-							`A directory specified in "${key}" config option does not exist:\n${value}`
+							`A directory specified in ${chalk.bold(key)} config option does not exist:\n${value}`
 						);
 					}
 				}
@@ -140,7 +151,7 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 				}
 				catch (err) {
 					throw new StyleguidistError(
-						`A module specified in "${key}" config option cannot be required:\n${value}\n\n` +
+						`A module specified in ${chalk.bold(key)} config option cannot be required:\n${value}\n\n` +
 						'For a local file write "./configs/webpack.config".\n' +
 						'For npm module write "react-scripts/config/webpack.config.dev".'
 					);
