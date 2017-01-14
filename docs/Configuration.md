@@ -77,10 +77,9 @@ You can change settings in the `styleguide.config.js` file in your project’s r
 
 * **`contextDependencies`**<br>
   Type: `Array of String`, optional<br>
-  Array of strings that allow you to specify absolute paths of directories to
-  watch for additions or removals of components. If you do not set this,
-  styleguidist will determine the single directory that all of your components
-  have in common and watch that.
+  Array of strings that allow you to specify absolute paths of directories to watch for additions or removals of components.
+  If you do not set this, styleguidist will determine the single directory that all of your components have in common
+  and watch that.
 
   ```javascript
   module.exports = {
@@ -331,3 +330,46 @@ You can change settings in the `styleguide.config.js` file in your project’s r
     ),
   };
   ```
+  
+#### `styles`
+
+Type: `object`, optional
+
+Customize styles of any Styleguidist’s component.
+
+```javascript
+module.exports = {
+	styles: {
+		Logo: {
+			logo: {
+				animation: 'blink ease-in-out 300ms infinite',
+			},
+			'@keyframes blink': {
+				to: { opacity: 0 },
+			},
+		},
+	},
+};
+```
+
+> **Note:** Styles use [JSS syntax](https://github.com/cssinjs/jss/blob/master/docs/json-api.md).
+
+> **Note:** Use your browser’s developer tools to find component and style names. For example class name `.rsg--Logo--logo` corresponds to an example above.
+  
+#### `theme`
+
+Type: `object`, optional
+
+Customize style guide UI fonts, colors, etc.
+
+```javascript
+module.exports = {
+	theme: {
+		link: 'firebrick',
+		linkHover: 'salmon',
+		font: '"Comic Sans MS", "Comic Sans", cursive',
+	},
+};
+```
+
+> **Note:** See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/styles/theme.js).
