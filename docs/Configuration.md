@@ -2,335 +2,280 @@
 
 You can change settings in the `styleguide.config.js` file in your project’s root folder.
 
-* **`components`**<br>
-  Type: `String` or `Function`, default: `src/components/**/*.js`<br>
-  - when `String`: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules. Relative to config folder.
-  - when `Function`: a function that returns an array of module paths.
+#### `assetsDir`
 
-  If your components look like `components/Button.js` or `components/Button/Button.js` or `components/Button/index.js` (it’s the default behavior, change only if your components are not in `src/components` or files are not `.js`):
+Type: `String`, optional
 
-  ```javascript
-  module.exports = {
-    // ...
-    components: 'components/**/*.js',
-  };
-  ```
+Your application static assets folder, will be accessible as `/` in the style guide dev server.
 
-  If your components look like `components/Button/Button.js` + `components/Button/index.js` (you need to skip `index.js`, otherwise component will be loaded twice):
+#### `components`
 
-  ```javascript
-  module.exports = {
-    // ...
-    components: 'components/**/[A-Z]*.js',
-  };
-  ```
+Type: `String` or `Function`, default: `src/components/**/*.js`
 
-* **`sections`**<br>
-  Type: `Array`<br>
-  Allows components to be grouped into sections with a title and optional overview content. Sections can also be content only, with no associated components (for example, a textual introduction). A section definition consists of:<br>
-  - `name` — the title of the section.
-  - `content` (optional) — location of a Markdown file containing the overview content.
-  - `components` (optional) — a string or function returning a list of components. The same rules apply as for the root `components` option.
-  - `sections` (optional) — array of subsections.
+- when `String`: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules.
+- when `Function`: a function that returns an array of module paths.
 
-  Configuring a style guide with a textual introduction section, then a UI section would look like:
+All paths are relative to config folder.
 
-  ```javascript
-  module.exports = {
-    // ...
-    sections: [
-      {
-        name: 'Introduction',
-        content: 'docs/introduction.md',
-      },
-      {
-        name: 'Documentation',
-        sections: [
-          {
-            name: 'Installation',
-            content: 'docs/installation.md',
-          },
-          {
-            name: 'Configuration',
-            content: 'docs/configuration.md',
-          },
-        ],
-      },
-      {
-        name: 'UI Components',
-        content: 'docs/ui.md',
-        components: 'lib/components/ui/*.js',
-      },
-    ],
-  };
-  ```
+If your components look like `components/Button.js` or `components/Button/Button.js` or `components/Button/index.js` (it’s the default behavior, change only if your components are not in `src/components` or files are not `.js`):
 
-* **`skipComponentsWithoutExample`**<br>
-  Type: `Boolean`, default: `false`<br>
-  Ignore components that don’t have an example file (as determined by `getExampleFilename`). These components won’t be accessible from other examples unless you manually `require` them.
+```javascript
+module.exports = {
+  components: 'components/**/*.js',
+};
+```
 
-* **`defaultExample`**<br>
-  Type: `Boolean` or `String`, default: `false`<br>
-  For components that do not have an example, a default one can be used. When set to `true`, the [DefaultExample.md](../scripts/templates/DefaultExample.md) is used, or you can provide the path to your own example Markdown file as a `String`.
+If your components look like `components/Button/Button.js` + `components/Button/index.js` (you need to skip `index.js`, otherwise component will be loaded twice):
 
-  When writing your own default example file, `__COMPONENT__` will be replaced by the actual component name at compile-time.
+```javascript
+module.exports = {
+  components: 'components/**/[A-Z]*.js',
+};
+```
 
-* **`contextDependencies`**<br>
-  Type: `Array of String`, optional<br>
-  Array of strings that allow you to specify absolute paths of directories to watch for additions or removals of components.
-  If you do not set this, styleguidist will determine the single directory that all of your components have in common
-  and watch that.
+#### `context`
 
-  ```javascript
-  module.exports = {
-    // ...
-    contextDependencies: [
-      path.resolve(__dirname, 'lib/components'),
-    ],
-  }
-  ```
+Type: `Object`, optional
 
-* **`showCode`**<br>
-  Type: `Boolean`, default: `false`<br>
-  Show or hide example code initially. It can be toggled in the UI by clicking the show/hide code toggle button underneath each example.
+Modules that will be available for examples. You can use it for utility functions like Lodash or for data fixtures.
 
-* **`styleguideDir`**<br>
-  Type: `String`, default: `styleguide`<br>
-  Folder for static HTML style guide generated with `styleguidist build` command.
+```javascript
+module.exports = {
+  context: {
+    map: 'lodash/map',
+    users: './fixtures/users',
+  },
+};
+```
 
-* **`assetsDir`**<br>
-  Type: `String`, optional<br>
-  Your application static assets folder, will be accessible as `/` in the style guide dev-server.
+Then you can use them in any example:
 
-* **`template`**<br>
-  Type: `String`, default: [src/templates/index.html](https://github.com/styleguidist/react-styleguidist/blob/master/scripts/templates/index.html)<br>
-  HTML file to use as the template for the output.
+```javascript
+<Message>{map(users, 'name').join(', ')}</Message>
+```
 
-* **`title`**<br>
-  Type: `String`, default: `<app name from package.json> Style Guide`<br>
-  Style guide title.
+#### `contextDependencies`
 
-* **`serverHost`**<br>
-  Type: `String`, default: `localhost`<br>
-  Dev server host name.
+Type: `String[]`, optional
 
-* **`serverPort`**<br>
-  Type: `Number`, default: `3000`<br>
-  Dev server port.
+Array of absolute paths that allow you to specify absolute paths of directories to watch for additions or removals of components.
 
-* **`highlightTheme`**<br>
-  Type: `String`, default: `base16-light`<br>
-  [CodeMirror theme](http://codemirror.net/demo/theme.html) name to use for syntax highlighting in examples.
+By default Styleguidist uses common parent directory of your components.
 
-* **`previewDelay`**<br>
-  Type: `Number`, default: 500<br>
-  Debounce time in milliseconds used before render the changes from the editor. While inserting code the preview will not be updated.
+```javascript
+module.exports = {
+  contextDependencies: [
+    path.resolve(__dirname, 'lib/components'),
+  ],
+}
+```
 
-* **`getExampleFilename`**<br>
-  Type: `Function`, default: finds `Readme.md` or `ComponentName.md` in the component folder<br>
-  Function that returns examples file path for a given component path.
+#### `configureServer`
 
-  For example, instead of `Readme.md` you can use `ComponentName.examples.md`:
+Type: `Function`, optional
 
-  ```javascript
-  module.exports = {
-    // ...
-    getExampleFilename(componentpath) {
-      return componentpath.replace(/\.jsx?$/, '.examples.md');
+Function that allows you to add endpoints to the underlying `express` server:
+
+```javascript
+module.exports = {
+  configureServer(app) {
+     // `app` is the instance of the express server running Styleguidist
+    app.get('/custom-endpoint', (req, res) => {
+      res.status(200).send({ response: 'Server invoked' });
+    });
+  },
+};
+```
+
+See [FAQ](./FAQ.md) for examples.
+
+#### `defaultExample`
+
+Type: `Boolean` or `String`, default: `false`
+
+For components that do not have an example, a default one can be used. When set to `true`, the [DefaultExample.md](../scripts/templates/DefaultExample.md) is used, or you can provide the path to your own example Markdown file.
+
+When writing your own default example file, `__COMPONENT__` will be replaced by the actual component name at compile-time.
+
+#### `getComponentPathLine`
+
+Type: `Function`, default: optional
+
+Function that returns a component path line (displayed under the component name).
+
+For example, instead of `components/Button/Button.js` you can print `import Button from 'components/Button';`:
+
+```javascript
+const path = require('path');
+module.exports = {
+  getComponentPathLine: function(componentPath) {
+    const name = path.basename(componentPath, '.js');
+    const dir = path.dirname(componentPath);
+    return `import ${name} from '${dir}';`;
+  },
+};
+```
+
+#### `getExampleFilename`
+
+Type: `Function`, default: finds `Readme.md` or `ComponentName.md` in the component folder
+
+Function that returns examples file path for a given component path.
+
+For example, instead of `Readme.md` you can use `ComponentName.examples.md`:
+
+```javascript
+module.exports = {
+  getExampleFilename(componentPath) {
+    return componentPath.replace(/\.jsx?$/, '.examples.md');
+  },
+};
+```
+
+#### `handlers`
+
+Type: `Function[]`, optional, default: [[react-docgen-displayname-handler](https://github.com/nerdlabs/react-docgen-displayname-handler)]
+
+Functions used to process the discovered components and generate documentation objects. Default behaviours include discovering component documentation blocks, prop types, and defaults. If setting this property, it is best to build from the default `react-docgen` handler list, such as in the example below. See the [react-docgen handler documentation](https://github.com/reactjs/react-docgen#handlers) for more information about handlers.
+
+Also note that the default handler, `react-docgen-displayname-handler` should be included to better support higher order components.
+
+```javascript
+module.exports = {
+  handlers: require('react-docgen').defaultHandlers.concat(
+    (documentation, path) => {
+      // Calculate a display name for components based upon the declared class name.
+      if (path.value.type === 'ClassDeclaration' && path.value.id.type === 'Identifier') {
+        documentation.set('displayName', path.value.id.name);
+
+        // Calculate the key required to find the component in the module exports
+        if (path.parentPath.value.type === 'ExportNamedDeclaration') {
+          documentation.set('path', path.value.id.name);
+        }
+      }
+
+      // The component is the default export
+      if (path.parentPath.value.type === 'ExportDefaultDeclaration') {
+        documentation.set('path', 'default');
+      }
     },
-  };
-  ```
+    
+    // To better support higher order components
+    require('react-docgen-displayname-handler').default,
+  ),
+};
+```
 
-* **`getComponentPathLine`**<br>
-  Type: `Function`, default: optional<br>
-  Function that returns a component path line (displayed under the component name).
+#### `highlightTheme`
 
-  For example, instead of `components/Button/Button.js` you can print `import Button from 'components/Button';`:
+Type: `String`, default: `base16-light`
 
-  ```javascript
-  const path = require('path');
-  module.exports = {
-    // ...
-    getComponentPathLine: function(componentPath) {
-      const name = path.basename(componentPath, '.js');
-      const dir = path.dirname(componentPath);
-      return 'import ' + name + ' from \'' + dir + '\';';
+[CodeMirror theme](http://codemirror.net/demo/theme.html) name to use for syntax highlighting in the editor.
+
+#### `previewDelay`
+
+Type: `Number`, default: 500
+
+Debounce time in milliseconds used before render the changes from the editor. While typing code the preview will not be updated.
+
+#### `propsParser`
+
+Type: `Function`, optional
+
+Function that allows you to override the mechanism used to parse props from a source file. Default mechanism is using [react-docgen](https://github.com/reactjs/react-docgen) to parse props.
+
+```javascript
+module.exports = {
+  propsParser(filePath, source) {
+    return require('react-docgen').parse(source);
+  },
+};
+```
+
+#### `resolver`
+
+Type: `Function`, optional
+
+Function that allows you to override the mechanism used to identify classes/components to analyze. Default behaviour is to find all exported components in each file. You can configure it to find all components or use a custom detection method. See the [react-docgen resolver documentation](https://github.com/reactjs/react-docgen#resolver) for more information about resolvers.
+
+```javascript
+module.exports = {
+  resolver: require('react-docgen').resolver.findAllComponentDefinitions,
+};
+```
+
+#### `sections`
+
+Type: `Array`, optional
+
+Allows components to be grouped into sections with a title and optional overview content. Sections can also be content only, with no associated components (for example, a textual introduction). A section definition consists of:
+
+- `name` — the title of the section.
+- `content` (optional) — location of a Markdown file containing the overview content.
+- `components` (optional) — a string or function returning a list of components. The same rules apply as for the root `components` option.
+- `sections` (optional) — array of subsections.
+
+Configuring a style guide with a textual introduction section, then a UI section would look like:
+
+```javascript
+module.exports = {
+  sections: [
+    {
+      name: 'Introduction',
+      content: 'docs/introduction.md',
     },
-  };
-  ```
-
-* **`context`**<br>
-  Type: `Object`, optional<br>
-  Modules that will be available for examples. You can use it for utility functions like Lodash or for data fixtures.
-
-  ```javascript
-  module.exports = {
-    // ...
-    context: {
-      map: 'lodash/map',
-      users: './fixtures/users',
-    },
-  };
-  ```
-
-  Then you can use them in any example:
-
-  ```javascript
-  <Message>{map(users, 'name').join(', ')}</Message>
-  ```
-
-* **`webpackConfig`**<br>
-  Type: `Object` or `Function`, optional<br>
-  Custom Webpack config options: loaders, extensions, plugins, etc. required for your project.
-
-  Can be an object:
-
-  ```javascript
-  module.exports = {
-    // ...
-    webpackConfig: {
-      module: {
-    		resolve: {
-          extensions: ['.es6'],
+    {
+      name: 'Documentation',
+      sections: [
+        {
+          name: 'Installation',
+          content: 'docs/installation.md',
         },
-        loaders: [
-          {
-            test: /\.scss$/,
-            loaders: ['style-loader', 'css-loader', 'sass-loader?precision=10'],
-          },
-        ],
-      },
+        {
+          name: 'Configuration',
+          content: 'docs/configuration.md',
+        },
+      ],
     },
-  };
-  ```
-
-  Or a function:
-
-  ```javascript
-  module.exports = {
-    // ...
-    webpackConfig(env) {
-      if (env === 'development') {
-          return {
-              // custom options
-          };
-      }
-      return {};
+    {
+      name: 'UI Components',
+      content: 'docs/ui.md',
+      components: 'lib/components/ui/*.js',
     },
-  };
-  ```
+  ],
+};
+```
 
-  > **Note:**: `output` option will be ignored.
+#### `serverHost`
 
-  > **Note:** this option disables Webpack config auto load, use `webpackConfigFile` option to load your project’s Webpack config from file.
+Type: `String`, default: `localhost`
 
-  > **Note:** run style guide in verbose mode to see the actual Webpack config used by Styleguidist: `npm run styleguide -- --verbose`.
+Dev server host name.
 
-  See [FAQ](./FAQ.md) for examples.
+#### `serverPort`
 
-* **`webpackConfigFile`**<br>
-  Type: `String`<br>
-  By default Styleguidist will try to find Webpack config (`webpack.config.dev.js` or `webpack.config.js`) anywhere in your project and use it.<br>
-  Use this option to specify a custom path to your Webpack config.
+Type: `Number`, default: `3000`
 
-  > **Note:**: `entry`, `externals` and `output` options will be ignored, use `webpackConfig` option to change them.
+Dev server port.
 
-* **`updateWebpackConfig`**<br>
-  Type: `Function`, optional<br>
-  Function that allows you to modify Webpack config for style guide.
+#### `showCode`
 
-  > **Warning:** deprecated, use `webpackConfigFile` or `webpackConfig` options instead.
+Type: `Boolean`, default: `false`
 
-  ```javascript
-  module.exports = {
-    // ...
-    updateWebpackConfig(webpackConfig, env) {
-      // WARNING: inspect Styleguidist Webpack config before modifying it, otherwise you may break Styleguidist
-      console.log(webpackConfig);
-      if (env === 'development') {
-        // Modify config...
-      }
-      return webpackConfig;
-    },
-  };
-  ```
+Show or hide example code initially. It can be toggled in the UI by clicking the show/hide code button before each example.
 
-  > **Note:** this option disables Webpack config auto load.
+#### `skipComponentsWithoutExample`
 
-* **`configureServer`**<br>
-  Type: `Function`, optional<br>
-  Function that allows you to add endpoints to the underlying `express` server:
+Type: `Boolean`, default: `false`
 
-  ```javascript
-  module.exports = {
-    // ...
-    configureServer(app) {
-       // `app` is the instance of the express server running react-styleguidist
-    	app.get('/custom-endpoint', (req, res) => {
-			res.status(200).send({ response: 'Server invoked' });
-		});
-    },
-  };
-  ```
+Ignore components that don’t have an example file (as determined by `getExampleFilename`). These components won’t be accessible from other examples unless you manually `require` them.
 
-  See [FAQ](./FAQ.md) for examples.
+#### `styleguideDir`
 
-* **`propsParser`**<br>
-  Type: `Function`, optional<br>
-  Function that allows you to override the mechanism used to parse props from a source file. Default mechanism is using [react-docgen](https://github.com/reactjs/react-docgen) to parse props.
+Type: `String`, default: `styleguide`
 
-  ```javascript
-  module.exports = {
-    // ...
-    propsParser(filePath, source) {
-      return require('react-docgen').parse(source);
-    },
-  };
-  ```
+Folder for static HTML style guide generated with `styleguidist build` command.
 
-* **`resolver`**<br>
-  Type: `Function`, optional<br>
-  Function that allows you to override the mechanism used to identify classes/components to analyze. Default behaviour is to find all exported components in each file. You can configure it to find all components or use a custom detection method. See the [react-docgen resolver documentation](https://github.com/reactjs/react-docgen#resolver) for more information about resolvers.
-
-  ```javascript
-  module.exports = {
-    // ...
-    resolver: require('react-docgen').resolver.findAllComponentDefinitions,
-  };
-  ```
-
-* **`handlers`**<br>
-  Type: `Array of Function`, optional, default: [[react-docgen-displayname-handler](https://github.com/nerdlabs/react-docgen-displayname-handler)]<br>
-  Array of functions used to process the discovered components and generate documentation objects. Default behaviours include discovering component documentation blocks, prop types, and defaults. If setting this property, it is best to build from the default `react-docgen` handler list, such as in the example below. See the [react-docgen handler documentation](https://github.com/reactjs/react-docgen#handlers) for more information about handlers.
-
-  Also note that the default handler, `react-docgen-displayname-handler` should be included to better support higher order components.
-
-  ```javascript
-  module.exports = {
-    // ...
-    handlers: require('react-docgen').defaultHandlers.concat(
-      (documentation, path) => {
-        // Calculate a display name for components based upon the declared class name.
-        if (path.value.type === 'ClassDeclaration' && path.value.id.type === 'Identifier') {
-          documentation.set('displayName', path.value.id.name);
-
-          // Calculate the key required to find the component in the module exports
-          if (path.parentPath.value.type === 'ExportNamedDeclaration') {
-            documentation.set('path', path.value.id.name);
-          }
-        }
-
-        // The component is the default export
-        if (path.parentPath.value.type === 'ExportDefaultDeclaration') {
-          documentation.set('path', 'default');
-        }
-      },
-      // To better support higher order components
-      require('react-docgen-displayname-handler').default,
-    ),
-  };
-  ```
-  
 #### `styles`
 
 Type: `object`, optional
@@ -339,23 +284,29 @@ Customize styles of any Styleguidist’s component.
 
 ```javascript
 module.exports = {
-	styles: {
-		Logo: {
-			logo: {
-				animation: 'blink ease-in-out 300ms infinite',
-			},
-			'@keyframes blink': {
-				to: { opacity: 0 },
-			},
-		},
-	},
+  styles: {
+    Logo: {
+      logo: {
+        animation: 'blink ease-in-out 300ms infinite',
+      },
+      '@keyframes blink': {
+        to: { opacity: 0 },
+      },
+    },
+  },
 };
 ```
 
 > **Note:** Styles use [JSS syntax](https://github.com/cssinjs/jss/blob/master/docs/json-api.md).
 
 > **Note:** Use your browser’s developer tools to find component and style names. For example class name `.rsg--Logo--logo` corresponds to an example above.
-  
+
+#### `template`
+
+Type: `String`, default: [src/templates/index.html](https://github.com/styleguidist/react-styleguidist/blob/master/scripts/templates/index.html)
+
+HTML file to use as the template for the style guide. HTML Webpack Plugin is used under the hood, see [their docs for details](https://github.com/ampedandwired/html-webpack-plugin/blob/master/docs/template-option.md).
+
 #### `theme`
 
 Type: `object`, optional
@@ -364,12 +315,105 @@ Customize style guide UI fonts, colors, etc.
 
 ```javascript
 module.exports = {
-	theme: {
-		link: 'firebrick',
-		linkHover: 'salmon',
-		font: '"Comic Sans MS", "Comic Sans", cursive',
-	},
+  theme: {
+    link: 'firebrick',
+    linkHover: 'salmon',
+    font: '"Comic Sans MS", "Comic Sans", cursive',
+  },
 };
 ```
 
 > **Note:** See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/styles/theme.js).
+
+#### `title`
+
+Type: `String`, default: `<app name from package.json> Style Guide`
+
+Style guide title.
+
+#### `updateWebpackConfig`
+
+Type: `Function`, optional
+
+> **Warning:** deprecated, use `webpackConfigFile` or `webpackConfig` options instead.
+
+Function that allows you to modify Webpack config for style guide.
+
+```javascript
+module.exports = {
+  // ...
+  updateWebpackConfig(webpackConfig, env) {
+    // WARNING: inspect Styleguidist Webpack config before modifying it, otherwise you may break Styleguidist
+    console.log(webpackConfig);
+    if (env === 'development') {
+      // Modify config...
+    }
+    return webpackConfig;
+  },
+};
+```
+
+> **Note:** this option disables Webpack config auto load.
+
+#### `verbose`
+
+Type: `Boolean`, default: `false`
+
+Print debug information. Same as `--verbose` command line switch.
+
+#### `webpackConfig`
+
+Type: `Object` or `Function`, optional
+
+Custom Webpack config options: loaders, extensions, plugins, etc. required for your project.
+
+Can be an object:
+
+```javascript
+module.exports = {
+  webpackConfig: {
+    module: {
+      resolve: {
+        extensions: ['.es6'],
+      },
+      loaders: [
+        {
+          test: /\.scss$/,
+          loaders: ['style-loader', 'css-loader', 'sass-loader?precision=10'],
+        },
+      ],
+    },
+  },
+};
+```
+
+Or a function:
+
+```javascript
+module.exports = {
+  webpackConfig(env) {
+    if (env === 'development') {
+        return {
+            // custom options
+        };
+    }
+    return {};
+  },
+};
+```
+
+> **Note:**: `output` option will be ignored.
+
+> **Note:** this option disables Webpack config auto load, use `webpackConfigFile` option to load your project’s Webpack config from file.
+
+> **Note:** run style guide in verbose mode to see the actual Webpack config used by Styleguidist: `npm run styleguide -- --verbose`.
+
+See [FAQ](./FAQ.md) for examples.
+
+#### `webpackConfigFile`
+
+Type: `String`
+
+By default Styleguidist will try to find Webpack config (`webpack.config.dev.js` or `webpack.config.js`) anywhere in your project and use it. Use this option to specify a custom path to your Webpack config.
+
+> **Note:**: `entry`, `externals` and `output` options will be ignored, use `webpackConfig` option to change them.
