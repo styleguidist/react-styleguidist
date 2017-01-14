@@ -190,6 +190,8 @@ module.exports = function(config, env) {
 	else {
 		webpackConfig = merge(webpackConfig, {
 			entry: [
+				'babel-polyfill',
+				'eventsource-polyfill',
 				'webpack-hot-middleware/client',
 				entryScript,
 			],

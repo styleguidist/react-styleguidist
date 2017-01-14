@@ -2,12 +2,12 @@
 
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import { transform } from 'buble';
+import { transform } from 'babel-standalone';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import Wrapper from 'rsg-components/Wrapper';
 
 const compileCode = code => transform(code, {
-	objectAssign: 'Object.assign',
+	presets: ['es2015', 'react', 'stage-0'],
 }).code;
 
 export default class Preview extends Component {
