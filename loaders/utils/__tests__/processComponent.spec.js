@@ -1,3 +1,5 @@
+jest.mock('../requireIt');
+
 import path from 'path';
 import processComponent from '../processComponent';
 

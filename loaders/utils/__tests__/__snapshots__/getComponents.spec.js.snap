@@ -9,7 +9,7 @@ Array [
     "nameFallback": "Foo",
     "pathLine": "../Foo.js",
     "props": RequireStatement {
-      "filepath": "!!../loaders/props-loader!Foo.js",
+      "filepath": "!!<rootDir>/loaders/props-loader.js!Foo.js",
     },
   },
   Object {
@@ -21,7 +21,7 @@ Array [
     "nameFallback": "Bar",
     "pathLine": "../Bar.js",
     "props": RequireStatement {
-      "filepath": "!!../loaders/props-loader!Bar.js",
+      "filepath": "!!<rootDir>/loaders/props-loader.js!Bar.js",
     },
   },
 ]
