@@ -50,6 +50,9 @@ const styles = ({ font, monospace, light }) => ({
 	props: {
 		marginBottom: 30,
 	},
+	methods: {
+		marginBottom: 30,
+	},
 });
 
 export function ReactComponentRenderer({
@@ -58,6 +61,7 @@ export function ReactComponentRenderer({
 	pathLine,
 	description,
 	props,
+	methods,
 	examples,
 	sidebar,
 }) {
@@ -85,6 +89,12 @@ export function ReactComponentRenderer({
 					{props}
 				</div>
 			)}
+			{methods ? (
+				<div className={classes.methods}>
+					<h3 className={classes.heading}>Methods</h3>
+					{methods}
+				</div>
+			) : false}
 			{examples}
 		</div>
 	);
@@ -96,6 +106,7 @@ ReactComponentRenderer.propTypes = {
 	pathLine: PropTypes.string.isRequired,
 	description: PropTypes.node,
 	props: PropTypes.node,
+	methods: PropTypes.node,
 	examples: PropTypes.node,
 	sidebar: PropTypes.bool,
 };

@@ -33,6 +33,15 @@ module.exports = function(source) {
 		console.log();
 	}
 
+	if (parsedProps.length) {
+		parsedProps.forEach((prop, index) => {
+			parsedProps[index].methods = prop.methods.filter((method) => {
+				const doclets = reactDocs.utils.docblock.getDoclets(method.docblock);
+				return doclets && doclets.public;
+			});
+		});
+	}
+
 	const props = castArray(parsedProps).map(getPropsCode);
 
 	return `
