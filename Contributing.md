@@ -27,22 +27,34 @@ I love pull requests. And following this simple guidelines will make your pull r
 - Feel free to [ask me](http://sapegin.me) anything you need.
 
 
-## Building and running tests
+## Development workflow
 
-Install dependencies:
+Yarn is recommened but you can use npm too.
+
+Install dependencies first:
 
 ```bash
-npm install
+yarn
 ```
 
-Run example style guide:
+Then run Babel in watch mode and start example style guide:
 
 ```bash
-npm start
+yarn run compile:watch & yarn start
 ```
 
-Run tests:
+Open [localhost:3000](http://localhost:3000) in a browser.
+
+(There are other example style guides to test particular features too, run `yarn run` to see a list.)
+
+Run linters and tests:
 
 ```bash
-npm test
+yarn test
+```
+
+Or run tests in watch mode:
+
+```bash
+yarn run test:watch
 ```
