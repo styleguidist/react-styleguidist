@@ -59,6 +59,7 @@ function renderDescription(prop) {
 	return (
 		<Group>
 			{description && <Markdown text={description} inline />}
+			{extra && description && <br />}
 			{extra}
 		</Group>
 	);
