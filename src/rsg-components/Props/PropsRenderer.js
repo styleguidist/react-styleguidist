@@ -57,9 +57,8 @@ function renderDescription(prop) {
 	const { description } = prop;
 	const extra = renderExtra(prop);
 	return (
-		<Group>
+		<Group separator={<br />}>
 			{description && <Markdown text={description} inline />}
-			{extra && description && <br />}
 			{extra}
 		</Group>
 	);
