@@ -31,12 +31,6 @@
   },
   "dependencies": {
     "ast-types": "^0.9.3",
-    "babel-cli": "^6.18.0",
-    "babel-core": "^6.21.0",
-    "babel-plugin-transform-class-properties": "^6.19.0",
-    "babel-plugin-transform-object-rest-spread": "^6.20.2",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0",
     "buble": "^0.15.2",
     "chalk": "^1.1.3",
     "classnames": "^2.2.5",
@@ -84,9 +78,14 @@
     "webpack": "1 || 2 || ^2.1.0-beta || ^2.2.0-rc"
   },
   "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.21.0",
     "babel-eslint": "^7.1.1",
     "babel-jest": "^18.0.0",
-    "babel-loader": "^6.2.10",
+    "babel-plugin-transform-class-properties": "^6.19.0",
+    "babel-plugin-transform-object-rest-spread": "^6.20.2",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
     "babel-register": "^6.18.0",
     "cross-env": "^3.1.4",
     "dog-names": "^1.0.2",
@@ -110,7 +109,7 @@
     "semantic-release": "^6.3.2",
     "semantic-release-tamia": "^1.1.0",
     "strip-shebang": "^1.0.2",
-    "webpack": "2.2.0-rc.4"
+    "webpack": "2.2.0"
   },
   "scripts": {
     "test": "npm run lint && npm run test:jest",
