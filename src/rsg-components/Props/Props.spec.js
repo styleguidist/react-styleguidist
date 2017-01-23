@@ -32,7 +32,7 @@ test('should render PropTypes.string', () => {
 			<td><Code>color</Code></td>
 			<td><Code>string</Code></td>
 			<td></td>
-			<td><Group /></td>
+			<td><Group separator={<br />} /></td>
 		</tr>
 	);
 });
@@ -45,7 +45,7 @@ test('should render PropTypes.string with a default value', () => {
 			<td><Code>color</Code></td>
 			<td><Code>string</Code></td>
 			<td><Code>pink</Code></td>
-			<td><Group /></td>
+			<td><Group separator={<br />} /></td>
 		</tr>
 	);
 });
@@ -58,7 +58,7 @@ test('should render PropTypes.string.isRequired', () => {
 			<td><Code>color</Code></td>
 			<td><Code>string</Code></td>
 			<td><span>Required</span></td>
-			<td><Group /></td>
+			<td><Group separator={<br />} /></td>
 		</tr>
 	);
 });
@@ -71,7 +71,7 @@ test('should render PropTypes.arrayOf', () => {
 			<td><Code>colors</Code></td>
 			<td><Code>string[]</Code></td>
 			<td></td>
-			<td><Group /></td>
+			<td><Group separator={<br />} /></td>
 		</tr>
 	);
 });
@@ -84,7 +84,7 @@ test('should render PropTypes.instanceOf', () => {
 			<td><Code>num</Code></td>
 			<td><Code>Number</Code></td>
 			<td></td>
-			<td><Group /></td>
+			<td><Group separator={<br />} /></td>
 		</tr>
 	);
 });
@@ -97,7 +97,7 @@ test('should render PropTypes.shape', () => {
 			<td><Code>shape</Code></td>
 			<td></td>
 			<td>
-				<Group>
+				<Group separator={<br />}>
 					<div>
 						<Code>bar</Code>: <Code>number</Code> — <span>Required</span>
 					</div>
@@ -118,7 +118,7 @@ test('should render description in Markdown', () => {
 			<td><Code>color</Code></td>
 			<td><Code>string</Code></td>
 			<td></td>
-			<td><Group><Markdown text="Label" /></Group></td>
+			<td><Group separator={<br />}><Markdown text="Label" /></Group></td>
 		</tr>
 	);
 });
@@ -131,7 +131,7 @@ test('should render unknown proptype for a prop when a relevant proptype is not 
 			<td><Code>color</Code></td>
 			<td><Code>unknown</Code></td>
 			<td><Code>pink</Code></td>
-			<td><Group /></td>
+			<td><Group separator={<br />} /></td>
 		</tr>
 	);
 });
