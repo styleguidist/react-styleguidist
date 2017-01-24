@@ -47,10 +47,7 @@ const styles = ({ font, monospace, light }) => ({
 		marginBottom: 20,
 		fontSize: 16,
 	},
-	props: {
-		marginBottom: 30,
-	},
-	methods: {
+	subsection: {
 		marginBottom: 30,
 	},
 });
@@ -84,13 +81,13 @@ export function ReactComponentRenderer({
 				{description}
 			</div>
 			{props && (
-				<div className={classes.props}>
+				<div className={classes.subsection}>
 					<h3 className={classes.heading}>Props</h3>
 					{props}
 				</div>
 			)}
 			{methods ? (
-				<div className={classes.methods}>
+				<div className={classes.subsection}>
 					<h3 className={classes.heading}>Methods</h3>
 					{methods}
 				</div>

@@ -20,6 +20,10 @@ export default class Placeholder extends Component {
 		height: 150,
 	};
 
+	/**
+	 * A public method.
+	 * @public
+	 */
 	getImageUrl() {
 		const { type, width, height } = this.props;
 		const types = {
