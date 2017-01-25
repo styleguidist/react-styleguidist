@@ -16,7 +16,7 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 	para: {
 		fontFamily: font,
 		fontSize: 'inherit',
-		marginBottom: 15,
+		margin: [[0, 0, 15, 0]],
 	},
 	a: linkStyles({ link, linkHover }).link,
 	h3: {
