@@ -61,7 +61,7 @@
     "react-dev-utils": "^0.4.2",
     "react-docgen": "^2.13.0",
     "react-docgen-displayname-handler": "^1.0.0",
-    "react-group": "^1.0.1",
+    "react-group": "^1.0.2",
     "remark": "^6.2.0",
     "remark-parse": "^2.2.0",
     "semver-utils": "^1.1.1",
