@@ -40,6 +40,10 @@ export default class Placeholder extends Component {
 		return types[type];
 	}
 
+	makeABarrelRoll() {
+		return 'This is a private method';
+	}
+
 	render() {
 		const { width, height } = this.props;
 		return (
