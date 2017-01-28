@@ -10,6 +10,7 @@ const styles = ({ monospace, white, errorBackground }) => ({
 		padding: 15,
 		lineHeight: 1.2,
 		fontSize: 13,
+		whiteSpace: 'pre',
 	},
 });
 

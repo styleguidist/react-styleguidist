@@ -1,8 +1,10 @@
 'use strict';
 
+const path = require('path');
+
 class RequireStatement {
 	constructor(filepath) {
-		this.filepath = filepath.replace(process.cwd(), '<rootDir>');
+		this.filepath = filepath.replace(new RegExp(path.resolve(__dirname, '../../..'), 'g'), '<rootDir>');
 	}
 }
 

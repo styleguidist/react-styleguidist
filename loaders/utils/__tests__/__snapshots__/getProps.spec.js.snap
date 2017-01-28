@@ -25,7 +25,7 @@ Object {
 ",
   "doclets": Object {},
   "example": RequireStatement {
-    "filepath": "!!../loaders/examples-loader!example.md
+    "filepath": "!!<rootDir>/loaders/examples-loader.js!example.md
 ",
   },
 }

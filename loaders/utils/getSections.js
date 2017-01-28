@@ -7,6 +7,8 @@ const requireIt = require('./requireIt');
 const getComponentFiles = require('./getComponentFiles');
 const getComponents = require('./getComponents');
 
+const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
+
 /**
  * Return object for one level of sections.
  *
@@ -32,7 +34,7 @@ function processSection(section, config) {
 	return {
 		name: section.name,
 		content: section.content
-			? requireIt('!!../loaders/examples-loader!' + path.resolve(config.configDir, section.content))
+			? requireIt(`!!${examplesLoader}!${path.resolve(config.configDir, section.content)}`)
 			: null,
 		components: getComponents(getComponentFiles(section.components, config), config),
 		sections: getSections(section.sections, config),

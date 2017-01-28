@@ -33,7 +33,7 @@ exports[`test should render PropTypes.arrayOf 1`] = `
       <td
         className="undefined undefined">
         <Group
-          separator=" " />
+          separator={<br />} />
       </td>
     </tr>
   </tbody>
@@ -75,7 +75,7 @@ exports[`test should render PropTypes.instanceOf 1`] = `
       <td
         className="undefined undefined">
         <Group
-          separator=" " />
+          separator={<br />} />
       </td>
     </tr>
   </tbody>
@@ -117,7 +117,7 @@ exports[`test should render PropTypes.shape 1`] = `
       <td
         className="undefined undefined">
         <Group
-          separator=" ">
+          separator={<br />}>
           <div>
             <_class>
               bar
@@ -182,7 +182,7 @@ exports[`test should render PropTypes.string 1`] = `
       <td
         className="undefined undefined">
         <Group
-          separator=" " />
+          separator={<br />} />
       </td>
     </tr>
   </tbody>
@@ -228,7 +228,7 @@ exports[`test should render PropTypes.string with a default value 1`] = `
       <td
         className="undefined undefined">
         <Group
-          separator=" " />
+          separator={<br />} />
       </td>
     </tr>
   </tbody>
@@ -274,7 +274,7 @@ exports[`test should render PropTypes.string.isRequired 1`] = `
       <td
         className="undefined undefined">
         <Group
-          separator=" " />
+          separator={<br />} />
       </td>
     </tr>
   </tbody>
@@ -316,7 +316,7 @@ exports[`test should render description in Markdown 1`] = `
       <td
         className="undefined undefined">
         <Group
-          separator=" ">
+          separator={<br />}>
           <_class
             inline={true}
             text="Label" />
@@ -366,7 +366,7 @@ exports[`test should render unknown proptype for a prop when a relevant proptype
       <td
         className="undefined undefined">
         <Group
-          separator=" " />
+          separator={<br />} />
       </td>
     </tr>
   </tbody>

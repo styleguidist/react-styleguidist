@@ -1,7 +1,7 @@
 exports[`test processComponent() should return an object for section with content 1`] = `
 Object {
   "examples": RequireStatement {
-    "filepath": "!!../loaders/examples-loader!Readme.md",
+    "filepath": "!!<rootDir>/loaders/examples-loader.js!Readme.md",
   },
   "filepath": "../../../pizza.js",
   "module": RequireStatement {
@@ -10,7 +10,7 @@ Object {
   "nameFallback": "pizza",
   "pathLine": "../../../pizza.js",
   "props": RequireStatement {
-    "filepath": "!!../loaders/props-loader!pizza.js",
+    "filepath": "!!<rootDir>/loaders/props-loader.js!pizza.js",
   },
 }
 `;

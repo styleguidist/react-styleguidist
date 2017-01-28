@@ -1,3 +1,5 @@
+jest.mock('../requireIt');
+
 import path from 'path';
 import identity from 'lodash/identity';
 import getComponents from '../getComponents';

@@ -3,7 +3,7 @@ Array [
   Object {
     "components": null,
     "content": RequireStatement {
-      "filepath": "!!../loaders/examples-loader!<rootDir>/test/Readme.md",
+      "filepath": "!!<rootDir>/loaders/examples-loader.js!<rootDir>/test/Readme.md",
     },
     "name": "Readme",
     "sections": null,
@@ -12,7 +12,7 @@ Array [
     "components": Array [
       Object {
         "examples": RequireStatement {
-          "filepath": "!!../loaders/examples-loader!<rootDir>/test/components/Button/Button.js",
+          "filepath": "!!<rootDir>/loaders/examples-loader.js!<rootDir>/test/components/Button/Button.js",
         },
         "filepath": "components/Button/Button.js",
         "module": RequireStatement {
@@ -21,12 +21,12 @@ Array [
         "nameFallback": "Button",
         "pathLine": "components/Button/Button.js",
         "props": RequireStatement {
-          "filepath": "!!../loaders/props-loader!<rootDir>/test/components/Button/Button.js",
+          "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/Button/Button.js",
         },
       },
       Object {
         "examples": RequireStatement {
-          "filepath": "!!../loaders/examples-loader!<rootDir>/test/components/Placeholder/Placeholder.js",
+          "filepath": "!!<rootDir>/loaders/examples-loader.js!<rootDir>/test/components/Placeholder/Placeholder.js",
         },
         "filepath": "components/Placeholder/Placeholder.js",
         "module": RequireStatement {
@@ -35,12 +35,12 @@ Array [
         "nameFallback": "Placeholder",
         "pathLine": "components/Placeholder/Placeholder.js",
         "props": RequireStatement {
-          "filepath": "!!../loaders/props-loader!<rootDir>/test/components/Placeholder/Placeholder.js",
+          "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/Placeholder/Placeholder.js",
         },
       },
       Object {
         "examples": RequireStatement {
-          "filepath": "!!../loaders/examples-loader!<rootDir>/test/components/RandomButton/RandomButton.js",
+          "filepath": "!!<rootDir>/loaders/examples-loader.js!<rootDir>/test/components/RandomButton/RandomButton.js",
         },
         "filepath": "components/RandomButton/RandomButton.js",
         "module": RequireStatement {
@@ -49,7 +49,7 @@ Array [
         "nameFallback": "RandomButton",
         "pathLine": "components/RandomButton/RandomButton.js",
         "props": RequireStatement {
-          "filepath": "!!../loaders/props-loader!<rootDir>/test/components/RandomButton/RandomButton.js",
+          "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/RandomButton/RandomButton.js",
         },
       },
     ],
@@ -65,7 +65,7 @@ Object {
   "components": Array [
     Object {
       "examples": RequireStatement {
-        "filepath": "!!../loaders/examples-loader!<rootDir>/test/components/Button/Button.js",
+        "filepath": "!!<rootDir>/loaders/examples-loader.js!<rootDir>/test/components/Button/Button.js",
       },
       "filepath": "components/Button/Button.js",
       "module": RequireStatement {
@@ -74,12 +74,12 @@ Object {
       "nameFallback": "Button",
       "pathLine": "components/Button/Button.js",
       "props": RequireStatement {
-        "filepath": "!!../loaders/props-loader!<rootDir>/test/components/Button/Button.js",
+        "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/Button/Button.js",
       },
     },
     Object {
       "examples": RequireStatement {
-        "filepath": "!!../loaders/examples-loader!<rootDir>/test/components/Placeholder/Placeholder.js",
+        "filepath": "!!<rootDir>/loaders/examples-loader.js!<rootDir>/test/components/Placeholder/Placeholder.js",
       },
       "filepath": "components/Placeholder/Placeholder.js",
       "module": RequireStatement {
@@ -88,12 +88,12 @@ Object {
       "nameFallback": "Placeholder",
       "pathLine": "components/Placeholder/Placeholder.js",
       "props": RequireStatement {
-        "filepath": "!!../loaders/props-loader!<rootDir>/test/components/Placeholder/Placeholder.js",
+        "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/Placeholder/Placeholder.js",
       },
     },
     Object {
       "examples": RequireStatement {
-        "filepath": "!!../loaders/examples-loader!<rootDir>/test/components/RandomButton/RandomButton.js",
+        "filepath": "!!<rootDir>/loaders/examples-loader.js!<rootDir>/test/components/RandomButton/RandomButton.js",
       },
       "filepath": "components/RandomButton/RandomButton.js",
       "module": RequireStatement {
@@ -102,7 +102,7 @@ Object {
       "nameFallback": "RandomButton",
       "pathLine": "components/RandomButton/RandomButton.js",
       "props": RequireStatement {
-        "filepath": "!!../loaders/props-loader!<rootDir>/test/components/RandomButton/RandomButton.js",
+        "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/RandomButton/RandomButton.js",
       },
     },
   ],
@@ -116,7 +116,7 @@ exports[`test processSection() should return an object for section with content 
 Object {
   "components": null,
   "content": RequireStatement {
-    "filepath": "!!../loaders/examples-loader!<rootDir>/test/Readme.md",
+    "filepath": "!!<rootDir>/loaders/examples-loader.js!<rootDir>/test/Readme.md",
   },
   "name": "Readme",
   "sections": null,

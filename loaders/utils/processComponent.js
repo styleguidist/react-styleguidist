@@ -5,6 +5,8 @@ const getNameFallback = require('./getNameFallback');
 const getExamples = require('./getExamples');
 const requireIt = require('./requireIt');
 
+const propsLoader = path.resolve(__dirname, '../props-loader.js');
+
 /**
  * Return an object with all required for style guide information for a given component.
  *
@@ -21,7 +23,7 @@ module.exports = function processComponent(filepath, config) {
 		filepath: componentPath,
 		pathLine: config.getComponentPathLine(componentPath),
 		module: requireIt(filepath),
-		props: requireIt('!!../loaders/props-loader!' + filepath),
+		props: requireIt(`!!${propsLoader}!${filepath}`),
 		examples: getExamples(examplesFile, nameFallback, config.defaultExample),
 	};
 };
