@@ -33,7 +33,17 @@ module.exports = function(source) {
 		console.log();
 	}
 
-	const props = castArray(parsedProps).map(getPropsCode);
+	parsedProps = castArray(parsedProps);
+
+	// Keep only public methods
+	parsedProps = parsedProps.map(prop => Object.assign(prop, {
+		methods: prop.methods.filter(method => {
+			const doclets = method.docblock && reactDocs.utils.docblock.getDoclets(method.docblock);
+			return doclets && doclets.public;
+		}),
+	}));
+
+	const props = parsedProps.map(getPropsCode);
 
 	return `
 if (module.hot) {

@@ -47,7 +47,7 @@ const styles = ({ font, monospace, light }) => ({
 		marginBottom: 20,
 		fontSize: 16,
 	},
-	props: {
+	subsection: {
 		marginBottom: 30,
 	},
 });
@@ -58,6 +58,7 @@ export function ReactComponentRenderer({
 	pathLine,
 	description,
 	props,
+	methods,
 	examples,
 	sidebar,
 }) {
@@ -80,11 +81,17 @@ export function ReactComponentRenderer({
 				{description}
 			</div>
 			{props && (
-				<div className={classes.props}>
+				<div className={classes.subsection}>
 					<h3 className={classes.heading}>Props</h3>
 					{props}
 				</div>
 			)}
+			{methods ? (
+				<div className={classes.subsection}>
+					<h3 className={classes.heading}>Methods</h3>
+					{methods}
+				</div>
+			) : false}
 			{examples}
 		</div>
 	);
@@ -96,6 +103,7 @@ ReactComponentRenderer.propTypes = {
 	pathLine: PropTypes.string.isRequired,
 	description: PropTypes.node,
 	props: PropTypes.node,
+	methods: PropTypes.node,
 	examples: PropTypes.node,
 	sidebar: PropTypes.bool,
 };

@@ -1,0 +1,137 @@
+exports[`test should render parameters 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Parameters
+      </th>
+      <th
+        className="">
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class>
+          method
+          ()
+        </_class>
+      </td>
+      <td>
+        <div>
+          <_class>
+            value
+          </_class>
+          : 
+          <_class>
+            Number
+          </_class>
+           — 
+          <_class
+            inline={true}
+            text="Description" />
+        </div>
+      </td>
+      <td
+        className="">
+        <Group
+          separator=" ">
+          <_class
+            inline={true}
+            text="Public" />
+        </Group>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`test should render public method 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Parameters
+      </th>
+      <th
+        className="">
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class>
+          method
+          ()
+        </_class>
+      </td>
+      <td />
+      <td
+        className="">
+        <Group
+          separator=" ">
+          <_class
+            inline={true}
+            text="Public" />
+        </Group>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`test should render returns 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Parameters
+      </th>
+      <th
+        className="">
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class>
+          method
+          ()
+        </_class>
+      </td>
+      <td />
+      <td
+        className="">
+        <Group
+          separator=" " />
+        <span>
+          Returns
+           
+          <_class>
+            Number
+          </_class>
+           — 
+          <_class
+            inline={true}
+            text="Description" />
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

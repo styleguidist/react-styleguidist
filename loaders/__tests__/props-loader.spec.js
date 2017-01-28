@@ -24,5 +24,7 @@ it('should extract doclets', () => {
 	expect(result).toBeTruthy();
 
 	expect(() => new Function(result)).not.toThrowError(SyntaxError);  // eslint-disable-line no-new-func
+	expect(result.includes('getImageUrl')).toBe(true);
+	expect(result.includes('makeABarrelRoll')).toBe(false);
 	expect(result).toMatch(/require\('!!.*?\/loaders\/examples-loader\.js!\.\/examples.md'\)/);
 });
