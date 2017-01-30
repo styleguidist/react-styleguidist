@@ -1,5 +1,9 @@
 'use strict';
 
+// WARNING: This function’s source is returned by a loader without transpilation.
+// Do not use any unsupported by IE11+ features.
+/* eslint-disable no-var */
+
 /**
  * Eval example code in a custom context:
  * - `require()` that allows you to require modules from Markdown examples (won’t work dinamically becasue we need
@@ -15,7 +19,7 @@
  * @return {Function}
  */
 module.exports = function evalInContext(header, require, code) {
-	const func = new Function(  // eslint-disable-line no-new-func
+	var func = new Function(  // eslint-disable-line no-new-func
 		'require',
 		'state',
 		'setState',

@@ -1,5 +1,8 @@
 'use strict';
 
+// WARNING: This function’s source is returned by a loader without transpilation.
+// Do not use any unsupported by IE11+ features.
+
 /**
  * Return module from a given map (like {react: require('react')}) or throw.
  * We alllow to require modules only from Markdown examples (won’t work dinamically becasue we need to know all required
