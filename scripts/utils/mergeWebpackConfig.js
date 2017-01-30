@@ -5,6 +5,7 @@ const omit = require('lodash/omit');
 const mergeBase = require('webpack-merge');
 
 const IGNORE_PLUGINS = [
+	'CommonsChunkPlugins',
 	'HtmlWebpackPlugin',
 	'OccurrenceOrderPlugin',
 	'DedupePlugin',
