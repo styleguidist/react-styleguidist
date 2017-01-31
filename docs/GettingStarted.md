@@ -80,6 +80,8 @@ Styleguidist generates documentation from three sources:
 * **Usage examples and further documentation** in Markdown
 
   Examples are written in Markdown where any code block without a language tag will be rendered as a React component. By default any `Readme.md` in the component’s folder is treated as an examples file but you can change it with the `getExampleFilename` [option](Configuration.md).
+  
+  *Note that case sensitivity of filename is determined by the operating system the build is running on.*
 
       React component example:
 
