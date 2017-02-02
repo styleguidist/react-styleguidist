@@ -9,7 +9,6 @@ const chalk = require('chalk');
 const prettyFormat = require('pretty-format');
 const getConfig = require('../scripts/config');
 const consts = require('../scripts/consts');
-const clearConsole = require('react-dev-utils/clearConsole');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const StyleguidistError = require('../scripts/utils/error');
 
@@ -134,8 +133,6 @@ function commandBuild() {
 }
 
 function commandServer() {
-	let firstCompile = true;
-
 	process.on('uncaughtException', err => {
 		if (err.code === 'EADDRINUSE') {
 			printErrorWithLink(
@@ -171,18 +168,12 @@ function commandServer() {
 
 	// Show message when Webpack is recompiling the bundle
 	compiler.plugin('invalid', function() {
-		clearConsole();
 		console.log('Compiling…');
 	});
 
 	// Custom error reporting
 	compiler.plugin('done', function(stats) {
 		const messages = formatWebpackMessages(stats.toJson({}, true));
-
-		if (!firstCompile) {
-			clearConsole();
-		}
-		firstCompile = false;
 
 		if (!messages.errors.length && !messages.warnings.length) {
 			console.log(chalk.green('Compiled successfully!'));
