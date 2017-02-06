@@ -1,7 +1,5 @@
 import React from 'react';
 import Components from '../Components';
-import Logo from '../Logo';
-import Message from '../Message';
 import TableOfContents from '../TableOfContents';
 import StyleGuide from './StyleGuide';
 import { StyleGuideRenderer } from './StyleGuideRenderer';

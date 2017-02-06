@@ -1,5 +1,5 @@
 node_modules
-styleguide
+examples/*/styleguide
 lib
 coverage
 travis_phantomjs
