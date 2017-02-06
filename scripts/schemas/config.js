@@ -1,5 +1,7 @@
 'use strict';
 
+// If you want to access any of these options in React, don’t forget to update CLIENT_CONFIG_OPTIONS array in loaders/styleguide-loader.js
+
 const fs = require('fs');
 const path = require('path');
 const startCase = require('lodash/startCase');
