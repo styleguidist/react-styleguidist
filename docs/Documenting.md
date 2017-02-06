@@ -51,6 +51,22 @@ export default class SomeComponent extends React.Component {
 }
 ```
 
+### Documenting component public methods
+
+Mark you public methods with [JSDoc `@public` tag](http://usejsdoc.org/tags-public.html):
+
+```javascript
+/**
+ * Insert text at cursor position.
+ *
+ * @param {string} text
+ * @public
+ */
+insertAtCursor(text) {
+  // ...
+}
+```
+
 ## Writing code examples
 
 Code examples in Markdown use the ES6+JSX syntax. They can access all the components of your style guide using global variables.
