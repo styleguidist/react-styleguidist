@@ -73,7 +73,35 @@ test('should render props section', () => {
 	expect(actual).toMatchSnapshot();
 });
 
-test('should not render props section if there are no props', () => {
+test('should render methods section', () => {
+	const actual = shallow(
+		<ReactComponentRenderer
+			classes={{}}
+			name="Test"
+			pathLine="test"
+			props={null}
+			methods={<div>test</div>}
+		/>
+	);
+
+	expect(actual).toMatchSnapshot();
+});
+
+test('should render both props and methods section', () => {
+	const actual = shallow(
+		<ReactComponentRenderer
+			classes={{}}
+			name="Test"
+			pathLine="test"
+			props={<div>prop</div>}
+			methods={<div>method</div>}
+		/>
+	);
+
+	expect(actual).toMatchSnapshot();
+});
+
+test('should not render props / methods section if there is no content', () => {
 	const actual = shallow(
 		<ReactComponentRenderer
 			classes={{}}

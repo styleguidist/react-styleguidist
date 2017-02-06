@@ -86,12 +86,12 @@ export function ReactComponentRenderer({
 					{props}
 				</div>
 			)}
-			{methods ? (
+			{methods && (
 				<div className={classes.subsection}>
 					<h3 className={classes.heading}>Methods</h3>
 					{methods}
 				</div>
-			) : false}
+			)}
 			{examples}
 		</div>
 	);
