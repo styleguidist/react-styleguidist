@@ -53,9 +53,10 @@ export default class TableOfContents extends Component {
 		return (
 			<TableOfContentsRenderer
 				searchTerm={searchTerm}
-				items={this.renderLevel(components, sections, searchTerm)}
 				onSearchTermChange={searchTerm => this.setState({ searchTerm })}
-			/>
+			>
+				{this.renderLevel(components, sections, searchTerm)}
+			</TableOfContentsRenderer>
 		);
 	}
 }

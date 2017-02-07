@@ -26,6 +26,18 @@ const sections = [
 		],
 		components: [],
 	},
+	{
+		sections: [
+			{
+				name: 'One',
+				content: [],
+			},
+			{
+				name: 'Two',
+				content: [],
+			},
+		],
+	},
 ];
 
 it('should render component renderer', () => {
@@ -38,12 +50,11 @@ it('should render component renderer', () => {
 
 it('render should render component', () => {
 	const actual = shallow(
-		<SectionsRenderer
-			sections={[
-				<Section key={1} section={sections[0]} />,
-				<Section key={2} section={sections[1]} />,
-			]}
-		/>
+		<SectionsRenderer>
+			<Section key={0} section={sections[0]} />
+			<Section key={1} section={sections[1]} />
+			<Section key={2} section={sections[2]} />
+		</SectionsRenderer>
 	);
 
 	expect(actual).toMatchSnapshot();

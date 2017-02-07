@@ -30,7 +30,7 @@ const styles = ({ font, base, border, link, baseBackground }) => ({
 
 export function TableOfContentsRenderer({
 	classes,
-	items,
+	children,
 	searchTerm,
 	onSearchTermChange,
 }) {
@@ -45,7 +45,7 @@ export function TableOfContentsRenderer({
 						onChange={event => onSearchTermChange(event.target.value)}
 					/>
 				</div>
-				{items}
+				{children}
 			</div>
 		</div>
 	);
@@ -53,7 +53,7 @@ export function TableOfContentsRenderer({
 
 TableOfContentsRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
-	items: PropTypes.node.isRequired,
+	children: PropTypes.node.isRequired,
 	searchTerm: PropTypes.string.isRequired,
 	onSearchTermChange: PropTypes.func.isRequired,
 };
