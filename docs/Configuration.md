@@ -305,7 +305,7 @@ module.exports = {
 
 Type: `String`, default: [src/templates/index.html](https://github.com/styleguidist/react-styleguidist/blob/master/scripts/templates/index.html)
 
-HTML file to use as the template for the style guide. HTML Webpack Plugin is used under the hood, see [their docs for details](https://github.com/ampedandwired/html-webpack-plugin/blob/master/docs/template-option.md).
+HTML file to use as the template for the style guide. HTML webpack Plugin is used under the hood, see [their docs for details](https://github.com/ampedandwired/html-webpack-plugin/blob/master/docs/template-option.md).
 
 #### `theme`
 
@@ -337,7 +337,7 @@ Type: `Function`, optional
 
 > **Warning:** deprecated, use `webpackConfigFile` or `webpackConfig` options instead.
 
-Function that allows you to modify Webpack config for style guide.
+Function that allows you to modify webpack config for style guide.
 
 ```javascript
 module.exports = {
@@ -365,7 +365,7 @@ Print debug information. Same as `--verbose` command line switch.
 
 Type: `Object` or `Function`, optional
 
-Custom Webpack config options: loaders, extensions, plugins, etc. required for your project.
+Custom webpack config options: loaders, extensions, plugins, etc. required for your project.
 
 Can be an object:
 
@@ -414,6 +414,6 @@ See [FAQ](./FAQ.md) for examples.
 
 Type: `String`
 
-By default Styleguidist will try to find Webpack config (`webpack.config.dev.js` or `webpack.config.js`) anywhere in your project and use it. Use this option to specify a custom path to your Webpack config.
+By default Styleguidist will try to find webpack config (`webpack.config.dev.js` or `webpack.config.js`) anywhere in your project and use it. Use this option to specify a custom path to your webpack config.
 
 > **Note:**: `entry`, `externals` and `output` options will be ignored, use `webpackConfig` option to change them.

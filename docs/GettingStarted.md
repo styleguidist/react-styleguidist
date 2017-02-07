@@ -1,6 +1,6 @@
 # Installation
 
-*Webpack is a peer dependency but your project doesn’t have to use it. React Styleguidist works with Webpack 1 and Webpack 2.*
+*Webpack is a peer dependency but your project doesn’t have to use it. React Styleguidist works with webpack 1 and webpack 2.*
 
 ### 1. Install Styleguidist
 
@@ -34,13 +34,13 @@ module.exports = {
 
 ### 3. Configure transpilers and loaders for your project
 
-Styleguidist uses Webpack under the hood to load your project‘s files, and needs to know how to precess each file type.
+Styleguidist uses webpack under the hood to load your project‘s files, and needs to know how to precess each file type.
 
 #### Reusing your project’s Webpack config
 
-By default Styleguidist will try to find Webpack config (`webpack.config.dev.js` or `webpack.config.js`) anywhere in your project and use it.
+By default Styleguidist will try to find webpack config (`webpack.config.dev.js` or `webpack.config.js`) anywhere in your project and use it.
 
-If your Webpack config is located somewhere else, add its location to your `styleguide.config.js`:
+If your webpack config is located somewhere else, add its location to your `styleguide.config.js`:
 
 ```javascript
 module.exports = {
@@ -52,7 +52,7 @@ module.exports = {
 
 > **Note:**: it may not work with your project, see below for other options.
 
-#### Custom Webpack config
+#### Custom webpack config
 
 Add a `webpackConfig` section to your `styleguide.config.js`:
 
@@ -82,7 +82,7 @@ module.exports = {
 
 #### Basic loaders for non-Webpack projects
 
-If your project don’t use Webpack you still need loaders for your files. You can use [loaders](https://github.com/styleguidist/loaders) module. It contains loaders for .js/.jsx (Babel), .css, .json and universal loader for all other files.
+If your project don’t use webpack you still need loaders for your files. You can use [loaders](https://github.com/styleguidist/loaders) module. It contains loaders for .js/.jsx (Babel), .css, .json and universal loader for all other files.
 
 ```bash
 npm install --save-dev loaders
