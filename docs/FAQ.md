@@ -2,9 +2,9 @@
 
 ## How to reuse project’s Webpack config?
 
-By default Styleguidist will try to find Webpack config (`webpack.config.dev.js` or `webpack.config.js`) anywhere in your project and use it.
+By default Styleguidist will try to find webpack config (`webpack.config.dev.js` or `webpack.config.js`) anywhere in your project and use it.
 
-Use [webpackConfigFile](Configuration.md) option to specify a custom path to your Webpack config:
+Use [webpackConfigFile](Configuration.md) option to specify a custom path to your webpack config:
 
 ```javascript
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
 
 > **Note:**: `entry`, `externals` and `output` options will be ignored, use [webpackConfig](Configuration.md) option to change them.
 
-Use [webpackConfig](Configuration.md) option to specify a custom Webpack config options:
+Use [webpackConfig](Configuration.md) option to specify a custom webpack config options:
 
 ```javascript
 module.exports = {
@@ -82,7 +82,7 @@ const Button = require('../common/Button');
 
 ## How to add babel-polyfill?
 
-Add a new Webpack entry point. In your style guide config:
+Add a new webpack entry point. In your style guide config:
 
 ```javascript
 module.exports = {
@@ -119,7 +119,7 @@ export default Button;
 
 ## How to add custom JS and CSS?
 
-Add a new Webpack entry point. In your style guide config:
+Add a new webpack entry point. In your style guide config:
 
 ```javascript
 const path = require('path');
@@ -133,7 +133,7 @@ module.exports = {
 };
 ```
 
-You may need an appropriate Webpack loader to handle these files.
+You may need an appropriate webpack loader to handle these files.
 
 > **Note:** to change style guide styles use `theme` and `styles` options (see the next question).
 
@@ -241,7 +241,7 @@ We have [an example style guide](https://github.com/styleguidist/react-styleguid
 
 ## How to add webservices available to my components?
 
-You can add new endpoints to the express server running `react-styleguidist`. Add a new Webpack entry point in your style guide config:
+You can add new endpoints to the express server running `react-styleguidist`. Add a new webpack entry point in your style guide config:
 
 ```javascript
 module.exports = {
@@ -270,7 +270,7 @@ Your components will be able to invoke the url `http://localhost:3000/custom-end
 
 ## How to change style guide dev server logs output?
 
-You can modify Webpack dev server logs format changing `stats` option of Webpack config:
+You can modify webpack dev server logs format changing `stats` option of webpack config:
 
 ```javascript
 module.exports = {

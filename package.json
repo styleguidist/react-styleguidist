@@ -88,7 +88,6 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "babel-register": "^6.18.0",
-    "cross-env": "^3.1.4",
     "dog-names": "^1.0.2",
     "enzyme": "^2.7.0",
     "enzyme-to-json": "^1.4.5",
@@ -113,17 +112,18 @@
     "webpack": "2.2.0"
   },
   "scripts": {
-    "test": "npm run lint && npm run test:jest",
-    "test:jest": "cross-env NODE_ENV=test jest",
-    "test:watch": "cross-env NODE_ENV=test jest --watch",
-    "test:coverage": "cross-env NODE_ENV=test jest --coverage",
+    "pretest": "npm run lint",
+    "test": "npm run test:jest",
+    "test:jest": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "start": "bin/styleguidist.js server --config examples/basic/styleguide.config.js",
     "start:customised": "bin/styleguidist.js server --config examples/customised/styleguide.config.js",
     "start:sections": "bin/styleguidist.js server --config examples/sections/styleguide.config.js",
     "start:express": "bin/styleguidist.js server --config examples/express/styleguide.config.js",
     "start:cra": "cd examples/cra && ../../bin/styleguidist.js server",
     "start:webpack": "cd examples/webpack && ../../bin/styleguidist.js server",
-    "lint": "eslint . --ext .js --fix",
+    "lint": "eslint . --fix",
     "lint-staged": "lint-staged",
     "compile": "babel -d lib/ src/",
     "compile:watch": "babel --watch -d lib/ src/",
@@ -154,9 +154,9 @@
     "moduleNameMapper": {
       "^.+\\.css$": "identity-obj-proxy"
     },
-    "testRegex": "\\.spec\\.js$",
     "testPathIgnorePatterns": [
-      "<rootDir>/lib/"
+      "<rootDir>/lib/",
+      "<rootDir>/examples/"
     ],
     "coveragePathIgnorePatterns": [
       "<rootDir>/src/utils/markdown-to-jsx.js",
