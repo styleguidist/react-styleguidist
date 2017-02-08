@@ -154,9 +154,9 @@
     "moduleNameMapper": {
       "^.+\\.css$": "identity-obj-proxy"
     },
-    "testRegex": "\\.spec\\.js$",
     "testPathIgnorePatterns": [
-      "<rootDir>/lib/"
+      "<rootDir>/lib/",
+      "<rootDir>/examples/"
     ],
     "coveragePathIgnorePatterns": [
       "<rootDir>/src/utils/markdown-to-jsx.js",
