@@ -43,7 +43,7 @@ const sections = [
 
 it('should render a renderer', () => {
 	const actual = shallow(
-		<TableOfContents components={components} sections={[]} />
+		<TableOfContents sections={[{ components }]} />
 	);
 
 	expect(actual).toMatchSnapshot();
@@ -51,7 +51,7 @@ it('should render a renderer', () => {
 
 it('should render renderer with sections with nested components', () => {
 	const actual = shallow(
-		<TableOfContents components={[]} sections={sections} />
+		<TableOfContents sections={sections} />
 	);
 
 	expect(actual).toMatchSnapshot();
@@ -61,7 +61,7 @@ it('should render renderer with sections with nested components', () => {
 it('should filter list when search field contains a query', () => {
 	const searchTerm = 'but';
 	const actual = shallow(
-		<TableOfContents components={components} sections={[]} />
+		<TableOfContents sections={[{ components }]} />
 	);
 
 	expect(actual).toMatchSnapshot();
@@ -74,7 +74,7 @@ it('should filter list when search field contains a query', () => {
 it('should render a filtered list, should hide empty sections', () => {
 	const searchTerm = 'inp';
 	const actual = shallow(
-		<TableOfContents components={[]} sections={sections} />
+		<TableOfContents sections={sections} />
 	);
 
 	expect(actual).toMatchSnapshot();
@@ -87,7 +87,7 @@ it('should render a filtered list, should hide empty sections', () => {
 it('should filter section names', () => {
 	const searchTerm = 'frm';
 	const actual = shallow(
-		<TableOfContents components={[]} sections={sections} />
+		<TableOfContents sections={sections} />
 	);
 
 	expect(actual).toMatchSnapshot();

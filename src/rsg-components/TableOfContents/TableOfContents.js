@@ -5,7 +5,6 @@ import TableOfContentsRenderer from 'rsg-components/TableOfContents/TableOfConte
 
 export default class TableOfContents extends Component {
 	static propTypes = {
-		components: PropTypes.array.isRequired,
 		sections: PropTypes.array.isRequired,
 	};
 
@@ -21,9 +20,8 @@ export default class TableOfContents extends Component {
 		return filterComponentsByName(components || [], searchTerm);
 	}
 
-	getSections(sections, searchTerm) {
+	getSections(sections = [], searchTerm) {
 		const regExp = getFilterRegExp(searchTerm);
-		sections = sections || [];
 		return sections.reduce((filteredSections, { name, components: subComponents = [], sections: subSections }) => {
 			subComponents = this.getComponents(subComponents, searchTerm);
 			if (subComponents.length || !searchTerm || regExp.test(name)) {
@@ -49,13 +47,19 @@ export default class TableOfContents extends Component {
 
 	render() {
 		const { searchTerm } = this.state;
-		const { components, sections } = this.props;
+		const { sections } = this.props;
+
+		// If there is only one section, we treat it as a root section
+		// In this case the name of the section won't be rendered and it won't get left padding
+		const content = sections.length === 1
+			? this.renderLevel(sections[0].components, sections[0].sections, searchTerm)
+			: this.renderLevel(null, sections, searchTerm);
 		return (
 			<TableOfContentsRenderer
 				searchTerm={searchTerm}
 				onSearchTermChange={searchTerm => this.setState({ searchTerm })}
 			>
-				{this.renderLevel(components, sections, searchTerm)}
+				{content}
 			</TableOfContentsRenderer>
 		);
 	}
