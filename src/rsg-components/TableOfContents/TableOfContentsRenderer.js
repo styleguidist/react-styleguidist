@@ -53,7 +53,7 @@ export function TableOfContentsRenderer({
 
 TableOfContentsRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
-	children: PropTypes.node.isRequired,
+	children: PropTypes.node,
 	searchTerm: PropTypes.string.isRequired,
 	onSearchTermChange: PropTypes.func.isRequired,
 };
