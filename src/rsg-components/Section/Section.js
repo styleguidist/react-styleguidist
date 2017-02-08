@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import Examples from 'rsg-components/Examples';
 import Components from 'rsg-components/Components';
+import Sections from 'rsg-components/Sections';
 import SectionRenderer from 'rsg-components/Section/SectionRenderer';
 
 export default function Section({
@@ -8,13 +9,19 @@ export default function Section({
 	sidebar,
 }) {
 	const { name, content, components, sections } = section;
+
 	const contentJsx = content && (
 		<Examples examples={content} />
 	);
-	const componentsJsx = (components || sections) && (
+	const componentsJsx = components && (
 		<Components
-			components={components || []}
-			sections={sections || []}
+			components={components}
+			sidebar={sidebar}
+		/>
+	);
+	const sectionsJsx = sections && (
+		<Sections
+			sections={sections}
 			sidebar={sidebar}
 		/>
 	);
@@ -23,6 +30,7 @@ export default function Section({
 			name={name}
 			content={contentJsx}
 			components={componentsJsx}
+			sections={sectionsJsx}
 		/>
 	);
 }
