@@ -1,6 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import s from './WrappedButton.css';
-
 
 /**
  * A button wrapped by a Decorator/Enhancer

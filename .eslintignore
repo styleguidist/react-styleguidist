@@ -1,5 +1,4 @@
-node_modules
-examples/*/styleguide
-lib
-coverage
-travis_phantomjs
+examples/*/styleguide/*
+lib/*
+coverage/*
+travis_phantomjs/*
