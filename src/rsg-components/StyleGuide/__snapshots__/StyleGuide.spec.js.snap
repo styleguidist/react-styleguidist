@@ -1,30 +1,11 @@
-exports[`test renderer should render logo, table on contents and components 1`] = `
+exports[`test renderer should render logo, table of contents and passed children 1`] = `
 <div
   className="">
   <main>
     <div>
-      <Components
-        components={
-          Array [
-            Object {
-              "filepath": "components/foo.js",
-              "name": "Foo",
-              "pathLine": "components/foo.js",
-              "props": Object {
-                "description": "Foo foo",
-              },
-            },
-            Object {
-              "filepath": "components/bar.js",
-              "name": "Bar",
-              "pathLine": "components/bar.js",
-              "props": Object {
-                "description": "Bar bar",
-              },
-            },
-          ]
-        }
-        sections={Array []} />
+      <h1>
+        Content
+      </h1>
       <footer>
         <_class
           text="Generated with [React Styleguidist](http://react-styleguidist.js.org/)" />
@@ -58,60 +39,37 @@ exports[`test renderer should render logo, table on contents and components 1`] 
           },
         ]
       }
-      sections={Array []} />
+      sections={
+        Array [
+          Object {
+            "components": Array [
+              Object {
+                "filepath": "components/foo.js",
+                "name": "Foo",
+                "pathLine": "components/foo.js",
+                "props": Object {
+                  "description": "Foo foo",
+                },
+              },
+              Object {
+                "filepath": "components/bar.js",
+                "name": "Bar",
+                "pathLine": "components/bar.js",
+                "props": Object {
+                  "description": "Bar bar",
+                },
+              },
+            ],
+          },
+        ]
+      } />
   </div>
 </div>
 `;
 
-exports[`test should pass error message instead of components list when there is no components and sections 1`] = `
-<_class
-  components={
-    <_class>
-      No components or sections found. Check [the \`components\` and \`sections\` options](
-      https://github.com/styleguidist/react-styleguidist/blob/master/docs/Configuration.md
-      ) in your style guide config.
-    </_class>
-  }
-  homepageUrl="https://github.com/styleguidist/react-styleguidist"
-  sections={Array []}
-  sidebar={false}
-  title="Hello"
-  toc={
-    <TableOfContents
-      components={Array []}
-      sections={Array []} />
-  } />
-`;
-
 exports[`test should render components list 1`] = `
 <_class
-  components={
-    <Components
-      components={
-        Array [
-          Object {
-            "filepath": "components/foo.js",
-            "name": "Foo",
-            "pathLine": "components/foo.js",
-            "props": Object {
-              "description": "Foo foo",
-            },
-          },
-          Object {
-            "filepath": "components/bar.js",
-            "name": "Bar",
-            "pathLine": "components/bar.js",
-            "props": Object {
-              "description": "Bar bar",
-            },
-          },
-        ]
-      }
-      sections={Array []}
-      sidebar={true} />
-  }
   homepageUrl="https://github.com/styleguidist/react-styleguidist"
-  sections={Array []}
   sidebar={true}
   title="Hello"
   toc={
@@ -136,6 +94,74 @@ exports[`test should render components list 1`] = `
           },
         ]
       }
+      sections={
+        Array [
+          Object {
+            "components": Array [
+              Object {
+                "filepath": "components/foo.js",
+                "name": "Foo",
+                "pathLine": "components/foo.js",
+                "props": Object {
+                  "description": "Foo foo",
+                },
+              },
+              Object {
+                "filepath": "components/bar.js",
+                "name": "Bar",
+                "pathLine": "components/bar.js",
+                "props": Object {
+                  "description": "Bar bar",
+                },
+              },
+            ],
+          },
+        ]
+      } />
+  }>
+  <Sections
+    sections={
+      Array [
+        Object {
+          "components": Array [
+            Object {
+              "filepath": "components/foo.js",
+              "name": "Foo",
+              "pathLine": "components/foo.js",
+              "props": Object {
+                "description": "Foo foo",
+              },
+            },
+            Object {
+              "filepath": "components/bar.js",
+              "name": "Bar",
+              "pathLine": "components/bar.js",
+              "props": Object {
+                "description": "Bar bar",
+              },
+            },
+          ],
+        },
+      ]
+    }
+    sidebar={true} />
+</_class>
+`;
+
+exports[`test should render error message when there is no components and sections 1`] = `
+<_class
+  homepageUrl="https://github.com/styleguidist/react-styleguidist"
+  sidebar={false}
+  title="Hello"
+  toc={
+    <TableOfContents
+      components={Array []}
       sections={Array []} />
-  } />
+  }>
+  <_class>
+    No components or sections found. Check [the \`components\` and \`sections\` options](
+    https://github.com/styleguidist/react-styleguidist/blob/master/docs/Configuration.md
+    ) in your style guide config.
+  </_class>
+</_class>
 `;
