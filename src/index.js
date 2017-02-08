@@ -20,10 +20,17 @@ let codeKey = 0;
 function renderStyleguide() {
 	const styleguide = require('!!../loaders/styleguide-loader!./index.js');
 
-	let components = processComponents(styleguide.components);
-	let sections = processSections(styleguide.sections || []);
 	let sidebar = true;
 	let singleExample = false;
+	let components = processComponents(styleguide.components);
+	let sections = styleguide.sections;
+
+	// If root `components` isn't empty, make it a first section
+	if (components.length) {
+		sections.unshift({ components });
+	}
+
+	sections = processSections(sections);
 
 	// parse url hash to check if the components list must be filtered
 	const {
@@ -39,7 +46,7 @@ function renderStyleguide() {
 			...filterComponentsByExactName(components, targetComponentName),
 			...filterComponentsInSectionsByExactName(sections, targetComponentName),
 		];
-		sections = [];
+		sections = [{ components }];
 		sidebar = false;
 
 		// if a single component is filtered and a fenced block index is specified hide the other examples

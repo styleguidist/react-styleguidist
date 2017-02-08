@@ -10,7 +10,6 @@ export default class StyleGuide extends Component {
 	static propTypes = {
 		codeKey: PropTypes.number.isRequired,
 		config: PropTypes.object.isRequired,
-		components: PropTypes.array.isRequired,
 		sections: PropTypes.array.isRequired,
 		sidebar: PropTypes.bool,
 		singleExample: PropTypes.bool,
@@ -34,18 +33,14 @@ export default class StyleGuide extends Component {
 		};
 	}
 
-	renderTableOfContents(components, sections) {
-		return <TableOfContents components={components} sections={sections} />;
-	}
-
 	render() {
-		const { config, components, sections, sidebar } = this.props;
+		const { config, sections, sidebar } = this.props;
 
 		return (
 			<StyleGuideRenderer
 				title={config.title}
 				homepageUrl={HOMEPAGE}
-				toc={this.renderTableOfContents(components, sections)}
+				toc={<TableOfContents sections={sections} />}
 				sidebar={isEmpty(sections) ? false : sidebar}
 			>
 				{

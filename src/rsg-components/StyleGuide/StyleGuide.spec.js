@@ -31,7 +31,6 @@ it('should render components list', () => {
 		<StyleGuide
 			codeKey={1}
 			config={config}
-			components={components}
 			sections={sections}
 		/>
 	);
@@ -44,7 +43,6 @@ it('should render error message when there is no components and sections', () =>
 		<StyleGuide
 			codeKey={1}
 			config={config}
-			components={[]}
 			sections={[]}
 		/>
 	);

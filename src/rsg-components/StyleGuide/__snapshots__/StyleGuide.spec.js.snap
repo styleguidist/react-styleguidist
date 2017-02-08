@@ -74,26 +74,6 @@ exports[`test should render components list 1`] = `
   title="Hello"
   toc={
     <TableOfContents
-      components={
-        Array [
-          Object {
-            "filepath": "components/foo.js",
-            "name": "Foo",
-            "pathLine": "components/foo.js",
-            "props": Object {
-              "description": "Foo foo",
-            },
-          },
-          Object {
-            "filepath": "components/bar.js",
-            "name": "Bar",
-            "pathLine": "components/bar.js",
-            "props": Object {
-              "description": "Bar bar",
-            },
-          },
-        ]
-      }
       sections={
         Array [
           Object {
@@ -155,7 +135,6 @@ exports[`test should render error message when there is no components and sectio
   title="Hello"
   toc={
     <TableOfContents
-      components={Array []}
       sections={Array []} />
   }>
   <_class>
