@@ -96,3 +96,25 @@ it('render should render component', () => {
 
 	expect(actual).toMatchSnapshot();
 });
+
+it('render should not render title if name is not set', () => {
+	const actual = render(
+		<SectionRenderer
+			classes={{}}
+		/>
+	);
+
+	expect(actual).toMatchSnapshot();
+});
+
+it('render should render title if name is set', () => {
+	const actual = render(
+		<SectionRenderer
+			classes={{}}
+			name="test"
+		/>
+	);
+
+	expect(actual).toMatchSnapshot();
+});
+

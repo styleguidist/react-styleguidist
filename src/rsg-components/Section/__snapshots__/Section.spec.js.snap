@@ -1,3 +1,5 @@
+exports[`test render should not render title if name is not set 1`] = `<div />`;
+
 exports[`test render should render component 1`] = `
 <div>
   <h2
@@ -22,6 +24,15 @@ exports[`test render should render component 1`] = `
     components={Array []} />
   <Sections
     sections={Array []} />
+</div>
+`;
+
+exports[`test render should render title if name is set 1`] = `
+<div>
+  <h2
+    id="test">
+    test
+  </h2>
 </div>
 `;
 
