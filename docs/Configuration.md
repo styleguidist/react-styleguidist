@@ -33,6 +33,14 @@ module.exports = {
 };
 ```
 
+Or you need to skip test specs (`components/Button/Button.test.js`):
+
+```javascript
+module.exports = {
+  components: 'components/**/!(*.test).js',
+};
+```
+
 #### `context`
 
 Type: `Object`, optional
