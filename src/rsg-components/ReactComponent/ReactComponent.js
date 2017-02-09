@@ -5,10 +5,7 @@ import Methods from 'rsg-components/Methods';
 import Examples from 'rsg-components/Examples';
 import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponentRenderer';
 
-export default function ReactComponent({
-	component,
-	sidebar = true,
-}) {
+export default function ReactComponent({ component }, { sidebar = true }) {
 	const { name, pathLine, examples } = component;
 	const { description, props, methods } = component.props;
 	return (
@@ -26,5 +23,8 @@ export default function ReactComponent({
 
 ReactComponent.propTypes = {
 	component: PropTypes.object.isRequired,
+};
+
+ReactComponent.contextTypes = {
 	sidebar: PropTypes.bool,
 };

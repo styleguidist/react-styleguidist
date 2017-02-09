@@ -18,6 +18,7 @@ export default class StyleGuide extends Component {
 	static childContextTypes = {
 		codeKey: PropTypes.number.isRequired,
 		config: PropTypes.object.isRequired,
+		sidebar: PropTypes.bool,
 		singleExample: PropTypes.bool,
 	};
 
@@ -29,6 +30,7 @@ export default class StyleGuide extends Component {
 		return {
 			codeKey: this.props.codeKey,
 			config: this.props.config,
+			sidebar: this.props.sidebar,
 			singleExample: this.props.singleExample,
 		};
 	}
@@ -49,7 +51,7 @@ export default class StyleGuide extends Component {
 						Check [the `components` and `sections` options]({DOCS_CONFIG}) in your style guide config.
 					</Message>
 				) : (
-					<Sections sections={sections} sidebar={sidebar} />
+					<Sections sections={sections} />
 				)}
 			</StyleGuideRenderer>
 		);

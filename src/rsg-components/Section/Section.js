@@ -4,10 +4,7 @@ import Components from 'rsg-components/Components';
 import Sections from 'rsg-components/Sections';
 import SectionRenderer from 'rsg-components/Section/SectionRenderer';
 
-export default function Section({
-	section,
-	sidebar,
-}) {
+export default function Section({ section }) {
 	const { name, content, components, sections } = section;
 
 	const contentJsx = content && (
@@ -16,13 +13,11 @@ export default function Section({
 	const componentsJsx = components && (
 		<Components
 			components={components}
-			sidebar={sidebar}
 		/>
 	);
 	const sectionsJsx = sections && (
 		<Sections
 			sections={sections}
-			sidebar={sidebar}
 		/>
 	);
 	return (
@@ -37,5 +32,4 @@ export default function Section({
 
 Section.propTypes = {
 	section: PropTypes.object.isRequired,
-	sidebar: PropTypes.bool,
 };
