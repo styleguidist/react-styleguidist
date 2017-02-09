@@ -1,31 +1,25 @@
 exports[`test should render sections with nested components 1`] = `
-<div>
-  <div
+<ul>
+  <li
     className="">
-    <span>
-      <_class
-        href="#Button">
-        Button
-      </_class>
-    </span>
-  </div>
-  <div
+    <_class
+      href="#Button">
+      Button
+    </_class>
+  </li>
+  <li
     className="">
-    <span>
-      <_class
-        href="#Input">
-        Input
-      </_class>
-    </span>
-  </div>
-  <div
+    <_class
+      href="#Input">
+      Input
+    </_class>
+  </li>
+  <li
     className="">
-    <span>
-      <_class
-        href="#Textarea">
-        Textarea
-      </_class>
-    </span>
-  </div>
-</div>
+    <_class
+      href="#Textarea">
+      Textarea
+    </_class>
+  </li>
+</ul>
 `;

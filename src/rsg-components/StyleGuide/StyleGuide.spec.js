@@ -1,5 +1,4 @@
 import React from 'react';
-import Components from '../Components';
 import TableOfContents from '../TableOfContents';
 import StyleGuide from './StyleGuide';
 import { StyleGuideRenderer } from './StyleGuideRenderer';
@@ -22,7 +21,7 @@ const components = [
 		},
 	},
 ];
-const sections = [];
+const sections = [{ components }];
 const config = {
 	title: 'Hello',
 };
@@ -32,7 +31,6 @@ it('should render components list', () => {
 		<StyleGuide
 			codeKey={1}
 			config={config}
-			components={components}
 			sections={sections}
 		/>
 	);
@@ -40,12 +38,11 @@ it('should render components list', () => {
 	expect(actual).toMatchSnapshot();
 });
 
-it('should pass error message instead of components list when there is no components and sections', () => {
+it('should render error message when there is no components and sections', () => {
 	const actual = shallow(
 		<StyleGuide
 			codeKey={1}
 			config={config}
-			components={[]}
 			sections={[]}
 		/>
 	);
@@ -53,17 +50,17 @@ it('should pass error message instead of components list when there is no compon
 	expect(actual).toMatchSnapshot();
 });
 
-it('renderer should render logo, table on contents and components', () => {
+it('renderer should render logo, table of contents and passed children', () => {
 	const actual = shallow(
 		<StyleGuideRenderer
 			classes={{}}
 			title={config.title}
-			components={<Components components={components} sections={sections} />}
-			sections={sections}
 			toc={<TableOfContents components={components} sections={sections} />}
 			homepageUrl="http://react-styleguidist.js.org/"
 			sidebar
-		/>
+		>
+			<h1>Content</h1>
+		</StyleGuideRenderer>
 	);
 
 	expect(actual).toMatchSnapshot();

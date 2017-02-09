@@ -1,12 +1,26 @@
 import React from 'react';
-import { LinkRenderer } from './LinkRenderer';
+import Link, { LinkRenderer } from './LinkRenderer';
+
+const href = '/foo';
+const children = 'Foo';
 
 it('renderer should render link', () => {
-	const href = '/foo';
-	const children = 'Foo';
 	const actual = shallow(
 		<LinkRenderer href={href} classes={{}}>{children}</LinkRenderer>
 	);
 
 	expect(actual).toMatchSnapshot();
+});
+
+it('should compose passed class names', () => {
+	const actual = render(
+		<Link
+			href={href}
+			className="customClassName"
+		>
+			{children}
+		</Link>
+	);
+
+	expect(actual.find('a').hasClass('customClassName')).toEqual(true);
 });

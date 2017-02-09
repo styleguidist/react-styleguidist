@@ -1,13 +1,13 @@
 import React, { PropTypes } from 'react';
 
-export default function SectionsRenderer({ sections }) {
+export default function SectionsRenderer({ children }) {
 	return (
-		<div>
-			{sections}
-		</div>
+		<article>
+			{children}
+		</article>
 	);
 }
 
 SectionsRenderer.propTypes = {
-	sections: PropTypes.array.isRequired,
+	children: PropTypes.node,
 };

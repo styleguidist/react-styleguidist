@@ -5,12 +5,15 @@ import Styled from 'rsg-components/Styled';
 
 const styles = ({ font, small }) => ({
 	list: {
-		margin: 15,
+		margin: 0,
+		paddingLeft: 15,
 	},
 	item: {
+		display: 'block',
+		margin: [[7, 0, 7, 0]],
 		fontFamily: font,
-		marginBottom: 7,
 		fontSize: 15,
+		listStyle: 'none',
 	},
 	isChild: {
 		[small]: {
@@ -19,6 +22,7 @@ const styles = ({ font, small }) => ({
 		},
 	},
 	heading: {
+		marginTop: 7,
 		fontFamily: font,
 		fontWeight: 'bold',
 	},
@@ -30,16 +34,14 @@ export function ComponentsListRenderer({ classes, items }) {
 	}
 
 	return (
-		<div className={classes.list}>
+		<ul className={classes.list}>
 			{items.map(({ heading, name, content }) => (
-				<div className={cx(classes.item, (!content || !content.props.items.length) && classes.isChild)} key={name}>
-					<span className={heading && classes.heading}>
-						<Link href={'#' + name}>{name}</Link>
-					</span>
+				<li className={cx(classes.item, (!content || !content.props.items.length) && classes.isChild)} key={name}>
+					<Link className={heading && classes.heading} href={'#' + name}>{name}</Link>
 					{content}
-				</div>
+				</li>
 			))}
-		</div>
+		</ul>
 	);
 }
 

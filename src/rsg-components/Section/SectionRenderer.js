@@ -14,21 +14,25 @@ const styles = ({ font }) => ({
 	},
 });
 
-export function SectionRenderer({ classes, name, content, components }) {
+export function SectionRenderer({ classes, name, content, components, sections }) {
 	return (
 		<div className={classes.root}>
-			<h2 className={classes.heading} id={name}>{name}</h2>
+			{
+				name && <h2 className={classes.heading} id={name}>{name}</h2>
+			}
 			{content}
 			{components}
+			{sections}
 		</div>
 	);
 }
 
 SectionRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
-	name: PropTypes.string.isRequired,
+	name: PropTypes.string,
 	content: PropTypes.node,
-	components: PropTypes.object,
+	components: PropTypes.node,
+	sections: PropTypes.node,
 };
 
 export default Styled(styles)(SectionRenderer);

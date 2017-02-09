@@ -1,5 +1,5 @@
 exports[`test render should render component 1`] = `
-<div>
+<article>
   <Section
     section={
       Object {
@@ -27,40 +27,67 @@ exports[`test render should render component 1`] = `
         "name": "Bar",
       }
     } />
-</div>
+  <Section
+    section={
+      Object {
+        "sections": Array [
+          Object {
+            "content": Array [],
+            "name": "One",
+          },
+          Object {
+            "content": Array [],
+            "name": "Two",
+          },
+        ],
+      }
+    } />
+</article>
 `;
 
 exports[`test should render component renderer 1`] = `
-<SectionsRenderer
-  sections={
-    Array [
-      <Section
-        section={
-            Object {
-                "components": Array [],
-                "content": Array [
-                  Object {
-                    "content": "<button>OK</button>",
-                    "evalInContext": [Function],
-                    "type": "code",
-                  },
-                ],
-                "name": "Foo",
-              }
-        } />,
-      <Section
-        section={
-            Object {
-                "components": Array [],
-                "content": Array [
-                  Object {
-                    "content": "Hello *world*!",
-                    "type": "markdown",
-                  },
-                ],
-                "name": "Bar",
-              }
-        } />,
-    ]
-  } />
+<SectionsRenderer>
+  <Section
+    section={
+      Object {
+        "components": Array [],
+        "content": Array [
+          Object {
+            "content": "<button>OK</button>",
+            "evalInContext": [Function],
+            "type": "code",
+          },
+        ],
+        "name": "Foo",
+      }
+    } />
+  <Section
+    section={
+      Object {
+        "components": Array [],
+        "content": Array [
+          Object {
+            "content": "Hello *world*!",
+            "type": "markdown",
+          },
+        ],
+        "name": "Bar",
+      }
+    } />
+  <Section
+    section={
+      Object {
+        "sections": Array [
+          Object {
+            "content": Array [],
+            "name": "One",
+          },
+          Object {
+            "content": Array [],
+            "name": "Two",
+          },
+        ],
+      }
+    } />
+</SectionsRenderer>
 `;

@@ -6,15 +6,18 @@ export default function Sections({
 	sections,
 	sidebar,
 }) {
-	const sectionsJsx = sections.map(section => (
-		<Section
-			key={section.name}
-			section={section}
-			sidebar={sidebar}
-		/>
-	));
 	return (
-		<SectionsRenderer sections={sectionsJsx} />
+		<SectionsRenderer>
+			{
+				sections.map((section, idx) => (
+					<Section
+						key={idx}
+						section={section}
+						sidebar={sidebar}
+					/>
+				))
+			}
+		</SectionsRenderer>
 	);
 }
 

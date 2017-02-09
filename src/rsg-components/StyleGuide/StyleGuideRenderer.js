@@ -63,7 +63,7 @@ export function StyleGuideRenderer({
 	classes,
 	title,
 	homepageUrl,
-	components,
+	children,
 	toc,
 	sidebar,
 }) {
@@ -71,7 +71,7 @@ export function StyleGuideRenderer({
 		<div className={cx(classes.root, sidebar && classes.hasSidebar)}>
 			<main className={classes.content}>
 				<div className={classes.components}>
-					{components}
+					{children}
 					<footer className={classes.footer}>
 						<Markdown text={`Generated with [React Styleguidist](${homepageUrl})`} />
 					</footer>
@@ -93,7 +93,7 @@ StyleGuideRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	title: PropTypes.string.isRequired,
 	homepageUrl: PropTypes.string.isRequired,
-	components: PropTypes.object.isRequired,
+	children: PropTypes.node.isRequired,
 	toc: PropTypes.node.isRequired,
 	sidebar: PropTypes.bool,
 };

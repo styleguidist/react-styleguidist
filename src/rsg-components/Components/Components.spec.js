@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactComponent from '../ReactComponent';
-import Sections from '../Sections';
 import Components from './Components';
 import ComponentsRenderer from './ComponentsRenderer';
 
@@ -27,7 +26,6 @@ it('should render components list', () => {
 	const actual = shallow(
 		<Components
 			components={components}
-			sections={[]}
 		/>
 	);
 
@@ -36,13 +34,10 @@ it('should render components list', () => {
 
 it('renderer should render components list layout', () => {
 	const actual = shallow(
-		<ComponentsRenderer
-			components={[
-				<ReactComponent key={0} component={components[0]} />,
-				<ReactComponent key={1} component={components[1]} />,
-			]}
-			sections={<Sections sections={[]} />}
-		/>
+		<ComponentsRenderer>
+			<ReactComponent key={0} component={components[0]} />
+			<ReactComponent key={1} component={components[1]} />
+		</ComponentsRenderer>
 	);
 
 	expect(actual).toMatchSnapshot();

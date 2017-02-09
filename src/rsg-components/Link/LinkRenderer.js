@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react';
+import cx from 'classnames';
 import Styled from 'rsg-components/Styled';
 
 export const styles = ({ link, linkHover }) => ({
 	link: {
 		'&, &:link, &:visited': {
+			isolate: false,
 			fontFamily: 'inherit',
-			fontWeight: 'inherit',
 			fontSize: 'inherit',
 			color: link,
 			textDecoration: 'none',
@@ -20,7 +21,7 @@ export const styles = ({ link, linkHover }) => ({
 
 export function LinkRenderer({ classes, children, ...props }) {
 	return (
-		<a {...props} className={classes.link}>
+		<a {...props} className={cx(classes.link, props.className)}>
 			{children}
 		</a>
 	);
@@ -28,6 +29,7 @@ export function LinkRenderer({ classes, children, ...props }) {
 
 LinkRenderer.propTypes = {
 	children: PropTypes.node,
+	className: PropTypes.string,
 	classes: PropTypes.object.isRequired,
 };
 
