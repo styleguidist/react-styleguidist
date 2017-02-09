@@ -32,6 +32,8 @@ module.exports = {
 };
 ```
 
+See [more examples](https://github.com/styleguidist/react-styleguidist/blob/next/docs/Configuration.md#components)
+
 ### 3. Configure transpilers and loaders for your project
 
 Styleguidist uses webpack under the hood to load your project‘s files, and needs to know how to process each file type.
