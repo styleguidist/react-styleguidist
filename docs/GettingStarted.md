@@ -34,7 +34,7 @@ module.exports = {
 
 ### 3. Configure transpilers and loaders for your project
 
-Styleguidist uses webpack under the hood to load your project‘s files, and needs to know how to precess each file type.
+Styleguidist uses webpack under the hood to load your project‘s files, and needs to know how to process each file type.
 
 #### Reusing your project’s Webpack config
 
