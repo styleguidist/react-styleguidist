@@ -12,65 +12,13 @@ exports[`test renderer should render logo, table of contents and passed children
       </footer>
     </div>
   </main>
-  <div>
-    <div>
-      <_class>
-        Hello
-      </_class>
-    </div>
-    <TableOfContents
-      components={
-        Array [
-          Object {
-            "filepath": "components/foo.js",
-            "name": "Foo",
-            "pathLine": "components/foo.js",
-            "props": Object {
-              "description": "Foo foo",
-            },
-          },
-          Object {
-            "filepath": "components/bar.js",
-            "name": "Bar",
-            "pathLine": "components/bar.js",
-            "props": Object {
-              "description": "Bar bar",
-            },
-          },
-        ]
-      }
-      sections={
-        Array [
-          Object {
-            "components": Array [
-              Object {
-                "filepath": "components/foo.js",
-                "name": "Foo",
-                "pathLine": "components/foo.js",
-                "props": Object {
-                  "description": "Foo foo",
-                },
-              },
-              Object {
-                "filepath": "components/bar.js",
-                "name": "Bar",
-                "pathLine": "components/bar.js",
-                "props": Object {
-                  "description": "Bar bar",
-                },
-              },
-            ],
-          },
-        ]
-      } />
-  </div>
 </div>
 `;
 
 exports[`test should render components list 1`] = `
 <_class
+  hasSidebar={true}
   homepageUrl="https://github.com/styleguidist/react-styleguidist"
-  sidebar={true}
   title="Hello"
   toc={
     <TableOfContents
@@ -123,15 +71,14 @@ exports[`test should render components list 1`] = `
           ],
         },
       ]
-    }
-    sidebar={true} />
+    } />
 </_class>
 `;
 
 exports[`test should render error message when there is no components and sections 1`] = `
 <_class
+  hasSidebar={false}
   homepageUrl="https://github.com/styleguidist/react-styleguidist"
-  sidebar={false}
   title="Hello"
   toc={
     <TableOfContents

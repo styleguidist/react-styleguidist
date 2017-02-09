@@ -65,10 +65,10 @@ export function StyleGuideRenderer({
 	homepageUrl,
 	children,
 	toc,
-	sidebar,
+	hasSidebar,
 }) {
 	return (
-		<div className={cx(classes.root, sidebar && classes.hasSidebar)}>
+		<div className={cx(classes.root, hasSidebar && classes.hasSidebar)}>
 			<main className={classes.content}>
 				<div className={classes.components}>
 					{children}
@@ -77,7 +77,7 @@ export function StyleGuideRenderer({
 					</footer>
 				</div>
 			</main>
-			{sidebar &&
+			{hasSidebar &&
 				<div className={classes.sidebar}>
 					<div className={classes.logo}>
 						<Logo>{title}</Logo>
@@ -95,7 +95,7 @@ StyleGuideRenderer.propTypes = {
 	homepageUrl: PropTypes.string.isRequired,
 	children: PropTypes.node.isRequired,
 	toc: PropTypes.node.isRequired,
-	sidebar: PropTypes.bool,
+	hasSidebar: PropTypes.bool,
 };
 
 export default Styled(styles)(StyleGuideRenderer);

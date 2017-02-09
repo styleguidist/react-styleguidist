@@ -11,39 +11,39 @@ export default class StyleGuide extends Component {
 		codeKey: PropTypes.number.isRequired,
 		config: PropTypes.object.isRequired,
 		sections: PropTypes.array.isRequired,
-		sidebar: PropTypes.bool,
+		isolatedComponent: PropTypes.bool,
 		isolatedExample: PropTypes.bool,
 	};
 
 	static childContextTypes = {
 		codeKey: PropTypes.number.isRequired,
 		config: PropTypes.object.isRequired,
-		sidebar: PropTypes.bool,
+		isolatedComponent: PropTypes.bool,
 		isolatedExample: PropTypes.bool,
 	};
 
 	static defaultProps = {
-		sidebar: true,
+		isolatedComponent: false,
 	};
 
 	getChildContext() {
 		return {
 			codeKey: this.props.codeKey,
 			config: this.props.config,
-			sidebar: this.props.sidebar,
+			isolatedComponent: this.props.isolatedComponent,
 			isolatedExample: this.props.isolatedExample,
 		};
 	}
 
 	render() {
-		const { config, sections, sidebar } = this.props;
+		const { config, sections, isolatedComponent } = this.props;
 		const noComponentsFound = isEmpty(sections);
 		return (
 			<StyleGuideRenderer
 				title={config.title}
 				homepageUrl={HOMEPAGE}
 				toc={<TableOfContents sections={sections} />}
-				sidebar={noComponentsFound ? false : sidebar}
+				hasSidebar={noComponentsFound ? false : !isolatedComponent}
 			>
 				{noComponentsFound ? (
 					<Message>

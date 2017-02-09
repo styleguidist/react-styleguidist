@@ -5,7 +5,7 @@ import Methods from 'rsg-components/Methods';
 import Examples from 'rsg-components/Examples';
 import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponentRenderer';
 
-export default function ReactComponent({ component }, { sidebar = true }) {
+export default function ReactComponent({ component }, { isolatedComponent = false }) {
 	const { name, pathLine, examples } = component;
 	const { description, props, methods } = component.props;
 	return (
@@ -16,7 +16,7 @@ export default function ReactComponent({ component }, { sidebar = true }) {
 			props={props && <Props props={props} />}
 			methods={methods.length > 0 && <Methods methods={methods} />}
 			examples={examples && <Examples examples={examples} name={name} />}
-			isolated={!sidebar}
+			isolated={isolatedComponent}
 		/>
 	);
 }
@@ -26,5 +26,5 @@ ReactComponent.propTypes = {
 };
 
 ReactComponent.contextTypes = {
-	sidebar: PropTypes.bool,
+	isolatedComponent: PropTypes.bool,
 };
