@@ -7,7 +7,7 @@ import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponent
 
 export default function ReactComponent({
 	component,
-	sidebar,
+	sidebar = true,
 }) {
 	const { name, pathLine, examples } = component;
 	const { description, props, methods } = component.props;
@@ -19,7 +19,7 @@ export default function ReactComponent({
 			props={props && <Props props={props} />}
 			methods={methods.length > 0 && <Methods methods={methods} />}
 			examples={examples && <Examples examples={examples} name={name} />}
-			sidebar={sidebar}
+			isolated={!sidebar}
 		/>
 	);
 }

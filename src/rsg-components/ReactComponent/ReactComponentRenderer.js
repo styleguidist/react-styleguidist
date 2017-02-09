@@ -60,7 +60,7 @@ export function ReactComponentRenderer({
 	props,
 	methods,
 	examples,
-	sidebar,
+	isolated = false,
 }) {
 	return (
 		<div className={classes.root} id={name + '-container'}>
@@ -70,10 +70,10 @@ export function ReactComponentRenderer({
 				</h2>
 				<div className={classes.pathLine}>{pathLine}</div>
 				<div className={classes.isolatedLink}>
-					{sidebar ? (
-						<Link href={'#!/' + name}>Open isolated ⇢</Link>
-					) : (
+					{isolated ? (
 						<Link href="/">← Back</Link>
+					) : (
+						<Link href={'#!/' + name}>Open isolated ⇢</Link>
 					)}
 				</div>
 			</header>
@@ -105,7 +105,7 @@ ReactComponentRenderer.propTypes = {
 	props: PropTypes.node,
 	methods: PropTypes.node,
 	examples: PropTypes.node,
-	sidebar: PropTypes.bool,
+	isolated: PropTypes.bool,
 };
 
 export default Styled(styles)(ReactComponentRenderer);

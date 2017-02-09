@@ -119,6 +119,31 @@ it('renderer should render component', () => {
 	expect(actual).toMatchSnapshot();
 });
 
+test('should render component not in the isolation mode by default', () => {
+	const actual = render(
+		<ReactComponentRenderer
+			classes={{}}
+			name="Test"
+			pathLine="test"
+		/>
+	);
+
+	expect(actual.find('a').text()).toEqual('Open isolated ⇢');
+});
+
+test('should render component in isolation mode', () => {
+	const actual = render(
+		<ReactComponentRenderer
+			classes={{}}
+			name="Test"
+			pathLine="test"
+			isolated
+		/>
+	);
+
+	expect(actual.find('a').text()).toEqual('← Back');
+});
+
 test('should render props section', () => {
 	const actual = shallow(
 		<ReactComponentRenderer
