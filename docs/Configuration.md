@@ -272,6 +272,12 @@ Type: `Boolean`, default: `false`
 
 Show or hide example code initially. It can be toggled in the UI by clicking the show/hide code button before each example.
 
+#### `showSidebar`
+
+Type: `Boolean`, default: `true`
+
+Toggle sidebar initially. Sidebar is being hidden when opening components or examples in the isolation mode even if this value is set to `true`. When set to `false`, sidebar will always be hidden.
+
 #### `skipComponentsWithoutExample`
 
 Type: `Boolean`, default: `false`

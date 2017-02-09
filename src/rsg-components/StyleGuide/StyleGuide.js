@@ -37,13 +37,14 @@ export default class StyleGuide extends Component {
 
 	render() {
 		const { config, sections, isolatedComponent } = this.props;
+		const { showSidebar = true } = config;
 		const noComponentsFound = isEmpty(sections);
 		return (
 			<StyleGuideRenderer
 				title={config.title}
 				homepageUrl={HOMEPAGE}
 				toc={<TableOfContents sections={sections} />}
-				hasSidebar={noComponentsFound ? false : !isolatedComponent}
+				hasSidebar={showSidebar && !noComponentsFound && !isolatedComponent}
 			>
 				{noComponentsFound ? (
 					<Message>

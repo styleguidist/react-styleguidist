@@ -106,6 +106,10 @@ module.exports = {
 		type: 'boolean',
 		default: false,
 	},
+	showSidebar: {
+		type: 'boolean',
+		default: true,
+	},
 	skipComponentsWithoutExample: {
 		type: 'boolean',
 		default: false,
