@@ -21,8 +21,8 @@ let codeKey = 0;
 function renderStyleguide() {
 	const styleguide = require('!!../loaders/styleguide-loader!./index.js');
 
-	let sidebar = true;
-	let singleExample = false;
+	let isolatedComponent = false;
+	let isolatedExample = false;
 	let components = processComponents(styleguide.components);
 	let sections = styleguide.sections;
 
@@ -48,12 +48,12 @@ function renderStyleguide() {
 			...filterComponentsInSectionsByExactName(sections, targetComponentName),
 		];
 		sections = [{ components }];
-		sidebar = false;
+		isolatedComponent = true;
 
 		// if a single component is filtered and a fenced block index is specified hide the other examples
 		if (components.length === 1 && isFinite(targetComponentIndex)) {
 			components[0] = filterComponentExamples(components[0], targetComponentIndex);
-			singleExample = true;
+			isolatedExample = true;
 		}
 	}
 
@@ -63,8 +63,8 @@ function renderStyleguide() {
 			config={styleguide.config}
 			components={components}
 			sections={sections}
-			sidebar={sidebar}
-			singleExample={singleExample}
+			isolatedComponent={isolatedComponent}
+			isolatedExample={isolatedExample}
 		/>,
 		document.getElementById('app')
 	);

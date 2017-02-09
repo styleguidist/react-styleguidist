@@ -50,6 +50,59 @@ it('should render error message when there is no components and sections', () =>
 	expect(actual).toMatchSnapshot();
 });
 
+describe('sidebar rendering', () => {
+	it('renderer should have sidebar if showSidebar is not set', () => {
+		const wrapper = shallow(
+			<StyleGuide
+				codeKey={1}
+				config={config}
+				sections={sections}
+			/>
+		);
+
+		expect(wrapper.prop('hasSidebar')).toEqual(true);
+	});
+
+	it('renderer should not have sidebar if showSidebar is false', () => {
+		const wrapper = shallow(
+			<StyleGuide
+				codeKey={1}
+				config={{
+					...config,
+					showSidebar: false,
+				}}
+				sections={sections}
+			/>
+		);
+
+		expect(wrapper.prop('hasSidebar')).toEqual(false);
+	});
+
+	it('renderer should not have sidebar in isolation mode', () => {
+		const wrapper = shallow(
+			<StyleGuide
+				codeKey={1}
+				config={config}
+				sections={sections}
+				isolatedComponent
+			/>
+		);
+
+		expect(wrapper.prop('hasSidebar')).toEqual(false);
+	});
+
+	it('renderer should not have sidebar if there are no sections', () => {
+		const wrapper = shallow(
+			<StyleGuide
+				codeKey={1}
+				config={config}
+				sections={[]}
+			/>
+		);
+		expect(wrapper.prop('hasSidebar')).toEqual(false);
+	});
+});
+
 it('renderer should render logo, table of contents and passed children', () => {
 	const actual = shallow(
 		<StyleGuideRenderer

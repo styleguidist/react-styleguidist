@@ -68,7 +68,7 @@ export function PlaygroundRenderer({
 	showCode,
 	name,
 	index,
-	singleExample,
+	isolatedExample,
 	evalInContext,
 	onChange,
 	onCodeToggle,
@@ -78,7 +78,7 @@ export function PlaygroundRenderer({
 			<div className={cx(classes.preview, 'rsg--example-preview')}>
 				<div className={classes.isolatedLink}>
 					{name && (
-						singleExample ? (
+						isolatedExample ? (
 							<Link href={'#!/' + name}>⇽ Exit Isolation</Link>
 						) : (
 							<Link href={'#!/' + name + '/' + index}>Open isolated ⇢</Link>
@@ -112,7 +112,7 @@ PlaygroundRenderer.propTypes = {
 	onChange: PropTypes.func.isRequired,
 	onCodeToggle: PropTypes.func.isRequired,
 	name: PropTypes.string,
-	singleExample: PropTypes.bool,
+	isolatedExample: PropTypes.bool,
 };
 
 export default Styled(styles)(PlaygroundRenderer);
