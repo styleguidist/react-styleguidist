@@ -40,6 +40,7 @@
     "es6-object-assign": "~1.0.3",
     "escodegen": "^1.8.1",
     "findup": "^0.1.5",
+    "function.name-polyfill": "^1.0.5",
     "glob": "^7.1.1",
     "highlight.js": "^9.9.0",
     "html-webpack-plugin": "^2.26.0",
