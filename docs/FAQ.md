@@ -56,7 +56,15 @@ let textarea;
 
 ## How to exclude some components from style guide?
 
-Filter them out in the `components` option:
+For simple cases like ignoring test specs (like `Button.test.js`) glob negation may be enough:
+
+```javascript
+module.exports = {
+  components: 'components/**/!(*.test).js',
+};
+```
+
+Of filter them out by passing a function to `components` option:
 
 ```javascript
 const path = require('path');
