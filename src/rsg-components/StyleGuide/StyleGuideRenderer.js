@@ -25,6 +25,7 @@ const styles = ({ font, base, light, border, baseBackground, codeBackground, sma
 		[small]: {
 			padding: 15,
 		},
+		display: 'block',
 	},
 	sidebar: {
 		backgroundColor: codeBackground,
@@ -51,6 +52,7 @@ const styles = ({ font, base, light, border, baseBackground, codeBackground, sma
 		borderBottom: [[1, border, 'solid']],
 	},
 	footer: {
+		display: 'block',
 		color: light,
 		fontFamily: font,
 		fontSize: 12,
