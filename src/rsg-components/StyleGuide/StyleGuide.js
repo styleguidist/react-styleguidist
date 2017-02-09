@@ -35,23 +35,22 @@ export default class StyleGuide extends Component {
 
 	render() {
 		const { config, sections, sidebar } = this.props;
-
+		const noComponentsFound = isEmpty(sections);
 		return (
 			<StyleGuideRenderer
 				title={config.title}
 				homepageUrl={HOMEPAGE}
 				toc={<TableOfContents sections={sections} />}
-				sidebar={isEmpty(sections) ? false : sidebar}
+				sidebar={noComponentsFound ? false : sidebar}
 			>
-				{
-					!isEmpty(sections)
-						? <Sections sections={sections} sidebar={sidebar} />
-						: <Message>
-								No components or sections found.
-								Check [the `components` and `sections` options]({DOCS_CONFIG}) in your style guide
-								config.
-							</Message>
-				}
+				{noComponentsFound ? (
+					<Message>
+						No components or sections found.
+						Check [the `components` and `sections` options]({DOCS_CONFIG}) in your style guide config.
+					</Message>
+				) : (
+					<Sections sections={sections} sidebar={sidebar} />
+				)}
 			</StyleGuideRenderer>
 		);
 	}
