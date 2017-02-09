@@ -6,6 +6,8 @@ import s from './Placeholder.css';
  * Image placeholders.
  *
  * @example ./examples.md
+ * @see {@link link}
+ * @link link
  */
 export default class Placeholder extends Component {
 	static propTypes = {
