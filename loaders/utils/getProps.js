@@ -17,7 +17,8 @@ const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
 module.exports = function getProps(doc) {
 	if (doc.description) {
 		// Read doclets from the description and remove them
-		doc.doclets = reactDocs.utils.docblock.getDoclets(doc.description);
+		// see https://github.com/reactjs/react-docgen/issues/155
+		doc.doclets = Object.assign({}, reactDocs.utils.docblock.getDoclets(doc.description));
 		doc.description = removeDoclets(doc.description);
 		doc.description = highlightCode(doc.description);
 
