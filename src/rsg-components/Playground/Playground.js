@@ -11,7 +11,7 @@ export default class Playground extends Component {
 	};
 	static contextTypes = {
 		config: PropTypes.object.isRequired,
-		singleExample: PropTypes.bool,
+		isolatedExample: PropTypes.bool,
 	};
 
 	constructor(props, context) {
@@ -79,14 +79,14 @@ export default class Playground extends Component {
 	render() {
 		const { code, showCode } = this.state;
 		const { evalInContext, index, name } = this.props;
-		const { singleExample } = this.context;
+		const { isolatedExample } = this.context;
 		return (
 			<PlaygroundRenderer
 				code={code}
 				showCode={showCode}
 				index={index}
 				name={name}
-				singleExample={singleExample}
+				isolatedExample={isolatedExample}
 				evalInContext={evalInContext}
 				onChange={code => this.handleChange(code)}
 				onCodeToggle={() => this.handleCodeToggle()}

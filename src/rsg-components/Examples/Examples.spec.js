@@ -23,7 +23,7 @@ it('should render examples', () => {
 		{
 			context: {
 				codeKey: 1,
-				singleExample: false,
+				isolatedExample: false,
 			},
 		}
 	);
