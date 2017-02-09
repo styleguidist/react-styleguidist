@@ -112,8 +112,75 @@ exports[`test should render component renderer 1`] = `
       }
       name="Foo" />
   }
+  methods={false}
   name="Foo"
   pathLine="foo/bar.js" />
+`;
+
+exports[`test should render component renderer for component with methods 1`] = `
+<_class
+  description={
+    <_class
+      text="Bar" />
+  }
+  examples={
+    <Examples
+      examples={Array []}
+      name="Foo" />
+  }
+  methods={
+    <_class
+      methods={
+        Array [
+          Object {
+            "description": "Sets the counter to a particular value.",
+            "name": "set",
+            "params": Array [
+              Object {
+                "description": "New value for the counter.",
+                "name": "newValue",
+                "type": Object {
+                  "name": "Number",
+                },
+              },
+            ],
+            "returns": null,
+          },
+        ]
+      } />
+  }
+  name="Foo"
+  pathLine="foo/bar.js" />
+`;
+
+exports[`test should render component renderer for component with props 1`] = `
+<_class
+  description={
+    <_class
+      text="Bar" />
+  }
+  examples={
+    <Examples
+      examples={Array []}
+      name="Foo" />
+  }
+  methods={false}
+  name="Foo"
+  pathLine="foo/bar.js"
+  props={
+    <_class
+      props={
+        Object {
+          "children": Object {
+            "description": "Button label.",
+            "required": true,
+            "type": Object {
+              "name": "string",
+            },
+          },
+        }
+      } />
+  } />
 `;
 
 exports[`test should render methods section 1`] = `

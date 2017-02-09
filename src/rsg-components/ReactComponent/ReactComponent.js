@@ -17,7 +17,7 @@ export default function ReactComponent({
 			pathLine={pathLine}
 			description={description && <Markdown text={description} />}
 			props={props && <Props props={props} />}
-			methods={methods && methods.length && <Methods methods={methods} />}
+			methods={methods.length > 0 && <Methods methods={methods} />}
 			examples={examples && <Examples examples={examples} name={name} />}
 			sidebar={sidebar}
 		/>

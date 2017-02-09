@@ -10,6 +10,7 @@ const component = {
 	pathLine: 'foo/bar.js',
 	props: {
 		description: 'Bar',
+		methods: [],
 	},
 	examples: [
 		{
@@ -23,11 +24,69 @@ const component = {
 		},
 	],
 };
+const componentWithProps = {
+	name: 'Foo',
+	pathLine: 'foo/bar.js',
+	props: {
+		description: 'Bar',
+		props: {
+			children: {
+				type: { name: 'string' },
+				required: true,
+				description: 'Button label.',
+			},
+		},
+		methods: [],
+	},
+	examples: [],
+};
+const componentWithMethods = {
+	name: 'Foo',
+	pathLine: 'foo/bar.js',
+	props: {
+		description: 'Bar',
+		methods: [
+			{
+				name: 'set',
+				params: [
+					{
+						name: 'newValue',
+						description: 'New value for the counter.',
+						type: { name: 'Number' },
+					},
+				],
+				returns: null,
+				description: 'Sets the counter to a particular value.',
+			},
+		],
+	},
+	examples: [],
+};
 
 it('should render component renderer', () => {
 	const actual = shallow(
 		<ReactComponent
 			component={component}
+		/>
+	);
+
+	expect(actual).toMatchSnapshot();
+});
+
+it('should render component renderer for component with props', () => {
+	const actual = shallow(
+		<ReactComponent
+			component={componentWithProps}
+		/>
+	);
+
+	expect(actual).toMatchSnapshot();
+});
+
+it('should render component renderer for component with methods', () => {
+	const actual = shallow(
+		<ReactComponent
+			component={componentWithMethods}
 		/>
 	);
 
