@@ -12,6 +12,7 @@ import {
 	processSections,
 } from './utils/utils';
 import StyleGuide from 'rsg-components/StyleGuide';
+import 'function.name-polyfill';
 
 es6ObjectAssign.polyfill();
 
