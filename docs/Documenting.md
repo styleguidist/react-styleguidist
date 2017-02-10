@@ -117,7 +117,7 @@ const mockData = require('./mocks');
 <Message content={mockData.hello} />
 ```
 
-> **Note:** ES6 `import` syntax isn’t supported. You can `require` only from examples in Markdown files.
+> **Note:** You can `require` only from examples in Markdown files. ES6 `import` syntax isn’t supported.
 
 Each example has its own state that you can access at the `state` variable and change with the `setState` function. Default state is `{}`.
 
