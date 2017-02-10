@@ -311,7 +311,7 @@ module.exports = {
 };
 ```
 
-> **Note:** Styles use [JSS syntax](https://github.com/cssinjs/jss/blob/master/docs/json-api.md).
+> **Note:** Styles use [JSS-nested syntax](https://github.com/cssinjs/jss-nested).
 
 > **Note:** Use your browser’s developer tools to find component and style names. For example class name `.rsg--Logo--logo` corresponds to an example above.
 
