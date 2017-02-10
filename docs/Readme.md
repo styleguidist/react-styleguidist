@@ -1,7 +1,6 @@
 # React Styleguidist Documentation
 
 * **[Getting Started](./GettingStarted.md)**
-
 * [Components](./Components.md)
 * [Configuring webpack](./Webpack.md)
 * [Configuration](./Configuration.md)

@@ -1,12 +1,12 @@
-# Gettin Started with React Styleguidist
+# Getting Started with React Styleguidist
 
 ## 1. Install Styleguidist
 
 1. Install Styleguidist and peer dependencies from npm:
 
-```bash
-npm install --save-dev react-styleguidist react react-dom webpack
-```
+   ```bash
+   npm install --save-dev react-styleguidist react react-dom webpack
+   ```
 
 2. [Point Styleguidist to your React components](Components.md)
 
@@ -42,6 +42,6 @@ Run **`npm run styleguide:build`** to build a static version.
 ## What’s next?
 
 * [Document your components](Documenting.md)
-* [Cutomize webpack configuration](Webpack.md)
+* [Customize webpack configuration](Webpack.md)
 * [Customize your style guide](Configuration.md)
 * [Read the FAQ](FAQ.md)
