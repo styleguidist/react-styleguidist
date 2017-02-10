@@ -69,8 +69,6 @@ Run **`npm run styleguide:build`** to build a static version.
 
 ## What’s next?
 
-Learn how to:
-
 * [Document your components](Documenting.md)
-* [Cutomize webpack configuration docs](Webpack.md)
-* [Customize your style guide](Configuration.md) further
+* [Cutomize webpack configuration](Webpack.md)
+* [Customize your style guide](Configuration.md)
