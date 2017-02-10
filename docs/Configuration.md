@@ -263,7 +263,7 @@ module.exports = {
 
 Type: `String`, default: [src/templates/index.html](../scripts/templates/index.html)
 
-HTML file to use as the template for the style guide. HTML webpack Plugin is used under the hood, see [their docs for details](https://github.com/ampedandwired/html-webpack-plugin/blob/master/docs/template-option.md).
+HTML file to use as the template for the style guide. HTML webpack Plugin is used under the hood, see [their docs for details](https://github.com/jantimon/html-webpack-plugin/blob/master/docs/template-option.md).
 
 #### `theme`
 

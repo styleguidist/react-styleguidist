@@ -59,10 +59,10 @@ initialState = {
 * [Atellier](https://github.com/scup/atellier), a React components emulator.
 * [Carte Blanche](https://github.com/carteb/carte-blanche), an isolated development space with integrated fuzz testing for your components.
 * [Catalog](https://github.com/interactivethings/catalog), create living style guides using Markdown or React.
-* [Cosmos](https://github.com/skidding/cosmos), a tool for designing truly encapsulated React components.
+* [Cosmos](https://github.com/react-cosmos/react-cosmos), a tool for designing truly encapsulated React components.
 * [React BlueKit](http://bluekit.blueberry.io/), render React components with editable source and live preview.
 * [React Cards](https://github.com/steos/reactcards), devcards for React.
-* [React Storybook](https://github.com/kadirahq/react-storybook), isolate your React UI Component development from the main app.
 * [React Styleguide Generator](https://github.com/pocotan001/react-styleguide-generator), a React style guide generator.
+* [React Storybook](https://github.com/storybooks/react-storybook), isolate your React UI Component development from the main app.
 * [React-demo](https://github.com/rpominov/react-demo), a component for creating demos of other components with props editor.
 * [SourceJS](https://github.com/sourcejs/Source), a platform to unify all your frontend documentation. It has a [Styleguidist plugin](https://github.com/sourcejs/sourcejs-react-styleguidist).
