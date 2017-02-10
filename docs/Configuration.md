@@ -216,12 +216,12 @@ module.exports = {
 
 Type: `Array`, optional
 
-Allows components to be grouped into sections with a title and optional overview content. Sections can also be content only, with no associated components (for example, a textual introduction). A section definition consists of:
+Allows components to be grouped into sections with a title and optional overview content. Sections can also be content only, with no associated components (for example, a textual introduction). A section definition consists of optional fields:
 
 - `name` — the title of the section.
-- `content` (optional) — location of a Markdown file containing the overview content.
-- `components` (optional) — a string or function returning a list of components. The same rules apply as for the root `components` option.
-- `sections` (optional) — array of subsections.
+- `content` — location of a Markdown file containing the overview content.
+- `components` — a string or function returning a list of components. The same rules apply as for the root `components` option.
+- `sections` — array of subsections.
 
 Configuring a style guide with a textual introduction section, then a UI section would look like:
 
