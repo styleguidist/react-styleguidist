@@ -74,6 +74,8 @@ module.exports = {
 };
 ```
 
+> **Note:** `.babelrc` and `postcss.config.js` files will be taken into account if you have them.
+
 > **Note:** Use `@webpack-blocks/webpack` for webpack 1.
 
 > **Note:** See [webpack-blocks docs](https://github.com/andywer/webpack-blocks) for more options.
