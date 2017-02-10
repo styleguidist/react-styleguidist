@@ -1,7 +1,9 @@
 # React Styleguidist Documentation
 
-* [Getting started](./GettingStarted.md): installation and basic configuration
-* [Documenting components](./Documenting.md)
+* [Installation](./GettingStarted.md)
+* [Installation with create-react-app](./GettingStartedCreateReactApp.md)
+* [Configuring webpack](./Webpack.md)
+* [Configuration](./Configuration.md)
 * [Configuration](./Configuration.md)
 * [CLI commands and options](./CLI.md)
 * [Node API](./API.md)
