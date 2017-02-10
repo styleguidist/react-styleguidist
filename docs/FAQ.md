@@ -2,7 +2,7 @@
 
 ## How to reuse project’s Webpack config?
 
-See in [congiguring webpack](Webpack.md#???).
+See in [congiguring webpack](Webpack.md#reusing-your-projects-webpack-config).
 
 ## How to use `ref`s in examples?
 

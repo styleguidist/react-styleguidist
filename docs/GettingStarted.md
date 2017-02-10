@@ -46,7 +46,7 @@ module.exports = {
 };
 ```
 
-You can [specify a custom webpack config](Webpack.md#???) or [?????](Webpack.md#???) on a non-webpack project.
+You can [specify a custom config](Webpack.md#custom-webpack-config) or [use this config](Webpack.md#non-webpack-projects) on a non-webpack project.
 
 ## 4. Add npm scripts for convenience (optional)
 
