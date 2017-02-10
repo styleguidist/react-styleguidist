@@ -1,6 +1,6 @@
 # React Styleguidist Documentation
 
-* **[Getting Started](./GettingStarted.md)**: install and run Styleguidist
+* **[Getting Started](./GettingStarted.md): install and run Styleguidist**
 * [Locating components](./Components.md): point Styleguidist to your React components
 * [Configuring webpack](./Webpack.md): tell Styleguidist how to load your code
 * [Cookbook](./Cookbook.md): how to solve common tasks with Styleguidist
