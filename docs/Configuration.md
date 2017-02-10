@@ -21,7 +21,7 @@ If your components look like `components/Button.js` or `components/Button/Button
 
 ```javascript
 module.exports = {
-  components: 'components/**/*.js',
+  components: 'components/**/*.js'
 };
 ```
 
@@ -29,7 +29,7 @@ If your components look like `components/Button/Button.js` + `components/Button/
 
 ```javascript
 module.exports = {
-  components: 'components/**/[A-Z]*.js',
+  components: 'components/**/[A-Z]*.js'
 };
 ```
 
@@ -37,7 +37,7 @@ Or you need to skip test specs (`components/Button/Button.test.js`):
 
 ```javascript
 module.exports = {
-  components: 'components/**/!(*.test).js',
+  components: 'components/**/!(*.test).js'
 };
 ```
 
@@ -51,8 +51,8 @@ Modules that will be available for examples. You can use it for utility function
 module.exports = {
   context: {
     map: 'lodash/map',
-    users: './fixtures/users',
-  },
+    users: './fixtures/users'
+  }
 };
 ```
 
@@ -73,8 +73,8 @@ By default Styleguidist uses common parent directory of your components.
 ```javascript
 module.exports = {
   contextDependencies: [
-    path.resolve(__dirname, 'lib/components'),
-  ],
+    path.resolve(__dirname, 'lib/components')
+  ]
 }
 ```
 
@@ -91,7 +91,7 @@ module.exports = {
     app.get('/custom-endpoint', (req, res) => {
       res.status(200).send({ response: 'Server invoked' });
     });
-  },
+  }
 };
 ```
 
@@ -120,7 +120,7 @@ module.exports = {
     const name = path.basename(componentPath, '.js');
     const dir = path.dirname(componentPath);
     return `import ${name} from '${dir}';`;
-  },
+  }
 };
 ```
 
@@ -136,7 +136,7 @@ For example, instead of `Readme.md` you can use `ComponentName.examples.md`:
 module.exports = {
   getExampleFilename(componentPath) {
     return componentPath.replace(/\.jsx?$/, '.examples.md');
-  },
+  }
 };
 ```
 
@@ -167,10 +167,10 @@ module.exports = {
         documentation.set('path', 'default');
       }
     },
-    
+
     // To better support higher order components
     require('react-docgen-displayname-handler').default,
-  ),
+  )
 };
 ```
 
@@ -196,7 +196,7 @@ Function that allows you to override the mechanism used to parse props from a so
 module.exports = {
   propsParser(filePath, source) {
     return require('react-docgen').parse(source);
-  },
+  }
 };
 ```
 
@@ -208,7 +208,7 @@ Function that allows you to override the mechanism used to identify classes/comp
 
 ```javascript
 module.exports = {
-  resolver: require('react-docgen').resolver.findAllComponentDefinitions,
+  resolver: require('react-docgen').resolver.findAllComponentDefinitions
 };
 ```
 
@@ -230,27 +230,27 @@ module.exports = {
   sections: [
     {
       name: 'Introduction',
-      content: 'docs/introduction.md',
+      content: 'docs/introduction.md'
     },
     {
       name: 'Documentation',
       sections: [
         {
           name: 'Installation',
-          content: 'docs/installation.md',
+          content: 'docs/installation.md'
         },
         {
           name: 'Configuration',
-          content: 'docs/configuration.md',
-        },
-      ],
+          content: 'docs/configuration.md'
+        }
+      ]
     },
     {
       name: 'UI Components',
       content: 'docs/ui.md',
-      components: 'lib/components/ui/*.js',
-    },
-  ],
+      components: 'lib/components/ui/*.js'
+    }
+  ]
 };
 ```
 
@@ -301,13 +301,13 @@ module.exports = {
   styles: {
     Logo: {
       logo: {
-        animation: 'blink ease-in-out 300ms infinite',
+        animation: 'blink ease-in-out 300ms infinite'
       },
       '@keyframes blink': {
-        to: { opacity: 0 },
-      },
-    },
-  },
+        to: { opacity: 0 }
+      }
+    }
+  }
 };
 ```
 
@@ -332,8 +332,8 @@ module.exports = {
   theme: {
     link: 'firebrick',
     linkHover: 'salmon',
-    font: '"Comic Sans MS", "Comic Sans", cursive',
-  },
+    font: '"Comic Sans MS", "Comic Sans", cursive'
+  }
 };
 ```
 
@@ -355,7 +355,6 @@ Function that allows you to modify webpack config for style guide.
 
 ```javascript
 module.exports = {
-  // ...
   updateWebpackConfig(webpackConfig, env) {
     // WARNING: inspect Styleguidist Webpack config before modifying it, otherwise you may break Styleguidist
     console.log(webpackConfig);
@@ -363,7 +362,7 @@ module.exports = {
       // Modify config...
     }
     return webpackConfig;
-  },
+  }
 };
 ```
 
@@ -388,16 +387,16 @@ module.exports = {
   webpackConfig: {
     module: {
       resolve: {
-        extensions: ['.es6'],
+        extensions: ['.es6']
       },
       loaders: [
         {
           test: /\.scss$/,
-          loaders: ['style-loader', 'css-loader', 'sass-loader?precision=10'],
-        },
-      ],
-    },
-  },
+          loaders: ['style-loader', 'css-loader', 'sass-loader?precision=10']
+        }
+      ]
+    }
+  }
 };
 ```
 
@@ -412,15 +411,17 @@ module.exports = {
         };
     }
     return {};
-  },
+  }
 };
 ```
 
 > **Note:**: `output` option will be ignored.
 
-> **Note:** this option disables Webpack config auto load, use `webpackConfigFile` option to load your project’s Webpack config from file.
+> **Note:**: These plugins will be igonored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.
 
-> **Note:** run style guide in verbose mode to see the actual Webpack config used by Styleguidist: `npm run styleguide -- --verbose`.
+> **Note:** This option disables Webpack config auto load, use `webpackConfigFile` option to load your project’s Webpack config from file.
+
+> **Note:** Run style guide in verbose mode to see the actual Webpack config used by Styleguidist: `npm run styleguide -- --verbose`.
 
 See [FAQ](./FAQ.md) for examples.
 
@@ -430,4 +431,12 @@ Type: `String`
 
 By default Styleguidist will try to find webpack config (`webpack.config.dev.js` or `webpack.config.js`) anywhere in your project and use it. Use this option to specify a custom path to your webpack config.
 
+```javascript
+module.exports = {
+  webpackConfigFile: './configs/webpack.js'
+};
+```
+
 > **Note:**: `entry`, `externals` and `output` options will be ignored, use `webpackConfig` option to change them.
+
+> **Note:**: These plugins will be igonored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.

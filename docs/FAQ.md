@@ -2,44 +2,7 @@
 
 ## How to reuse project’s Webpack config?
 
-By default Styleguidist will try to find webpack config (`webpack.config.dev.js` or `webpack.config.js`) anywhere in your project and use it.
-
-Use [webpackConfigFile](Configuration.md) option to specify a custom path to your webpack config:
-
-```javascript
-module.exports = {
-  webpackConfigFile: './configs/webpack.js',
-};
-```
-
-> **Note:**: `entry`, `externals` and `output` options will be ignored, use [webpackConfig](Configuration.md) option to change them.
-
-Use [webpackConfig](Configuration.md) option to specify a custom webpack config options:
-
-```javascript
-module.exports = {
-  webpackConfigFile: './configs/webpack.js',
-  webpackConfig: {
-    module: {
-      loaders: [
-        // Babel loader, will use your project’s .babelrc
-        {
-          test: /\.jsx?$/,
-          exclude: /node_modules/,
-          loader: 'babel-loader',
-        },
-        // Other loaders that is needed for your components
-        {
-          test: /\.css$/,
-          loader: 'style-loader!css-loader?modules',
-        },
-      ],
-    },
-  },
-};
-```
-
-> **Note:** [webpackConfig](Configuration.md) option disables Webpack config auto load, use [webpackConfigFile](Configuration.md) option to load your project’s Webpack config from file.
+See in [congiguring webpack](Webpack.md#???).
 
 ## How to use `ref`s in examples?
 
@@ -60,7 +23,7 @@ For simple cases like ignoring test specs (like `Button.test.js`) glob negation 
 
 ```javascript
 module.exports = {
-  components: 'components/**/!(*.test).js',
+  components: 'components/**/!(*.test).js'
 };
 ```
 
@@ -73,7 +36,7 @@ module.exports = {
   components() {
     // Ignore foo.js and bar.js
     return glob.sync(path.resolve(__dirname, 'lib/components/**/*.js')).filter(module => !/\/(foo|bar).js$/.test(module));
-  },
+  }
 };
 ```
 
@@ -96,9 +59,9 @@ Add a new webpack entry point. In your style guide config:
 module.exports = {
   webpackConfig: {
     entry: [
-      'babel-polyfill',
-    ],
-  },
+      'babel-polyfill'
+    ]
+  }
 };
 ```
 
@@ -136,8 +99,8 @@ module.exports = {
     entry: [
       path.join(__dirname, 'path/to/script.js'),
       path.join(__dirname, 'path/to/styles.css'),
-    ],
-  },
+    ]
+  }
 };
 ```
 
@@ -154,18 +117,18 @@ module.exports = {
 	theme: {
 		link: 'firebrick',
 		linkHover: 'salmon',
-		font: '"Comic Sans MS", "Comic Sans", cursive',
+		font: '"Comic Sans MS", "Comic Sans", cursive'
 	},
 	styles: {
 		Logo: {
 			logo: {
-				animation: 'blink ease-in-out 300ms infinite',
+				animation: 'blink ease-in-out 300ms infinite'
 			},
 			'@keyframes blink': {
-				to: { opacity: 0 },
-			},
-		},
-	},
+				to: { opacity: 0 }
+			}
+		}
+	}
 };
 ```
 
@@ -188,10 +151,10 @@ module.exports = {
   webpackConfig: {
     resolve: {
       alias: {
-        'rsg-components/Wrapper': path.join(__dirname, 'lib/styleguide/Wrapper'),
-      },
-    },
-  },
+        'rsg-components/Wrapper': path.join(__dirname, 'lib/styleguide/Wrapper')
+      }
+    }
+  }
 };
 
 // lib/styleguide/Wrapper.js
@@ -217,10 +180,10 @@ module.exports = {
   webpackConfig: {
     resolve: {
       alias: {
-        'rsg-components/StyleGuide/StyleGuideRenderer': path.join(__dirname, 'lib/styleguide/StyleGuideRenderer'),
-      },
-    },
-  },
+        'rsg-components/StyleGuide/StyleGuideRenderer': path.join(__dirname, 'lib/styleguide/StyleGuideRenderer')
+      }
+    }
+  }
 };
 
 // lib/styleguide/StyleGuideRenderer.js
@@ -257,7 +220,7 @@ module.exports = {
     app.get('/custom-endpoint', (req, res) => {
 		  res.status(200).send({ response: 'Server invoked' });
 	  });
-  },
+  }
 };
 ```
 
@@ -306,12 +269,12 @@ For example, the color prop here is assigned via `getDefaultProps` but missing f
 ```javascript
 Button.propTypes = {
   children: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(['small', 'normal', 'large']),
+  size: PropTypes.oneOf(['small', 'normal', 'large'])
 };
 
 Button.defaultProps = {
   color: '#333',
-  size: 'normal',
+  size: 'normal'
 };
 ```
 

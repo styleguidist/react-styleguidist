@@ -2,13 +2,13 @@
 
 Styleguidist generates documentation from three sources:
 
-### PropTypes and component description in the source code
+## PropTypes and component description in the source code
 
 Components’ `PropTypes` and documentation comments are parsed by the [react-docgen](https://github.com/reactjs/react-docgen) library. Have a look at [their example](https://github.com/reactjs/react-docgen#example) of a component documentation. You can change its behaviour using `propsParser` and `resolver` [options](Configuration.md).
 
 [Flow](https://flowtype.org/) type annotations are supported too.
 
-### Usage examples and further documentation in Markdown
+## Usage examples and further documentation in Markdown
 
 Examples are written in Markdown where any code block without a language tag will be rendered as a React component. By default any `Readme.md` in the component’s folder is treated as an examples file but you can change it with the `getExampleFilename` [option](Configuration.md).
 
@@ -36,7 +36,7 @@ Examples are written in Markdown where any code block without a language tag wil
 
     Any [Markdown](http://daringfireball.net/projects/markdown/) is **allowed** _here_.
 
-### External examples using doclet tags
+## External examples using doclet tags
 
 Additional example files can be associated with components using doclet (`@example`) syntax. The following component will also have an example as loaded from the `extra.examples.md` file:
 
@@ -51,7 +51,7 @@ export default class SomeComponent extends React.Component {
 }
 ```
 
-### Documenting component public methods
+## Documenting component public methods
 
 Mark you public methods with [JSDoc `@public` tag](http://usejsdoc.org/tags-public.html):
 
@@ -107,12 +107,10 @@ const items = [
   {id: 0},
   {id: 1}
 ];
-
 initialState = {
   activeItemByReference: items[0],
   activeItemByPrimitive: items[0].id
 };
-
 <div>
   {/* Will render "not active" because of object reference: */}
   {state.activeItemByReference === items[0] ? 'active' : 'not active'}
