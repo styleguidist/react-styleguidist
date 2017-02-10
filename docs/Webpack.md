@@ -20,7 +20,7 @@ module.exports = {
 
 > **Note:**: `entry`, `externals` and `output` options will be ignored, use `webpackConfig` option to change them.
 
-> **Note:**: These plugins will be igonored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.
+> **Note:**: These plugins will be ignored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.
 
 ## Custom webpack config
 
@@ -48,9 +48,9 @@ module.exports = {
 };
 ```
 
-> **Warning:** This option disable Webpack config auto load, use `webpackConfigFile` option to load your project’s Webpack config from a file.
+> **Warning:** This option disable webpack config auto load, use `webpackConfigFile` option to load your project’s webpack config from a file.
 
-> **Note:**: These plugins will be igonored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.
+> **Note:**: These plugins will be ignored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.
 
 ## Non-webpack projects
 

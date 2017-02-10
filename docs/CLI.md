@@ -8,6 +8,5 @@ These commands supposed to be placed in `package.json` `scripts` (see Installati
 
 CLI Options:
 
-* `--config <file>`: Specify path to the config file.
+* `--config <file>`: Specify path to a config file.
 * `--verbose`: Print debug information.
-

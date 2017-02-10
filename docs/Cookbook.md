@@ -1,8 +1,8 @@
 # Cookbook
 
-## How to reuse project’s Webpack config?
+## How to reuse project’s webpack config?
 
-See in [congiguring webpack](Webpack.md#reusing-your-projects-webpack-config).
+See in [configuring webpack](Webpack.md#reusing-your-projects-webpack-config).
 
 ## How to use `ref`s in examples?
 
@@ -67,7 +67,7 @@ module.exports = {
 
 ## How to use React Styleguidist with styled-components?
 
-The [recommened way](https://github.com/styleguidist/react-styleguidist/issues/37#issuecomment-263502454) of using [styled-components](https://styled-components.com/) is like this:
+The [recommended way](https://github.com/styleguidist/react-styleguidist/issues/37#issuecomment-263502454) of using [styled-components](https://styled-components.com/) is like this:
 
 ```javascript
 import React, { Component } from 'react';
@@ -110,7 +110,7 @@ You may need an appropriate webpack loader to handle these files.
 
 ## How to change styles of a style guide?
 
-Use config option [theme](Configuration.md) to change fonts, colors, etc. and option [styles](Configuration.md) to tweak style of particular Styleguidist’s components:
+Use config option [theme](Configuration.md#theme) to change fonts, colors, etc. and option [styles](Configuration.md#configuration) to tweak style of particular Styleguidist’s components:
 
 ```javascript
 module.exports = {
@@ -132,9 +132,11 @@ module.exports = {
 };
 ```
 
-* See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/styles/theme.js).
-* Styles use [JSS syntax](https://github.com/cssinjs/jss/blob/master/docs/json-api.md).
-* Use your browser’s developer tools to find component and style names. For example class name `.rsg--Logo--logo` corresponds to an example above.
+> **Note:** See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/styles/theme.js).
+
+> **Note:** Styles use [JSS](https://github.com/cssinjs/jss/blob/master/docs/json-api.md) with these plugins: [jss-isolate](https://github.com/cssinjs/jss-isolate), [jss-nested](https://github.com/cssinjs/jss-nested), [jss-camel-case](https://github.com/cssinjs/jss-camel-case), [jss-default-unit](https://github.com/cssinjs/jss-default-unit), [jss-compose](https://github.com/cssinjs/jss-compose).
+
+> **Note:** Use your browser’s developer tools to find component and style names. For example class name `.rsg--Logo--logo` corresponds to an example above.
 
 ## How to change the layout of a style guide?
 

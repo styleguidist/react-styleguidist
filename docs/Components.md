@@ -1,8 +1,8 @@
-# Locating your components
+# Locating your components and organizing your style guide
 
-## List of components
+## Components
 
-By default Styleguidist will search component using this glob mask: `src/components/**/*.js`. If it doesn’t work for you, create a **`styleguide.config.js`** file in your project’s root folder.
+By default Styleguidist will search components using this [glob pattern](https://github.com/isaacs/node-glob#glob-primer): `src/components/**/*.js`. If it doesn’t work for you, create a `styleguide.config.js` file in your project’s root folder.
 
 If your components look like `components/Button.js` or `components/Button/Button.js` or `components/Button/index.js` (it’s the default behavior, change only if your components are not in `src/components` or files are not `.js`):
 
@@ -28,16 +28,20 @@ module.exports = {
 };
 ```
 
+> **Note:** All paths are relative to config folder.
+
 ## Sections
 
-Allows components to be grouped into sections with a title and optional overview content. Sections can also be content only, with no associated components (for example, a textual introduction). A section definition consists of optional fields:
+Group components into sections or add extra Markdown documents to your style guide.
 
-- `name` — the title of the section.
+Each section consists of (all fields are optional):
+
+- `name` — section title.
 - `content` — location of a Markdown file containing the overview content.
 - `components` — a string or function returning a list of components. The same rules apply as for the root `components` option.
 - `sections` — array of subsections.
 
-Configuring a style guide with a textual introduction section, then a UI section would look like:
+Configuring a style guide with textual documentation section and a list of components would look like:
 
 ```javascript
 module.exports = {

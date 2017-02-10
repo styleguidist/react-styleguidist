@@ -31,6 +31,29 @@ Button.defaultProps = {
 };
 ```
 
+## Why object references don’t work in example component state?
+
+Object references will not work as expected in examples state due to how the examples code is evaluated:
+
+```javascript
+const items = [
+  {id: 0},
+  {id: 1}
+];
+
+initialState = {
+  activeItemByReference: items[0],
+  activeItemByPrimitive: items[0].id
+};
+
+<div>
+  {/* Will render "not active" because of object reference: */}
+  {state.activeItemByReference === items[0] ? 'active' : 'not active'}
+  {/* But this will render "active" as expected: */}
+  {state.activeItemByPrimitive === items[0].id ? 'active' : 'not active'}
+</div>
+```
+
 ## Are there any other projects like this?
 
 * [Atellier](https://github.com/scup/atellier), a React components emulator.
