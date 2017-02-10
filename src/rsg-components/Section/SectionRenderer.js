@@ -16,14 +16,14 @@ const styles = ({ font }) => ({
 
 export function SectionRenderer({ classes, name, content, components, sections }) {
 	return (
-		<div className={classes.root}>
+		<section className={classes.root}>
 			{
 				name && <h2 className={classes.heading} id={name}>{name}</h2>
 			}
 			{content}
 			{components}
 			{sections}
-		</div>
+		</section>
 	);
 }
 
