@@ -103,7 +103,7 @@ insertAtCursor(text) {
 
 Code examples in Markdown use the ES6+JSX syntax. They can access all the components of your style guide using global variables:
 
-```javascript
+```html
 <Panel>
   <p>Using the Button component in the example of the Panel component:</p>
   <Button>Push Me</Button>
@@ -112,7 +112,7 @@ Code examples in Markdown use the ES6+JSX syntax. They can access all the compon
 
 You can also `require` other modules (e.g. mock data that you use in your unit tests) from examples in Markdown:
 
-```javascript
+```jsx
 const mockData = require('./mocks');
 <Message content={mockData.hello} />
 ```
@@ -121,7 +121,7 @@ const mockData = require('./mocks');
 
 Each example has its own state that you can access at the `state` variable and change with the `setState` function. Default state is `{}`.
 
-```html
+```js
 initialState = { isOpen: false };
 <div>
   <button onClick={() => setState({ isOpen: true })}>Open</button>
@@ -134,7 +134,7 @@ initialState = { isOpen: false };
 
 You *can* create `React.Component`s in your code examples:
 
-```javascript
+```jsx
 class SortTable extends React.Component {
   constructor() {
     super();
