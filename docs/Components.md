@@ -1,6 +1,6 @@
-# Configure components
+# Locating your components
 
-## Linear list of components
+## List of components
 
 By default Styleguidist will search component using this glob mask: `src/components/**/*.js`. If it doesn’t work for you, create a **`styleguide.config.js`** file in your project’s root folder.
 

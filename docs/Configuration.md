@@ -95,7 +95,7 @@ module.exports = {
 };
 ```
 
-See [FAQ](./FAQ.md) for examples.
+Your components will be able to invoke the url `http://localhost:3000/custom-endpoint` from their examples.
 
 #### `defaultExample`
 
@@ -423,7 +423,7 @@ module.exports = {
 
 > **Note:** Run style guide in verbose mode to see the actual Webpack config used by Styleguidist: `npm run styleguide -- --verbose`.
 
-See [FAQ](./FAQ.md) for examples.
+See [Configuring webpack](./Webpack.md) for examples.
 
 #### `webpackConfigFile`
 
