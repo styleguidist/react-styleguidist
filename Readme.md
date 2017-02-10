@@ -10,13 +10,12 @@ React Styleguidist is a style guide generator for React components. It lists com
 
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/271B372x102S0c052i3F/react-styleguidist7.gif)
 
-## Documentation
+## Usage
 
-* [Getting started](./docs/GettingStarted.md): installation and basic configuration
-* [Documenting components](./docs/Documenting.md)
-* [CLI commands and options](./docs/CLI.md)
-* [API](./docs/API.md)
-* [FAQ](./docs/FAQ.md)
+* **[Getting Started](./GettingStarted.md): install and run Styleguidist**
+* [Locating components](./Components.md): point Styleguidist to your React components
+* [Configuring webpack](./Webpack.md): tell Styleguidist how to load your code
+* [Cookbook](./Cookbook.md): how to solve common tasks with Styleguidist
 
 ## Examples
 
@@ -39,7 +38,7 @@ Real projects using React Styleguidist:
 
 ## Integration with other tools
 
-* [create-react-app](https://github.com/just-boris/react-app-styleguidist)
+* create-react-app — just works, see the [Getting Started](docs/GettingStarted.md) guide!
 * [TypeScript](https://github.com/pvasek/react-docgen-typescript)
 * [SourceJS](https://github.com/sourcejs/sourcejs-react-styleguidist)
 
@@ -48,9 +47,16 @@ Real projects using React Styleguidist:
 * [Building React Components Library](https://skillsmatter.com/skillscasts/8140-building-react-components-library) talk by [Robert Haritonov](https://github.com/operatino)
 * [Interview with Artem Sapegin](http://survivejs.com/blog/styleguidist-interview/) about React Styleguidist.
 
-## Changelog
+## Advanced documentation
 
-The changelog can be found on the [Releases page](https://github.com/styleguidist/react-styleguidist/releases).
+* [Configuration](./Configuration.md)
+* [CLI commands and options](./CLI.md)
+* [Node API](./API.md)
+* [FAQ](./FAQ.md)
+
+## Change log
+
+The change log can be found on the [Releases page](https://github.com/styleguidist/react-styleguidist/releases).
 
 ## Contributing
 
