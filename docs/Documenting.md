@@ -2,6 +2,8 @@
 
 Styleguidist generates documentation from three sources:
 
+> **Note:** [See examples](../examples/basic/lib/components) of documented components in our demo style guide.
+
 ## PropTypes and component description in the source code
 
 ```javascript
@@ -30,7 +32,7 @@ export default class Button extends React.Component {
 }
 ```
 
-> **Note:** [Flow](https://flowtype.org/) type annotations are supported too.
+> **Note:** [Flow](https://flowtype.org/) type annotations are supported too. For TypeScript install [react-docgen-typescript](https://github.com/pvasek/react-docgen-typescript)
 
 > **Note:** You can change its behavior using [propsParser](Configuration.md#propsparser) and [resolver](Configuration.md#resolver) options.
 

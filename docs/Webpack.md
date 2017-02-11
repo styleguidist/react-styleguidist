@@ -4,6 +4,8 @@ Styleguidist uses webpack under the hood and needs to know how to load your proj
 
 *Webpack is a peer dependency but your project doesn’t have to use it. React Styleguidist works with webpack 1 and webpack 2.*
 
+> **Note:** [See Cookbook](Cookbook.md) for more examples.
+
 ## Reusing your project’s webpack config
 
 By default Styleguidist will try to find webpack config (`webpack.config.dev.js` or `webpack.config.js`) anywhere in your project and use it.
