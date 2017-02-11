@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import isFinite from 'lodash/isFinite';
 import {
 	getComponentNameFromHash,
-	filterComponentsByExactName,
 	filterComponentExamples,
 	filterComponentsInSectionsByExactName,
 	processComponents,
@@ -24,12 +23,13 @@ function renderStyleguide() {
 
 	let isolatedComponent = false;
 	let isolatedExample = false;
-	let components = processComponents(styleguide.components);
+
 	let sections = styleguide.sections;
 
 	// If root `components` isn't empty, make it a first section
+	const components = processComponents(styleguide.components);
 	if (components.length) {
-		sections.unshift({ components });
+		sections = [{ components }, ...sections];
 	}
 
 	sections = processSections(sections);
@@ -44,16 +44,13 @@ function renderStyleguide() {
 
 	// filter the requested component id required
 	if (targetComponentName) {
-		components = [
-			...filterComponentsByExactName(components, targetComponentName),
-			...filterComponentsInSectionsByExactName(sections, targetComponentName),
-		];
-		sections = [{ components }];
+		const filteredComponents = filterComponentsInSectionsByExactName(sections, targetComponentName);
+		sections = [{ components: filteredComponents }];
 		isolatedComponent = true;
 
 		// if a single component is filtered and a fenced block index is specified hide the other examples
-		if (components.length === 1 && isFinite(targetComponentIndex)) {
-			components[0] = filterComponentExamples(components[0], targetComponentIndex);
+		if (filteredComponents.length === 1 && isFinite(targetComponentIndex)) {
+			filteredComponents[0] = filterComponentExamples(filteredComponents[0], targetComponentIndex);
 			isolatedExample = true;
 		}
 	}
@@ -62,7 +59,6 @@ function renderStyleguide() {
 		<StyleGuide
 			codeKey={codeKey}
 			config={styleguide.config}
-			components={components}
 			sections={sections}
 			isolatedComponent={isolatedComponent}
 			isolatedExample={isolatedExample}
