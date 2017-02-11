@@ -8,7 +8,7 @@ See in [configuring webpack](Webpack.md#reusing-your-projects-webpack-config).
 
 Use `ref` prop as a function and assign a reference to a local variable:
 
-```javascript
+```jsx
 initialState = { value: '' };
 let textarea;
 <div>
