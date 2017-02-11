@@ -6,7 +6,6 @@ import {
 	getComponentNameFromHash,
 	filterComponentExamples,
 	filterComponentsInSectionsByExactName,
-	processComponents,
 	processSections,
 } from './utils/utils';
 import StyleGuide from 'rsg-components/StyleGuide';
@@ -27,9 +26,11 @@ function renderStyleguide() {
 	let sections = styleguide.sections;
 
 	// If root `components` isn't empty, make it a first section
-	const components = processComponents(styleguide.components);
-	if (components.length) {
-		sections = [{ components }, ...sections];
+	if (styleguide.components.length) {
+		sections = [
+			{ components: styleguide.components },
+			...sections,
+		];
 	}
 
 	sections = processSections(sections);
