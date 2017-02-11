@@ -2,7 +2,6 @@ import './styles';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import isFinite from 'lodash/isFinite';
-import es6ObjectAssign from 'es6-object-assign';
 import {
 	getComponentNameFromHash,
 	filterComponentsByExactName,
@@ -12,8 +11,10 @@ import {
 	processSections,
 } from './utils/utils';
 import StyleGuide from 'rsg-components/StyleGuide';
-import 'function.name-polyfill';
 
+// Polyfills
+import 'function.name-polyfill';
+import es6ObjectAssign from 'es6-object-assign';
 es6ObjectAssign.polyfill();
 
 let codeKey = 0;
