@@ -39,7 +39,11 @@ Run **`npm run styleguide`** to start style a guide dev server.
 
 Run **`npm run styleguide:build`** to build a static version.
 
-## What’s next?
+## 4. Start documenting your components
 
-* [Document your components](Documenting.md)
+See how to [document your components](Documenting.md)
+
+## Have questions?
+
 * [Read the cookbook](Cookbook.md)
+* [Join our Gitter chat](https://gitter.im/styleguidist/styleguidist)
