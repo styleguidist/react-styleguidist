@@ -17,9 +17,9 @@ module.exports = {
 		type: 'existing directory path',
 		example: 'assets',
 	},
+	// `components` is a shortcut for { sections: [{ components }] }, see `sections` below
 	components: {
 		type: ['string', 'function'],
-		process: (val, config) => ((!val && !config.sections) ? 'src/components/**/*.js' : val),
 		example: 'components/**/[A-Z]*.js',
 	},
 	context: {
@@ -83,6 +83,15 @@ module.exports = {
 	sections: {
 		type: 'array',
 		default: [],
+		process: (val, config) => {
+			if (!val) {
+				// If root `components` isn't empty, make it a first section
+				// If `components` and `sections` weren’t specified, use default pattern
+				const components = config.components || 'src/components/**/*.js';
+				return [{ components }];
+			}
+			return val;
+		},
 		example: [
 			{
 				name: 'Documentation',

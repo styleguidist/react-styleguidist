@@ -13,8 +13,7 @@ it('should return valid, parsable JS', () => {
 		request: file,
 		options: {
 			styleguidist: {
-				components: '../../test/components/**/*.js',
-				sections: [],
+				sections: [{ components: '../../test/components/**/*.js' }],
 				configDir: __dirname,
 				getExampleFilename: () => 'Readme.md',
 				getComponentPathLine: filepath => filepath,
@@ -26,28 +25,12 @@ it('should return valid, parsable JS', () => {
 	expect(new vm.Script(result)).not.toThrowError(SyntaxError);
 });
 
-it('should throw when components not found', () => {
-	const fn = () => styleguideLoader.pitch.call({
-		request: file,
-		options: {
-			styleguidist: {
-				components: 'pizza/*.js',
-				sections: [],
-				configDir: __dirname,
-			},
-		},
-		addContextDependency: noop,
-	}, readFileSync(file, 'utf8'));
-	expect(fn).toThrowError('No components found');
-});
-
 it('should return correct component paths: glob', () => {
 	const result = styleguideLoader.pitch.call({
 		request: file,
 		options: {
 			styleguidist: {
-				components: 'components/**/*.js',
-				sections: [],
+				sections: [{ components: 'components/**/*.js' }],
 				configDir: path.resolve(__dirname, '../../test'),
 				getExampleFilename: () => 'Readme.md',
 				getComponentPathLine: filepath => filepath,
@@ -66,11 +49,12 @@ it('should return correct component paths: function returning absolute paths', (
 		request: file,
 		options: {
 			styleguidist: {
-				components: () => ([
-					`${__dirname}/components/Button/Button.js`,
-					`${__dirname}/components/Placeholder/Placeholder.js`,
-				]),
-				sections: [],
+				sections: [{
+					components: () => ([
+						`${__dirname}/components/Button/Button.js`,
+						`${__dirname}/components/Placeholder/Placeholder.js`,
+					]),
+				}],
 				configDir: __dirname,
 				getExampleFilename: () => 'Readme.md',
 				getComponentPathLine: filepath => filepath,
@@ -89,11 +73,12 @@ it('should return correct component paths: function returning relative paths', (
 		request: file,
 		options: {
 			styleguidist: {
-				components: () => ([
-					'components/Button/Button.js',
-					'components/Placeholder/Placeholder.js',
-				]),
-				sections: [],
+				sections: [{
+					components: () => ([
+						'components/Button/Button.js',
+						'components/Placeholder/Placeholder.js',
+					]),
+				}],
 				configDir: __dirname,
 				getExampleFilename: () => 'Readme.md',
 				getComponentPathLine: filepath => filepath,

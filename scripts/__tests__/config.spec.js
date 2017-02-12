@@ -122,3 +122,32 @@ it('should throw if defaultExample does not exist', () => {
 	});
 	expect(fn).toThrowError('does not exist');
 });
+
+it('should use components option as the first sections if there’s no sections option', () => {
+	const components = 'test/components/*/*.js';
+	const result = getConfig({
+		components,
+	});
+	expect(result.sections).toHaveLength(1);
+	expect(result.sections[0].components).toEqual(components);
+});
+
+it('should use default components option both components and sections options weren’t specified', () => {
+	const result = getConfig();
+	expect(result.sections).toHaveLength(1);
+	expect(result.sections[0].components).toMatch('.js');
+});
+
+it('should ignore components option there’s sections options', () => {
+	const components = 'test/components/*/*.js';
+	const result = getConfig({
+		components: 'test/components/Button/*.js',
+		sections: [
+			{
+				components,
+			},
+		],
+	});
+	expect(result.sections).toHaveLength(1);
+	expect(result.sections[0].components).toEqual(components);
+});

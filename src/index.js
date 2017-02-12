@@ -15,41 +15,35 @@ import 'function.name-polyfill';
 import es6ObjectAssign from 'es6-object-assign';
 es6ObjectAssign.polyfill();
 
+// Examples code revision to rerender only code examples (not the whole page) when code changes
 let codeKey = 0;
 
 function renderStyleguide() {
 	const styleguide = require('!!../loaders/styleguide-loader!./index.js');
 
-	let isolatedComponent = false;
-	let isolatedExample = false;
-
 	let sections = styleguide.sections;
 
-	// If root `components` isn't empty, make it a first section
-	if (styleguide.components.length) {
-		sections = [
-			{ components: styleguide.components },
-			...sections,
-		];
-	}
 
 	sections = processSections(sections);
 
-	// parse url hash to check if the components list must be filtered
+	// Parse URL hash to check if the components list must be filtered
 	const {
-		// name of the filtered component to show isolated
+		// Name of the filtered component to show isolated (/#!/Button → Button)
 		targetComponentName,
-		// index of the fenced block example of the filtered component isolate
+		// Index of the fenced block example of the filtered component isolate (/#!/Button/1 → 1)
 		targetComponentIndex,
 	} = getComponentNameFromHash();
 
-	// filter the requested component id required
+	let isolatedComponent = false;
+	let isolatedExample = false;
+
+	// Filter the requested component id required
 	if (targetComponentName) {
 		const filteredComponents = filterComponentsInSectionsByExactName(sections, targetComponentName);
 		sections = [{ components: filteredComponents }];
 		isolatedComponent = true;
 
-		// if a single component is filtered and a fenced block index is specified hide the other examples
+		// If a single component is filtered and a fenced block index is specified hide the other examples
 		if (filteredComponents.length === 1 && isFinite(targetComponentIndex)) {
 			filteredComponents[0] = filterComponentExamples(filteredComponents[0], targetComponentIndex);
 			isolatedExample = true;
