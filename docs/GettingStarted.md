@@ -36,7 +36,7 @@
            include: dir,
            loader: 'babel'
          },
-         // Other loaders that is needed for your components
+         // Other loaders that are needed for your components
          {
            test: /\.css$/,
            include: dir,
