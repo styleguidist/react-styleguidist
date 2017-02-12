@@ -1,11 +1,12 @@
-exports[`test render should not render title if name is not set 1`] = `<div />`;
+exports[`test render should not render title if name is not set 1`] = `<section />`;
 
 exports[`test render should render component 1`] = `
-<div>
-  <h2
-    id="Foo">
+<section>
+  <_class
+    hierarchy={1}
+    slug="foo">
     Foo
-  </h2>
+  </_class>
   <Examples
     examples={
       Array [
@@ -24,26 +25,35 @@ exports[`test render should render component 1`] = `
     components={Array []} />
   <Sections
     sections={Array []} />
-</div>
+</section>
 `;
 
 exports[`test render should render title if name is set 1`] = `
-<div>
-  <h2
-    id="test">
+<section>
+  <h1
+    class="heading-2948884764">
+    <a
+      aria-hidden="true"
+      class="anchor-3977085326"
+      href="#test"
+      id="test">
+      #
+    </a>
     test
-  </h2>
-</div>
+  </h1>
+</section>
 `;
 
 exports[`test should not render components list if not defined 1`] = `
 <_class
-  name="No components" />
+  name="No components"
+  slug="no-components" />
 `;
 
 exports[`test should not render sections if not defined 1`] = `
 <_class
-  name="No sections" />
+  name="No sections"
+  slug="no-sections" />
 `;
 
 exports[`test should render component renderer 1`] = `
@@ -72,7 +82,8 @@ exports[`test should render component renderer 1`] = `
   sections={
     <Sections
       sections={Array []} />
-  } />
+  }
+  slug="foo" />
 `;
 
 exports[`test should render components list 1`] = `
@@ -81,7 +92,8 @@ exports[`test should render components list 1`] = `
     <Components
       components={Array []} />
   }
-  name="Components" />
+  name="Components"
+  slug="components" />
 `;
 
 exports[`test should render sections if defined 1`] = `
@@ -90,5 +102,6 @@ exports[`test should render sections if defined 1`] = `
   sections={
     <Sections
       sections={Array []} />
-  } />
+  }
+  slug="nested-sections" />
 `;

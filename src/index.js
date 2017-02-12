@@ -10,6 +10,8 @@ import {
 	filterComponentsInSectionsByExactName,
 	processComponents,
 	processSections,
+	setSlugs,
+	slugger,
 } from './utils/utils';
 import StyleGuide from 'rsg-components/StyleGuide';
 import 'function.name-polyfill';
@@ -57,11 +59,14 @@ function renderStyleguide() {
 		}
 	}
 
+	// Reset slugger for each render to be deterministic
+	slugger.reset();
+	sections = setSlugs(sections);
+
 	ReactDOM.render(
 		<StyleGuide
 			codeKey={codeKey}
 			config={styleguide.config}
-			components={components}
 			sections={sections}
 			isolatedComponent={isolatedComponent}
 			isolatedExample={isolatedExample}

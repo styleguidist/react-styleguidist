@@ -8,6 +8,7 @@ import { SectionRenderer } from './SectionRenderer';
 
 const section = {
 	name: 'Foo',
+	slug: 'foo',
 	content: [
 		{
 			type: 'code',
@@ -38,6 +39,7 @@ it('should render components list', () => {
 		<Section
 			section={{
 				name: 'Components',
+				slug: 'components',
 				components: [],
 			}}
 		/>
@@ -51,6 +53,7 @@ it('should not render components list if not defined', () => {
 		<Section
 			section={{
 				name: 'No components',
+				slug: 'no-components',
 			}}
 		/>
 	);
@@ -63,6 +66,7 @@ it('should render sections if defined', () => {
 		<Section
 			section={{
 				name: 'Nested sections',
+				slug: 'nested-sections',
 				sections: [],
 			}}
 		/>
@@ -76,6 +80,7 @@ it('should not render sections if not defined', () => {
 		<Section
 			section={{
 				name: 'No sections',
+				slug: 'no-sections',
 			}}
 		/>
 	);
@@ -88,6 +93,7 @@ it('render should render component', () => {
 		<SectionRenderer
 			classes={{}}
 			name={section.name}
+			slug={section.slug}
 			content={<Examples examples={section.content} />}
 			components={<Components components={[]} />}
 			sections={<Sections sections={[]} />}
@@ -112,6 +118,7 @@ it('render should render title if name is set', () => {
 		<SectionRenderer
 			classes={{}}
 			name="test"
+			slug="test"
 		/>
 	);
 

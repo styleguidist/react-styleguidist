@@ -6,36 +6,45 @@ import { TableOfContentsRenderer } from './TableOfContentsRenderer';
 const components = [
 	{
 		name: 'Button',
+		slug: 'button',
 	},
 	{
 		name: 'Input',
+		slug: 'input',
 	},
 	{
 		name: 'Textarea',
+		slug: 'textarea',
 	},
 ];
 
 const sections = [
 	{
 		name: 'Introduction',
+		slug: 'introduction',
 		content: 'intro.md',
 	},
 	{
 		name: 'Buttons',
+		slug: 'buttons',
 		components: [
 			{
 				name: 'Button',
+				slug: 'button',
 			},
 		],
 	},
 	{
 		name: 'Forms',
+		slug: 'forms',
 		components: [
 			{
 				name: 'Input',
+				slug: 'input',
 			},
 			{
 				name: 'Textarea',
+				slug: 'textarea',
 			},
 		],
 	},

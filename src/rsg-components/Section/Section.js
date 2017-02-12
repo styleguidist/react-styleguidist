@@ -5,7 +5,7 @@ import Sections from 'rsg-components/Sections';
 import SectionRenderer from 'rsg-components/Section/SectionRenderer';
 
 export default function Section({ section }) {
-	const { name, content, components, sections } = section;
+	const { name, slug, content, components, sections } = section;
 
 	const contentJsx = content && (
 		<Examples examples={content} />
@@ -23,6 +23,7 @@ export default function Section({ section }) {
 	return (
 		<SectionRenderer
 			name={name}
+			slug={slug}
 			content={contentJsx}
 			components={componentsJsx}
 			sections={sectionsJsx}

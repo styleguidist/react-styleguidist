@@ -2,6 +2,10 @@ import flatMap from 'lodash/flatMap';
 import isArray from 'lodash/isArray';
 import extend from 'lodash/extend';
 import isNaN from 'lodash/isNaN';
+import GithubSlugger from 'github-slugger';
+
+// Export the singleton instance of GithubSlugger
+export const slugger = new GithubSlugger();
 
 export function setComponentsNames(components) {
 	components.map((component) => {
@@ -14,6 +18,22 @@ export function setComponentsNames(components) {
 		) || component.nameFallback;
 	});
 	return components;
+}
+
+export function setSlugs(sections) {
+	return sections.map((section) => {
+		const { name, components, sections } = section;
+		if (name) {
+			section.slug = slugger.slug(section.name);
+		}
+		if (components && components.length) {
+			section.components = setSlugs(components);
+		}
+		if (sections && sections.length) {
+			section.sections = setSlugs(sections);
+		}
+		return section;
+	});
 }
 
 export function globalizeComponents(components) {

@@ -22,12 +22,13 @@ export default class TableOfContents extends Component {
 
 	getSections(sections = [], searchTerm) {
 		const regExp = getFilterRegExp(searchTerm);
-		return sections.reduce((filteredSections, { name, components: subComponents = [], sections: subSections }) => {
+		return sections.reduce((filteredSections, { name, slug, components: subComponents = [], sections: subSections }) => {
 			subComponents = this.getComponents(subComponents, searchTerm);
 			if (subComponents.length || !searchTerm || regExp.test(name)) {
 				filteredSections.push({
 					heading: true,
 					name,
+					slug,
 					content: this.renderLevel(subComponents, subSections, searchTerm),
 				});
 			}

@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Styled from 'rsg-components/Styled';
+import Heading from 'rsg-components/Heading';
 
 const styles = ({ font }) => ({
 	root: {
@@ -14,12 +15,12 @@ const styles = ({ font }) => ({
 	},
 });
 
-export function SectionRenderer({ classes, name, content, components, sections }) {
+export function SectionRenderer({ classes, name, slug, content, components, sections }) {
 	return (
 		<section className={classes.root}>
-			{
-				name && <h2 className={classes.heading} id={name}>{name}</h2>
-			}
+			{name && (
+				<Heading hierarchy={1} slug={slug} className={classes.heading}>{name}</Heading>
+			)}
 			{content}
 			{components}
 			{sections}
@@ -30,6 +31,7 @@ export function SectionRenderer({ classes, name, content, components, sections }
 SectionRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	name: PropTypes.string,
+	slug: PropTypes.string,
 	content: PropTypes.node,
 	components: PropTypes.node,
 	sections: PropTypes.node,

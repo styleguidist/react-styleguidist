@@ -73,6 +73,40 @@ describe('setComponentsNames', () => {
 	});
 });
 
+describe('setSlugs', () => {
+	it('should set unique slug property to each section or component with name property', () => {
+		const result = utils.setSlugs([
+			{
+				name: 'Multiple words',
+				sections: [
+					{
+						name: 'Single',
+						components: [
+							{
+								name: 'Button',
+							},
+							{
+								name: 'Image',
+							},
+						],
+					},
+					{
+						components: [
+							{
+								name: 'Button',
+							},
+							{
+								name: 'Image',
+							},
+						],
+					},
+				],
+			},
+		]);
+		expect(result).toMatchSnapshot();
+	});
+});
+
 describe('globalizeComponents', () => {
 	it('should set each component’s module as a global variable', () => {
 		utils.globalizeComponents([

@@ -45,7 +45,6 @@ const styles = ({ font, base, light, border, baseBackground, codeBackground, sma
 	},
 	components: {
 		isolate: false,
-		overflow: 'auto',  // To prevent the pane from growing out of the screen
 	},
 	logo: {
 		padding: 15,
