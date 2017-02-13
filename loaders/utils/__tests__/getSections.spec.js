@@ -7,7 +7,7 @@ const configDir = path.resolve(__dirname, '../../../test');
 const sections = [
 	{
 		name: 'Readme',
-		content: 'Readme.md',
+		content: 'components/Button/Readme.md',
 	},
 	{
 		name: 'Components',
@@ -26,19 +26,19 @@ it('processSection() should return an object for section with content', () => {
 	expect(result).toMatchSnapshot();
 });
 
+it('processSection() should throw when content file not found', () => {
+	const fn = () => processSection({ content: 'pizza' }, config);
+
+	expect(fn).toThrowError('Section content file not found');
+});
+
 it('processSection() should return an object for section with components', () => {
 	const result = processSection(sections[1], config);
 
 	expect(result).toMatchSnapshot();
 });
 
-it('getSections() should return null if there is no sections', () => {
-	const result = getSections();
-
-	expect(result).toBeNull();
-});
-
-it('getSections() should return an object', () => {
+it('getSections() should return an array', () => {
 	const result = getSections(sections, config);
 
 	expect(result).toMatchSnapshot();

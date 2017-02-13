@@ -4,8 +4,11 @@ const pick = require('lodash/pick');
 const commonDir = require('common-dir');
 const generate = require('escodegen').generate;
 const toAst = require('to-ast');
-const getSections = require('./utils/getSections');
+const getAllComponentsWithExamples = require('./utils/getAllComponentsWithExamples');
+const getAllContentPages = require('./utils/getAllContentPages');
 const getComponentFilesFromSections = require('./utils/getComponentFilesFromSections');
+const getSections = require('./utils/getSections');
+const filterComponentsWithExample = require('./utils/filterComponentsWithExample');
 
 /* eslint-disable no-console */
 
@@ -28,9 +31,22 @@ module.exports.pitch = function() {
 	}
 
 	const config = this.options.styleguidist;
-	const clientConfig = pick(config, CLIENT_CONFIG_OPTIONS);
 
-	const allComponentFiles = getComponentFilesFromSections(config.sections, config);
+	let sections = getSections(config.sections, config);
+	if (config.skipComponentsWithoutExample) {
+		sections = filterComponentsWithExample(sections);
+	}
+
+	const allComponentFiles = getComponentFilesFromSections(config.sections, config.configDir);
+	const allContentPages = getAllContentPages(sections);
+	const allComponentsWithExamples = getAllComponentsWithExamples(sections);
+
+	const welcomeScreen = {
+		// Nothing to show in the style guide
+		components: allContentPages.length === 0 && allComponentFiles.length === 0,
+		// All component have no example files
+		examples: allContentPages.length === 0 && allComponentFiles.length > 0 && allComponentsWithExamples.length === 0,
+	};
 
 	/* istanbul ignore if */
 	if (config.verbose) {
@@ -44,15 +60,15 @@ module.exports.pitch = function() {
 	if (config.contextDependencies) {
 		config.contextDependencies.forEach(dir => this.addContextDependency(dir));
 	}
-	else if (allComponentFiles.length) {
-		// Get list of all component files including components in sections,
-		// and use their common parent directory as a context
+	else if (allComponentFiles.length > 0) {
+		// Use common parent directory of all components as a context
 		this.addContextDependency(commonDir(allComponentFiles));
 	}
 
 	const styleguide = {
-		config: clientConfig,
-		sections: getSections(config.sections, config),
+		config: pick(config, CLIENT_CONFIG_OPTIONS),
+		welcomeScreen,
+		sections,
 	};
 
 	return `

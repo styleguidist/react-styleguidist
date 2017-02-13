@@ -21,10 +21,7 @@ let codeKey = 0;
 function renderStyleguide() {
 	const styleguide = require('!!../loaders/styleguide-loader!./index.js');
 
-	let sections = styleguide.sections;
-
-
-	sections = processSections(sections);
+	let sections = processSections(styleguide.sections);
 
 	// Parse URL hash to check if the components list must be filtered
 	const {
@@ -54,6 +51,7 @@ function renderStyleguide() {
 		<StyleGuide
 			codeKey={codeKey}
 			config={styleguide.config}
+			welcomeScreen={styleguide.welcomeScreen}
 			sections={sections}
 			isolatedComponent={isolatedComponent}
 			isolatedExample={isolatedExample}

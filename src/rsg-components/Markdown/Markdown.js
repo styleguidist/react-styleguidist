@@ -26,7 +26,7 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 	},
 	h4: {
 		composes: '$para',
-		fontSize: 23,
+		fontSize: 21,
 		fontWeight: 'normal',
 	},
 	h5: {

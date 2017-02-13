@@ -75,19 +75,7 @@ exports[`test should render components list 1`] = `
 </_class>
 `;
 
-exports[`test should render error message when there is no components and sections 1`] = `
+exports[`test should render welcome screen 1`] = `
 <_class
-  hasSidebar={false}
-  homepageUrl="https://github.com/styleguidist/react-styleguidist"
-  title="Hello"
-  toc={
-    <TableOfContents
-      sections={Array []} />
-  }>
-  <_class>
-    No components or sections found. Check [the \`components\` and \`sections\` options](
-    https://github.com/styleguidist/react-styleguidist/blob/master/docs/Configuration.md
-    ) in your style guide config.
-  </_class>
-</_class>
+  components={true} />
 `;

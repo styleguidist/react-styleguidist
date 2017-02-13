@@ -3,27 +3,29 @@ import TableOfContents from '../TableOfContents';
 import StyleGuide from './StyleGuide';
 import { StyleGuideRenderer } from './StyleGuideRenderer';
 
-const components = [
-	{
-		name: 'Foo',
-		pathLine: 'components/foo.js',
-		filepath: 'components/foo.js',
-		props: {
-			description: 'Foo foo',
+const sections = [{
+	components: [
+		{
+			name: 'Foo',
+			pathLine: 'components/foo.js',
+			filepath: 'components/foo.js',
+			props: {
+				description: 'Foo foo',
+			},
 		},
-	},
-	{
-		name: 'Bar',
-		pathLine: 'components/bar.js',
-		filepath: 'components/bar.js',
-		props: {
-			description: 'Bar bar',
+		{
+			name: 'Bar',
+			pathLine: 'components/bar.js',
+			filepath: 'components/bar.js',
+			props: {
+				description: 'Bar bar',
+			},
 		},
-	},
-];
-const sections = [{ components }];
+	],
+}];
 const config = {
 	title: 'Hello',
+	showSidebar: true,
 };
 
 it('should render components list', () => {
@@ -38,12 +40,13 @@ it('should render components list', () => {
 	expect(actual).toMatchSnapshot();
 });
 
-it('should render error message when there is no components and sections', () => {
+it('should render welcome screen', () => {
 	const actual = shallow(
 		<StyleGuide
 			codeKey={1}
 			config={config}
 			sections={[]}
+			welcomeScreen={{ components: true }}
 		/>
 	);
 
@@ -90,17 +93,6 @@ describe('sidebar rendering', () => {
 
 		expect(wrapper.prop('hasSidebar')).toEqual(false);
 	});
-
-	it('renderer should not have sidebar if there are no sections', () => {
-		const wrapper = shallow(
-			<StyleGuide
-				codeKey={1}
-				config={config}
-				sections={[]}
-			/>
-		);
-		expect(wrapper.prop('hasSidebar')).toEqual(false);
-	});
 });
 
 it('renderer should render logo, table of contents and passed children', () => {
@@ -108,7 +100,7 @@ it('renderer should render logo, table of contents and passed children', () => {
 		<StyleGuideRenderer
 			classes={{}}
 			title={config.title}
-			toc={<TableOfContents components={components} sections={sections} />}
+			toc={<TableOfContents sections={sections} />}
 			homepageUrl="http://react-styleguidist.js.org/"
 			sidebar
 		>
