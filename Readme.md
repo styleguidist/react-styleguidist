@@ -50,10 +50,10 @@ Real projects using React Styleguidist:
 
 ## Advanced documentation
 
-* [Configuration](./Configuration.md)
-* [CLI commands and options](./CLI.md)
-* [Node API](./API.md)
-* [FAQ](./FAQ.md)
+* [Configuration](./docs/Configuration.md)
+* [CLI commands and options](./docs/CLI.md)
+* [Node API](./docs/API.md)
+* [FAQ](./docs/FAQ.md)
 
 ## Change log
 
