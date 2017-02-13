@@ -19,7 +19,7 @@ export function SectionRenderer({ classes, name, slug, content, components, sect
 	return (
 		<section className={classes.root}>
 			{name && (
-				<Heading hierarchy={1} slug={slug} className={classes.heading}>{name}</Heading>
+				<Heading level={1} slug={slug} className={classes.heading}>{name}</Heading>
 			)}
 			{content}
 			{components}

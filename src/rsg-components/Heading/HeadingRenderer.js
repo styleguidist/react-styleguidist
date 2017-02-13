@@ -32,13 +32,13 @@ export const styles = ({ link, linkHover }) => ({
 	},
 });
 
-export function HeadingRenderer({ classes, children, slug, hierarchy, ...props }) {
-	return React.createElement(`h${hierarchy}`, {
-		...props,
-		className: cx(classes.heading, props.className),
-	},
-		<a className={classes.anchor} href={`#${slug}`} id={slug} aria-hidden>#</a>,
-		children
+export function HeadingRenderer({ classes, children, slug, level, ...props }) {
+	const Tag = `h${level}`;
+	return (
+		<Tag {...props} className={cx(classes.heading, props.className)}>
+			<a className={classes.anchor} href={`#${slug}`} id={slug} aria-hidden>#</a>
+			{children}
+		</Tag>
 	);
 }
 
@@ -47,7 +47,7 @@ HeadingRenderer.propTypes = {
 	className: PropTypes.string,
 	classes: PropTypes.object.isRequired,
 	slug: PropTypes.string.isRequired,
-	hierarchy: PropTypes.oneOf([1, 2, 3, 4, 5, 6]).isRequired,
+	level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]).isRequired,
 };
 
 export default Styled(styles)(HeadingRenderer);

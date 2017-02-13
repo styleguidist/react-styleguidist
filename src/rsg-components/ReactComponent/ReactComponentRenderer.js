@@ -68,7 +68,7 @@ export function ReactComponentRenderer({
 	return (
 		<div className={classes.root} id={name + '-container'}>
 			<header className={classes.header}>
-				<Heading hierarchy={2} className={classes.primaryHeading} slug={slug}>
+				<Heading level={2} className={classes.primaryHeading} slug={slug}>
 					{name}
 				</Heading>
 				<div className={classes.pathLine}>{pathLine}</div>

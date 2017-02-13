@@ -3,7 +3,7 @@ exports[`test renderer should render component 1`] = `
   id="Foo-container">
   <header>
     <_class
-      hierarchy={2}
+      level={2}
       slug="foo">
       Foo
     </_class>
@@ -35,7 +35,7 @@ exports[`test should not render props / methods section if there is no content 1
   id="Test-container">
   <header>
     <_class
-      hierarchy={2}
+      level={2}
       slug="test">
       Test
     </_class>
@@ -58,7 +58,7 @@ exports[`test should render both props and methods section 1`] = `
   id="Test-container">
   <header>
     <_class
-      hierarchy={2}
+      level={2}
       slug="test">
       Test
     </_class>
@@ -197,7 +197,7 @@ exports[`test should render methods section 1`] = `
   id="Test-container">
   <header>
     <_class
-      hierarchy={2}
+      level={2}
       slug="test">
       Test
     </_class>
@@ -228,7 +228,7 @@ exports[`test should render props section 1`] = `
   id="Test-container">
   <header>
     <_class
-      hierarchy={2}
+      level={2}
       slug="test">
       Test
     </_class>

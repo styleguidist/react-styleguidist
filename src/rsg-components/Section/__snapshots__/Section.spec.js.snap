@@ -3,7 +3,7 @@ exports[`test render should not render title if name is not set 1`] = `<section 
 exports[`test render should render component 1`] = `
 <section>
   <_class
-    hierarchy={1}
+    level={1}
     slug="foo">
     Foo
   </_class>
