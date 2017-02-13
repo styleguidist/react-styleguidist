@@ -1,16 +1,18 @@
 # Documenting components
 
-Styleguidist generates documentation from three sources:
+Styleguidist generates documentation for your components based on the comments in your source code, propTypes declarations and Readme files.
 
 > **Note:** [See examples](../examples/basic/lib/components) of documented components in our demo style guide.
 
-## PropTypes and component description in the source code
+## Code comments and propTypes
+
+Styleguidist will display the JSDoc comment block from your component's class declaration (or main function for functional components) as its description. Also, it will pick up props from propTypes declarations and display them in a table together with their defaults, accepted values (where appropriate) and accompanying JSDoc comments.
 
 ```javascript
 import React, { PropTypes } from 'react';
 
 /**
- * General component description.
+ * General component description in JSDoc format. Markdown is *supported*.
  */
 export default class Button extends React.Component {
   static propTypes = {
@@ -38,9 +40,9 @@ export default class Button extends React.Component {
 
 > **Note:** Component’s `PropTypes` and documentation comments are parsed by the [react-docgen](https://github.com/reactjs/react-docgen) library.
 
-## Usage examples and further documentation in Markdown
+## Usage examples and Readme files
 
-Examples are written in Markdown where any code block without a language tag will be rendered as a React component. By default any `Readme.md` or `ComponentName.md` in the component’s folder is treated as an examples file.
+Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the component’s folder and display them. Any code block without a language tag will be rendered as a  React component with live editable preview.
 
     React component example:
 
@@ -58,7 +60,7 @@ Examples are written in Markdown where any code block without a language tag wil
     <Button size="large">Push Me</Button>
     ```
 
-    This example rendered only as highlighted source code:
+    This example is rendered only as highlighted source code, not an actual component:
 
     ```html
     <Button size="large">Push Me</Button>
@@ -66,13 +68,13 @@ Examples are written in Markdown where any code block without a language tag wil
 
     Any [Markdown](http://daringfireball.net/projects/markdown/) is **allowed** _here_.
 
-> **Note:** You can change documentation file name with the [getExampleFilename](Configuration.md#getexamplefilename) option.
+> **Note:** You can configure examples file name with the [getExampleFilename](Configuration.md#getexamplefilename) option.
 
 ## External examples using doclet tags
 
-Additional example files can be associated with components using doclet (`@example`) syntax.
+Additional example files can be associated with components using `@example` doclet syntax.
 
-The following component will also have an example as loaded from the `extra.examples.md` file:
+The following component will also have an example loaded from the `extra.examples.md` file:
 
 ```javascript
 /**
@@ -85,9 +87,9 @@ export default class Button extends React.Component {
 }
 ```
 
-## Documenting component public methods
+## Public methods
 
-Mark you public methods with [JSDoc `@public` tag](http://usejsdoc.org/tags-public.html):
+By default, any methods your components have are considered to be private and are not published. Mark your public methods with JSDoc [`@public`](http://usejsdoc.org/tags-public.html) tag to get them published in the docs:
 
 ```javascript
 /**

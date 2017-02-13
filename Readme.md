@@ -16,6 +16,7 @@ React Styleguidist is a style guide generator for React components. It lists com
 * **[Getting Started](./docs/GettingStarted.md): install and run Styleguidist**
 * [Locating components](./docs/Components.md): point Styleguidist to your React components
 * [Configuring webpack](./docs/Webpack.md): tell Styleguidist how to load your code
+* [Documenting components](./docs/Documenting.md): how to write documentation
 * [Cookbook](./docs/Cookbook.md): how to solve common tasks with Styleguidist
 
 ## Examples
