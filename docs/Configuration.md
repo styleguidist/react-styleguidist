@@ -1,6 +1,6 @@
 # Configuration
 
-You can change settings in the `styleguide.config.js` file in your project’s root folder.
+By default, Styleguidist will look for `styleguide.config.js` file in your project’s root folder. You can change the location of the config file using `--config` [CLI](CLI.md) option.
 
 #### `assetsDir`
 
@@ -194,7 +194,7 @@ module.exports = {
 
 Type: `Array`, optional
 
-Allows components to be grouped into sections with a title and overview content. Sections can also be content only, with no associated components (for example, a textual introduction).
+Allows components to be grouped into sections with a title and overview content. Sections can also be content only, with no associated components (for example, a textual introduction). Sections can be nested.
 
 See examples in the [Sections section](Components.md#sections).
 
@@ -220,7 +220,7 @@ Show or hide example code initially. It can be toggled in the UI by clicking the
 
 Type: `Boolean`, default: `true`
 
-Toggle sidebar initially. Sidebar is being hidden when opening components or examples in the isolation mode even if this value is set to `true`. When set to `false`, sidebar will always be hidden.
+Toggle sidebar visibility. Sidebar will be hidden when opening components or examples in isolation mode even if this value is set to `true`. When set to `false`, sidebar will always be hidden.
 
 #### `skipComponentsWithoutExample`
 
@@ -359,11 +359,11 @@ module.exports = {
 };
 ```
 
-> **Note:**: `output` option will be ignored.
+> **Note:** `output` option will be ignored.
 
-> **Note:**: These plugins will be ignored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.
+> **Note:** These plugins will be ignored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.
 
-> **Note:** This option disables webpack config auto load, use `webpackConfigFile` option to load your project’s webpack config from file.
+> **Note:** This option disables webpack config file autoload, use `webpackConfigFile` option to load your project’s webpack config from file.
 
 > **Note:** Run style guide in verbose mode to see the actual webpack config used by Styleguidist: `npm run styleguide -- --verbose`.
 
@@ -381,6 +381,6 @@ module.exports = {
 };
 ```
 
-> **Note:**: `entry`, `externals` and `output` options will be ignored, use `webpackConfig` option to change them.
+> **Note:** `entry`, `externals` and `output` options will be ignored, use `webpackConfig` option to change them.
 
-> **Note:**: These plugins will be ignored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.
+> **Note:** These plugins will be ignored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.

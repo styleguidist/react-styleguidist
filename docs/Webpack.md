@@ -1,14 +1,14 @@
 # Configuring webpack
 
-Styleguidist uses webpack under the hood and needs to know how to load your project’s files.
+Styleguidist uses [webpack](https://webpack.js.org/) under the hood and it needs to know how to load your project’s files.
 
 *Webpack is a peer dependency but your project doesn’t have to use it. React Styleguidist works with webpack 1 and webpack 2.*
 
-> **Note:** [See Cookbook](Cookbook.md) for more examples.
+> **Note:** See [cookbook](Cookbook.md) for more examples.
 
 ## Reusing your project’s webpack config
 
-By default Styleguidist will try to find webpack config (`webpack.config.dev.js` or `webpack.config.js`) anywhere in your project and use it.
+By default Styleguidist will recursively try to find an existing webpack config (`webpack.config.dev.js` or `webpack.config.js`) in your project and use it.
 
 If your webpack config is located somewhere else, add its location to your `styleguide.config.js`:
 
@@ -18,11 +18,11 @@ module.exports = {
 };
 ```
 
-> **Note:**: It may not work with your project, see below for other options.
+> **Note:** It may not work with your project, see below for other options.
 
-> **Note:**: `entry`, `externals` and `output` options will be ignored, use `webpackConfig` option to change them.
+> **Note:** `entry`, `externals` and `output` options will be ignored, use `webpackConfig` option to change them.
 
-> **Note:**: These plugins will be ignored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.
+> **Note:** These plugins will be ignored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.
 
 ## Custom webpack config
 
@@ -50,9 +50,9 @@ module.exports = {
 };
 ```
 
-> **Warning:** This option disable webpack config auto load, use `webpackConfigFile` option to load your project’s webpack config from a file.
+> **Warning:** Using this option disables webpack config file autoload, use `webpackConfigFile` option to load your project’s webpack config from a file.
 
-> **Note:**: These plugins will be ignored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.
+> **Note:** These plugins will be ignored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.
 
 ## Non-webpack projects
 
