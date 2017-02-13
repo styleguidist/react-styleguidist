@@ -2,7 +2,7 @@ const loaders = require('loaders');
 
 module.exports = {
 	title: 'Style guide example',
-	components: './lib/components/**/[A-Z]*.js',
+	components: './src/components/**/[A-Z]*.js',
 	webpackConfig: {
 		module: {
 			loaders: [

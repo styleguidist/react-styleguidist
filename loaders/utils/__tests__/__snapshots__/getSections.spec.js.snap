@@ -1,12 +1,12 @@
-exports[`test getSections() should return an object 1`] = `
+exports[`test getSections() should return an array 1`] = `
 Array [
   Object {
-    "components": null,
+    "components": Array [],
     "content": RequireStatement {
-      "filepath": "!!<rootDir>/loaders/examples-loader.js!<rootDir>/test/Readme.md",
+      "filepath": "!!<rootDir>/loaders/examples-loader.js!<rootDir>/test/components/Button/Readme.md",
     },
     "name": "Readme",
-    "sections": null,
+    "sections": Array [],
   },
   Object {
     "components": Array [
@@ -53,9 +53,9 @@ Array [
         },
       },
     ],
-    "content": null,
+    "content": undefined,
     "name": "Components",
-    "sections": null,
+    "sections": Array [],
   },
 ]
 `;
@@ -106,19 +106,19 @@ Object {
       },
     },
   ],
-  "content": null,
+  "content": undefined,
   "name": "Components",
-  "sections": null,
+  "sections": Array [],
 }
 `;
 
 exports[`test processSection() should return an object for section with content 1`] = `
 Object {
-  "components": null,
+  "components": Array [],
   "content": RequireStatement {
-    "filepath": "!!<rootDir>/loaders/examples-loader.js!<rootDir>/test/Readme.md",
+    "filepath": "!!<rootDir>/loaders/examples-loader.js!<rootDir>/test/components/Button/Readme.md",
   },
   "name": "Readme",
-  "sections": null,
+  "sections": Array [],
 }
 `;

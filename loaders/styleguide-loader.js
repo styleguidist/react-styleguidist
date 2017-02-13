@@ -1,14 +1,14 @@
 'use strict';
 
 const pick = require('lodash/pick');
-const isFunction = require('lodash/isFunction');
 const commonDir = require('common-dir');
 const generate = require('escodegen').generate;
 const toAst = require('to-ast');
-const getComponents = require('./utils/getComponents');
-const getSections = require('./utils/getSections');
-const getComponentFiles = require('./utils/getComponentFiles');
+const getAllComponentsWithExamples = require('./utils/getAllComponentsWithExamples');
+const getAllContentPages = require('./utils/getAllContentPages');
 const getComponentFilesFromSections = require('./utils/getComponentFilesFromSections');
+const getSections = require('./utils/getSections');
+const filterComponentsWithExample = require('./utils/filterComponentsWithExample');
 
 /* eslint-disable no-console */
 
@@ -31,22 +31,28 @@ module.exports.pitch = function() {
 	}
 
 	const config = this.options.styleguidist;
-	const clientConfig = pick(config, CLIENT_CONFIG_OPTIONS);
-	const componentFiles = getComponentFiles(config.components, config);
 
-	if (componentFiles.length === 0 && config.sections.length === 0) {
-		const message = isFunction(config.components)
-			? 'Styleguidist: No components found using a `components` function.'
-			: `Styleguidist: No components found using a mask: ${config.components}.`
-		;
-		throw new Error(message);
+	let sections = getSections(config.sections, config);
+	if (config.skipComponentsWithoutExample) {
+		sections = filterComponentsWithExample(sections);
 	}
+
+	const allComponentFiles = getComponentFilesFromSections(config.sections, config.configDir);
+	const allContentPages = getAllContentPages(sections);
+	const allComponentsWithExamples = getAllComponentsWithExamples(sections);
+
+	const welcomeScreen = {
+		// Nothing to show in the style guide
+		components: allContentPages.length === 0 && allComponentFiles.length === 0,
+		// All component have no example files
+		examples: allContentPages.length === 0 && allComponentFiles.length > 0 && allComponentsWithExamples.length === 0,
+	};
 
 	/* istanbul ignore if */
 	if (config.verbose) {
 		console.log();
 		console.log('Loading components:');
-		console.log(componentFiles.join('\n'));
+		console.log(allComponentFiles.join('\n'));
 		console.log();
 	}
 
@@ -54,20 +60,15 @@ module.exports.pitch = function() {
 	if (config.contextDependencies) {
 		config.contextDependencies.forEach(dir => this.addContextDependency(dir));
 	}
-	else {
-		// Get list of all component files including components in sections,
-		// and use their common parent directory as a context
-		const sectionComponentFiles = getComponentFilesFromSections(config.sections, config);
-		const allComponentFiles = componentFiles.concat(sectionComponentFiles);
-		if (allComponentFiles.length) {
-			this.addContextDependency(commonDir(allComponentFiles));
-		}
+	else if (allComponentFiles.length > 0) {
+		// Use common parent directory of all components as a context
+		this.addContextDependency(commonDir(allComponentFiles));
 	}
 
 	const styleguide = {
-		config: clientConfig,
-		components: getComponents(componentFiles, config),
-		sections: getSections(config.sections, config),
+		config: pick(config, CLIENT_CONFIG_OPTIONS),
+		welcomeScreen,
+		sections,
 	};
 
 	return `

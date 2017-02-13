@@ -10,9 +10,5 @@ const processComponent = require('./processComponent');
  * @returns {object|null}
  */
 module.exports = function getComponents(components, config) {
-	if (!components.length) {
-		return null;
-	}
-
 	return components.map(filepath => processComponent(filepath, config));
 };

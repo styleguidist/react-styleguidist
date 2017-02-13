@@ -4,7 +4,7 @@ module.exports = {
 	sections: [
 		{
 			name: 'Components',
-			components: './lib/components/**/[A-Z]*.js',
+			components: './src/components/**/[A-Z]*.js',
 		},
 		{
 			name: 'Documentation',

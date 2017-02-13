@@ -1,16 +1,16 @@
 import React, { Component, PropTypes } from 'react';
-import isEmpty from 'lodash/isEmpty';
 import TableOfContents from 'rsg-components/TableOfContents';
-import Message from 'rsg-components/Message';
 import StyleGuideRenderer from 'rsg-components/StyleGuide/StyleGuideRenderer';
 import Sections from 'rsg-components/Sections';
-import { DOCS_CONFIG, HOMEPAGE } from '../../../scripts/consts';
+import Welcome from 'rsg-components/Welcome';
+import { HOMEPAGE } from '../../../scripts/consts';
 
 export default class StyleGuide extends Component {
 	static propTypes = {
 		codeKey: PropTypes.number.isRequired,
 		config: PropTypes.object.isRequired,
 		sections: PropTypes.array.isRequired,
+		welcomeScreen: PropTypes.object,
 		isolatedComponent: PropTypes.bool,
 		isolatedExample: PropTypes.bool,
 	};
@@ -24,6 +24,7 @@ export default class StyleGuide extends Component {
 
 	static defaultProps = {
 		isolatedComponent: false,
+		welcomeScreen: {},
 	};
 
 	getChildContext() {
@@ -36,24 +37,22 @@ export default class StyleGuide extends Component {
 	}
 
 	render() {
-		const { config, sections, isolatedComponent } = this.props;
-		const { showSidebar = true } = config;
-		const noComponentsFound = isEmpty(sections);
+		const { config, sections, welcomeScreen, isolatedComponent } = this.props;
+
+		if (welcomeScreen.components || welcomeScreen.examples) {
+			return (
+				<Welcome {...welcomeScreen} />
+			);
+		}
+
 		return (
 			<StyleGuideRenderer
 				title={config.title}
 				homepageUrl={HOMEPAGE}
 				toc={<TableOfContents sections={sections} />}
-				hasSidebar={showSidebar && !noComponentsFound && !isolatedComponent}
+				hasSidebar={config.showSidebar && !isolatedComponent}
 			>
-				{noComponentsFound ? (
-					<Message>
-						No components or sections found.
-						Check [the `components` and `sections` options]({DOCS_CONFIG}) in your style guide config.
-					</Message>
-				) : (
-					<Sections sections={sections} />
-				)}
+				<Sections sections={sections} />
 			</StyleGuideRenderer>
 		);
 	}

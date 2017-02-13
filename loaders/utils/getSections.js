@@ -2,6 +2,7 @@
 
 // This two functions should be in the same file because of cyclic imports
 
+const fs = require('fs');
 const path = require('path');
 const requireIt = require('./requireIt');
 const getComponentFiles = require('./getComponentFiles');
@@ -14,13 +15,9 @@ const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
  *
  * @param {Array} sections
  * @param {object} config
- * @returns {object|null}
+ * @returns {Array}
  */
 function getSections(sections, config) {
-	if (!sections) {
-		return null;
-	}
-
 	return sections.map(section => processSection(section, config));
 }
 
@@ -31,13 +28,21 @@ function getSections(sections, config) {
  * @returns {object}
  */
 function processSection(section, config) {
+	// Try to load section content file
+	let content;
+	if (section.content) {
+		const filepath = path.resolve(config.configDir, section.content);
+		if (!fs.existsSync(filepath)) {
+			throw new Error(`Styleguidist: Section content file not found: ${filepath}`);
+		}
+		content = requireIt(`!!${examplesLoader}!${filepath}`);
+	}
+
 	return {
 		name: section.name,
-		content: section.content
-			? requireIt(`!!${examplesLoader}!${path.resolve(config.configDir, section.content)}`)
-			: null,
-		components: getComponents(getComponentFiles(section.components, config), config),
-		sections: getSections(section.sections, config),
+		components: getComponents(getComponentFiles(section.components, config.configDir), config),
+		sections: getSections(section.sections || [], config),
+		content,
 	};
 }
 

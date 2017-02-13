@@ -2,59 +2,49 @@ import './styles';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import isFinite from 'lodash/isFinite';
-import es6ObjectAssign from 'es6-object-assign';
 import {
 	getComponentNameFromHash,
-	filterComponentsByExactName,
 	filterComponentExamples,
 	filterComponentsInSectionsByExactName,
-	processComponents,
 	processSections,
 	setSlugs,
 	slugger,
 } from './utils/utils';
 import StyleGuide from 'rsg-components/StyleGuide';
-import 'function.name-polyfill';
 
+// Polyfills
+import 'function.name-polyfill';
+import es6ObjectAssign from 'es6-object-assign';
 es6ObjectAssign.polyfill();
 
+// Examples code revision to rerender only code examples (not the whole page) when code changes
 let codeKey = 0;
 
 function renderStyleguide() {
 	const styleguide = require('!!../loaders/styleguide-loader!./index.js');
 
-	let isolatedComponent = false;
-	let isolatedExample = false;
-	let components = processComponents(styleguide.components);
-	let sections = styleguide.sections;
+	let sections = processSections(styleguide.sections);
 
-	// If root `components` isn't empty, make it a first section
-	if (components.length) {
-		sections.unshift({ components });
-	}
-
-	sections = processSections(sections);
-
-	// parse url hash to check if the components list must be filtered
+	// Parse URL hash to check if the components list must be filtered
 	const {
-		// name of the filtered component to show isolated
+		// Name of the filtered component to show isolated (/#!/Button → Button)
 		targetComponentName,
-		// index of the fenced block example of the filtered component isolate
+		// Index of the fenced block example of the filtered component isolate (/#!/Button/1 → 1)
 		targetComponentIndex,
 	} = getComponentNameFromHash();
 
-	// filter the requested component id required
+	let isolatedComponent = false;
+	let isolatedExample = false;
+
+	// Filter the requested component id required
 	if (targetComponentName) {
-		components = [
-			...filterComponentsByExactName(components, targetComponentName),
-			...filterComponentsInSectionsByExactName(sections, targetComponentName),
-		];
-		sections = [{ components }];
+		const filteredComponents = filterComponentsInSectionsByExactName(sections, targetComponentName);
+		sections = [{ components: filteredComponents }];
 		isolatedComponent = true;
 
-		// if a single component is filtered and a fenced block index is specified hide the other examples
-		if (components.length === 1 && isFinite(targetComponentIndex)) {
-			components[0] = filterComponentExamples(components[0], targetComponentIndex);
+		// If a single component is filtered and a fenced block index is specified hide the other examples
+		if (filteredComponents.length === 1 && isFinite(targetComponentIndex)) {
+			filteredComponents[0] = filterComponentExamples(filteredComponents[0], targetComponentIndex);
 			isolatedExample = true;
 		}
 	}
@@ -67,6 +57,7 @@ function renderStyleguide() {
 		<StyleGuide
 			codeKey={codeKey}
 			config={styleguide.config}
+			welcomeScreen={styleguide.welcomeScreen}
 			sections={sections}
 			isolatedComponent={isolatedComponent}
 			isolatedExample={isolatedExample}

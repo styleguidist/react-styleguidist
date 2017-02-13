@@ -22,7 +22,7 @@ I love pull requests. And following this simple guidelines will make your pull r
 
 - If you have commit access to repository and want to make big change or not sure about something, make a new branch and open pull request.
 - Don’t commit generated files: compiled from Stylus CSS, minified JavaScript, etc.
-- Don’t change version number and changelog.
+- Don’t change version number and change log.
 - Install [EditorConfig](http://editorconfig.org/) plugin for your code editor.
 - Feel free to [ask me](http://sapegin.me) anything you need.
 

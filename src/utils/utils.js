@@ -108,12 +108,12 @@ export function filterComponentsByName(components, query) {
 /**
  * Filters list of components by component name.
  *
- * @param {Array} componens
+ * @param {Array} components
  * @param {string} name
  * @return {Array}
  */
-export function filterComponentsByExactName(componens, name) {
-	return componens.filter(component => component.name === name);
+export function filterComponentsByExactName(components, name) {
+	return components.filter(component => component.name === name);
 }
 
 /**

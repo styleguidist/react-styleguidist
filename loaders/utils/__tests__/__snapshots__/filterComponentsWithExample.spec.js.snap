@@ -1,0 +1,36 @@
+exports[`test should skip components without example file 1`] = `
+Array [
+  Object {
+    "components": Array [],
+    "content": "Readme.md",
+    "name": "Readme",
+    "sections": Array [],
+  },
+  Object {
+    "components": Array [
+      Object {
+        "examples": "require()",
+        "filepath": "components/Button/Button.js",
+      },
+    ],
+    "name": "Components",
+    "sections": Array [],
+  },
+  Object {
+    "components": Array [],
+    "name": "Nesting",
+    "sections": Array [
+      Object {
+        "components": Array [
+          Object {
+            "examples": "require()",
+            "filepath": "components/Modal/Modal.js",
+          },
+        ],
+        "name": "Nested",
+        "sections": Array [],
+      },
+    ],
+  },
+]
+`;

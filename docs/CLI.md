@@ -1,6 +1,6 @@
 # CLI commands and options
 
-These commands supposed to be placed in `package.json` `scripts` (see Installation section above). If you want to run them directly, use `./node_modules/.bin/styleguidist`.
+These commands are supposed to be placed in `package.json` `scripts` (see [Getting Started](GettingStarted.md)). If you want to run them directly, use `./node_modules/.bin/styleguidist`.
 
 `styleguidist server`: Run dev server.
 
@@ -8,6 +8,5 @@ These commands supposed to be placed in `package.json` `scripts` (see Installati
 
 CLI Options:
 
-* `--config <file>`: Specify path to the config file.
+* `--config <file>`: Specify path to a config file.
 * `--verbose`: Print debug information.
-

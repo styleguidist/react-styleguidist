@@ -1,231 +1,5 @@
 # FAQ
 
-## How to reuse project’s Webpack config?
-
-See in [congiguring webpack](Webpack.md#reusing-your-projects-webpack-config).
-
-## How to use `ref`s in examples?
-
-Use `ref` prop as a function and assign a reference to a local variable:
-
-```javascript
-initialState = { value: '' };
-let textarea;
-<div>
-  <Button onClick={() => textarea.insertAtCursor('Pizza')}>Insert</Button>
-  <Textarea value={state.value} onChange={e => setState({ value: e.target.value })} ref={ref => textarea = ref} />
-</div>
-```
-
-## How to exclude some components from style guide?
-
-For simple cases like ignoring test specs (like `Button.test.js`) glob negation may be enough:
-
-```javascript
-module.exports = {
-  components: 'components/**/!(*.test).js'
-};
-```
-
-Of filter them out by passing a function to `components` option:
-
-```javascript
-const path = require('path');
-const glob = require('glob');
-module.exports = {
-  components() {
-    // Ignore foo.js and bar.js
-    return glob.sync(path.resolve(__dirname, 'lib/components/**/*.js')).filter(module => !/\/(foo|bar).js$/.test(module));
-  }
-};
-```
-
-## How to hide some components in style guide but make them available in examples?
-
-Enable [skipComponentsWithoutExample](Configuration.md) option and do not add example file (`Readme.md` by default) to components you want to ignore.
-
-Require these components in your examples:
-
-```javascript
-const Button = require('../common/Button');
-<Button>Push Me Tender</Button>
-```
-
-## How to add babel-polyfill?
-
-Add a new webpack entry point. In your style guide config:
-
-```javascript
-module.exports = {
-  webpackConfig: {
-    entry: [
-      'babel-polyfill'
-    ]
-  }
-};
-```
-
-## How to use React Styleguidist with styled-components?
-
-The [recommened way](https://github.com/styleguidist/react-styleguidist/issues/37#issuecomment-263502454) of using [styled-components](https://styled-components.com/) is like this:
-
-```javascript
-import React, { Component } from 'react';
-import styled from 'styled-components';
-
-const SalmonButton = styled.button`
-  background-color: salmon;
-  border: 1px solid indianred;
-  color: snow;
-`;
-
-class Button extends Component {
-  render() {
-    return <SalmonButton>{this.props.children}</SalmonButton>;
-  }
-}
-
-export default Button;
-```
-
-## How to add custom JS and CSS?
-
-Add a new webpack entry point. In your style guide config:
-
-```javascript
-const path = require('path');
-module.exports = {
-  webpackConfig: {
-    entry: [
-      path.join(__dirname, 'path/to/script.js'),
-      path.join(__dirname, 'path/to/styles.css'),
-    ]
-  }
-};
-```
-
-You may need an appropriate webpack loader to handle these files.
-
-> **Note:** to change style guide styles use `theme` and `styles` options (see the next question).
-
-## How to change styles of a style guide?
-
-Use config option [theme](Configuration.md) to change fonts, colors, etc. and option [styles](Configuration.md) to tweak style of particular Styleguidist’s components:
-
-```javascript
-module.exports = {
-	theme: {
-		link: 'firebrick',
-		linkHover: 'salmon',
-		font: '"Comic Sans MS", "Comic Sans", cursive'
-	},
-	styles: {
-		Logo: {
-			logo: {
-				animation: 'blink ease-in-out 300ms infinite'
-			},
-			'@keyframes blink': {
-				to: { opacity: 0 }
-			}
-		}
-	}
-};
-```
-
-* See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/styles/theme.js).
-* Styles use [JSS syntax](https://github.com/cssinjs/jss/blob/master/docs/json-api.md).
-* Use your browser’s developer tools to find component and style names. For example class name `.rsg--Logo--logo` corresponds to an example above.
-
-## How to change the layout of a style guide?
-
-You can replace any Styleguidist React component. But in most of the cases you will want to replace `*Renderer` components — all HTML is rendered by these components. For example `ReactComponentRenderer`, `ComponentsListRenderer`, `PropsRenderer`, etc. — [check the source](https://github.com/styleguidist/react-styleguidist/tree/master/src/rsg-components) to see what components are available.
-
-There‘s also a special wrapper component — `Wrapper` — that wraps every example component. By default it just renders `children` as is but you can use it to provide a custom logic.
-
-For example you can replace the `Wrapper` component to wrap any example in the [React Intl’s](http://formatjs.io/react/) provider component. You can’t wrap the whole style guide because every example is compiled separately in a browser.
-
-```javascript
-// styleguide.config.js
-const path = require('path');
-module.exports = {
-  webpackConfig: {
-    resolve: {
-      alias: {
-        'rsg-components/Wrapper': path.join(__dirname, 'lib/styleguide/Wrapper')
-      }
-    }
-  }
-};
-
-// lib/styleguide/Wrapper.js
-import React, { Component } from 'react';
-import { IntlProvider } from 'react-intl';
-export default class Wrapper extends Component {
-  render() {
-    return (
-      <IntlProvider locale="en">
-        {this.props.children}
-      </IntlProvider>
-    );
-  }
-}
-```
-
-You can replace the `StyleGuideRenderer` component like this:
-
-```javascript
-// styleguide.config.js
-const path = require('path');
-module.exports = {
-  webpackConfig: {
-    resolve: {
-      alias: {
-        'rsg-components/StyleGuide/StyleGuideRenderer': path.join(__dirname, 'lib/styleguide/StyleGuideRenderer')
-      }
-    }
-  }
-};
-
-// lib/styleguide/StyleGuideRenderer.js
-import React from 'react';
-const StyleGuideRenderer = ({ title, homepageUrl, components, toc, sidebar }) => (
-  <div className="root">
-    <h1>{title}</h1>
-    <main className="wrapper">
-      <div className="content">
-        {components}
-        <footer className="footer">
-          <Markdown text={`Generated with [React Styleguidist](${homepageUrl})`} />
-        </footer>
-      </div>
-      {sidebar &&
-        <div className="sidebar">
-          {toc}
-        </div>
-      }
-    </main>
-  </div>
-);
-```
-
-We have [an example style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/customised) with custom components.
-
-## How to add webservices available to my components?
-
-You can add new endpoints to the express server running `react-styleguidist`. Add a new webpack entry point in your style guide config:
-
-```javascript
-module.exports = {
-  configureServer(app) {
-    app.get('/custom-endpoint', (req, res) => {
-		  res.status(200).send({ response: 'Server invoked' });
-	  });
-  }
-};
-```
-
-Your components will be able to invoke the url `http://localhost:3000/custom-endpoint` from their examples.
-
 ## How to debug my components and examples?
 
 1. Open your browser’s developer tools
@@ -238,27 +12,6 @@ Your components will be able to invoke the url `http://localhost:3000/custom-end
 1. Put `debugger;` statement at the beginning of your code.
 2. Press the ![Debugger](http://wow.sapegin.me/image/2n2z0b0l320m/debugger.png) button in your browser’s developer tools.
 3. Press the ![Continue](http://wow.sapegin.me/image/2d2z1Y2o1z1m/continue.png) button and the debugger will stop execution at the next exception.
-
-## How to change style guide dev server logs output?
-
-You can modify webpack dev server logs format changing `stats` option of webpack config:
-
-```javascript
-module.exports = {
-  webpackConfig(env) {
-    if (env === 'development') {
-      return {
-        stats: {
-          chunks: false,
-          chunkModules: false,
-          chunkOrigins: false,
-        },
-      };
-    }
-    return {};
-  }
-};
-```
 
 ## Why does the style guide list one of my prop types as `unknown`?
 
@@ -278,15 +31,38 @@ Button.defaultProps = {
 };
 ```
 
+## Why object references don’t work in example component state?
+
+Object references will not work as expected in examples state due to how the examples code is evaluated:
+
+```javascript
+const items = [
+  {id: 0},
+  {id: 1}
+];
+
+initialState = {
+  activeItemByReference: items[0],
+  activeItemByPrimitive: items[0].id
+};
+
+<div>
+  {/* Will render "not active" because of object reference: */}
+  {state.activeItemByReference === items[0] ? 'active' : 'not active'}
+  {/* But this will render "active" as expected: */}
+  {state.activeItemByPrimitive === items[0].id ? 'active' : 'not active'}
+</div>
+```
+
 ## Are there any other projects like this?
 
 * [Atellier](https://github.com/scup/atellier), a React components emulator.
 * [Carte Blanche](https://github.com/carteb/carte-blanche), an isolated development space with integrated fuzz testing for your components.
 * [Catalog](https://github.com/interactivethings/catalog), create living style guides using Markdown or React.
-* [Cosmos](https://github.com/skidding/cosmos), a tool for designing truly encapsulated React components.
+* [Cosmos](https://github.com/react-cosmos/react-cosmos), a tool for designing truly encapsulated React components.
 * [React BlueKit](http://bluekit.blueberry.io/), render React components with editable source and live preview.
 * [React Cards](https://github.com/steos/reactcards), devcards for React.
-* [React Storybook](https://github.com/kadirahq/react-storybook), isolate your React UI Component development from the main app.
 * [React Styleguide Generator](https://github.com/pocotan001/react-styleguide-generator), a React style guide generator.
+* [React Storybook](https://github.com/storybooks/react-storybook), isolate your React UI Component development from the main app.
 * [React-demo](https://github.com/rpominov/react-demo), a component for creating demos of other components with props editor.
 * [SourceJS](https://github.com/sourcejs/Source), a platform to unify all your frontend documentation. It has a [Styleguidist plugin](https://github.com/sourcejs/sourcejs-react-styleguidist).

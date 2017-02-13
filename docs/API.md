@@ -2,7 +2,7 @@
 
 ## Initialization
 
-First, you need to initialize the API with your style guide config.
+First, you need to initialize the API for your style guide config.
 
 Using a JavaScript object:
 
@@ -53,11 +53,11 @@ See all available [config options](./Configuration.md).
 1. `callback(err, config, stats)` (*Function*): A callback to be invoked when style guide is built:
   1. `err` (*Object*): error details.
   2. `config` (*Object*): normalized style guide config.
-  3. `stats` (*Object*): Webpack build stats.
+  3. `stats` (*Object*): webpack build stats.
 
 #### Returns
 
-(*Compiler*): Webpack `Compiler` instance.
+(*Compiler*): webpack `Compiler` instance.
 
 #### Example
 
@@ -84,7 +84,7 @@ styleguidist(require('../styleguide.config.js')).build((err, config) => {
 
 #### Returns
 
-(*Compiler*): Webpack `Compiler` instance.
+(*Compiler*): webpack `Compiler` instance.
 
 #### Example
 
@@ -108,7 +108,7 @@ styleguidist(require('../styleguide.config.js')).server((err, config) => {
 
 #### Returns
 
-(*Object*): Webpack config.
+(*Object*): webpack config.
 
 #### Example
 

@@ -1,6 +1,6 @@
 # Configuration
 
-You can change settings in the `styleguide.config.js` file in your project’s root folder.
+By default, Styleguidist will look for `styleguide.config.js` file in your project’s root folder. You can change the location of the config file using `--config` [CLI](CLI.md) option.
 
 #### `assetsDir`
 
@@ -17,29 +17,7 @@ Type: `String` or `Function`, default: `src/components/**/*.js`
 
 All paths are relative to config folder.
 
-If your components look like `components/Button.js` or `components/Button/Button.js` or `components/Button/index.js` (it’s the default behavior, change only if your components are not in `src/components` or files are not `.js`):
-
-```javascript
-module.exports = {
-  components: 'components/**/*.js'
-};
-```
-
-If your components look like `components/Button/Button.js` + `components/Button/index.js` (you need to skip `index.js`, otherwise component will be loaded twice):
-
-```javascript
-module.exports = {
-  components: 'components/**/[A-Z]*.js'
-};
-```
-
-Or you need to skip test specs (`components/Button/Button.test.js`):
-
-```javascript
-module.exports = {
-  components: 'components/**/!(*.test).js'
-};
-```
+See examples in the [Components section](Components.md#components).
 
 #### `context`
 
@@ -95,7 +73,7 @@ module.exports = {
 };
 ```
 
-See [FAQ](./FAQ.md) for examples.
+Your components will be able to invoke the url `http://localhost:3000/custom-endpoint` from their examples.
 
 #### `defaultExample`
 
@@ -107,7 +85,7 @@ When writing your own default example file, `__COMPONENT__` will be replaced by 
 
 #### `getComponentPathLine`
 
-Type: `Function`, default: optional
+Type: `Function`, default: component file name
 
 Function that returns a component path line (displayed under the component name).
 
@@ -144,7 +122,7 @@ module.exports = {
 
 Type: `Function[]`, optional, default: [[react-docgen-displayname-handler](https://github.com/nerdlabs/react-docgen-displayname-handler)]
 
-Functions used to process the discovered components and generate documentation objects. Default behaviours include discovering component documentation blocks, prop types, and defaults. If setting this property, it is best to build from the default `react-docgen` handler list, such as in the example below. See the [react-docgen handler documentation](https://github.com/reactjs/react-docgen#handlers) for more information about handlers.
+Functions used to process the discovered components and generate documentation objects. Default behaviors include discovering component documentation blocks, prop types, and defaults. If setting this property, it is best to build from the default `react-docgen` handler list, such as in the example below. See the [react-docgen handler documentation](https://github.com/reactjs/react-docgen#handlers) for more information about handlers.
 
 Also note that the default handler, `react-docgen-displayname-handler` should be included to better support higher order components.
 
@@ -204,7 +182,7 @@ module.exports = {
 
 Type: `Function`, optional
 
-Function that allows you to override the mechanism used to identify classes/components to analyze. Default behaviour is to find all exported components in each file. You can configure it to find all components or use a custom detection method. See the [react-docgen resolver documentation](https://github.com/reactjs/react-docgen#resolver) for more information about resolvers.
+Function that allows you to override the mechanism used to identify classes/components to analyze. Default behavior is to find all exported components in each file. You can configure it to find all components or use a custom detection method. See the [react-docgen resolver documentation](https://github.com/reactjs/react-docgen#resolver) for more information about resolvers.
 
 ```javascript
 module.exports = {
@@ -216,43 +194,9 @@ module.exports = {
 
 Type: `Array`, optional
 
-Allows components to be grouped into sections with a title and optional overview content. Sections can also be content only, with no associated components (for example, a textual introduction). A section definition consists of:
+Allows components to be grouped into sections with a title and overview content. Sections can also be content only, with no associated components (for example, a textual introduction). Sections can be nested.
 
-- `name` — the title of the section.
-- `content` (optional) — location of a Markdown file containing the overview content.
-- `components` (optional) — a string or function returning a list of components. The same rules apply as for the root `components` option.
-- `sections` (optional) — array of subsections.
-
-Configuring a style guide with a textual introduction section, then a UI section would look like:
-
-```javascript
-module.exports = {
-  sections: [
-    {
-      name: 'Introduction',
-      content: 'docs/introduction.md'
-    },
-    {
-      name: 'Documentation',
-      sections: [
-        {
-          name: 'Installation',
-          content: 'docs/installation.md'
-        },
-        {
-          name: 'Configuration',
-          content: 'docs/configuration.md'
-        }
-      ]
-    },
-    {
-      name: 'UI Components',
-      content: 'docs/ui.md',
-      components: 'lib/components/ui/*.js'
-    }
-  ]
-};
-```
+See examples in the [Sections section](Components.md#sections).
 
 #### `serverHost`
 
@@ -276,7 +220,7 @@ Show or hide example code initially. It can be toggled in the UI by clicking the
 
 Type: `Boolean`, default: `true`
 
-Toggle sidebar initially. Sidebar is being hidden when opening components or examples in the isolation mode even if this value is set to `true`. When set to `false`, sidebar will always be hidden.
+Toggle sidebar visibility. Sidebar will be hidden when opening components or examples in isolation mode even if this value is set to `true`. When set to `false`, sidebar will always be hidden.
 
 #### `skipComponentsWithoutExample`
 
@@ -311,15 +255,15 @@ module.exports = {
 };
 ```
 
-> **Note:** Styles use [JSS syntax](https://github.com/cssinjs/jss/blob/master/docs/json-api.md).
+> **Note:** Styles use [JSS](https://github.com/cssinjs/jss/blob/master/docs/json-api.md) with these plugins: [jss-isolate](https://github.com/cssinjs/jss-isolate), [jss-nested](https://github.com/cssinjs/jss-nested), [jss-camel-case](https://github.com/cssinjs/jss-camel-case), [jss-default-unit](https://github.com/cssinjs/jss-default-unit), [jss-compose](https://github.com/cssinjs/jss-compose).
 
 > **Note:** Use your browser’s developer tools to find component and style names. For example class name `.rsg--Logo--logo` corresponds to an example above.
 
 #### `template`
 
-Type: `String`, default: [src/templates/index.html](https://github.com/styleguidist/react-styleguidist/blob/master/scripts/templates/index.html)
+Type: `String`, default: [src/templates/index.html](../scripts/templates/index.html)
 
-HTML file to use as the template for the style guide. HTML webpack Plugin is used under the hood, see [their docs for details](https://github.com/ampedandwired/html-webpack-plugin/blob/master/docs/template-option.md).
+HTML file to use as the template for the style guide. HTML webpack Plugin is used under the hood, see [their docs for details](https://github.com/jantimon/html-webpack-plugin/blob/master/docs/template-option.md).
 
 #### `theme`
 
@@ -337,7 +281,7 @@ module.exports = {
 };
 ```
 
-> **Note:** See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/styles/theme.js).
+> **Note:** See available [theme variables](../src/styles/theme.js).
 
 #### `title`
 
@@ -366,7 +310,7 @@ module.exports = {
 };
 ```
 
-> **Note:** this option disables Webpack config auto load.
+> **Note:** this option disables webpack config auto load.
 
 #### `verbose`
 
@@ -415,15 +359,15 @@ module.exports = {
 };
 ```
 
-> **Note:**: `output` option will be ignored.
+> **Note:** `output` option will be ignored.
 
-> **Note:**: These plugins will be igonored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.
+> **Note:** These plugins will be ignored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.
 
-> **Note:** This option disables Webpack config auto load, use `webpackConfigFile` option to load your project’s Webpack config from file.
+> **Note:** This option disables webpack config file autoload, use `webpackConfigFile` option to load your project’s webpack config from file.
 
-> **Note:** Run style guide in verbose mode to see the actual Webpack config used by Styleguidist: `npm run styleguide -- --verbose`.
+> **Note:** Run style guide in verbose mode to see the actual webpack config used by Styleguidist: `npm run styleguide -- --verbose`.
 
-See [FAQ](./FAQ.md) for examples.
+See [Configuring webpack](./Webpack.md) for examples.
 
 #### `webpackConfigFile`
 
@@ -437,6 +381,6 @@ module.exports = {
 };
 ```
 
-> **Note:**: `entry`, `externals` and `output` options will be ignored, use `webpackConfig` option to change them.
+> **Note:** `entry`, `externals` and `output` options will be ignored, use `webpackConfig` option to change them.
 
-> **Note:**: These plugins will be igonored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.
+> **Note:** These plugins will be ignored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.
