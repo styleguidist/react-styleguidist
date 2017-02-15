@@ -95,27 +95,7 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 			whiteSpace: 'pre',
 		},
 	},
-	table: {
-		composes: '$para',
-		borderCollapse: 'collapse',
-	},
-	thead: {
-		composes: '$hr',
-	},
-	td: {
-		paddingRight: 15,
-		paddingTop: 6,
-		fontSize: 13,
-	},
-	th: {
-		paddingRight: 15,
-		paddingBottom: 6,
-		textAlign: 'left',
-		fontSize: 13,
-	},
 	img: {},
-	tr: {},
-	tbody: {},
 });
 
 function Markdown({
