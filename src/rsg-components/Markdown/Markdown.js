@@ -17,6 +17,7 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 		fontFamily: font,
 		fontSize: 'inherit',
 		margin: [[0, 0, 15, 0]],
+		lineHeight: 1.5,
 	},
 	a: linkStyles({ link, linkHover }).link,
 	h3: {
@@ -56,8 +57,8 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 	},
 	blockquote: {
 		composes: '$para',
-		fontSize: 13,
-		margin: [[0, 50]],
+		fontSize: 14,
+		margin: [[15, 30]],
 		padding: 0,
 	},
 	hr: {
