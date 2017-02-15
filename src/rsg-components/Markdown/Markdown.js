@@ -48,9 +48,11 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 	},
 	ol: {
 		composes: '$para',
+		listStyleType: 'decimal',
 	},
 	li: {
 		composes: '$base',
+		listStyleType: 'inherit',
 	},
 	blockquote: {
 		composes: '$para',
