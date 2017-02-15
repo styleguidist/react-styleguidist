@@ -22,11 +22,9 @@ Numbered list:
 
 A [link](http://example.com).
 
-Horizontal rule:
-
 ---
 
-Code example:
+![React](http://morning.photos/photos/thumb/2014-09-27-3218-thumb.jpg)
 
 ```js
 function eatFood(food) {
