@@ -7854,10 +7854,6 @@ webpack-dev-server@1.16.2, webpack-dev-server@^1.16.2:
     supports-color "^3.1.1"
     webpack-dev-middleware "^1.4.0"
 
-webpack-loader-options-merge@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/webpack-loader-options-merge/-/webpack-loader-options-merge-0.0.3.tgz#a5627cc81f10bda636c2fbcdfba070014160cce2"
-
 webpack-manifest-plugin@1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/webpack-manifest-plugin/-/webpack-manifest-plugin-1.1.0.tgz#6b6c718aade8a2537995784b46bd2e9836057caa"

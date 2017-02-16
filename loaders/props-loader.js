@@ -17,7 +17,7 @@ module.exports = function(source) {
 	}
 
 	const file = this.request.split('!').pop();
-	const config = this.options.styleguidist;
+	const config = this._styleguidist;
 
 	const defaultParser = (filePath, source) => reactDocs.parse(source, config.resolver, config.handlers(file));
 	const propsParser = config.propsParser || defaultParser;

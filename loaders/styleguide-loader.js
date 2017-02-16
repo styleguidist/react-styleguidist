@@ -30,7 +30,7 @@ module.exports.pitch = function() {
 		this.cacheable();
 	}
 
-	const config = this.options.styleguidist;
+	const config = this._styleguidist;
 
 	let sections = getSections(config.sections, config);
 	if (config.skipComponentsWithoutExample) {

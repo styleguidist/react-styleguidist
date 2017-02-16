@@ -14,11 +14,9 @@ text
 \`\`\`
 `;
 	const result = examplesLoader.call({
-		options: {
-			styleguidist: {
-				context: {
-					_: 'lodash',
-				},
+		_styleguidist: {
+			context: {
+				_: 'lodash',
 			},
 		},
 	}, exampleMarkdown);
@@ -42,9 +40,7 @@ it('should replace all occurrences of __COMPONENT__ with provided query.componen
 
 	const result = examplesLoader.call({
 		query: '?componentName=FooComponent',
-		options: {
-			styleguidist: {},
-		},
+		_styleguidist: {},
 	}, exampleMarkdown);
 	expect(result).not.toMatch(/__COMPONENT__/);
 	expect(result).toMatch(/FooComponent/);

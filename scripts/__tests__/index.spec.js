@@ -1,5 +1,6 @@
 jest.mock('../build');
 jest.mock('../server');
+jest.mock('../utils/getWebpackVersion');
 
 import last from 'lodash/last';
 import styleguidist from '../index';
@@ -132,6 +133,14 @@ it('makeWebpackConfig should merge create-react-app Webpack config', () => {
 
 	expect(result).toBeTruthy();
 	expect(result.cra).toBeTruthy();
+});
+
+it('makeWebpackConfig should add json-loader', () => {
+	const api = styleguidist();
+	const result = api.makeWebpackConfig();
+
+	expect(result.module.loaders).toHaveLength(1);
+	expect(last(result.module.loaders).loader).toEqual('json-loader');
 });
 
 it('build() should pass style guide config and stats to callback', () => {

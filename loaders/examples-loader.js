@@ -22,7 +22,7 @@ function examplesLoader(source) {
 	}
 
 	const query = loaderUtils.parseQuery(this.query);
-	const config = this.options.styleguidist;
+	const config = this._styleguidist;
 
     // Append React to context modules, since it’s required for JSX
 	const fullContext = Object.assign({ React: 'react' }, config.context);

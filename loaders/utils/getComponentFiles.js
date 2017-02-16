@@ -3,6 +3,7 @@
 const path = require('path');
 const glob = require('glob');
 const isFunction = require('lodash/isFunction');
+const isString = require('lodash/isString');
 
 /**
  * Return absolute paths of components that should be rendered in the style guide.
@@ -20,8 +21,11 @@ module.exports = function getComponentFiles(components, rootDir) {
 	if (isFunction(components)) {
 		componentFiles = components();
 	}
-	else {
+	else if (isString(components)) {
 		componentFiles = glob.sync(path.resolve(rootDir, components));
+	}
+	else {
+		throw new Error(`Styleguidist: components should be string or function, received ${typeof components}.`);
 	}
 
 	// Make paths absolute

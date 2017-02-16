@@ -17,6 +17,7 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 		fontFamily: font,
 		fontSize: 'inherit',
 		margin: [[0, 0, 15, 0]],
+		lineHeight: 1.5,
 	},
 	a: linkStyles({ link, linkHover }).link,
 	h3: {
@@ -48,14 +49,16 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 	},
 	ol: {
 		composes: '$para',
+		listStyleType: 'decimal',
 	},
 	li: {
 		composes: '$base',
+		listStyleType: 'inherit',
 	},
 	blockquote: {
 		composes: '$para',
-		fontSize: 13,
-		margin: [[0, 50]],
+		fontSize: 14,
+		margin: [[15, 30]],
 		padding: 0,
 	},
 	hr: {
@@ -92,27 +95,7 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 			whiteSpace: 'pre',
 		},
 	},
-	table: {
-		composes: '$para',
-		borderCollapse: 'collapse',
-	},
-	thead: {
-		composes: '$hr',
-	},
-	td: {
-		paddingRight: 15,
-		paddingTop: 6,
-		fontSize: 13,
-	},
-	th: {
-		paddingRight: 15,
-		paddingBottom: 6,
-		textAlign: 'left',
-		fontSize: 13,
-	},
 	img: {},
-	tr: {},
-	tbody: {},
 });
 
 function Markdown({
