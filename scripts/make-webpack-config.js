@@ -27,11 +27,13 @@ module.exports = function(config, env) {
 			chunkFilename: 'build/[name].js',
 		},
 		resolve: {
+			extensions: isWebpack2 ? ['.js', '.jsx', '.json'] : ['.js', '.jsx', '.json', ''],
 			alias: {
 				'rsg-codemirror-theme.css': `codemirror/theme/${config.highlightTheme}.css`,
 			},
 		},
 		plugins: [
+			new StyleguidistOptionsPlugin(config),
 			new HtmlWebpackPlugin({
 				title: config.title,
 				template: config.template,
@@ -47,26 +49,6 @@ module.exports = function(config, env) {
 			hints: false,
 		},
 	};
-
-	if (isWebpack2) {
-		webpackConfig = merge(webpackConfig, {
-			resolve: {
-				extensions: ['.js', '.jsx', '.json'],
-			},
-			plugins: [
-				new StyleguidistOptionsPlugin(config),
-			],
-		});
-	}
-	else {
-		webpackConfig = merge(webpackConfig, {
-			styleguidist: config,
-			resolve: {
-				extensions: ['.js', '.jsx', '.json', ''],
-			},
-			debug: config.verbose,
-		});
-	}
 
 	if (isProd) {
 		webpackConfig = merge(webpackConfig, {
@@ -127,9 +109,15 @@ module.exports = function(config, env) {
 
 	// Add JSON loader if user config has no one (Webpack 2 includes it by default)
 	if (!isWebpack2 && !hasJsonLoader(webpackConfig)) {
-		webpackConfig.module.loaders.push({
-			test: /\.json$/,
-			loader: 'json-loader',
+		webpackConfig = merge(webpackConfig, {
+			module: {
+				loaders: [
+					{
+						test: /\.json$/,
+						loader: 'json-loader',
+					},
+				],
+			},
 		});
 	}
 
