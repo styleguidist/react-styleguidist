@@ -9,6 +9,7 @@ const merge = require('webpack-merge');
 const hasJsonLoader = require('./utils/hasJsonLoader');
 const getWebpackVersion = require('./utils/getWebpackVersion');
 const mergeWebpackConfig = require('./utils/mergeWebpackConfig');
+const StyleguidistOptionsPlugin = require('./utils/StyleguidistOptionsPlugin');
 
 const isWebpack2 = getWebpackVersion() === 2;
 const sourceDir = path.resolve(__dirname, '../lib');
@@ -42,9 +43,6 @@ module.exports = function(config, env) {
 				},
 			}),
 		],
-		module: {
-			loaders: [],
-		},
 		performance: {
 			hints: false,
 		},
@@ -56,13 +54,7 @@ module.exports = function(config, env) {
 				extensions: ['.js', '.jsx', '.json'],
 			},
 			plugins: [
-				new webpack.LoaderOptionsPlugin({
-					minimize: isProd,
-					debug: config.verbose,
-					options: {
-						styleguidist: config,
-					},
-				}),
+				new StyleguidistOptionsPlugin(config),
 			],
 		});
 	}

@@ -3,7 +3,6 @@
 const isFunction = require('lodash/isFunction');
 const omit = require('lodash/omit');
 const mergeBase = require('webpack-merge');
-const loaderOptionsMerge = require('webpack-loader-options-merge');
 
 const IGNORE_PLUGINS = [
 	'CommonsChunkPlugins',
@@ -43,6 +42,5 @@ module.exports = function mergeWebpackConfig(baseConfig, userConfig, options) {
 		: userConfig
 	;
 	const safeUserConfig = omit(userConfigObject, options.ignore);
-	const mergedConfig = merge(baseConfig, safeUserConfig);
-	return loaderOptionsMerge(mergedConfig);
+	return merge(baseConfig, safeUserConfig);
 };

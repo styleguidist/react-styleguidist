@@ -5,9 +5,7 @@ it('should return valid, parsable JS', () => {
 	const file = './test/components/Button/Button.js';
 	const result = propsLoader.call({
 		request: file,
-		options: {
-			styleguidist: {},
-		},
+		_styleguidist: {},
 	}, readFileSync(file, 'utf8'));
 	expect(result).toBeTruthy();
 	expect(() => new Function(result)).not.toThrowError(SyntaxError);  // eslint-disable-line no-new-func
@@ -17,9 +15,7 @@ it('should extract doclets', () => {
 	const file = './test/components/Placeholder/Placeholder.js';
 	const result = propsLoader.call({
 		request: file,
-		options: {
-			styleguidist: {},
-		},
+		_styleguidist: {},
 	}, readFileSync(file, 'utf8'));
 	expect(result).toBeTruthy();
 

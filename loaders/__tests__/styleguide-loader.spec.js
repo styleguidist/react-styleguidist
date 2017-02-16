@@ -11,13 +11,11 @@ const file = './test/components/Button/Button.js';
 it('should return valid, parsable JS', () => {
 	const result = styleguideLoader.pitch.call({
 		request: file,
-		options: {
-			styleguidist: {
-				sections: [{ components: '../../test/components/**/*.js' }],
-				configDir: __dirname,
-				getExampleFilename: () => 'Readme.md',
-				getComponentPathLine: filepath => filepath,
-			},
+		_styleguidist: {
+			sections: [{ components: '../../test/components/**/*.js' }],
+			configDir: __dirname,
+			getExampleFilename: () => 'Readme.md',
+			getComponentPathLine: filepath => filepath,
 		},
 		addContextDependency: noop,
 	}, readFileSync(file, 'utf8'));
@@ -28,13 +26,11 @@ it('should return valid, parsable JS', () => {
 it('should return correct component paths: glob', () => {
 	const result = styleguideLoader.pitch.call({
 		request: file,
-		options: {
-			styleguidist: {
-				sections: [{ components: 'components/**/*.js' }],
-				configDir: path.resolve(__dirname, '../../test'),
-				getExampleFilename: () => 'Readme.md',
-				getComponentPathLine: filepath => filepath,
-			},
+		_styleguidist: {
+			sections: [{ components: 'components/**/*.js' }],
+			configDir: path.resolve(__dirname, '../../test'),
+			getExampleFilename: () => 'Readme.md',
+			getComponentPathLine: filepath => filepath,
 		},
 		addContextDependency: noop,
 	}, readFileSync(file, 'utf8'));
@@ -47,18 +43,16 @@ it('should return correct component paths: glob', () => {
 it('should return correct component paths: function returning absolute paths', () => {
 	const result = styleguideLoader.pitch.call({
 		request: file,
-		options: {
-			styleguidist: {
-				sections: [{
-					components: () => ([
-						`${__dirname}/components/Button/Button.js`,
-						`${__dirname}/components/Placeholder/Placeholder.js`,
-					]),
-				}],
-				configDir: __dirname,
-				getExampleFilename: () => 'Readme.md',
-				getComponentPathLine: filepath => filepath,
-			},
+		_styleguidist: {
+			sections: [{
+				components: () => ([
+					`${__dirname}/components/Button/Button.js`,
+					`${__dirname}/components/Placeholder/Placeholder.js`,
+				]),
+			}],
+			configDir: __dirname,
+			getExampleFilename: () => 'Readme.md',
+			getComponentPathLine: filepath => filepath,
 		},
 		addContextDependency: noop,
 	}, readFileSync(file, 'utf8'));
@@ -71,18 +65,16 @@ it('should return correct component paths: function returning absolute paths', (
 it('should return correct component paths: function returning relative paths', () => {
 	const result = styleguideLoader.pitch.call({
 		request: file,
-		options: {
-			styleguidist: {
-				sections: [{
-					components: () => ([
-						'components/Button/Button.js',
-						'components/Placeholder/Placeholder.js',
-					]),
-				}],
-				configDir: __dirname,
-				getExampleFilename: () => 'Readme.md',
-				getComponentPathLine: filepath => filepath,
-			},
+		_styleguidist: {
+			sections: [{
+				components: () => ([
+					'components/Button/Button.js',
+					'components/Placeholder/Placeholder.js',
+				]),
+			}],
+			configDir: __dirname,
+			getExampleFilename: () => 'Readme.md',
+			getComponentPathLine: filepath => filepath,
 		},
 		addContextDependency: noop,
 	}, readFileSync(file, 'utf8'));
@@ -95,19 +87,17 @@ it('should return correct component paths: function returning relative paths', (
 it('should filter out components without examples if skipComponentsWithoutExample=true', () => {
 	const result = styleguideLoader.pitch.call({
 		request: file,
-		options: {
-			styleguidist: {
-				sections: [{
-					components: () => ([
-						'components/Button/Button.js',
-						'components/RandomButton/RandomButton.js',
-					]),
-				}],
-				configDir: path.resolve(__dirname, '../../test'),
-				skipComponentsWithoutExample: true,
-				getExampleFilename: componentPath => path.join(path.dirname(componentPath), 'Readme.md'),
-				getComponentPathLine: filepath => filepath,
-			},
+		_styleguidist: {
+			sections: [{
+				components: () => ([
+					'components/Button/Button.js',
+					'components/RandomButton/RandomButton.js',
+				]),
+			}],
+			configDir: path.resolve(__dirname, '../../test'),
+			skipComponentsWithoutExample: true,
+			getExampleFilename: componentPath => path.join(path.dirname(componentPath), 'Readme.md'),
+			getComponentPathLine: filepath => filepath,
 		},
 		addContextDependency: noop,
 	}, readFileSync(file, 'utf8'));
@@ -122,12 +112,10 @@ it('should add context dependencies to webpack from contextDependencies config o
 	const addContextDependency = jest.fn();
 	styleguideLoader.pitch.call({
 		request: file,
-		options: {
-			styleguidist: {
-				sections: [{ components: 'components/**/*.js' }],
-				configDir: __dirname,
-				contextDependencies,
-			},
+		_styleguidist: {
+			sections: [{ components: 'components/**/*.js' }],
+			configDir: __dirname,
+			contextDependencies,
 		},
 		addContextDependency,
 	}, readFileSync(file, 'utf8'));
@@ -140,13 +128,11 @@ it('should add common parent folder of all components to context dependencies', 
 	const addContextDependency = jest.fn();
 	styleguideLoader.pitch.call({
 		request: file,
-		options: {
-			styleguidist: {
-				sections: [{ components: 'components/**/*.js' }],
-				configDir: path.resolve(__dirname, '../../test'),
-				getExampleFilename: () => 'Readme.md',
-				getComponentPathLine: filepath => filepath,
-			},
+		_styleguidist: {
+			sections: [{ components: 'components/**/*.js' }],
+			configDir: path.resolve(__dirname, '../../test'),
+			getExampleFilename: () => 'Readme.md',
+			getComponentPathLine: filepath => filepath,
 		},
 		addContextDependency,
 	}, readFileSync(file, 'utf8'));
