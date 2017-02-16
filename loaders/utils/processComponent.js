@@ -1,8 +1,7 @@
 'use strict';
 
+const fs = require('fs');
 const path = require('path');
-const getNameFallback = require('./getNameFallback');
-const getExamples = require('./getExamples');
 const requireIt = require('./requireIt');
 
 const propsLoader = path.resolve(__dirname, '../props-loader.js');
@@ -15,15 +14,13 @@ const propsLoader = path.resolve(__dirname, '../props-loader.js');
  * @returns {object}
  */
 module.exports = function processComponent(filepath, config) {
-	const nameFallback = getNameFallback(filepath);
-	const examplesFile = config.getExampleFilename(filepath);
 	const componentPath = path.relative(config.configDir, filepath);
+	const examplesFile = config.getExampleFilename(filepath);
 	return {
-		nameFallback,
 		filepath: componentPath,
 		pathLine: config.getComponentPathLine(componentPath),
 		module: requireIt(filepath),
 		props: requireIt(`!!${propsLoader}!${filepath}`),
-		examples: getExamples(examplesFile, nameFallback, config.defaultExample),
+		hasExamples: examplesFile && fs.existsSync(examplesFile),
 	};
 };

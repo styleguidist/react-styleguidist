@@ -1,11 +1,12 @@
 'use strict';
 
 const path = require('path');
-const castArray = require('lodash/castArray');
+const isArray = require('lodash/isArray');
 const reactDocs = require('react-docgen');
 const generate = require('escodegen').generate;
 const toAst = require('to-ast');
-const getPropsCode = require('./utils/getProps');
+const getExamples = require('./utils/getExamples');
+const getProps = require('./utils/getProps');
 
 /* eslint-disable no-console */
 
@@ -18,32 +19,30 @@ module.exports = function(source) {
 	const file = this.request.split('!').pop();
 	const config = this.options.styleguidist;
 
-	const defaultParser = (filePath, source) => reactDocs.parse(source, config.resolver, config.handlers);
+	const defaultParser = (filePath, source) => reactDocs.parse(source, config.resolver, config.handlers(file));
 	const propsParser = config.propsParser || defaultParser;
 
-	let parsedProps;
+	let props = {};
 	try {
-		parsedProps = propsParser(file, source);
+		props = propsParser(file, source);
 	}
 	/* istanbul ignore next */
 	catch (exception) {
-		parsedProps = [];
 		console.log('Error when parsing', path.relative(process.cwd(), file));
 		console.log(exception.toString());
 		console.log();
 	}
 
-	parsedProps = castArray(parsedProps);
+	// Support only one component
+	if (isArray(props)) {
+		props = props[0];
+	}
 
-	// Keep only public methods
-	parsedProps = parsedProps.map(prop => Object.assign(prop, {
-		methods: prop.methods.filter(method => {
-			const doclets = method.docblock && reactDocs.utils.docblock.getDoclets(method.docblock);
-			return doclets && doclets.public;
-		}),
-	}));
+	props = getProps(props);
 
-	const props = parsedProps.map(getPropsCode);
+	// Examples from Markdown file
+	const examplesFile = config.getExampleFilename(file);
+	props.examples = getExamples(examplesFile, props.displayName, config.defaultExample);
 
 	return `
 if (module.hot) {

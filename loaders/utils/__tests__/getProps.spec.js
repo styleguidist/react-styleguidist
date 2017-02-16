@@ -2,7 +2,7 @@ jest.mock('../requireIt');
 
 import getProps from '../getProps';
 
-it('getProps() should return an object for props', () => {
+it('should return an object for props', () => {
 	const result = getProps({
 		description: 'The only true button.',
 		methods: [],
@@ -23,7 +23,7 @@ it('getProps() should return an object for props', () => {
 	expect(result).toMatchSnapshot();
 });
 
-it('getProps() should return an object for props without description', () => {
+it('should return an object for props without description', () => {
 	const result = getProps({
 		props: {
 			children: {
@@ -37,12 +37,71 @@ it('getProps() should return an object for props without description', () => {
 	expect(result).toMatchSnapshot();
 });
 
-it('getProps() should return an object for props with doclets', () => {
+it('should remove non-public methods', () => {
+	const result = getProps({
+		methods: [
+			{
+				docblock: `Public method.
+@public`,
+			},
+			{
+				docblock: `Private method.
+@private`,
+			},
+			{
+				docblock: 'Private method by default.',
+			},
+		],
+	});
+
+	expect(result).toMatchSnapshot();
+});
+
+it('should return an object for props with doclets', () => {
+	const result = getProps({
+		description: `
+The only true button.
+
+@foo Foo
+@bar Bar
+`,
+	});
+
+	expect(result).toMatchSnapshot();
+});
+
+it('should return require statement for @example doclet', () => {
 	const result = getProps({
 		description: `
 The only true button.
 
 @example example.md
+`,
+	});
+
+	expect(result).toMatchSnapshot();
+});
+
+it('should highlight code in description (regular code block)', () => {
+	const result = getProps({
+		description: `
+The only true button.
+
+    alert('Hello world');
+`,
+	});
+
+	expect(result).toMatchSnapshot();
+});
+
+it('should highlight code in description (fenced code block)', () => {
+	const result = getProps({
+		description: `
+The only true button.
+
+\`\`\`
+alert('Hello world');
+\`\`\`
 `,
 	});
 

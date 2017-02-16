@@ -1,4 +1,38 @@
-exports[`test getProps() should return an object for props 1`] = `
+exports[`test should highlight code in description (fenced code block) 1`] = `
+Object {
+  "description": "The only true button.
+
+    <span class=\"hljs-selector-tag\">alert</span>(<span class=\"hljs-string\">\'Hello world\'</span>);
+",
+  "doclets": Object {},
+  "methods": Array [],
+}
+`;
+
+exports[`test should highlight code in description (regular code block) 1`] = `
+Object {
+  "description": "The only true button.
+
+    <span class=\"hljs-selector-tag\">alert</span>(<span class=\"hljs-string\">\'Hello world\'</span>);
+",
+  "doclets": Object {},
+  "methods": Array [],
+}
+`;
+
+exports[`test should remove non-public methods 1`] = `
+Object {
+  "doclets": Object {},
+  "methods": Array [
+    Object {
+      "docblock": "Public method.
+@public",
+    },
+  ],
+}
+`;
+
+exports[`test should return an object for props 1`] = `
 Object {
   "description": "The only true button.
 ",
@@ -19,7 +53,34 @@ Object {
 }
 `;
 
-exports[`test getProps() should return an object for props with doclets 1`] = `
+exports[`test should return an object for props with doclets 1`] = `
+Object {
+  "description": "The only true button.
+",
+  "doclets": Object {
+    "bar": "Bar
+",
+    "foo": "Foo",
+  },
+  "methods": Array [],
+}
+`;
+
+exports[`test should return an object for props without description 1`] = `
+Object {
+  "doclets": Object {},
+  "methods": Array [],
+  "props": Object {
+    "children": Object {
+      "description": "Button label.",
+      "required": true,
+      "type": Object {},
+    },
+  },
+}
+`;
+
+exports[`test should return require statement for @example doclet 1`] = `
 Object {
   "description": "The only true button.
 ",
@@ -28,18 +89,6 @@ Object {
     "filepath": "!!<rootDir>/loaders/examples-loader.js!example.md
 ",
   },
-}
-`;
-
-exports[`test getProps() should return an object for props without description 1`] = `
-Object {
-  "doclets": Object {},
-  "props": Object {
-    "children": Object {
-      "description": "Button label.",
-      "required": true,
-      "type": Object {},
-    },
-  },
+  "methods": Array [],
 }
 `;

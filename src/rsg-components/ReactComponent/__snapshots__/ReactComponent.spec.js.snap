@@ -128,11 +128,7 @@ exports[`test should render component renderer for component with methods 1`] = 
     <_class
       text="Bar" />
   }
-  examples={
-    <Examples
-      examples={Array []}
-      name="Foo" />
-  }
+  examples={false}
   isolated={false}
   methods={
     <_class
@@ -166,11 +162,7 @@ exports[`test should render component renderer for component with props 1`] = `
     <_class
       text="Bar" />
   }
-  examples={
-    <Examples
-      examples={Array []}
-      name="Foo" />
-  }
+  examples={false}
   isolated={false}
   methods={false}
   name="Foo"

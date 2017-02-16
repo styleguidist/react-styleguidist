@@ -12,18 +12,18 @@ const component = {
 	props: {
 		description: 'Bar',
 		methods: [],
+		examples: [
+			{
+				type: 'code',
+				content: '<button>OK</button>',
+				evalInContext: noop,
+			},
+			{
+				type: 'markdown',
+				content: 'Hello *world*!',
+			},
+		],
 	},
-	examples: [
-		{
-			type: 'code',
-			content: '<button>OK</button>',
-			evalInContext: noop,
-		},
-		{
-			type: 'markdown',
-			content: 'Hello *world*!',
-		},
-	],
 };
 const componentWithProps = {
 	name: 'Foo',
@@ -39,8 +39,8 @@ const componentWithProps = {
 			},
 		},
 		methods: [],
+		examples: [],
 	},
-	examples: [],
 };
 const componentWithMethods = {
 	name: 'Foo',
@@ -62,8 +62,8 @@ const componentWithMethods = {
 				description: 'Sets the counter to a particular value.',
 			},
 		],
+		examples: [],
 	},
-	examples: [],
 };
 
 it('should render component renderer', () => {
@@ -109,12 +109,12 @@ it('renderer should render component', () => {
 					key={0}
 					index={0}
 					name="Component"
-					code={component.examples[0].content}
-					evalInContext={component.examples[0].evalInContext}
+					code={component.props.examples[0].content}
+					evalInContext={component.props.examples[0].evalInContext}
 				/>,
 				<Markdown
 					key={1}
-					text={component.examples[1].content}
+					text={component.props.examples[1].content}
 				/>,
 			]}
 		/>

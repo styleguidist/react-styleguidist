@@ -12,7 +12,7 @@ const sections = [
 		components: [
 			{
 				filepath: 'components/Button/Button.js',
-				examples: 'require()',
+				hasExamples: true,
 			},
 			{
 				filepath: 'components/Icon/Icon.js',
@@ -32,7 +32,7 @@ const sections = [
 					},
 					{
 						filepath: 'components/Modal/Modal.js',
-						examples: 'require()',
+						hasExamples: true,
 					},
 				],
 				sections: [],

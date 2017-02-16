@@ -1,7 +1,6 @@
-const map = require('lodash/map');
 import * as utils from '../utils';
 
-const COMPONENTS = [
+const components = [
 	{
 		name: 'Button',
 	},
@@ -19,7 +18,7 @@ const COMPONENTS = [
 	},
 ];
 
-const SECTIONS = [
+const sections = [
 	{
 		name: 'General',
 		sections: [
@@ -37,41 +36,6 @@ const SECTIONS = [
 		],
 	},
 ];
-
-let sourceGlobalLength;
-beforeEach(() => {
-	sourceGlobalLength = Object.keys(global).length;
-});
-afterEach(() => {
-	delete global.Foo;
-	delete global.Bar;
-});
-
-describe('setComponentsNames', () => {
-	it('should set name property to each component', () => {
-		const result = utils.setComponentsNames([
-			{
-				module: {
-					displayName: 'Foo',
-				},
-			},
-			{
-				module: {
-					name: 'Bar',
-				},
-			},
-			{
-				module: {
-					displayName: 'Foo',
-				},
-				props: {
-					displayName: 'FooOverride',
-				},
-			},
-		]);
-		expect(map(result, 'name')).toEqual(['Foo', 'Bar', 'FooOverride']);
-	});
-});
 
 describe('setSlugs', () => {
 	it('should set unique slug property to each section or component with name property', () => {
@@ -107,29 +71,87 @@ describe('setSlugs', () => {
 	});
 });
 
-describe('globalizeComponents', () => {
-	it('should set each component’s module as a global variable', () => {
-		utils.globalizeComponents([
+describe('globalizeComponent', () => {
+	it('should set component’s module as a global variable', () => {
+		const globalsCount = Object.keys(global).length;
+		utils.globalizeComponent({
+			name: 'Foo',
+			props: {},
+			module: 13,
+		});
+		expect(Object.keys(global).length).toBe(globalsCount + 1);
+		expect(global.Foo).toBe(13);
+	});
+});
+
+describe('processComponents', () => {
+	it('should set components’ modules as a global variables', () => {
+		const globalsCount = Object.keys(global).length;
+		utils.processComponents([
 			{
-				name: 'Foo',
+				props: {
+					displayName: 'Bar',
+				},
 				module: 13,
 			},
 			{
-				name: 'Bar',
-				module: 27,
-			},
-			{
-				name: 'PathedFoo',
-				module: { a: 32 },
 				props: {
-					path: 'a',
+					displayName: 'Baz',
 				},
+				module: 14,
 			},
 		]);
-		expect(Object.keys(global).length).toBe(sourceGlobalLength + 3);
-		expect(global.Foo).toBe(13);
-		expect(global.Bar).toBe(27);
-		expect(global.PathedFoo).toBe(32);
+		expect(Object.keys(global).length).toBe(globalsCount + 2);
+		expect(global.Bar).toBe(13);
+		expect(global.Baz).toBe(14);
+	});
+
+	it('should set components’ displayName to a name property', () => {
+		const result = utils.processComponents([
+			{
+				props: {
+					displayName: 'Foo',
+				},
+				module: 13,
+			},
+		]);
+		expect(result[0].name).toBe('Foo');
+	});
+
+	it('should append @example doclet to all examples', () => {
+		const result = utils.processComponents([
+			{
+				props: {
+					displayName: 'Foo',
+				},
+				module: 11,
+				examples: [1, 2],
+				example: 3,
+			},
+		]);
+		expect(result[0].examples).toEqual([1, 2, 3]);
+	});
+});
+
+describe('processSections', () => {
+	it('should recursively process all sections and components', () => {
+		const result = utils.processSections([
+			{
+				sections: [
+					{
+						components: [
+							{
+								props: {
+									displayName: 'Button',
+								},
+								module: 1,
+							},
+						],
+					},
+				],
+			},
+		]);
+		expect(result[0].sections[0].components[0].name).toBe('Button');
 	});
 });
 
@@ -162,32 +184,32 @@ describe('getFilterRegExp', () => {
 
 describe('filterComponentsByName', () => {
 	it('should return initial list with empty query', () => {
-		const result = utils.filterComponentsByName(COMPONENTS, '');
-		expect(result).toEqual(COMPONENTS);
+		const result = utils.filterComponentsByName(components, '');
+		expect(result).toEqual(components);
 	});
 
 	it('should return filtered list, should ignore case', () => {
-		const result = utils.filterComponentsByName(COMPONENTS, 'button');
+		const result = utils.filterComponentsByName(components, 'button');
 		expect(result).toEqual([{ name: 'Button' }]);
 	});
 
 	it('should return empty list when nothing found', () => {
-		const result = utils.filterComponentsByName(COMPONENTS, 'pizza');
+		const result = utils.filterComponentsByName(components, 'pizza');
 		expect(result).toEqual([]);
 	});
 });
 
 describe('filterComponentsByExactName', () => {
 	it('should return components with exact name', () => {
-		const result = utils.filterComponentsByExactName(COMPONENTS, 'Image');
-		expect(result).toEqual([COMPONENTS[1]]);
+		const result = utils.filterComponentsByExactName(components, 'Image');
+		expect(result).toEqual([components[1]]);
 	});
 });
 
 describe('filterComponentsInSectionsByExactName', () => {
 	it('should return components at any level with exact name', () => {
-		const result = utils.filterComponentsInSectionsByExactName(SECTIONS, 'Image');
-		expect(result).toEqual([COMPONENTS[1]]);
+		const result = utils.filterComponentsInSectionsByExactName(sections, 'Image');
+		expect(result).toEqual([components[1]]);
 	});
 });
 
@@ -205,9 +227,18 @@ describe('getComponentNameFromHash', () => {
 
 describe('filterComponentExamples', () => {
 	it('should return a shallow copy of the component with example filtered by given index', () => {
-		const comp = { examples: ['a', 'b', 'c', 'd'], other: 'info' };
-		const expectedOutput = { examples: ['c'], other: 'info' };
+		const comp = {
+			props: {
+				examples: ['a', 'b', 'c', 'd'],
+			},
+			other: 'info',
+		};
 		const result = utils.filterComponentExamples(comp, 2);
-		expect(result).toEqual(expectedOutput);
+		expect(result).toEqual({
+			props: {
+				examples: ['c'],
+			},
+			other: 'info',
+		});
 	});
 });
