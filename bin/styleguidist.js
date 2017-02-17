@@ -27,11 +27,12 @@ function printWebpackConfigFile(webpackConfigFile) {
 	}
 }
 
-function printErrors(header, errors, printer) {
+function printErrors(header, errors, originalErrors, printer) {
 	console.log(printer(header));
 	console.log();
-	errors.forEach(message => {
-		console.log(message);
+	const messages = argv.verbose ? originalErrors : errors;
+	messages.forEach(message => {
+		console.log(message.message || message);
 		console.log();
 	});
 }
@@ -121,13 +122,13 @@ function commandBuild() {
 		// If errors exist, only show errors.
 		if (messages.errors.length) {
 			printStyleguidistError(messages.errors);
-			printErrors('Failed to compile.', messages.errors, chalk.red);
+			printErrors('Failed to compile.', messages.errors, stats.compilation.errors, chalk.red);
 			process.exit(1);
 		}
 
 		// Show warnings if no errors were found.
 		if (messages.warnings.length) {
-			printErrors('Compiled with warnings.', messages.warnings, chalk.yellow);
+			printErrors('Compiled with warnings.', messages.warnings, stats.compilation.warnings, chalk.yellow);
 		}
 	});
 }
@@ -143,6 +144,7 @@ function commandServer() {
 		}
 		else {
 			console.error(chalk.bold.red(err.message));
+			/* istanbul ignore if */
 			if (argv.verbose) {
 				console.log();
 				console.log(err.stack);
@@ -183,13 +185,13 @@ function commandServer() {
 		// If errors exist, only show errors.
 		if (messages.errors.length) {
 			printStyleguidistError(messages.errors);
-			printErrors('Failed to compile.', messages.errors, chalk.red);
+			printErrors('Failed to compile.', messages.errors, stats.compilation.errors, chalk.red);
 			return;
 		}
 
 		// Show warnings if no errors were found.
 		if (messages.warnings.length) {
-			printErrors('Compiled with warnings.', messages.warnings, chalk.yellow);
+			printErrors('Compiled with warnings.', messages.warnings, stats.compilation.warnings, chalk.yellow);
 		}
 	});
 }
