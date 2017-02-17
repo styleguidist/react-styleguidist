@@ -19,15 +19,27 @@ exports[`test should filter list when search field contains a query 1`] = `
     items={
       Array [
         Object {
+          "components": Array [],
+          "content": false,
+          "heading": false,
           "name": "Button",
+          "sections": Array [],
           "slug": "button",
         },
         Object {
+          "components": Array [],
+          "content": false,
+          "heading": false,
           "name": "Input",
+          "sections": Array [],
           "slug": "input",
         },
         Object {
+          "components": Array [],
+          "content": false,
+          "heading": false,
           "name": "Textarea",
+          "sections": Array [],
           "slug": "textarea",
         },
       ]
@@ -43,7 +55,11 @@ exports[`test should filter list when search field contains a query 2`] = `
     items={
       Array [
         Object {
+          "components": Array [],
+          "content": false,
+          "heading": false,
           "name": "Button",
+          "sections": Array [],
           "slug": "button",
         },
       ]
@@ -59,17 +75,26 @@ exports[`test should filter section names 1`] = `
     items={
       Array [
         Object {
-          "content": <_class
-            items={Array []} />,
-          "heading": true,
+          "components": Array [],
+          "content": false,
+          "heading": false,
           "name": "Introduction",
+          "sections": Array [],
           "slug": "introduction",
         },
         Object {
+          "components": Array [
+            Object {
+              "name": "Button",
+              "slug": "button",
+            },
+          ],
           "content": <_class
             items={
                   Array [
                         Object {
+                          "content": false,
+                          "heading": false,
                           "name": "Button",
                           "slug": "button",
                         },
@@ -77,17 +102,32 @@ exports[`test should filter section names 1`] = `
             } />,
           "heading": true,
           "name": "Buttons",
+          "sections": Array [],
           "slug": "buttons",
         },
         Object {
+          "components": Array [
+            Object {
+              "name": "Input",
+              "slug": "input",
+            },
+            Object {
+              "name": "Textarea",
+              "slug": "textarea",
+            },
+          ],
           "content": <_class
             items={
                   Array [
                         Object {
+                          "content": false,
+                          "heading": false,
                           "name": "Input",
                           "slug": "input",
                         },
                         Object {
+                          "content": false,
+                          "heading": false,
                           "name": "Textarea",
                           "slug": "textarea",
                         },
@@ -95,6 +135,7 @@ exports[`test should filter section names 1`] = `
             } />,
           "heading": true,
           "name": "Forms",
+          "sections": Array [],
           "slug": "forms",
         },
       ]
@@ -110,87 +151,11 @@ exports[`test should filter section names 2`] = `
     items={
       Array [
         Object {
-          "content": <_class
-            items={Array []} />,
-          "heading": true,
+          "components": Array [],
+          "content": false,
+          "heading": false,
           "name": "Forms",
-          "slug": "forms",
-        },
-      ]
-    } />
-</_class>
-`;
-
-exports[`test should render a filtered list, should hide empty sections 1`] = `
-<_class
-  onSearchTermChange={[Function]}
-  searchTerm="">
-  <_class
-    items={
-      Array [
-        Object {
-          "content": <_class
-            items={Array []} />,
-          "heading": true,
-          "name": "Introduction",
-          "slug": "introduction",
-        },
-        Object {
-          "content": <_class
-            items={
-                  Array [
-                        Object {
-                          "name": "Button",
-                          "slug": "button",
-                        },
-                      ]
-            } />,
-          "heading": true,
-          "name": "Buttons",
-          "slug": "buttons",
-        },
-        Object {
-          "content": <_class
-            items={
-                  Array [
-                        Object {
-                          "name": "Input",
-                          "slug": "input",
-                        },
-                        Object {
-                          "name": "Textarea",
-                          "slug": "textarea",
-                        },
-                      ]
-            } />,
-          "heading": true,
-          "name": "Forms",
-          "slug": "forms",
-        },
-      ]
-    } />
-</_class>
-`;
-
-exports[`test should render a filtered list, should hide empty sections 2`] = `
-<_class
-  onSearchTermChange={[Function]}
-  searchTerm="inp">
-  <_class
-    items={
-      Array [
-        Object {
-          "content": <_class
-            items={
-                  Array [
-                        Object {
-                          "name": "Input",
-                          "slug": "input",
-                        },
-                      ]
-            } />,
-          "heading": true,
-          "name": "Forms",
+          "sections": Array [],
           "slug": "forms",
         },
       ]
@@ -206,15 +171,27 @@ exports[`test should render a renderer 1`] = `
     items={
       Array [
         Object {
+          "components": Array [],
+          "content": false,
+          "heading": false,
           "name": "Button",
+          "sections": Array [],
           "slug": "button",
         },
         Object {
+          "components": Array [],
+          "content": false,
+          "heading": false,
           "name": "Input",
+          "sections": Array [],
           "slug": "input",
         },
         Object {
+          "components": Array [],
+          "content": false,
+          "heading": false,
           "name": "Textarea",
+          "sections": Array [],
           "slug": "textarea",
         },
       ]
@@ -230,17 +207,26 @@ exports[`test should render renderer with sections with nested components 1`] = 
     items={
       Array [
         Object {
-          "content": <_class
-            items={Array []} />,
-          "heading": true,
+          "components": Array [],
+          "content": false,
+          "heading": false,
           "name": "Introduction",
+          "sections": Array [],
           "slug": "introduction",
         },
         Object {
+          "components": Array [
+            Object {
+              "name": "Button",
+              "slug": "button",
+            },
+          ],
           "content": <_class
             items={
                   Array [
                         Object {
+                          "content": false,
+                          "heading": false,
                           "name": "Button",
                           "slug": "button",
                         },
@@ -248,17 +234,32 @@ exports[`test should render renderer with sections with nested components 1`] = 
             } />,
           "heading": true,
           "name": "Buttons",
+          "sections": Array [],
           "slug": "buttons",
         },
         Object {
+          "components": Array [
+            Object {
+              "name": "Input",
+              "slug": "input",
+            },
+            Object {
+              "name": "Textarea",
+              "slug": "textarea",
+            },
+          ],
           "content": <_class
             items={
                   Array [
                         Object {
+                          "content": false,
+                          "heading": false,
                           "name": "Input",
                           "slug": "input",
                         },
                         Object {
+                          "content": false,
+                          "heading": false,
                           "name": "Textarea",
                           "slug": "textarea",
                         },
@@ -266,6 +267,7 @@ exports[`test should render renderer with sections with nested components 1`] = 
             } />,
           "heading": true,
           "name": "Forms",
+          "sections": Array [],
           "slug": "forms",
         },
       ]

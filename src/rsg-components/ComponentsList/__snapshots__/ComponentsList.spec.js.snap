@@ -3,6 +3,7 @@ exports[`test should render sections with nested components 1`] = `
   <li
     className="">
     <_class
+      className=""
       href="#button">
       Button
     </_class>
@@ -10,6 +11,7 @@ exports[`test should render sections with nested components 1`] = `
   <li
     className="">
     <_class
+      className=""
       href="#input">
       Input
     </_class>
@@ -17,6 +19,7 @@ exports[`test should render sections with nested components 1`] = `
   <li
     className="">
     <_class
+      className=""
       href="#textarea">
       Textarea
     </_class>

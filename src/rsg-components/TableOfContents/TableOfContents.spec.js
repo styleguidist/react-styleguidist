@@ -80,19 +80,6 @@ it('should filter list when search field contains a query', () => {
 	expect(actual).toMatchSnapshot();
 });
 
-it('should render a filtered list, should hide empty sections', () => {
-	const searchTerm = 'inp';
-	const actual = shallow(
-		<TableOfContents sections={sections} />
-	);
-
-	expect(actual).toMatchSnapshot();
-
-	actual.setState({ searchTerm });
-
-	expect(actual).toMatchSnapshot();
-});
-
 it('should filter section names', () => {
 	const searchTerm = 'frm';
 	const actual = shallow(

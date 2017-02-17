@@ -197,6 +197,19 @@ describe('filterComponentsByName', () => {
 		const result = utils.filterComponentsByName(components, 'pizza');
 		expect(result).toEqual([]);
 	});
+
+	it('should return all components if all of them match query', () => {
+		// It doesn’t happen when RegExp has global flag for some reason
+		const components = [
+			{ name: 'Button' },
+			{ name: 'CounterButton' },
+			{ name: 'PushButton' },
+			{ name: 'RandomButtom' },
+			{ name: 'WrappedButton'	},
+		];
+		const result = utils.filterComponentsByName(components, 'bu');
+		expect(result).toEqual(components);
+	});
 });
 
 describe('filterComponentsByExactName', () => {
@@ -210,6 +223,23 @@ describe('filterComponentsInSectionsByExactName', () => {
 	it('should return components at any level with exact name', () => {
 		const result = utils.filterComponentsInSectionsByExactName(sections, 'Image');
 		expect(result).toEqual([components[1]]);
+	});
+});
+
+describe('filterSectionsByName', () => {
+	it('should recursively filter sections and components by name', () => {
+		const result = utils.filterSectionsByName(sections, 'button');
+		expect(result).toMatchSnapshot();
+	});
+
+	it('should skip sections without matches inside', () => {
+		const result = utils.filterSectionsByName(sections, 'general');
+		expect(result).toMatchSnapshot();
+	});
+
+	it('should return empty array if no components of sections match query', () => {
+		const result = utils.filterSectionsByName(sections, 'pizza');
+		expect(result).toEqual([]);
 	});
 });
 

@@ -79,7 +79,7 @@ export function getFilterRegExp(query) {
 		.split('')
 		.join('.*')
 	;
-	return new RegExp(query, 'gi');
+	return new RegExp(query, 'i');
 }
 
 /**
@@ -90,7 +90,26 @@ export function getFilterRegExp(query) {
  * @return {array}
  */
 export function filterComponentsByName(components, query) {
-	return components.filter(({ name }) => name.match(getFilterRegExp(query)));
+	const regExp = getFilterRegExp(query);
+	return components.filter(({ name }) => regExp.test(name));
+}
+
+/**
+ * Fuzzy filters sections by section or component name.
+ *
+ * @param {Array} sections
+ * @param {string} query
+ * @return {Array}
+ */
+export function filterSectionsByName(sections, query) {
+	const regExp = getFilterRegExp(query);
+	return sections
+		.map(section => Object.assign({}, section, {
+			sections: section.sections ? filterSectionsByName(section.sections, query) : [],
+			components: section.components ? filterComponentsByName(section.components, query) : [],
+		}))
+		.filter(section => section.components.length > 0 || section.sections.length > 0 || regExp.test(section.name))
+	;
 }
 
 /**
