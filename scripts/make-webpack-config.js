@@ -13,6 +13,7 @@ const StyleguidistOptionsPlugin = require('./utils/StyleguidistOptionsPlugin');
 
 const isWebpack2 = getWebpackVersion() === 2;
 const sourceDir = path.resolve(__dirname, '../lib');
+const htmlLoader = require.resolve('html-webpack-plugin/lib/loader');
 
 module.exports = function(config, env) {
 	process.env.NODE_ENV = env;
@@ -36,7 +37,7 @@ module.exports = function(config, env) {
 			new StyleguidistOptionsPlugin(config),
 			new HtmlWebpackPlugin({
 				title: config.title,
-				template: config.template,
+				template: `!!${htmlLoader}!${config.template}`,
 				inject: true,
 			}),
 			new webpack.DefinePlugin({
