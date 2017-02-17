@@ -9,6 +9,7 @@ const merge = require('webpack-merge');
 const hasJsonLoader = require('./utils/hasJsonLoader');
 const getWebpackVersion = require('./utils/getWebpackVersion');
 const mergeWebpackConfig = require('./utils/mergeWebpackConfig');
+const getStyleguide = require('../loaders/utils/getStyleguide');
 const StyleguidistOptionsPlugin = require('./utils/StyleguidistOptionsPlugin');
 
 const isWebpack2 = getWebpackVersion() === 2;
@@ -26,8 +27,8 @@ module.exports = function(config, env) {
 		},
 		output: {
 			path: config.styleguideDir,
-			filename: '[name].js',
-			chunkFilename: '[name].js',
+			filename: 'build/[name].js',
+			chunkFilename: 'build/[name].js',
 			libraryTarget: 'umd', // Required for the static rendering
 		},
 		resolve: {
@@ -44,7 +45,10 @@ module.exports = function(config, env) {
 				},
 			}),
 			// Use separate entry point `server` for static HTML
-			new StaticSiteGeneratorPlugin('server', ['/'], { config }, {
+			new StaticSiteGeneratorPlugin('server', ['/'], {
+				config,
+				styleguide: isProd && getStyleguide(config),
+			}, {
 				// Mock window global
 				window: {
 					navigator: {
