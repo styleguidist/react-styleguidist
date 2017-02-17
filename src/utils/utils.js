@@ -1,56 +1,64 @@
-import flatMap from 'lodash/flatMap';
-import isArray from 'lodash/isArray';
-import extend from 'lodash/extend';
 import isNaN from 'lodash/isNaN';
+import GithubSlugger from 'github-slugger';
 
-export function setComponentsNames(components) {
-	components.map((component) => {
-		// Try to detect component name or fallback to file name or directory name.
-		const { module } = component;
-		component.name = (component.props && component.props.displayName) || (
-			module.default
-				? (module.default.displayName || module.default.name)
-				: (module.displayName || module.name)
-		) || component.nameFallback;
-	});
-	return components;
-}
+// Export the singleton instance of GithubSlugger
+export const slugger = new GithubSlugger();
 
-export function globalizeComponents(components) {
-	components.map((component) => {
-		global[component.name] = (!component.props || !component.props.path || component.props.path === 'default')
-			? (component.module.default || component.module)
-			: component.module[component.props.path];
-	});
-}
-
-export function promoteInlineExamples(components) {
-	components.map(c => {
-		if (c.props.example) {
-			c.examples = (c.examples || []).concat(c.props.example);
+export function setSlugs(sections) {
+	return sections.map((section) => {
+		const { name, components, sections } = section;
+		if (name) {
+			section.slug = slugger.slug(section.name);
 		}
+		if (components && components.length) {
+			section.components = setSlugs(components);
+		}
+		if (sections && sections.length) {
+			section.sections = setSlugs(sections);
+		}
+		return section;
 	});
-	return components;
 }
 
-export function flattenChildren(components) {
-	// If any of the components have multiple children, flatten them.
-	return flatMap(components, component => {
-		if (isArray(component.props)) {
-			return component.props.map(props => extend({}, component, { props }));
+/**
+ * Expose component as global variables.
+ *
+ * @param {Object} component
+ */
+export function globalizeComponent(component) {
+	global[component.name] = (!component.props.path || component.props.path === 'default')
+		? (component.module.default || component.module)
+		: component.module[component.props.path];
+}
+
+/**
+ * Do things that are hard or impossible to do in a loader.
+ *
+ * @param {Array} components
+ * @return {Array}
+ */
+export function processComponents(components) {
+	return components.map(component => {
+		// Add .name shortcuts for names instead of .props.displayName.
+		component.name = component.props.displayName;
+
+		// Append @example doclet to all examples
+		if (component.example) {
+			component.examples.push(component.example);
 		}
+
+		globalizeComponent(component);
+
 		return component;
 	});
 }
 
-export function processComponents(components) {
-	components = flattenChildren(components);
-	components = promoteInlineExamples(components);
-	components = setComponentsNames(components);
-	globalizeComponents(components);
-	return components;
-}
-
+/**
+ * Recursively process each component in all sections.
+ *
+ * @param {Array} sections
+ * @return {Array}
+ */
 export function processSections(sections) {
 	return sections.map(section => {
 		section.components = processComponents(section.components || []);
@@ -148,6 +156,6 @@ export function getComponentNameFromHash(hash = window.location.hash) {
  */
 export function filterComponentExamples(component, index) {
 	const newComponent = Object.assign({}, component);
-	newComponent.examples = [component.examples[index]];
+	newComponent.props.examples = [component.props.examples[index]];
 	return newComponent;
 }

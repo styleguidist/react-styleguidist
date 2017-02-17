@@ -2,10 +2,11 @@ exports[`test renderer should render component 1`] = `
 <div
   id="Foo-container">
   <header>
-    <h2
-      id="Foo">
+    <_class
+      level={2}
+      slug="foo">
       Foo
-    </h2>
+    </_class>
     <div>
       foo/bar.js
     </div>
@@ -33,10 +34,11 @@ exports[`test should not render props / methods section if there is no content 1
 <div
   id="Test-container">
   <header>
-    <h2
-      id="Test">
+    <_class
+      level={2}
+      slug="test">
       Test
-    </h2>
+    </_class>
     <div>
       test
     </div>
@@ -55,10 +57,11 @@ exports[`test should render both props and methods section 1`] = `
 <div
   id="Test-container">
   <header>
-    <h2
-      id="Test">
+    <_class
+      level={2}
+      slug="test">
       Test
-    </h2>
+    </_class>
     <div>
       test
     </div>
@@ -115,7 +118,8 @@ exports[`test should render component renderer 1`] = `
   isolated={false}
   methods={false}
   name="Foo"
-  pathLine="foo/bar.js" />
+  pathLine="foo/bar.js"
+  slug="foo" />
 `;
 
 exports[`test should render component renderer for component with methods 1`] = `
@@ -124,11 +128,7 @@ exports[`test should render component renderer for component with methods 1`] = 
     <_class
       text="Bar" />
   }
-  examples={
-    <Examples
-      examples={Array []}
-      name="Foo" />
-  }
+  examples={false}
   isolated={false}
   methods={
     <_class
@@ -152,7 +152,8 @@ exports[`test should render component renderer for component with methods 1`] = 
       } />
   }
   name="Foo"
-  pathLine="foo/bar.js" />
+  pathLine="foo/bar.js"
+  slug="foo" />
 `;
 
 exports[`test should render component renderer for component with props 1`] = `
@@ -161,11 +162,7 @@ exports[`test should render component renderer for component with props 1`] = `
     <_class
       text="Bar" />
   }
-  examples={
-    <Examples
-      examples={Array []}
-      name="Foo" />
-  }
+  examples={false}
   isolated={false}
   methods={false}
   name="Foo"
@@ -183,17 +180,19 @@ exports[`test should render component renderer for component with props 1`] = `
           },
         }
       } />
-  } />
+  }
+  slug="foo" />
 `;
 
 exports[`test should render methods section 1`] = `
 <div
   id="Test-container">
   <header>
-    <h2
-      id="Test">
+    <_class
+      level={2}
+      slug="test">
       Test
-    </h2>
+    </_class>
     <div>
       test
     </div>
@@ -220,10 +219,11 @@ exports[`test should render props section 1`] = `
 <div
   id="Test-container">
   <header>
-    <h2
-      id="Test">
+    <_class
+      level={2}
+      slug="test">
       Test
-    </h2>
+    </_class>
     <div>
       test
     </div>

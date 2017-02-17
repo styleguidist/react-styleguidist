@@ -7,25 +7,27 @@ import { ReactComponentRenderer } from './ReactComponentRenderer';
 
 const component = {
 	name: 'Foo',
+	slug: 'foo',
 	pathLine: 'foo/bar.js',
 	props: {
 		description: 'Bar',
 		methods: [],
+		examples: [
+			{
+				type: 'code',
+				content: '<button>OK</button>',
+				evalInContext: noop,
+			},
+			{
+				type: 'markdown',
+				content: 'Hello *world*!',
+			},
+		],
 	},
-	examples: [
-		{
-			type: 'code',
-			content: '<button>OK</button>',
-			evalInContext: noop,
-		},
-		{
-			type: 'markdown',
-			content: 'Hello *world*!',
-		},
-	],
 };
 const componentWithProps = {
 	name: 'Foo',
+	slug: 'foo',
 	pathLine: 'foo/bar.js',
 	props: {
 		description: 'Bar',
@@ -37,11 +39,12 @@ const componentWithProps = {
 			},
 		},
 		methods: [],
+		examples: [],
 	},
-	examples: [],
 };
 const componentWithMethods = {
 	name: 'Foo',
+	slug: 'foo',
 	pathLine: 'foo/bar.js',
 	props: {
 		description: 'Bar',
@@ -59,8 +62,8 @@ const componentWithMethods = {
 				description: 'Sets the counter to a particular value.',
 			},
 		],
+		examples: [],
 	},
-	examples: [],
 };
 
 it('should render component renderer', () => {
@@ -98,6 +101,7 @@ it('renderer should render component', () => {
 		<ReactComponentRenderer
 			classes={{}}
 			name={component.name}
+			slug={component.slug}
 			pathLine={component.pathLine}
 			description={component.props.description}
 			examples={[
@@ -105,12 +109,12 @@ it('renderer should render component', () => {
 					key={0}
 					index={0}
 					name="Component"
-					code={component.examples[0].content}
-					evalInContext={component.examples[0].evalInContext}
+					code={component.props.examples[0].content}
+					evalInContext={component.props.examples[0].evalInContext}
 				/>,
 				<Markdown
 					key={1}
-					text={component.examples[1].content}
+					text={component.props.examples[1].content}
 				/>,
 			]}
 		/>
@@ -124,11 +128,12 @@ test('should render component not in the isolation mode by default', () => {
 		<ReactComponentRenderer
 			classes={{}}
 			name="Test"
+			slug="test"
 			pathLine="test"
 		/>
 	);
 
-	expect(actual.find('a').text()).toEqual('Open isolated ⇢');
+	expect(actual.find('a:not(a[id])').text()).toEqual('Open isolated ⇢');
 });
 
 test('should render component in isolation mode', () => {
@@ -136,12 +141,13 @@ test('should render component in isolation mode', () => {
 		<ReactComponentRenderer
 			classes={{}}
 			name="Test"
+			slug="Test"
 			pathLine="test"
 			isolated
 		/>
 	);
 
-	expect(actual.find('a').text()).toEqual('← Back');
+	expect(actual.find('a:not(a[id])').text()).toEqual('← Back');
 });
 
 test('should render props section', () => {
@@ -149,6 +155,7 @@ test('should render props section', () => {
 		<ReactComponentRenderer
 			classes={{}}
 			name="Test"
+			slug="test"
 			pathLine="test"
 			props={<div>test</div>}
 		/>
@@ -162,6 +169,7 @@ test('should render methods section', () => {
 		<ReactComponentRenderer
 			classes={{}}
 			name="Test"
+			slug="test"
 			pathLine="test"
 			props={null}
 			methods={<div>test</div>}
@@ -176,6 +184,7 @@ test('should render both props and methods section', () => {
 		<ReactComponentRenderer
 			classes={{}}
 			name="Test"
+			slug="test"
 			pathLine="test"
 			props={<div>prop</div>}
 			methods={<div>method</div>}
@@ -190,6 +199,7 @@ test('should not render props / methods section if there is no content', () => {
 		<ReactComponentRenderer
 			classes={{}}
 			name="Test"
+			slug="test"
 			pathLine="test"
 		/>
 	);

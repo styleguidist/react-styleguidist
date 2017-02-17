@@ -4,12 +4,15 @@ import { ComponentsListRenderer } from './ComponentsListRenderer';
 const components = [
 	{
 		name: 'Button',
+		slug: 'button',
 	},
 	{
 		name: 'Input',
+		slug: 'input',
 	},
 	{
 		name: 'Textarea',
+		slug: 'textarea',
 	},
 ];
 

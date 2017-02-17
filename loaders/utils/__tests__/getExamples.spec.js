@@ -20,9 +20,9 @@ it('getExamples() should return require with examples-loader is component has ex
 	expect(result.filepath.includes('componentName=')).toBe(true);
 });
 
-it('getExamples() should return null if component has no example file', () => {
+it('getExamples() should return an empty array if component has no example file', () => {
 	const examplesFile = 'foo';
 	const result = getExamples(examplesFile);
 
-	expect(result).toBeNull();
+	expect(result).toEqual([]);
 });

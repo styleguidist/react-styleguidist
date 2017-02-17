@@ -1,12 +1,12 @@
 exports[`test should return only components with example file 1`] = `
 Array [
   Object {
-    "examples": "require()",
     "filepath": "components/Button/Button.js",
+    "hasExamples": true,
   },
   Object {
-    "examples": "require()",
     "filepath": "components/Modal/Modal.js",
+    "hasExamples": true,
   },
 ]
 `;

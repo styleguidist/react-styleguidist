@@ -7,6 +7,8 @@ import {
 	filterComponentExamples,
 	filterComponentsInSectionsByExactName,
 	processSections,
+	setSlugs,
+	slugger,
 } from './utils/utils';
 import StyleGuide from 'rsg-components/StyleGuide';
 
@@ -46,6 +48,10 @@ function renderStyleguide() {
 			isolatedExample = true;
 		}
 	}
+
+	// Reset slugger for each render to be deterministic
+	slugger.reset();
+	sections = setSlugs(sections);
 
 	ReactDOM.render(
 		<StyleGuide

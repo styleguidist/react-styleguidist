@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const startCase = require('lodash/startCase');
 const reactDocgen = require('react-docgen');
-const displayNameHandler = require('react-docgen-displayname-handler').default;
+const createDisplayNameHandler = require('react-docgen-displayname-handler').createDisplayNameHandler;
 const findUserWebpackConfig = require('../utils/findUserWebpackConfig');
 const getUserPackageJson = require('../utils/getUserPackageJson');
 const consts = require('../consts');
@@ -63,7 +63,8 @@ module.exports = {
 		example: componentPath => componentPath.replace(/\.jsx?$/, '.examples.md'),
 	},
 	handlers: {
-		default: reactDocgen.defaultHandlers.concat(displayNameHandler),
+		type: 'function',
+		default: componentPath => reactDocgen.defaultHandlers.concat(createDisplayNameHandler(componentPath)),
 	},
 	highlightTheme: {
 		type: 'string',

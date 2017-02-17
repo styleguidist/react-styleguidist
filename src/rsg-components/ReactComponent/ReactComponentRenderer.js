@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Link from 'rsg-components/Link';
+import Heading from 'rsg-components/Heading';
 import Styled from 'rsg-components/Styled';
 
 const styles = ({ font, monospace, light }) => ({
@@ -27,7 +28,8 @@ const styles = ({ font, monospace, light }) => ({
 	},
 	primaryHeading: {
 		position: 'relative',
-		margin: [[0, 0, 7]],
+		marginTop: 0,
+		marginBottom: 7,
 		fontFamily: font,
 		fontSize: 36,
 		fontWeight: 'normal',
@@ -55,6 +57,7 @@ const styles = ({ font, monospace, light }) => ({
 export function ReactComponentRenderer({
 	classes,
 	name,
+	slug,
 	pathLine,
 	description,
 	props,
@@ -65,9 +68,9 @@ export function ReactComponentRenderer({
 	return (
 		<div className={classes.root} id={name + '-container'}>
 			<header className={classes.header}>
-				<h2 className={classes.primaryHeading} id={name}>
+				<Heading level={2} className={classes.primaryHeading} slug={slug}>
 					{name}
-				</h2>
+				</Heading>
 				<div className={classes.pathLine}>{pathLine}</div>
 				<div className={classes.isolatedLink}>
 					{isolated ? (
@@ -100,6 +103,7 @@ export function ReactComponentRenderer({
 ReactComponentRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	name: PropTypes.string.isRequired,
+	slug: PropTypes.string.isRequired,
 	pathLine: PropTypes.string.isRequired,
 	description: PropTypes.node,
 	props: PropTypes.node,

@@ -120,15 +120,15 @@ module.exports = {
 
 #### `handlers`
 
-Type: `Function[]`, optional, default: [[react-docgen-displayname-handler](https://github.com/nerdlabs/react-docgen-displayname-handler)]
+Type: `Function`, optional, default: [[react-docgen-displayname-handler](https://github.com/nerdlabs/react-docgen-displayname-handler)]
 
-Functions used to process the discovered components and generate documentation objects. Default behaviors include discovering component documentation blocks, prop types, and defaults. If setting this property, it is best to build from the default `react-docgen` handler list, such as in the example below. See the [react-docgen handler documentation](https://github.com/reactjs/react-docgen#handlers) for more information about handlers.
+Function that returns functions used to process the discovered components and generate documentation objects. Default behaviors include discovering component documentation blocks, prop types, and defaults. If setting this property, it is best to build from the default `react-docgen` handler list, such as in the example below. See the [react-docgen handler documentation](https://github.com/reactjs/react-docgen#handlers) for more information about handlers.
 
 Also note that the default handler, `react-docgen-displayname-handler` should be included to better support higher order components.
 
 ```javascript
 module.exports = {
-  handlers: require('react-docgen').defaultHandlers.concat(
+  handlers: componentPath => require('react-docgen').defaultHandlers.concat(
     (documentation, path) => {
       // Calculate a display name for components based upon the declared class name.
       if (path.value.type === 'ClassDeclaration' && path.value.id.type === 'Identifier') {
@@ -147,7 +147,7 @@ module.exports = {
     },
 
     // To better support higher order components
-    require('react-docgen-displayname-handler').default,
+    require('react-docgen-displayname-handler').createDisplayNameHandler(componentPath),
   )
 };
 ```

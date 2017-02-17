@@ -3,21 +3,21 @@ exports[`test should render sections with nested components 1`] = `
   <li
     className="">
     <_class
-      href="#Button">
+      href="#button">
       Button
     </_class>
   </li>
   <li
     className="">
     <_class
-      href="#Input">
+      href="#input">
       Input
     </_class>
   </li>
   <li
     className="">
     <_class
-      href="#Textarea">
+      href="#textarea">
       Textarea
     </_class>
   </li>

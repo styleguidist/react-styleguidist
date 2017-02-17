@@ -6,16 +6,17 @@ import Examples from 'rsg-components/Examples';
 import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponentRenderer';
 
 export default function ReactComponent({ component }, { isolatedComponent = false }) {
-	const { name, pathLine, examples } = component;
-	const { description, props, methods } = component.props;
+	const { name, slug, pathLine } = component;
+	const { description, props, examples, methods } = component.props;
 	return (
 		<ReactComponentRenderer
 			name={name}
+			slug={slug}
 			pathLine={pathLine}
 			description={description && <Markdown text={description} />}
 			props={props && <Props props={props} />}
 			methods={methods.length > 0 && <Methods methods={methods} />}
-			examples={examples && <Examples examples={examples} name={name} />}
+			examples={examples.length > 0 && <Examples examples={examples} name={name} />}
 			isolated={isolatedComponent}
 		/>
 	);

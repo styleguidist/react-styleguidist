@@ -9,7 +9,7 @@
 module.exports = function getAllComponentsWithExamples(sections) {
 	return sections.reduce((components, section) => {
 		if (section.components) {
-			components = components.concat(section.components.filter(component => component.examples));
+			components = components.concat(section.components.filter(component => component.hasExamples));
 		}
 
 		if (section.sections) {
