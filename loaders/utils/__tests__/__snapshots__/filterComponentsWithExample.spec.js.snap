@@ -9,8 +9,8 @@ Array [
   Object {
     "components": Array [
       Object {
-        "examples": "require()",
         "filepath": "components/Button/Button.js",
+        "hasExamples": "require()",
       },
     ],
     "name": "Components",
@@ -23,8 +23,8 @@ Array [
       Object {
         "components": Array [
           Object {
-            "examples": "require()",
             "filepath": "components/Modal/Modal.js",
+            "hasExamples": "require()",
           },
         ],
         "name": "Nested",

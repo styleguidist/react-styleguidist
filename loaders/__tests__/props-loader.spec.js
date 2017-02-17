@@ -4,8 +4,8 @@ import config from '../../scripts/schemas/config';
 import propsLoader from '../props-loader';
 
 const _styleguidist = {
-  handlers: config.handlers.default,
-  getExampleFilename: config.getExampleFilename.default,
+	handlers: config.handlers.default,
+	getExampleFilename: config.getExampleFilename.default,
 };
 
 it('should return valid, parsable JS', () => {
@@ -38,7 +38,7 @@ it('should attach examples from Markdown file', () => {
 	const file = './test/components/Button/Button.js';
 	const result = propsLoader.call({
 		request: file,
-		options,
+		_styleguidist,
 	}, readFileSync(file, 'utf8'));
 	expect(result).toBeTruthy();
 
