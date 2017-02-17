@@ -20,6 +20,16 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 		lineHeight: 1.5,
 	},
 	a: linkStyles({ link, linkHover }).link,
+	h1: {
+		composes: '$para',
+		fontSize: 36,
+		fontWeight: 'normal',
+	},
+	h2: {
+		composes: '$para',
+		fontSize: 32,
+		fontWeight: 'normal',
+	},
 	h3: {
 		composes: '$para',
 		fontSize: 26,
