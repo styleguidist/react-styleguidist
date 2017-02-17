@@ -4,7 +4,6 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
 const merge = require('webpack-merge');
 const hasJsonLoader = require('./utils/hasJsonLoader');
@@ -14,7 +13,6 @@ const StyleguidistOptionsPlugin = require('./utils/StyleguidistOptionsPlugin');
 
 const isWebpack2 = getWebpackVersion() === 2;
 const sourceDir = path.resolve(__dirname, '../lib');
-const htmlLoader = require.resolve('html-webpack-plugin/lib/loader');
 
 module.exports = function(config, env) {
 	process.env.NODE_ENV = env;
@@ -24,11 +22,13 @@ module.exports = function(config, env) {
 	let webpackConfig = {
 		entry: {
 			main: [],
+			server: path.join(__dirname, 'render.js'), // Entry point for static rendering
 		},
 		output: {
 			path: config.styleguideDir,
 			filename: '[name].js',
 			chunkFilename: '[name].js',
+			libraryTarget: 'umd', // Required for the static rendering
 		},
 		resolve: {
 			extensions: isWebpack2 ? ['.js', '.jsx', '.json'] : ['.js', '.jsx', '.json', ''],
@@ -43,6 +43,15 @@ module.exports = function(config, env) {
 					NODE_ENV: JSON.stringify(env),
 				},
 			}),
+			// Use separate entry point `server` for static HTML
+			new StaticSiteGeneratorPlugin('server', ['/'], { config }, {
+				// Mock window global
+				window: {
+					navigator: {
+						userAgent: 'node',
+					},
+				},
+			}),
 		],
 		performance: {
 			hints: false,
@@ -53,26 +62,9 @@ module.exports = function(config, env) {
 		webpackConfig = merge(webpackConfig, {
 			devtool: false,
 			cache: false,
-			entry: {
-				// Entry point for static rendering
-				server: path.join(__dirname, 'render.js'),
-			},
-			output: {
-				// Required for the static rendering
-				libraryTarget: 'umd',
-			},
 			plugins: [
 				// Do not handle CSS loading when building static HTML
 				new webpack.NormalModuleReplacementPlugin(/\.css$/, 'node-noop'),
-				// Use separate entry point `server` for static HTML
-				new StaticSiteGeneratorPlugin('server', ['/'], {}, {
-					// Mock window global
-					window: {
-						navigator: {
-							userAgent: 'node',
-						},
-					},
-				}),
 				new webpack.optimize.OccurrenceOrderPlugin(),
 				new webpack.optimize.UglifyJsPlugin({
 					compress: {
@@ -108,11 +100,6 @@ module.exports = function(config, env) {
 			},
 			plugins: [
 				new webpack.HotModuleReplacementPlugin(),
-				new HtmlWebpackPlugin({
-					title: config.title,
-					template: `!!${htmlLoader}!${config.template}`,
-					inject: true,
-				}),
 			],
 		});
 	}
