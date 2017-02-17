@@ -58,6 +58,7 @@
     "loader-utils": "^0.2.16",
     "lodash": "^4.17.4",
     "minimist": "^1.2.0",
+    "node-noop": "^1.0.0",
     "pretty-format": "^18.1.0",
     "react-codemirror": "^0.3.0",
     "react-dev-utils": "^0.5.0",
@@ -67,6 +68,8 @@
     "remark": "^6.2.0",
     "remark-parse": "^2.2.0",
     "semver-utils": "^1.1.1",
+    "static-html-webpack-plugin": "^1.2.0",
+    "static-site-generator-webpack-plugin": "^3.1.0",
     "style-loader": "^0.13.1",
     "to-ast": "^1.0.0",
     "unified": "^5.1.0",
@@ -110,7 +113,7 @@
     "semantic-release": "^6.3.2",
     "semantic-release-tamia": "^1.1.1",
     "strip-shebang": "^1.0.2",
-    "webpack": "2.2.1"
+    "webpack": "^2.2.1"
   },
   "scripts": {
     "pretest": "npm run lint",

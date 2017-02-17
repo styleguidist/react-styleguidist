@@ -77,5 +77,5 @@ if (module.hot) {
 }
 
 module.exports = ${generate(toAst(styleguide))}
-	`;
+`;
 };
