@@ -15,8 +15,8 @@ export default function ReactComponent({ component }, { isolatedComponent = fals
 			pathLine={pathLine}
 			description={description && <Markdown text={description} />}
 			props={props && <Props props={props} />}
-			methods={methods.length > 0 && <Methods methods={methods} />}
-			examples={examples.length > 0 && <Examples examples={examples} name={name} />}
+			methods={methods && methods.length > 0 && <Methods methods={methods} />}
+			examples={examples && examples.length > 0 && <Examples examples={examples} name={name} />}
 			isolated={isolatedComponent}
 		/>
 	);

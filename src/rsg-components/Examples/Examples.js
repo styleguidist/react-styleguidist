@@ -5,7 +5,7 @@ import Markdown from 'rsg-components/Markdown';
 export default function Examples({ examples, name }, { codeKey }) {
 	return (
 		<div>
-			{examples.map((example, index) => {
+			{Array.isArray(examples) && examples.map((example, index) => {
 				switch (example.type) {
 					case 'code':
 						return (
