@@ -2923,7 +2923,7 @@ etag@~1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.7.0.tgz#03d30b5f67dd6e632d2945d30d6652731a34d5d8"
 
-eval@^0.1.0, eval@^0.1.1:
+eval@^0.1.0:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/eval/-/eval-0.1.2.tgz#9f7103284c105a66df4030b2b3273165837013da"
   dependencies:
@@ -7113,13 +7113,6 @@ staged-git-files@0.0.4:
 state-toggle@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/state-toggle/-/state-toggle-1.0.0.tgz#d20f9a616bb4f0c3b98b91922d25b640aa2bc425"
-
-static-html-webpack-plugin@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/static-html-webpack-plugin/-/static-html-webpack-plugin-1.2.0.tgz#4012fd61e620494b05d912b08ac2850b98e336c5"
-  dependencies:
-    eval "^0.1.1"
-    object-assign "^4.0.1"
 
 static-site-generator-webpack-plugin@^3.1.0:
   version "3.1.0"
