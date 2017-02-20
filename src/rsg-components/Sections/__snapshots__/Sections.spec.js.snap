@@ -1,5 +1,5 @@
 exports[`test render should render component 1`] = `
-<article>
+<section>
   <Section
     section={
       Object {
@@ -42,7 +42,7 @@ exports[`test render should render component 1`] = `
         ],
       }
     } />
-</article>
+</section>
 `;
 
 exports[`test should render component renderer 1`] = `

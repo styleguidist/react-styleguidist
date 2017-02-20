@@ -1,3 +1,13 @@
-exports[`test should render Markdown in span in inline mode 1`] = `"<span class=\"base-2877968375\">Hello <em class=\"em-2233019579\">world</em>!</span>"`;
+exports[`Markdown should render Markdown in span in inline mode 1`] = `"<span class=\"base-2877968375\">Hello <em class=\"em-2233019579\">world</em>!</span>"`;
 
-exports[`test should render Markdown with custom CSS classes 1`] = `"<div><h3 class=\"h3-2951916027\">Header</h3><p class=\"p-1681777157\">Text with <em class=\"em-2233019579\">some</em> <strong class=\"strong-2282145835\">formatting</strong> and a <a class=\"a-219704402\" href=\"/foo\">link</a>.</p><p class=\"p-1681777157\"><img class=\"img-2656340033\" alt=\"Image\" src=\"/bar.png\"></p></div>"`;
+exports[`Markdown should render Markdown with custom CSS classes 1`] = `"<div><h1 class=\"h1-1333784724\">Header</h1><p class=\"p-1681777157\">Text with <em class=\"em-2233019579\">some</em> <strong class=\"strong-2282145835\">formatting</strong> and a <a class=\"a-219704402\" href=\"/foo\">link</a>.</p><p class=\"p-1681777157\"><img class=\"img-2656340033\" alt=\"Image\" src=\"/bar.png\"></p></div>"`;
+
+exports[`Markdown should render check-lists correctly 1`] = `"<ul class=\"ul-1681777157\"><li><input type=\"checkbox\" disabled>list 1</li><li><input type=\"checkbox\" disabled>list 2</li><li><input type=\"checkbox\" checked disabled>list 3</li></ul>"`;
+
+exports[`Markdown should render headings correctly 1`] = `"<div><h1 class=\"h1-1333784724\">one</h1><h2 class=\"h2-365728764\">two</h2><h3 class=\"h3-2951916027\">three</h3><h4 class=\"h4-370263229\">four</h4><h5 class=\"h5-3491702579\">five</h5><h6 class=\"h6-1863710277\">six</h6></div>"`;
+
+exports[`Markdown should render mixed nested lists correctly 1`] = `"<ul class=\"ul-1681777157\"><li class=\"li-4011715572\">list 1</li><li class=\"li-4011715572\"><p class=\"p-1681777157\">list 2</p><ol class=\"ol-65688532\" start=\"1\"><li class=\"li-4011715572\">Sub-list</li><li class=\"li-4011715572\">Sub-list</li><li class=\"li-4011715572\">Sub-list</li></ol></li><li class=\"li-4011715572\">list 3</li></ul>"`;
+
+exports[`Markdown should render ordered lists correctly 1`] = `"<ol class=\"ol-65688532\" start=\"1\"><li class=\"li-4011715572\">list</li><li class=\"li-4011715572\">item</li><li class=\"li-4011715572\">three</li></ol>"`;
+
+exports[`Markdown should render unordered lists correctly 1`] = `"<ul class=\"ul-1681777157\"><li class=\"li-4011715572\">list</li><li class=\"li-4011715572\">item</li><li class=\"li-4011715572\">three</li></ul>"`;

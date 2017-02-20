@@ -1,7 +1,6 @@
 /*
  Based on https://github.com/yaycmyk/markdown-to-jsx
 
- - Increase level of heading by 2.
  - Server-rendered code highlight.
  - Custom className for code highlight.
  */
@@ -245,10 +244,8 @@ function getHTMLNodeTypeFromASTNodeType(node) {
 		case 'footnoteReference':
 			return 'a';
 
-		// Increase level of headings
 		case 'heading':
-			const depth = Math.min(node.depth + 2, 6);
-			return `h${depth}`;
+			return `h${node.depth}`;
 
 		case 'image':
 		case 'imageReference':
@@ -428,7 +425,7 @@ export default function markdownToJSX(markdown, { overrides = {} } = {}) {
 			const className = get(overrides, 'pre.props.className');
 			return (
 				<pre key={key} className={className}>
-					<code className={`lang-${ast.lang}`} dangerouslySetInnerHTML={{ __html: ast.value }} ></code>
+					<code className={`lang-${ast.lang}`} dangerouslySetInnerHTML={{ __html: ast.value }} />
 				</pre>
 			);
 		}
