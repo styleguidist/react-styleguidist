@@ -2,9 +2,13 @@ import isNaN from 'lodash/isNaN';
 import GithubSlugger from 'github-slugger';
 
 // Export the singleton instance of GithubSlugger
-export const slugger = new GithubSlugger();
+const slugger = new GithubSlugger();
 
-export function setSlugs(sections) {
+export function setSlugs(sections, reset = false) {
+	if (reset) {
+		slugger.reset();
+	}
+
 	return sections.map((section) => {
 		const { name, components, sections } = section;
 		if (name) {

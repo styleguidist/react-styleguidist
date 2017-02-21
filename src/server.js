@@ -1,28 +1,31 @@
-'use strict';
+import React from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import {
+	processSections,
+	setSlugs,
+} from './utils/utils';
+import HtmlDocument from 'rsg-components/HtmlDocument';
 
-const React = require('react');
-const { renderToStaticMarkup } = require('react-dom/server');
-const HtmlDocument = require('rsg-components/HtmlDocument').default;
-
-module.exports = function({ assets, config, styleguide }) {
+module.exports = function({ assets, config }) {
 	let content = <h1>Loading your styleguide in development mode...</h1>; // TODO: Render Welcome screen
 
 	// When building for production render the styleguide HTML completely
-	if (styleguide) {
+	if (process.env.NODE_ENV === 'production') {
+		const styleguide = require('!!../loaders/styleguide-loader!./index.js');
+		const sections = setSlugs(processSections(styleguide.sections), true);
 		const StyleGuide = require('rsg-components/StyleGuide').default;
 		content = (
 			<StyleGuide
 				codeKey={0}
 				config={config}
 				welcomeScreen={styleguide.welcomeScreen}
-				sections={styleguide.sections}
+				sections={sections}
 				isolatedComponent={false}
 				isolatedExample={false}
 			/>
 		);
 	}
 
-	// TODO: Handle CSS and JS assets separately
 	return renderToStaticMarkup(
 		<HtmlDocument
 			title={config.title}

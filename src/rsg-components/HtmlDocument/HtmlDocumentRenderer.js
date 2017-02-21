@@ -11,6 +11,7 @@ function getScrtips(assets) {
 }
 
 function HtmlDocumentRenderer({ assets = {}, children, title }) {
+	// TODO: Handle CSS and JS assets separately
 	return (
 		<HTMLDocument
 			title={ title }

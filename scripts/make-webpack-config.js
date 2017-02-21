@@ -9,21 +9,21 @@ const merge = require('webpack-merge');
 const hasJsonLoader = require('./utils/hasJsonLoader');
 const getWebpackVersion = require('./utils/getWebpackVersion');
 const mergeWebpackConfig = require('./utils/mergeWebpackConfig');
-const getStyleguide = require('../loaders/utils/getStyleguide');
 const StyleguidistOptionsPlugin = require('./utils/StyleguidistOptionsPlugin');
 
 const isWebpack2 = getWebpackVersion() === 2;
 const sourceDir = path.resolve(__dirname, '../lib');
 
-module.exports = function(config, env) {
+module.exports = function(config, env, isServer) {
 	process.env.NODE_ENV = env;
 
 	const isProd = env === 'production';
+	isServer = isServer || false;
 
 	let webpackConfig = {
 		entry: {
 			main: [],
-			server: path.join(__dirname, 'render.js'), // Entry point for static rendering
+			server: path.join(sourceDir, 'server.js'), // Entry point for static rendering
 		},
 		output: {
 			path: config.styleguideDir,
@@ -47,7 +47,6 @@ module.exports = function(config, env) {
 			// Use separate entry point `server` for static HTML
 			new StaticSiteGeneratorPlugin('server', ['/'], {
 				config,
-				styleguide: isProd && getStyleguide(config),
 			}, {
 				// Mock window global
 				window: {
@@ -67,8 +66,6 @@ module.exports = function(config, env) {
 			devtool: false,
 			cache: false,
 			plugins: [
-				// Do not handle CSS loading when building static HTML
-				new webpack.NormalModuleReplacementPlugin(/\.css$/, 'node-noop'),
 				new webpack.optimize.OccurrenceOrderPlugin(),
 				new webpack.optimize.UglifyJsPlugin({
 					compress: {
@@ -146,6 +143,15 @@ module.exports = function(config, env) {
 
 	if (config.updateWebpackConfig) {
 		webpackConfig = config.updateWebpackConfig(webpackConfig, env);
+	}
+
+	if (isServer) {
+		webpackConfig = merge(webpackConfig, {
+			plugins: [
+				// Do not handle CSS loading when building static HTML
+				new webpack.NormalModuleReplacementPlugin(/\.css$/, 'node-noop'),
+			],
+		});
 	}
 
 	return webpackConfig;
