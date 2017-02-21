@@ -1,25 +1,98 @@
 import React from 'react';
 import Markdown from './Markdown';
 
-it('should render Markdown with custom CSS classes', () => {
-	const markdown = `
+describe('Markdown', () => {
+	it('should render Markdown with custom CSS classes', () => {
+		const markdown = `
 # Header
 
 Text with *some* **formatting** and a [link](/foo).
 
 ![Image](/bar.png)`;
-	const actual = render(
-		<Markdown text={markdown} />
-	);
+		const actual = render(
+			<Markdown text={markdown} />
+		);
 
-	expect(actual.html()).toMatchSnapshot();
-});
+		expect(actual.html()).toMatchSnapshot();
+	});
 
-it('should render Markdown in span in inline mode', () => {
-	const markdown = 'Hello *world*!';
-	const actual = render(
-		<Markdown text={markdown} inline />
-	);
+	it('should render Markdown in span in inline mode', () => {
+		const markdown = 'Hello *world*!';
+		const actual = render(
+			<Markdown text={markdown} inline />
+		);
 
-	expect(actual.html()).toMatchSnapshot();
+		expect(actual.html()).toMatchSnapshot();
+	});
+
+	it('should render headings correctly', () => {
+		const markdown = `
+# one
+## two
+### three
+#### four
+##### five
+###### six
+`;
+		const actual = render(
+			<Markdown text={markdown} />
+		);
+
+		expect(actual.html()).toMatchSnapshot();
+	});
+
+	it('should render unordered lists correctly', () => {
+		const markdown = `
+* list
+* item
+* three
+`;
+		const actual = render(
+			<Markdown text={markdown} />
+		);
+
+		expect(actual.html()).toMatchSnapshot();
+	});
+
+	it('should render ordered lists correctly', () => {
+		const markdown = `
+1. list
+1. item
+1. three
+`;
+		const actual = render(
+			<Markdown text={markdown} />
+		);
+
+		expect(actual.html()).toMatchSnapshot();
+	});
+
+	it('should render check-lists correctly', () => {
+		const markdown = `
+* [ ] list 1
+* [ ] list 2
+* [x] list 3
+`;
+		const actual = render(
+			<Markdown text={markdown} />
+		);
+
+		expect(actual.html()).toMatchSnapshot();
+	});
+
+	it('should render mixed nested lists correctly', () => {
+		const markdown = `
+* list 1
+* list 2
+  1. Sub-list
+  1. Sub-list
+  1. Sub-list
+* list 3
+`;
+		const actual = render(
+			<Markdown text={markdown} />
+		);
+
+		expect(actual.html()).toMatchSnapshot();
+	});
 });

@@ -4,7 +4,7 @@ import Markdown from 'rsg-components/Markdown';
 
 export default function Examples({ examples, name }, { codeKey }) {
 	return (
-		<div>
+		<article>
 			{Array.isArray(examples) && examples.map((example, index) => {
 				switch (example.type) {
 					case 'code':
@@ -28,7 +28,7 @@ export default function Examples({ examples, name }, { codeKey }) {
 						return null;
 				}
 			})}
-		</div>
+		</article>
 	);
 }
 Examples.propTypes = {

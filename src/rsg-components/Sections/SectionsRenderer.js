@@ -2,9 +2,9 @@ import React, { PropTypes } from 'react';
 
 export default function SectionsRenderer({ children }) {
 	return (
-		<article>
+		<section>
 			{children}
-		</article>
+		</section>
 	);
 }
 
