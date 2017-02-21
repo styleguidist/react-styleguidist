@@ -20,7 +20,7 @@ test('createServer should return an object containing a production Webpack compi
 	const result = createServer(config, 'production');
 	expect(result).toBeTruthy();
 	expect(result.compiler).toBeTruthy();
-	expect(result.compiler.options.output.filename).toBe('build/bundle.js');
+	expect(result.compiler.options.output.filename).toBe('build/[name].js');
 	expect(result.compiler.options.cache).toBeFalsy();
 });
 
@@ -30,6 +30,6 @@ test('createServer should return an object containing a development Webpack comp
 	const result = createServer(config, 'development');
 	expect(result).toBeTruthy();
 	expect(result.compiler).toBeTruthy();
-	expect(result.compiler.options.output.filename).toBe('build/bundle.js');
+	expect(result.compiler.options.output.filename).toBe('build/[name].js');
 	expect(result.compiler.options.cache).toBeTruthy();
 });

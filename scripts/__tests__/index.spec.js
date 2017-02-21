@@ -24,7 +24,7 @@ it('makeWebpackConfig should return development Webpack config', () => {
 	const api = styleguidist();
 	const result = api.makeWebpackConfig('development');
 	expect(result).toBeTruthy();
-	expect(result.output.filename).toBe('build/bundle.js');
+	expect(result.output.filename).toBe('build/[name].js');
 	expect(result.cache).toBe(true);
 });
 
@@ -32,7 +32,7 @@ it('makeWebpackConfig should return production Webpack config', () => {
 	const api = styleguidist();
 	const result = api.makeWebpackConfig('production');
 	expect(result).toBeTruthy();
-	expect(result.output.filename).toBe('build/bundle.js');
+	expect(result.output.filename).toBe('build/[name].js');
 	expect(result.cache).toBe(false);
 });
 
