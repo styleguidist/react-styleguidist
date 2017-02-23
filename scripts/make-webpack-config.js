@@ -138,7 +138,7 @@ module.exports = function(config, env, isServer) {
 		webpackConfig = merge(webpackConfig, {
 			plugins: [
 				// Do not handle CSS loading when building static HTML
-				new webpack.NormalModuleReplacementPlugin(/\.css$/, 'node-noop'),
+				new webpack.NormalModuleReplacementPlugin(/\.css$/, 'lodash/noop'),
 				// Use separate entry point `server` for static HTML
 				new StaticSiteGeneratorPlugin('server', ['/'], {
 					config,

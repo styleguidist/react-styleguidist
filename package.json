@@ -57,7 +57,6 @@
     "loader-utils": "^0.2.16",
     "lodash": "^4.17.4",
     "minimist": "^1.2.0",
-    "node-noop": "^1.0.0",
     "pretty-format": "^18.1.0",
     "react-codemirror": "^0.3.0",
     "react-dev-utils": "^0.5.0",
