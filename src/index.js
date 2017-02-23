@@ -58,6 +58,9 @@ function renderStyleguide() {
 		/>,
 		document.getElementById('app')
 	);
+
+	// TODO Remove server-side CSS here.
+	// JSS will generate a new one.
 }
 
 window.addEventListener('hashchange', renderStyleguide);
