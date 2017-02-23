@@ -26,7 +26,7 @@ module.exports = function({ assets, config }) {
 		);
 	}
 
-	return '<!DOCTYPE html>\n' + renderToStaticMarkup(
+	return '<!doctype html>' + renderToStaticMarkup(
 		<HtmlDocument
 			title={config.title}
 			assets={assets}

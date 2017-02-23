@@ -16,9 +16,6 @@ function HtmlDocument({ assets = {}, children, title }) {
 		<HTMLDocument
 			title={ title }
 			scripts={getScrtips(assets)}
-			metatags={[
-				{ name: 'charset', content: 'utf-8' },
-			]}
 		>
 			{ children }
 		</HTMLDocument>

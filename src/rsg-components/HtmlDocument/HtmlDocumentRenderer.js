@@ -7,6 +7,9 @@ function HtmlDocumentRenderer({ children, scripts, stylesheets, ...props }) {
 			{...props}
 			scripts={scripts}
 			stylesheets={stylesheets}
+			metatags={[
+				{ charSet: 'utf-8' },
+			]}
 		>
 			{ children }
 		</HTMLDocument>
