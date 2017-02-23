@@ -71,7 +71,7 @@
     "to-ast": "^1.0.0",
     "unified": "^5.1.0",
     "unist-util-visit": "^1.1.1",
-    "webpack-dev-server": "^2.3.0",
+    "webpack-dev-server": "^1.16.3",
     "webpack-merge": "^2.6.1"
   },
   "peerDependencies": {
