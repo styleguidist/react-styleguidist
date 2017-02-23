@@ -1,38 +1,43 @@
 import React from 'react';
-import Document from './HtmlDocumentRenderer';
+import HtmlDocument from './HtmlDocument';
+import Renderer from './HtmlDocumentRenderer';
 
-it('should render children', () => {
-	const actual = render(
-		<Document title="Test document">
-			<span>Hello</span>
-		</Document>
-	);
+describe('HtmlDocument', () => {
+	it('should include assets', () => {
+		const actual = shallow(
+			<HtmlDocument
+				title="Test document"
+				assets={{ main: '/main.js' }}
+			>
+				<span>Hello</span>
+			</HtmlDocument>
+		);
 
-	expect(actual).toMatchSnapshot();
+		expect(actual.prop('scripts')).toContain('/main.js');
+	});
+
+	it('should not include server assets', () => {
+		const actual = shallow(
+			<HtmlDocument
+				title="Test document"
+				assets={{ main: 'build/main.js', server: 'build/server.js' }}
+			>
+				<span>Hello</span>
+			</HtmlDocument>
+		);
+
+		expect(actual.prop('scripts')).not.toContain('server');
+	});
 });
 
-it('should include assets in head', () => {
-	const actual = shallow(
-		<Document
-			title="Test document"
-			assets={{ main: '/main.js' }}
-		>
-			<span>Hello</span>
-		</Document>
-	);
+describe('HtmlDocumentRenderer', () => {
+	it('should render children', () => {
+		const actual = render(
+			<Renderer title="Test document">
+				<span>Hello</span>
+			</Renderer>
+		);
 
-	expect(actual.prop('scripts')).toContain('/main.js');
-});
-
-it('should not include server assets', () => {
-	const actual = shallow(
-		<Document
-			title="Test document"
-			assets={{ main: 'build/main.js', server: 'build/server.js' }}
-		>
-			<span>Hello</span>
-		</Document>
-	);
-
-	expect(actual.prop('scripts')).not.toContain('server');
+		expect(actual).toMatchSnapshot();
+	});
 });

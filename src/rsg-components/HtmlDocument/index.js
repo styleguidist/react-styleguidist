@@ -1,1 +1,1 @@
-export { default } from './HtmlDocumentRenderer';
+export { default } from './HtmlDocument';

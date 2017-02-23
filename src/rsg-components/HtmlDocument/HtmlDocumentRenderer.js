@@ -1,24 +1,12 @@
 import React, { PropTypes } from 'react';
 import HTMLDocument from 'react-html-document';
 
-function getScrtips(assets) {
-	return Object
-		.keys(assets)
-		.map(key => {
-			return assets[key].indexOf('server') === -1 ? assets[key] : null;
-		})
-		.filter(Boolean);
-}
-
-function HtmlDocumentRenderer({ assets = {}, children, title }) {
-	// TODO: Handle CSS and JS assets separately
+function HtmlDocumentRenderer({ children, scripts, stylesheets, ...props }) {
 	return (
 		<HTMLDocument
-			title={ title }
-			scripts={getScrtips(assets)}
-			metatags={[
-				{ name: 'charset', content: 'utf-8' },
-			]}
+			{...props}
+			scripts={scripts}
+			stylesheets={stylesheets}
 		>
 			{ children }
 		</HTMLDocument>
@@ -26,7 +14,8 @@ function HtmlDocumentRenderer({ assets = {}, children, title }) {
 }
 
 HtmlDocumentRenderer.propTypes = {
-	assets: PropTypes.object,
+	scripts: PropTypes.array,
+	stylesheets: PropTypes.array,
 	children: PropTypes.node,
 	title: PropTypes.string.isRequired,
 };

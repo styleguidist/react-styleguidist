@@ -1,12 +1,9 @@
-exports[`test should render children 1`] = `
+exports[`HtmlDocumentRenderer should render children 1`] = `
 <html>
   <head>
     <title>
       Test document
     </title>
-    <meta
-      content="utf-8"
-      name="charset" />
   </head>
   <body>
     <div
