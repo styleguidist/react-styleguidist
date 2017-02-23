@@ -1,4 +1,5 @@
 import jss from 'jss';
+import sheets from './sheetsRegistry';
 
 const styles = {
 	// Global styles
@@ -28,5 +29,6 @@ const styles = {
 };
 
 // Attach styles to body
-const { body } = jss.createStyleSheet(styles).attach().classes;
-document.body.classList.add(body);
+const sheet = jss.createStyleSheet(styles).attach();
+sheets.add(sheet);
+document.body.classList.add(sheet.classes.body);

@@ -5,6 +5,7 @@ import {
 	setSlugs,
 } from './utils/utils';
 import HtmlDocument from 'rsg-components/HtmlDocument';
+import sheets from './styles/sheetsRegistry';
 
 module.exports = function({ assets, config }) {
 	let content = <h1>Loading your styleguide in development mode...</h1>; // TODO: Render Welcome screen
@@ -25,6 +26,12 @@ module.exports = function({ assets, config }) {
 			/>
 		);
 	}
+
+	// TODO implement a proper way to pass inline styles.
+	// This is just pseudo code.
+	assets.stylesheets = [
+		{ inline: sheets.toString() },
+	];
 
 	return '<!doctype html>' + renderToStaticMarkup(
 		<HtmlDocument
