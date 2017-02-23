@@ -6,7 +6,10 @@ const makeWebpackConfig = require('./make-webpack-config');
 
 module.exports = function createServer(config, env) {
 	const webpackConfig = makeWebpackConfig(config, env);
-	const compiler = webpack(webpackConfig);
+	const compiler = webpack([
+		makeWebpackConfig(config, env, true),
+		webpackConfig,
+	]);
 
 	const devServer = new WebpackDevServer(compiler, {
 		noInfo: true,

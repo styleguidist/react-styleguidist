@@ -44,17 +44,6 @@ module.exports = function(config, env, isServer) {
 					NODE_ENV: JSON.stringify(env),
 				},
 			}),
-			// Use separate entry point `server` for static HTML
-			new StaticSiteGeneratorPlugin('server', ['/'], {
-				config,
-			}, {
-				// Mock window global
-				window: {
-					navigator: {
-						userAgent: 'node',
-					},
-				},
-			}),
 		],
 		performance: {
 			hints: false,
@@ -150,6 +139,17 @@ module.exports = function(config, env, isServer) {
 			plugins: [
 				// Do not handle CSS loading when building static HTML
 				new webpack.NormalModuleReplacementPlugin(/\.css$/, 'node-noop'),
+				// Use separate entry point `server` for static HTML
+				new StaticSiteGeneratorPlugin('server', ['/'], {
+					config,
+				}, {
+					// Mock window global
+					window: {
+						navigator: {
+							userAgent: 'node',
+						},
+					},
+				}),
 			],
 		});
 	}

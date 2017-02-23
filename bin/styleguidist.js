@@ -52,6 +52,28 @@ function printStyleguidistError(errors) {
 	process.exit(1);
 }
 
+function printCompilationDone(stats, isServer) {
+	isServer = isServer || false;
+	const messages = formatWebpackMessages(stats.toJson({}, true));
+
+	if (isServer && !messages.errors.length && !messages.warnings.length) {
+		console.log(chalk.green('Compiled successfully!'));
+		console.log();
+	}
+
+	// If errors exist, only show errors.
+	if (messages.errors.length) {
+		printStyleguidistError(messages.errors);
+		printErrors('Failed to compile.', messages.errors, stats.compilation.errors, chalk.red);
+		return;
+	}
+
+	// Show warnings if no errors were found.
+	if (messages.warnings.length) {
+		printErrors('Compiled with warnings.', messages.warnings, stats.compilation.warnings, chalk.yellow);
+	}
+}
+
 function verbose(header, object) {
 	/* istanbul ignore if */
 	if (argv.verbose) {
@@ -113,23 +135,12 @@ function commandBuild() {
 	});
 
 	printWebpackConfigFile(config.webpackConfigFile);
-	verbose('Webpack config:', compiler.options);
+	verbose('Webpack static config:', compiler.compilers[0].options);
+	verbose('Webpack client config:', compiler.compilers[1].options);
 
 	// Custom error reporting
-	compiler.plugin('done', function(stats) {
-		const messages = formatWebpackMessages(stats.toJson({}, true));
-
-		// If errors exist, only show errors.
-		if (messages.errors.length) {
-			printStyleguidistError(messages.errors);
-			printErrors('Failed to compile.', messages.errors, stats.compilation.errors, chalk.red);
-			process.exit(1);
-		}
-
-		// Show warnings if no errors were found.
-		if (messages.warnings.length) {
-			printErrors('Compiled with warnings.', messages.warnings, stats.compilation.warnings, chalk.yellow);
-		}
+	compiler.plugin('done', function(multiStats) {
+		multiStats.stats.forEach(stats => printCompilationDone(stats, false));
 	});
 }
 
@@ -166,7 +177,8 @@ function commandServer() {
 	});
 
 	printWebpackConfigFile(config.webpackConfigFile);
-	verbose('Webpack config:', compiler.options);
+	verbose('Webpack static config:', compiler.compilers[0].options);
+	verbose('Webpack client config:', compiler.compilers[1].options);
 
 	// Show message when Webpack is recompiling the bundle
 	compiler.plugin('invalid', function() {
@@ -174,25 +186,8 @@ function commandServer() {
 	});
 
 	// Custom error reporting
-	compiler.plugin('done', function(stats) {
-		const messages = formatWebpackMessages(stats.toJson({}, true));
-
-		if (!messages.errors.length && !messages.warnings.length) {
-			console.log(chalk.green('Compiled successfully!'));
-			console.log();
-		}
-
-		// If errors exist, only show errors.
-		if (messages.errors.length) {
-			printStyleguidistError(messages.errors);
-			printErrors('Failed to compile.', messages.errors, stats.compilation.errors, chalk.red);
-			return;
-		}
-
-		// Show warnings if no errors were found.
-		if (messages.warnings.length) {
-			printErrors('Compiled with warnings.', messages.warnings, stats.compilation.warnings, chalk.yellow);
-		}
+	compiler.plugin('done', function(multiStats) {
+		multiStats.stats.forEach(stats => printCompilationDone(stats, true));
 	});
 }
 
