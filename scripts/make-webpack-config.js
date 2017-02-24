@@ -104,6 +104,23 @@ module.exports = function(config, env) {
 					include: sourceDir,
 					loader: 'style!css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]',
 				},
+				isWebpack2 ? {
+					test: /\.jsx?$/,
+					include: sourceDir,
+					loader: 'babel',
+					options: {
+						babelrc: false,
+						presets: ['es2015', 'react', 'stage-0'],
+					},
+				} : {
+					test: /\.jsx?$/,
+					include: sourceDir,
+					loader: 'babel',
+					query: {
+						babelrc: false,
+						presets: ['es2015', 'react', 'stage-0'],
+					},
+				},
 			],
 		},
 	};
@@ -178,19 +195,6 @@ module.exports = function(config, env) {
 					mangle: false,
 				}),
 			],
-			module: {
-				loaders: [
-					{
-						test: /\.jsx?$/,
-						include: sourceDir,
-						loader: 'babel',
-						query: {
-							babelrc: false,
-							presets: ['es2015', 'react', 'stage-0'],
-						},
-					},
-				],
-			},
 		});
 	}
 	else {
@@ -208,22 +212,17 @@ module.exports = function(config, env) {
 
 			plugins: [
 				new webpack.HotModuleReplacementPlugin(),
-				new webpack.NoErrorsPlugin(),
 			],
-			module: {
-				loaders: [
-					{
-						test: /\.jsx?$/,
-						include: sourceDir,
-						loader: 'babel',
-						query: {
-							babelrc: false,
-							presets: ['es2015', 'react', 'stage-0'],
-						},
-					},
-				],
-			},
 		});
+		if (!isWebpack2) {
+			webpackConfig.plugins.push(
+				new webpack.NoErrorsPlugin()
+			);
+		} else {
+			webpackConfig.plugins.push(
+				new webpack.NoEmitOnErrorsPlugin()
+			);
+		}
 	}
 
 	if (config.updateWebpackConfig) {
