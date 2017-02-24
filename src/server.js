@@ -17,7 +17,7 @@ module.exports = function({ assets, config }) {
 		const sheets = require('./styles/sheetsRegistry').default;
 
 		// We need to render sg here in order to get the styles.
-		content = renderToStaticMarkup(
+		const html = renderToStaticMarkup(
 			<StyleGuide
 				codeKey={0}
 				config={config}
@@ -27,10 +27,11 @@ module.exports = function({ assets, config }) {
 				isolatedExample={false}
 			/>
 		);
-
 		assets.stylesheets = [{
 			inline: sheets.toString(),
 		}];
+
+		content = <div dangerouslySetInnerHTML={{ __html: html }} />;
 	}
 
 	const document = renderToStaticMarkup(
@@ -38,7 +39,7 @@ module.exports = function({ assets, config }) {
 			title={config.title}
 			assets={assets}
 		>
-			<div dangerouslySetInnerHTML={{ __html: content }} />
+			{content}
 		</HtmlDocument>
 	);
 
