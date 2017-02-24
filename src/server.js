@@ -5,7 +5,6 @@ import {
 	setSlugs,
 } from './utils/utils';
 import HtmlDocument from 'rsg-components/HtmlDocument';
-import sheets from './styles/sheetsRegistry';
 
 module.exports = function({ assets, config }) {
 	let content = <h1>Loading your styleguide in development mode...</h1>; // TODO: Render Welcome screen
@@ -15,7 +14,10 @@ module.exports = function({ assets, config }) {
 		const styleguide = require('!!../loaders/styleguide-loader!./index.js');
 		const sections = setSlugs(processSections(styleguide.sections), true);
 		const StyleGuide = require('rsg-components/StyleGuide').default;
-		content = (
+		const sheets = require('./styles/sheetsRegistry').default;
+
+		// We need to render sg here in order to get the styles.
+		content = renderToStaticMarkup(
 			<StyleGuide
 				codeKey={0}
 				config={config}
@@ -25,20 +27,20 @@ module.exports = function({ assets, config }) {
 				isolatedExample={false}
 			/>
 		);
+
+		assets.stylesheets = [{
+			inline: sheets.toString(),
+		}];
 	}
 
-	// TODO implement a proper way to pass inline styles.
-	// This is just pseudo code.
-	assets.stylesheets = [
-		{ inline: sheets.toString() },
-	];
-
-	return '<!doctype html>' + renderToStaticMarkup(
+	const document = renderToStaticMarkup(
 		<HtmlDocument
 			title={config.title}
 			assets={assets}
 		>
-			{ content }
+			<div dangerouslySetInnerHTML={{ __html: content }} />
 		</HtmlDocument>
 	);
+
+	return `<!doctype html>${document}`;
 };

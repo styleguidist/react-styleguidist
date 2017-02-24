@@ -16,6 +16,7 @@ function HtmlDocument({ assets = {}, children, title }) {
 		<HTMLDocument
 			title={ title }
 			scripts={getScrtips(assets)}
+			stylesheets={assets.stylesheets}
 		>
 			{ children }
 		</HTMLDocument>

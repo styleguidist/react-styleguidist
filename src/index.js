@@ -59,8 +59,11 @@ function renderStyleguide() {
 		document.getElementById('app')
 	);
 
-	// TODO Remove server-side CSS here.
-	// JSS will generate a new one.
+	// Currently `react-html-document` doesn't allow specifying any attributes
+	// for styles, so that we can remove a specific style.
+	// Currently we know that the first style tag is rendered on the server.
+	const style = document.getElementsByTagName('style')[0];
+	style.parentNode.removeChild(style);
 }
 
 window.addEventListener('hashchange', renderStyleguide);
