@@ -52,8 +52,6 @@ module.exports = function(config, env, isServer) {
 
 	if (isProd) {
 		webpackConfig = merge(webpackConfig, {
-			devtool: false,
-			cache: false,
 			plugins: [
 				new webpack.optimize.OccurrenceOrderPlugin(),
 				new webpack.optimize.UglifyJsPlugin({
@@ -82,8 +80,6 @@ module.exports = function(config, env, isServer) {
 					require.resolve('react-dev-utils/webpackHotDevClient'),
 				],
 			},
-			cache: true,
-			devtool: 'eval',
 			stats: {
 				colors: true,
 				reasons: true,
@@ -97,14 +93,14 @@ module.exports = function(config, env, isServer) {
 	if (config.webpackConfigFile) {
 		const userConfigModule = require(config.webpackConfigFile);
 		webpackConfig = mergeWebpackConfig(webpackConfig, userConfigModule, {
-			ignore: ['entry', 'externals', 'output', 'styleguidist'],
+			ignore: ['entry', 'externals', 'output', 'watch', 'stats', 'devtool', 'styleguidist'],
 			env,
 		});
 	}
 
 	if (config.webpackConfig) {
 		webpackConfig = mergeWebpackConfig(webpackConfig, config.webpackConfig, {
-			ignore: ['output', 'styleguidist'],
+			ignore: ['output', 'watch', 'stats', 'devtool', 'styleguidist'],
 			env,
 		});
 	}
