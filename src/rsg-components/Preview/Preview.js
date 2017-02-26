@@ -25,29 +25,29 @@ export default class Preview extends Component {
 	}
 
 	componentDidMount() {
-		this.executeCode();
+		this.executeCode(this.props.code);
 	}
 
 	componentDidUpdate(prevProps) {
-		if (this.props.code !== prevProps.code) {
-			this.executeCode();
+		const { code } = this.props;
+		if (code !== prevProps.code) {
+			this.executeCode(code);
 		}
 	}
 
-	executeCode() {
+	executeCode(code) {
 		ReactDOM.unmountComponentAtNode(this.mountNode);
 
 		this.setState({
 			error: null,
 		});
 
-		const { code } = this.props;
 		if (!code) {
 			return;
 		}
 
 		try {
-			const compiledCode = compileCode(this.props.code);
+			const compiledCode = compileCode(code);
 
 			// Initiate state and set with the callback in the bottom component;
 			// Workaround for https://github.com/styleguidist/react-styleguidist/issues/155 - missed props on first render
