@@ -1,14 +1,31 @@
 /* Tweak CodeMirror styles */
-.root :global .CodeMirror {
+.root :global .CodeMirror,
+.root_err :global .CodeMirror,
+.root_edit :global .CodeMirror {
 	height: auto;
 	padding: 5px 12px;
 	font-size: 12px;
 }
-.root :global .CodeMirror-scroll {
+.root_err {
+	border-left: red 4px solid;
+}
+.root_edit {
+	border-left: #1978c8 4px solid;
+}
+.root {
+	border-left: rgb(245, 245, 245) 4px solid;
+}
+.root :global .CodeMirror-scroll,
+.root_err :global .CodeMirror-scroll,
+.root_edit :global .CodeMirror-scroll
+ {
 	height: auto;
 	overflow-y: hidden;
 	overflow-x: auto;
 }
-.root :global .cm-error {
+.root :global .cm-error,
+.root_err :global .cm-error,
+.root_edit :global .cm-error
+ {
 	background: none !important;
 }

@@ -22,6 +22,8 @@ export default class Playground extends Component {
 		this.state = {
 			code,
 			showCode,
+			isCodeValid: true,
+			isCodeTyping: false,
 		};
 	}
 
@@ -35,7 +37,9 @@ export default class Playground extends Component {
 	shouldComponentUpdate(nextProps, nextState) {
 		return (
 			nextState.code !== this.state.code ||
-			nextState.showCode !== this.state.showCode
+			nextState.showCode !== this.state.showCode ||
+			nextState.isCodeValid !== this.state.isCodeValid ||
+			nextState.isCodeTyping !== this.state.isCodeTyping
 		);
 	}
 
@@ -76,20 +80,40 @@ export default class Playground extends Component {
 		});
 	}
 
+	handleCodeValid(isValid) {
+		if (this.state.isCodeValid !== isValid) {
+			this.setState({
+				isCodeValid: isValid,
+			});
+		}
+	}
+
+	handleCodeTyping(isTyping) {
+		if (this.state.isCodeTyping !== isTyping) {
+			this.setState({
+				isCodeTyping: isTyping,
+			});
+		}
+	}
+
 	render() {
-		const { code, showCode } = this.state;
+		const { code, showCode, isCodeTyping, isCodeValid } = this.state;
 		const { evalInContext, index, name } = this.props;
 		const { singleExample } = this.context;
 		return (
 			<PlaygroundRenderer
 				code={code}
 				showCode={showCode}
+				isCodeTyping={isCodeTyping}
+				isCodeValid={isCodeValid}
 				index={index}
 				name={name}
 				singleExample={singleExample}
 				evalInContext={evalInContext}
 				onChange={code => this.handleChange(code)}
 				onCodeToggle={() => this.handleCodeToggle()}
+				onCodeValid={isValid => this.handleCodeValid(isValid)}
+				onCodeTyping={isTyping => this.handleCodeTyping(isTyping)}
 			/>
 		);
 	}

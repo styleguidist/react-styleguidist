@@ -14,6 +14,8 @@ export default class Preview extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
+		isCodeTyping: PropTypes.bool.isRequired,
+		onCodeValid: PropTypes.func.isRequired,
 	};
 
 	constructor() {
@@ -22,6 +24,7 @@ export default class Preview extends Component {
 			error: null,
 		};
 		this.componentState = {};
+		this.lastValidCode = null;
 	}
 
 	componentDidMount() {
@@ -29,13 +32,16 @@ export default class Preview extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		const { code } = this.props;
-		if (code !== prevProps.code) {
+		const { code, isCodeTyping } = this.props;
+		if (
+			code !== prevProps.code ||
+			isCodeTyping !== prevProps.isCodeTyping
+		) {
 			this.executeCode(code);
 		}
 	}
 
-	executeCode(code) {
+	executeCode(code, isErr) {
 		ReactDOM.unmountComponentAtNode(this.mountNode);
 
 		this.setState({
@@ -45,6 +51,8 @@ export default class Preview extends Component {
 		if (!code) {
 			return;
 		}
+
+		const { isCodeTyping, onCodeValid } = this.props;
 
 		try {
 			const compiledCode = compileCode(code);
@@ -115,12 +123,23 @@ export default class Preview extends Component {
 			);
 
 			ReactDOM.render(wrappedComponent, this.mountNode);
+			this.lastValidCode = code;
+			onCodeValid(!isErr && true);
 		}
 		catch (err) {
-			ReactDOM.unmountComponentAtNode(this.mountNode);
-			this.setState({
-				error: err.toString(),
-			});
+			onCodeValid(false);
+			if (!isCodeTyping || isErr) {
+				if (!isCodeTyping) {
+					this.lastValidCode = code;
+				}
+				ReactDOM.unmountComponentAtNode(this.mountNode);
+				this.setState({
+					error: err.toString(),
+				});
+			}
+			else {
+				this.executeCode(this.lastValidCode, true);
+			}
 		}
 	}
 
