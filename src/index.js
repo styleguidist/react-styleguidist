@@ -61,6 +61,7 @@ function renderStyleguide() {
 			sections={sections}
 			sidebar={sidebar}
 			singleExample={singleExample}
+			targetComponentName={targetComponentName}
 		/>,
 		document.getElementById('app')
 	);
