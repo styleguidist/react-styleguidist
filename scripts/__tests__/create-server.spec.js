@@ -21,7 +21,6 @@ test('createServer should return an object containing a production Webpack compi
 	expect(result).toBeTruthy();
 	expect(result.compiler).toBeTruthy();
 	expect(result.compiler.options.output.filename).toBe('build/bundle.js');
-	expect(result.compiler.options.cache).toBeFalsy();
 });
 
 test('createServer should return an object containing a development Webpack compiler', () => {
@@ -31,5 +30,4 @@ test('createServer should return an object containing a development Webpack comp
 	expect(result).toBeTruthy();
 	expect(result.compiler).toBeTruthy();
 	expect(result.compiler.options.output.filename).toBe('build/bundle.js');
-	expect(result.compiler.options.cache).toBeTruthy();
 });
