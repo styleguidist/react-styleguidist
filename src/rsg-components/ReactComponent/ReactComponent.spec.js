@@ -133,7 +133,7 @@ test('should render component not in the isolation mode by default', () => {
 		/>
 	);
 
-	expect(actual.find('a:not(a[id])').text()).toEqual('Open isolated ⇢');
+	expect(actual.find('a:not(a[aria-hidden])').text()).toEqual('Open isolated ⇢');
 });
 
 test('should render component in isolation mode', () => {
@@ -147,7 +147,7 @@ test('should render component in isolation mode', () => {
 		/>
 	);
 
-	expect(actual.find('a:not(a[id])').text()).toEqual('← Back');
+	expect(actual.find('a:not(a[aria-hidden])').text()).toEqual('← Back');
 });
 
 test('should render props section', () => {
