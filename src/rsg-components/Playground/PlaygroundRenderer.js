@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import cx from 'classnames';
 import Editor from 'rsg-components/Editor';
 import Link from 'rsg-components/Link';
 import Preview from 'rsg-components/Preview';
@@ -75,7 +74,7 @@ export function PlaygroundRenderer({
 }) {
 	return (
 		<div className={classes.root}>
-			<div className={cx(classes.preview, 'rsg--example-preview')}>
+			<div className={classes.preview} data-preview={name}>
 				<div className={classes.isolatedLink}>
 					{name && (
 						isolatedExample ? (
