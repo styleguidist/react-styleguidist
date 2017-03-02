@@ -1,6 +1,7 @@
 export const white = '#fff';
 export const base = '#333';
 export const light = '#999';
+export const lightest = '#ccc';
 export const link = '#1978c8';
 export const linkHover = '#f28a25';
 export const border = '#e8e8e8';

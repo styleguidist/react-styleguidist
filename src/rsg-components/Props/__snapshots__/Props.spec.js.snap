@@ -327,6 +327,53 @@ exports[`test should render description in Markdown 1`] = `
 </table>
 `;
 
+exports[`test should render function body in tooltip 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Default
+      </th>
+      <th
+        className="undefined undefined">
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class>
+          fn
+        </_class>
+      </td>
+      <td>
+        <_class>
+          func
+        </_class>
+      </td>
+      <td>
+        <span
+          title="(e) => console.log(e)">
+          Function
+        </span>
+      </td>
+      <td
+        className="undefined undefined">
+        <Group
+          separator={<br />} />
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
 exports[`test should render unknown proptype for a prop when a relevant proptype is not assigned 1`] = `
 <table>
   <thead>

@@ -8,6 +8,7 @@ import './Button.css';
 export default function Button({
 	color,
 	size,
+	onClick,
 	children,
 }) {
 	const styles = {
@@ -16,7 +17,7 @@ export default function Button({
 	};
 
 	return (
-		<button className="button" style={styles}>{children}</button>
+		<button className="button" style={styles} onClick={onClick}>{children}</button>
 	);
 }
 Button.propTypes = {
@@ -26,10 +27,16 @@ Button.propTypes = {
 	children: PropTypes.string.isRequired,
 	color: PropTypes.string,
 	size: PropTypes.oneOf(['small', 'normal', 'large']),
+	onClick: PropTypes.func,
 };
 Button.defaultProps = {
 	color: '#333',
 	size: 'normal',
+	/* eslint-disable no-console */
+	onClick: (evt) => {
+		console.log('You have clicked me!', evt.target);
+	},
+	/* eslint-enable no-console */
 };
 Button.sizes = {
 	small: '10px',

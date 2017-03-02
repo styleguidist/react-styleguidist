@@ -5,7 +5,7 @@ import Styled from 'rsg-components/Styled';
 import Group from 'react-group';
 import { unquote, getType, showSpaces } from './util';
 
-const styles = ({ font, border, light, name, type }) => ({
+const styles = ({ font, border, light, lightest, name, type }) => ({
 	table: {
 		width: '100%',
 		borderCollapse: 'collapse',
@@ -44,6 +44,12 @@ const styles = ({ font, border, light, name, type }) => ({
 	type: {
 		fontSize: 13,
 		color: type,
+	},
+	function: {
+		fontFamily: font,
+		fontSize: 13,
+		color: light,
+		borderBottom: `1px dotted ${lightest}`,
 	},
 });
 
@@ -101,6 +107,12 @@ export function PropsRenderer({ classes, props }) {
 			);
 		}
 		else if (prop.defaultValue) {
+			if (prop.type && prop.type.name === 'func') {
+				return (
+					<span className={classes.function} title={showSpaces(unquote(prop.defaultValue.value))}>Function</span>
+				);
+			}
+
 			return (
 				<Code>{showSpaces(unquote(prop.defaultValue.value))}</Code>
 			);
