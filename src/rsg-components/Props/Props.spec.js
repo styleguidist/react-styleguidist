@@ -68,6 +68,12 @@ it('should render unknown proptype for a prop when a relevant proptype is not as
 	expect(actual).toMatchSnapshot();
 });
 
+it('should render function body in tooltip', () => {
+	const actual = render(['fn: PropTypes.func'], ['fn: (e) => console.log(e)']);
+
+	expect(actual).toMatchSnapshot();
+});
+
 it('unquote() should remove double quotes around the string', () => {
 	const result = unquote('"foo"');
 	expect(result).toBe('foo');
