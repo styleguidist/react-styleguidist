@@ -31,12 +31,12 @@ exports[`test render should render component 1`] = `
 exports[`test render should render title if name is set 1`] = `
 <section>
   <h1
-    class="heading-2948884764">
+    class="heading-2948884764"
+    id="test">
     <a
       aria-hidden="true"
       class="anchor-3977085326"
-      href="#test"
-      id="test">
+      href="#test">
       #
     </a>
     test

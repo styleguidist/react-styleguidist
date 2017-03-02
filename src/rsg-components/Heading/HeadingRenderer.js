@@ -35,8 +35,8 @@ export const styles = ({ link, linkHover }) => ({
 export function HeadingRenderer({ classes, children, slug, level, ...props }) {
 	const Tag = `h${level}`;
 	return (
-		<Tag {...props} className={cx(classes.heading, props.className)}>
-			<a className={classes.anchor} href={`#${slug}`} id={slug} aria-hidden>#</a>
+		<Tag {...props} id={slug} className={cx(classes.heading, props.className)}>
+			<a className={classes.anchor} href={`#${slug}`} aria-hidden>#</a>
 			{children}
 		</Tag>
 	);
