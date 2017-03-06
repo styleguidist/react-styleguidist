@@ -1,20 +1,24 @@
-exports[`test renderer should render table of contents 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render table of contents 1`] = `
 <div>
   <div>
     <div>
       <input
         onChange={[Function]}
         placeholder="Filter by name"
-        value="foo" />
+        value="foo"
+      />
     </div>
   </div>
 </div>
 `;
 
-exports[`test should filter list when search field contains a query 1`] = `
+exports[`should filter list when search field contains a query 1`] = `
 <_class
   onSearchTermChange={[Function]}
-  searchTerm="">
+  searchTerm=""
+>
   <_class
     items={
       Array [
@@ -43,14 +47,16 @@ exports[`test should filter list when search field contains a query 1`] = `
           "slug": "textarea",
         },
       ]
-    } />
+    }
+  />
 </_class>
 `;
 
-exports[`test should filter list when search field contains a query 2`] = `
+exports[`should filter list when search field contains a query 2`] = `
 <_class
   onSearchTermChange={[Function]}
-  searchTerm="but">
+  searchTerm="but"
+>
   <_class
     items={
       Array [
@@ -63,14 +69,16 @@ exports[`test should filter list when search field contains a query 2`] = `
           "slug": "button",
         },
       ]
-    } />
+    }
+  />
 </_class>
 `;
 
-exports[`test should filter section names 1`] = `
+exports[`should filter section names 1`] = `
 <_class
   onSearchTermChange={[Function]}
-  searchTerm="">
+  searchTerm=""
+>
   <_class
     items={
       Array [
@@ -99,7 +107,8 @@ exports[`test should filter section names 1`] = `
                           "slug": "button",
                         },
                       ]
-            } />,
+            }
+      />,
           "heading": true,
           "name": "Buttons",
           "sections": Array [],
@@ -132,21 +141,24 @@ exports[`test should filter section names 1`] = `
                           "slug": "textarea",
                         },
                       ]
-            } />,
+            }
+      />,
           "heading": true,
           "name": "Forms",
           "sections": Array [],
           "slug": "forms",
         },
       ]
-    } />
+    }
+  />
 </_class>
 `;
 
-exports[`test should filter section names 2`] = `
+exports[`should filter section names 2`] = `
 <_class
   onSearchTermChange={[Function]}
-  searchTerm="frm">
+  searchTerm="frm"
+>
   <_class
     items={
       Array [
@@ -159,14 +171,16 @@ exports[`test should filter section names 2`] = `
           "slug": "forms",
         },
       ]
-    } />
+    }
+  />
 </_class>
 `;
 
-exports[`test should render a renderer 1`] = `
+exports[`should render a renderer 1`] = `
 <_class
   onSearchTermChange={[Function]}
-  searchTerm="">
+  searchTerm=""
+>
   <_class
     items={
       Array [
@@ -195,14 +209,16 @@ exports[`test should render a renderer 1`] = `
           "slug": "textarea",
         },
       ]
-    } />
+    }
+  />
 </_class>
 `;
 
-exports[`test should render renderer with sections with nested components 1`] = `
+exports[`should render renderer with sections with nested components 1`] = `
 <_class
   onSearchTermChange={[Function]}
-  searchTerm="">
+  searchTerm=""
+>
   <_class
     items={
       Array [
@@ -231,7 +247,8 @@ exports[`test should render renderer with sections with nested components 1`] = 
                           "slug": "button",
                         },
                       ]
-            } />,
+            }
+      />,
           "heading": true,
           "name": "Buttons",
           "sections": Array [],
@@ -264,13 +281,15 @@ exports[`test should render renderer with sections with nested components 1`] = 
                           "slug": "textarea",
                         },
                       ]
-            } />,
+            }
+      />,
           "heading": true,
           "name": "Forms",
           "sections": Array [],
           "slug": "forms",
         },
       ]
-    } />
+    }
+  />
 </_class>
 `;

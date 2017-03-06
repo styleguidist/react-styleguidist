@@ -1,4 +1,6 @@
-exports[`test should render parameters 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render parameters 1`] = `
 <table>
   <thead>
     <tr>
@@ -9,7 +11,8 @@ exports[`test should render parameters 1`] = `
         Parameters
       </th>
       <th
-        className="">
+        className=""
+      >
         Description
       </th>
     </tr>
@@ -34,16 +37,20 @@ exports[`test should render parameters 1`] = `
            — 
           <_class
             inline={true}
-            text="Description" />
+            text="Description"
+          />
         </div>
       </td>
       <td
-        className="">
+        className=""
+      >
         <Group
-          separator=" ">
+          separator=" "
+        >
           <_class
             inline={true}
-            text="Public" />
+            text="Public"
+          />
         </Group>
       </td>
     </tr>
@@ -51,7 +58,7 @@ exports[`test should render parameters 1`] = `
 </table>
 `;
 
-exports[`test should render public method 1`] = `
+exports[`should render public method 1`] = `
 <table>
   <thead>
     <tr>
@@ -62,7 +69,8 @@ exports[`test should render public method 1`] = `
         Parameters
       </th>
       <th
-        className="">
+        className=""
+      >
         Description
       </th>
     </tr>
@@ -77,12 +85,15 @@ exports[`test should render public method 1`] = `
       </td>
       <td />
       <td
-        className="">
+        className=""
+      >
         <Group
-          separator=" ">
+          separator=" "
+        >
           <_class
             inline={true}
-            text="Public" />
+            text="Public"
+          />
         </Group>
       </td>
     </tr>
@@ -90,7 +101,7 @@ exports[`test should render public method 1`] = `
 </table>
 `;
 
-exports[`test should render returns 1`] = `
+exports[`should render returns 1`] = `
 <table>
   <thead>
     <tr>
@@ -101,7 +112,8 @@ exports[`test should render returns 1`] = `
         Parameters
       </th>
       <th
-        className="">
+        className=""
+      >
         Description
       </th>
     </tr>
@@ -116,9 +128,11 @@ exports[`test should render returns 1`] = `
       </td>
       <td />
       <td
-        className="">
+        className=""
+      >
         <Group
-          separator=" " />
+          separator=" "
+        />
         <span>
           Returns
            
@@ -128,7 +142,8 @@ exports[`test should render returns 1`] = `
            — 
           <_class
             inline={true}
-            text="Description" />
+            text="Description"
+          />
         </span>
       </td>
     </tr>

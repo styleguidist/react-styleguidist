@@ -1,10 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`Heading renderer should render H tag 1`] = `
 <h1
   class=""
-  id="heading">
+  id="heading"
+>
   <a
     aria-hidden="true"
-    href="#heading">
+    href="#heading"
+  >
     #
   </a>
   Heading
@@ -14,11 +18,13 @@ exports[`Heading renderer should render H tag 1`] = `
 exports[`Heading should render h{n} tag with anchor link inside 1`] = `
 <h1
   class="heading-2948884764"
-  id="h1">
+  id="h1"
+>
   <a
     aria-hidden="true"
     class="anchor-3977085326"
-    href="#h1">
+    href="#h1"
+  >
     #
   </a>
   H1
@@ -28,11 +34,13 @@ exports[`Heading should render h{n} tag with anchor link inside 1`] = `
 exports[`Heading should render h{n} tag with anchor link inside 2`] = `
 <h2
   class="heading-2948884764"
-  id="h2">
+  id="h2"
+>
   <a
     aria-hidden="true"
     class="anchor-3977085326"
-    href="#h2">
+    href="#h2"
+  >
     #
   </a>
   H2
@@ -42,11 +50,13 @@ exports[`Heading should render h{n} tag with anchor link inside 2`] = `
 exports[`Heading should render h{n} tag with anchor link inside 3`] = `
 <h3
   class="heading-2948884764"
-  id="h3">
+  id="h3"
+>
   <a
     aria-hidden="true"
     class="anchor-3977085326"
-    href="#h3">
+    href="#h3"
+  >
     #
   </a>
   H3
@@ -56,11 +66,13 @@ exports[`Heading should render h{n} tag with anchor link inside 3`] = `
 exports[`Heading should render h{n} tag with anchor link inside 4`] = `
 <h4
   class="heading-2948884764"
-  id="h4">
+  id="h4"
+>
   <a
     aria-hidden="true"
     class="anchor-3977085326"
-    href="#h4">
+    href="#h4"
+  >
     #
   </a>
   H4
@@ -70,11 +82,13 @@ exports[`Heading should render h{n} tag with anchor link inside 4`] = `
 exports[`Heading should render h{n} tag with anchor link inside 5`] = `
 <h5
   class="heading-2948884764"
-  id="h5">
+  id="h5"
+>
   <a
     aria-hidden="true"
     class="anchor-3977085326"
-    href="#h5">
+    href="#h5"
+  >
     #
   </a>
   H5
@@ -84,11 +98,13 @@ exports[`Heading should render h{n} tag with anchor link inside 5`] = `
 exports[`Heading should render h{n} tag with anchor link inside 6`] = `
 <h6
   class="heading-2948884764"
-  id="h6">
+  id="h6"
+>
   <a
     aria-hidden="true"
     class="anchor-3977085326"
-    href="#h6">
+    href="#h6"
+  >
     #
   </a>
   H6

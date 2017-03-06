@@ -1,4 +1,6 @@
-exports[`test should render PropTypes.arrayOf 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render PropTypes.arrayOf 1`] = `
 <table>
   <thead>
     <tr>
@@ -12,7 +14,8 @@ exports[`test should render PropTypes.arrayOf 1`] = `
         Default
       </th>
       <th
-        className="undefined undefined">
+        className="undefined undefined"
+      >
         Description
       </th>
     </tr>
@@ -31,16 +34,18 @@ exports[`test should render PropTypes.arrayOf 1`] = `
       </td>
       <td />
       <td
-        className="undefined undefined">
+        className="undefined undefined"
+      >
         <Group
-          separator={<br />} />
+          separator={<br />}
+        />
       </td>
     </tr>
   </tbody>
 </table>
 `;
 
-exports[`test should render PropTypes.instanceOf 1`] = `
+exports[`should render PropTypes.instanceOf 1`] = `
 <table>
   <thead>
     <tr>
@@ -54,7 +59,8 @@ exports[`test should render PropTypes.instanceOf 1`] = `
         Default
       </th>
       <th
-        className="undefined undefined">
+        className="undefined undefined"
+      >
         Description
       </th>
     </tr>
@@ -73,16 +79,18 @@ exports[`test should render PropTypes.instanceOf 1`] = `
       </td>
       <td />
       <td
-        className="undefined undefined">
+        className="undefined undefined"
+      >
         <Group
-          separator={<br />} />
+          separator={<br />}
+        />
       </td>
     </tr>
   </tbody>
 </table>
 `;
 
-exports[`test should render PropTypes.shape 1`] = `
+exports[`should render PropTypes.shape 1`] = `
 <table>
   <thead>
     <tr>
@@ -96,7 +104,8 @@ exports[`test should render PropTypes.shape 1`] = `
         Default
       </th>
       <th
-        className="undefined undefined">
+        className="undefined undefined"
+      >
         Description
       </th>
     </tr>
@@ -115,9 +124,11 @@ exports[`test should render PropTypes.shape 1`] = `
       </td>
       <td />
       <td
-        className="undefined undefined">
+        className="undefined undefined"
+      >
         <Group
-          separator={<br />}>
+          separator={<br />}
+        >
           <div>
             <_class>
               bar
@@ -147,7 +158,7 @@ exports[`test should render PropTypes.shape 1`] = `
 </table>
 `;
 
-exports[`test should render PropTypes.string 1`] = `
+exports[`should render PropTypes.string 1`] = `
 <table>
   <thead>
     <tr>
@@ -161,7 +172,8 @@ exports[`test should render PropTypes.string 1`] = `
         Default
       </th>
       <th
-        className="undefined undefined">
+        className="undefined undefined"
+      >
         Description
       </th>
     </tr>
@@ -180,16 +192,18 @@ exports[`test should render PropTypes.string 1`] = `
       </td>
       <td />
       <td
-        className="undefined undefined">
+        className="undefined undefined"
+      >
         <Group
-          separator={<br />} />
+          separator={<br />}
+        />
       </td>
     </tr>
   </tbody>
 </table>
 `;
 
-exports[`test should render PropTypes.string with a default value 1`] = `
+exports[`should render PropTypes.string with a default value 1`] = `
 <table>
   <thead>
     <tr>
@@ -203,7 +217,8 @@ exports[`test should render PropTypes.string with a default value 1`] = `
         Default
       </th>
       <th
-        className="undefined undefined">
+        className="undefined undefined"
+      >
         Description
       </th>
     </tr>
@@ -226,16 +241,18 @@ exports[`test should render PropTypes.string with a default value 1`] = `
         </_class>
       </td>
       <td
-        className="undefined undefined">
+        className="undefined undefined"
+      >
         <Group
-          separator={<br />} />
+          separator={<br />}
+        />
       </td>
     </tr>
   </tbody>
 </table>
 `;
 
-exports[`test should render PropTypes.string.isRequired 1`] = `
+exports[`should render PropTypes.string.isRequired 1`] = `
 <table>
   <thead>
     <tr>
@@ -249,7 +266,8 @@ exports[`test should render PropTypes.string.isRequired 1`] = `
         Default
       </th>
       <th
-        className="undefined undefined">
+        className="undefined undefined"
+      >
         Description
       </th>
     </tr>
@@ -272,16 +290,18 @@ exports[`test should render PropTypes.string.isRequired 1`] = `
         </span>
       </td>
       <td
-        className="undefined undefined">
+        className="undefined undefined"
+      >
         <Group
-          separator={<br />} />
+          separator={<br />}
+        />
       </td>
     </tr>
   </tbody>
 </table>
 `;
 
-exports[`test should render description in Markdown 1`] = `
+exports[`should render description in Markdown 1`] = `
 <table>
   <thead>
     <tr>
@@ -295,7 +315,8 @@ exports[`test should render description in Markdown 1`] = `
         Default
       </th>
       <th
-        className="undefined undefined">
+        className="undefined undefined"
+      >
         Description
       </th>
     </tr>
@@ -314,12 +335,15 @@ exports[`test should render description in Markdown 1`] = `
       </td>
       <td />
       <td
-        className="undefined undefined">
+        className="undefined undefined"
+      >
         <Group
-          separator={<br />}>
+          separator={<br />}
+        >
           <_class
             inline={true}
-            text="Label" />
+            text="Label"
+          />
         </Group>
       </td>
     </tr>
@@ -327,7 +351,7 @@ exports[`test should render description in Markdown 1`] = `
 </table>
 `;
 
-exports[`test should render function body in tooltip 1`] = `
+exports[`should render function body in tooltip 1`] = `
 <table>
   <thead>
     <tr>
@@ -341,7 +365,8 @@ exports[`test should render function body in tooltip 1`] = `
         Default
       </th>
       <th
-        className="undefined undefined">
+        className="undefined undefined"
+      >
         Description
       </th>
     </tr>
@@ -360,21 +385,24 @@ exports[`test should render function body in tooltip 1`] = `
       </td>
       <td>
         <span
-          title="(e) => console.log(e)">
+          title="(e) => console.log(e)"
+        >
           Function
         </span>
       </td>
       <td
-        className="undefined undefined">
+        className="undefined undefined"
+      >
         <Group
-          separator={<br />} />
+          separator={<br />}
+        />
       </td>
     </tr>
   </tbody>
 </table>
 `;
 
-exports[`test should render unknown proptype for a prop when a relevant proptype is not assigned 1`] = `
+exports[`should render unknown proptype for a prop when a relevant proptype is not assigned 1`] = `
 <table>
   <thead>
     <tr>
@@ -388,7 +416,8 @@ exports[`test should render unknown proptype for a prop when a relevant proptype
         Default
       </th>
       <th
-        className="undefined undefined">
+        className="undefined undefined"
+      >
         Description
       </th>
     </tr>
@@ -411,9 +440,11 @@ exports[`test should render unknown proptype for a prop when a relevant proptype
         </_class>
       </td>
       <td
-        className="undefined undefined">
+        className="undefined undefined"
+      >
         <Group
-          separator={<br />} />
+          separator={<br />}
+        />
       </td>
     </tr>
   </tbody>

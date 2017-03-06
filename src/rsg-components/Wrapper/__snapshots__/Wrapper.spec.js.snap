@@ -1,4 +1,6 @@
-exports[`test should render children 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render children 1`] = `
 <span>
   Hello
 </span>

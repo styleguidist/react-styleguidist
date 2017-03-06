@@ -1,4 +1,6 @@
-exports[`test render should render component 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render should render component 1`] = `
 <section>
   <Section
     section={
@@ -13,7 +15,8 @@ exports[`test render should render component 1`] = `
         ],
         "name": "Foo",
       }
-    } />
+    }
+  />
   <Section
     section={
       Object {
@@ -26,7 +29,8 @@ exports[`test render should render component 1`] = `
         ],
         "name": "Bar",
       }
-    } />
+    }
+  />
   <Section
     section={
       Object {
@@ -41,11 +45,12 @@ exports[`test render should render component 1`] = `
           },
         ],
       }
-    } />
+    }
+  />
 </section>
 `;
 
-exports[`test should render component renderer 1`] = `
+exports[`should render component renderer 1`] = `
 <SectionsRenderer>
   <Section
     section={
@@ -60,7 +65,8 @@ exports[`test should render component renderer 1`] = `
         ],
         "name": "Foo",
       }
-    } />
+    }
+  />
   <Section
     section={
       Object {
@@ -73,7 +79,8 @@ exports[`test should render component renderer 1`] = `
         ],
         "name": "Bar",
       }
-    } />
+    }
+  />
   <Section
     section={
       Object {
@@ -88,6 +95,7 @@ exports[`test should render component renderer 1`] = `
           },
         ],
       }
-    } />
+    }
+  />
 </SectionsRenderer>
 `;

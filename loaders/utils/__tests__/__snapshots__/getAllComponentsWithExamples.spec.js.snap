@@ -1,4 +1,6 @@
-exports[`test should return only components with example file 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should return only components with example file 1`] = `
 Array [
   Object {
     "filepath": "components/Button/Button.js",

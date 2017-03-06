@@ -1,10 +1,13 @@
-exports[`test render should not render title if name is not set 1`] = `<section />`;
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test render should render component 1`] = `
+exports[`render should not render title if name is not set 1`] = `<section />`;
+
+exports[`render should render component 1`] = `
 <section>
   <_class
     level={1}
-    slug="foo">
+    slug="foo"
+  >
     Foo
   </_class>
   <Examples
@@ -20,23 +23,28 @@ exports[`test render should render component 1`] = `
           "type": "markdown",
         },
       ]
-    } />
+    }
+  />
   <Components
-    components={Array []} />
+    components={Array []}
+  />
   <Sections
-    sections={Array []} />
+    sections={Array []}
+  />
 </section>
 `;
 
-exports[`test render should render title if name is set 1`] = `
+exports[`render should render title if name is set 1`] = `
 <section>
   <h1
     class="heading-2948884764"
-    id="test">
+    id="test"
+  >
     <a
       aria-hidden="true"
       class="anchor-3977085326"
-      href="#test">
+      href="#test"
+    >
       #
     </a>
     test
@@ -44,23 +52,26 @@ exports[`test render should render title if name is set 1`] = `
 </section>
 `;
 
-exports[`test should not render components list if not defined 1`] = `
+exports[`should not render components list if not defined 1`] = `
 <_class
   name="No components"
-  slug="no-components" />
+  slug="no-components"
+/>
 `;
 
-exports[`test should not render sections if not defined 1`] = `
+exports[`should not render sections if not defined 1`] = `
 <_class
   name="No sections"
-  slug="no-sections" />
+  slug="no-sections"
+/>
 `;
 
-exports[`test should render component renderer 1`] = `
+exports[`should render component renderer 1`] = `
 <_class
   components={
     <Components
-      components={Array []} />
+      components={Array []}
+    />
   }
   content={
     <Examples
@@ -76,32 +87,39 @@ exports[`test should render component renderer 1`] = `
             "type": "markdown",
           },
         ]
-      } />
+      }
+    />
   }
   name="Foo"
   sections={
     <Sections
-      sections={Array []} />
+      sections={Array []}
+    />
   }
-  slug="foo" />
+  slug="foo"
+/>
 `;
 
-exports[`test should render components list 1`] = `
+exports[`should render components list 1`] = `
 <_class
   components={
     <Components
-      components={Array []} />
+      components={Array []}
+    />
   }
   name="Components"
-  slug="components" />
+  slug="components"
+/>
 `;
 
-exports[`test should render sections if defined 1`] = `
+exports[`should render sections if defined 1`] = `
 <_class
   name="Nested sections"
   sections={
     <Sections
-      sections={Array []} />
+      sections={Array []}
+    />
   }
-  slug="nested-sections" />
+  slug="nested-sections"
+/>
 `;

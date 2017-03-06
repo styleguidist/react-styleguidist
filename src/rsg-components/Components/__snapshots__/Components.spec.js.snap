@@ -1,4 +1,6 @@
-exports[`test renderer should render components list layout 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render components list layout 1`] = `
 <section>
   <ReactComponent
     component={
@@ -10,7 +12,8 @@ exports[`test renderer should render components list layout 1`] = `
           "description": "Foo foo",
         },
       }
-    } />
+    }
+  />
   <ReactComponent
     component={
       Object {
@@ -21,11 +24,12 @@ exports[`test renderer should render components list layout 1`] = `
           "description": "Bar bar",
         },
       }
-    } />
+    }
+  />
 </section>
 `;
 
-exports[`test should render components list 1`] = `
+exports[`should render components list 1`] = `
 <ComponentsRenderer>
   <ReactComponent
     component={
@@ -37,7 +41,8 @@ exports[`test should render components list 1`] = `
           "description": "Foo foo",
         },
       }
-    } />
+    }
+  />
   <ReactComponent
     component={
       Object {
@@ -48,6 +53,7 @@ exports[`test should render components list 1`] = `
           "description": "Bar bar",
         },
       }
-    } />
+    }
+  />
 </ComponentsRenderer>
 `;

@@ -1,26 +1,28 @@
-exports[`test should highlight code in description (fenced code block) 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should highlight code in description (fenced code block) 1`] = `
 Object {
   "description": "The only true button.
 
-    <span class=\"hljs-selector-tag\">alert</span>(<span class=\"hljs-string\">\'Hello world\'</span>);
+    <span class=\\"hljs-selector-tag\\">alert</span>(<span class=\\"hljs-string\\">'Hello world'</span>);
 ",
   "doclets": Object {},
   "methods": Array [],
 }
 `;
 
-exports[`test should highlight code in description (regular code block) 1`] = `
+exports[`should highlight code in description (regular code block) 1`] = `
 Object {
   "description": "The only true button.
 
-    <span class=\"hljs-selector-tag\">alert</span>(<span class=\"hljs-string\">\'Hello world\'</span>);
+    <span class=\\"hljs-selector-tag\\">alert</span>(<span class=\\"hljs-string\\">'Hello world'</span>);
 ",
   "doclets": Object {},
   "methods": Array [],
 }
 `;
 
-exports[`test should remove non-public methods 1`] = `
+exports[`should remove non-public methods 1`] = `
 Object {
   "doclets": Object {},
   "methods": Array [
@@ -32,7 +34,7 @@ Object {
 }
 `;
 
-exports[`test should return an object for props 1`] = `
+exports[`should return an object for props 1`] = `
 Object {
   "description": "The only true button.
 ",
@@ -53,7 +55,7 @@ Object {
 }
 `;
 
-exports[`test should return an object for props with doclets 1`] = `
+exports[`should return an object for props with doclets 1`] = `
 Object {
   "description": "The only true button.
 ",
@@ -66,7 +68,7 @@ Object {
 }
 `;
 
-exports[`test should return an object for props without description 1`] = `
+exports[`should return an object for props without description 1`] = `
 Object {
   "doclets": Object {},
   "methods": Array [],
@@ -80,7 +82,7 @@ Object {
 }
 `;
 
-exports[`test should return require statement for @example doclet 1`] = `
+exports[`should return require statement for @example doclet 1`] = `
 Object {
   "description": "The only true button.
 ",

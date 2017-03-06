@@ -1,7 +1,10 @@
-exports[`test renderer should welcome screen with no components message 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should welcome screen with no components message 1`] = `
 <div>
   <_class
-    text="# Welcome to React Styleguidist!" />
+    text="# Welcome to React Styleguidist!"
+  />
   <_class
     text="
   ## Point Styleguidist to your React components
@@ -11,18 +14,20 @@ exports[`test renderer should welcome screen with no components message 1`] = `
   Create **styleguide.config.js** file in your project root directory like this:
   
       module.exports = {
-        components: \'src/components/**/*.js\'
+        components: 'src/components/**/*.js'
       };
   
   Read more in the [locating components guide](https://github.com/styleguidist/react-styleguidist/blob/master/docs/Components.md).
-  					" />
+  					"
+  />
 </div>
 `;
 
-exports[`test renderer should welcome screen with no examples message 1`] = `
+exports[`renderer should welcome screen with no examples message 1`] = `
 <div>
   <_class
-    text="# Welcome to React Styleguidist!" />
+    text="# Welcome to React Styleguidist!"
+  />
   <_class
     text="
   
@@ -32,9 +37,10 @@ exports[`test renderer should welcome screen with no examples message 1`] = `
   
       React component example:
   
-          &lt;Button size=\"large\"&gt;Push Me&lt;/Button&gt;
+          &lt;Button size=\\"large\\"&gt;Push Me&lt;/Button&gt;
   
   Read more in the [documenting components guide](https://github.com/styleguidist/react-styleguidist/blob/master/docs/Documenting.md).
-  					" />
+  					"
+  />
 </div>
 `;

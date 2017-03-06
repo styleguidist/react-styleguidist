@@ -1,4 +1,6 @@
-exports[`test getComponents() should return an object for components 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getComponents() should return an object for components 1`] = `
 Array [
   Object {
     "filepath": "../Foo.js",

@@ -1,4 +1,6 @@
-exports[`test getSections() should return an array 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getSections() should return an array 1`] = `
 Array [
   Object {
     "components": Array [],
@@ -51,7 +53,7 @@ Array [
 ]
 `;
 
-exports[`test processSection() should return an object for section with components 1`] = `
+exports[`processSection() should return an object for section with components 1`] = `
 Object {
   "components": Array [
     Object {
@@ -94,7 +96,7 @@ Object {
 }
 `;
 
-exports[`test processSection() should return an object for section with content 1`] = `
+exports[`processSection() should return an object for section with content 1`] = `
 Object {
   "components": Array [],
   "content": RequireStatement {

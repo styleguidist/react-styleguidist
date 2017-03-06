@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`filterSectionsByName should recursively filter sections and components by name 1`] = `
 Array [
   Object {

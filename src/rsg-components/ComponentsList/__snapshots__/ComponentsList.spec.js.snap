@@ -1,26 +1,34 @@
-exports[`test should render sections with nested components 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render sections with nested components 1`] = `
 <ul>
   <li
-    className="">
+    className=""
+  >
     <_class
       className=""
-      href="#button">
+      href="#button"
+    >
       Button
     </_class>
   </li>
   <li
-    className="">
+    className=""
+  >
     <_class
       className=""
-      href="#input">
+      href="#input"
+    >
       Input
     </_class>
   </li>
   <li
-    className="">
+    className=""
+  >
     <_class
       className=""
-      href="#textarea">
+      href="#textarea"
+    >
       Textarea
     </_class>
   </li>

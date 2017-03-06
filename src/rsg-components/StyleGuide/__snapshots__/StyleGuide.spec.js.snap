@@ -1,6 +1,9 @@
-exports[`test renderer should render logo, table of contents and passed children 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render logo, table of contents and passed children 1`] = `
 <div
-  className="">
+  className=""
+>
   <main>
     <div>
       <h1>
@@ -8,14 +11,15 @@ exports[`test renderer should render logo, table of contents and passed children
       </h1>
       <footer>
         <_class
-          text="Generated with [React Styleguidist](http://react-styleguidist.js.org/)" />
+          text="Generated with [React Styleguidist](http://react-styleguidist.js.org/)"
+        />
       </footer>
     </div>
   </main>
 </div>
 `;
 
-exports[`test should render components list 1`] = `
+exports[`should render components list 1`] = `
 <_class
   hasSidebar={true}
   homepageUrl="https://github.com/styleguidist/react-styleguidist"
@@ -45,8 +49,10 @@ exports[`test should render components list 1`] = `
             ],
           },
         ]
-      } />
-  }>
+      }
+    />
+  }
+>
   <Sections
     sections={
       Array [
@@ -71,11 +77,13 @@ exports[`test should render components list 1`] = `
           ],
         },
       ]
-    } />
+    }
+  />
 </_class>
 `;
 
-exports[`test should render welcome screen 1`] = `
+exports[`should render welcome screen 1`] = `
 <_class
-  components={true} />
+  components={true}
+/>
 `;

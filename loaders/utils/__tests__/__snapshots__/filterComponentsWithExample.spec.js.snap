@@ -1,4 +1,6 @@
-exports[`test should skip components without example file 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should skip components without example file 1`] = `
 Array [
   Object {
     "components": Array [],

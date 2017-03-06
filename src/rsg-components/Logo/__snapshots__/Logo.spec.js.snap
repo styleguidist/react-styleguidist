@@ -1,5 +1,7 @@
-exports[`test renderer should render header 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render header 1`] = `
 <h1>
-  <button>OK</button>
+  &lt;button&gt;OK&lt;/button&gt;
 </h1>
 `;

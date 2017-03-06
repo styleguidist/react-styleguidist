@@ -1,7 +1,10 @@
-exports[`test renderer should render link 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render link 1`] = `
 <a
   className=""
-  href="/foo">
+  href="/foo"
+>
   Foo
 </a>
 `;

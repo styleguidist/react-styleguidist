@@ -1,4 +1,6 @@
-exports[`test processComponent() should return an object for section with content 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`processComponent() should return an object for section with content 1`] = `
 Object {
   "filepath": "../../../pizza.js",
   "hasExamples": true,
