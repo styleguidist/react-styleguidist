@@ -28,7 +28,9 @@ const DEFAULT_CONFIG = {
 	highlightTheme: 'base16-light',
 	verbose: false,
 	getExampleFilename: (componentpath, fileName) => {
-		fileName = fileName ? fileName : 'Readme.md';
+		// Careful: Mobify decision to use README.md. On some systems (Linux) the filesystem
+		//          is case sensitive and so the files in git _must_ match this casing.
+		fileName = fileName ? fileName : 'README.md';
 
 		return path.join(path.dirname(componentpath), fileName);
 	},
