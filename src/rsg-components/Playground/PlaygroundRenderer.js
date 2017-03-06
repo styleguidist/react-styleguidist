@@ -74,7 +74,7 @@ export function PlaygroundRenderer({
 }) {
 	return (
 		<div className={classes.root}>
-			<div className={classes.preview} data-preview={name}>
+			<div className={classes.preview} data-preview={name ? name : ''}>
 				<div className={classes.isolatedLink}>
 					{name && (
 						isolatedExample ? (
