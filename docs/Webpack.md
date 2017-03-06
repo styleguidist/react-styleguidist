@@ -10,19 +10,34 @@ Styleguidist uses [webpack](https://webpack.js.org/) under the hood and it needs
 
 By default Styleguidist will try to find `webpack.config.js` in your project’s root directory and use it.
 
-If your webpack config is located somewhere else, add its location to your `styleguide.config.js`:
+If your webpack config is located somewhere else, you need to load it manually:
 
 ```javascript
+const merge = require('webpack-merge');
 module.exports = {
-  webpackConfigFile: './configs/webpack.js'
+  webpackConfig: require('./configs/webpack.js')
+};
+```
+
+Or if you want to merge it with other options:
+
+```javascript
+const merge = require('webpack-merge');
+module.exports = {
+  webpackConfig: merge([
+    require('./configs/webpack.js'),
+    {
+        /* Custom config options */
+    }
+  ])
 };
 ```
 
 > **Note:** It may not work with your project, see below for other options.
 
-> **Note:** `entry`, `externals` and `output` options will be ignored, use `webpackConfig` option to change them.
+> **Note:** `entry`, `externals`, `output`, `watch`, `stats` and `devtool` options will be ignored.
 
-> **Note:** These plugins will be ignored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.
+> **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
 
 ## Custom webpack config
 
@@ -50,9 +65,9 @@ module.exports = {
 };
 ```
 
-> **Warning:** Using this option disables webpack config file autoload, use `webpackConfigFile` option to load your project’s webpack config from a file.
+> **Warning:** This option disables webpack config file autoload, load your config manually.
 
-> **Note:** These plugins will be ignored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.
+> **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
 
 ## Non-webpack projects
 

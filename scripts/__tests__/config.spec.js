@@ -151,3 +151,17 @@ it('should ignore components option there’s sections options', () => {
 	expect(result.sections).toHaveLength(1);
 	expect(result.sections[0].components).toEqual(components);
 });
+
+it('should return webpackConfig option as is', () => {
+	const webpackConfig = { foo: 42 };
+	const result = getConfig({
+		webpackConfig,
+	});
+	expect(result.webpackConfig).toEqual(webpackConfig);
+});
+
+it('should return webpackConfig with user webpack config', () => {
+	process.chdir('test/apps/cra');
+	const result = getConfig();
+	expect(result.webpackConfig).toEqual({ cra: true });
+});

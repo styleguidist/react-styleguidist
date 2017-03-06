@@ -20,9 +20,9 @@ it('should pass an environment to a user config', () => {
 	expect(userConfig).toBeCalledWith(env);
 });
 
-it('should ignore given sections', () => {
-	const result = mergeWebpackConfig({ a: 0 }, () => ({ a: 1, b: 1 }), { ignore: ['a'] });
-	expect(result).toEqual({ a: 0, b: 1 });
+it('should ignore certain sections', () => {
+	const result = mergeWebpackConfig({ entry: 0 }, () => ({ entry: 1, module: 1 }));
+	expect(result).toEqual({ entry: 0, module: 1 });
 });
 
 it('should ignore certain Webpack plugins', () => {

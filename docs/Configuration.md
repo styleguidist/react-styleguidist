@@ -293,7 +293,7 @@ Style guide title.
 
 Type: `Function`, optional
 
-> **Warning:** deprecated, use `webpackConfigFile` or `webpackConfig` options instead.
+> **Warning:** deprecated, use [webpackConfig](#webpackConfig) option instead.
 
 Function that allows you to modify webpack config for style guide.
 
@@ -359,28 +359,12 @@ module.exports = {
 };
 ```
 
-> **Note:** `output` option will be ignored.
+> **Warning:** This option disables webpack config file autoload, load your config [manually](Webpack.md).
 
-> **Note:** These plugins will be ignored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.
+> **Note:** `entry`, `externals`, `output`, `watch`, `stats` and `devtool` options will be ignored.
 
-> **Note:** This option disables webpack config file autoload, use `webpackConfigFile` option to load your project’s webpack config from file.
+> **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
 
 > **Note:** Run style guide in verbose mode to see the actual webpack config used by Styleguidist: `npm run styleguide -- --verbose`.
 
 See [Configuring webpack](./Webpack.md) for examples.
-
-#### `webpackConfigFile`
-
-Type: `String`
-
-By default Styleguidist will try to find `webpack.config.js` in your project’s root directory and use it. Use this option to specify a custom path to your webpack config.
-
-```javascript
-module.exports = {
-  webpackConfigFile: './configs/webpack.js'
-};
-```
-
-> **Note:** `entry`, `externals` and `output` options will be ignored, use `webpackConfig` option to change them.
-
-> **Note:** These plugins will be ignored: `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `OccurrenceOrderPlugin`, `DedupePlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin`.

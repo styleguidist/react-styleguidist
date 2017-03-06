@@ -3,6 +3,8 @@
 // If you want to access any of these options in React, don’t forget to update CLIENT_CONFIG_OPTIONS array
 // in loaders/styleguide-loader.js
 
+/* eslint-disable no-console */
+
 const fs = require('fs');
 const path = require('path');
 const startCase = require('lodash/startCase');
@@ -165,7 +167,7 @@ module.exports = {
 	},
 	updateWebpackConfig: {
 		type: 'function',
-		deprecated: `Use "webpackConfigFile" or "webpackConfig" options instead:\n${consts.DOCS_CONFIG}`,
+		deprecated: `Use "webpackConfig" option instead:\n${consts.DOCS_WEBPACK}`,
 	},
 	verbose: {
 		type: 'boolean',
@@ -173,6 +175,26 @@ module.exports = {
 	},
 	webpackConfig: {
 		type: ['object', 'function'],
+		process: val => {
+			if (val) {
+				return val;
+			}
+
+			const file = findUserWebpackConfig();
+			if (file) {
+				console.log('Loading webpack config from:');
+				console.log(file);
+				console.log();
+				return require(file);
+			}
+
+			console.log('No webpack config found. ' +
+				'You may need to specify "webpackConfig" option in your style guide config:');
+			console.log(consts.DOCS_WEBPACK);
+			console.log();
+
+			return null;
+		},
 		example: {
 			module: {
 				loaders: [
@@ -184,15 +206,5 @@ module.exports = {
 				],
 			},
 		},
-	},
-	webpackConfigFile: {
-		type: ['module path'],
-		process: (val, config) => {
-			if (!val && !config.webpackConfig && !config.updateWebpackConfig) {
-				return findUserWebpackConfig();
-			}
-			return val;
-		},
-		example: './configs/webpack.js',
 	},
 };

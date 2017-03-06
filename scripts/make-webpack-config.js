@@ -89,19 +89,8 @@ module.exports = function(config, env) {
 		});
 	}
 
-	if (config.webpackConfigFile) {
-		const userConfigModule = require(config.webpackConfigFile);
-		webpackConfig = mergeWebpackConfig(webpackConfig, userConfigModule, {
-			ignore: ['entry', 'externals', 'output', 'watch', 'stats', 'devtool', 'styleguidist'],
-			env,
-		});
-	}
-
 	if (config.webpackConfig) {
-		webpackConfig = mergeWebpackConfig(webpackConfig, config.webpackConfig, {
-			ignore: ['output', 'watch', 'stats', 'devtool', 'styleguidist'],
-			env,
-		});
+		webpackConfig = mergeWebpackConfig(webpackConfig, config.webpackConfig, { env });
 	}
 
 	// Add JSON loader if user config has no one (Webpack 2 includes it by default)

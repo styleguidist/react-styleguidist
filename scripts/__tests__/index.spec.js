@@ -80,28 +80,6 @@ it('makeWebpackConfig should merge webpackConfig config option as a function', (
 	expect(result._env).toEqual('production');
 });
 
-it('makeWebpackConfig should merge config from webpackConfigFile config option', () => {
-	const defaultWebpackConfig = getDefaultWebpackConfig();
-	const api = styleguidist({
-		webpackConfigFile: './test/data/webpack.config.js',
-	});
-	const result = api.makeWebpackConfig();
-
-	expect(result).toBeTruthy();
-	expect(result.output.filename).toEqual(defaultWebpackConfig.output.filename);
-	expect(last(result.resolve.extensions)).toEqual('.scss');
-});
-
-it('makeWebpackConfig should merge config from webpackConfigFile config option as a function', () => {
-	const api = styleguidist({
-		webpackConfigFile: './test/data/webpack.config.func.js',
-	});
-	const result = api.makeWebpackConfig();
-
-	expect(result).toBeTruthy();
-	expect(last(result.resolve.extensions)).toEqual('production');
-});
-
 it('makeWebpackConfig should apply updateWebpackConfig config option', () => {
 	/* eslint-disable no-console */
 	const originalWarn = console.warn;

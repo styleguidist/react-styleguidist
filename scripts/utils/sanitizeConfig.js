@@ -31,7 +31,6 @@ const typeCheckers = {
 	'existing file path': isString,
 	'directory path': isString,
 	'existing directory path': isString,
-	'module path': isString,
 };
 
 const typesList = types => listify(types, { finalWord: 'or' });
@@ -75,7 +74,7 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 
 		// Custom processing
 		if (props.process) {
-			value = props.process(value, config);
+			value = props.process(value, config, rootDir);
 		}
 
 		if (value === undefined) {
@@ -138,23 +137,6 @@ Example:
 							`A directory specified in ${chalk.bold(key)} config option does not exist:\n${value}`
 						);
 					}
-				}
-			}
-
-			// Absolutize module path if needed and try to require it
-			if (isString(value) && types.some(type => type === 'module path')) {
-				if (value.startsWith('./')) {
-					value = path.resolve(rootDir, value);
-				}
-				try {
-					require(value);
-				}
-				catch (err) {
-					throw new StyleguidistError(
-						`A module specified in ${chalk.bold(key)} config option cannot be required:\n${value}\n\n` +
-						'For a local file write "./configs/webpack.config".\n' +
-						'For npm module write "react-scripts/config/webpack.config.dev".'
-					);
 				}
 			}
 		}
