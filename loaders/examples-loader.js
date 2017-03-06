@@ -21,7 +21,7 @@ function examplesLoader(source) {
 		this.cacheable();
 	}
 
-	const query = loaderUtils.parseQuery(this.query);
+	const query = loaderUtils.getOptions(this) || {};
 	const config = this._styleguidist;
 
     // Append React to context modules, since it’s required for JSX

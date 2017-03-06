@@ -55,7 +55,7 @@
     "jss-nested": "^3.0.1",
     "leven": "^2.1.0",
     "listify": "^1.0.0",
-    "loader-utils": "^0.2.16",
+    "loader-utils": "^1.0.3",
     "lodash": "^4.17.4",
     "minimist": "^1.2.0",
     "pretty-format": "^19.0.0",
