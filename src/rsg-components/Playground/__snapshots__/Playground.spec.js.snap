@@ -1,7 +1,7 @@
 exports[`test renderer should render preview 1`] = `
 <div>
   <div
-    className="rsg--example-preview">
+    data-preview="name">
     <div>
       <_class
         href="#!/name/0">
