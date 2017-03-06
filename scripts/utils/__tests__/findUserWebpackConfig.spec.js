@@ -17,10 +17,3 @@ it('should return an absolute path to user Webpack config located in project roo
 	expect(result).toMatch(/^\//);
 	expect(result).toMatch(/webpack.config.js$/);
 });
-
-it('should return an absolute path to user Webpack config located in nested folder', () => {
-	process.chdir('test/apps/webpack-nested');
-	const result = findUserWebpackConfig();
-	expect(result).toMatch(/^\//);
-	expect(result).toMatch(/webpack.config.js$/);
-});

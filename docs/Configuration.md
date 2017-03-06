@@ -373,7 +373,7 @@ See [Configuring webpack](./Webpack.md) for examples.
 
 Type: `String`
 
-By default Styleguidist will try to find webpack config (`webpack.config.dev.js` or `webpack.config.js`) anywhere in your project and use it. Use this option to specify a custom path to your webpack config.
+By default Styleguidist will try to find `webpack.config.js` in your project’s root directory and use it. Use this option to specify a custom path to your webpack config.
 
 ```javascript
 module.exports = {

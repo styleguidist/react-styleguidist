@@ -8,7 +8,7 @@ Styleguidist uses [webpack](https://webpack.js.org/) under the hood and it needs
 
 ## Reusing your project’s webpack config
 
-By default Styleguidist will recursively try to find an existing webpack config (`webpack.config.dev.js` or `webpack.config.js`) in your project and use it.
+By default Styleguidist will try to find `webpack.config.js` in your project’s root directory and use it.
 
 If your webpack config is located somewhere else, add its location to your `styleguide.config.js`:
 
