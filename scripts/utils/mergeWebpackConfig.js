@@ -34,13 +34,12 @@ const merge = mergeBase({
  *
  * @param {object} baseConfig
  * @param {object|Function} userConfig
- * @param {object} options
- * @param {string} options.env
+ * @param {string} env
  * @return {object}
  */
-module.exports = function mergeWebpackConfig(baseConfig, userConfig, options = {}) {
+module.exports = function mergeWebpackConfig(baseConfig, userConfig, env) {
 	const userConfigObject = isFunction(userConfig)
-		? userConfig(options.env)
+		? userConfig(env)
 		: userConfig
 	;
 	const safeUserConfig = omit(userConfigObject, IGNORE_SECTIONS);

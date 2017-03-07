@@ -90,7 +90,7 @@ module.exports = function(config, env) {
 	}
 
 	if (config.webpackConfig) {
-		webpackConfig = mergeWebpackConfig(webpackConfig, config.webpackConfig, { env });
+		webpackConfig = mergeWebpackConfig(webpackConfig, config.webpackConfig, env);
 	}
 
 	// Add JSON loader if user config has no one (Webpack 2 includes it by default)
