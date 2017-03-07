@@ -20,126 +20,132 @@ it('should return API methods', () => {
 	expect(typeof api.makeWebpackConfig).toBe('function');
 });
 
-it('makeWebpackConfig should return development Webpack config', () => {
-	const api = styleguidist();
-	const result = api.makeWebpackConfig('development');
-	expect(result).toBeTruthy();
-	expect(result.output.filename).toBe('build/bundle.js');
-});
+describe('makeWebpackConfig', () => {
+	it('should return development Webpack config', () => {
+		const api = styleguidist();
+		const result = api.makeWebpackConfig('development');
+		expect(result).toBeTruthy();
+		expect(result.output.filename).toBe('build/bundle.js');
+	});
 
-it('makeWebpackConfig should return production Webpack config', () => {
-	const api = styleguidist();
-	const result = api.makeWebpackConfig('production');
-	expect(result).toBeTruthy();
-	expect(result.output.filename).toBe('build/bundle.js');
-});
+	it('should return production Webpack config', () => {
+		const api = styleguidist();
+		const result = api.makeWebpackConfig('production');
+		expect(result).toBeTruthy();
+		expect(result.output.filename).toBe('build/bundle.js');
+	});
 
-it('makeWebpackConfig should merge webpackConfig config option', () => {
-	const defaultWebpackConfig = getDefaultWebpackConfig();
-	const api = styleguidist({
-		webpackConfig: {
-			resolve: {
-				extensions: ['.scss'],
+	it('should merge webpackConfig config option', () => {
+		const defaultWebpackConfig = getDefaultWebpackConfig();
+		const api = styleguidist({
+			webpackConfig: {
+				resolve: {
+					extensions: ['.scss'],
+				},
 			},
-		},
+		});
+		const result = api.makeWebpackConfig();
+
+		expect(result).toBeTruthy();
+		expect(result.resolve.extensions.length).toEqual(defaultWebpackConfig.resolve.extensions.length + 1);
+		expect(last(result.resolve.extensions)).toEqual('.scss');
 	});
-	const result = api.makeWebpackConfig();
-
-	expect(result).toBeTruthy();
-	expect(result.resolve.extensions.length).toEqual(defaultWebpackConfig.resolve.extensions.length + 1);
-	expect(last(result.resolve.extensions)).toEqual('.scss');
-});
 
 
-it('makeWebpackConfig should merge webpackConfig but ignore output section', () => {
-	const defaultWebpackConfig = getDefaultWebpackConfig();
-	const api = styleguidist({
-		webpackConfig: {
-			resolve: {
-				extensions: ['.scss'],
+	it('should merge webpackConfig but ignore output section', () => {
+		const defaultWebpackConfig = getDefaultWebpackConfig();
+		const api = styleguidist({
+			webpackConfig: {
+				resolve: {
+					extensions: ['.scss'],
+				},
+				output: {
+					filename: 'broken.js',
+				},
 			},
-			output: {
-				filename: 'broken.js',
+		});
+		const result = api.makeWebpackConfig();
+
+		expect(result.output.filename).toEqual(defaultWebpackConfig.output.filename);
+	});
+
+	it('should merge webpackConfig config option as a function', () => {
+		const api = styleguidist({
+			webpackConfig: env => ({
+				_env: env,
+			}),
+		});
+		const result = api.makeWebpackConfig();
+
+		expect(result).toBeTruthy();
+		expect(result._env).toEqual('production');
+	});
+
+	it('should apply updateWebpackConfig config option', () => {
+		/* eslint-disable no-console */
+		const originalWarn = console.warn;
+
+		console.warn = jest.fn();
+		const defaultWebpackConfig = getDefaultWebpackConfig();
+		const api = styleguidist({
+			updateWebpackConfig: (webpackConfig, env) => {
+				webpackConfig.resolve.extensions.push(env);
+				return webpackConfig;
 			},
-		},
+		});
+		const result = api.makeWebpackConfig();
+
+		expect(result).toBeTruthy();
+		expect(result.resolve.extensions.length).toEqual(defaultWebpackConfig.resolve.extensions.length + 1);
+		expect(last(result.resolve.extensions)).toEqual('production');
+
+		console.warn = originalWarn;
+		/* eslint-enable no-console */
 	});
-	const result = api.makeWebpackConfig();
 
-	expect(result.output.filename).toEqual(defaultWebpackConfig.output.filename);
-});
+	it('should merge create-react-app Webpack config', () => {
+		process.chdir('test/apps/cra');
+		const api = styleguidist();
+		const result = api.makeWebpackConfig();
 
-it('makeWebpackConfig should merge webpackConfig config option as a function', () => {
-	const api = styleguidist({
-		webpackConfig: env => ({
-			_env: env,
-		}),
+		expect(result).toBeTruthy();
+		expect(result.cra).toBeTruthy();
 	});
-	const result = api.makeWebpackConfig();
 
-	expect(result).toBeTruthy();
-	expect(result._env).toEqual('production');
-});
+	it('should add json-loader', () => {
+		const api = styleguidist();
+		const result = api.makeWebpackConfig();
 
-it('makeWebpackConfig should apply updateWebpackConfig config option', () => {
-	/* eslint-disable no-console */
-	const originalWarn = console.warn;
-
-	console.warn = jest.fn();
-	const defaultWebpackConfig = getDefaultWebpackConfig();
-	const api = styleguidist({
-		updateWebpackConfig: (webpackConfig, env) => {
-			webpackConfig.resolve.extensions.push(env);
-			return webpackConfig;
-		},
+		expect(result.module.loaders).toHaveLength(1);
+		expect(last(result.module.loaders).loader).toEqual('json-loader');
 	});
-	const result = api.makeWebpackConfig();
-
-	expect(result).toBeTruthy();
-	expect(result.resolve.extensions.length).toEqual(defaultWebpackConfig.resolve.extensions.length + 1);
-	expect(last(result.resolve.extensions)).toEqual('production');
-
-	console.warn = originalWarn;
-	/* eslint-enable no-console */
 });
 
-it('makeWebpackConfig should merge create-react-app Webpack config', () => {
-	process.chdir('test/apps/cra');
-	const api = styleguidist();
-	const result = api.makeWebpackConfig();
+describe('build', () => {
+	it('should pass style guide config and stats to callback', () => {
+		const config = {
+			components: '*.js',
+		};
+		const callback = jest.fn();
+		const api = styleguidist(config);
+		api.build(callback);
 
-	expect(result).toBeTruthy();
-	expect(result.cra).toBeTruthy();
+		expect(callback).toBeCalled();
+		expect(callback.mock.calls[0][1].components).toBe(config.components);
+		expect(callback.mock.calls[0][2]).toEqual({ stats: true });
+	});
 });
 
-it('makeWebpackConfig should add json-loader', () => {
-	const api = styleguidist();
-	const result = api.makeWebpackConfig();
+describe('server', () => {
+	it('should pass style guide config to callback', () => {
+		const config = {
+			components: '*.js',
+		};
+		const callback = jest.fn();
+		const api = styleguidist(config);
+		api.server(callback);
 
-	expect(result.module.loaders).toHaveLength(1);
-	expect(last(result.module.loaders).loader).toEqual('json-loader');
-});
-
-it('build() should pass style guide config and stats to callback', () => {
-	const config = {
-		components: '*.js',
-	};
-	const callback = jest.fn();
-	const api = styleguidist(config);
-	api.build(callback);
-
-	expect(callback).toBeCalled();
-	expect(callback.mock.calls[0][1].components).toBe(config.components);
-	expect(callback.mock.calls[0][2]).toEqual({ stats: true });
-});
-
-it('server() should pass style guide config to callback', () => {
-	const config = {
-		components: '*.js',
-	};
-	const callback = jest.fn();
-	const api = styleguidist(config);
-	api.server(callback);
-
-	expect(callback).toBeCalled();
-	expect(callback.mock.calls[0][1].components).toBe(config.components);
+		expect(callback).toBeCalled();
+		expect(callback.mock.calls[0][1].components).toBe(config.components);
+	});
 });
