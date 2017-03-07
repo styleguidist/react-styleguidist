@@ -79,6 +79,14 @@ module.exports = {
 	propsParser: {
 		type: 'function',
 	},
+	require: {
+		type: 'array',
+		default: [],
+		example: [
+			'babel-polyfill',
+			'path/to/styles.css',
+		],
+	},
 	resolver: {
 		type: 'function',
 		default: reactDocgen.resolver.findAllExportedComponentDefinitions,

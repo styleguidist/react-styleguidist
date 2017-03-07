@@ -119,6 +119,19 @@ describe('makeWebpackConfig', () => {
 		expect(result.module.loaders).toHaveLength(1);
 		expect(last(result.module.loaders).loader).toEqual('json-loader');
 	});
+
+	it('should add webpack entry for each require config option item', () => {
+		const modules = [
+			'babel-polyfill',
+			'path/to/styles.css',
+		];
+		const api = styleguidist({
+			require: modules,
+		});
+		const result = api.makeWebpackConfig();
+
+		expect(result.entry).toEqual(expect.arrayContaining(modules));
+	});
 });
 
 describe('build', () => {

@@ -51,17 +51,18 @@ const Button = require('../common/Button');
 <Button>Push Me Tender</Button>
 ```
 
-## How to add babel-polyfill?
+## How to add custom JavaScript and CSS or polyfills?
 
-Add a new webpack entry point. In your style guide config:
+In your style guide config:
 
 ```javascript
+const path = require('path');
 module.exports = {
-  webpackConfig: {
-    entry: [
-      'babel-polyfill'
-    ]
-  }
+  require: [
+    'babel-polyfill',
+    path.join(__dirname, 'path/to/script.js'),
+    path.join(__dirname, 'path/to/styles.css'),
+  ]
 };
 ```
 
@@ -86,22 +87,6 @@ class Button extends Component {
 }
 
 export default Button;
-```
-
-## How to add custom JS and CSS?
-
-Add a new webpack entry point. In your style guide config:
-
-```javascript
-const path = require('path');
-module.exports = {
-  webpackConfig: {
-    entry: [
-      path.join(__dirname, 'path/to/script.js'),
-      path.join(__dirname, 'path/to/styles.css'),
-    ]
-  }
-};
 ```
 
 You may need an appropriate webpack loader to handle these files.

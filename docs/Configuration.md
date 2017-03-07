@@ -178,6 +178,21 @@ module.exports = {
 };
 ```
 
+#### `require`
+
+Type: `Array`, optional
+
+Modules that are required for your style guide. Useful for third-party styles or polyfills.  
+
+```javascript
+module.exports = {
+  require: [
+    'babel-polyfill',
+    'path/to/styles.css',
+  ]
+};
+```
+
 #### `resolver`
 
 Type: `Function`, optional

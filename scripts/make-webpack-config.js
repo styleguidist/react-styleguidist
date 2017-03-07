@@ -21,7 +21,9 @@ module.exports = function(config, env) {
 	const isProd = env === 'production';
 
 	let webpackConfig = {
-		entry: [],
+		entry: config.require.concat([
+			path.resolve(sourceDir, 'index'),
+		]),
 		output: {
 			path: config.styleguideDir,
 			filename: 'build/bundle.js',
@@ -106,9 +108,6 @@ module.exports = function(config, env) {
 			},
 		});
 	}
-
-	// Add Styleguidist’s entry point after user’s entry points so things like polyfills would work
-	webpackConfig.entry.push(path.resolve(sourceDir, 'index'));
 
 	// Add components folder alias at the end so users can override our components to customize the style guide
 	// (their aliases should be before this one)
