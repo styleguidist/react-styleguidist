@@ -47,7 +47,7 @@ Real projects using React Styleguidist:
 ## Resources
 
 * [Building React Components Library](https://skillsmatter.com/skillscasts/8140-building-react-components-library) talk by [Robert Haritonov](https://github.com/operatino)
-* [Interview with Artem Sapegin](http://survivejs.com/blog/styleguidist-interview/) about React Styleguidist.
+* [Interview with Artem Sapegin](https://survivejs.com/blog/styleguidist-interview/) about React Styleguidist.
 
 ## Advanced documentation
 
