@@ -13,7 +13,6 @@ By default Styleguidist will try to find `webpack.config.js` in your project’s
 If your webpack config is located somewhere else, you need to load it manually:
 
 ```javascript
-const merge = require('webpack-merge');
 module.exports = {
   webpackConfig: require('./configs/webpack.js')
 };
@@ -22,22 +21,23 @@ module.exports = {
 Or if you want to merge it with other options:
 
 ```javascript
-const merge = require('webpack-merge');
 module.exports = {
-  webpackConfig: merge([
+  webpackConfig: Object.assign({},
     require('./configs/webpack.js'),
     {
         /* Custom config options */
     }
-  ])
+  )
 };
 ```
-
-> **Note:** It may not work with your project, see below for other options.
 
 > **Note:** `entry`, `externals`, `output`, `watch`, `stats` and `devtool` options will be ignored.
 
 > **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
+
+> **Note:** Babelified webpack configs (like `webpack.config.babel.js`) are not supported. We recommend to convert your config to native Node — Node 6 supports [many ES6 features](http://node.green/). 
+
+> **Note:** Use [webpack-merge](https://github.com/survivejs/webpack-merge) for easier config merging.
 
 ## Custom webpack config
 
@@ -65,7 +65,9 @@ module.exports = {
 };
 ```
 
-> **Warning:** This option disables webpack config file autoload, load your config manually.
+> **Note:** `entry`, `externals`, `output`, `watch`, `stats` and `devtool` options will be ignored.
+
+> **Warning:** This option disables webpack config file autoload, see above how to load your config manually.
 
 > **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
 
