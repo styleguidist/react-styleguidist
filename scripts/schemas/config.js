@@ -120,7 +120,7 @@ module.exports = {
 	},
 	serverPort: {
 		type: 'number',
-		default: 3000,
+		default: 6060,
 	},
 	showCode: {
 		type: 'boolean',

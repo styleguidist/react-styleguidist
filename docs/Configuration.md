@@ -73,7 +73,7 @@ module.exports = {
 };
 ```
 
-Your components will be able to invoke the url `http://localhost:3000/custom-endpoint` from their examples.
+Your components will be able to invoke the url `http://localhost:6060/custom-endpoint` from their examples.
 
 #### `defaultExample`
 
@@ -221,7 +221,7 @@ Dev server host name.
 
 #### `serverPort`
 
-Type: `Number`, default: `3000`
+Type: `Number`, default: `6060`
 
 Dev server port.
 

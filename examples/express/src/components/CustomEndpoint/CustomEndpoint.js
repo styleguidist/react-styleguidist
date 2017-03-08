@@ -10,7 +10,7 @@ export default class CustomEndpoint extends Component {
 	}
 
 	handleInvokeEndpoint() {
-		fetch('http://localhost:3000/custom', { method: 'GET' })
+		fetch('http://localhost:6060/custom', { method: 'GET' })
 			.then(responseObj => responseObj.json())
 			.then(({ response } = {}) => this.setState({ response, error: null }))
 			.catch(() => this.setState({

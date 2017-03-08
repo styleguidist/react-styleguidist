@@ -43,7 +43,7 @@ Then run Babel in watch mode and start example style guide:
 yarn run compile:watch & yarn start
 ```
 
-Open [localhost:3000](http://localhost:3000) in a browser.
+Open [localhost:6060](http://localhost:6060) in a browser.
 
 (There are other example style guides to test particular features too, run `yarn run` to see a list.)
 

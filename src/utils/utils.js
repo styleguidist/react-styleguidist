@@ -146,8 +146,8 @@ export function filterComponentsInSectionsByExactName(sections, name) {
 /**
  * Returns an object containing component name and, optionally, an example index
  * from hash part or page URL:
- * http://localhost:3000/#!/Button → { targetComponentName: 'Button' }
- * http://localhost:3000/#!/Button/1 → { targetComponentName: 'Button', targetComponentIndex: 1 }
+ * http://localhost:6060/#!/Button → { targetComponentName: 'Button' }
+ * http://localhost:6060/#!/Button/1 → { targetComponentName: 'Button', targetComponentIndex: 1 }
  *
  * @param {string} [hash]
  * @returns {object}
