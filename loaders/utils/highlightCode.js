@@ -33,7 +33,7 @@ function highlight() {
 module.exports = function highlightCode(markdown) {
 	return remark()
 		.use(highlight)
-		.process(markdown)
-		.contents
+		.processSync(markdown)
+		.toString()
 	;
 };

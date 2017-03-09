@@ -65,12 +65,10 @@
     "react-docgen": "^2.13.0",
     "react-docgen-displayname-handler": "^1.0.0",
     "react-group": "^1.0.3",
-    "remark": "^6.2.0",
-    "remark-parse": "^2.2.0",
+    "remark": "^7.0.0",
     "semver-utils": "^1.1.1",
     "style-loader": "^0.13.2",
     "to-ast": "^1.0.0",
-    "unified": "^5.1.0",
     "unist-util-visit": "^1.1.1",
     "webpack-dev-server": "^1.16.3",
     "webpack-merge": "^4.0.0"

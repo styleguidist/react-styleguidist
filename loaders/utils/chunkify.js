@@ -44,8 +44,8 @@ module.exports = function chunkify(markdown) {
 
 	const rendered = remark()
 		.use(processCode)
-		.process(markdown)
-		.contents
+		.processSync(markdown)
+		.toString()
 	;
 
 	const chunks = [];
