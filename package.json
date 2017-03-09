@@ -1,7 +1,7 @@
 {
   "name": "react-styleguidist",
   "description": "React components style guide generator",
-  "version": "5.0.0-beta.14",
+  "version": "5.0.0-beta.15",
   "homepage": "https://github.com/styleguidist/react-styleguidist",
   "author": {
     "name": "Artem Sapegin",
