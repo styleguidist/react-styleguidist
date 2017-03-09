@@ -56,6 +56,23 @@ it('should render PropTypes.shape', () => {
 	expect(actual).toMatchSnapshot();
 });
 
+it('should render PropTypes.objectOf', () => {
+	const actual = render(['colors: PropTypes.objectOf(PropTypes.string)']);
+
+	expect(actual).toMatchSnapshot();
+});
+
+it('should render PropTypes.objectOf(PropTypes.shape)', () => {
+	const actual = render([`colors: PropTypes.objectOf(
+		PropTypes.shape({
+			bar: PropTypes.number.isRequired,
+			baz: PropTypes.any
+		})
+	)`]);
+
+	expect(actual).toMatchSnapshot();
+});
+
 it('should render description in Markdown', () => {
 	const actual = render(['/**\n * Label\n */\ncolor: PropTypes.string']);
 
