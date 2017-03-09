@@ -95,4 +95,27 @@ Text with *some* **formatting** and a [link](/foo).
 
 		expect(actual.html()).toMatchSnapshot();
 	});
+
+	it('should render code blocks without escaping', () => {
+		const markdown = `
+\`\`\`html
+<foo></foo>
+\`\`\`
+`;
+		const actual = render(
+			<Markdown text={markdown} />
+		);
+
+		expect(actual.html()).toMatchSnapshot();
+	});
+
+	it('should render inline code with escaping', () => {
+		const markdown = 'Foo `<bar>` baz';
+
+		const actual = render(
+			<Markdown text={markdown} />
+		);
+
+		expect(actual.html()).toMatchSnapshot();
+	});
 });

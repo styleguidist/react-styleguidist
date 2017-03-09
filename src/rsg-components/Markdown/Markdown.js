@@ -1,12 +1,28 @@
-import { PropTypes } from 'react';
+import React, { PropTypes } from 'react';
+import { compiler } from 'markdown-to-jsx';
 import mapValues from 'lodash/mapValues';
 import Styled from 'rsg-components/Styled';
 import { styles as linkStyles } from 'rsg-components/Link';
-import renderMarkdown from '../../utils/markdown-to-jsx';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
 // That way we could avoid clashes between our loaders and user loaders.
 require('!!../../../loaders/style-loader!../../../loaders/css-loader!highlight.js/styles/tomorrow.css');
+
+function Code({ children, className, ...props }) {
+	const isHighlighted = className && className.includes('lang-');
+	if (isHighlighted) {
+		return (
+			<code className={className} {...props} dangerouslySetInnerHTML={{ __html: children }} />
+		);
+	}
+	return (
+		<code className={className} {...props}>{children}</code>
+	);
+}
+Code.propTypes = {
+	children: PropTypes.node,
+	className: PropTypes.string,
+};
 
 const styles = ({ font, monospace, link, linkHover, border, codeBackground }) => ({
 	base: {
@@ -65,6 +81,11 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 		composes: '$base',
 		listStyleType: 'inherit',
 	},
+	input: {
+		display: 'inline-block',
+		margin: [[0, '0.35em', '0.25em', '-1.2em']],
+		verticalAlign: 'middle',
+	},
 	blockquote: {
 		composes: '$para',
 		fontSize: 14,
@@ -86,26 +107,36 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 		fontWeight: 'bold',
 	},
 	code: {
-		display: 'inline',
 		fontFamily: monospace,
 		fontSize: 'inherit',
 		color: 'inherit',
 		background: 'transparent',
+		whiteSpace: 'inherit',
 	},
 	pre: {
 		backgroundColor: codeBackground,
 		border: [[1, border, 'solid']],
 		padding: [[12, 15]],
+		fontSize: 12,
 		borderRadius: 3,
-		'& code': {
-			fontFamily: monospace,
-			fontSize: 12,
-			color: 'inherit',
-			background: 'transparent',
-			whiteSpace: 'pre',
-		},
+		whiteSpace: 'pre',
 	},
-	img: {},
+	table: {
+		composes: '$para',
+		borderCollapse: 'collapse',
+	},
+	thead: {
+		composes: '$hr',
+	},
+	td: {
+		fontFamily: font,
+		padding: [[6, 15, 6, 0]],
+		fontSize: 13,
+	},
+	th: {
+		composes: '$td',
+		fontWeight: 'bold',
+	},
 });
 
 function Markdown({
@@ -114,11 +145,22 @@ function Markdown({
 	inline,
 }) {
 	// Custom CSS classes for each tag: <em> → <em className={s.em}>.
-	const overrides = mapValues(classes, value => ({
+	const styleOverrides = mapValues(classes, value => ({
 		props: {
 			className: value,
 		},
 	}));
+
+	// Custom components
+	const overrides = {
+		...styleOverrides,
+		code: {
+			component: Code,
+			props: {
+				className: classes.code,
+			},
+		},
+	};
 
 	// Inline mode: replace <p> (usual root component) with <span>
 	const overridesInline = {
@@ -132,7 +174,7 @@ function Markdown({
 	};
 
 	const options = { overrides: inline ? overridesInline : overrides };
-	return renderMarkdown(text, options);
+	return compiler(text, options);
 }
 
 Markdown.propTypes = {
