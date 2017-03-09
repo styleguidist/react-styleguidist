@@ -2171,7 +2171,7 @@ css-loader@0.26.1:
     postcss-modules-values "^1.1.0"
     source-list-map "^0.1.4"
 
-css-loader@^0.26.2:
+css-loader@^0.26.4:
   version "0.26.4"
   resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-0.26.4.tgz#b61e9e30db94303e6ffc892f10ecd09ad025a1fd"
   dependencies:
@@ -2858,7 +2858,7 @@ eslint@3.16.1:
     text-table "~0.2.0"
     user-home "^2.0.0"
 
-eslint@^3.17.0:
+eslint@^3.17.1:
   version "3.17.1"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.17.1.tgz#b80ae12d9c406d858406fccda627afce33ea10ea"
   dependencies:
@@ -3627,7 +3627,7 @@ he@1.1.x:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
 
-highlight.js@^9.9.0:
+highlight.js@^9.10.0:
   version "9.10.0"
   resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.10.0.tgz#f9f0b14c0be00f0e4fb1e577b749fed9e6f52f55"
 
@@ -6500,7 +6500,7 @@ react-codemirror@^0.3.0:
     codemirror "^5.18.2"
     lodash.debounce "^4.0.8"
 
-react-dev-utils@^0.5.1, react-dev-utils@^0.5.2:
+react-dev-utils@^0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-0.5.2.tgz#50d0b962d3a94b6c2e8f2011ed6468e4124bc410"
   dependencies:
@@ -6545,7 +6545,7 @@ react-group@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/react-group/-/react-group-1.0.3.tgz#553f50e3588324c4bbb161a3e6832677a33c7a5b"
 
-react-modal@^1.7.1:
+react-modal@^1.7.2:
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-1.7.2.tgz#3c0b6d144745a819030fdbe0edf6ee3d5722eade"
   dependencies:
@@ -6557,7 +6557,7 @@ react-render-hook@^0.1.3:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/react-render-hook/-/react-render-hook-0.1.4.tgz#481ebf680919c03e71142ddce409f4e101f9bec4"
 
-react-scripts@^0.9.3:
+react-scripts@^0.9.4:
   version "0.9.4"
   resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-0.9.4.tgz#e43ca46f4641561dd84caae4c91795923defda4f"
   dependencies:
