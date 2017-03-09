@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { compiler } from 'markdown-to-jsx';
 import mapValues from 'lodash/mapValues';
+import memoize from 'lodash/memoize';
 import Styled from 'rsg-components/Styled';
 import { styles as linkStyles } from 'rsg-components/Link';
 
@@ -8,21 +9,56 @@ import { styles as linkStyles } from 'rsg-components/Link';
 // That way we could avoid clashes between our loaders and user loaders.
 require('!!../../../loaders/style-loader!../../../loaders/css-loader!highlight.js/styles/tomorrow.css');
 
-function Code({ children, className, ...props }) {
+// Code blocks with server-side syntax highlight
+function Code({ children, className }) {
 	const isHighlighted = className && className.includes('lang-');
 	if (isHighlighted) {
 		return (
-			<code className={className} {...props} dangerouslySetInnerHTML={{ __html: children }} />
+			<code className={className} dangerouslySetInnerHTML={{ __html: children }} />
 		);
 	}
 	return (
-		<code className={className} {...props}>{children}</code>
+		<code className={className}>{children}</code>
 	);
 }
 Code.propTypes = {
 	children: PropTypes.node,
 	className: PropTypes.string,
 };
+
+// Custom CSS classes for each tag: <em> → <em className={s.em}> + custom components
+const getBaseOverrides = memoize(classes => {
+	const styleOverrides = mapValues(classes, value => ({
+		props: {
+			className: value,
+		},
+	}));
+
+	return {
+		...styleOverrides,
+		code: {
+			component: Code,
+			props: {
+				className: classes.code,
+			},
+		},
+	};
+});
+
+// Inline mode: replace <p> (usual root component) with <span>
+const getInlineOverrides = memoize(classes => {
+	const overrides = getBaseOverrides(classes);
+
+	return {
+		...overrides,
+		p: {
+			component: 'span',
+			props: {
+				className: classes.base,
+			},
+		},
+	};
+});
 
 const styles = ({ font, monospace, link, linkHover, border, codeBackground }) => ({
 	base: {
@@ -131,7 +167,7 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 	td: {
 		fontFamily: font,
 		padding: [[6, 15, 6, 0]],
-		fontSize: 13,
+		fontSize: 14,
 	},
 	th: {
 		composes: '$td',
@@ -144,37 +180,8 @@ function Markdown({
 	text,
 	inline,
 }) {
-	// Custom CSS classes for each tag: <em> → <em className={s.em}>.
-	const styleOverrides = mapValues(classes, value => ({
-		props: {
-			className: value,
-		},
-	}));
-
-	// Custom components
-	const overrides = {
-		...styleOverrides,
-		code: {
-			component: Code,
-			props: {
-				className: classes.code,
-			},
-		},
-	};
-
-	// Inline mode: replace <p> (usual root component) with <span>
-	const overridesInline = {
-		...overrides,
-		p: {
-			component: 'span',
-			props: {
-				className: classes.base,
-			},
-		},
-	};
-
-	const options = { overrides: inline ? overridesInline : overrides };
-	return compiler(text, options);
+	const overrides = inline ? getInlineOverrides(classes) : getBaseOverrides(classes);
+	return compiler(text, { overrides });
 }
 
 Markdown.propTypes = {
