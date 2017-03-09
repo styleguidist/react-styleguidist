@@ -63,6 +63,8 @@ function renderType(type) {
 	switch (name) {
 		case 'arrayOf':
 			return `${type.value.name}[]`;
+		case 'objectOf':
+			return `{${renderType(type.value)}}`;
 		case 'instanceOf':
 			return type.value;
 		default:
@@ -146,6 +148,11 @@ export function PropsRenderer({ classes, props }) {
 			case 'shape':
 				return renderShape(prop.type.value);
 			case 'arrayOf':
+				if (type.value.name === 'shape') {
+					return renderShape(prop.type.value.value);
+				}
+				return null;
+			case 'objectOf':
 				if (type.value.name === 'shape') {
 					return renderShape(prop.type.value.value);
 				}
