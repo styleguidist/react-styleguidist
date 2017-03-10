@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+/* eslint-disable compat/compat */
+
 export default class CustomEndpoint extends Component {
 
 	constructor(props) {

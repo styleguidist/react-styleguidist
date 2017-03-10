@@ -1,6 +1,10 @@
 {
 	"parser": "babel-eslint",
 	"extends": "tamia/react",
+	"plugins": ["compat"],
+	"rules": {
+		"compat/compat": 2
+	},
 	"globals": {
 		"jest": false,
 		"expect": false,
