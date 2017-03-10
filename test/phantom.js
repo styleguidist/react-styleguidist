@@ -1,6 +1,6 @@
 const system = require('system');
 
-/* eslint-disable no-console */
+/* eslint-disable no-console, no-multi-assign */
 /* globals phantom:false */
 
 if (system.args.length !== 2) {

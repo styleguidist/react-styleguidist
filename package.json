@@ -92,7 +92,7 @@
     "enzyme": "^2.7.1",
     "enzyme-to-json": "^1.5.0",
     "eslint": "^3.17.1",
-    "eslint-config-tamia": "^3.3.2",
+    "eslint-config-tamia": "^3.3.4",
     "eslint-plugin-react": "^6.10.0",
     "expect-react-shallow": "^1.2.1",
     "gh-pages": "^0.12.0",
