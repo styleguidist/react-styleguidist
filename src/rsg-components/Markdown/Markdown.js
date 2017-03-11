@@ -43,7 +43,7 @@ const getBaseOverrides = memoize(classes => {
 			},
 		},
 	};
-});
+}, () => 'getBaseOverrides');
 
 // Inline mode: replace <p> (usual root component) with <span>
 const getInlineOverrides = memoize(classes => {
@@ -58,7 +58,7 @@ const getInlineOverrides = memoize(classes => {
 			},
 		},
 	};
-});
+}, () => 'getInlineOverrides');
 
 const styles = ({ font, monospace, link, linkHover, border, codeBackground }) => ({
 	base: {
