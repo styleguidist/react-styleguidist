@@ -11,7 +11,7 @@ require('!!../../../loaders/style-loader!../../../loaders/css-loader!highlight.j
 
 // Code blocks with server-side syntax highlight
 function Code({ children, className }) {
-	const isHighlighted = className && className.includes('lang-');
+	const isHighlighted = className && className.indexOf('lang-') !== -1;
 	if (isHighlighted) {
 		return (
 			<code className={className} dangerouslySetInnerHTML={{ __html: children }} />
