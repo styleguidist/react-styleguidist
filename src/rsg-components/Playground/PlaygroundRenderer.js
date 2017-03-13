@@ -20,7 +20,6 @@ const styles = ({ font, link, linkHover, border, baseBackground, codeBackground 
 		isolate: false,
 		marginBottom: 3,
 		padding: 15,
-		overflow: 'auto',
 	},
 	codeToggle: {
 		position: 'absolute',
