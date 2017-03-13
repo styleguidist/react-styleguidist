@@ -1,8 +1,6 @@
 import React from 'react';
 import Markdown from './Markdown';
 
-jest.mock('lodash/memoize');
-
 describe('Markdown', () => {
 	it('should render Markdown with custom CSS classes', () => {
 		const markdown = `
