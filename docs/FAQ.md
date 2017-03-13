@@ -51,7 +51,7 @@ module.exports = {
 
 ## How to use React Styleguidist with styled-components?
 
-The [recommened way](https://github.com/styleguidist/react-styleguidist/issues/37#issuecomment-263502454) of using [styled-components](https://styled-components.com/) is like this:
+The [recommended way](https://github.com/styleguidist/react-styleguidist/issues/37#issuecomment-263502454) of using [styled-components](https://styled-components.com/) is like this:
 
 ```javascript
 import React, { Component } from 'react';
