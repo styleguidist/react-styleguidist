@@ -79,12 +79,6 @@ it('should render description in Markdown', () => {
 	expect(actual).toMatchSnapshot();
 });
 
-it('should not render ignored props', () => {
-	const actual = render(['/**\n * Label\n * @ignore\n*/\ncolor: PropTypes.string']);
-
-	expect(actual).toMatchSnapshot();
-});
-
 it('should render unknown proptype for a prop when a relevant proptype is not assigned', () => {
 	const actual = render([], ['color: "pink"']);
 

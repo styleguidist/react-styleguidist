@@ -1,56 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should not render ignored props 1`] = `
-<table>
-  <thead>
-    <tr>
-      <th>
-        Name
-      </th>
-      <th>
-        Type
-      </th>
-      <th>
-        Default
-      </th>
-      <th
-        className="undefined undefined"
-      >
-        Description
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <_class>
-          color
-        </_class>
-      </td>
-      <td>
-        <_class>
-          string
-        </_class>
-      </td>
-      <td />
-      <td
-        className="undefined undefined"
-      >
-        <Group
-          separator={<br />}
-        >
-          <_class
-            inline={true}
-            text="Label
-          @ignore"
-          />
-        </Group>
-      </td>
-    </tr>
-  </tbody>
-</table>
-`;
-
 exports[`should render PropTypes.arrayOf 1`] = `
 <table>
   <thead>
