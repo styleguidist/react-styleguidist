@@ -27,6 +27,10 @@ This is the same as above:
 <h3>Hello Markdown!</h3>
 \`\`\`
 
+\`\`\`js
+<Component>Hello Markdown!</Component>
+\`\`\`
+
 This should be highlighted:
 
 \`\`\`html
@@ -57,6 +61,14 @@ This should be highlighted:
 		{
 			type: 'code',
 			content: '<h3>Hello Markdown!</h3>',
+		},
+		{
+			type: 'markdown',
+			content: '\n\n',
+		},
+		{
+			type: 'code',
+			content: '<Component>Hello Markdown!</Component>',
 		},
 		{
 			type: 'markdown',
