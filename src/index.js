@@ -27,8 +27,8 @@ let codeKey = 0;
 function renderStyleguide() {
 	const styleguide = require('styleguide!index.js');
 
-	let components = processComponents(styleguide.components);
-	let sections = processSections(styleguide.sections || []);
+	let components = processComponents(styleguide.components, styleguide.config);
+	let sections = processSections(styleguide.sections || [], styleguide.config);
 	let sidebar = true;
 	let singleExample = false;
 

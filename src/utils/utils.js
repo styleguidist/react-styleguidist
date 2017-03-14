@@ -43,18 +43,25 @@ export function flattenChildren(components) {
 	});
 }
 
-export function processComponents(components) {
+function removeComponentsWithoutExample(components) {
+	return components && components.filter(component => component.examples);
+}
+
+export function processComponents(components, config) {
 	components = flattenChildren(components);
 	components = promoteInlineExamples(components);
 	components = setComponentsNames(components);
+	if (config.skipComponentsWithoutExample) {
+		components = removeComponentsWithoutExample(components);
+	}
 	globalizeComponents(components);
 	return components;
 }
 
-export function processSections(sections) {
+export function processSections(sections, config) {
 	return sections.map(section => {
-		section.components = processComponents(section.components || []);
-		section.sections = processSections(section.sections || []);
+		section.components = processComponents(section.components || [], config);
+		section.sections = processSections(section.sections || [], config);
 		return section;
 	});
 }
