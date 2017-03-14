@@ -103,6 +103,21 @@ insertAtCursor(text) {
 }
 ```
 
+## Ignoring props
+
+By default, all props your components have are considered to be public and are published. In some rare cases you might want to remove a prop from the documentation while keeping it in the code. To do so, mark the prop with JSDoc [`@ignore`](http://usejsdoc.org/tags-ignore.html) tag to remove it from the docs:
+
+```javascript
+MyComponent.propTypes = {
+  /**
+   * A prop that should not be visible in the documentation.
+   *
+   * @ignore
+   */
+  hiddenProp: React.PropTypes.string
+}
+```
+
 ## Writing code examples
 
 Code examples in Markdown use the ES6+JSX syntax. They can access all the components of your style guide using global variables:

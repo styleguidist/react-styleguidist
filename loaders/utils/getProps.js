@@ -8,6 +8,14 @@ const requireIt = require('./requireIt');
 
 const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
 
+// HACK: We have to make sure that doclets is a proper object with correct prototype to
+// work around an issue in react-docgen that breaks the build if a component has JSDoc tags
+// like @see in its description, see https://github.com/reactjs/react-docgen/issues/155
+// and https://github.com/styleguidist/react-styleguidist/issues/298
+const getDocletsObject = (string) => {
+	return Object.assign({}, reactDocs.utils.docblock.getDoclets(string));
+};
+
 /**
  * 1. Remove non-public methods.
  * 2. Extract doclets.
@@ -26,14 +34,8 @@ module.exports = function getProps(doc) {
 
 	if (doc.description) {
 		// Read doclets from the description and remove them
-		// HACK: We have to make sure that doc.doclets is a proper object with correct prototype to
-		// work around an issue in react-docgen that breaks the build if a component has JSDoc tags
-		// like @see in its description, see https://github.com/reactjs/react-docgen/issues/155
-		// and https://github.com/styleguidist/react-styleguidist/issues/298
-		doc.doclets = Object.assign({}, reactDocs.utils.docblock.getDoclets(doc.description));
-
+		doc.doclets = getDocletsObject(doc.description);
 		doc.description = highlightCode(removeDoclets(doc.description));
-
 		if (doc.doclets.example) {
 			doc.example = requireIt(`!!${examplesLoader}!${doc.doclets.example}`);
 			delete doc.doclets.example;
@@ -41,6 +43,18 @@ module.exports = function getProps(doc) {
 	}
 	else {
 		doc.doclets = {};
+	}
+
+	if (doc.props) {
+		// Read doclets of props
+		Object.keys(doc.props).forEach(propName => {
+			const prop = doc.props[propName];
+			const doclets = getDocletsObject(prop.description);
+			// Remove ignored props
+			if (doclets && doclets.ignore) {
+				delete doc.props[propName];
+			}
+		});
 	}
 
 	return doc;
