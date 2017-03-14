@@ -6,7 +6,7 @@ I love pull requests. And following this simple guidelines will make your pull r
 ## Submitting pull requests
 
 1. Create a new branch, please don’t work in master directly.
-2. Add failing tests (if there’re any tests in project) for the change you want to make. Run tests (see below) to see the tests fail.
+2. Add failing tests for the change you want to make. Run tests (see below) to see the tests fail.
 3. Hack on.
 4. Run tests to see if the tests pass. Repeat steps 2–4 until done.
 5. Update the documentation to reflect any changes.
@@ -24,12 +24,12 @@ I love pull requests. And following this simple guidelines will make your pull r
 - Don’t commit generated files: compiled from Stylus CSS, minified JavaScript, etc.
 - Don’t change version number and change log.
 - Install [EditorConfig](http://editorconfig.org/) plugin for your code editor.
-- Feel free to [ask me](http://sapegin.me) anything you need.
+- Feel free to [ask me](https://gitter.im/styleguidist/styleguidist) anything you need.
 
 
 ## Development workflow
 
-Yarn is recommened but you can use npm too.
+Yarn is recommended but you can use npm too.
 
 Install dependencies first:
 
