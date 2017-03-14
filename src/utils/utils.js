@@ -26,7 +26,10 @@ export function globalizeComponents(components) {
 
 export function promoteInlineExamples(components) {
 	components.map(c => {
-		if (c.props.example) {
+		if (c.props.example && c.props.exampleFileName === c.examplesFileName) {
+			c.examples = c.props.example;
+		}
+		else if (c.props.example) {
 			c.examples = (c.examples || []).concat(c.props.example);
 		}
 	});

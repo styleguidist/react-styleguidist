@@ -24,7 +24,7 @@ function examplesLoader(source) {
 	source = source.replace(COMPONENT_PLACEHOLDER_REGEXP, componentName);
 
 	// Load examples
-	let examples = chunkify(source);
+	let examples = chunkify(source, { section: query.section });
 
 	// We're analysing the examples' source code to figure out the require statements. We do it manually with regexes,
 	// because webpack unfortunately doesn't expose its smart logic for rewriting requires

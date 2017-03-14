@@ -10,7 +10,7 @@ export default function Components({
 }) {
 	const componentsJsx = components.map(component => (
 		<ReactComponent
-			key={component.filepath}
+			key={`${component.filepath}|${component.name}`}
 			component={component}
 			sidebar={sidebar}
 		/>

@@ -7,7 +7,21 @@
 const REQUIRE_ANYTHING_BASE = 'require\\s*\\(([^)]+)\\)';
 const REQUIRE_ANYTHING_REGEX = new RegExp(REQUIRE_ANYTHING_BASE, 'g');
 
+const IMPORT_ANYTHING_BASE = 'import .+ from (.+)';
+const IMPORT_ANYTHING_REGEX = new RegExp(IMPORT_ANYTHING_BASE, 'g');
+
 const SIMPLE_STRING_REGEX = /^"([^"]+)"$|^'([^']+)'$/;
+
+function getRequiresWithRegex(code, regex, requires) {
+	code.replace(regex, function(requireExprMatch, requiredExpr) {
+		const requireStrMatch = SIMPLE_STRING_REGEX.exec(requiredExpr.trim());
+		if (!requireStrMatch) {
+			throw new Error(`Requires using expressions are not supported in examples. (Used: ${requireExprMatch})`);
+		}
+		const requiredString = requireStrMatch[1] ? requireStrMatch[1] : requireStrMatch[2];
+		requires[requiredString] = true;
+	});
+}
 
 /**
  * Returns a list of all strings used in require(...) calls in the given source code.
@@ -18,14 +32,9 @@ const SIMPLE_STRING_REGEX = /^"([^"]+)"$|^'([^']+)'$/;
  */
 module.exports = function getRequires(code) {
 	const requires = {};
-	code.replace(REQUIRE_ANYTHING_REGEX, function(requireExprMatch, requiredExpr) {
-		const requireStrMatch = SIMPLE_STRING_REGEX.exec(requiredExpr.trim());
-		if (!requireStrMatch) {
-			throw new Error(`Requires using expressions are not supported in examples. (Used: ${requireExprMatch})`);
-		}
-		const requiredString = requireStrMatch[1] ? requireStrMatch[1] : requireStrMatch[2];
-		requires[requiredString] = true;
-	});
+	getRequiresWithRegex(code, REQUIRE_ANYTHING_REGEX, requires);
+	getRequiresWithRegex(code, IMPORT_ANYTHING_REGEX, requires);
+
 	return Object.keys(requires);
 };
 
