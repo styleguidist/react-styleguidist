@@ -23,6 +23,9 @@ export default class Editor extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
 		onChange: PropTypes.func.isRequired,
+		onCodeTyping: PropTypes.func.isRequired,
+		isCodeValid: PropTypes.bool.isRequired,
+		isCodeTyping: PropTypes.bool.isRequired,
 	};
 	static contextTypes = {
 		config: PropTypes.object.isRequired,
@@ -33,8 +36,11 @@ export default class Editor extends Component {
 		this.handleChange = debounce(this.handleChange.bind(this), UPDATE_DELAY);
 	}
 
-	shouldComponentUpdate() {
-		return false;
+	shouldComponentUpdate(nextProps) {
+		return (
+			this.props.isCodeValid !== nextProps.isCodeValid ||
+			this.props.isCodeTyping !== nextProps.isCodeTyping
+		);
 	}
 
 	handleChange(newCode) {
@@ -42,15 +48,23 @@ export default class Editor extends Component {
 	}
 
 	render() {
-		const { code } = this.props;
+		const { code, onCodeTyping, isCodeValid, isCodeTyping } = this.props;
 		const { highlightTheme } = this.context.config;
 		const options = {
 			...codemirrorOptions,
 			theme: highlightTheme,
 		};
 		return (
-			<EditorRenderer>
-				<Codemirror value={code} onChange={this.handleChange} options={options} />
+			<EditorRenderer
+				isValid={isCodeValid}
+				isTyping={isCodeTyping}
+			>
+				<Codemirror
+					value={code}
+					onChange={this.handleChange}
+					options={options}
+					onFocusChange={onCodeTyping}
+				/>
 			</EditorRenderer>
 		);
 	}

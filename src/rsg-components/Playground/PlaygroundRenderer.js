@@ -7,12 +7,16 @@ const s = require('./Playground.css');
 const PlaygroundRenderer = ({
 	code,
 	showCode,
+	isCodeTyping,
+	isCodeValid,
 	name,
 	index,
 	singleExample,
 	evalInContext,
 	onChange,
 	onCodeToggle,
+	onCodeValid,
+	onCodeTyping,
 }) => (
 	<div className={s.root}>
 		<div className={s.preview + ' rsg--example-preview'}>
@@ -21,11 +25,22 @@ const PlaygroundRenderer = ({
 			) : (
 				<a className={s.isolatedLink} href={'#!/' + name + '/' + index}>Open isolated ⇢</a>
 			)}
-			<Preview code={code} evalInContext={evalInContext} />
+			<Preview
+				code={code}
+				evalInContext={evalInContext}
+				onCodeValid={onCodeValid}
+				isCodeTyping={isCodeTyping}
+			/>
 		</div>
 		{showCode ? (
 			<div>
-				<Editor code={code} onChange={onChange} />
+				<Editor
+					code={code}
+					onChange={onChange}
+					isCodeTyping={isCodeTyping}
+					isCodeValid={isCodeValid}
+					onCodeTyping={onCodeTyping}
+				/>
 				<button type="button" className={s.hideCode} onClick={onCodeToggle}>
 					Hide code
 				</button>
@@ -41,12 +56,16 @@ const PlaygroundRenderer = ({
 PlaygroundRenderer.propTypes = {
 	code: PropTypes.string.isRequired,
 	showCode: PropTypes.bool.isRequired,
+	isCodeTyping: PropTypes.bool.isRequired,
+	isCodeValid: PropTypes.bool.isRequired,
 	name: PropTypes.string.isRequired,
 	index: PropTypes.number.isRequired,
 	evalInContext: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
 	onCodeToggle: PropTypes.func.isRequired,
 	singleExample: PropTypes.bool,
+	onCodeValid: PropTypes.func.isRequired,
+	onCodeTyping: PropTypes.func.isRequired,
 };
 
 export default PlaygroundRenderer;

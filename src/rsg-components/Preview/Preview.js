@@ -14,6 +14,8 @@ export default class Preview extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
+		isCodeTyping: PropTypes.bool.isRequired,
+		onCodeValid: PropTypes.func.isRequired,
 	};
 
 	constructor() {
@@ -22,32 +24,38 @@ export default class Preview extends Component {
 			error: null,
 		};
 		this.componentState = {};
+		this.lastValidCode = null;
 	}
 
 	componentDidMount() {
-		this.executeCode();
+		this.executeCode(this.props.code);
 	}
 
 	componentDidUpdate(prevProps) {
-		if (this.props.code !== prevProps.code) {
-			this.executeCode();
+		const { code, isCodeTyping } = this.props;
+		if (
+			code !== prevProps.code ||
+			isCodeTyping !== prevProps.isCodeTyping
+		) {
+			this.executeCode(code);
 		}
 	}
 
-	executeCode() {
+	executeCode(code, isErr) {
 		ReactDOM.unmountComponentAtNode(this.mountNode);
 
 		this.setState({
 			error: null,
 		});
 
-		const { code } = this.props;
 		if (!code) {
 			return;
 		}
 
+		const { isCodeTyping, onCodeValid } = this.props;
+
 		try {
-			const compiledCode = compileCode(this.props.code);
+			const compiledCode = compileCode(code);
 
 			// Initiate state and set with the callback in the bottom component;
 			// Workaround for https://github.com/styleguidist/react-styleguidist/issues/155 - missed props on first render
@@ -115,12 +123,23 @@ export default class Preview extends Component {
 			);
 
 			ReactDOM.render(wrappedComponent, this.mountNode);
+			this.lastValidCode = code;
+			onCodeValid(!isErr && true);
 		}
 		catch (err) {
-			ReactDOM.unmountComponentAtNode(this.mountNode);
-			this.setState({
-				error: err.toString(),
-			});
+			onCodeValid(false);
+			if (!isCodeTyping || isErr) {
+				if (!isCodeTyping) {
+					this.lastValidCode = code;
+				}
+				ReactDOM.unmountComponentAtNode(this.mountNode);
+				this.setState({
+					error: err.toString(),
+				});
+			}
+			else {
+				this.executeCode(this.lastValidCode, true);
+			}
 		}
 	}
 
