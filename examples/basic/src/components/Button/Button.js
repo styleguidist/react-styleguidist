@@ -28,6 +28,11 @@ Button.propTypes = {
 	color: PropTypes.string,
 	size: PropTypes.oneOf(['small', 'normal', 'large']),
 	onClick: PropTypes.func,
+	/**
+	 * A prop that should not be visible in the doc.
+	 * @ignore
+	 */
+	ignoredProp: PropTypes.bool,
 };
 Button.defaultProps = {
 	color: '#333',

@@ -24,6 +24,11 @@ Button.propTypes = {
 	children: PropTypes.string.isRequired,
 	color: PropTypes.string,
 	size: PropTypes.oneOf(['small', 'normal', 'large']),
+	/**
+	 * A prop that should not be visible in the doc.
+	 * @ignore
+	 */
+	ignoredProp: PropTypes.bool,
 };
 Button.defaultProps = {
 	color: '#333',
