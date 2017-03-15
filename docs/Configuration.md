@@ -182,7 +182,7 @@ module.exports = {
 
 Type: `Array`, optional
 
-Modules that are required for your style guide. Useful for third-party styles or polyfills.  
+Modules that are required for your style guide. Useful for third-party styles or polyfills.
 
 ```javascript
 module.exports = {
@@ -255,24 +255,7 @@ Type: `object`, optional
 
 Customize styles of any Styleguidist’s component.
 
-```javascript
-module.exports = {
-  styles: {
-    Logo: {
-      logo: {
-        animation: 'blink ease-in-out 300ms infinite'
-      },
-      '@keyframes blink': {
-        to: { opacity: 0 }
-      }
-    }
-  }
-};
-```
-
-> **Note:** Styles use [JSS](https://github.com/cssinjs/jss/blob/master/docs/json-api.md) with these plugins: [jss-isolate](https://github.com/cssinjs/jss-isolate), [jss-nested](https://github.com/cssinjs/jss-nested), [jss-camel-case](https://github.com/cssinjs/jss-camel-case), [jss-default-unit](https://github.com/cssinjs/jss-default-unit), [jss-compose](https://github.com/cssinjs/jss-compose).
-
-> **Note:** Use your browser’s developer tools to find component and style names. For example class name `.rsg--Logo--logo` corresponds to an example above.
+See example in the [cookbook](./Cookbook.md#how-to-change-styles-of-a-style-guide).
 
 #### `template`
 
@@ -286,17 +269,7 @@ Type: `object`, optional
 
 Customize style guide UI fonts, colors, etc.
 
-```javascript
-module.exports = {
-  theme: {
-    link: 'firebrick',
-    linkHover: 'salmon',
-    font: '"Comic Sans MS", "Comic Sans", cursive'
-  }
-};
-```
-
-> **Note:** See available [theme variables](../src/styles/theme.js).
+See example in the [cookbook](./Cookbook.md#how-to-change-styles-of-a-style-guide).
 
 #### `title`
 

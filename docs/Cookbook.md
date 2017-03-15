@@ -99,29 +99,29 @@ Use config option [theme](Configuration.md#theme) to change fonts, colors, etc. 
 
 ```javascript
 module.exports = {
-	theme: {
-		link: 'firebrick',
-		linkHover: 'salmon',
-		font: '"Comic Sans MS", "Comic Sans", cursive'
-	},
-	styles: {
-		Logo: {
-			logo: {
-				animation: 'blink ease-in-out 300ms infinite'
-			},
-			'@keyframes blink': {
-				to: { opacity: 0 }
-			}
-		}
-	}
+  theme: {
+    link: 'firebrick',
+    linkHover: 'salmon',
+    font: '"Comic Sans MS", "Comic Sans", cursive'
+  },
+  styles: {
+    Logo: {
+      logo: {
+        animation: 'blink ease-in-out 300ms infinite'
+      },
+      '@keyframes blink': {
+        to: { opacity: 0 }
+      }
+    }
+  }
 };
 ```
 
-> **Note:** See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/styles/theme.js).
+> **Note:** See available [theme variables](../src/styles/theme.js).
 
 > **Note:** Styles use [JSS](https://github.com/cssinjs/jss/blob/master/docs/json-api.md) with these plugins: [jss-isolate](https://github.com/cssinjs/jss-isolate), [jss-nested](https://github.com/cssinjs/jss-nested), [jss-camel-case](https://github.com/cssinjs/jss-camel-case), [jss-default-unit](https://github.com/cssinjs/jss-default-unit), [jss-compose](https://github.com/cssinjs/jss-compose).
 
-> **Note:** Use your browser’s developer tools to find component and style names. For example class name `.rsg--Logo--logo` corresponds to an example above.
+> **Note:** Use [React Developer Tools](https://github.com/facebook/react-devtools) to find component and style names. For example a component `<LogoRenderer><h1 className="logo-524678444">…` corresponds to an example above.
 
 ## How to change the layout of a style guide?
 
