@@ -88,7 +88,7 @@ describe('makeWebpackConfig', () => {
 		console.warn = jest.fn();
 		const defaultWebpackConfig = getDefaultWebpackConfig();
 		const api = styleguidist({
-			updateWebpackConfig: (webpackConfig, env) => {
+			dangerouslyUpdateWebpackConfig: (webpackConfig, env) => {
 				webpackConfig.resolve.extensions.push(env);
 				return webpackConfig;
 			},

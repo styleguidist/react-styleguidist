@@ -96,3 +96,9 @@ module.exports = {
 > **Note:** `.babelrc` and `postcss.config.js` files will be taken into account if you have them.
 
 > **Note:** Use `@webpack-blocks/webpack` for webpack 1. See [webpack-blocks docs](https://github.com/andywer/webpack-blocks) for more options.
+
+## When nothing else works
+
+In very rare cases, like using legacy or third-party libraries, you may need to change webpack options that Styleguidist don’t allow you to change via `webpackConfig` options. In this case you can use [dangerouslyUpdateWebpackConfig](Configuration.md#dangerouslyupdatewebpackconfig) option.
+
+> **Warning:** you may easily break Styleguidist using this options, use it at your own risk.

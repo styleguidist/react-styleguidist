@@ -97,6 +97,11 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 			console.warn(`${chalk.bold(key)} config option is deprecated. ${props.deprecated}`);
 			console.log();
 		}
+		else if (props.removed) {
+			throw new StyleguidistError(
+				`${chalk.bold(key)} config option was removed. ${props.removed}`
+			);
+		}
 
 		if (value !== undefined && props.type) {
 			const types = castArray(props.type);

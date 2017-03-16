@@ -331,3 +331,14 @@ it('should warn for deprecated options', () => {
 	console.warn = originalWarn;
 	/* eslint-enable no-console */
 });
+
+it('should throw for removed options', () => {
+	const fn = () => sanitizeConfig({
+		food: 'pizza',
+	}, {
+		food: {
+			removed: 'Don’t use!',
+		},
+	});
+	expect(fn).toThrowError('was removed');
+});

@@ -75,6 +75,27 @@ module.exports = {
 
 Your components will be able to invoke the url `http://localhost:6060/custom-endpoint` from their examples.
 
+#### `dangerouslyUpdateWebpackConfig`
+
+Type: `Function`, optional
+
+> **Warning:** you may easily break Styleguidist using this options, try to use [webpackConfig](#webpackConfig) option instead.
+
+Allows you to modify webpack config without any restrictions.
+
+```javascript
+module.exports = {
+  dangerouslyUpdateWebpackConfig(webpackConfig, env) {
+    // WARNING: inspect Styleguidist Webpack config before modifying it, otherwise you may break Styleguidist
+    console.log(webpackConfig);
+    webpackConfig.externals = {
+        jquery: 'jQuery'
+    };
+    return webpackConfig;
+  }
+};
+```
+
 #### `defaultExample`
 
 Type: `Boolean` or `String`, default: `false`
@@ -276,29 +297,6 @@ See example in the [cookbook](./Cookbook.md#how-to-change-styles-of-a-style-guid
 Type: `String`, default: `<app name from package.json> Style Guide`
 
 Style guide title.
-
-#### `updateWebpackConfig`
-
-Type: `Function`, optional
-
-> **Warning:** deprecated, use [webpackConfig](#webpackConfig) option instead.
-
-Function that allows you to modify webpack config for style guide.
-
-```javascript
-module.exports = {
-  updateWebpackConfig(webpackConfig, env) {
-    // WARNING: inspect Styleguidist Webpack config before modifying it, otherwise you may break Styleguidist
-    console.log(webpackConfig);
-    if (env === 'development') {
-      // Modify config...
-    }
-    return webpackConfig;
-  }
-};
-```
-
-> **Note:** this option disables webpack config auto load.
 
 #### `verbose`
 

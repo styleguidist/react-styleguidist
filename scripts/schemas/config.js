@@ -37,6 +37,9 @@ module.exports = {
 	configureServer: {
 		type: 'function',
 	},
+	dangerouslyUpdateWebpackConfig: {
+		type: 'function',
+	},
 	defaultExample: {
 		type: ['boolean', 'existing file path'],
 		default: false,
@@ -175,7 +178,7 @@ module.exports = {
 	},
 	updateWebpackConfig: {
 		type: 'function',
-		deprecated: `Use "webpackConfig" option instead:\n${consts.DOCS_WEBPACK}`,
+		removed: `Use "webpackConfig" option instead:\n${consts.DOCS_WEBPACK}`,
 	},
 	verbose: {
 		type: 'boolean',
