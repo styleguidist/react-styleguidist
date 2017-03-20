@@ -115,7 +115,7 @@ For example, instead of `components/Button/Button.js` you can print `import Butt
 ```javascript
 const path = require('path');
 module.exports = {
-  getComponentPathLine: function(componentPath) {
+  getComponentPathLine(componentPath) {
     const name = path.basename(componentPath, '.js');
     const dir = path.dirname(componentPath);
     return `import ${name} from '${dir}';`;
