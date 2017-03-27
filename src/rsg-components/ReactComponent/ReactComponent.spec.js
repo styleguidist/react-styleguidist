@@ -96,6 +96,14 @@ it('should render component renderer for component with methods', () => {
 	expect(actual).toMatchSnapshot();
 });
 
+it('should return null when component has no name', () => {
+	const actual = shallow(
+		<ReactComponent component={{ slug: 'foo', props: {} }} />
+	);
+
+	expect(actual.node).toBe(null);
+});
+
 it('renderer should render component', () => {
 	const actual = shallow(
 		<ReactComponentRenderer

@@ -29,6 +29,8 @@ const styles = ({ font, small }) => ({
 });
 
 export function ComponentsListRenderer({ classes, items }) {
+	items = items.filter(item => item.name);
+
 	if (!items.length) {
 		return null;
 	}

@@ -8,6 +8,10 @@ import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponent
 export default function ReactComponent({ component }, { isolatedComponent = false }) {
 	const { name, slug, pathLine } = component;
 	const { description, props, examples, methods } = component.props;
+	if (!name) {
+		return null;
+	}
+
 	return (
 		<ReactComponentRenderer
 			name={name}

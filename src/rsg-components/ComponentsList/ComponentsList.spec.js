@@ -1,22 +1,17 @@
 import React from 'react';
 import { ComponentsListRenderer } from './ComponentsListRenderer';
 
-const components = [
-	{
-		name: 'Button',
-		slug: 'button',
-	},
-	{
-		name: 'Input',
-		slug: 'input',
-	},
-	{
-		name: 'Textarea',
-		slug: 'textarea',
-	},
-];
-
 it('should render sections with nested components', () => {
+	const components = [
+		{
+			name: 'Button',
+			slug: 'button',
+		},
+		{
+			name: 'Input',
+			slug: 'input',
+		},
+	];
 	const actual = shallow(
 		<ComponentsListRenderer items={components} classes={{}} />
 	);
@@ -26,8 +21,25 @@ it('should render sections with nested components', () => {
 
 it('should return null when the list is empty', () => {
 	const actual = shallow(
-		<ComponentsListRenderer classes={{}} items={[]} />
+		<ComponentsListRenderer items={[]} classes={{}} />
 	);
 
 	expect(actual.node).toBe(null);
+});
+
+it('should ignore items without name', () => {
+	const components = [
+		{
+			name: 'Button',
+			slug: 'button',
+		},
+		{
+			slug: 'input',
+		},
+	];
+	const actual = shallow(
+		<ComponentsListRenderer items={components} classes={{}} />
+	);
+
+	expect(actual).toMatchSnapshot();
 });

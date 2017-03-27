@@ -27,10 +27,14 @@ module.exports = function(source) {
 		props = propsParser(file, source);
 	}
 	/* istanbul ignore next */
-	catch (exception) {
-		console.log('Error when parsing', path.relative(process.cwd(), file));
-		console.log(exception.toString());
-		console.log();
+	catch (err) {
+		const errorMessage = err.toString();
+		const componentPath = path.relative(process.cwd(), file);
+		const message = errorMessage === 'Error: No suitable component definition found.'
+			? `Warning: ${componentPath} matches a pattern defined in ”components” or “sections” options in your ` +
+				'style guide config but doesn’t export a component.'
+			: `Error when parsing ${componentPath}: ${err}`;
+		console.log(`\n${message}\n`);
 	}
 
 	// Support only one component
