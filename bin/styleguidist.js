@@ -30,6 +30,31 @@ function printErrors(header, errors, originalErrors, printer) {
 	});
 }
 
+function printAllErrorsAndWarnings(messages, compilation) {
+	// If errors exist, only show errors.
+	if (messages.errors.length) {
+		printAllErrors(messages.errors, compilation.errors);
+		return false;
+	}
+
+	// Show warnings if no errors were found.
+	if (messages.warnings.length) {
+		printAllWarnings(messages.warnings, compilation.warnings);
+	}
+
+	return true;
+}
+
+function printAllErrors(errors, originalErrors) {
+	printStyleguidistError(errors);
+	printNoLoaderError(errors);
+	printErrors('Failed to compile.', errors, originalErrors, chalk.red);
+}
+
+function printAllWarnings(warnings, originalWarnings) {
+	printErrors('Compiled with warnings.', warnings, originalWarnings, chalk.yellow);
+}
+
 function printStyleguidistError(errors) {
 	const styleguidistError = errors.find(message => message.includes('Module build failed: Error: Styleguidist:'));
 	if (!styleguidistError) {
@@ -41,6 +66,25 @@ function printStyleguidistError(errors) {
 		m[1],
 		'Learn how to configure your style guide:',
 		consts.DOCS_CONFIG
+	);
+	process.exit(1);
+}
+
+function printNoLoaderError(errors) {
+	if (argv.verbose) {
+		return;
+	}
+
+	const noLoaderError = errors.find(message => message.includes('You may need an appropriate loader'));
+	if (!noLoaderError) {
+		return;
+	}
+
+	const [, filePath] = noLoaderError.match(/Error in (.*?)\n/);
+	printErrorWithLink(
+		`Cannot load ${filePath}: you may need an appropriate webpack loader to handle this file type.`,
+		'Learn how to configure your style guide:',
+		consts.DOCS_WEBPACK
 	);
 	process.exit(1);
 }
@@ -110,17 +154,9 @@ function commandBuild() {
 	// Custom error reporting
 	compiler.plugin('done', function(stats) {
 		const messages = formatWebpackMessages(stats.toJson({}, true));
-
-		// If errors exist, only show errors.
-		if (messages.errors.length) {
-			printStyleguidistError(messages.errors);
-			printErrors('Failed to compile.', messages.errors, stats.compilation.errors, chalk.red);
+		const hasErrors = printAllErrorsAndWarnings(messages, stats.compilation);
+		if (hasErrors) {
 			process.exit(1);
-		}
-
-		// Show warnings if no errors were found.
-		if (messages.warnings.length) {
-			printErrors('Compiled with warnings.', messages.warnings, stats.compilation.warnings, chalk.yellow);
 		}
 	});
 }
@@ -173,17 +209,7 @@ function commandServer() {
 			console.log();
 		}
 
-		// If errors exist, only show errors.
-		if (messages.errors.length) {
-			printStyleguidistError(messages.errors);
-			printErrors('Failed to compile.', messages.errors, stats.compilation.errors, chalk.red);
-			return;
-		}
-
-		// Show warnings if no errors were found.
-		if (messages.warnings.length) {
-			printErrors('Compiled with warnings.', messages.warnings, stats.compilation.warnings, chalk.yellow);
-		}
+		printAllErrorsAndWarnings(messages, stats.compilation);
 	});
 }
 
