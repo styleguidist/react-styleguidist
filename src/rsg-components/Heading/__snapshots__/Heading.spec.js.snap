@@ -17,12 +17,12 @@ exports[`Heading renderer should render H tag 1`] = `
 
 exports[`Heading should render h{n} tag with anchor link inside 1`] = `
 <h1
-  class="heading-2948884764"
+  class="heading-0-0"
   id="h1"
 >
   <a
     aria-hidden="true"
-    class="anchor-3977085326"
+    class="anchor-0-1"
     href="#h1"
   >
     #
@@ -33,12 +33,12 @@ exports[`Heading should render h{n} tag with anchor link inside 1`] = `
 
 exports[`Heading should render h{n} tag with anchor link inside 2`] = `
 <h2
-  class="heading-2948884764"
+  class="heading-0-0"
   id="h2"
 >
   <a
     aria-hidden="true"
-    class="anchor-3977085326"
+    class="anchor-0-1"
     href="#h2"
   >
     #
@@ -49,12 +49,12 @@ exports[`Heading should render h{n} tag with anchor link inside 2`] = `
 
 exports[`Heading should render h{n} tag with anchor link inside 3`] = `
 <h3
-  class="heading-2948884764"
+  class="heading-0-0"
   id="h3"
 >
   <a
     aria-hidden="true"
-    class="anchor-3977085326"
+    class="anchor-0-1"
     href="#h3"
   >
     #
@@ -65,12 +65,12 @@ exports[`Heading should render h{n} tag with anchor link inside 3`] = `
 
 exports[`Heading should render h{n} tag with anchor link inside 4`] = `
 <h4
-  class="heading-2948884764"
+  class="heading-0-0"
   id="h4"
 >
   <a
     aria-hidden="true"
-    class="anchor-3977085326"
+    class="anchor-0-1"
     href="#h4"
   >
     #
@@ -81,12 +81,12 @@ exports[`Heading should render h{n} tag with anchor link inside 4`] = `
 
 exports[`Heading should render h{n} tag with anchor link inside 5`] = `
 <h5
-  class="heading-2948884764"
+  class="heading-0-0"
   id="h5"
 >
   <a
     aria-hidden="true"
-    class="anchor-3977085326"
+    class="anchor-0-1"
     href="#h5"
   >
     #
@@ -97,12 +97,12 @@ exports[`Heading should render h{n} tag with anchor link inside 5`] = `
 
 exports[`Heading should render h{n} tag with anchor link inside 6`] = `
 <h6
-  class="heading-2948884764"
+  class="heading-0-0"
   id="h6"
 >
   <a
     aria-hidden="true"
-    class="anchor-3977085326"
+    class="anchor-0-1"
     href="#h6"
   >
     #
