@@ -10,7 +10,6 @@ const styles = ({ font, base, border, link, baseBackground }) => ({
 	},
 	input: {
 		display: 'block',
-		boxSizing: 'border-box',
 		width: '100%',
 		padding: [[6, 12]],
 		color: base,

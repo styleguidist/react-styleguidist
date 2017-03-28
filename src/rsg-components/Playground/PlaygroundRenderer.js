@@ -6,7 +6,6 @@ import Styled from 'rsg-components/Styled';
 
 const styles = ({ font, link, linkHover, border, baseBackground, codeBackground }) => ({
 	root: {
-		isolate: false,
 		position: 'relative',
 		marginBottom: 30,
 		border: [[1, border, 'solid']],
@@ -17,7 +16,6 @@ const styles = ({ font, link, linkHover, border, baseBackground, codeBackground 
 		},
 	},
 	preview: {
-		isolate: false,
 		marginBottom: 3,
 		padding: 15,
 	},

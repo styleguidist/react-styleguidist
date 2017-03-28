@@ -5,8 +5,6 @@ import Styled from 'rsg-components/Styled';
 export const styles = ({ link, linkHover }) => ({
 	link: {
 		'&, &:link, &:visited': {
-			isolate: false,
-			fontFamily: 'inherit',
 			fontSize: 'inherit',
 			color: link,
 			textDecoration: 'none',

@@ -112,10 +112,12 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 	},
 	ul: {
 		composes: '$para',
+		paddingLeft: 20,
 	},
 	ol: {
 		composes: '$para',
 		listStyleType: 'decimal',
+		paddingLeft: 20,
 	},
 	li: {
 		composes: '$base',
@@ -168,6 +170,8 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 	thead: {
 		composes: '$hr',
 	},
+	tbody: {
+	},
 	td: {
 		fontFamily: font,
 		padding: [[6, 15, 6, 0]],
@@ -176,6 +180,8 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 	th: {
 		composes: '$td',
 		fontWeight: 'bold',
+	},
+	tr: {
 	},
 });
 

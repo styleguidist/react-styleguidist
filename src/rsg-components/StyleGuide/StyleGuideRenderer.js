@@ -6,19 +6,16 @@ import cx from 'classnames';
 
 const styles = ({ font, base, light, border, baseBackground, codeBackground, small }) => ({
 	root: {
-		isolate: false,
 		color: base,
 		backgroundColor: baseBackground,
 	},
 	hasSidebar: {
-		isolate: false,
 		paddingLeft: 200,
 		[small]: {
 			paddingLeft: 0,
 		},
 	},
 	content: {
-		isolate: false,
 		maxWidth: 1000,
 		padding: [[15, 30]],
 		margin: [[0, 'auto']],
@@ -43,9 +40,6 @@ const styles = ({ font, base, light, border, baseBackground, codeBackground, sma
 			borderWidth: [[1, 0, 0, 0]],
 		},
 	},
-	components: {
-		isolate: false,
-	},
 	logo: {
 		padding: 15,
 		borderBottom: [[1, border, 'solid']],
@@ -69,12 +63,10 @@ export function StyleGuideRenderer({
 	return (
 		<div className={cx(classes.root, hasSidebar && classes.hasSidebar)}>
 			<main className={classes.content}>
-				<div className={classes.components}>
-					{children}
-					<footer className={classes.footer}>
-						<Markdown text={`Generated with [React Styleguidist](${homepageUrl})`} />
-					</footer>
-				</div>
+				{children}
+				<footer className={classes.footer}>
+					<Markdown text={`Generated with [React Styleguidist](${homepageUrl})`} />
+				</footer>
 			</main>
 			{hasSidebar &&
 				<div className={classes.sidebar}>

@@ -6,6 +6,7 @@ const styles = {
 		isolate: false,
 		margin: 0,
 		padding: 0,
+		border: 0,
 
 		// Tweak CodeMirror styles
 		'& .CodeMirror': {

@@ -13,6 +13,10 @@ const styles = ({ font, border, light, lightest, name, type }) => ({
 	tableHead: {
 		borderBottom: [[1, border, 'solid']],
 	},
+	tableBody: {
+	},
+	row: {
+	},
 	cell: {
 		paddingRight: 15,
 		paddingTop: 6,
@@ -91,7 +95,7 @@ export function PropsRenderer({ classes, props }) {
 		for (const name in props) {
 			const prop = props[name];
 			rows.push(
-				<tr key={name}>
+				<tr key={name} className={classes.row}>
 					<td className={classes.cell}><Code className={classes.name}>{name}</Code></td>
 					<td className={classes.cell}><Code className={classes.type}>{renderType(getType(prop))}</Code></td>
 					<td className={classes.cell}>{renderDefault(prop)}</td>
@@ -197,14 +201,14 @@ export function PropsRenderer({ classes, props }) {
 	return (
 		<table className={classes.table}>
 			<thead className={classes.tableHead}>
-				<tr>
+				<tr className={classes.row}>
 					<th className={classes.cellHeading}>Name</th>
 					<th className={classes.cellHeading}>Type</th>
 					<th className={classes.cellHeading}>Default</th>
 					<th className={classes.cellHeading + ' ' + classes.cellDesc}>Description</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody className={classes.tableBody}>
 				{renderRows(props)}
 			</tbody>
 		</table>

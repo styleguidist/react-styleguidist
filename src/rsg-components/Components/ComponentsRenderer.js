@@ -2,9 +2,9 @@ import React, { PropTypes } from 'react';
 
 export default function ComponentsRenderer({ children }) {
 	return (
-		<section>
+		<div>
 			{children}
-		</section>
+		</div>
 	);
 }
 ComponentsRenderer.propTypes = {

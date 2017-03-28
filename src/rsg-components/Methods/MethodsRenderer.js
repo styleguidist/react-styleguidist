@@ -13,6 +13,10 @@ const styles = ({ font, border, light, name, type }) => ({
 	tableHead: {
 		borderBottom: [[1, border, 'solid']],
 	},
+	tableBody: {
+	},
+	row: {
+	},
 	cell: {
 		paddingRight: 15,
 		paddingTop: 6,
@@ -52,7 +56,7 @@ export function MethodsRenderer({ classes, methods }) {
 		const rows = [];
 		methods.map((method) => {
 			rows.push(
-				<tr key={method.name}>
+				<tr key={method.name} className={classes.row}>
 					<td className={classes.cell}><Code className={classes.name}>{method.name}()</Code></td>
 					<td className={classes.cell}>{renderParameters(method)}</td>
 					<td className={cx(classes.cell, classes.cellDesc)}>
@@ -107,13 +111,13 @@ export function MethodsRenderer({ classes, methods }) {
 	return (
 		<table className={classes.table}>
 			<thead className={classes.tableHead}>
-				<tr>
+				<tr className={classes.row}>
 					<th className={classes.cellHeading}>Name</th>
 					<th className={classes.cellHeading}>Parameters</th>
 					<th className={cx(classes.cellHeading, classes.cellDesc)}>Description</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody className={classes.tableBody}>
 				{renderRows(methods)}
 			</tbody>
 		</table>

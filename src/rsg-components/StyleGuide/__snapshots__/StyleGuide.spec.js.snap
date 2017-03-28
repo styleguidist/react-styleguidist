@@ -5,16 +5,14 @@ exports[`renderer should render logo, table of contents and passed children 1`] 
   className=""
 >
   <main>
-    <div>
-      <h1>
-        Content
-      </h1>
-      <footer>
-        <_class
-          text="Generated with [React Styleguidist](http://react-styleguidist.js.org/)"
-        />
-      </footer>
-    </div>
+    <h1>
+      Content
+    </h1>
+    <footer>
+      <_class
+        text="Generated with [React Styleguidist](http://react-styleguidist.js.org/)"
+      />
+    </footer>
   </main>
 </div>
 `;

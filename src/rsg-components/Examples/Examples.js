@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react';
 import Playground from 'rsg-components/Playground';
 import Markdown from 'rsg-components/Markdown';
+import ExamplesRenderer from 'rsg-components/Examples/ExamplesRenderer';
 
 export default function Examples({ examples, name }, { codeKey }) {
 	return (
-		<article>
+		<ExamplesRenderer>
 			{examples.map((example, index) => {
 				switch (example.type) {
 					case 'code':
@@ -28,7 +29,7 @@ export default function Examples({ examples, name }, { codeKey }) {
 						return null;
 				}
 			})}
-		</article>
+		</ExamplesRenderer>
 	);
 }
 Examples.propTypes = {

@@ -5,7 +5,6 @@ import Styled from 'rsg-components/Styled';
 
 const styles = ({ font, monospace, light }) => ({
 	root: {
-		isolate: false,
 		marginBottom: 50,
 		fontSize: 16,
 		'&:hover $isolatedLink': {

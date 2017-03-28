@@ -7,7 +7,6 @@ const xsmall = '@media (max-width: 600px)';
 
 const styles = ({ font, base, light, link, baseBackground, small }) => ({
 	root: {
-		isolate: false,
 		color: base,
 		backgroundColor: baseBackground,
 	},
@@ -42,7 +41,6 @@ const styles = ({ font, base, light, link, baseBackground, small }) => ({
 		},
 	},
 	content: {
-		isolate: false,
 		maxWidth: 1000,
 		padding: [[15, 30]],
 		margin: [[0, 'auto']],
@@ -52,7 +50,6 @@ const styles = ({ font, base, light, link, baseBackground, small }) => ({
 		display: 'block',
 	},
 	components: {
-		isolate: false,
 		overflow: 'auto',  // To prevent the pane from growing out of the screen
 	},
 	footer: {

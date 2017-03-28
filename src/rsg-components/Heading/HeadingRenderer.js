@@ -20,7 +20,6 @@ export const styles = ({ link, linkHover }) => ({
 		display: 'block',
 		color: link,
 		fontSize: '0.65em',
-		fontFamily: 'inherit',
 		fontWeight: 'normal',
 		textDecoration: 'none',
 		visibility: 'hidden',

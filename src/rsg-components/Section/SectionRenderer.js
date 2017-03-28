@@ -4,7 +4,6 @@ import Heading from 'rsg-components/Heading';
 
 const styles = ({ font }) => ({
 	root: {
-		isolate: false,
 		marginBottom: 50,
 	},
 	heading: {

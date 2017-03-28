@@ -1,3 +1,4 @@
+const path = require('path');
 const loaders = require('loaders');
 module.exports = {
 	title: 'React Style Guide Example',
@@ -19,6 +20,9 @@ module.exports = {
 				},
 			],
 		},
+	],
+	require: [
+		path.join(__dirname, 'src/styles.css'),
 	],
 	webpackConfig: env => ({
 		module: {

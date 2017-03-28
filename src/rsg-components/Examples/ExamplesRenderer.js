@@ -6,17 +6,17 @@ const styles = () => ({
 	root: {},
 });
 
-export function SectionsRenderer({ classes, children }) {
+export function ExamplesRenderer({ classes, children }) {
 	return (
-		<section className={classes.root}>
+		<article className={classes.root}>
 			{children}
-		</section>
+		</article>
 	);
 }
 
-SectionsRenderer.propTypes = {
+ExamplesRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	children: PropTypes.node,
 };
 
-export default Styled(styles)(SectionsRenderer);
+export default Styled(styles)(ExamplesRenderer);
