@@ -70,7 +70,7 @@ module.exports = {
 
 To use Redux store with one component require it from your example:
 
-```
+```javascript
 const { Provider } = require('react-redux');
 const configureStore = require('../utils/configureStore').default;
 const initialState = {
@@ -86,7 +86,7 @@ const store = configureStore({ initialState });
 
 To use Redux store in every component redefine the `Wrapper` component:
 
-```
+```javascript
 // styleguide.config.js
 const path = require('path');
 module.exports = {
