@@ -80,7 +80,7 @@ function printNoLoaderError(errors) {
 		return;
 	}
 
-	const [, filePath] = noLoaderError.match(/Error in (.*?)\n/);
+	const filePath = noLoaderError.match(/Error in (.*?)\n/)[1];
 	printErrorWithLink(
 		`Cannot load ${filePath}: you may need an appropriate webpack loader to handle this file type.`,
 		'Learn how to configure your style guide:',
