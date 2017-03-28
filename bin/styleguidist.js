@@ -34,7 +34,7 @@ function printAllErrorsAndWarnings(messages, compilation) {
 	// If errors exist, only show errors.
 	if (messages.errors.length) {
 		printAllErrors(messages.errors, compilation.errors);
-		return false;
+		return true;
 	}
 
 	// Show warnings if no errors were found.
@@ -42,7 +42,7 @@ function printAllErrorsAndWarnings(messages, compilation) {
 		printAllWarnings(messages.warnings, compilation.warnings);
 	}
 
-	return true;
+	return false;
 }
 
 function printAllErrors(errors, originalErrors) {
