@@ -35,6 +35,8 @@ module.exports = {
 
 > **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
 
+> **Note:** If your loaders don’t work with Styleguidist try to make `include` and `exclude` absolute paths.
+
 > **Note:** Babelified webpack configs (like `webpack.config.babel.js`) are not supported. We recommend to convert your config to native Node — Node 6 supports [many ES6 features](http://node.green/). 
 
 > **Note:** Use [webpack-merge](https://github.com/survivejs/webpack-merge) for easier config merging.
