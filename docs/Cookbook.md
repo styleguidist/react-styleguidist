@@ -80,7 +80,7 @@ const initialState = {
 };
 const store = configureStore({ initialState });
 <Provider store={store}>
-	<App greeting="Choose your pizza!"/>
+  <App greeting="Choose your pizza!"/>
 </Provider>
 ```
 
