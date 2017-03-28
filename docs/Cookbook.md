@@ -66,6 +66,60 @@ module.exports = {
 };
 ```
 
+## How to connect Redux store?
+
+To use Redux store with one component require it from your example:
+
+```
+const { Provider } = require('react-redux');
+const configureStore = require('../utils/configureStore').default;
+const initialState = {
+  app: {
+    name: 'Pizza Delivery'
+  }
+};
+const store = configureStore({ initialState });
+<Provider store={store}>
+	<App greeting="Choose your pizza!"/>
+</Provider>
+```
+
+To use Redux store in every component redefine the `Wrapper` component:
+
+```
+// styleguide.config.js
+const path = require('path');
+module.exports = {
+  webpackConfig: {
+    resolve: {
+      alias: {
+        'rsg-components/Wrapper': path.join(__dirname, 'lib/styleguide/Wrapper')
+      }
+    }
+  }
+};
+
+// lib/styleguide/Wrapper.js
+import React, { Component } from 'react';
+const { Provider } = require('react-redux');
+const configureStore = require('../utils/configureStore').default;
+const initialState = {
+  app: {
+    name: 'Pizza Delivery'
+  }
+};
+const store = configureStore({ initialState });
+export default class Wrapper extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        {this.props.children}
+      </Provider>
+    );
+  }
+}
+```
+
 ## How to use React Styleguidist with styled-components?
 
 The [recommended way](https://github.com/styleguidist/react-styleguidist/issues/37#issuecomment-263502454) of using [styled-components](https://styled-components.com/) is like this:
