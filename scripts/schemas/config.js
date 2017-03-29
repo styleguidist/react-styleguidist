@@ -5,6 +5,8 @@
 
 /* eslint-disable no-console */
 
+const DEFAULT_COMPONENTS_PATTERN = 'src/@(components|Components)/**/!(*.test|*.spec).js';
+
 const fs = require('fs');
 const path = require('path');
 const startCase = require('lodash/startCase');
@@ -101,7 +103,7 @@ module.exports = {
 			if (!val) {
 				// If root `components` isn't empty, make it a first section
 				// If `components` and `sections` weren’t specified, use default pattern
-				const components = config.components || 'src/components/**/*.js';
+				const components = config.components || DEFAULT_COMPONENTS_PATTERN;
 				return [{ components }];
 			}
 			return val;
