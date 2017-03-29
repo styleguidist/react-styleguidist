@@ -14,6 +14,8 @@ const styles = ({ font, small }) => ({
 		fontFamily: font,
 		fontSize: 15,
 		listStyle: 'none',
+		overflow: 'hidden',
+		textOverflow: 'ellipsis',
 	},
 	isChild: {
 		[small]: {
