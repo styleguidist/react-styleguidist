@@ -31,3 +31,10 @@ it('getComponentFilesFromSections() should return a list of files', () => {
 		'components/Placeholder/Placeholder.js',
 	]));
 });
+
+it('getComponentFilesFromSections() should ignore specified patterns', () => {
+	const result = getComponentFilesFromSections(sections, configDir, ['Button']);
+	expect(result).toEqual(absolutize([
+		'components/Button/Button.js',
+	]));
+});

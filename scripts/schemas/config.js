@@ -5,7 +5,7 @@
 
 /* eslint-disable no-console */
 
-const DEFAULT_COMPONENTS_PATTERN = 'src/@(components|Components)/**/!(*.test|*.spec).js';
+const DEFAULT_COMPONENTS_PATTERN = 'src/@(components|Components)/**/*.js';
 
 const fs = require('fs');
 const path = require('path');
@@ -72,6 +72,14 @@ module.exports = {
 	handlers: {
 		type: 'function',
 		default: componentPath => reactDocgen.defaultHandlers.concat(createDisplayNameHandler(componentPath)),
+	},
+	ignore: {
+		type: 'array',
+		default: [
+			'**/__tests__/**',
+			'**/*.test.js',
+			'**/*.spec.js',
+		],
 	},
 	highlightTheme: {
 		type: 'string',

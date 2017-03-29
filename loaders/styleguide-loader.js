@@ -37,7 +37,7 @@ module.exports.pitch = function() {
 		sections = filterComponentsWithExample(sections);
 	}
 
-	const allComponentFiles = getComponentFilesFromSections(config.sections, config.configDir);
+	const allComponentFiles = getComponentFilesFromSections(config.sections, config.configDir, config.ignore);
 	const allContentPages = getAllContentPages(sections);
 	const allComponentsWithExamples = getAllComponentsWithExamples(sections);
 

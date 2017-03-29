@@ -19,30 +19,22 @@ let textarea;
 
 ## How to exclude some components from style guide?
 
-For simple cases like ignoring test specs (like `Button.test.js`) glob negation may be enough:
+Styleguidist will ignore tests (`__tests__` folder and file names containing `.test.js` or `.spec.js`) by default.
+
+Use [ignore](Configuration.md#ignore) option to customize this behavior:
 
 ```javascript
 module.exports = {
-  components: 'components/**/!(*.test).js'
-};
-```
-
-Of filter them out by passing a function to `components` option:
-
-```javascript
-const path = require('path');
-const glob = require('glob');
-module.exports = {
-  components() {
-    // Ignore foo.js and bar.js
-    return glob.sync(path.resolve(__dirname, 'lib/components/**/*.js')).filter(module => !/\/(foo|bar).js$/.test(module));
-  }
+  ignore: [
+    '**/*.spec.js',
+    'src/components/Button.js'
+  ]
 };
 ```
 
 ## How to hide some components in style guide but make them available in examples?
 
-Enable [skipComponentsWithoutExample](Configuration.md) option and do not add example file (`Readme.md` by default) to components you want to ignore.
+Enable [skipComponentsWithoutExample](Configuration.md#skipcomponentswithoutexample) option and do not add example file (`Readme.md` by default) to components you want to ignore.
 
 Require these components in your examples:
 
@@ -175,7 +167,7 @@ See the [Preact example style guide](https://github.com/styleguidist/react-style
 
 ## How to change styles of a style guide?
 
-Use config option [theme](Configuration.md#theme) to change fonts, colors, etc. and option [styles](Configuration.md#configuration) to tweak style of particular Styleguidist’s components:
+Use config option [theme](Configuration.md#theme) to change fonts, colors, etc. and option [styles](Configuration.md#styles) to tweak style of particular Styleguidist’s components:
 
 ```javascript
 module.exports = {

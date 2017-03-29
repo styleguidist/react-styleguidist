@@ -179,6 +179,12 @@ Type: `String`, default: `base16-light`
 
 [CodeMirror theme](http://codemirror.net/demo/theme.html) name to use for syntax highlighting in the editor.
 
+#### `ignore`
+
+Type: `String[]`, default: `['**/__tests__/**', '**/*.test.js', '**/*.spec.js']`
+
+Array of [glob pattern](https://github.com/isaacs/node-glob#glob-primer) or files of components that should not be included in the style guide.
+
 #### `previewDelay`
 
 Type: `Number`, default: 500
@@ -201,7 +207,7 @@ module.exports = {
 
 #### `require`
 
-Type: `Array`, optional
+Type: `String[]`, optional
 
 Modules that are required for your style guide. Useful for third-party styles or polyfills.
 

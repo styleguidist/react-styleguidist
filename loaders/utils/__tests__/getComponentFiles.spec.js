@@ -31,6 +31,13 @@ it('getComponentFiles() should accept components as a glob', () => {
 	]));
 });
 
+it('getComponentFiles() should ignore specified patterns', () => {
+	const result = getComponentFiles(glob, configDir, ['Button']);
+	expect(result).toEqual(absolutize([
+		'components/Placeholder/Placeholder.js',
+	]));
+});
+
 it('getComponentFiles() should throw if components is not a function or a string', () => {
 	const fn = () => getComponentFiles(42, configDir);
 	expect(fn).toThrowError('should be string or function');
