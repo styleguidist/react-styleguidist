@@ -4,7 +4,7 @@ import jss from 'jss';
 // https://github.com/cssinjs/jss-isolate/commit/c09c9355dfa02374971b8d929d13e651ac301990
 // https://github.com/cssinjs/jss-isolate/pull/9
 import isolate from './jss-isolate';
-import nonInherited from './jss-isolate/nonInherited';
+import nonInherited from './jss-isolate/noninherited';
 
 import nested from 'jss-nested';
 import camelCase from 'jss-camel-case';
