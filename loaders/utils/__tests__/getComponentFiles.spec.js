@@ -32,7 +32,7 @@ it('getComponentFiles() should accept components as a glob', () => {
 });
 
 it('getComponentFiles() should ignore specified patterns', () => {
-	const result = getComponentFiles(glob, configDir, ['Button']);
+	const result = getComponentFiles(glob, configDir, ['**/*Button*']);
 	expect(result).toEqual(absolutize([
 		'components/Placeholder/Placeholder.js',
 	]));
