@@ -51,6 +51,7 @@ module.exports = function chunkify(markdown) {
 	const chunks = [];
 	const textChunks = rendered.split(CODE_PLACEHOLDER);
 	textChunks.forEach(chunk => {
+		chunk = chunk.trim();
 		if (chunk) {
 			chunks.push({
 				type: 'markdown',

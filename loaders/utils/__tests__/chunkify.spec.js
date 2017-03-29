@@ -35,7 +35,7 @@ This should be highlighted:
 	const expected = [
 		{
 			type: 'markdown',
-			content: '# Header\n\nText with _some_ **formatting** and a [link](/foo).\n\n<div>And some HTML.</div>\n\n![Image](/bar.png)\n\n',
+			content: '# Header\n\nText with _some_ **formatting** and a [link](/foo).\n\n<div>And some HTML.</div>\n\n![Image](/bar.png)',
 		},
 		{
 			type: 'code',
@@ -43,7 +43,7 @@ This should be highlighted:
 		},
 		{
 			type: 'markdown',
-			content: '\n\nText with some `code`.\n\n',
+			content: 'Text with some `code`.',
 		},
 		{
 			type: 'code',
@@ -51,7 +51,7 @@ This should be highlighted:
 		},
 		{
 			type: 'markdown',
-			content: '\n\nThis is the same as above:\n\n',
+			content: 'This is the same as above:',
 		},
 		{
 			type: 'code',
@@ -59,7 +59,28 @@ This should be highlighted:
 		},
 		{
 			type: 'markdown',
-			content: '\n\nThis should be highlighted:\n\n```html\n<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Hello Markdown!<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>\n```\n',
+			content: 'This should be highlighted:\n\n```html\n<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Hello Markdown!<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>\n```',
+		},
+	];
+
+	const actual = chunkify(markdown);
+	expect(actual).toEqual(expected);
+});
+
+it('should not add empty Markdown chunks', () => {
+	const markdown = `
+Foo:
+
+	<h1>Hello Markdown!</h1>
+`;
+	const expected = [
+		{
+			type: 'markdown',
+			content: 'Foo:',
+		},
+		{
+			type: 'code',
+			content: '<h1>Hello Markdown!</h1>',
 		},
 	];
 
