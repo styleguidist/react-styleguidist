@@ -38,6 +38,7 @@ const styles = ({ font, base, light, border, baseBackground, codeBackground, sma
 			position: 'static',
 			width: 'auto',
 			borderWidth: [[1, 0, 0, 0]],
+			paddingBottom: 5,
 		},
 	},
 	logo: {
