@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import inherited from './inherited';
-import nonInherited from './nonInherited';
+import nonInherited from './noninherited';
 
 const debounce = (fn) => {
 	let timeoutId;
