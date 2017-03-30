@@ -46,7 +46,7 @@ it('should render welcome screen', () => {
 			codeKey={1}
 			config={config}
 			sections={[]}
-			welcomeScreen={{ components: true }}
+			welcomeScreen
 		/>
 	);
 

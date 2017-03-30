@@ -12,6 +12,16 @@ const component = {
 	props: {
 		description: 'Bar',
 		methods: [],
+		examples: [],
+	},
+};
+const componentWithExamples = {
+	name: 'Foo',
+	slug: 'foo',
+	pathLine: 'foo/bar.js',
+	props: {
+		description: 'Bar',
+		methods: [],
 		examples: [
 			{
 				type: 'code',
@@ -66,10 +76,20 @@ const componentWithMethods = {
 	},
 };
 
-it('should render component renderer', () => {
+it('should render component renderer with example placeholder', () => {
 	const actual = shallow(
 		<ReactComponent
 			component={component}
+		/>
+	);
+
+	expect(actual).toMatchSnapshot();
+});
+
+it('should render component renderer for component with examples', () => {
+	const actual = shallow(
+		<ReactComponent
+			component={componentWithExamples}
 		/>
 	);
 
@@ -108,21 +128,21 @@ it('renderer should render component', () => {
 	const actual = shallow(
 		<ReactComponentRenderer
 			classes={{}}
-			name={component.name}
-			slug={component.slug}
-			pathLine={component.pathLine}
-			description={component.props.description}
+			name={componentWithExamples.name}
+			slug={componentWithExamples.slug}
+			pathLine={componentWithExamples.pathLine}
+			description={componentWithExamples.props.description}
 			examples={[
 				<Playground
 					key={0}
 					index={0}
 					name="Component"
-					code={component.props.examples[0].content}
-					evalInContext={component.props.examples[0].evalInContext}
+					code={componentWithExamples.props.examples[0].content}
+					evalInContext={componentWithExamples.props.examples[0].evalInContext}
 				/>,
 				<Markdown
 					key={1}
-					text={component.props.examples[1].content}
+					text={componentWithExamples.props.examples[1].content}
 				/>,
 			]}
 		/>

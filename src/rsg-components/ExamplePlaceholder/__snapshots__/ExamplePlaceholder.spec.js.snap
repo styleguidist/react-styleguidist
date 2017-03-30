@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render a link 1`] = `
+<button
+  onClick={[Function]}
+>
+  Add examples to this component
+</button>
+`;
+
+exports[`should render an example placeholder after click 1`] = `
+<_class
+  text="
+Create **Readme.md** or **Pizza.md** file in the component’s folder like this:
+
+    Pizza example:
+
+        &lt;Pizza pizza=\\"&#x1f355;\\" /&gt;
+
+Read more in the [documenting components guide](https://github.com/styleguidist/react-styleguidist/blob/master/docs/Documenting.md).
+					"
+/>
+`;

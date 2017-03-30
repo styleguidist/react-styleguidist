@@ -80,8 +80,4 @@ exports[`should render components list 1`] = `
 </_class>
 `;
 
-exports[`should render welcome screen 1`] = `
-<_class
-  components={true}
-/>
-`;
+exports[`should render welcome screen 1`] = `<_class />`;

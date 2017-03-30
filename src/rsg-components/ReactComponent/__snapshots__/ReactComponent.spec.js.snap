@@ -105,7 +105,7 @@ exports[`should render both props and methods section 1`] = `
 </div>
 `;
 
-exports[`should render component renderer 1`] = `
+exports[`should render component renderer for component with examples 1`] = `
 <_class
   description={
     <_class
@@ -145,7 +145,11 @@ exports[`should render component renderer for component with methods 1`] = `
       text="Bar"
     />
   }
-  examples={false}
+  examples={
+    <Component
+      name="Foo"
+    />
+  }
   isolated={false}
   methods={
     <_class
@@ -182,7 +186,11 @@ exports[`should render component renderer for component with props 1`] = `
       text="Bar"
     />
   }
-  examples={false}
+  examples={
+    <Component
+      name="Foo"
+    />
+  }
   isolated={false}
   methods={false}
   name="Foo"
@@ -202,6 +210,26 @@ exports[`should render component renderer for component with props 1`] = `
       }
     />
   }
+  slug="foo"
+/>
+`;
+
+exports[`should render component renderer with example placeholder 1`] = `
+<_class
+  description={
+    <_class
+      text="Bar"
+    />
+  }
+  examples={
+    <Component
+      name="Foo"
+    />
+  }
+  isolated={false}
+  methods={false}
+  name="Foo"
+  pathLine="foo/bar.js"
   slug="foo"
 />
 `;

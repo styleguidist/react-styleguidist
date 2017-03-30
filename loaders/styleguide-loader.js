@@ -4,7 +4,6 @@ const pick = require('lodash/pick');
 const commonDir = require('common-dir');
 const generate = require('escodegen').generate;
 const toAst = require('to-ast');
-const getAllComponentsWithExamples = require('./utils/getAllComponentsWithExamples');
 const getAllContentPages = require('./utils/getAllContentPages');
 const getComponentFilesFromSections = require('./utils/getComponentFilesFromSections');
 const getSections = require('./utils/getSections');
@@ -39,14 +38,9 @@ module.exports.pitch = function() {
 
 	const allComponentFiles = getComponentFilesFromSections(config.sections, config.configDir, config.ignore);
 	const allContentPages = getAllContentPages(sections);
-	const allComponentsWithExamples = getAllComponentsWithExamples(sections);
 
-	const welcomeScreen = {
-		// Nothing to show in the style guide
-		components: allContentPages.length === 0 && allComponentFiles.length === 0,
-		// All component have no example files
-		examples: allContentPages.length === 0 && allComponentFiles.length > 0 && allComponentsWithExamples.length === 0,
-	};
+	// Nothing to show in the style guide
+	const welcomeScreen = allContentPages.length === 0 && allComponentFiles.length === 0;
 
 	/* istanbul ignore if */
 	if (config.verbose) {

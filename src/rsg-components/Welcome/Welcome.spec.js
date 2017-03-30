@@ -1,17 +1,9 @@
 import React from 'react';
 import { WelcomeRenderer } from './WelcomeRenderer';
 
-it('renderer should welcome screen with no components message', () => {
+it('renderer should welcome screen', () => {
 	const actual = shallow(
-		<WelcomeRenderer classes={{}} components />
-	);
-
-	expect(actual).toMatchSnapshot();
-});
-
-it('renderer should welcome screen with no examples message', () => {
-	const actual = shallow(
-		<WelcomeRenderer classes={{}} examples />
+		<WelcomeRenderer classes={{}} />
 	);
 
 	expect(actual).toMatchSnapshot();

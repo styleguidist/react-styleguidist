@@ -10,7 +10,7 @@ export default class StyleGuide extends Component {
 		codeKey: PropTypes.number.isRequired,
 		config: PropTypes.object.isRequired,
 		sections: PropTypes.array.isRequired,
-		welcomeScreen: PropTypes.object,
+		welcomeScreen: PropTypes.bool,
 		isolatedComponent: PropTypes.bool,
 		isolatedExample: PropTypes.bool,
 	};
@@ -24,7 +24,6 @@ export default class StyleGuide extends Component {
 
 	static defaultProps = {
 		isolatedComponent: false,
-		welcomeScreen: {},
 	};
 
 	getChildContext() {
@@ -39,9 +38,9 @@ export default class StyleGuide extends Component {
 	render() {
 		const { config, sections, welcomeScreen, isolatedComponent } = this.props;
 
-		if (welcomeScreen.components || welcomeScreen.examples) {
+		if (welcomeScreen) {
 			return (
-				<Welcome {...welcomeScreen} />
+				<Welcome />
 			);
 		}
 
