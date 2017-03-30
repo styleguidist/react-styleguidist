@@ -69,3 +69,5 @@ const food = [
 ];
 console.log(eatFood(food));
 ```
+
+Some more text here.

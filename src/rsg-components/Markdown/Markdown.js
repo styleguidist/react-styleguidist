@@ -156,6 +156,7 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 		whiteSpace: 'inherit',
 	},
 	pre: {
+		composes: '$para',
 		backgroundColor: codeBackground,
 		border: [[1, border, 'solid']],
 		padding: [[12, 15]],
