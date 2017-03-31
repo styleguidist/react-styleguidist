@@ -56,7 +56,7 @@ module.exports = {
 		default: componentPath => {
 			const files = [
 				path.join(path.dirname(componentPath), 'Readme.md'),
-				componentPath.replace(/\.jsx?$/, '.md'),
+				componentPath.replace(path.extname(componentPath), '.md'),
 			];
 
 			for (const file of files) {
