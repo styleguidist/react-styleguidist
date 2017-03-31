@@ -54,7 +54,6 @@ Real projects using React Styleguidist:
 * [Configuration](./docs/Configuration.md)
 * [CLI commands and options](./docs/CLI.md)
 * [Node API](./docs/API.md)
-* [FAQ](./docs/FAQ.md)
 
 ## Change log
 

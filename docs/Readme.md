@@ -11,4 +11,3 @@
 * [Configuration](./Configuration.md)
 * [CLI commands and options](./CLI.md)
 * [Node API](./API.md)
-* [FAQ](./FAQ.md)
