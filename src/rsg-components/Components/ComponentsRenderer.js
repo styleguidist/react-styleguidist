@@ -1,15 +1,12 @@
 import React, { PropTypes } from 'react';
 
-const ComponentsRenderer = ({ components, sections }) => (
-	<div>
-		{components}
-		{sections}
-	</div>
-);
-
+export default function ComponentsRenderer({ children }) {
+	return (
+		<div>
+			{children}
+		</div>
+	);
+}
 ComponentsRenderer.propTypes = {
-	components: PropTypes.array.isRequired,
-	sections: PropTypes.node.isRequired,
+	children: PropTypes.node.isRequired,
 };
-
-export default ComponentsRenderer;

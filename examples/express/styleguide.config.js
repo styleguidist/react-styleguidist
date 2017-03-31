@@ -1,31 +1,19 @@
-const path = require('path');
+const loaders = require('loaders');
 
 module.exports = {
 	title: 'Style guide example',
-	components: './lib/components/**/[A-Z]*.js',
-	updateWebpackConfig(webpackConfig) {
-		const dirs = [
-			path.resolve(__dirname, 'lib'),
-		];
-
-		webpackConfig.devtool = 'source-map';
-
-		webpackConfig.module.loaders.push(
-			{
-				test: /\.jsx?$/,
-				include: dirs,
-				loader: 'babel',
-			},
-			{
-				test: /\.css$/,
-				include: dirs,
-				loader: 'style!css?modules&importLoaders=1',
-			}
-		);
-
-		return webpackConfig;
+	components: './src/components/**/[A-Z]*.js',
+	webpackConfig: {
+		module: {
+			loaders: [
+				loaders.babel,
+				{
+					test: /\.css$/,
+					loader: 'style-loader!css-loader?modules',
+				},
+			],
+		},
 	},
-
 	configureServer(app) {
 		app.get('/custom', (req, res) => {
 			res.status(200).send({ response: 'Server invoked' });

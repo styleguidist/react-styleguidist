@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`filterSectionsByName should recursively filter sections and components by name 1`] = `
+Array [
+  Object {
+    "components": Array [],
+    "name": "General",
+    "sections": Array [
+      Object {
+        "components": Array [
+          Object {
+            "name": "Button",
+          },
+        ],
+        "name": "Particles",
+        "sections": Array [],
+      },
+    ],
+  },
+]
+`;
+
+exports[`filterSectionsByName should skip sections without matches inside 1`] = `
+Array [
+  Object {
+    "components": Array [],
+    "name": "General",
+    "sections": Array [],
+  },
+]
+`;
+
+exports[`setSlugs should set unique slug property to each section or component with name property 1`] = `
+Array [
+  Object {
+    "name": "Multiple words",
+    "sections": Array [
+      Object {
+        "components": Array [
+          Object {
+            "name": "Button",
+            "slug": "button",
+          },
+          Object {
+            "name": "Image",
+            "slug": "image",
+          },
+        ],
+        "name": "Single",
+        "slug": "single",
+      },
+      Object {
+        "components": Array [
+          Object {
+            "name": "Button",
+            "slug": "button-1",
+          },
+          Object {
+            "name": "Image",
+            "slug": "image-1",
+          },
+        ],
+      },
+    ],
+    "slug": "multiple-words",
+  },
+]
+`;

@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render preview 1`] = `
+<div>
+  <div
+    data-preview="name"
+  >
+    <div>
+      <_class
+        href="#!/name/0"
+      >
+        Open isolated ⇢
+      </_class>
+    </div>
+    <Preview
+      code="<button>OK</button>"
+      evalInContext={[Function]}
+    />
+  </div>
+  <button
+    onClick={[Function]}
+    type="button"
+  >
+    Show code
+  </button>
+</div>
+`;
+
+exports[`should render component renderer 1`] = `
+<_class
+  code="<button>OK</button>"
+  evalInContext={[Function]}
+  index={0}
+  name="name"
+  onChange={[Function]}
+  onCodeToggle={[Function]}
+  showCode={false}
+/>
+`;

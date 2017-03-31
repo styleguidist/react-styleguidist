@@ -24,9 +24,9 @@ module.exports = function getRequires(code) {
 			throw new Error(`Requires using expressions are not supported in examples. (Used: ${requireExprMatch})`);
 		}
 		const requiredString = requireStrMatch[1] ? requireStrMatch[1] : requireStrMatch[2];
-		requires[requiredString] = true;
+		requires[requiredString] = requiredString;
 	});
-	return Object.keys(requires);
+	return requires;
 };
 
 Object.assign(module.exports, {

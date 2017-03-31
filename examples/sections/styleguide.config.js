@@ -1,11 +1,11 @@
 const path = require('path');
-
+const loaders = require('loaders');
 module.exports = {
 	title: 'React Style Guide Example',
 	sections: [
 		{
 			name: 'Components',
-			components: './lib/components/**/[A-Z]*.js',
+			components: './src/components/**/[A-Z]*.js',
 		},
 		{
 			name: 'Documentation',
@@ -21,25 +21,17 @@ module.exports = {
 			],
 		},
 	],
-	updateWebpackConfig(webpackConfig) {
-		const dir = path.resolve(__dirname, 'lib');
-		webpackConfig.module.loaders.push(
-			{
-				test: /\.jsx?$/,
-				include: dir,
-				loader: 'babel',
-			},
-			{
-				test: /\.css$/,
-				include: dir,
-				loader: 'style!css?modules&importLoaders=1',
-			},
-			{
-				test: /\.json$/,
-				include: path.dirname(require.resolve('dog-names/package.json')),
-				loader: 'json',
-			}
-		);
-		return webpackConfig;
-	},
+	require: [
+		path.join(__dirname, 'src/styles.css'),
+	],
+	webpackConfig: env => ({
+		module: {
+			loaders: loaders.all,
+		},
+		performance: env === 'development' ? false : {
+			maxAssetSize: 650000,  // bytes
+			maxEntrypointSize: 650000,  // bytes
+			hints: 'error',
+		},
+	}),
 };

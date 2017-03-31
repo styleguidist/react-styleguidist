@@ -1,37 +1,45 @@
-import test from 'ava';
 import React from 'react';
-import ComponentsListRenderer from './ComponentsListRenderer';
+import { ComponentsListRenderer } from './ComponentsListRenderer';
 
-const components = [
-	{
-		name: 'Button',
-	},
-	{
-		name: 'Input',
-	},
-	{
-		name: 'Textarea',
-	},
-];
-
-test('should render sections with nested components', () => {
+it('should render sections with nested components', () => {
+	const components = [
+		{
+			name: 'Button',
+			slug: 'button',
+		},
+		{
+			name: 'Input',
+			slug: 'input',
+		},
+	];
 	const actual = shallow(
-		<ComponentsListRenderer items={components} />
+		<ComponentsListRenderer items={components} classes={{}} />
 	);
 
-	expect(actual.node, 'to contain',
-		<div>
-			<div>Button</div>
-			<div>Input</div>
-			<div>Textarea</div>
-		</div>
-	);
+	expect(actual).toMatchSnapshot();
 });
 
-test('should return null when the list is empty', t => {
+it('should return null when the list is empty', () => {
 	const actual = shallow(
-		<ComponentsListRenderer items={[]} />
+		<ComponentsListRenderer items={[]} classes={{}} />
 	);
 
-	t.is(actual.node, null);
+	expect(actual.node).toBe(null);
+});
+
+it('should ignore items without name', () => {
+	const components = [
+		{
+			name: 'Button',
+			slug: 'button',
+		},
+		{
+			slug: 'input',
+		},
+	];
+	const actual = shallow(
+		<ComponentsListRenderer items={components} classes={{}} />
+	);
+
+	expect(actual).toMatchSnapshot();
 });

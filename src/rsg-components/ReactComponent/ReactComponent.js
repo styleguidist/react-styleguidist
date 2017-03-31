@@ -5,26 +5,39 @@ import Methods from 'rsg-components/Methods';
 import Examples from 'rsg-components/Examples';
 import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponentRenderer';
 
-export default function ReactComponent({
-	component,
-	sidebar,
-}) {
-	const { name, pathLine, examples } = component;
-	const { description, props, methods } = component.props;
+const ExamplePlaceholder = process.env.NODE_ENV === 'development'
+	? require('rsg-components/ExamplePlaceholder').default
+	: () => <div></div>
+;
+
+export default function ReactComponent({ component }, { isolatedComponent = false }) {
+	const { name, slug, pathLine } = component;
+	const { description, props, examples, methods } = component.props;
+	if (!name) {
+		return null;
+	}
+
 	return (
 		<ReactComponentRenderer
 			name={name}
+			slug={slug}
 			pathLine={pathLine}
 			description={description && <Markdown text={description} />}
 			props={props && <Props props={props} />}
-			methods={methods && methods.length && <Methods methods={methods} />}
-			examples={examples && <Examples examples={examples} name={name} />}
-			sidebar={sidebar}
+			methods={methods.length > 0 && <Methods methods={methods} />}
+			examples={examples.length > 0
+				? <Examples examples={examples} name={name} />
+				: <ExamplePlaceholder name={name} />
+			}
+			isolated={isolatedComponent}
 		/>
 	);
 }
 
 ReactComponent.propTypes = {
 	component: PropTypes.object.isRequired,
-	sidebar: PropTypes.bool,
+};
+
+ReactComponent.contextTypes = {
+	isolatedComponent: PropTypes.bool,
 };

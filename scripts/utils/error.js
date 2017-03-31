@@ -1,11 +1,15 @@
 'use strict';
 
 class StyleguidistError extends Error {
-	constructor(message) {
-		super();
+	constructor(message, extra) {
+		super(message);
 		Error.captureStackTrace(this, this.constructor);
-		this.name = 'StyleguidistError';
-		this.message = message;
+		Object.defineProperty(this, 'name', {
+			value: this.constructor.name,
+		});
+		Object.defineProperty(this, 'extra', {
+			value: extra,
+		});
 	}
 }
 

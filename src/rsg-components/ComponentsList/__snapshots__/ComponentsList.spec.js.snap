@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should ignore items without name 1`] = `
+<ul>
+  <li
+    className=""
+  >
+    <_class
+      className=""
+      href="#button"
+    >
+      Button
+    </_class>
+  </li>
+</ul>
+`;
+
+exports[`should render sections with nested components 1`] = `
+<ul>
+  <li
+    className=""
+  >
+    <_class
+      className=""
+      href="#button"
+    >
+      Button
+    </_class>
+  </li>
+  <li
+    className=""
+  >
+    <_class
+      className=""
+      href="#input"
+    >
+      Input
+    </_class>
+  </li>
+</ul>
+`;

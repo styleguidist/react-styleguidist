@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should highlight code in description (fenced code block) 1`] = `
+Object {
+  "description": "The only true button.
+
+    <span class=\\"hljs-selector-tag\\">alert</span>(<span class=\\"hljs-string\\">'Hello world'</span>);
+",
+  "doclets": Object {},
+  "methods": Array [],
+}
+`;
+
+exports[`should highlight code in description (regular code block) 1`] = `
+Object {
+  "description": "The only true button.
+
+    <span class=\\"hljs-selector-tag\\">alert</span>(<span class=\\"hljs-string\\">'Hello world'</span>);
+",
+  "doclets": Object {},
+  "methods": Array [],
+}
+`;
+
+exports[`should remove non-public methods 1`] = `
+Object {
+  "doclets": Object {},
+  "methods": Array [
+    Object {
+      "docblock": "Public method.
+@public",
+    },
+  ],
+}
+`;
+
+exports[`should return an object for props 1`] = `
+Object {
+  "description": "The only true button.
+",
+  "doclets": Object {},
+  "methods": Array [],
+  "props": Object {
+    "children": Object {
+      "description": "Button label.",
+      "required": true,
+      "type": Object {},
+    },
+    "color": Object {
+      "description": "",
+      "required": false,
+      "type": Object {},
+    },
+  },
+}
+`;
+
+exports[`should return an object for props with doclets 1`] = `
+Object {
+  "description": "The only true button.
+",
+  "doclets": Object {
+    "bar": "Bar
+",
+    "foo": "Foo",
+  },
+  "methods": Array [],
+}
+`;
+
+exports[`should return an object for props without description 1`] = `
+Object {
+  "doclets": Object {},
+  "methods": Array [],
+  "props": Object {
+    "children": Object {
+      "description": "Button label.",
+      "required": true,
+      "type": Object {},
+    },
+  },
+}
+`;
+
+exports[`should return require statement for @example doclet 1`] = `
+Object {
+  "description": "The only true button.
+",
+  "doclets": Object {},
+  "example": RequireStatement {
+    "filepath": "!!<rootDir>/loaders/examples-loader.js!example.md
+",
+  },
+  "methods": Array [],
+}
+`;

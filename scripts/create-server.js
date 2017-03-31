@@ -1,31 +1,30 @@
 'use strict';
 
-const express = require('express');
 const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
 const makeWebpackConfig = require('./make-webpack-config');
 
 module.exports = function createServer(config, env) {
 	const webpackConfig = makeWebpackConfig(config, env);
 	const compiler = webpack(webpackConfig);
-	const app = express();
 
-	// register webpack middlewares
-	app.use(require('webpack-dev-middleware')(compiler, {
+	const devServer = new WebpackDevServer(compiler, {
 		noInfo: true,
+		compress: true,
+		clientLogLevel: 'none',
+		hot: true,
+		quiet: true,
+		watchOptions: {
+			ignored: /node_modules/,
+		},
+		contentBase: config.assetsDir,
 		stats: webpackConfig.stats || {},
-	}));
+	});
 
-	app.use(require('webpack-hot-middleware')(compiler));
-
-	// configure static assets
-	if (config.assetsDir) {
-		app.use(express.static(config.assetsDir));
-	}
-
-	// user defined customizations
+	// User defined customizations
 	if (config.configureServer) {
-		config.configureServer(app, env);
+		config.configureServer(devServer.app, env);
 	}
 
-	return { app, compiler };
+	return { app: devServer, compiler };
 };

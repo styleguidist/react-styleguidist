@@ -1,15 +1,22 @@
 import React, { PropTypes } from 'react';
+import Styled from 'rsg-components/Styled';
 
-const SectionsRenderer = ({ sections }) => {
+const styles = () => ({
+	// Just default jss-isolate rules
+	root: {},
+});
+
+export function SectionsRenderer({ classes, children }) {
 	return (
-		<div>
-			{sections}
-		</div>
+		<section className={classes.root}>
+			{children}
+		</section>
 	);
-};
+}
 
 SectionsRenderer.propTypes = {
-	sections: PropTypes.array.isRequired,
+	classes: PropTypes.object.isRequired,
+	children: PropTypes.node,
 };
 
-export default SectionsRenderer;
+export default Styled(styles)(SectionsRenderer);

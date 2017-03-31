@@ -1,10 +1,6 @@
-import test from 'ava';
 import React from 'react';
 import { parse } from 'react-docgen';
-import Group from 'react-group';
-import Code from '../Code';
-import Markdown from '../Markdown';
-import PropsRenderer from './PropsRenderer';
+import { PropsRenderer } from './PropsRenderer';
 import { unquote, getType } from './util';
 
 function render(propTypes, defaultProps = []) {
@@ -21,141 +17,99 @@ function render(propTypes, defaultProps = []) {
 			}
 		}
 	`);
-	return shallow(<PropsRenderer props={props.props} />);
+	return shallow(<PropsRenderer props={props.props} classes={{}} />);
 }
 
-test('should render PropTypes.string', () => {
+it('should render PropTypes.string', () => {
 	const actual = render(['color: PropTypes.string']);
 
-	expect(actual.node, 'to contain',
-		<tr>
-			<td><Code>color</Code></td>
-			<td><Code>string</Code></td>
-			<td></td>
-			<td><Group separator={<br />} /></td>
-		</tr>
-	);
+	expect(actual).toMatchSnapshot();
 });
 
-test('should render PropTypes.string with a default value', () => {
+it('should render PropTypes.string with a default value', () => {
 	const actual = render(['color: PropTypes.string'], ['color: "pink"']);
 
-	expect(actual.node, 'to contain',
-		<tr>
-			<td><Code>color</Code></td>
-			<td><Code>string</Code></td>
-			<td><Code>pink</Code></td>
-			<td><Group separator={<br />} /></td>
-		</tr>
-	);
+	expect(actual).toMatchSnapshot();
 });
 
-test('should render PropTypes.string.isRequired', () => {
+it('should render PropTypes.string.isRequired', () => {
 	const actual = render(['color: PropTypes.string.isRequired']);
 
-	expect(actual.node, 'to contain',
-		<tr>
-			<td><Code>color</Code></td>
-			<td><Code>string</Code></td>
-			<td><span>Required</span></td>
-			<td><Group separator={<br />} /></td>
-		</tr>
-	);
+	expect(actual).toMatchSnapshot();
 });
 
-test('should render PropTypes.arrayOf', () => {
+it('should render PropTypes.arrayOf', () => {
 	const actual = render(['colors: PropTypes.arrayOf(PropTypes.string)']);
 
-	expect(actual.node, 'to contain',
-		<tr>
-			<td><Code>colors</Code></td>
-			<td><Code>string[]</Code></td>
-			<td></td>
-			<td><Group separator={<br />} /></td>
-		</tr>
-	);
+	expect(actual).toMatchSnapshot();
 });
 
-test('should render PropTypes.instanceOf', () => {
+it('should render PropTypes.instanceOf', () => {
 	const actual = render(['num: PropTypes.instanceOf(Number)']);
 
-	expect(actual.node, 'to contain',
-		<tr>
-			<td><Code>num</Code></td>
-			<td><Code>Number</Code></td>
-			<td></td>
-			<td><Group separator={<br />} /></td>
-		</tr>
-	);
+	expect(actual).toMatchSnapshot();
 });
 
-test('should render PropTypes.shape', () => {
+it('should render PropTypes.shape', () => {
 	const actual = render(['foo: PropTypes.shape({bar: PropTypes.number.isRequired, baz: PropTypes.any})']);
-	expect(actual.node, 'to contain',
-		<tr>
-			<td><Code>foo</Code></td>
-			<td><Code>shape</Code></td>
-			<td></td>
-			<td>
-				<Group separator={<br />}>
-					<div>
-						<Code>bar</Code>: <Code>number</Code> — <span>Required</span>
-					</div>
-					<div>
-						<Code>baz</Code>: <Code>any</Code>
-					</div>
-				</Group>
-			</td>
-		</tr>
-	);
+
+	expect(actual).toMatchSnapshot();
 });
 
-test('should render description in Markdown', () => {
+it('should render PropTypes.objectOf', () => {
+	const actual = render(['colors: PropTypes.objectOf(PropTypes.string)']);
+
+	expect(actual).toMatchSnapshot();
+});
+
+it('should render PropTypes.objectOf(PropTypes.shape)', () => {
+	const actual = render([`colors: PropTypes.objectOf(
+		PropTypes.shape({
+			bar: PropTypes.number.isRequired,
+			baz: PropTypes.any
+		})
+	)`]);
+
+	expect(actual).toMatchSnapshot();
+});
+
+it('should render description in Markdown', () => {
 	const actual = render(['/**\n * Label\n */\ncolor: PropTypes.string']);
 
-	expect(actual.node, 'to contain',
-		<tr>
-			<td><Code>color</Code></td>
-			<td><Code>string</Code></td>
-			<td></td>
-			<td><Group separator={<br />}><Markdown text="Label" /></Group></td>
-		</tr>
-	);
+	expect(actual).toMatchSnapshot();
 });
 
-test('should render unknown proptype for a prop when a relevant proptype is not assigned', () => {
+it('should render unknown proptype for a prop when a relevant proptype is not assigned', () => {
 	const actual = render([], ['color: "pink"']);
 
-	expect(actual.node, 'to contain',
-		<tr>
-			<td><Code>color</Code></td>
-			<td><Code>unknown</Code></td>
-			<td><Code>pink</Code></td>
-			<td><Group separator={<br />} /></td>
-		</tr>
-	);
+	expect(actual).toMatchSnapshot();
 });
 
-test('unquote() should remove double quotes around the string', t => {
+it('should render function body in tooltip', () => {
+	const actual = render(['fn: PropTypes.func'], ['fn: (e) => console.log(e)']);
+
+	expect(actual).toMatchSnapshot();
+});
+
+it('unquote() should remove double quotes around the string', () => {
 	const result = unquote('"foo"');
-	t.is(result, 'foo');
+	expect(result).toBe('foo');
 });
 
-test('unquote() should remove single quotes around the string', t => {
+it('unquote() should remove single quotes around the string', () => {
 	const result = unquote("'foo'");
-	t.is(result, 'foo');
+	expect(result).toBe('foo');
 });
 
-test('unquote() should not remove quotes in the middle of the string', t => {
+it('unquote() should not remove quotes in the middle of the string', () => {
 	const result = unquote('foo"bar');
-	t.is(result, 'foo"bar');
+	expect(result).toBe('foo"bar');
 });
 
-test('getType() should return .type or .flowType property', t => {
+it('getType() should return .type or .flowType property', () => {
 	const result = getType({
 		type: 'foo',
 		flowType: 'bar',
 	});
-	t.is(result, 'bar');
+	expect(result).toBe('bar');
 });
-

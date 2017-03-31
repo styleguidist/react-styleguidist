@@ -1,0 +1,295 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render table of contents 1`] = `
+<div>
+  <div>
+    <div>
+      <input
+        onChange={[Function]}
+        placeholder="Filter by name"
+        value="foo"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`should filter list when search field contains a query 1`] = `
+<_class
+  onSearchTermChange={[Function]}
+  searchTerm=""
+>
+  <_class
+    items={
+      Array [
+        Object {
+          "components": Array [],
+          "content": false,
+          "heading": false,
+          "name": "Button",
+          "sections": Array [],
+          "slug": "button",
+        },
+        Object {
+          "components": Array [],
+          "content": false,
+          "heading": false,
+          "name": "Input",
+          "sections": Array [],
+          "slug": "input",
+        },
+        Object {
+          "components": Array [],
+          "content": false,
+          "heading": false,
+          "name": "Textarea",
+          "sections": Array [],
+          "slug": "textarea",
+        },
+      ]
+    }
+  />
+</_class>
+`;
+
+exports[`should filter list when search field contains a query 2`] = `
+<_class
+  onSearchTermChange={[Function]}
+  searchTerm="but"
+>
+  <_class
+    items={
+      Array [
+        Object {
+          "components": Array [],
+          "content": false,
+          "heading": false,
+          "name": "Button",
+          "sections": Array [],
+          "slug": "button",
+        },
+      ]
+    }
+  />
+</_class>
+`;
+
+exports[`should filter section names 1`] = `
+<_class
+  onSearchTermChange={[Function]}
+  searchTerm=""
+>
+  <_class
+    items={
+      Array [
+        Object {
+          "components": Array [],
+          "content": false,
+          "heading": false,
+          "name": "Introduction",
+          "sections": Array [],
+          "slug": "introduction",
+        },
+        Object {
+          "components": Array [
+            Object {
+              "name": "Button",
+              "slug": "button",
+            },
+          ],
+          "content": <_class
+            items={
+                  Array [
+                        Object {
+                          "content": false,
+                          "heading": false,
+                          "name": "Button",
+                          "slug": "button",
+                        },
+                      ]
+            }
+      />,
+          "heading": true,
+          "name": "Buttons",
+          "sections": Array [],
+          "slug": "buttons",
+        },
+        Object {
+          "components": Array [
+            Object {
+              "name": "Input",
+              "slug": "input",
+            },
+            Object {
+              "name": "Textarea",
+              "slug": "textarea",
+            },
+          ],
+          "content": <_class
+            items={
+                  Array [
+                        Object {
+                          "content": false,
+                          "heading": false,
+                          "name": "Input",
+                          "slug": "input",
+                        },
+                        Object {
+                          "content": false,
+                          "heading": false,
+                          "name": "Textarea",
+                          "slug": "textarea",
+                        },
+                      ]
+            }
+      />,
+          "heading": true,
+          "name": "Forms",
+          "sections": Array [],
+          "slug": "forms",
+        },
+      ]
+    }
+  />
+</_class>
+`;
+
+exports[`should filter section names 2`] = `
+<_class
+  onSearchTermChange={[Function]}
+  searchTerm="frm"
+>
+  <_class
+    items={
+      Array [
+        Object {
+          "components": Array [],
+          "content": false,
+          "heading": false,
+          "name": "Forms",
+          "sections": Array [],
+          "slug": "forms",
+        },
+      ]
+    }
+  />
+</_class>
+`;
+
+exports[`should render a renderer 1`] = `
+<_class
+  onSearchTermChange={[Function]}
+  searchTerm=""
+>
+  <_class
+    items={
+      Array [
+        Object {
+          "components": Array [],
+          "content": false,
+          "heading": false,
+          "name": "Button",
+          "sections": Array [],
+          "slug": "button",
+        },
+        Object {
+          "components": Array [],
+          "content": false,
+          "heading": false,
+          "name": "Input",
+          "sections": Array [],
+          "slug": "input",
+        },
+        Object {
+          "components": Array [],
+          "content": false,
+          "heading": false,
+          "name": "Textarea",
+          "sections": Array [],
+          "slug": "textarea",
+        },
+      ]
+    }
+  />
+</_class>
+`;
+
+exports[`should render renderer with sections with nested components 1`] = `
+<_class
+  onSearchTermChange={[Function]}
+  searchTerm=""
+>
+  <_class
+    items={
+      Array [
+        Object {
+          "components": Array [],
+          "content": false,
+          "heading": false,
+          "name": "Introduction",
+          "sections": Array [],
+          "slug": "introduction",
+        },
+        Object {
+          "components": Array [
+            Object {
+              "name": "Button",
+              "slug": "button",
+            },
+          ],
+          "content": <_class
+            items={
+                  Array [
+                        Object {
+                          "content": false,
+                          "heading": false,
+                          "name": "Button",
+                          "slug": "button",
+                        },
+                      ]
+            }
+      />,
+          "heading": true,
+          "name": "Buttons",
+          "sections": Array [],
+          "slug": "buttons",
+        },
+        Object {
+          "components": Array [
+            Object {
+              "name": "Input",
+              "slug": "input",
+            },
+            Object {
+              "name": "Textarea",
+              "slug": "textarea",
+            },
+          ],
+          "content": <_class
+            items={
+                  Array [
+                        Object {
+                          "content": false,
+                          "heading": false,
+                          "name": "Input",
+                          "slug": "input",
+                        },
+                        Object {
+                          "content": false,
+                          "heading": false,
+                          "name": "Textarea",
+                          "slug": "textarea",
+                        },
+                      ]
+            }
+      />,
+          "heading": true,
+          "name": "Forms",
+          "sections": Array [],
+          "slug": "forms",
+        },
+      ]
+    }
+  />
+</_class>
+`;

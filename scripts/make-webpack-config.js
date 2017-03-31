@@ -6,70 +6,40 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
-const prettyjson = require('prettyjson');
-const semverUtils = require('semver-utils');
+const hasJsonLoader = require('./utils/hasJsonLoader');
+const getWebpackVersion = require('./utils/getWebpackVersion');
+const mergeWebpackConfig = require('./utils/mergeWebpackConfig');
+const StyleguidistOptionsPlugin = require('./utils/StyleguidistOptionsPlugin');
 
-const webpackVersion = semverUtils.parseRange(require('webpack/package.json').version)[0].major;
-const isWebpack2 = webpackVersion === '2';
-
-const nodeModulesDir = path.resolve(__dirname, '../node_modules');
-const sourceDir = path.resolve(__dirname, '../src');
-const codeMirrorPath = getPackagePath('codemirror');
-
-// These modules are used by Remark and they need json-loader
-const jsonModules = [
-	'remark-parse',
-	'character-entities-html4',
-	'character-reference-invalid',
-	'character-entities-legacy',
-	'character-entities',
-	'hast-util-sanitize',
-];
-
-/**
- * Return npm package path.
- * In npm2 works only with packages required directly by this package.
- *
- * @param {string} packageName Package name.
- * @return {string}
- */
-function getPackagePath(packageName) {
-	// We resolve package.json because otherwise path.resolve returns main module path
-	return path.dirname(require.resolve(packageName + '/package.json'));
-}
-
-function validateWebpackConfig(webpackConfig) {
-	webpackConfig.module.loaders.forEach(loader => {
-		if (!loader.include && !loader.exclude) {
-			throw Error('Styleguidist: "include" option is missing for ' + loader.test + ' Webpack loader.');
-		}
-	});
-}
+const isWebpack2 = getWebpackVersion() === 2;
+const sourceDir = path.resolve(__dirname, '../lib');
+const htmlLoader = require.resolve('html-webpack-plugin/lib/loader');
 
 module.exports = function(config, env) {
-	process.env.NODE_ENV = process.env.BABEL_ENV = env;
+	process.env.NODE_ENV = env;
 
 	const isProd = env === 'production';
 
 	let webpackConfig = {
+		entry: config.require.concat([
+			path.resolve(sourceDir, 'index'),
+		]),
 		output: {
 			path: config.styleguideDir,
 			filename: 'build/bundle.js',
 			chunkFilename: 'build/[name].js',
 		},
 		resolve: {
+			extensions: isWebpack2 ? ['.js', '.jsx', '.json'] : ['.js', '.jsx', '.json', ''],
 			alias: {
-				'codemirror': codeMirrorPath,
-				'rsg-codemirror-theme.css': path.join(codeMirrorPath, `theme/${config.highlightTheme}.css`),
+				'rsg-codemirror-theme.css': `codemirror/theme/${config.highlightTheme}.css`,
 			},
 		},
-		resolveLoader: {
-			moduleExtensions: ['-loader', '.loader'],
-		},
 		plugins: [
+			new StyleguidistOptionsPlugin(config),
 			new HtmlWebpackPlugin({
 				title: config.title,
-				template: config.template,
+				template: `!!${htmlLoader}!${config.template}`,
 				inject: true,
 			}),
 			new webpack.DefinePlugin({
@@ -78,158 +48,73 @@ module.exports = function(config, env) {
 				},
 			}),
 		],
-		module: {
-			loaders: [
-				{
-					test: new RegExp(`node_modules[/\\\\](${jsonModules.join('|')})[/\\\\].*\\.json$`),
-					include: /node_modules/,
-					loader: 'json',
-				},
-				{
-					test: /\.css$/,
-					include: [
-						codeMirrorPath,
-						getPackagePath('highlight.js'),
-					],
-					loader: 'style!css',
-				},
-				{
-					test: /\.css$/,
-					include: sourceDir,
-					loader: 'style!css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]',
-				},
-			],
+		performance: {
+			hints: false,
 		},
 	};
 
-	const loaderModulesDirectories = [
-		path.resolve(__dirname, '../loaders'),
-		nodeModulesDir,
-		'node_modules',
-	];
-
-	if (isWebpack2) {
-		webpackConfig = merge(webpackConfig, {
-			resolve: {
-				extensions: ['.js', '.jsx', '.json'],
-				modules: [
-					sourceDir,
-					nodeModulesDir,
-					'node_modules',
-				],
-			},
-			resolveLoader: {
-				modules: loaderModulesDirectories,
-			},
-			plugins: [
-				new webpack.LoaderOptionsPlugin({
-					minimize: isProd,
-					debug: !isProd,
-					options: {
-						styleguidist: config,
-					},
-				}),
-			],
-		});
-	}
-	else {
-		webpackConfig = merge(webpackConfig, {
-			styleguidist: config,
-			resolve: {
-				extensions: ['', '.js', '.jsx', '.json'],
-				root: sourceDir,
-				moduleDirectories: [
-					nodeModulesDir,
-					'node_modules',
-				],
-			},
-			resolveLoader: {
-				modulesDirectories: loaderModulesDirectories,
-			},
-			debug: !isProd,
-		});
-	}
-
-	const entryScript = path.resolve(sourceDir, 'index');
-
 	if (isProd) {
 		webpackConfig = merge(webpackConfig, {
-			entry: [
-				entryScript,
-			],
-			devtool: false,
-			cache: false,
 			plugins: [
 				new webpack.optimize.OccurrenceOrderPlugin(),
-				new webpack.optimize.DedupePlugin(),
 				new webpack.optimize.UglifyJsPlugin({
 					compress: {
+						keep_fnames: true,
+						screw_ie8: true,
 						warnings: false,
 					},
 					output: {
 						comments: false,
 					},
-					mangle: false,
+					mangle: {
+						keep_fnames: true,
+					},
 				}),
 			],
-			module: {
-				loaders: [
-					{
-						test: /\.jsx?$/,
-						include: sourceDir,
-						loader: 'babel',
-						query: {
-							babelrc: false,
-							presets: ['es2015', 'react', 'stage-0'],
-						},
-					},
-				],
-			},
 		});
+		if (!isWebpack2) {
+			webpackConfig.plugins.push(new webpack.optimize.DedupePlugin());
+		}
 	}
 	else {
 		webpackConfig = merge(webpackConfig, {
 			entry: [
-				'webpack-hot-middleware/client',
-				entryScript,
+				require.resolve('react-dev-utils/webpackHotDevClient'),
 			],
-			cache: true,
-			devtool: 'eval',
 			stats: {
 				colors: true,
 				reasons: true,
 			},
-
 			plugins: [
 				new webpack.HotModuleReplacementPlugin(),
-				new webpack.NoErrorsPlugin(),
 			],
+		});
+	}
+
+	if (config.webpackConfig) {
+		webpackConfig = mergeWebpackConfig(webpackConfig, config.webpackConfig, env);
+	}
+
+	// Add JSON loader if user config has no one (Webpack 2 includes it by default)
+	if (!isWebpack2 && !hasJsonLoader(webpackConfig)) {
+		webpackConfig = merge(webpackConfig, {
 			module: {
 				loaders: [
 					{
-						test: /\.jsx?$/,
-						include: sourceDir,
-						loader: 'babel',
-						query: {
-							babelrc: false,
-							presets: ['es2015', 'react', 'stage-0'],
-						},
+						test: /\.json$/,
+						loader: 'json-loader',
 					},
 				],
 			},
 		});
 	}
 
-	if (config.updateWebpackConfig) {
-		webpackConfig = config.updateWebpackConfig(webpackConfig, env);
-		validateWebpackConfig(webpackConfig);
-	}
+	// Add components folder alias at the end so users can override our components to customize the style guide
+	// (their aliases should be before this one)
+	webpackConfig.resolve.alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
 
-	if (config.verbose) {
-		console.log();
-		console.log('Using Webpack config:');
-		console.log(prettyjson.render(webpackConfig));
-		console.log();
+	if (config.dangerouslyUpdateWebpackConfig) {
+		webpackConfig = config.dangerouslyUpdateWebpackConfig(webpackConfig, env);
 	}
 
 	return webpackConfig;

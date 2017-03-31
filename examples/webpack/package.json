@@ -1,0 +1,37 @@
+{
+  "name": "react-styleguidist-example-webpack",
+  "description": "React styleguidist basic example",
+  "version": "1.0.0",
+  "private": true,
+  "homepage": "https://github.com/styleguidist/react-styleguidist",
+  "author": {
+    "name": "Artem Sapegin",
+    "url": "http://sapegin.me/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/styleguidist/react-styleguidist.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=4"
+  },
+  "dependencies": {
+    "babel-loader": "^6.4.0",
+    "css-loader": "^0.26.2",
+    "dog-names": "^1.0.2",
+    "file-loader": "^0.10.1",
+    "loaders": "^1.1.2",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-modal": "^1.6.5",
+    "react-styleguidist": "^5.0.0",
+    "style-loader": "^0.13.2",
+    "webpack": "^2.2.1"
+  },
+  "scripts": {
+    "build": "webpack",
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build"
+  }
+}

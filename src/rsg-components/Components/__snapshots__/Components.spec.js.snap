@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render components list layout 1`] = `
+<div>
+  <ReactComponent
+    component={
+      Object {
+        "filepath": "components/foo.js",
+        "name": "Foo",
+        "pathLine": "components/foo.js",
+        "props": Object {
+          "description": "Foo foo",
+        },
+      }
+    }
+  />
+  <ReactComponent
+    component={
+      Object {
+        "filepath": "components/bar.js",
+        "name": "Bar",
+        "pathLine": "components/bar.js",
+        "props": Object {
+          "description": "Bar bar",
+        },
+      }
+    }
+  />
+</div>
+`;
+
+exports[`should render components list 1`] = `
+<ComponentsRenderer>
+  <ReactComponent
+    component={
+      Object {
+        "filepath": "components/foo.js",
+        "name": "Foo",
+        "pathLine": "components/foo.js",
+        "props": Object {
+          "description": "Foo foo",
+        },
+      }
+    }
+  />
+  <ReactComponent
+    component={
+      Object {
+        "filepath": "components/bar.js",
+        "name": "Bar",
+        "pathLine": "components/bar.js",
+        "props": Object {
+          "description": "Bar bar",
+        },
+      }
+    }
+  />
+</ComponentsRenderer>
+`;

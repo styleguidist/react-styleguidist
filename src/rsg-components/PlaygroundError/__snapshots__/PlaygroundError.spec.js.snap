@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render message 1`] = `
+<pre>
+  Hello *world*!
+</pre>
+`;

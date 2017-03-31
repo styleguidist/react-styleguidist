@@ -44,13 +44,14 @@ module.exports = function chunkify(markdown) {
 
 	const rendered = remark()
 		.use(processCode)
-		.process(markdown)
-		.contents
+		.processSync(markdown)
+		.toString()
 	;
 
 	const chunks = [];
 	const textChunks = rendered.split(CODE_PLACEHOLDER);
 	textChunks.forEach(chunk => {
+		chunk = chunk.trim();
 		if (chunk) {
 			chunks.push({
 				type: 'markdown',

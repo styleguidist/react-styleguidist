@@ -1,13 +1,52 @@
-import test from 'ava';
 import React from 'react';
 import noop from 'lodash/noop';
-import Preview from '../Preview';
 import Playground from './Playground';
-import PlaygroundRenderer from './PlaygroundRenderer';
+import { PlaygroundRenderer } from './PlaygroundRenderer';
 
 const code = '<button>OK</button>';
+const newCode = '<button>Not OK</button>';
+const options = {
+	context: {
+		config: {
+			showCode: false,
+			highlightTheme: 'base16-light',
+		},
+	},
+};
 
-test('should render component renderer', () => {
+it('should render component renderer', () => {
+	const actual = shallow(
+		<Playground
+			code={code}
+			evalInContext={noop}
+			name="name"
+			index={0}
+		/>,
+		options
+	);
+
+	expect(actual).toMatchSnapshot();
+});
+
+it('should update code', () => {
+	const actual = shallow(
+		<Playground
+			code={code}
+			evalInContext={noop}
+			name="name"
+			index={0}
+		/>,
+		options
+	);
+
+	expect(actual.prop('code')).toEqual(code);
+
+	actual.instance().handleChange(newCode);
+
+	expect(actual.prop('code')).toEqual(newCode);
+});
+
+it('should update code with debounce', done => {
 	const actual = shallow(
 		<Playground
 			code={code}
@@ -18,35 +57,55 @@ test('should render component renderer', () => {
 		{
 			context: {
 				config: {
-					showCode: false,
+					...options.context.config,
+					previewDelay: 1,
 				},
 			},
 		}
 	);
 
-	expect(actual.node, 'to contain',
-		<PlaygroundRenderer
-			code={code}
-			showCode={false}
-			evalInContext={noop}
-			name="name"
-			index={0}
-		/>
-	);
+	expect(actual.prop('code')).toEqual(code);
+
+	actual.instance().handleChange(newCode);
+
+	expect(actual.prop('code')).toEqual(code);
+	setTimeout(() => {
+		expect(actual.prop('code')).toEqual(newCode);
+		done();
+	}, 5);
 });
 
-test('renderer should render preview', () => {
+it('should open a code editor', () => {
+	const actual = mount(
+		<Playground
+			code={code}
+			evalInContext={noop}
+			name="name"
+			index={0}
+		/>,
+		options
+	);
+
+	expect(actual.find('.ReactCodeMirror')).toHaveLength(0);
+
+	actual.find('button').simulate('click');
+
+	expect(actual.find('.ReactCodeMirror')).toHaveLength(1);
+});
+
+it('renderer should render preview', () => {
 	const actual = shallow(
 		<PlaygroundRenderer
+			classes={{}}
 			code={code}
 			showCode={false}
 			evalInContext={noop}
 			name="name"
 			index={0}
+			onChange={noop}
+			onCodeToggle={noop}
 		/>
 	);
 
-	expect(actual.node, 'to contain',
-		<Preview code={code} />
-	);
+	expect(actual).toMatchSnapshot();
 });

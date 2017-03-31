@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render message 1`] = `
+<div>
+  <_class
+    text="Hello *world*!"
+  />
+</div>
+`;

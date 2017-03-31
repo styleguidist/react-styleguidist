@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import EditorLoaderRenderer from 'rsg-components/Editor/EditorLoaderRenderer';
 
+/* istanbul ignore if  */
+// FIX: require.ensure polyfill for tests
+// Can’t make it work from tests, it shouldn’t be in the app code.
+if (typeof require.ensure !== 'function') {
+	require.ensure = (d, c) => c(require);
+}
+
 export default class EditorLoader extends Component {
 	constructor(props) {
 		super(props);

@@ -6,6 +6,8 @@ import s from './Placeholder.css';
  * Image placeholders.
  *
  * @example ./examples.md
+ * @see {@link link}
+ * @link link
  */
 export default class Placeholder extends Component {
 	static propTypes = {
@@ -20,6 +22,10 @@ export default class Placeholder extends Component {
 		height: 150,
 	};
 
+	/**
+	 * A public method.
+	 * @public
+	 */
 	getImageUrl() {
 		const { type, width, height } = this.props;
 		const types = {
@@ -34,6 +40,10 @@ export default class Placeholder extends Component {
 			people: `http://lorempixel.com/${width}/${height}/people`,
 		};
 		return types[type];
+	}
+
+	makeABarrelRoll() {
+		return 'This is a private method';
 	}
 
 	render() {

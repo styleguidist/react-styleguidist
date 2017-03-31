@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`processComponent() should return an object for section with content 1`] = `
+Object {
+  "filepath": "../../../pizza.js",
+  "hasExamples": true,
+  "module": RequireStatement {
+    "filepath": "pizza.js",
+  },
+  "pathLine": "../../../pizza.js",
+  "props": RequireStatement {
+    "filepath": "!!<rootDir>/loaders/props-loader.js!pizza.js",
+  },
+}
+`;

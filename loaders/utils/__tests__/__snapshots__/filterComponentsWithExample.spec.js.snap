@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should skip components without example file 1`] = `
+Array [
+  Object {
+    "components": Array [],
+    "content": "Readme.md",
+    "name": "Readme",
+    "sections": Array [],
+  },
+  Object {
+    "components": Array [
+      Object {
+        "filepath": "components/Button/Button.js",
+        "hasExamples": "require()",
+      },
+    ],
+    "name": "Components",
+    "sections": Array [],
+  },
+  Object {
+    "components": Array [],
+    "name": "Nesting",
+    "sections": Array [
+      Object {
+        "components": Array [
+          Object {
+            "filepath": "components/Modal/Modal.js",
+            "hasExamples": "require()",
+          },
+        ],
+        "name": "Nested",
+        "sections": Array [],
+      },
+    ],
+  },
+]
+`;

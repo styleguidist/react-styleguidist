@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render code 1`] = `
+<span>
+  <code>
+    &lt;button&gt;OK&lt;/button&gt;
+  </code>
+</span>
+`;

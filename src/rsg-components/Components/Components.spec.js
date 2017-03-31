@@ -1,7 +1,5 @@
-import test from 'ava';
 import React from 'react';
 import ReactComponent from '../ReactComponent';
-import Sections from '../Sections';
 import Components from './Components';
 import ComponentsRenderer from './ComponentsRenderer';
 
@@ -24,41 +22,23 @@ const components = [
 	},
 ];
 
-test('should render components list', () => {
+it('should render components list', () => {
 	const actual = shallow(
 		<Components
 			components={components}
-			sections={[]}
 		/>
 	);
 
-	expect(actual.node, 'to contain',
-		<ComponentsRenderer
-			components={[
-				<ReactComponent component={components[0]} />,
-				<ReactComponent component={components[1]} />,
-			]}
-			sections={<Sections sections={[]} />}
-		/>
-	);
+	expect(actual).toMatchSnapshot();
 });
 
-test('renderer should render components list layout', () => {
+it('renderer should render components list layout', () => {
 	const actual = shallow(
-		<ComponentsRenderer
-			components={[
-				<ReactComponent component={components[0]} />,
-				<ReactComponent component={components[1]} />,
-			]}
-			sections={<Sections sections={[]} />}
-		/>
+		<ComponentsRenderer>
+			<ReactComponent key={0} component={components[0]} />
+			<ReactComponent key={1} component={components[1]} />
+		</ComponentsRenderer>
 	);
 
-	expect(actual.node, 'to contain',
-		<div>
-			<ReactComponent component={components[0]} />
-			<ReactComponent component={components[1]} />
-			<Sections sections={[]} />
-		</div>
-	);
+	expect(actual).toMatchSnapshot();
 });

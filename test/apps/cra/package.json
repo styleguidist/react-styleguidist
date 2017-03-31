@@ -1,0 +1,9 @@
+{
+  "name": "pizza-cra",
+  "devDependencies": {
+    "file-loader": "~0.9.0",
+    "postcss-loader": "~0.13.0",
+    "react-scripts": "~0.6.1",
+    "url-loader": "~0.5.7"
+  }
+}

@@ -1,30 +1,39 @@
 import React, { PropTypes } from 'react';
+import Styled from 'rsg-components/Styled';
+import Heading from 'rsg-components/Heading';
 
-const s = require('./Section.css');
+const styles = ({ font }) => ({
+	root: {
+		marginBottom: 50,
+	},
+	heading: {
+		margin: [[0, 0, 20]],
+		fontFamily: font,
+		fontSize: 38,
+		fontWeight: 'bold',
+	},
+});
 
-const SectionRenderer = ({ name, content, components }) => {
+export function SectionRenderer({ classes, name, slug, content, components, sections }) {
 	return (
-		<div className={s.root}>
-			<header className={s.header}>
-				<h1 className={s.heading} id={name}>
-					<a className={s.anchor} href={'#' + name}></a>
-					{name}
-				</h1>
-			</header>
-			<div>
-				{content}
-			</div>
-			<div>
-				{components}
-			</div>
-		</div>
+		<section className={classes.root}>
+			{name && (
+				<Heading level={1} slug={slug} className={classes.heading}>{name}</Heading>
+			)}
+			{content}
+			{components}
+			{sections}
+		</section>
 	);
-};
+}
 
 SectionRenderer.propTypes = {
-	name: PropTypes.string.isRequired,
+	classes: PropTypes.object.isRequired,
+	name: PropTypes.string,
+	slug: PropTypes.string,
 	content: PropTypes.node,
-	components: PropTypes.object,
+	components: PropTypes.node,
+	sections: PropTypes.node,
 };
 
-export default SectionRenderer;
+export default Styled(styles)(SectionRenderer);

@@ -1,134 +1,130 @@
-import test from 'ava';
 import React from 'react';
-import ComponentsList from '../ComponentsList';
+import noop from 'lodash/noop';
 import TableOfContents from './TableOfContents';
-import TableOfContentsRenderer from './TableOfContentsRenderer';
+import { TableOfContentsRenderer } from './TableOfContentsRenderer';
 
 const components = [
 	{
 		name: 'Button',
+		slug: 'button',
 	},
 	{
 		name: 'Input',
+		slug: 'input',
 	},
 	{
 		name: 'Textarea',
+		slug: 'textarea',
 	},
 ];
 
 const sections = [
 	{
 		name: 'Introduction',
+		slug: 'introduction',
 		content: 'intro.md',
 	},
 	{
 		name: 'Buttons',
+		slug: 'buttons',
 		components: [
 			{
 				name: 'Button',
+				slug: 'button',
 			},
 		],
 	},
 	{
 		name: 'Forms',
+		slug: 'forms',
 		components: [
 			{
 				name: 'Input',
+				slug: 'input',
 			},
 			{
 				name: 'Textarea',
+				slug: 'textarea',
 			},
 		],
 	},
 ];
 
-test('should render a renderer', () => {
+it('should render a renderer', () => {
 	const actual = shallow(
-		<TableOfContents components={components} sections={[]} />
+		<TableOfContents sections={[{ components }]} />
 	);
 
-	expect(actual.node, 'to contain',
-		<TableOfContentsRenderer
-			items={<ComponentsList items={components} />}
-		/>
-	);
+	expect(actual).toMatchSnapshot();
 });
 
-test('should render renderer with sections with nested components', () => {
+it('should render renderer with sections with nested components', () => {
 	const actual = shallow(
-		<TableOfContents components={[]} sections={sections} />
+		<TableOfContents sections={sections} />
 	);
 
-	expect(actual.node, 'to contain',
-		<TableOfContentsRenderer
-			items={
-				<ComponentsList
-					items={[
-						{ heading: true, name: 'Introduction', content: <ComponentsList items={[]} /> },
-						{ heading: true, name: 'Buttons', content: <ComponentsList items={sections[1].components} /> },
-						{ heading: true, name: 'Forms', content: <ComponentsList items={sections[2].components} /> },
-					]}
-				/>
-			}
-		/>
-	);
+	expect(actual).toMatchSnapshot();
 });
 
 
-test('should filter list when search field contains a query', () => {
+it('should filter list when search field contains a query', () => {
 	const searchTerm = 'but';
 	const actual = shallow(
-		<TableOfContents components={components} sections={[]} />
+		<TableOfContents sections={[{ components }]} />
 	);
+
+	expect(actual).toMatchSnapshot();
 
 	actual.setState({ searchTerm });
 
-	expect(actual.node, 'to contain',
-		<TableOfContentsRenderer
-			searchTerm={searchTerm}
-			items={<ComponentsList items={[components[0]]} />}
-		/>
-	);
+	expect(actual).toMatchSnapshot();
 });
 
-test('should render a filtered list, should hide empty sections', () => {
-	const searchTerm = 'inp';
-	const actual = shallow(
-		<TableOfContents components={[]} sections={sections} />
-	);
-
-	actual.setState({ searchTerm });
-
-	expect(actual.node, 'to contain',
-		<TableOfContentsRenderer
-			items={
-				<ComponentsList
-					items={[
-						{ heading: true, name: 'Forms', content: <ComponentsList items={[sections[2].components[0]]} /> },
-					]}
-				/>
-			}
-		/>
-	);
-});
-
-test('should filter section names', () => {
+it('should filter section names', () => {
 	const searchTerm = 'frm';
 	const actual = shallow(
-		<TableOfContents components={[]} sections={sections} />
+		<TableOfContents sections={sections} />
 	);
+
+	expect(actual).toMatchSnapshot();
 
 	actual.setState({ searchTerm });
 
-	expect(actual.node, 'to contain',
+	expect(actual).toMatchSnapshot();
+});
+
+it('renderer should render table of contents', () => {
+	const searchTerm = 'foo';
+	const actual = shallow(
 		<TableOfContentsRenderer
-			items={
-				<ComponentsList
-					items={[
-						{ heading: true, name: 'Forms', content: <ComponentsList items={[]} /> },
-					]}
-				/>
-			}
+			classes={{}}
+			items={<div>foo</div>}
+			searchTerm={searchTerm}
+			onSearchTermChange={noop}
 		/>
 	);
+
+	expect(actual).toMatchSnapshot();
+});
+
+it('should call a callback when input value changed', () => {
+	const onSearchTermChange = jest.fn();
+	const searchTerm = 'foo';
+	const newSearchTerm = 'bar';
+	const actual = shallow(
+		<TableOfContentsRenderer
+			classes={{}}
+			items={<div>foo</div>}
+			searchTerm={searchTerm}
+			onSearchTermChange={onSearchTermChange}
+		/>
+	);
+
+	actual.find('input').simulate('change', {
+		target: {
+			value: newSearchTerm,
+		},
+	});
+
+	expect(onSearchTermChange).toBeCalledWith(newSearchTerm);
 });

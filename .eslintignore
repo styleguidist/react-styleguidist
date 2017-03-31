@@ -1,3 +1,5 @@
 node_modules
-styleguide
-travis_phantomjs
+examples/*/styleguide/*
+lib/*
+coverage/*
+travis_phantomjs/*

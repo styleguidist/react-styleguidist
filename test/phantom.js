@@ -1,6 +1,9 @@
 const system = require('system');
 
-/* eslint-disable no-console */
+// To make a screenshot: https://github.com/ariya/phantomjs/blob/master/examples/rasterize.js
+// phantomjs rasterize.js http://localhost:6060/ output.png
+
+/* eslint-disable no-console, no-multi-assign */
 /* globals phantom:false */
 
 if (system.args.length !== 2) {
@@ -21,7 +24,6 @@ page.onConsoleMessage = function(msg) {
 page.viewportSize = { width: 1024, height: 768 };
 
 page.open(system.args[1], function(status) {
-	// page.render('screenshot.png');
 	if (status !== 'success') {
 		console.log('Cannot load the page');
 		phantom.exit(1);

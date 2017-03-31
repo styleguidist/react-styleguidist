@@ -1,5 +1,14 @@
-examples/**/styleguide/build
-examples/**/styleguide/index.html
-.publish/
 node_modules/
+/examples/**/styleguide/build
+/examples/**/styleguide/index.html
+/.publish/
+/lib
+/coverage/
 Changelog.md
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.log

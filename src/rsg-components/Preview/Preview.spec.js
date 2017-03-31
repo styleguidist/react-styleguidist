@@ -1,11 +1,10 @@
-import test from 'ava';
 import React from 'react';
 import noop from 'lodash/noop';
 import Preview from '../Preview';
 
 const code = '<button>OK</button>';
 
-test('should render component renderer', () => {
+it('should render component renderer', () => {
 	const actual = shallow(
 		<Preview
 			code={code}
@@ -13,9 +12,5 @@ test('should render component renderer', () => {
 		/>
 	);
 
-	expect(actual.node, 'to contain exactly',
-		<div>
-			<div></div>
-		</div>
-	);
+	expect(actual).toMatchSnapshot();
 });

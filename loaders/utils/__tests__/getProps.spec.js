@@ -1,0 +1,109 @@
+jest.mock('../requireIt');
+
+import getProps from '../getProps';
+
+it('should return an object for props', () => {
+	const result = getProps({
+		description: 'The only true button.',
+		methods: [],
+		props: {
+			children: {
+				type: {},
+				required: true,
+				description: 'Button label.',
+			},
+			color: {
+				type: {},
+				required: false,
+				description: '',
+			},
+		},
+	});
+
+	expect(result).toMatchSnapshot();
+});
+
+it('should return an object for props without description', () => {
+	const result = getProps({
+		props: {
+			children: {
+				type: {},
+				required: true,
+				description: 'Button label.',
+			},
+		},
+	});
+
+	expect(result).toMatchSnapshot();
+});
+
+it('should remove non-public methods', () => {
+	const result = getProps({
+		methods: [
+			{
+				docblock: `Public method.
+@public`,
+			},
+			{
+				docblock: `Private method.
+@private`,
+			},
+			{
+				docblock: 'Private method by default.',
+			},
+		],
+	});
+
+	expect(result).toMatchSnapshot();
+});
+
+it('should return an object for props with doclets', () => {
+	const result = getProps({
+		description: `
+The only true button.
+
+@foo Foo
+@bar Bar
+`,
+	});
+
+	expect(result).toMatchSnapshot();
+});
+
+it('should return require statement for @example doclet', () => {
+	const result = getProps({
+		description: `
+The only true button.
+
+@example example.md
+`,
+	});
+
+	expect(result).toMatchSnapshot();
+});
+
+it('should highlight code in description (regular code block)', () => {
+	const result = getProps({
+		description: `
+The only true button.
+
+    alert('Hello world');
+`,
+	});
+
+	expect(result).toMatchSnapshot();
+});
+
+it('should highlight code in description (fenced code block)', () => {
+	const result = getProps({
+		description: `
+The only true button.
+
+\`\`\`
+alert('Hello world');
+\`\`\`
+`,
+	});
+
+	expect(result).toMatchSnapshot();
+});

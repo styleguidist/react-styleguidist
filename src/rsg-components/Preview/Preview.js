@@ -1,7 +1,6 @@
-// Based on https://github.com/joelburget/react-live-editor/blob/master/live-compile.jsx
-
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import noop from 'lodash/noop';
 import { transform } from 'buble';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import Wrapper from 'rsg-components/Wrapper';
@@ -15,14 +14,9 @@ export default class Preview extends Component {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
 	};
-
-	constructor() {
-		super();
-		this.state = {
-			error: null,
-		};
-		this.componentState = {};
-	}
+	state = {
+		error: null,
+	};
 
 	componentDidMount() {
 		this.executeCode();
@@ -49,62 +43,39 @@ export default class Preview extends Component {
 		try {
 			const compiledCode = compileCode(this.props.code);
 
-			// Initiate state and set with the callback in the bottom component;
-			// Workaround for https://github.com/styleguidist/react-styleguidist/issues/155 - missed props on first render
-			// when using initialState
-			const initCode = `
-				var React = {};  // React.createElement will throw on first load
-				var initialState = {};
-				try {
-					${compiledCode}
-				}
-				catch (e) {
-					// Ignoring
-				}
-				finally {
-					__initialStateCB(initialState);
-				}
-			`;
-
-			// evalInContext returns a function which takes state, setState and a callback to handle the
-			// initial state and returns the evaluated code
-			const initial = this.props.evalInContext(initCode);
-
-			// 1) setup initialState so that we don't get an error;
-			// 2) use require data or make other setup for the example component;
-			// 3) return the example component
+			// 1. Use setter/with to call our callback function when user write `initialState = {...}`
+			// 2. Wrap code in JSON.stringify/eval to catch the component and return it
 			const exampleComponentCode = `
-				var initialState = {};
-				return eval(${JSON.stringify(compiledCode)});
+				var stateWrapper = {
+					set initialState(value) {
+						__setInitialState(value)
+					},
+				}
+				with (stateWrapper) {
+					return eval(${JSON.stringify(compiledCode)})
+				}
 			`;
 
 			const exampleComponent = this.props.evalInContext(exampleComponentCode);
 
-			// Wrap everything in a react component to leverage the state management of this component
+			// Wrap everything in a React component to leverage the state management of this component
 			class PreviewComponent extends Component { // eslint-disable-line react/no-multi-comp
 				constructor() {
 					super();
+					this.state = {};
+					this.setState = this.setState.bind(this);
+					this.setInitialState = this.setInitialState.bind(this);
+				}
 
-					const state = {};
-					const initialStateCB = (initialState) => {
-						Object.assign(state, initialState);
-					};
-					const setStateError = (partialState) => {
-						const err = 'Calling setState to setup the initial state is deprecated. Use\ninitialState = ';
-						Object.assign(state, { error: err + JSON.stringify(partialState) + ';' });
-					};
-
-					initial({}, setStateError, initialStateCB);
-					this.state = state;
+				// Synchronously set initial state, so it will be ready before first render
+				// Ignore all consequent calls
+				setInitialState(initialState) {
+					Object.assign(this.state, initialState);
+					this.setInitialState = noop;
 				}
 
 				render() {
-					const { error } = this.state;
-					if (error) {
-						return <PlaygroundError message={error} />;
-					}
-
-					return exampleComponent(this.state, this.setState.bind(this), null);
+					return exampleComponent(this.state, this.setState, this.setInitialState);
 				}
 			}
 

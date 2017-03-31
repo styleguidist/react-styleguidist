@@ -1,43 +1,121 @@
-import test from 'ava';
 import React from 'react';
 import Markdown from './Markdown';
 
-test('should render Markdown with custom CSS classes', t => {
-	const markdown = `
+describe('Markdown', () => {
+	it('should render Markdown with custom CSS classes', () => {
+		const markdown = `
 # Header
 
 Text with *some* **formatting** and a [link](/foo).
 
 ![Image](/bar.png)`;
-	const actual = render(
-		<Markdown text={markdown} />
-	);
-	const expected = render(
-		<div>
-			<h3 className="Test__h3 Test__font">Header</h3>
-			<p className="Test__p Test__font">
-				Text with <em className="Test__em">some</em> <strong className="Test__strong">
-				formatting</strong> and a <a className="Test__a Test__link" href="/foo">link</a>.
-			</p>
-			<p className="Test__p Test__font">
-				<img className="Test__img" alt="Image" src="/bar.png" />
-			</p>
-		</div>
-	);
+		const actual = render(
+			<Markdown text={markdown} />
+		);
 
-	t.is(actual.html(), expected.html());
-});
+		expect(actual.html()).toMatchSnapshot();
+	});
 
-test('should render Markdown in span in inline mode', t => {
-	const markdown = 'Hello *world*!';
-	const actual = render(
-		<Markdown text={markdown} inline />
-	);
-	const expected = render(
-		<span className="Test__base Test__font">
-			Hello <em className="Test__em">world</em>!
-		</span>
-	);
+	it('should render Markdown in span in inline mode', () => {
+		const markdown = 'Hello *world*!';
+		const actual = render(
+			<Markdown text={markdown} inline />
+		);
 
-	t.is(actual.html(), expected.html());
+		expect(actual.html()).toMatchSnapshot();
+	});
+
+	it('should render headings correctly', () => {
+		const markdown = `
+# one
+## two
+### three
+#### four
+##### five
+###### six
+`;
+		const actual = render(
+			<Markdown text={markdown} />
+		);
+
+		expect(actual.html()).toMatchSnapshot();
+	});
+
+	it('should render unordered lists correctly', () => {
+		const markdown = `
+* list
+* item
+* three
+`;
+		const actual = render(
+			<Markdown text={markdown} />
+		);
+
+		expect(actual.html()).toMatchSnapshot();
+	});
+
+	it('should render ordered lists correctly', () => {
+		const markdown = `
+1. list
+1. item
+1. three
+`;
+		const actual = render(
+			<Markdown text={markdown} />
+		);
+
+		expect(actual.html()).toMatchSnapshot();
+	});
+
+	it('should render check-lists correctly', () => {
+		const markdown = `
+* [ ] list 1
+* [ ] list 2
+* [x] list 3
+`;
+		const actual = render(
+			<Markdown text={markdown} />
+		);
+
+		expect(actual.html()).toMatchSnapshot();
+	});
+
+	it('should render mixed nested lists correctly', () => {
+		const markdown = `
+* list 1
+* list 2
+  1. Sub-list
+  1. Sub-list
+  1. Sub-list
+* list 3
+`;
+		const actual = render(
+			<Markdown text={markdown} />
+		);
+
+		expect(actual.html()).toMatchSnapshot();
+	});
+
+	it('should render code blocks without escaping', () => {
+		const markdown = `
+\`\`\`html
+<foo></foo>
+\`\`\`
+`;
+		const actual = render(
+			<Markdown text={markdown} />
+		);
+
+		expect(actual.html()).toMatchSnapshot();
+	});
+
+	it('should render inline code with escaping', () => {
+		const markdown = 'Foo `<bar>` baz';
+
+		const actual = render(
+			<Markdown text={markdown} />
+		);
+
+		expect(actual.html()).toMatchSnapshot();
+	});
 });

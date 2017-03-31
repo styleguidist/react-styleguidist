@@ -1,69 +1,66 @@
+import './styles';
 import React from 'react';
-import _ from 'lodash';
-import isFinite from 'lodash/isFinite';
 import ReactDOM from 'react-dom';
+import isFinite from 'lodash/isFinite';
 import {
 	getComponentNameFromHash,
-	filterComponentsByExactName,
 	filterComponentExamples,
 	filterComponentsInSectionsByExactName,
-	processComponents,
 	processSections,
+	setSlugs,
+	slugger,
 } from './utils/utils';
 import StyleGuide from 'rsg-components/StyleGuide';
 
-import 'highlight.js/styles/tomorrow.css';
-import './styles.css';
+// Polyfills
+import 'function.name-polyfill';
 import es6ObjectAssign from 'es6-object-assign';
-
 es6ObjectAssign.polyfill();
 
-// Make libraries available in examples
-global.React = React;
-global._ = _;
-
+// Examples code revision to rerender only code examples (not the whole page) when code changes
 let codeKey = 0;
 
 function renderStyleguide() {
-	const styleguide = require('styleguide!index.js');
+	const styleguide = require('!!../loaders/styleguide-loader!./index.js');
 
-	let components = processComponents(styleguide.components);
-	let sections = processSections(styleguide.sections || []);
-	let sidebar = true;
-	let singleExample = false;
+	let sections = processSections(styleguide.sections);
 
-	// parse url hash to check if the components list must be filtered
+	// Parse URL hash to check if the components list must be filtered
 	const {
-		// name of the filtered component to show isolated
+		// Name of the filtered component to show isolated (/#!/Button → Button)
 		targetComponentName,
-		// index of the fenced block example of the filtered component isolate
+		// Index of the fenced block example of the filtered component isolate (/#!/Button/1 → 1)
 		targetComponentIndex,
 	} = getComponentNameFromHash();
 
-	// filter the requested component id required
-	if (targetComponentName) {
-		components = [
-			...filterComponentsByExactName(components, targetComponentName),
-			...filterComponentsInSectionsByExactName(sections, targetComponentName),
-		];
-		sections = [];
-		sidebar = false;
+	let isolatedComponent = false;
+	let isolatedExample = false;
 
-		// if a single component is filtered and a fenced block index is specified hide the other examples
-		if (components.length === 1 && isFinite(targetComponentIndex)) {
-			components[0] = filterComponentExamples(components[0], targetComponentIndex);
-			singleExample = true;
+	// Filter the requested component id required
+	if (targetComponentName) {
+		const filteredComponents = filterComponentsInSectionsByExactName(sections, targetComponentName);
+		sections = [{ components: filteredComponents }];
+		isolatedComponent = true;
+
+		// If a single component is filtered and a fenced block index is specified hide the other examples
+		if (filteredComponents.length === 1 && isFinite(targetComponentIndex)) {
+			filteredComponents[0] = filterComponentExamples(filteredComponents[0], targetComponentIndex);
+			isolatedExample = true;
 		}
 	}
+
+	// Reset slugger for each render to be deterministic
+	slugger.reset();
+	sections = setSlugs(sections);
 
 	ReactDOM.render(
 		<StyleGuide
 			codeKey={codeKey}
 			config={styleguide.config}
-			components={components}
+			welcomeScreen={styleguide.welcomeScreen}
 			sections={sections}
-			sidebar={sidebar}
-			singleExample={singleExample}
+			isolatedComponent={isolatedComponent}
+			isolatedExample={isolatedExample}
 		/>,
 		document.getElementById('app')
 	);
@@ -71,8 +68,9 @@ function renderStyleguide() {
 
 window.addEventListener('hashchange', renderStyleguide);
 
+/* istanbul ignore if */
 if (module.hot) {
-	module.hot.accept('styleguide!index.js', () => {
+	module.hot.accept('!!../loaders/styleguide-loader!./index.js', () => {
 		codeKey += 1;
 		renderStyleguide();
 	});

@@ -1,16 +1,12 @@
-import test from 'ava';
 import React from 'react';
-import EditorRenderer from './EditorRenderer';
+import { EditorLoaderRenderer } from './EditorLoaderRenderer';
 
 // We do not test Editor component because it requires Codemirror that do not work in Node environment.
 
-test('renderer should render editor', () => {
-	const editor = <div>editor</div>;
+it('renderer should render loader', () => {
 	const actual = shallow(
-		<EditorRenderer>{editor}</EditorRenderer>
+		<EditorLoaderRenderer classes={{}} />
 	);
 
-	expect(actual.node, 'to contain',
-		<div>{editor}</div>
-	);
+	expect(actual).toMatchSnapshot();
 });
