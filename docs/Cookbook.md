@@ -247,7 +247,7 @@ module.exports = {
 
 // lib/styleguide/StyleGuideRenderer.js
 import React from 'react';
-const StyleGuideRenderer = ({ title, homepageUrl, components, toc, sidebar }) => (
+const StyleGuideRenderer = ({ title, homepageUrl, components, toc, hasSidebar }) => (
   <div className="root">
     <h1>{title}</h1>
     <main className="wrapper">
@@ -257,7 +257,7 @@ const StyleGuideRenderer = ({ title, homepageUrl, components, toc, sidebar }) =>
           <Markdown text={`Generated with [React Styleguidist](${homepageUrl})`} />
         </footer>
       </div>
-      {sidebar &&
+      {hasSidebar &&
         <div className="sidebar">
           {toc}
         </div>
