@@ -123,13 +123,13 @@ describe('processComponents', () => {
 			{
 				props: {
 					displayName: 'Foo',
+					examples: [1, 2],
+					example: [3, 4],
 				},
 				module: 11,
-				examples: [1, 2],
-				example: 3,
 			},
 		]);
-		expect(result[0].examples).toEqual([1, 2, 3]);
+		expect(result[0].props.examples).toEqual([1, 2, 3, 4]);
 	});
 });
 

@@ -47,8 +47,9 @@ export function processComponents(components) {
 		component.name = component.props.displayName;
 
 		// Append @example doclet to all examples
-		if (component.example) {
-			component.examples.push(component.example);
+		if (component.props.example) {
+			component.props.examples = [...component.props.examples, ...component.props.example];
+			delete component.props.example;
 		}
 
 		globalizeComponent(component);

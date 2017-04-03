@@ -4,6 +4,8 @@ import './Placeholder.css';
 
 /**
  * Image placeholders.
+ *
+ * @example ./Example.md
  */
 export default class Placeholder extends Component {
 	static propTypes = {
