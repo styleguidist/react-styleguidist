@@ -26,13 +26,15 @@ describe('makeWebpackConfig', () => {
 		const result = api.makeWebpackConfig('development');
 		expect(result).toBeTruthy();
 		expect(result.output.filename).toBe('build/bundle.js');
+		expect(result.output.chunkFilename).toBe('build/[name].js');
 	});
 
 	it('should return production Webpack config', () => {
 		const api = styleguidist();
 		const result = api.makeWebpackConfig('production');
 		expect(result).toBeTruthy();
-		expect(result.output.filename).toBe('build/bundle.js');
+		expect(result.output.filename).toBe('build/bundle.[chunkhash:8].js');
+		expect(result.output.chunkFilename).toBe('build/[name].[chunkhash:8].js');
 	});
 
 	it('should merge webpackConfig config option', () => {

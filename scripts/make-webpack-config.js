@@ -55,6 +55,10 @@ module.exports = function(config, env) {
 
 	if (isProd) {
 		webpackConfig = merge(webpackConfig, {
+			output: {
+				filename: 'build/bundle.[chunkhash:8].js',
+				chunkFilename: 'build/[name].[chunkhash:8].js',
+			},
 			plugins: [
 				new webpack.optimize.OccurrenceOrderPlugin(),
 				new webpack.optimize.UglifyJsPlugin({

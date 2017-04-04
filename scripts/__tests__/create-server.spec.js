@@ -20,7 +20,8 @@ test('createServer should return an object containing a production Webpack compi
 	const result = createServer(config, 'production');
 	expect(result).toBeTruthy();
 	expect(result.compiler).toBeTruthy();
-	expect(result.compiler.options.output.filename).toBe('build/bundle.js');
+	expect(result.compiler.options.output.filename).toBe('build/bundle.[chunkhash:8].js');
+	expect(result.compiler.options.output.chunkFilename).toBe('build/[name].[chunkhash:8].js');
 });
 
 test('createServer should return an object containing a development Webpack compiler', () => {
@@ -30,4 +31,5 @@ test('createServer should return an object containing a development Webpack comp
 	expect(result).toBeTruthy();
 	expect(result.compiler).toBeTruthy();
 	expect(result.compiler.options.output.filename).toBe('build/bundle.js');
+	expect(result.compiler.options.output.chunkFilename).toBe('build/[name].js');
 });
