@@ -18,6 +18,10 @@ phantom.onError = page.onError = function(err) {
 };
 
 page.onResourceError = page.onResourceTimeout = function(err) {
+	if (err.url.startsWith('http://placebeard.it/')) {
+		return;
+	}
+
 	console.log('PhantomJS cannot load resource:', err.url, '-', err.errorString);
 };
 
