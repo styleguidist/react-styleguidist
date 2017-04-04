@@ -6,6 +6,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const hasJsonLoader = require('./utils/hasJsonLoader');
 const getWebpackVersion = require('./utils/getWebpackVersion');
 const mergeWebpackConfig = require('./utils/mergeWebpackConfig');
@@ -73,6 +74,9 @@ module.exports = function(config, env) {
 					mangle: {
 						keep_fnames: true,
 					},
+				}),
+				new CleanWebpackPlugin(['build'], {
+					root: config.styleguideDir,
 				}),
 			],
 		});
