@@ -9,12 +9,9 @@ if (typeof require.ensure !== 'function') {
 }
 
 export default class EditorLoader extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			editor: null,
-		};
-	}
+	state = {
+		editor: null,
+	};
 
 	componentDidMount() {
 		require.ensure(['rsg-components/Editor/Editor'], require => {
@@ -26,10 +23,10 @@ export default class EditorLoader extends Component {
 
 	render() {
 		const Editor = this.state.editor;
-		if (!Editor) {
-			return <EditorLoaderRenderer />;
+		if (Editor) {
+			return <Editor {...this.props} />;
 		}
 
-		return <Editor {...this.props} />;
+		return <EditorLoaderRenderer />;
 	}
 }

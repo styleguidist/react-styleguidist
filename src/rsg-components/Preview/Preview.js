@@ -5,9 +5,36 @@ import { transform } from 'buble';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import Wrapper from 'rsg-components/Wrapper';
 
+/* eslint-disable react/no-multi-comp */
+
 const compileCode = code => transform(code, {
 	objectAssign: 'Object.assign',
 }).code;
+
+// Wrap everything in a React component to leverage the state management of this component
+class PreviewComponent extends Component {
+	static propTypes = {
+		component: PropTypes.func.isRequired,
+	};
+
+	constructor() {
+		super();
+		this.state = {};
+		this.setState = this.setState.bind(this);
+		this.setInitialState = this.setInitialState.bind(this);
+	}
+
+	// Synchronously set initial state, so it will be ready before first render
+	// Ignore all consequent calls
+	setInitialState(initialState) {
+		Object.assign(this.state, initialState);
+		this.setInitialState = noop;
+	}
+
+	render() {
+		return this.props.component(this.state, this.setState, this.setInitialState);
+	}
+}
 
 export default class Preview extends Component {
 	static propTypes = {
@@ -22,6 +49,10 @@ export default class Preview extends Component {
 		this.executeCode();
 	}
 
+	shouldComponentUpdate(nextProps, nextState) {
+		return this.state.error !== nextState.error || this.props.code !== nextProps.code;
+	}
+
 	componentDidUpdate(prevProps) {
 		if (this.props.code !== prevProps.code) {
 			this.executeCode();
@@ -29,8 +60,6 @@ export default class Preview extends Component {
 	}
 
 	executeCode() {
-		ReactDOM.unmountComponentAtNode(this.mountNode);
-
 		this.setState({
 			error: null,
 		});
@@ -40,59 +69,63 @@ export default class Preview extends Component {
 			return;
 		}
 
-		try {
-			const compiledCode = compileCode(this.props.code);
+		const compiledCode = this.compileCode(code);
+		if (!compiledCode) {
+			return;
+		}
 
-			// 1. Use setter/with to call our callback function when user write `initialState = {...}`
-			// 2. Wrap code in JSON.stringify/eval to catch the component and return it
-			const exampleComponentCode = `
-				var stateWrapper = {
-					set initialState(value) {
-						__setInitialState(value)
-					},
-				}
-				with (stateWrapper) {
-					return eval(${JSON.stringify(compiledCode)})
-				}
-			`;
+		const exampleComponent = this.evalInContext(compiledCode);
+		const wrappedComponent = (
+			<Wrapper>
+				<PreviewComponent component={exampleComponent} />
+			</Wrapper>
+		);
 
-			const exampleComponent = this.props.evalInContext(exampleComponentCode);
-
-			// Wrap everything in a React component to leverage the state management of this component
-			class PreviewComponent extends Component { // eslint-disable-line react/no-multi-comp
-				constructor() {
-					super();
-					this.state = {};
-					this.setState = this.setState.bind(this);
-					this.setInitialState = this.setInitialState.bind(this);
-				}
-
-				// Synchronously set initial state, so it will be ready before first render
-				// Ignore all consequent calls
-				setInitialState(initialState) {
-					Object.assign(this.state, initialState);
-					this.setInitialState = noop;
-				}
-
-				render() {
-					return exampleComponent(this.state, this.setState, this.setInitialState);
-				}
+		window.requestAnimationFrame(() => {
+			try {
+				ReactDOM.render(wrappedComponent, this.mountNode);
 			}
+			catch (err) {
+				this.handleError(err);
+			}
+		});
+	}
 
-			const wrappedComponent = (
-				<Wrapper>
-					<PreviewComponent />
-				</Wrapper>
-			);
-
-			ReactDOM.render(wrappedComponent, this.mountNode);
+	compileCode(code) {
+		try {
+			return compileCode(code);
 		}
 		catch (err) {
-			ReactDOM.unmountComponentAtNode(this.mountNode);
-			this.setState({
-				error: err.toString(),
-			});
+			this.handleError(err);
 		}
+		return false;
+	}
+
+	evalInContext(compiledCode) {
+		// 1. Use setter/with to call our callback function when user write `initialState = {...}`
+		// 2. Wrap code in JSON.stringify/eval to catch the component and return it
+		const exampleComponentCode = `
+			var stateWrapper = {
+				set initialState(value) {
+					__setInitialState(value)
+				},
+			}
+			with (stateWrapper) {
+				return eval(${JSON.stringify(compiledCode)})
+			}
+		`;
+
+		return this.props.evalInContext(exampleComponentCode);
+	}
+
+	handleError(err) {
+		if (this.mountNode) {
+			ReactDOM.unmountComponentAtNode(this.mountNode);
+		}
+
+		this.setState({
+			error: err.toString(),
+		});
 	}
 
 	render() {

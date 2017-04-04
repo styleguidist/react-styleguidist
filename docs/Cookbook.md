@@ -141,29 +141,24 @@ You may need an appropriate webpack loader to handle these files.
 
 ## How to use React Styleguidist with Preact?
 
-Unfortunately [Preact](https://preactjs.com/) isn’t supported out of the box so far, so you need a tiny hack:
+You need to alias `react` and `react-dom` to `preact-compat`:
 
 ```javascript
-// styleguide.config.js
-const path = require('path');
-const preactCompatWrapper = path.join(__dirname, 'src/preact-compat');
 module.exports = {
   webpackConfig: {
     resolve: {
       alias: {
-        react: preactCompatWrapper,
-        'react-dom': preactCompatWrapper,
+        react: 'preact-compat',
+        'react-dom': 'preact-compat',
       }
     }
   }
 };
-
-// src/preact-compat.js
-require('preact').options.debounceRendering = f => f();
-module.exports = require('preact-compat');
 ```
 
 See the [Preact example style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/preact).
+
+**Warning:** Preact support is experimental and far from perfect. Feel free to send a pull request to imporove it.
 
 ## How to change styles of a style guide?
 

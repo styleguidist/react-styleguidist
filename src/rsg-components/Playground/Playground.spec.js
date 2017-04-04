@@ -1,5 +1,4 @@
 import React from 'react';
-import noop from 'lodash/noop';
 import Playground from './Playground';
 import { PlaygroundRenderer } from './PlaygroundRenderer';
 
@@ -18,7 +17,7 @@ it('should render component renderer', () => {
 	const actual = shallow(
 		<Playground
 			code={code}
-			evalInContext={noop}
+			evalInContext={a => () => a}
 			name="name"
 			index={0}
 		/>,
@@ -32,7 +31,7 @@ it('should update code', () => {
 	const actual = shallow(
 		<Playground
 			code={code}
-			evalInContext={noop}
+			evalInContext={a => () => a}
 			name="name"
 			index={0}
 		/>,
@@ -50,7 +49,7 @@ it('should update code with debounce', done => {
 	const actual = shallow(
 		<Playground
 			code={code}
-			evalInContext={noop}
+			evalInContext={a => a}
 			name="name"
 			index={0}
 		/>,
@@ -79,7 +78,7 @@ it('should open a code editor', () => {
 	const actual = mount(
 		<Playground
 			code={code}
-			evalInContext={noop}
+			evalInContext={a => () => a}
 			name="name"
 			index={0}
 		/>,
@@ -99,11 +98,11 @@ it('renderer should render preview', () => {
 			classes={{}}
 			code={code}
 			showCode={false}
-			evalInContext={noop}
+			evalInContext={a => () => a}
 			name="name"
 			index={0}
-			onChange={noop}
-			onCodeToggle={noop}
+			onChange={() => {}}
+			onCodeToggle={() => {}}
 		/>
 	);
 
