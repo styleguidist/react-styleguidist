@@ -2832,6 +2832,10 @@ eslint-plugin-compat@^1.0.2:
     caniuse-db "1.0.30000626"
     requireindex "^1.1.0"
 
+eslint-plugin-es5@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-es5/-/eslint-plugin-es5-1.0.1.tgz#bafe65e479da2c24b39e6957e1a06ba54036d32b"
+
 eslint-plugin-flowtype@2.21.0:
   version "2.21.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-flowtype/-/eslint-plugin-flowtype-2.21.0.tgz#a47e85abcdd181d37a336054bd552149ae387d9c"
@@ -7106,13 +7110,13 @@ right-align@^0.1.1:
   dependencies:
     align-text "^0.1.1"
 
-rimraf@2, rimraf@^2.2.8, rimraf@^2.4.4, rimraf@^2.5.1, rimraf@^2.5.4, rimraf@^2.6.1:
+rimraf@2, rimraf@^2.4.4, rimraf@^2.5.1, rimraf@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.6.1.tgz#c2338ec643df7a1b7fe5c54fa86f57428a55f33d"
   dependencies:
     glob "^7.0.5"
 
-rimraf@~2.5.1:
+rimraf@^2.2.8, rimraf@^2.5.4, rimraf@~2.5.1:
   version "2.5.4"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.5.4.tgz#96800093cbf1a0c86bd95b4625467535c29dfa04"
   dependencies:

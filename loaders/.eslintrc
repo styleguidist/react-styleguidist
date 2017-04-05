@@ -5,6 +5,9 @@
 	},
 	"rules": {
 		"no-invalid-this": 0,
-		"strict": [2, "global"]
+		"strict": [2, "global"],
+		"es5/no-default-parameters": 2,
+		"es5/no-destructuring": 2,
+		"es5/no-spread": 2
 	}
 }

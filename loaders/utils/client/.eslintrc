@@ -1,0 +1,9 @@
+{
+	"extends": [
+		"tamia/legacy",
+		"plugin:es5/no-es2015"
+	],
+	"rules": {
+		"no-var": 0
+	}
+}

@@ -1,7 +1,10 @@
 {
 	"parser": "babel-eslint",
 	"extends": "tamia/react",
-	"plugins": ["compat"],
+	"plugins": [
+		"compat",
+		"es5"
+	],
 	"rules": {
 		"compat/compat": 2
 	},
