@@ -242,7 +242,7 @@ See examples in the [Sections section](Components.md#sections).
 
 #### `serverHost`
 
-Type: `String`, default: `localhost`
+Type: `String`, default: `0.0.0.0`
 
 Dev server host name.
 
