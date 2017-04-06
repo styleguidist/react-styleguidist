@@ -129,7 +129,7 @@ module.exports = {
 	},
 	serverHost: {
 		type: 'string',
-		default: 'localhost',
+		default: '0.0.0.0',
 	},
 	serverPort: {
 		type: 'number',
