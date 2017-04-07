@@ -24,7 +24,7 @@ module.exports = function(source) {
 
 	let props = {};
 	try {
-		props = propsParser(file, source);
+		props = propsParser.bind(config)(file, source);
 	}
 	/* istanbul ignore next */
 	catch (err) {
