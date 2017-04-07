@@ -19,12 +19,12 @@ module.exports = function(source) {
 	const file = this.request.split('!').pop();
 	const config = this._styleguidist;
 
-	const defaultParser = (filePath, source) => reactDocs.parse(source, config.resolver, config.handlers(file));
+	const defaultParser = (filePath, source, resolver, handlers) => reactDocs.parse(source, resolver, handlers);
 	const propsParser = config.propsParser || defaultParser;
 
 	let props = {};
 	try {
-		props = propsParser(file, source);
+		props = propsParser(file, source, config.resolver, config.handlers(file));
 	}
 	/* istanbul ignore next */
 	catch (err) {
