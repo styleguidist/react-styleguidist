@@ -6,6 +6,10 @@ import Styled from 'rsg-components/Styled';
 
 const styles = ({ font, link, linkHover, border, baseBackground, codeBackground }) => ({
 	root: {
+		backgroundColor: 'white',
+		backgroundImage: 'linear-gradient(45deg,#efefef 25%,transparent 0,transparent 75%,#efefef 0,#efefef),linear-gradient(45deg,#efefef 25%,transparent 0,transparent 75%,#efefef 0,#efefef)',
+		backgroundPosition: '0 0,10px 10px',
+		backgroundSize: '21px 21px',
 		position: 'relative',
 		marginBottom: 30,
 		border: [[1, border, 'solid']],
