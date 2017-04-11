@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Examples from 'rsg-components/Examples';
 import Components from 'rsg-components/Components';
 import SectionRenderer from 'rsg-components/Section/SectionRenderer';

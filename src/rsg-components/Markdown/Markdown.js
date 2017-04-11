@@ -1,4 +1,5 @@
-import { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import mapValues from 'lodash/mapValues';
 import Styled from 'rsg-components/Styled';
 import { styles as linkStyles } from 'rsg-components/Link';
