@@ -199,8 +199,8 @@ Function that allows you to override the mechanism used to parse props from a so
 
 ```javascript
 module.exports = {
-  propsParser(filePath, source) {
-    return require('react-docgen').parse(source);
+  propsParser(filePath, source, resolver, handlers) {
+    return require('react-docgen').parse(source, resolver, handlers);
   }
 };
 ```
