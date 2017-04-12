@@ -1,6 +1,7 @@
 // Based on https://github.com/joelburget/react-live-editor/blob/master/live-compile.jsx
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { transform } from 'buble';
 import PlaygroundError from 'rsg-components/PlaygroundError';

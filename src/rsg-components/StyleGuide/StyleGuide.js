@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
 import Components from 'rsg-components/Components';
 import TableOfContents from 'rsg-components/TableOfContents';

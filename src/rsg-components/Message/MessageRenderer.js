@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Markdown from 'rsg-components/Markdown';
 
 const s = require('./Message.css');
