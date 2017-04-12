@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { filterSectionsByName } from '../../utils/utils';
 import ComponentsList from 'rsg-components/ComponentsList';
 import TableOfContentsRenderer from 'rsg-components/TableOfContents/TableOfContentsRenderer';
