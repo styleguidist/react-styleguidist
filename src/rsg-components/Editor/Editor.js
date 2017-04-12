@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 import Codemirror from 'react-codemirror';
 import 'codemirror/mode/jsx/jsx';
