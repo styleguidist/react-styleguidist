@@ -9,8 +9,7 @@ Styleguidist generates documentation for your components based on the comments i
 Styleguidist will display your components’ JSDoc comment blocks. Also, it will pick up props from propTypes declarations and display them in a table.
 
 ```javascript
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { PropTypes } from 'react';
 
 /**
  * General component description in JSDoc format. Markdown is *supported*.

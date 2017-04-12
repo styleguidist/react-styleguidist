@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { PropTypes } from 'react';
 import { compiler } from 'markdown-to-jsx';
 import mapValues from 'lodash/mapValues';
 // import memoize from 'lodash/memoize';

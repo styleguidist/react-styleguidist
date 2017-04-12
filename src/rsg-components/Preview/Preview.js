@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import noop from 'lodash/noop';
 import { transform } from 'buble';

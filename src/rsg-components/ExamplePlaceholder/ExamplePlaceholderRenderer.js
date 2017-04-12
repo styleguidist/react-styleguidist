@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, PropTypes } from 'react';
 import Styled from 'rsg-components/Styled';
 import Markdown from 'rsg-components/Markdown';
 import { DOCS_DOCUMENTING } from '../../../scripts/consts';

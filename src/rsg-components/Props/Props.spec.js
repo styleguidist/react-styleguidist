@@ -5,7 +5,7 @@ import { unquote, getType } from './util';
 
 function render(propTypes, defaultProps = []) {
 	const props = parse(`
-		import { Component } from 'react';
+		import { Component, PropTypes } from 'react';
 		export default class Cmpnt extends Component {
 			static propTypes = {
 				${propTypes.join(',')}
