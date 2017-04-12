@@ -50,6 +50,7 @@
     "lodash": "4.16.6",
     "minimist": "1.2.0",
     "prettyjson": "1.1.3",
+    "prop-types": "^15.5.7",
     "react-codemirror": "0.2.6",
     "react-docgen": "^2.13.0",
     "react-docgen-displayname-handler": "^1.0.0",
