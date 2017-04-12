@@ -20,6 +20,7 @@ const CLIENT_CONFIG_OPTIONS = [
 	'previewDelay',
 	'theme',
 	'styles',
+	'bubleConfig',
 ];
 
 module.exports = function() {};

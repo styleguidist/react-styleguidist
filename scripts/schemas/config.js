@@ -21,6 +21,12 @@ module.exports = {
 		type: 'existing directory path',
 		example: 'assets',
 	},
+	bubleConfig: {
+		type: 'object',
+		default: {
+			objectAssign: 'Object.assign',
+		},
+	},
 	// `components` is a shortcut for { sections: [{ components }] }, see `sections` below
 	components: {
 		type: ['string', 'function'],

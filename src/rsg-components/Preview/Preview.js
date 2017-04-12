@@ -7,14 +7,15 @@ import Wrapper from 'rsg-components/Wrapper';
 
 /* eslint-disable react/no-multi-comp */
 
-const compileCode = code => transform(code, {
-	objectAssign: 'Object.assign',
-}).code;
+const compileCode = (code, config) => transform(code, config).code;
 
 // Wrap everything in a React component to leverage the state management of this component
 class PreviewComponent extends Component {
 	static propTypes = {
 		component: PropTypes.func.isRequired,
+	};
+	static contextTypes = {
+		config: PropTypes.object.isRequired,
 	};
 
 	constructor() {
@@ -93,7 +94,7 @@ export default class Preview extends Component {
 
 	compileCode(code) {
 		try {
-			return compileCode(code);
+			return compileCode(code, this.context.config.bubleConfig);
 		}
 		catch (err) {
 			this.handleError(err);
