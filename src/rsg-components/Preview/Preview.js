@@ -14,9 +14,6 @@ class PreviewComponent extends Component {
 	static propTypes = {
 		component: PropTypes.func.isRequired,
 	};
-	static contextTypes = {
-		config: PropTypes.object.isRequired,
-	};
 
 	constructor() {
 		super();
@@ -42,6 +39,10 @@ export default class Preview extends Component {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
 	};
+	static contextTypes = {
+		config: PropTypes.object.isRequired,
+	};
+
 	state = {
 		error: null,
 	};
