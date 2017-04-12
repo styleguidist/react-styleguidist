@@ -1,5 +1,4 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
+import { Component, PropTypes } from 'react';
 
 export default class Wrapper extends Component {
 	static propTypes = {
