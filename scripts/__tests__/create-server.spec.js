@@ -30,6 +30,6 @@ test('createServer should return an object containing a development Webpack comp
 	const result = createServer(config, 'development');
 	expect(result).toBeTruthy();
 	expect(result.compiler).toBeTruthy();
-	expect(result.compiler.options.output.filename).toBe('build/bundle.js');
+	expect(result.compiler.options.output.filename).toBe('build/[name].bundle.js');
 	expect(result.compiler.options.output.chunkFilename).toBe('build/[name].js');
 });

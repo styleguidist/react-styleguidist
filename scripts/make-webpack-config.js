@@ -27,7 +27,7 @@ module.exports = function(config, env) {
 		]),
 		output: {
 			path: config.styleguideDir,
-			filename: 'build/bundle.js',
+			filename: 'build/[name].bundle.js',
 			chunkFilename: 'build/[name].js',
 		},
 		resolve: {

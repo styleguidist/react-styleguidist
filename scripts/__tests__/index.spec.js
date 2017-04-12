@@ -25,7 +25,7 @@ describe('makeWebpackConfig', () => {
 		const api = styleguidist();
 		const result = api.makeWebpackConfig('development');
 		expect(result).toBeTruthy();
-		expect(result.output.filename).toBe('build/bundle.js');
+		expect(result.output.filename).toBe('build/[name].bundle.js');
 		expect(result.output.chunkFilename).toBe('build/[name].js');
 	});
 
