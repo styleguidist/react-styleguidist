@@ -26,6 +26,13 @@ Button.propTypes = {
 	children: PropTypes.string.isRequired,
 	color: PropTypes.string,
 	size: PropTypes.oneOf(['small', 'normal', 'large']),
+	/**
+	 * Gets called when the user clicks on the button
+	 *
+	 * @param { SyntheticEvent } event The react synthetic event
+	 * @param { Array } allProps All the props of Button
+	 */
+	onClick: PropTypes.func,
 };
 Button.defaultProps = {
 	color: '#333',
