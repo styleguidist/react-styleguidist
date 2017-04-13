@@ -4,7 +4,7 @@ import { MethodsRenderer } from './MethodsRenderer';
 
 function render(methods) {
 	const parsed = parse(`
-		import { Component, PropTypes } from 'react';
+		import { Component } from 'react';
 		export default class Cmpnt extends Component {
 			${methods.join('\n')}
 			render() {

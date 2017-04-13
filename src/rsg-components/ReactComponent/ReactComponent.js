@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Markdown from 'rsg-components/Markdown';
 import Props from 'rsg-components/Props';
 import Methods from 'rsg-components/Methods';
