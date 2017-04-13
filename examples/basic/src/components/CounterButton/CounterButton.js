@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 /**
  * Button that counts how many times it was pressed and exposes a `@public` method to reset itself.
+ * @deprecated Use the [only true button](#button) instead
  */
 export default class CounterButton extends Component {
 	constructor() {
@@ -15,7 +16,9 @@ export default class CounterButton extends Component {
 	 * Sets the counter to a particular value.
 	 *
 	 * @public
+	 * @version 1.0.5
 	 * @param {Number} newValue - New value for the counter.
+	 * @returns { string } Test
 	 */
 	set(newValue) {
 		this.setState({

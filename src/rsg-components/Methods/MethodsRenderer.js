@@ -4,6 +4,8 @@ import Markdown from 'rsg-components/Markdown';
 import Styled from 'rsg-components/Styled';
 import Group from 'react-group';
 import cx from 'classnames';
+import { JsDocDeprecated, JsDocLinks, JsDocVersion, JsDocSince } from '../JsDoc';
+
 
 const styles = ({ font, border, light, name, type }) => ({
 	table: {
@@ -45,6 +47,11 @@ const styles = ({ font, border, light, name, type }) => ({
 		fontSize: 13,
 		color: name,
 	},
+	deprecatedName: {
+		fontSize: 13,
+		color: light,
+		textDecoration: 'line-through',
+	},
 	type: {
 		fontSize: 13,
 		color: type,
@@ -57,16 +64,30 @@ export function MethodsRenderer({ classes, methods }) {
 		methods.map((method) => {
 			rows.push(
 				<tr key={method.name} className={classes.row}>
-					<td className={classes.cell}><Code className={classes.name}>{method.name}()</Code></td>
+					<td className={classes.cell}>
+						<Code className={classes.name}>{renderMethodName(method.name, method.tags)}</Code>
+					</td>
 					<td className={classes.cell}>{renderParameters(method)}</td>
 					<td className={cx(classes.cell, classes.cellDesc)}>
+						{method.tags.deprecated && <JsDocDeprecated tags={method.tags} />}
+						{method.tags.version && <JsDocVersion tags={method.tags} />}
+						{method.tags.since && <JsDocSince tags={method.tags} />}
 						{renderDescription(method)}
 						{renderReturns(method)}
+						{(method.tags.see || method.tags.link) && <JsDocLinks tags={method.tags} />}
 					</td>
 				</tr>
 			);
 		});
 		return rows;
+	}
+
+	function renderMethodName(name, tags) {
+		if ('deprecated' in tags) {
+			return (<Code className={classes.deprecatedName}>{name}()</Code>);
+		}
+
+		return (<Code className={classes.name}>{name}()</Code>);
 	}
 
 	function renderParameters(prop) {
@@ -92,8 +113,8 @@ export function MethodsRenderer({ classes, methods }) {
 		return returns ? (
 			<span>
 				Returns{' '}
-				<Code className={classes.type}>{returns.type.name}</Code>
-				{returns.description && ' — '}
+				{returns.type && <Code className={classes.type}>{returns.type.name}</Code>}
+				{returns.type && ' — '}
 				{returns.description && <Markdown text={returns.description} inline />}
 			</span>
 		) : false;
