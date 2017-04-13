@@ -21,7 +21,7 @@ module.exports = {
 		type: 'existing directory path',
 		example: 'assets',
 	},
-	bubleConfig: {
+	compilerConfig: {
 		type: 'object',
 		default: {
 			objectAssign: 'Object.assign',

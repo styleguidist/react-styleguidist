@@ -6,7 +6,7 @@ const code = '<button>OK</button>';
 const options = {
 	context: {
 		config: {
-			bubleConfig: {},
+			compilerConfig: {},
 		},
 	},
 };
