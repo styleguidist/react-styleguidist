@@ -13,6 +13,7 @@ export default class StyleGuide extends Component {
 		welcomeScreen: PropTypes.bool,
 		isolatedComponent: PropTypes.bool,
 		isolatedExample: PropTypes.bool,
+		isolatedSection: PropTypes.bool,
 	};
 
 	static childContextTypes = {
@@ -20,6 +21,7 @@ export default class StyleGuide extends Component {
 		config: PropTypes.object.isRequired,
 		isolatedComponent: PropTypes.bool,
 		isolatedExample: PropTypes.bool,
+		isolatedSection: PropTypes.bool,
 	};
 
 	static defaultProps = {
@@ -32,6 +34,7 @@ export default class StyleGuide extends Component {
 			config: this.props.config,
 			isolatedComponent: this.props.isolatedComponent,
 			isolatedExample: this.props.isolatedExample,
+			isolatedSection: this.props.isolatedSection,
 		};
 	}
 

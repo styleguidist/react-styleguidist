@@ -3,9 +3,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import isFinite from 'lodash/isFinite';
 import {
-	getComponentNameFromHash,
+	getInfoFromHash,
 	filterComponentExamples,
 	filterComponentsInSectionsByExactName,
+	filterSections,
 	processSections,
 	setSlugs,
 	slugger,
@@ -27,24 +28,31 @@ function renderStyleguide() {
 
 	// Parse URL hash to check if the components list must be filtered
 	const {
-		// Name of the filtered component to show isolated (/#!/Button → Button)
-		targetComponentName,
+		// Name of the filtered component/section to show isolated (/#!/Button → Button)
+		targetName,
 		// Index of the fenced block example of the filtered component isolate (/#!/Button/1 → 1)
-		targetComponentIndex,
-	} = getComponentNameFromHash();
+		targetIndex,
+	} = getInfoFromHash();
 
 	let isolatedComponent = false;
 	let isolatedExample = false;
+	let isolatedSection = false;
 
 	// Filter the requested component id required
-	if (targetComponentName) {
-		const filteredComponents = filterComponentsInSectionsByExactName(sections, targetComponentName);
-		sections = [{ components: filteredComponents }];
-		isolatedComponent = true;
+	if (targetName) {
+		const filteredComponents = filterComponentsInSectionsByExactName(sections, targetName);
+		if (filteredComponents.length) {
+			sections = [{ components: filteredComponents }];
+			isolatedComponent = true;
+		}
+		else {
+			sections = [filterSections(sections, targetName)];
+			isolatedSection = true;
+		}
 
 		// If a single component is filtered and a fenced block index is specified hide the other examples
-		if (filteredComponents.length === 1 && isFinite(targetComponentIndex)) {
-			filteredComponents[0] = filterComponentExamples(filteredComponents[0], targetComponentIndex);
+		if (filteredComponents.length === 1 && isFinite(targetIndex)) {
+			filteredComponents[0] = filterComponentExamples(filteredComponents[0], targetIndex);
 			isolatedExample = true;
 		}
 	}
@@ -61,6 +69,7 @@ function renderStyleguide() {
 			sections={sections}
 			isolatedComponent={isolatedComponent}
 			isolatedExample={isolatedExample}
+			isolatedSection={isolatedSection}
 		/>,
 		document.getElementById('app')
 	);
