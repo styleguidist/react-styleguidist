@@ -1,7 +1,5 @@
 const path = require('path');
 const loaders = require('loaders');
-const reactDocgen = require('react-docgen');
-const doctrine = require('doctrine');
 
 module.exports = {
 	title: 'Style guide example',
@@ -46,34 +44,6 @@ module.exports = {
 		const name = path.basename(componentPath, '.js');
 		return `import { ${name} } from 'my-awesome-library';`;
 	},
-	propsParser(filePath, source, resolver, handlers) {
-		const components = reactDocgen.parse(source, resolver, handlers);
-		const componentsWithTags = components.map((component) => {
-			if (component.props) {
-				Object.keys(component.props).forEach((propName) => {
-					const prop = component.props[propName];
-					const doclet = doctrine.parse(prop.description);
-					component.props[propName].description = doclet.description;
-					const tags = doclet.tags.reduce((allTags, tag) => {
-						const title = tag.title;
-						if (allTags[title]) {
-							delete tag.title;
-							allTags[title] = allTags[title].concat([tag]);
-						}
-						else {
-							delete tag.title;
-							allTags[title] = [tag];
-						}
-						return allTags;
-					}, {});
-
-					component.props[propName].tags = tags;
-				});
-			}
-			return component;
-		});
-		return componentsWithTags;
-	},
 	webpackConfig: {
 		resolve: {
 			alias: {
@@ -82,7 +52,6 @@ module.exports = {
 					path.join(__dirname, 'styleguide/components/Logo'),
 				'rsg-components/StyleGuide/StyleGuideRenderer':
 					path.join(__dirname, 'styleguide/components/StyleGuide'),
-				'rsg-components/Props': path.join(__dirname, 'styleguide/components/PropsRenderer'),
 			},
 		},
 		module: {
