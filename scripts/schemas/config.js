@@ -220,7 +220,7 @@ module.exports = {
 			console.log(consts.DOCS_WEBPACK);
 			console.log();
 
-			return null;
+			return undefined;
 		},
 		example: {
 			module: {

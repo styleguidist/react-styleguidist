@@ -165,3 +165,9 @@ it('should return webpackConfig with user webpack config', () => {
 	const result = getConfig();
 	expect(result.webpackConfig).toEqual({ cra: true });
 });
+
+it('should allow no webpack config', () => {
+	process.chdir('test/apps/no-webpack');
+	const fn = () => getConfig();
+	expect(fn).not.toThrow();
+});
