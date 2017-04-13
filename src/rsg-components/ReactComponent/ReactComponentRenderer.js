@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Link from 'rsg-components/Link';
 import Heading from 'rsg-components/Heading';
 import Styled from 'rsg-components/Styled';
+import { JsDocDeprecated, JsDocLinks, JsDocVersion, JsDocSince, JsDocAuthors } from '../JsDoc';
 
 const styles = ({ font, monospace, light }) => ({
 	root: {
@@ -52,6 +53,13 @@ const styles = ({ font, monospace, light }) => ({
 	subsection: {
 		marginBottom: 30,
 	},
+	deprecatedName: {
+		textDecoration: 'line-through',
+		color: light,
+		fontFamily: font,
+		fontSize: 36,
+		fontWeight: 'normal',
+	},
 });
 
 export function ReactComponentRenderer({
@@ -62,14 +70,22 @@ export function ReactComponentRenderer({
 	description,
 	props,
 	methods,
+	tags,
 	examples,
 	isolated = false,
 }) {
+	function renderComponentName(name, tags) {
+		if ('deprecated' in tags) {
+			return <span className={classes.deprecatedName}>{name}</span>;
+		}
+		return name;
+	}
+
 	return (
 		<div className={classes.root} id={name + '-container'}>
 			<header className={classes.header}>
 				<Heading level={2} className={classes.primaryHeading} slug={slug}>
-					{name}
+					{renderComponentName(name, tags)}
 				</Heading>
 				<div className={classes.pathLine}>{pathLine}</div>
 				<div className={classes.isolatedLink}>
@@ -81,7 +97,12 @@ export function ReactComponentRenderer({
 				</div>
 			</header>
 			<div className={classes.description}>
+				{tags.deprecated && <JsDocDeprecated tags={tags} />}
 				{description}
+				{tags.version && <JsDocVersion tags={tags} />}
+				{tags.since && <JsDocSince tags={tags} />}
+				{(tags.see || tags.link) && <JsDocLinks tags={tags} />}
+				{tags.author && <JsDocAuthors tags={tags} />}
 			</div>
 			{props && (
 				<div className={classes.subsection}>
@@ -102,6 +123,7 @@ export function ReactComponentRenderer({
 
 ReactComponentRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
+	tags: PropTypes.object,
 	name: PropTypes.string.isRequired,
 	slug: PropTypes.string.isRequired,
 	pathLine: PropTypes.string.isRequired,
