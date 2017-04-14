@@ -349,7 +349,7 @@ async-each@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/async-each/-/async-each-1.0.1.tgz#19d386a1d9edc6e7c1c85d388aedbcc56d33602d"
 
-async@2.1.2, async@^2.1.2:
+async@2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/async/-/async-2.1.2.tgz#612a4ab45ef42a70cde806bad86ee6db047e8385"
   dependencies:
@@ -359,11 +359,11 @@ async@^0.9.0:
   version "0.9.2"
   resolved "https://registry.yarnpkg.com/async/-/async-0.9.2.tgz#aea74d5e61c1f899613bf64bda66d4c78f2fd17d"
 
-async@^1.3.0, async@^1.4.0, async@^1.4.2, async@^1.5.0:
+async@^1.3.0, async@^1.4.0, async@^1.5.0:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
 
-async@^2.0.1, async@^2.1.4:
+async@^2.0.1, async@^2.1.2, async@^2.1.4:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/async/-/async-2.2.0.tgz#c324eba010a237e4fbd55a12dee86367d5c0ef32"
   dependencies:
@@ -2135,6 +2135,13 @@ create-hmac@^1.1.0, create-hmac@^1.1.2:
     create-hash "^1.1.0"
     inherits "^2.0.1"
 
+create-react-class@^15.5.2:
+  version "15.5.2"
+  resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.5.2.tgz#6a8758348df660b88326a0e764d569f274aad681"
+  dependencies:
+    fbjs "^0.8.9"
+    object-assign "^4.1.1"
+
 cross-spawn@4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-4.0.2.tgz#7b9247621c23adfdd3856004a823cbe397424d41"
@@ -2653,9 +2660,9 @@ entities@^1.1.1, entities@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
 
-enzyme-to-json@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/enzyme-to-json/-/enzyme-to-json-1.5.0.tgz#bb94f21346866d68378adc9b26856dd6e2bfa60b"
+enzyme-to-json@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/enzyme-to-json/-/enzyme-to-json-1.5.1.tgz#e34f4d126bb3f4696ce3800b51f9ed83df708799"
   dependencies:
     lodash.filter "^4.6.0"
     lodash.isnil "^4.0.0"
@@ -2665,9 +2672,9 @@ enzyme-to-json@^1.5.0:
     object-values "^1.0.0"
     object.entries "^1.0.3"
 
-enzyme@^2.8.0:
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/enzyme/-/enzyme-2.8.0.tgz#86cc1fc96e5cbd7695766dd6e89deb13a0aead51"
+enzyme@^2.8.2:
+  version "2.8.2"
+  resolved "https://registry.yarnpkg.com/enzyme/-/enzyme-2.8.2.tgz#6c8bcb05012abc4aa4bc3213fb23780b9b5b1714"
   dependencies:
     cheerio "^0.22.0"
     function.prototype.name "^1.0.0"
@@ -2677,6 +2684,7 @@ enzyme@^2.8.0:
     object.assign "^4.0.4"
     object.entries "^1.0.3"
     object.values "^1.0.3"
+    prop-types "^15.5.4"
     uuid "^2.0.3"
 
 "errno@>=0.1.1 <0.2.0-0", errno@^0.1.3:
@@ -5304,11 +5312,12 @@ markdown-table@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/markdown-table/-/markdown-table-1.1.0.tgz#1f5ae61659ced8808d882554c32e8b3f38dd1143"
 
-markdown-to-jsx@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-5.0.1.tgz#1c2aafd3a00a1a4a217c9549f0e7e506f2e38ee3"
+markdown-to-jsx@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-5.1.0.tgz#0a0e947a04b7e402dde5b4afbf070af1df36a1b9"
   dependencies:
     lodash.get "^4.4.2"
+    prop-types "^15.5.8"
     remark-parse "^2.0.1"
     unified "^5.0.0"
 
@@ -5768,7 +5777,7 @@ oauth-sign@~0.8.1:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
 
-object-assign@4.1.1, object-assign@^4.0.1, object-assign@^4.1.0:
+object-assign@4.1.1, object-assign@^4.0.1, object-assign@^4.1.0, object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
 
@@ -6469,9 +6478,9 @@ promise@7.1.1, promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.7, prop-types@~15.5.7:
-  version "15.5.7"
-  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.7.tgz#231c4f29cdd82e355011d4889386ca9059544dd1"
+prop-types@^15.5.4, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@~15.5.7:
+  version "15.5.8"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.8.tgz#6b7b2e141083be38c8595aa51fc55775c7199394"
   dependencies:
     fbjs "^0.8.9"
 
@@ -6622,11 +6631,11 @@ react-docgen-displayname-handler@^1.0.0:
   dependencies:
     recast "0.11.12"
 
-react-docgen@^2.13.0:
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/react-docgen/-/react-docgen-2.13.0.tgz#7fcc4a3104ea8d4fd428383ba38df11166837be9"
+react-docgen@^2.14.0:
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/react-docgen/-/react-docgen-2.14.0.tgz#3c822f539edc93d4683fb2cde93804062b7deb05"
   dependencies:
-    async "^1.4.2"
+    async "^2.1.4"
     babel-runtime "^6.9.2"
     babylon "~5.8.3"
     commander "^2.9.0"
@@ -6643,17 +6652,21 @@ react-dom@^15.5.4:
     object-assign "^4.1.0"
     prop-types "~15.5.7"
 
-react-group@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/react-group/-/react-group-1.0.3.tgz#553f50e3588324c4bbb161a3e6832677a33c7a5b"
-
-react-modal@^1.7.3:
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-1.7.3.tgz#9745448f280c92290ab1ab05c3d34ae708ef9ab3"
+react-group@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-group/-/react-group-1.0.4.tgz#13cd52f80169daf24bfc74847eb975c5d08d7a69"
   dependencies:
+    prop-types "^15.5.8"
+
+react-modal@^1.7.6:
+  version "1.7.6"
+  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-1.7.6.tgz#ee719e480b0e0d959c2e249bcb7acc204950c755"
+  dependencies:
+    create-react-class "^15.5.2"
     element-class "^0.2.0"
     exenv "1.2.0"
     lodash.assign "^4.2.0"
+    prop-types "^15.5.7"
 
 react-render-hook@^0.1.3:
   version "0.1.4"
@@ -6703,6 +6716,13 @@ react-scripts@^0.9.5:
     whatwg-fetch "2.0.2"
   optionalDependencies:
     fsevents "1.0.17"
+
+react-test-renderer@^15.5.4:
+  version "15.5.4"
+  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-15.5.4.tgz#d4ebb23f613d685ea8f5390109c2d20fbf7c83bc"
+  dependencies:
+    fbjs "^0.8.9"
+    object-assign "^4.1.0"
 
 react@^15.5.4:
   version "15.5.4"
