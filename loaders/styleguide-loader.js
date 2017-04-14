@@ -20,6 +20,7 @@ const CLIENT_CONFIG_OPTIONS = [
 	'previewDelay',
 	'theme',
 	'styles',
+	'compilerConfig',
 ];
 
 module.exports = function() {};

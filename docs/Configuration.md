@@ -8,6 +8,12 @@ Type: `String`, optional
 
 Your application static assets folder, will be accessible as `/` in the style guide dev server.
 
+#### `compilerConfig`
+
+Type: `Object`, optional, default: `{ objectAssign: 'Object.assign' }`
+
+Styleguidist currently uses [`bublé`](https://buble.surge.sh/guide/) to run ES6 code on the frontend. This config object will be added as the second argument for `buble.transform`
+
 #### `components`
 
 Type: `String` or `Function`, default: `src/components/**/*.js`
