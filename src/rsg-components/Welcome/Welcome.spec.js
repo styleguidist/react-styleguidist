@@ -1,9 +1,9 @@
 import React from 'react';
 import { WelcomeRenderer } from './WelcomeRenderer';
 
-it('renderer should welcome screen', () => {
+it('renderer should render welcome screen', () => {
 	const actual = shallow(
-		<WelcomeRenderer classes={{}} />
+		<WelcomeRenderer classes={{}} patterns={['foo/*.js', 'bar/*.js']} />
 	);
 
 	expect(actual).toMatchSnapshot();

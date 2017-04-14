@@ -12,6 +12,7 @@ export default class StyleGuide extends Component {
 		config: PropTypes.object.isRequired,
 		sections: PropTypes.array.isRequired,
 		welcomeScreen: PropTypes.bool,
+		patterns: PropTypes.array,
 		isolatedComponent: PropTypes.bool,
 		isolatedExample: PropTypes.bool,
 	};
@@ -37,11 +38,11 @@ export default class StyleGuide extends Component {
 	}
 
 	render() {
-		const { config, sections, welcomeScreen, isolatedComponent } = this.props;
+		const { config, sections, welcomeScreen, patterns, isolatedComponent } = this.props;
 
 		if (welcomeScreen) {
 			return (
-				<Welcome />
+				<Welcome patterns={patterns} />
 			);
 		}
 
