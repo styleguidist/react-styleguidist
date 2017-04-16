@@ -15,6 +15,10 @@ export const styles = ({ font }) => ({
 });
 
 export function VersionRenderer({ classes, tags }) {
+	if (!tags || !tags.version) {
+		return null;
+	}
+
 	return (
 		<div className={classes.versionBlock}>
 			<span className={classes.versionHeader}>Version:</span>

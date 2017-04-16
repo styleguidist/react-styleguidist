@@ -21,6 +21,10 @@ export const styles = ({ font }) => ({
 });
 
 export function AuthorsRenderer({ classes, tags }) {
+	if (!tags || !tags.author) {
+		return null;
+	}
+
 	function renderAuthors(authors) {
 		return (
 			authors.map((author, index) => {

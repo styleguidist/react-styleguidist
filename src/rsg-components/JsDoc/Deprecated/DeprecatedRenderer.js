@@ -16,6 +16,10 @@ export const styles = ({ light, font }) => ({
 });
 
 export function DeprecatedRenderer({ classes, tags }) {
+	if (!tags || !tags.deprecated) {
+		return null;
+	}
+
 	return (
 		<div className={classes.deprecatedBlock}>
 			<span className={classes.deprecated}>Deprecated:</span>

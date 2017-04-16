@@ -101,12 +101,12 @@ export function ReactComponentRenderer({
 				</div>
 			</header>
 			<div className={classes.description}>
-				{tags.deprecated && <JsDocDeprecated tags={tags} />}
+				<JsDocDeprecated tags={tags} />
 				{description}
-				{tags.version && <JsDocVersion tags={tags} />}
-				{tags.since && <JsDocSince tags={tags} />}
-				{(tags.see || tags.link) && <JsDocLinks tags={tags} />}
-				{tags.author && <JsDocAuthors tags={tags} />}
+				<JsDocVersion tags={tags} />
+				<JsDocSince tags={tags} />
+				<JsDocLinks tags={tags} />
+				<JsDocAuthors tags={tags} />
 			</div>
 			{props && (
 				<div className={classes.subsection}>

@@ -15,6 +15,10 @@ export const styles = ({ font }) => ({
 });
 
 export function SinceRenderer({ classes, tags }) {
+	if (!tags || !tags.since) {
+		return null;
+	}
+
 	return (
 		<div className={classes.sinceBlock}>
 			<span className={classes.sinceHeader}>Since:</span>

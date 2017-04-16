@@ -118,7 +118,7 @@ export function PropsRenderer({ classes, props }) {
 	}
 
 	function renderPropName(name, prop) {
-		if ('deprecated' in prop.tags) {
+		if (prop.tags && 'deprecated' in prop.tags) {
 			return (<Code className={classes.deprecatedName}>{name}</Code>);
 		}
 
@@ -148,17 +148,18 @@ export function PropsRenderer({ classes, props }) {
 	function renderDescription(prop) {
 		const { description } = prop;
 		const extra = renderExtra(prop);
+
 		return (
 			<div>
-				{prop.tags.deprecated && <JsDocDeprecated tags={prop.tags} />}
-				{prop.tags.version && <JsDocVersion tags={prop.tags} />}
-				{prop.tags.since && <JsDocSince tags={prop.tags} />}
+				<JsDocDeprecated tags={prop.tags} />
+				<JsDocVersion tags={prop.tags} />
+				<JsDocSince tags={prop.tags} />
 				<Group separator={<br />}>
 					{description && <Markdown text={description} inline />}
 					{extra}
 				</Group>
-				{(prop.tags.link || prop.tags.see) && <JsDocLinks tags={prop.tags} />}
-				{(prop.tags.arg || prop.tags.argument || prop.tags.param) && <JsDocArguments tags={prop.tags} />}
+				<JsDocLinks tags={prop.tags} />
+				<JsDocArguments tags={prop.tags} />
 			</div>
 		);
 	}

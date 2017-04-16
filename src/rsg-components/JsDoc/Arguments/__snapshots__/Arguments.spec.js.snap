@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Arguments renderer should render Arguments 1`] = `null`;

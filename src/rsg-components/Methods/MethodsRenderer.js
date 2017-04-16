@@ -73,12 +73,12 @@ export function MethodsRenderer({ classes, methods }) {
 					</td>
 					<td className={classes.cell}>{renderParameters(method)}</td>
 					<td className={cx(classes.cell, classes.cellDesc)}>
-						{method.tags.deprecated && <JsDocDeprecated tags={method.tags} />}
-						{method.tags.version && <JsDocVersion tags={method.tags} />}
-						{method.tags.since && <JsDocSince tags={method.tags} />}
+						<JsDocDeprecated tags={method.tags} />
+						<JsDocVersion tags={method.tags} />
+						<JsDocSince tags={method.tags} />
 						{renderDescription(method)}
 						{renderReturns(method)}
-						{(method.tags.see || method.tags.link) && <JsDocLinks tags={method.tags} />}
+						<JsDocLinks tags={method.tags} />
 					</td>
 				</tr>
 			);

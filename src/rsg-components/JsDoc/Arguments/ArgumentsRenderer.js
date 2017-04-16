@@ -25,6 +25,10 @@ export const styles = ({ type, name }) => ({
 });
 
 export function ArgumentsRenderer({ classes, tags }) {
+	if (!tags || !tags.arg || !tags.argument || !tags.param) {
+		return null;
+	}
+
 	function renderParams(params) {
 		return (
 			params.map((param) => {

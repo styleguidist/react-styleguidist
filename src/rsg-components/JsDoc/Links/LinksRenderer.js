@@ -21,6 +21,10 @@ export const styles = ({ font }) => ({
 });
 
 export function LinksRenderer({ classes, tags }) {
+	if (!tags || !tags.link || !tags.see) {
+		return null;
+	}
+
 	function renderLinks(links) {
 		return links.map((link, index) => {
 			return (
