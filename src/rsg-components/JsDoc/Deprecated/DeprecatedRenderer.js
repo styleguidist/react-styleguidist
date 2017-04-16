@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 import Markdown from 'rsg-components/Markdown';
 
-const styles = ({ light, font }) => ({
+export const styles = ({ light, font }) => ({
 	deprecatedBlock: {
 		fontFamily: font,
 		marginBottom: 6,
@@ -15,7 +15,7 @@ const styles = ({ light, font }) => ({
 	},
 });
 
-export function JsDocDeprecated({ classes, tags }) {
+export function DeprecatedRenderer({ classes, tags }) {
 	return (
 		<div className={classes.deprecatedBlock}>
 			<span className={classes.deprecated}>Deprecated:</span>
@@ -25,11 +25,11 @@ export function JsDocDeprecated({ classes, tags }) {
 	);
 }
 
-JsDocDeprecated.propTypes = {
+DeprecatedRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	tags: PropTypes.shape({
 		deprecated: PropTypes.array,
 	}).isRequired,
 };
 
-export default Styled(styles)(JsDocDeprecated);
+export default Styled(styles)(DeprecatedRenderer);

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 import Markdown from 'rsg-components/Markdown';
 
-const styles = ({ font }) => ({
+export const styles = ({ font }) => ({
 	linksBlock: {
 		marginTop: 6,
 		fontSize: 'inherit',
@@ -20,7 +20,7 @@ const styles = ({ font }) => ({
 	},
 });
 
-export function JsDocLinks({ classes, tags }) {
+export function LinksRenderer({ classes, tags }) {
 	function renderLinks(links) {
 		return links.map((link, index) => {
 			return (
@@ -40,11 +40,11 @@ export function JsDocLinks({ classes, tags }) {
 
 	);
 }
-JsDocLinks.propTypes = {
+LinksRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	tags: PropTypes.shape({
 		see: PropTypes.array,
 		link: PropTypes.array,
 	}).isRequired,
 };
-export default Styled(styles)(JsDocLinks);
+export default Styled(styles)(LinksRenderer);

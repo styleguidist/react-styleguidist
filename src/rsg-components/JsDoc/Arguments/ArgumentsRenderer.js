@@ -5,7 +5,7 @@ import Markdown from 'rsg-components/Markdown';
 import Code from 'rsg-components/Code';
 import Group from 'react-group';
 
-const styles = ({ type, name }) => ({
+export const styles = ({ type, name }) => ({
 	type: {
 		fontSize: 'inherit',
 		color: type,
@@ -24,7 +24,7 @@ const styles = ({ type, name }) => ({
 	},
 });
 
-export function JsDocArguments({ classes, tags }) {
+export function ArgumentsRenderer({ classes, tags }) {
 	function renderParams(params) {
 		return (
 			params.map((param) => {
@@ -50,7 +50,7 @@ export function JsDocArguments({ classes, tags }) {
 	);
 }
 
-JsDocArguments.propTypes = {
+ArgumentsRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	tags: PropTypes.shape({
 		arg: PropTypes.array,
@@ -59,4 +59,4 @@ JsDocArguments.propTypes = {
 	}).isRequired,
 };
 
-export default Styled(styles)(JsDocArguments);
+export default Styled(styles)(ArgumentsRenderer);

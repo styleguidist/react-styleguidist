@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 import Markdown from 'rsg-components/Markdown';
 
-const styles = ({ font }) => ({
+export const styles = ({ font }) => ({
 	versionBlock: {
 		marginBottom: 6,
 		fontSize: 'inherit',
@@ -14,7 +14,7 @@ const styles = ({ font }) => ({
 	},
 });
 
-export function JsDocVersion({ classes, tags }) {
+export function VersionRenderer({ classes, tags }) {
 	return (
 		<div className={classes.versionBlock}>
 			<span className={classes.versionHeader}>Version:</span>
@@ -23,10 +23,10 @@ export function JsDocVersion({ classes, tags }) {
 		</div>
 	);
 }
-JsDocVersion.propTypes = {
+VersionRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	tags: PropTypes.shape({
 		version: PropTypes.array,
 	}).isRequired,
 };
-export default Styled(styles)(JsDocVersion);
+export default Styled(styles)(VersionRenderer);

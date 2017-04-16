@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 import Markdown from 'rsg-components/Markdown';
 
-const styles = ({ font }) => ({
+export const styles = ({ font }) => ({
 	authorsBlock: {
 		marginTop: 8,
 		fontSize: 'inherit',
@@ -20,7 +20,7 @@ const styles = ({ font }) => ({
 	},
 });
 
-export function JsDocAuthors({ classes, tags }) {
+export function AuthorsRenderer({ classes, tags }) {
 	function renderAuthors(authors) {
 		return (
 			authors.map((author, index) => {
@@ -43,11 +43,11 @@ export function JsDocAuthors({ classes, tags }) {
 	);
 }
 
-JsDocAuthors.propTypes = {
+AuthorsRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	tags: PropTypes.shape({
 		author: PropTypes.array,
 	}).isRequired,
 };
 
-export default Styled(styles)(JsDocAuthors);
+export default Styled(styles)(AuthorsRenderer);
