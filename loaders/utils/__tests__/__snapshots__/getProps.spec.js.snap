@@ -8,6 +8,7 @@ Object {
 ",
   "doclets": Object {},
   "methods": Array [],
+  "tags": Object {},
 }
 `;
 
@@ -19,6 +20,7 @@ Object {
 ",
   "doclets": Object {},
   "methods": Array [],
+  "tags": Object {},
 }
 `;
 
@@ -29,6 +31,14 @@ Object {
     Object {
       "docblock": "Public method.
 @public",
+      "tags": Object {
+        "public": Array [
+          Object {
+            "description": null,
+            "title": "public",
+          },
+        ],
+      },
     },
   ],
 }
@@ -44,14 +54,17 @@ Object {
     "children": Object {
       "description": "Button label.",
       "required": true,
+      "tags": Object {},
       "type": Object {},
     },
     "color": Object {
       "description": "",
       "required": false,
+      "tags": Object {},
       "type": Object {},
     },
   },
+  "tags": Object {},
 }
 `;
 
@@ -65,6 +78,20 @@ Object {
     "foo": "Foo",
   },
   "methods": Array [],
+  "tags": Object {
+    "bar": Array [
+      Object {
+        "description": "Bar",
+        "title": "bar",
+      },
+    ],
+    "foo": Array [
+      Object {
+        "description": "Foo",
+        "title": "foo",
+      },
+    ],
+  },
 }
 `;
 
@@ -76,6 +103,7 @@ Object {
     "children": Object {
       "description": "Button label.",
       "required": true,
+      "tags": Object {},
       "type": Object {},
     },
   },
@@ -92,5 +120,13 @@ Object {
 ",
   },
   "methods": Array [],
+  "tags": Object {
+    "example": Array [
+      Object {
+        "description": "example.md",
+        "title": "example",
+      },
+    ],
+  },
 }
 `;
