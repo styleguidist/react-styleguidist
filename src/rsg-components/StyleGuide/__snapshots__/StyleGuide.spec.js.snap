@@ -14,6 +14,39 @@ exports[`renderer should render logo, table of contents and passed children 1`] 
       />
     </footer>
   </main>
+  <div>
+    <div>
+      <_class>
+        Hello
+      </_class>
+    </div>
+    <TableOfContents
+      sections={
+        Array [
+          Object {
+            "components": Array [
+              Object {
+                "filepath": "components/foo.js",
+                "name": "Foo",
+                "pathLine": "components/foo.js",
+                "props": Object {
+                  "description": "Foo foo",
+                },
+              },
+              Object {
+                "filepath": "components/bar.js",
+                "name": "Bar",
+                "pathLine": "components/bar.js",
+                "props": Object {
+                  "description": "Bar bar",
+                },
+              },
+            ],
+          },
+        ]
+      }
+    />
+  </div>
 </div>
 `;
 
