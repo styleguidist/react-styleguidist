@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import Link from 'rsg-components/Link';
 import Heading from 'rsg-components/Heading';
 import Styled from 'rsg-components/Styled';
-import { JsDocDeprecated, JsDocLinks, JsDocVersion, JsDocSince, JsDocAuthors } from 'rsg-components/JsDoc';
+import JsDocAuthors from 'rsg-components/JsDoc/Authors';
+import JsDocDeprecated from 'rsg-components/JsDoc/Deprecated';
+import JsDocLinks from 'rsg-components/JsDoc/Links';
+import JsDocSince from 'rsg-components/JsDoc/Since';
+import JsDocVersion from 'rsg-components/JsDoc/Version';
 
 const styles = ({ font, monospace, light }) => ({
 	root: {

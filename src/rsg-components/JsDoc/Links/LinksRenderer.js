@@ -42,6 +42,9 @@ export function JsDocLinks({ classes, tags }) {
 }
 JsDocLinks.propTypes = {
 	classes: PropTypes.object.isRequired,
-	tags: PropTypes.object.isRequired,
+	tags: PropTypes.shape({
+		see: PropTypes.array,
+		link: PropTypes.array,
+	}).isRequired,
 };
 export default Styled(styles)(JsDocLinks);

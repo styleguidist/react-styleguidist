@@ -5,7 +5,10 @@ import Markdown from 'rsg-components/Markdown';
 import Styled from 'rsg-components/Styled';
 import Group from 'react-group';
 import cx from 'classnames';
-import { JsDocDeprecated, JsDocLinks, JsDocVersion, JsDocSince } from 'rsg-components/JsDoc';
+import JsDocDeprecated from 'rsg-components/JsDoc/Deprecated';
+import JsDocLinks from 'rsg-components/JsDoc/Links';
+import JsDocSince from 'rsg-components/JsDoc/Since';
+import JsDocVersion from 'rsg-components/JsDoc/Version';
 
 
 const styles = ({ font, border, light, name, type }) => ({

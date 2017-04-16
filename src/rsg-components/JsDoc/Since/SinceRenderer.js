@@ -25,6 +25,8 @@ export function JsDocSince({ classes, tags }) {
 }
 JsDocSince.propTypes = {
 	classes: PropTypes.object.isRequired,
-	tags: PropTypes.object.isRequired,
+	tags: PropTypes.shape({
+		since: PropTypes.array,
+	}).isRequired,
 };
 export default Styled(styles)(JsDocSince);

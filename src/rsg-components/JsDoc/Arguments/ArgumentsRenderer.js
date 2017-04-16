@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 import Markdown from 'rsg-components/Markdown';
 import Code from 'rsg-components/Code';
+import Group from 'react-group';
 
 const styles = ({ type, name }) => ({
 	type: {
@@ -26,14 +27,14 @@ const styles = ({ type, name }) => ({
 export function JsDocArguments({ classes, tags }) {
 	function renderParams(params) {
 		return (
-			params.map((param, index) => {
+			params.map((param) => {
 				return (
-					<div key={`${param.name}-${index}`}>
+					<Group key={`${param.name}`}>
 						<Code className={classes.name}>{param.name}</Code>
 						{param.type && ':'}
 						{param.type && <Code className={classes.type}>{param.type.name}</Code>}
-						{' - '}<Markdown text={param.description} inline />
-					</div>
+						<Markdown text={`— ${param.description}`} inline />
+					</Group>
 				);
 			})
 		);
@@ -51,7 +52,11 @@ export function JsDocArguments({ classes, tags }) {
 
 JsDocArguments.propTypes = {
 	classes: PropTypes.object.isRequired,
-	tags: PropTypes.object.isRequired,
+	tags: PropTypes.shape({
+		arg: PropTypes.array,
+		argument: PropTypes.array,
+		param: PropTypes.array,
+	}).isRequired,
 };
 
 export default Styled(styles)(JsDocArguments);

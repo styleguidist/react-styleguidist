@@ -27,7 +27,9 @@ export function JsDocDeprecated({ classes, tags }) {
 
 JsDocDeprecated.propTypes = {
 	classes: PropTypes.object.isRequired,
-	tags: PropTypes.object.isRequired,
+	tags: PropTypes.shape({
+		deprecated: PropTypes.array,
+	}).isRequired,
 };
 
 export default Styled(styles)(JsDocDeprecated);

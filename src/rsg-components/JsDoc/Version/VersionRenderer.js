@@ -25,6 +25,8 @@ export function JsDocVersion({ classes, tags }) {
 }
 JsDocVersion.propTypes = {
 	classes: PropTypes.object.isRequired,
-	tags: PropTypes.object.isRequired,
+	tags: PropTypes.shape({
+		version: PropTypes.array,
+	}).isRequired,
 };
 export default Styled(styles)(JsDocVersion);

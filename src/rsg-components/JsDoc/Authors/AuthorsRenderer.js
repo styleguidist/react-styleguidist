@@ -45,7 +45,9 @@ export function JsDocAuthors({ classes, tags }) {
 
 JsDocAuthors.propTypes = {
 	classes: PropTypes.object.isRequired,
-	tags: PropTypes.object.isRequired,
+	tags: PropTypes.shape({
+		author: PropTypes.array,
+	}).isRequired,
 };
 
 export default Styled(styles)(JsDocAuthors);
