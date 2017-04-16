@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Link from 'rsg-components/Link';
 import Heading from 'rsg-components/Heading';
 import Styled from 'rsg-components/Styled';
-import { JsDocDeprecated, JsDocLinks, JsDocVersion, JsDocSince, JsDocAuthors } from '../JsDoc';
+import { JsDocDeprecated, JsDocLinks, JsDocVersion, JsDocSince, JsDocAuthors } from 'rsg-components/JsDoc';
 
 const styles = ({ font, monospace, light }) => ({
 	root: {

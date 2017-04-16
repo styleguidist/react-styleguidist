@@ -5,7 +5,7 @@ import Markdown from 'rsg-components/Markdown';
 import Styled from 'rsg-components/Styled';
 import Group from 'react-group';
 import { unquote, getType, showSpaces } from './util';
-import { JsDocDeprecated, JsDocArguments, JsDocLinks, JsDocVersion, JsDocSince } from '../JsDoc';
+import { JsDocDeprecated, JsDocArguments, JsDocLinks, JsDocVersion, JsDocSince } from 'rsg-components/JsDoc';
 
 const styles = ({ font, border, light, lightest, name, type }) => ({
 	table: {
