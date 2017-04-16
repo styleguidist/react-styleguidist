@@ -6,6 +6,7 @@ const highlightCode = require('./highlightCode');
 const removeDoclets = require('./removeDoclets');
 const requireIt = require('./requireIt');
 const doctrine = require('doctrine');
+const _ = require('lodash');
 
 const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
 
@@ -17,19 +18,8 @@ const getDocletsObject = (string) => {
 	return Object.assign({}, reactDocs.utils.docblock.getDoclets(string));
 };
 
-const getTagsFromDoctrine = (documentation) => {
-	return documentation.tags.reduce((allTags, tag) => {
-		const title = tag.title;
-		if (allTags[title]) {
-			delete tag.title;
-			allTags[title] = allTags[title].concat([tag]);
-		}
-		else {
-			delete tag.title;
-			allTags[title] = [tag];
-		}
-		return allTags;
-	}, {});
+const getDoctrineTags = (documentation) => {
+	return _.groupBy(documentation.tags, 'title');
 };
 
 /**
@@ -51,7 +41,7 @@ module.exports = function getProps(doc) {
 	// Parse the docblock of the remaining methods with doctrine to retrieve the JsDoc tags
 	doc.methods = doc.methods.map((method) => {
 		return Object.assign(method, {
-			tags: getTagsFromDoctrine(doctrine.parse(method.docblock)),
+			tags: getDoctrineTags(doctrine.parse(method.docblock)),
 		});
 	});
 
@@ -60,7 +50,7 @@ module.exports = function getProps(doc) {
 		doc.doclets = getDocletsObject(doc.description);
 
 		const documentation = doctrine.parse(doc.description);
-		doc.tags = getTagsFromDoctrine(documentation);
+		doc.tags = getDoctrineTags(documentation);
 
 		doc.description = highlightCode(removeDoclets(doc.description));
 
@@ -79,8 +69,10 @@ module.exports = function getProps(doc) {
 			const prop = doc.props[propName];
 			const doclets = getDocletsObject(prop.description);
 			const documentation = doctrine.parse(prop.description);
+
+			// documentation.description is the description without tags
 			doc.props[propName].description = documentation.description;
-			doc.props[propName].tags = getTagsFromDoctrine(documentation);
+			doc.props[propName].tags = getDoctrineTags(documentation);
 
 			// Remove ignored props
 			if (doclets && doclets.ignore) {
