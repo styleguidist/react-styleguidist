@@ -10,9 +10,6 @@ export const styles = ({ light, font }) => ({
 		fontSize: 'inherit',
 		color: light,
 	},
-	deprecatedHeader: {
-		fontStyle: 'italic',
-	},
 });
 
 export function DeprecatedRenderer({ classes, tags }) {
@@ -22,9 +19,7 @@ export function DeprecatedRenderer({ classes, tags }) {
 
 	return (
 		<div className={classes.deprecatedBlock}>
-			<span className={classes.deprecated}>Deprecated:</span>
-			{' '}
-			<Markdown text={tags.deprecated[0].description} inline />
+			<Markdown text={`_Deprecated_: ${tags.deprecated[0].description}`} inline />
 		</div>
 	);
 }

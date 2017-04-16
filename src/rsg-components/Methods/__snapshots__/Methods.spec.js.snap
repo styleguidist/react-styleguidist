@@ -21,8 +21,12 @@ exports[`should render parameters 1`] = `
     <tr>
       <td>
         <_class>
-          method
-          ()
+          <_class
+            className=""
+          >
+            method
+            ()
+          </_class>
         </_class>
       </td>
       <td>
@@ -44,6 +48,9 @@ exports[`should render parameters 1`] = `
       <td
         className=""
       >
+        <_class />
+        <_class />
+        <_class />
         <Group
           separator=" "
         >
@@ -52,6 +59,7 @@ exports[`should render parameters 1`] = `
             text="Public"
           />
         </Group>
+        <_class />
       </td>
     </tr>
   </tbody>
@@ -79,14 +87,21 @@ exports[`should render public method 1`] = `
     <tr>
       <td>
         <_class>
-          method
-          ()
+          <_class
+            className=""
+          >
+            method
+            ()
+          </_class>
         </_class>
       </td>
       <td />
       <td
         className=""
       >
+        <_class />
+        <_class />
+        <_class />
         <Group
           separator=" "
         >
@@ -95,6 +110,7 @@ exports[`should render public method 1`] = `
             text="Public"
           />
         </Group>
+        <_class />
       </td>
     </tr>
   </tbody>
@@ -122,14 +138,21 @@ exports[`should render returns 1`] = `
     <tr>
       <td>
         <_class>
-          method
-          ()
+          <_class
+            className=""
+          >
+            method
+            ()
+          </_class>
         </_class>
       </td>
       <td />
       <td
         className=""
       >
+        <_class />
+        <_class />
+        <_class />
         <Group
           separator=" "
         />
@@ -145,6 +168,7 @@ exports[`should render returns 1`] = `
             text="Description"
           />
         </span>
+        <_class />
       </td>
     </tr>
   </tbody>

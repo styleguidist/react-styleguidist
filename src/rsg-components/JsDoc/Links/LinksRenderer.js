@@ -21,7 +21,7 @@ export const styles = ({ font }) => ({
 });
 
 export function LinksRenderer({ classes, tags }) {
-	if (!tags || !tags.link || !tags.see) {
+	if (!tags || (!tags.link && !tags.see)) {
 		return null;
 	}
 

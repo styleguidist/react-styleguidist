@@ -3,14 +3,10 @@ import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 import Markdown from 'rsg-components/Markdown';
 
-export const styles = ({ font }) => ({
+export const styles = () => ({
 	versionBlock: {
 		marginBottom: 6,
 		fontSize: 'inherit',
-	},
-	versionHeader: {
-		fontSize: 'inherit',
-		fontFamily: font,
 	},
 });
 
@@ -21,9 +17,7 @@ export function VersionRenderer({ classes, tags }) {
 
 	return (
 		<div className={classes.versionBlock}>
-			<span className={classes.versionHeader}>Version:</span>
-			{' '}
-			<Markdown text={tags.version[0].description} inline />
+			<Markdown text={`Version: ${tags.version[0].description}`} inline />
 		</div>
 	);
 }

@@ -87,7 +87,11 @@ export function MethodsRenderer({ classes, methods }) {
 	}
 
 	function renderMethodName(name, tags) {
-		return (<Code className={cx(classes.name, { [classes.nameIsDeprecated]: 'deprecated' in tags })}>{name}()</Code>);
+		const classNameDeprecated = {
+			[classes.nameIsDeprecated]: tags && 'deprecated' in tags,
+		};
+
+		return (<Code className={cx(classes.name, classNameDeprecated)}>{name}()</Code>);
 	}
 
 	function renderParameters(prop) {

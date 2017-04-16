@@ -138,4 +138,8 @@ ReactComponentRenderer.propTypes = {
 	isolated: PropTypes.bool,
 };
 
+ReactComponentRenderer.defaultProps = {
+	tags: {},
+};
+
 export default Styled(styles)(ReactComponentRenderer);

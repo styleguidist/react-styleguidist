@@ -25,7 +25,7 @@ export const styles = ({ type, name }) => ({
 });
 
 export function ArgumentsRenderer({ classes, tags }) {
-	if (!tags || !tags.arg || !tags.argument || !tags.param) {
+	if (!tags || (!tags.arg && !tags.argument && !tags.param)) {
 		return null;
 	}
 
@@ -37,7 +37,7 @@ export function ArgumentsRenderer({ classes, tags }) {
 						<Code className={classes.name}>{param.name}</Code>
 						{param.type && ':'}
 						{param.type && <Code className={classes.type}>{param.type.name}</Code>}
-						<Markdown text={`— ${param.description}`} inline />
+						{param.description && <Markdown text={`— ${param.description}`} inline />}
 					</Group>
 				);
 			})

@@ -3,14 +3,10 @@ import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 import Markdown from 'rsg-components/Markdown';
 
-export const styles = ({ font }) => ({
+export const styles = () => ({
 	sinceBlock: {
 		marginBottom: 6,
 		fontSize: 'inherit',
-	},
-	sinceHeader: {
-		fontSize: 'inherit',
-		fontFamily: font,
 	},
 });
 
@@ -21,9 +17,7 @@ export function SinceRenderer({ classes, tags }) {
 
 	return (
 		<div className={classes.sinceBlock}>
-			<span className={classes.sinceHeader}>Since:</span>
-			{' '}
-			<Markdown text={tags.since[0].description} inline />
+			<Markdown text={`Since: ${tags.since[0].description}`} inline />
 		</div>
 	);
 }

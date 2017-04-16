@@ -23,7 +23,22 @@ exports[`renderer should render component 1`] = `
     </div>
   </header>
   <div>
+    <_class
+      tags={Object {}}
+    />
     Bar
+    <_class
+      tags={Object {}}
+    />
+    <_class
+      tags={Object {}}
+    />
+    <_class
+      tags={Object {}}
+    />
+    <_class
+      tags={Object {}}
+    />
   </div>
   <Playground
     code="<button>OK</button>"
@@ -59,7 +74,23 @@ exports[`should not render props / methods section if there is no content 1`] = 
       </_class>
     </div>
   </header>
-  <div />
+  <div>
+    <_class
+      tags={Object {}}
+    />
+    <_class
+      tags={Object {}}
+    />
+    <_class
+      tags={Object {}}
+    />
+    <_class
+      tags={Object {}}
+    />
+    <_class
+      tags={Object {}}
+    />
+  </div>
 </div>
 `;
 
@@ -85,7 +116,23 @@ exports[`should render both props and methods section 1`] = `
       </_class>
     </div>
   </header>
-  <div />
+  <div>
+    <_class
+      tags={Object {}}
+    />
+    <_class
+      tags={Object {}}
+    />
+    <_class
+      tags={Object {}}
+    />
+    <_class
+      tags={Object {}}
+    />
+    <_class
+      tags={Object {}}
+    />
+  </div>
   <div>
     <h3>
       Props
@@ -256,7 +303,23 @@ exports[`should render methods section 1`] = `
       </_class>
     </div>
   </header>
-  <div />
+  <div>
+    <_class
+      tags={Object {}}
+    />
+    <_class
+      tags={Object {}}
+    />
+    <_class
+      tags={Object {}}
+    />
+    <_class
+      tags={Object {}}
+    />
+    <_class
+      tags={Object {}}
+    />
+  </div>
   <div>
     <h3>
       Methods
@@ -290,7 +353,23 @@ exports[`should render props section 1`] = `
       </_class>
     </div>
   </header>
-  <div />
+  <div>
+    <_class
+      tags={Object {}}
+    />
+    <_class
+      tags={Object {}}
+    />
+    <_class
+      tags={Object {}}
+    />
+    <_class
+      tags={Object {}}
+    />
+    <_class
+      tags={Object {}}
+    />
+  </div>
   <div>
     <h3>
       Props
