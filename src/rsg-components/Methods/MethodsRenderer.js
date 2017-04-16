@@ -5,7 +5,7 @@ import Markdown from 'rsg-components/Markdown';
 import Styled from 'rsg-components/Styled';
 import Group from 'react-group';
 import cx from 'classnames';
-import { JsDocDeprecated, JsDocLinks, JsDocVersion, JsDocSince } from '../JsDoc';
+import { JsDocDeprecated, JsDocLinks, JsDocVersion, JsDocSince } from 'rsg-components/JsDoc';
 
 
 const styles = ({ font, border, light, name, type }) => ({
@@ -84,11 +84,7 @@ export function MethodsRenderer({ classes, methods }) {
 	}
 
 	function renderMethodName(name, tags) {
-		if ('deprecated' in tags) {
-			return (<Code className={classes.deprecatedName}>{name}()</Code>);
-		}
-
-		return (<Code className={classes.name}>{name}()</Code>);
+		return (<Code className={cx(classes.name, { [classes.nameIsDeprecated]: 'deprecated' in tags })}>{name}()</Code>);
 	}
 
 	function renderParameters(prop) {
