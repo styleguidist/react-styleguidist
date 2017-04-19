@@ -148,6 +148,12 @@ export function filterComponentsInSectionsByExactName(sections, name) {
 	return components;
 }
 
+/**
+ * Filters the sections to find the one with the matching name
+ * @param  {Array}  sections The styleguide sections
+ * @param  {string} name     The name to match
+ * @return {object}          The section found
+ */
 export function filterSections(sections, name) {
 	return sections.find(section => section.name === name);
 }
