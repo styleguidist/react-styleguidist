@@ -45,6 +45,70 @@ exports[`should render PropTypes.arrayOf 1`] = `
 </table>
 `;
 
+exports[`should render PropTypes.arrayOf(PropTypes.shape) 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Default
+      </th>
+      <th
+        className="undefined undefined"
+      >
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class>
+          foos
+        </_class>
+      </td>
+      <td>
+        <_class>
+          shape[]
+        </_class>
+      </td>
+      <td />
+      <td
+        className="undefined undefined"
+      >
+        <Group
+          separator={<br />}
+        >
+          <div>
+            <_class>
+              bar
+            </_class>
+            : 
+            <_class>
+              number
+            </_class>
+          </div>
+          <div>
+            <_class>
+              baz
+            </_class>
+            : 
+            <_class>
+              any
+            </_class>
+          </div>
+        </Group>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
 exports[`should render PropTypes.instanceOf 1`] = `
 <table>
   <thead>
@@ -203,6 +267,129 @@ exports[`should render PropTypes.objectOf(PropTypes.shape) 1`] = `
 </table>
 `;
 
+exports[`should render PropTypes.oneOf 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Default
+      </th>
+      <th
+        className="undefined undefined"
+      >
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class>
+          size
+        </_class>
+      </td>
+      <td>
+        <_class>
+          enum
+        </_class>
+      </td>
+      <td />
+      <td
+        className="undefined undefined"
+      >
+        <Group
+          separator={<br />}
+        >
+          <span>
+            One of: 
+            <Group
+              inline={true}
+              separator=", "
+            >
+              <_class>
+                small
+              </_class>
+              <_class>
+                normal
+              </_class>
+              <_class>
+                large
+              </_class>
+            </Group>
+          </span>
+        </Group>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`should render PropTypes.oneOfType 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Default
+      </th>
+      <th
+        className="undefined undefined"
+      >
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class>
+          union
+        </_class>
+      </td>
+      <td>
+        <_class>
+          union
+        </_class>
+      </td>
+      <td />
+      <td
+        className="undefined undefined"
+      >
+        <Group
+          separator={<br />}
+        >
+          <span>
+            One of type: 
+            <Group
+              inline={true}
+              separator=", "
+            >
+              <_class>
+                string
+              </_class>
+              <_class>
+                number
+              </_class>
+            </Group>
+          </span>
+        </Group>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
 exports[`should render PropTypes.shape 1`] = `
 <table>
   <thead>
@@ -263,6 +450,84 @@ exports[`should render PropTypes.shape 1`] = `
             <_class>
               any
             </_class>
+          </div>
+        </Group>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`should render PropTypes.shape with description 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Default
+      </th>
+      <th
+        className="undefined undefined"
+      >
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class>
+          foo
+        </_class>
+      </td>
+      <td>
+        <_class>
+          shape
+        </_class>
+      </td>
+      <td />
+      <td
+        className="undefined undefined"
+      >
+        <Group
+          separator={<br />}
+        >
+          <div>
+            <_class>
+              bar
+            </_class>
+            : 
+            <_class>
+              number
+            </_class>
+             — 
+            <span>
+              Required
+            </span>
+             — 
+            <_class
+              inline={true}
+              text="Number"
+            />
+          </div>
+          <div>
+            <_class>
+              baz
+            </_class>
+            : 
+            <_class>
+              any
+            </_class>
+             — 
+            <_class
+              inline={true}
+              text="Any"
+            />
           </div>
         </Group>
       </td>

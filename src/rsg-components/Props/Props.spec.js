@@ -45,6 +45,12 @@ it('should render PropTypes.arrayOf', () => {
 	expect(actual).toMatchSnapshot();
 });
 
+it('should render PropTypes.arrayOf(PropTypes.shape)', () => {
+	const actual = render(['foos: PropTypes.arrayOf(PropTypes.shape({bar: PropTypes.number, baz: PropTypes.any}))']);
+
+	expect(actual).toMatchSnapshot();
+});
+
 it('should render PropTypes.instanceOf', () => {
 	const actual = render(['num: PropTypes.instanceOf(Number)']);
 
@@ -56,6 +62,22 @@ it('should render PropTypes.shape', () => {
 
 	expect(actual).toMatchSnapshot();
 });
+
+it('should render PropTypes.shape with description', () => {
+	const actual = render([`foo: PropTypes.shape({
+		/**
+		* Number
+		*/
+		bar: PropTypes.number.isRequired, 
+		/**
+		* Any
+		*/
+		baz: PropTypes.any
+	})`]);
+
+	expect(actual).toMatchSnapshot();
+});
+
 
 it('should render PropTypes.objectOf', () => {
 	const actual = render(['colors: PropTypes.objectOf(PropTypes.string)']);
@@ -74,9 +96,18 @@ it('should render PropTypes.objectOf(PropTypes.shape)', () => {
 	expect(actual).toMatchSnapshot();
 });
 
+it('should render PropTypes.oneOf', () => {
+	const actual = render(['size: PropTypes.oneOf(["small", "normal", "large"])']);
+	expect(actual).toMatchSnapshot();
+});
+
+it('should render PropTypes.oneOfType', () => {
+	const actual = render(['union: PropTypes.oneOfType([PropTypes.string, PropTypes.number])']);
+	expect(actual).toMatchSnapshot();
+});
+
 it('should render description in Markdown', () => {
 	const actual = render(['/**\n * Label\n */\ncolor: PropTypes.string']);
-
 	expect(actual).toMatchSnapshot();
 });
 

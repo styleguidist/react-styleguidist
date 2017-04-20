@@ -1,6 +1,56 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`render should render component 1`] = `
+<section>
+  <Section
+    section={
+      Object {
+        "components": Array [],
+        "content": Array [
+          Object {
+            "content": "<button>OK</button>",
+            "evalInContext": [Function],
+            "type": "code",
+          },
+        ],
+        "name": "Foo",
+      }
+    }
+  />
+  <Section
+    section={
+      Object {
+        "components": Array [],
+        "content": Array [
+          Object {
+            "content": "Hello *world*!",
+            "type": "markdown",
+          },
+        ],
+        "name": "Bar",
+      }
+    }
+  />
+  <Section
+    section={
+      Object {
+        "sections": Array [
+          Object {
+            "content": Array [],
+            "name": "One",
+          },
+          Object {
+            "content": Array [],
+            "name": "Two",
+          },
+        ],
+      }
+    }
+  />
+</section>
+`;
+
+exports[`render should render styled component 1`] = `
 <SectionsRenderer
   classes={
     Object {

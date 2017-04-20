@@ -102,7 +102,7 @@ it('renderer should render logo, table of contents and passed children', () => {
 			title={config.title}
 			toc={<TableOfContents sections={sections} />}
 			homepageUrl="http://react-styleguidist.js.org/"
-			sidebar
+			hasSidebar
 		>
 			<h1>Content</h1>
 		</StyleGuideRenderer>
