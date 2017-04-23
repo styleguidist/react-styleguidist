@@ -29,10 +29,11 @@ before_script:
   - if [ "$WEBPACK_VERSION" == "1" ]; then yarn add webpack@1; fi
   - yarn list webpack
 script:
+  # Run lint
+  - yarn list eslint-plugin-react
+  - yarn run lint
   # Run tests
   - |
-    yarn run lint
-    echo "TRAVIS_NODE_VERSION=$TRAVIS_NODE_VERSION"
     if [[ "$TRAVIS_NODE_VERSION" =~ ^(4|5)$ ]]; then
       NODE_ENV=test node --harmony-proxies $(npm bin)/jest --runInBand
     else
