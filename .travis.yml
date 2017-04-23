@@ -10,9 +10,11 @@ cache:
     - travis_phantomjs
 env:
   # Test everything in Webpack 1 and 2
-  - export WEBPACK_VERSION="2.2.0"
+  - export WEBPACK_VERSION="2.4.0"
   - export WEBPACK_VERSION="1"
 script:
+  # Manually install Webpack 1 or 2
+  - if [ "$WEBPACK_VERSION" ]; then yarn add webpack@^$WEBPACK_VERSION; fi
   # Run tests
   - |
     yarn run lint
@@ -30,8 +32,6 @@ script:
   - yarn run phantomjs
   - yarn run phantomjs:customised
   - yarn run phantomjs:sections
-  # Manually install Webpack 1 or 2
-  - 'if [ "$WEBPACK_VERSION" ]; then yarn add webpack@^$WEBPACK_VERSION; fi'
 before_install:
   # Upgrade PhantomJS
   - |
@@ -46,7 +46,7 @@ before_install:
       phantomjs -v
 after_success:
   # Make release with semantic-release if needed
-  - npm run semantic-release
+  - if [[ "$TRAVIS_NODE_VERSION" == "7" ]]; then npm run semantic-release; fi
   # Upload coverage report to Codecov
   - bash <(curl -s https://codecov.io/bash)
 branches:
