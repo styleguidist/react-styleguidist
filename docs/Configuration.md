@@ -10,9 +10,9 @@ Your application static assets folder, will be accessible as `/` in the style gu
 
 #### `compilerConfig`
 
-Type: `Object`, optional, default: `{ objectAssign: 'Object.assign' }`
+Type: `Object`, default: `{ objectAssign: 'Object.assign' }`
 
-Styleguidist currently uses [`bublé`](https://buble.surge.sh/guide/) to run ES6 code on the frontend. This config object will be added as the second argument for `buble.transform`
+Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the frontend. This config object will be added as the second argument for `buble.transform`.
 
 #### `components`
 
