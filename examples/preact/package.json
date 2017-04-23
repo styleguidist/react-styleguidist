@@ -1,6 +1,6 @@
 {
-  "name": "react-styleguidist-example-basic",
-  "description": "React styleguidist basic example",
+  "name": "react-styleguidist-example-preact",
+  "description": "React styleguidist Preact example",
   "version": "1.0.0",
   "private": true,
   "homepage": "https://github.com/styleguidist/react-styleguidist",
