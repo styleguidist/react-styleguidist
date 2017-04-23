@@ -260,6 +260,17 @@ it('should check type for relative directory path and absolutize it', () => {
 	expect(result.food).toEqual(path.join(__dirname, 'data'));
 });
 
+it('should throw with correct type name', () => {
+	const fn = () => sanitizeConfig({
+		food: null,
+	}, {
+		food: {
+			type: 'object',
+		},
+	});
+	expect(fn).toThrowError('config option should be object, received null');
+});
+
 it('should pass value to a custom process function', () => {
 	const result = sanitizeConfig({
 		food: true,

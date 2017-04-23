@@ -71,6 +71,7 @@
     "semver-utils": "^1.1.1",
     "style-loader": "^0.16.1",
     "to-ast": "^1.0.0",
+    "type-detect": "^4.0.3",
     "unist-util-visit": "^1.1.1",
     "webpack-dev-server": "^1.16.3",
     "webpack-merge": "^4.1.0"

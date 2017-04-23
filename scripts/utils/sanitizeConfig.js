@@ -16,6 +16,7 @@ const listify = require('listify');
 const chalk = require('chalk');
 const leven = require('leven');
 const prettyFormat = require('pretty-format');
+const typeDetect = require('type-detect');
 const StyleguidistError = require('./error');
 
 const format = value => prettyFormat(value, { min: true });
@@ -116,7 +117,7 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 			if (!hasRightType) {
 				const exampleValue = props.example || props.default;
 				throw new StyleguidistError(
-					`${chalk.bold(key)} config option should be ${typesList(types)}, received ${typeof value}.\n` +
+					`${chalk.bold(key)} config option should be ${typesList(types)}, received ${typeDetect(value)}.\n` +
 					(exampleValue ? `
 Example:
 
