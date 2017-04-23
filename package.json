@@ -114,7 +114,7 @@
     "semantic-release": "^6.3.2",
     "semantic-release-tamia": "^1.1.1",
     "strip-shebang": "^1.0.2",
-    "webpack": "2.4.1"
+    "webpack": "^2.4.1"
   },
   "scripts": {
     "pretest": "npm run lint",

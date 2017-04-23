@@ -8204,7 +8204,7 @@ webpack@1.14.0:
     watchpack "^0.2.1"
     webpack-core "~0.6.9"
 
-webpack@2.4.1:
+webpack@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-2.4.1.tgz#15a91dbe34966d8a4b99c7d656efd92a2e5a6f6a"
   dependencies:

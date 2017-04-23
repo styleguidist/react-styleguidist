@@ -12,26 +12,6 @@ env:
   # Test everything in Webpack 1 and 2
   - export WEBPACK_VERSION="2.4.0"
   - export WEBPACK_VERSION="1"
-script:
-  # Manually install Webpack 1 or 2
-  - if [ "$WEBPACK_VERSION" ]; then yarn add webpack@^$WEBPACK_VERSION; fi
-  # Run tests
-  - |
-    yarn run lint
-    echo "TRAVIS_NODE_VERSION=$TRAVIS_NODE_VERSION"
-    if [[ "$TRAVIS_NODE_VERSION" =~ ^(4|5)$ ]]; then
-      NODE_ENV=test node --harmony-proxies $(npm bin)/jest --coverage --runInBand
-    else
-      yarn run test:coverage -- --runInBand
-    fi
-  # Build all examples
-  - yarn run build
-  - yarn run build:customised
-  - yarn run build:sections
-  # Check that examples really works: no JS errors on load
-  - yarn run phantomjs
-  - yarn run phantomjs:customised
-  - yarn run phantomjs:sections
 before_install:
   # Upgrade PhantomJS
   - |
@@ -44,11 +24,39 @@ before_install:
         tar -xvf phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 -C $PWD/travis_phantomjs
       fi
       phantomjs -v
+before_script:
+  # Manually install Webpack 1 or 2
+  - if [ "$WEBPACK_VERSION" ]; then yarn add webpack@^$WEBPACK_VERSION; fi
+script:
+  # Run tests
+  - |
+    yarn run lint
+    echo "TRAVIS_NODE_VERSION=$TRAVIS_NODE_VERSION"
+    if [[ "$TRAVIS_NODE_VERSION" =~ ^(4|5)$ ]]; then
+      NODE_ENV=test node --harmony-proxies $(npm bin)/jest --runInBand
+    else
+      if [[ "$TRAVIS_NODE_VERSION" == "7" && "$WEBPACK_VERSION" =~ ^2  ]]; then
+        yarn run test:coverage -- --runInBand
+      else
+        yarn run test:jest -- --runInBand
+      fi
+    fi
+  # Build all examples
+  - yarn run build
+  - yarn run build:customised
+  - yarn run build:sections
+  # Check that examples really works: no JS errors on load
+  - yarn run phantomjs
+  - yarn run phantomjs:customised
+  - yarn run phantomjs:sections
 after_success:
-  # Make release with semantic-release if needed
-  - if [[ "$TRAVIS_NODE_VERSION" == "7" ]]; then npm run semantic-release; fi
-  # Upload coverage report to Codecov
-  - bash <(curl -s https://codecov.io/bash)
+  - |
+    if [[ "$TRAVIS_NODE_VERSION" == "7" && "$WEBPACK_VERSION" =~ ^2  ]]; then
+      # Make release with semantic-release if needed
+      npm run semantic-release
+      # Upload coverage report to Codecov
+      bash <(curl -s https://codecov.io/bash)
+    fi
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
