@@ -51,10 +51,10 @@ script:
   - yarn run phantomjs:customised
   - yarn run phantomjs:sections
 after_success:
+  # Make release with semantic-release if needed
+  - npm run semantic-release
   - |
     if [[ "$TRAVIS_NODE_VERSION" == "7" && "$WEBPACK_VERSION" == "2"  ]]; then
-      # Make release with semantic-release if needed
-      npm run semantic-release
       # Upload coverage report to Codecov
       bash <(curl -s https://codecov.io/bash)
     fi
