@@ -10,7 +10,7 @@ cache:
     - travis_phantomjs
 env:
   # Test everything in Webpack 1 and 2
-  - export WEBPACK_VERSION="2.4.0"
+  - export WEBPACK_VERSION="2"
   - export WEBPACK_VERSION="1"
 before_install:
   # Upgrade PhantomJS
@@ -26,7 +26,8 @@ before_install:
       phantomjs -v
 before_script:
   # Manually install Webpack 1 or 2
-  - if [ "$WEBPACK_VERSION" ]; then yarn add webpack@^$WEBPACK_VERSION; fi
+  - if [ "$WEBPACK_VERSION" == "1" ]; then yarn add webpack@1; fi
+  - yarn list webpack
 script:
   # Run tests
   - |
@@ -35,7 +36,7 @@ script:
     if [[ "$TRAVIS_NODE_VERSION" =~ ^(4|5)$ ]]; then
       NODE_ENV=test node --harmony-proxies $(npm bin)/jest --runInBand
     else
-      if [[ "$TRAVIS_NODE_VERSION" == "7" && "$WEBPACK_VERSION" =~ ^2  ]]; then
+      if [[ "$TRAVIS_NODE_VERSION" == "7" && "$WEBPACK_VERSION" == "2"  ]]; then
         yarn run test:coverage -- --runInBand
       else
         yarn run test:jest -- --runInBand
@@ -51,7 +52,7 @@ script:
   - yarn run phantomjs:sections
 after_success:
   - |
-    if [[ "$TRAVIS_NODE_VERSION" == "7" && "$WEBPACK_VERSION" =~ ^2  ]]; then
+    if [[ "$TRAVIS_NODE_VERSION" == "7" && "$WEBPACK_VERSION" == "2"  ]]; then
       # Make release with semantic-release if needed
       npm run semantic-release
       # Upload coverage report to Codecov
