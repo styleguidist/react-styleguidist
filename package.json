@@ -109,7 +109,6 @@
     "react-addons-test-utils": "^15.5.1",
     "react-dom": "^15.5.4",
     "react-modal": "^1.7.7",
-    "react-scripts": "^0.9.5",
     "react-test-renderer": "^15.5.4",
     "semantic-release": "^6.3.2",
     "semantic-release-tamia": "^1.1.1",
