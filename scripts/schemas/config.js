@@ -30,7 +30,7 @@ module.exports = {
 	// `components` is a shortcut for { sections: [{ components }] }, see `sections` below
 	components: {
 		type: ['string', 'function'],
-		example: 'components/**/[A-Z]*.js',
+		example: 'components/**/[A-Z]*.jsx?',
 	},
 	context: {
 		type: 'object',
