@@ -5,7 +5,7 @@
 
 /* eslint-disable no-console */
 
-const DEFAULT_COMPONENTS_PATTERN = 'src/@(components|Components)/**/*.js';
+const DEFAULT_COMPONENTS_PATTERN = 'src/@(components|Components)/**/*.jsx?';
 
 const fs = require('fs');
 const path = require('path');
