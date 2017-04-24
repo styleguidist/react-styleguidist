@@ -2,7 +2,7 @@
 
 ## Components
 
-By default Styleguidist will search components using this [glob pattern](https://github.com/isaacs/node-glob#glob-primer): `src/components/**/*.js` and `src/components/**/*.jsx`. It will pick up paths like `src/components/Button.js`, `src/components/Button/Button.js` or `src/components/Button/index.js`. It will also ignore test files (`__tests__` folder and file names containing `.test.js`, `.test.jsx`, `.spec.js` and `.spec.jsx`). If it doesn’t work for you, create a `styleguide.config.js` file in your project’s root folder and configure the patterns to fit your project structure.
+By default Styleguidist will search components using this [glob pattern](https://github.com/isaacs/node-glob#glob-primer): `src/components/**/*.jsx?`. It will pick up paths like `src/components/Button.js`, `src/components/Button/Button.js` or `src/components/Button/index.js`. It will also ignore test files (`__tests__` folder and file names containing `.test.js`, `.test.jsx`, `.spec.js` and `.spec.jsx`). If it doesn’t work for you, create a `styleguide.config.js` file in your project’s root folder and configure the patterns to fit your project structure.
 
 For example, if your components look like `components/Button/Button.js` + `components/Button/index.js` (meaning you need to skip `index.js`, otherwise the component will be loaded twice):
 
