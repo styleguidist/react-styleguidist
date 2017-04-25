@@ -348,6 +348,6 @@ initialState = {
 * [React BlueKit](http://bluekit.blueberry.io/), render React components with editable source and live preview.
 * [React Cards](https://github.com/steos/reactcards), devcards for React.
 * [React Styleguide Generator](https://github.com/pocotan001/react-styleguide-generator), a React style guide generator.
-* [React Storybook](https://github.com/storybooks/react-storybook), isolate your React UI Component development from the main app.
+* [React Storybook](https://storybooks.js.org/), isolate your React UI Component development from the main app.
 * [React-demo](https://github.com/rpominov/react-demo), a component for creating demos of other components with props editor.
 * [SourceJS](https://github.com/sourcejs/Source), a platform to unify all your frontend documentation. It has a [Styleguidist plugin](https://github.com/sourcejs/sourcejs-react-styleguidist).
