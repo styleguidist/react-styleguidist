@@ -86,7 +86,7 @@ module.exports = {
 			'**/*.test.js',
 			'**/*.spec.js',
 			'**/*.test.jsx',
-			'**/*.spec.jsx'
+			'**/*.spec.jsx',
 		],
 	},
 	highlightTheme: {
