@@ -35,7 +35,6 @@ export default function jssIsolate(options = {}) {
 	let resetSheet = null;
 	let resetRule;
 
-
 	function onProcessRule(rule, sheet) {
 		if (
 			rule.type !== 'regular' ||
@@ -86,7 +85,7 @@ export default function jssIsolate(options = {}) {
 			selectors.push(rule.selector);
 		}
 		setSelector(resetRule, selectors);
-
-		return { onProcessRule };
 	};
+
+	return { onProcessRule };
 }
