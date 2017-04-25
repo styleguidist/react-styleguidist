@@ -13,6 +13,7 @@ const styles = ({ font, light, lightest }) => ({
 		color: light,
 		border: 0,
 		cursor: 'pointer',
+		background: 'transparent',
 		'&:hover, &:active': {
 			isolate: false,
 			color: lightest,
@@ -51,6 +52,8 @@ Create **Readme.md** or **${name}.md** file in the component’s folder like thi
 
         &lt;${name} pizza="&#x1f355;" /&gt;
 
+Please **restart** the server after adding the examples.
+
 Read more in the [documenting components guide](${DOCS_DOCUMENTING}).
 					`}
 				/>
@@ -58,7 +61,9 @@ Read more in the [documenting components guide](${DOCS_DOCUMENTING}).
 		}
 
 		return (
-			<button className={classes.button} onClick={this.handleOpen}>Add examples to this component</button>
+			<button className={classes.button} onClick={this.handleOpen}>
+				Add examples to this component
+			</button>
 		);
 	}
 }
