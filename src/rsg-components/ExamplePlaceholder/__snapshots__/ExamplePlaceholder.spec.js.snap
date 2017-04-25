@@ -17,6 +17,8 @@ Create **Readme.md** or **Pizza.md** file in the component’s folder like this:
 
         &lt;Pizza pizza=\\"&#x1f355;\\" /&gt;
 
+Please **restart** the server after adding the examples.
+
 Read more in the [documenting components guide](https://github.com/styleguidist/react-styleguidist/blob/master/docs/Documenting.md).
 					"
 />
