@@ -52,7 +52,7 @@ Create **Readme.md** or **${name}.md** file in the component’s folder like thi
 
         &lt;${name} pizza="&#x1f355;" /&gt;
 
-Please **restart** the server after adding the examples.
+You may need to **restart** the style guide server after adding an example file.
 
 Read more in the [documenting components guide](${DOCS_DOCUMENTING}).
 					`}
