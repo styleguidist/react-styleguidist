@@ -2,7 +2,7 @@
 
 Styleguidist generates documentation for your components based on the comments in your source code, propTypes declarations and Readme files.
 
-> **Note:** [See examples](../examples/basic/lib/components) of documented components in our demo style guide.
+> **Note:** [See examples](../examples/basic/src/components) of documented components in our demo style guide.
 
 ## Code comments and propTypes
 
