@@ -5,7 +5,7 @@
 
 /* eslint-disable no-console */
 
-const DEFAULT_COMPONENTS_PATTERN = 'src/@(components|Components)/**/*.js';
+const DEFAULT_COMPONENTS_PATTERN = 'src/@(components|Components)/**/*.jsx?';
 
 const fs = require('fs');
 const path = require('path');
@@ -30,7 +30,7 @@ module.exports = {
 	// `components` is a shortcut for { sections: [{ components }] }, see `sections` below
 	components: {
 		type: ['string', 'function'],
-		example: 'components/**/[A-Z]*.js',
+		example: 'components/**/[A-Z]*.jsx?',
 	},
 	context: {
 		type: 'object',
@@ -85,6 +85,8 @@ module.exports = {
 			'**/__tests__/**',
 			'**/*.test.js',
 			'**/*.spec.js',
+			'**/*.test.jsx',
+			'**/*.spec.jsx'
 		],
 	},
 	highlightTheme: {
