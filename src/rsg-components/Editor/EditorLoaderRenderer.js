@@ -10,23 +10,21 @@ const styles = ({ font, monospace, light, codeBackground }) => ({
 		color: light,
 		backgroundColor: codeBackground,
 	},
-	// Tweak CodeMirror styles
+	// Tweak CodeMirror styles. Duplicate selectors increases specificity
 	'@global': {
-		body: {
-			'& .CodeMirror': {
-				fontFamily: monospace,
-				height: 'auto',
-				padding: [[5, 12]],
-				fontSize: 12,
-			},
-			'& .CodeMirror-scroll': {
-				height: 'auto',
-				overflowY: 'hidden',
-				overflowX: 'auto',
-			},
-			'& .cm-error': {
-				background: 'none !important',
-			},
+		'.CodeMirror.CodeMirror': {
+			fontFamily: monospace,
+			height: 'auto',
+			padding: [[5, 12]],
+			fontSize: 12,
+		},
+		'.CodeMirror-scroll.CodeMirror-scroll': {
+			height: 'auto',
+			overflowY: 'hidden',
+			overflowX: 'auto',
+		},
+		'.cm-error.cm-error': {
+			background: 'none',
 		},
 	},
 });
