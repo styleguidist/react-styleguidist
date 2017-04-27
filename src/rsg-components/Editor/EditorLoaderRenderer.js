@@ -10,7 +10,7 @@ const styles = ({ font, monospace, light, codeBackground }) => ({
 		color: light,
 		backgroundColor: codeBackground,
 	},
-	// Tweak CodeMirror styles. Duplicate selectors increases specificity
+	// Tweak CodeMirror styles. Duplicate selectors are for increased specificity
 	'@global': {
 		'.CodeMirror.CodeMirror': {
 			fontFamily: monospace,
