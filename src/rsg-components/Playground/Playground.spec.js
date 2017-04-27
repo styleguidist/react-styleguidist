@@ -1,5 +1,6 @@
 import React from 'react';
 import Playground from './Playground';
+import '../../styles/setupjss';
 import { PlaygroundRenderer } from './PlaygroundRenderer';
 
 const code = '<button>OK</button>';
