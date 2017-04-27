@@ -7,24 +7,6 @@ const styles = {
 		margin: 0,
 		padding: 0,
 		border: 0,
-
-		// Tweak CodeMirror styles
-		'& .CodeMirror': {
-			isolate: false,
-			height: 'auto',
-			padding: [[5, 12]],
-			fontSize: 12,
-		},
-		'& .CodeMirror-scroll': {
-			isolate: false,
-			height: 'auto',
-			overflowY: 'hidden',
-			overflowX: 'auto',
-		},
-		'& .cm-error': {
-			isolate: false,
-			background: 'none !important',
-		},
 	},
 };
 
