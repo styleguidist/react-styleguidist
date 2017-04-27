@@ -52,6 +52,7 @@
     "jss-camel-case": "^4.0.0",
     "jss-compose": "^3.0.1",
     "jss-default-unit": "^6.1.1",
+    "jss-global": "^1.0.1",
     "jss-isolate": "^2.0.1",
     "jss-nested": "^4.0.1",
     "leven": "^2.1.0",
