@@ -65,12 +65,14 @@ const getInlineOverrides = memoize(classes => {
 	};
 }, () => 'getInlineOverrides');
 
-const styles = ({ font, monospace, link, linkHover, border, codeBackground }) => ({
+const styles = ({ base, font, monospace, link, linkHover, border, codeBackground }) => ({
 	base: {
+		color: base,
 		fontFamily: font,
 		fontSize: 'inherit',
 	},
 	para: {
+		color: base,
 		fontFamily: font,
 		fontSize: 'inherit',
 		margin: [[0, 0, 15, 0]],
@@ -125,6 +127,7 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 		listStyleType: 'inherit',
 	},
 	input: {
+		color: base,
 		display: 'inline-block',
 		margin: [[0, '0.35em', '0.25em', '-1.2em']],
 		verticalAlign: 'middle',

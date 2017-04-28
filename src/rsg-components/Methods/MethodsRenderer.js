@@ -6,7 +6,7 @@ import Styled from 'rsg-components/Styled';
 import Group from 'react-group';
 import cx from 'classnames';
 
-const styles = ({ font, border, light, name, type }) => ({
+const styles = ({ base, font, border, light, name, type }) => ({
 	table: {
 		width: '100%',
 		borderCollapse: 'collapse',
@@ -19,6 +19,7 @@ const styles = ({ font, border, light, name, type }) => ({
 	row: {
 	},
 	cell: {
+		color: base,
 		paddingRight: 15,
 		paddingTop: 6,
 		verticalAlign: 'top',
@@ -26,6 +27,7 @@ const styles = ({ font, border, light, name, type }) => ({
 		fontSize: 13,
 	},
 	cellHeading: {
+		color: base,
 		paddingRight: 15,
 		paddingBottom: 6,
 		textAlign: 'left',

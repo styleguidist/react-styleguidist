@@ -5,8 +5,9 @@ import Link from 'rsg-components/Link';
 import Preview from 'rsg-components/Preview';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ font, link, linkHover, border, baseBackground, codeBackground }) => ({
+const styles = ({ base, font, link, linkHover, border, baseBackground, codeBackground }) => ({
 	root: {
+		color: base,
 		position: 'relative',
 		marginBottom: 30,
 		border: [[1, border, 'solid']],
