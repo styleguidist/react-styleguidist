@@ -234,3 +234,26 @@ test('should not render props / methods section if there is no content', () => {
 
 	expect(actual).toMatchSnapshot();
 });
+
+it('renderer should render name styled with className=deprecatedName when @deprecated is present in tags', () => {
+	const deprecatedComponent = {
+		...component,
+		props: {
+			...component.props,
+			tags: {
+				deprecated: [{
+					title: 'deprecated',
+					description: 'I am deprecated',
+				}],
+			},
+		},
+	};
+
+	const actual = render(
+		<ReactComponent
+			component={deprecatedComponent}
+		/>
+	);
+
+	expect(actual.find('span[class^=deprecatedName]').length).toBe(1);
+});

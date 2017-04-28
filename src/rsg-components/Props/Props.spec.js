@@ -1,6 +1,6 @@
 import React from 'react';
 import { parse } from 'react-docgen';
-import { PropsRenderer } from './PropsRenderer';
+import Props, { PropsRenderer } from './PropsRenderer';
 import { unquote, getType } from './util';
 
 function render(propTypes, defaultProps = []) {
@@ -121,6 +121,30 @@ it('should render function body in tooltip', () => {
 	const actual = render(['fn: PropTypes.func'], ['fn: (e) => console.log(e)']);
 
 	expect(actual).toMatchSnapshot();
+});
+
+it('should render the correct name when tag deprecated is present', () => {
+	const props = {
+		size: {
+			type: {
+				name: 'number',
+			},
+			required: false,
+			description: 'Test description',
+			tags: {
+				deprecated: [{
+					title: 'deprecated',
+					description: 'Do not use.',
+				}],
+			},
+		},
+	};
+
+	const actual = global.render(
+		<Props props={props} />
+	);
+
+	expect(actual.find('span[class^=deprecatedName]').length).toEqual(1);
 });
 
 it('unquote() should remove double quotes around the string', () => {

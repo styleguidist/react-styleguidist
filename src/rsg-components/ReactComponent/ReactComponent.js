@@ -13,7 +13,7 @@ const ExamplePlaceholder = process.env.NODE_ENV === 'development'
 
 export default function ReactComponent({ component }, { isolatedComponent = false }) {
 	const { name, slug, pathLine } = component;
-	const { description, props, examples, methods } = component.props;
+	const { description, props, examples, methods, tags } = component.props;
 	if (!name) {
 		return null;
 	}
@@ -31,6 +31,7 @@ export default function ReactComponent({ component }, { isolatedComponent = fals
 				: <ExamplePlaceholder name={name} />
 			}
 			isolated={isolatedComponent}
+			tags={tags}
 		/>
 	);
 }

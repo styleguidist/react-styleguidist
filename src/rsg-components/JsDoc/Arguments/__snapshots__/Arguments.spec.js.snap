@@ -1,0 +1,288 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Arguments renderer should render Arguments for @arg tag 1`] = `
+<div>
+  <div>
+    Arguments
+  </div>
+  <div>
+    <span>
+      <code
+        class="code-0-0"
+      >
+        test
+      </code>
+    </span>
+     : 
+    <span>
+      <code
+        class="code-0-0"
+      >
+        string
+      </code>
+    </span>
+     
+    <span
+      class="base-0-1"
+    >
+      — Test description
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Arguments renderer should render Arguments for @argument tag 1`] = `
+<div>
+  <div>
+    Arguments
+  </div>
+  <div>
+    <span>
+      <code
+        class="code-0-0"
+      >
+        test
+      </code>
+    </span>
+     : 
+    <span>
+      <code
+        class="code-0-0"
+      >
+        string
+      </code>
+    </span>
+     
+    <span
+      class="base-0-1"
+    >
+      — Test description
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Arguments renderer should render Arguments for mixed tags 1`] = `
+<div>
+  <div>
+    Arguments
+  </div>
+  <div>
+    <span>
+      <code
+        class="code-0-0"
+      >
+        one
+      </code>
+    </span>
+     : 
+    <span>
+      <code
+        class="code-0-0"
+      >
+        string
+      </code>
+    </span>
+     
+    <span
+      class="base-0-1"
+    >
+      — Test description
+    </span>
+  </div>
+  <div>
+    <span>
+      <code
+        class="code-0-0"
+      >
+        two
+      </code>
+    </span>
+     : 
+    <span>
+      <code
+        class="code-0-0"
+      >
+        string
+      </code>
+    </span>
+     
+    <span
+      class="base-0-1"
+    >
+      — Test description
+    </span>
+  </div>
+  <div>
+    <span>
+      <code
+        class="code-0-0"
+      >
+        test
+      </code>
+    </span>
+     : 
+    <span>
+      <code
+        class="code-0-0"
+      >
+        string
+      </code>
+    </span>
+     
+    <span
+      class="base-0-1"
+    >
+      — Test description
+    </span>
+  </div>
+  <div>
+    <span>
+      <code
+        class="code-0-0"
+      >
+        test
+      </code>
+    </span>
+     : 
+    <span>
+      <code
+        class="code-0-0"
+      >
+        string
+      </code>
+    </span>
+     
+    <span
+      class="base-0-1"
+    >
+      — Test description
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Arguments renderer should render Arguments for one @param tag 1`] = `
+<div>
+  <div>
+    Arguments
+  </div>
+  <div>
+    <span>
+      <code
+        class="code-0-0"
+      >
+        one
+      </code>
+    </span>
+     : 
+    <span>
+      <code
+        class="code-0-0"
+      >
+        string
+      </code>
+    </span>
+     
+    <span
+      class="base-0-1"
+    >
+      — Test description
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Arguments renderer should render Arguments for two @param tags 1`] = `
+<div>
+  <div>
+    Arguments
+  </div>
+  <div>
+    <span>
+      <code
+        class="code-0-0"
+      >
+        one
+      </code>
+    </span>
+     : 
+    <span>
+      <code
+        class="code-0-0"
+      >
+        string
+      </code>
+    </span>
+     
+    <span
+      class="base-0-1"
+    >
+      — Test description
+    </span>
+  </div>
+  <div>
+    <span>
+      <code
+        class="code-0-0"
+      >
+        two
+      </code>
+    </span>
+     : 
+    <span>
+      <code
+        class="code-0-0"
+      >
+        string
+      </code>
+    </span>
+     
+    <span
+      class="base-0-1"
+    >
+      — Test description
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Arguments renderer should still render for incomplete documentation 1`] = `
+<div>
+  <div>
+    Arguments
+  </div>
+  <div>
+    <span>
+      <code
+        class="code-0-0"
+      >
+        testNoDescription
+      </code>
+    </span>
+     : 
+    <span>
+      <code
+        class="code-0-0"
+      >
+        string
+      </code>
+    </span>
+  </div>
+  <div>
+    <span>
+      <code
+        class="code-0-0"
+      >
+        testNoType
+      </code>
+    </span>
+     
+    <span
+      class="base-0-1"
+    >
+      — Test description
+    </span>
+  </div>
+</div>
+`;

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render 1`] = `
+<div>
+  <span
+    class="base-0-0"
+  >
+    Since: Test 
+    <em
+      class="em-0-16"
+    >
+      description
+    </em>
+  </span>
+</div>
+`;
