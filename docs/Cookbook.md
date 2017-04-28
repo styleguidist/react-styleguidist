@@ -112,6 +112,58 @@ export default class Wrapper extends Component {
 }
 ```
 
+## How to write examples for Relay components?
+
+@mikberg wrote a [fantastic blog post](https://medium.com/@mikaelberg/writing-simple-unit-tests-with-relay-707f19e90129) on this topic. Here's what to do:
+
+### 1. Mock out Relay
+
+You'll need the content from [this Gist](https://gist.github.com/mikberg/07b4006e22aacf31ffe6) for your mocked-out Relay replacement.
+
+```js
+// styleguide.config.js
+const path = require('path')
+const webpackConfig = require('./webpack.config')
+webpackConfig.resolve.alias['react-relay'] = 'lib/styleguide/FakeRelay'
+webpackConfig.resolve.alias['real-react-relay'] = path.join(__dirname, '/node_modules/react-relay/')
+
+module.exports = {
+  // ...
+  webpackConfig
+}
+
+
+// lib/styleguide/FakeRelay.js
+import Relay from 'real-react-relay'
+// Content elided; see https://gist.github.com/mikberg/07b4006e22aacf31ffe6
+```
+
+### 2. Provide sample data to your React components
+
+You'll probably want to massage actual results from your GraphQL backend, and make it available to the examples:
+
+```js
+// styleguide.config.js
+module.exports = {
+  // ...
+  context: {
+    sample: 'lib/styleguide/sample_data'
+  }
+}
+
+
+// lib/styleguide/sample_data.js
+module.exports = {
+  object: {
+    // something similar to your GraphQL results
+  }
+}
+
+
+// src/MyComponent/index.md
+<MyComponent object={sample.object} />
+```
+
 ## How to use React Styleguidist with styled-components?
 
 The [recommended way](https://github.com/styleguidist/react-styleguidist/issues/37#issuecomment-263502454) of using [styled-components](https://styled-components.com/) is like this:
