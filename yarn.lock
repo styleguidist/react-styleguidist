@@ -4543,9 +4543,9 @@ markdown-table@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/markdown-table/-/markdown-table-1.1.0.tgz#1f5ae61659ced8808d882554c32e8b3f38dd1143"
 
-markdown-to-jsx@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-5.2.0.tgz#a8eaad21f5a6f747c17982f5dda8715464271c8c"
+markdown-to-jsx@^5.3.0:
+  version "5.3.3"
+  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-5.3.3.tgz#3e48548e15da0426f019eb95fa96f3397b95e012"
   dependencies:
     lodash.get "^4.4.2"
     prop-types "^15.5.8"
