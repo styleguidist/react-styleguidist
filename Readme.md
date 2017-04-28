@@ -25,7 +25,7 @@ React Styleguidist is a style guide generator for React components. It lists com
 * Style guide with sections, [source](./examples/sections)
 * Style guide with customized styles, [source](./examples/customised)
 * Style guide with custom express endpoints, [source](./examples/express)
-* create-react-app integration, [source](./examples/cra)
+* Create React App integration, [source](./examples/cra)
 
 ## Showcase
 
@@ -40,7 +40,7 @@ Real projects using React Styleguidist:
 
 ## Integration with other tools
 
-* create-react-app — just works, see the [Getting Started](docs/GettingStarted.md) guide!
+* Create React App — just works, see the [Getting Started](docs/GettingStarted.md) guide!
 * [TypeScript](https://github.com/pvasek/react-docgen-typescript)
 * [SourceJS](https://github.com/sourcejs/sourcejs-react-styleguidist)
 

@@ -5,7 +5,7 @@ afterEach(() => {
 	process.chdir(cwd);
 });
 
-it('should return path to create-react-app Webpack config', () => {
+it('should return path to Create React App Webpack config', () => {
 	process.chdir('test/apps/cra');
 	const result = findUserWebpackConfig();
 	expect(result).toMatch(/^react-scripts\//);

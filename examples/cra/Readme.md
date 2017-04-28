@@ -1,4 +1,4 @@
-# React Styleguidist create-react-app example style guide
+# React Styleguidist Create React App example style guide
 
 ![](http://wow.sapegin.me/3q0F1Y1P321k/Image%202016-04-12%20at%207.25.03%20PM.png)
 

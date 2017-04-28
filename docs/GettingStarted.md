@@ -14,7 +14,7 @@
 
 > **Note:** Webpack is a peer dependency but your project doesn’t have to use it. Styleguidist works with webpack 1 and webpack 2.
 
-**If you’re using [create-react-app](https://github.com/facebookincubator/create-react-app) you only need this:**
+**If you’re using [Create React App](https://github.com/facebookincubator/create-react-app) you only need this:**
 
 ```bash
 npm install --save-dev react-styleguidist webpack@1
