@@ -135,7 +135,7 @@ module.exports = {
 
 // lib/styleguide/FakeRelay.js
 import Relay from 'real-react-relay'
-// Content elided; see https://gist.github.com/mikberg/07b4006e22aacf31ffe6
+// Content too long to paste here; see https://gist.github.com/mikberg/07b4006e22aacf31ffe6
 ```
 
 ### 2. Provide sample data to your React components
