@@ -697,6 +697,95 @@ exports[`should render PropTypes.string.isRequired 1`] = `
 </table>
 `;
 
+exports[`should render arguments from JsDoc tags 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Default
+      </th>
+      <th
+        className="undefined undefined"
+      >
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class
+          deprecated={false}
+          name="size"
+        />
+      </td>
+      <td>
+        <_class>
+          number
+        </_class>
+      </td>
+      <td />
+      <td
+        className="undefined undefined"
+      >
+        <div>
+          <_class
+            text="Test description"
+          />
+          <JsDoc
+            arg={
+              Array [
+                Object {
+                  "description": "Converts foo to bar",
+                  "name": "Foo",
+                  "type": Object {
+                    "name": "Array",
+                  },
+                },
+              ]
+            }
+            param={
+              Array [
+                Object {
+                  "name": "Bar",
+                },
+              ]
+            }
+          />
+          <div>
+            <h4>
+              Arguments
+            </h4>
+            <_class
+              args={
+                Array [
+                  Object {
+                    "description": "Converts foo to bar",
+                    "name": "Foo",
+                    "type": Object {
+                      "name": "Array",
+                    },
+                  },
+                  Object {
+                    "name": "Bar",
+                  },
+                ]
+              }
+            />
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
 exports[`should render description in Markdown 1`] = `
 <table>
   <thead>
@@ -799,30 +888,20 @@ exports[`should render function body in tooltip 1`] = `
 `;
 
 exports[`should render name as deprecated when tag deprecated is present 1`] = `
-<table
-  class="table-0-0"
->
-  <thead
-    class="tableHead-0-1"
-  >
+<table>
+  <thead>
     <tr>
-      <th
-        class="cellHeading-0-3"
-      >
+      <th>
         Name
       </th>
-      <th
-        class="cellHeading-0-3"
-      >
+      <th>
         Type
       </th>
-      <th
-        class="cellHeading-0-3"
-      >
+      <th>
         Default
       </th>
       <th
-        class="cellHeading-0-3 cellDesc-0-4"
+        className="undefined undefined"
       >
         Description
       </th>
@@ -830,54 +909,35 @@ exports[`should render name as deprecated when tag deprecated is present 1`] = `
   </thead>
   <tbody>
     <tr>
-      <td
-        class="cell-0-2"
-      >
-        <span
-          class="name-0-10 isDeprecated-0-11"
-        >
-          <code
-            class="code-0-12"
-          >
-            size
-          </code>
-        </span>
+      <td>
+        <_class
+          deprecated={true}
+          name="size"
+        />
       </td>
-      <td
-        class="cell-0-2"
-      >
-        <span
-          class="type-0-6"
-        >
-          <code
-            class="code-0-12"
-          >
-            number
-          </code>
-        </span>
+      <td>
+        <_class>
+          number
+        </_class>
       </td>
+      <td />
       <td
-        class="cell-0-2"
-      />
-      <td
-        class="cell-0-2 cellDesc-0-4"
+        className="undefined undefined"
       >
         <div>
-          <p
-            class="p-0-22"
-          >
-            Test description
-          </p>
-          <p
-            class="p-0-22"
-          >
-            <strong
-              class="strong-0-30"
-            >
-              Deprecated:
-            </strong>
-             Do not use.
-          </p>
+          <_class
+            text="Test description"
+          />
+          <JsDoc
+            deprecated={
+              Array [
+                Object {
+                  "description": "Do not use.",
+                  "title": "deprecated",
+                },
+              ]
+            }
+          />
         </div>
       </td>
     </tr>

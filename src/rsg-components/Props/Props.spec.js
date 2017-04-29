@@ -1,6 +1,6 @@
 import React from 'react';
 import { parse } from 'react-docgen';
-import Props, { PropsRenderer } from './PropsRenderer';
+import { PropsRenderer } from './PropsRenderer';
 import { unquote, getType } from './util';
 
 function render(propTypes, defaultProps = []) {
@@ -123,6 +123,34 @@ it('should render function body in tooltip', () => {
 	expect(actual).toMatchSnapshot();
 });
 
+it('should render arguments from JsDoc tags', () => {
+	const props = {
+		size: {
+			type: {
+				name: 'number',
+			},
+			required: false,
+			description: 'Test description',
+			tags: {
+				arg: [{
+					name: 'Foo',
+					description: 'Converts foo to bar',
+					type: { name: 'Array' },
+				}],
+				param: [{
+					name: 'Bar',
+				}],
+			},
+		},
+	};
+
+	const actual = shallow(
+		<PropsRenderer classes={{}} props={props} />
+	);
+
+	expect(actual).toMatchSnapshot();
+});
+
 it('should render name as deprecated when tag deprecated is present', () => {
 	const props = {
 		size: {
@@ -140,8 +168,8 @@ it('should render name as deprecated when tag deprecated is present', () => {
 		},
 	};
 
-	const actual = global.render(
-		<Props props={props} />
+	const actual = shallow(
+		<PropsRenderer classes={{}} props={props} />
 	);
 
 	expect(actual).toMatchSnapshot();
