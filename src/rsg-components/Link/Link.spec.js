@@ -1,5 +1,5 @@
 import React from 'react';
-import Link, { LinkRenderer } from './LinkRenderer';
+import { LinkRenderer } from './LinkRenderer';
 
 const href = '/foo';
 const children = 'Foo';
@@ -13,14 +13,15 @@ it('renderer should render link', () => {
 });
 
 it('should compose passed class names', () => {
-	const actual = render(
-		<Link
+	const actual = shallow(
+		<LinkRenderer
+			classes={{ link: 'baseLinkClass' }}
 			href={href}
-			className="customClassName"
+			className="customClass"
 		>
 			{children}
-		</Link>
+		</LinkRenderer>
 	);
 
-	expect(actual.find('a').hasClass('customClassName')).toEqual(true);
+	expect(actual.find('a').prop('className')).toBe('baseLinkClass customClass');
 });

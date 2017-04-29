@@ -6,6 +6,7 @@ exports[`renderer should render component 1`] = `
 >
   <header>
     <_class
+      className=""
       level={2}
       slug="foo"
     >
@@ -24,21 +25,9 @@ exports[`renderer should render component 1`] = `
   </header>
   <div>
     <_class
-      tags={Object {}}
+      text="Bar"
     />
-    Bar
-    <_class
-      tags={Object {}}
-    />
-    <_class
-      tags={Object {}}
-    />
-    <_class
-      tags={Object {}}
-    />
-    <_class
-      tags={Object {}}
-    />
+    <JsDoc />
   </div>
   <Playground
     code="<button>OK</button>"
@@ -52,12 +41,39 @@ exports[`renderer should render component 1`] = `
 </div>
 `;
 
+exports[`renderer should render name with strike-through style when @deprecated is present in tags 1`] = `
+<_class
+  description="Bar"
+  examples={
+    <Component
+      name="Foo"
+    />
+  }
+  isolated={false}
+  methods={false}
+  name="Foo"
+  pathLine="foo/bar.js"
+  slug="foo"
+  tags={
+    Object {
+      "deprecated": Array [
+        Object {
+          "description": "I am deprecated",
+          "title": "deprecated",
+        },
+      ],
+    }
+  }
+/>
+`;
+
 exports[`should not render props / methods section if there is no content 1`] = `
 <div
   id="Test-container"
 >
   <header>
     <_class
+      className=""
       level={2}
       slug="test"
     >
@@ -75,21 +91,7 @@ exports[`should not render props / methods section if there is no content 1`] = 
     </div>
   </header>
   <div>
-    <_class
-      tags={Object {}}
-    />
-    <_class
-      tags={Object {}}
-    />
-    <_class
-      tags={Object {}}
-    />
-    <_class
-      tags={Object {}}
-    />
-    <_class
-      tags={Object {}}
-    />
+    <JsDoc />
   </div>
 </div>
 `;
@@ -100,6 +102,7 @@ exports[`should render both props and methods section 1`] = `
 >
   <header>
     <_class
+      className=""
       level={2}
       slug="test"
     >
@@ -117,21 +120,7 @@ exports[`should render both props and methods section 1`] = `
     </div>
   </header>
   <div>
-    <_class
-      tags={Object {}}
-    />
-    <_class
-      tags={Object {}}
-    />
-    <_class
-      tags={Object {}}
-    />
-    <_class
-      tags={Object {}}
-    />
-    <_class
-      tags={Object {}}
-    />
+    <JsDoc />
   </div>
   <div>
     <h3>
@@ -152,13 +141,67 @@ exports[`should render both props and methods section 1`] = `
 </div>
 `;
 
+exports[`should render component in isolation mode 1`] = `
+<div
+  id="Test-container"
+>
+  <header>
+    <_class
+      className=""
+      level={2}
+      slug="Test"
+    >
+      Test
+    </_class>
+    <div>
+      test
+    </div>
+    <div>
+      <_class
+        href="/"
+      >
+        ← Back
+      </_class>
+    </div>
+  </header>
+  <div>
+    <JsDoc />
+  </div>
+</div>
+`;
+
+exports[`should render component not in the isolation mode by default 1`] = `
+<div
+  id="Test-container"
+>
+  <header>
+    <_class
+      className=""
+      level={2}
+      slug="test"
+    >
+      Test
+    </_class>
+    <div>
+      test
+    </div>
+    <div>
+      <_class
+        href="#!/Test"
+      >
+        Open isolated ⇢
+      </_class>
+    </div>
+  </header>
+  <div>
+    <JsDoc />
+  </div>
+</div>
+`;
+
 exports[`should render component renderer for component with examples 1`] = `
 <_class
-  description={
-    <_class
-      text="Bar"
-    />
-  }
+  description="Bar"
   examples={
     <Examples
       examples={
@@ -187,11 +230,7 @@ exports[`should render component renderer for component with examples 1`] = `
 
 exports[`should render component renderer for component with methods 1`] = `
 <_class
-  description={
-    <_class
-      text="Bar"
-    />
-  }
+  description="Bar"
   examples={
     <Component
       name="Foo"
@@ -228,11 +267,7 @@ exports[`should render component renderer for component with methods 1`] = `
 
 exports[`should render component renderer for component with props 1`] = `
 <_class
-  description={
-    <_class
-      text="Bar"
-    />
-  }
+  description="Bar"
   examples={
     <Component
       name="Foo"
@@ -263,11 +298,7 @@ exports[`should render component renderer for component with props 1`] = `
 
 exports[`should render component renderer with example placeholder 1`] = `
 <_class
-  description={
-    <_class
-      text="Bar"
-    />
-  }
+  description="Bar"
   examples={
     <Component
       name="Foo"
@@ -287,6 +318,7 @@ exports[`should render methods section 1`] = `
 >
   <header>
     <_class
+      className=""
       level={2}
       slug="test"
     >
@@ -304,21 +336,7 @@ exports[`should render methods section 1`] = `
     </div>
   </header>
   <div>
-    <_class
-      tags={Object {}}
-    />
-    <_class
-      tags={Object {}}
-    />
-    <_class
-      tags={Object {}}
-    />
-    <_class
-      tags={Object {}}
-    />
-    <_class
-      tags={Object {}}
-    />
+    <JsDoc />
   </div>
   <div>
     <h3>
@@ -337,6 +355,7 @@ exports[`should render props section 1`] = `
 >
   <header>
     <_class
+      className=""
       level={2}
       slug="test"
     >
@@ -354,21 +373,7 @@ exports[`should render props section 1`] = `
     </div>
   </header>
   <div>
-    <_class
-      tags={Object {}}
-    />
-    <_class
-      tags={Object {}}
-    />
-    <_class
-      tags={Object {}}
-    />
-    <_class
-      tags={Object {}}
-    />
-    <_class
-      tags={Object {}}
-    />
+    <JsDoc />
   </div>
   <div>
     <h3>

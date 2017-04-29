@@ -36,19 +36,12 @@ exports[`render should render component 1`] = `
 
 exports[`render should render title if name is set 1`] = `
 <section>
-  <h1
-    class="heading-0-0"
-    id="test"
+  <_class
+    level={1}
+    slug="test"
   >
-    <a
-      aria-hidden="true"
-      class="anchor-0-1"
-      href="#test"
-    >
-      #
-    </a>
     test
-  </h1>
+  </_class>
 </section>
 `;
 

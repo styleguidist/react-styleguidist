@@ -2,12 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'rsg-components/Link';
 import Heading from 'rsg-components/Heading';
+import Markdown from 'rsg-components/Markdown';
+import JsDoc from 'rsg-components/JsDoc';
 import Styled from 'rsg-components/Styled';
-import JsDocAuthors from 'rsg-components/JsDoc/Authors';
-import JsDocDeprecated from 'rsg-components/JsDoc/Deprecated';
-import JsDocLinks from 'rsg-components/JsDoc/Links';
-import JsDocSince from 'rsg-components/JsDoc/Since';
-import JsDocVersion from 'rsg-components/JsDoc/Version';
+import cx from 'classnames';
 
 const styles = ({ color, fontSize, fontFamily, space }) => ({
 	root: {
@@ -60,12 +58,9 @@ const styles = ({ color, fontSize, fontFamily, space }) => ({
 	subsection: {
 		marginBottom: space[4],
 	},
-	deprecatedName: {
+	isDeprecated: {
 		textDecoration: 'line-through',
 		color: light,
-		fontFamily: font,
-		fontSize: 36,
-		fontWeight: 'normal',
 	},
 });
 
@@ -81,18 +76,14 @@ export function ReactComponentRenderer({
 	examples,
 	isolated = false,
 }) {
-	function renderComponentName(name, tags) {
-		if ('deprecated' in tags) {
-			return <span className={classes.deprecatedName}>{name}</span>;
-		}
-		return name;
-	}
-
+	const headingClasses = cx(classes.primaryHeading, {
+		[classes.isDeprecated]: tags.deprecated,
+	});
 	return (
 		<div className={classes.root} id={name + '-container'}>
 			<header className={classes.header}>
-				<Heading level={2} className={classes.primaryHeading} slug={slug}>
-					{renderComponentName(name, tags)}
+				<Heading level={2} className={headingClasses} slug={slug}>
+					{name}
 				</Heading>
 				<div className={classes.pathLine}>{pathLine}</div>
 				<div className={classes.isolatedLink}>
@@ -104,12 +95,8 @@ export function ReactComponentRenderer({
 				</div>
 			</header>
 			<div className={classes.description}>
-				<JsDocDeprecated tags={tags} />
-				{description}
-				<JsDocVersion tags={tags} />
-				<JsDocSince tags={tags} />
-				<JsDocLinks tags={tags} />
-				<JsDocAuthors tags={tags} />
+				{description && <Markdown text={description} />}
+				<JsDoc {...tags} />
 			</div>
 			{props && (
 				<div className={classes.subsection}>
@@ -134,7 +121,7 @@ ReactComponentRenderer.propTypes = {
 	name: PropTypes.string.isRequired,
 	slug: PropTypes.string.isRequired,
 	pathLine: PropTypes.string.isRequired,
-	description: PropTypes.node,
+	description: PropTypes.string,
 	props: PropTypes.node,
 	methods: PropTypes.node,
 	examples: PropTypes.node,

@@ -123,7 +123,7 @@ it('should render function body in tooltip', () => {
 	expect(actual).toMatchSnapshot();
 });
 
-it('should render the correct name when tag deprecated is present', () => {
+it('should render name as deprecated when tag deprecated is present', () => {
 	const props = {
 		size: {
 			type: {
@@ -144,7 +144,7 @@ it('should render the correct name when tag deprecated is present', () => {
 		<Props props={props} />
 	);
 
-	expect(actual.find('span[class^=deprecatedName]').length).toEqual(1);
+	expect(actual).toMatchSnapshot();
 });
 
 it('unquote() should remove double quotes around the string', () => {

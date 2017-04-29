@@ -152,7 +152,7 @@ it('renderer should render component', () => {
 });
 
 test('should render component not in the isolation mode by default', () => {
-	const actual = render(
+	const actual = shallow(
 		<ReactComponentRenderer
 			classes={{}}
 			name="Test"
@@ -161,11 +161,11 @@ test('should render component not in the isolation mode by default', () => {
 		/>
 	);
 
-	expect(actual.find('a:not(a[aria-hidden])').text()).toEqual('Open isolated ⇢');
+	expect(actual).toMatchSnapshot();
 });
 
 test('should render component in isolation mode', () => {
-	const actual = render(
+	const actual = shallow(
 		<ReactComponentRenderer
 			classes={{}}
 			name="Test"
@@ -175,7 +175,7 @@ test('should render component in isolation mode', () => {
 		/>
 	);
 
-	expect(actual.find('a:not(a[aria-hidden])').text()).toEqual('← Back');
+	expect(actual).toMatchSnapshot();
 });
 
 test('should render props section', () => {
@@ -235,7 +235,7 @@ test('should not render props / methods section if there is no content', () => {
 	expect(actual).toMatchSnapshot();
 });
 
-it('renderer should render name styled with className=deprecatedName when @deprecated is present in tags', () => {
+it('renderer should render name with strike-through style when @deprecated is present in tags', () => {
 	const deprecatedComponent = {
 		...component,
 		props: {
@@ -249,11 +249,11 @@ it('renderer should render name styled with className=deprecatedName when @depre
 		},
 	};
 
-	const actual = render(
+	const actual = shallow(
 		<ReactComponent
 			component={deprecatedComponent}
 		/>
 	);
 
-	expect(actual.find('span[class^=deprecatedName]').length).toBe(1);
+	expect(actual).toMatchSnapshot();
 });

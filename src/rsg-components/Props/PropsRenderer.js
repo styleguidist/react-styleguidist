@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Code from 'rsg-components/Code';
-import Markdown from 'rsg-components/Markdown';
-import Styled from 'rsg-components/Styled';
 import Group from 'react-group';
+import Arguments from 'rsg-components/Arguments';
+import Code from 'rsg-components/Code';
+import JsDoc from 'rsg-components/JsDoc';
+import Markdown from 'rsg-components/Markdown';
+import Name from 'rsg-components/Name';
+import Styled from 'rsg-components/Styled';
+import map from 'lodash/map';
 import { unquote, getType, showSpaces } from './util';
-import JsDocArguments from 'rsg-components/JsDoc/Arguments';
-import JsDocDeprecated from 'rsg-components/JsDoc/Deprecated';
-import JsDocLinks from 'rsg-components/JsDoc/Links';
-import JsDocSince from 'rsg-components/JsDoc/Since';
-import JsDocVersion from 'rsg-components/JsDoc/Version';
 
 const styles = ({ space, color, fontFamily, fontSize }) => ({
 	table: {
@@ -18,10 +17,6 @@ const styles = ({ space, color, fontFamily, fontSize }) => ({
 	},
 	tableHead: {
 		borderBottom: [[1, color.border, 'solid']],
-	},
-	tableBody: {
-	},
-	row: {
 	},
 	cell: {
 		color: color.base,
@@ -44,20 +39,12 @@ const styles = ({ space, color, fontFamily, fontSize }) => ({
 		color: color.base,
 		width: '99%',
 		paddingLeft: space[2],
+		paddingRight: 0,
 	},
 	required: {
 		fontFamily: fontFamily.base,
 		fontSize: fontSize.small,
 		color: color.light,
-	},
-	name: {
-		fontSize: fontSize.small,
-		color: color.name,
-	},
-	deprecatedName: {
-		fontSize: 13,
-		color: light,
-		textDecoration: 'line-through',
 	},
 	type: {
 		fontSize: fontSize.small,
@@ -68,6 +55,15 @@ const styles = ({ space, color, fontFamily, fontSize }) => ({
 		fontSize: fontSize.small,
 		color: color.light,
 		borderBottom: [[1, 'dotted', color.lightest]],
+	},
+	heading: {
+		marginBottom: 3,
+		fontWeight: 'bold',
+		fontSize: 13,
+	},
+	para: {
+		marginBottom: 15,
+		fontSize: 13,
 	},
 });
 
@@ -104,28 +100,20 @@ function renderEnum(prop) {
 }
 
 export function PropsRenderer({ classes, props }) {
-	function renderRows(props) {
-		const rows = [];
-		for (const name in props) {
-			const prop = props[name];
-			rows.push(
-				<tr key={name} className={classes.row}>
-					<td className={classes.cell}>{renderPropName(name, prop)}</td>
-					<td className={classes.cell}><Code className={classes.type}>{renderType(getType(prop))}</Code></td>
-					<td className={classes.cell}>{renderDefault(prop)}</td>
-					<td className={classes.cell + ' ' + classes.cellDesc}>{renderDescription(prop)}</td>
-				</tr>
-			);
-		}
-		return rows;
-	}
-
-	function renderPropName(name, prop) {
-		if (prop.tags && 'deprecated' in prop.tags) {
-			return (<Code className={classes.deprecatedName}>{name}</Code>);
-		}
-
-		return (<Code className={classes.name}>{name}</Code>);
+	function renderRow(prop, name) {
+		const deprecated = !!(prop.tags && prop.tags.deprecated);
+		return (
+			<tr key={name}>
+				<td className={classes.cell}>
+					<Name name={name} deprecated={deprecated} />
+				</td>
+				<td className={classes.cell}>
+					<Code className={classes.type}>{renderType(getType(prop))}</Code>
+				</td>
+				<td className={classes.cell}>{renderDefault(prop)}</td>
+				<td className={classes.cell + ' ' + classes.cellDesc}>{renderDescription(prop)}</td>
+			</tr>
+		);
 	}
 
 	function renderDefault(prop) {
@@ -149,20 +137,20 @@ export function PropsRenderer({ classes, props }) {
 	}
 
 	function renderDescription(prop) {
-		const { description } = prop;
+		const { description, tags = {} } = prop;
 		const extra = renderExtra(prop);
-
+		const args = [...tags.arg || [], ...tags.argument || [], ...tags.param || []];
 		return (
 			<div>
-				<JsDocDeprecated tags={prop.tags} />
-				<JsDocVersion tags={prop.tags} />
-				<JsDocSince tags={prop.tags} />
-				<Group separator={<br />}>
-					{description && <Markdown text={description} inline />}
-					{extra}
-				</Group>
-				<JsDocLinks tags={prop.tags} />
-				<JsDocArguments tags={prop.tags} />
+				{description && <Markdown text={description} />}
+				{extra && <div className={classes.para}>{extra}</div>}
+				<JsDoc {...tags} />
+				{args.length > 0 && (
+					<div>
+						<h4 className={classes.heading}>Arguments</h4>
+						<Arguments args={args} />
+					</div>
+				)}
 			</div>
 		);
 	}
@@ -230,15 +218,15 @@ export function PropsRenderer({ classes, props }) {
 	return (
 		<table className={classes.table}>
 			<thead className={classes.tableHead}>
-				<tr className={classes.row}>
+				<tr>
 					<th className={classes.cellHeading}>Name</th>
 					<th className={classes.cellHeading}>Type</th>
 					<th className={classes.cellHeading}>Default</th>
 					<th className={classes.cellHeading + ' ' + classes.cellDesc}>Description</th>
 				</tr>
 			</thead>
-			<tbody className={classes.tableBody}>
-				{renderRows(props)}
+			<tbody>
+				{map(props, renderRow)}
 			</tbody>
 		</table>
 	);

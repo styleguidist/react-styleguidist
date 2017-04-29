@@ -104,7 +104,7 @@ it('render should render component', () => {
 });
 
 it('render should not render title if name is not set', () => {
-	const actual = render(
+	const actual = shallow(
 		<SectionRenderer
 			classes={{}}
 		/>
@@ -114,7 +114,7 @@ it('render should not render title if name is not set', () => {
 });
 
 it('render should render title if name is set', () => {
-	const actual = render(
+	const actual = shallow(
 		<SectionRenderer
 			classes={{}}
 			name="test"

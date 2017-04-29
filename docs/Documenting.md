@@ -121,22 +121,29 @@ MyComponent.propTypes = {
 }
 ```
 
-## Using JsDoc Tags
-You can use the following [JsDoc](http://usejsdoc.org/) Tags in your code. _Hint:_ Not every tag can be used in every context. All tags can render Markdown.
-- [@author](http://usejsdoc.org/tags-author.html) Can only be used when documenting Components. You can have several `@author` tags.
-- [@param, @arg, @argument](http://usejsdoc.org/tags-param.html) Can only be used when documenting Props. You can have several of these. Although it is supported, it is not recommended to mix them.
-- [@deprecated](http://usejsdoc.org/tags-deprecated.html) Can be used when documenting Components, Props and Methods.
-- [@see, @link](http://usejsdoc.org/tags-see.html) Can be used when documenting Components, Props and Methods. You can use `1-n` of these per documentation.
-- [@since](http://usejsdoc.org/tags-since.html) Can be used when documenting Components, Props and Methods.
-- [@version](http://usejsdoc.org/tags-version.html) Can be used when documenting Components, Props and Methods.
+## Using JsDoc tags
+
+You can use the following [JsDoc](http://usejsdoc.org/) tags when documenting components, props and methods:
+
+- [@deprecated](http://usejsdoc.org/tags-deprecated.html)
+- [@see, @link](http://usejsdoc.org/tags-see.html)
+- [@author](http://usejsdoc.org/tags-author.html)
+- [@since](http://usejsdoc.org/tags-since.html)
+- [@version](http://usejsdoc.org/tags-version.html)
+
+When documenting props you can also use:
+
+- [@param, @arg, @argument](http://usejsdoc.org/tags-param.html)
+
+All tags can render Markdown.
 
 ```
 /**
  * The only true button.
  *
  * @version 1.0.1
- * @author [@sapegin](https://github.com/sapegin)
- * @author Unknown
+ * @author [Artem Sapegin](https://github.com/sapegin)
+ * @author [Andy Krings-Stern](https://github.com/ankri)
 */
 class Button extends React.Component {
   static propTypes = {
@@ -147,8 +154,8 @@ class Button extends React.Component {
     /**
      * The color for the button
      *
-     * @see [Wikipedia](https://en.wikipedia.org/wiki/Web_colors#HTML_color_names) for a list of color names
-     * @see [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) for a list of color names
+     * @see See [Wikipedia](https://en.wikipedia.org/wiki/Web_colors#HTML_color_names) for a list of color names
+     * @see See [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) for a list of color names
      */
     color: PropTypes.string,
     /**
@@ -157,19 +164,17 @@ class Button extends React.Component {
      * @since Version 1.0.1
      */
     size: PropTypes.oneOf(['small', 'normal', 'large']),
-  
     /**
      * The width of the button
      *
      * @deprecated Do not use! Use `size` instead!
      */
     width: PropTypes.number,
-  
     /**
      * Gets called when the user clicks on the button
      *
-     * @param { SyntheticEvent } event The react `SyntheticEvent`
-     * @param { Object } allProps All props of this Button
+     * @param {SyntheticEvent} event The react `SyntheticEvent`
+     * @param {Object} allProps All props of this Button
      */
     onClick: PropTypes.func
   };
