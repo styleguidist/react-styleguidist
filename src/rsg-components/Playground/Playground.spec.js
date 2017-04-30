@@ -124,6 +124,7 @@ it('renderer should render preview', () => {
 			name="name"
 			index={0}
 			onChange={() => {}}
+			onShareExampleClick={() => {}}
 			onCodeToggle={() => {}}
 		/>
 	);
