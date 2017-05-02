@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Styled from 'rsg-components/Styled';
 
-export const styles = ({ link, linkHover }) => ({
+export const styles = ({ base, link, linkHover }) => ({
 	heading: {
+		color: base,
 		position: 'relative',
 		overflow: 'visible',
 		marginLeft: -30,

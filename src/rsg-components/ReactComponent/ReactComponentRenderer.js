@@ -4,7 +4,7 @@ import Link from 'rsg-components/Link';
 import Heading from 'rsg-components/Heading';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ font, monospace, light }) => ({
+const styles = ({ base, font, monospace, light }) => ({
 	root: {
 		marginBottom: 50,
 		fontSize: 16,
@@ -27,6 +27,7 @@ const styles = ({ font, monospace, light }) => ({
 		transition: 'opacity ease-in-out .15s .2s',
 	},
 	primaryHeading: {
+		color: base,
 		position: 'relative',
 		marginTop: 0,
 		marginBottom: 7,
@@ -35,6 +36,7 @@ const styles = ({ font, monospace, light }) => ({
 		fontWeight: 'normal',
 	},
 	heading: {
+		color: base,
 		margin: [[0, 0, 7]],
 		fontFamily: font,
 		fontSize: 20,
@@ -46,6 +48,7 @@ const styles = ({ font, monospace, light }) => ({
 		fontSize: 14,
 	},
 	description: {
+		color: base,
 		marginBottom: 20,
 		fontSize: 16,
 	},

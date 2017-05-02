@@ -4,12 +4,13 @@ import cx from 'classnames';
 import Link from 'rsg-components/Link';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ font, small }) => ({
+const styles = ({ base, font, small }) => ({
 	list: {
 		margin: 0,
 		paddingLeft: 15,
 	},
 	item: {
+		color: base,
 		display: 'block',
 		margin: [[7, 0, 7, 0]],
 		fontFamily: font,
@@ -25,6 +26,7 @@ const styles = ({ font, small }) => ({
 		},
 	},
 	heading: {
+		color: base,
 		marginTop: 7,
 		fontFamily: font,
 		fontWeight: 'bold',

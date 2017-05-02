@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ font }) => ({
+const styles = ({ base, font }) => ({
 	logo: {
+		color: base,
 		margin: 0,
 		fontFamily: font,
 		fontSize: 18,
