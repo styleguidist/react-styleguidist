@@ -60,7 +60,7 @@ const styles = ({ color, fontSize, fontFamily, space }) => ({
 	},
 	isDeprecated: {
 		textDecoration: 'line-through',
-		color: light,
+		color: color.light,
 	},
 });
 
