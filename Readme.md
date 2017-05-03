@@ -1,4 +1,4 @@
-<img src="https://d3vv6lp55qjaqc.cloudfront.net/items/061f0A2n1B0H3p0T1p1f/react-styleguidist-logo.png" alt="React Styleguidist" width="400" align="center">
+<p align="center"><img src="https://d3vv6lp55qjaqc.cloudfront.net/items/061f0A2n1B0H3p0T1p1f/react-styleguidist-logo.png" alt="React Styleguidist" width="400"></p>
 
 <p align="center"><b>Style guide — documentation — component workbench</b></p>
 
