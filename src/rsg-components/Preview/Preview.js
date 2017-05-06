@@ -129,6 +129,8 @@ export default class Preview extends Component {
 		this.setState({
 			error: err.toString(),
 		});
+
+		console.error(err); // eslint-disable-line no-console
 	}
 
 	render() {
