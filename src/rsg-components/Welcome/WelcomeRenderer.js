@@ -4,11 +4,11 @@ import Markdown from 'rsg-components/Markdown';
 import Styled from 'rsg-components/Styled';
 import { DOCS_COMPONENTS } from '../../../scripts/consts';
 
-const styles = () => ({
+const styles = (spacing) => ({
 	root: {
 		maxWidth: 900,
 		margin: [[0, 'auto']],
-		padding: 30,
+		padding: spacing.space32,
 	},
 });
 

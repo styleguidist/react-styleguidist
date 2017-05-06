@@ -2,17 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ font, base, border, link, baseBackground }) => ({
+const styles = ({ font, base, border, link, baseBackground, spacing }) => ({
 	root: {
 		fontFamily: font,
 	},
 	search: {
-		padding: 15,
+		padding: spacing.space16,
 	},
 	input: {
 		display: 'block',
 		width: '100%',
-		padding: [[6, 12]],
+		padding: [[spacing.space4, spacing.space8]],
 		color: base,
 		backgroundColor: baseBackground,
 		fontFamily: font,

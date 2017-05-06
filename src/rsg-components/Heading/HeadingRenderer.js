@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Styled from 'rsg-components/Styled';
 
-export const styles = ({ base, link, linkHover }) => ({
+export const styles = ({ base, link, linkHover, spacing }) => ({
 	heading: {
 		color: base,
 		position: 'relative',
 		overflow: 'visible',
-		marginLeft: -30,
-		paddingLeft: 30,
+		marginLeft: -32,
+		paddingLeft: spacing.space32,
 		'&:hover > $anchor': {
 			isolate: false,
 			visibility: 'visible',
@@ -17,8 +17,9 @@ export const styles = ({ base, link, linkHover }) => ({
 	},
 	anchor: {
 		position: 'absolute',
-		bottom: '.125em',
-		left: 10,
+		top: '50%',
+		transform: 'translateY(-50%)',
+		left: spacing.space8,
 		display: 'block',
 		color: link,
 		fontSize: '0.65em',

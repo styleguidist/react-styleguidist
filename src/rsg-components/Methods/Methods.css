@@ -9,19 +9,19 @@
 .tableBody {
 }
 .cell {
-	padding-right: 15px;
-	padding-top: 6px;
+	padding-right: 16px;
+	padding-top: 8px;
 	vertical-align: top;
 	font-size: 13px;
 }
 .cellHeading {
-	padding-right: 15px;
-	padding-bottom: 6px;
+	padding-right: 16px;
+	padding-bottom: 8px;
 	text-align: left;
 	font-size: 13px;
 }
 .cellDesc {
-	padding-left: 15px;
+	padding-left: 16px;
 }
 
 .methodParam {

@@ -5,27 +5,28 @@ import Link from 'rsg-components/Link';
 import Preview from 'rsg-components/Preview';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ base, font, link, linkHover, border, baseBackground, codeBackground }) => ({
+const styles = ({ base, font, link, linkHover, border, baseBackground, codeBackground, spacing }) => ({
 	root: {
 		color: base,
 		position: 'relative',
-		marginBottom: 30,
+		marginBottom: spacing.space32,
 		border: [[1, border, 'solid']],
 		borderRadius: '3px 3px 0 3px',
+		marginTop: spacing.space4,
 		'&:hover $isolatedLink': {
 			isolate: false,
 			opacity: 1,
 		},
 	},
 	preview: {
-		marginBottom: 3,
-		padding: 15,
+		marginBottom: spacing.space4,
+		padding: spacing.space16,
 	},
 	codeToggle: {
 		position: 'absolute',
 		right: -1,
 		margin: 0,
-		padding: [[6, 8]],
+		padding: [[spacing.space4, spacing.space8]],
 		fontFamily: font,
 		fontSize: 14,
 		lineHeight: 1,
@@ -52,7 +53,7 @@ const styles = ({ base, font, link, linkHover, border, baseBackground, codeBackg
 		position: 'absolute',
 		top: 0,
 		right: 0,
-		padding: [[6, 8]],
+		padding: [[spacing.space4, spacing.space8]],
 		fontFamily: font,
 		fontSize: 14,
 		opacity: 0,

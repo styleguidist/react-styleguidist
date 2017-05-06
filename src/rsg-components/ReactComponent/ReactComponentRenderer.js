@@ -4,9 +4,9 @@ import Link from 'rsg-components/Link';
 import Heading from 'rsg-components/Heading';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ base, font, monospace, light }) => ({
+const styles = ({ base, font, monospace, light, spacing }) => ({
 	root: {
-		marginBottom: 50,
+		marginBottom: spacing.space48,
 		fontSize: 16,
 		'&:hover $isolatedLink': {
 			isolate: false,
@@ -15,7 +15,7 @@ const styles = ({ base, font, monospace, light }) => ({
 	},
 	header: {
 		position: 'relative',
-		marginBottom: 20,
+		marginBottom: spacing.space24,
 	},
 	isolatedLink: {
 		position: 'absolute',
@@ -30,14 +30,14 @@ const styles = ({ base, font, monospace, light }) => ({
 		color: base,
 		position: 'relative',
 		marginTop: 0,
-		marginBottom: 7,
+		marginBottom: spacing.space8,
 		fontFamily: font,
 		fontSize: 36,
 		fontWeight: 'normal',
 	},
 	heading: {
 		color: base,
-		margin: [[0, 0, 7]],
+		margin: [[0, 0, spacing.space8]],
 		fontFamily: font,
 		fontSize: 20,
 		fontWeight: 'normal',
@@ -49,11 +49,11 @@ const styles = ({ base, font, monospace, light }) => ({
 	},
 	description: {
 		color: base,
-		marginBottom: 20,
+		marginBottom: spacing.space24,
 		fontSize: 16,
 	},
 	subsection: {
-		marginBottom: 30,
+		marginBottom: spacing.space32,
 	},
 });
 

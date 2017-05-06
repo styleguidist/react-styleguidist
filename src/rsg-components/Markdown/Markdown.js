@@ -65,7 +65,7 @@ const getInlineOverrides = memoize(classes => {
 	};
 }, () => 'getInlineOverrides');
 
-const styles = ({ base, font, monospace, link, linkHover, border, codeBackground }) => ({
+const styles = ({ base, font, monospace, link, linkHover, border, codeBackground, spacing }) => ({
 	base: {
 		color: base,
 		fontFamily: font,
@@ -75,7 +75,7 @@ const styles = ({ base, font, monospace, link, linkHover, border, codeBackground
 		color: base,
 		fontFamily: font,
 		fontSize: 'inherit',
-		margin: [[0, 0, 15, 0]],
+		margin: [[0, 0, spacing.spacing16, 0]],
 		lineHeight: 1.5,
 	},
 	a: linkStyles({ link, linkHover }).link,
@@ -115,12 +115,12 @@ const styles = ({ base, font, monospace, link, linkHover, border, codeBackground
 	},
 	ul: {
 		composes: '$para',
-		paddingLeft: 20,
+		paddingLeft: spacing.space24,
 	},
 	ol: {
 		composes: '$para',
 		listStyleType: 'decimal',
-		paddingLeft: 20,
+		paddingLeft: spacing.space24,
 	},
 	li: {
 		composes: '$base',
@@ -135,7 +135,7 @@ const styles = ({ base, font, monospace, link, linkHover, border, codeBackground
 	blockquote: {
 		composes: '$para',
 		fontSize: 14,
-		margin: [[15, 30]],
+		margin: [[spacing.space16, spacing.space32]],
 		padding: 0,
 	},
 	hr: {
@@ -163,7 +163,7 @@ const styles = ({ base, font, monospace, link, linkHover, border, codeBackground
 		composes: '$para',
 		backgroundColor: codeBackground,
 		border: [[1, border, 'solid']],
-		padding: [[12, 15]],
+		padding: [[spacing.space8, spacing.space16]],
 		fontSize: 12,
 		borderRadius: 3,
 		whiteSpace: 'pre',
@@ -179,7 +179,7 @@ const styles = ({ base, font, monospace, link, linkHover, border, codeBackground
 	},
 	td: {
 		fontFamily: font,
-		padding: [[6, 15, 6, 0]],
+		padding: [[spacing.space4, spacing.space16, spacing.space4, 0]],
 		fontSize: 14,
 	},
 	th: {
