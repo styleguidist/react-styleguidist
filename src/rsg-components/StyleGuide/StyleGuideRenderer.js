@@ -5,7 +5,7 @@ import Markdown from 'rsg-components/Markdown';
 import Styled from 'rsg-components/Styled';
 import cx from 'classnames';
 
-const styles = ({ font, base, light, sidebarWidth, border, baseBackground, codeBackground, small, spacing }) => ({
+const styles = ({ font, base, light, sidebarWidth, border, baseBackground, codeBackground, small, spacing, fonts }) => ({
 	root: {
 		color: base,
 		backgroundColor: baseBackground,
@@ -50,7 +50,7 @@ const styles = ({ font, base, light, sidebarWidth, border, baseBackground, codeB
 		display: 'block',
 		color: light,
 		fontFamily: font,
-		fontSize: 12,
+		fontSize: fonts.fontSize12,
 	},
 });
 

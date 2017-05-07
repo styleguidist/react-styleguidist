@@ -4,7 +4,7 @@ import cx from 'classnames';
 import Link from 'rsg-components/Link';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ base, font, small, spacing }) => ({
+const styles = ({ base, font, small, spacing, fonts }) => ({
 	list: {
 		margin: 0,
 		paddingLeft: spacing.space16,
@@ -14,7 +14,7 @@ const styles = ({ base, font, small, spacing }) => ({
 		display: 'block',
 		margin: [[spacing.space8, 0, spacing.space8, 0]],
 		fontFamily: font,
-		fontSize: spacing.space16,
+		fontSize: fonts.size14,
 		listStyle: 'none',
 		overflow: 'hidden',
 		textOverflow: 'ellipsis',

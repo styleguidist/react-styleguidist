@@ -6,7 +6,7 @@ import Styled from 'rsg-components/Styled';
 import Group from 'react-group';
 import { unquote, getType, showSpaces } from './util';
 
-const styles = ({ base, font, border, light, lightest, name, type, spacing }) => ({
+const styles = ({ base, font, border, light, lightest, name, type, spacing, fonts }) => ({
 	table: {
 		width: '100%',
 		borderCollapse: 'collapse',
@@ -24,7 +24,7 @@ const styles = ({ base, font, border, light, lightest, name, type, spacing }) =>
 		paddingTop: spacing.space4,
 		verticalAlign: 'top',
 		fontFamily: font,
-		fontSize: 13,
+		fontSize: fonts.size12,
 	},
 	cellHeading: {
 		color: base,
@@ -33,7 +33,7 @@ const styles = ({ base, font, border, light, lightest, name, type, spacing }) =>
 		textAlign: 'left',
 		fontFamily: font,
 		fontWeight: 'bold',
-		fontSize: 13,
+		fontSize: fonts.size12,
 	},
 	cellDesc: {
 		color: base,
@@ -42,20 +42,20 @@ const styles = ({ base, font, border, light, lightest, name, type, spacing }) =>
 	},
 	required: {
 		fontFamily: font,
-		fontSize: 13,
+		fontSize: fonts.size12,
 		color: light,
 	},
 	name: {
-		fontSize: 13,
+		fontSize: fonts.size12,
 		color: name,
 	},
 	type: {
-		fontSize: 13,
+		fontSize: fonts.size12,
 		color: type,
 	},
 	function: {
 		fontFamily: font,
-		fontSize: 13,
+		fontSize: fonts.size12,
 		color: light,
 		borderBottom: `1px dotted ${lightest}`,
 	},

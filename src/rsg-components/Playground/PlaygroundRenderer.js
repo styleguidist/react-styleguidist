@@ -5,7 +5,7 @@ import Link from 'rsg-components/Link';
 import Preview from 'rsg-components/Preview';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ base, font, link, linkHover, border, baseBackground, codeBackground, spacing }) => ({
+const styles = ({ base, font, link, linkHover, border, baseBackground, codeBackground, spacing, fonts }) => ({
 	root: {
 		color: base,
 		position: 'relative',
@@ -28,7 +28,7 @@ const styles = ({ base, font, link, linkHover, border, baseBackground, codeBackg
 		margin: 0,
 		padding: [[spacing.space4, spacing.space8]],
 		fontFamily: font,
-		fontSize: 14,
+		fontSize: fonts.size14,
 		lineHeight: 1,
 		color: link,
 		border: [[1, border, 'solid']],
@@ -55,7 +55,7 @@ const styles = ({ base, font, link, linkHover, border, baseBackground, codeBackg
 		right: 0,
 		padding: [[spacing.space4, spacing.space8]],
 		fontFamily: font,
-		fontSize: 14,
+		fontSize: fonts.size14,
 		opacity: 0,
 		transition: 'opacity ease-in-out .15s .2s',
 	},

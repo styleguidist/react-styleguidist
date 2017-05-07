@@ -4,10 +4,10 @@ import Styled from 'rsg-components/Styled';
 import Markdown from 'rsg-components/Markdown';
 import { DOCS_DOCUMENTING } from '../../../scripts/consts';
 
-const styles = ({ font, light, lightest }) => ({
+const styles = ({ font, light, lightest, fonts }) => ({
 	button: {
 		padding: 0,
-		fontSize: 15,
+		fontSize: fonts.size14,
 		fontFamily: font,
 		textDecoration: 'underline',
 		color: light,

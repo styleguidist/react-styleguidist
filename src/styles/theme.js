@@ -26,3 +26,15 @@ export const spacing = {
 	space40: `${spacingFactor * 5}px`,  // 40
 	space48: `${spacingFactor * 6}px`,  // 48
 };
+
+export const fonts = {
+	size12: 12,
+	size14: 14,
+	size18: 18,
+	h6: 16,
+	h5: 16,
+	h4: 21,
+	h3: 26,
+	h2: 32,
+	h1: 36,
+};

@@ -4,10 +4,10 @@ import Link from 'rsg-components/Link';
 import Heading from 'rsg-components/Heading';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ base, font, monospace, light, spacing }) => ({
+const styles = ({ base, font, monospace, light, spacing, fonts }) => ({
 	root: {
 		marginBottom: spacing.space48,
-		fontSize: 16,
+		fontSize: fonts.h6,
 		'&:hover $isolatedLink': {
 			isolate: false,
 			opacity: 1,
@@ -22,7 +22,7 @@ const styles = ({ base, font, monospace, light, spacing }) => ({
 		top: 0,
 		right: 0,
 		fontFamily: font,
-		fontSize: 14,
+		fontSize: fonts.size14,
 		opacity: 0,
 		transition: 'opacity ease-in-out .15s .2s',
 	},
@@ -32,7 +32,7 @@ const styles = ({ base, font, monospace, light, spacing }) => ({
 		marginTop: 0,
 		marginBottom: spacing.space8,
 		fontFamily: font,
-		fontSize: 36,
+		fontSize: fonts.h1,
 		fontWeight: 'normal',
 	},
 	heading: {
@@ -45,12 +45,12 @@ const styles = ({ base, font, monospace, light, spacing }) => ({
 	pathLine: {
 		fontFamily: monospace,
 		color: light,
-		fontSize: 14,
+		fontSize: fonts.size14,
 	},
 	description: {
 		color: base,
 		marginBottom: spacing.space24,
-		fontSize: 16,
+		fontSize: fonts.h6,
 	},
 	subsection: {
 		marginBottom: spacing.space32,
