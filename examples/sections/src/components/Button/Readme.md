@@ -1,6 +1,6 @@
 Basic button:
 
-    <Button>Push Me</Button><span>jhdsjk</span>
+    <Button>Push Me</Button>
 
 Big pink button:
 

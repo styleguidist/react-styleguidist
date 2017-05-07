@@ -4,12 +4,12 @@ import Styled from 'rsg-components/Styled';
 
 const styles = ({ monospace, white, errorBackground, spacing, fonts }) => ({
 	root: {
-		margin: `-${spacing.space16}`,
+		margin: `-${spacing[2]}`,
 		marginBottom: -20, // it needs this to fill all the space
 		fontFamily: monospace,
 		color: white,
 		backgroundColor: errorBackground,
-		padding: spacing.space16,
+		padding: spacing[2],
 		lineHeight: 1.2,
 		fontSize: fonts.size12,
 		whiteSpace: 'pre',

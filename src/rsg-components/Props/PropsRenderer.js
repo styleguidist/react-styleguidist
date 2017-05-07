@@ -20,16 +20,16 @@ const styles = ({ base, font, border, light, lightest, name, type, spacing, font
 	},
 	cell: {
 		color: base,
-		paddingRight: spacing.space16,
-		paddingTop: spacing.space4,
+		paddingRight: spacing[2],
+		paddingTop: spacing.half,
 		verticalAlign: 'top',
 		fontFamily: font,
 		fontSize: fonts.size12,
 	},
 	cellHeading: {
 		color: base,
-		paddingRight: spacing.space16,
-		paddingBottom: spacing.space4,
+		paddingRight: spacing[2],
+		paddingBottom: spacing.half,
 		textAlign: 'left',
 		fontFamily: font,
 		fontWeight: 'bold',
@@ -38,7 +38,7 @@ const styles = ({ base, font, border, light, lightest, name, type, spacing, font
 	cellDesc: {
 		color: base,
 		width: '99%',
-		paddingLeft: spacing.space16,
+		paddingLeft: spacing[2],
 	},
 	required: {
 		fontFamily: font,

@@ -4,7 +4,7 @@ import Styled from 'rsg-components/Styled';
 
 const styles = ({ font, monospace, light, codeBackground, spacing, fonts }) => ({
 	root: {
-		padding: [[spacing.space8, spacing.space16, spacing.space8, spacing.space8]],
+		padding: [[spacing[1], spacing[2], spacing[1], spacing[1]]],
 		fontFamily: font,
 		fontSize: fonts.size12,
 		color: light,
@@ -15,7 +15,7 @@ const styles = ({ font, monospace, light, codeBackground, spacing, fonts }) => (
 		'.CodeMirror.CodeMirror': {
 			fontFamily: monospace,
 			height: 'auto',
-			padding: [[spacing.space4, spacing.space16]],
+			padding: [[spacing.half, spacing[2]]],
 			fontSize: fonts.size12,
 		},
 		'.CodeMirror-scroll.CodeMirror-scroll': {

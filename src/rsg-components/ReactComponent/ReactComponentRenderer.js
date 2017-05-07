@@ -6,7 +6,7 @@ import Styled from 'rsg-components/Styled';
 
 const styles = ({ base, font, monospace, light, spacing, fonts }) => ({
 	root: {
-		marginBottom: spacing.space48,
+		marginBottom: spacing[6],
 		fontSize: fonts.h6,
 		'&:hover $isolatedLink': {
 			isolate: false,
@@ -15,7 +15,7 @@ const styles = ({ base, font, monospace, light, spacing, fonts }) => ({
 	},
 	header: {
 		position: 'relative',
-		marginBottom: spacing.space24,
+		marginBottom: spacing[3],
 	},
 	isolatedLink: {
 		position: 'absolute',
@@ -30,14 +30,14 @@ const styles = ({ base, font, monospace, light, spacing, fonts }) => ({
 		color: base,
 		position: 'relative',
 		marginTop: 0,
-		marginBottom: spacing.space8,
+		marginBottom: spacing[1],
 		fontFamily: font,
 		fontSize: fonts.h1,
 		fontWeight: 'normal',
 	},
 	heading: {
 		color: base,
-		margin: [[0, 0, spacing.space8]],
+		margin: [[0, 0, spacing[1]]],
 		fontFamily: font,
 		fontSize: 20,
 		fontWeight: 'normal',
@@ -49,11 +49,11 @@ const styles = ({ base, font, monospace, light, spacing, fonts }) => ({
 	},
 	description: {
 		color: base,
-		marginBottom: spacing.space24,
+		marginBottom: spacing[3],
 		fontSize: fonts.h6,
 	},
 	subsection: {
-		marginBottom: spacing.space32,
+		marginBottom: spacing[4],
 	},
 });
 

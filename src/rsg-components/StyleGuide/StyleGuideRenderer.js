@@ -18,10 +18,10 @@ const styles = ({ font, base, light, sidebarWidth, border, baseBackground, codeB
 	},
 	content: {
 		maxWidth: 1000,
-		padding: [[spacing.space16, spacing.space32]],
+		padding: [[spacing[2], spacing[4]]],
 		margin: [[0, 'auto']],
 		[small]: {
-			padding: spacing.space16,
+			padding: spacing[2],
 		},
 		display: 'block',
 	},
@@ -39,11 +39,11 @@ const styles = ({ font, base, light, sidebarWidth, border, baseBackground, codeB
 			position: 'static',
 			width: 'auto',
 			borderWidth: [[1, 0, 0, 0]],
-			paddingBottom: spacing.space4,
+			paddingBottom: spacing.half,
 		},
 	},
 	logo: {
-		padding: spacing.space16,
+		padding: spacing[2],
 		borderBottom: [[1, border, 'solid']],
 	},
 	footer: {

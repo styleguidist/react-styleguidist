@@ -115,12 +115,12 @@ const styles = ({ base, font, fonts, monospace, link, linkHover, border, codeBac
 	},
 	ul: {
 		composes: '$para',
-		paddingLeft: spacing.space24,
+		paddingLeft: spacing[3],
 	},
 	ol: {
 		composes: '$para',
 		listStyleType: 'decimal',
-		paddingLeft: spacing.space24,
+		paddingLeft: spacing[3],
 	},
 	li: {
 		composes: '$base',
@@ -135,7 +135,7 @@ const styles = ({ base, font, fonts, monospace, link, linkHover, border, codeBac
 	blockquote: {
 		composes: '$para',
 		fontSize: fonts.size14,
-		margin: [[spacing.space16, spacing.space32]],
+		margin: [[spacing[2], spacing[4]]],
 		padding: 0,
 	},
 	hr: {
@@ -163,7 +163,7 @@ const styles = ({ base, font, fonts, monospace, link, linkHover, border, codeBac
 		composes: '$para',
 		backgroundColor: codeBackground,
 		border: [[1, border, 'solid']],
-		padding: [[spacing.space8, spacing.space16]],
+		padding: [[spacing[1], spacing[2]]],
 		fontSize: fonts.size12,
 		borderRadius: 3,
 		whiteSpace: 'pre',
@@ -179,7 +179,7 @@ const styles = ({ base, font, fonts, monospace, link, linkHover, border, codeBac
 	},
 	td: {
 		fontFamily: font,
-		padding: [[spacing.space4, spacing.space16, spacing.space4, 0]],
+		padding: [[spacing.half, spacing[2], spacing.half, 0]],
 		fontSize: fonts.size14,
 	},
 	th: {

@@ -7,12 +7,12 @@ const styles = ({ font, base, border, link, baseBackground, spacing, fonts }) =>
 		fontFamily: font,
 	},
 	search: {
-		padding: spacing.space16,
+		padding: spacing[2],
 	},
 	input: {
 		display: 'block',
 		width: '100%',
-		padding: [[spacing.space4, spacing.space8]],
+		padding: [[spacing.half, spacing[1]]],
 		color: base,
 		backgroundColor: baseBackground,
 		fontFamily: font,

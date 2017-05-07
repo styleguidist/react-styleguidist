@@ -7,12 +7,12 @@ import Styled from 'rsg-components/Styled';
 const styles = ({ base, font, small, spacing, fonts }) => ({
 	list: {
 		margin: 0,
-		paddingLeft: spacing.space16,
+		paddingLeft: spacing[2],
 	},
 	item: {
 		color: base,
 		display: 'block',
-		margin: [[spacing.space8, 0, spacing.space8, 0]],
+		margin: [[spacing[1], 0, spacing[1], 0]],
 		fontFamily: font,
 		fontSize: fonts.size14,
 		listStyle: 'none',
@@ -22,12 +22,12 @@ const styles = ({ base, font, small, spacing, fonts }) => ({
 	isChild: {
 		[small]: {
 			display: 'inline-block',
-			margin: [[0, spacing.space8, 0, 0]],
+			margin: [[0, spacing[1], 0, 0]],
 		},
 	},
 	heading: {
 		color: base,
-		marginTop: spacing.space8,
+		marginTop: spacing[1],
 		fontFamily: font,
 		fontWeight: 'bold',
 	},

@@ -1,4 +1,4 @@
-const spacingFactor = 8;
+export const spacingFactor = 8;
 
 export const white = '#fff';
 export const base = '#333';
@@ -18,13 +18,13 @@ export const monospace = ['Consolas', '"Liberation Mono"', 'Menlo', 'monospace']
 export const small = '@media (max-width: 600px)';
 export const sidebarWidth = 200;
 export const spacing = {
-	space4: `${spacingFactor / 2}px`,  // 4
-	space8: `${spacingFactor}px`,      // 8
-	space16: `${spacingFactor * 2}px`,  // 16
-	space24: `${spacingFactor * 3}px`,  // 24
-	space32: `${spacingFactor * 4}px`,  // 32
-	space40: `${spacingFactor * 5}px`,  // 40
-	space48: `${spacingFactor * 6}px`,  // 48
+	half: `${spacingFactor / 2}px`,  // 4
+	1: `${spacingFactor}px`,      // 8
+	2: `${spacingFactor * 2}px`,  // 16
+	3: `${spacingFactor * 3}px`,  // 24
+	4: `${spacingFactor * 4}px`,  // 32
+	5: `${spacingFactor * 5}px`,  // 40
+	6: `${spacingFactor * 6}px`,  // 48
 };
 
 export const fonts = {

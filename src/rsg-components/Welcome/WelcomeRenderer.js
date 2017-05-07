@@ -8,7 +8,7 @@ const styles = (spacing) => ({
 	root: {
 		maxWidth: 900,
 		margin: [[0, 'auto']],
-		padding: spacing.space32,
+		padding: spacing[4],
 	},
 });
 

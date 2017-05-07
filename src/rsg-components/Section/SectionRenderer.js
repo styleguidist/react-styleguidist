@@ -8,7 +8,7 @@ const styles = ({ font, spacing, fonts }) => ({
 		marginBottom: 50,
 	},
 	heading: {
-		margin: [[0, 0, spacing.space24]],
+		margin: [[0, 0, spacing[3]]],
 		fontFamily: font,
 		fontSize: fonts.h1 + 2,
 		fontWeight: 'bold',

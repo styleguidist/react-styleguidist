@@ -5,7 +5,7 @@ import Styled from 'rsg-components/Styled';
 
 const styles = (spacing) => ({
 	root: {
-		marginBottom: spacing.space32,
+		marginBottom: spacing[4],
 	},
 });
 
