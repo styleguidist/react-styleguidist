@@ -4,10 +4,10 @@ import Link from 'rsg-components/Link';
 import Heading from 'rsg-components/Heading';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ base, font, monospace, light }) => ({
+const styles = ({ base, font, monospace, light, spacing, fonts }) => ({
 	root: {
-		marginBottom: 50,
-		fontSize: 16,
+		marginBottom: spacing[6],
+		fontSize: fonts.h6,
 		'&:hover $isolatedLink': {
 			isolate: false,
 			opacity: 1,
@@ -15,14 +15,14 @@ const styles = ({ base, font, monospace, light }) => ({
 	},
 	header: {
 		position: 'relative',
-		marginBottom: 20,
+		marginBottom: spacing[3],
 	},
 	isolatedLink: {
 		position: 'absolute',
 		top: 0,
 		right: 0,
 		fontFamily: font,
-		fontSize: 14,
+		fontSize: fonts.size14,
 		opacity: 0,
 		transition: 'opacity ease-in-out .15s .2s',
 	},
@@ -30,14 +30,14 @@ const styles = ({ base, font, monospace, light }) => ({
 		color: base,
 		position: 'relative',
 		marginTop: 0,
-		marginBottom: 7,
+		marginBottom: spacing[1],
 		fontFamily: font,
-		fontSize: 36,
+		fontSize: fonts.h1,
 		fontWeight: 'normal',
 	},
 	heading: {
 		color: base,
-		margin: [[0, 0, 7]],
+		margin: [[0, 0, spacing[1]]],
 		fontFamily: font,
 		fontSize: 20,
 		fontWeight: 'normal',
@@ -45,15 +45,15 @@ const styles = ({ base, font, monospace, light }) => ({
 	pathLine: {
 		fontFamily: monospace,
 		color: light,
-		fontSize: 14,
+		fontSize: fonts.size14,
 	},
 	description: {
 		color: base,
-		marginBottom: 20,
-		fontSize: 16,
+		marginBottom: spacing[3],
+		fontSize: fonts.h6,
 	},
 	subsection: {
-		marginBottom: 30,
+		marginBottom: spacing[4],
 	},
 });
 

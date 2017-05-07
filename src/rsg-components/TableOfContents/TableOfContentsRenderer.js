@@ -2,21 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ font, base, border, link, baseBackground }) => ({
+const styles = ({ font, base, border, link, baseBackground, spacing, fonts }) => ({
 	root: {
 		fontFamily: font,
 	},
 	search: {
-		padding: 15,
+		padding: spacing[2],
 	},
 	input: {
 		display: 'block',
 		width: '100%',
-		padding: [[6, 12]],
+		padding: [[spacing[0], spacing[1]]],
 		color: base,
 		backgroundColor: baseBackground,
 		fontFamily: font,
-		fontSize: 15,
+		fontSize: fonts.size14,
 		border: [[1, border, 'solid']],
 		borderRadius: 2,
 		transition: 'border-color ease-in-out .15s',

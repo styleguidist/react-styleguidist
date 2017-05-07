@@ -65,7 +65,7 @@ const getInlineOverrides = memoize(classes => {
 	};
 }, () => 'getInlineOverrides');
 
-const styles = ({ base, font, monospace, link, linkHover, border, codeBackground }) => ({
+const styles = ({ base, font, fonts, monospace, link, linkHover, border, codeBackground, spacing }) => ({
 	base: {
 		color: base,
 		fontFamily: font,
@@ -75,38 +75,38 @@ const styles = ({ base, font, monospace, link, linkHover, border, codeBackground
 		color: base,
 		fontFamily: font,
 		fontSize: 'inherit',
-		margin: [[0, 0, 15, 0]],
+		margin: [[0, 0, spacing.spacing16, 0]],
 		lineHeight: 1.5,
 	},
 	a: linkStyles({ link, linkHover }).link,
 	h1: {
 		composes: '$para',
-		fontSize: 36,
+		fontSize: fonts.h1,
 		fontWeight: 'normal',
 	},
 	h2: {
 		composes: '$para',
-		fontSize: 32,
+		fontSize: fonts.h2,
 		fontWeight: 'normal',
 	},
 	h3: {
 		composes: '$para',
-		fontSize: 26,
+		fontSize: fonts.h3,
 		fontWeight: 'normal',
 	},
 	h4: {
 		composes: '$para',
-		fontSize: 21,
+		fontSize: fonts.h4,
 		fontWeight: 'normal',
 	},
 	h5: {
 		composes: '$para',
-		fontSize: 16,
+		fontSize: fonts.h5,
 		fontWeight: 'normal',
 	},
 	h6: {
 		composes: '$para',
-		fontSize: 16,
+		fontSize: fonts.h6,
 		fontWeight: 'normal',
 		fontStyle: 'italic',
 	},
@@ -115,12 +115,12 @@ const styles = ({ base, font, monospace, link, linkHover, border, codeBackground
 	},
 	ul: {
 		composes: '$para',
-		paddingLeft: 20,
+		paddingLeft: spacing[3],
 	},
 	ol: {
 		composes: '$para',
 		listStyleType: 'decimal',
-		paddingLeft: 20,
+		paddingLeft: spacing[3],
 	},
 	li: {
 		composes: '$base',
@@ -134,8 +134,8 @@ const styles = ({ base, font, monospace, link, linkHover, border, codeBackground
 	},
 	blockquote: {
 		composes: '$para',
-		fontSize: 14,
-		margin: [[15, 30]],
+		fontSize: fonts.size14,
+		margin: [[spacing[2], spacing[4]]],
 		padding: 0,
 	},
 	hr: {
@@ -163,8 +163,8 @@ const styles = ({ base, font, monospace, link, linkHover, border, codeBackground
 		composes: '$para',
 		backgroundColor: codeBackground,
 		border: [[1, border, 'solid']],
-		padding: [[12, 15]],
-		fontSize: 12,
+		padding: [[spacing[1], spacing[2]]],
+		fontSize: fonts.size12,
 		borderRadius: 3,
 		whiteSpace: 'pre',
 	},
@@ -179,8 +179,8 @@ const styles = ({ base, font, monospace, link, linkHover, border, codeBackground
 	},
 	td: {
 		fontFamily: font,
-		padding: [[6, 15, 6, 0]],
-		fontSize: 14,
+		padding: [[spacing[0], spacing[2], spacing[0], 0]],
+		fontSize: fonts.size14,
 	},
 	th: {
 		composes: '$td',

@@ -5,23 +5,23 @@ import Markdown from 'rsg-components/Markdown';
 import Styled from 'rsg-components/Styled';
 import cx from 'classnames';
 
-const styles = ({ font, base, light, border, baseBackground, codeBackground, small }) => ({
+const styles = ({ font, base, light, sidebarWidth, border, baseBackground, codeBackground, small, spacing, fonts }) => ({
 	root: {
 		color: base,
 		backgroundColor: baseBackground,
 	},
 	hasSidebar: {
-		paddingLeft: 200,
+		paddingLeft: sidebarWidth,
 		[small]: {
 			paddingLeft: 0,
 		},
 	},
 	content: {
 		maxWidth: 1000,
-		padding: [[15, 30]],
+		padding: [[spacing[2], spacing[4]]],
 		margin: [[0, 'auto']],
 		[small]: {
-			padding: 15,
+			padding: spacing[2],
 		},
 		display: 'block',
 	},
@@ -33,24 +33,24 @@ const styles = ({ font, base, light, border, baseBackground, codeBackground, sma
 		top: 0,
 		left: 0,
 		bottom: 0,
-		width: 200,
+		width: sidebarWidth,
 		overflow: 'auto',
 		[small]: {
 			position: 'static',
 			width: 'auto',
 			borderWidth: [[1, 0, 0, 0]],
-			paddingBottom: 5,
+			paddingBottom: spacing[0],
 		},
 	},
 	logo: {
-		padding: 15,
+		padding: spacing[2],
 		borderBottom: [[1, border, 'solid']],
 	},
 	footer: {
 		display: 'block',
 		color: light,
 		fontFamily: font,
-		fontSize: 12,
+		fontSize: fonts.fontSize12,
 	},
 });
 

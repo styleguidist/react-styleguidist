@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 import Heading from 'rsg-components/Heading';
 
-const styles = ({ font }) => ({
+const styles = ({ font, spacing, fonts }) => ({
 	root: {
 		marginBottom: 50,
 	},
 	heading: {
-		margin: [[0, 0, 20]],
+		margin: [[0, 0, spacing[3]]],
 		fontFamily: font,
-		fontSize: 38,
+		fontSize: fonts.h1 + 2,
 		fontWeight: 'bold',
 	},
 });

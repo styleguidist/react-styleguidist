@@ -1,3 +1,5 @@
+export const spacingFactor = 8;
+
 export const white = '#fff';
 export const base = '#333';
 export const light = '#999';
@@ -14,3 +16,25 @@ export const font = ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', '"Robo
 	'"Cantarell"', '"Fira Sans"', '"Droid Sans"', '"Helvetica Neue"', 'sans-serif'];
 export const monospace = ['Consolas', '"Liberation Mono"', 'Menlo', 'monospace'];
 export const small = '@media (max-width: 600px)';
+export const sidebarWidth = 200;
+export const spacing = {
+	0: `${spacingFactor / 2}px`,  // 4
+	1: `${spacingFactor}px`,      // 8
+	2: `${spacingFactor * 2}px`,  // 16
+	3: `${spacingFactor * 3}px`,  // 24
+	4: `${spacingFactor * 4}px`,  // 32
+	5: `${spacingFactor * 5}px`,  // 40
+	6: `${spacingFactor * 6}px`,  // 48
+};
+
+export const fonts = {
+	size12: 12,
+	size14: 14,
+	size18: 18,
+	h6: 16,
+	h5: 16,
+	h4: 21,
+	h3: 26,
+	h2: 32,
+	h1: 36,
+};

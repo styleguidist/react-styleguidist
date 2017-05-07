@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ font, monospace, light, codeBackground }) => ({
+const styles = ({ font, monospace, light, codeBackground, spacing, fonts }) => ({
 	root: {
-		padding: [[7, 16, 10, 7]],
+		padding: [[spacing[1], spacing[2], spacing[1], spacing[1]]],
 		fontFamily: font,
-		fontSize: 12,
+		fontSize: fonts.size12,
 		color: light,
 		backgroundColor: codeBackground,
 	},
@@ -15,8 +15,8 @@ const styles = ({ font, monospace, light, codeBackground }) => ({
 		'.CodeMirror.CodeMirror': {
 			fontFamily: monospace,
 			height: 'auto',
-			padding: [[5, 12]],
-			fontSize: 12,
+			padding: [[spacing[0], spacing[2]]],
+			fontSize: fonts.size12,
 		},
 		'.CodeMirror-scroll.CodeMirror-scroll': {
 			height: 'auto',
