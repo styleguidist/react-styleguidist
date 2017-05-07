@@ -46,6 +46,10 @@ const styles = ({ space, color, fontFamily, fontSize }) => ({
 		fontSize: fontSize.small,
 		color: color.light,
 	},
+	name: {
+		fontSize: fontSize.small,
+		color: color.name,
+	},
 	type: {
 		fontSize: fontSize.small,
 		color: color.type,
