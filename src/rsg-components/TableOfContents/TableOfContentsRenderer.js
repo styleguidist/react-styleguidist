@@ -12,7 +12,7 @@ const styles = ({ font, base, border, link, baseBackground, spacing, fonts }) =>
 	input: {
 		display: 'block',
 		width: '100%',
-		padding: [[spacing.half, spacing[1]]],
+		padding: [[spacing[0], spacing[1]]],
 		color: base,
 		backgroundColor: baseBackground,
 		fontFamily: font,

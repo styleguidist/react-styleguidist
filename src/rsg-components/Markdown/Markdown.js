@@ -179,7 +179,7 @@ const styles = ({ base, font, fonts, monospace, link, linkHover, border, codeBac
 	},
 	td: {
 		fontFamily: font,
-		padding: [[spacing.half, spacing[2], spacing.half, 0]],
+		padding: [[spacing[0], spacing[2], spacing[0], 0]],
 		fontSize: fonts.size14,
 	},
 	th: {

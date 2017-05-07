@@ -18,7 +18,7 @@ export const monospace = ['Consolas', '"Liberation Mono"', 'Menlo', 'monospace']
 export const small = '@media (max-width: 600px)';
 export const sidebarWidth = 200;
 export const spacing = {
-	half: `${spacingFactor / 2}px`,  // 4
+	0: `${spacingFactor / 2}px`,  // 4
 	1: `${spacingFactor}px`,      // 8
 	2: `${spacingFactor * 2}px`,  // 16
 	3: `${spacingFactor * 3}px`,  // 24

@@ -39,7 +39,7 @@ const styles = ({ font, base, light, sidebarWidth, border, baseBackground, codeB
 			position: 'static',
 			width: 'auto',
 			borderWidth: [[1, 0, 0, 0]],
-			paddingBottom: spacing.half,
+			paddingBottom: spacing[0],
 		},
 	},
 	logo: {

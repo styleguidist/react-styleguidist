@@ -15,7 +15,7 @@ const styles = ({ font, monospace, light, codeBackground, spacing, fonts }) => (
 		'.CodeMirror.CodeMirror': {
 			fontFamily: monospace,
 			height: 'auto',
-			padding: [[spacing.half, spacing[2]]],
+			padding: [[spacing[0], spacing[2]]],
 			fontSize: fonts.size12,
 		},
 		'.CodeMirror-scroll.CodeMirror-scroll': {

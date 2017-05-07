@@ -21,7 +21,7 @@ const styles = ({ base, font, border, light, lightest, name, type, spacing, font
 	cell: {
 		color: base,
 		paddingRight: spacing[2],
-		paddingTop: spacing.half,
+		paddingTop: spacing[0],
 		verticalAlign: 'top',
 		fontFamily: font,
 		fontSize: fonts.size12,
@@ -29,7 +29,7 @@ const styles = ({ base, font, border, light, lightest, name, type, spacing, font
 	cellHeading: {
 		color: base,
 		paddingRight: spacing[2],
-		paddingBottom: spacing.half,
+		paddingBottom: spacing[0],
 		textAlign: 'left',
 		fontFamily: font,
 		fontWeight: 'bold',
