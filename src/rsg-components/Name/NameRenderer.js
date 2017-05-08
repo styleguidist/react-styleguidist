@@ -4,14 +4,14 @@ import Code from 'rsg-components/Code';
 import Styled from 'rsg-components/Styled';
 import cx from 'classnames';
 
-const styles = ({ monospace, name, light }) => ({
+const styles = ({ fontFamily, fontSize, color }) => ({
 	name: {
-		fontFamily: monospace,
-		fontSize: 13,
-		color: name,
+		fontFamily: fontFamily.monospace,
+		fontSize: fontSize.small,
+		color: color.name,
 	},
 	isDeprecated: {
-		color: light,
+		color: color.light,
 		textDecoration: 'line-through',
 	},
 });

@@ -39,8 +39,8 @@ const styles = ({ space, color, fontFamily, fontSize }) => ({
 		paddingRight: 0,
 	},
 	para: {
-		marginBottom: 15,
-		fontSize: 13,
+		marginBottom: space[2],
+		fontSize: fontSize.small,
 	},
 });
 

@@ -6,10 +6,10 @@ import Code from 'rsg-components/Code';
 import Name from 'rsg-components/Name';
 import Group from 'react-group';
 
-export const styles = ({ type }) => ({
+export const styles = ({ color }) => ({
 	type: {
 		fontSize: 'inherit',
-		color: type,
+		color: color.type,
 	},
 });
 

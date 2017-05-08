@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import Argument from 'rsg-components/Argument';
 import Styled from 'rsg-components/Styled';
 
-export const styles = () => ({
+export const styles = ({ space }) => ({
 	root: {
-		marginBottom: 15,
+		marginBottom: space[2],
 		fontSize: 'inherit',
 	},
 });
