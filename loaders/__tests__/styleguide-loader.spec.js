@@ -20,7 +20,7 @@ it('should return valid, parsable JS', () => {
 		addContextDependency: noop,
 	}, readFileSync(file, 'utf8'));
 	expect(result).toBeTruthy();
-	expect(new vm.Script(result)).not.toThrowError(SyntaxError);
+	expect(() => new vm.Script(result)).not.toThrow();
 });
 
 it('should return correct component paths: glob', () => {
@@ -35,7 +35,7 @@ it('should return correct component paths: glob', () => {
 		addContextDependency: noop,
 	}, readFileSync(file, 'utf8'));
 	expect(result).toBeTruthy();
-	expect(new vm.Script(result)).not.toThrowError(SyntaxError);
+	expect(() => new vm.Script(result)).not.toThrow();
 	expect(result).toMatch(`'filepath': 'components/Button/Button.js'`);
 	expect(result).toMatch(`'filepath': 'components/Placeholder/Placeholder.js'`);
 });
@@ -57,7 +57,7 @@ it('should return correct component paths: function returning absolute paths', (
 		addContextDependency: noop,
 	}, readFileSync(file, 'utf8'));
 	expect(result).toBeTruthy();
-	expect(new vm.Script(result)).not.toThrowError(SyntaxError);
+	expect(() => new vm.Script(result)).not.toThrow();
 	expect(result).toMatch(`'filepath': 'components/Button/Button.js'`);
 	expect(result).toMatch(`'filepath': 'components/Placeholder/Placeholder.js'`);
 });
@@ -79,7 +79,7 @@ it('should return correct component paths: function returning relative paths', (
 		addContextDependency: noop,
 	}, readFileSync(file, 'utf8'));
 	expect(result).toBeTruthy();
-	expect(new vm.Script(result)).not.toThrowError(SyntaxError);
+	expect(() => new vm.Script(result)).not.toThrow();
 	expect(result).toMatch(`'filepath': 'components/Button/Button.js'`);
 	expect(result).toMatch(`'filepath': 'components/Placeholder/Placeholder.js'`);
 });
@@ -102,7 +102,7 @@ it('should filter out components without examples if skipComponentsWithoutExampl
 		addContextDependency: noop,
 	}, readFileSync(file, 'utf8'));
 	expect(result).toBeTruthy();
-	expect(new vm.Script(result)).not.toThrowError(SyntaxError);
+	expect(() => new vm.Script(result)).not.toThrow();
 	expect(result).toMatch(`'filepath': 'components/Button/Button.js'`);
 	expect(result.includes('RandomButton.js')).toBeFalsy();
 });

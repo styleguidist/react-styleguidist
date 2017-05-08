@@ -10,5 +10,6 @@ const BIN_PATH = path.resolve(__dirname, '../styleguidist.js');
 // Very simple test to be sure we’re not using any syntax that is not supported in versions of Node we support
 it('should not throw when parsing a script', () => {
 	const code = stripShebang(fs.readFileSync(BIN_PATH, 'utf8'));
-	expect(new vm.Script(code)).not.toThrowError(SyntaxError);
+
+	expect(() => new vm.Script(code)).not.toThrow();
 });
