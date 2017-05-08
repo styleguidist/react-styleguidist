@@ -9,7 +9,7 @@ const styles = ({ fontFamily, fontSize, color, space }) => ({
 		lineHeight: 1.2,
 		fontSize: fontSize.small,
 		fontFamily: fontFamily.monospace,
-		color: color.background,
+		color: color.error,
 		backgroundColor: color.errorBackground,
 		whiteSpace: 'pre',
 	},

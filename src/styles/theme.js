@@ -10,7 +10,6 @@ export const space = [
 ];
 
 export const color = {
-	background: '#fff',
 	base: '#333',
 	light: '#999',
 	lightest: '#ccc',
@@ -19,9 +18,11 @@ export const color = {
 	border: '#e8e8e8',
 	name: '#7f9a44',
 	type: '#b77daa',
+	error: '#fff',
 	baseBackground: '#fff',
 	errorBackground: '#c00',
 	codeBackground: '#f5f5f5',
+	sidebarBackground: '#f5f5f5',
 };
 
 export const fontFamily = {
@@ -47,4 +48,5 @@ export const mq = {
 };
 
 export const borderRadius = 3;
+export const maxWidth = 1000;
 export const sidebarWidth = 200;

@@ -5,7 +5,7 @@ import Markdown from 'rsg-components/Markdown';
 import Styled from 'rsg-components/Styled';
 import cx from 'classnames';
 
-const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space }) => ({
+const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth }) => ({
 	root: {
 		color: color.base,
 		backgroundColor: color.baseBackground,
@@ -17,7 +17,7 @@ const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space }) => ({
 		},
 	},
 	content: {
-		maxWidth: 1000,
+		maxWidth,
 		padding: [[space[2], space[4]]],
 		margin: [[0, 'auto']],
 		[mq.small]: {
@@ -26,7 +26,7 @@ const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space }) => ({
 		display: 'block',
 	},
 	sidebar: {
-		backgroundColor: color.codeBackground,
+		backgroundColor: color.sidebarBackground,
 		border: [[color.border, 'solid']],
 		borderWidth: [[0, 1, 0, 0]],
 		position: 'fixed',

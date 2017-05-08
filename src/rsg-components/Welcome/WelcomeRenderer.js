@@ -4,9 +4,9 @@ import Markdown from 'rsg-components/Markdown';
 import Styled from 'rsg-components/Styled';
 import { DOCS_COMPONENTS } from '../../../scripts/consts';
 
-const styles = ({ space }) => ({
+const styles = ({ space, maxWidth }) => ({
 	root: {
-		maxWidth: 900,
+		maxWidth,
 		margin: [[0, 'auto']],
 		padding: space[4],
 	},
