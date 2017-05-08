@@ -121,9 +121,9 @@ MyComponent.propTypes = {
 }
 ```
 
-## Using JsDoc tags
+## Using JSDoc tags
 
-You can use the following [JsDoc](http://usejsdoc.org/) tags when documenting components, props and methods:
+You can use the following [JSDoc](http://usejsdoc.org/) tags when documenting components, props and methods:
 
 - [@deprecated](http://usejsdoc.org/tags-deprecated.html)
 - [@see, @link](http://usejsdoc.org/tags-see.html)
@@ -137,7 +137,7 @@ When documenting props you can also use:
 
 All tags can render Markdown.
 
-```
+```javascript
 /**
  * The only true button.
  *
