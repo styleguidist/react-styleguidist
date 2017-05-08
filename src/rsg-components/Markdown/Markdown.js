@@ -65,48 +65,48 @@ const getInlineOverrides = memoize(classes => {
 	};
 }, () => 'getInlineOverrides');
 
-const styles = ({ base, font, fonts, monospace, link, linkHover, border, codeBackground, spacing }) => ({
+const styles = ({ space, fontFamily, fontSize, color, borderRadius }) => ({
 	base: {
-		color: base,
-		fontFamily: font,
+		color: color.base,
+		fontFamily: fontFamily.base,
 		fontSize: 'inherit',
 	},
 	para: {
-		color: base,
-		fontFamily: font,
+		color: color.base,
+		fontFamily: fontFamily.base,
 		fontSize: 'inherit',
-		margin: [[0, 0, spacing.spacing16, 0]],
+		margin: [[0, 0, space[2], 0]],
 		lineHeight: 1.5,
 	},
-	a: linkStyles({ link, linkHover }).link,
+	a: linkStyles({ color }).link,
 	h1: {
 		composes: '$para',
-		fontSize: fonts.h1,
+		fontSize: fontSize.h1,
 		fontWeight: 'normal',
 	},
 	h2: {
 		composes: '$para',
-		fontSize: fonts.h2,
+		fontSize: fontSize.h2,
 		fontWeight: 'normal',
 	},
 	h3: {
 		composes: '$para',
-		fontSize: fonts.h3,
+		fontSize: fontSize.h3,
 		fontWeight: 'normal',
 	},
 	h4: {
 		composes: '$para',
-		fontSize: fonts.h4,
+		fontSize: fontSize.h4,
 		fontWeight: 'normal',
 	},
 	h5: {
 		composes: '$para',
-		fontSize: fonts.h5,
+		fontSize: fontSize.h5,
 		fontWeight: 'normal',
 	},
 	h6: {
 		composes: '$para',
-		fontSize: fonts.h6,
+		fontSize: fontSize.h6,
 		fontWeight: 'normal',
 		fontStyle: 'italic',
 	},
@@ -115,33 +115,33 @@ const styles = ({ base, font, fonts, monospace, link, linkHover, border, codeBac
 	},
 	ul: {
 		composes: '$para',
-		paddingLeft: spacing[3],
+		paddingLeft: space[3],
 	},
 	ol: {
 		composes: '$para',
 		listStyleType: 'decimal',
-		paddingLeft: spacing[3],
+		paddingLeft: space[3],
 	},
 	li: {
 		composes: '$base',
 		listStyleType: 'inherit',
 	},
 	input: {
-		color: base,
+		color: color.base,
 		display: 'inline-block',
 		margin: [[0, '0.35em', '0.25em', '-1.2em']],
 		verticalAlign: 'middle',
 	},
 	blockquote: {
 		composes: '$para',
-		fontSize: fonts.size14,
-		margin: [[spacing[2], spacing[4]]],
+		fontSize: fontSize.base,
+		margin: [[space[2], space[4]]],
 		padding: 0,
 	},
 	hr: {
 		composes: '$para',
 		borderWidth: [[0, 0, 1, 0]],
-		borderColor: border,
+		borderColor: color.border,
 		borderStyle: 'solid',
 	},
 	em: {
@@ -153,7 +153,7 @@ const styles = ({ base, font, fonts, monospace, link, linkHover, border, codeBac
 		fontWeight: 'bold',
 	},
 	code: {
-		fontFamily: monospace,
+		fontFamily: fontFamily.monospace,
 		fontSize: 'inherit',
 		color: 'inherit',
 		background: 'transparent',
@@ -161,11 +161,11 @@ const styles = ({ base, font, fonts, monospace, link, linkHover, border, codeBac
 	},
 	pre: {
 		composes: '$para',
-		backgroundColor: codeBackground,
-		border: [[1, border, 'solid']],
-		padding: [[spacing[1], spacing[2]]],
-		fontSize: fonts.size12,
-		borderRadius: 3,
+		backgroundColor: color.codeBackground,
+		border: [[1, color.border, 'solid']],
+		padding: [[space[1], space[2]]],
+		fontSize: fontSize.small,
+		borderRadius,
 		whiteSpace: 'pre',
 	},
 	table: {
@@ -178,9 +178,9 @@ const styles = ({ base, font, fonts, monospace, link, linkHover, border, codeBac
 	tbody: {
 	},
 	td: {
-		fontFamily: font,
-		padding: [[spacing[0], spacing[2], spacing[0], 0]],
-		fontSize: fonts.size14,
+		fontFamily: fontFamily.base,
+		padding: [[space[0], space[2], space[0], 0]],
+		fontSize: fontSize.base,
 	},
 	th: {
 		composes: '$td',

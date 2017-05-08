@@ -2,21 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ font, monospace, light, codeBackground, spacing, fonts }) => ({
+const styles = ({ fontFamily, color, space, fontSize }) => ({
 	root: {
-		padding: [[spacing[1], spacing[2], spacing[1], spacing[1]]],
-		fontFamily: font,
-		fontSize: fonts.size12,
-		color: light,
-		backgroundColor: codeBackground,
+		padding: [[space[1], space[2], space[1], space[1]]],
+		fontFamily: fontFamily.base,
+		fontSize: fontSize.small,
+		color: color.light,
+		backgroundColor: color.codeBackground,
 	},
 	// Tweak CodeMirror styles. Duplicate selectors are for increased specificity
 	'@global': {
 		'.CodeMirror.CodeMirror': {
-			fontFamily: monospace,
+			fontFamily: fontFamily.monospace,
 			height: 'auto',
-			padding: [[spacing[0], spacing[2]]],
-			fontSize: fonts.size12,
+			padding: [[space[0], space[2]]],
+			fontSize: fontSize.small,
 		},
 		'.CodeMirror-scroll.CodeMirror-scroll': {
 			height: 'auto',

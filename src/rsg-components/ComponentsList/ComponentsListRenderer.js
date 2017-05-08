@@ -4,31 +4,31 @@ import cx from 'classnames';
 import Link from 'rsg-components/Link';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ base, font, small, spacing, fonts }) => ({
+const styles = ({ color, fontFamily, fontSize, space, mq }) => ({
 	list: {
 		margin: 0,
-		paddingLeft: spacing[2],
+		paddingLeft: space[2],
 	},
 	item: {
-		color: base,
+		color: color.base,
 		display: 'block',
-		margin: [[spacing[1], 0, spacing[1], 0]],
-		fontFamily: font,
-		fontSize: fonts.size14,
+		margin: [[space[1], 0, space[1], 0]],
+		fontFamily: fontFamily.base,
+		fontSize: fontSize.base,
 		listStyle: 'none',
 		overflow: 'hidden',
 		textOverflow: 'ellipsis',
 	},
 	isChild: {
-		[small]: {
+		[mq.small]: {
 			display: 'inline-block',
-			margin: [[0, spacing[1], 0, 0]],
+			margin: [[0, space[1], 0, 0]],
 		},
 	},
 	heading: {
-		color: base,
-		marginTop: spacing[1],
-		fontFamily: font,
+		color: color.base,
+		marginTop: space[1],
+		fontFamily: fontFamily.base,
 		fontWeight: 'bold',
 	},
 });

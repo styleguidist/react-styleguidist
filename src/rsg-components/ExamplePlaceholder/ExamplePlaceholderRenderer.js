@@ -4,19 +4,19 @@ import Styled from 'rsg-components/Styled';
 import Markdown from 'rsg-components/Markdown';
 import { DOCS_DOCUMENTING } from '../../../scripts/consts';
 
-const styles = ({ font, light, lightest, fonts }) => ({
+const styles = ({ fontFamily, fontSize, color }) => ({
 	button: {
 		padding: 0,
-		fontSize: fonts.size14,
-		fontFamily: font,
+		fontSize: fontSize.base,
+		fontFamily: fontFamily.base,
 		textDecoration: 'underline',
-		color: light,
+		color: color.light,
 		border: 0,
 		cursor: 'pointer',
 		background: 'transparent',
 		'&:hover, &:active': {
 			isolate: false,
-			color: lightest,
+			color: color.lightest,
 		},
 	},
 });

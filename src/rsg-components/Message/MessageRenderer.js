@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import Markdown from 'rsg-components/Markdown';
 import Styled from 'rsg-components/Styled';
 
-const styles = (spacing) => ({
+const styles = ({ space }) => ({
 	root: {
-		marginBottom: spacing[4],
+		marginBottom: space[4],
 	},
 });
 

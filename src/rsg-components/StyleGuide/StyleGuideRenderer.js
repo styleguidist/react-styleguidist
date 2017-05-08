@@ -5,29 +5,29 @@ import Markdown from 'rsg-components/Markdown';
 import Styled from 'rsg-components/Styled';
 import cx from 'classnames';
 
-const styles = ({ font, base, light, sidebarWidth, border, baseBackground, codeBackground, small, spacing, fonts }) => ({
+const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space }) => ({
 	root: {
-		color: base,
-		backgroundColor: baseBackground,
+		color: color.base,
+		backgroundColor: color.baseBackground,
 	},
 	hasSidebar: {
 		paddingLeft: sidebarWidth,
-		[small]: {
+		[mq.small]: {
 			paddingLeft: 0,
 		},
 	},
 	content: {
 		maxWidth: 1000,
-		padding: [[spacing[2], spacing[4]]],
+		padding: [[space[2], space[4]]],
 		margin: [[0, 'auto']],
-		[small]: {
-			padding: spacing[2],
+		[mq.small]: {
+			padding: space[2],
 		},
 		display: 'block',
 	},
 	sidebar: {
-		backgroundColor: codeBackground,
-		border: [[border, 'solid']],
+		backgroundColor: color.codeBackground,
+		border: [[color.border, 'solid']],
 		borderWidth: [[0, 1, 0, 0]],
 		position: 'fixed',
 		top: 0,
@@ -35,22 +35,22 @@ const styles = ({ font, base, light, sidebarWidth, border, baseBackground, codeB
 		bottom: 0,
 		width: sidebarWidth,
 		overflow: 'auto',
-		[small]: {
+		[mq.small]: {
 			position: 'static',
 			width: 'auto',
 			borderWidth: [[1, 0, 0, 0]],
-			paddingBottom: spacing[0],
+			paddingBottom: space[0],
 		},
 	},
 	logo: {
-		padding: spacing[2],
-		borderBottom: [[1, border, 'solid']],
+		padding: space[2],
+		borderBottom: [[1, color.border, 'solid']],
 	},
 	footer: {
 		display: 'block',
-		color: light,
-		fontFamily: font,
-		fontSize: fonts.fontSize12,
+		color: color.light,
+		fontFamily: fontFamily.base,
+		fontSize: fontSize.small,
 	},
 });
 

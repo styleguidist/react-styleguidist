@@ -6,58 +6,58 @@ import Styled from 'rsg-components/Styled';
 import Group from 'react-group';
 import { unquote, getType, showSpaces } from './util';
 
-const styles = ({ base, font, border, light, lightest, name, type, spacing, fonts }) => ({
+const styles = ({ space, color, fontFamily, fontSize }) => ({
 	table: {
 		width: '100%',
 		borderCollapse: 'collapse',
 	},
 	tableHead: {
-		borderBottom: [[1, border, 'solid']],
+		borderBottom: [[1, color.border, 'solid']],
 	},
 	tableBody: {
 	},
 	row: {
 	},
 	cell: {
-		color: base,
-		paddingRight: spacing[2],
-		paddingTop: spacing[0],
+		color: color.base,
+		paddingRight: space[2],
+		paddingTop: space[1],
 		verticalAlign: 'top',
-		fontFamily: font,
-		fontSize: fonts.size12,
+		fontFamily: fontFamily.base,
+		fontSize: fontSize.small,
 	},
 	cellHeading: {
-		color: base,
-		paddingRight: spacing[2],
-		paddingBottom: spacing[0],
+		color: color.base,
+		paddingRight: space[2],
+		paddingBottom: space[1],
 		textAlign: 'left',
-		fontFamily: font,
+		fontFamily: fontFamily.base,
 		fontWeight: 'bold',
-		fontSize: fonts.size12,
+		fontSize: fontSize.small,
 	},
 	cellDesc: {
-		color: base,
+		color: color.base,
 		width: '99%',
-		paddingLeft: spacing[2],
+		paddingLeft: space[2],
 	},
 	required: {
-		fontFamily: font,
-		fontSize: fonts.size12,
-		color: light,
+		fontFamily: fontFamily.base,
+		fontSize: fontSize.small,
+		color: color.light,
 	},
 	name: {
-		fontSize: fonts.size12,
-		color: name,
+		fontSize: fontSize.small,
+		color: color.name,
 	},
 	type: {
-		fontSize: fonts.size12,
-		color: type,
+		fontSize: fontSize.small,
+		color: color.type,
 	},
 	function: {
-		fontFamily: font,
-		fontSize: fonts.size12,
-		color: light,
-		borderBottom: `1px dotted ${lightest}`,
+		fontFamily: fontFamily.base,
+		fontSize: fontSize.small,
+		color: color.light,
+		borderBottom: [[1, 'dotted', color.lightest]],
 	},
 });
 
