@@ -18,6 +18,9 @@ const styles = ({ fontFamily, color, space, fontSize }) => ({
 			padding: [[space[0], space[2]]],
 			fontSize: fontSize.small,
 		},
+		'.CodeMirror.CodeMirror pre': {
+			padding: 0,
+		},
 		'.CodeMirror-scroll.CodeMirror-scroll': {
 			height: 'auto',
 			overflowY: 'hidden',
