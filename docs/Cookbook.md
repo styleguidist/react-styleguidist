@@ -219,9 +219,13 @@ Use config option [theme](Configuration.md#theme) to change fonts, colors, etc. 
 ```javascript
 module.exports = {
   theme: {
-    link: 'firebrick',
-    linkHover: 'salmon',
-    font: '"Comic Sans MS", "Comic Sans", cursive'
+    color: {
+      link: 'firebrick',
+      linkHover: 'salmon',
+    },
+    fontFamily: {
+      base: '"Comic Sans MS", "Comic Sans", cursive'
+    }
   },
   styles: {
     Logo: {
