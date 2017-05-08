@@ -1,12 +1,12 @@
-export const spacingFactor = 8;
+export const spaceFactor = 8;
 export const space = [
-	spacingFactor / 2,  // 4
-	spacingFactor,      // 8
-	spacingFactor * 2,  // 16
-	spacingFactor * 3,  // 24
-	spacingFactor * 4,  // 32
-	spacingFactor * 5,  // 40
-	spacingFactor * 6,  // 48
+	spaceFactor / 2,  // 4
+	spaceFactor,      // 8
+	spaceFactor * 2,  // 16
+	spaceFactor * 3,  // 24
+	spaceFactor * 4,  // 32
+	spaceFactor * 5,  // 40
+	spaceFactor * 6,  // 48
 ];
 
 export const color = {
