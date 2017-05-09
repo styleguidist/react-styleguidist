@@ -243,14 +243,14 @@ describe('filterSectionsByName', () => {
 	});
 });
 
-describe('getComponentNameFromHash', () => {
+describe('getInfoFromHash', () => {
 	it('should return important part of hash if it contains component name', () => {
-		const result = utils.getComponentNameFromHash('#!/Button');
-		expect(result).toEqual({ targetComponentName: 'Button', targetComponentIndex: null });
+		const result = utils.getInfoFromHash('#!/Button');
+		expect(result).toEqual({ targetName: 'Button', targetIndex: null });
 	});
 
 	it('should return an empty object if hash contains no component name', () => {
-		const result = utils.getComponentNameFromHash('Button');
+		const result = utils.getInfoFromHash('Button');
 		expect(result).toEqual({});
 	});
 });

@@ -1,13 +1,34 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ font, light, codeBackground }) => ({
+const styles = ({ fontFamily, color, space, fontSize }) => ({
 	root: {
-		padding: [[7, 16, 10, 7]],
-		fontFamily: font,
-		fontSize: 12,
-		color: light,
-		backgroundColor: codeBackground,
+		padding: [[space[1], space[2], space[1], space[1]]],
+		fontFamily: fontFamily.base,
+		fontSize: fontSize.small,
+		color: color.light,
+		backgroundColor: color.codeBackground,
+	},
+	// Tweak CodeMirror styles. Duplicate selectors are for increased specificity
+	'@global': {
+		'.CodeMirror.CodeMirror': {
+			fontFamily: fontFamily.monospace,
+			height: 'auto',
+			padding: [[space[0], space[2]]],
+			fontSize: fontSize.small,
+		},
+		'.CodeMirror.CodeMirror pre': {
+			padding: 0,
+		},
+		'.CodeMirror-scroll.CodeMirror-scroll': {
+			height: 'auto',
+			overflowY: 'hidden',
+			overflowX: 'auto',
+		},
+		'.cm-error.cm-error': {
+			background: 'none',
+		},
 	},
 });
 

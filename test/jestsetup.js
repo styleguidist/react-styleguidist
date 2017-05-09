@@ -8,7 +8,7 @@ global.mount = mount;
 
 // Skip createElement warnings but fail tests on any other warning
 console.error = message => {
-	if (!/(React.createElement: type should not be null)/.test(message)) {
+	if (!/(Warning: Accessing PropTypes via the main React package|React.createClass is deprecated)/.test(message)) {
 		throw new Error(message);
 	}
 };
@@ -35,8 +35,7 @@ document.createRange = function() {
 // requestAnimationFrame “polyfill”
 window.requestAnimationFrame = a => a;
 
-// Mocks
-jest.mock('react-scripts/config/webpack.config.dev', () => ({ cra: true }));
+jest.mock('react-scripts/config/webpack.config.dev', () => ({ cra: true }), { virtual: true });
 jest.mock('webpack-dev-server', function() {
 	return function() {
 		return {

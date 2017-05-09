@@ -23,9 +23,10 @@ exports[`should render PropTypes.arrayOf 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class>
-          colors
-        </_class>
+        <_class
+          deprecated={false}
+          name="colors"
+        />
       </td>
       <td>
         <_class>
@@ -36,9 +37,75 @@ exports[`should render PropTypes.arrayOf 1`] = `
       <td
         className="undefined undefined"
       >
-        <Group
-          separator={<br />}
+        <div>
+          <JsDoc />
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`should render PropTypes.arrayOf(PropTypes.shape) 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Default
+      </th>
+      <th
+        className="undefined undefined"
+      >
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class
+          deprecated={false}
+          name="foos"
         />
+      </td>
+      <td>
+        <_class>
+          shape[]
+        </_class>
+      </td>
+      <td />
+      <td
+        className="undefined undefined"
+      >
+        <div>
+          <div>
+            <div>
+              <_class>
+                bar
+              </_class>
+              : 
+              <_class>
+                number
+              </_class>
+            </div>
+            <div>
+              <_class>
+                baz
+              </_class>
+              : 
+              <_class>
+                any
+              </_class>
+            </div>
+          </div>
+          <JsDoc />
+        </div>
       </td>
     </tr>
   </tbody>
@@ -68,9 +135,10 @@ exports[`should render PropTypes.instanceOf 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class>
-          num
-        </_class>
+        <_class
+          deprecated={false}
+          name="num"
+        />
       </td>
       <td>
         <_class>
@@ -81,9 +149,9 @@ exports[`should render PropTypes.instanceOf 1`] = `
       <td
         className="undefined undefined"
       >
-        <Group
-          separator={<br />}
-        />
+        <div>
+          <JsDoc />
+        </div>
       </td>
     </tr>
   </tbody>
@@ -113,9 +181,10 @@ exports[`should render PropTypes.objectOf 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class>
-          colors
-        </_class>
+        <_class
+          deprecated={false}
+          name="colors"
+        />
       </td>
       <td>
         <_class>
@@ -126,9 +195,9 @@ exports[`should render PropTypes.objectOf 1`] = `
       <td
         className="undefined undefined"
       >
-        <Group
-          separator={<br />}
-        />
+        <div>
+          <JsDoc />
+        </div>
       </td>
     </tr>
   </tbody>
@@ -158,9 +227,10 @@ exports[`should render PropTypes.objectOf(PropTypes.shape) 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class>
-          colors
-        </_class>
+        <_class
+          deprecated={false}
+          name="colors"
+        />
       </td>
       <td>
         <_class>
@@ -171,32 +241,160 @@ exports[`should render PropTypes.objectOf(PropTypes.shape) 1`] = `
       <td
         className="undefined undefined"
       >
-        <Group
-          separator={<br />}
-        >
+        <div>
           <div>
-            <_class>
-              bar
-            </_class>
-            : 
-            <_class>
-              number
-            </_class>
-             — 
+            <div>
+              <_class>
+                bar
+              </_class>
+              : 
+              <_class>
+                number
+              </_class>
+               — 
+              <span>
+                Required
+              </span>
+            </div>
+            <div>
+              <_class>
+                baz
+              </_class>
+              : 
+              <_class>
+                any
+              </_class>
+            </div>
+          </div>
+          <JsDoc />
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`should render PropTypes.oneOf 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Default
+      </th>
+      <th
+        className="undefined undefined"
+      >
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class
+          deprecated={false}
+          name="size"
+        />
+      </td>
+      <td>
+        <_class>
+          enum
+        </_class>
+      </td>
+      <td />
+      <td
+        className="undefined undefined"
+      >
+        <div>
+          <div>
             <span>
-              Required
+              One of: 
+              <Group
+                inline={true}
+                separator=", "
+              >
+                <_class>
+                  small
+                </_class>
+                <_class>
+                  normal
+                </_class>
+                <_class>
+                  large
+                </_class>
+              </Group>
             </span>
           </div>
+          <JsDoc />
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`should render PropTypes.oneOfType 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Default
+      </th>
+      <th
+        className="undefined undefined"
+      >
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class
+          deprecated={false}
+          name="union"
+        />
+      </td>
+      <td>
+        <_class>
+          union
+        </_class>
+      </td>
+      <td />
+      <td
+        className="undefined undefined"
+      >
+        <div>
           <div>
-            <_class>
-              baz
-            </_class>
-            : 
-            <_class>
-              any
-            </_class>
+            <span>
+              One of type: 
+              <Group
+                inline={true}
+                separator=", "
+              >
+                <_class>
+                  string
+                </_class>
+                <_class>
+                  number
+                </_class>
+              </Group>
+            </span>
           </div>
-        </Group>
+          <JsDoc />
+        </div>
       </td>
     </tr>
   </tbody>
@@ -226,9 +424,10 @@ exports[`should render PropTypes.shape 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class>
-          foo
-        </_class>
+        <_class
+          deprecated={false}
+          name="foo"
+        />
       </td>
       <td>
         <_class>
@@ -239,32 +438,113 @@ exports[`should render PropTypes.shape 1`] = `
       <td
         className="undefined undefined"
       >
-        <Group
-          separator={<br />}
-        >
+        <div>
           <div>
-            <_class>
-              bar
-            </_class>
-            : 
-            <_class>
-              number
-            </_class>
-             — 
-            <span>
-              Required
-            </span>
+            <div>
+              <_class>
+                bar
+              </_class>
+              : 
+              <_class>
+                number
+              </_class>
+               — 
+              <span>
+                Required
+              </span>
+            </div>
+            <div>
+              <_class>
+                baz
+              </_class>
+              : 
+              <_class>
+                any
+              </_class>
+            </div>
           </div>
+          <JsDoc />
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`should render PropTypes.shape with description 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Default
+      </th>
+      <th
+        className="undefined undefined"
+      >
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class
+          deprecated={false}
+          name="foo"
+        />
+      </td>
+      <td>
+        <_class>
+          shape
+        </_class>
+      </td>
+      <td />
+      <td
+        className="undefined undefined"
+      >
+        <div>
           <div>
-            <_class>
-              baz
-            </_class>
-            : 
-            <_class>
-              any
-            </_class>
+            <div>
+              <_class>
+                bar
+              </_class>
+              : 
+              <_class>
+                number
+              </_class>
+               — 
+              <span>
+                Required
+              </span>
+               — 
+              <_class
+                inline={true}
+                text="Number"
+              />
+            </div>
+            <div>
+              <_class>
+                baz
+              </_class>
+              : 
+              <_class>
+                any
+              </_class>
+               — 
+              <_class
+                inline={true}
+                text="Any"
+              />
+            </div>
           </div>
-        </Group>
+          <JsDoc />
+        </div>
       </td>
     </tr>
   </tbody>
@@ -294,9 +574,10 @@ exports[`should render PropTypes.string 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class>
-          color
-        </_class>
+        <_class
+          deprecated={false}
+          name="color"
+        />
       </td>
       <td>
         <_class>
@@ -307,9 +588,9 @@ exports[`should render PropTypes.string 1`] = `
       <td
         className="undefined undefined"
       >
-        <Group
-          separator={<br />}
-        />
+        <div>
+          <JsDoc />
+        </div>
       </td>
     </tr>
   </tbody>
@@ -339,9 +620,10 @@ exports[`should render PropTypes.string with a default value 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class>
-          color
-        </_class>
+        <_class
+          deprecated={false}
+          name="color"
+        />
       </td>
       <td>
         <_class>
@@ -356,9 +638,9 @@ exports[`should render PropTypes.string with a default value 1`] = `
       <td
         className="undefined undefined"
       >
-        <Group
-          separator={<br />}
-        />
+        <div>
+          <JsDoc />
+        </div>
       </td>
     </tr>
   </tbody>
@@ -388,9 +670,10 @@ exports[`should render PropTypes.string.isRequired 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class>
-          color
-        </_class>
+        <_class
+          deprecated={false}
+          name="color"
+        />
       </td>
       <td>
         <_class>
@@ -405,9 +688,98 @@ exports[`should render PropTypes.string.isRequired 1`] = `
       <td
         className="undefined undefined"
       >
-        <Group
-          separator={<br />}
+        <div>
+          <JsDoc />
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`should render arguments from JsDoc tags 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Default
+      </th>
+      <th
+        className="undefined undefined"
+      >
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class
+          deprecated={false}
+          name="size"
         />
+      </td>
+      <td>
+        <_class>
+          number
+        </_class>
+      </td>
+      <td />
+      <td
+        className="undefined undefined"
+      >
+        <div>
+          <_class
+            text="Test description"
+          />
+          <JsDoc
+            arg={
+              Array [
+                Object {
+                  "description": "Converts foo to bar",
+                  "name": "Foo",
+                  "type": Object {
+                    "name": "Array",
+                  },
+                },
+              ]
+            }
+            param={
+              Array [
+                Object {
+                  "name": "Bar",
+                },
+              ]
+            }
+          />
+          <div>
+            <h4>
+              Arguments
+            </h4>
+            <_class
+              args={
+                Array [
+                  Object {
+                    "description": "Converts foo to bar",
+                    "name": "Foo",
+                    "type": Object {
+                      "name": "Array",
+                    },
+                  },
+                  Object {
+                    "name": "Bar",
+                  },
+                ]
+              }
+            />
+          </div>
+        </div>
       </td>
     </tr>
   </tbody>
@@ -437,9 +809,10 @@ exports[`should render description in Markdown 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class>
-          color
-        </_class>
+        <_class
+          deprecated={false}
+          name="color"
+        />
       </td>
       <td>
         <_class>
@@ -450,14 +823,12 @@ exports[`should render description in Markdown 1`] = `
       <td
         className="undefined undefined"
       >
-        <Group
-          separator={<br />}
-        >
+        <div>
           <_class
-            inline={true}
             text="Label"
           />
-        </Group>
+          <JsDoc />
+        </div>
       </td>
     </tr>
   </tbody>
@@ -487,9 +858,10 @@ exports[`should render function body in tooltip 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class>
-          fn
-        </_class>
+        <_class
+          deprecated={false}
+          name="fn"
+        />
       </td>
       <td>
         <_class>
@@ -506,9 +878,67 @@ exports[`should render function body in tooltip 1`] = `
       <td
         className="undefined undefined"
       >
-        <Group
-          separator={<br />}
+        <div>
+          <JsDoc />
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`should render name as deprecated when tag deprecated is present 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Default
+      </th>
+      <th
+        className="undefined undefined"
+      >
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class
+          deprecated={true}
+          name="size"
         />
+      </td>
+      <td>
+        <_class>
+          number
+        </_class>
+      </td>
+      <td />
+      <td
+        className="undefined undefined"
+      >
+        <div>
+          <_class
+            text="Test description"
+          />
+          <JsDoc
+            deprecated={
+              Array [
+                Object {
+                  "description": "Do not use.",
+                  "title": "deprecated",
+                },
+              ]
+            }
+          />
+        </div>
       </td>
     </tr>
   </tbody>
@@ -538,9 +968,10 @@ exports[`should render unknown proptype for a prop when a relevant proptype is n
   <tbody>
     <tr>
       <td>
-        <_class>
-          color
-        </_class>
+        <_class
+          deprecated={false}
+          name="color"
+        />
       </td>
       <td>
         <_class>
@@ -555,9 +986,9 @@ exports[`should render unknown proptype for a prop when a relevant proptype is n
       <td
         className="undefined undefined"
       >
-        <Group
-          separator={<br />}
-        />
+        <div>
+          <JsDoc />
+        </div>
       </td>
     </tr>
   </tbody>

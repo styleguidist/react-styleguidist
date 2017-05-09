@@ -1,12 +1,16 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Link from 'rsg-components/Link';
 import Heading from 'rsg-components/Heading';
+import Markdown from 'rsg-components/Markdown';
+import JsDoc from 'rsg-components/JsDoc';
 import Styled from 'rsg-components/Styled';
+import cx from 'classnames';
 
-const styles = ({ font, monospace, light }) => ({
+const styles = ({ color, fontSize, fontFamily, space }) => ({
 	root: {
-		marginBottom: 50,
-		fontSize: 16,
+		marginBottom: space[6],
+		fontSize: fontSize.text,
 		'&:hover $isolatedLink': {
 			isolate: false,
 			opacity: 1,
@@ -14,42 +18,49 @@ const styles = ({ font, monospace, light }) => ({
 	},
 	header: {
 		position: 'relative',
-		marginBottom: 20,
+		marginBottom: space[3],
 	},
 	isolatedLink: {
 		position: 'absolute',
 		top: 0,
 		right: 0,
-		fontFamily: font,
-		fontSize: 14,
+		fontFamily: fontFamily.base,
+		fontSize: fontSize.base,
 		opacity: 0,
 		transition: 'opacity ease-in-out .15s .2s',
 	},
 	primaryHeading: {
+		color: color.base,
 		position: 'relative',
 		marginTop: 0,
-		marginBottom: 7,
-		fontFamily: font,
-		fontSize: 36,
+		marginBottom: space[1],
+		fontFamily: fontFamily.base,
+		fontSize: fontSize.h2,
 		fontWeight: 'normal',
 	},
 	heading: {
-		margin: [[0, 0, 7]],
-		fontFamily: font,
-		fontSize: 20,
+		color: color.base,
+		margin: [[0, 0, space[1]]],
+		fontFamily: fontFamily.base,
+		fontSize: fontSize.h4,
 		fontWeight: 'normal',
 	},
 	pathLine: {
-		fontFamily: monospace,
-		color: light,
-		fontSize: 14,
+		fontFamily: fontFamily.monospace,
+		color: color.light,
+		fontSize: fontSize.small,
 	},
 	description: {
-		marginBottom: 20,
-		fontSize: 16,
+		color: color.base,
+		marginBottom: space[3],
+		fontSize: fontSize.text,
 	},
 	subsection: {
-		marginBottom: 30,
+		marginBottom: space[4],
+	},
+	isDeprecated: {
+		textDecoration: 'line-through',
+		color: color.light,
 	},
 });
 
@@ -61,13 +72,17 @@ export function ReactComponentRenderer({
 	description,
 	props,
 	methods,
+	tags,
 	examples,
 	isolated = false,
 }) {
+	const headingClasses = cx(classes.primaryHeading, {
+		[classes.isDeprecated]: tags.deprecated,
+	});
 	return (
 		<div className={classes.root} id={name + '-container'}>
 			<header className={classes.header}>
-				<Heading level={2} className={classes.primaryHeading} slug={slug}>
+				<Heading level={2} className={headingClasses} slug={slug}>
 					{name}
 				</Heading>
 				<div className={classes.pathLine}>{pathLine}</div>
@@ -80,7 +95,8 @@ export function ReactComponentRenderer({
 				</div>
 			</header>
 			<div className={classes.description}>
-				{description}
+				{description && <Markdown text={description} />}
+				<JsDoc {...tags} />
 			</div>
 			{props && (
 				<div className={classes.subsection}>
@@ -101,14 +117,19 @@ export function ReactComponentRenderer({
 
 ReactComponentRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
+	tags: PropTypes.object,
 	name: PropTypes.string.isRequired,
 	slug: PropTypes.string.isRequired,
 	pathLine: PropTypes.string.isRequired,
-	description: PropTypes.node,
+	description: PropTypes.string,
 	props: PropTypes.node,
 	methods: PropTypes.node,
 	examples: PropTypes.node,
 	isolated: PropTypes.bool,
+};
+
+ReactComponentRenderer.defaultProps = {
+	tags: {},
 };
 
 export default Styled(styles)(ReactComponentRenderer);

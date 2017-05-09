@@ -1,28 +1,28 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 import Heading from 'rsg-components/Heading';
 import Link from 'rsg-components/Link';
 
-const styles = ({ font }) => ({
+const styles = ({ space, fontFamily, fontSize }) => ({
 	root: {
-		marginBottom: 50,
+		marginBottom: space[4],
 		'&:hover $isolatedLink': {
 			isolate: false,
 			opacity: 1,
 		},
 	},
 	heading: {
-		margin: [[0, 0, 20]],
-		fontFamily: font,
-		fontSize: 38,
-		fontWeight: 'bold',
+		margin: [[0, 0, space[2]]],
+		fontFamily: fontFamily.base,
+		fontSize: fontSize.h1,
 	},
 	isolatedLink: {
 		position: 'absolute',
 		top: 0,
 		right: 0,
-		fontFamily: font,
-		fontSize: 14,
+		fontFamily: fontFamily.base,
+		fontSize: fontSize.base,
 		opacity: 0,
 		transition: 'opacity ease-in-out .15s .2s',
 	},

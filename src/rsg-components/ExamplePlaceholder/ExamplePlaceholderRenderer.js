@@ -1,20 +1,22 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 import Markdown from 'rsg-components/Markdown';
 import { DOCS_DOCUMENTING } from '../../../scripts/consts';
 
-const styles = ({ font, light, lightest }) => ({
+const styles = ({ fontFamily, fontSize, color }) => ({
 	button: {
 		padding: 0,
-		fontSize: 15,
-		fontFamily: font,
+		fontSize: fontSize.base,
+		fontFamily: fontFamily.base,
 		textDecoration: 'underline',
-		color: light,
+		color: color.light,
 		border: 0,
 		cursor: 'pointer',
+		background: 'transparent',
 		'&:hover, &:active': {
 			isolate: false,
-			color: lightest,
+			color: color.lightest,
 		},
 	},
 });
@@ -50,6 +52,8 @@ Create **Readme.md** or **${name}.md** file in the component’s folder like thi
 
         &lt;${name} pizza="&#x1f355;" /&gt;
 
+You may need to **restart** the style guide server after adding an example file.
+
 Read more in the [documenting components guide](${DOCS_DOCUMENTING}).
 					`}
 				/>
@@ -57,7 +61,9 @@ Read more in the [documenting components guide](${DOCS_DOCUMENTING}).
 		}
 
 		return (
-			<button className={classes.button} onClick={this.handleOpen}>Add examples to this component</button>
+			<button className={classes.button} onClick={this.handleOpen}>
+				Add examples to this component
+			</button>
 		);
 	}
 }

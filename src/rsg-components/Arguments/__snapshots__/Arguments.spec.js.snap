@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render arguments 1`] = `
+<div>
+  <_class
+    description="Converts foo to bar"
+    name="Foo"
+    type={
+      Object {
+        "name": "Array",
+      }
+    }
+  />
+  <_class
+    name="Foo"
+  />
+</div>
+`;

@@ -1,58 +1,61 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Editor from 'rsg-components/Editor';
 import Link from 'rsg-components/Link';
 import Preview from 'rsg-components/Preview';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ font, link, linkHover, border, baseBackground, codeBackground }) => ({
+const styles = ({ space, color, fontFamily, fontSize, borderRadius }) => ({
 	root: {
+		color: color.base,
 		position: 'relative',
-		marginBottom: 30,
-		border: [[1, border, 'solid']],
-		borderRadius: '3px 3px 0 3px',
+		marginBottom: space[4],
+		border: [[1, color.border, 'solid']],
+		borderRadius: [[borderRadius, borderRadius, 0, borderRadius]],
+		marginTop: space[0],
 		'&:hover $isolatedLink': {
 			isolate: false,
 			opacity: 1,
 		},
 	},
 	preview: {
-		marginBottom: 3,
-		padding: 15,
+		marginBottom: space[0],
+		padding: space[2],
 	},
 	codeToggle: {
 		position: 'absolute',
 		right: -1,
 		margin: 0,
-		padding: [[6, 8]],
-		fontFamily: font,
-		fontSize: 14,
+		padding: [[space[0], space[1]]],
+		fontFamily: fontFamily.base,
+		fontSize: fontSize.base,
 		lineHeight: 1,
-		color: link,
-		border: [[1, border, 'solid']],
+		color: color.link,
+		border: [[1, color.border, 'solid']],
 		borderTop: 0,
-		borderBottomLeftRadius: 3,
-		borderBottomRightRadius: 3,
+		borderBottomLeftRadius: borderRadius,
+		borderBottomRightRadius: borderRadius,
 		cursor: 'pointer',
 		'&:hover, &:active': {
 			isolate: false,
-			color: linkHover,
+			color: color.linkHover,
 		},
 	},
 	showCode: {
 		composes: '$codeToggle',
-		backgroundColor: baseBackground,
+		backgroundColor: color.baseBackground,
 	},
 	hideCode: {
 		composes: '$codeToggle',
-		backgroundColor: codeBackground,
+		backgroundColor: color.codeBackground,
 	},
 	isolatedLink: {
 		position: 'absolute',
 		top: 0,
 		right: 0,
-		padding: [[6, 8]],
-		fontFamily: font,
-		fontSize: 14,
+		padding: [[space[0], space[1]]],
+		fontFamily: fontFamily.base,
+		fontSize: fontSize.base,
 		opacity: 0,
 		transition: 'opacity ease-in-out .15s .2s',
 	},

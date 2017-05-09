@@ -1,10 +1,11 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ monospace }) => ({
+const styles = ({ fontFamily }) => ({
 	code: {
 		display: 'inline',
-		fontFamily: monospace,
+		fontFamily: fontFamily.monospace,
 		fontSize: 'inherit',
 		color: 'inherit',
 		background: 'transparent',

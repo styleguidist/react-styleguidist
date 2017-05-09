@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react';
-import Markdown from 'rsg-components/Markdown';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Props from 'rsg-components/Props';
 import Methods from 'rsg-components/Methods';
 import Examples from 'rsg-components/Examples';
@@ -12,7 +12,7 @@ const ExamplePlaceholder = process.env.NODE_ENV === 'development'
 
 export default function ReactComponent({ component }, { isolatedComponent = false }) {
 	const { name, slug, pathLine } = component;
-	const { description, props, examples, methods } = component.props;
+	const { description, props, examples, methods, tags } = component.props;
 	if (!name) {
 		return null;
 	}
@@ -22,7 +22,7 @@ export default function ReactComponent({ component }, { isolatedComponent = fals
 			name={name}
 			slug={slug}
 			pathLine={pathLine}
-			description={description && <Markdown text={description} />}
+			description={description}
 			props={props && <Props props={props} />}
 			methods={methods.length > 0 && <Methods methods={methods} />}
 			examples={examples.length > 0
@@ -30,6 +30,7 @@ export default function ReactComponent({ component }, { isolatedComponent = fals
 				: <ExamplePlaceholder name={name} />
 			}
 			isolated={isolatedComponent}
+			tags={tags}
 		/>
 	);
 }

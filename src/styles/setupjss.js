@@ -10,9 +10,11 @@ import nested from 'jss-nested';
 import camelCase from 'jss-camel-case';
 import defaultUnit from 'jss-default-unit';
 import compose from 'jss-compose';
+import global from 'jss-global';
 
 jss.setup({
 	plugins: [
+		global(),
 		isolate({
 			reset: {
 				// Reset all inherited and non-inherited properties

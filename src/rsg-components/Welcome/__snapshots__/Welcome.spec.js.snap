@@ -1,20 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renderer should welcome screen 1`] = `
+exports[`renderer should render welcome screen 1`] = `
 <div>
   <_class
     text="
   # Welcome to React Styleguidist!
   
-  ## Point Styleguidist to your React components
+  **We couldn’t find any components** using these patterns:
   
-  We couldn’t find any components defined in your style guide config or using the default pattern \`src/components/**/*.js\`.
+  - \`foo/*.js\`
+  - \`bar/*.js\`
   
   Create **styleguide.config.js** file in your project root directory like this:
   
-  module.exports = {
-    components: 'src/components/**/*.js'
-  };
+      module.exports = {
+        components: 'src/components/**/*.js'
+      };
   
   Read more in the [locating components guide](https://github.com/styleguidist/react-styleguidist/blob/master/docs/Components.md).
   				"

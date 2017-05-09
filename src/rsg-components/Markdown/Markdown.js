@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { compiler } from 'markdown-to-jsx';
 import mapValues from 'lodash/mapValues';
 // import memoize from 'lodash/memoize';
@@ -64,46 +65,48 @@ const getInlineOverrides = memoize(classes => {
 	};
 }, () => 'getInlineOverrides');
 
-const styles = ({ font, monospace, link, linkHover, border, codeBackground }) => ({
+const styles = ({ space, fontFamily, fontSize, color, borderRadius }) => ({
 	base: {
-		fontFamily: font,
+		color: color.base,
+		fontFamily: fontFamily.base,
 		fontSize: 'inherit',
 	},
 	para: {
-		fontFamily: font,
+		color: color.base,
+		fontFamily: fontFamily.base,
 		fontSize: 'inherit',
-		margin: [[0, 0, 15, 0]],
+		margin: [[0, 0, space[2], 0]],
 		lineHeight: 1.5,
 	},
-	a: linkStyles({ link, linkHover }).link,
+	a: linkStyles({ color }).link,
 	h1: {
 		composes: '$para',
-		fontSize: 36,
+		fontSize: fontSize.h1,
 		fontWeight: 'normal',
 	},
 	h2: {
 		composes: '$para',
-		fontSize: 32,
+		fontSize: fontSize.h2,
 		fontWeight: 'normal',
 	},
 	h3: {
 		composes: '$para',
-		fontSize: 26,
+		fontSize: fontSize.h3,
 		fontWeight: 'normal',
 	},
 	h4: {
 		composes: '$para',
-		fontSize: 21,
+		fontSize: fontSize.h4,
 		fontWeight: 'normal',
 	},
 	h5: {
 		composes: '$para',
-		fontSize: 16,
+		fontSize: fontSize.h5,
 		fontWeight: 'normal',
 	},
 	h6: {
 		composes: '$para',
-		fontSize: 16,
+		fontSize: fontSize.h6,
 		fontWeight: 'normal',
 		fontStyle: 'italic',
 	},
@@ -112,32 +115,33 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 	},
 	ul: {
 		composes: '$para',
-		paddingLeft: 20,
+		paddingLeft: space[3],
 	},
 	ol: {
 		composes: '$para',
 		listStyleType: 'decimal',
-		paddingLeft: 20,
+		paddingLeft: space[3],
 	},
 	li: {
 		composes: '$base',
 		listStyleType: 'inherit',
 	},
 	input: {
+		color: color.base,
 		display: 'inline-block',
 		margin: [[0, '0.35em', '0.25em', '-1.2em']],
 		verticalAlign: 'middle',
 	},
 	blockquote: {
 		composes: '$para',
-		fontSize: 14,
-		margin: [[15, 30]],
+		fontSize: fontSize.base,
+		margin: [[space[2], space[4]]],
 		padding: 0,
 	},
 	hr: {
 		composes: '$para',
 		borderWidth: [[0, 0, 1, 0]],
-		borderColor: border,
+		borderColor: color.border,
 		borderStyle: 'solid',
 	},
 	em: {
@@ -149,7 +153,7 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 		fontWeight: 'bold',
 	},
 	code: {
-		fontFamily: monospace,
+		fontFamily: fontFamily.monospace,
 		fontSize: 'inherit',
 		color: 'inherit',
 		background: 'transparent',
@@ -157,11 +161,11 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 	},
 	pre: {
 		composes: '$para',
-		backgroundColor: codeBackground,
-		border: [[1, border, 'solid']],
-		padding: [[12, 15]],
-		fontSize: 12,
-		borderRadius: 3,
+		backgroundColor: color.codeBackground,
+		border: [[1, color.border, 'solid']],
+		padding: [[space[1], space[2]]],
+		fontSize: fontSize.small,
+		borderRadius,
 		whiteSpace: 'pre',
 	},
 	table: {
@@ -174,9 +178,9 @@ const styles = ({ font, monospace, link, linkHover, border, codeBackground }) =>
 	tbody: {
 	},
 	td: {
-		fontFamily: font,
-		padding: [[6, 15, 6, 0]],
-		fontSize: 14,
+		fontFamily: fontFamily.base,
+		padding: [[space[0], space[2], space[0], 0]],
+		fontSize: fontSize.base,
 	},
 	th: {
 		composes: '$td',

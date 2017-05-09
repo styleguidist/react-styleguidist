@@ -8,9 +8,15 @@ Type: `String`, optional
 
 Your application static assets folder, will be accessible as `/` in the style guide dev server.
 
+#### `compilerConfig`
+
+Type: `Object`, default: `{ objectAssign: 'Object.assign' }`
+
+Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the frontend. This config object will be added as the second argument for `buble.transform`.
+
 #### `components`
 
-Type: `String` or `Function`, default: `src/components/**/*.js`
+Type: `String` or `Function`, default: `src/components/**/*.jsx?`
 
 - when `String`: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules.
 - when `Function`: a function that returns an array of module paths.
@@ -181,7 +187,7 @@ Type: `String`, default: `base16-light`
 
 #### `ignore`
 
-Type: `String[]`, default: `['**/__tests__/**', '**/*.test.js', '**/*.spec.js']`
+Type: `String[]`, default: `['**/__tests__/**', '**/*.test.js', '**/*.test.jsx', '**/*.spec.js', '**/*.spec.jsx']`
 
 Array of [glob pattern](https://github.com/isaacs/node-glob#glob-primer) or files of components that should not be included in the style guide.
 

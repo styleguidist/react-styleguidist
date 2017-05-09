@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import TableOfContents from 'rsg-components/TableOfContents';
 import StyleGuideRenderer from 'rsg-components/StyleGuide/StyleGuideRenderer';
 import Sections from 'rsg-components/Sections';
@@ -11,6 +12,7 @@ export default class StyleGuide extends Component {
 		config: PropTypes.object.isRequired,
 		sections: PropTypes.array.isRequired,
 		welcomeScreen: PropTypes.bool,
+		patterns: PropTypes.array,
 		isolatedComponent: PropTypes.bool,
 		isolatedExample: PropTypes.bool,
 		isolatedSection: PropTypes.bool,
@@ -39,11 +41,11 @@ export default class StyleGuide extends Component {
 	}
 
 	render() {
-		const { config, sections, welcomeScreen, isolatedComponent } = this.props;
+		const { config, sections, welcomeScreen, patterns, isolatedComponent } = this.props;
 
 		if (welcomeScreen) {
 			return (
-				<Welcome />
+				<Welcome patterns={patterns} />
 			);
 		}
 

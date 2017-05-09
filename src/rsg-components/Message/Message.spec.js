@@ -9,3 +9,12 @@ it('renderer should render message', () => {
 
 	expect(actual).toMatchSnapshot();
 });
+
+it('renderer should render message for array', () => {
+	const messages = ['Hello *world*!', 'Foo _bar_'];
+	const actual = shallow(
+		<MessageRenderer classes={{}}>{messages}</MessageRenderer>
+	);
+
+	expect(actual).toMatchSnapshot();
+});

@@ -105,7 +105,7 @@ describe('makeWebpackConfig', () => {
 		/* eslint-enable no-console */
 	});
 
-	it('should merge create-react-app Webpack config', () => {
+	it('should merge Create React App Webpack config', () => {
 		process.chdir('test/apps/cra');
 		const api = styleguidist();
 		const result = api.makeWebpackConfig();

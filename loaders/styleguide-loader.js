@@ -6,6 +6,7 @@ const generate = require('escodegen').generate;
 const toAst = require('to-ast');
 const getAllContentPages = require('./utils/getAllContentPages');
 const getComponentFilesFromSections = require('./utils/getComponentFilesFromSections');
+const getComponentPatternsFromSections = require('./utils/getComponentPatternsFromSections');
 const getSections = require('./utils/getSections');
 const filterComponentsWithExample = require('./utils/filterComponentsWithExample');
 
@@ -20,6 +21,7 @@ const CLIENT_CONFIG_OPTIONS = [
 	'previewDelay',
 	'theme',
 	'styles',
+	'compilerConfig',
 ];
 
 module.exports = function() {};
@@ -41,6 +43,7 @@ module.exports.pitch = function() {
 
 	// Nothing to show in the style guide
 	const welcomeScreen = allContentPages.length === 0 && allComponentFiles.length === 0;
+	const patterns = welcomeScreen ? getComponentPatternsFromSections(config.sections) : undefined;
 
 	/* istanbul ignore if */
 	if (config.verbose) {
@@ -62,6 +65,7 @@ module.exports.pitch = function() {
 	const styleguide = {
 		config: pick(config, CLIENT_CONFIG_OPTIONS),
 		welcomeScreen,
+		patterns,
 		sections,
 	};
 

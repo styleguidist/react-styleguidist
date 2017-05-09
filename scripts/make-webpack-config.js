@@ -77,6 +77,7 @@ module.exports = function(config, env) {
 				}),
 				new CleanWebpackPlugin(['build'], {
 					root: config.styleguideDir,
+					verbose: config.verbose,
 				}),
 			],
 		});

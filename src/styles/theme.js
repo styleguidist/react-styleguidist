@@ -1,16 +1,52 @@
-export const white = '#fff';
-export const base = '#333';
-export const light = '#999';
-export const lightest = '#ccc';
-export const link = '#1978c8';
-export const linkHover = '#f28a25';
-export const border = '#e8e8e8';
-export const name = '#7f9a44';
-export const type = '#b77daa';
-export const baseBackground = '#fff';
-export const errorBackground = '#c00';
-export const codeBackground = '#f5f5f5';
-export const font = ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', '"Roboto"', '"Oxygen"', '"Ubuntu"',
-	'"Cantarell"', '"Fira Sans"', '"Droid Sans"', '"Helvetica Neue"', 'sans-serif'];
-export const monospace = ['Consolas', '"Liberation Mono"', 'Menlo', 'monospace'];
-export const small = '@media (max-width: 600px)';
+export const spaceFactor = 8;
+export const space = [
+	spaceFactor / 2,  // 4
+	spaceFactor,      // 8
+	spaceFactor * 2,  // 16
+	spaceFactor * 3,  // 24
+	spaceFactor * 4,  // 32
+	spaceFactor * 5,  // 40
+	spaceFactor * 6,  // 48
+];
+
+export const color = {
+	base: '#333',
+	light: '#999',
+	lightest: '#ccc',
+	link: '#1978c8',
+	linkHover: '#f28a25',
+	border: '#e8e8e8',
+	name: '#7f9a44',
+	type: '#b77daa',
+	error: '#fff',
+	baseBackground: '#fff',
+	errorBackground: '#c00',
+	codeBackground: '#f5f5f5',
+	sidebarBackground: '#f5f5f5',
+};
+
+export const fontFamily = {
+	base: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', '"Roboto"', '"Oxygen"', '"Ubuntu"',
+		'"Cantarell"', '"Fira Sans"', '"Droid Sans"', '"Helvetica Neue"', 'sans-serif'],
+	monospace: ['Consolas', '"Liberation Mono"', 'Menlo', 'monospace'],
+};
+
+export const fontSize = {
+	base: 15,
+	text: 16,
+	small: 13,
+	h1: 48,
+	h2: 36,
+	h3: 24,
+	h4: 18,
+	h5: 16,
+	h6: 16,
+};
+
+export const mq = {
+	small: '@media (max-width: 600px)',
+};
+
+export const borderRadius = 3;
+export const maxWidth = 1000;
+export const sidebarWidth = 200;

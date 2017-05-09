@@ -1,5 +1,109 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`should render JsDoc tags 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Parameters
+      </th>
+      <th
+        className=""
+      >
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class
+          name="Foo()"
+        />
+      </td>
+      <td>
+        <_class
+          args={Array []}
+        />
+      </td>
+      <td
+        className=""
+      >
+        <JsDoc
+          since={
+            Array [
+              Object {
+                "description": "1.0.0",
+                "title": "since",
+              },
+            ]
+          }
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`should render deprecated JsDoc tags 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Parameters
+      </th>
+      <th
+        className=""
+      >
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <_class
+          deprecated={
+            Array [
+              Object {
+                "description": "Use *another* method",
+                "title": "description",
+              },
+            ]
+          }
+          name="Foo()"
+        />
+      </td>
+      <td>
+        <_class
+          args={Array []}
+        />
+      </td>
+      <td
+        className=""
+      >
+        <JsDoc
+          deprecated={
+            Array [
+              Object {
+                "description": "Use *another* method",
+                "title": "description",
+              },
+            ]
+          }
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
 exports[`should render parameters 1`] = `
 <table>
   <thead>
@@ -20,38 +124,33 @@ exports[`should render parameters 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class>
-          method
-          ()
-        </_class>
+        <_class
+          name="method()"
+        />
       </td>
       <td>
-        <div>
-          <_class>
-            value
-          </_class>
-          : 
-          <_class>
-            Number
-          </_class>
-           — 
-          <_class
-            inline={true}
-            text="Description"
-          />
-        </div>
+        <_class
+          args={
+            Array [
+              Object {
+                "description": "Description",
+                "name": "value",
+                "optional": undefined,
+                "type": Object {
+                  "name": "Number",
+                },
+              },
+            ]
+          }
+        />
       </td>
       <td
         className=""
       >
-        <Group
-          separator=" "
-        >
-          <_class
-            inline={true}
-            text="Public"
-          />
-        </Group>
+        <_class
+          text="Public"
+        />
+        <JsDoc />
       </td>
     </tr>
   </tbody>
@@ -78,23 +177,22 @@ exports[`should render public method 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class>
-          method
-          ()
-        </_class>
+        <_class
+          name="method()"
+        />
       </td>
-      <td />
+      <td>
+        <_class
+          args={Array []}
+        />
+      </td>
       <td
         className=""
       >
-        <Group
-          separator=" "
-        >
-          <_class
-            inline={true}
-            text="Public"
-          />
-        </Group>
+        <_class
+          text="Public"
+        />
+        <JsDoc />
       </td>
     </tr>
   </tbody>
@@ -121,30 +219,28 @@ exports[`should render returns 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class>
-          method
-          ()
-        </_class>
+        <_class
+          name="method()"
+        />
       </td>
-      <td />
+      <td>
+        <_class
+          args={Array []}
+        />
+      </td>
       <td
         className=""
       >
-        <Group
-          separator=" "
+        <_class
+          description="Description"
+          returns={true}
+          type={
+            Object {
+              "name": "Number",
+            }
+          }
         />
-        <span>
-          Returns
-           
-          <_class>
-            Number
-          </_class>
-           — 
-          <_class
-            inline={true}
-            text="Description"
-          />
-        </span>
+        <JsDoc />
       </td>
     </tr>
   </tbody>

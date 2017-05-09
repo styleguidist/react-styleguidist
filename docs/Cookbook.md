@@ -112,6 +112,79 @@ export default class Wrapper extends Component {
 }
 ```
 
+## How to write examples for Relay components?
+
+@mikberg wrote a [fantastic blog post](https://medium.com/@mikaelberg/writing-simple-unit-tests-with-relay-707f19e90129) on this topic. Here's what to do:
+
+### 1. Mock out Relay
+
+You'll need the content from [this Gist](https://gist.github.com/mikberg/07b4006e22aacf31ffe6) for your mocked-out Relay replacement.
+
+```js
+// styleguide.config.js
+const path = require('path')
+const webpackConfig = require('./webpack.config')
+webpackConfig.resolve.alias['react-relay'] = 'lib/styleguide/FakeRelay'
+webpackConfig.resolve.alias['real-react-relay'] = path.join(__dirname, '/node_modules/react-relay/')
+
+module.exports = {
+  // ...
+  webpackConfig
+}
+
+
+// lib/styleguide/FakeRelay.js
+import Relay from 'real-react-relay'
+// Content too long to paste here; see https://gist.github.com/mikberg/07b4006e22aacf31ffe6
+```
+
+### 2. Provide sample data to your React components
+
+You'll probably want to massage actual results from your GraphQL backend, and make it available to the examples:
+
+```js
+// styleguide.config.js
+module.exports = {
+  // ...
+  context: {
+    sample: 'lib/styleguide/sample_data'
+  }
+}
+
+
+// lib/styleguide/sample_data.js
+module.exports = {
+  object: {
+    // something similar to your GraphQL results
+  }
+}
+
+
+// src/MyComponent/index.md
+<MyComponent object={sample.object} />
+```
+
+## How to use React Styleguidist with Preact?
+
+You need to alias `react` and `react-dom` to `preact-compat`:
+
+```javascript
+module.exports = {
+  webpackConfig: {
+    resolve: {
+      alias: {
+        react: 'preact-compat',
+        'react-dom': 'preact-compat',
+      }
+    }
+  }
+};
+```
+
+See the [Preact example style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/preact).
+
+**Warning:** Preact support is experimental and far from perfect. Feel free to send a pull request to imporove it.
+
 ## How to use React Styleguidist with styled-components?
 
 The [recommended way](https://github.com/styleguidist/react-styleguidist/issues/37#issuecomment-263502454) of using [styled-components](https://styled-components.com/) is like this:
@@ -139,27 +212,6 @@ You may need an appropriate webpack loader to handle these files.
 
 > **Note:** to change style guide styles use `theme` and `styles` options (see the next question).
 
-## How to use React Styleguidist with Preact?
-
-You need to alias `react` and `react-dom` to `preact-compat`:
-
-```javascript
-module.exports = {
-  webpackConfig: {
-    resolve: {
-      alias: {
-        react: 'preact-compat',
-        'react-dom': 'preact-compat',
-      }
-    }
-  }
-};
-```
-
-See the [Preact example style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/preact).
-
-**Warning:** Preact support is experimental and far from perfect. Feel free to send a pull request to imporove it.
-
 ## How to change styles of a style guide?
 
 Use config option [theme](Configuration.md#theme) to change fonts, colors, etc. and option [styles](Configuration.md#styles) to tweak style of particular Styleguidist’s components:
@@ -167,9 +219,13 @@ Use config option [theme](Configuration.md#theme) to change fonts, colors, etc. 
 ```javascript
 module.exports = {
   theme: {
-    link: 'firebrick',
-    linkHover: 'salmon',
-    font: '"Comic Sans MS", "Comic Sans", cursive'
+    color: {
+      link: 'firebrick',
+      linkHover: 'salmon',
+    },
+    fontFamily: {
+      base: '"Comic Sans MS", "Comic Sans", cursive'
+    }
   },
   styles: {
     Logo: {
@@ -348,6 +404,6 @@ initialState = {
 * [React BlueKit](http://bluekit.blueberry.io/), render React components with editable source and live preview.
 * [React Cards](https://github.com/steos/reactcards), devcards for React.
 * [React Styleguide Generator](https://github.com/pocotan001/react-styleguide-generator), a React style guide generator.
-* [React Storybook](https://github.com/storybooks/react-storybook), isolate your React UI Component development from the main app.
+* [React Storybook](https://storybooks.js.org/), isolate your React UI Component development from the main app.
 * [React-demo](https://github.com/rpominov/react-demo), a component for creating demos of other components with props editor.
 * [SourceJS](https://github.com/sourcejs/Source), a platform to unify all your frontend documentation. It has a [Styleguidist plugin](https://github.com/sourcejs/sourcejs-react-styleguidist).

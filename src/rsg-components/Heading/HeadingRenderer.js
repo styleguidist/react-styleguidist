@@ -1,13 +1,15 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Styled from 'rsg-components/Styled';
 
-export const styles = ({ link, linkHover }) => ({
+export const styles = ({ color, space, fontSize }) => ({
 	heading: {
+		color: color.base,
 		position: 'relative',
 		overflow: 'visible',
-		marginLeft: -30,
-		paddingLeft: 30,
+		marginLeft: -space[4],
+		paddingLeft: space[4],
 		'&:hover > $anchor': {
 			isolate: false,
 			visibility: 'visible',
@@ -15,17 +17,18 @@ export const styles = ({ link, linkHover }) => ({
 	},
 	anchor: {
 		position: 'absolute',
-		bottom: '.125em',
-		left: 10,
+		top: '50%',
+		transform: 'translateY(-50%)',
+		left: space[1],
 		display: 'block',
-		color: link,
-		fontSize: '0.65em',
+		color: color.link,
+		fontSize: fontSize.h3,
 		fontWeight: 'normal',
 		textDecoration: 'none',
 		visibility: 'hidden',
 		'&:hover, &:active': {
 			isolate: false,
-			color: linkHover,
+			color: color.linkHover,
 			cursor: 'pointer',
 		},
 	},

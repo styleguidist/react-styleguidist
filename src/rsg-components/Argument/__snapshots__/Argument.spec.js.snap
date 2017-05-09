@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render argument 1`] = `
+<Group
+  separator=" "
+>
+  <span>
+    <_class
+      name="Foo"
+    />
+    :
+  </span>
+  <_class>
+    Array
+  </_class>
+  <_class
+    inline={true}
+    text="— Converts foo to bar"
+  />
+</Group>
+`;
+
+exports[`renderer should render argument without description 1`] = `
+<Group
+  separator=" "
+>
+  <span>
+    <_class
+      name="Foo"
+    />
+    :
+  </span>
+  <_class>
+    Array
+  </_class>
+</Group>
+`;
+
+exports[`renderer should render argument without type 1`] = `
+<Group
+  separator=" "
+>
+  <span>
+    <_class
+      name="Foo"
+    />
+  </span>
+  <_class
+    inline={true}
+    text="— Converts foo to bar"
+  />
+</Group>
+`;
+
+exports[`renderer should render return value 1`] = `
+<Group
+  separator=" "
+>
+  Returns
+  <_class>
+    Array
+  </_class>
+  <_class
+    inline={true}
+    text="— Converts foo to bar"
+  />
+</Group>
+`;

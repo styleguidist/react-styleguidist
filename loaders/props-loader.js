@@ -33,7 +33,9 @@ module.exports = function(source) {
 		const message = errorMessage === 'Error: No suitable component definition found.'
 			? `Warning: ${componentPath} matches a pattern defined in ”components” or “sections” options in your ` +
 				'style guide config but doesn’t export a component.'
-			: `Error when parsing ${componentPath}: ${err}`;
+			: `Error when parsing ${componentPath}: ${err}\n\n` +
+				'It usually means that react-docgen cannot parse your source code, try to file an issue here:\n' +
+				'https://github.com/reactjs/react-docgen/issues';
 		console.log(`\n${message}\n`);
 	}
 

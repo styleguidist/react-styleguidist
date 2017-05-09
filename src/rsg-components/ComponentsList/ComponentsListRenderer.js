@@ -1,31 +1,34 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Link from 'rsg-components/Link';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ font, small }) => ({
+const styles = ({ color, fontFamily, fontSize, space, mq }) => ({
 	list: {
 		margin: 0,
-		paddingLeft: 15,
+		paddingLeft: space[2],
 	},
 	item: {
+		color: color.base,
 		display: 'block',
-		margin: [[7, 0, 7, 0]],
-		fontFamily: font,
-		fontSize: 15,
+		margin: [[space[1], 0, space[1], 0]],
+		fontFamily: fontFamily.base,
+		fontSize: fontSize.base,
 		listStyle: 'none',
 		overflow: 'hidden',
 		textOverflow: 'ellipsis',
 	},
 	isChild: {
-		[small]: {
+		[mq.small]: {
 			display: 'inline-block',
-			margin: [[0, 7, 0, 0]],
+			margin: [[0, space[1], 0, 0]],
 		},
 	},
 	heading: {
-		marginTop: 7,
-		fontFamily: font,
+		color: color.base,
+		marginTop: space[1],
+		fontFamily: fontFamily.base,
 		fontWeight: 'bold',
 	},
 });

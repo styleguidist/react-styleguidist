@@ -1,11 +1,15 @@
-# React Styleguidist
+<div align="center" markdown="1">
+
+<img src="https://d3vv6lp55qjaqc.cloudfront.net/items/061f0A2n1B0H3p0T1p1f/react-styleguidist-logo.png" alt="React Styleguidist" width="400">
+
+**Style guide — documentation — component workbench**
 
 [![Build Status](https://travis-ci.org/styleguidist/react-styleguidist.svg)](https://travis-ci.org/styleguidist/react-styleguidist)
 [![npm](https://img.shields.io/npm/v/react-styleguidist.svg)](https://www.npmjs.com/package/react-styleguidist)
 [![Join the chat at https://gitter.im/styleguidist/styleguidist](https://badges.gitter.im/styleguidist/styleguidist.svg)](https://gitter.im/styleguidist/styleguidist?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Codecov](https://codecov.io/gh/styleguidist/react-styleguidist/branch/master/graph/badge.svg)](https://codecov.io/gh/styleguidist/react-styleguidist)
 
-**Style guide — documentation — component workbench**
+</div>
 
 React Styleguidist is a style guide generator for React components. It lists component `propTypes` and shows live, editable usage examples based on Markdown files. You can use it to generate a static HTML page to share and publish or as a workbench for developing new components using hot reloaded dev server. Check out [**the demo style guide**](http://react-styleguidist.js.org/).
 
@@ -25,7 +29,7 @@ React Styleguidist is a style guide generator for React components. It lists com
 * Style guide with sections, [source](./examples/sections)
 * Style guide with customized styles, [source](./examples/customised)
 * Style guide with custom express endpoints, [source](./examples/express)
-* create-react-app integration, [source](./examples/cra)
+* Create React App integration, [source](./examples/cra)
 
 ## Showcase
 
@@ -40,7 +44,7 @@ Real projects using React Styleguidist:
 
 ## Integration with other tools
 
-* create-react-app — just works, see the [Getting Started](docs/GettingStarted.md) guide!
+* Create React App — just works, see the [Getting Started](docs/GettingStarted.md) guide!
 * [TypeScript](https://github.com/pvasek/react-docgen-typescript)
 * [SourceJS](https://github.com/sourcejs/sourcejs-react-styleguidist)
 

@@ -1,15 +1,16 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ monospace, white, errorBackground }) => ({
+const styles = ({ fontFamily, fontSize, color, space }) => ({
 	root: {
-		margin: [[-15, -15, -18]],
-		fontFamily: monospace,
-		color: white,
-		backgroundColor: errorBackground,
-		padding: 15,
+		margin: [[-space[2], -space[2], -(space[2] + space[0])]],
+		padding: space[2],
 		lineHeight: 1.2,
-		fontSize: 13,
+		fontSize: fontSize.small,
+		fontFamily: fontFamily.monospace,
+		color: color.error,
+		backgroundColor: color.errorBackground,
 		whiteSpace: 'pre',
 	},
 });

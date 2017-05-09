@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Button.css';
 
@@ -21,25 +22,21 @@ export default function Button({
 	);
 }
 Button.propTypes = {
-	/**
-	 * Button label.
-	 */
+	/** Button label */
 	children: PropTypes.string.isRequired,
+	/** The color for the button */
 	color: PropTypes.string,
+	/** The size of the button */
 	size: PropTypes.oneOf(['small', 'normal', 'large']),
+	/** Gets called when the user clicks on the button */
 	onClick: PropTypes.func,
-	/**
-	 * A prop that should not be visible in the doc.
-	 * @ignore
-	 */
-	ignoredProp: PropTypes.bool,
 };
 Button.defaultProps = {
 	color: '#333',
 	size: 'normal',
 	/* eslint-disable no-console */
-	onClick: (evt) => {
-		console.log('You have clicked me!', evt.target);
+	onClick: (event) => {
+		console.log('You have clicked me!', event.target);
 	},
 	/* eslint-enable no-console */
 };

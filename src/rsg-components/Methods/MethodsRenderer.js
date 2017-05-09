@@ -1,124 +1,80 @@
-import React, { PropTypes } from 'react';
-import Code from 'rsg-components/Code';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Markdown from 'rsg-components/Markdown';
+import Argument from 'rsg-components/Argument';
+import Arguments from 'rsg-components/Arguments';
+import Name from 'rsg-components/Name';
+import JsDoc from 'rsg-components/JsDoc';
 import Styled from 'rsg-components/Styled';
-import Group from 'react-group';
 import cx from 'classnames';
 
-const styles = ({ font, border, light, name, type }) => ({
+const styles = ({ space, color, fontFamily, fontSize }) => ({
 	table: {
 		width: '100%',
 		borderCollapse: 'collapse',
 	},
 	tableHead: {
-		borderBottom: [[1, border, 'solid']],
-	},
-	tableBody: {
-	},
-	row: {
+		borderBottom: [[1, color.border, 'solid']],
 	},
 	cell: {
-		paddingRight: 15,
-		paddingTop: 6,
+		color: color.base,
+		paddingRight: space[2],
+		paddingTop: space[1],
 		verticalAlign: 'top',
-		fontFamily: font,
-		fontSize: 13,
+		fontFamily: fontFamily.base,
+		fontSize: fontSize.small,
 	},
 	cellHeading: {
-		paddingRight: 15,
-		paddingBottom: 6,
+		color: color.base,
+		paddingRight: space[2],
+		paddingBottom: space[1],
 		textAlign: 'left',
-		fontFamily: font,
+		fontFamily: fontFamily.base,
 		fontWeight: 'bold',
-		fontSize: 13,
+		fontSize: fontSize.small,
 	},
 	cellDesc: {
 		width: '70%',
-		paddingLeft: 15,
+		paddingLeft: space[2],
+		paddingRight: 0,
 	},
-	required: {
-		fontFamily: font,
-		fontSize: 13,
-		color: light,
-	},
-	name: {
-		fontSize: 13,
-		color: name,
-	},
-	type: {
-		fontSize: 13,
-		color: type,
+	para: {
+		marginBottom: space[2],
+		fontSize: fontSize.small,
 	},
 });
 
 export function MethodsRenderer({ classes, methods }) {
-	function renderRows(methods) {
-		const rows = [];
-		methods.map((method) => {
-			rows.push(
-				<tr key={method.name} className={classes.row}>
-					<td className={classes.cell}><Code className={classes.name}>{method.name}()</Code></td>
-					<td className={classes.cell}>{renderParameters(method)}</td>
-					<td className={cx(classes.cell, classes.cellDesc)}>
-						{renderDescription(method)}
-						{renderReturns(method)}
-					</td>
-				</tr>
-			);
-		});
-		return rows;
-	}
-
-	function renderParameters(prop) {
-		const { params } = prop;
-		const rows = [];
-		params.map((param) => {
-			const { description, name, type } = param;
-			rows.push(
-				<div key={name} className={classes.methodParam}>
-					<Code className={classes.name}>{name}</Code>
-					{type && ': '}
-					{type && <Code className={classes.type}>{type.name}</Code>}
-					{description && ' — '}
-					{description && <Markdown text={description} inline />}
-				</div>
-			);
-		});
-		return rows;
-	}
-
-	function renderReturns(prop) {
-		const { returns } = prop;
-		return returns ? (
-			<span>
-				Returns{' '}
-				<Code className={classes.type}>{returns.type.name}</Code>
-				{returns.description && ' — '}
-				{returns.description && <Markdown text={returns.description} inline />}
-			</span>
-		) : false;
-	}
-
-	function renderDescription(prop) {
-		const { description } = prop;
+	function renderRow(method) {
+		const { name, description, returns, params = [], tags = {} } = method;
 		return (
-			<Group>
-				{description && <Markdown text={description} inline />}
-			</Group>
+			<tr key={name}>
+				<td className={classes.cell}>
+					<Name name={`${name}()`} deprecated={tags.deprecated} />
+				</td>
+				<td className={classes.cell}>
+					<Arguments args={params} />
+				</td>
+				<td className={cx(classes.cell, classes.cellDesc)}>
+					{description && <Markdown text={description} />}
+					{returns && <Argument className={classes.para} returns {...returns} />}
+					<JsDoc {...tags} />
+				</td>
+			</tr>
 		);
 	}
 
 	return (
 		<table className={classes.table}>
 			<thead className={classes.tableHead}>
-				<tr className={classes.row}>
+				<tr>
 					<th className={classes.cellHeading}>Name</th>
 					<th className={classes.cellHeading}>Parameters</th>
 					<th className={cx(classes.cellHeading, classes.cellDesc)}>Description</th>
 				</tr>
 			</thead>
-			<tbody className={classes.tableBody}>
-				{renderRows(methods)}
+			<tbody>
+				{methods.map(renderRow)}
 			</tbody>
 		</table>
 	);
@@ -126,7 +82,13 @@ export function MethodsRenderer({ classes, methods }) {
 
 MethodsRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
-	methods: PropTypes.array.isRequired,
+	methods: PropTypes.arrayOf(PropTypes.shape({
+		name: PropTypes.string.isRequired,
+		description: PropTypes.string,
+		returns: PropTypes.object,
+		params: PropTypes.array,
+		tags: PropTypes.object,
+	})).isRequired,
 };
 
 export default Styled(styles)(MethodsRenderer);

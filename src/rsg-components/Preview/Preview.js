@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import noop from 'lodash/noop';
 import { transform } from 'buble';
@@ -7,9 +8,7 @@ import Wrapper from 'rsg-components/Wrapper';
 
 /* eslint-disable react/no-multi-comp */
 
-const compileCode = code => transform(code, {
-	objectAssign: 'Object.assign',
-}).code;
+const compileCode = (code, config) => transform(code, config).code;
 
 // Wrap everything in a React component to leverage the state management of this component
 class PreviewComponent extends Component {
@@ -41,6 +40,10 @@ export default class Preview extends Component {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
 	};
+	static contextTypes = {
+		config: PropTypes.object.isRequired,
+	};
+
 	state = {
 		error: null,
 	};
@@ -93,7 +96,7 @@ export default class Preview extends Component {
 
 	compileCode(code) {
 		try {
-			return compileCode(code);
+			return compileCode(code, this.context.config.compilerConfig);
 		}
 		catch (err) {
 			this.handleError(err);
@@ -126,6 +129,8 @@ export default class Preview extends Component {
 		this.setState({
 			error: err.toString(),
 		});
+
+		console.error(err); // eslint-disable-line no-console
 	}
 
 	render() {

@@ -2,7 +2,7 @@ import React from 'react';
 import noop from 'lodash/noop';
 import Section from '../Section';
 import Sections from './Sections';
-import SectionsRenderer from './SectionsRenderer';
+import StyledSectionsRenderer, { SectionsRenderer } from './SectionsRenderer';
 
 const sections = [
 	{
@@ -48,9 +48,22 @@ it('should render component renderer', () => {
 	expect(actual).toMatchSnapshot();
 });
 
+it('render should render styled component', () => {
+	const actual = shallow(
+		<StyledSectionsRenderer classes={{}}>
+			<Section key={0} section={sections[0]} />
+			<Section key={1} section={sections[1]} />
+			<Section key={2} section={sections[2]} />
+		</StyledSectionsRenderer>
+	);
+
+	expect(actual).toMatchSnapshot();
+});
+
+
 it('render should render component', () => {
 	const actual = shallow(
-		<SectionsRenderer>
+		<SectionsRenderer classes={{}}>
 			<Section key={0} section={sections[0]} />
 			<Section key={1} section={sections[1]} />
 			<Section key={2} section={sections[2]} />

@@ -1,32 +1,33 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Markdown from 'rsg-components/Markdown';
 import Styled from 'rsg-components/Styled';
 import { DOCS_COMPONENTS } from '../../../scripts/consts';
 
-const styles = () => ({
+const styles = ({ space, maxWidth }) => ({
 	root: {
-		maxWidth: 900,
+		maxWidth,
 		margin: [[0, 'auto']],
-		padding: 30,
+		padding: space[4],
 	},
 });
 
-export function WelcomeRenderer({ classes }) {
+export function WelcomeRenderer({ classes, patterns }) {
 	return (
 		<div className={classes.root}>
 			<Markdown
 				text={`
 # Welcome to React Styleguidist!
 
-## Point Styleguidist to your React components
+**We couldn’t find any components** using these patterns:
 
-We couldn’t find any components defined in your style guide config or using the default pattern \`src/components/**/*.js\`.
+${patterns.map(p => `- \`${p}\``).join('\n')}
 
 Create **styleguide.config.js** file in your project root directory like this:
 
-module.exports = {
-  components: 'src/components/**/*.js'
-};
+    module.exports = {
+      components: 'src/components/**/*.js'
+    };
 
 Read more in the [locating components guide](${DOCS_COMPONENTS}).
 				`}
@@ -37,6 +38,7 @@ Read more in the [locating components guide](${DOCS_COMPONENTS}).
 
 WelcomeRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
+	patterns: PropTypes.array.isRequired,
 };
 
 export default Styled(styles)(WelcomeRenderer);

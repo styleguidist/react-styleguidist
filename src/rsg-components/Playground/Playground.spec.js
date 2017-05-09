@@ -1,5 +1,6 @@
 import React from 'react';
 import Playground from './Playground';
+import '../../styles/setupjss';
 import { PlaygroundRenderer } from './PlaygroundRenderer';
 
 const code = '<button>OK</button>';
@@ -44,6 +45,27 @@ it('should update code', () => {
 
 	expect(actual.prop('code')).toEqual(newCode);
 });
+
+it('should update code via props', () => {
+	const actual = shallow(
+		<Playground
+			code={code}
+			evalInContext={a => () => a}
+			name="name"
+			index={0}
+		/>,
+		options
+	);
+
+	expect(actual.state('code')).toEqual(code);
+
+	actual.setProps({
+		code: newCode,
+	});
+
+	expect(actual.state('code')).toEqual(newCode);
+});
+
 
 it('should update code with debounce', done => {
 	const actual = shallow(

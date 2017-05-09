@@ -15,7 +15,9 @@ export default class CounterButton extends Component {
 	 * Sets the counter to a particular value.
 	 *
 	 * @public
-	 * @param {Number} newValue - New value for the counter.
+	 * @version 1.0.5
+	 * @param {Number} newValue New value for the counter
+	 * @returns {string} Test
 	 */
 	set(newValue) {
 		this.setState({

@@ -2,14 +2,15 @@
 
 Styleguidist generates documentation for your components based on the comments in your source code, propTypes declarations and Readme files.
 
-> **Note:** [See examples](../examples/basic/lib/components) of documented components in our demo style guide.
+> **Note:** [See examples](../examples/basic/src/components) of documented components in our demo style guide.
 
 ## Code comments and propTypes
 
 Styleguidist will display your components’ JSDoc comment blocks. Also, it will pick up props from propTypes declarations and display them in a table.
 
 ```javascript
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * General component description in JSDoc format. Markdown is *supported*.
@@ -117,6 +118,66 @@ MyComponent.propTypes = {
    * @ignore
    */
   hiddenProp: React.PropTypes.string
+}
+```
+
+## Using JSDoc tags
+
+You can use the following [JSDoc](http://usejsdoc.org/) tags when documenting components, props and methods:
+
+- [@deprecated](http://usejsdoc.org/tags-deprecated.html)
+- [@see, @link](http://usejsdoc.org/tags-see.html)
+- [@author](http://usejsdoc.org/tags-author.html)
+- [@since](http://usejsdoc.org/tags-since.html)
+- [@version](http://usejsdoc.org/tags-version.html)
+
+When documenting props you can also use:
+
+- [@param, @arg, @argument](http://usejsdoc.org/tags-param.html)
+
+All tags can render Markdown.
+
+```javascript
+/**
+ * The only true button.
+ *
+ * @version 1.0.1
+ * @author [Artem Sapegin](https://github.com/sapegin)
+ * @author [Andy Krings-Stern](https://github.com/ankri)
+*/
+class Button extends React.Component {
+  static propTypes = {
+    /**
+     * Button label.
+     */
+    children: PropTypes.string.isRequired,
+    /**
+     * The color for the button
+     *
+     * @see See [Wikipedia](https://en.wikipedia.org/wiki/Web_colors#HTML_color_names) for a list of color names
+     * @see See [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) for a list of color names
+     */
+    color: PropTypes.string,
+    /**
+     * The size of the Button
+     *
+     * @since Version 1.0.1
+     */
+    size: PropTypes.oneOf(['small', 'normal', 'large']),
+    /**
+     * The width of the button
+     *
+     * @deprecated Do not use! Use `size` instead!
+     */
+    width: PropTypes.number,
+    /**
+     * Gets called when the user clicks on the button
+     *
+     * @param {SyntheticEvent} event The react `SyntheticEvent`
+     * @param {Object} allProps All props of this Button
+     */
+    onClick: PropTypes.func
+  };
 }
 ```
 
