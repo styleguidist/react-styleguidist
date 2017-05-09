@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MdFullscreen, MdFullscreenExit, MdArrowDropDown, MdArrowDropUp } from 'react-icons/lib/md';
+import MdFullscreen from 'react-icons/lib/md/fullscreen';
+import MdFullscreenExit from 'react-icons/lib/md/fullscreen-exit';
+import MdArrowDropDown from 'react-icons/lib/md/arrow-drop-down';
+import MdArrowDropUp from 'react-icons/lib/md/arrow-drop-up';
 import Editor from 'rsg-components/Editor';
 import Link from 'rsg-components/Link';
 import Preview from 'rsg-components/Preview';
