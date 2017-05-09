@@ -20,17 +20,19 @@ const styles = ({ space, color, fontFamily, fontSize, borderRadius }) => ({
 		padding: space[2],
 	},
 	codeToggle: {
-		outline: 'none',
 		border: 'none',
 		fontFamily: fontFamily.base,
 		fontSize: fontSize.base,
 		color: color.light,
 		transition: 'all 200ms ease',
 		cursor: 'pointer',
+		'&:not(:focus)': {
+			isolate: false,
+			outline: 'none',
+		},
 		'&:hover': {
+			isolate: false,
 			color: color.linkHover,
-			fontFamily: fontFamily.base,
-			fontSize: fontSize.base,
 		},
 	},
 	toolbar: {
@@ -46,8 +48,7 @@ const styles = ({ space, color, fontFamily, fontSize, borderRadius }) => ({
 		color: color.light,
 		transition: 'all 200ms ease',
 		'&:hover': {
-			width: 20,
-			height: 20,
+			isolate: false,
 			color: color.linkHover,
 		},
 	},
