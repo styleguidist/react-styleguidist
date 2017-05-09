@@ -10,7 +10,9 @@ exports[`renderer should render preview 1`] = `
       evalInContext={[Function]}
     />
   </div>
-  <section>
+  <Group
+    separator=" "
+  >
     <div>
       <_class
         href="#!/name/0"
@@ -18,15 +20,17 @@ exports[`renderer should render preview 1`] = `
         <MdFullscreen />
       </_class>
     </div>
-    <button
-      onClick={[Function]}
-      type="button"
-    >
-      Show
-       code
-      <MdArrowDropDown />
-    </button>
-  </section>
+    <div>
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        Show
+         code
+        <MdArrowDropDown />
+      </button>
+    </div>
+  </Group>
 </div>
 `;
 

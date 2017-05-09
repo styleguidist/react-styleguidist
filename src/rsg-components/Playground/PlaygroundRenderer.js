@@ -1,4 +1,5 @@
 import React from 'react';
+import Group from 'react-group';
 import PropTypes from 'prop-types';
 import MdFullscreen from 'react-icons/lib/md/fullscreen';
 import MdFullscreenExit from 'react-icons/lib/md/fullscreen-exit';
@@ -41,9 +42,9 @@ const styles = ({ space, color, fontFamily, fontSize, borderRadius }) => ({
 	toolbar: {
 		display: 'flex',
 		padding: [[space[0], space[2]]],
-		'& > *:not(:last-child)': {
-			marginRight: space[1],
-		},
+	},
+	toolbarItem: {
+		marginRight: space[1],
 	},
 	icons: {
 		width: 20,
@@ -73,8 +74,8 @@ export function PlaygroundRenderer({
 			<div className={classes.preview} data-preview={name ? name : ''}>
 				<Preview code={code} evalInContext={evalInContext} />
 			</div>
-			<section className={classes.toolbar}>
-				<div>
+			<Group separator=" " className={classes.toolbar}>
+				<div className={classes.toolbarItem}>
 					{name && (
 					isolatedExample ? (
 						<Link href={'/'}><MdFullscreenExit className={classes.icons} /></Link>
@@ -85,14 +86,16 @@ export function PlaygroundRenderer({
 					)
 				)}
 				</div>
-				<button type="button" className={classes.codeToggle} onClick={onCodeToggle}>
-					{ showCode ? 'Hide' : 'Show'} code
+				<div className={classes.toolbarItem}>
+					<button type="button" className={classes.codeToggle} onClick={onCodeToggle}>
+						{ showCode ? 'Hide' : 'Show'} code
 							{ showCode
 								? <MdArrowDropUp className={classes.icons} />
 								: <MdArrowDropDown className={classes.icons} />
 							}
-				</button>
-			</section>
+					</button>
+				</div>
+			</Group>
 			{showCode && <Editor code={code} onChange={onChange} />}
 		</div>
 	);
