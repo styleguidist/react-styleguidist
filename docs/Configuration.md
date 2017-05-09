@@ -85,7 +85,7 @@ Your components will be able to invoke the url `http://localhost:6060/custom-end
 
 Type: `Function`, optional
 
-> **Warning:** you may easily break Styleguidist using this options, try to use [webpackConfig](#webpackConfig) option instead.
+> **Warning:** You may easily break Styleguidist using this options, try to use [webpackConfig](#webpackConfig) option instead.
 
 Allows you to modify webpack config without any restrictions.
 
@@ -357,7 +357,7 @@ module.exports = {
 };
 ```
 
-> **Warning:** This option disables webpack config file autoload, load your config [manually](Webpack.md).
+> **Warning:** This option disables config load from `webpack.config.js`, load your config [manually](Webpack.md).
 
 > **Note:** `entry`, `externals`, `output`, `watch`, `stats` and `devtool` options will be ignored.
 

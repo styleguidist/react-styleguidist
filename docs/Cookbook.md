@@ -183,8 +183,6 @@ module.exports = {
 
 See the [Preact example style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/preact).
 
-**Warning:** Preact support is experimental and far from perfect. Feel free to send a pull request to imporove it.
-
 ## How to use React Styleguidist with styled-components?
 
 The [recommended way](https://github.com/styleguidist/react-styleguidist/issues/37#issuecomment-263502454) of using [styled-components](https://styled-components.com/) is like this:
@@ -210,7 +208,7 @@ export default Button;
 
 You may need an appropriate webpack loader to handle these files.
 
-> **Note:** to change style guide styles use `theme` and `styles` options (see the next question).
+> **Note:** To change style guide styles use `theme` and `styles` options (see the next question).
 
 ## How to change styles of a style guide?
 
