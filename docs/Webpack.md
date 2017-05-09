@@ -37,7 +37,7 @@ module.exports = {
 
 > **Note:** If your loaders don’t work with Styleguidist try to make `include` and `exclude` absolute paths.
 
-> **Note:** Babelified webpack configs (like `webpack.config.babel.js`) are not supported. We recommend to convert your config to native Node — Node 6 supports [many ES6 features](http://node.green/). 
+> **Note:** Babelified webpack configs (like `webpack.config.babel.js`) are not supported. We recommend to convert your config to native Node — Node 6 supports [many ES6 features](http://node.green/).
 
 > **Note:** Use [webpack-merge](https://github.com/survivejs/webpack-merge) for easier config merging.
 
@@ -67,9 +67,9 @@ module.exports = {
 };
 ```
 
-> **Note:** `entry`, `externals`, `output`, `watch`, `stats` and `devtool` options will be ignored.
+> **Warning:** This option disables config load from `webpack.config.js`, see above how to load your config manually.
 
-> **Warning:** This option disables webpack config file autoload, see above how to load your config manually.
+> **Note:** `entry`, `externals`, `output`, `watch`, `stats` and `devtool` options will be ignored.
 
 > **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
 
@@ -103,4 +103,4 @@ module.exports = {
 
 In very rare cases, like using legacy or third-party libraries, you may need to change webpack options that Styleguidist doesn’t allow you to change via `webpackConfig` options. In this case you can use [dangerouslyUpdateWebpackConfig](Configuration.md#dangerouslyupdatewebpackconfig) option.
 
-> **Warning:** you may easily break Styleguidist using this options, use it at your own risk.
+> **Warning:** You may easily break Styleguidist using this options, use it at your own risk.
