@@ -24,6 +24,22 @@ Object {
 }
 `;
 
+exports[`should not crash when using doctrine to parse a default prop that isn't in the props list 1`] = `
+Object {
+  "description": "The only true button.
+",
+  "doclets": Object {},
+  "methods": Array [],
+  "props": Object {
+    "crash": Object {
+      "description": "",
+      "tags": Object {},
+    },
+  },
+  "tags": Object {},
+}
+`;
+
 exports[`should remove non-public methods 1`] = `
 Object {
   "doclets": Object {},

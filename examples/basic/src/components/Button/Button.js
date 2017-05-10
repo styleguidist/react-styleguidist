@@ -33,6 +33,7 @@ Button.propTypes = {
 };
 Button.defaultProps = {
 	color: '#333',
+	crash: true,
 	size: 'normal',
 	/* eslint-disable no-console */
 	onClick: (event) => {
