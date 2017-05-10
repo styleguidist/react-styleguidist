@@ -108,13 +108,13 @@ export function filterComponentsByName(components, query) {
  */
 export function filterSectionsByName(sections, query) {
 	const regExp = getFilterRegExp(query);
+
 	return sections
 		.map(section => Object.assign({}, section, {
 			sections: section.sections ? filterSectionsByName(section.sections, query) : [],
 			components: section.components ? filterComponentsByName(section.components, query) : [],
 		}))
-		.filter(section => section.components.length > 0 || section.sections.length > 0 || regExp.test(section.name))
-	;
+		.filter(section => section.components.length > 0 || section.sections.length > 0 || regExp.test(section.name));
 }
 
 /**
