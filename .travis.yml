@@ -58,6 +58,10 @@ after_success:
     if [[ "$TRAVIS_NODE_VERSION" == "7" && "$WEBPACK_VERSION" == "2"  ]]; then
       # Upload coverage report to Codecov
       bash <(curl -s https://codecov.io/bash)
+      # Update site
+      if [[ "$TRAVIS_BRANCH" == "master" ]]
+        curl -X POST -d '{}' https://api.netlify.com/build_hooks/591308eba700c425fc1e8a54
+      fi
     fi
 branches:
   except:
