@@ -9,6 +9,8 @@ import {
 	processSections,
 	setSlugs,
 	slugger,
+	isPlayground,
+	getPlayground,
 } from './utils/utils';
 import StyleGuide from 'rsg-components/StyleGuide';
 
@@ -36,8 +38,13 @@ function renderStyleguide() {
 	let isolatedComponent = false;
 	let isolatedExample = false;
 
-	// Filter the requested component id required
-	if (targetComponentName) {
+	if (isPlayground()) {
+		sections = getPlayground(sections);
+		isolatedComponent = true;
+		styleguide.config = { ...styleguide.config, showCode: true };
+	}
+	else if (targetComponentName) {
+		// Filter the requested component id required
 		const filteredComponents = filterComponentsInSectionsByExactName(sections, targetComponentName);
 		sections = [{ components: filteredComponents }];
 		isolatedComponent = true;
@@ -48,7 +55,6 @@ function renderStyleguide() {
 			isolatedExample = true;
 		}
 	}
-
 	// Reset slugger for each render to be deterministic
 	slugger.reset();
 	sections = setSlugs(sections);

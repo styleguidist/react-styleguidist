@@ -7,6 +7,13 @@ exports[`renderer should render preview 1`] = `
   >
     <div>
       <_class
+        onClick={[Function]}
+      >
+        Share example
+      </_class>
+    </div>
+    <div>
+      <_class
         href="#!/name/0"
       >
         Open isolated ⇢
@@ -34,6 +41,7 @@ exports[`should render component renderer 1`] = `
   name="name"
   onChange={[Function]}
   onCodeToggle={[Function]}
+  onShareExampleClick={[Function]}
   showCode={false}
 />
 `;

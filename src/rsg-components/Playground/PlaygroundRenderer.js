@@ -17,6 +17,10 @@ const styles = ({ space, color, fontFamily, fontSize, borderRadius }) => ({
 			isolate: false,
 			opacity: 1,
 		},
+		'&:hover $shareExample': {
+			isolate: false,
+			opacity: 1,
+		},
 	},
 	preview: {
 		marginBottom: space[0],
@@ -59,6 +63,16 @@ const styles = ({ space, color, fontFamily, fontSize, borderRadius }) => ({
 		opacity: 0,
 		transition: 'opacity ease-in-out .15s .2s',
 	},
+	shareExample: {
+		position: 'absolute',
+		top: 0,
+		right: 120,
+		padding: [[6, 8]],
+		fontFamily: font,
+		fontSize: 14,
+		opacity: 0,
+		transition: 'opacity ease-in-out .15s .2s',
+	},
 });
 
 export function PlaygroundRenderer({
@@ -71,10 +85,14 @@ export function PlaygroundRenderer({
 	evalInContext,
 	onChange,
 	onCodeToggle,
+	onShareExampleClick,
 }) {
 	return (
 		<div className={classes.root}>
 			<div className={classes.preview} data-preview={name ? name : ''}>
+				<div className={classes.shareExample}>
+					<Link onClick={onShareExampleClick}>Share example</Link>
+				</div>
 				<div className={classes.isolatedLink}>
 					{name && (
 						isolatedExample ? (
@@ -110,6 +128,7 @@ PlaygroundRenderer.propTypes = {
 	evalInContext: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
 	onCodeToggle: PropTypes.func.isRequired,
+	onShareExampleClick: PropTypes.func.isRequired,
 	name: PropTypes.string,
 	isolatedExample: PropTypes.bool,
 };

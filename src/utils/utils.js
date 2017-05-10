@@ -170,6 +170,19 @@ export function getComponentNameFromHash(hash = window.location.hash) {
 }
 
 /**
+ * Returns true if hash contains code of shared example
+ * from hash part or page URL:
+ * http://localhost:6060/#playground/code= → true
+ * http://localhost:6060/#!/Button/1 → false
+ *
+ * @param {string} [hash]
+ * @returns {boolean}
+ */
+export function isPlayground(hash = window.location.hash) {
+	return hash.indexOf('#playground/code=') !== -1;
+}
+
+/**
  * Return a shallow copy of the given component with the examples array filtered
  * to contain only the specified index:
  * filterComponentExamples({ examples: [1,2,3], ...other }, 2) → { examples: [3], ...other }
@@ -182,4 +195,30 @@ export function filterComponentExamples(component, index) {
 	const newComponent = Object.assign({}, component);
 	newComponent.props.examples = [component.props.examples[index]];
 	return newComponent;
+}
+/**
+ * Return playground
+ * It just create fake component with example from url
+ * @param {Array} sections
+ * @return {Array}
+ */
+export function getPlayground(sections) {
+	const evalInContext = sections[0].components[0].props.examples.filter(example =>
+	example.evalInContext)[0].evalInContext;
+	const code = decodeURI(location.hash.replace('#playground/code=', ''));
+	sections = [{
+		components: [{
+			name: 'PlayGround',
+			hasExamples: true,
+			props: {
+				examples: [{
+					content: code,
+					type: 'code',
+					evalInContext,
+				}],
+				methods: [],
+			},
+		}],
+	}];
+	return sections;
 }

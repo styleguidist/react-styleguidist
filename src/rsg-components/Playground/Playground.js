@@ -77,6 +77,11 @@ export default class Playground extends Component {
 		});
 	}
 
+	handleShareExampleClick() {
+		const code = encodeURI(this.state.code);
+		history.pushState({}, 'Playground', `#playground/code=${code}`);
+	}
+
 	render() {
 		const { code, showCode } = this.state;
 		const { evalInContext, index, name } = this.props;
@@ -91,6 +96,7 @@ export default class Playground extends Component {
 				evalInContext={evalInContext}
 				onChange={code => this.handleChange(code)}
 				onCodeToggle={() => this.handleCodeToggle()}
+				onShareExampleClick={() => this.handleShareExampleClick()}
 			/>
 		);
 	}
