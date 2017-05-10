@@ -68,7 +68,8 @@ module.exports = function getProps(doc) {
 		Object.keys(doc.props).forEach(propName => {
 			const prop = doc.props[propName];
 			const doclets = getDocletsObject(prop.description);
-			const documentation = doctrine.parse(prop.description);
+			// when a prop is listed in defaultProps but not in props the prop.description is undefined
+			const documentation = doctrine.parse(prop.description || '');
 
 			// documentation.description is the description without tags
 			doc.props[propName].description = documentation.description;
