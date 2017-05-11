@@ -255,6 +255,33 @@ describe('getInfoFromHash', () => {
 	});
 });
 
+describe('filterSections', () => {
+	const sections = [
+		{
+			name: 'General',
+			sections: [],
+		},
+		{
+			name: 'Forms',
+			sections: [],
+		},
+		{
+			name: 'Lists',
+			sections: [],
+		},
+	];
+
+	it('should return the Forms section', () => {
+		const result = utils.filterSections(sections, 'Forms');
+		expect(result).toEqual(sections[1]);
+	});
+
+	it('should return the Lists section', () => {
+		const result = utils.filterSections(sections, 'Lists');
+		expect(result).toEqual(sections[2]);
+	});
+});
+
 describe('filterComponentExamples', () => {
 	it('should return a shallow copy of the component with example filtered by given index', () => {
 		const comp = {
