@@ -149,21 +149,31 @@ export function filterComponentsInSectionsByExactName(sections, name) {
 }
 
 /**
- * Returns an object containing component name and, optionally, an example index
+ * Filters the sections to find the one with the matching name
+ * @param  {Array}  sections The styleguide sections
+ * @param  {string} name     The name to match
+ * @return {object}          The section found
+ */
+export function filterSections(sections, name) {
+	return sections.find(section => section.name === name);
+}
+
+/**
+ * Returns an object containing component/section name and, optionally, an example index
  * from hash part or page URL:
- * http://localhost:6060/#!/Button → { targetComponentName: 'Button' }
- * http://localhost:6060/#!/Button/1 → { targetComponentName: 'Button', targetComponentIndex: 1 }
+ * http://localhost:6060/#!/Button → { targetName: 'Button' }
+ * http://localhost:6060/#!/Button/1 → { targetName: 'Button', targetIndex: 1 }
  *
  * @param {string} [hash]
  * @returns {object}
  */
-export function getComponentNameFromHash(hash = window.location.hash) {
+export function getInfoFromHash(hash = window.location.hash) {
 	if (hash.substr(0, 3) === '#!/') {
 		const tokens = hash.substr(3).split('/');
 		const index = parseInt(tokens[1], 10);
 		return {
-			targetComponentName: tokens[0],
-			targetComponentIndex: isNaN(index) ? null : index,
+			targetName: tokens[0],
+			targetIndex: isNaN(index) ? null : index,
 		};
 	}
 	return {};

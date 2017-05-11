@@ -243,15 +243,42 @@ describe('filterSectionsByName', () => {
 	});
 });
 
-describe('getComponentNameFromHash', () => {
+describe('getInfoFromHash', () => {
 	it('should return important part of hash if it contains component name', () => {
-		const result = utils.getComponentNameFromHash('#!/Button');
-		expect(result).toEqual({ targetComponentName: 'Button', targetComponentIndex: null });
+		const result = utils.getInfoFromHash('#!/Button');
+		expect(result).toEqual({ targetName: 'Button', targetIndex: null });
 	});
 
 	it('should return an empty object if hash contains no component name', () => {
-		const result = utils.getComponentNameFromHash('Button');
+		const result = utils.getInfoFromHash('Button');
 		expect(result).toEqual({});
+	});
+});
+
+describe('filterSections', () => {
+	const sections = [
+		{
+			name: 'General',
+			sections: [],
+		},
+		{
+			name: 'Forms',
+			sections: [],
+		},
+		{
+			name: 'Lists',
+			sections: [],
+		},
+	];
+
+	it('should return the Forms section', () => {
+		const result = utils.filterSections(sections, 'Forms');
+		expect(result).toEqual(sections[1]);
+	});
+
+	it('should return the Lists section', () => {
+		const result = utils.filterSections(sections, 'Lists');
+		expect(result).toEqual(sections[2]);
 	});
 });
 
