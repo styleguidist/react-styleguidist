@@ -30,8 +30,7 @@ function getConfig(config) {
 			throw new StyleguidistError('Styleguidist config not found: ' + configFilepath + '.');
 		}
 		config = {};
-	}
-	else {
+	} else {
 		// Try to read config options from a file
 		configFilepath = findConfigFile();
 	}
@@ -45,15 +44,13 @@ function getConfig(config) {
 	let sanitizedConfig;
 	try {
 		sanitizedConfig = sanitizeConfig(config, schema, configDir);
-	}
-	catch (exception) {
+	} catch (exception) {
 		if (exception instanceof StyleguidistError) {
 			throw new StyleguidistError(
 				'Something is wrong with your style guide config',
 				exception.message
 			);
-		}
-		else {
+		} else {
 			throw exception;
 		}
 	}
@@ -74,8 +71,7 @@ function findConfigFile() {
 	let configDir;
 	try {
 		configDir = findup.sync(process.cwd(), CONFIG_FILENAME);
-	}
-	catch (exception) {
+	} catch (exception) {
 		return false;
 	}
 

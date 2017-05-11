@@ -6,14 +6,9 @@ import ComponentsRenderer from 'rsg-components/Components/ComponentsRenderer';
 export default function Components({ components }) {
 	return (
 		<ComponentsRenderer>
-			{
-				components.map(component => (
-					<ReactComponent
-						key={component.filepath}
-						component={component}
-					/>
-				))
-			}
+			{components.map(component => (
+				<ReactComponent key={component.filepath} component={component} />
+			))}
 		</ComponentsRenderer>
 	);
 }

@@ -22,8 +22,5 @@ const sections = [
 
 it('should return a list of patterns', () => {
 	const result = getComponentPatternsFromSections(sections);
-	expect(result).toEqual([
-		'components/**/B*.js',
-		'components/**/P*.js',
-	]);
+	expect(result).toEqual(['components/**/B*.js', 'components/**/P*.js']);
 });

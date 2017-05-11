@@ -205,7 +205,7 @@ describe('filterComponentsByName', () => {
 			{ name: 'CounterButton' },
 			{ name: 'PushButton' },
 			{ name: 'RandomButtom' },
-			{ name: 'WrappedButton'	},
+			{ name: 'WrappedButton' },
 		];
 		const result = utils.filterComponentsByName(components, 'bu');
 		expect(result).toEqual(components);

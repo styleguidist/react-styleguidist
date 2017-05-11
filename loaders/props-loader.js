@@ -19,23 +19,23 @@ module.exports = function(source) {
 	const file = this.request.split('!').pop();
 	const config = this._styleguidist;
 
-	const defaultParser = (filePath, source, resolver, handlers) => reactDocs.parse(source, resolver, handlers);
+	const defaultParser = (filePath, source, resolver, handlers) =>
+		reactDocs.parse(source, resolver, handlers);
 	const propsParser = config.propsParser || defaultParser;
 
 	let props = {};
 	try {
 		props = propsParser(file, source, config.resolver, config.handlers(file));
-	}
-	/* istanbul ignore next */
-	catch (err) {
+	} catch (err) {
+		/* istanbul ignore next */
 		const errorMessage = err.toString();
 		const componentPath = path.relative(process.cwd(), file);
 		const message = errorMessage === 'Error: No suitable component definition found.'
 			? `Warning: ${componentPath} matches a pattern defined in ”components” or “sections” options in your ` +
-				'style guide config but doesn’t export a component.'
+					'style guide config but doesn’t export a component.'
 			: `Error when parsing ${componentPath}: ${err}\n\n` +
-				'It usually means that react-docgen cannot parse your source code, try to file an issue here:\n' +
-				'https://github.com/reactjs/react-docgen/issues';
+					'It usually means that react-docgen cannot parse your source code, try to file an issue here:\n' +
+					'https://github.com/reactjs/react-docgen/issues';
 		console.log(`\n${message}\n`);
 	}
 

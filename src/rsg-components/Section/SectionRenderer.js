@@ -31,21 +31,24 @@ const styles = ({ space, fontFamily, fontSize }) => ({
 	},
 });
 
-export function SectionRenderer({ classes, name, slug, content, components, sections, isolatedSection }) {
+export function SectionRenderer({
+	classes,
+	name,
+	slug,
+	content,
+	components,
+	sections,
+	isolatedSection,
+}) {
 	return (
 		<section className={classes.root}>
 			<div className={classes.titleWrapper}>
-				{name && (
-					<Heading level={1} slug={slug} className={classes.heading}>{name}</Heading>
-				)}
+				{name && <Heading level={1} slug={slug} className={classes.heading}>{name}</Heading>}
 				<div className={classes.isolatedLink}>
-					{name && (
-						isolatedSection ? (
-							<Link href="/">⇽ Back</Link>
-						) : (
-							<Link href={'#!/' + name}>Open isolated ⇢</Link>
-						)
-					)}
+					{name &&
+						(isolatedSection
+							? <Link href="/">⇽ Back</Link>
+							: <Link href={'#!/' + name}>Open isolated ⇢</Link>)}
 				</div>
 			</div>
 			{content}

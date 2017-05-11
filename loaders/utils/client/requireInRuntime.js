@@ -15,7 +15,9 @@
 module.exports = function requireInRuntime(requireMap, filepath) {
 	if (!(filepath in requireMap)) {
 		throw new Error(
-			'require() statements can be added only by editing a Markdown example file: require("' + filepath + '")'
+			'require() statements can be added only by editing a Markdown example file: require("' +
+				filepath +
+				'")'
 		);
 	}
 	return requireMap[filepath];

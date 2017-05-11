@@ -3,65 +3,48 @@ import TableOfContents from '../TableOfContents';
 import StyleGuide from './StyleGuide';
 import { StyleGuideRenderer } from './StyleGuideRenderer';
 
-const sections = [{
-	components: [
-		{
-			name: 'Foo',
-			pathLine: 'components/foo.js',
-			filepath: 'components/foo.js',
-			props: {
-				description: 'Foo foo',
+const sections = [
+	{
+		components: [
+			{
+				name: 'Foo',
+				pathLine: 'components/foo.js',
+				filepath: 'components/foo.js',
+				props: {
+					description: 'Foo foo',
+				},
 			},
-		},
-		{
-			name: 'Bar',
-			pathLine: 'components/bar.js',
-			filepath: 'components/bar.js',
-			props: {
-				description: 'Bar bar',
+			{
+				name: 'Bar',
+				pathLine: 'components/bar.js',
+				filepath: 'components/bar.js',
+				props: {
+					description: 'Bar bar',
+				},
 			},
-		},
-	],
-}];
+		],
+	},
+];
 const config = {
 	title: 'Hello',
 	showSidebar: true,
 };
 
 it('should render components list', () => {
-	const actual = shallow(
-		<StyleGuide
-			codeKey={1}
-			config={config}
-			sections={sections}
-		/>
-	);
+	const actual = shallow(<StyleGuide codeKey={1} config={config} sections={sections} />);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should render welcome screen', () => {
-	const actual = shallow(
-		<StyleGuide
-			codeKey={1}
-			config={config}
-			sections={[]}
-			welcomeScreen
-		/>
-	);
+	const actual = shallow(<StyleGuide codeKey={1} config={config} sections={[]} welcomeScreen />);
 
 	expect(actual).toMatchSnapshot();
 });
 
 describe('sidebar rendering', () => {
 	it('renderer should have sidebar if showSidebar is not set', () => {
-		const wrapper = shallow(
-			<StyleGuide
-				codeKey={1}
-				config={config}
-				sections={sections}
-			/>
-		);
+		const wrapper = shallow(<StyleGuide codeKey={1} config={config} sections={sections} />);
 
 		expect(wrapper.prop('hasSidebar')).toEqual(true);
 	});
@@ -83,12 +66,7 @@ describe('sidebar rendering', () => {
 
 	it('renderer should not have sidebar in isolation mode', () => {
 		const wrapper = shallow(
-			<StyleGuide
-				codeKey={1}
-				config={config}
-				sections={sections}
-				isolatedComponent
-			/>
+			<StyleGuide codeKey={1} config={config} sections={sections} isolatedComponent />
 		);
 
 		expect(wrapper.prop('hasSidebar')).toEqual(false);

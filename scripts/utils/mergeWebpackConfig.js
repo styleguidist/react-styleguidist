@@ -4,8 +4,15 @@ const isFunction = require('lodash/isFunction');
 const omit = require('lodash/omit');
 const mergeBase = require('webpack-merge');
 
-
-const IGNORE_SECTIONS = ['entry', 'externals', 'output', 'watch', 'stats', 'devtool', 'styleguidist'];
+const IGNORE_SECTIONS = [
+	'entry',
+	'externals',
+	'output',
+	'watch',
+	'stats',
+	'devtool',
+	'styleguidist',
+];
 
 const IGNORE_PLUGINS = [
 	'CommonsChunkPlugins',
@@ -38,10 +45,7 @@ const merge = mergeBase({
  * @return {object}
  */
 module.exports = function mergeWebpackConfig(baseConfig, userConfig, env) {
-	const userConfigObject = isFunction(userConfig)
-		? userConfig(env)
-		: userConfig
-	;
+	const userConfigObject = isFunction(userConfig) ? userConfig(env) : userConfig;
 	const safeUserConfig = omit(userConfigObject, IGNORE_SECTIONS);
 	return merge(baseConfig, safeUserConfig);
 };

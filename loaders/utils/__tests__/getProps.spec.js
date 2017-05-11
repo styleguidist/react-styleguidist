@@ -108,7 +108,7 @@ alert('Hello world');
 	expect(result).toMatchSnapshot();
 });
 
-it('should not crash when using doctrine to parse a default prop that isn\'t in the props list', () => {
+it("should not crash when using doctrine to parse a default prop that isn't in the props list", () => {
 	const result = getProps({
 		description: 'The only true button.',
 		methods: [],

@@ -12,13 +12,7 @@ const options = {
 };
 
 it('should render component renderer', () => {
-	const actual = shallow(
-		<Preview
-			code={code}
-			evalInContext={noop}
-		/>,
-		options
-	);
+	const actual = shallow(<Preview code={code} evalInContext={noop} />, options);
 
 	expect(actual).toMatchSnapshot();
 });

@@ -5,7 +5,7 @@ import GithubSlugger from 'github-slugger';
 export const slugger = new GithubSlugger();
 
 export function setSlugs(sections) {
-	return sections.map((section) => {
+	return sections.map(section => {
 		const { name, components, sections } = section;
 		if (name) {
 			section.slug = slugger.slug(section.name);
@@ -30,8 +30,8 @@ export function globalizeComponent(component) {
 		return;
 	}
 
-	global[component.name] = (!component.props.path || component.props.path === 'default')
-		? (component.module.default || component.module)
+	global[component.name] = !component.props.path || component.props.path === 'default'
+		? component.module.default || component.module
 		: component.module[component.props.path];
 }
 
@@ -79,11 +79,7 @@ export function processSections(sections) {
  * @return {RegExp}
  */
 export function getFilterRegExp(query) {
-	query = query
-		.replace(/[^a-z0-9]/gi, '')
-		.split('')
-		.join('.*')
-	;
+	query = query.replace(/[^a-z0-9]/gi, '').split('').join('.*');
 	return new RegExp(query, 'i');
 }
 
@@ -110,11 +106,16 @@ export function filterSectionsByName(sections, query) {
 	const regExp = getFilterRegExp(query);
 
 	return sections
-		.map(section => Object.assign({}, section, {
-			sections: section.sections ? filterSectionsByName(section.sections, query) : [],
-			components: section.components ? filterComponentsByName(section.components, query) : [],
-		}))
-		.filter(section => section.components.length > 0 || section.sections.length > 0 || regExp.test(section.name));
+		.map(section =>
+			Object.assign({}, section, {
+				sections: section.sections ? filterSectionsByName(section.sections, query) : [],
+				components: section.components ? filterComponentsByName(section.components, query) : [],
+			})
+		)
+		.filter(
+			section =>
+				section.components.length > 0 || section.sections.length > 0 || regExp.test(section.name)
+		);
 }
 
 /**

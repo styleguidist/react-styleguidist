@@ -26,15 +26,12 @@ const absolutize = files => files.map(file => path.join(configDir, file));
 
 it('getComponentFilesFromSections() should return a list of files', () => {
 	const result = getComponentFilesFromSections(sections, configDir);
-	expect(result).toEqual(absolutize([
-		'components/Button/Button.js',
-		'components/Placeholder/Placeholder.js',
-	]));
+	expect(result).toEqual(
+		absolutize(['components/Button/Button.js', 'components/Placeholder/Placeholder.js'])
+	);
 });
 
 it('getComponentFilesFromSections() should ignore specified patterns', () => {
 	const result = getComponentFilesFromSections(sections, configDir, ['**/*Button*']);
-	expect(result).toEqual(absolutize([
-		'components/Placeholder/Placeholder.js',
-	]));
+	expect(result).toEqual(absolutize(['components/Placeholder/Placeholder.js']));
 });

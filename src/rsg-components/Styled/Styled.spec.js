@@ -11,26 +11,21 @@ const styles = () => ({
 
 class Cmpnt extends Component {
 	render() {
-		return (
-			<div className={this.props.classes.foo}></div>
-		);
+		return <div className={this.props.classes.foo} />;
 	}
 }
 
 it('should wrap a component and pass classes', () => {
 	const WrappedComponent = Styled(styles)(Cmpnt);
 
-	const actual = shallow(
-		<WrappedComponent bar="baz" />,
-		{
-			context: {
-				config: {
-					theme: {},
-					styles: {},
-				},
+	const actual = shallow(<WrappedComponent bar="baz" />, {
+		context: {
+			config: {
+				theme: {},
+				styles: {},
 			},
-		}
-	);
+		},
+	});
 
 	expect(actual.name()).toBe('Cmpnt');
 	expect(actual.prop('bar')).toBe('baz');

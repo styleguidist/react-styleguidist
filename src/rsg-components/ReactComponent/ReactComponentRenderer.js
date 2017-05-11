@@ -91,15 +91,13 @@ export function ReactComponentRenderer({
 				<Heading level={2} className={headingClasses} slug={slug}>
 					{name}
 					<div className={classes.isolatedLink}>
-						{isolated ? (
-							<Link href="/">
-								<MdFullscreenExit className={classes.icons} />
-							</Link>
-						) : (
-							<Link href={'#!/' + name}>
-								<MdFullscreen className={classes.icons} />
-							</Link>
-						)}
+						{isolated
+							? <Link href="/">
+									<MdFullscreenExit className={classes.icons} />
+								</Link>
+							: <Link href={'#!/' + name}>
+									<MdFullscreen className={classes.icons} />
+								</Link>}
 					</div>
 				</Heading>
 				<div className={classes.pathLine}>{pathLine}</div>
@@ -108,18 +106,16 @@ export function ReactComponentRenderer({
 				{description && <Markdown text={description} />}
 				<JsDoc {...tags} />
 			</div>
-			{props && (
+			{props &&
 				<div className={classes.subsection}>
 					<h3 className={classes.heading}>Props</h3>
 					{props}
-				</div>
-			)}
-			{methods && (
+				</div>}
+			{methods &&
 				<div className={classes.subsection}>
 					<h3 className={classes.heading}>Methods</h3>
 					{methods}
-				</div>
-			)}
+				</div>}
 			{examples}
 		</div>
 	);

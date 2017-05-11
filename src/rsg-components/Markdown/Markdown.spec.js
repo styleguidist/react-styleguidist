@@ -9,18 +9,14 @@ describe('Markdown', () => {
 Text with *some* **formatting** and a [link](/foo).
 
 ![Image](/bar.png)`;
-		const actual = render(
-			<Markdown text={markdown} />
-		);
+		const actual = render(<Markdown text={markdown} />);
 
 		expect(actual.html()).toMatchSnapshot();
 	});
 
 	it('should render Markdown in span in inline mode', () => {
 		const markdown = 'Hello *world*!';
-		const actual = render(
-			<Markdown text={markdown} inline />
-		);
+		const actual = render(<Markdown text={markdown} inline />);
 
 		expect(actual.html()).toMatchSnapshot();
 	});
@@ -34,9 +30,7 @@ Text with *some* **formatting** and a [link](/foo).
 ##### five
 ###### six
 `;
-		const actual = render(
-			<Markdown text={markdown} />
-		);
+		const actual = render(<Markdown text={markdown} />);
 
 		expect(actual.html()).toMatchSnapshot();
 	});
@@ -47,9 +41,7 @@ Text with *some* **formatting** and a [link](/foo).
 * item
 * three
 `;
-		const actual = render(
-			<Markdown text={markdown} />
-		);
+		const actual = render(<Markdown text={markdown} />);
 
 		expect(actual.html()).toMatchSnapshot();
 	});
@@ -60,9 +52,7 @@ Text with *some* **formatting** and a [link](/foo).
 1. item
 1. three
 `;
-		const actual = render(
-			<Markdown text={markdown} />
-		);
+		const actual = render(<Markdown text={markdown} />);
 
 		expect(actual.html()).toMatchSnapshot();
 	});
@@ -73,9 +63,7 @@ Text with *some* **formatting** and a [link](/foo).
 * [ ] list 2
 * [x] list 3
 `;
-		const actual = render(
-			<Markdown text={markdown} />
-		);
+		const actual = render(<Markdown text={markdown} />);
 
 		expect(actual.html()).toMatchSnapshot();
 	});
@@ -89,9 +77,7 @@ Text with *some* **formatting** and a [link](/foo).
   1. Sub-list
 * list 3
 `;
-		const actual = render(
-			<Markdown text={markdown} />
-		);
+		const actual = render(<Markdown text={markdown} />);
 
 		expect(actual.html()).toMatchSnapshot();
 	});
@@ -102,9 +88,7 @@ Text with *some* **formatting** and a [link](/foo).
 <foo></foo>
 \`\`\`
 `;
-		const actual = render(
-			<Markdown text={markdown} />
-		);
+		const actual = render(<Markdown text={markdown} />);
 
 		expect(actual.html()).toMatchSnapshot();
 	});
@@ -112,9 +96,7 @@ Text with *some* **formatting** and a [link](/foo).
 	it('should render inline code with escaping', () => {
 		const markdown = 'Foo `<bar>` baz';
 
-		const actual = render(
-			<Markdown text={markdown} />
-		);
+		const actual = render(<Markdown text={markdown} />);
 
 		expect(actual.html()).toMatchSnapshot();
 	});

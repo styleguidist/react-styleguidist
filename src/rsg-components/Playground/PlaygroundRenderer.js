@@ -76,23 +76,19 @@ export function PlaygroundRenderer({
 			</div>
 			<Group separator=" " className={classes.toolbar}>
 				<div className={classes.toolbarItem}>
-					{name && (
-					isolatedExample ? (
-						<Link href={'/'}><MdFullscreenExit className={classes.icons} /></Link>
-					) : (
-						<Link href={'#!/' + name + '/' + index}>
-							<MdFullscreen className={classes.icons} />
-						</Link>
-					)
-				)}
+					{name &&
+						(isolatedExample
+							? <Link href={'/'}><MdFullscreenExit className={classes.icons} /></Link>
+							: <Link href={'#!/' + name + '/' + index}>
+									<MdFullscreen className={classes.icons} />
+								</Link>)}
 				</div>
 				<div className={classes.toolbarItem}>
 					<button type="button" className={classes.codeToggle} onClick={onCodeToggle}>
-						{ showCode ? 'Hide' : 'Show'} code
-							{ showCode
-								? <MdArrowDropUp className={classes.icons} />
-								: <MdArrowDropDown className={classes.icons} />
-							}
+						{showCode ? 'Hide' : 'Show'} code
+						{showCode
+							? <MdArrowDropUp className={classes.icons} />
+							: <MdArrowDropDown className={classes.icons} />}
 					</button>
 				</div>
 			</Group>

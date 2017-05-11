@@ -35,7 +35,7 @@ module.exports = function processComponent(filepath, config) {
 		props: requireIt(`!!${propsLoader}!${filepath}`),
 		hasExamples: examplesFile && fs.existsSync(examplesFile),
 		metadata: fs.existsSync(componentMetadataPath)
-			? requireIt(`!!json-loader!${componentMetadataPath}`) : {},
-
+			? requireIt(`!!json-loader!${componentMetadataPath}`)
+			: {},
 	};
 };

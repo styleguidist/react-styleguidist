@@ -13,16 +13,19 @@ text
 <span/>
 \`\`\`
 `;
-	const result = examplesLoader.call({
-		_styleguidist: {
-			context: {
-				_: 'lodash',
+	const result = examplesLoader.call(
+		{
+			_styleguidist: {
+				context: {
+					_: 'lodash',
+				},
 			},
 		},
-	}, exampleMarkdown);
+		exampleMarkdown
+	);
 
 	expect(result).toBeTruthy();
-	expect(() => new Function(result)).not.toThrowError(SyntaxError);  // eslint-disable-line no-new-func
+	expect(() => new Function(result)).not.toThrowError(SyntaxError); // eslint-disable-line no-new-func
 });
 
 // componentName query option
@@ -38,10 +41,13 @@ it('should replace all occurrences of __COMPONENT__ with provided query.componen
 </div>
 `;
 
-	const result = examplesLoader.call({
-		query: '?componentName=FooComponent',
-		_styleguidist: {},
-	}, exampleMarkdown);
+	const result = examplesLoader.call(
+		{
+			query: '?componentName=FooComponent',
+			_styleguidist: {},
+		},
+		exampleMarkdown
+	);
 	expect(result).not.toMatch(/__COMPONENT__/);
 	expect(result).toMatch(/FooComponent/);
 	expect(result.match(/FooComponent/g).length).toBe(4);

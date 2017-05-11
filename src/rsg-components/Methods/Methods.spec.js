@@ -21,7 +21,9 @@ it('should render public method', () => {
 });
 
 it('should render parameters', () => {
-	const actual = render(['/**\n * Public\n * @public\n * @param {Number} value - Description\n */\nmethod(value) {}']);
+	const actual = render([
+		'/**\n * Public\n * @public\n * @param {Number} value - Description\n */\nmethod(value) {}',
+	]);
 
 	expect(actual).toMatchSnapshot();
 });
@@ -40,10 +42,12 @@ it('should render JsDoc tags', () => {
 				{
 					name: 'Foo',
 					tags: {
-						since: [{
-							title: 'since',
-							description: '1.0.0',
-						}],
+						since: [
+							{
+								title: 'since',
+								description: '1.0.0',
+							},
+						],
 					},
 				},
 			]}
@@ -61,10 +65,12 @@ it('should render deprecated JsDoc tags', () => {
 				{
 					name: 'Foo',
 					tags: {
-						deprecated: [{
-							title: 'description',
-							description: 'Use *another* method',
-						}],
+						deprecated: [
+							{
+								title: 'description',
+								description: 'Use *another* method',
+							},
+						],
 					},
 				},
 			]}

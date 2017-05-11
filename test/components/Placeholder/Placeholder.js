@@ -12,7 +12,17 @@ import s from './Placeholder.css';
  */
 export default class Placeholder extends Component {
 	static propTypes = {
-		type: PropTypes.oneOf(['animal', 'bacon', 'beard', 'bear', 'cat', 'food', 'city', 'nature', 'people']),
+		type: PropTypes.oneOf([
+			'animal',
+			'bacon',
+			'beard',
+			'bear',
+			'cat',
+			'food',
+			'city',
+			'nature',
+			'people',
+		]),
 		width: PropTypes.number,
 		height: PropTypes.number,
 	};
@@ -49,8 +59,6 @@ export default class Placeholder extends Component {
 
 	render() {
 		const { width, height } = this.props;
-		return (
-			<img className={s.root} src={this.getImageUrl()} width={width} height={height} />
-		);
+		return <img className={s.root} src={this.getImageUrl()} width={width} height={height} />;
 	}
 }

@@ -21,17 +21,17 @@ module.exports = {
 			],
 		},
 	],
-	require: [
-		path.join(__dirname, 'src/styles.css'),
-	],
+	require: [path.join(__dirname, 'src/styles.css')],
 	webpackConfig: env => ({
 		module: {
 			loaders: loaders.all,
 		},
-		performance: env === 'development' ? false : {
-			maxAssetSize: 650000,  // bytes
-			maxEntrypointSize: 650000,  // bytes
-			hints: 'error',
-		},
+		performance: env === 'development'
+			? false
+			: {
+					maxAssetSize: 650000, // bytes
+					maxEntrypointSize: 650000, // bytes
+					hints: 'error',
+				},
 	}),
 };
