@@ -6,10 +6,8 @@ import Markdown from 'rsg-components/Markdown';
 import JsDoc from 'rsg-components/JsDoc';
 import Styled from 'rsg-components/Styled';
 import cx from 'classnames';
-import MdFullscreen from 'react-icons/lib/md/fullscreen';
-import MdFullscreenExit from 'react-icons/lib/md/fullscreen-exit';
 
-const styles = ({ color, fontSize, fontFamily, space }) => ({
+const styles = ({ color, fontSize, fontFamily, space, borderRadius }) => ({
 	root: {
 		marginBottom: space[6],
 		fontSize: fontSize.text,
@@ -22,15 +20,14 @@ const styles = ({ color, fontSize, fontFamily, space }) => ({
 		position: 'relative',
 		marginBottom: space[3],
 	},
-	icons: {
-		width: 30,
-		height: 30,
-		color: color.light,
-		transition: 'all 200ms ease',
-		'&:hover': {
-			isolate: false,
-			color: color.linkHover,
-		},
+	isolatedLink: {
+		position: 'absolute',
+		top: 0,
+		right: 0,
+		fontFamily: fontFamily.base,
+		fontSize: fontSize.base,
+		opacity: 0,
+		transition: 'opacity ease-in-out .15s .2s',
 	},
 	primaryHeading: {
 		color: color.base,
@@ -40,9 +37,6 @@ const styles = ({ color, fontSize, fontFamily, space }) => ({
 		fontFamily: fontFamily.base,
 		fontSize: fontSize.h2,
 		fontWeight: 'normal',
-		display: 'flex',
-		alignItem: 'center',
-		justifyContent: 'space-between',
 	},
 	heading: {
 		color: color.base,
@@ -68,6 +62,19 @@ const styles = ({ color, fontSize, fontFamily, space }) => ({
 		textDecoration: 'line-through',
 		color: color.light,
 	},
+	tags: {
+		margin: [[ space[2], 0, space[1], 0 ]],
+		listStyle: 'none',
+		fontFamily: fontFamily.monospace,
+	},
+	tag: {
+		display: 'inline',
+		marginRight: space[1],
+		padding: [[ space[0], space[1] ]],
+		backgroundColor: color.codeBackground,
+		borderRadius,
+		fontSize: fontSize.small,
+	}
 });
 
 export function ReactComponentRenderer({
@@ -80,29 +87,33 @@ export function ReactComponentRenderer({
 	methods,
 	tags,
 	examples,
+	metadata,
 	isolated = false,
 }) {
 	const headingClasses = cx(classes.primaryHeading, {
 		[classes.isDeprecated]: tags.deprecated,
 	});
+	const { tags: metadataTags = [] } = metadata;
 	return (
 		<div className={classes.root} id={name + '-container'}>
 			<header className={classes.header}>
 				<Heading level={2} className={headingClasses} slug={slug}>
 					{name}
-					<div className={classes.isolatedLink}>
-						{isolated ? (
-							<Link href="/">
-								<MdFullscreenExit className={classes.icons} />
-							</Link>
-						) : (
-							<Link href={'#!/' + name}>
-								<MdFullscreen className={classes.icons} />
-							</Link>
-						)}
-					</div>
 				</Heading>
 				<div className={classes.pathLine}>{pathLine}</div>
+				{ metadataTags.length > 0 &&
+					<ul className={classes.tags}>
+						{ metadataTags.map((tag) => (
+							<li className={classes.tag}key={tag}>{tag}</li>
+						))}</ul>
+				}
+				<div className={classes.isolatedLink}>
+					{isolated ? (
+						<Link href="/">← Back</Link>
+					) : (
+						<Link href={'#!/' + name}>Open isolated ⇢</Link>
+					)}
+				</div>
 			</header>
 			<div className={classes.description}>
 				{description && <Markdown text={description} />}
