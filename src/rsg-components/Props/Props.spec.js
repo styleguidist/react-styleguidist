@@ -46,7 +46,9 @@ it('should render PropTypes.arrayOf', () => {
 });
 
 it('should render PropTypes.arrayOf(PropTypes.shape)', () => {
-	const actual = render(['foos: PropTypes.arrayOf(PropTypes.shape({bar: PropTypes.number, baz: PropTypes.any}))']);
+	const actual = render([
+		'foos: PropTypes.arrayOf(PropTypes.shape({bar: PropTypes.number, baz: PropTypes.any}))',
+	]);
 
 	expect(actual).toMatchSnapshot();
 });
@@ -58,13 +60,16 @@ it('should render PropTypes.instanceOf', () => {
 });
 
 it('should render PropTypes.shape', () => {
-	const actual = render(['foo: PropTypes.shape({bar: PropTypes.number.isRequired, baz: PropTypes.any})']);
+	const actual = render([
+		'foo: PropTypes.shape({bar: PropTypes.number.isRequired, baz: PropTypes.any})',
+	]);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should render PropTypes.shape with description', () => {
-	const actual = render([`foo: PropTypes.shape({
+	const actual = render([
+		`foo: PropTypes.shape({
 		/**
 		* Number
 		*/
@@ -73,11 +78,11 @@ it('should render PropTypes.shape with description', () => {
 		* Any
 		*/
 		baz: PropTypes.any
-	})`]);
+	})`,
+	]);
 
 	expect(actual).toMatchSnapshot();
 });
-
 
 it('should render PropTypes.objectOf', () => {
 	const actual = render(['colors: PropTypes.objectOf(PropTypes.string)']);
@@ -86,12 +91,14 @@ it('should render PropTypes.objectOf', () => {
 });
 
 it('should render PropTypes.objectOf(PropTypes.shape)', () => {
-	const actual = render([`colors: PropTypes.objectOf(
+	const actual = render([
+		`colors: PropTypes.objectOf(
 		PropTypes.shape({
 			bar: PropTypes.number.isRequired,
 			baz: PropTypes.any
 		})
-	)`]);
+	)`,
+	]);
 
 	expect(actual).toMatchSnapshot();
 });
@@ -132,21 +139,23 @@ it('should render arguments from JsDoc tags', () => {
 			required: false,
 			description: 'Test description',
 			tags: {
-				arg: [{
-					name: 'Foo',
-					description: 'Converts foo to bar',
-					type: { name: 'Array' },
-				}],
-				param: [{
-					name: 'Bar',
-				}],
+				arg: [
+					{
+						name: 'Foo',
+						description: 'Converts foo to bar',
+						type: { name: 'Array' },
+					},
+				],
+				param: [
+					{
+						name: 'Bar',
+					},
+				],
 			},
 		},
 	};
 
-	const actual = shallow(
-		<PropsRenderer classes={{}} props={props} />
-	);
+	const actual = shallow(<PropsRenderer classes={{}} props={props} />);
 
 	expect(actual).toMatchSnapshot();
 });
@@ -160,17 +169,17 @@ it('should render name as deprecated when tag deprecated is present', () => {
 			required: false,
 			description: 'Test description',
 			tags: {
-				deprecated: [{
-					title: 'deprecated',
-					description: 'Do not use.',
-				}],
+				deprecated: [
+					{
+						title: 'deprecated',
+						description: 'Do not use.',
+					},
+				],
 			},
 		},
 	};
 
-	const actual = shallow(
-		<PropsRenderer classes={{}} props={props} />
-	);
+	const actual = shallow(<PropsRenderer classes={{}} props={props} />);
 
 	expect(actual).toMatchSnapshot();
 });

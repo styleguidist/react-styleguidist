@@ -21,12 +21,12 @@ module.exports = function getComponentFiles(components, rootDir, ignore) {
 	let componentFiles;
 	if (isFunction(components)) {
 		componentFiles = components();
-	}
-	else if (isString(components)) {
+	} else if (isString(components)) {
 		componentFiles = glob.sync(path.resolve(rootDir, components), { ignore });
-	}
-	else {
-		throw new Error(`Styleguidist: components should be string or function, received ${typeof components}.`);
+	} else {
+		throw new Error(
+			`Styleguidist: components should be string or function, received ${typeof components}.`
+		);
 	}
 
 	// Make paths absolute

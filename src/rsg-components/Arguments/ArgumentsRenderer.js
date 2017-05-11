@@ -24,11 +24,13 @@ export function ArgumentsRenderer({ classes, args }) {
 
 ArgumentsRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
-	args: PropTypes.arrayOf(PropTypes.shape({
-		name: PropTypes.string.isRequired,
-		type: PropTypes.object,
-		description: PropTypes.string,
-	})).isRequired,
+	args: PropTypes.arrayOf(
+		PropTypes.shape({
+			name: PropTypes.string.isRequired,
+			type: PropTypes.object,
+			description: PropTypes.string,
+		})
+	).isRequired,
 };
 
 export default Styled(styles)(ArgumentsRenderer);

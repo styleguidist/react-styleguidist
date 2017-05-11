@@ -22,9 +22,7 @@ module.exports = function(config, env) {
 	const isProd = env === 'production';
 
 	let webpackConfig = {
-		entry: config.require.concat([
-			path.resolve(sourceDir, 'index'),
-		]),
+		entry: config.require.concat([path.resolve(sourceDir, 'index')]),
 		output: {
 			path: config.styleguideDir,
 			filename: 'build/[name].bundle.js',
@@ -84,19 +82,14 @@ module.exports = function(config, env) {
 		if (!isWebpack2) {
 			webpackConfig.plugins.push(new webpack.optimize.DedupePlugin());
 		}
-	}
-	else {
+	} else {
 		webpackConfig = merge(webpackConfig, {
-			entry: [
-				require.resolve('react-dev-utils/webpackHotDevClient'),
-			],
+			entry: [require.resolve('react-dev-utils/webpackHotDevClient')],
 			stats: {
 				colors: true,
 				reasons: true,
 			},
-			plugins: [
-				new webpack.HotModuleReplacementPlugin(),
-			],
+			plugins: [new webpack.HotModuleReplacementPlugin()],
 		});
 	}
 

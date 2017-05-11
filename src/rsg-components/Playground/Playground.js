@@ -34,10 +34,7 @@ export default class Playground extends Component {
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		return (
-			nextState.code !== this.state.code ||
-			nextState.showCode !== this.state.showCode
-		);
+		return nextState.code !== this.state.code || nextState.showCode !== this.state.showCode;
 	}
 
 	componentWillUnmount() {
@@ -54,9 +51,10 @@ export default class Playground extends Component {
 		}
 
 		// stored update action
-		const queuedChange = () => this.setState({
-			code,
-		});
+		const queuedChange = () =>
+			this.setState({
+				code,
+			});
 
 		const { previewDelay } = this.context.config;
 
@@ -64,8 +62,7 @@ export default class Playground extends Component {
 			// if previewDelay is enabled debounce the code
 			this.queuedChange = debounce(queuedChange, previewDelay);
 			this.queuedChange();
-		}
-		else {
+		} else {
 			// otherwise execute it
 			queuedChange();
 		}

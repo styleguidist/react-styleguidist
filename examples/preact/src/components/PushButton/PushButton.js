@@ -6,19 +6,13 @@ import './PushButton.css';
 /**
  * An example-less button.
  */
-export default function PushButton({
-	color,
-	size,
-	children,
-}) {
+export default function PushButton({ color, size, children }) {
 	const styles = {
 		color,
 		fontSize: PushButton.sizes[size],
 	};
 
-	return (
-		<button className="push-button" style={styles}>{children}</button>
-	);
+	return <button className="push-button" style={styles}>{children}</button>;
 }
 PushButton.propTypes = {
 	/**

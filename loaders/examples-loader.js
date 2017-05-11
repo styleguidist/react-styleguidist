@@ -24,7 +24,7 @@ function examplesLoader(source) {
 	const query = loaderUtils.getOptions(this) || {};
 	const config = this._styleguidist;
 
-    // Append React to context modules, since it’s required for JSX
+	// Append React to context modules, since it’s required for JSX
 	const fullContext = Object.assign({ React: 'react' }, config.context);
 
 	// Replace placeholders (__COMPONENT__) with the passed-in component name
@@ -44,17 +44,23 @@ function examplesLoader(source) {
 	const allRequires = Object.assign({}, requiresFromExamples, fullContext);
 
 	// “Prerequire” modules required in Markdown examples and context so they end up in a bundle and be available at runtime
-	const allRequiresCode = reduce(allRequires, (requires, requireRequest) => {
-		requires[requireRequest] = requireIt(requireRequest);
-		return requires;
-	}, {});
+	const allRequiresCode = reduce(
+		allRequires,
+		(requires, requireRequest) => {
+			requires[requireRequest] = requireIt(requireRequest);
+			return requires;
+		},
+		{}
+	);
 
 	// Require context modules so they are available in an example
-	const requireContextCode = b.program(map(fullContext, (requireRequest, name) =>
-		b.variableDeclaration('var', [
-			b.variableDeclarator(b.identifier(name), requireIt(requireRequest).toAST()),
-		])
-	));
+	const requireContextCode = b.program(
+		map(fullContext, (requireRequest, name) =>
+			b.variableDeclaration('var', [
+				b.variableDeclarator(b.identifier(name), requireIt(requireRequest).toAST()),
+			])
+		)
+	);
 
 	// Stringify examples object except the evalInContext function
 	const examplesWithEval = examples.map(example => {

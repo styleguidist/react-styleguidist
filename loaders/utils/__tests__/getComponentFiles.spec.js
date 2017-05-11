@@ -24,18 +24,18 @@ it('getComponentFiles() should accept components as a function that returns abso
 
 it('getComponentFiles() should accept components as a glob', () => {
 	const result = getComponentFiles(glob, configDir);
-	expect(result).toEqual(absolutize([
-		'components/Button/Button.js',
-		'components/Placeholder/Placeholder.js',
-		'components/RandomButton/RandomButton.js',
-	]));
+	expect(result).toEqual(
+		absolutize([
+			'components/Button/Button.js',
+			'components/Placeholder/Placeholder.js',
+			'components/RandomButton/RandomButton.js',
+		])
+	);
 });
 
 it('getComponentFiles() should ignore specified patterns', () => {
 	const result = getComponentFiles(glob, configDir, ['**/*Button*']);
-	expect(result).toEqual(absolutize([
-		'components/Placeholder/Placeholder.js',
-	]));
+	expect(result).toEqual(absolutize(['components/Placeholder/Placeholder.js']));
 });
 
 it('getComponentFiles() should throw if components is not a function or a string', () => {

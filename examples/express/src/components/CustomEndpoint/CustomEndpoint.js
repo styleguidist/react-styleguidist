@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 /* eslint-disable compat/compat */
 
 export default class CustomEndpoint extends Component {
-
 	constructor(props) {
 		super(props);
 
@@ -15,10 +14,12 @@ export default class CustomEndpoint extends Component {
 		fetch('http://localhost:6060/custom', { method: 'GET' })
 			.then(responseObj => responseObj.json())
 			.then(({ response } = {}) => this.setState({ response, error: null }))
-			.catch(() => this.setState({
-				response: null,
-				error: 'Ouch, something went wrong!',
-			}));
+			.catch(() =>
+				this.setState({
+					response: null,
+					error: 'Ouch, something went wrong!',
+				})
+			);
 	}
 
 	render() {

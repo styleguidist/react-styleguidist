@@ -8,7 +8,17 @@ import './Placeholder.css';
  */
 export default class Placeholder extends Component {
 	static propTypes = {
-		type: PropTypes.oneOf(['animal', 'bacon', 'beard', 'bear', 'cat', 'food', 'city', 'nature', 'people']),
+		type: PropTypes.oneOf([
+			'animal',
+			'bacon',
+			'beard',
+			'bear',
+			'cat',
+			'food',
+			'city',
+			'nature',
+			'people',
+		]),
 		width: PropTypes.number,
 		height: PropTypes.number,
 	};
@@ -38,7 +48,13 @@ export default class Placeholder extends Component {
 	render() {
 		const { type, width, height } = this.props;
 		return (
-			<img className="placeholder" src={this.getImageUrl()} alt={type} width={width} height={height} />
+			<img
+				className="placeholder"
+				src={this.getImageUrl()}
+				alt={type}
+				width={width}
+				height={height}
+			/>
 		);
 	}
 }

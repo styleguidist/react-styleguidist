@@ -44,9 +44,7 @@ export default class StyleGuide extends Component {
 		const { config, sections, welcomeScreen, patterns, isolatedComponent } = this.props;
 
 		if (welcomeScreen) {
-			return (
-				<Welcome patterns={patterns} />
-			);
+			return <Welcome patterns={patterns} />;
 		}
 
 		return (

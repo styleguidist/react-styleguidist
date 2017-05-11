@@ -87,29 +87,25 @@ export function ReactComponentRenderer({
 				</Heading>
 				<div className={classes.pathLine}>{pathLine}</div>
 				<div className={classes.isolatedLink}>
-					{isolated ? (
-						<Link href="/">← Back</Link>
-					) : (
-						<Link href={'#!/' + name}>Open isolated ⇢</Link>
-					)}
+					{isolated
+						? <Link href="/">← Back</Link>
+						: <Link href={'#!/' + name}>Open isolated ⇢</Link>}
 				</div>
 			</header>
 			<div className={classes.description}>
 				{description && <Markdown text={description} />}
 				<JsDoc {...tags} />
 			</div>
-			{props && (
+			{props &&
 				<div className={classes.subsection}>
 					<h3 className={classes.heading}>Props</h3>
 					{props}
-				</div>
-			)}
-			{methods && (
+				</div>}
+			{methods &&
 				<div className={classes.subsection}>
 					<h3 className={classes.heading}>Methods</h3>
 					{methods}
-				</div>
-			)}
+				</div>}
 			{examples}
 		</div>
 	);

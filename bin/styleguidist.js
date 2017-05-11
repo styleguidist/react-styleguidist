@@ -56,17 +56,15 @@ function printAllWarnings(warnings, originalWarnings) {
 }
 
 function printStyleguidistError(errors) {
-	const styleguidistError = errors.find(message => message.includes('Module build failed: Error: Styleguidist:'));
+	const styleguidistError = errors.find(message =>
+		message.includes('Module build failed: Error: Styleguidist:')
+	);
 	if (!styleguidistError) {
 		return;
 	}
 
 	const m = styleguidistError.match(/Styleguidist: (.*?)\n/);
-	printErrorWithLink(
-		m[1],
-		'Learn how to configure your style guide:',
-		consts.DOCS_CONFIG
-	);
+	printErrorWithLink(m[1], 'Learn how to configure your style guide:', consts.DOCS_CONFIG);
 	process.exit(1);
 }
 
@@ -75,7 +73,9 @@ function printNoLoaderError(errors) {
 		return;
 	}
 
-	const noLoaderError = errors.find(message => message.includes('You may need an appropriate loader'));
+	const noLoaderError = errors.find(message =>
+		message.includes('You may need an appropriate loader')
+	);
 	if (!noLoaderError) {
 		return;
 	}
@@ -104,18 +104,15 @@ const argv = minimist(process.argv.slice(2));
 let config;
 try {
 	config = getConfig(argv.config);
-}
-catch (err) {
+} catch (err) {
 	if (err instanceof StyleguidistError) {
 		printErrorWithLink(
 			err.message,
-			err.extra + '\n\n' +
-			'Learn how to configure your style guide:',
+			err.extra + '\n\n' + 'Learn how to configure your style guide:',
 			consts.DOCS_CONFIG
 		);
 		process.exit(1);
-	}
-	else {
+	} else {
 		throw err;
 	}
 }
@@ -142,8 +139,7 @@ function commandBuild() {
 		if (err) {
 			console.log(err);
 			process.exit(1);
-		}
-		else {
+		} else {
 			console.log('Style guide published to:');
 			console.log(chalk.underline(config.styleguideDir));
 		}
@@ -169,8 +165,7 @@ function commandServer() {
 				'You can change the port using the `serverPort` option in your style guide config:',
 				consts.DOCS_CONFIG
 			);
-		}
-		else {
+		} else {
 			console.error(chalk.bold.red(err.message));
 			/* istanbul ignore if */
 			if (argv.verbose) {
@@ -185,8 +180,7 @@ function commandServer() {
 	const compiler = server(config, err => {
 		if (err) {
 			console.log(err);
-		}
-		else {
+		} else {
 			console.log('Style guide server started at:');
 			console.log(chalk.underline('http://' + config.serverHost + ':' + config.serverPort));
 			console.log();
@@ -214,20 +208,27 @@ function commandServer() {
 }
 
 function commandHelp() {
-	console.log([
-		chalk.underline('Usage'),
-		'',
-		'    ' + chalk.bold('styleguidist') + ' ' + chalk.cyan('<command>') + ' ' + chalk.yellow('[<options>]'),
-		'',
-		chalk.underline('Commands'),
-		'',
-		'    ' + chalk.cyan('build') + '           Build style guide',
-		'    ' + chalk.cyan('server') + '          Run development server',
-		'    ' + chalk.cyan('help') + '            Display React Styleguidist help',
-		'',
-		chalk.underline('Options'),
-		'',
-		'    ' + chalk.yellow('--config') + '        Config file path',
-		'    ' + chalk.yellow('--verbose') + '       Print debug information',
-	].join('\n'));
+	console.log(
+		[
+			chalk.underline('Usage'),
+			'',
+			'    ' +
+				chalk.bold('styleguidist') +
+				' ' +
+				chalk.cyan('<command>') +
+				' ' +
+				chalk.yellow('[<options>]'),
+			'',
+			chalk.underline('Commands'),
+			'',
+			'    ' + chalk.cyan('build') + '           Build style guide',
+			'    ' + chalk.cyan('server') + '          Run development server',
+			'    ' + chalk.cyan('help') + '            Display React Styleguidist help',
+			'',
+			chalk.underline('Options'),
+			'',
+			'    ' + chalk.yellow('--config') + '        Config file path',
+			'    ' + chalk.yellow('--verbose') + '       Print debug information',
+		].join('\n')
+	);
 }

@@ -98,9 +98,7 @@ function renderEnum(prop) {
 	const values = getType(prop).value.map(({ value }) => (
 		<Code key={value}>{showSpaces(unquote(value))}</Code>
 	));
-	return (
-		<span>One of: <Group separator=", " inline>{values}</Group></span>
-	);
+	return <span>One of: <Group separator=", " inline>{values}</Group></span>;
 }
 
 export function PropsRenderer({ classes, props }) {
@@ -122,20 +120,17 @@ export function PropsRenderer({ classes, props }) {
 
 	function renderDefault(prop) {
 		if (prop.required) {
-			return (
-				<span className={classes.required}>Required</span>
-			);
-		}
-		else if (prop.defaultValue) {
+			return <span className={classes.required}>Required</span>;
+		} else if (prop.defaultValue) {
 			if (prop.type && prop.type.name === 'func') {
 				return (
-					<span className={classes.function} title={showSpaces(unquote(prop.defaultValue.value))}>Function</span>
+					<span className={classes.function} title={showSpaces(unquote(prop.defaultValue.value))}>
+						Function
+					</span>
 				);
 			}
 
-			return (
-				<Code>{showSpaces(unquote(prop.defaultValue.value))}</Code>
-			);
+			return <Code>{showSpaces(unquote(prop.defaultValue.value))}</Code>;
 		}
 		return '';
 	}
@@ -143,18 +138,17 @@ export function PropsRenderer({ classes, props }) {
 	function renderDescription(prop) {
 		const { description, tags = {} } = prop;
 		const extra = renderExtra(prop);
-		const args = [...tags.arg || [], ...tags.argument || [], ...tags.param || []];
+		const args = [...(tags.arg || []), ...(tags.argument || []), ...(tags.param || [])];
 		return (
 			<div>
 				{description && <Markdown text={description} />}
 				{extra && <div className={classes.para}>{extra}</div>}
 				<JsDoc {...tags} />
-				{args.length > 0 && (
+				{args.length > 0 &&
 					<div>
 						<h4 className={classes.heading}>Arguments</h4>
 						<Arguments args={args} />
-					</div>
-				)}
+					</div>}
 			</div>
 		);
 	}
@@ -195,9 +189,7 @@ export function PropsRenderer({ classes, props }) {
 		const values = getType(prop).value.map(value => (
 			<Code key={value.name} className={classes.type}>{renderType(value)}</Code>
 		));
-		return (
-			<span>One of type: <Group separator=", " inline>{values}</Group></span>
-		);
+		return <span>One of type: <Group separator=", " inline>{values}</Group></span>;
 	}
 
 	function renderShape(props) {

@@ -6,20 +6,13 @@ import './Button.css';
 /**
  * The only true button.
  */
-export default function Button({
-	color,
-	size,
-	onClick,
-	children,
-}) {
+export default function Button({ color, size, onClick, children }) {
 	const styles = {
 		color,
 		fontSize: Button.sizes[size],
 	};
 
-	return (
-		<button className="button" style={styles} onClick={onClick}>{children}</button>
-	);
+	return <button className="button" style={styles} onClick={onClick}>{children}</button>;
 }
 Button.propTypes = {
 	/** Button label */
@@ -35,7 +28,7 @@ Button.defaultProps = {
 	color: '#333',
 	size: 'normal',
 	/* eslint-disable no-console */
-	onClick: (event) => {
+	onClick: event => {
 		console.log('You have clicked me!', event.target);
 	},
 	/* eslint-enable no-console */

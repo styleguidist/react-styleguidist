@@ -2,18 +2,24 @@ import React from 'react';
 import JsDoc, { getMarkdown } from './JsDoc';
 
 const tags = {
-	deprecated: [{
-		title: 'description',
-		description: 'Use *another* method',
-	}],
-	version: [{
-		title: 'version',
-		description: '2.0.0',
-	}],
-	since: [{
-		title: 'since',
-		description: '1.0.0',
-	}],
+	deprecated: [
+		{
+			title: 'description',
+			description: 'Use *another* method',
+		},
+	],
+	version: [
+		{
+			title: 'version',
+			description: '2.0.0',
+		},
+	],
+	since: [
+		{
+			title: 'since',
+			description: '1.0.0',
+		},
+	],
 	author: [
 		{
 			title: 'author',
@@ -65,17 +71,13 @@ describe('getMarkdown', () => {
 
 describe('JsDoc', () => {
 	it('should render Markdown', () => {
-		const actual = shallow(
-			<JsDoc {...tags} />
-		);
+		const actual = shallow(<JsDoc {...tags} />);
 
 		expect(actual).toMatchSnapshot();
 	});
 
 	it('should render null for empty tags', () => {
-		const actual = shallow(
-			<JsDoc />
-		);
+		const actual = shallow(<JsDoc />);
 
 		expect(actual.node).toBe(null);
 	});

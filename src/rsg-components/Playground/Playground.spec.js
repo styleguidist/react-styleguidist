@@ -16,12 +16,7 @@ const options = {
 
 it('should render component renderer', () => {
 	const actual = shallow(
-		<Playground
-			code={code}
-			evalInContext={a => () => a}
-			name="name"
-			index={0}
-		/>,
+		<Playground code={code} evalInContext={a => () => a} name="name" index={0} />,
 		options
 	);
 
@@ -30,12 +25,7 @@ it('should render component renderer', () => {
 
 it('should update code', () => {
 	const actual = shallow(
-		<Playground
-			code={code}
-			evalInContext={a => () => a}
-			name="name"
-			index={0}
-		/>,
+		<Playground code={code} evalInContext={a => () => a} name="name" index={0} />,
 		options
 	);
 
@@ -48,12 +38,7 @@ it('should update code', () => {
 
 it('should update code via props', () => {
 	const actual = shallow(
-		<Playground
-			code={code}
-			evalInContext={a => () => a}
-			name="name"
-			index={0}
-		/>,
+		<Playground code={code} evalInContext={a => () => a} name="name" index={0} />,
 		options
 	);
 
@@ -66,24 +51,15 @@ it('should update code via props', () => {
 	expect(actual.state('code')).toEqual(newCode);
 });
 
-
 it('should update code with debounce', done => {
-	const actual = shallow(
-		<Playground
-			code={code}
-			evalInContext={a => a}
-			name="name"
-			index={0}
-		/>,
-		{
-			context: {
-				config: {
-					...options.context.config,
-					previewDelay: 1,
-				},
+	const actual = shallow(<Playground code={code} evalInContext={a => a} name="name" index={0} />, {
+		context: {
+			config: {
+				...options.context.config,
+				previewDelay: 1,
 			},
-		}
-	);
+		},
+	});
 
 	expect(actual.prop('code')).toEqual(code);
 
@@ -98,12 +74,7 @@ it('should update code with debounce', done => {
 
 it('should open a code editor', () => {
 	const actual = mount(
-		<Playground
-			code={code}
-			evalInContext={a => () => a}
-			name="name"
-			index={0}
-		/>,
+		<Playground code={code} evalInContext={a => () => a} name="name" index={0} />,
 		options
 	);
 

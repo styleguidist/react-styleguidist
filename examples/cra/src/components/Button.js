@@ -6,19 +6,13 @@ import './Button.css';
 /**
  * The only true button.
  */
-export default function Button({
-	color,
-	size,
-	children,
-}) {
+export default function Button({ color, size, children }) {
 	const styles = {
 		color,
 		fontSize: Button.sizes[size],
 	};
 
-	return (
-		<button className="button" style={styles}>{children}</button>
-	);
+	return <button className="button" style={styles}>{children}</button>;
 }
 Button.propTypes = {
 	/**

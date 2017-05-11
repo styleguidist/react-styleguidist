@@ -38,7 +38,11 @@ module.exports.pitch = function() {
 		sections = filterComponentsWithExample(sections);
 	}
 
-	const allComponentFiles = getComponentFilesFromSections(config.sections, config.configDir, config.ignore);
+	const allComponentFiles = getComponentFilesFromSections(
+		config.sections,
+		config.configDir,
+		config.ignore
+	);
 	const allContentPages = getAllContentPages(sections);
 
 	// Nothing to show in the style guide
@@ -56,8 +60,7 @@ module.exports.pitch = function() {
 	// Setup Webpack context dependencies to enable hot reload when adding new files
 	if (config.contextDependencies) {
 		config.contextDependencies.forEach(dir => this.addContextDependency(dir));
-	}
-	else if (allComponentFiles.length > 0) {
+	} else if (allComponentFiles.length > 0) {
 		// Use common parent directory of all components as a context
 		this.addContextDependency(commonDir(allComponentFiles));
 	}

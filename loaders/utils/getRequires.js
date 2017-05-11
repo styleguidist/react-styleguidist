@@ -21,7 +21,9 @@ module.exports = function getRequires(code) {
 	code.replace(REQUIRE_ANYTHING_REGEX, function(requireExprMatch, requiredExpr) {
 		const requireStrMatch = SIMPLE_STRING_REGEX.exec(requiredExpr.trim());
 		if (!requireStrMatch) {
-			throw new Error(`Requires using expressions are not supported in examples. (Used: ${requireExprMatch})`);
+			throw new Error(
+				`Requires using expressions are not supported in examples. (Used: ${requireExprMatch})`
+			);
 		}
 		const requiredString = requireStrMatch[1] ? requireStrMatch[1] : requireStrMatch[2];
 		requires[requiredString] = requiredString;

@@ -25,11 +25,7 @@ const section = {
 };
 
 it('should render component renderer', () => {
-	const actual = shallow(
-		<Section
-			section={section}
-		/>
-	);
+	const actual = shallow(<Section section={section} />);
 
 	expect(actual).toMatchSnapshot();
 });
@@ -104,24 +100,13 @@ it('render should render component', () => {
 });
 
 it('render should not render title if name is not set', () => {
-	const actual = shallow(
-		<SectionRenderer
-			classes={{}}
-		/>
-	);
+	const actual = shallow(<SectionRenderer classes={{}} />);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('render should render title if name is set', () => {
-	const actual = shallow(
-		<SectionRenderer
-			classes={{}}
-			name="test"
-			slug="test"
-		/>
-	);
+	const actual = shallow(<SectionRenderer classes={{}} name="test" slug="test" />);
 
 	expect(actual).toMatchSnapshot();
 });
-

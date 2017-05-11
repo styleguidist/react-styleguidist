@@ -14,11 +14,11 @@ const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
 // work around an issue in react-docgen that breaks the build if a component has JSDoc tags
 // like @see in its description, see https://github.com/reactjs/react-docgen/issues/155
 // and https://github.com/styleguidist/react-styleguidist/issues/298
-const getDocletsObject = (string) => {
+const getDocletsObject = string => {
 	return Object.assign({}, reactDocs.utils.docblock.getDoclets(string));
 };
 
-const getDoctrineTags = (documentation) => {
+const getDoctrineTags = documentation => {
 	return _.groupBy(documentation.tags, 'title');
 };
 
@@ -39,7 +39,7 @@ module.exports = function getProps(doc) {
 	});
 
 	// Parse the docblock of the remaining methods with doctrine to retrieve the JsDoc tags
-	doc.methods = doc.methods.map((method) => {
+	doc.methods = doc.methods.map(method => {
 		return Object.assign(method, {
 			tags: getDoctrineTags(doctrine.parse(method.docblock)),
 		});
@@ -58,8 +58,7 @@ module.exports = function getProps(doc) {
 			doc.example = requireIt(`!!${examplesLoader}!${doc.doclets.example}`);
 			delete doc.doclets.example;
 		}
-	}
-	else {
+	} else {
 		doc.doclets = {};
 	}
 

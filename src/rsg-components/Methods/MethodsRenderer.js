@@ -82,13 +82,15 @@ export function MethodsRenderer({ classes, methods }) {
 
 MethodsRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
-	methods: PropTypes.arrayOf(PropTypes.shape({
-		name: PropTypes.string.isRequired,
-		description: PropTypes.string,
-		returns: PropTypes.object,
-		params: PropTypes.array,
-		tags: PropTypes.object,
-	})).isRequired,
+	methods: PropTypes.arrayOf(
+		PropTypes.shape({
+			name: PropTypes.string.isRequired,
+			description: PropTypes.string,
+			returns: PropTypes.object,
+			params: PropTypes.array,
+			tags: PropTypes.object,
+		})
+	).isRequired,
 };
 
 export default Styled(styles)(MethodsRenderer);

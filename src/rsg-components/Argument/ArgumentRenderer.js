@@ -17,12 +17,11 @@ export function ArgumentRenderer({ classes, name, type, description, returns, ..
 	return (
 		<Group {...props}>
 			{returns && 'Returns'}
-			{name && (
+			{name &&
 				<span>
 					<Name name={name} />
 					{type && ':'}
-				</span>
-			)}
+				</span>}
 			{type && <Code className={classes.type}>{type.name}</Code>}
 			{description && <Markdown text={`— ${description}`} inline />}
 		</Group>

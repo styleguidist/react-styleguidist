@@ -14,17 +14,13 @@ it('renderer should render argument', () => {
 });
 
 it('renderer should render argument without type', () => {
-	const actual = shallow(
-		<ArgumentRenderer classes={{}} name={name} description={description} />
-	);
+	const actual = shallow(<ArgumentRenderer classes={{}} name={name} description={description} />);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('renderer should render argument without description', () => {
-	const actual = shallow(
-		<ArgumentRenderer classes={{}} name={name} type={type} />
-	);
+	const actual = shallow(<ArgumentRenderer classes={{}} name={name} type={type} />);
 
 	expect(actual).toMatchSnapshot();
 });

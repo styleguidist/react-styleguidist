@@ -14,15 +14,13 @@ export default class TableOfContents extends Component {
 
 	renderLevel(sections) {
 		const items = sections.map(section => {
-			const children = [...section.sections || [], ...section.components || []];
+			const children = [...(section.sections || []), ...(section.components || [])];
 			return Object.assign({}, section, {
 				heading: !!section.name && children.length > 0,
 				content: children.length > 0 && this.renderLevel(children),
 			});
 		});
-		return (
-			<ComponentsList items={items} />
-		);
+		return <ComponentsList items={items} />;
 	}
 
 	renderSections() {
