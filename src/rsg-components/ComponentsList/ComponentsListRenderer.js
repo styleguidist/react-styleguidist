@@ -1,21 +1,28 @@
+/* eslint
+  import/no-extraneous-dependencies: off,
+  import/no-unresolved: off,
+  import/extensions: off,
+  react/forbid-prop-types: off,
+  react/jsx-filename-extension: off
+*/
 import React, { PropTypes } from 'react';
 import cx from 'classnames';
 
 import s from './ComponentsList.css';
 
 const ComponentsListRenderer = ({ items }) => (
-	items.length ? (
-		<div className={s.list}>
-			{items.map(({ heading, name, content }) => (
-				<div className={cx(s.item, content && content.props.items.length && s.isParent)} key={name}>
-					<a className={cx(s.link, heading && s.heading)} href={'#' + name}>{name}</a>
-					{content}
-				</div>
-			))}
-		</div>
-	) : (
-		null
-	)
+  items.length ? (
+	<div className={s.list}>
+		{items.map(({ heading, name, content }) => (
+			<div className={cx(s.item, content && content.props.items.length && s.isParent)} key={name}>
+				<a className={cx(s.link, heading && s.heading)} href={`#${name}`}>{name}</a>
+				{content}
+			</div>
+      ))}
+	</div>
+  ) : (
+    null
+  )
 );
 
 ComponentsListRenderer.propTypes = {

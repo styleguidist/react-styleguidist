@@ -1,22 +1,25 @@
+/* eslint
+  react/jsx-filename-extension: off
+*/
 import React, { PropTypes } from 'react';
+
+import TextField from 'material-ui/TextField';
 
 import s from './TableOfContents.css';
 
-const TableOfContentsRenderer = ({ items, searchTerm, onSearchTermChange }) => {
-	return (
-		<div>
-			<div className={s.root}>
-				<input
-					value={searchTerm}
-					className={s.search}
-					placeholder="Filter by name"
-					onChange={event => onSearchTermChange(event.target.value)}
-				/>
-				{items}
-			</div>
+const TableOfContentsRenderer = ({ items, searchTerm, onSearchTermChange }) => (
+	<div>
+		<div className={s.root}>
+			<TextField
+				value={searchTerm}
+				hintText="Filter by name"
+				onChange={(event) => onSearchTermChange(event.target.value)}
+				style={{ width: '100%' }}
+			/>
+			{items}
 		</div>
-	);
-};
+	</div>
+);
 
 TableOfContentsRenderer.propTypes = {
 	items: PropTypes.node.isRequired,

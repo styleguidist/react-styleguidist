@@ -1,24 +1,22 @@
 .list {
-	margin: 15px;
+  margin: 15px 0;
 }
 
 .item {
-	margin: 0 0 7px;
-	padding: 0;
-	font-size: 15px;
+  margin: 0 0 15px;
+  font-size: 15px;
+
+  .isParent & {
+    margin: 0 0 7px;
+    padding-left: 1rem;
+  }
 }
 
 .link {
-	composes: link from "../../styles/colors.css";
+  text-decoration: none;
+  color: rgb(0, 0, 0);
 }
 
 .heading {
-	font-weight: bold;
-}
-
-@media (max-width: 600px) {
-	:not(.isParent).item {
-		display: inline-block;
-		margin: 0 7px 0 0;
-	}
+  font-weight: bold;
 }

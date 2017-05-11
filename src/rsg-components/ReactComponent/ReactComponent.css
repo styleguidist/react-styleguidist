@@ -1,55 +1,83 @@
 .root {
-	margin-bottom: 50px;
-	font-size: 16px;
+  margin-bottom: 50px;
+  font-size: 16px;
 }
 
 .header {
-	composes: font from "../../styles/common.css";
-	position: relative;
-	margin-bottom: 20px;
-	font-weight: normal;
+  position: relative;
+  margin-bottom: 20px;
+  font-weight: normal;
 }
 
 .isolatedLink {
-	composes: link from "../../styles/colors.css";
-	position: absolute;
-	top: 0;
-	right: 0;
-	font-size: 14px;
-	opacity: 0;
-	transition: opacity ease-in-out .15s .2s;
-}
-
-.root:hover .isolatedLink {
-	opacity: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1em;
 }
 
 .primaryHeading {
-	position: relative;
-	margin: 0 0 6px 0;
-	font-size: 36px;
-	font-weight: normal;
+  position: relative;
+  margin-bottom: 0.5em;
+  font-size: 1.5em;
+  font-weight: normal;
 }
 
 .heading {
-	margin-bottom: 8px;
-	font-size: 20px;
-	font-weight: normal;
+  margin-bottom: 8px;
+  font-size: 1.2em;
+  font-weight: normal;
+}
+
+.anchorLink {
+  position: absolute;
+  top: 0;
+  right: 3rem;
+  line-height: 1;
+  color: rgb(224, 224, 224);
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.1s;
+  text-decoration: none;
+
+  .root:hover & {
+    opacity: 1;
+  }
+}
+
+.anchor {
+  margin-top: -95px;
+  position: absolute;
+}
+
+.version {
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  color: rgb(158, 158, 158);
 }
 
 .pathLine {
-	composes: monospace from "../../styles/common.css";
-	composes: light from "../../styles/colors.css";
-	font-size: 14px;
+  font-size: 0.9em;
+  color: rgb(158, 158, 158);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.importLine {
+  font-size: 0.9em;
+  color: rgb(0, 188, 212);
+  cursor: pointer;
 }
 
 .description {
-	composes: font from "../../styles/common.css";
-	margin-bottom: 15px;
+  margin-bottom: 1em;
 }
 
 .props {
-	composes: reset font from "../../styles/common.css";
-	margin-bottom: 30px;
-	font-size: 13px;
+  margin-bottom: 2em;
+  font-size: 0.8em;
 }

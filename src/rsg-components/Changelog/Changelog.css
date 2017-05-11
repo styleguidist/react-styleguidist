@@ -1,0 +1,19 @@
+.root {
+  margin-top: 2rem;
+}
+
+.changelogWrapper {
+  margin: 1rem 0;
+  padding: 0 1rem;
+}
+
+.lastUpdate {
+  font-size: 0.8em;
+  color: rgb(153, 153, 153);
+  display: inline-block;
+  padding: 0.5rem 0;
+
+  @media (min-width: 768px) {
+    padding: 0.5rem;
+  }
+}

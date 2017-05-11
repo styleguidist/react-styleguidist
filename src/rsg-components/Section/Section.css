@@ -4,17 +4,30 @@
 }
 
 .header {
-	composes: font from "../../styles/common.css";
-	margin-bottom: 20px;
-	font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .heading {
-	margin: 0 0 6px 0;
-	font-size: 38px;
-	font-weight: bold;
+  margin-bottom: 0.5rem;
+  font-size: 2em;
+  font-weight: bold;
+  position: relative;
+}
+
+.anchorLink {
+  color: rgb(224, 224, 224);
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.1s;
+
+  .heading:hover & {
+    opacity: 1;
+  }
 }
 
 .anchor {
-
+  margin-top: -70px;
+  position: absolute;
 }

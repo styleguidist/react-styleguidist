@@ -5,5 +5,8 @@
 		"expect": false,
 		"shallow": false,
 		"render": false
+	},
+	"rules": {
+		"no-invalid-this": 0,
 	}
 }

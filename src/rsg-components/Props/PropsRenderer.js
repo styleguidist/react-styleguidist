@@ -1,3 +1,10 @@
+/* eslint
+  import/no-extraneous-dependencies: off,
+  import/no-unresolved: off,
+  import/extensions: off,
+  react/forbid-prop-types: off,
+  react/jsx-filename-extension: off
+*/
 import React, { PropTypes } from 'react';
 import Code from 'rsg-components/Code';
 import Markdown from 'rsg-components/Markdown';
@@ -6,20 +13,20 @@ import { unquote, getType, showSpaces } from './util';
 
 import s from './Props.css';
 
-function renderRows(props) {
-	const rows = [];
-	for (const name in props) {
-		const prop = props[name];
-		rows.push(
-			<tr key={name}>
-				<td className={s.cell}><Code className={s.name}>{name}</Code></td>
-				<td className={s.cell}><Code className={s.type}>{renderType(getType(prop))}</Code></td>
-				<td className={s.cell}>{renderDefault(prop)}</td>
-				<td className={s.cell + ' ' + s.cellDesc}>{renderDescription(prop)}</td>
-			</tr>
-		);
+function renderDefault(prop) {
+	if (prop.defaultValue) {
+		return (
+			<Code plain>
+				{showSpaces(unquote(prop.defaultValue.value))}
+			</Code>
+ 	);
 	}
-	return rows;
+	else if (prop.required) {
+		return (
+			<span className={s.required}>Required</span>
+ 	);
+	}
+	return '';
 }
 
 function renderType(type) {
@@ -39,29 +46,49 @@ function renderType(type) {
 	}
 }
 
-function renderDefault(prop) {
-	if (prop.required) {
-		return (
-			<span className={s.required}>Required</span>
-		);
+function renderEnum(prop) {
+	if (!Array.isArray(getType(prop).value)) {
+		return <span>{getType(prop).value}</span>;
 	}
-	else if (prop.defaultValue) {
-		return (
-			<Code>{showSpaces(unquote(prop.defaultValue.value))}</Code>
-		);
-	}
-	return '';
+
+	const values = getType(prop).value.map(({ value }) => (
+		<Code key={value}>{showSpaces(unquote(value))}</Code>
+  ));
+	return (
+		<span><span className={s.name}>One of:</span> <Group separator=", " inline>{values}</Group></span>
+ );
 }
 
-function renderDescription(prop) {
-	const { description } = prop;
-	const extra = renderExtra(prop);
+function renderUnion(prop) {
+	if (!Array.isArray(getType(prop).value)) {
+		return <span>{getType(prop).value}</span>;
+	}
+
+	const values = getType(prop).value.map((value) => (
+		<Code key={value.name} className={s.type}>{renderType(value)}</Code>
+  ));
 	return (
-		<Group>
-			{description && <Markdown text={description} inline />}
-			{extra}
-		</Group>
-	);
+		<span><span className={s.name}>One of type:</span> <Group separator=", " inline>{values}</Group></span>
+ );
+}
+
+function renderShape(props) {
+	const rows = [];
+	for (const name in props) {
+		const prop = props[name];
+		const defaultValue = renderDefault(prop);
+		const description = prop.description;
+		rows.push(
+			<div key={name}>
+				<Code className={s.name}>{name}</Code>{': '}
+				<Code className={s.type}>{renderType(prop)}</Code>
+				{defaultValue && ' — '}{defaultValue}
+				{description && ' — '}
+				{description && <Markdown text={description} inline />}
+			</div>
+    );
+	}
+	return rows;
 }
 
 function renderExtra(prop) {
@@ -70,7 +97,6 @@ function renderExtra(prop) {
 	if (!type) {
 		return null;
 	}
-
 	switch (type.name) {
 		case 'enum':
 			return renderEnum(prop);
@@ -88,67 +114,52 @@ function renderExtra(prop) {
 	}
 }
 
-function renderEnum(prop) {
-	if (!Array.isArray(getType(prop).value)) {
-		return <span>{getType(prop).value}</span>;
-	}
-
-	const values = getType(prop).value.map(({ value }) => (
-		<Code key={value}>{showSpaces(unquote(value))}</Code>
-	));
+function renderDescription(prop) {
+	const { description } = prop;
+	const extra = renderExtra(prop);
 	return (
-		<span>One of: <Group separator=", " inline>{values}</Group></span>
-	);
+		<Group>
+			{description && <Markdown text={description} inline />}
+			<br />
+			{extra}
+		</Group>
+ );
 }
 
-function renderUnion(prop) {
-	if (!Array.isArray(getType(prop).value)) {
-		return <span>{getType(prop).value}</span>;
-	}
-
-	const values = getType(prop).value.map(value => (
-		<Code key={value.name} className={s.type}>{renderType(value)}</Code>
-	));
-	return (
-		<span>One of type: <Group separator=", " inline>{values}</Group></span>
-	);
-}
-
-function renderShape(props) {
+function renderRows(props) {
 	const rows = [];
 	for (const name in props) {
 		const prop = props[name];
-		const defaultValue = renderDefault(prop);
-		const description = prop.description;
 		rows.push(
-			<div key={name}>
-				<Code className={s.name}>{name}</Code>{': '}
-				<Code className={s.type}>{renderType(prop)}</Code>
-				{defaultValue && ' — '}{defaultValue}
-				{description && ' — '}
-				{description && <Markdown text={description} inline />}
-			</div>
-		);
+			<tr key={name}>
+				<td className={s.cell}><Code className={s.name}>{name}</Code></td>
+				<td className={s.cell}><Code className={s.type}>{renderType(getType(prop))}</Code></td>
+				<td className={s.cell}>{renderDefault(prop)}</td>
+				<td className={`${s.cell} ${s.cellDesc}`}>{renderDescription(prop)}</td>
+			</tr>
+    );
 	}
 	return rows;
 }
 
 export default function PropsRenderer({ props }) {
 	return (
-		<table className={s.table}>
-			<thead className={s.tableHead}>
-				<tr>
-					<th className={s.cellHeading}>Name</th>
-					<th className={s.cellHeading}>Type</th>
-					<th className={s.cellHeading}>Default</th>
-					<th className={s.cellHeading + ' ' + s.cellDesc}>Description</th>
-				</tr>
-			</thead>
-			<tbody className={s.tableBody}>
-				{renderRows(props)}
-			</tbody>
-		</table>
-	);
+		<div className={s.tableWrapper}>
+			<table className={s.table}>
+				<thead className={s.tableHead}>
+					<tr>
+						<th className={s.cellHeading}>Name</th>
+						<th className={s.cellHeading}>Type</th>
+						<th className={`${s.cellHeading} ${s.cellHeading_wide}`}>Default</th>
+						<th className={`${s.cellHeading} ${s.cellDesc}`}>Description</th>
+					</tr>
+				</thead>
+				<tbody className={s.tableBody}>
+					{renderRows(props)}
+				</tbody>
+			</table>
+		</div>
+ );
 }
 
 PropsRenderer.propTypes = {

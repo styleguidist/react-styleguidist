@@ -1,0 +1,88 @@
+.root {
+  position: relative;
+  padding-bottom: 1rem;
+  background-color: white;
+
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  @media (min-width: 768px) {
+    height: 100%;
+  }
+}
+
+.items {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.item {
+  width: 100%;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:empty {
+    margin-bottom: 0;
+  }
+
+  &_last {
+    margin-top: 2rem;
+  }
+}
+
+.field {
+  flex: 1 1 100%;
+}
+
+.fields {
+  position: relative;
+  height: 100%;
+  background-color: #fff;
+  z-index: 2;
+}
+
+.fieldToggle {
+  margin-top: 1.4rem;
+  padding: 0 1rem;
+}
+
+.customCheck {
+  height: 72px;
+  padding-bottom: 14px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  max-width: 300px;
+}
+
+.fluidPlate {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transform: translateX(5%);
+  transition: transform 350ms cubic-bezier(0.23, 1, 0.32, 1);
+  animation: blink 3s infinite;
+
+  &_visible {
+    transform: translateX(-95%);
+  }
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+
+@keyframes blink {
+  0 { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}

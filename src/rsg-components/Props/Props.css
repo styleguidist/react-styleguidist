@@ -1,43 +1,68 @@
 .inline {
-	display: inline-block;
+  display: inline-block;
 }
+
 .inline p:last-child {
-	margin: 0;
+  margin: 0;
+}
+
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 1rem;
 }
 
 .table {
-	width: 100%;
-	border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 400px;
 }
+
+.table tr {
+  border-bottom: 1px solid rgb(245, 245, 245);
+}
+
 .tableHead {
-	composes: border from "../../styles/colors.css";
-	border-width: 0 0 1px 0;
+  border-bottom: 2px solid rgb(224, 224, 224);
 }
-.tableBody {
-}
+
 .cell {
-	padding-right: 15px;
-	padding-top: 6px;
-	vertical-align: top;
-	font-size: 13px;
+  padding-right: 15px;
+  padding-top: 0.8rem;
+  padding-bottom: 0.2rem;
+  vertical-align: top;
+  font-size: 13px;
 }
+
 .cellHeading {
-	padding-right: 15px;
-	padding-bottom: 6px;
-	text-align: left;
-	font-size: 13px;
+  padding-right: 15px;
+  padding-bottom: 6px;
+  text-align: left;
+  font-size: 13px;
+
+  &_wide {
+    min-width: 300px;
+  }
 }
+
 .cellDesc {
-	width: 99%;
-	padding-left: 15px;
+  width: 100%;
+  padding-left: 15px;
 }
 
 .required {
-	composes: light from "../../styles/colors.css";
+  color: #ef5350;
+
+  &::after {
+    content: '*';
+    display: inline;
+  }
 }
+
 .name {
-	composes: name from "../../styles/colors.css";
+  color: #43a047;
 }
+
 .type {
-	composes: type from "../../styles/colors.css";
+  color: rgb(158, 158, 158);
 }

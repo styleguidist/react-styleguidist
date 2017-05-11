@@ -1,53 +1,154 @@
 .root {
-	position: relative;
-	composes: border from "../../styles/colors.css";
-	margin-bottom: 30px;
-	border-radius: 3px 3px 0 3px;
+  position: relative;
+  border: 1px solid rgb(245, 245, 245);
+  background-color: #fff;
+  margin-bottom: 30px;
+
+  &_singleExample {
+    border: none;
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.previewBox {
+  width: 100%;
+  padding: 1rem;
+  overflow: hidden;
+  position: relative;
+
+  &_withToolbar {
+    @media (min-width: 768px) {
+      padding-right: calc(50px + 1rem);
+    }
+  }
+
+  &_withEditor {
+    @media (min-width: 768px) {
+      padding-right: calc(400px + 50px + 1rem);
+    }
+  }
+}
+
+.tools {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+
+  @media (min-width: 768px) {
+    display: none;
+
+    .root:hover > & {
+      display: block;
+    }
+  }
+}
+
+.resizeble {
+  margin: 0 auto;
+  max-width: 100%;
+  /* stylelint-disable-next-line plugin/no-low-performance-animation */
+  transition: width 0.5s, height 0.5s;
+
+  &_isResize {
+    transition: none;
+  }
 }
 
 .preview {
-	margin-bottom: 3px;
-	padding: 15px;
-	overflow: auto;
+  margin: 0 auto;
+  padding: 15px 24px;
+  overflow: auto;
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0 1px 6px, rgba(0, 0, 0, 0.117647) 0 1px 4px;
+  height: 100%;
+
+  &_BgLight {
+    background-color: rgb(255, 255, 255);
+  }
+
+  &_BgDark {
+    background-color: rgb(35, 35, 35);
+  }
+
+  &_BgTransparent {
+    background-image: url('./static/transparent.jpg');
+    background-repeat: repeat;
+  }
 }
 
-.codeToggle {
-	composes: font from "../../styles/common.css";
-	composes: border link from "../../styles/colors.css";
-	position: absolute;
-	right: -1px;
-	bottom: -27px;
-	cursor: pointer;
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
-	border-top: 0;
-	padding: 6px 8px;
-	font-size: 14px;
-	line-height: 1;
+.previewSize {
+  font-size: 0.7rem;
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.298039);
+
+  @media (min-width: 768px) {
+    position: fixed;
+    right: 60px;
+  }
+
+  .previewBox_withToolbar & {
+    @media (min-width: 768px) {
+      right: calc(50px + 1rem);
+    }
+  }
+
+  .previewBox_withEditor & {
+    @media (min-width: 768px) {
+      right: calc(400px + 50px + 1rem);
+    }
+  }
 }
 
-.showCode {
-	composes: base-bg from "../../styles/colors.css";
-	composes: codeToggle;
+.toolWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    position: fixed;
+    top: 64px;
+    bottom: 0;
+    right: 0;
+    width: auto;
+    max-width: 500px;
+    flex-direction: row;
+  }
 }
 
-.hideCode {
-	composes: code-bg from "../../styles/colors.css";
-	composes: codeToggle;
+.toolsWrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #263238;
+  border-top: 1px solid rgb(245, 245, 245);
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: 400px;
+    border-top: none;
+    border-left: 1px solid rgb(245, 245, 245);
+  }
+
+  &:empty {
+    width: 0;
+    border: none;
+  }
 }
 
-.isolatedLink {
-	composes: font from "../../styles/common.css";
-	composes: link from "../../styles/colors.css";
-	position: absolute;
-	top: 0;
-	right: 0;
-	font-size: 14px;
-	padding: 6px 8px;
-	opacity: 0;
-	transition: opacity ease-in-out .15s .2s;
+.editorWrapper {
+  width: 100%;
 }
 
 .root:hover .isolatedLink {
-	opacity: 1;
+  opacity: 1;
 }

@@ -1,0 +1,47 @@
+.toolbar {
+  flex-direction: row;
+  width: 100%;
+  background-color: rgb(232, 232, 232);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+
+  @media (min-width: 768px) {
+    width: 50px;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0;
+  }
+}
+
+.toolbarGroup {
+  display: flex;
+  flex-direction: inherit;
+  align-items: inherit;
+
+  &_left {
+    align-self: flex-end;
+
+    @media (min-width: 768px) {
+      align-self: inherit;
+    }
+  }
+}
+
+.toolbarSeparator {
+  height: 30px;
+  margin: 0 15px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.172549);
+  border-width: 0;
+  border-right-width: 1px;
+
+  @media (min-width: 768px) {
+    height: 0;
+    margin: 15px 0;
+    width: 30px;
+    border-width: 0;
+    border-bottom-width: 1px;
+  }
+}

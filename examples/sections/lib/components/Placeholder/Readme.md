@@ -1,1 +1,0 @@
-    <Placeholder type="beard"/>

@@ -1,3 +1,6 @@
+/* eslint
+  react/jsx-filename-extension: off
+*/
 import React, { PropTypes } from 'react';
 
 import s from './Editor.css';

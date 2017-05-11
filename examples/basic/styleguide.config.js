@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-	title: 'React Style Guide Example',
+	title: 'Style Guide',
 	defaultExample: true,
 	components: 'lib/components/**/[A-Z]*.js',
 	updateWebpackConfig(webpackConfig) {

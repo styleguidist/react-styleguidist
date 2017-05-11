@@ -104,6 +104,15 @@ module.exports = function(config, env) {
 					include: sourceDir,
 					loader: 'style!css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]',
 				},
+				{
+					test: /\.jpg(\?v=\d+\.\d+\.\d+)?$/,
+					include: [sourceDir],
+					loader: 'url-loader',
+					options: {
+						limit: 10000,
+						mimetype: 'image/jpg',
+					},
+				},
 				isWebpack2 ? {
 					test: /\.jsx?$/,
 					include: sourceDir,
@@ -111,6 +120,7 @@ module.exports = function(config, env) {
 					options: {
 						babelrc: false,
 						presets: ['es2015', 'react', 'stage-0'],
+						plugins: ['transform-decorators-legacy'],
 					},
 				} : {
 					test: /\.jsx?$/,
@@ -119,6 +129,7 @@ module.exports = function(config, env) {
 					query: {
 						babelrc: false,
 						presets: ['es2015', 'react', 'stage-0'],
+						plugins: ['transform-decorators-legacy'],
 					},
 				},
 			],
@@ -218,7 +229,8 @@ module.exports = function(config, env) {
 			webpackConfig.plugins.push(
 				new webpack.NoErrorsPlugin()
 			);
-		} else {
+		}
+		else {
 			webpackConfig.plugins.push(
 				new webpack.NoEmitOnErrorsPlugin()
 			);

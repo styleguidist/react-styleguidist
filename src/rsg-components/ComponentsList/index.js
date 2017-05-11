@@ -1,1 +1,1 @@
-export { default } from './ComponentsListRenderer.js';
+export { default } from './ComponentsListRenderer';
