@@ -4,6 +4,7 @@ exports[`processComponent() should return an object for section with content 1`]
 Object {
   "filepath": "../../../pizza.js",
   "hasExamples": true,
+  "metadata": Object {},
   "module": RequireStatement {
     "filepath": "pizza.js",
   },

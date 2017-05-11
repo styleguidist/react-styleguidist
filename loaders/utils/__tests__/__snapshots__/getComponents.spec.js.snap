@@ -5,6 +5,7 @@ Array [
   Object {
     "filepath": "../Foo.js",
     "hasExamples": false,
+    "metadata": Object {},
     "module": RequireStatement {
       "filepath": "Foo.js",
     },
@@ -16,6 +17,7 @@ Array [
   Object {
     "filepath": "../Bar.js",
     "hasExamples": false,
+    "metadata": Object {},
     "module": RequireStatement {
       "filepath": "Bar.js",
     },

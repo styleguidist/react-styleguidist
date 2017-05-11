@@ -50,6 +50,7 @@ exports[`renderer should render name with strike-through style when @deprecated 
     />
   }
   isolated={false}
+  metadata={Object {}}
   methods={false}
   name="Foo"
   pathLine="foo/bar.js"
@@ -221,6 +222,7 @@ exports[`should render component renderer for component with examples 1`] = `
     />
   }
   isolated={false}
+  metadata={Object {}}
   methods={false}
   name="Foo"
   pathLine="foo/bar.js"
@@ -237,6 +239,7 @@ exports[`should render component renderer for component with methods 1`] = `
     />
   }
   isolated={false}
+  metadata={Object {}}
   methods={
     <_class
       methods={
@@ -274,6 +277,7 @@ exports[`should render component renderer for component with props 1`] = `
     />
   }
   isolated={false}
+  metadata={Object {}}
   methods={false}
   name="Foo"
   pathLine="foo/bar.js"
@@ -305,6 +309,7 @@ exports[`should render component renderer with example placeholder 1`] = `
     />
   }
   isolated={false}
+  metadata={Object {}}
   methods={false}
   name="Foo"
   pathLine="foo/bar.js"

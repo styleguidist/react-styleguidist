@@ -14,6 +14,7 @@ const component = {
 		methods: [],
 		examples: [],
 	},
+	metadata: {},
 };
 const componentWithExamples = {
 	name: 'Foo',
@@ -34,6 +35,7 @@ const componentWithExamples = {
 			},
 		],
 	},
+	metadata: {},
 };
 const componentWithProps = {
 	name: 'Foo',
@@ -51,6 +53,7 @@ const componentWithProps = {
 		methods: [],
 		examples: [],
 	},
+	metadata: {},
 };
 const componentWithMethods = {
 	name: 'Foo',
@@ -74,6 +77,7 @@ const componentWithMethods = {
 		],
 		examples: [],
 	},
+	metadata: {},
 };
 
 it('should render component renderer with example placeholder', () => {
@@ -145,6 +149,7 @@ it('renderer should render component', () => {
 					text={componentWithExamples.props.examples[1].content}
 				/>,
 			]}
+			metadata={{}}
 		/>
 	);
 
@@ -158,6 +163,7 @@ test('should render component not in the isolation mode by default', () => {
 			name="Test"
 			slug="test"
 			pathLine="test"
+			metadata={{}}
 		/>
 	);
 
@@ -171,6 +177,7 @@ test('should render component in isolation mode', () => {
 			name="Test"
 			slug="Test"
 			pathLine="test"
+			metadata={{}}
 			isolated
 		/>
 	);
@@ -186,6 +193,7 @@ test('should render props section', () => {
 			slug="test"
 			pathLine="test"
 			props={<div>test</div>}
+			metadata={{}}
 		/>
 	);
 
@@ -201,6 +209,7 @@ test('should render methods section', () => {
 			pathLine="test"
 			props={null}
 			methods={<div>test</div>}
+			metadata={{}}
 		/>
 	);
 
@@ -216,6 +225,7 @@ test('should render both props and methods section', () => {
 			pathLine="test"
 			props={<div>prop</div>}
 			methods={<div>method</div>}
+			metadata={{}}
 		/>
 	);
 
@@ -229,6 +239,7 @@ test('should not render props / methods section if there is no content', () => {
 			name="Test"
 			slug="test"
 			pathLine="test"
+			metadata={{}}
 		/>
 	);
 

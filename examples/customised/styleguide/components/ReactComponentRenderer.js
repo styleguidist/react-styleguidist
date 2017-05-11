@@ -7,7 +7,7 @@ import JsDoc from 'rsg-components/JsDoc';
 import Styled from 'rsg-components/Styled';
 import cx from 'classnames';
 
-const styles = ({ color, fontSize, fontFamily, space }) => ({
+const styles = ({ color, fontSize, fontFamily, space, borderRadius }) => ({
 	root: {
 		marginBottom: space[6],
 		fontSize: fontSize.text,
@@ -62,6 +62,19 @@ const styles = ({ color, fontSize, fontFamily, space }) => ({
 		textDecoration: 'line-through',
 		color: color.light,
 	},
+	tags: {
+		margin: [[ space[2], 0, space[1], 0 ]],
+		listStyle: 'none',
+		fontFamily: fontFamily.monospace,
+	},
+	tag: {
+		display: 'inline',
+		marginRight: space[1],
+		padding: [[ space[0], space[1] ]],
+		backgroundColor: color.codeBackground,
+		borderRadius,
+		fontSize: fontSize.small,
+	}
 });
 
 export function ReactComponentRenderer({
@@ -74,11 +87,13 @@ export function ReactComponentRenderer({
 	methods,
 	tags,
 	examples,
+	metadata,
 	isolated = false,
 }) {
 	const headingClasses = cx(classes.primaryHeading, {
 		[classes.isDeprecated]: tags.deprecated,
 	});
+	const { tags: metadataTags = [] } = metadata;
 	return (
 		<div className={classes.root} id={name + '-container'}>
 			<header className={classes.header}>
@@ -86,6 +101,12 @@ export function ReactComponentRenderer({
 					{name}
 				</Heading>
 				<div className={classes.pathLine}>{pathLine}</div>
+				{ metadataTags.length > 0 &&
+					<ul className={classes.tags}>
+						{ metadataTags.map((tag) => (
+							<li className={classes.tag}key={tag}>{tag}</li>
+						))}</ul>
+				}
 				<div className={classes.isolatedLink}>
 					{isolated ? (
 						<Link href="/">← Back</Link>
