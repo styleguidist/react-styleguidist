@@ -11,16 +11,16 @@ exports[`renderer should render component 1`] = `
       slug="foo"
     >
       Foo
+      <div>
+        <_class
+          href="#!/Foo"
+        >
+          <MdFullscreen />
+        </_class>
+      </div>
     </_class>
     <div>
       foo/bar.js
-    </div>
-    <div>
-      <_class
-        href="#!/Foo"
-      >
-        Open isolated ⇢
-      </_class>
     </div>
   </header>
   <div>
@@ -78,16 +78,16 @@ exports[`should not render props / methods section if there is no content 1`] = 
       slug="test"
     >
       Test
+      <div>
+        <_class
+          href="#!/Test"
+        >
+          <MdFullscreen />
+        </_class>
+      </div>
     </_class>
     <div>
       test
-    </div>
-    <div>
-      <_class
-        href="#!/Test"
-      >
-        Open isolated ⇢
-      </_class>
     </div>
   </header>
   <div>
@@ -107,16 +107,16 @@ exports[`should render both props and methods section 1`] = `
       slug="test"
     >
       Test
+      <div>
+        <_class
+          href="#!/Test"
+        >
+          <MdFullscreen />
+        </_class>
+      </div>
     </_class>
     <div>
       test
-    </div>
-    <div>
-      <_class
-        href="#!/Test"
-      >
-        Open isolated ⇢
-      </_class>
     </div>
   </header>
   <div>
@@ -152,16 +152,16 @@ exports[`should render component in isolation mode 1`] = `
       slug="Test"
     >
       Test
+      <div>
+        <_class
+          href="/"
+        >
+          <MdFullscreenExit />
+        </_class>
+      </div>
     </_class>
     <div>
       test
-    </div>
-    <div>
-      <_class
-        href="/"
-      >
-        ← Back
-      </_class>
     </div>
   </header>
   <div>
@@ -181,16 +181,16 @@ exports[`should render component not in the isolation mode by default 1`] = `
       slug="test"
     >
       Test
+      <div>
+        <_class
+          href="#!/Test"
+        >
+          <MdFullscreen />
+        </_class>
+      </div>
     </_class>
     <div>
       test
-    </div>
-    <div>
-      <_class
-        href="#!/Test"
-      >
-        Open isolated ⇢
-      </_class>
     </div>
   </header>
   <div>
@@ -323,16 +323,16 @@ exports[`should render methods section 1`] = `
       slug="test"
     >
       Test
+      <div>
+        <_class
+          href="#!/Test"
+        >
+          <MdFullscreen />
+        </_class>
+      </div>
     </_class>
     <div>
       test
-    </div>
-    <div>
-      <_class
-        href="#!/Test"
-      >
-        Open isolated ⇢
-      </_class>
     </div>
   </header>
   <div>
@@ -360,16 +360,16 @@ exports[`should render props section 1`] = `
       slug="test"
     >
       Test
+      <div>
+        <_class
+          href="#!/Test"
+        >
+          <MdFullscreen />
+        </_class>
+      </div>
     </_class>
     <div>
       test
-    </div>
-    <div>
-      <_class
-        href="#!/Test"
-      >
-        Open isolated ⇢
-      </_class>
     </div>
   </header>
   <div>

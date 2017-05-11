@@ -5,24 +5,32 @@ exports[`renderer should render preview 1`] = `
   <div
     data-preview="name"
   >
-    <div>
-      <_class
-        href="#!/name/0"
-      >
-        Open isolated ⇢
-      </_class>
-    </div>
     <Preview
       code="<button>OK</button>"
       evalInContext={[Function]}
     />
   </div>
-  <button
-    onClick={[Function]}
-    type="button"
+  <Group
+    separator=" "
   >
-    Show code
-  </button>
+    <div>
+      <_class
+        href="#!/name/0"
+      >
+        <MdFullscreen />
+      </_class>
+    </div>
+    <div>
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        Show
+         code
+        <MdArrowDropDown />
+      </button>
+    </div>
+  </Group>
 </div>
 `;
 
