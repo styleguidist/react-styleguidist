@@ -45,7 +45,7 @@ exports[`renderer should render name with strike-through style when @deprecated 
 <_class
   description="Bar"
   examples={
-    <Component
+    <_class
       name="Foo"
     />
   }
@@ -232,7 +232,7 @@ exports[`should render component renderer for component with methods 1`] = `
 <_class
   description="Bar"
   examples={
-    <Component
+    <_class
       name="Foo"
     />
   }
@@ -269,7 +269,7 @@ exports[`should render component renderer for component with props 1`] = `
 <_class
   description="Bar"
   examples={
-    <Component
+    <_class
       name="Foo"
     />
   }
@@ -300,7 +300,7 @@ exports[`should render component renderer with example placeholder 1`] = `
 <_class
   description="Bar"
   examples={
-    <Component
+    <_class
       name="Foo"
     />
   }

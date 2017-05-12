@@ -45,6 +45,17 @@ Array [
           "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/RandomButton/RandomButton.js",
         },
       },
+      Object {
+        "filepath": "components/RandomButton2/RandomButton2.js",
+        "hasExamples": true,
+        "module": RequireStatement {
+          "filepath": "<rootDir>/test/components/RandomButton2/RandomButton2.js",
+        },
+        "pathLine": "components/RandomButton2/RandomButton2.js",
+        "props": RequireStatement {
+          "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/RandomButton2/RandomButton2.js",
+        },
+      },
     ],
     "content": undefined,
     "name": "Components",
@@ -87,6 +98,17 @@ Object {
       "pathLine": "components/RandomButton/RandomButton.js",
       "props": RequireStatement {
         "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/RandomButton/RandomButton.js",
+      },
+    },
+    Object {
+      "filepath": "components/RandomButton2/RandomButton2.js",
+      "hasExamples": true,
+      "module": RequireStatement {
+        "filepath": "<rootDir>/test/components/RandomButton2/RandomButton2.js",
+      },
+      "pathLine": "components/RandomButton2/RandomButton2.js",
+      "props": RequireStatement {
+        "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/RandomButton2/RandomButton2.js",
       },
     },
   ],

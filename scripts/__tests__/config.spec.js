@@ -76,6 +76,15 @@ it('default getExampleFilename should return false if no examples file found', (
 	)).toBeFalsy();
 });
 
+it('default getExampleFilename should resolve uppercase README.md files', () => {
+	const result = getConfig();
+	expect(result.getExampleFilename(
+		path.resolve('test/components/RandomButton2/RandomButton2.js')
+	)).toEqual(
+		path.resolve('test/components/RandomButton2/README.md')
+	);
+});
+
 it('should have default getComponentPathLine implementation', () => {
 	const result = getConfig();
 	expect(typeof result.getComponentPathLine).toEqual('function');

@@ -60,15 +60,23 @@ module.exports = {
 	getExampleFilename: {
 		type: 'function',
 		default: componentPath => {
-			const files = [
-				path.join(path.dirname(componentPath), 'Readme.md'),
-				componentPath.replace(path.extname(componentPath), '.md'),
-			];
+			const componentName = path.basename(componentPath, path.extname(componentPath));
+			const dirname = path.dirname(componentPath);
 
-			for (const file of files) {
-				if (fs.existsSync(file)) {
-					return file;
-				}
+			const files = fs.readdirSync(dirname);
+			const lowerFiles = files.map((name) => name.toLowerCase());
+
+			// Try to find a readme markdown file (`Readme.md`) or a markdown file
+			// named by the component (e.g. `Button.md`).
+			// Search is case-insensitive, so `README.md` or `BUTTON.md` is also
+			// valid.
+			const readmeIndex = lowerFiles.indexOf('readme.md');
+			const componentIndex = lowerFiles.indexOf(`${componentName.toLowerCase()}.md`);
+			if (readmeIndex > -1) {
+				return path.join(dirname, files[readmeIndex]);
+			}
+			else if (componentIndex > -1) {
+				return path.join(dirname, files[componentIndex]);
 			}
 
 			return false;
