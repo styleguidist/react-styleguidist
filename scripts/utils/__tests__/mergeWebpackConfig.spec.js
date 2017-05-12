@@ -26,16 +26,14 @@ it('should ignore certain sections', () => {
 });
 
 it('should ignore certain Webpack plugins', () => {
-	const result = mergeWebpackConfig({
-		plugins: [
-			new UglifyJsPlugin(),
-		],
-	}, {
-		plugins: [
-			new UglifyJsPlugin(),
-			new MyPlugin(),
-		],
-	});
+	const result = mergeWebpackConfig(
+		{
+			plugins: [new UglifyJsPlugin()],
+		},
+		{
+			plugins: [new UglifyJsPlugin(), new MyPlugin()],
+		}
+	);
 	expect(result.plugins).toHaveLength(2);
 	expect(result.plugins[0].constructor.name).toBe('UglifyJsPlugin');
 	expect(result.plugins[1].constructor.name).toBe('MyPlugin');

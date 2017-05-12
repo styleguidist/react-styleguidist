@@ -28,12 +28,7 @@ const styles = ({ space, color, fontFamily, fontSize, borderRadius }) => ({
 	},
 });
 
-export function TableOfContentsRenderer({
-	classes,
-	children,
-	searchTerm,
-	onSearchTermChange,
-}) {
+export function TableOfContentsRenderer({ classes, children, searchTerm, onSearchTermChange }) {
 	return (
 		<div>
 			<div className={classes.root}>

@@ -21,19 +21,17 @@ module.exports = function chunkify(markdown) {
 	 * - Leave all other Markdown or HTML as is.
 	 */
 	function processCode() {
-		return (ast) => {
+		return ast => {
 			visit(ast, 'code', node => {
 				if (node.lang && node.lang !== 'example') {
 					let highlighted;
 					try {
 						highlighted = hljs.highlight(node.lang, node.value).value;
-					}
-					catch (exception) {
+					} catch (exception) {
 						highlighted = exception.message;
 					}
 					node.value = highlighted;
-				}
-				else {
+				} else {
 					codeChunks.push(node.value);
 					node.type = 'html';
 					node.value = CODE_PLACEHOLDER;
@@ -42,11 +40,7 @@ module.exports = function chunkify(markdown) {
 		};
 	}
 
-	const rendered = remark()
-		.use(processCode)
-		.processSync(markdown)
-		.toString()
-	;
+	const rendered = remark().use(processCode).processSync(markdown).toString();
 
 	const chunks = [];
 	const textChunks = rendered.split(CODE_PLACEHOLDER);

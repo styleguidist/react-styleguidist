@@ -12,17 +12,13 @@ it('renderer should render arguments', () => {
 			name: 'Foo',
 		},
 	];
-	const actual = shallow(
-		<ArgumentsRenderer classes={{}} args={args} />
-	);
+	const actual = shallow(<ArgumentsRenderer classes={{}} args={args} />);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('renderer should render nothing for empty array', () => {
-	const actual = shallow(
-		<ArgumentsRenderer classes={{}} args={[]} />
-	);
+	const actual = shallow(<ArgumentsRenderer classes={{}} args={[]} />);
 
 	expect(actual.node).toBe(null);
 });

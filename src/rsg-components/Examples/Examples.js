@@ -20,12 +20,7 @@ export default function Examples({ examples, name }, { codeKey }) {
 							/>
 						);
 					case 'markdown':
-						return (
-							<Markdown
-								text={example.content}
-								key={index}
-							/>
-						);
+						return <Markdown text={example.content} key={index} />;
 					default:
 						return null;
 				}

@@ -7,9 +7,7 @@ class RequireStatement {
 		this.filepath = filepath;
 	}
 	toAST() {
-		return b.callExpression(b.identifier('require'), [
-			b.literal(this.filepath),
-		]);
+		return b.callExpression(b.identifier('require'), [b.literal(this.filepath)]);
 	}
 }
 

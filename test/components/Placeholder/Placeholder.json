@@ -1,0 +1,6 @@
+{
+  "customMetadata": "This is some sample custom metadata",
+  "anotherCustomMetadata": "This is some another custom metadata",
+  "foo": true,
+  "bar": false
+}

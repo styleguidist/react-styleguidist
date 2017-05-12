@@ -12,17 +12,13 @@ it('should render sections with nested components', () => {
 			slug: 'input',
 		},
 	];
-	const actual = shallow(
-		<ComponentsListRenderer items={components} classes={{}} />
-	);
+	const actual = shallow(<ComponentsListRenderer items={components} classes={{}} />);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should return null when the list is empty', () => {
-	const actual = shallow(
-		<ComponentsListRenderer items={[]} classes={{}} />
-	);
+	const actual = shallow(<ComponentsListRenderer items={[]} classes={{}} />);
 
 	expect(actual.node).toBe(null);
 });
@@ -37,9 +33,7 @@ it('should ignore items without name', () => {
 			slug: 'input',
 		},
 	];
-	const actual = shallow(
-		<ComponentsListRenderer items={components} classes={{}} />
-	);
+	const actual = shallow(<ComponentsListRenderer items={components} classes={{}} />);
 
 	expect(actual).toMatchSnapshot();
 });

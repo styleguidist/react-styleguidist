@@ -10,20 +10,26 @@ const _styleguidist = {
 
 it('should return valid, parsable JS', () => {
 	const file = './test/components/Button/Button.js';
-	const result = propsLoader.call({
-		request: file,
-		_styleguidist,
-	}, readFileSync(file, 'utf8'));
+	const result = propsLoader.call(
+		{
+			request: file,
+			_styleguidist,
+		},
+		readFileSync(file, 'utf8')
+	);
 	expect(result).toBeTruthy();
 	expect(() => new vm.Script(result)).not.toThrow();
 });
 
 it('should extract doclets', () => {
 	const file = './test/components/Placeholder/Placeholder.js';
-	const result = propsLoader.call({
-		request: file,
-		_styleguidist,
-	}, readFileSync(file, 'utf8'));
+	const result = propsLoader.call(
+		{
+			request: file,
+			_styleguidist,
+		},
+		readFileSync(file, 'utf8')
+	);
 	expect(result).toBeTruthy();
 
 	expect(() => new vm.Script(result)).not.toThrow();
@@ -36,10 +42,13 @@ it('should extract doclets', () => {
 
 it('should not render ignored props', () => {
 	const file = './test/components/Button/Button.js';
-	const result = propsLoader.call({
-		request: file,
-		_styleguidist,
-	}, readFileSync(file, 'utf8'));
+	const result = propsLoader.call(
+		{
+			request: file,
+			_styleguidist,
+		},
+		readFileSync(file, 'utf8')
+	);
 	expect(result).toBeTruthy();
 
 	expect(() => new vm.Script(result)).not.toThrow();
@@ -48,12 +57,17 @@ it('should not render ignored props', () => {
 
 it('should attach examples from Markdown file', () => {
 	const file = './test/components/Button/Button.js';
-	const result = propsLoader.call({
-		request: file,
-		_styleguidist,
-	}, readFileSync(file, 'utf8'));
+	const result = propsLoader.call(
+		{
+			request: file,
+			_styleguidist,
+		},
+		readFileSync(file, 'utf8')
+	);
 	expect(result).toBeTruthy();
 
 	expect(() => new vm.Script(result)).not.toThrow();
-	expect(result).toMatch(/require\('!!.*?\/loaders\/examples-loader\.js!test\/components\/Button\/Readme.md'\)/);
+	expect(result).toMatch(
+		/require\('!!.*?\/loaders\/examples-loader\.js!test\/components\/Button\/Readme.md'\)/
+	);
 });

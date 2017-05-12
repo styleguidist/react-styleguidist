@@ -51,27 +51,20 @@ const sections = [
 ];
 
 it('should render a renderer', () => {
-	const actual = shallow(
-		<TableOfContents sections={[{ components }]} />
-	);
+	const actual = shallow(<TableOfContents sections={[{ components }]} />);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should render renderer with sections with nested components', () => {
-	const actual = shallow(
-		<TableOfContents sections={sections} />
-	);
+	const actual = shallow(<TableOfContents sections={sections} />);
 
 	expect(actual).toMatchSnapshot();
 });
 
-
 it('should filter list when search field contains a query', () => {
 	const searchTerm = 'but';
-	const actual = shallow(
-		<TableOfContents sections={[{ components }]} />
-	);
+	const actual = shallow(<TableOfContents sections={[{ components }]} />);
 
 	expect(actual).toMatchSnapshot();
 
@@ -82,9 +75,7 @@ it('should filter list when search field contains a query', () => {
 
 it('should filter section names', () => {
 	const searchTerm = 'frm';
-	const actual = shallow(
-		<TableOfContents sections={sections} />
-	);
+	const actual = shallow(<TableOfContents sections={sections} />);
 
 	expect(actual).toMatchSnapshot();
 

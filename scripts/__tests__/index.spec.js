@@ -49,10 +49,11 @@ describe('makeWebpackConfig', () => {
 		const result = api.makeWebpackConfig();
 
 		expect(result).toBeTruthy();
-		expect(result.resolve.extensions.length).toEqual(defaultWebpackConfig.resolve.extensions.length + 1);
+		expect(result.resolve.extensions.length).toEqual(
+			defaultWebpackConfig.resolve.extensions.length + 1
+		);
 		expect(last(result.resolve.extensions)).toEqual('.scss');
 	});
-
 
 	it('should merge webpackConfig but ignore output section', () => {
 		const defaultWebpackConfig = getDefaultWebpackConfig();
@@ -98,7 +99,9 @@ describe('makeWebpackConfig', () => {
 		const result = api.makeWebpackConfig();
 
 		expect(result).toBeTruthy();
-		expect(result.resolve.extensions.length).toEqual(defaultWebpackConfig.resolve.extensions.length + 1);
+		expect(result.resolve.extensions.length).toEqual(
+			defaultWebpackConfig.resolve.extensions.length + 1
+		);
 		expect(last(result.resolve.extensions)).toEqual('production');
 
 		console.warn = originalWarn;
@@ -123,10 +126,7 @@ describe('makeWebpackConfig', () => {
 	});
 
 	it('should add webpack entry for each require config option item', () => {
-		const modules = [
-			'babel-polyfill',
-			'path/to/styles.css',
-		];
+		const modules = ['babel-polyfill', 'path/to/styles.css'];
 		const api = styleguidist({
 			require: modules,
 		});

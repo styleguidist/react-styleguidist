@@ -14,9 +14,10 @@ const isRegExp = require('lodash/isRegExp');
 module.exports = function hasJsonLoader(webpackConfig) {
 	const testString = 'test.json';
 	const loaders = get(webpackConfig, 'module.loaders', []);
-	return loaders.reduce(
-		(value, loader) => {
-			return value || [].concat(loader.test).some(matcher => {
+	return loaders.reduce((value, loader) => {
+		return (
+			value ||
+			[].concat(loader.test).some(matcher => {
 				if (isRegExp(matcher)) {
 					return matcher.test(testString);
 				}
@@ -24,8 +25,7 @@ module.exports = function hasJsonLoader(webpackConfig) {
 					return matcher(testString);
 				}
 				return false;
-			});
-		},
-		false
-	);
+			})
+		);
+	}, false);
 };

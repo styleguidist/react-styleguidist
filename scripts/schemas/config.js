@@ -11,7 +11,8 @@ const fs = require('fs');
 const path = require('path');
 const startCase = require('lodash/startCase');
 const reactDocgen = require('react-docgen');
-const createDisplayNameHandler = require('react-docgen-displayname-handler').createDisplayNameHandler;
+const createDisplayNameHandler = require('react-docgen-displayname-handler')
+	.createDisplayNameHandler;
 const findUserWebpackConfig = require('../utils/findUserWebpackConfig');
 const getUserPackageJson = require('../utils/getUserPackageJson');
 const consts = require('../consts');
@@ -51,7 +52,8 @@ module.exports = {
 	defaultExample: {
 		type: ['boolean', 'existing file path'],
 		default: false,
-		process: val => (val === true ? path.resolve(__dirname, '../templates/DefaultExample.md') : val),
+		process: val =>
+			val === true ? path.resolve(__dirname, '../templates/DefaultExample.md') : val,
 	},
 	getComponentPathLine: {
 		type: 'function',
@@ -85,17 +87,12 @@ module.exports = {
 	},
 	handlers: {
 		type: 'function',
-		default: componentPath => reactDocgen.defaultHandlers.concat(createDisplayNameHandler(componentPath)),
+		default: componentPath =>
+			reactDocgen.defaultHandlers.concat(createDisplayNameHandler(componentPath)),
 	},
 	ignore: {
 		type: 'array',
-		default: [
-			'**/__tests__/**',
-			'**/*.test.js',
-			'**/*.spec.js',
-			'**/*.test.jsx',
-			'**/*.spec.jsx',
-		],
+		default: ['**/__tests__/**', '**/*.test.js', '**/*.spec.js', '**/*.test.jsx', '**/*.spec.jsx'],
 	},
 	highlightTheme: {
 		type: 'string',
@@ -111,10 +108,7 @@ module.exports = {
 	require: {
 		type: 'array',
 		default: [],
-		example: [
-			'babel-polyfill',
-			'path/to/styles.css',
-		],
+		example: ['babel-polyfill', 'path/to/styles.css'],
 	},
 	resolver: {
 		type: 'function',
@@ -225,8 +219,10 @@ module.exports = {
 				return require(file);
 			}
 
-			console.log('No webpack config found. ' +
-				'You may need to specify "webpackConfig" option in your style guide config:');
+			console.log(
+				'No webpack config found. ' +
+					'You may need to specify "webpackConfig" option in your style guide config:'
+			);
 			console.log(consts.DOCS_WEBPACK);
 			console.log();
 

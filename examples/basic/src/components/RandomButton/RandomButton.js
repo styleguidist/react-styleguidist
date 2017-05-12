@@ -30,7 +30,9 @@ export default class RandomButton extends Component {
 
 	render() {
 		return (
-			<button className="random-button" onClick={this.handleClick.bind(this)}>{this.state.label}</button>
+			<button className="random-button" onClick={this.handleClick.bind(this)}>
+				{this.state.label}
+			</button>
 		);
 	}
 }

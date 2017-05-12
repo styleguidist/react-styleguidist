@@ -18,13 +18,9 @@ const memoize = a => a;
 function Code({ children, className }) {
 	const isHighlighted = className && className.indexOf('lang-') !== -1;
 	if (isHighlighted) {
-		return (
-			<code className={className} dangerouslySetInnerHTML={{ __html: children }} />
-		);
+		return <code className={className} dangerouslySetInnerHTML={{ __html: children }} />;
 	}
-	return (
-		<code className={className}>{children}</code>
-	);
+	return <code className={className}>{children}</code>;
 }
 Code.propTypes = {
 	children: PropTypes.node,
@@ -175,8 +171,7 @@ const styles = ({ space, fontFamily, fontSize, color, borderRadius }) => ({
 	thead: {
 		composes: '$hr',
 	},
-	tbody: {
-	},
+	tbody: {},
 	td: {
 		fontFamily: fontFamily.base,
 		padding: [[space[0], space[2], space[0], 0]],
@@ -186,15 +181,10 @@ const styles = ({ space, fontFamily, fontSize, color, borderRadius }) => ({
 		composes: '$td',
 		fontWeight: 'bold',
 	},
-	tr: {
-	},
+	tr: {},
 });
 
-function Markdown({
-	classes,
-	text,
-	inline,
-}) {
+function Markdown({ classes, text, inline }) {
 	const overrides = inline ? getInlineOverrides(classes) : getBaseOverrides(classes);
 	return compiler(text, { overrides });
 }

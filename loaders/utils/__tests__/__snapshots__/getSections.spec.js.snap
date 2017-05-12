@@ -15,6 +15,7 @@ Array [
       Object {
         "filepath": "components/Button/Button.js",
         "hasExamples": true,
+        "metadata": Object {},
         "module": RequireStatement {
           "filepath": "<rootDir>/test/components/Button/Button.js",
         },
@@ -26,6 +27,9 @@ Array [
       Object {
         "filepath": "components/Placeholder/Placeholder.js",
         "hasExamples": true,
+        "metadata": RequireStatement {
+          "filepath": "!!json-loader!<rootDir>/test/components/Placeholder/Placeholder.json",
+        },
         "module": RequireStatement {
           "filepath": "<rootDir>/test/components/Placeholder/Placeholder.js",
         },
@@ -37,6 +41,7 @@ Array [
       Object {
         "filepath": "components/RandomButton/RandomButton.js",
         "hasExamples": true,
+        "metadata": Object {},
         "module": RequireStatement {
           "filepath": "<rootDir>/test/components/RandomButton/RandomButton.js",
         },
@@ -70,6 +75,7 @@ Object {
     Object {
       "filepath": "components/Button/Button.js",
       "hasExamples": true,
+      "metadata": Object {},
       "module": RequireStatement {
         "filepath": "<rootDir>/test/components/Button/Button.js",
       },
@@ -81,6 +87,9 @@ Object {
     Object {
       "filepath": "components/Placeholder/Placeholder.js",
       "hasExamples": true,
+      "metadata": RequireStatement {
+        "filepath": "!!json-loader!<rootDir>/test/components/Placeholder/Placeholder.json",
+      },
       "module": RequireStatement {
         "filepath": "<rootDir>/test/components/Placeholder/Placeholder.js",
       },
@@ -92,6 +101,7 @@ Object {
     Object {
       "filepath": "components/RandomButton/RandomButton.js",
       "hasExamples": true,
+      "metadata": Object {},
       "module": RequireStatement {
         "filepath": "<rootDir>/test/components/RandomButton/RandomButton.js",
       },

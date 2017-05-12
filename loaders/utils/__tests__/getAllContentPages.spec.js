@@ -33,8 +33,5 @@ const sections = [
 
 it('should return all content pages', () => {
 	const result = getAllContentPages(sections);
-	expect(result).toEqual([
-		'Readme.md',
-		'Nested.md',
-	]);
+	expect(result).toEqual(['Readme.md', 'Nested.md']);
 });

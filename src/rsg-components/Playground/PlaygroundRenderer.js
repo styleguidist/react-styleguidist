@@ -72,32 +72,32 @@ export function PlaygroundRenderer({
 	onChange,
 	onCodeToggle,
 }) {
+	const hideCodeButton = (
+		<div>
+			<Editor code={code} onChange={onChange} />
+			<button type="button" className={classes.hideCode} onClick={onCodeToggle}>
+				Hide code
+			</button>
+		</div>
+	);
+	const showCodeButton = (
+		<button type="button" className={classes.showCode} onClick={onCodeToggle}>
+			Show code
+		</button>
+	);
+
 	return (
 		<div className={classes.root}>
 			<div className={classes.preview} data-preview={name ? name : ''}>
 				<div className={classes.isolatedLink}>
-					{name && (
-						isolatedExample ? (
-							<Link href={'#!/' + name}>⇽ Exit Isolation</Link>
-						) : (
-							<Link href={'#!/' + name + '/' + index}>Open isolated ⇢</Link>
-						)
-					)}
+					{name &&
+						(isolatedExample
+							? <Link href={'#!/' + name}>⇽ Exit Isolation</Link>
+							: <Link href={'#!/' + name + '/' + index}>Open isolated ⇢</Link>)}
 				</div>
 				<Preview code={code} evalInContext={evalInContext} />
 			</div>
-			{showCode ? (
-				<div>
-					<Editor code={code} onChange={onChange} />
-					<button type="button" className={classes.hideCode} onClick={onCodeToggle}>
-						Hide code
-					</button>
-				</div>
-			) : (
-				<button type="button" className={classes.showCode} onClick={onCodeToggle}>
-					Show code
-				</button>
-			)}
+			{showCode ? hideCodeButton : showCodeButton}
 		</div>
 	);
 }

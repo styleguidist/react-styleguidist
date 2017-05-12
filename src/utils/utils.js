@@ -5,7 +5,7 @@ import GithubSlugger from 'github-slugger';
 export const slugger = new GithubSlugger();
 
 export function setSlugs(sections) {
-	return sections.map((section) => {
+	return sections.map(section => {
 		const { name, components, sections } = section;
 		if (name) {
 			section.slug = slugger.slug(section.name);
@@ -30,8 +30,8 @@ export function globalizeComponent(component) {
 		return;
 	}
 
-	global[component.name] = (!component.props.path || component.props.path === 'default')
-		? (component.module.default || component.module)
+	global[component.name] = !component.props.path || component.props.path === 'default'
+		? component.module.default || component.module
 		: component.module[component.props.path];
 }
 
@@ -79,11 +79,7 @@ export function processSections(sections) {
  * @return {RegExp}
  */
 export function getFilterRegExp(query) {
-	query = query
-		.replace(/[^a-z0-9]/gi, '')
-		.split('')
-		.join('.*')
-	;
+	query = query.replace(/[^a-z0-9]/gi, '').split('').join('.*');
 	return new RegExp(query, 'i');
 }
 
@@ -108,13 +104,18 @@ export function filterComponentsByName(components, query) {
  */
 export function filterSectionsByName(sections, query) {
 	const regExp = getFilterRegExp(query);
+
 	return sections
-		.map(section => Object.assign({}, section, {
-			sections: section.sections ? filterSectionsByName(section.sections, query) : [],
-			components: section.components ? filterComponentsByName(section.components, query) : [],
-		}))
-		.filter(section => section.components.length > 0 || section.sections.length > 0 || regExp.test(section.name))
-	;
+		.map(section =>
+			Object.assign({}, section, {
+				sections: section.sections ? filterSectionsByName(section.sections, query) : [],
+				components: section.components ? filterComponentsByName(section.components, query) : [],
+			})
+		)
+		.filter(
+			section =>
+				section.components.length > 0 || section.sections.length > 0 || regExp.test(section.name)
+		);
 }
 
 /**
@@ -149,21 +150,31 @@ export function filterComponentsInSectionsByExactName(sections, name) {
 }
 
 /**
- * Returns an object containing component name and, optionally, an example index
+ * Filters the sections to find the one with the matching name
+ * @param  {Array}  sections The styleguide sections
+ * @param  {string} name     The name to match
+ * @return {object}          The section found
+ */
+export function filterSections(sections, name) {
+	return sections.find(section => section.name === name);
+}
+
+/**
+ * Returns an object containing component/section name and, optionally, an example index
  * from hash part or page URL:
- * http://localhost:6060/#!/Button → { targetComponentName: 'Button' }
- * http://localhost:6060/#!/Button/1 → { targetComponentName: 'Button', targetComponentIndex: 1 }
+ * http://localhost:6060/#!/Button → { targetName: 'Button' }
+ * http://localhost:6060/#!/Button/1 → { targetName: 'Button', targetIndex: 1 }
  *
  * @param {string} [hash]
  * @returns {object}
  */
-export function getComponentNameFromHash(hash = window.location.hash) {
+export function getInfoFromHash(hash = window.location.hash) {
 	if (hash.substr(0, 3) === '#!/') {
 		const tokens = hash.substr(3).split('/');
 		const index = parseInt(tokens[1], 10);
 		return {
-			targetComponentName: tokens[0],
-			targetComponentIndex: isNaN(index) ? null : index,
+			targetName: tokens[0],
+			targetIndex: isNaN(index) ? null : index,
 		};
 	}
 	return {};

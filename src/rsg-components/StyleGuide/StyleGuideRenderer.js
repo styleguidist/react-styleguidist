@@ -54,14 +54,7 @@ const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth
 	},
 });
 
-export function StyleGuideRenderer({
-	classes,
-	title,
-	homepageUrl,
-	children,
-	toc,
-	hasSidebar,
-}) {
+export function StyleGuideRenderer({ classes, title, homepageUrl, children, toc, hasSidebar }) {
 	return (
 		<div className={cx(classes.root, hasSidebar && classes.hasSidebar)}>
 			<main className={classes.content}>
@@ -76,8 +69,7 @@ export function StyleGuideRenderer({
 						<Logo>{title}</Logo>
 					</div>
 					{toc}
-				</div>
-			}
+				</div>}
 		</div>
 	);
 }

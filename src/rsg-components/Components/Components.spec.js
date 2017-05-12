@@ -23,11 +23,7 @@ const components = [
 ];
 
 it('should render components list', () => {
-	const actual = shallow(
-		<Components
-			components={components}
-		/>
-	);
+	const actual = shallow(<Components components={components} />);
 
 	expect(actual).toMatchSnapshot();
 });

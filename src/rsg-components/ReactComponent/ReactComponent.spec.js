@@ -14,6 +14,7 @@ const component = {
 		methods: [],
 		examples: [],
 	},
+	metadata: {},
 };
 const componentWithExamples = {
 	name: 'Foo',
@@ -34,6 +35,7 @@ const componentWithExamples = {
 			},
 		],
 	},
+	metadata: {},
 };
 const componentWithProps = {
 	name: 'Foo',
@@ -51,6 +53,7 @@ const componentWithProps = {
 		methods: [],
 		examples: [],
 	},
+	metadata: {},
 };
 const componentWithMethods = {
 	name: 'Foo',
@@ -74,52 +77,35 @@ const componentWithMethods = {
 		],
 		examples: [],
 	},
+	metadata: {},
 };
 
 it('should render component renderer with example placeholder', () => {
-	const actual = shallow(
-		<ReactComponent
-			component={component}
-		/>
-	);
+	const actual = shallow(<ReactComponent component={component} />);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should render component renderer for component with examples', () => {
-	const actual = shallow(
-		<ReactComponent
-			component={componentWithExamples}
-		/>
-	);
+	const actual = shallow(<ReactComponent component={componentWithExamples} />);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should render component renderer for component with props', () => {
-	const actual = shallow(
-		<ReactComponent
-			component={componentWithProps}
-		/>
-	);
+	const actual = shallow(<ReactComponent component={componentWithProps} />);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should render component renderer for component with methods', () => {
-	const actual = shallow(
-		<ReactComponent
-			component={componentWithMethods}
-		/>
-	);
+	const actual = shallow(<ReactComponent component={componentWithMethods} />);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should return null when component has no name', () => {
-	const actual = shallow(
-		<ReactComponent component={{ slug: 'foo', props: {} }} />
-	);
+	const actual = shallow(<ReactComponent component={{ slug: 'foo', props: {} }} />);
 
 	expect(actual.node).toBe(null);
 });
@@ -140,11 +126,9 @@ it('renderer should render component', () => {
 					code={componentWithExamples.props.examples[0].content}
 					evalInContext={componentWithExamples.props.examples[0].evalInContext}
 				/>,
-				<Markdown
-					key={1}
-					text={componentWithExamples.props.examples[1].content}
-				/>,
+				<Markdown key={1} text={componentWithExamples.props.examples[1].content} />,
 			]}
+			metadata={{}}
 		/>
 	);
 
@@ -153,12 +137,7 @@ it('renderer should render component', () => {
 
 test('should render component not in the isolation mode by default', () => {
 	const actual = shallow(
-		<ReactComponentRenderer
-			classes={{}}
-			name="Test"
-			slug="test"
-			pathLine="test"
-		/>
+		<ReactComponentRenderer classes={{}} name="Test" slug="test" pathLine="test" metadata={{}} />
 	);
 
 	expect(actual).toMatchSnapshot();
@@ -171,6 +150,7 @@ test('should render component in isolation mode', () => {
 			name="Test"
 			slug="Test"
 			pathLine="test"
+			metadata={{}}
 			isolated
 		/>
 	);
@@ -186,6 +166,7 @@ test('should render props section', () => {
 			slug="test"
 			pathLine="test"
 			props={<div>test</div>}
+			metadata={{}}
 		/>
 	);
 
@@ -201,6 +182,7 @@ test('should render methods section', () => {
 			pathLine="test"
 			props={null}
 			methods={<div>test</div>}
+			metadata={{}}
 		/>
 	);
 
@@ -216,6 +198,7 @@ test('should render both props and methods section', () => {
 			pathLine="test"
 			props={<div>prop</div>}
 			methods={<div>method</div>}
+			metadata={{}}
 		/>
 	);
 
@@ -224,12 +207,7 @@ test('should render both props and methods section', () => {
 
 test('should not render props / methods section if there is no content', () => {
 	const actual = shallow(
-		<ReactComponentRenderer
-			classes={{}}
-			name="Test"
-			slug="test"
-			pathLine="test"
-		/>
+		<ReactComponentRenderer classes={{}} name="Test" slug="test" pathLine="test" metadata={{}} />
 	);
 
 	expect(actual).toMatchSnapshot();
@@ -241,19 +219,17 @@ it('renderer should render name with strike-through style when @deprecated is pr
 		props: {
 			...component.props,
 			tags: {
-				deprecated: [{
-					title: 'deprecated',
-					description: 'I am deprecated',
-				}],
+				deprecated: [
+					{
+						title: 'deprecated',
+						description: 'I am deprecated',
+					},
+				],
 			},
 		},
 	};
 
-	const actual = shallow(
-		<ReactComponent
-			component={deprecatedComponent}
-		/>
-	);
+	const actual = shallow(<ReactComponent component={deprecatedComponent} />);
 
 	expect(actual).toMatchSnapshot();
 });

@@ -41,9 +41,7 @@ const sections = [
 ];
 
 it('should render component renderer', () => {
-	const actual = shallow(
-		<Sections sections={sections} />
-	);
+	const actual = shallow(<Sections sections={sections} />);
 
 	expect(actual).toMatchSnapshot();
 });
@@ -59,7 +57,6 @@ it('render should render styled component', () => {
 
 	expect(actual).toMatchSnapshot();
 });
-
 
 it('render should render component', () => {
 	const actual = shallow(

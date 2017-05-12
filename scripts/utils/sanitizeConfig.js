@@ -63,7 +63,7 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 
 			throw new StyleguidistError(
 				`Unknown config option ${chalk.bold(key)} with value "${format(value)}" was found.` +
-				(suggestion ? `\n\nDid you mean ${chalk.bold(suggestion)}?` : '')
+					(suggestion ? `\n\nDid you mean ${chalk.bold(suggestion)}?` : '')
 			);
 		}
 	});
@@ -83,25 +83,18 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 			value = props.default;
 
 			// Check if the field is required
-			const isRequired = isFunction(props.required)
-				? props.required(config)
-				: props.required
-			;
+			const isRequired = isFunction(props.required) ? props.required(config) : props.required;
 			if (isRequired) {
 				const message = isString(isRequired)
 					? isRequired
 					: `${chalk.bold(key)} config option is required.`;
 				throw new StyleguidistError(message);
 			}
-		}
-		else if (props.deprecated) {
+		} else if (props.deprecated) {
 			console.warn(`${chalk.bold(key)} config option is deprecated. ${props.deprecated}`);
 			console.log();
-		}
-		else if (props.removed) {
-			throw new StyleguidistError(
-				`${chalk.bold(key)} config option was removed. ${props.removed}`
-			);
+		} else if (props.removed) {
+			throw new StyleguidistError(`${chalk.bold(key)} config option was removed. ${props.removed}`);
 		}
 
 		if (value !== undefined && props.type) {
@@ -118,12 +111,14 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 				const exampleValue = props.example || props.default;
 				throw new StyleguidistError(
 					`${chalk.bold(key)} config option should be ${typesList(types)}, received ${typeDetect(value)}.\n` +
-					(exampleValue ? `
+						(exampleValue
+							? `
 Example:
 
 {
   ${key}: ${isFunction(exampleValue) ? exampleValue.toString() : format(exampleValue)}
-}` : '')
+}`
+							: '')
 				);
 			}
 

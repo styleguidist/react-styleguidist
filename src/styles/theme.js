@@ -1,12 +1,12 @@
 export const spaceFactor = 8;
 export const space = [
-	spaceFactor / 2,  // 4
-	spaceFactor,      // 8
-	spaceFactor * 2,  // 16
-	spaceFactor * 3,  // 24
-	spaceFactor * 4,  // 32
-	spaceFactor * 5,  // 40
-	spaceFactor * 6,  // 48
+	spaceFactor / 2, // 4
+	spaceFactor, // 8
+	spaceFactor * 2, // 16
+	spaceFactor * 3, // 24
+	spaceFactor * 4, // 32
+	spaceFactor * 5, // 40
+	spaceFactor * 6, // 48
 ];
 
 export const color = {
@@ -26,8 +26,19 @@ export const color = {
 };
 
 export const fontFamily = {
-	base: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', '"Roboto"', '"Oxygen"', '"Ubuntu"',
-		'"Cantarell"', '"Fira Sans"', '"Droid Sans"', '"Helvetica Neue"', 'sans-serif'],
+	base: [
+		'-apple-system',
+		'BlinkMacSystemFont',
+		'"Segoe UI"',
+		'"Roboto"',
+		'"Oxygen"',
+		'"Ubuntu"',
+		'"Cantarell"',
+		'"Fira Sans"',
+		'"Droid Sans"',
+		'"Helvetica Neue"',
+		'sans-serif',
+	],
 	monospace: ['Consolas', '"Liberation Mono"', 'Menlo', 'monospace'],
 };
 

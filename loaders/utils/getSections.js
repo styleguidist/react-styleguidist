@@ -40,7 +40,10 @@ function processSection(section, config) {
 
 	return {
 		name: section.name,
-		components: getComponents(getComponentFiles(section.components, config.configDir, config.ignore), config),
+		components: getComponents(
+			getComponentFiles(section.components, config.configDir, config.ignore),
+			config
+		),
 		sections: getSections(section.sections || [], config),
 		content,
 	};

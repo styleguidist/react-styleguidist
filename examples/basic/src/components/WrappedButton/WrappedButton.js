@@ -8,19 +8,13 @@ import PropTypes from 'prop-types';
  * @author [Jeremy Gayed](https://github.com/tizmagik)
  * @deprecated Use the [only true button](#button) instead
  */
-const WrappedButton = ({
-	color,
-	size,
-	children,
-}) => {
+const WrappedButton = ({ color, size, children }) => {
 	const styles = {
 		color,
 		fontSize: WrappedButton.sizes[size],
 	};
 
-	return (
-		<button className="wrapped-button" style={styles}>{children}</button>
-	);
+	return <button className="wrapped-button" style={styles}>{children}</button>;
 };
 WrappedButton.propTypes = {
 	/**
@@ -67,11 +61,11 @@ WrappedButton.sizes = {
 	large: '18px',
 };
 
-
-const Decorator = Composed => class MyHOC extends Component {
-	render() {
-		return <Composed {...this.props} />;
-	}
-};
+const Decorator = Composed =>
+	class MyHOC extends Component {
+		render() {
+			return <Composed {...this.props} />;
+		}
+	};
 
 export default Decorator(WrappedButton);
