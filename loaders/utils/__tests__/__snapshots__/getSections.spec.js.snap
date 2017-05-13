@@ -53,6 +53,7 @@ Array [
       Object {
         "filepath": "components/RandomButton2/RandomButton2.js",
         "hasExamples": true,
+        "metadata": Object {},
         "module": RequireStatement {
           "filepath": "<rootDir>/test/components/RandomButton2/RandomButton2.js",
         },
@@ -113,6 +114,7 @@ Object {
     Object {
       "filepath": "components/RandomButton2/RandomButton2.js",
       "hasExamples": true,
+      "metadata": Object {},
       "module": RequireStatement {
         "filepath": "<rootDir>/test/components/RandomButton2/RandomButton2.js",
       },
