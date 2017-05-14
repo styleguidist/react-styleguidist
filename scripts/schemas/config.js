@@ -52,8 +52,9 @@ module.exports = {
 	defaultExample: {
 		type: ['boolean', 'existing file path'],
 		default: false,
-		process: val =>
-			val === true ? path.resolve(__dirname, '../templates/DefaultExample.md') : val,
+		process: val => (
+			val === true ? path.resolve(__dirname, '../templates/DefaultExample.md') : val
+		),
 	},
 	getComponentPathLine: {
 		type: 'function',
@@ -73,11 +74,11 @@ module.exports = {
 			// Search is case-insensitive, so `README.md` or `BUTTON.md` is also
 			// valid.
 			const readmeIndex = lowerFiles.indexOf('readme.md');
-			const componentIndex = lowerFiles.indexOf(`${componentName.toLowerCase()}.md`);
 			if (readmeIndex > -1) {
 				return path.join(dirname, files[readmeIndex]);
 			}
-			else if (componentIndex > -1) {
+			const componentIndex = lowerFiles.indexOf(`${componentName.toLowerCase()}.md`);
+			if (componentIndex > -1) {
 				return path.join(dirname, files[componentIndex]);
 			}
 
