@@ -192,6 +192,8 @@ Code examples in Markdown use the ES6+JSX syntax. They can access all the compon
 </Panel>
 ```
 
+> **Note:** Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the frontend, it supports [most of the ES6 features](https://buble.surge.sh/guide/#unsupported-features).
+
 You can also `require` other modules (e.g. mock data that you use in your unit tests) from examples in Markdown:
 
 ```jsx
