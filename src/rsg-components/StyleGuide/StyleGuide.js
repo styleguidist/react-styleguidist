@@ -5,6 +5,7 @@ import StyleGuideRenderer from 'rsg-components/StyleGuide/StyleGuideRenderer';
 import Sections from 'rsg-components/Sections';
 import Welcome from 'rsg-components/Welcome';
 import { HOMEPAGE } from '../../../scripts/consts';
+import { filterSectionsByName } from '../../utils/utils';
 
 export default class StyleGuide extends Component {
 	static propTypes = {
@@ -43,6 +44,9 @@ export default class StyleGuide extends Component {
 	render() {
 		const { config, sections, welcomeScreen, patterns, isolatedComponent } = this.props;
 
+		const { searchTerm } = this.state;
+		const filteredSections = (0, filterSectionsByName)(sections, searchTerm);
+
 		if (welcomeScreen) {
 			return <Welcome patterns={patterns} />;
 		}
@@ -51,10 +55,15 @@ export default class StyleGuide extends Component {
 			<StyleGuideRenderer
 				title={config.title}
 				homepageUrl={HOMEPAGE}
-				toc={<TableOfContents sections={sections} />}
 				hasSidebar={config.showSidebar && !isolatedComponent}
+				toc={
+					<TableOfContents
+						sections={filteredSections}
+						onSearchFoo={searchTerm => this.setState({ searchTerm })}
+					/>
+				}
 			>
-				<Sections sections={sections} />
+				<Sections sections={filteredSections} />
 			</StyleGuideRenderer>
 		);
 	}

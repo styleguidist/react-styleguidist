@@ -7,6 +7,7 @@ import TableOfContentsRenderer from 'rsg-components/TableOfContents/TableOfConte
 export default class TableOfContents extends Component {
 	static propTypes = {
 		sections: PropTypes.array.isRequired,
+		onSearchFoo: PropTypes.func,
 	};
 	state = {
 		searchTerm: '',
@@ -40,7 +41,7 @@ export default class TableOfContents extends Component {
 		return (
 			<TableOfContentsRenderer
 				searchTerm={searchTerm}
-				onSearchTermChange={searchTerm => this.setState({ searchTerm })}
+				onSearchTermChange={this.props.onSearchFoo({ searchTerm })}
 			>
 				{this.renderSections()}
 			</TableOfContentsRenderer>
