@@ -114,11 +114,11 @@ export default class Wrapper extends Component {
 
 ## How to write examples for Relay components?
 
-@mikberg wrote a [fantastic blog post](https://medium.com/@mikaelberg/writing-simple-unit-tests-with-relay-707f19e90129) on this topic. Here's what to do:
+@mikberg wrote a [fantastic blog post](https://medium.com/@mikaelberg/writing-simple-unit-tests-with-relay-707f19e90129) on this topic. Here’s what to do:
 
 ### 1. Mock out Relay
 
-You'll need the content from [this Gist](https://gist.github.com/mikberg/07b4006e22aacf31ffe6) for your mocked-out Relay replacement.
+You’ll need the content from [this Gist](https://gist.github.com/mikberg/07b4006e22aacf31ffe6) for your mocked-out Relay replacement.
 
 ```js
 // styleguide.config.js
@@ -140,7 +140,7 @@ import Relay from 'real-react-relay'
 
 ### 2. Provide sample data to your React components
 
-You'll probably want to massage actual results from your GraphQL backend, and make it available to the examples:
+You’ll probably want to massage actual results from your GraphQL backend, and make it available to the examples:
 
 ```js
 // styleguide.config.js
@@ -246,7 +246,7 @@ module.exports = {
 
 ## How to change the layout of a style guide?
 
-You can replace any Styleguidist React component. But in most of the cases you will want to replace `*Renderer` components — all HTML is rendered by these components. For example `ReactComponentRenderer`, `ComponentsListRenderer`, `PropsRenderer`, etc. — [check the source](https://github.com/styleguidist/react-styleguidist/tree/master/src/rsg-components) to see what components are available.
+You can replace any Styleguidist React component. But in most of the cases you’ll want to replace `*Renderer` components — all HTML is rendered by these components. For example `ReactComponentRenderer`, `ComponentsListRenderer`, `PropsRenderer`, etc. — [check the source](https://github.com/styleguidist/react-styleguidist/tree/master/src/rsg-components) to see what components are available.
 
 There’s also a special wrapper component — `Wrapper` — that wraps every example component. By default it just renders `children` as is but you can use it to provide a custom logic.
 
