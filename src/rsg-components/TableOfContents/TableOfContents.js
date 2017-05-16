@@ -7,10 +7,12 @@ import TableOfContentsRenderer from 'rsg-components/TableOfContents/TableOfConte
 export default class TableOfContents extends Component {
 	static propTypes = {
 		sections: PropTypes.array.isRequired,
+		searchTerm: PropTypes.string,
+		onSearchTermChange: PropTypes.func,
 	};
-	state = {
-		searchTerm: '',
-	};
+	// state = {
+	// searchTerm: '',
+	// };
 
 	renderLevel(sections) {
 		const items = sections.map(section => {
@@ -24,8 +26,8 @@ export default class TableOfContents extends Component {
 	}
 
 	renderSections() {
-		const { searchTerm } = this.state;
-		const { sections } = this.props;
+		// const { searchTerm } = this.state;
+		const { sections, searchTerm } = this.props;
 
 		// If there is only one section, we treat it as a root section
 		// In this case the name of the section won't be rendered and it won't get left padding
@@ -34,14 +36,14 @@ export default class TableOfContents extends Component {
 
 		return this.renderLevel(filtered);
 	}
+	// onSearchTermChange={searchTerm => this.setState({ searchTerm })}
 
 	render() {
-		const { searchTerm } = this.state;
+		// const { searchTerm } = this.state;
+		const { onSearchTermChange, searchTerm } = this.props;
+
 		return (
-			<TableOfContentsRenderer
-				searchTerm={searchTerm}
-				onSearchTermChange={searchTerm => this.setState({ searchTerm })}
-			>
+			<TableOfContentsRenderer searchTerm={searchTerm} onSearchTermChange={onSearchTermChange}>
 				{this.renderSections()}
 			</TableOfContentsRenderer>
 		);
