@@ -1,7 +1,7 @@
 {
   "name": "@policygenius/react-styleguidist",
   "description": "React components style guide generator",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "homepage": "https://github.com/styleguidist/react-styleguidist",
   "author": {
     "name": "Artem Sapegin",
@@ -32,7 +32,6 @@
   "dependencies": {
     "ast-types": "^0.9.11",
     "buble": "^0.15.2",
-    "babel-cli": "^6.24.1",
     "chalk": "^1.1.3",
     "classnames": "^2.2.5",
     "clean-webpack-plugin": "^0.1.16",
@@ -84,6 +83,7 @@
     "webpack": "1 || 2 || ^2.1.0-beta || ^2.2.0-rc"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-jest": "^20.0.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -120,7 +120,6 @@
   },
   "scripts": {
     "pretest": "npm run lint",
-    "postinstall": "yarn run compile",
     "test": "npm run test:jest",
     "test:jest": "jest",
     "test:watch": "jest --watch",
