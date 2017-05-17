@@ -88,7 +88,7 @@ export function ReactComponentRenderer({
 				<div className={classes.pathLine}>{pathLine}</div>
 				<div className={classes.isolatedLink}>
 					{isolated
-						? <Link href="/">← Back</Link>
+						? <Link href="#">← Back</Link>
 						: <Link href={'#!/' + name}>Open isolated ⇢</Link>}
 				</div>
 			</header>
