@@ -1,8 +1,0 @@
-{
-	"parser": "babel-eslint",
-	"extends": "tamia/react",
-	"rules": {
-		"valid-jsdoc": 0,
-		"react/prefer-stateless-function": 0
-	}
-}

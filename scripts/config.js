@@ -14,7 +14,7 @@ const utils = require('./utils/utils');
 const consts = require('./consts');
 const StyleguidistError = require('./utils/error');
 const reactDocgen = require('react-docgen');
-const displayNameHandler = require('react-docgen-displayname-handler').default;
+const defaultHandlers = require('./handlers');
 
 const CONFIG_FILENAME = 'styleguide.config.js';
 const DEFAULT_CONFIG = {
@@ -23,13 +23,13 @@ const DEFAULT_CONFIG = {
 	skipComponentsWithoutExample: false,
 	defaultExample: false,
 	showCode: false,
-	title: 'Style guide',
+	title: 'StyleGuide',
 	styleguideDir: 'styleguide',
 	assetsDir: null,
 	template: path.join(__dirname, './templates/index.html'),
 	serverHost: 'localhost',
 	serverPort: 3000,
-	highlightTheme: 'base16-light',
+	highlightTheme: 'material',
 	previewDelay: 500,
 	verbose: false,
 	favicon: path.join(__dirname, './templates/icon.png'),
@@ -37,7 +37,7 @@ const DEFAULT_CONFIG = {
 	getChangelogFilename: componentpath => path.join(path.dirname(componentpath), 'Changelog.md'),
 	getComponentPathLine: componentpath => componentpath,
 	updateWebpackConfig: null,
-	handlers: reactDocgen.defaultHandlers.concat(displayNameHandler),
+	handlers: reactDocgen.defaultHandlers.concat(...defaultHandlers),
 };
 const DEPENDENCIES = [
 	{

@@ -1,0 +1,17 @@
+.root {
+  composes: root from '../Sample/Sample.pcss';
+  color: red;
+
+  &_isSmall {
+    composes: root_isSmall from '../Sample/Sample.pcss';
+  }
+
+  &_isMedium {
+    composes: root_isMedium from '../Sample/Sample.pcss';
+    color: green;
+  }
+
+  &_isBig {
+    composes: root_isBig from '../Sample/Sample.pcss';
+  }
+}

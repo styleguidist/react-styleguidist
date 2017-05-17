@@ -8,10 +8,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const merge = require('webpack-merge');
 const prettyjson = require('prettyjson');
-const semverUtils = require('semver-utils');
 
-const webpackVersion = semverUtils.parseRange(require('webpack/package.json').version)[0].major;
-const isWebpack2 = webpackVersion === '2';
+const isWebpack2 = true;
 
 const nodeModulesDir = path.resolve(__dirname, '../node_modules');
 const sourceDir = path.resolve(__dirname, '../src');
@@ -47,6 +45,12 @@ function validateWebpackConfig(webpackConfig) {
 	});
 }
 
+const loaderModulesDirectories = [
+	path.resolve(__dirname, '../loaders'),
+	nodeModulesDir,
+	'node_modules',
+];
+
 module.exports = function(config, env) {
 	process.env.NODE_ENV = process.env.BABEL_ENV = env;
 
@@ -63,9 +67,16 @@ module.exports = function(config, env) {
 				'codemirror': codeMirrorPath,
 				'rsg-codemirror-theme.css': path.join(codeMirrorPath, `theme/${config.highlightTheme}.css`),
 			},
+			extensions: ['.js', '.jsx', '.json'],
+			modules: [
+				sourceDir,
+				nodeModulesDir,
+				'node_modules',
+			],
 		},
 		resolveLoader: {
 			moduleExtensions: ['-loader', '.loader'],
+			modules: loaderModulesDirectories,
 		},
 		plugins: [
 			new FaviconsWebpackPlugin({
@@ -81,6 +92,13 @@ module.exports = function(config, env) {
 			new webpack.DefinePlugin({
 				'process.env': {
 					NODE_ENV: JSON.stringify(env),
+				},
+			}),
+			new webpack.LoaderOptionsPlugin({
+				minimize: isProd,
+				debug: !isProd,
+				options: {
+					styleguidist: config,
 				},
 			}),
 		],
@@ -100,9 +118,26 @@ module.exports = function(config, env) {
 					loader: 'style!css',
 				},
 				{
-					test: /\.css$/,
+					test: /\.p?css$/,
 					include: sourceDir,
-					loader: 'style!css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]',
+					use: [
+						{
+							loader: 'style-loader',
+						},
+						{
+							loader: 'css-loader',
+							options: {
+								modules: true,
+								importLoaders: 2,
+								sourceMap: !isProd,
+								localIdentName: isProd ? null : '[path]--[local]',
+								context: '/',
+							},
+						},
+						{
+							loader: 'postcss-loader',
+						},
+					],
 				},
 				{
 					test: /\.jpg(\?v=\d+\.\d+\.\d+)?$/,
@@ -113,76 +148,16 @@ module.exports = function(config, env) {
 						mimetype: 'image/jpg',
 					},
 				},
-				isWebpack2 ? {
+				{
 					test: /\.jsx?$/,
 					include: sourceDir,
 					loader: 'babel',
 					options: {
-						babelrc: false,
-						presets: ['es2015', 'react', 'stage-0'],
-						plugins: ['transform-decorators-legacy'],
-					},
-				} : {
-					test: /\.jsx?$/,
-					include: sourceDir,
-					loader: 'babel',
-					query: {
-						babelrc: false,
-						presets: ['es2015', 'react', 'stage-0'],
-						plugins: ['transform-decorators-legacy'],
 					},
 				},
 			],
 		},
 	};
-
-	const loaderModulesDirectories = [
-		path.resolve(__dirname, '../loaders'),
-		nodeModulesDir,
-		'node_modules',
-	];
-
-	if (isWebpack2) {
-		webpackConfig = merge(webpackConfig, {
-			resolve: {
-				extensions: ['.js', '.jsx', '.json'],
-				modules: [
-					sourceDir,
-					nodeModulesDir,
-					'node_modules',
-				],
-			},
-			resolveLoader: {
-				modules: loaderModulesDirectories,
-			},
-			plugins: [
-				new webpack.LoaderOptionsPlugin({
-					minimize: isProd,
-					debug: !isProd,
-					options: {
-						styleguidist: config,
-					},
-				}),
-			],
-		});
-	}
-	else {
-		webpackConfig = merge(webpackConfig, {
-			styleguidist: config,
-			resolve: {
-				extensions: ['', '.js', '.jsx', '.json'],
-				root: sourceDir,
-				moduleDirectories: [
-					nodeModulesDir,
-					'node_modules',
-				],
-			},
-			resolveLoader: {
-				modulesDirectories: loaderModulesDirectories,
-			},
-			debug: !isProd,
-		});
-	}
 
 	const entryScript = path.resolve(sourceDir, 'index');
 
@@ -225,16 +200,9 @@ module.exports = function(config, env) {
 				new webpack.HotModuleReplacementPlugin(),
 			],
 		});
-		if (!isWebpack2) {
-			webpackConfig.plugins.push(
-				new webpack.NoErrorsPlugin()
-			);
-		}
-		else {
-			webpackConfig.plugins.push(
-				new webpack.NoEmitOnErrorsPlugin()
-			);
-		}
+		webpackConfig.plugins.push(
+			new webpack.NoEmitOnErrorsPlugin()
+		);
 	}
 
 	if (config.updateWebpackConfig) {

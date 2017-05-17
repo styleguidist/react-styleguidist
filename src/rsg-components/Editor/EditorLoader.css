@@ -1,5 +1,6 @@
 .root {
-  background-color: rgb(224, 224, 224);
+  background-color: #263238;
   padding: 7px 16px 10px;
   font-size: 12px;
+	color: white;
 }
