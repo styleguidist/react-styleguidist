@@ -22,7 +22,7 @@ export const color = {
 	baseBackground: '#fff',
 	errorBackground: '#c00',
 	codeBackground: '#f5f5f5',
-	sidebarBackground: '#f5f5f5',
+	sidebarBackground: '#000',
 };
 
 export const fontFamily = {

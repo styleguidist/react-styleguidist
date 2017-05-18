@@ -22,7 +22,7 @@ const styles = ({ color, fontSize, fontFamily, space, borderRadius }) => ({
 	},
 	isolatedLink: {
 		position: 'absolute',
-		top: 0,
+		top: 40,
 		right: 0,
 		fontFamily: fontFamily.base,
 		fontSize: fontSize.base,

@@ -22,7 +22,7 @@ const styles = ({ color, fontSize, fontFamily, space }) => ({
 	},
 	isolatedLink: {
 		position: 'absolute',
-		top: 0,
+		top: '-1.8rem',
 		right: 0,
 		fontFamily: fontFamily.base,
 		fontSize: fontSize.base,
@@ -80,33 +80,35 @@ export function ReactComponentRenderer({
 		[classes.isDeprecated]: tags.deprecated,
 	});
 	return (
-		<div className={classes.root} id={name + '-container'}>
-			<header className={classes.header}>
-				<Heading level={2} className={headingClasses} slug={slug}>
-					{name}
-				</Heading>
-				<div className={classes.pathLine}>{pathLine}</div>
-				<div className={classes.isolatedLink}>
-					{isolated
-						? <Link href="/">← Back</Link>
-						: <Link href={'#!/' + name}>Open isolated ⇢</Link>}
+		<div className={cx(classes.root, 'component-section')} id={name + '-container'}>
+			<div className="component-wrapper">
+				<header className={classes.header}>
+					<Heading level={2} className={headingClasses} slug={slug}>
+						{name}
+					</Heading>
+					<div className={classes.pathLine}>{pathLine}</div>
+					<div className={cx(classes.isolatedLink, 'isolatedLink')}>
+						{isolated
+							? <Link href="/">← Back</Link>
+							: <Link href={'#!/' + name}>Open isolated ⇢</Link>}
+					</div>
+				</header>
+				<div className={classes.description}>
+					{description && <Markdown text={description} />}
+					<JsDoc {...tags} />
 				</div>
-			</header>
-			<div className={classes.description}>
-				{description && <Markdown text={description} />}
-				<JsDoc {...tags} />
+				{props &&
+					<div className={classes.subsection}>
+						<h3 className={classes.heading}>Props</h3>
+						{props}
+					</div>}
+				{methods &&
+					<div className={classes.subsection}>
+						<h3 className={classes.heading}>Methods</h3>
+						{methods}
+					</div>}
+				{examples}
 			</div>
-			{props &&
-				<div className={classes.subsection}>
-					<h3 className={classes.heading}>Props</h3>
-					{props}
-				</div>}
-			{methods &&
-				<div className={classes.subsection}>
-					<h3 className={classes.heading}>Methods</h3>
-					{methods}
-				</div>}
-			{examples}
 		</div>
 	);
 }
