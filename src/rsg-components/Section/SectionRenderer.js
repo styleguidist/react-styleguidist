@@ -47,7 +47,7 @@ export function SectionRenderer({
 				<div className={classes.isolatedLink}>
 					{name &&
 						(isolatedSection
-							? <Link href="#">⇽ Back</Link>
+							? <Link href="">⇽ Back</Link>
 							: <Link href={'#!/' + name}>Open isolated ⇢</Link>)}
 				</div>
 			</div>
