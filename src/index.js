@@ -60,6 +60,8 @@ function renderStyleguide() {
 	slugger.reset();
 	sections = setSlugs(sections);
 
+	const listTypes = sections.map(section => section.name);
+
 	ReactDOM.render(
 		<StyleGuide
 			codeKey={codeKey}
@@ -67,6 +69,7 @@ function renderStyleguide() {
 			welcomeScreen={styleguide.welcomeScreen}
 			patterns={styleguide.patterns}
 			sections={sections}
+			listTypes={listTypes}
 			isolatedComponent={isolatedComponent}
 			isolatedExample={isolatedExample}
 			isolatedSection={isolatedSection}

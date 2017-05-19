@@ -19,7 +19,7 @@ const styles = ({ space, fontFamily, fontSize }) => ({
 	},
 	isolatedLink: {
 		position: 'absolute',
-		top: 0,
+		top: '-1.8rem',
 		right: 0,
 		fontFamily: fontFamily.base,
 		fontSize: fontSize.base,

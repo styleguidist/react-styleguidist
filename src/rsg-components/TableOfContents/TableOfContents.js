@@ -32,7 +32,6 @@ export default class TableOfContents extends Component {
 	}
 
 	render() {
-		// const { searchTerm } = this.state;
 		const { onSearchTermChange, searchTerm } = this.props;
 
 		return (

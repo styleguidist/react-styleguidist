@@ -17,6 +17,7 @@ export default class StyleGuide extends Component {
 		isolatedComponent: PropTypes.bool,
 		isolatedExample: PropTypes.bool,
 		isolatedSection: PropTypes.bool,
+		listTypes: PropTypes.array,
 	};
 
 	static childContextTypes = {
@@ -32,7 +33,8 @@ export default class StyleGuide extends Component {
 	};
 
 	state = {
-		searchTerm: '',
+		searchTerm: undefined,
+		listMode: this.props.listTypes[0], //eslint-disable-line
 	};
 
 	getChildContext() {
@@ -46,10 +48,13 @@ export default class StyleGuide extends Component {
 	}
 
 	render() {
-		const { config, sections, welcomeScreen, patterns, isolatedComponent } = this.props;
+		const { config, sections, listTypes, welcomeScreen, patterns, isolatedComponent } = this.props;
 
 		const { searchTerm } = this.state;
-		const filteredSections = (0, filterSectionsByName)(sections, searchTerm);
+		const list = sections.length === 1
+			? sections
+			: sections.filter(section => section.name === this.state.listMode)[0].sections;
+		const filteredSections = searchTerm ? (0, filterSectionsByName)(list, searchTerm) : list;
 
 		if (welcomeScreen) {
 			return <Welcome patterns={patterns} />;
@@ -60,6 +65,9 @@ export default class StyleGuide extends Component {
 				title={config.title}
 				homepageUrl={HOMEPAGE}
 				hasSidebar={config.showSidebar && !isolatedComponent}
+				listMode={this.state.listMode}
+				listTypes={listTypes}
+				onListToggle={listMode => this.setState({ listMode })}
 				toc={
 					<TableOfContents
 						sections={filteredSections}
