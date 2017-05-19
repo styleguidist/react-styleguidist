@@ -76,7 +76,6 @@ module.exports = function(source) {
 	const propsParser = config.propsParser || defaultParser;
 
 	const jsonProps = parseProps(file, source, propsParser);
-
 	return `
 		if (module.hot) {
 			module.hot.accept([]);

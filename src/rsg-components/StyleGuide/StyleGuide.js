@@ -54,7 +54,7 @@ export default class StyleGuide extends Component {
 		return <TableOfContents components={components} sections={sections} />;
 	}
 
-	render() {
+	render() { return null;
 		let { config, components, sections, sidebar, singleExample } = this.props;
 
 		return (

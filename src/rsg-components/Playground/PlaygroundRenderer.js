@@ -48,6 +48,7 @@ export default class PlaygroundRenderer extends PureComponent {
     onChange: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     singleExample: PropTypes.bool,
+    isFlow: PropTypes.bool,
     urlProps: PropTypes.arrayOf(PropTypes.string),
   };
 
@@ -138,7 +139,7 @@ export default class PlaygroundRenderer extends PureComponent {
 
   render() {
     const { code, name, evalInContext,
-      props, index, singleExample, urlProps, onChange } = this.props;
+      props, index, singleExample, urlProps, onChange, isFlow } = this.props;
     const { containerSize, containerSizeLine, containerBg, showCode, showPropsEditor,
     containerSizeKey, isResize, componentsCount } = this.state;
 
@@ -212,6 +213,7 @@ export default class PlaygroundRenderer extends PureComponent {
                   componentName={name}
                   code={code}
                   onSubmit={onChange}
+                  isFlow={isFlow}
                 />
               )}
               {showCode && (

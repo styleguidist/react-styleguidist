@@ -9,7 +9,7 @@ import React, { PropTypes } from 'react';
 import Playground from 'rsg-components/Playground';
 import Markdown from 'rsg-components/Markdown';
 
-const Examples = ({ examples, name, props }, { codeKey }) => (
+const Examples = ({ examples, name, props, isFlow }, { codeKey }) => (
 	<div>
 		{examples.map((example, index) => {
 			switch (example.type) {
@@ -22,15 +22,16 @@ const Examples = ({ examples, name, props }, { codeKey }) => (
 							name={name}
 							index={index}
 							props={props}
-						/>
- 	);
+              isFlow={isFlow}
+      />
+          );
 				case 'markdown':
 					return (
 						<Markdown
 							text={example.content}
 							key={index}
-						/>
- 	);
+      />
+          );
 				default:
 					return null;
 			}
@@ -42,7 +43,9 @@ Examples.propTypes = {
 	examples: PropTypes.array.isRequired,
 	name: PropTypes.string,
 	props: PropTypes.object,
+  isFlow: PropTypes.bool,
 };
+
 Examples.contextTypes = {
 	codeKey: PropTypes.number.isRequired,
 };

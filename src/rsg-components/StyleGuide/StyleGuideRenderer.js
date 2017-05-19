@@ -86,7 +86,7 @@ class StyleGuideRenderer extends Component {
             }
             {sidebar &&
               <IconButton
-                tooltip={drawerOpen ? 'Close filter' : 'Open filter'}
+                tooltip={drawerOpen ? 'Close menu' : 'Open menu'}
                 tooltipPosition="bottom-left"
                 onClick={drawerOpen ? this.handleCloseDrawer : this.handleOpenDrawer}
               >
@@ -94,9 +94,9 @@ class StyleGuideRenderer extends Component {
               </IconButton>
             }
             {!sidebar &&
-              <a href={singleExample ? `/#!/${targetComponentName}` : '/#'}>
+              <a href="/#">
                 <IconButton
-                  tooltip={singleExample ? `Back to ${targetComponentName}` : 'Back to styleguide'}
+                  tooltip="Back to styleguide"
                   tooltipPosition="bottom-left"
                 >
                   <FontIcon className="material-icons" color="white">widgets</FontIcon>

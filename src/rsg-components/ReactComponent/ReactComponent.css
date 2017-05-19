@@ -9,13 +9,6 @@
   font-weight: normal;
 }
 
-.isolatedLink {
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 1em;
-}
-
 .primaryHeading {
   position: relative;
   margin-bottom: 0.5em;
@@ -32,7 +25,7 @@
 .anchorLink {
   position: absolute;
   top: 0;
-  right: 3rem;
+  right: 0;
   line-height: 1;
   color: rgb(224, 224, 224);
   margin-left: 0.5rem;

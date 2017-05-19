@@ -4,59 +4,59 @@ import extend from 'lodash/extend';
 import isNaN from 'lodash/isNaN';
 
 export function setComponentsNames(components) {
-	components.map((component) => {
-		// Try to detect component name or fallback to file name or directory name.
-		const { module } = component;
-		component.name = (component.props && component.props.displayName) || (
-			module.default
-				? (module.default.displayName || module.default.name)
-				: (module.displayName || module.name)
-		) || component.nameFallback;
-	});
-	return components;
+  components.map((component) => {
+    // Try to detect component name or fallback to file name or directory name.
+    const { module } = component;
+    component.name = (component.props && component.props.displayName) || (
+      module.default
+        ? (module.default.displayName || module.default.name)
+        : (module.displayName || module.name)
+    ) || component.nameFallback;
+  });
+  return components;
 }
 
 export function globalizeComponents(components) {
-	components.map((component) => {
-		global[component.name] = (!component.props || !component.props.path || component.props.path === 'default')
-			? (component.module.default || component.module)
-			: component.module[component.props.path];
-	});
+  components.map((component) => {
+    global[component.name] = (!component.props || !component.props.path || component.props.path === 'default')
+      ? (component.module.default || component.module)
+      : component.module[component.props.path];
+  });
 }
 
 export function promoteInlineExamples(components) {
-	components.map(c => {
-		if (c.props.example) {
-			c.examples = (c.examples || []).concat(c.props.example);
-		}
-	});
-	return components;
+  components.map(c => {
+    if (c.props.example) {
+      c.examples = (c.examples || []).concat(c.props.example);
+    }
+  });
+  return components;
 }
 
 export function flattenChildren(components) {
-	// If any of the components have multiple children, flatten them.
-	return flatMap(components, component => {
-		if (isArray(component.props)) {
-			return component.props.map(props => extend({}, component, { props }));
-		}
-		return component;
-	});
+  // If any of the components have multiple children, flatten them.
+  return flatMap(components, component => {
+    if (isArray(component.props)) {
+      return component.props.map(props => extend({}, component, { props }));
+    }
+    return component;
+  });
 }
 
 export function processComponents(components) {
-	components = flattenChildren(components);
-	components = promoteInlineExamples(components);
-	components = setComponentsNames(components);
-	globalizeComponents(components);
-	return components;
+  components = flattenChildren(components);
+  components = promoteInlineExamples(components);
+  components = setComponentsNames(components);
+  globalizeComponents(components);
+  return components;
 }
 
 export function processSections(sections) {
-	return sections.map(section => {
-		section.components = processComponents(section.components || []);
-		section.sections = processSections(section.sections || []);
-		return section;
-	});
+  return sections.map(section => {
+    section.components = processComponents(section.components || []);
+    section.sections = processSections(section.sections || []);
+    return section;
+  });
 }
 
 /**
@@ -66,12 +66,12 @@ export function processSections(sections) {
  * @return {RegExp}
  */
 export function getFilterRegExp(query) {
-	query = query
-		.replace(/[^a-z0-9]/gi, '')
-		.split('')
-		.join('.*')
-	;
-	return new RegExp(query, 'gi');
+  query = query
+    .replace(/[^a-z0-9]/gi, '')
+    .split('')
+    .join('.*')
+  ;
+  return new RegExp(query, 'gi');
 }
 
 /**
@@ -82,7 +82,7 @@ export function getFilterRegExp(query) {
  * @return {array}
  */
 export function filterComponentsByName(components, query) {
-	return components.filter(({ name }) => name.match(getFilterRegExp(query)));
+  return components.filter(({ name }) => name.match(getFilterRegExp(query)));
 }
 
 /**
@@ -93,7 +93,7 @@ export function filterComponentsByName(components, query) {
  * @return {Array}
  */
 export function filterComponentsByExactName(componens, name) {
-	return componens.filter(component => component.name === name);
+  return componens.filter(component => component.name === name);
 }
 
 /**
@@ -104,16 +104,16 @@ export function filterComponentsByExactName(componens, name) {
  * @return {Array}
  */
 export function filterComponentsInSectionsByExactName(sections, name) {
-	const components = [];
-	sections.forEach(section => {
-		if (section.components) {
-			components.push(...filterComponentsByExactName(section.components, name));
-		}
-		if (section.sections) {
-			components.push(...filterComponentsInSectionsByExactName(section.sections, name));
-		}
-	});
-	return components;
+  const components = [];
+  sections.forEach(section => {
+    if (section.components) {
+      components.push(...filterComponentsByExactName(section.components, name));
+    }
+    if (section.sections) {
+      components.push(...filterComponentsInSectionsByExactName(section.sections, name));
+    }
+  });
+  return components;
 }
 
 /**
@@ -126,15 +126,15 @@ export function filterComponentsInSectionsByExactName(sections, name) {
  * @returns {object}
  */
 export function getComponentNameFromHash(hash = window.location.hash) {
-	if (hash.substr(0, 3) === '#!/') {
-		const tokens = hash.substr(3).split('/');
-		const index = parseInt(tokens[1], 10);
-		return {
-			targetComponentName: tokens[0],
-			targetComponentIndex: isNaN(index) ? null : index,
-		};
-	}
-	return {};
+  if (hash.substr(0, 3) === '#!/') {
+    const tokens = hash.substr(3).split('/');
+    const index = parseInt(tokens[1], 10);
+    return {
+      targetComponentName: tokens[0],
+      targetComponentIndex: isNaN(index) ? null : index,
+    };
+  }
+  return {};
 }
 
 /**
@@ -147,7 +147,7 @@ export function getComponentNameFromHash(hash = window.location.hash) {
  * @returns {object}
  */
 export function filterComponentExamples(component, index) {
-	const newComponent = Object.assign({}, component);
-	newComponent.examples = [component.examples[index]];
-	return newComponent;
+  const newComponent = Object.assign({}, component);
+  newComponent.examples = [component.examples[index]];
+  return newComponent;
 }
