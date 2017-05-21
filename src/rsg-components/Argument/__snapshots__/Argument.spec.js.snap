@@ -5,15 +5,15 @@ exports[`renderer should render argument 1`] = `
   separator=" "
 >
   <span>
-    <_class
+    <Styled(Name)
       name="Foo"
     />
     :
   </span>
-  <_class>
+  <Styled(Code)>
     Array
-  </_class>
-  <_class
+  </Styled(Code)>
+  <Styled(Markdown)
     inline={true}
     text="— Converts foo to bar"
   />
@@ -25,14 +25,14 @@ exports[`renderer should render argument without description 1`] = `
   separator=" "
 >
   <span>
-    <_class
+    <Styled(Name)
       name="Foo"
     />
     :
   </span>
-  <_class>
+  <Styled(Code)>
     Array
-  </_class>
+  </Styled(Code)>
 </Group>
 `;
 
@@ -41,11 +41,11 @@ exports[`renderer should render argument without type 1`] = `
   separator=" "
 >
   <span>
-    <_class
+    <Styled(Name)
       name="Foo"
     />
   </span>
-  <_class
+  <Styled(Markdown)
     inline={true}
     text="— Converts foo to bar"
   />
@@ -57,10 +57,10 @@ exports[`renderer should render return value 1`] = `
   separator=" "
 >
   Returns
-  <_class>
+  <Styled(Code)>
     Array
-  </_class>
-  <_class
+  </Styled(Code)>
+  <Styled(Markdown)
     inline={true}
     text="— Converts foo to bar"
   />

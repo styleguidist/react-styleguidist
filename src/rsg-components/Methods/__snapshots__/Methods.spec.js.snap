@@ -20,12 +20,12 @@ exports[`should render JsDoc tags 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           name="Foo()"
         />
       </td>
       <td>
-        <_class
+        <Styled(Arguments)
           args={Array []}
         />
       </td>
@@ -68,7 +68,7 @@ exports[`should render deprecated JsDoc tags 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           deprecated={
             Array [
               Object {
@@ -81,7 +81,7 @@ exports[`should render deprecated JsDoc tags 1`] = `
         />
       </td>
       <td>
-        <_class
+        <Styled(Arguments)
           args={Array []}
         />
       </td>
@@ -124,12 +124,12 @@ exports[`should render parameters 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           name="method()"
         />
       </td>
       <td>
-        <_class
+        <Styled(Arguments)
           args={
             Array [
               Object {
@@ -147,7 +147,7 @@ exports[`should render parameters 1`] = `
       <td
         className=""
       >
-        <_class
+        <Styled(Markdown)
           text="Public"
         />
         <JsDoc />
@@ -177,19 +177,19 @@ exports[`should render public method 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           name="method()"
         />
       </td>
       <td>
-        <_class
+        <Styled(Arguments)
           args={Array []}
         />
       </td>
       <td
         className=""
       >
-        <_class
+        <Styled(Markdown)
           text="Public"
         />
         <JsDoc />
@@ -219,19 +219,19 @@ exports[`should render returns 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           name="method()"
         />
       </td>
       <td>
-        <_class
+        <Styled(Arguments)
           args={Array []}
         />
       </td>
       <td
         className=""
       >
-        <_class
+        <Styled(Argument)
           description="Description"
           returns={true}
           type={

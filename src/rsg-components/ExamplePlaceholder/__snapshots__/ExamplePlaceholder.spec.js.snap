@@ -9,7 +9,7 @@ exports[`should render a link 1`] = `
 `;
 
 exports[`should render an example placeholder after click 1`] = `
-<_class
+<Styled(Markdown)
   text="
 Create **Readme.md** or **Pizza.md** file in the component’s folder like this:
 

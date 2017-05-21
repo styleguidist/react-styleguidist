@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`JsDoc should render Markdown 1`] = `
-<_class
+<Styled(Markdown)
   text="**Deprecated:** Use *another* method
 
 [See 1](#TestLink)

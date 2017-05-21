@@ -23,15 +23,15 @@ exports[`should render PropTypes.arrayOf 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           deprecated={false}
           name="colors"
         />
       </td>
       <td>
-        <_class>
+        <Styled(Code)>
           string[]
-        </_class>
+        </Styled(Code)>
       </td>
       <td />
       <td
@@ -69,15 +69,15 @@ exports[`should render PropTypes.arrayOf(PropTypes.shape) 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           deprecated={false}
           name="foos"
         />
       </td>
       <td>
-        <_class>
+        <Styled(Code)>
           shape[]
-        </_class>
+        </Styled(Code)>
       </td>
       <td />
       <td
@@ -86,22 +86,22 @@ exports[`should render PropTypes.arrayOf(PropTypes.shape) 1`] = `
         <div>
           <div>
             <div>
-              <_class>
+              <Styled(Code)>
                 bar
-              </_class>
+              </Styled(Code)>
               : 
-              <_class>
+              <Styled(Code)>
                 number
-              </_class>
+              </Styled(Code)>
             </div>
             <div>
-              <_class>
+              <Styled(Code)>
                 baz
-              </_class>
+              </Styled(Code)>
               : 
-              <_class>
+              <Styled(Code)>
                 any
-              </_class>
+              </Styled(Code)>
             </div>
           </div>
           <JsDoc />
@@ -135,15 +135,15 @@ exports[`should render PropTypes.instanceOf 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           deprecated={false}
           name="num"
         />
       </td>
       <td>
-        <_class>
+        <Styled(Code)>
           Number
-        </_class>
+        </Styled(Code)>
       </td>
       <td />
       <td
@@ -181,15 +181,15 @@ exports[`should render PropTypes.objectOf 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           deprecated={false}
           name="colors"
         />
       </td>
       <td>
-        <_class>
+        <Styled(Code)>
           {string}
-        </_class>
+        </Styled(Code)>
       </td>
       <td />
       <td
@@ -227,15 +227,15 @@ exports[`should render PropTypes.objectOf(PropTypes.shape) 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           deprecated={false}
           name="colors"
         />
       </td>
       <td>
-        <_class>
+        <Styled(Code)>
           {shape}
-        </_class>
+        </Styled(Code)>
       </td>
       <td />
       <td
@@ -244,26 +244,26 @@ exports[`should render PropTypes.objectOf(PropTypes.shape) 1`] = `
         <div>
           <div>
             <div>
-              <_class>
+              <Styled(Code)>
                 bar
-              </_class>
+              </Styled(Code)>
               : 
-              <_class>
+              <Styled(Code)>
                 number
-              </_class>
+              </Styled(Code)>
                — 
               <span>
                 Required
               </span>
             </div>
             <div>
-              <_class>
+              <Styled(Code)>
                 baz
-              </_class>
+              </Styled(Code)>
               : 
-              <_class>
+              <Styled(Code)>
                 any
-              </_class>
+              </Styled(Code)>
             </div>
           </div>
           <JsDoc />
@@ -297,15 +297,15 @@ exports[`should render PropTypes.oneOf 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           deprecated={false}
           name="size"
         />
       </td>
       <td>
-        <_class>
+        <Styled(Code)>
           enum
-        </_class>
+        </Styled(Code)>
       </td>
       <td />
       <td
@@ -319,15 +319,15 @@ exports[`should render PropTypes.oneOf 1`] = `
                 inline={true}
                 separator=", "
               >
-                <_class>
+                <Styled(Code)>
                   small
-                </_class>
-                <_class>
+                </Styled(Code)>
+                <Styled(Code)>
                   normal
-                </_class>
-                <_class>
+                </Styled(Code)>
+                <Styled(Code)>
                   large
-                </_class>
+                </Styled(Code)>
               </Group>
             </span>
           </div>
@@ -362,15 +362,15 @@ exports[`should render PropTypes.oneOfType 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           deprecated={false}
           name="union"
         />
       </td>
       <td>
-        <_class>
+        <Styled(Code)>
           union
-        </_class>
+        </Styled(Code)>
       </td>
       <td />
       <td
@@ -384,12 +384,12 @@ exports[`should render PropTypes.oneOfType 1`] = `
                 inline={true}
                 separator=", "
               >
-                <_class>
+                <Styled(Code)>
                   string
-                </_class>
-                <_class>
+                </Styled(Code)>
+                <Styled(Code)>
                   number
-                </_class>
+                </Styled(Code)>
               </Group>
             </span>
           </div>
@@ -424,15 +424,15 @@ exports[`should render PropTypes.shape 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           deprecated={false}
           name="foo"
         />
       </td>
       <td>
-        <_class>
+        <Styled(Code)>
           shape
-        </_class>
+        </Styled(Code)>
       </td>
       <td />
       <td
@@ -441,26 +441,26 @@ exports[`should render PropTypes.shape 1`] = `
         <div>
           <div>
             <div>
-              <_class>
+              <Styled(Code)>
                 bar
-              </_class>
+              </Styled(Code)>
               : 
-              <_class>
+              <Styled(Code)>
                 number
-              </_class>
+              </Styled(Code)>
                — 
               <span>
                 Required
               </span>
             </div>
             <div>
-              <_class>
+              <Styled(Code)>
                 baz
-              </_class>
+              </Styled(Code)>
               : 
-              <_class>
+              <Styled(Code)>
                 any
-              </_class>
+              </Styled(Code)>
             </div>
           </div>
           <JsDoc />
@@ -494,15 +494,15 @@ exports[`should render PropTypes.shape with description 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           deprecated={false}
           name="foo"
         />
       </td>
       <td>
-        <_class>
+        <Styled(Code)>
           shape
-        </_class>
+        </Styled(Code)>
       </td>
       <td />
       <td
@@ -511,33 +511,33 @@ exports[`should render PropTypes.shape with description 1`] = `
         <div>
           <div>
             <div>
-              <_class>
+              <Styled(Code)>
                 bar
-              </_class>
+              </Styled(Code)>
               : 
-              <_class>
+              <Styled(Code)>
                 number
-              </_class>
+              </Styled(Code)>
                — 
               <span>
                 Required
               </span>
                — 
-              <_class
+              <Styled(Markdown)
                 inline={true}
                 text="Number"
               />
             </div>
             <div>
-              <_class>
+              <Styled(Code)>
                 baz
-              </_class>
+              </Styled(Code)>
               : 
-              <_class>
+              <Styled(Code)>
                 any
-              </_class>
+              </Styled(Code)>
                — 
-              <_class
+              <Styled(Markdown)
                 inline={true}
                 text="Any"
               />
@@ -574,15 +574,15 @@ exports[`should render PropTypes.string 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           deprecated={false}
           name="color"
         />
       </td>
       <td>
-        <_class>
+        <Styled(Code)>
           string
-        </_class>
+        </Styled(Code)>
       </td>
       <td />
       <td
@@ -620,20 +620,20 @@ exports[`should render PropTypes.string with a default value 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           deprecated={false}
           name="color"
         />
       </td>
       <td>
-        <_class>
+        <Styled(Code)>
           string
-        </_class>
+        </Styled(Code)>
       </td>
       <td>
-        <_class>
+        <Styled(Code)>
           pink
-        </_class>
+        </Styled(Code)>
       </td>
       <td
         className="undefined undefined"
@@ -670,15 +670,15 @@ exports[`should render PropTypes.string.isRequired 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           deprecated={false}
           name="color"
         />
       </td>
       <td>
-        <_class>
+        <Styled(Code)>
           string
-        </_class>
+        </Styled(Code)>
       </td>
       <td>
         <span>
@@ -720,22 +720,22 @@ exports[`should render arguments from JsDoc tags 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           deprecated={false}
           name="size"
         />
       </td>
       <td>
-        <_class>
+        <Styled(Code)>
           number
-        </_class>
+        </Styled(Code)>
       </td>
       <td />
       <td
         className="undefined undefined"
       >
         <div>
-          <_class
+          <Styled(Markdown)
             text="Test description"
           />
           <JsDoc
@@ -762,7 +762,7 @@ exports[`should render arguments from JsDoc tags 1`] = `
             <h4>
               Arguments
             </h4>
-            <_class
+            <Styled(Arguments)
               args={
                 Array [
                   Object {
@@ -809,22 +809,22 @@ exports[`should render description in Markdown 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           deprecated={false}
           name="color"
         />
       </td>
       <td>
-        <_class>
+        <Styled(Code)>
           string
-        </_class>
+        </Styled(Code)>
       </td>
       <td />
       <td
         className="undefined undefined"
       >
         <div>
-          <_class
+          <Styled(Markdown)
             text="Label"
           />
           <JsDoc />
@@ -858,15 +858,15 @@ exports[`should render function body in tooltip 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           deprecated={false}
           name="fn"
         />
       </td>
       <td>
-        <_class>
+        <Styled(Code)>
           func
-        </_class>
+        </Styled(Code)>
       </td>
       <td>
         <span
@@ -910,22 +910,22 @@ exports[`should render name as deprecated when tag deprecated is present 1`] = `
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           deprecated={true}
           name="size"
         />
       </td>
       <td>
-        <_class>
+        <Styled(Code)>
           number
-        </_class>
+        </Styled(Code)>
       </td>
       <td />
       <td
         className="undefined undefined"
       >
         <div>
-          <_class
+          <Styled(Markdown)
             text="Test description"
           />
           <JsDoc
@@ -968,20 +968,20 @@ exports[`should render unknown proptype for a prop when a relevant proptype is n
   <tbody>
     <tr>
       <td>
-        <_class
+        <Styled(Name)
           deprecated={false}
           name="color"
         />
       </td>
       <td>
-        <_class>
+        <Styled(Code)>
           unknown
-        </_class>
+        </Styled(Code)>
       </td>
       <td>
-        <_class>
+        <Styled(Code)>
           pink
-        </_class>
+        </Styled(Code)>
       </td>
       <td
         className="undefined undefined"

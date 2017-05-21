@@ -14,11 +14,11 @@ exports[`renderer should render preview 1`] = `
     separator=" "
   >
     <div>
-      <_class
+      <Styled(Link)
         href="#!/name/0"
       >
         <MdFullscreen />
-      </_class>
+      </Styled(Link)>
     </div>
     <div>
       <button
@@ -35,7 +35,7 @@ exports[`renderer should render preview 1`] = `
 `;
 
 exports[`should render component renderer 1`] = `
-<_class
+<Styled(Playground)
   code="<button>OK</button>"
   evalInContext={[Function]}
   index={0}

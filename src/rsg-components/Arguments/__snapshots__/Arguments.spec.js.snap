@@ -2,7 +2,7 @@
 
 exports[`renderer should render arguments 1`] = `
 <div>
-  <_class
+  <Styled(Argument)
     description="Converts foo to bar"
     name="Foo"
     type={
@@ -11,7 +11,7 @@ exports[`renderer should render arguments 1`] = `
       }
     }
   />
-  <_class
+  <Styled(Argument)
     name="Foo"
   />
 </div>

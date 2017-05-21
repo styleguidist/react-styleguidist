@@ -15,11 +15,11 @@ exports[`renderer should render table of contents 1`] = `
 `;
 
 exports[`should filter list when search field contains a query 1`] = `
-<_class
+<Styled(TableOfContents)
   onSearchTermChange={[Function]}
   searchTerm=""
 >
-  <_class
+  <Styled(ComponentsList)
     items={
       Array [
         Object {
@@ -49,15 +49,15 @@ exports[`should filter list when search field contains a query 1`] = `
       ]
     }
   />
-</_class>
+</Styled(TableOfContents)>
 `;
 
 exports[`should filter list when search field contains a query 2`] = `
-<_class
+<Styled(TableOfContents)
   onSearchTermChange={[Function]}
   searchTerm="but"
 >
-  <_class
+  <Styled(ComponentsList)
     items={
       Array [
         Object {
@@ -71,15 +71,15 @@ exports[`should filter list when search field contains a query 2`] = `
       ]
     }
   />
-</_class>
+</Styled(TableOfContents)>
 `;
 
 exports[`should filter section names 1`] = `
-<_class
+<Styled(TableOfContents)
   onSearchTermChange={[Function]}
   searchTerm=""
 >
-  <_class
+  <Styled(ComponentsList)
     items={
       Array [
         Object {
@@ -97,7 +97,7 @@ exports[`should filter section names 1`] = `
               "slug": "button",
             },
           ],
-          "content": <_class
+          "content": <Styled(ComponentsList)
             items={
                   Array [
                         Object {
@@ -125,7 +125,7 @@ exports[`should filter section names 1`] = `
               "slug": "textarea",
             },
           ],
-          "content": <_class
+          "content": <Styled(ComponentsList)
             items={
                   Array [
                         Object {
@@ -151,15 +151,15 @@ exports[`should filter section names 1`] = `
       ]
     }
   />
-</_class>
+</Styled(TableOfContents)>
 `;
 
 exports[`should filter section names 2`] = `
-<_class
+<Styled(TableOfContents)
   onSearchTermChange={[Function]}
   searchTerm="frm"
 >
-  <_class
+  <Styled(ComponentsList)
     items={
       Array [
         Object {
@@ -173,15 +173,15 @@ exports[`should filter section names 2`] = `
       ]
     }
   />
-</_class>
+</Styled(TableOfContents)>
 `;
 
 exports[`should render a renderer 1`] = `
-<_class
+<Styled(TableOfContents)
   onSearchTermChange={[Function]}
   searchTerm=""
 >
-  <_class
+  <Styled(ComponentsList)
     items={
       Array [
         Object {
@@ -211,15 +211,15 @@ exports[`should render a renderer 1`] = `
       ]
     }
   />
-</_class>
+</Styled(TableOfContents)>
 `;
 
 exports[`should render renderer with sections with nested components 1`] = `
-<_class
+<Styled(TableOfContents)
   onSearchTermChange={[Function]}
   searchTerm=""
 >
-  <_class
+  <Styled(ComponentsList)
     items={
       Array [
         Object {
@@ -237,7 +237,7 @@ exports[`should render renderer with sections with nested components 1`] = `
               "slug": "button",
             },
           ],
-          "content": <_class
+          "content": <Styled(ComponentsList)
             items={
                   Array [
                         Object {
@@ -265,7 +265,7 @@ exports[`should render renderer with sections with nested components 1`] = `
               "slug": "textarea",
             },
           ],
-          "content": <_class
+          "content": <Styled(ComponentsList)
             items={
                   Array [
                         Object {
@@ -291,5 +291,5 @@ exports[`should render renderer with sections with nested components 1`] = `
       ]
     }
   />
-</_class>
+</Styled(TableOfContents)>
 `;
