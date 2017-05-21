@@ -1,106 +1,78 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renderer should render H tag 1`] = `
-<h1
-  className=""
+exports[`renderer should pass props to slots 1`] = `
+<h2
+  className="root"
   id="heading"
 >
-  <a
-    aria-hidden={true}
-    href="#heading"
+  <div
+    className="heading"
   >
-    #
-  </a>
-  Heading
-</h1>
-`;
-
-exports[`should render h1 tag with anchor link inside 1`] = `
-<h1
-  className=""
-  id="h1"
->
-  <a
-    aria-hidden={true}
-    href="#h1"
-  >
-    #
-  </a>
-  H1
-</h1>
-`;
-
-exports[`should render h2 tag with anchor link inside 1`] = `
-<h2
-  className=""
-  id="h2"
->
-  <a
-    aria-hidden={true}
-    href="#h2"
-  >
-    #
-  </a>
-  H2
+    Heading
+  </div>
+  <Slot
+    className="toolbar"
+    name="slot"
+    props={
+      Object {
+        "bar": "baz",
+        "foo": 1,
+      }
+    }
+  />
 </h2>
 `;
 
-exports[`should render h3 tag with anchor link inside 1`] = `
-<h3
-  className=""
-  id="h3"
+exports[`renderer should render H1 tag 1`] = `
+<h1
+  className="root"
+  id="heading"
 >
-  <a
-    aria-hidden={true}
-    href="#h3"
+  <div
+    className="heading isPrimary"
   >
-    #
-  </a>
-  H3
-</h3>
+    Heading
+  </div>
+  <Slot
+    className="toolbar"
+    name="pizza"
+    props={Object {}}
+  />
+</h1>
 `;
 
-exports[`should render h4 tag with anchor link inside 1`] = `
-<h4
-  className=""
-  id="h4"
+exports[`renderer should render H2 tag 1`] = `
+<h2
+  className="root"
+  id="heading"
 >
-  <a
-    aria-hidden={true}
-    href="#h4"
+  <div
+    className="heading"
   >
-    #
-  </a>
-  H4
-</h4>
+    Heading
+  </div>
+  <Slot
+    className="toolbar"
+    name="pizza"
+    props={Object {}}
+  />
+</h2>
 `;
 
-exports[`should render h5 tag with anchor link inside 1`] = `
-<h5
-  className=""
-  id="h5"
+exports[`renderer should render heading with deprecated styles 1`] = `
+<h2
+  className="root"
+  id="heading"
 >
-  <a
-    aria-hidden={true}
-    href="#h5"
+  <div
+    className="heading isDeprecated"
   >
-    #
-  </a>
-  H5
-</h5>
-`;
-
-exports[`should render h6 tag with anchor link inside 1`] = `
-<h6
-  className=""
-  id="h6"
->
-  <a
-    aria-hidden={true}
-    href="#h6"
-  >
-    #
-  </a>
-  H6
-</h6>
+    Heading
+  </div>
+  <Slot
+    className="toolbar"
+    name="pizza"
+    props={Object {}}
+  />
+</h2>
 `;

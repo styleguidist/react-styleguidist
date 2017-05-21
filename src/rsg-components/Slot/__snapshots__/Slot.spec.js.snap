@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should not render empty slots 1`] = `
+<div>
+  <Div2
+    name="Pizza"
+  />
+</div>
+`;
+
+exports[`should renderer slots and pass props 1`] = `
+<div>
+  <Div
+    name="Pizza"
+  />
+  <Div2
+    name="Pizza"
+  />
+</div>
+`;

@@ -5,26 +5,41 @@ exports[`renderer should render component 1`] = `
   id="Foo-container"
 >
   <header>
-    <_class
-      className=""
-      level={2}
-      slug="foo"
+    <Styled(Heading)
+      deprecated={false}
+      id="foo"
+      slotName="componentToolbar"
+      slotProps={
+        Object {
+          "classes": Object {},
+          "description": "Bar",
+          "examples": Array [
+            <Playground
+              code="<button>OK</button>"
+              evalInContext={[Function]}
+              index={0}
+              name="Component"
+        />,
+            <Styled(Markdown)
+              text="Hello *world*!"
+        />,
+          ],
+          "metadata": Object {},
+          "name": "Foo",
+          "pathLine": "foo/bar.js",
+          "slug": "foo",
+          "tags": Object {},
+        }
+      }
     >
       Foo
-      <div>
-        <_class
-          href="#!/Foo"
-        >
-          <MdFullscreen />
-        </_class>
-      </div>
-    </_class>
+    </Styled(Heading)>
     <div>
       foo/bar.js
     </div>
   </header>
   <div>
-    <_class
+    <Styled(Markdown)
       text="Bar"
     />
     <JsDoc />
@@ -35,14 +50,14 @@ exports[`renderer should render component 1`] = `
     index={0}
     name="Component"
   />
-  <_class
+  <Styled(Markdown)
     text="Hello *world*!"
   />
 </div>
 `;
 
 exports[`renderer should render name with strike-through style when @deprecated is present in tags 1`] = `
-<_class
+<Styled(ReactComponent)
   description="Bar"
   examples={
     <Component
@@ -73,20 +88,23 @@ exports[`should not render props / methods section if there is no content 1`] = 
   id="Test-container"
 >
   <header>
-    <_class
-      className=""
-      level={2}
-      slug="test"
+    <Styled(Heading)
+      deprecated={false}
+      id="test"
+      slotName="componentToolbar"
+      slotProps={
+        Object {
+          "classes": Object {},
+          "metadata": Object {},
+          "name": "Test",
+          "pathLine": "test",
+          "slug": "test",
+          "tags": Object {},
+        }
+      }
     >
       Test
-      <div>
-        <_class
-          href="#!/Test"
-        >
-          <MdFullscreen />
-        </_class>
-      </div>
-    </_class>
+    </Styled(Heading)>
     <div>
       test
     </div>
@@ -102,20 +120,29 @@ exports[`should render both props and methods section 1`] = `
   id="Test-container"
 >
   <header>
-    <_class
-      className=""
-      level={2}
-      slug="test"
+    <Styled(Heading)
+      deprecated={false}
+      id="test"
+      slotName="componentToolbar"
+      slotProps={
+        Object {
+          "classes": Object {},
+          "metadata": Object {},
+          "methods": <div>
+            method
+        </div>,
+          "name": "Test",
+          "pathLine": "test",
+          "props": <div>
+            prop
+        </div>,
+          "slug": "test",
+          "tags": Object {},
+        }
+      }
     >
       Test
-      <div>
-        <_class
-          href="#!/Test"
-        >
-          <MdFullscreen />
-        </_class>
-      </div>
-    </_class>
+    </Styled(Heading)>
     <div>
       test
     </div>
@@ -147,20 +174,24 @@ exports[`should render component in isolation mode 1`] = `
   id="Test-container"
 >
   <header>
-    <_class
-      className=""
-      level={2}
-      slug="Test"
+    <Styled(Heading)
+      deprecated={false}
+      id="Test"
+      slotName="componentToolbar"
+      slotProps={
+        Object {
+          "classes": Object {},
+          "isolated": true,
+          "metadata": Object {},
+          "name": "Test",
+          "pathLine": "test",
+          "slug": "Test",
+          "tags": Object {},
+        }
+      }
     >
       Test
-      <div>
-        <_class
-          href="/"
-        >
-          <MdFullscreenExit />
-        </_class>
-      </div>
-    </_class>
+    </Styled(Heading)>
     <div>
       test
     </div>
@@ -176,20 +207,23 @@ exports[`should render component not in the isolation mode by default 1`] = `
   id="Test-container"
 >
   <header>
-    <_class
-      className=""
-      level={2}
-      slug="test"
+    <Styled(Heading)
+      deprecated={false}
+      id="test"
+      slotName="componentToolbar"
+      slotProps={
+        Object {
+          "classes": Object {},
+          "metadata": Object {},
+          "name": "Test",
+          "pathLine": "test",
+          "slug": "test",
+          "tags": Object {},
+        }
+      }
     >
       Test
-      <div>
-        <_class
-          href="#!/Test"
-        >
-          <MdFullscreen />
-        </_class>
-      </div>
-    </_class>
+    </Styled(Heading)>
     <div>
       test
     </div>
@@ -201,7 +235,7 @@ exports[`should render component not in the isolation mode by default 1`] = `
 `;
 
 exports[`should render component renderer for component with examples 1`] = `
-<_class
+<Styled(ReactComponent)
   description="Bar"
   examples={
     <Examples
@@ -231,7 +265,7 @@ exports[`should render component renderer for component with examples 1`] = `
 `;
 
 exports[`should render component renderer for component with methods 1`] = `
-<_class
+<Styled(ReactComponent)
   description="Bar"
   examples={
     <Component
@@ -241,7 +275,7 @@ exports[`should render component renderer for component with methods 1`] = `
   isolated={false}
   metadata={Object {}}
   methods={
-    <_class
+    <Styled(Methods)
       methods={
         Array [
           Object {
@@ -269,7 +303,7 @@ exports[`should render component renderer for component with methods 1`] = `
 `;
 
 exports[`should render component renderer for component with props 1`] = `
-<_class
+<Styled(ReactComponent)
   description="Bar"
   examples={
     <Component
@@ -282,7 +316,7 @@ exports[`should render component renderer for component with props 1`] = `
   name="Foo"
   pathLine="foo/bar.js"
   props={
-    <_class
+    <Styled(Props)
       props={
         Object {
           "children": Object {
@@ -301,7 +335,7 @@ exports[`should render component renderer for component with props 1`] = `
 `;
 
 exports[`should render component renderer with example placeholder 1`] = `
-<_class
+<Styled(ReactComponent)
   description="Bar"
   examples={
     <Component
@@ -322,20 +356,27 @@ exports[`should render methods section 1`] = `
   id="Test-container"
 >
   <header>
-    <_class
-      className=""
-      level={2}
-      slug="test"
+    <Styled(Heading)
+      deprecated={false}
+      id="test"
+      slotName="componentToolbar"
+      slotProps={
+        Object {
+          "classes": Object {},
+          "metadata": Object {},
+          "methods": <div>
+            test
+        </div>,
+          "name": "Test",
+          "pathLine": "test",
+          "props": null,
+          "slug": "test",
+          "tags": Object {},
+        }
+      }
     >
       Test
-      <div>
-        <_class
-          href="#!/Test"
-        >
-          <MdFullscreen />
-        </_class>
-      </div>
-    </_class>
+    </Styled(Heading)>
     <div>
       test
     </div>
@@ -359,20 +400,26 @@ exports[`should render props section 1`] = `
   id="Test-container"
 >
   <header>
-    <_class
-      className=""
-      level={2}
-      slug="test"
+    <Styled(Heading)
+      deprecated={false}
+      id="test"
+      slotName="componentToolbar"
+      slotProps={
+        Object {
+          "classes": Object {},
+          "metadata": Object {},
+          "name": "Test",
+          "pathLine": "test",
+          "props": <div>
+            test
+        </div>,
+          "slug": "test",
+          "tags": Object {},
+        }
+      }
     >
       Test
-      <div>
-        <_class
-          href="#!/Test"
-        >
-          <MdFullscreen />
-        </_class>
-      </div>
-    </_class>
+    </Styled(Heading)>
     <div>
       test
     </div>

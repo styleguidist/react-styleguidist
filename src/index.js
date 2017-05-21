@@ -11,6 +11,7 @@ import {
 	setSlugs,
 	slugger,
 } from './utils/utils';
+import slots from './rsg-components/slots';
 import StyleGuide from 'rsg-components/StyleGuide';
 
 // Polyfills
@@ -64,6 +65,7 @@ function renderStyleguide() {
 		<StyleGuide
 			codeKey={codeKey}
 			config={styleguide.config}
+			slots={slots}
 			welcomeScreen={styleguide.welcomeScreen}
 			patterns={styleguide.patterns}
 			sections={sections}

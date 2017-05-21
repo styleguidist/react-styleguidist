@@ -1,55 +1,63 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import Slot from 'rsg-components/Slot';
 import Styled from 'rsg-components/Styled';
 
-export const styles = ({ color, space, fontSize }) => ({
+export const styles = ({ color, space, fontSize, fontFamily }) => ({
+	root: {
+		display: 'flex',
+		marginBottom: space[1],
+		alignItems: 'center',
+	},
 	heading: {
 		color: color.base,
-		position: 'relative',
-		overflow: 'visible',
-		marginLeft: -space[4],
-		paddingLeft: space[4],
-		'&:hover > $anchor': {
-			isolate: false,
-			visibility: 'visible',
-		},
-	},
-	anchor: {
-		position: 'absolute',
-		top: '50%',
-		transform: 'translateY(-50%)',
-		left: space[1],
-		display: 'block',
-		color: color.link,
-		fontSize: fontSize.h3,
+		fontSize: fontSize.h2,
+		fontFamily: fontFamily.base,
 		fontWeight: 'normal',
-		textDecoration: 'none',
-		visibility: 'hidden',
-		'&:hover, &:active': {
-			isolate: false,
-			color: color.linkHover,
-			cursor: 'pointer',
-		},
+	},
+	isPrimary: {
+		fontSize: fontSize.h1,
+	},
+	isDeprecated: {
+		textDecoration: 'line-through',
+		color: color.light,
+	},
+	toolbar: {
+		marginLeft: 'auto',
 	},
 });
 
-export function HeadingRenderer({ classes, children, slug, level, ...props }) {
-	const Tag = `h${level}`;
+export function HeadingRenderer({
+	classes,
+	children,
+	id,
+	slotName,
+	slotProps,
+	primary,
+	deprecated,
+}) {
+	const Tag = primary ? 'h1' : 'h2';
+	const headingClasses = cx(classes.heading, {
+		[classes.isPrimary]: primary,
+		[classes.isDeprecated]: deprecated,
+	});
 	return (
-		<Tag {...props} id={slug} className={cx(classes.heading, props.className)}>
-			<a className={classes.anchor} href={`#${slug}`} aria-hidden>#</a>
-			{children}
+		<Tag id={id} className={classes.root}>
+			<div className={headingClasses}>{children}</div>
+			<Slot className={classes.toolbar} name={slotName} props={slotProps} />
 		</Tag>
 	);
 }
 
 HeadingRenderer.propTypes = {
-	children: PropTypes.node,
-	className: PropTypes.string,
 	classes: PropTypes.object.isRequired,
-	slug: PropTypes.string.isRequired,
-	level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]).isRequired,
+	children: PropTypes.node,
+	id: PropTypes.string.isRequired,
+	slotName: PropTypes.string.isRequired,
+	slotProps: PropTypes.object.isRequired,
+	primary: PropTypes.bool,
+	deprecated: PropTypes.bool,
 };
 
 export default Styled(styles)(HeadingRenderer);

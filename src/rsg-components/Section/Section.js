@@ -19,7 +19,7 @@ export default function Section({ section }, { isolatedSection = false }) {
 			content={contentJsx}
 			components={componentsJsx}
 			sections={sectionsJsx}
-			isolatedSection={isolatedSection}
+			isolated={isolatedSection}
 		/>
 	);
 }

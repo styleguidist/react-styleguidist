@@ -1,34 +1,37 @@
 import React from 'react';
-import { HeadingRenderer } from './HeadingRenderer';
+import { HeadingRenderer, styles } from './HeadingRenderer';
 
-it('renderer should render H tag', () => {
-	const actual = shallow(
-		<HeadingRenderer classes={{}} level={1} slug="heading">Heading</HeadingRenderer>
-	);
+const props = {
+	classes: classes(styles),
+	id: 'heading',
+	slotName: 'pizza',
+	slotProps: {},
+};
+
+it('renderer should render H2 tag', () => {
+	const actual = shallow(<HeadingRenderer {...props}>Heading</HeadingRenderer>);
 
 	expect(actual).toMatchSnapshot();
 });
 
-it('should compose passed class names', () => {
+it('renderer should render H1 tag', () => {
+	const actual = shallow(<HeadingRenderer {...props} primary>Heading</HeadingRenderer>);
+
+	expect(actual).toMatchSnapshot();
+});
+
+it('renderer should render heading with deprecated styles', () => {
+	const actual = shallow(<HeadingRenderer {...props} deprecated>Heading</HeadingRenderer>);
+
+	expect(actual).toMatchSnapshot();
+});
+
+it('renderer should pass props to slots', () => {
 	const actual = shallow(
-		<HeadingRenderer
-			classes={{ heading: 'baseHeadingClass' }}
-			className="customClass"
-			level={1}
-			slug="test"
-		>
-			Test heading
+		<HeadingRenderer {...props} slotName="slot" slotProps={{ foo: 1, bar: 'baz' }}>
+			Heading
 		</HeadingRenderer>
 	);
 
-	expect(actual.find('h1').prop('className')).toBe('baseHeadingClass customClass');
-});
-
-[1, 2, 3, 4, 5, 6].forEach(level => {
-	it(`should render h${level} tag with anchor link inside`, () => {
-		const actual = shallow(
-			<HeadingRenderer classes={{}} level={level} slug={`h${level}`}>{`H${level}`}</HeadingRenderer>
-		);
-		expect(actual).toMatchSnapshot();
-	});
+	expect(actual).toMatchSnapshot();
 });
