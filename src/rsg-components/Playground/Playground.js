@@ -33,8 +33,12 @@ export default class Playground extends Component {
 		});
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
-		return nextState.code !== this.state.code || nextState.showCode !== this.state.showCode;
+	shouldComponentUpdate(nextProps, nextState, context) {
+		return (
+			nextState.code !== this.state.code ||
+			nextState.showCode !== this.state.showCode ||
+			this.context.isolatedExample !== context.isolatedExample
+		);
 	}
 
 	componentWillUnmount() {

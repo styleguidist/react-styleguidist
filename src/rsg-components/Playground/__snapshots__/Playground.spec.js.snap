@@ -31,6 +31,7 @@ exports[`should render component renderer 1`] = `
   code="<button>OK</button>"
   evalInContext={[Function]}
   index={0}
+  isolatedExample={false}
   name="name"
   onChange={[Function]}
   onCodeToggle={[Function]}
