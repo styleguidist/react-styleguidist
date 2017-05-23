@@ -200,7 +200,7 @@ export function filterComponentExamples(component, index) {
  *
  * @param {string} $.name Name
  * @param {string} $.slug Slug
- * @param {string} $.example Example slug
+ * @param {number} $.example Example index
  * @param {boolean} $.anchor Anchor?
  * @param {boolean} $.isolated Isolated mode?
  * @param {boolean} $.nochrome No chrome? (Can be combined with anchor or isolated)

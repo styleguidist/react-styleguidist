@@ -7,16 +7,14 @@ const SIZE = 24;
 
 export const styles = ({ space, color }) => ({
 	button: {
-		display: 'inline-block',
-		width: SIZE,
-		height: SIZE,
-		fontSize: 'inherit',
-		background: 'transparent',
 		color: color.light,
-		transition: 'color 200ms ease',
+		background: 'transparent',
+		transition: 'color 750ms ease-out',
+		cursor: 'pointer',
 		'&:hover': {
 			isolate: false,
 			color: color.linkHover,
+			transition: 'color 150ms ease-in',
 		},
 		'& + &': {
 			isolate: false,

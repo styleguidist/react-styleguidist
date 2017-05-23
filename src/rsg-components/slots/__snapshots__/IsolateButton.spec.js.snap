@@ -9,6 +9,15 @@ exports[`should renderer a link home in isolated mode 1`] = `
 </Styled(ToolbarButton)>
 `;
 
+exports[`should renderer a link to example isolated mode 1`] = `
+<Styled(ToolbarButton)
+  href="blank#!/Pizza/3"
+  title="Open isolated"
+>
+  <MdFullscreen />
+</Styled(ToolbarButton)>
+`;
+
 exports[`should renderer a link to isolated mode 1`] = `
 <Styled(ToolbarButton)
   href="blank#!/Pizza"
