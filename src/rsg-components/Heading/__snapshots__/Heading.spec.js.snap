@@ -1,28 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renderer should pass props to slots 1`] = `
-<h2
-  className="root"
-  id="heading"
->
-  <div
-    className="heading"
-  >
-    Heading
-  </div>
-  <Slot
-    className="toolbar"
-    name="slot"
-    props={
-      Object {
-        "bar": "baz",
-        "foo": 1,
-      }
-    }
-  />
-</h2>
-`;
-
 exports[`renderer should render H1 tag 1`] = `
 <h1
   className="root"
@@ -33,10 +10,8 @@ exports[`renderer should render H1 tag 1`] = `
   >
     Heading
   </div>
-  <Slot
+  <div
     className="toolbar"
-    name="pizza"
-    props={Object {}}
   />
 </h1>
 `;
@@ -51,10 +26,8 @@ exports[`renderer should render H2 tag 1`] = `
   >
     Heading
   </div>
-  <Slot
+  <div
     className="toolbar"
-    name="pizza"
-    props={Object {}}
   />
 </h2>
 `;
@@ -69,10 +42,32 @@ exports[`renderer should render heading with deprecated styles 1`] = `
   >
     Heading
   </div>
-  <Slot
+  <div
     className="toolbar"
-    name="pizza"
-    props={Object {}}
   />
 </h2>
+`;
+
+exports[`should pass props to slots 1`] = `
+<HeadingRenderer
+  classes={
+    Object {
+      "heading": "heading-0-1",
+      "isDeprecated": "isDeprecated-0-3",
+      "isPrimary": "isPrimary-0-2",
+      "root": "root-0-0",
+      "toolbar": "toolbar-0-4",
+    }
+  }
+  id="heading"
+  slotName="slot"
+  slotProps={
+    Object {
+      "bar": "baz",
+      "foo": 1,
+    }
+  }
+>
+  Heading
+</HeadingRenderer>
 `;

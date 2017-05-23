@@ -4,7 +4,7 @@ exports[`render should not render title if name is not set 1`] = `<section />`;
 
 exports[`render should render component 1`] = `
 <section>
-  <Styled(Heading)
+  <Heading
     id="foo"
     primary={true}
     slotName="sectionToolbar"
@@ -38,7 +38,7 @@ exports[`render should render component 1`] = `
     }
   >
     Foo
-  </Styled(Heading)>
+  </Heading>
   <Examples
     examples={
       Array [
@@ -65,7 +65,7 @@ exports[`render should render component 1`] = `
 
 exports[`render should render title if name is set 1`] = `
 <section>
-  <Styled(Heading)
+  <Heading
     id="test"
     primary={true}
     slotName="sectionToolbar"
@@ -78,7 +78,7 @@ exports[`render should render title if name is set 1`] = `
     }
   >
     test
-  </Styled(Heading)>
+  </Heading>
 </section>
 `;
 

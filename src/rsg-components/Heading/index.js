@@ -1,1 +1,1 @@
-export { default, styles } from './HeadingRenderer.js';
+export { default } from './Heading.js';

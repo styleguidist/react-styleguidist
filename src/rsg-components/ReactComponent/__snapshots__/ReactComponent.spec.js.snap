@@ -5,7 +5,7 @@ exports[`renderer should render component 1`] = `
   id="Foo-container"
 >
   <header>
-    <Styled(Heading)
+    <Heading
       deprecated={false}
       id="foo"
       slotName="componentToolbar"
@@ -33,7 +33,7 @@ exports[`renderer should render component 1`] = `
       }
     >
       Foo
-    </Styled(Heading)>
+    </Heading>
     <div>
       foo/bar.js
     </div>
@@ -60,7 +60,7 @@ exports[`renderer should render name with strike-through style when @deprecated 
 <Styled(ReactComponent)
   description="Bar"
   examples={
-    <Component
+    <Styled(ExamplePlaceholder)
       name="Foo"
     />
   }
@@ -88,7 +88,7 @@ exports[`should not render props / methods section if there is no content 1`] = 
   id="Test-container"
 >
   <header>
-    <Styled(Heading)
+    <Heading
       deprecated={false}
       id="test"
       slotName="componentToolbar"
@@ -104,7 +104,7 @@ exports[`should not render props / methods section if there is no content 1`] = 
       }
     >
       Test
-    </Styled(Heading)>
+    </Heading>
     <div>
       test
     </div>
@@ -120,7 +120,7 @@ exports[`should render both props and methods section 1`] = `
   id="Test-container"
 >
   <header>
-    <Styled(Heading)
+    <Heading
       deprecated={false}
       id="test"
       slotName="componentToolbar"
@@ -142,7 +142,7 @@ exports[`should render both props and methods section 1`] = `
       }
     >
       Test
-    </Styled(Heading)>
+    </Heading>
     <div>
       test
     </div>
@@ -174,7 +174,7 @@ exports[`should render component in isolation mode 1`] = `
   id="Test-container"
 >
   <header>
-    <Styled(Heading)
+    <Heading
       deprecated={false}
       id="Test"
       slotName="componentToolbar"
@@ -191,7 +191,7 @@ exports[`should render component in isolation mode 1`] = `
       }
     >
       Test
-    </Styled(Heading)>
+    </Heading>
     <div>
       test
     </div>
@@ -207,7 +207,7 @@ exports[`should render component not in the isolation mode by default 1`] = `
   id="Test-container"
 >
   <header>
-    <Styled(Heading)
+    <Heading
       deprecated={false}
       id="test"
       slotName="componentToolbar"
@@ -223,7 +223,7 @@ exports[`should render component not in the isolation mode by default 1`] = `
       }
     >
       Test
-    </Styled(Heading)>
+    </Heading>
     <div>
       test
     </div>
@@ -268,7 +268,7 @@ exports[`should render component renderer for component with methods 1`] = `
 <Styled(ReactComponent)
   description="Bar"
   examples={
-    <Component
+    <Styled(ExamplePlaceholder)
       name="Foo"
     />
   }
@@ -306,7 +306,7 @@ exports[`should render component renderer for component with props 1`] = `
 <Styled(ReactComponent)
   description="Bar"
   examples={
-    <Component
+    <Styled(ExamplePlaceholder)
       name="Foo"
     />
   }
@@ -338,7 +338,7 @@ exports[`should render component renderer with example placeholder 1`] = `
 <Styled(ReactComponent)
   description="Bar"
   examples={
-    <Component
+    <Styled(ExamplePlaceholder)
       name="Foo"
     />
   }
@@ -356,7 +356,7 @@ exports[`should render methods section 1`] = `
   id="Test-container"
 >
   <header>
-    <Styled(Heading)
+    <Heading
       deprecated={false}
       id="test"
       slotName="componentToolbar"
@@ -376,7 +376,7 @@ exports[`should render methods section 1`] = `
       }
     >
       Test
-    </Styled(Heading)>
+    </Heading>
     <div>
       test
     </div>
@@ -400,7 +400,7 @@ exports[`should render props section 1`] = `
   id="Test-container"
 >
   <header>
-    <Styled(Heading)
+    <Heading
       deprecated={false}
       id="test"
       slotName="componentToolbar"
@@ -419,7 +419,7 @@ exports[`should render props section 1`] = `
       }
     >
       Test
-    </Styled(Heading)>
+    </Heading>
     <div>
       test
     </div>
