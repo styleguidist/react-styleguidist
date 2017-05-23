@@ -60,7 +60,7 @@ exports[`renderer should render name with strike-through style when @deprecated 
 <Styled(ReactComponent)
   description="Bar"
   examples={
-    <Styled(ExamplePlaceholder)
+    <Component
       name="Foo"
     />
   }
@@ -268,7 +268,7 @@ exports[`should render component renderer for component with methods 1`] = `
 <Styled(ReactComponent)
   description="Bar"
   examples={
-    <Styled(ExamplePlaceholder)
+    <Component
       name="Foo"
     />
   }
@@ -306,7 +306,7 @@ exports[`should render component renderer for component with props 1`] = `
 <Styled(ReactComponent)
   description="Bar"
   examples={
-    <Styled(ExamplePlaceholder)
+    <Component
       name="Foo"
     />
   }
@@ -338,7 +338,7 @@ exports[`should render component renderer with example placeholder 1`] = `
 <Styled(ReactComponent)
   description="Bar"
   examples={
-    <Styled(ExamplePlaceholder)
+    <Component
       name="Foo"
     />
   }

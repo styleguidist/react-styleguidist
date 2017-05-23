@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TabButton from 'rsg-components/TabButton';
 
-const CodeTabButton = ({ active, onClick }) => (
-	<TabButton onClick={onClick} active={active}>
+const CodeTabButton = props => (
+	<TabButton {...props}>
 		Code
 	</TabButton>
 );
 
 CodeTabButton.propTypes = {
 	onClick: PropTypes.func.isRequired,
+	name: PropTypes.string.isRequired,
 	active: PropTypes.bool,
 };
 
