@@ -42,7 +42,7 @@ const styleguidist = require('react-styleguidist');
 const styleguide = styleguidist();
 ```
 
-See all available [config options](./Configuration.md).
+See all available [config options](Configuration.md).
 
 ## Methods
 

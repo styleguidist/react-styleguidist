@@ -11,21 +11,21 @@
 
 </div>
 
-React Styleguidist is a style guide generator for React components. It lists component `propTypes` and shows live, editable usage examples based on Markdown files. You can use it to generate a static HTML page to share and publish or as a workbench for developing new components using hot reloaded dev server. Check out [**the demo style guide**](http://react-styleguidist.js.org/).
+React Styleguidist is a style guide generator for React components. It lists component `propTypes` and shows live, editable usage examples based on Markdown files. You can use it to generate a static HTML page to share and publish or as a workbench for developing new components using hot reloaded dev server. Check out [**the demo style guide**](https://react-styleguidist.js.org/examples/basic/).
 
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/271B372x102S0c052i3F/react-styleguidist7.gif)
 
 ## Usage
 
-* **[Getting Started](./docs/GettingStarted.md): install and run Styleguidist**
-* [Locating components](./docs/Components.md): point Styleguidist to your React components
-* [Configuring webpack](./docs/Webpack.md): tell Styleguidist how to load your code
-* [Documenting components](./docs/Documenting.md): how to write documentation
-* [Cookbook](./docs/Cookbook.md): how to solve common tasks with Styleguidist
+* **[Getting Started](https://react-styleguidist.js.org/docs/getting-started.html): install and run Styleguidist**
+* [Documenting components](https://react-styleguidist.js.org/docs/documenting.html): how to write documentation
+* [Locating components](https://react-styleguidist.js.org/docs/components.html): point Styleguidist to your React components
+* [Configuring webpack](https://react-styleguidist.js.org/docs/webpack.html): tell Styleguidist how to load your code
+* [Cookbook](https://react-styleguidist.js.org/docs/cookbook.html): how to solve common tasks with Styleguidist
 
 ## Examples
 
-* [Basic style guide](http://react-styleguidist.js.org), [source](./examples/basic)
+* [Basic style guide](https://react-styleguidist.js.org/examples/basic/), [source](./examples/basic)
 * Style guide with sections, [source](./examples/sections)
 * Style guide with customized styles, [source](./examples/customised)
 * Style guide with custom express endpoints, [source](./examples/express)
@@ -44,9 +44,8 @@ Real projects using React Styleguidist:
 
 ## Integration with other tools
 
-* Create React App — just works, see the [Getting Started](docs/GettingStarted.md) guide!
+* Create React App — just works, see the [Getting Started](https://react-styleguidist.js.org/docs/getting-started.html) guide!
 * [TypeScript](https://github.com/styleguidist/react-docgen-typescript)
-* [SourceJS](https://github.com/sourcejs/sourcejs-react-styleguidist)
 
 ## Resources
 
@@ -55,9 +54,9 @@ Real projects using React Styleguidist:
 
 ## Advanced documentation
 
-* [Configuration](./docs/Configuration.md)
-* [CLI commands and options](./docs/CLI.md)
-* [Node API](./docs/API.md)
+* [Configuration](https://react-styleguidist.js.org/docs/configuration.html)
+* [CLI commands and options](https://react-styleguidist.js.org/docs/cli.html)
+* [Node API](https://react-styleguidist.js.org/docs/api.html)
 
 ## Change log
 

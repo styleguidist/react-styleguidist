@@ -1,13 +1,13 @@
 # React Styleguidist Documentation
 
-* **[Getting Started](./GettingStarted.md): install and run Styleguidist**
-* [Locating components](./Components.md): point Styleguidist to your React components
-* [Configuring webpack](./Webpack.md): tell Styleguidist how to load your code
-* [Documenting components](./Documenting.md): how to write documentation
-* [Cookbook](./Cookbook.md): how to solve common tasks with Styleguidist
+* **[Getting Started](https://react-styleguidist.js.org/docs/getting-started.html): install and run Styleguidist**
+* [Documenting components](https://react-styleguidist.js.org/docs/documenting.html): how to write documentation
+* [Locating components](https://react-styleguidist.js.org/docs/components.html): point Styleguidist to your React components
+* [Configuring webpack](https://react-styleguidist.js.org/docs/webpack.html): tell Styleguidist how to load your code
+* [Cookbook](https://react-styleguidist.js.org/docs/cookbook.html): how to solve common tasks with Styleguidist
 
 ***
 
-* [Configuration](./Configuration.md)
-* [CLI commands and options](./CLI.md)
-* [Node API](./API.md)
+* [Configuration](https://react-styleguidist.js.org/docs/configuration.html)
+* [CLI commands and options](https://react-styleguidist.js.org/docs/cli.html)
+* [Node API](https://react-styleguidist.js.org/docs/api.html)
