@@ -1,43 +1,20 @@
 # How to contribute
 
-I love pull requests. And following this simple guidelines will make your pull request easier to merge.
+I love pull requests. And following this guidelines will make your pull request easier to merge.
 
+If you want to contribute but don’t know what to do (we need you!): we have two labels in issue for you: [pull request welcome](https://github.com/styleguidist/react-styleguidist/issues?q=is%3Aissue+is%3Aopen+label%3A%22pull+request+welcome%22) and [easy task](https://github.com/styleguidist/react-styleguidist/issues?q=is%3Aissue+is%3Aopen+label%3A%22easy+task%22). Our [docs](https://github.com/styleguidist/react-styleguidist/tree/master/docs) and [site](https://github.com/styleguidist/site) are far from perfect too and would like to get some love.
 
-## Submitting pull requests
+## Prerequisites
 
-1. Create a new branch, please don’t work in master directly.
-2. Add failing tests for the change you want to make. Run tests (see below) to see the tests fail.
-3. Hack on.
-4. Run tests to see if the tests pass. Repeat steps 2–4 until done.
-5. Update the documentation to reflect any changes.
-6. Push to your fork and submit a pull request.
-
-
-## JavaScript code style
-
-[See here](https://github.com/tamiadev/eslint-config-tamia#code-style-at-a-glance).
-
-
-## Other notes
-
-- If you have commit access to repository and want to make big change or not sure about something, make a new branch and open pull request.
-- Don’t commit generated files: compiled from Stylus CSS, minified JavaScript, etc.
-- Don’t change version number and change log.
-- Install [EditorConfig](http://editorconfig.org/) plugin for your code editor.
-- Feel free to [ask me](https://gitter.im/styleguidist/styleguidist) anything you need.
-
+- If it’s your first pull request, watch [this amazing course](http://makeapullrequest.com/) by [Kent C. Dodds](https://twitter.com/kentcdodds).
+- Install [EditorConfig](http://editorconfig.org/) plugin for your code editor to make sure it uses the correct indentation.
+- Fork the repository and clone your fork.
+- Install dependencies: `yarn` or `npm install` (Yarn is recommended but you can use npm too).
+- Read the [developer guide](https://react-styleguidist.js.org/docs/development.html).
 
 ## Development workflow
 
-Yarn is recommended but you can use npm too.
-
-Install dependencies first:
-
-```bash
-yarn
-```
-
-Then run Babel in watch mode and start example style guide:
+Run Babel in watch mode and start example style guide:
 
 ```bash
 yarn run compile:watch & yarn start
@@ -58,3 +35,16 @@ Or run tests in watch mode:
 ```bash
 yarn run test:watch
 ```
+
+**Don’t forget to add tests and update documentation for your changes.**
+
+## Other notes
+
+- If you have commit access to repository and want to make big change or not sure about something, make a new branch and open pull request.
+- We’re using [Prettier](https://github.com/prettier/prettier) to format JavaScript, so don’t worry much about code formatting.
+- Don’t commit generated files: compiled from Stylus CSS, minified JavaScript, etc.
+- Don’t change version number and change log.
+
+## Need help?
+
+- Join our [Gitter chat](https://gitter.im/styleguidist/styleguidist) and ask everything you need.
