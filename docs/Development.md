@@ -74,23 +74,23 @@ import React from 'react';
 import Styled from 'rsg-components/Styled';
 
 export const styles = ({ fontFamily, fontSize, color }) => ({
-	button: {
-		fontSize: fontSize.base,
-		fontFamily: fontFamily.base,
-		color: color.light,
-		'&:hover, &:active': {
-			isolate: false,
-			color: color.lightest,
-		},
-	},
+  button: {
+    fontSize: fontSize.base,
+    fontFamily: fontFamily.base,
+    color: color.light,
+    '&:hover, &:active': {
+      isolate: false,
+      color: color.lightest,
+    },
+  },
 });
 
 export function ExamplePlaceholderRenderer({ classes }) {
-		return (
-			<button className={classes.button}>
-				I am a styled button
-			</button>
-		);
+  return (
+    <button className={classes.button}>
+      I am a styled button
+    </button>
+  );
 }
 ```
 
@@ -107,11 +107,11 @@ To test particular class names use `classes` function (available in the global n
 import { TabButtonRenderer, styles } from './TabButtonRenderer';
 
 const props = {
-	classes: classes(styles),
+  classes: classes(styles),
 };
 
 it('should render active styles', () => {
-	const actual = shallow(<TabButtonRenderer {...props} active>pizza</TabButtonRenderer>);
-	expect(actual).toMatchSnapshot();
+  const actual = shallow(<TabButtonRenderer {...props} active>pizza</TabButtonRenderer>);
+  expect(actual).toMatchSnapshot();
 });
 ```
