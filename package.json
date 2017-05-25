@@ -1,18 +1,18 @@
 {
-  "name": "@policygenius/react-styleguidist",
+  "name": "policygenius-react-styleguidist",
   "description": "React components style guide generator",
   "version": "0.0.0-development",
   "homepage": "https://github.com/styleguidist/react-styleguidist",
   "author": {
-    "name": "Artem Sapegin",
-    "url": "http://sapegin.me/"
+    "name": "Policygenius",
+    "url": "http://policygenius.com/"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/styleguidist/react-styleguidist.git"
+    "url": "https://github.com/policygenius/react-styleguidist"
   },
   "bugs": {
-    "url": "https://github.com/styleguidist/react-styleguidist/issues"
+    "url": "https://github.com/policygenius/react-styleguidist/issues"
   },
   "license": "MIT",
   "main": "scripts/index.js",
