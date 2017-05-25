@@ -13,7 +13,7 @@ The main thing is that we’re running two apps at the same time: user’s compo
 ## How it works
 Styleguidist uses [react-docgen](https://github.com/reactjs/react-docgen) to parse *source* files (not transpiled). react-docgen finds exported React components and generates documentation based on PropTypes or Flow annotations.
 
-Styleguidist uses Markdown for documentation: each JavaScript code block is rendered as an interactive playground. To do that we extract all these code blocks using [Remark](http://remark.js.org/) and make it editable using [CodeMirror](http://codemirror.net/).
+Styleguidist uses Markdown for documentation: each JavaScript code block is rendered as an interactive playground with [CodeMirror](http://codemirror.net/). To do that we extract all these code blocks using [Remark](http://remark.js.org/).
 
 Webpack loaders (see below) generate JavaScript modules with all user components, their documentation and examples and pass that to a React app which renders a style guide.
 
