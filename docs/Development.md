@@ -2,9 +2,9 @@
 
 *For basics see [How to contribute](https://github.com/styleguidist/react-styleguidist/blob/master/Contributing.md).*
 
-Styleguidist isn’t an ordinary single page app and some design decisions may look bizzary to an outsider. In this guide I’m trying to explain these decisions.
+Styleguidist isn’t an ordinary single page app and some design decisions may look confusing to an outsider. In this guide we'll explain these decisions to un-confuse potential contributors. 
 
-The main thing is that we’re running two apps at the same time: user’s components and Styleguidist UI. They share a webpack configuration and have styles in the same scope (there’s only one scope in CSS). And we can control only one of these two app: Styelguidist UI. That causes some restrictions:
+The main thing is that we’re running two apps at the same time: user’s components and Styleguidist UI. They share a webpack configuration and have styles in the same scope (there’s only one scope in CSS). And we can control only one of these two apps: Styleguidist UI. That puts us under some restrictions:
 
 * Our styles should not affect user component styles.
 * User styles (especially global like Bootstrap) should not affect Styleguidist UI.
@@ -13,18 +13,18 @@ The main thing is that we’re running two apps at the same time: user’s compo
 ## How it works
 Styleguidist uses [react-docgen](https://github.com/reactjs/react-docgen) to parse *source* files (not transpiled). react-docgen finds exported React components and generates documentation based on PropTypes or Flow annotations.
 
-Styleguidist uses Markdown for documentation: each code block is rendered as an interactive playground. To do that we extract all these code blocks using [Remark](http://remark.js.org/) .
+Styleguidist uses Markdown for documentation: each JavaScript code block is rendered as an interactive playground with [CodeMirror](http://codemirror.net/). To do that we extract all these code blocks using [Remark](http://remark.js.org/).
 
-Webpack loaders (see below) generates JavaScript modules with all user components, their documentation and examples and pass that to a React app which renders a style guide.
+Webpack loaders (see below) generate JavaScript modules with all user components, their documentation and examples and pass that to a React app which renders a style guide.
 
 ## Webpack loaders and webpack configuration
-We use webpack loaders to hot reload the style guide on changes in user components, styles and Markdown documentation. We have three loaders ( [loaders](https://github.com/styleguidist/react-styleguidist/tree/master/loaders) folder):
+We use webpack loaders to hot reload the style guide on changes in user components, styles and Markdown documentation. We have three loaders ([loaders](https://github.com/styleguidist/react-styleguidist/tree/master/loaders) folder):
 
-* styleguide-loader: loads components and sections;
-* props-loaders: loads props documentation using react-docgen;
-* examples-loader: loads examples from Markdown files;
+* `styleguide-loader`: loads components and sections;
+* `props-loaders`: loads props documentation using react-docgen;
+* `examples-loader`: loads examples from Markdown files;
 
-There are two more loaders — `css-loader` and `styles-loader` but they are one-line aliases to corresponding webpack loaders. We don’t want to rely on webpack loader resolver because its behavior can be changed by user’s webpack config (Create React App does that for example). This way we can bypass webpack resolver and use Node resolver instead. These loaders are used like this:
+There are two more loaders — `css-loader` and `styles-loader` but they are just one-line aliases to corresponding webpack loaders. We don’t want to rely on webpack loader resolver because its behavior can be changed by user’s webpack config (Create React App does that for example). This way we can bypass webpack resolver and use Node resolver instead. These loaders are used like this:
 
 ```js
 require('!!../../../loaders/style-loader!../../../loaders/css-loader!codemirror/lib/codemirror.css');
@@ -32,12 +32,12 @@ require('!!../../../loaders/style-loader!../../../loaders/css-loader!codemirror/
 
 `!!` prefix tells webpack not to use any other loaders that may be listed in a webpack configuration to load this module. This ensures that user’s webpack configuration won’t affect Styleguidist.
 
-Styleguidist tries to load and reuse user’s webpack config (`webpack.config.js` in project root folder). It works most of the time but has some restrictions: Styleguidist [ignores](https://github.com/styleguidist/react-styleguidist/blob/master/scripts/utils/mergeWebpackConfig.js)  some fields and plugins because they already included (like `webpack.HotModuleReplacementPlugin`), don’t make sense for a style guide (like `output`) or may break Styleguidist (like `entry`).
+Styleguidist tries to load and reuse user’s webpack config (`webpack.config.js` in project root folder). It works most of the time but has some restrictions: Styleguidist [ignores](https://github.com/styleguidist/react-styleguidist/blob/master/scripts/utils/mergeWebpackConfig.js) some fields and plugins because they are already included (like `webpack.HotModuleReplacementPlugin`), don’t make sense for a style guide (like `output`) or may break Styleguidist (like `entry`).
 
 We’re trying to keep Styleguidist’s own [webpack config](https://github.com/styleguidist/react-styleguidist/blob/master/scripts/make-webpack-config.js) minimal to reduce clashes with user’s configuration.
 
 ## React components
-Most of components consist of two components: `Foo/Foo.js` that contains all logic and `Foo/FooRenderer.js` that contains all markup and styles. This allows users to customize rendering by overriding `*Renderer` component using webpack aliases:
+Most of StyleGuidist UI components consist of two parts: `Foo/Foo.js` that contains all logic and `Foo/FooRenderer.js` that contains all markup and styles. This allows users to customize rendering by overriding `*Renderer` component using webpack aliases:
 
 ```
 // styleguide.config.js
@@ -63,7 +63,7 @@ Each component folder usually has several files:
 * `Foo/index.js` — reexport of `Foo.js` or `FooRenderer.js`.
 
 ## Styles
-For styles we use [JSS](http://cssinjs.org/), it allows users to customize their style guide and allows us ensure styles isolations (thanks to [jss-isolate](http://cssinjs.org/jss-isolate/) ). No user styles should affect Styleguidist UI and no Styleguidist styles should affect user components.
+For styles we use [JSS](http://cssinjs.org/), it allows users to customize their style guide and allows us to ensure styles isolations (thanks to [jss-isolate](http://cssinjs.org/jss-isolate/)). No user styles should affect Styleguidist UI and no Styleguidist styles should affect user components.
 
 Use [classnames](https://github.com/JedWatson/classnames) to merge several class names or for conditional class names, import it as `cx` (`import cx from 'classnames'`).
 
@@ -96,7 +96,7 @@ export function ExamplePlaceholderRenderer({ classes }) {
 
 Check available theme variables in [src/styles/theme.js](https://github.com/styleguidist/react-styleguidist/blob/master/src/styles/theme.js).
 
-Because of isolation and theming you need to explicitly declare font family, font size and color. Add `isolate: false` to your hover styles, otherwise you’ll have to repeat base non-hover styles.
+Because of isolation and theming you need to explicitly declare `fontFamily`, `fontSize` and `color`. Add `isolate: false` to your hover styles, otherwise you’ll have to repeat base non-hover styles.
 
 ## Testing
 We’re using [Jest with Enzyme](http://blog.sapegin.me/all/react-jest) for testing. Put your component tests into `Component.spec.js` file in the same folder and all other tests into `__tests__/filename.spece.js`.
