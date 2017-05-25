@@ -2,6 +2,7 @@ node_modules/
 /examples/**/styleguide/build
 /examples/**/styleguide/index.html
 /.publish/
+/lib/
 /coverage/
 Changelog.md
 .DS_Store
