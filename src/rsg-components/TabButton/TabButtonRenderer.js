@@ -13,10 +13,16 @@ export const styles = ({ space, color, fontFamily, fontSize }) => ({
 		textTransform: 'uppercase',
 		transition: 'color 750ms ease-out',
 		cursor: 'pointer',
-		'&:hover': {
+		'&:hover, &:focus': {
 			isolate: false,
+			outline: 0,
 			color: color.linkHover,
 			transition: 'color 150ms ease-in',
+		},
+		'&:focus:not($isActive)': {
+			isolate: false,
+			outline: [[1, 'solid', color.linkHover]],
+			outlineOffset: space[0],
 		},
 	},
 	isActive: {

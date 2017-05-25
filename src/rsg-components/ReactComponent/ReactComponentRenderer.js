@@ -1,68 +1,57 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Heading from 'rsg-components/Heading';
-import Markdown from 'rsg-components/Markdown';
-import JsDoc from 'rsg-components/JsDoc';
 import Styled from 'rsg-components/Styled';
 
 const styles = ({ color, fontSize, fontFamily, space }) => ({
 	root: {
 		marginBottom: space[6],
-		fontSize: fontSize.text,
 	},
 	header: {
 		marginBottom: space[3],
 	},
-	heading: {
-		color: color.base,
-		marginBottom: space[1],
-		fontFamily: fontFamily.base,
-		fontSize: fontSize.h4,
-		fontWeight: 'normal',
+	tabs: {
+		marginBottom: space[3],
+	},
+	tab: {
+		marginLeft: -space[2],
 	},
 	pathLine: {
 		fontFamily: fontFamily.monospace,
 		color: color.light,
 		fontSize: fontSize.small,
 	},
-	description: {
+	docs: {
 		color: color.base,
-		marginBottom: space[3],
 		fontSize: fontSize.text,
-	},
-	subsection: {
-		marginBottom: space[4],
 	},
 });
 
-export function ReactComponentRenderer(allProps) {
-	const { classes, name, slug, pathLine, description, props, methods, tags, examples } = allProps;
+export function ReactComponentRenderer({
+	classes,
+	name,
+	heading,
+	pathLine,
+	description,
+	docs,
+	examples,
+	tabButtons,
+	tabBody,
+}) {
 	return (
 		<div className={classes.root} id={name + '-container'}>
 			<header className={classes.header}>
-				<Heading
-					id={slug}
-					deprecated={!!tags.deprecated}
-					slotName="componentToolbar"
-					slotProps={allProps}
-				>
-					{name}
-				</Heading>
+				{heading}
 				<div className={classes.pathLine}>{pathLine}</div>
 			</header>
-			<div className={classes.description}>
-				{description && <Markdown text={description} />}
-				<JsDoc {...tags} />
-			</div>
-			{props &&
-				<div className={classes.subsection}>
-					<h3 className={classes.heading}>Props</h3>
-					{props}
+			{(description || docs) &&
+				<div className={classes.docs}>
+					{description}
+					{docs}
 				</div>}
-			{methods &&
-				<div className={classes.subsection}>
-					<h3 className={classes.heading}>Methods</h3>
-					{methods}
+			{tabButtons &&
+				<div className={classes.tabs}>
+					<div className={classes.tab}>{tabButtons}</div>
+					{tabBody}
 				</div>}
 			{examples}
 		</div>
@@ -71,20 +60,14 @@ export function ReactComponentRenderer(allProps) {
 
 ReactComponentRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
-	tags: PropTypes.object,
 	name: PropTypes.string.isRequired,
-	slug: PropTypes.string.isRequired,
+	heading: PropTypes.node.isRequired,
 	pathLine: PropTypes.string.isRequired,
-	description: PropTypes.string,
-	props: PropTypes.node,
-	methods: PropTypes.node,
+	description: PropTypes.node,
+	docs: PropTypes.node,
 	examples: PropTypes.node,
-	isolated: PropTypes.bool,
-	metadata: PropTypes.object.isRequired,
-};
-
-ReactComponentRenderer.defaultProps = {
-	tags: {},
+	tabButtons: PropTypes.node,
+	tabBody: PropTypes.node,
 };
 
 export default Styled(styles)(ReactComponentRenderer);

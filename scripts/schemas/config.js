@@ -141,6 +141,10 @@ module.exports = {
 		type: 'boolean',
 		default: false,
 	},
+	showUsage: {
+		type: 'boolean',
+		default: false,
+	},
 	showSidebar: {
 		type: 'boolean',
 		default: true,
