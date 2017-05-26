@@ -39,7 +39,7 @@ type Props = {
   /**
    * Union props
    */
-  list: 'big' | 'medium' | 'small',
+  list?: 'big' | 'medium' | 'small',
   /**
    * Number props
    */
@@ -77,7 +77,7 @@ type Props = {
   /**
    * Callback
    */
-  onCallback: (
+  onCallback?: (
     /**
      * String
      */

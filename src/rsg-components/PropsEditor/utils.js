@@ -1,6 +1,7 @@
 import Immutable from 'immutable';
 import forEach from 'lodash/forEach';
 import parseCode from '../utils/parseCode';
+import { getType } from '../Props/util';
 
 export function parseProps(props) {
   const codeParams = parseCode(props.code, props.componentName);
@@ -8,7 +9,7 @@ export function parseProps(props) {
   forEach(props.props, (item, key) => {
     fields[key] = new Immutable.Map({
       name: key,
-      type: item.type,
+      type: getType(item),
       defaultValue: item.defaultValue,
       value: codeParams[key],
       disabled: !codeParams[key],
@@ -25,14 +26,17 @@ export function parseDefault(defaultVal) {
 
 export function getTypeForLabel(type) {
   switch (type.name) {
-    case 'bool':
     case 'node':
+    case 'bool':
     case 'string': return type.name;
+    case 'boolean': return 'boolean';
     case 'func': return 'callback';
     case 'number': return 'int';
+    case 'union':
     case 'enum': return 'oneOf';
     case 'shape': return 'shape';
     case 'arrayOf': return `${type.name}[${getTypeForLabel(type.value)}]`;
+    case 'Array': return `${type.name}[${getTypeForLabel(type.elements[0])}]`;
     default: return '';
   }
 }
@@ -58,6 +62,7 @@ export function generateProps(field) {
       propCode = `${name}={${parseFloat(value)}}`;
       break;
 
+    case 'union':
     case 'enum': {
       const rawValue = parseFloat(value);
       if (rawValue) {
@@ -68,11 +73,32 @@ export function generateProps(field) {
     }
 
     case 'bool':
+    case 'boolean':
       propCode = `${name}={${value ? 'true' : 'false'}}`;
       break;
 
     case 'arrayOf': {
       switch (type.value.name) {
+        case 'number':
+          propCode = `${name}={[${value}]}`;
+          break;
+
+        case 'string': {
+          const rawValue = value.replace(/([\wа-я]+)($|,){1}\s*/iug, "'$1'$2 ");
+          propCode = `${name}={[${rawValue.trim()}]}`;
+          break;
+        }
+
+        case 'shape':
+          propCode = `${name}={${value}}`;
+          break;
+
+        default: break;
+      }
+      break;
+    }
+    case 'Array': {
+      switch (type.elements[0].name) {
         case 'number':
           propCode = `${name}={[${value}]}`;
           break;

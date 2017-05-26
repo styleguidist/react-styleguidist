@@ -115,7 +115,7 @@ class PropsEditorRenderer extends PureComponent {
     );
   }
 
-  renderRadio({ name, disabled, value, label }) {
+  renderCallback({ name, disabled, value, label }) {
     const style = {
       display: 'flex',
       float: 'left',
@@ -135,6 +135,7 @@ class PropsEditorRenderer extends PureComponent {
             fontSize: 14,
             lineHeight: '24px',
             marginBottom: '0.75rem',
+            marginTop: '0.75rem',
             color: disabled ? 'rgba(0, 0, 0, 0.298039)' : 'rgba(0, 0, 0, 0.870588)',
           }}
         >
@@ -163,20 +164,20 @@ class PropsEditorRenderer extends PureComponent {
     );
   }
 
-
-  renderField = ({ type, value, description, defaultValue, required, name }) => {
+  renderField = ({ type, value, description, defaultValue, required, name, isFlow }) => {
     if (!type) {
       return null;
     }
     const { fields } = this.props;
     const defaultVariable = defaultValue ? parseDefault(defaultValue) : '';
-    const disabled = fields.getIn([name, 'disabled']);
+    const disabled = required ? false : fields.getIn([name, 'disabled']);
     const variable = disabled ? defaultVariable : fields.getIn([name, 'value']);
     const label = `${required ? '*' : ''}${name} :${getTypeForLabel(type)}`;
     const hintStyle = { fontSize: 12 };
 
     let component;
     switch (type.name) {
+      case 'boolean':
       case 'bool': {
         component = this.renderCheckbox({
           name,
@@ -200,8 +201,39 @@ class PropsEditorRenderer extends PureComponent {
         );
         break;
       }
+      case 'union': {
+        if (isFlow) {
+          if (value[0].value) {
+            component = this.renderSelectField(
+              value,
+              {
+                name,
+                variable,
+                disabled,
+                label,
+                description,
+                hintStyle,
+              },
+            );
+            break;
+          }
+        }
+        break;
+      }
+      case 'signature': {
+        if (type.type === 'function') {
+          component = this.renderCallback({
+            name,
+            disabled,
+            label,
+            value: variable,
+          });
+          break;
+        }
+        break;
+      }
       case 'func': {
-        component = this.renderRadio({
+        component = this.renderCallback({
           name,
           disabled,
           label,
@@ -223,6 +255,25 @@ class PropsEditorRenderer extends PureComponent {
       }
       case 'arrayOf': {
         switch (type.value.name) {
+          case 'string':
+          case 'number': {
+            component = this.renderTextField({
+              name,
+              value: variable,
+              disabled,
+              label,
+              description,
+              hintStyle,
+            });
+            break;
+          }
+          default:
+            break;
+        }
+        break;
+      }
+      case 'Array': {
+        switch (type.elements[0].name) {
           case 'string':
           case 'number': {
             component = this.renderTextField({
@@ -273,6 +324,7 @@ class PropsEditorRenderer extends PureComponent {
         defaultValue: item.defaultValue,
         required: item.required,
         name: key,
+        isFlow,
       })
     );
 
