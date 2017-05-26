@@ -68,7 +68,7 @@ function renderStyleguide() {
 			config={styleguide.config}
 			welcomeScreen={styleguide.welcomeScreen}
 			patterns={styleguide.patterns}
-			sections={sections}
+			allSections={sections}
 			listTypes={listTypes}
 			isolatedComponent={isolatedComponent}
 			isolatedExample={isolatedExample}

@@ -1,7 +1,7 @@
 {
   "name": "policygenius-react-styleguidist",
   "description": "React components style guide generator",
-  "version": "0.0.1-development",
+  "version": "0.0.4",
   "homepage": "https://github.com/styleguidist/react-styleguidist",
   "author": {
     "name": "Policygenius",
@@ -139,7 +139,7 @@
     "build:customised": "bin/styleguidist.js build --config examples/customised/styleguide.config.js",
     "build:sections": "bin/styleguidist.js build --config examples/sections/styleguide.config.js",
     "prepublish": "npm run compile",
-    "publish": "npm run build",
+    "publish": "npm run build && npm publish",
     "gh-pages": "gh-pages -d examples/basic/styleguide",
     "phantomjs": "phantomjs test/phantom.js examples/basic/styleguide/index.html",
     "phantomjs:customised": "phantomjs test/phantom.js examples/customised/styleguide/index.html",

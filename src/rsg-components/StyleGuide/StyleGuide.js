@@ -5,13 +5,12 @@ import StyleGuideRenderer from 'rsg-components/StyleGuide/StyleGuideRenderer';
 import Sections from 'rsg-components/Sections';
 import Welcome from 'rsg-components/Welcome';
 import { HOMEPAGE } from '../../../scripts/consts';
-import { filterSectionsByName } from '../../utils/utils';
 
 export default class StyleGuide extends Component {
 	static propTypes = {
 		codeKey: PropTypes.number.isRequired,
 		config: PropTypes.object.isRequired,
-		sections: PropTypes.array.isRequired,
+		allSections: PropTypes.array.isRequired,
 		welcomeScreen: PropTypes.bool,
 		patterns: PropTypes.array,
 		isolatedComponent: PropTypes.bool,
@@ -33,8 +32,9 @@ export default class StyleGuide extends Component {
 	};
 
 	state = {
-		searchTerm: undefined,
-		listMode: this.props.listTypes[0], //eslint-disable-line
+		searchTerm: '',
+		listMode: '',
+		filteredSections: [],
 	};
 
 	getChildContext() {
@@ -47,14 +47,41 @@ export default class StyleGuide extends Component {
 		};
 	}
 
-	render() {
-		const { config, sections, listTypes, welcomeScreen, patterns, isolatedComponent } = this.props;
+	componentWillMount() {
+		const { allSections, listTypes } = this.props;
 
-		const { searchTerm } = this.state;
+		this.setState({
+			listMode: listTypes[0], //eslint-disable-line
+			filteredSections: this.getSectionsFromList(listTypes[0], allSections),
+		});
+	}
+
+	getSectionsFromList(listMode, sections) {
 		const list = sections.length === 1
 			? sections
-			: sections.filter(section => section.name === this.state.listMode)[0].sections;
-		const filteredSections = searchTerm ? (0, filterSectionsByName)(list, searchTerm) : list;
+			: sections.filter(section => section.name === listMode)[0].sections;
+
+		return list;
+	}
+
+	updateSections(listMode) {
+		const { allSections } = this.props;
+		this.setState({
+			filteredSections: this.getSectionsFromList(listMode, allSections),
+		});
+	}
+
+	render() {
+		const {
+			config,
+			listTypes,
+			allSections,
+			welcomeScreen,
+			patterns,
+			isolatedComponent,
+		} = this.props;
+
+		const { searchTerm, listMode, filteredSections } = this.state;
 
 		if (welcomeScreen) {
 			return <Welcome patterns={patterns} />;
@@ -67,12 +94,25 @@ export default class StyleGuide extends Component {
 				hasSidebar={config.showSidebar && !isolatedComponent}
 				listMode={this.state.listMode}
 				listTypes={listTypes}
-				onListToggle={listMode => this.setState({ listMode })}
+				onListToggle={listMode => {
+					this.setState(
+						{
+							searchTerm: '',
+							listMode,
+						},
+						this.updateSections(listMode)
+					);
+				}}
 				toc={
 					<TableOfContents
-						sections={filteredSections}
 						searchTerm={searchTerm}
-						onSearchTermChange={searchTerm => this.setState({ searchTerm })}
+						sections={this.getSectionsFromList(listMode, allSections)}
+						updateStyleguide={(searchTerm, filteredSections) => {
+							this.setState({
+								searchTerm,
+								filteredSections,
+							});
+						}}
 					/>
 				}
 			>
