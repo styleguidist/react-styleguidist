@@ -1,4 +1,5 @@
 import React from 'react';
+import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 
@@ -28,12 +29,16 @@ const styles = ({ space, color, fontFamily, fontSize, borderRadius }) => ({
 	},
 });
 
-export function TableOfContentsRenderer({ classes, children, searchTerm, onSearchTermChange }) {
+export function TableOfContentsRenderer(props) {
+	const { classes, children, onSearchTermChange, searchTerm } = props;
+
+	/* eslint-disable react/no-find-dom-node */
 	return (
 		<div>
 			<div className={classes.root}>
 				<div className={classes.search}>
 					<input
+						ref={component => component && findDOMNode(component).focus()}
 						value={searchTerm}
 						className={classes.input}
 						placeholder="Filter by name"
