@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 import Styled from 'rsg-components/Styled';
 import Heading from 'rsg-components/Heading';
 import Link from 'rsg-components/Link';
@@ -19,7 +20,7 @@ const styles = ({ space, fontFamily, fontSize }) => ({
 	},
 	isolatedLink: {
 		position: 'absolute',
-		top: '-1.8rem',
+		top: '0',
 		right: 0,
 		fontFamily: fontFamily.base,
 		fontSize: fontSize.base,
@@ -42,7 +43,7 @@ export function SectionRenderer({
 }) {
 	return (
 		<section className={classes.root}>
-			<div className={classes.titleWrapper}>
+			<div className={cx(classes.titleWrapper, 'title-wrapper')}>
 				{name && <Heading level={1} slug={slug} className={classes.heading}>{name}</Heading>}
 				<div className={classes.isolatedLink}>
 					{name &&

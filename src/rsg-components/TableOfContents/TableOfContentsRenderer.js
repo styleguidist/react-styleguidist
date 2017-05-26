@@ -27,7 +27,31 @@ const styles = ({ space, color, fontFamily, fontSize, borderRadius }) => ({
 			outline: 0,
 		},
 	},
+	tocFooter: {
+		color: '#fff',
+		paddingLeft: '1rem',
+		fontSize: 'small',
+		paddingBottom: '1rem',
+	},
+	link: {
+		color: '#fff',
+		fontSize: 'small',
+	},
 });
+
+function renderTOCFooter(classes) {
+	const year = new Date().getFullYear();
+
+	return (
+		<div className={classes.tocFooter}>
+			<p><a className={classes.link} href="https://github.com/policygenius/athenaeum">GitHub</a></p>
+			<p><a className={classes.link} href="https://www.npmjs.com/package/athenaeum">NPM</a></p>
+			<small>
+				<a className={classes.link} href="https://www.policygenius.com">© {year} PolicyGenius</a>
+			</small>
+		</div>
+	);
+}
 
 export function TableOfContentsRenderer(props) {
 	const { classes, children, onSearchTermChange, searchTerm } = props;
@@ -46,6 +70,7 @@ export function TableOfContentsRenderer(props) {
 					/>
 				</div>
 				{children}
+				{renderTOCFooter(classes)}
 			</div>
 		</div>
 	);
