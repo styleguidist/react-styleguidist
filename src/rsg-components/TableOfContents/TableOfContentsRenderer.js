@@ -1,5 +1,6 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
+import cx from 'classnames';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 
@@ -59,7 +60,7 @@ export function TableOfContentsRenderer(props) {
 	/* eslint-disable react/no-find-dom-node */
 	return (
 		<div>
-			<div className={classes.root}>
+			<div className={cx('TOC', classes.root)}>
 				<div className={classes.search}>
 					<input
 						ref={component => component && findDOMNode(component).focus()}
