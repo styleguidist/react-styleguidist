@@ -51,7 +51,7 @@ const styles = ({ space, color, fontFamily, fontSize, borderRadius }) => ({
 	},
 	isolatedLink: {
 		position: 'absolute',
-		top: '1.8rem',
+		top: '-1.8rem',
 		right: 0,
 		padding: [[space[0], space[1]]],
 		fontFamily: fontFamily.base,
