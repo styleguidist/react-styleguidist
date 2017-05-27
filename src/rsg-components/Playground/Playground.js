@@ -62,7 +62,8 @@ export default class Playground extends Component {
 			// if previewDelay is enabled debounce the code
 			this.queuedChange = debounce(queuedChange, previewDelay);
 			this.queuedChange();
-		} else {
+		}
+		else {
 			// otherwise execute it
 			queuedChange();
 		}

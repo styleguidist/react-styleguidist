@@ -87,7 +87,8 @@ export default class Preview extends Component {
 		window.requestAnimationFrame(() => {
 			try {
 				ReactDOM.render(wrappedComponent, this.mountNode);
-			} catch (err) {
+			}
+			catch (err) {
 				this.handleError(err);
 			}
 		});
@@ -96,7 +97,8 @@ export default class Preview extends Component {
 	compileCode(code) {
 		try {
 			return compileCode(code, this.context.config.compilerConfig);
-		} catch (err) {
+		}
+		catch (err) {
 			this.handleError(err);
 		}
 		return false;

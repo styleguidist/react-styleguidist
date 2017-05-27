@@ -26,7 +26,8 @@ module.exports = function(source) {
 	let props = {};
 	try {
 		props = propsParser(file, source, config.resolver, config.handlers(file));
-	} catch (err) {
+	}
+	catch (err) {
 		/* istanbul ignore next */
 		const errorMessage = err.toString();
 		const componentPath = path.relative(process.cwd(), file);

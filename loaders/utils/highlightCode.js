@@ -11,10 +11,12 @@ function highlight() {
 			try {
 				if (node.lang) {
 					highlighted = hljs.highlight(node.lang, node.value).value;
-				} else {
+				}
+				else {
 					highlighted = hljs.highlightAuto(node.value).value;
 				}
-			} catch (exception) {
+			}
+			catch (exception) {
 				highlighted = exception.message;
 			}
 			node.value = highlighted;
@@ -29,5 +31,8 @@ function highlight() {
  * @returns {string}
  */
 module.exports = function highlightCode(markdown) {
-	return remark().use(highlight).processSync(markdown).toString();
+	return remark()
+		.use(highlight)
+		.processSync(markdown)
+		.toString();
 };

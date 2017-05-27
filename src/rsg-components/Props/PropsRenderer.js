@@ -121,7 +121,8 @@ export function PropsRenderer({ classes, props }) {
 	function renderDefault(prop) {
 		if (prop.required) {
 			return <span className={classes.required}>Required</span>;
-		} else if (prop.defaultValue) {
+		}
+		else if (prop.defaultValue) {
 			if (prop.type && prop.type.name === 'func') {
 				return (
 					<span className={classes.function} title={showSpaces(unquote(prop.defaultValue.value))}>

@@ -90,10 +90,12 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 					: `${chalk.bold(key)} config option is required.`;
 				throw new StyleguidistError(message);
 			}
-		} else if (props.deprecated) {
+		}
+		else if (props.deprecated) {
 			console.warn(`${chalk.bold(key)} config option is deprecated. ${props.deprecated}`);
 			console.log();
-		} else if (props.removed) {
+		}
+		else if (props.removed) {
 			throw new StyleguidistError(`${chalk.bold(key)} config option was removed. ${props.removed}`);
 		}
 

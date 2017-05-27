@@ -58,7 +58,8 @@ module.exports = function getProps(doc) {
 			doc.example = requireIt(`!!${examplesLoader}!${doc.doclets.example}`);
 			delete doc.doclets.example;
 		}
-	} else {
+	}
+	else {
 		doc.doclets = {};
 	}
 

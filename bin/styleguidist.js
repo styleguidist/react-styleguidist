@@ -104,7 +104,8 @@ const argv = minimist(process.argv.slice(2));
 let config;
 try {
 	config = getConfig(argv.config);
-} catch (err) {
+}
+catch (err) {
 	if (err instanceof StyleguidistError) {
 		printErrorWithLink(
 			err.message,
@@ -112,7 +113,8 @@ try {
 			consts.DOCS_CONFIG
 		);
 		process.exit(1);
-	} else {
+	}
+	else {
 		throw err;
 	}
 }
@@ -139,7 +141,8 @@ function commandBuild() {
 		if (err) {
 			console.log(err);
 			process.exit(1);
-		} else {
+		}
+		else {
 			console.log('Style guide published to:');
 			console.log(chalk.underline(config.styleguideDir));
 		}
@@ -165,7 +168,8 @@ function commandServer() {
 				'You can change the port using the `serverPort` option in your style guide config:',
 				consts.DOCS_CONFIG
 			);
-		} else {
+		}
+		else {
 			console.error(chalk.bold.red(err.message));
 			/* istanbul ignore if */
 			if (argv.verbose) {
@@ -180,7 +184,8 @@ function commandServer() {
 	const compiler = server(config, err => {
 		if (err) {
 			console.log(err);
-		} else {
+		}
+		else {
 			console.log('Style guide server started at:');
 			console.log(chalk.underline('http://' + config.serverHost + ':' + config.serverPort));
 			console.log();

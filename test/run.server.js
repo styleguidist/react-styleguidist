@@ -26,7 +26,8 @@ styleguidist({
 }).server((err, config) => {
 	if (err) {
 		console.log(err);
-	} else {
+	}
+	else {
 		console.log('Listening at http://' + config.serverHost + ':' + config.serverPort);
 	}
 });
