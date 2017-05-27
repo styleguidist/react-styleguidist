@@ -106,7 +106,7 @@ module.exports = {
 
 Type: `Boolean` or `String`, default: `false`
 
-For components that do not have an example, a default one can be used. When set to `true`, the [DefaultExample.md](../scripts/templates/DefaultExample.md) is used, or you can provide the path to your own example Markdown file.
+For components that do not have an example, a default one can be used. When set to `true`, the [DefaultExample.md](https://github.com/styleguidist/react-styleguidist/blob/master/scripts/templates/DefaultExample.md) is used, or you can provide the path to your own example Markdown file.
 
 When writing your own default example file, `__COMPONENT__` will be replaced by the actual component name at compile-time.
 
@@ -288,11 +288,11 @@ Type: `object`, optional
 
 Customize styles of any Styleguidist’s component.
 
-See example in the [cookbook](./Cookbook.md#how-to-change-styles-of-a-style-guide).
+See example in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide).
 
 #### `template`
 
-Type: `String`, default: [src/templates/index.html](../scripts/templates/index.html)
+Type: `String`, default: [src/templates/index.html](https://github.com/styleguidist/react-styleguidist/blob/master/scripts/templates/index.html)
 
 HTML file to use as the template for the style guide. HTML webpack Plugin is used under the hood, see [their docs for details](https://github.com/jantimon/html-webpack-plugin/blob/master/docs/template-option.md).
 
@@ -302,7 +302,7 @@ Type: `object`, optional
 
 Customize style guide UI fonts, colors, etc.
 
-See example in the [cookbook](./Cookbook.md#how-to-change-styles-of-a-style-guide).
+See example in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide).
 
 #### `title`
 
@@ -357,7 +357,7 @@ module.exports = {
 };
 ```
 
-> **Warning:** This option disables config load from `webpack.config.js`, load your config [manually](Webpack.md).
+> **Warning:** This option disables config load from `webpack.config.js`, load your config [manually](Webpack.md#reusing-your-projects-webpack-config).
 
 > **Note:** `entry`, `externals`, `output`, `watch`, `stats` and `devtool` options will be ignored.
 
@@ -365,4 +365,4 @@ module.exports = {
 
 > **Note:** Run style guide in verbose mode to see the actual webpack config used by Styleguidist: `npm run styleguide -- --verbose`.
 
-See [Configuring webpack](./Webpack.md) for examples.
+See [Configuring webpack](Webpack.md) for examples.

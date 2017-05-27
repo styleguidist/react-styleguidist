@@ -159,7 +159,7 @@ exports[`should render component in isolation mode 1`] = `
     </div>
     <div>
       <_class
-        href="/"
+        href=""
       >
         ← Back
       </_class>

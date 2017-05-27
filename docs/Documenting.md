@@ -2,7 +2,7 @@
 
 Styleguidist generates documentation for your components based on the comments in your source code, propTypes declarations and Readme files.
 
-> **Note:** [See examples](../examples/basic/src/components) of documented components in our demo style guide.
+> **Note:** [See examples](https://github.com/styleguidist/react-styleguidist/tree/master/examples/basic/src/components) of documented components in our demo style guide.
 
 ## Code comments and propTypes
 
@@ -35,7 +35,7 @@ export default class Button extends React.Component {
 }
 ```
 
-> **Note:** [Flow](https://flowtype.org/) type annotations are supported too. For TypeScript install [react-docgen-typescript](https://github.com/pvasek/react-docgen-typescript)
+> **Note:** [Flow](https://flowtype.org/) type annotations are supported too. For TypeScript install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript)
 
 > **Note:** You can change its behavior using [propsParser](Configuration.md#propsparser) and [resolver](Configuration.md#resolver) options.
 
@@ -191,6 +191,8 @@ Code examples in Markdown use the ES6+JSX syntax. They can access all the compon
   <Button>Push Me</Button>
 </Panel>
 ```
+
+> **Note:** Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the frontend, it supports [most of the ES6 features](https://buble.surge.sh/guide/#unsupported-features).
 
 You can also `require` other modules (e.g. mock data that you use in your unit tests) from examples in Markdown:
 
