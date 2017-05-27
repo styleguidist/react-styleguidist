@@ -179,3 +179,34 @@ it('should allow no webpack config', () => {
 	const fn = () => getConfig();
 	expect(fn).not.toThrow();
 });
+
+describe('caching', () => {
+	const readdirSync = fs.readdirSync;
+
+	beforeEach(() => {
+		fs.readdirSync = jest.fn(function() {
+			return readdirSync.apply(null, arguments); // eslint-disable-line
+		});
+	});
+
+	afterEach(() => {
+		fs.readdirSync = readdirSync;
+	});
+
+	it('default getExampleFilename should cache filenames', () => {
+		const result = getConfig();
+		const filepath1 = path.resolve('test/components/RandomButton2/RandomButton1.js');
+		const filepath2 = path.resolve('test/components/RandomButton2/RandomButton2.js');
+		const cache = {};
+		expect(result.getExampleFilename(filepath1, cache)).toEqual(
+			path.resolve('test/components/RandomButton2/README.md')
+		);
+		expect(result.getExampleFilename(filepath2, cache)).toEqual(
+			path.resolve('test/components/RandomButton2/README.md')
+		);
+		expect(fs.readdirSync.mock.calls.length).toBe(1);
+		const cacheKeys = Object.keys(cache);
+		expect(cacheKeys.length).toBe(1);
+		expect(cache[cacheKeys[0]]).toEqual(['README.md', 'RandomButton2.js']);
+	});
+});

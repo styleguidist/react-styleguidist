@@ -62,11 +62,19 @@ module.exports = {
 	},
 	getExampleFilename: {
 		type: 'function',
-		default: componentPath => {
+		default: (componentPath, cache) => {
+			const hasOwn = Object.prototype.hasOwnProperty;
+			cache = cache || {};
 			const componentName = path.basename(componentPath, path.extname(componentPath));
 			const dirname = path.dirname(componentPath);
 
-			const files = fs.readdirSync(dirname);
+			const isCached = hasOwn.call(cache, dirname);
+			// Use cache if files are cached, otherwise read them once.
+			const files = isCached ? cache[dirname] : fs.readdirSync(dirname);
+			// Populate cache if needed
+			if (!isCached) {
+				cache[dirname] = files;
+			}
 			const lowerFiles = files.map((name) => name.toLowerCase());
 
 			// Try to find a readme markdown file (`Readme.md`) or a markdown file

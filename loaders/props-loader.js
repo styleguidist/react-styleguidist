@@ -48,7 +48,8 @@ module.exports = function(source) {
 	props = getProps(props);
 
 	// Examples from Markdown file
-	const examplesFile = config.getExampleFilename(file);
+	const cache = {};
+	const examplesFile = config.getExampleFilename(file, cache);
 	props.examples = getExamples(examplesFile, props.displayName, config.defaultExample);
 
 	return `
