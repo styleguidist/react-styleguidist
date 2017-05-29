@@ -39,7 +39,7 @@ We’re trying to keep Styleguidist’s own [webpack config](https://github.com/
 ## React components
 Most of StyleGuidist UI components consist of two parts: `Foo/Foo.js` that contains all logic and `Foo/FooRenderer.js` that contains all markup and styles. This allows users to customize rendering by overriding `*Renderer` component using webpack aliases:
 
-```
+```js
 // styleguide.config.js
 const path = require('path');
 module.exports = {
@@ -69,7 +69,7 @@ Use [classnames](https://github.com/JedWatson/classnames) to merge several class
 
 We use `Styled` higher-order component to allow theming (see [theme](https://react-styleguidist.js.org/docs/configuration.html#theme) and [style](https://react-styleguidist.js.org/docs/configuration.html#style) style guide config options). Use it like this:
 
-```js
+```jsx
 import React from 'react';
 import Styled from 'rsg-components/Styled';
 
