@@ -52,8 +52,9 @@ module.exports = {
 	defaultExample: {
 		type: ['boolean', 'existing file path'],
 		default: false,
-		process: val =>
-			val === true ? path.resolve(__dirname, '../templates/DefaultExample.md') : val,
+		process: val => (
+			val === true ? path.resolve(__dirname, '../templates/DefaultExample.md') : val
+		),
 	},
 	getComponentPathLine: {
 		type: 'function',
@@ -61,16 +62,32 @@ module.exports = {
 	},
 	getExampleFilename: {
 		type: 'function',
-		default: componentPath => {
-			const files = [
-				path.join(path.dirname(componentPath), 'Readme.md'),
-				componentPath.replace(path.extname(componentPath), '.md'),
-			];
+		default: (componentPath, cache) => {
+			const hasOwn = Object.prototype.hasOwnProperty;
+			cache = cache || {};
+			const componentName = path.basename(componentPath, path.extname(componentPath));
+			const dirname = path.dirname(componentPath);
 
-			for (const file of files) {
-				if (fs.existsSync(file)) {
-					return file;
-				}
+			const isCached = hasOwn.call(cache, dirname);
+			// Use cache if files are cached, otherwise read them once.
+			const files = isCached ? cache[dirname] : fs.readdirSync(dirname);
+			// Populate cache if needed
+			if (!isCached) {
+				cache[dirname] = files;
+			}
+			const lowerFiles = files.map((name) => name.toLowerCase());
+
+			// Try to find a readme markdown file (`Readme.md`) or a markdown file
+			// named by the component (e.g. `Button.md`).
+			// Search is case-insensitive, so `README.md` or `BUTTON.md` is also
+			// valid.
+			const readmeIndex = lowerFiles.indexOf('readme.md');
+			if (readmeIndex > -1) {
+				return path.join(dirname, files[readmeIndex]);
+			}
+			const componentIndex = lowerFiles.indexOf(`${componentName.toLowerCase()}.md`);
+			if (componentIndex > -1) {
+				return path.join(dirname, files[componentIndex]);
 			}
 
 			return false;

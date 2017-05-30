@@ -26,7 +26,8 @@ module.exports = function(source) {
 	let props = {};
 	try {
 		props = propsParser(file, source, config.resolver, config.handlers(file));
-	} catch (err) {
+	}
+	catch (err) {
 		/* istanbul ignore next */
 		const errorMessage = err.toString();
 		const componentPath = path.relative(process.cwd(), file);
@@ -47,7 +48,8 @@ module.exports = function(source) {
 	props = getProps(props);
 
 	// Examples from Markdown file
-	const examplesFile = config.getExampleFilename(file);
+	const cache = {};
+	const examplesFile = config.getExampleFilename(file, cache);
 	props.examples = getExamples(examplesFile, props.displayName, config.defaultExample);
 
 	return `

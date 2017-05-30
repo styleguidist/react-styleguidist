@@ -60,7 +60,8 @@ module.exports.pitch = function() {
 	// Setup Webpack context dependencies to enable hot reload when adding new files
 	if (config.contextDependencies) {
 		config.contextDependencies.forEach(dir => this.addContextDependency(dir));
-	} else if (allComponentFiles.length > 0) {
+	}
+	else if (allComponentFiles.length > 0) {
 		// Use common parent directory of all components as a context
 		this.addContextDependency(commonDir(allComponentFiles));
 	}

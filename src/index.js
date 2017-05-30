@@ -40,7 +40,8 @@ function renderStyleguide() {
 		if (filteredComponents.length) {
 			sections = [{ components: filteredComponents }];
 			isolatedComponent = true;
-		} else {
+		}
+		else {
 			sections = [filterSections(sections, targetName)];
 			isolatedSection = true;
 		}

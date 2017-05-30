@@ -29,6 +29,7 @@ it('getComponentFiles() should accept components as a glob', () => {
 			'components/Button/Button.js',
 			'components/Placeholder/Placeholder.js',
 			'components/RandomButton/RandomButton.js',
+			'components/RandomButton2/RandomButton2.js',
 		])
 	);
 });

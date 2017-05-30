@@ -82,7 +82,8 @@ module.exports = function(config, env) {
 		if (!isWebpack2) {
 			webpackConfig.plugins.push(new webpack.optimize.DedupePlugin());
 		}
-	} else {
+	}
+	else {
 		webpackConfig = merge(webpackConfig, {
 			entry: [require.resolve('react-dev-utils/webpackHotDevClient')],
 			stats: {
