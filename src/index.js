@@ -1,3 +1,4 @@
+import './polyfills';
 import './styles';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -12,11 +13,6 @@ import {
 	slugger,
 } from './utils/utils';
 import StyleGuide from 'rsg-components/StyleGuide';
-
-// Polyfills
-import 'function.name-polyfill';
-import es6ObjectAssign from 'es6-object-assign';
-es6ObjectAssign.polyfill();
 
 // Examples code revision to rerender only code examples (not the whole page) when code changes
 let codeKey = 0;
