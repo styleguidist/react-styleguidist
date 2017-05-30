@@ -1,10 +1,10 @@
 {
   "name": "policygenius-react-styleguidist",
   "description": "React components style guide generator",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "homepage": "https://github.com/styleguidist/react-styleguidist",
   "author": {
-    "name": "Policygenius",
+    "name": "PolicyGenius",
     "url": "http://policygenius.com/"
   },
   "repository": {
@@ -109,6 +109,7 @@
     "preact-compat": "^3.16.0",
     "prettier": "^1.3.1",
     "react": "^15.5.4",
+    "react-addons-perf": "^15.4.2",
     "react-addons-test-utils": "^15.5.1",
     "react-dom": "^15.5.4",
     "react-modal": "^1.7.7",

@@ -2,42 +2,49 @@
 
 exports[`renderer should render component 1`] = `
 <div
+  className="component-section"
   id="Foo-container"
 >
-  <header>
-    <_class
-      className=""
-      level={2}
-      slug="foo"
-    >
-      Foo
-    </_class>
-    <div>
-      foo/bar.js
-    </div>
+  <div
+    className="component-wrapper"
+  >
+    <header>
+      <_class
+        className=""
+        level={2}
+        slug="foo"
+      >
+        Foo
+      </_class>
+      <div>
+        foo/bar.js
+      </div>
+      <div
+        className="isolatedLink"
+      >
+        <_class
+          href="#!/Foo"
+        >
+          Open isolated ⇢
+        </_class>
+      </div>
+    </header>
     <div>
       <_class
-        href="#!/Foo"
-      >
-        Open isolated ⇢
-      </_class>
+        text="Bar"
+      />
+      <JsDoc />
     </div>
-  </header>
-  <div>
-    <_class
-      text="Bar"
+    <Playground
+      code="<button>OK</button>"
+      evalInContext={[Function]}
+      index={0}
+      name="Component"
     />
-    <JsDoc />
+    <_class
+      text="Hello *world*!"
+    />
   </div>
-  <Playground
-    code="<button>OK</button>"
-    evalInContext={[Function]}
-    index={0}
-    name="Component"
-  />
-  <_class
-    text="Hello *world*!"
-  />
 </div>
 `;
 
@@ -70,73 +77,87 @@ exports[`renderer should render name with strike-through style when @deprecated 
 
 exports[`should not render props / methods section if there is no content 1`] = `
 <div
+  className="component-section"
   id="Test-container"
 >
-  <header>
-    <_class
-      className=""
-      level={2}
-      slug="test"
-    >
-      Test
-    </_class>
-    <div>
-      test
-    </div>
-    <div>
+  <div
+    className="component-wrapper"
+  >
+    <header>
       <_class
-        href="#!/Test"
+        className=""
+        level={2}
+        slug="test"
       >
-        Open isolated ⇢
+        Test
       </_class>
+      <div>
+        test
+      </div>
+      <div
+        className="isolatedLink"
+      >
+        <_class
+          href="#!/Test"
+        >
+          Open isolated ⇢
+        </_class>
+      </div>
+    </header>
+    <div>
+      <JsDoc />
     </div>
-  </header>
-  <div>
-    <JsDoc />
   </div>
 </div>
 `;
 
 exports[`should render both props and methods section 1`] = `
 <div
+  className="component-section"
   id="Test-container"
 >
-  <header>
-    <_class
-      className=""
-      level={2}
-      slug="test"
-    >
-      Test
-    </_class>
-    <div>
-      test
-    </div>
-    <div>
+  <div
+    className="component-wrapper"
+  >
+    <header>
       <_class
-        href="#!/Test"
+        className=""
+        level={2}
+        slug="test"
       >
-        Open isolated ⇢
+        Test
       </_class>
-    </div>
-  </header>
-  <div>
-    <JsDoc />
-  </div>
-  <div>
-    <h3>
-      Props
-    </h3>
+      <div>
+        test
+      </div>
+      <div
+        className="isolatedLink"
+      >
+        <_class
+          href="#!/Test"
+        >
+          Open isolated ⇢
+        </_class>
+      </div>
+    </header>
     <div>
-      prop
+      <JsDoc />
     </div>
-  </div>
-  <div>
-    <h3>
-      Methods
-    </h3>
     <div>
-      method
+      <h3>
+        Props
+      </h3>
+      <div>
+        prop
+      </div>
+    </div>
+    <div>
+      <h3>
+        Methods
+      </h3>
+      <div>
+        method
+      </div>
     </div>
   </div>
 </div>
@@ -144,58 +165,72 @@ exports[`should render both props and methods section 1`] = `
 
 exports[`should render component in isolation mode 1`] = `
 <div
+  className="component-section"
   id="Test-container"
 >
-  <header>
-    <_class
-      className=""
-      level={2}
-      slug="Test"
-    >
-      Test
-    </_class>
-    <div>
-      test
-    </div>
-    <div>
+  <div
+    className="component-wrapper"
+  >
+    <header>
       <_class
-        href="/"
+        className=""
+        level={2}
+        slug="Test"
       >
-        ← Back
+        Test
       </_class>
+      <div>
+        test
+      </div>
+      <div
+        className="isolatedLink"
+      >
+        <_class
+          href="/"
+        >
+          ← Back
+        </_class>
+      </div>
+    </header>
+    <div>
+      <JsDoc />
     </div>
-  </header>
-  <div>
-    <JsDoc />
   </div>
 </div>
 `;
 
 exports[`should render component not in the isolation mode by default 1`] = `
 <div
+  className="component-section"
   id="Test-container"
 >
-  <header>
-    <_class
-      className=""
-      level={2}
-      slug="test"
-    >
-      Test
-    </_class>
-    <div>
-      test
-    </div>
-    <div>
+  <div
+    className="component-wrapper"
+  >
+    <header>
       <_class
-        href="#!/Test"
+        className=""
+        level={2}
+        slug="test"
       >
-        Open isolated ⇢
+        Test
       </_class>
+      <div>
+        test
+      </div>
+      <div
+        className="isolatedLink"
+      >
+        <_class
+          href="#!/Test"
+        >
+          Open isolated ⇢
+        </_class>
+      </div>
+    </header>
+    <div>
+      <JsDoc />
     </div>
-  </header>
-  <div>
-    <JsDoc />
   </div>
 </div>
 `;
@@ -319,36 +354,43 @@ exports[`should render component renderer with example placeholder 1`] = `
 
 exports[`should render methods section 1`] = `
 <div
+  className="component-section"
   id="Test-container"
 >
-  <header>
-    <_class
-      className=""
-      level={2}
-      slug="test"
-    >
-      Test
-    </_class>
-    <div>
-      test
-    </div>
-    <div>
+  <div
+    className="component-wrapper"
+  >
+    <header>
       <_class
-        href="#!/Test"
+        className=""
+        level={2}
+        slug="test"
       >
-        Open isolated ⇢
+        Test
       </_class>
-    </div>
-  </header>
-  <div>
-    <JsDoc />
-  </div>
-  <div>
-    <h3>
-      Methods
-    </h3>
+      <div>
+        test
+      </div>
+      <div
+        className="isolatedLink"
+      >
+        <_class
+          href="#!/Test"
+        >
+          Open isolated ⇢
+        </_class>
+      </div>
+    </header>
     <div>
-      test
+      <JsDoc />
+    </div>
+    <div>
+      <h3>
+        Methods
+      </h3>
+      <div>
+        test
+      </div>
     </div>
   </div>
 </div>
@@ -356,36 +398,43 @@ exports[`should render methods section 1`] = `
 
 exports[`should render props section 1`] = `
 <div
+  className="component-section"
   id="Test-container"
 >
-  <header>
-    <_class
-      className=""
-      level={2}
-      slug="test"
-    >
-      Test
-    </_class>
-    <div>
-      test
-    </div>
-    <div>
+  <div
+    className="component-wrapper"
+  >
+    <header>
       <_class
-        href="#!/Test"
+        className=""
+        level={2}
+        slug="test"
       >
-        Open isolated ⇢
+        Test
       </_class>
-    </div>
-  </header>
-  <div>
-    <JsDoc />
-  </div>
-  <div>
-    <h3>
-      Props
-    </h3>
+      <div>
+        test
+      </div>
+      <div
+        className="isolatedLink"
+      >
+        <_class
+          href="#!/Test"
+        >
+          Open isolated ⇢
+        </_class>
+      </div>
+    </header>
     <div>
-      test
+      <JsDoc />
+    </div>
+    <div>
+      <h3>
+        Props
+      </h3>
+      <div>
+        test
+      </div>
     </div>
   </div>
 </div>

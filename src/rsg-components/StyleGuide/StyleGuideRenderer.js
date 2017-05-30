@@ -53,7 +53,7 @@ const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth
 	},
 });
 
-function renderListModeToggle(listMode, listTypes, onListToggle) {
+function renderListModeToggle(selectedListType, listTypes, onListToggle) {
 	return (
 		<ul className="list-toggle">
 			{listTypes.map((type, idx) => {
@@ -61,7 +61,7 @@ function renderListModeToggle(listMode, listTypes, onListToggle) {
 					<li
 						key={idx}
 						onClick={() => onListToggle(type)}
-						className={listMode === type ? 'active' : ''}
+						className={selectedListType === type ? 'active' : ''}
 					>
 						{type}
 					</li>
@@ -73,7 +73,7 @@ function renderListModeToggle(listMode, listTypes, onListToggle) {
 
 export function StyleGuideRenderer(props) {
 	const {
-		listMode,
+		selectedListType,
 		listTypes,
 		onListToggle,
 		classes,
@@ -121,7 +121,7 @@ export function StyleGuideRenderer(props) {
 							/>
 						</svg>
 					</div>
-					{renderListModeToggle(listMode, listTypes, onListToggle)}
+					{renderListModeToggle(selectedListType, listTypes, onListToggle)}
 					{toc}
 				</div>}
 		</div>
@@ -135,7 +135,7 @@ StyleGuideRenderer.propTypes = {
 	children: PropTypes.node.isRequired,
 	toc: PropTypes.node.isRequired,
 	hasSidebar: PropTypes.bool,
-	listMode: PropTypes.string,
+	selectedListType: PropTypes.string,
 	listTypes: PropTypes.array,
 	onListToggle: PropTypes.func,
 };
