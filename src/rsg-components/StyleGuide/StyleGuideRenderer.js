@@ -53,7 +53,7 @@ const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth
 	},
 });
 
-function renderListModeToggle(selectedListType, listTypes, onListToggle) {
+function renderListModeToggle(selectedList, listTypes, onListToggle) {
 	return (
 		<ul className="list-toggle">
 			{listTypes.map((type, idx) => {
