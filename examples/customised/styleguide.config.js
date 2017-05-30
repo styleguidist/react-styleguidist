@@ -49,10 +49,6 @@ module.exports = {
 			alias: {
 				// Override Styleguidist components
 				'rsg-components/Logo': path.join(__dirname, 'styleguide/components/Logo'),
-				'rsg-components/ReactComponent/ReactComponentRenderer': path.join(
-					__dirname,
-					'styleguide/components/ReactComponentRenderer'
-				),
 				'rsg-components/StyleGuide/StyleGuideRenderer': path.join(
 					__dirname,
 					'styleguide/components/StyleGuide'

@@ -27,7 +27,7 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
     />
   }
   heading={
-    <Heading
+    <SectionHeading
       deprecated={false}
       id="foo"
       slotName="componentToolbar"
@@ -86,7 +86,7 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
       }
     >
       Foo
-    </Heading>
+    </SectionHeading>
   }
   name="Foo"
   pathLine="foo/bar.js"

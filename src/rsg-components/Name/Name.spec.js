@@ -1,19 +1,18 @@
 import React from 'react';
-import { NameRenderer } from './NameRenderer';
+import { NameRenderer, styles } from './NameRenderer';
 
-const classes = {
-	name: 'name',
-	isDeprecated: 'isDeprecated',
+const props = {
+	classes: classes(styles),
 };
 
 it('renderer should render argument name', () => {
-	const actual = shallow(<NameRenderer classes={classes} name="Foo" />);
+	const actual = shallow(<NameRenderer {...props}>Foo</NameRenderer>);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('renderer should render deprecated argument name', () => {
-	const actual = shallow(<NameRenderer classes={classes} name="Foo" deprecated />);
+	const actual = shallow(<NameRenderer {...props} deprecated>Foo</NameRenderer>);
 
 	expect(actual).toMatchSnapshot();
 });

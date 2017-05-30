@@ -1,16 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
-import Heading from 'rsg-components/Heading';
+import SectionHeading from 'rsg-components/SectionHeading';
 
-const styles = ({ space, fontFamily, fontSize }) => ({
+const styles = ({ space }) => ({
 	root: {
 		marginBottom: space[4],
-	},
-	heading: {
-		marginBottom: space[2],
-		fontFamily: fontFamily.base,
-		fontSize: fontSize.h1,
 	},
 });
 
@@ -19,9 +14,9 @@ export function SectionRenderer(allProps) {
 	return (
 		<section className={classes.root}>
 			{name &&
-				<Heading primary id={slug} slotName="sectionToolbar" slotProps={allProps}>
+				<SectionHeading primary id={slug} slotName="sectionToolbar" slotProps={allProps}>
 					{name}
-				</Heading>}
+				</SectionHeading>}
 			{content}
 			{components}
 			{sections}

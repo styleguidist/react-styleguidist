@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Styled from 'rsg-components/Styled';
 
-export function HeadingRenderer({ classes, children, toolbar, id, primary, deprecated }) {
+export function SectionHeadingRenderer({ classes, children, toolbar, id, primary, deprecated }) {
 	const Tag = primary ? 'h1' : 'h2';
 	const headingClasses = cx(classes.heading, {
 		[classes.isPrimary]: primary,
@@ -41,7 +41,7 @@ export const styles = ({ color, space, fontSize, fontFamily }) => ({
 	},
 });
 
-HeadingRenderer.propTypes = {
+SectionHeadingRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	children: PropTypes.node,
 	toolbar: PropTypes.node,
@@ -50,4 +50,4 @@ HeadingRenderer.propTypes = {
 	deprecated: PropTypes.bool,
 };
 
-export default Styled(styles)(HeadingRenderer);
+export default Styled(styles)(SectionHeadingRenderer);

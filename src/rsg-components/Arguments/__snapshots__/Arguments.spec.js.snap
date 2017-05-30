@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renderer should render arguments 1`] = `
-<div>
+<div
+  className="root"
+>
   <Styled(Argument)
     description="Converts foo to bar"
     name="Foo"
@@ -11,6 +13,21 @@ exports[`renderer should render arguments 1`] = `
       }
     }
   />
+  <Styled(Argument)
+    name="Foo"
+  />
+</div>
+`;
+
+exports[`renderer should render heading 1`] = `
+<div
+  className="root"
+>
+  <h5
+    className="heading"
+  >
+    Arguments
+  </h5>
   <Styled(Argument)
     name="Foo"
   />

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render text 1`] = `
+<span
+  className="text"
+>
+  Pizza
+</span>
+`;
+
+exports[`should render underlined text 1`] = `
+<span
+  className="text isUnderlined"
+>
+  Pizza
+</span>
+`;

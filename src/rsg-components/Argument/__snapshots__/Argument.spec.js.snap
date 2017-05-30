@@ -1,18 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renderer should render argument 1`] = `
+exports[`should render argument 1`] = `
 <Group
   separator=" "
 >
   <span>
-    <Styled(Name)
-      name="Foo"
-    />
+    <Styled(Name)>
+      Foo
+    </Styled(Name)>
     :
   </span>
-  <Styled(Code)>
+  <Styled(Type)>
     Array
-  </Styled(Code)>
+  </Styled(Type)>
   <Styled(Markdown)
     inline={true}
     text="— Converts foo to bar"
@@ -20,30 +20,30 @@ exports[`renderer should render argument 1`] = `
 </Group>
 `;
 
-exports[`renderer should render argument without description 1`] = `
+exports[`should render argument without description 1`] = `
 <Group
   separator=" "
 >
   <span>
-    <Styled(Name)
-      name="Foo"
-    />
+    <Styled(Name)>
+      Foo
+    </Styled(Name)>
     :
   </span>
-  <Styled(Code)>
+  <Styled(Type)>
     Array
-  </Styled(Code)>
+  </Styled(Type)>
 </Group>
 `;
 
-exports[`renderer should render argument without type 1`] = `
+exports[`should render argument without type 1`] = `
 <Group
   separator=" "
 >
   <span>
-    <Styled(Name)
-      name="Foo"
-    />
+    <Styled(Name)>
+      Foo
+    </Styled(Name)>
   </span>
   <Styled(Markdown)
     inline={true}
@@ -52,17 +52,24 @@ exports[`renderer should render argument without type 1`] = `
 </Group>
 `;
 
-exports[`renderer should render return value 1`] = `
+exports[`should render return value 1`] = `
 <Group
   separator=" "
 >
   Returns
-  <Styled(Code)>
+  <Styled(Type)>
     Array
-  </Styled(Code)>
+  </Styled(Type)>
   <Styled(Markdown)
     inline={true}
     text="— Converts foo to bar"
   />
 </Group>
+`;
+
+exports[`should render with block styles 1`] = `
+<Group
+  className="block"
+  separator=" "
+/>
 `;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Examples from 'rsg-components/Examples';
-import Heading from 'rsg-components/Heading';
+import SectionHeading from 'rsg-components/SectionHeading';
 import JsDoc from 'rsg-components/JsDoc';
 import Markdown from 'rsg-components/Markdown';
 import Slot from 'rsg-components/Slot';
@@ -56,7 +56,7 @@ export default class ReactComponent extends Component {
 				docs={<JsDoc {...tags} />}
 				description={description && <Markdown text={description} />}
 				heading={
-					<Heading
+					<SectionHeading
 						id={slug}
 						deprecated={!!tags.deprecated}
 						slotName="componentToolbar"
@@ -66,7 +66,7 @@ export default class ReactComponent extends Component {
 						}}
 					>
 						{name}
-					</Heading>
+					</SectionHeading>
 				}
 				examples={
 					examples.length > 0

@@ -49,7 +49,7 @@ exports[`renderer should render heading with deprecated styles 1`] = `
 `;
 
 exports[`should pass props to slots 1`] = `
-<HeadingRenderer
+<SectionHeadingRenderer
   classes={
     Object {
       "heading": "heading-0-1",
@@ -69,5 +69,5 @@ exports[`should pass props to slots 1`] = `
   }
 >
   Heading
-</HeadingRenderer>
+</SectionHeadingRenderer>
 `;
