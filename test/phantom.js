@@ -12,11 +12,26 @@ if (system.args.length !== 2) {
 }
 
 const page = require('webpage').create();
-phantom.onError = page.onError = function(err) {
+
+phantom.onError = function(err, trace) {
+	console.log('PhantomJS error:', err);
+	if (trace && trace.length > 0) {
+		trace.forEach(function(t) {
+			console.log(
+				' -> ' +
+					(t.file || t.sourceURL) +
+					': ' +
+					t.line +
+					(t.function ? ' (in function ' + t.function + ')' : '')
+			);
+		});
+	}
+	phantom.exit(1);
+};
+page.onError = function(err) {
 	console.log('PhantomJS error:', err.errorString);
 	phantom.exit(1);
 };
-
 page.onResourceError = page.onResourceTimeout = function(err) {
 	if (err.url.startsWith('http://placebeard.it/')) {
 		return;
