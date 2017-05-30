@@ -185,7 +185,7 @@ class Button extends React.Component {
 
 Code examples in Markdown use the ES6+JSX syntax. They can access all the components of your style guide using global variables:
 
-```html
+```jsx
 <Panel>
   <p>Using the Button component in the example of the Panel component:</p>
   <Button>Push Me</Button>
@@ -205,7 +205,7 @@ const mockData = require('./mocks');
 
 Each example has its own state that you can access at the `state` variable and change with the `setState` function. Default state is `{}`.
 
-```js
+```jsx
 initialState = { isOpen: false };
 <div>
   <button onClick={() => setState({ isOpen: true })}>Open</button>

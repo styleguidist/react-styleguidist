@@ -38,7 +38,7 @@ Enable [skipComponentsWithoutExample](Configuration.md#skipcomponentswithoutexam
 
 Require these components in your examples:
 
-```javascript
+```jsx
 const Button = require('../common/Button');
 <Button>Push Me Tender</Button>
 ```
@@ -62,7 +62,7 @@ module.exports = {
 
 To use Redux store with one component require it from your example:
 
-```javascript
+```jsx
 const { Provider } = require('react-redux');
 const configureStore = require('../utils/configureStore').default;
 const initialState = {
@@ -90,7 +90,9 @@ module.exports = {
     }
   }
 };
+```
 
+```jsx
 // lib/styleguide/Wrapper.js
 import React, { Component } from 'react';
 const { Provider } = require('react-redux');
@@ -131,8 +133,9 @@ module.exports = {
   // ...
   webpackConfig
 }
+```
 
-
+```js
 // lib/styleguide/FakeRelay.js
 import Relay from 'real-react-relay'
 // Content too long to paste here; see https://gist.github.com/mikberg/07b4006e22aacf31ffe6
@@ -150,16 +153,18 @@ module.exports = {
     sample: 'lib/styleguide/sample_data'
   }
 }
+```
 
-
+```js
 // lib/styleguide/sample_data.js
 module.exports = {
   object: {
     // something similar to your GraphQL results
   }
 }
+```
 
-
+```jsx
 // src/MyComponent/index.md
 <MyComponent object={sample.object} />
 ```
@@ -187,7 +192,7 @@ See the [Preact example style guide](https://github.com/styleguidist/react-style
 
 The [recommended way](https://github.com/styleguidist/react-styleguidist/issues/37#issuecomment-263502454) of using [styled-components](https://styled-components.com/) is like this:
 
-```javascript
+```jsx
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
@@ -264,7 +269,9 @@ module.exports = {
     }
   }
 };
+```
 
+```jsx
 // lib/styleguide/Wrapper.js
 import React, { Component } from 'react';
 import { IntlProvider } from 'react-intl';
@@ -293,7 +300,9 @@ module.exports = {
     }
   }
 };
+```
 
+```jsx
 // lib/styleguide/StyleGuideRenderer.js
 import React from 'react';
 const StyleGuideRenderer = ({ title, homepageUrl, components, toc, hasSidebar }) => (
@@ -374,7 +383,7 @@ Button.defaultProps = {
 
 Object references will not work as expected in examples state due to how the examples code is evaluated:
 
-```javascript
+```jsx
 const items = [
   {id: 0},
   {id: 1}

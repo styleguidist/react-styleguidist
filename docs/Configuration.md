@@ -42,7 +42,7 @@ module.exports = {
 
 Then you can use them in any example:
 
-```javascript
+```jsx
 <Message>{map(users, 'name').join(', ')}</Message>
 ```
 
