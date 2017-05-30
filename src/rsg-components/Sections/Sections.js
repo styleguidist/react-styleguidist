@@ -7,7 +7,7 @@ export default function Sections({ sections }) {
 	return (
 		<SectionsRenderer>
 			{sections.map((section, idx) => {
-				if (section.sections.length || section.components.length) {
+				if (section.sections.length || section.components.length || section.content) {
 					return <Section key={idx} section={section} />;
 				}
 
