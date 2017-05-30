@@ -255,30 +255,20 @@ describe('getInfoFromHash', () => {
 	});
 });
 
-describe('filterSections', () => {
-	const sections = [
-		{
-			name: 'General',
-			sections: [],
-		},
-		{
-			name: 'Forms',
-			sections: [],
-		},
-		{
-			name: 'Lists',
-			sections: [],
-		},
-	];
-
-	it('should return the Forms section', () => {
-		const result = utils.filterSections(sections, 'Forms');
-		expect(result).toEqual(sections[1]);
+describe('findSection', () => {
+	it('should return top level section', () => {
+		const result = utils.findSection(sections, 'General');
+		expect(result).toEqual(sections[0]);
 	});
 
-	it('should return the Lists section', () => {
-		const result = utils.filterSections(sections, 'Lists');
-		expect(result).toEqual(sections[2]);
+	it('should return nested sections', () => {
+		const result = utils.findSection(sections, 'Particles');
+		expect(result).toEqual(sections[0].sections[0]);
+	});
+
+	it('should return undefined when no sections found', () => {
+		const result = utils.findSection(sections, 'Pizza');
+		expect(result).toBeFalsy();
 	});
 });
 

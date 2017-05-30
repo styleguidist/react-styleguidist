@@ -7,7 +7,7 @@ import {
 	getInfoFromHash,
 	filterComponentExamples,
 	filterComponentsInSectionsByExactName,
-	filterSections,
+	findSection,
 	processSections,
 	setSlugs,
 	slugger,
@@ -41,7 +41,8 @@ function renderStyleguide() {
 			sections = [{ components: filteredComponents }];
 			isolatedComponent = true;
 		} else {
-			sections = [filterSections(sections, targetName)];
+			const section = findSection(sections, targetName);
+			sections = section ? [section] : [];
 			isolatedSection = true;
 		}
 

@@ -150,13 +150,29 @@ export function filterComponentsInSectionsByExactName(sections, name) {
 }
 
 /**
- * Filters the sections to find the one with the matching name
- * @param  {Array}  sections The styleguide sections
- * @param  {string} name     The name to match
- * @return {object}          The section found
+ * Recursively finds a section with a given name (exact match)
+ *
+ * @param  {Array}  sections
+ * @param  {string} name
+ * @return {object}
  */
-export function filterSections(sections, name) {
-	return sections.find(section => section.name === name);
+export function findSection(sections, name) {
+	const found = sections.find(section => section.name === name);
+	if (found) {
+		return found;
+	}
+
+	for (const section of sections) {
+		if (!section.sections || section.sections.length === 0) {
+			continue;
+		}
+		const found = findSection(section.sections, name);
+		if (found) {
+			return found;
+		}
+	}
+
+	return undefined;
 }
 
 /**
