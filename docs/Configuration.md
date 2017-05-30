@@ -85,7 +85,7 @@ Your components will be able to invoke the url `http://localhost:6060/custom-end
 
 Type: `Function`, optional
 
-> **Warning:** You may easily break Styleguidist using this options, try to use [webpackConfig](#webpackConfig) option instead.
+> **Warning:** You may easily break Styleguidist using this options, try to use [webpackConfig](#webpackconfig) option instead.
 
 Allows you to modify webpack config without any restrictions.
 
