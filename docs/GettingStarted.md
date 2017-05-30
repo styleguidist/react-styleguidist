@@ -17,7 +17,7 @@
 **If you’re using [Create React App](https://github.com/facebookincubator/create-react-app) you only need this:**
 
 ```bash
-npm install --save-dev react-styleguidist webpack@1
+npm install --save-dev react-styleguidist webpack
 ```
 
 ## 2. Add npm scripts for convenience (optional)

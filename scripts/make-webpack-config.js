@@ -17,7 +17,7 @@ const sourceDir = path.resolve(__dirname, '../lib');
 const htmlLoader = require.resolve('html-webpack-plugin/lib/loader');
 
 module.exports = function(config, env) {
-	process.env.NODE_ENV = env;
+	process.env.NODE_ENV = process.env.NODE_ENV || env;
 
 	const isProd = env === 'production';
 

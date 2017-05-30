@@ -100,6 +100,11 @@ function verbose(header, object) {
 }
 
 const argv = minimist(process.argv.slice(2));
+const command = argv._[0];
+
+// Set environment before loading style guide config because user’s webpack config may use it
+const env = command === 'build' ? 'production' : 'development';
+process.env.NODE_ENV = env;
 
 let config;
 try {
@@ -120,7 +125,7 @@ try {
 verbose('Styleguidist config:', config);
 config.verbose = argv.verbose;
 
-switch (argv._[0]) {
+switch (command) {
 	case 'build':
 		commandBuild();
 		break;
