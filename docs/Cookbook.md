@@ -238,6 +238,15 @@ module.exports = {
       '@keyframes blink': {
         to: { opacity: 0 }
       }
+    },
+    Playground: {
+      root: {
+        backgroundColor: 'white',
+        backgroundImage: 'linear-gradient(45deg,#efefef 25%,transparent 0,transparent 75%,#efefef 0,#efefef),linear-gradient(45deg,#efefef 25%,transparent 0,transparent 75%,#efefef 0,#efefef)',
+        backgroundPosition: '0 0,10px 10px',
+        backgroundSize: '21px 21px',
+        fontSize: '1rem'
+      }
     }
   }
 };
