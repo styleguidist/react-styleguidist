@@ -31,20 +31,26 @@ const config = {
 };
 
 it('should render components list', () => {
-	const actual = shallow(<StyleGuide codeKey={1} config={config} sections={sections} />);
+	const actual = shallow(
+		<StyleGuide codeKey={1} config={config} allSections={sections} listTypes={[]} />
+	);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should render welcome screen', () => {
-	const actual = shallow(<StyleGuide codeKey={1} config={config} sections={[]} welcomeScreen />);
+	const actual = shallow(
+		<StyleGuide codeKey={1} config={config} allSections={[]} listTypes={[]} welcomeScreen />
+	);
 
 	expect(actual).toMatchSnapshot();
 });
 
 describe('sidebar rendering', () => {
 	it('renderer should have sidebar if showSidebar is not set', () => {
-		const wrapper = shallow(<StyleGuide codeKey={1} config={config} sections={sections} />);
+		const wrapper = shallow(
+			<StyleGuide codeKey={1} config={config} allSections={sections} listTypes={[]} />
+		);
 
 		expect(wrapper.prop('hasSidebar')).toEqual(true);
 	});
@@ -53,6 +59,8 @@ describe('sidebar rendering', () => {
 		const wrapper = shallow(
 			<StyleGuide
 				codeKey={1}
+				listTypes={[]}
+				allSections={[]}
 				config={{
 					...config,
 					showSidebar: false,
@@ -66,7 +74,13 @@ describe('sidebar rendering', () => {
 
 	it('renderer should not have sidebar in isolation mode', () => {
 		const wrapper = shallow(
-			<StyleGuide codeKey={1} config={config} sections={sections} isolatedComponent />
+			<StyleGuide
+				codeKey={1}
+				config={config}
+				allSections={sections}
+				isolatedComponent
+				listTypes={[]}
+			/>
 		);
 
 		expect(wrapper.prop('hasSidebar')).toEqual(false);
@@ -77,6 +91,7 @@ it('renderer should render logo, table of contents and passed children', () => {
 	const actual = shallow(
 		<StyleGuideRenderer
 			classes={{}}
+			listTypes={[]}
 			title={config.title}
 			toc={<TableOfContents sections={sections} />}
 			homepageUrl="http://react-styleguidist.js.org/"

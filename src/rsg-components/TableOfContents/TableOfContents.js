@@ -8,9 +8,13 @@ import { filterSectionsByName } from '../../utils/utils';
 export default class TableOfContents extends Component {
 	static propTypes = {
 		sections: PropTypes.array.isRequired,
-		searchTerm: PropTypes.string,
+		searchTerm: PropTypes.string.isRequired,
 		onSearchTermChange: PropTypes.func,
 		updateStyleguide: PropTypes.func,
+	};
+
+	static defaultProps = {
+		searchTerm: '',
 	};
 
 	state = {
@@ -24,7 +28,7 @@ export default class TableOfContents extends Component {
 		this.filterSections(searchTerm, sections);
 	}
 
-	// Handles listMode update
+	// Handles selectedListType update
 	componentWillReceiveProps(nextProps) {
 		const { sections, searchTerm } = nextProps;
 
@@ -41,7 +45,9 @@ export default class TableOfContents extends Component {
 		// If there is only one section, we treat it as a root section
 		// In this case the name of the section won't be rendered and it won't get left padding
 		const firstLevel = sections.length === 1 ? sections[0].components : sections;
-		const filteredSections = filterSectionsByName(firstLevel, TOCsearchTerm);
+		const filteredSections = TOCsearchTerm.length
+			? filterSectionsByName(firstLevel, TOCsearchTerm)
+			: firstLevel;
 
 		this.setState({ TOCsearchTerm, filteredSections });
 

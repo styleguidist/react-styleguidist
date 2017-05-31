@@ -2,7 +2,9 @@
 
 exports[`render should not render title if name is not set 1`] = `
 <section>
-  <div>
+  <div
+    className="title-wrapper"
+  >
     <div />
   </div>
 </section>
@@ -10,7 +12,9 @@ exports[`render should not render title if name is not set 1`] = `
 
 exports[`render should render component 1`] = `
 <section>
-  <div>
+  <div
+    className="title-wrapper"
+  >
     <_class
       level={1}
       slug="foo"
@@ -51,7 +55,9 @@ exports[`render should render component 1`] = `
 
 exports[`render should render title if name is set 1`] = `
 <section>
-  <div>
+  <div
+    className="title-wrapper"
+  >
     <_class
       level={1}
       slug="test"
