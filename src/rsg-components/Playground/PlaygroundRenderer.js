@@ -5,11 +5,11 @@ import Styled from 'rsg-components/Styled';
 const styles = ({ space, color, borderRadius }) => ({
 	root: {
 		marginBottom: space[4],
-		border: [[1, color.border, 'solid']],
-		borderRadius,
 	},
 	preview: {
 		padding: space[2],
+		border: [[1, color.border, 'solid']],
+		borderRadius,
 	},
 	controls: {
 		display: 'flex',
@@ -17,7 +17,6 @@ const styles = ({ space, color, borderRadius }) => ({
 	},
 	toolbar: {
 		marginLeft: 'auto',
-		marginRight: space[2],
 	},
 });
 

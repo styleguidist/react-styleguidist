@@ -5,7 +5,7 @@ import cx from 'classnames';
 
 export const styles = ({ space, color, fontFamily, fontSize }) => ({
 	button: {
-		padding: [[space[1], space[2]]],
+		padding: [[space[1], 0]],
 		fontFamily: fontFamily.base,
 		fontSize: fontSize.base,
 		color: color.light,
@@ -23,6 +23,10 @@ export const styles = ({ space, color, fontFamily, fontSize }) => ({
 			isolate: false,
 			outline: [[1, 'solid', color.linkHover]],
 			outlineOffset: space[0],
+		},
+		'& + &': {
+			isolate: false,
+			marginLeft: space[1],
 		},
 	},
 	isActive: {

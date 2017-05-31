@@ -300,9 +300,7 @@ exports[`ReactComponentRenderer should render usage section 1`] = `
   </header>
   <div>
     <div>
-      <div>
-        tab buttons
-      </div>
+      tab buttons
     </div>
     <div>
       tab body
