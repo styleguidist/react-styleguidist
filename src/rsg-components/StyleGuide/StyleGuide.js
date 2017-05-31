@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { debounce } from 'lodash';
 
 import TableOfContents from 'rsg-components/TableOfContents';
 import StyleGuideRenderer from 'rsg-components/StyleGuide/StyleGuideRenderer';
@@ -122,12 +123,12 @@ export default class StyleGuide extends Component {
 					<TableOfContents
 						searchTerm={searchTerm}
 						sections={this.getSectionsByListType(selectedListType, allSections)}
-						updateStyleguide={(searchTerm, filteredSections) => {
+						updateStyleguide={debounce((searchTerm, filteredSections) => {
 							this.setState({
 								searchTerm,
 								filteredSections,
 							});
-						}}
+						}, 200)}
 					/>
 				}
 			>
