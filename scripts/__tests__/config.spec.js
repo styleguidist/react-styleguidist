@@ -134,7 +134,7 @@ it('should use components option as the first sections if there’s no sections 
 it('should use default components option both components and sections options weren’t specified', () => {
 	const result = getConfig();
 	expect(result.sections).toHaveLength(1);
-	expect(result.sections[0].components).toMatch('.js');
+	expect(result.sections[0].components).toMatch('**');
 });
 
 it('should ignore components option there’s sections options', () => {

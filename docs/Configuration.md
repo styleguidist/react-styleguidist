@@ -16,7 +16,7 @@ Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the
 
 #### `components`
 
-Type: `String` or `Function`, default: `src/components/**/*.jsx?`
+Type: `String` or `Function`, default: `src/components/**/*.{js,jsx}`
 
 - when `String`: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules.
 - when `Function`: a function that returns an array of module paths.

@@ -1,8 +1,8 @@
 import vm from 'vm';
 import path from 'path';
 import { readFileSync } from 'fs';
-import noop from 'lodash/noop';
 import styleguideLoader from '../styleguide-loader';
+import getConfig from '../../scripts/config';
 
 const file = './test/components/Button/Button.js';
 
@@ -18,12 +18,31 @@ it('should return valid, parsable JS', () => {
 				getExampleFilename: () => 'Readme.md',
 				getComponentPathLine: filepath => filepath,
 			},
-			addContextDependency: noop,
+			addContextDependency: () => {},
 		},
 		readFileSync(file, 'utf8')
 	);
 	expect(result).toBeTruthy();
 	expect(() => new vm.Script(result)).not.toThrow();
+});
+
+it('should return correct component paths: default glob pattern', () => {
+	const result = styleguideLoader.pitch.call(
+		{
+			request: file,
+			_styleguidist: {
+				...getConfig(),
+				configDir: path.resolve(__dirname, '../../examples/cra'),
+			},
+			addContextDependency: () => {},
+		},
+		readFileSync(file, 'utf8')
+	);
+	expect(result).toBeTruthy();
+	expect(() => new vm.Script(result)).not.toThrow();
+	expect(result).toMatch(`'filepath': 'src/components/Button.js'`);
+	expect(result).toMatch(`'filepath': 'src/components/Placeholder.js'`);
+	expect(result).toMatch(`'filepath': 'src/components/RandomButton.js'`);
 });
 
 it('should return correct component paths: glob', () => {
@@ -36,7 +55,7 @@ it('should return correct component paths: glob', () => {
 				getExampleFilename: () => 'Readme.md',
 				getComponentPathLine: filepath => filepath,
 			},
-			addContextDependency: noop,
+			addContextDependency: () => {},
 		},
 		readFileSync(file, 'utf8')
 	);
@@ -63,7 +82,7 @@ it('should return correct component paths: function returning absolute paths', (
 				getExampleFilename: () => 'Readme.md',
 				getComponentPathLine: filepath => filepath,
 			},
-			addContextDependency: noop,
+			addContextDependency: () => {},
 		},
 		readFileSync(file, 'utf8')
 	);
@@ -90,7 +109,7 @@ it('should return correct component paths: function returning relative paths', (
 				getExampleFilename: () => 'Readme.md',
 				getComponentPathLine: filepath => filepath,
 			},
-			addContextDependency: noop,
+			addContextDependency: () => {},
 		},
 		readFileSync(file, 'utf8')
 	);
@@ -118,7 +137,7 @@ it('should filter out components without examples if skipComponentsWithoutExampl
 				getExampleFilename: componentPath => path.join(path.dirname(componentPath), 'Readme.md'),
 				getComponentPathLine: filepath => filepath,
 			},
-			addContextDependency: noop,
+			addContextDependency: () => {},
 		},
 		readFileSync(file, 'utf8')
 	);
