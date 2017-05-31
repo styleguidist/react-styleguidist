@@ -50,27 +50,21 @@ exports[`should filter list when search field contains a query 1`] = `
     items={
       Array [
         Object {
-          "components": Array [],
           "content": false,
           "heading": false,
           "name": "Button",
-          "sections": Array [],
           "slug": "button",
         },
         Object {
-          "components": Array [],
           "content": false,
           "heading": false,
           "name": "Input",
-          "sections": Array [],
           "slug": "input",
         },
         Object {
-          "components": Array [],
           "content": false,
           "heading": false,
           "name": "Textarea",
-          "sections": Array [],
           "slug": "textarea",
         },
       ]
@@ -88,27 +82,21 @@ exports[`should filter list when search field contains a query 2`] = `
     items={
       Array [
         Object {
-          "components": Array [],
           "content": false,
           "heading": false,
           "name": "Button",
-          "sections": Array [],
           "slug": "button",
         },
         Object {
-          "components": Array [],
           "content": false,
           "heading": false,
           "name": "Input",
-          "sections": Array [],
           "slug": "input",
         },
         Object {
-          "components": Array [],
           "content": false,
           "heading": false,
           "name": "Textarea",
-          "sections": Array [],
           "slug": "textarea",
         },
       ]
@@ -126,11 +114,9 @@ exports[`should filter section names 1`] = `
     items={
       Array [
         Object {
-          "components": Array [],
           "content": false,
           "heading": false,
           "name": "Introduction",
-          "sections": Array [],
           "slug": "introduction",
         },
         Object {
@@ -154,7 +140,6 @@ exports[`should filter section names 1`] = `
       />,
           "heading": true,
           "name": "Buttons",
-          "sections": Array [],
           "slug": "buttons",
         },
         Object {
@@ -188,7 +173,6 @@ exports[`should filter section names 1`] = `
       />,
           "heading": true,
           "name": "Forms",
-          "sections": Array [],
           "slug": "forms",
         },
       ]
@@ -206,11 +190,9 @@ exports[`should filter section names 2`] = `
     items={
       Array [
         Object {
-          "components": Array [],
           "content": false,
           "heading": false,
           "name": "Introduction",
-          "sections": Array [],
           "slug": "introduction",
         },
         Object {
@@ -234,7 +216,6 @@ exports[`should filter section names 2`] = `
       />,
           "heading": true,
           "name": "Buttons",
-          "sections": Array [],
           "slug": "buttons",
         },
         Object {
@@ -268,7 +249,6 @@ exports[`should filter section names 2`] = `
       />,
           "heading": true,
           "name": "Forms",
-          "sections": Array [],
           "slug": "forms",
         },
       ]
@@ -286,27 +266,21 @@ exports[`should render a renderer 1`] = `
     items={
       Array [
         Object {
-          "components": Array [],
           "content": false,
           "heading": false,
           "name": "Button",
-          "sections": Array [],
           "slug": "button",
         },
         Object {
-          "components": Array [],
           "content": false,
           "heading": false,
           "name": "Input",
-          "sections": Array [],
           "slug": "input",
         },
         Object {
-          "components": Array [],
           "content": false,
           "heading": false,
           "name": "Textarea",
-          "sections": Array [],
           "slug": "textarea",
         },
       ]
@@ -324,11 +298,9 @@ exports[`should render renderer with sections with nested components 1`] = `
     items={
       Array [
         Object {
-          "components": Array [],
           "content": false,
           "heading": false,
           "name": "Introduction",
-          "sections": Array [],
           "slug": "introduction",
         },
         Object {
@@ -352,7 +324,6 @@ exports[`should render renderer with sections with nested components 1`] = `
       />,
           "heading": true,
           "name": "Buttons",
-          "sections": Array [],
           "slug": "buttons",
         },
         Object {
@@ -386,7 +357,6 @@ exports[`should render renderer with sections with nested components 1`] = `
       />,
           "heading": true,
           "name": "Forms",
-          "sections": Array [],
           "slug": "forms",
         },
       ]

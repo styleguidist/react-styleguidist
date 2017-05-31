@@ -50,11 +50,19 @@ export default class StyleGuide extends Component {
 
 	componentWillMount() {
 		const { allSections, listTypes } = this.props;
+		const listType = window.location.hash.slice(1) || listTypes[0];
 
 		this.setState({
-			selectedListType: listTypes[0], //eslint-disable-line
-			filteredSections: this.getSectionsByListType(listTypes[0], allSections),
+			selectedListType: listType, //eslint-disable-line
+			filteredSections: this.getSectionsByListType(listType, allSections),
 		});
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const { allSections } = nextProps;
+		const { selectedListType } = this.state;
+
+		this.setState({ filteredSections: this.getSectionsByListType(selectedListType, allSections) });
 	}
 
 	getSectionsByListType(selectedListType, sections) {
@@ -72,6 +80,7 @@ export default class StyleGuide extends Component {
 
 	updateSections(selectedListType) {
 		const { allSections } = this.props;
+
 		this.setState({
 			filteredSections: this.getSectionsByListType(selectedListType, allSections),
 		});
