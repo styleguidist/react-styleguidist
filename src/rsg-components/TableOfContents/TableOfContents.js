@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ComponentsList from 'rsg-components/ComponentsList';
 import TableOfContentsRenderer from 'rsg-components/TableOfContents/TableOfContentsRenderer';
-import { debounce } from 'lodash';
 import { filterSectionsByName } from '../../utils/utils';
 
 export default class TableOfContents extends Component {
@@ -34,12 +33,6 @@ export default class TableOfContents extends Component {
 
 		this.filterSections(searchTerm, sections);
 	}
-
-	// Updates Styleguidist state
-	// using updateSections function passed as prop
-	updateStyleguide = debounce((searchTerm, filteredSections, updateStyleguide) => {
-		updateStyleguide(searchTerm, filteredSections);
-	}, 200);
 
 	filterSections(TOCsearchTerm, sections) {
 		// If there is only one section, we treat it as a root section
@@ -81,7 +74,8 @@ export default class TableOfContents extends Component {
 				searchTerm={TOCsearchTerm}
 				onSearchTermChange={TOCsearchTerm => {
 					const updatedSections = this.filterSections(TOCsearchTerm, sections);
-					this.updateStyleguide(TOCsearchTerm, updatedSections, updateStyleguide);
+
+					updateStyleguide(TOCsearchTerm, updatedSections);
 				}}
 			>
 				{this.renderSections()}
