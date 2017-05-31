@@ -51,19 +51,31 @@ const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth
 		fontFamily: fontFamily.base,
 		fontSize: fontSize.small,
 	},
+	link: {
+		'&:hover, &:active': {
+			color: '#1978c8',
+		},
+		color: '#fff',
+		textDecoration: 'none',
+	},
+	active: {
+		color: '#1978c8',
+	},
 });
 
-function renderListModeToggle(selectedList, listTypes, onListToggle) {
+function renderListModeToggle(selectedListType, listTypes, onListToggle, classes) {
 	return (
 		<ul className="list-toggle">
 			{listTypes.map((type, idx) => {
 				return (
-					<li
-						key={idx}
-						onClick={() => onListToggle(type)}
-						className={selectedListType === type ? 'active' : ''}
-					>
-						{type}
+					<li key={idx}>
+						<a
+							href={`/#${type}`}
+							className={cx(selectedListType === type ? classes.active : classes.link)}
+							onClick={() => onListToggle(type)}
+						>
+							{type}
+						</a>
 					</li>
 				);
 			})}
@@ -121,7 +133,7 @@ export function StyleGuideRenderer(props) {
 							/>
 						</svg>
 					</div>
-					{renderListModeToggle(selectedListType, listTypes, onListToggle)}
+					{renderListModeToggle(selectedListType, listTypes, onListToggle, classes)}
 					{toc}
 				</div>}
 		</div>
