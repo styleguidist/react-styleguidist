@@ -17,7 +17,7 @@ exports[`renderer should render welcome screen 1`] = `
         components: 'src/components/**/*.js'
       };
   
-  Read more in the [locating components guide](https://github.com/styleguidist/react-styleguidist/blob/master/docs/Components.md).
+  Read more in the [locating components guide](https://react-styleguidist.js.org/docs/components.html).
   				"
   />
 </div>

@@ -53,7 +53,7 @@ exports[`renderer should render logo, table of contents and passed children 1`] 
 exports[`should render components list 1`] = `
 <_class
   hasSidebar={true}
-  homepageUrl="https://github.com/styleguidist/react-styleguidist"
+  homepageUrl="https://react-styleguidist.js.org/"
   title="Hello"
   toc={
     <TableOfContents

@@ -19,7 +19,7 @@ Create **Readme.md** or **Pizza.md** file in the component’s folder like this:
 
 You may need to **restart** the style guide server after adding an example file.
 
-Read more in the [documenting components guide](https://github.com/styleguidist/react-styleguidist/blob/master/docs/Documenting.md).
+Read more in the [documenting components guide](https://react-styleguidist.js.org/docs/documenting.html).
 					"
 />
 `;
