@@ -150,10 +150,11 @@ const styles = ({ space, fontFamily, fontSize, color, borderRadius }) => ({
 	},
 	code: {
 		fontFamily: fontFamily.monospace,
-		fontSize: 'inherit',
-		color: 'inherit',
-		background: 'transparent',
 		whiteSpace: 'inherit',
+		background: color.codeBackground,
+		borderRadius: '2px',
+		padding: '2px 4px',
+		fontSize: '0.8rem',
 	},
 	pre: {
 		composes: '$para',

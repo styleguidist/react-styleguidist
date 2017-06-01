@@ -8,7 +8,6 @@ const styles = ({ fontFamily }) => ({
 		fontFamily: fontFamily.monospace,
 		fontSize: 'inherit',
 		color: 'inherit',
-		background: 'transparent',
 	},
 });
 

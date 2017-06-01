@@ -7,7 +7,7 @@
 export default {
 	'animation': 'none 0s ease 0s 1 normal none running',
 	'backface-visibility': 'visible',
-	'background': 'transparent none repeat 0 0 / auto auto padding-box border-box scroll',
+	// 'background': 'transparent none repeat 0 0 / auto auto padding-box border-box scroll',
 	'border': 'medium none currentColor',
 	'border-image': 'none',
 	'border-radius': '0',
@@ -53,7 +53,7 @@ export default {
 	'transform': 'none',
 	'transform-origin': '50% 50% 0',
 	'transform-style': 'flat',
-	'transition': 'none 0s ease 0s',
+	// 'transition': 'none 0s ease 0s',
 	'unicode-bidi': 'normal',
 	'vertical-align': 'baseline',
 	'width': 'auto',
