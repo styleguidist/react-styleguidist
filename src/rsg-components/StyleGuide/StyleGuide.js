@@ -51,7 +51,8 @@ export default class StyleGuide extends Component {
 
 	componentWillMount() {
 		const { allSections, listTypes } = this.props;
-		const listType = window.location.hash.slice(1) || listTypes[0];
+		const locationHash = window.location.hash.slice(1);
+		const listType = listTypes.includes(locationHash) ? locationHash : listTypes[0];
 
 		this.setState({
 			selectedListType: listType, //eslint-disable-line

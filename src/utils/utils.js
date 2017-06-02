@@ -194,3 +194,22 @@ export function filterComponentExamples(component, index) {
 	newComponent.props.examples = [component.props.examples[index]];
 	return newComponent;
 }
+
+/**
+ * Remove the RCL-loader with a fade effect
+ */
+export function removeLoader() {
+	const loader = document.getElementById('RCL-loader');
+	loader.className += ' fades';
+	loader.style.opacity = 1; // Any amount over 1 provides a time buffer for the css animation
+	const interval = setInterval(remove, 5);
+
+	function remove() {
+		if (loader.style.opacity <= 0) {
+			clearInterval(interval);
+			loader.remove();
+		} else {
+			loader.style.opacity -= 0.01;
+		}
+	}
+}

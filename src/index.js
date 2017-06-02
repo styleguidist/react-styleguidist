@@ -10,6 +10,7 @@ import {
 	processSections,
 	setSlugs,
 	slugger,
+	removeLoader,
 } from './utils/utils';
 import StyleGuide from 'rsg-components/StyleGuide';
 
@@ -61,6 +62,14 @@ function renderStyleguide() {
 	sections = setSlugs(sections);
 
 	const listTypes = sections.map(section => section.name);
+
+	if (window.addEventListener) {
+		// W3C standard
+		window.addEventListener('load', removeLoader, false); // NB **not** 'onload'
+	} else if (window.attachEvent) {
+		// Microsoft
+		window.attachEvent('onload', removeLoader);
+	}
 
 	ReactDOM.render(
 		<StyleGuide

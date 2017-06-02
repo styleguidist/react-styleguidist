@@ -20,7 +20,9 @@ exports[`renderer should render logo, table of contents and passed children 1`] 
   <div
     className="sidebar"
   >
-    <div>
+    <a
+      href="/"
+    >
       <svg
         className="RCL-Logo"
         data-name="Layer 1"
@@ -48,7 +50,7 @@ exports[`renderer should render logo, table of contents and passed children 1`] 
           transform="translate(-224.92 -433)"
         />
       </svg>
-    </div>
+    </a>
     <ul
       className="list-toggle"
     />

@@ -26,6 +26,7 @@ const styles = ({ space, fontFamily, fontSize }) => ({
 		fontSize: fontSize.base,
 		opacity: 0,
 		transition: 'opacity ease-in-out .15s .2s',
+		display: 'none', // TODO: currently doesn't work
 	},
 	titleWrapper: {
 		position: 'relative',
