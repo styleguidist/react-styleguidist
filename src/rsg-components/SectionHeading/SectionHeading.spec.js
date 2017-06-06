@@ -4,11 +4,12 @@ import SectionHeading, { SectionHeadingRenderer, styles } from './SectionHeading
 const props = {
 	classes: classes(styles),
 	id: 'heading',
+	href: '/heading',
 };
 
 it('should pass props to slots', () => {
 	const actual = shallow(
-		<SectionHeading id="heading" slotName="slot" slotProps={{ foo: 1, bar: 'baz' }}>
+		<SectionHeading id="heading" href="/heading" slotName="slot" slotProps={{ foo: 1, bar: 'baz' }}>
 			Heading
 		</SectionHeading>
 	);

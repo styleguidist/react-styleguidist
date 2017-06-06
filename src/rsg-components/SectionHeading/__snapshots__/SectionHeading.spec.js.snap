@@ -5,11 +5,12 @@ exports[`renderer should render H1 tag 1`] = `
   className="root"
   id="heading"
 >
-  <div
+  <a
     className="heading isPrimary"
+    href="/heading"
   >
     Heading
-  </div>
+  </a>
   <div
     className="toolbar"
   />
@@ -21,11 +22,12 @@ exports[`renderer should render H2 tag 1`] = `
   className="root"
   id="heading"
 >
-  <div
+  <a
     className="heading"
+    href="/heading"
   >
     Heading
-  </div>
+  </a>
   <div
     className="toolbar"
   />
@@ -37,11 +39,12 @@ exports[`renderer should render heading with deprecated styles 1`] = `
   className="root"
   id="heading"
 >
-  <div
+  <a
     className="heading isDeprecated"
+    href="/heading"
   >
     Heading
-  </div>
+  </a>
   <div
     className="toolbar"
   />
@@ -59,6 +62,7 @@ exports[`should pass props to slots 1`] = `
       "toolbar": "toolbar-0-4",
     }
   }
+  href="/heading"
   id="heading"
   slotName="slot"
   slotProps={

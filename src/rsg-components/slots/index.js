@@ -1,6 +1,5 @@
 import Editor from 'rsg-components/Editor';
 import Usage from 'rsg-components/Usage';
-import LinkButton from './LinkButton';
 import IsolateButton from './IsolateButton';
 import CodeTabButton from './CodeTabButton';
 import UsageTabButton from './UsageTabButton';
@@ -8,10 +7,12 @@ import UsageTabButton from './UsageTabButton';
 export const EXAMPLE_TAB_CODE_EDITOR = 'rsg-code-editor';
 export const DOCS_TAB_USAGE = 'rsg-usage';
 
+const toolbar = [IsolateButton];
+
 export default {
-	sectionToolbar: [LinkButton, IsolateButton],
-	componentToolbar: [LinkButton, IsolateButton],
-	exampleToolbar: [IsolateButton],
+	sectionToolbar: toolbar,
+	componentToolbar: toolbar,
+	exampleToolbar: toolbar,
 	exampleTabButtons: [
 		{
 			id: EXAMPLE_TAB_CODE_EDITOR,
