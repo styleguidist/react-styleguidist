@@ -11,6 +11,7 @@ const options = {
 			showCode: false,
 			highlightTheme: 'base16-light',
 		},
+		isolatedExample: false,
 	},
 };
 
@@ -83,6 +84,19 @@ it('should open a code editor', () => {
 	actual.find('button').simulate('click');
 
 	expect(actual.find('.ReactCodeMirror')).toHaveLength(1);
+});
+
+it('should updated isolate mode toggle button text', () => {
+	const actual = mount(
+		<Playground code={code} evalInContext={a => () => a} name="name" index={0} />,
+		options
+	);
+	expect(actual.find('a').prop('children')).toEqual('Open isolated ⇢');
+	actual.setContext({
+		config: options.context.config,
+		isolatedExample: true,
+	});
+	expect(actual.find('a').prop('children')).toEqual('⇽ Exit Isolation');
 });
 
 it('renderer should render preview', () => {
