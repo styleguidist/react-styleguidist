@@ -12,9 +12,11 @@ module.exports = {
 };
 ```
 
-> **Note:** All paths are relative to config folder.
+> **Note:** All paths are relative to the config folder.
 
 > **Note:** Use [ignore](Configuration.md#ignore) option to exclude some files from the style guide.
+
+> **Note:** Use [getComponentPathLine](Configuration.md#getcomponentpathline) option to change a path you see below a component name.
 
 ## Sections
 
