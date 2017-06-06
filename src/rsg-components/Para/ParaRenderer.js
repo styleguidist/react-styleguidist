@@ -4,6 +4,7 @@ import Styled from 'rsg-components/Styled';
 
 export const styles = ({ space, fontFamily, color }) => ({
 	para: {
+		marginTop: 0,
 		marginBottom: space[2],
 		color: color.base,
 		fontFamily: fontFamily.base,
