@@ -21,8 +21,7 @@ export const styles = ({ space, color, fontFamily, fontSize }) => ({
 		},
 		'&:focus:not($isActive)': {
 			isolate: false,
-			outline: [[1, 'solid', color.linkHover]],
-			outlineOffset: space[0],
+			outline: [[1, 'dotted', color.linkHover]],
 		},
 		'& + &': {
 			isolate: false,

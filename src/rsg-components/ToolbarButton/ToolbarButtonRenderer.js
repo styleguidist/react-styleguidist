@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 import cx from 'classnames';
 
-const SIZE = 24;
-
 export const styles = ({ space, color }) => ({
 	button: {
+		padding: 2, // Increase clickable area a bit
 		color: color.light,
 		background: 'transparent',
 		transition: 'color 750ms ease-out',
@@ -18,8 +17,7 @@ export const styles = ({ space, color }) => ({
 		},
 		'&:focus': {
 			isolate: false,
-			outline: [[1, 'solid', color.linkHover]],
-			outlineOffset: space[0],
+			outline: [[1, 'dotted', color.linkHover]],
 		},
 		'& + &': {
 			isolate: false,
@@ -27,8 +25,8 @@ export const styles = ({ space, color }) => ({
 		},
 		// Style react-icons icon passed as children
 		'& svg': {
-			width: SIZE,
-			height: SIZE,
+			width: space[3],
+			height: space[3],
 			color: 'currentColor',
 		},
 	},
