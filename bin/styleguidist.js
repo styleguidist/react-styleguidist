@@ -104,7 +104,7 @@ const command = argv._[0];
 
 // Set environment before loading style guide config because user’s webpack config may use it
 const env = command === 'build' ? 'production' : 'development';
-process.env.NODE_ENV = env;
+process.env.NODE_ENV = process.env.NODE_ENV || env;
 
 let config;
 try {

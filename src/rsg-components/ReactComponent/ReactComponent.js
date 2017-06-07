@@ -5,7 +5,7 @@ import Methods from 'rsg-components/Methods';
 import Examples from 'rsg-components/Examples';
 import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponentRenderer';
 
-const ExamplePlaceholder = process.env.NODE_ENV === 'development'
+const ExamplePlaceholder = process.env.NODE_ENV !== 'production'
 	? require('rsg-components/ExamplePlaceholder').default
 	: () => <div />;
 
