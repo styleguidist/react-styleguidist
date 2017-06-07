@@ -28,6 +28,7 @@ exports[`render should render component 1`] = `
                   },
                 ]
           }
+          name="Foo"
       />,
         "name": "Foo",
         "sections": <Sections
@@ -53,6 +54,7 @@ exports[`render should render component 1`] = `
         },
       ]
     }
+    name="Foo"
   />
   <Components
     components={Array []}
@@ -120,6 +122,7 @@ exports[`should render component renderer 1`] = `
           },
         ]
       }
+      name="Foo"
     />
   }
   isolated={false}

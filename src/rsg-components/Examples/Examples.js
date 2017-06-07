@@ -30,7 +30,7 @@ export default function Examples({ examples, name }, { codeKey }) {
 }
 Examples.propTypes = {
 	examples: PropTypes.array.isRequired,
-	name: PropTypes.string,
+	name: PropTypes.string.isRequired,
 };
 Examples.contextTypes = {
 	codeKey: PropTypes.number.isRequired,
