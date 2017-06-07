@@ -6,6 +6,11 @@ global.shallow = shallow;
 global.render = render;
 global.mount = mount;
 
+// Get class names from styles function
+import keymirror from 'keymirror';
+import * as theme from '../src/styles/theme';
+global.classes = styles => keymirror(styles(theme));
+
 // Skip createElement warnings but fail tests on any other warning
 console.error = message => {
 	if (

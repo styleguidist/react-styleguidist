@@ -6,34 +6,71 @@ exports[`renderer should render preview 1`] = `
     data-preview="name"
   >
     <div>
-      <_class
-        href="#!/name/0"
-      >
-        Open isolated ⇢
-      </_class>
+      preview
     </div>
-    <Preview
-      code="<button>OK</button>"
-      evalInContext={[Function]}
-    />
   </div>
-  <button
-    onClick={[Function]}
-    type="button"
-  >
-    Show code
-  </button>
+  <div>
+    <div>
+      <div>
+        tab buttons
+      </div>
+    </div>
+    <div>
+      <div>
+        toolbar
+      </div>
+    </div>
+  </div>
+  <div>
+    <div>
+      tab body
+    </div>
+  </div>
 </div>
 `;
 
 exports[`should render component renderer 1`] = `
-<_class
-  code="<button>OK</button>"
-  evalInContext={[Function]}
-  index={0}
+<Styled(Playground)
   name="name"
-  onChange={[Function]}
-  onCodeToggle={[Function]}
-  showCode={false}
+  preview={
+    <Preview
+      code="<button>OK</button>"
+      evalInContext={[Function]}
+    />
+  }
+  tabBody={
+    <Slot
+      name="exampleTabs"
+      onlyActive={true}
+      props={
+        Object {
+          "code": "<button>OK</button>",
+          "onChange": [Function],
+        }
+      }
+    />
+  }
+  tabButtons={
+    <Slot
+      name="exampleTabButtons"
+      props={
+        Object {
+          "onClick": [Function],
+        }
+      }
+    />
+  }
+  toolbar={
+    <Slot
+      name="exampleToolbar"
+      props={
+        Object {
+          "example": 0,
+          "isolated": undefined,
+          "name": "name",
+        }
+      }
+    />
+  }
 />
 `;

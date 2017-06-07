@@ -110,7 +110,9 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 			if (!hasRightType) {
 				const exampleValue = props.example || props.default;
 				throw new StyleguidistError(
-					`${chalk.bold(key)} config option should be ${typesList(types)}, received ${typeDetect(value)}.\n` +
+					`${chalk.bold(key)} config option should be ${typesList(types)}, received ${typeDetect(
+						value
+					)}.\n` +
 						(exampleValue
 							? `
 Example:

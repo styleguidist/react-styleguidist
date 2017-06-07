@@ -9,11 +9,9 @@
 		"compat/compat": 2
 	},
 	"globals": {
-		"jest": false,
-		"expect": false,
+		"classes": false,
 		"shallow": false,
 		"render": false,
-		"mount": false,
-		"html": false
+		"mount": false
 	}
 }

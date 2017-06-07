@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Playground from './Playground';
 import '../../styles/setupjss';
+import slots, { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
 import { PlaygroundRenderer } from './PlaygroundRenderer';
 
 const code = '<button>OK</button>';
@@ -11,6 +13,10 @@ const options = {
 			showCode: false,
 			highlightTheme: 'base16-light',
 		},
+		slots,
+	},
+	childContextTypes: {
+		slots: PropTypes.object.isRequired,
 	},
 };
 
@@ -29,11 +35,11 @@ it('should update code', () => {
 		options
 	);
 
-	expect(actual.prop('code')).toEqual(code);
+	expect(actual.state('code')).toEqual(code);
 
 	actual.instance().handleChange(newCode);
 
-	expect(actual.prop('code')).toEqual(newCode);
+	expect(actual.state('code')).toEqual(newCode);
 });
 
 it('should update code via props', () => {
@@ -54,6 +60,7 @@ it('should update code via props', () => {
 it('should update code with debounce', done => {
 	const actual = shallow(<Playground code={code} evalInContext={a => a} name="name" index={0} />, {
 		context: {
+			...options.context,
 			config: {
 				...options.context.config,
 				previewDelay: 1,
@@ -61,13 +68,13 @@ it('should update code with debounce', done => {
 		},
 	});
 
-	expect(actual.prop('code')).toEqual(code);
+	expect(actual.state('code')).toEqual(code);
 
 	actual.instance().handleChange(newCode);
 
-	expect(actual.prop('code')).toEqual(code);
+	expect(actual.state('code')).toEqual(code);
 	setTimeout(() => {
-		expect(actual.prop('code')).toEqual(newCode);
+		expect(actual.state('code')).toEqual(newCode);
 		done();
 	}, 5);
 });
@@ -80,7 +87,7 @@ it('should open a code editor', () => {
 
 	expect(actual.find('.ReactCodeMirror')).toHaveLength(0);
 
-	actual.find('button').simulate('click');
+	actual.find(`button[name="${EXAMPLE_TAB_CODE_EDITOR}"]`).simulate('click');
 
 	expect(actual.find('.ReactCodeMirror')).toHaveLength(1);
 });
@@ -89,13 +96,11 @@ it('renderer should render preview', () => {
 	const actual = shallow(
 		<PlaygroundRenderer
 			classes={{}}
-			code={code}
-			showCode={false}
-			evalInContext={a => () => a}
 			name="name"
-			index={0}
-			onChange={() => {}}
-			onCodeToggle={() => {}}
+			preview={<div>preview</div>}
+			tabButtons={<div>tab buttons</div>}
+			tabBody={<div>tab body</div>}
+			toolbar={<div>toolbar</div>}
 		/>
 	);
 

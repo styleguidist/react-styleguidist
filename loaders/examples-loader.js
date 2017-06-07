@@ -79,7 +79,9 @@ var requireMap = ${generate(toAst(allRequiresCode))};
 var requireInRuntimeBase = require(${JSON.stringify(absolutize('utils/client/requireInRuntime'))});
 var requireInRuntime = requireInRuntimeBase.bind(null, requireMap);
 var evalInContextBase = require(${JSON.stringify(absolutize('utils/client/evalInContext'))});
-var evalInContext = evalInContextBase.bind(null, ${JSON.stringify(generate(requireContextCode))}, requireInRuntime);
+var evalInContext = evalInContextBase.bind(null, ${JSON.stringify(
+		generate(requireContextCode)
+	)}, requireInRuntime);
 
 module.exports = ${generate(toAst(examplesWithEval))}
 	`;

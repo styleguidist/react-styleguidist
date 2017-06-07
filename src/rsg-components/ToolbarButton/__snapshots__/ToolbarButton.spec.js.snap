@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should pass a class name to a button 1`] = `
+<button
+  className="button foo-class"
+  onClick={[Function]}
+  title="Pizza button"
+  type="button"
+>
+  pizza
+</button>
+`;
+
+exports[`should pass a class name to a link 1`] = `
+<a
+  className="button foo-class"
+  href="/foo"
+  title="Pizza button"
+>
+  pizza
+</a>
+`;
+
+exports[`should render a button 1`] = `
+<button
+  className="button"
+  onClick={[Function]}
+  title="Pizza button"
+  type="button"
+>
+  pizza
+</button>
+`;
+
+exports[`should render a link 1`] = `
+<a
+  className="button"
+  href="/foo"
+  title="Pizza button"
+>
+  pizza
+</a>
+`;

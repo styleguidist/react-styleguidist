@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should pass active flag to active slot 1`] = `
+<div>
+  <Button
+    active={false}
+    name="one"
+  />
+  <Button2
+    active={true}
+    name="two"
+  />
+</div>
+`;
+
+exports[`should renderer only active slot if onlyActive=true 1`] = `
+<div>
+  <Button2
+    active={true}
+    name="two"
+  />
+</div>
+`;
+
+exports[`should renderer slots and pass props 1`] = `
+<div>
+  <Button
+    id="Pizza"
+  />
+  <Button2
+    id="Pizza"
+  />
+</div>
+`;
+
+exports[`should renderer slots in id/render format 1`] = `
+<div>
+  <Button
+    id="Pizza"
+    name="one"
+  />
+  <Button2
+    id="Pizza"
+    name="two"
+  />
+</div>
+`;

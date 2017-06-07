@@ -262,7 +262,13 @@ Dev server port.
 
 Type: `Boolean`, default: `false`
 
-Show or hide example code initially. It can be toggled in the UI by clicking the show/hide code button before each example.
+Show or hide example code initially. It can be toggled in the UI by clicking the the Code button after each example.
+
+#### `showUsage`
+
+Type: `Boolean`, default: `false`
+
+Show or hide props and methods documentation initially. It can be toggled in the UI by clicking the Props & methods button after each component description.
 
 #### `showSidebar`
 

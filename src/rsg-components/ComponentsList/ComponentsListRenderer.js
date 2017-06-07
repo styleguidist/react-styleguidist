@@ -42,7 +42,7 @@ export function ComponentsListRenderer({ classes, items }) {
 
 	return (
 		<ul className={classes.list}>
-			{items.map(({ heading, name, slug, content }) => (
+			{items.map(({ heading, name, slug, content }) =>
 				<li
 					className={cx(classes.item, (!content || !content.props.items.length) && classes.isChild)}
 					key={name}
@@ -50,7 +50,7 @@ export function ComponentsListRenderer({ classes, items }) {
 					<Link className={cx(heading && classes.heading)} href={`#${slug}`}>{name}</Link>
 					{content}
 				</li>
-			))}
+			)}
 		</ul>
 	);
 }

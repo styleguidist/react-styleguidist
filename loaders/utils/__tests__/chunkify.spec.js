@@ -35,7 +35,8 @@ This should be highlighted:
 	const expected = [
 		{
 			type: 'markdown',
-			content: '# Header\n\nText with _some_ **formatting** and a [link](/foo).\n\n<div>And some HTML.</div>\n\n![Image](/bar.png)',
+			content:
+				'# Header\n\nText with _some_ **formatting** and a [link](/foo).\n\n<div>And some HTML.</div>\n\n![Image](/bar.png)',
 		},
 		{
 			type: 'code',
@@ -59,7 +60,8 @@ This should be highlighted:
 		},
 		{
 			type: 'markdown',
-			content: 'This should be highlighted:\n\n```html\n<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Hello Markdown!<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>\n```',
+			content:
+				'This should be highlighted:\n\n```html\n<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Hello Markdown!<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>\n```',
 		},
 	];
 

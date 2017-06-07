@@ -10,6 +10,7 @@ export default class StyleGuide extends Component {
 	static propTypes = {
 		codeKey: PropTypes.number.isRequired,
 		config: PropTypes.object.isRequired,
+		slots: PropTypes.object.isRequired,
 		sections: PropTypes.array.isRequired,
 		welcomeScreen: PropTypes.bool,
 		patterns: PropTypes.array,
@@ -21,6 +22,7 @@ export default class StyleGuide extends Component {
 	static childContextTypes = {
 		codeKey: PropTypes.number.isRequired,
 		config: PropTypes.object.isRequired,
+		slots: PropTypes.object.isRequired,
 		isolatedComponent: PropTypes.bool,
 		isolatedExample: PropTypes.bool,
 		isolatedSection: PropTypes.bool,
@@ -34,6 +36,7 @@ export default class StyleGuide extends Component {
 		return {
 			codeKey: this.props.codeKey,
 			config: this.props.config,
+			slots: this.props.slots,
 			isolatedComponent: this.props.isolatedComponent,
 			isolatedExample: this.props.isolatedExample,
 			isolatedSection: this.props.isolatedSection,

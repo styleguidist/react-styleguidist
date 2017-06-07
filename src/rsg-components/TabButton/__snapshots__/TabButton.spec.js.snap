@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should pass a class name to a button 1`] = `
+<button
+  className="button foo-class"
+  onClick={[Function]}
+  type="button"
+>
+  pizza
+</button>
+`;
+
+exports[`should render a button 1`] = `
+<button
+  className="button"
+  onClick={[Function]}
+  type="button"
+>
+  pizza
+</button>
+`;
+
+exports[`should render active styles 1`] = `
+<button
+  className="button isActive"
+  onClick={[Function]}
+  type="button"
+>
+  pizza
+</button>
+`;

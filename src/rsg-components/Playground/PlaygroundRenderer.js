@@ -1,117 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Editor from 'rsg-components/Editor';
-import Link from 'rsg-components/Link';
-import Preview from 'rsg-components/Preview';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ space, color, fontFamily, fontSize, borderRadius }) => ({
+const styles = ({ space, color, borderRadius }) => ({
 	root: {
-		color: color.base,
-		position: 'relative',
 		marginBottom: space[4],
-		border: [[1, color.border, 'solid']],
-		borderRadius: [[borderRadius, borderRadius, 0, borderRadius]],
-		marginTop: space[0],
-		'&:hover $isolatedLink': {
-			isolate: false,
-			opacity: 1,
-		},
 	},
 	preview: {
-		marginBottom: space[0],
 		padding: space[2],
-	},
-	codeToggle: {
-		position: 'absolute',
-		right: -1,
-		margin: 0,
-		padding: [[space[0], space[1]]],
-		fontFamily: fontFamily.base,
-		fontSize: fontSize.base,
-		lineHeight: 1,
-		color: color.link,
 		border: [[1, color.border, 'solid']],
-		borderTop: 0,
-		borderBottomLeftRadius: borderRadius,
-		borderBottomRightRadius: borderRadius,
-		cursor: 'pointer',
-		'&:hover, &:active': {
-			isolate: false,
-			color: color.linkHover,
-		},
+		borderRadius,
 	},
-	showCode: {
-		composes: '$codeToggle',
-		backgroundColor: color.baseBackground,
+	controls: {
+		display: 'flex',
+		alignItems: 'center',
 	},
-	hideCode: {
-		composes: '$codeToggle',
-		backgroundColor: color.codeBackground,
-	},
-	isolatedLink: {
-		position: 'absolute',
-		top: 0,
-		right: 0,
-		padding: [[space[0], space[1]]],
-		fontFamily: fontFamily.base,
-		fontSize: fontSize.base,
-		opacity: 0,
-		transition: 'opacity ease-in-out .15s .2s',
+	toolbar: {
+		marginLeft: 'auto',
 	},
 });
 
-export function PlaygroundRenderer({
-	classes,
-	code,
-	showCode,
-	name,
-	index,
-	isolatedExample,
-	evalInContext,
-	onChange,
-	onCodeToggle,
-}) {
-	const hideCodeButton = (
-		<div>
-			<Editor code={code} onChange={onChange} />
-			<button type="button" className={classes.hideCode} onClick={onCodeToggle}>
-				Hide code
-			</button>
-		</div>
-	);
-	const showCodeButton = (
-		<button type="button" className={classes.showCode} onClick={onCodeToggle}>
-			Show code
-		</button>
-	);
-
+export function PlaygroundRenderer({ classes, name, preview, tabButtons, tabBody, toolbar }) {
 	return (
 		<div className={classes.root}>
-			<div className={classes.preview} data-preview={name ? name : ''}>
-				<div className={classes.isolatedLink}>
-					{name &&
-						(isolatedExample
-							? <Link href={'#!/' + name}>⇽ Exit Isolation</Link>
-							: <Link href={'#!/' + name + '/' + index}>Open isolated ⇢</Link>)}
-				</div>
-				<Preview code={code} evalInContext={evalInContext} />
+			<div className={classes.preview} data-preview={name}>{preview}</div>
+			<div className={classes.controls}>
+				<div className={classes.tabs}>{tabButtons}</div>
+				<div className={classes.toolbar}>{toolbar}</div>
 			</div>
-			{showCode ? hideCodeButton : showCodeButton}
+			<div className={classes.tab}>{tabBody}</div>
 		</div>
 	);
 }
 
 PlaygroundRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
-	code: PropTypes.string.isRequired,
-	showCode: PropTypes.bool.isRequired,
-	index: PropTypes.number.isRequired,
-	evalInContext: PropTypes.func.isRequired,
-	onChange: PropTypes.func.isRequired,
-	onCodeToggle: PropTypes.func.isRequired,
-	name: PropTypes.string,
-	isolatedExample: PropTypes.bool,
+	name: PropTypes.string.isRequired,
+	preview: PropTypes.node.isRequired,
+	tabButtons: PropTypes.node.isRequired,
+	tabBody: PropTypes.node.isRequired,
+	toolbar: PropTypes.node.isRequired,
 };
 
 export default Styled(styles)(PlaygroundRenderer);

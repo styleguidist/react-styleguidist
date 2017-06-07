@@ -107,7 +107,7 @@ exports[`render should render styled component 1`] = `
 `;
 
 exports[`should render component renderer 1`] = `
-<_class>
+<Styled(Sections)>
   <Section
     section={
       Object {
@@ -153,5 +153,5 @@ exports[`should render component renderer 1`] = `
       }
     }
   />
-</_class>
+</Styled(Sections)>
 `;

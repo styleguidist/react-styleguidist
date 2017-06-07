@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render H1 tag 1`] = `
+<h1
+  className="root"
+  id="heading"
+>
+  <a
+    className="heading isPrimary"
+    href="/heading"
+  >
+    Heading
+  </a>
+  <div
+    className="toolbar"
+  />
+</h1>
+`;
+
+exports[`renderer should render H2 tag 1`] = `
+<h2
+  className="root"
+  id="heading"
+>
+  <a
+    className="heading"
+    href="/heading"
+  >
+    Heading
+  </a>
+  <div
+    className="toolbar"
+  />
+</h2>
+`;
+
+exports[`renderer should render heading with deprecated styles 1`] = `
+<h2
+  className="root"
+  id="heading"
+>
+  <a
+    className="heading isDeprecated"
+    href="/heading"
+  >
+    Heading
+  </a>
+  <div
+    className="toolbar"
+  />
+</h2>
+`;
+
+exports[`should pass props to slots 1`] = `
+<SectionHeadingRenderer
+  classes={
+    Object {
+      "heading": "heading-0-1",
+      "isDeprecated": "isDeprecated-0-3",
+      "isPrimary": "isPrimary-0-2",
+      "root": "root-0-0",
+      "toolbar": "toolbar-0-4",
+    }
+  }
+  href="/heading"
+  id="heading"
+  slotName="slot"
+  slotProps={
+    Object {
+      "bar": "baz",
+      "foo": 1,
+    }
+  }
+>
+  Heading
+</SectionHeadingRenderer>
+`;

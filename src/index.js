@@ -12,6 +12,7 @@ import {
 	setSlugs,
 	slugger,
 } from './utils/utils';
+import slots from './rsg-components/slots';
 import StyleGuide from 'rsg-components/StyleGuide';
 
 // Examples code revision to rerender only code examples (not the whole page) when code changes
@@ -61,6 +62,7 @@ function renderStyleguide() {
 		<StyleGuide
 			codeKey={codeKey}
 			config={styleguide.config}
+			slots={slots}
 			welcomeScreen={styleguide.welcomeScreen}
 			patterns={styleguide.patterns}
 			sections={sections}

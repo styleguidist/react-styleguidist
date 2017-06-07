@@ -2,27 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 import Markdown from 'rsg-components/Markdown';
-import Code from 'rsg-components/Code';
 import Name from 'rsg-components/Name';
+import Type from 'rsg-components/Type';
 import Group from 'react-group';
 
-export const styles = ({ color }) => ({
-	type: {
-		fontSize: 'inherit',
-		color: color.type,
+export const styles = ({ space }) => ({
+	block: {
+		marginBottom: space[2],
 	},
 });
 
-export function ArgumentRenderer({ classes, name, type, description, returns, ...props }) {
+export function ArgumentRenderer({ classes, name, type, description, returns, block, ...props }) {
 	return (
-		<Group {...props}>
+		<Group className={block && classes.block} {...props}>
 			{returns && 'Returns'}
 			{name &&
 				<span>
-					<Name name={name} />
+					<Name>{name}</Name>
 					{type && ':'}
 				</span>}
-			{type && <Code className={classes.type}>{type.name}</Code>}
+			{type && <Type>{type.name}</Type>}
 			{description && <Markdown text={`— ${description}`} inline />}
 		</Group>
 	);
@@ -34,6 +33,7 @@ ArgumentRenderer.propTypes = {
 	type: PropTypes.object,
 	description: PropTypes.string,
 	returns: PropTypes.bool,
+	block: PropTypes.bool,
 };
 
 export default Styled(styles)(ArgumentRenderer);
