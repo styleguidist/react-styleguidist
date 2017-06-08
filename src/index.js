@@ -17,7 +17,7 @@ import slots from './rsg-components/slots';
 import StyleGuide from 'rsg-components/StyleGuide';
 
 // Examples code revision to rerender only code examples (not the whole page) when code changes
-let codeKey = 0;
+let codeRevision = 0;
 
 function renderStyleguide() {
 	const styleguide = require('!!../loaders/styleguide-loader!./index.js');
@@ -66,7 +66,7 @@ function renderStyleguide() {
 
 	ReactDOM.render(
 		<StyleGuide
-			codeKey={codeKey}
+			codeRevision={codeRevision}
 			config={styleguide.config}
 			slots={slots}
 			welcomeScreen={styleguide.welcomeScreen}
@@ -85,7 +85,7 @@ window.addEventListener('hashchange', renderStyleguide);
 /* istanbul ignore if */
 if (module.hot) {
 	module.hot.accept('!!../loaders/styleguide-loader!./index.js', () => {
-		codeKey += 1;
+		codeRevision += 1;
 		renderStyleguide();
 	});
 }

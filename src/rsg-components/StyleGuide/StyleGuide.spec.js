@@ -31,14 +31,16 @@ const config = {
 };
 
 it('should render components list', () => {
-	const actual = shallow(<StyleGuide codeKey={1} config={config} sections={sections} slots={{}} />);
+	const actual = shallow(
+		<StyleGuide codeRevision={1} config={config} sections={sections} slots={{}} />
+	);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should render welcome screen', () => {
 	const actual = shallow(
-		<StyleGuide codeKey={1} config={config} sections={[]} slots={{}} welcomeScreen />
+		<StyleGuide codeRevision={1} config={config} sections={[]} slots={{}} welcomeScreen />
 	);
 
 	expect(actual).toMatchSnapshot();
@@ -47,7 +49,7 @@ it('should render welcome screen', () => {
 describe('sidebar rendering', () => {
 	it('renderer should have sidebar if showSidebar is not set', () => {
 		const wrapper = shallow(
-			<StyleGuide codeKey={1} config={config} sections={sections} slots={{}} />
+			<StyleGuide codeRevision={1} config={config} sections={sections} slots={{}} />
 		);
 
 		expect(wrapper.prop('hasSidebar')).toEqual(true);
@@ -56,7 +58,7 @@ describe('sidebar rendering', () => {
 	it('renderer should not have sidebar if showSidebar is false', () => {
 		const wrapper = shallow(
 			<StyleGuide
-				codeKey={1}
+				codeRevision={1}
 				config={{
 					...config,
 					showSidebar: false,
@@ -71,7 +73,13 @@ describe('sidebar rendering', () => {
 
 	it('renderer should not have sidebar in isolation mode', () => {
 		const wrapper = shallow(
-			<StyleGuide codeKey={1} config={config} sections={sections} slots={{}} isolatedComponent />
+			<StyleGuide
+				codeRevision={1}
+				config={config}
+				sections={sections}
+				slots={{}}
+				isolatedComponent
+			/>
 		);
 
 		expect(wrapper.prop('hasSidebar')).toEqual(false);
