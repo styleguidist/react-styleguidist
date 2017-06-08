@@ -1,7 +1,7 @@
 Before opening an issue:
 
 - [Search for duplicate or closed issues](https://github.com/styleguidist/react-styleguidist/issues?utf8=%E2%9C%93&q=is%3Aissue).
-- Read the [cookbook](https://github.com/styleguidist/react-styleguidist/blob/master/docs/Cookbook.md).
+- Read the [cookbook](https://react-styleguidist.js.org/docs/cookbook.html).
 
 When something isn’t working, include:
 
