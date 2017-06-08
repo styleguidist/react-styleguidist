@@ -21,10 +21,11 @@ export default class Playground extends Component {
 	constructor(props, context) {
 		super(props, context);
 		const { code } = props;
-		const { showCode } = context.config;
+		const { previewDelay, showCode } = context.config;
 
 		this.handleChange = this.handleChange.bind(this);
 		this.handleTabChange = this.handleTabChange.bind(this);
+		this.handleChange = debounce(this.handleChange, previewDelay);
 
 		this.state = {
 			code,
@@ -44,34 +45,14 @@ export default class Playground extends Component {
 	}
 
 	componentWillUnmount() {
-		// clear pending changes before unmount
-		if (this.queuedChange) {
-			this.queuedChange.cancel();
-		}
+		// Clear pending changes
+		this.handleChange.cancel();
 	}
 
 	handleChange(code) {
-		// Clear pending changes before proceed
-		if (this.queuedChange) {
-			this.queuedChange.cancel();
-		}
-
-		// Stored update action
-		const queuedChange = () =>
-			this.setState({
-				code,
-			});
-
-		const { previewDelay } = this.context.config;
-
-		if (previewDelay) {
-			// If previewDelay is enabled debounce the code
-			this.queuedChange = debounce(queuedChange, previewDelay);
-			this.queuedChange();
-		} else {
-			// Otherwise execute it
-			queuedChange();
-		}
+		this.setState({
+			code,
+		});
 	}
 
 	handleTabChange(name) {

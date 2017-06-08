@@ -29,19 +29,6 @@ it('should render component renderer', () => {
 	expect(actual).toMatchSnapshot();
 });
 
-it('should update code', () => {
-	const actual = shallow(
-		<Playground code={code} evalInContext={a => () => a} name="name" index={0} />,
-		options
-	);
-
-	expect(actual.state('code')).toEqual(code);
-
-	actual.instance().handleChange(newCode);
-
-	expect(actual.state('code')).toEqual(newCode);
-});
-
 it('should update code via props', () => {
 	const actual = shallow(
 		<Playground code={code} evalInContext={a => () => a} name="name" index={0} />,
@@ -76,7 +63,7 @@ it('should update code with debounce', done => {
 	setTimeout(() => {
 		expect(actual.state('code')).toEqual(newCode);
 		done();
-	}, 5);
+	}, 3);
 });
 
 it('should open a code editor', () => {
