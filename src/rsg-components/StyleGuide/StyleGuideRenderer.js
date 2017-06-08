@@ -71,7 +71,7 @@ function renderListModeToggle(selectedListType, listTypes, onListToggle, classes
 				return (
 					<li key={idx}>
 						<a
-							href={`/#${type}`}
+							href={`#${type}`}
 							className={cx(selectedListType === type ? classes.active : classes.link)}
 							onClick={() => onListToggle(type)}
 						>
