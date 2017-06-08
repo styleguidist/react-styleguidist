@@ -190,7 +190,7 @@ export function getInfoFromHash(hash = window.location.hash) {
 		const index = parseInt(tokens[1], 10);
 		return {
 			targetName: tokens[0],
-			targetIndex: isNaN(index) ? null : index,
+			targetIndex: isNaN(index) ? undefined : index,
 		};
 	}
 	return {};
@@ -208,6 +208,12 @@ export function getInfoFromHash(hash = window.location.hash) {
 export function filterComponentExamples(component, index) {
 	const newComponent = Object.assign({}, component);
 	newComponent.props.examples = [component.props.examples[index]];
+	return newComponent;
+}
+
+export function filterSectionExamples(section, index) {
+	const newComponent = Object.assign({}, section);
+	newComponent.content = [section.content[index]];
 	return newComponent;
 }
 

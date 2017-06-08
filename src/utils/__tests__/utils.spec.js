@@ -246,7 +246,7 @@ describe('filterSectionsByName', () => {
 describe('getInfoFromHash', () => {
 	it('should return important part of hash if it contains component name', () => {
 		const result = utils.getInfoFromHash('#!/Button');
-		expect(result).toEqual({ targetName: 'Button', targetIndex: null });
+		expect(result).toEqual({ targetName: 'Button', targetIndex: undefined });
 	});
 
 	it('should return an empty object if hash contains no component name', () => {
@@ -273,7 +273,7 @@ describe('findSection', () => {
 });
 
 describe('filterComponentExamples', () => {
-	it('should return a shallow copy of the component with example filtered by given index', () => {
+	it('should return a shallow copy of a component with example filtered by given index', () => {
 		const comp = {
 			props: {
 				examples: ['a', 'b', 'c', 'd'],
@@ -285,6 +285,20 @@ describe('filterComponentExamples', () => {
 			props: {
 				examples: ['c'],
 			},
+			other: 'info',
+		});
+	});
+});
+
+describe('filterSectionExamples', () => {
+	it('should return a shallow copy of a section with example filtered by given index', () => {
+		const comp = {
+			content: ['a', 'b', 'c', 'd'],
+			other: 'info',
+		};
+		const result = utils.filterSectionExamples(comp, 2);
+		expect(result).toEqual({
+			content: ['c'],
 			other: 'info',
 		});
 	});

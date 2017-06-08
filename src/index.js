@@ -6,6 +6,7 @@ import isFinite from 'lodash/isFinite';
 import {
 	getInfoFromHash,
 	filterComponentExamples,
+	filterSectionExamples,
 	filterComponentsInSectionsByExactName,
 	findSection,
 	processSections,
@@ -47,10 +48,15 @@ function renderStyleguide() {
 			isolatedSection = true;
 		}
 
-		// If a single component is filtered and a fenced block index is specified hide the other examples
-		if (filteredComponents.length === 1 && isFinite(targetIndex)) {
-			filteredComponents[0] = filterComponentExamples(filteredComponents[0], targetIndex);
-			isolatedExample = true;
+		// If a single component or section is filtered and a fenced block index is specified hide all other examples
+		if (isFinite(targetIndex)) {
+			if (filteredComponents.length === 1) {
+				filteredComponents[0] = filterComponentExamples(filteredComponents[0], targetIndex);
+				isolatedExample = true;
+			} else if (sections.length === 1) {
+				sections[0] = filterSectionExamples(sections[0], targetIndex);
+				isolatedExample = true;
+			}
 		}
 	}
 
