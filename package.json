@@ -1,7 +1,7 @@
 {
-  "name": "react-styleguidist",
+  "name": "@policygenius/react-styleguidist",
   "description": "React components style guide generator",
-  "version": "0.0.0-development",
+  "version": "0.0.0",
   "homepage": "https://github.com/styleguidist/react-styleguidist",
   "author": {
     "name": "Artem Sapegin",
@@ -122,6 +122,7 @@
   },
   "scripts": {
     "pretest": "npm run lint",
+    "postinstall": "yarn run compile",
     "test": "npm run test:jest",
     "test:jest": "jest",
     "test:watch": "jest --watch",
