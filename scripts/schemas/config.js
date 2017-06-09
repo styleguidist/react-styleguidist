@@ -62,14 +62,15 @@ module.exports = {
 	getExampleFilename: {
 		type: 'function',
 		default: componentPath => {
-			const files = [
-				path.join(path.dirname(componentPath), 'Readme.md'),
-				componentPath.replace(path.extname(componentPath), '.md'),
-			];
+			const files = fs.readdirSync(path.dirname(componentPath));
 
 			for (const file of files) {
-				if (fs.existsSync(file)) {
-					return file;
+				const componentName = path.basename(componentPath).replace(path.extname(componentPath), '');
+
+				const isReadmeMd = file.toLowerCase() === 'readme.md';
+				const isComponentMd = file.toLowerCase() === componentName.toLowerCase() + '.md';
+				if (isReadmeMd || isComponentMd) {
+					return path.join(path.dirname(componentPath), file);
 				}
 			}
 
