@@ -16,6 +16,9 @@ const createDisplayNameHandler = require('react-docgen-displayname-handler')
 const findUserWebpackConfig = require('../utils/findUserWebpackConfig');
 const getUserPackageJson = require('../utils/getUserPackageJson');
 const consts = require('../consts');
+const memoize = require('lodash/memoize');
+
+const memoizedReaddirSync = memoize(fs.readdirSync);
 
 module.exports = {
 	assetsDir: {
@@ -62,7 +65,7 @@ module.exports = {
 	getExampleFilename: {
 		type: 'function',
 		default: componentPath => {
-			const files = fs.readdirSync(path.dirname(componentPath));
+			const files = memoizedReaddirSync(path.dirname(componentPath));
 
 			for (const file of files) {
 				const componentName = path.basename(componentPath).replace(path.extname(componentPath), '');
