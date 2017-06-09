@@ -37,6 +37,7 @@
     "clean-webpack-plugin": "^0.1.16",
     "codemirror": "^5.26.0",
     "common-dir": "^1.0.1",
+    "copy-text-to-clipboard": "^1.0.0",
     "css-loader": "^0.28.4",
     "es6-object-assign": "~1.1.0",
     "es6-promise": "^4.1.0",

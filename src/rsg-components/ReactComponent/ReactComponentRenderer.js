@@ -1,4 +1,6 @@
 import React from 'react';
+import copy from 'copy-text-to-clipboard';
+import MdContentCopy from 'react-icons/lib/md/content-copy';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 
@@ -21,6 +23,11 @@ const styles = ({ color, fontSize, fontFamily, space }) => ({
 		color: color.base,
 		fontSize: fontSize.text,
 	},
+	copyButton: {
+		cursor: 'pointer',
+		fill: color.light,
+		marginLeft: space[1],
+	},
 });
 
 export function ReactComponentRenderer({
@@ -38,7 +45,10 @@ export function ReactComponentRenderer({
 		<div className={classes.root} id={name + '-container'}>
 			<header className={classes.header}>
 				{heading}
-				<div className={classes.pathLine}>{pathLine}</div>
+				<div className={classes.pathLine}>
+					{pathLine}
+					<MdContentCopy className={classes.copyButton} onClick={() => copy(pathLine)} />
+				</div>
 			</header>
 			{(description || docs) &&
 				<div className={classes.docs}>
