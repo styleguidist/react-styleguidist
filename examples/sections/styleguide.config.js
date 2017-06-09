@@ -1,5 +1,6 @@
 const path = require('path');
 const loaders = require('loaders');
+
 module.exports = {
 	title: 'React Style Guide Example',
 	sections: [

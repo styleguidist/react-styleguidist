@@ -36,7 +36,7 @@ function getConfig(config) {
 	}
 
 	if (configFilepath) {
-		config = require(configFilepath);
+		config = require(configFilepath); // eslint-disable-line
 	}
 
 	const configDir = configFilepath ? path.dirname(configFilepath) : process.cwd();

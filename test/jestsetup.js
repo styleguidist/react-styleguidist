@@ -2,6 +2,8 @@
 
 // Make Enzyme functions available in all test files without importing
 import { shallow, render, mount } from 'enzyme';
+import noop from 'lodash/noop';
+
 global.shallow = shallow;
 global.render = render;
 global.mount = mount;
@@ -23,7 +25,6 @@ console.error = message => {
 };
 
 // document.createRange “polyfill” for CodeMirror
-import noop from 'lodash/noop';
 document.createRange = function() {
 	return {
 		setEnd: noop,

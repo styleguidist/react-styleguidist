@@ -25,7 +25,8 @@
     "react-dom": "^15.4.2",
     "react-modal": "^1.6.5",
     "react-styleguidist": "^5.0.0",
-    "webpack": "^2.2.1"
+    "webpack": "^2.2.1",
+    "lodash": "^4.17.4"
   },
   "scripts": {
     "styleguide": "styleguidist server",

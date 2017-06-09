@@ -216,6 +216,7 @@ module.exports = {
 			const file = findUserWebpackConfig();
 			if (file) {
 				logger.info(`Loading webpack config from:\n${file}`);
+				// eslint-disable-next-line import/no-dynamic-require
 				return require(file);
 			}
 

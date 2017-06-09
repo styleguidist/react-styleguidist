@@ -8,5 +8,5 @@ const path = require('path');
  * @return {object}
  */
 module.exports = function getUserPackageJson() {
-	return require(path.resolve(process.cwd(), 'package.json'));
+	return require(path.resolve(process.cwd(), 'package.json')); //eslint-disable-line
 };

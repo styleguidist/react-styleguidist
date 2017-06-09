@@ -39,6 +39,7 @@
     "codemirror": "^5.26.0",
     "common-dir": "^1.0.1",
     "css-loader": "^0.28.4",
+    "enzyme": "^2.8.2",
     "es6-object-assign": "~1.1.0",
     "es6-promise": "^4.1.0",
     "escodegen": "^1.8.1",
@@ -79,7 +80,8 @@
     "type-detect": "^4.0.3",
     "unist-util-visit": "^1.1.1",
     "webpack-dev-server": "^1.16.3",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "strip-shebang": "^1.0.2"
   },
   "peerDependencies": {
     "react": ">=15",
@@ -95,12 +97,13 @@
     "babel-preset-react": "^6.24.1",
     "danger": "^0.21.0",
     "dog-names": "^1.0.2",
-    "enzyme": "^2.8.2",
     "enzyme-to-json": "^1.5.1",
     "eslint": "^3.19.0",
     "eslint-config-tamia": "^4.0.2",
+    "eslint-import-resolver-webpack": "^0.8.1",
     "eslint-plugin-compat": "^1.0.3",
     "eslint-plugin-es5": "^1.0.1",
+    "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-prettier": "^2.1.1",
     "eslint-plugin-react": "^7.0.1",
     "husky": "^0.13.4",
@@ -119,7 +122,6 @@
     "react-test-renderer": "^15.5.4",
     "semantic-release": "^6.3.6",
     "semantic-release-tamia": "^1.1.1",
-    "strip-shebang": "^1.0.2",
     "webpack": "^2.6.1"
   },
   "scripts": {

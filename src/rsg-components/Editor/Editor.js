@@ -7,7 +7,7 @@ import 'codemirror/mode/jsx/jsx';
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
 // That way we could avoid clashes between our loaders and user loaders.
 require('!!../../../loaders/style-loader!../../../loaders/css-loader!codemirror/lib/codemirror.css');
-require('!!../../../loaders/style-loader!../../../loaders/css-loader!rsg-codemirror-theme.css');
+require('!!../../../loaders/style-loader!../../../loaders/css-loader!rsg-codemirror-theme.css'); // eslint-disable-line
 
 const codemirrorOptions = {
 	mode: 'jsx',

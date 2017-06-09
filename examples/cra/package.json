@@ -23,7 +23,8 @@
   "dependencies": {
     "dog-names": "^1.0.2",
     "react": "^15.5.0",
-    "react-dom": "^15.5.0"
+    "react-dom": "^15.5.0",
+    "lodash": "^4.17.4"
   },
   "scripts": {
     "start": "react-scripts start",
