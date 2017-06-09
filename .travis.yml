@@ -2,17 +2,18 @@ language: node_js
 node_js:
   - 4
   - 6
-  - 7
+  - 8
 cache:
-  yarn: true
   directories:
-    - $HOME/.npm
+    - node_modules
     - travis_phantomjs
 env:
   # Test everything in Webpack 1 and 2
   - export WEBPACK_VERSION="2"
   - export WEBPACK_VERSION="1"
 before_install:
+  # Upgrade npm
+  - if [[ `npm -v` != 5* ]]; then npm install -g npm@latest; fi
   # Upgrade PhantomJS
   - |
       export PHANTOMJS_VERSION=2.1.1
@@ -26,36 +27,35 @@ before_install:
       phantomjs -v
 before_script:
   # Manually install Webpack 1 or 2
-  - if [ "$WEBPACK_VERSION" == "1" ]; then yarn add webpack@1; fi
-  - yarn list webpack
+  - if [ "$WEBPACK_VERSION" == "1" ]; then npm install --no-save webpack@1; fi
+  - npm list webpack
 script:
   # Run lint
-  - yarn list eslint-plugin-react
-  - yarn run lint
+  - npm run lint
   # Run tests
   - |
-    if [[ "$TRAVIS_NODE_VERSION" =~ ^(4|5)$ ]]; then
+    if [[ "$TRAVIS_NODE_VERSION" == "4" ]]; then
       NODE_ENV=test node --harmony-proxies $(npm bin)/jest --runInBand
     else
-      if [[ "$TRAVIS_NODE_VERSION" == "7" && "$WEBPACK_VERSION" == "2"  ]]; then
-        yarn run test:coverage -- --runInBand
+      if [[ "$TRAVIS_NODE_VERSION" == "8" && "$WEBPACK_VERSION" == "2"  ]]; then
+        npm run test:coverage -- --runInBand
       else
-        yarn run test:jest -- --runInBand
+        npm run test:jest -- --runInBand
       fi
     fi
   # Build all examples
-  - yarn run build
-  - yarn run build:customised
-  - yarn run build:sections
+  - npm run build
+  - npm run build:customised
+  - npm run build:sections
   # Check that examples really works: no JS errors on load
-  - yarn run phantomjs
-  - yarn run phantomjs:customised
-  - yarn run phantomjs:sections
+  - npm run phantomjs
+  - npm run phantomjs:customised
+  - npm run phantomjs:sections
 after_success:
   # Make release with semantic-release if needed
   - npm run semantic-release
   - |
-    if [[ "$TRAVIS_NODE_VERSION" == "7" && "$WEBPACK_VERSION" == "2"  ]]; then
+    if [[ "$TRAVIS_NODE_VERSION" == "8" && "$WEBPACK_VERSION" == "2" ]]; then
       # Upload coverage report to Codecov
       bash <(curl -s https://codecov.io/bash)
       # Update site
