@@ -120,3 +120,8 @@ wbr {
 	border: 2px dotted #f0f;
 	color: #f0f;
 }
+
+::placeholder {
+	color: #f0f;
+	font-family: fantasy;
+}
