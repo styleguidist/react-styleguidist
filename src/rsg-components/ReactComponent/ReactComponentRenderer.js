@@ -27,6 +27,11 @@ const styles = ({ color, fontSize, fontFamily, space }) => ({
 		cursor: 'pointer',
 		fill: color.light,
 		marginLeft: space[1],
+		'&:hover, &:focus': {
+			isolate: false,
+			fill: color.linkHover,
+			transition: 'color 150ms ease-in',
+		},
 	},
 });
 
