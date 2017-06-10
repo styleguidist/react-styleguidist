@@ -28,10 +28,12 @@ export const styles = ({ space, color, fontFamily, fontSize }) => ({
 		fontFamily: fontFamily.base,
 		fontSize: fontSize.small,
 		'&:last-child': {
+			isolate: false,
 			width: '99%',
 			paddingRight: 0,
 		},
 		'& p:last-child': {
+			isolate: false,
 			marginBottom: 0,
 		},
 	},
