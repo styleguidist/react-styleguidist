@@ -73,6 +73,10 @@ module.exports = {
 
 > **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
 
+## Create React App
+
+[Create React App](https://github.com/facebookincubator/create-react-app) is supported our of the box, you don’t even need to create a style guide config if your components could be found using a default glob pattern, `src/components/**/*.{js,jsx}`.
+
 ## Non-webpack projects
 
 If your project doesn’t use webpack you still need loaders for your files. You can use [webpack-blocks](https://github.com/andywer/webpack-blocks).
