@@ -12,6 +12,9 @@ const styles = ({ color, fontSize, fontFamily, space }) => ({
 	tabs: {
 		marginBottom: space[3],
 	},
+	tabButtons: {
+		marginBottom: space[1],
+	},
 	pathLine: {
 		fontFamily: fontFamily.monospace,
 		color: color.light,
@@ -47,7 +50,7 @@ export function ReactComponentRenderer({
 				</div>}
 			{tabButtons &&
 				<div className={classes.tabs}>
-					{tabButtons}
+					<div className={classes.tabButtons}>{tabButtons}</div>
 					{tabBody}
 				</div>}
 			{examples}

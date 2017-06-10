@@ -7,6 +7,7 @@ const styles = ({ space, fontFamily, fontSize, color }) => ({
 		marginBottom: space[4],
 	},
 	heading: {
+		marginTop: 0,
 		marginBottom: space[1],
 		color: color.base,
 		fontFamily: fontFamily.base,
