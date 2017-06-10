@@ -3,6 +3,7 @@ import copy from 'copy-text-to-clipboard';
 import MdContentCopy from 'react-icons/lib/md/content-copy';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
+import ToolbarButton from 'rsg-components/ToolbarButton';
 
 const styles = ({ color, fontSize, fontFamily, space }) => ({
 	root: {
@@ -24,13 +25,17 @@ const styles = ({ color, fontSize, fontFamily, space }) => ({
 		fontSize: fontSize.text,
 	},
 	copyButton: {
-		cursor: 'pointer',
-		fill: color.light,
-		marginLeft: space[1],
-		'&:hover, &:focus': {
-			isolate: false,
-			fill: color.linkHover,
-			transition: 'color 150ms ease-in',
+		'& svg': {
+			width: space[2],
+			height: space[2],
+			cursor: 'pointer',
+			marginLeft: space[1],
+
+			'&:hover, &:focus': {
+				isolate: false,
+				fill: color.linkHover,
+				transition: 'color 150ms ease-in',
+			},
 		},
 	},
 });
@@ -52,7 +57,9 @@ export function ReactComponentRenderer({
 				{heading}
 				<div className={classes.pathLine}>
 					{pathLine}
-					<MdContentCopy className={classes.copyButton} onClick={() => copy(pathLine)} />
+					<ToolbarButton className={classes.copyButton}>
+						<MdContentCopy onClick={() => copy(pathLine)} />
+					</ToolbarButton>
 				</div>
 			</header>
 			{(description || docs) &&
