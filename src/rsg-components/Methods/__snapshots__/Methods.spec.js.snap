@@ -5,7 +5,7 @@ exports[`MethodsRenderer should render a table 1`] = `
   columns={
     Array [
       Object {
-        "caption": "Name",
+        "caption": "Method name",
         "render": [Function],
       },
       Object {

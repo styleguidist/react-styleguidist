@@ -1,69 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Usage should pass props and methods to renderer 1`] = `
-<Styled(Usage)
-  methods={
-    <MethodsRenderer
-      methods={
-        Array [
-          Object {
-            "description": "Sets the counter to a particular value.",
-            "name": "set",
-            "params": Array [
-              Object {
-                "description": "New value for the counter.",
-                "name": "newValue",
-                "type": Object {
-                  "name": "Number",
-                },
-              },
-            ],
-            "returns": null,
-          },
-        ]
-      }
-    />
-  }
-  props={
-    <PropsRenderer
-      props={
-        Object {
-          "children": Object {
-            "description": "Button label.",
-            "required": true,
-            "type": Object {
-              "name": "string",
-            },
-          },
-        }
-      }
-    />
-  }
-/>
-`;
-
-exports[`UsageRenderer should render component renderer for component with methods 1`] = `
+exports[`Usage should render methods table 1`] = `
 <div>
-  <div>
-    <h4>
-      Methods
-    </h4>
-    <div>
-      methods
-    </div>
-  </div>
+  <MethodsRenderer
+    methods={
+      Array [
+        Object {
+          "description": "Sets the counter to a particular value.",
+          "name": "set",
+          "params": Array [
+            Object {
+              "description": "New value for the counter.",
+              "name": "newValue",
+              "type": Object {
+                "name": "Number",
+              },
+            },
+          ],
+          "returns": null,
+        },
+      ]
+    }
+  />
 </div>
 `;
 
-exports[`UsageRenderer should render component renderer for component with props 1`] = `
+exports[`Usage should render props table 1`] = `
 <div>
-  <div>
-    <h4>
-      Props
-    </h4>
-    <div>
-      props
-    </div>
-  </div>
+  <PropsRenderer
+    props={
+      Object {
+        "children": Object {
+          "description": "Button label.",
+          "required": true,
+          "type": Object {
+            "name": "string",
+          },
+        },
+      }
+    }
+  />
 </div>
 `;

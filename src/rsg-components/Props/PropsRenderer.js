@@ -151,7 +151,7 @@ export function propsToArray(props) {
 
 export const columns = [
 	{
-		caption: 'Name',
+		caption: 'Prop name',
 		render: renderName,
 	},
 	{

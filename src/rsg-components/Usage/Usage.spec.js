@@ -1,6 +1,5 @@
 import React from 'react';
 import Usage from './Usage';
-import { UsageRenderer } from './UsageRenderer';
 
 const props = {
 	children: {
@@ -25,28 +24,20 @@ const methods = [
 ];
 
 describe('Usage', () => {
-	it('should pass props and methods to renderer', () => {
-		const actual = shallow(<Usage props={{ props, methods }} />);
-
-		expect(actual).toMatchSnapshot();
-	});
-});
-
-describe('UsageRenderer', () => {
-	it('should render component renderer for component with props', () => {
-		const actual = shallow(<UsageRenderer classes={{}} props={<div>props</div>} />);
+	it('should render props table', () => {
+		const actual = shallow(<Usage props={{ props }} />);
 
 		expect(actual).toMatchSnapshot();
 	});
 
-	it('should render component renderer for component with methods', () => {
-		const actual = shallow(<UsageRenderer classes={{}} methods={<div>methods</div>} />);
+	it('should render methods table', () => {
+		const actual = shallow(<Usage props={{ methods }} />);
 
 		expect(actual).toMatchSnapshot();
 	});
 
 	it('should render nothing without props and methods', () => {
-		const actual = shallow(<UsageRenderer classes={{}} />);
+		const actual = shallow(<Usage props={{}} />);
 
 		expect(actual.node).toBe(null);
 	});

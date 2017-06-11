@@ -5,7 +5,7 @@ exports[`PropsRenderer should render a table 1`] = `
   columns={
     Array [
       Object {
-        "caption": "Name",
+        "caption": "Prop name",
         "render": [Function],
       },
       Object {

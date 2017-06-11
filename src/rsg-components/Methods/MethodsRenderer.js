@@ -11,7 +11,7 @@ const getRowKey = row => row.name;
 
 export const columns = [
 	{
-		caption: 'Name',
+		caption: 'Method name',
 		// eslint-disable-next-line react/prop-types
 		render: ({ name, tags = {} }) => <Name deprecated={!!tags.deprecated}>{`${name}()`}</Name>,
 	},
