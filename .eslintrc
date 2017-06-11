@@ -12,7 +12,7 @@
 		"import"
 	],
 	"settings": {
-		"import/core-modules": [ "system", "prop-types" ],
+		"import/core-modules": [ "prop-types" ],
 		"import/resolver": {
 			"node": {
 				"moduleDirectory": ["src", "node_modules"]
