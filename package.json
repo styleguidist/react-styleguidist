@@ -39,7 +39,7 @@
     "codemirror": "^5.26.0",
     "common-dir": "^1.0.1",
     "css-loader": "^0.28.4",
-    "enzyme": "^2.8.2",
+    "doctrine": "^2.0.0",
     "es6-object-assign": "~1.1.0",
     "es6-promise": "^4.1.0",
     "escodegen": "^1.8.1",
@@ -81,14 +81,16 @@
     "unist-util-visit": "^1.1.1",
     "webpack-dev-server": "^1.16.3",
     "webpack-merge": "^4.1.0",
-    "strip-shebang": "^1.0.2",
-    "keymirror": "^0.1.1"
+    "webpage": "^0.3.0"
   },
   "peerDependencies": {
     "react": ">=15",
     "react-dom": ">=15"
   },
   "devDependencies": {
+    "keymirror": "^0.1.1",
+    "enzyme": "^2.8.2",
+    "strip-shebang": "^1.0.2",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-jest": "^20.0.3",

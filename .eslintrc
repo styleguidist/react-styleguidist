@@ -1,30 +1,25 @@
 {
 	"parser": "babel-eslint",
 	"extends": "tamia/react",
+  "env": {
+    "browser": true,
+    "node": true,
+		"jest": true
+  },
 	"plugins": [
 		"compat",
 		"es5",
 		"import"
 	],
 	"settings": {
-		"import/core-modules": [ "system", "es6-promise", "webpage", "doctrine", "prop-types" ],
+		"import/core-modules": [ "system", "prop-types" ],
 		"import/resolver": {
-		"node": {
-			"moduleDirectory": ["src", "node_modules"]
-		},
-    "webpack": {
-			"config": {
-				"resolve": {
-					"alias": {
-						"rsg-components": "/Users/saravieira/Projects/react-styleguidist/src/rsg-components"
-						}
-					}
-				}
-			}
+			"node": {
+				"moduleDirectory": ["src", "node_modules"]
+			},
 		},
 	  "import/extensions": [
 	    ".js",
-	    ".jsx",
 	  ],
 	  "import/ignore": [
 	    "node_modules",
@@ -51,19 +46,11 @@
     "import/no-namespace": "off",
     "import/extensions": ["error", "always", {
       "js": "never",
-      "jsx": "never",
     }],
 		"import/no-extraneous-dependencies": [
       2,
       {
-        devDependencies: [
-          "rsg-components",
-          "system",
-          "enzyme",
-          "sinon",
-          "mocha",
-          "chai*"
-        ]
+        "devDependencies": true
       }
     ],
     "import/order": ["off", {
