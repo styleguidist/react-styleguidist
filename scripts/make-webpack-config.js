@@ -11,6 +11,7 @@ const hasJsonLoader = require('./utils/hasJsonLoader');
 const getWebpackVersion = require('./utils/getWebpackVersion');
 const mergeWebpackConfig = require('./utils/mergeWebpackConfig');
 const StyleguidistOptionsPlugin = require('./utils/StyleguidistOptionsPlugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const isWebpack2 = getWebpackVersion() === 2;
 const sourceDir = path.resolve(__dirname, '../lib');
@@ -46,6 +47,12 @@ module.exports = function(config, env) {
 					NODE_ENV: JSON.stringify(env),
 				},
 			}),
+			config.assetsDir &&
+				new CopyWebpackPlugin([
+					{
+						from: config.assetsDir,
+					},
+				]),
 		],
 		performance: {
 			hints: false,
