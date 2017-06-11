@@ -48,9 +48,7 @@ export function ToolbarButtonRenderer({
 	children,
 	small,
 }) {
-	const classNames = cx({
-		[classes.button]: true,
-		[className]: true,
+	const classNames = cx(classes.button, className, {
 		[classes.small]: small,
 	});
 
