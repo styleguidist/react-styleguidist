@@ -25,18 +25,7 @@ const styles = ({ color, fontSize, fontFamily, space }) => ({
 		fontSize: fontSize.text,
 	},
 	copyButton: {
-		'& svg': {
-			width: space[2],
-			height: space[2],
-			cursor: 'pointer',
-			marginLeft: space[1],
-
-			'&:hover, &:focus': {
-				isolate: false,
-				fill: color.linkHover,
-				transition: 'color 150ms ease-in',
-			},
-		},
+		marginLeft: space[1],
 	},
 });
 
@@ -57,7 +46,7 @@ export function ReactComponentRenderer({
 				{heading}
 				<div className={classes.pathLine}>
 					{pathLine}
-					<ToolbarButton className={classes.copyButton}>
+					<ToolbarButton small className={classes.copyButton}>
 						<MdContentCopy onClick={() => copy(pathLine)} />
 					</ToolbarButton>
 				</div>
