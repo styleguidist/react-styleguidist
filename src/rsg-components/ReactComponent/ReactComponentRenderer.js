@@ -1,5 +1,5 @@
 import React from 'react';
-import copy from 'copy-text-to-clipboard';
+import copy from 'clipboard-copy';
 import MdContentCopy from 'react-icons/lib/md/content-copy';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
