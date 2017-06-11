@@ -44,6 +44,7 @@ export default class ReactComponent extends Component {
 		const { component } = this.props;
 		const { name, slug, pathLine } = component;
 		const { description, examples = [], tags = {} } = component.props;
+		const showPropsButton = component.props.props || (component.props.methods || {}).length > 0;
 		if (!name) {
 			return null;
 		}
@@ -74,6 +75,7 @@ export default class ReactComponent extends Component {
 						: <ExamplePlaceholder name={name} />
 				}
 				tabButtons={
+					showPropsButton &&
 					<Slot
 						name="docsTabButtons"
 						active={activeTab}
