@@ -1,7 +1,9 @@
+/* eslint-disable import/first */
+
+import './polyfills';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import isFinite from 'lodash/isFinite';
-import slots from 'rsg-components/slots';
 import StyleGuide from 'rsg-components/StyleGuide';
 import {
 	getInfoFromHash,
@@ -13,7 +15,6 @@ import {
 	setSlugs,
 	slugger,
 } from './utils/utils';
-import './polyfills';
 import './styles';
 
 // Examples code revision to rerender only code examples (not the whole page) when code changes
