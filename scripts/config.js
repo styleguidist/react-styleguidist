@@ -36,7 +36,7 @@ function getConfig(config) {
 	}
 
 	if (configFilepath) {
-		config = require(configFilepath); // eslint-disable-line
+		config = require(configFilepath); // eslint-disable-line import/no-dynamic-require
 	}
 
 	const configDir = configFilepath ? path.dirname(configFilepath) : process.cwd();
