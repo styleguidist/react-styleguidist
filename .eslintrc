@@ -30,20 +30,12 @@
 	"rules": {
 		"compat/compat": 2,
     "import/no-unresolved": ["error", { "commonjs": true, "caseSensitive": true }],
-    "import/named": "off",
-    "import/default": "off",
-    "import/namespace": "off",
     "import/export": "error",
     "import/no-named-as-default-member": "error",
-    "import/no-deprecated": "off",
     "import/no-mutable-exports": "error",
-    "import/no-commonjs": "off",
     "import/no-amd": "error",
-    "import/no-nodejs-modules": "off",
     "import/first": ["error", "absolute-first"],
-    "import/imports-first": "off",
     "import/no-duplicates": "error",
-    "import/no-namespace": "off",
     "import/extensions": ["error", "always", {
       "js": "never",
     }],
@@ -53,21 +45,8 @@
         "devDependencies": true
       }
     ],
-    "import/order": ["off", {
-      "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
-      "newlines-between": "never",
-    }],
     "import/newline-after-import": "error",
     "import/prefer-default-export": "error",
-    "import/no-restricted-paths": "off",
-    "import/max-dependencies": ["off", { "max": 10 }],
-    "import/no-absolute-path": "error",
-    "import/no-dynamic-require": "error",
-    "import/no-internal-modules": ["off", {
-      "allow": [],
-    }],
-    "import/unambiguous": "off",
-    "import/no-unassigned-import": "off",
     "import/no-named-default": "error",
 	},
 	"globals": {
