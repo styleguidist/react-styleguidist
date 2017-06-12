@@ -8,6 +8,15 @@ exports[`should render text 1`] = `
 </span>
 `;
 
+exports[`should render text with a title 1`] = `
+<span
+  className="text"
+  title="Pasta"
+>
+  Pizza
+</span>
+`;
+
 exports[`should render underlined text 1`] = `
 <span
   className="text isUnderlined"

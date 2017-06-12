@@ -16,3 +16,9 @@ it('should render underlined text', () => {
 
 	expect(actual).toMatchSnapshot();
 });
+
+it('should render text with a title', () => {
+	const actual = shallow(<TextRenderer {...props} title="Pasta">Pizza</TextRenderer>);
+
+	expect(actual).toMatchSnapshot();
+});

@@ -14,11 +14,11 @@ export const styles = ({ fontFamily, fontSize, color }) => ({
 	},
 });
 
-export function TextRenderer({ classes, children, underlined }) {
+export function TextRenderer({ classes, children, underlined, ...other }) {
 	const classNames = cx(classes.text, {
 		[classes.isUnderlined]: underlined,
 	});
-	return <span className={classNames}>{children}</span>;
+	return <span className={classNames} {...other}>{children}</span>;
 }
 
 TextRenderer.propTypes = {
