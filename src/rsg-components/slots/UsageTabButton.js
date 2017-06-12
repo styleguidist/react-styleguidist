@@ -4,19 +4,21 @@ import TabButton from 'rsg-components/TabButton';
 
 const UsageTabButton = props => {
 	const component = props.props;
-	const hasMethods = component.methods && component.methods.length > 0;
-	const showButton = component.props || hasMethods;
-	return (
-		showButton &&
-		<TabButton {...props}>
-			Props & methods
-		</TabButton>
-	);
+	const showButton = component.props || (component.methods && component.methods.length > 0);
+	return showButton
+		? <TabButton {...props}>
+				Props & methods
+			</TabButton>
+		: null;
 };
 
 UsageTabButton.propTypes = {
 	onClick: PropTypes.func.isRequired,
 	name: PropTypes.string.isRequired,
+	props: PropTypes.shape({
+		props: PropTypes.object,
+		methods: PropTypes.array,
+	}).isRequired,
 	active: PropTypes.bool,
 };
 
