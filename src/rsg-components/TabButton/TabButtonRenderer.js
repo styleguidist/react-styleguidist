@@ -12,6 +12,7 @@ export const styles = ({ space, color, fontFamily, fontSize }) => ({
 		background: 'transparent',
 		textTransform: 'uppercase',
 		transition: 'color 750ms ease-out',
+		border: 'none',
 		cursor: 'pointer',
 		'&:hover, &:focus': {
 			isolate: false,
