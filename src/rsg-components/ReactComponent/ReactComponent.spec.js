@@ -2,6 +2,9 @@ import React from 'react';
 import slots, { DOCS_TAB_USAGE } from '../slots';
 import ReactComponent from './ReactComponent';
 import { ReactComponentRenderer } from './ReactComponentRenderer';
+import copy from 'clipboard-copy';
+
+jest.mock('clipboard-copy', () => jest.fn());
 
 const options = {
 	context: {
@@ -207,6 +210,13 @@ describe('ReactComponentRenderer', () => {
 			/>
 		);
 
+		expect(actual).toMatchSnapshot();
+	});
+
+	test('should copy text', () => {
+		const actual = shallow(<ReactComponentRenderer {...props} />);
+		actual.find('MdContentCopy').simulate('click');
+		expect(copy).toBeCalledWith('components/test');
 		expect(actual).toMatchSnapshot();
 	});
 });
