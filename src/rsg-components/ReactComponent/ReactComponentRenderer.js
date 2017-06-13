@@ -1,6 +1,9 @@
 import React from 'react';
+import copy from 'clipboard-copy';
+import MdContentCopy from 'react-icons/lib/md/content-copy';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
+import ToolbarButton from 'rsg-components/ToolbarButton';
 
 const styles = ({ color, fontSize, fontFamily, space }) => ({
 	root: {
@@ -24,6 +27,9 @@ const styles = ({ color, fontSize, fontFamily, space }) => ({
 		color: color.base,
 		fontSize: fontSize.text,
 	},
+	copyButton: {
+		marginLeft: space[1],
+	},
 });
 
 export function ReactComponentRenderer({
@@ -41,7 +47,12 @@ export function ReactComponentRenderer({
 		<div className={classes.root} id={name + '-container'}>
 			<header className={classes.header}>
 				{heading}
-				<div className={classes.pathLine}>{pathLine}</div>
+				<div className={classes.pathLine}>
+					{pathLine}
+					<ToolbarButton small className={classes.copyButton}>
+						<MdContentCopy onClick={() => copy(pathLine)} />
+					</ToolbarButton>
+				</div>
 			</header>
 			{(description || docs) &&
 				<div className={classes.docs}>

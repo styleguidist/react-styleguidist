@@ -183,6 +183,28 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
 />
 `;
 
+exports[`ReactComponentRenderer should copy text 1`] = `
+<div
+  id="Test-container"
+>
+  <header>
+    <div>
+      heading
+    </div>
+    <div>
+      components/test
+      <Styled(ToolbarButton)
+        small={true}
+      >
+        <MdContentCopy
+          onClick={[Function]}
+        />
+      </Styled(ToolbarButton)>
+    </div>
+  </header>
+</div>
+`;
+
 exports[`ReactComponentRenderer should render component 1`] = `
 <div
   id="Test-container"
@@ -193,6 +215,13 @@ exports[`ReactComponentRenderer should render component 1`] = `
     </div>
     <div>
       components/test
+      <Styled(ToolbarButton)
+        small={true}
+      >
+        <MdContentCopy
+          onClick={[Function]}
+        />
+      </Styled(ToolbarButton)>
     </div>
   </header>
 </div>
@@ -208,6 +237,13 @@ exports[`ReactComponentRenderer should render description 1`] = `
     </div>
     <div>
       components/test
+      <Styled(ToolbarButton)
+        small={true}
+      >
+        <MdContentCopy
+          onClick={[Function]}
+        />
+      </Styled(ToolbarButton)>
     </div>
   </header>
   <div>
@@ -228,6 +264,13 @@ exports[`ReactComponentRenderer should render docs 1`] = `
     </div>
     <div>
       components/test
+      <Styled(ToolbarButton)
+        small={true}
+      >
+        <MdContentCopy
+          onClick={[Function]}
+        />
+      </Styled(ToolbarButton)>
     </div>
   </header>
   <div>
@@ -248,6 +291,13 @@ exports[`ReactComponentRenderer should render examples 1`] = `
     </div>
     <div>
       components/test
+      <Styled(ToolbarButton)
+        small={true}
+      >
+        <MdContentCopy
+          onClick={[Function]}
+        />
+      </Styled(ToolbarButton)>
     </div>
   </header>
   <div>
@@ -269,6 +319,13 @@ exports[`ReactComponentRenderer should render usage section 1`] = `
     </div>
     <div>
       components/test
+      <Styled(ToolbarButton)
+        small={true}
+      >
+        <MdContentCopy
+          onClick={[Function]}
+        />
+      </Styled(ToolbarButton)>
     </div>
   </header>
   <div>
