@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
+import Markdown from 'rsg-components/Markdown';
 
 const styles = ({ color, fontSize, fontFamily, space }) => ({
 	root: {
@@ -41,7 +42,7 @@ export function ReactComponentRenderer({
 		<div className={classes.root} id={name + '-container'}>
 			<header className={classes.header}>
 				{heading}
-				<div className={classes.pathLine}>{pathLine}</div>
+				<div className={classes.pathLine}><Markdown text={pathLine} /></div>
 			</header>
 			{(description || docs) &&
 				<div className={classes.docs}>
