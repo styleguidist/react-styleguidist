@@ -29,6 +29,8 @@ before_script:
   # Manually install Webpack 1 or 2
   - if [ "$WEBPACK_VERSION" == "1" ]; then npm install --no-save webpack@1; fi
 script:
+  # Run Danger.js
+  - npm run danger
   # Run lint
   - npm run lint
   # Run tests

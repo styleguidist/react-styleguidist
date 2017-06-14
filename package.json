@@ -92,6 +92,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-env": "^1.5.1",
     "babel-preset-react": "^6.24.1",
+    "danger": "^0.21.0",
     "dog-names": "^1.0.2",
     "enzyme": "^2.8.2",
     "enzyme-to-json": "^1.5.1",
@@ -145,7 +146,8 @@
     "phantomjs": "phantomjs test/phantom.js examples/basic/styleguide/index.html",
     "phantomjs:customised": "phantomjs test/phantom.js examples/customised/styleguide/index.html",
     "phantomjs:sections": "phantomjs test/phantom.js examples/sections/styleguide/index.html",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "danger": "danger"
   },
   "release": {
     "analyzeCommits": "semantic-release-tamia/analyzeCommits",
