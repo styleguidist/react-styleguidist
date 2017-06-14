@@ -47,17 +47,21 @@ module.exports = function(config, env) {
 					NODE_ENV: JSON.stringify(env),
 				},
 			}),
-			config.assetsDir &&
-				new CopyWebpackPlugin([
-					{
-						from: config.assetsDir,
-					},
-				]),
 		],
 		performance: {
 			hints: false,
 		},
 	};
+
+	if (config.assetsDir) {
+		webpackConfig.plugins.push(
+			new CopyWebpackPlugin([
+				{
+					from: config.assetsDir,
+				},
+			])
+		);
+	}
 
 	if (isProd) {
 		webpackConfig = merge(webpackConfig, {
