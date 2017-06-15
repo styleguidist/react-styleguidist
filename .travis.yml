@@ -29,16 +29,15 @@ before_script:
   # Manually install Webpack 1 or 2
   - if [ "$WEBPACK_VERSION" == "1" ]; then npm install --no-save webpack@1; fi
 script:
-  # Run Danger.js
-  - npm run danger
   # Run lint
   - npm run lint
-  # Run tests
+  # Run tests and Danger.js
   - |
     if [[ "$TRAVIS_NODE_VERSION" == "4" ]]; then
       NODE_ENV=test node --harmony-proxies $(npm bin)/jest --runInBand
     else
       if [[ "$TRAVIS_NODE_VERSION" == "8" && "$WEBPACK_VERSION" == "2"  ]]; then
+        npm run danger
         npm run test:coverage -- --runInBand
       else
         npm run test:jest -- --runInBand
