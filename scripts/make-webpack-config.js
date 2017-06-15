@@ -53,16 +53,6 @@ module.exports = function(config, env) {
 		},
 	};
 
-	if (config.assetsDir) {
-		webpackConfig.plugins.push(
-			new CopyWebpackPlugin([
-				{
-					from: config.assetsDir,
-				},
-			])
-		);
-	}
-
 	if (isProd) {
 		webpackConfig = merge(webpackConfig, {
 			output: {
@@ -92,6 +82,15 @@ module.exports = function(config, env) {
 		});
 		if (!isWebpack2) {
 			webpackConfig.plugins.push(new webpack.optimize.DedupePlugin());
+		}
+		if (config.assetsDir) {
+			webpackConfig.plugins.push(
+				new CopyWebpackPlugin([
+					{
+						from: config.assetsDir,
+					},
+				])
+			);
 		}
 	} else {
 		webpackConfig = merge(webpackConfig, {
