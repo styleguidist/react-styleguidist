@@ -9,7 +9,7 @@ If you want to contribute but don’t know what to do (we need you!): we have tw
 - If it’s your first pull request, watch [this amazing course](http://makeapullrequest.com/) by [Kent C. Dodds](https://twitter.com/kentcdodds).
 - Install [EditorConfig](http://editorconfig.org/) plugin for your code editor to make sure it uses the correct indentation.
 - Fork the repository and clone your fork.
-- Install dependencies: `yarn` or `npm install` (Yarn is recommended but you can use npm too).
+- Install dependencies: `npm install`.
 - Read the [developer guide](https://react-styleguidist.js.org/docs/development.html).
 
 ## Development workflow
@@ -17,26 +17,28 @@ If you want to contribute but don’t know what to do (we need you!): we have tw
 Run Babel in watch mode and start example style guide:
 
 ```bash
-yarn run compile:watch & yarn start
+npm run compile:watch & npm start
 ```
 
 Open [localhost:6060](http://localhost:6060) in a browser.
 
-(There are other example style guides to test particular features too, run `yarn run` to see a list.)
+(There are other example style guides to test particular features too, run `npm run` to see a list.)
 
 Run linters and tests:
 
 ```bash
-yarn test
+npm test
 ```
 
 Or run tests in watch mode:
 
 ```bash
-yarn run test:watch
+npm run test:watch
 ```
 
 **Don’t forget to add tests and update documentation for your changes.**
+
+**Please update npm lock file (`package-lock.json`) if you add new dependencies.**
 
 ## Other notes
 

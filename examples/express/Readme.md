@@ -1,6 +1,6 @@
 # React Styleguidist custom express endpoint example
 
-![](http://wow.sapegin.me/1r2H2v2O2M1C/Image%202016-04-12%20at%208.10.14%20PM.png)
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/353m2x0d1a1A3I1K3J2P/Image%202016-04-12%20at%208.10.14%20PM.png)
 
 How to start locally:
 

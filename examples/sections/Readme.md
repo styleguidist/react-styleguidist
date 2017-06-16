@@ -1,6 +1,6 @@
 # React Styleguidist example style guide with sections
 
-![](http://wow.sapegin.me/3F1u0m1g2w07/Image%202016-04-20%20at%209.15.24%20AM.png)
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/3B12372E3v2e3q2U323O/Image%202016-04-20%20at%209.15.24%20AM.png)
 
 How to start locally:
 

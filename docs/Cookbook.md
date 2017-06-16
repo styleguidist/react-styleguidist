@@ -353,13 +353,13 @@ module.exports = {
 1. Open your browser’s developer tools
 2. Write `debugger;` statement wherever you want: in a component source, a Markdown example or even in an editor in a browser.
 
-![](http://wow.sapegin.me/image/002N2q01470J/debugging.png)
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/3i3E3j2h3t1315141k0o/debugging.png)
 
 ## How to debug the exceptions thrown from my components?
 
 1. Put `debugger;` statement at the beginning of your code.
-2. Press the ![Debugger](http://wow.sapegin.me/image/2n2z0b0l320m/debugger.png) button in your browser’s developer tools.
-3. Press the ![Continue](http://wow.sapegin.me/image/2d2z1Y2o1z1m/continue.png) button and the debugger will stop execution at the next exception.
+2. Press the ![Debugger](https://d3vv6lp55qjaqc.cloudfront.net/items/2h2q3N123N3G3R252o41/debugger.png) button in your browser’s developer tools.
+3. Press the ![Continue](https://d3vv6lp55qjaqc.cloudfront.net/items/3b3c1P3g3O1h3q111I2l/continue.png) button and the debugger will stop execution at the next exception.
 
 ## Why does the style guide list one of my prop types as `unknown`?
 
