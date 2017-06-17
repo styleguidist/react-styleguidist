@@ -134,7 +134,7 @@
     "start:preact": "bin/styleguidist.js server --config examples/preact/styleguide.config.js",
     "start:cra": "cd examples/cra && ../../bin/styleguidist.js server",
     "start:webpack": "cd examples/webpack && ../../bin/styleguidist.js server",
-    "lint": "eslint . --fix",
+    "lint": "eslint . --cache --fix",
     "lint-staged": "lint-staged",
     "compile": "babel --ignore '*.spec.js' -d lib/ src/",
     "compile:watch": "babel --ignore '*.spec.js' --watch -d lib/ src/",
