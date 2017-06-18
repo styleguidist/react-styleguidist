@@ -102,12 +102,12 @@
     "eslint-plugin-es5": "^1.0.1",
     "eslint-plugin-prettier": "^2.1.1",
     "eslint-plugin-react": "^7.0.1",
+    "husky": "^0.13.4",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^20.0.4",
     "keymirror": "^0.1.1",
     "lint-staged": "^3.5.1",
     "loaders": "^1.1.3",
-    "pre-commit": "^1.2.2",
     "preact": "^8.1.0",
     "preact-compat": "^3.16.0",
     "prettier": "^1.3.1",
@@ -147,14 +147,14 @@
     "phantomjs:customised": "phantomjs test/phantom.js examples/customised/styleguide/index.html",
     "phantomjs:sections": "phantomjs test/phantom.js examples/sections/styleguide/index.html",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "danger": "danger"
+    "danger": "danger",
+    "precommit": "lint-staged"
   },
   "release": {
     "analyzeCommits": "semantic-release-tamia/analyzeCommits",
     "generateNotes": "semantic-release-tamia/generateNotes",
     "verifyRelease": "semantic-release-tamia/verifyRelease"
   },
-  "pre-commit": "lint-staged",
   "jest": {
     "setupFiles": [
       "./test/jestsetup.js"
@@ -189,5 +189,11 @@
     "generator",
     "component",
     "components"
-  ]
+  ],
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
 }
