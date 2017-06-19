@@ -3,7 +3,6 @@
 const path = require('path');
 const fs = require('fs');
 const reactDocs = require('react-docgen');
-const chalk = require('chalk');
 const highlightCode = require('./highlightCode');
 const removeDoclets = require('./removeDoclets');
 const requireIt = require('./requireIt');
@@ -25,15 +24,21 @@ const getDoctrineTags = documentation => {
 };
 
 const validateExampleFile = (baseFile, exampleFile) => {
+	// In case there is no basefile such as running tests but exampleFile might still exist
 	const componentFile = baseFile || '';
 	if (typeof exampleFile !== 'string') {
 		return false;
 	}
 
-	// Remove newline characters included from react-docgen
-	const cleanFilePath = exampleFile.replace(/\n/g, '');
+	const cleanFilePath = exampleFile.trim();
 	const exampleFilepath = path.resolve(path.dirname(componentFile), cleanFilePath);
-	return fs.existsSync(exampleFilepath);
+	const doesFileExist = fs.existsSync(exampleFilepath);
+
+	if (!doesFileExist) {
+		// eslint-disable-next-line
+		console.warn(`${cleanFilePath} is an invalid filepath.`);
+	}
+	return doesFileExist;
 };
 
 /**
@@ -64,21 +69,15 @@ module.exports = function getProps(doc, filepath) {
 		// Read doclets from the description and remove them
 		doc.doclets = getDocletsObject(doc.description);
 
-		const exampleFileExists = validateExampleFile(filepath, doc.doclets.example);
-
 		const documentation = doctrine.parse(doc.description);
 		doc.tags = getDoctrineTags(documentation);
 
 		doc.description = highlightCode(removeDoclets(doc.description));
+
+		const exampleFileExists = validateExampleFile(filepath, doc.doclets.example);
 		if (exampleFileExists) {
 			doc.example = requireIt(`!!${examplesLoader}!${doc.doclets.example}`);
 			delete doc.doclets.example;
-		} else if (doc.doclets.example) {
-			/* eslint-disable no-console */
-			console.warn(
-				`${chalk.bold(doc.doclets.example.toString().replace(/\n/g, ''))} is an invalid filepath.`
-			);
-			/* eslint-enable no-console */
 		}
 	} else {
 		doc.doclets = {};
