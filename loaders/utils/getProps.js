@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('path');
+const fs = require('fs');
 const reactDocs = require('react-docgen');
 const highlightCode = require('./highlightCode');
 const removeDoclets = require('./removeDoclets');
@@ -22,6 +23,18 @@ const getDoctrineTags = documentation => {
 	return _.groupBy(documentation.tags, 'title');
 };
 
+const doesExampleFileExist = (basepath, exampleFile) => {
+	const exampleFilepath = path.resolve(path.dirname(basepath), exampleFile);
+	const doesFileExist = fs.existsSync(exampleFilepath);
+
+	// Only warn when all conditions are met but file still isn't found
+	if (!doesFileExist) {
+		// eslint-disable-next-line no-console
+		console.warn(`An example file ${exampleFile} defined in ${basepath} component not found.`);
+	}
+	return doesFileExist;
+};
+
 /**
  * 1. Remove non-public methods.
  * 2. Extract doclets.
@@ -29,9 +42,10 @@ const getDoctrineTags = documentation => {
  * 4. Extract @example doclet (load linked file with examples-loader).
  *
  * @param {object} doc
+ * @param {string} filepath
  * @returns {object}
  */
-module.exports = function getProps(doc) {
+module.exports = function getProps(doc, filepath) {
 	// Keep only public methods
 	doc.methods = (doc.methods || []).filter(method => {
 		const doclets = method.docblock && reactDocs.utils.docblock.getDoclets(method.docblock);
@@ -54,8 +68,16 @@ module.exports = function getProps(doc) {
 
 		doc.description = highlightCode(removeDoclets(doc.description));
 
-		if (doc.doclets.example) {
-			doc.example = requireIt(`!!${examplesLoader}!${doc.doclets.example}`);
+		let exampleFileExists = false;
+		let exampleFile = doc.doclets.example;
+		// doc.doclets.example might be a boolean or undefined
+		if (typeof doc.doclets.example === 'string') {
+			exampleFile = doc.doclets.example.trim();
+			exampleFileExists = doesExampleFileExist(filepath, exampleFile);
+		}
+
+		if (exampleFileExists) {
+			doc.example = requireIt(`!!${examplesLoader}!${exampleFile}`);
 			delete doc.doclets.example;
 		}
 	} else {
