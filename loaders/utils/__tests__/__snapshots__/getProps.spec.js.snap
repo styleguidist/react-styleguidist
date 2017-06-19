@@ -132,14 +132,13 @@ Object {
 ",
   "doclets": Object {},
   "example": RequireStatement {
-    "filepath": "!!<rootDir>/loaders/examples-loader.js!test/components/Placeholder/examples.md
-",
+    "filepath": "!!<rootDir>/loaders/examples-loader.js!../../../test/components/Placeholder/examples.md",
   },
   "methods": Array [],
   "tags": Object {
     "example": Array [
       Object {
-        "description": "test/components/Placeholder/examples.md",
+        "description": "../../../test/components/Placeholder/examples.md",
         "title": "example",
       },
     ],

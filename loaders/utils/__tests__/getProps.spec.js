@@ -38,58 +38,70 @@ it('should return an object for props without description', () => {
 });
 
 it('should remove non-public methods', () => {
-	const result = getProps({
-		methods: [
-			{
-				docblock: `Public method.
+	const result = getProps(
+		{
+			methods: [
+				{
+					docblock: `Public method.
 @public`,
-			},
-			{
-				docblock: `Private method.
+				},
+				{
+					docblock: `Private method.
 @private`,
-			},
-			{
-				docblock: 'Private method by default.',
-			},
-		],
-	});
+				},
+				{
+					docblock: 'Private method by default.',
+				},
+			],
+		},
+		__filename
+	);
 
 	expect(result).toMatchSnapshot();
 });
 
 it('should return an object for props with doclets', () => {
-	const result = getProps({
-		description: `
+	const result = getProps(
+		{
+			description: `
 The only true button.
 
 @foo Foo
 @bar Bar
 `,
-	});
+		},
+		__filename
+	);
 
 	expect(result).toMatchSnapshot();
 });
 
 it('should return require statement for @example doclet', () => {
-	const result = getProps({
-		description: `
+	const result = getProps(
+		{
+			description: `
 The only true button.
 
-@example test/components/Placeholder/examples.md
+@example ../../../test/components/Placeholder/examples.md
 `,
-	});
+		},
+		__filename
+	);
 
 	expect(result).toMatchSnapshot();
 });
 
 it('should return require statement for @example doclet only when the file exists', () => {
-	const result = getProps({
-		description: `
+	const result = getProps(
+		{
+			description: `
 The only true button.
 
 @example example.md
 `,
-	});
+		},
+		__filename
+	);
 
 	expect(result).toMatchSnapshot();
 });

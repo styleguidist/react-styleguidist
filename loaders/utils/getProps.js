@@ -23,20 +23,14 @@ const getDoctrineTags = documentation => {
 	return _.groupBy(documentation.tags, 'title');
 };
 
-const validateExampleFile = (baseFile, exampleFile) => {
-	// In case there is no basefile such as running tests but exampleFile might still exist
-	const componentFile = baseFile || '';
-	if (typeof exampleFile !== 'string') {
-		return false;
-	}
-
-	const cleanFilePath = exampleFile.trim();
-	const exampleFilepath = path.resolve(path.dirname(componentFile), cleanFilePath);
+const doesExampleFileExist = (basepath, exampleFile) => {
+	const exampleFilepath = path.resolve(path.dirname(basepath), exampleFile);
 	const doesFileExist = fs.existsSync(exampleFilepath);
 
+	// Only warn when all conditions are met but file still isn't found
 	if (!doesFileExist) {
-		// eslint-disable-next-line
-		console.warn(`${cleanFilePath} is an invalid filepath.`);
+		// eslint-disable-next-line no-console
+		console.warn(`An example file ${exampleFile} defined in ${basepath} component not found.`);
 	}
 	return doesFileExist;
 };
@@ -74,9 +68,16 @@ module.exports = function getProps(doc, filepath) {
 
 		doc.description = highlightCode(removeDoclets(doc.description));
 
-		const exampleFileExists = validateExampleFile(filepath, doc.doclets.example);
+		let exampleFileExists = false;
+		let exampleFile = doc.doclets.example;
+		// doc.doclets.example might be a boolean or undefined
+		if (typeof doc.doclets.example === 'string') {
+			exampleFile = doc.doclets.example.trim();
+			exampleFileExists = doesExampleFileExist(filepath, exampleFile);
+		}
+
 		if (exampleFileExists) {
-			doc.example = requireIt(`!!${examplesLoader}!${doc.doclets.example}`);
+			doc.example = requireIt(`!!${examplesLoader}!${exampleFile}`);
 			delete doc.doclets.example;
 		}
 	} else {
