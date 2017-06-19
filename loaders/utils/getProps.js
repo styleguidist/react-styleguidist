@@ -1,7 +1,9 @@
 'use strict';
 
 const path = require('path');
+const fs = require('fs');
 const reactDocs = require('react-docgen');
+const chalk = require('chalk');
 const highlightCode = require('./highlightCode');
 const removeDoclets = require('./removeDoclets');
 const requireIt = require('./requireIt');
@@ -22,6 +24,18 @@ const getDoctrineTags = documentation => {
 	return _.groupBy(documentation.tags, 'title');
 };
 
+const validateExampleFile = (baseFile, exampleFile) => {
+	const componentFile = baseFile || '';
+	if (typeof exampleFile !== 'string') {
+		return false;
+	}
+
+	// Remove newline characters included from react-docgen
+	const cleanFilePath = exampleFile.replace(/\n/g, '');
+	const exampleFilepath = path.resolve(path.dirname(componentFile), cleanFilePath);
+	return fs.existsSync(exampleFilepath);
+};
+
 /**
  * 1. Remove non-public methods.
  * 2. Extract doclets.
@@ -29,9 +43,10 @@ const getDoctrineTags = documentation => {
  * 4. Extract @example doclet (load linked file with examples-loader).
  *
  * @param {object} doc
+ * @param {string} filepath
  * @returns {object}
  */
-module.exports = function getProps(doc) {
+module.exports = function getProps(doc, filepath) {
 	// Keep only public methods
 	doc.methods = (doc.methods || []).filter(method => {
 		const doclets = method.docblock && reactDocs.utils.docblock.getDoclets(method.docblock);
@@ -49,14 +64,21 @@ module.exports = function getProps(doc) {
 		// Read doclets from the description and remove them
 		doc.doclets = getDocletsObject(doc.description);
 
+		const exampleFileExists = validateExampleFile(filepath, doc.doclets.example);
+
 		const documentation = doctrine.parse(doc.description);
 		doc.tags = getDoctrineTags(documentation);
 
 		doc.description = highlightCode(removeDoclets(doc.description));
-
-		if (doc.doclets.example) {
+		if (exampleFileExists) {
 			doc.example = requireIt(`!!${examplesLoader}!${doc.doclets.example}`);
 			delete doc.doclets.example;
+		} else if (doc.doclets.example) {
+			/* eslint-disable no-console */
+			console.warn(
+				`${chalk.bold(doc.doclets.example.toString().replace(/\n/g, ''))} is an invalid filepath.`
+			);
+			/* eslint-enable no-console */
 		}
 	} else {
 		doc.doclets = {};

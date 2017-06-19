@@ -44,7 +44,7 @@ module.exports = function(source) {
 		props = props[0];
 	}
 
-	props = getProps(props);
+	props = getProps(props, file);
 
 	// Examples from Markdown file
 	const examplesFile = config.getExampleFilename(file);

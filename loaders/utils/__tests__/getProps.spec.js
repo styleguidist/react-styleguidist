@@ -75,6 +75,18 @@ it('should return require statement for @example doclet', () => {
 		description: `
 The only true button.
 
+@example test/components/Placeholder/examples.md
+`,
+	});
+
+	expect(result).toMatchSnapshot();
+});
+
+it('should return require statement for @example doclet only when the file exists', () => {
+	const result = getProps({
+		description: `
+The only true button.
+
 @example example.md
 `,
 	});
