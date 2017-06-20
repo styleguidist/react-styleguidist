@@ -11,6 +11,7 @@ The main thing is that we’re running two apps at the same time: user’s compo
 * `body` styles (like `font-family`) should affect user components as the user expects but not Styleguidist UI.
 
 ## How it works
+
 Styleguidist uses [react-docgen](https://github.com/reactjs/react-docgen) to parse *source* files (not transpiled). react-docgen finds exported React components and generates documentation based on PropTypes or Flow annotations.
 
 Styleguidist uses Markdown for documentation: each JavaScript code block is rendered as an interactive playground with [CodeMirror](http://codemirror.net/). To do that we extract all these code blocks using [Remark](http://remark.js.org/).
@@ -18,6 +19,7 @@ Styleguidist uses Markdown for documentation: each JavaScript code block is rend
 Webpack loaders (see below) generate JavaScript modules with all user components, their documentation and examples and pass that to a React app which renders a style guide.
 
 ## Webpack loaders and webpack configuration
+
 We use webpack loaders to hot reload the style guide on changes in user components, styles and Markdown documentation. We have three loaders ([loaders](https://github.com/styleguidist/react-styleguidist/tree/master/loaders) folder):
 
 * `styleguide-loader`: loads components and sections;
@@ -63,11 +65,12 @@ Each component folder usually has several files:
 * `Foo/index.js` — reexport of `Foo.js` or `FooRenderer.js`.
 
 ## Styles
+
 For styles we use [JSS](http://cssinjs.org/), it allows users to customize their style guide and allows us to ensure styles isolations (thanks to [jss-isolate](http://cssinjs.org/jss-isolate/)). No user styles should affect Styleguidist UI and no Styleguidist styles should affect user components.
 
 Use [classnames](https://github.com/JedWatson/classnames) to merge several class names or for conditional class names, import it as `cx` (`import cx from 'classnames'`).
 
-We use `Styled` higher-order component to allow theming (see [theme](https://react-styleguidist.js.org/docs/configuration.html#theme) and [style](https://react-styleguidist.js.org/docs/configuration.html#style) style guide config options). Use it like this:
+We use `Styled` higher-order component to allow theming (see [theme](Configuration.md#theme) and [style](Configuration.md#style) style guide config options). Use it like this:
 
 ```jsx
 import React from 'react';
@@ -99,6 +102,7 @@ Check available theme variables in [src/styles/theme.js](https://github.com/styl
 Because of isolation and theming you need to explicitly declare `fontFamily`, `fontSize` and `color`. Add `isolate: false` to your hover styles, otherwise you’ll have to repeat base non-hover styles.
 
 ## Testing
+
 We’re using [Jest with Enzyme](http://blog.sapegin.me/all/react-jest) for testing. Put your component tests into `Component.spec.js` file in the same folder and all other tests into `__tests__/filename.spece.js`.
 
 To test particular class names use `classes` function (available in the global namespace in tests):
