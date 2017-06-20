@@ -1,7 +1,5 @@
 'use strict';
 
-/* eslint-disable no-console */
-
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -12,12 +10,19 @@ const getWebpackVersion = require('./utils/getWebpackVersion');
 const mergeWebpackConfig = require('./utils/mergeWebpackConfig');
 const StyleguidistOptionsPlugin = require('./utils/StyleguidistOptionsPlugin');
 
-const isWebpackLessThan2 = getWebpackVersion() < 2;
+const isWebpack1 = getWebpackVersion() < 2;
 const sourceDir = path.resolve(__dirname, '../lib');
 const htmlLoader = require.resolve('html-webpack-plugin/lib/loader');
 
 module.exports = function(config, env) {
 	process.env.NODE_ENV = process.env.NODE_ENV || env;
+
+	if (isWebpack1) {
+		// eslint-disable-next-line no-console
+		console.log(
+			'WARNING: Support for Webpack 1 will be removed in the next major release of React Styleguidist.'
+		);
+	}
 
 	const isProd = env === 'production';
 
@@ -29,7 +34,7 @@ module.exports = function(config, env) {
 			chunkFilename: 'build/[name].js',
 		},
 		resolve: {
-			extensions: isWebpackLessThan2 ? ['.js', '.jsx', '.json', ''] : ['.js', '.jsx', '.json'],
+			extensions: isWebpack1 ? ['.js', '.jsx', '.json', ''] : ['.js', '.jsx', '.json'],
 			alias: {
 				'rsg-codemirror-theme.css': `codemirror/theme/${config.highlightTheme}.css`,
 			},
@@ -79,7 +84,7 @@ module.exports = function(config, env) {
 				}),
 			],
 		});
-		if (isWebpackLessThan2) {
+		if (isWebpack1) {
 			webpackConfig.plugins.push(new webpack.optimize.DedupePlugin());
 		}
 	} else {
@@ -98,7 +103,7 @@ module.exports = function(config, env) {
 	}
 
 	// Add JSON loader if user config has no one (Webpack 2 includes it by default)
-	if (isWebpackLessThan2 && !hasJsonLoader(webpackConfig)) {
+	if (isWebpack1 && !hasJsonLoader(webpackConfig)) {
 		webpackConfig = merge(webpackConfig, {
 			module: {
 				loaders: [
