@@ -44,17 +44,12 @@ module.exports = {
 		const name = path.basename(componentPath, '.js');
 		return `import { ${name} } from 'my-awesome-library';`;
 	},
+	// Override Styleguidist components
+	styleguideComponents: {
+		Logo: path.join(__dirname, 'styleguide/components/Logo'),
+		StyleGuideRenderer: path.join(__dirname, 'styleguide/components/StyleGuide'),
+	},
 	webpackConfig: {
-		resolve: {
-			alias: {
-				// Override Styleguidist components
-				'rsg-components/Logo': path.join(__dirname, 'styleguide/components/Logo'),
-				'rsg-components/StyleGuide/StyleGuideRenderer': path.join(
-					__dirname,
-					'styleguide/components/StyleGuide'
-				),
-			},
-		},
 		module: {
 			loaders: [
 				loaders.babel,

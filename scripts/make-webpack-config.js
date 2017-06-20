@@ -5,10 +5,13 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const forEach = require('lodash/forEach');
 const hasJsonLoader = require('./utils/hasJsonLoader');
 const getWebpackVersion = require('./utils/getWebpackVersion');
 const mergeWebpackConfig = require('./utils/mergeWebpackConfig');
 const StyleguidistOptionsPlugin = require('./utils/StyleguidistOptionsPlugin');
+
+const RENDERER_REGEXP = /Renderer$/;
 
 const isWebpack1 = getWebpackVersion() < 2;
 const sourceDir = path.resolve(__dirname, '../lib');
@@ -113,6 +116,16 @@ module.exports = function(config, env) {
 					},
 				],
 			},
+		});
+	}
+
+	// Custom style guide components
+	if (config.styleguideComponents) {
+		forEach(config.styleguideComponents, (filepath, name) => {
+			const fullName = name.match(RENDERER_REGEXP)
+				? `${name.replace(RENDERER_REGEXP, '')}/${name}`
+				: name;
+			webpackConfig.resolve.alias[`rsg-components/${fullName}`] = filepath;
 		});
 	}
 

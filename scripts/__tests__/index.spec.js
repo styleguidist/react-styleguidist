@@ -134,6 +134,21 @@ describe('makeWebpackConfig', () => {
 
 		expect(result.entry).toEqual(expect.arrayContaining(modules));
 	});
+
+	it('should add webpack alias for each styleguideComponents config option item', () => {
+		const api = styleguidist({
+			styleguideComponents: {
+				Logo: 'styleguide/components/Logo',
+				StyleGuideRenderer: 'styleguide/components/StyleGuide',
+			},
+		});
+		const result = api.makeWebpackConfig();
+
+		expect(result.resolve.alias).toMatchObject({
+			'rsg-components/Logo': 'styleguide/components/Logo',
+			'rsg-components/StyleGuide/StyleGuideRenderer': 'styleguide/components/StyleGuide',
+		});
+	});
 });
 
 describe('build', () => {

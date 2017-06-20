@@ -282,6 +282,23 @@ Type: `Boolean`, default: `false`
 
 Ignore components that don’t have an example file (as determined by `getExampleFilename`). These components won’t be accessible from other examples unless you manually `require` them.
 
+#### `styleguideComponents`
+
+Type: `Object`, optional
+
+Override React components used to render the style guide.
+
+```javascript
+module.exports = {
+	styleguideComponents: {
+		Logo: path.join(__dirname, 'styleguide/components/Logo'),
+		StyleGuideRenderer: path.join(__dirname, 'styleguide/components/StyleGuide'),
+	},
+};
+```
+
+See an example of [customized style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/customised).
+
 #### `styleguideDir`
 
 Type: `String`, default: `styleguide`
