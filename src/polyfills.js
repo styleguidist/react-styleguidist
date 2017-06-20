@@ -5,4 +5,4 @@ import 'function.name-polyfill';
 import 'es6-object-assign/auto';
 
 // Promise to support webpack 2 require.ensure() in IE11
-import 'es6-promise/auto';
+require('es6-promise').polyfill();
