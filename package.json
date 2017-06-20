@@ -80,9 +80,9 @@
     "webpack-merge": "^4.1.0"
   },
   "peerDependencies": {
-    "react": ">=0.14.0",
-    "react-dom": ">=0.14.0",
-    "webpack": "1 || 2 || ^2.1.0-beta || ^2.2.0-rc"
+    "react": ">=15",
+    "react-dom": ">=15",
+    "webpack": ">=1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
