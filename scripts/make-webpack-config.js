@@ -20,7 +20,7 @@ module.exports = function(config, env) {
 	if (isWebpack1) {
 		// eslint-disable-next-line no-console
 		console.log(
-			'WARNING: Support for Webpack 1 will be removed in the next major release of React Styleguidist.'
+			'Warning: support for webpack 1 will be removed in the next major version of React Styleguidist.'
 		);
 	}
 
