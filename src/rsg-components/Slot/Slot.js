@@ -9,30 +9,26 @@ export default function Slot({ name, active, onlyActive, className, props = {} }
 		throw new Error(`Slot "${name}" not found, available slots: ${Object.keys(slots).join(', ')}`);
 	}
 
-	const rendered = fills.map((Fill, index) => {
-		// { id: 'pizza', render: ({ foo }) => <div>{foo}</div> }
-		const { id, render } = Fill;
-		if (id && render) {
-			// Render only specified fill
-			if (onlyActive && id !== active) {
-				return null;
-			}
-
-			const { onClick } = props;
-			props = {
-				...props,
-				name: id,
-				// Set active prop to active fill
-				active: active && id === active,
-				// Pass fill ID to onClick event handler
-				// eslint-disable-next-line react/prop-types
-				onClick: onClick && ((...attrs) => onClick(id, ...attrs)),
-			};
-
-			Fill = render;
+	// { id: 'pizza', render: ({ foo }) => <div>{foo}</div> }
+	const rendered = fills.map(({ id, render }, index) => {
+		// Render only specified fill
+		if (onlyActive && id !== active) {
+			return null;
 		}
 
-		return <Fill key={index} {...props} />;
+		const { onClick } = props;
+		props = {
+			...props,
+			id,
+			// Set active prop to active fill
+			active: active && id === active,
+			// Pass fill ID to onClick event handler
+			// eslint-disable-next-line react/prop-types
+			onClick: onClick && ((...attrs) => onClick(id, ...attrs)),
+		};
+
+		const Component = render;
+		return <Component key={index} {...props} />;
 	});
 
 	const filtered = rendered.filter(Boolean);

@@ -1,11 +1,25 @@
 'use strict';
 
 // If you want to access any of these options in React, don’t forget to update CLIENT_CONFIG_OPTIONS array
-// in loaders/styleguide-loader.js
 
 /* eslint-disable no-console */
 
+// Config options that should be passed to the client
+const CLIENT_CONFIG_OPTIONS = [
+	'compilerConfig',
+	'highlightTheme',
+	'showCode',
+	'showUsage',
+	'showSidebar',
+	'plugins',
+	'previewDelay',
+	'theme',
+	'title',
+	'styles',
+];
+
 const DEFAULT_COMPONENTS_PATTERN = 'src/@(components|Components)/**/*.{js,jsx}';
+const CORE_PLUGINS = ['rsg-plugins/code-editor', 'rsg-plugins/isolate', 'rsg-plugins/usage'];
 
 const fs = require('fs');
 const path = require('path');
@@ -89,6 +103,15 @@ module.exports = {
 	highlightTheme: {
 		type: 'string',
 		default: 'base16-light',
+	},
+	plugins: {
+		type: 'object',
+		default: {},
+		process: val =>
+			CORE_PLUGINS.reduce((allPlugins, plugin) => {
+				allPlugins[plugin] = true;
+				return allPlugins;
+			}, val || {}),
 	},
 	previewDelay: {
 		type: 'number',
@@ -237,3 +260,5 @@ module.exports = {
 		},
 	},
 };
+
+module.exports.CLIENT_CONFIG_OPTIONS = CLIENT_CONFIG_OPTIONS;

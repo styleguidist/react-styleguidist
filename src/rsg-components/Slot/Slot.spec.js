@@ -5,74 +5,44 @@ import Slot from './Slot';
 
 const Button = ({ onClick }) => <button onClick={onClick}>1</button>;
 const Button2 = () => <button>2</button>;
-const fillsWithIds = [
-	{
-		id: 'one',
-		render: Button,
+const options = {
+	context: {
+		slots: {
+			slot: [
+				{
+					id: 'one',
+					render: Button,
+				},
+				{
+					id: 'two',
+					render: Button2,
+				},
+			],
+		},
 	},
-	{
-		id: 'two',
-		render: Button2,
-	},
-];
+};
 
 it('should renderer slots and pass props', () => {
-	const actual = shallow(<Slot name="slot" props={{ id: 'Pizza' }} />, {
-		context: {
-			slots: {
-				slot: [Button, Button2],
-			},
-		},
-	});
-
-	expect(actual).toMatchSnapshot();
-});
-
-it('should renderer slots in id/render format', () => {
-	const actual = shallow(<Slot name="slot" props={{ id: 'Pizza' }} />, {
-		context: {
-			slots: {
-				slot: fillsWithIds,
-			},
-		},
-	});
+	const actual = shallow(<Slot name="slot" props={{ id: 'Pizza' }} />, options);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should pass active flag to active slot', () => {
-	const actual = shallow(<Slot name="slot" active="two" />, {
-		context: {
-			slots: {
-				slot: fillsWithIds,
-			},
-		},
-	});
+	const actual = shallow(<Slot name="slot" active="two" />, options);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should renderer only active slot if onlyActive=true', () => {
-	const actual = shallow(<Slot name="slot" active="two" onlyActive />, {
-		context: {
-			slots: {
-				slot: fillsWithIds,
-			},
-		},
-	});
+	const actual = shallow(<Slot name="slot" active="two" onlyActive />, options);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should pass slot ID to onClick handler', () => {
 	const onClick = jest.fn();
-	const actual = mount(<Slot name="slot" props={{ onClick }} />, {
-		context: {
-			slots: {
-				slot: fillsWithIds,
-			},
-		},
-	});
+	const actual = mount(<Slot name="slot" props={{ onClick }} />, options);
 
 	actual.find('button').first().simulate('click');
 
@@ -83,7 +53,13 @@ it('should return null if all slots render null', () => {
 	const actual = render(<Slot name="slot" props={{ id: 'Pizza' }} />, {
 		context: {
 			slots: {
-				slot: [() => null],
+				slot: [
+					{
+						id: 'nope',
+						type: 'slot',
+						render: () => null,
+					},
+				],
 			},
 		},
 	});

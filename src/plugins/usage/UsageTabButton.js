@@ -13,13 +13,10 @@ const UsageTabButton = props => {
 };
 
 UsageTabButton.propTypes = {
-	onClick: PropTypes.func.isRequired,
-	name: PropTypes.string.isRequired,
 	props: PropTypes.shape({
 		props: PropTypes.object,
 		methods: PropTypes.array,
 	}).isRequired,
-	active: PropTypes.bool,
 };
 
 export default UsageTabButton;

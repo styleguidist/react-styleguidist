@@ -30,7 +30,7 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
     <SectionHeading
       deprecated={false}
       id="foo"
-      slotName="componentToolbar"
+      slotName="componentToolbarButton"
       slotProps={
         Object {
           "isolated": undefined,
@@ -84,7 +84,7 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
   slug="foo"
   tabBody={
     <Slot
-      name="docsTabs"
+      name="docsTab"
       onlyActive={true}
       props={
         Object {
@@ -133,7 +133,7 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
   }
   tabButtons={
     <Slot
-      name="docsTabButtons"
+      name="docsTabButton"
       props={
         Object {
           "metadata": Object {

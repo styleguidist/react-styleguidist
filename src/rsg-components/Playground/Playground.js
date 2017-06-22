@@ -4,7 +4,7 @@ import debounce from 'lodash/debounce';
 import Preview from 'rsg-components/Preview';
 import Slot from 'rsg-components/Slot';
 import PlaygroundRenderer from 'rsg-components/Playground/PlaygroundRenderer';
-import { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
+import { EXAMPLE_TAB_CODE_EDITOR } from '../../plugins/code-editor';
 
 export default class Playground extends Component {
 	static propTypes = {
@@ -71,21 +71,24 @@ export default class Playground extends Component {
 				preview={<Preview code={code} evalInContext={evalInContext} />}
 				tabButtons={
 					<Slot
-						name="exampleTabButtons"
+						name="exampleTabButton"
 						active={activeTab}
 						props={{ onClick: this.handleTabChange }}
 					/>
 				}
 				tabBody={
 					<Slot
-						name="exampleTabs"
+						name="exampleTab"
 						active={activeTab}
 						onlyActive
 						props={{ code, onChange: this.handleChange }}
 					/>
 				}
 				toolbar={
-					<Slot name="exampleToolbar" props={{ name, isolated: isolatedExample, example: index }} />
+					<Slot
+						name="exampleToolbarButton"
+						props={{ name, isolated: isolatedExample, example: index }}
+					/>
 				}
 			/>
 		);

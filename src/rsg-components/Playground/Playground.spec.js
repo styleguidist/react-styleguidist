@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Playground from './Playground';
 import '../../styles/setupjss';
-import slots, { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
+import { EXAMPLE_TAB_CODE_EDITOR } from '../../plugins/code-editor';
 import { PlaygroundRenderer } from './PlaygroundRenderer';
+
+/* eslint-disable react/prop-types */
 
 const code = '<button>OK</button>';
 const newCode = '<button>Not OK</button>';
@@ -13,7 +15,21 @@ const options = {
 			showCode: false,
 			highlightTheme: 'base16-light',
 		},
-		slots,
+		slots: {
+			exampleToolbarButton: [],
+			exampleTab: [
+				{
+					id: EXAMPLE_TAB_CODE_EDITOR,
+					render: () => <div className="ReactCodeMirror">editor</div>,
+				},
+			],
+			exampleTabButton: [
+				{
+					id: EXAMPLE_TAB_CODE_EDITOR,
+					render: ({ onClick, id }) => <button name={id} onClick={onClick}>code</button>,
+				},
+			],
+		},
 	},
 	childContextTypes: {
 		slots: PropTypes.object.isRequired,

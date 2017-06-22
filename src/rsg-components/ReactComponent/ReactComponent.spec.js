@@ -1,5 +1,5 @@
 import React from 'react';
-import slots, { DOCS_TAB_USAGE } from '../slots';
+import { DOCS_TAB_USAGE } from '../../plugins/usage';
 import ReactComponent from './ReactComponent';
 import { ReactComponentRenderer } from './ReactComponentRenderer';
 
@@ -8,7 +8,11 @@ const options = {
 		config: {
 			showUsage: false,
 		},
-		slots,
+		slots: {
+			componentToolbarButton: {}, // TODO
+			docsTab: {}, // TODO
+			docsTabButton: {}, // TODO
+		},
 	},
 	metadata: {},
 };

@@ -1,4 +1,5 @@
 'use strict';
+/* eslint-disable no-console */
 
 const pick = require('lodash/pick');
 const commonDir = require('common-dir');
@@ -8,22 +9,9 @@ const getAllContentPages = require('./utils/getAllContentPages');
 const getComponentFilesFromSections = require('./utils/getComponentFilesFromSections');
 const getComponentPatternsFromSections = require('./utils/getComponentPatternsFromSections');
 const getSections = require('./utils/getSections');
+const getPlugins = require('./utils/getPlugins');
 const filterComponentsWithExample = require('./utils/filterComponentsWithExample');
-
-/* eslint-disable no-console */
-
-// Config options that should be passed to the client
-const CLIENT_CONFIG_OPTIONS = [
-	'title',
-	'highlightTheme',
-	'showCode',
-	'showUsage',
-	'showSidebar',
-	'previewDelay',
-	'theme',
-	'styles',
-	'compilerConfig',
-];
+const CLIENT_CONFIG_OPTIONS = require('../scripts/schemas/config').CLIENT_CONFIG_OPTIONS;
 
 module.exports = function() {};
 module.exports.pitch = function() {
@@ -68,6 +56,7 @@ module.exports.pitch = function() {
 
 	const styleguide = {
 		config: pick(config, CLIENT_CONFIG_OPTIONS),
+		plugins: getPlugins(config.plugins),
 		welcomeScreen,
 		patterns,
 		sections,

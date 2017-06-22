@@ -5,7 +5,7 @@ import SectionHeading from 'rsg-components/SectionHeading';
 import JsDoc from 'rsg-components/JsDoc';
 import Markdown from 'rsg-components/Markdown';
 import Slot from 'rsg-components/Slot';
-import { DOCS_TAB_USAGE } from '../slots';
+import { DOCS_TAB_USAGE } from '../../plugins/usage';
 import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponentRenderer';
 
 const ExamplePlaceholder = process.env.NODE_ENV === 'development'
@@ -59,7 +59,7 @@ export default class ReactComponent extends Component {
 					<SectionHeading
 						id={slug}
 						deprecated={!!tags.deprecated}
-						slotName="componentToolbar"
+						slotName="componentToolbarButton"
 						slotProps={{
 							...component,
 							isolated: isolatedComponent,
@@ -75,12 +75,12 @@ export default class ReactComponent extends Component {
 				}
 				tabButtons={
 					<Slot
-						name="docsTabButtons"
+						name="docsTabButton"
 						active={activeTab}
 						props={{ ...component, onClick: this.handleTabChange }}
 					/>
 				}
-				tabBody={<Slot name="docsTabs" active={activeTab} onlyActive props={component} />}
+				tabBody={<Slot name="docsTab" active={activeTab} onlyActive props={component} />}
 			/>
 		);
 	}

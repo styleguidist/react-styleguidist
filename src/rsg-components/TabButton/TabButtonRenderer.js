@@ -34,13 +34,13 @@ export const styles = ({ space, color, fontFamily, fontSize }) => ({
 	},
 });
 
-export function TabButtonRenderer({ classes, name, className, onClick, active, children }) {
+export function TabButtonRenderer({ classes, id, className, onClick, active, children }) {
 	const classNames = cx(classes.button, className, {
 		[classes.isActive]: active,
 	});
 
 	return (
-		<button type="button" name={name} className={classNames} onClick={onClick}>
+		<button type="button" name={id} className={classNames} onClick={onClick}>
 			{children}
 		</button>
 	);
@@ -48,7 +48,7 @@ export function TabButtonRenderer({ classes, name, className, onClick, active, c
 
 TabButtonRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
-	name: PropTypes.string,
+	id: PropTypes.string,
 	className: PropTypes.string,
 	onClick: PropTypes.func,
 	active: PropTypes.bool,

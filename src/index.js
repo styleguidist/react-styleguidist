@@ -13,7 +13,7 @@ import {
 	setSlugs,
 	slugger,
 } from './utils/utils';
-import slots from './rsg-components/slots';
+import loadPlugins from './utils/loadPlugins';
 import StyleGuide from 'rsg-components/StyleGuide';
 
 // Examples code revision to rerender only code examples (not the whole page) when code changes
@@ -64,11 +64,12 @@ function renderStyleguide() {
 	slugger.reset();
 	sections = setSlugs(sections);
 
+	const { config } = styleguide;
 	ReactDOM.render(
 		<StyleGuide
 			codeRevision={codeRevision}
-			config={styleguide.config}
-			slots={slots}
+			config={config}
+			slots={loadPlugins(styleguide.plugins, config)}
 			welcomeScreen={styleguide.welcomeScreen}
 			patterns={styleguide.patterns}
 			sections={sections}

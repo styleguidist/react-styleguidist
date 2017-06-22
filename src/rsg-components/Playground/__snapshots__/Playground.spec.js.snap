@@ -40,7 +40,7 @@ exports[`should render component renderer 1`] = `
   }
   tabBody={
     <Slot
-      name="exampleTabs"
+      name="exampleTab"
       onlyActive={true}
       props={
         Object {
@@ -52,7 +52,7 @@ exports[`should render component renderer 1`] = `
   }
   tabButtons={
     <Slot
-      name="exampleTabButtons"
+      name="exampleTabButton"
       props={
         Object {
           "onClick": [Function],
@@ -62,7 +62,7 @@ exports[`should render component renderer 1`] = `
   }
   toolbar={
     <Slot
-      name="exampleToolbar"
+      name="exampleToolbarButton"
       props={
         Object {
           "example": 0,

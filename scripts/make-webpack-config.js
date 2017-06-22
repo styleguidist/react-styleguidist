@@ -36,6 +36,7 @@ module.exports = function(config, env) {
 		resolve: {
 			extensions: isWebpack1 ? ['.js', '.jsx', '.json', ''] : ['.js', '.jsx', '.json'],
 			alias: {
+				'rsg-plugins': path.resolve(sourceDir, 'plugins'),
 				'rsg-codemirror-theme.css': `codemirror/theme/${config.highlightTheme}.css`,
 			},
 		},
