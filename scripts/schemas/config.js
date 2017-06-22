@@ -153,6 +153,9 @@ module.exports = {
 		type: 'boolean',
 		default: false,
 	},
+	styleguideComponents: {
+		type: 'object',
+	},
 	styleguideDir: {
 		type: 'directory path',
 		default: 'styleguide',

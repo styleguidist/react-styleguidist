@@ -39,7 +39,8 @@ Styleguidist tries to load and reuse user’s webpack config (`webpack.config.js
 We’re trying to keep Styleguidist’s own [webpack config](https://github.com/styleguidist/react-styleguidist/blob/master/scripts/make-webpack-config.js) minimal to reduce clashes with user’s configuration.
 
 ## React components
-Most of StyleGuidist UI components consist of two parts: `Foo/Foo.js` that contains all logic and `Foo/FooRenderer.js` that contains all markup and styles. This allows users to customize rendering by overriding `*Renderer` component using webpack aliases:
+
+Most of StyleGuidist UI components consist of two parts: `Foo/Foo.js` that contains all logic and `Foo/FooRenderer.js` that contains all markup and styles. This allows users to customize rendering by overriding `*Renderer` component using webpack aliases (or [styleguideComponents](Configuration.md#styleguidecomponents) config option):
 
 ```js
 // styleguide.config.js

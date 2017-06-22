@@ -82,12 +82,8 @@ To use Redux store in every component redefine the `Wrapper` component:
 // styleguide.config.js
 const path = require('path');
 module.exports = {
-  webpackConfig: {
-    resolve: {
-      alias: {
-        'rsg-components/Wrapper': path.join(__dirname, 'lib/styleguide/Wrapper')
-      }
-    }
+  styleguideComponents: {
+    Wrapper: path.join(__dirname, 'lib/styleguide/Wrapper')
   }
 };
 ```
@@ -261,12 +257,8 @@ For example you can replace the `Wrapper` component to wrap any example in the [
 // styleguide.config.js
 const path = require('path');
 module.exports = {
-  webpackConfig: {
-    resolve: {
-      alias: {
-        'rsg-components/Wrapper': path.join(__dirname, 'lib/styleguide/Wrapper')
-      }
-    }
+  styleguideComponents: {
+    Wrapper: path.join(__dirname, 'lib/styleguide/Wrapper')
   }
 };
 ```
@@ -292,12 +284,8 @@ You can replace the `StyleGuideRenderer` component like this:
 // styleguide.config.js
 const path = require('path');
 module.exports = {
-  webpackConfig: {
-    resolve: {
-      alias: {
-        'rsg-components/StyleGuide/StyleGuideRenderer': path.join(__dirname, 'lib/styleguide/StyleGuideRenderer')
-      }
-    }
+  styleguideComponents: {
+    StyleGuideRenderer: path.join(__dirname, 'lib/styleguide/StyleGuideRenderer')
   }
 };
 ```
