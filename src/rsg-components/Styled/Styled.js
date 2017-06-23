@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import addStyles from '../../styles/addStyles';
+import createStyleSheet from '../../styles/createStyleSheet';
 
 export default styles => WrappedComponent => {
 	const componentName = WrappedComponent.name.replace(/Renderer$/, '');
@@ -11,11 +11,16 @@ export default styles => WrappedComponent => {
 		};
 
 		componentWillMount() {
-			this.classes = addStyles(styles, this.context.config || {}, componentName);
+			this.sheet = createStyleSheet(styles, this.context.config || {}, componentName);
+			this.sheet.update(this.props).attach();
+		}
+
+		componentWillReceiveProps(nextProps) {
+			this.sheet.update(nextProps);
 		}
 
 		render() {
-			return <WrappedComponent {...this.props} classes={this.classes} />;
+			return <WrappedComponent {...this.props} classes={this.sheet.classes} />;
 		}
 	};
 };
