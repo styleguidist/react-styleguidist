@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should a path line 1`] = `
+<div>
+  foo/bar
+</div>
+`;

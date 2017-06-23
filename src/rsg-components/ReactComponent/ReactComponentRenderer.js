@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Pathline from 'rsg-components/Pathline';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ color, fontSize, fontFamily, space }) => ({
+const styles = ({ color, fontSize, space }) => ({
 	root: {
 		marginBottom: space[6],
 	},
@@ -14,11 +15,6 @@ const styles = ({ color, fontSize, fontFamily, space }) => ({
 	},
 	tabButtons: {
 		marginBottom: space[1],
-	},
-	pathLine: {
-		fontFamily: fontFamily.monospace,
-		color: color.light,
-		fontSize: fontSize.small,
 	},
 	docs: {
 		color: color.base,
@@ -41,7 +37,7 @@ export function ReactComponentRenderer({
 		<div className={classes.root} id={name + '-container'}>
 			<header className={classes.header}>
 				{heading}
-				<div className={classes.pathLine}>{pathLine}</div>
+				<Pathline>{pathLine}</Pathline>
 			</header>
 			{(description || docs) &&
 				<div className={classes.docs}>

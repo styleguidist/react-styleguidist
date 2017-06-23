@@ -13,13 +13,10 @@ module.exports = {
 				include: path.resolve(__dirname, 'src'),
 				loader: 'babel-loader',
 				query: {
-					presets: [['env', {"targets": { "node": "current" }}], 'react'],
-					plugins: [
-						'transform-class-properties',
-						'transform-object-rest-spread'
-					],
-					babelrc: false
-				}
+					presets: [['env', { targets: { node: 'current' } }], 'react'],
+					plugins: ['transform-class-properties', 'transform-object-rest-spread'],
+					babelrc: false,
+				},
 			},
 			{
 				test: /\.css$/,
