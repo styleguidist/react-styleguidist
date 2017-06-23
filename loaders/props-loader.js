@@ -5,10 +5,9 @@ const isArray = require('lodash/isArray');
 const reactDocs = require('react-docgen');
 const generate = require('escodegen').generate;
 const toAst = require('to-ast');
+const logger = require('glogg')('rsg');
 const getExamples = require('./utils/getExamples');
 const getProps = require('./utils/getProps');
-
-/* eslint-disable no-console */
 
 module.exports = function(source) {
 	/* istanbul ignore if */
@@ -33,10 +32,10 @@ module.exports = function(source) {
 		const message = errorMessage === 'Error: No suitable component definition found.'
 			? `Warning: ${componentPath} matches a pattern defined in ”components” or “sections” options in your ` +
 					'style guide config but doesn’t export a component.'
-			: `Error when parsing ${componentPath}: ${err}\n\n` +
+			: `Cannot parse ${componentPath}: ${err}\n\n` +
 					'It usually means that react-docgen cannot parse your source code, try to file an issue here:\n' +
 					'https://github.com/reactjs/react-docgen/issues';
-		console.log(`\n${message}\n`);
+		logger.warn(message);
 	}
 
 	// Support only one component

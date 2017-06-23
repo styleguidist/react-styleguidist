@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const forEach = require('lodash/forEach');
+const logger = require('glogg')('rsg');
 const hasJsonLoader = require('./utils/hasJsonLoader');
 const getWebpackVersion = require('./utils/getWebpackVersion');
 const mergeWebpackConfig = require('./utils/mergeWebpackConfig');
@@ -21,9 +22,8 @@ module.exports = function(config, env) {
 	process.env.NODE_ENV = process.env.NODE_ENV || env;
 
 	if (isWebpack1) {
-		// eslint-disable-next-line no-console
-		console.log(
-			'Warning: support for webpack 1 will be removed in the next major version of React Styleguidist.'
+		logger.warn(
+			'Support for webpack 1 will be removed in the next major version of React Styleguidist.'
 		);
 	}
 
