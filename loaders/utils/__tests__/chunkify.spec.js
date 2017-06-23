@@ -16,7 +16,7 @@ Text with *some* **formatting** and a [link](/foo).
 
 Text with some \`code\`.
 
-\`\`\`
+\`\`\`jsx // { "static": false }
 <h2>Hello Markdown!</h2>
 \`\`\`
 
@@ -41,6 +41,7 @@ This should be highlighted:
 		{
 			type: 'code',
 			content: '<h1>Hello Markdown!</h1>',
+			settings: {},
 		},
 		{
 			type: 'markdown',
@@ -49,6 +50,9 @@ This should be highlighted:
 		{
 			type: 'code',
 			content: '<h2>Hello Markdown!</h2>',
+			settings: {
+				static: false,
+			},
 		},
 		{
 			type: 'markdown',
@@ -57,6 +61,7 @@ This should be highlighted:
 		{
 			type: 'code',
 			content: '<h3>Hello Markdown!</h3>',
+			settings: {},
 		},
 		{
 			type: 'markdown',
@@ -83,9 +88,61 @@ Foo:
 		{
 			type: 'code',
 			content: '<h1>Hello Markdown!</h1>',
+			settings: {},
 		},
 	];
 
+	const actual = chunkify(markdown);
+	expect(actual).toEqual(expected);
+});
+
+it('should parse examples settings correctly', () => {
+	const markdown = `
+Pass props to CodeRenderer
+
+\`\`\`js // { "showCode": true }
+<h1>Hello Markdown!</h1>
+\`\`\`
+	
+Pass props to PreviewRenderer
+
+\`\`\`jsx // { "noEditor": true }
+<h2>Hello Markdown!</h2>
+\`\`\`
+
+\`\`\`jsx // { "static": true }
+<h2>This is Highlighted!</h2>
+\`\`\`
+`;
+	const expected = [
+		{
+			type: 'markdown',
+			content: 'Pass props to CodeRenderer',
+		},
+		{
+			type: 'code',
+			content: '<h1>Hello Markdown!</h1>',
+			settings: {
+				showCode: true,
+			},
+		},
+		{
+			type: 'markdown',
+			content: 'Pass props to PreviewRenderer',
+		},
+		{
+			type: 'code',
+			content: '<h2>Hello Markdown!</h2>',
+			settings: {
+				noEditor: true,
+			},
+		},
+		{
+			type: 'markdown',
+			content:
+				'```jsx\n&lt;h2&gt;This is Highlighted!<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>\n```',
+		},
+	];
 	const actual = chunkify(markdown);
 	expect(actual).toEqual(expected);
 });

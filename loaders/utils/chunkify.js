@@ -14,16 +14,35 @@ const CODE_PLACEHOLDER = '<%{#code#}%>';
  */
 module.exports = function chunkify(markdown) {
 	const codeChunks = [];
+	const codeLanguages = ['javascript', 'js', 'jsx'];
 
 	/*
 	 * - Highlight code in fenced code blocks with defined language (```html) if the language is not `example`.
-	 * - Extract indented and fenced code blocks without language or if language is `example`.
+	 * - Extract indented and fenced code blocks with lang javascript | js | jsx or if language is `example`.
 	 * - Leave all other Markdown or HTML as is.
 	 */
 	function processCode() {
 		return ast => {
 			visit(ast, 'code', node => {
-				if (node.lang && node.lang !== 'example') {
+				let lang = node.lang || '';
+				let settings;
+				try {
+					const settingsString = lang.slice(lang.indexOf('{'), lang.lastIndexOf('}') + 1) || '{}';
+					settings = JSON.parse(settingsString);
+				} catch (exception) {
+					node.value = `Settings not parsed! Use JSON to pass settings!
+						\`\`\`jsx // { "static": false }
+							...
+						\`\`\`
+					`;
+				}
+				lang = lang.slice(0, lang.indexOf(' ') !== -1 ? lang.indexOf(' ') : lang.length);
+				node.lang = lang;
+				if (
+					lang &&
+					lang !== 'example' &&
+					(codeLanguages.indexOf(lang) === -1 || (settings && settings.static))
+				) {
 					let highlighted;
 					try {
 						highlighted = hljs.highlight(node.lang, node.value).value;
@@ -32,7 +51,11 @@ module.exports = function chunkify(markdown) {
 					}
 					node.value = highlighted;
 				} else {
-					codeChunks.push(node.value);
+					codeChunks.push({
+						type: 'code',
+						content: node.value,
+						settings,
+					});
 					node.type = 'html';
 					node.value = CODE_PLACEHOLDER;
 				}
@@ -54,10 +77,7 @@ module.exports = function chunkify(markdown) {
 		}
 		const code = codeChunks.shift();
 		if (code) {
-			chunks.push({
-				type: 'code',
-				content: code,
-			});
+			chunks.push(code);
 		}
 	});
 
