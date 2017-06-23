@@ -9,7 +9,6 @@ const format = message => message.trim() + '\n';
 const printers = {
 	info: message => console.log(format(message)),
 	warn: message => console.warn(`Warning: ${format(message)}`),
-	error: message => console.error(format(message)),
 	debug: message => console.log(format(message)),
 };
 
