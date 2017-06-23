@@ -1,6 +1,8 @@
 import path from 'path';
-const logger = require('glogg')('rsg');
+import glogg from 'glogg';
 import sanitizeConfig from '../sanitizeConfig';
+
+const logger = glogg('rsg');
 
 it('should return non-empty required field as is', () => {
 	const result = sanitizeConfig(
