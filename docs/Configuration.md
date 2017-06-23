@@ -114,7 +114,7 @@ When writing your own default example file, `__COMPONENT__` will be replaced by 
 
 Type: `Function`, default: component file name
 
-Function that returns a component path line (displayed under the component name).
+Function that returns a component path line (displayed under the component name). This function allows you to return Markdown to be styled, as well.
 
 For example, instead of `components/Button/Button.js` you can print `import Button from 'components/Button';`:
 
