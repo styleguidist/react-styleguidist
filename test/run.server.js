@@ -3,10 +3,10 @@ const styleguidist = require('../scripts');
 
 /* eslint-disable no-console */
 
-const dir = path.resolve(__dirname, '../examples/basic/lib');
+const dir = path.resolve(__dirname, '../examples/basic/src');
 
 styleguidist({
-	components: './components/**/[A-Z]*.js',
+	components: path.resolve(dir, 'components/**/[A-Z]*.js'),
 	webpackConfig: {
 		module: {
 			loaders: [
@@ -22,6 +22,10 @@ styleguidist({
 				},
 			],
 		},
+	},
+	logger: {
+		info: console.log,
+		warn: message => console.warn(`Warning: ${message}`),
 	},
 }).server((err, config) => {
 	if (err) {

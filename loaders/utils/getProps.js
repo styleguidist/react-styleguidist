@@ -8,6 +8,7 @@ const removeDoclets = require('./removeDoclets');
 const requireIt = require('./requireIt');
 const doctrine = require('doctrine');
 const _ = require('lodash');
+const logger = require('glogg')('rsg');
 
 const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
 
@@ -29,8 +30,7 @@ const doesExampleFileExist = (basepath, exampleFile) => {
 
 	// Only warn when all conditions are met but file still isn't found
 	if (!doesFileExist) {
-		// eslint-disable-next-line no-console
-		console.warn(`An example file ${exampleFile} defined in ${basepath} component not found.`);
+		logger.warn(`An example file ${exampleFile} defined in ${basepath} component not found.`);
 	}
 	return doesFileExist;
 };

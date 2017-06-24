@@ -191,6 +191,24 @@ Type: `String[]`, default: `['**/__tests__/**', '**/*.test.js', '**/*.test.jsx',
 
 Array of [glob pattern](https://github.com/isaacs/node-glob#glob-primer) or files of components that should not be included in the style guide.
 
+#### `logger`
+
+Type: `Object`, by default will use `console.*` in CLI or nothing in Node API
+
+Custom logger functions:
+
+```javascript
+module.exports = {
+	logger: {
+    // One of: info, debug, warn
+    // Suppress messages
+		info: () => {},
+    // Override display function
+		warn: message => console.warn(`NOOOOOO: ${message}`),
+	},
+};
+```
+
 #### `previewDelay`
 
 Type: `Number`, default: 500
