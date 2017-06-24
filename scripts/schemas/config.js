@@ -5,7 +5,6 @@
 
 const DEFAULT_COMPONENTS_PATTERN = 'src/@(components|Components)/**/*.{js,jsx}';
 
-const fs = require('fs');
 const path = require('path');
 const startCase = require('lodash/startCase');
 const reactDocgen = require('react-docgen');
@@ -14,6 +13,7 @@ const createDisplayNameHandler = require('react-docgen-displayname-handler')
 const logger = require('glogg')('rsg');
 const findUserWebpackConfig = require('../utils/findUserWebpackConfig');
 const getUserPackageJson = require('../utils/getUserPackageJson');
+const fileExistsCaseInsensitive = require('../utils/findFileCaseInsensitive');
 const consts = require('../consts');
 
 module.exports = {
@@ -67,8 +67,9 @@ module.exports = {
 			];
 
 			for (const file of files) {
-				if (fs.existsSync(file)) {
-					return file;
+				const existingFile = fileExistsCaseInsensitive(file);
+				if (existingFile) {
+					return existingFile;
 				}
 			}
 

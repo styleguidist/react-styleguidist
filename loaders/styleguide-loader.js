@@ -5,6 +5,7 @@ const commonDir = require('common-dir');
 const generate = require('escodegen').generate;
 const toAst = require('to-ast');
 const logger = require('glogg')('rsg');
+const fileExistsCaseInsensitive = require('../scripts/utils/findFileCaseInsensitive');
 const getAllContentPages = require('./utils/getAllContentPages');
 const getComponentFilesFromSections = require('./utils/getComponentFilesFromSections');
 const getComponentPatternsFromSections = require('./utils/getComponentPatternsFromSections');
@@ -30,6 +31,9 @@ module.exports.pitch = function() {
 	if (this.cacheable) {
 		this.cacheable();
 	}
+
+	// Clear cache so it would detect new or renamed files
+	fileExistsCaseInsensitive.clearCache();
 
 	const config = this._styleguidist;
 
