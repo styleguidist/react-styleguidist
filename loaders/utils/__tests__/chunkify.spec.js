@@ -20,12 +20,6 @@ Text with some \`code\`.
 <h2>Hello Markdown!</h2>
 \`\`\`
 
-This is the same as above:
-
-\`\`\`example
-<h3>Hello Markdown!</h3>
-\`\`\`
-
 This should be highlighted:
 
 \`\`\`html
@@ -53,15 +47,6 @@ This should be highlighted:
 			settings: {
 				static: false,
 			},
-		},
-		{
-			type: 'markdown',
-			content: 'This is the same as above:',
-		},
-		{
-			type: 'code',
-			content: '<h3>Hello Markdown!</h3>',
-			settings: {},
 		},
 		{
 			type: 'markdown',
@@ -104,7 +89,7 @@ Pass props to CodeRenderer
 <h1>Hello Markdown!</h1>
 \`\`\`
 
-\`\`\`js // noEditor { "frame": {"width": "400px"} }
+\`\`\`js // { "frame": {"width": "400px"} }
 <h1>Example in frame and Without editor</h1>
 \`\`\`
 	
@@ -134,7 +119,6 @@ Pass props to PreviewRenderer
 			type: 'code',
 			content: '<h1>Example in frame and Without editor</h1>',
 			settings: {
-				noEditor: true,
 				frame: {
 					width: '400px',
 				},

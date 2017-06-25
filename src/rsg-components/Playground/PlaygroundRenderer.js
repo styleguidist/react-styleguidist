@@ -24,11 +24,13 @@ export function PlaygroundRenderer({ classes, name, preview, tabButtons, tabBody
 	return (
 		<div className={classes.root}>
 			<div className={classes.preview} data-preview={name}>{preview}</div>
-			<div className={classes.controls}>
-				<div className={classes.tabs}>{tabButtons}</div>
-				<div className={classes.toolbar}>{toolbar}</div>
-			</div>
-			<div className={classes.tab}>{tabBody}</div>
+			{tabButtons &&
+				toolbar &&
+				<div className={classes.controls}>
+					{tabButtons && <div className={classes.tabs}>{tabButtons}</div>}
+					{toolbar && <div className={classes.toolbar}>{toolbar}</div>}
+				</div>}
+			{tabBody && <div className={classes.tab}>{tabBody}</div>}
 		</div>
 	);
 }
@@ -37,9 +39,9 @@ PlaygroundRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	name: PropTypes.string.isRequired,
 	preview: PropTypes.node.isRequired,
-	tabButtons: PropTypes.node.isRequired,
-	tabBody: PropTypes.node.isRequired,
-	toolbar: PropTypes.node.isRequired,
+	tabButtons: PropTypes.node,
+	tabBody: PropTypes.node,
+	toolbar: PropTypes.node,
 };
 
 export default Styled(styles)(PlaygroundRenderer);

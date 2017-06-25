@@ -20,12 +20,6 @@ export default class Playground extends Component {
 		isolatedExample: PropTypes.bool,
 	};
 
-	static childContextTypes = {
-		slots: PropTypes.object,
-		config: PropTypes.object.isRequired,
-		isolatedExample: PropTypes.bool,
-	};
-
 	constructor(props, context) {
 		super(props, context);
 		const { code } = props;
@@ -42,21 +36,6 @@ export default class Playground extends Component {
 			code,
 			activeTab: showCode ? EXAMPLE_TAB_CODE_EDITOR : undefined,
 		};
-	}
-
-	getChildContext() {
-		if (this.props.settings && this.props.settings.noEditor) {
-			const slots = this.context.slots || {};
-			return {
-				...this.context,
-				slots: {
-					...slots,
-					exampleTabButtons: (slots.exampleTabButtons || [])
-						.filter(slot => slot.id !== 'rsg-code-editor'),
-				},
-			};
-		}
-		return this.context;
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -91,6 +70,14 @@ export default class Playground extends Component {
 		const { code, activeTab } = this.state;
 		const { evalInContext, index, name } = this.props;
 		const { isolatedExample } = this.context;
+		if (this.props.settings && this.props.settings.noEditor) {
+			return (
+				<PlaygroundRenderer
+					name={name}
+					preview={<Preview code={code} evalInContext={evalInContext} />}
+				/>
+			);
+		}
 		return (
 			<PlaygroundRenderer
 				name={name}

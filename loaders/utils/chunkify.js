@@ -15,10 +15,9 @@ const CODE_PLACEHOLDER = '<%{#code#}%>';
 module.exports = function chunkify(markdown) {
 	const codeChunks = [];
 	const codeLanguages = ['javascript', 'js', 'jsx'];
-	const settingsModifiers = ['static', 'noEditor'];
 	/*
-	 * - Highlight code in fenced code blocks with defined language (```html) if the language is not `example`.
-	 * - Extract indented and fenced code blocks with lang javascript | js | jsx or if language is `example`.
+	 * - Highlight code in fenced code blocks with defined language (```html).
+	 * - Extract indented and fenced code blocks with lang javascript | js | jsx or if lang is not defined.
 	 * - Leave all other Markdown or HTML as is.
 	 */
 	function processCode() {
@@ -26,30 +25,34 @@ module.exports = function chunkify(markdown) {
 			visit(ast, 'code', node => {
 				let lang = node.lang || '';
 				let settings = {};
-				try {
-					settingsModifiers.forEach(modifier => {
-						if (lang.indexOf(modifier) !== -1) {
-							settings[modifier] = true;
+				const startSettingsString = lang.indexOf('//');
+				if (startSettingsString !== -1) {
+					const settingsString = lang.slice(startSettingsString + 2);
+					try {
+						settings = JSON.parse(settingsString);
+					} catch (exception) {
+						const settingsModifiers = settingsString.split(' ');
+						if (settingsModifiers.length > 0) {
+							settingsModifiers.forEach(modifier => {
+								settings[modifier] = true;
+							});
+						} else {
+							node.value = `Settings not parsed! Use single settings modifiers or JSON to pass settings!
+								\`\`\`jsx // static noEditor
+									...
+								\`\`\`
+								or 
+								\`\`\`jsx // { "static": true }
+									...
+								\`\`\`
+							`;
 						}
-					});
-					const settingsString = lang.slice(lang.indexOf('{'), lang.lastIndexOf('}') + 1) || '{}';
-					settings = { ...settings, ...JSON.parse(settingsString) };
-				} catch (exception) {
-					node.value = `Settings not parsed! Use single settings modifiers ${settingsModifiers.join(
-						','
-					)} or JSON to pass settings!
-						\`\`\`jsx // static noEditor
-							...
-						\`\`\`
-					`;
+					}
 				}
+
 				lang = lang.slice(0, lang.indexOf(' ') !== -1 ? lang.indexOf(' ') : lang.length);
 				node.lang = lang;
-				if (
-					lang &&
-					lang !== 'example' &&
-					(codeLanguages.indexOf(lang) === -1 || (settings && settings.static))
-				) {
+				if (lang && (codeLanguages.indexOf(lang) === -1 || (settings && settings.static))) {
 					let highlighted;
 					try {
 						highlighted = hljs.highlight(node.lang, node.value).value;
