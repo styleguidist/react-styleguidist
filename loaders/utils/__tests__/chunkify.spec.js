@@ -103,6 +103,10 @@ Pass props to CodeRenderer
 \`\`\`js // { "showCode": true }
 <h1>Hello Markdown!</h1>
 \`\`\`
+
+\`\`\`js // noEditor { "frame": {"width": "400px"} }
+<h1>Example in frame and Without editor</h1>
+\`\`\`
 	
 Pass props to PreviewRenderer
 
@@ -110,7 +114,7 @@ Pass props to PreviewRenderer
 <h2>Hello Markdown!</h2>
 \`\`\`
 
-\`\`\`jsx // { "static": true }
+\`\`\`jsx // static
 <h2>This is Highlighted!</h2>
 \`\`\`
 `;
@@ -124,6 +128,16 @@ Pass props to PreviewRenderer
 			content: '<h1>Hello Markdown!</h1>',
 			settings: {
 				showCode: true,
+			},
+		},
+		{
+			type: 'code',
+			content: '<h1>Example in frame and Without editor</h1>',
+			settings: {
+				noEditor: true,
+				frame: {
+					width: '400px',
+				},
 			},
 		},
 		{

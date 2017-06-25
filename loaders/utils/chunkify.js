@@ -15,7 +15,7 @@ const CODE_PLACEHOLDER = '<%{#code#}%>';
 module.exports = function chunkify(markdown) {
 	const codeChunks = [];
 	const codeLanguages = ['javascript', 'js', 'jsx'];
-
+	const settingsModifiers = ['static', 'noEditor'];
 	/*
 	 * - Highlight code in fenced code blocks with defined language (```html) if the language is not `example`.
 	 * - Extract indented and fenced code blocks with lang javascript | js | jsx or if language is `example`.
@@ -25,13 +25,20 @@ module.exports = function chunkify(markdown) {
 		return ast => {
 			visit(ast, 'code', node => {
 				let lang = node.lang || '';
-				let settings;
+				let settings = {};
 				try {
+					settingsModifiers.forEach(modifier => {
+						if (lang.indexOf(modifier) !== -1) {
+							settings[modifier] = true;
+						}
+					});
 					const settingsString = lang.slice(lang.indexOf('{'), lang.lastIndexOf('}') + 1) || '{}';
-					settings = JSON.parse(settingsString);
+					settings = { ...settings, ...JSON.parse(settingsString) };
 				} catch (exception) {
-					node.value = `Settings not parsed! Use JSON to pass settings!
-						\`\`\`jsx // { "static": false }
+					node.value = `Settings not parsed! Use single settings modifiers ${settingsModifiers.join(
+						','
+					)} or JSON to pass settings!
+						\`\`\`jsx // static noEditor
 							...
 						\`\`\`
 					`;

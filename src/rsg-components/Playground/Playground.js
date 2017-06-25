@@ -12,8 +12,16 @@ export default class Playground extends Component {
 		evalInContext: PropTypes.func.isRequired,
 		index: PropTypes.number.isRequired,
 		name: PropTypes.string.isRequired,
+		settings: PropTypes.object,
 	};
+
 	static contextTypes = {
+		config: PropTypes.object.isRequired,
+		isolatedExample: PropTypes.bool,
+	};
+
+	static childContextTypes = {
+		slots: PropTypes.object,
 		config: PropTypes.object.isRequired,
 		isolatedExample: PropTypes.bool,
 	};
@@ -21,8 +29,11 @@ export default class Playground extends Component {
 	constructor(props, context) {
 		super(props, context);
 		const { code } = props;
-		const { previewDelay, showCode } = context.config;
-
+		const { previewDelay } = context.config;
+		let { showCode } = this.context;
+		if (props.settings && typeof props.settings.showCode === 'boolean') {
+			showCode = props.settings.showCode;
+		}
 		this.handleChange = this.handleChange.bind(this);
 		this.handleTabChange = this.handleTabChange.bind(this);
 		this.handleChange = debounce(this.handleChange, previewDelay);
@@ -31,6 +42,21 @@ export default class Playground extends Component {
 			code,
 			activeTab: showCode ? EXAMPLE_TAB_CODE_EDITOR : undefined,
 		};
+	}
+
+	getChildContext() {
+		if (this.props.settings && this.props.settings.noEditor) {
+			const slots = this.context.slots || {};
+			return {
+				...this.context,
+				slots: {
+					...slots,
+					exampleTabButtons: (slots.exampleTabButtons || [])
+						.filter(slot => slot.id !== 'rsg-code-editor'),
+				},
+			};
+		}
+		return this.context;
 	}
 
 	componentWillReceiveProps(nextProps) {
