@@ -17,5 +17,11 @@ If you define a fenced code block with js | jsx | javascript language it will be
 If you define a fenced code block with another language it will be rendered as a regular Markdown code snippet:
 
 ```html
+<h1>Hello world</h1>
+```
+
+If you define a fenced code block with passed static modifier it will be rendered as a regular Markdown code snippet:
+
+```jsx // static
 import React from 'react';
 ```
