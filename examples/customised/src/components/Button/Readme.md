@@ -22,6 +22,6 @@ If you define a fenced code block with another language it will be rendered as a
 
 If you define a fenced code block with passed static modifier it will be rendered as a regular Markdown code snippet:
 
-```jsx // static
+```jsx static
 import React from 'react';
 ```

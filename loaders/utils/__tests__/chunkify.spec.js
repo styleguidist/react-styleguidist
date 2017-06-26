@@ -16,7 +16,7 @@ Text with *some* **formatting** and a [link](/foo).
 
 Text with some \`code\`.
 
-\`\`\`jsx // { "static": false }
+\`\`\`jsx { "static": false }
 <h2>Hello Markdown!</h2>
 \`\`\`
 
@@ -85,21 +85,21 @@ it('should parse examples settings correctly', () => {
 	const markdown = `
 Pass props to CodeRenderer
 
-\`\`\`js // { "showCode": true }
+\`\`\`js { "showCode": true }
 <h1>Hello Markdown!</h1>
 \`\`\`
 
-\`\`\`js // { "frame": {"width": "400px"} }
+\`\`\`js { "frame": {"width": "400px"} }
 <h1>Example in frame and Without editor</h1>
 \`\`\`
 	
 Pass props to PreviewRenderer
 
-\`\`\`jsx // { "noEditor": true }
+\`\`\`jsx { "noEditor": true }
 <h2>Hello Markdown!</h2>
 \`\`\`
 
-\`\`\`jsx // static
+\`\`\`jsx static
 <h2>This is Highlighted!</h2>
 \`\`\`
 `;

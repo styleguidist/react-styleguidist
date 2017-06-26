@@ -53,7 +53,7 @@ A [link](http://example.com).
 
 ![React](http://morning.photos/photos/thumb/2014-09-27-3218-thumb.jpg)
 
-```js // static
+```js static
 function eatFood(food) {
     if (!food.length) {
         return ['No food'];

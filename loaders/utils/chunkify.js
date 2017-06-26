@@ -25,9 +25,9 @@ module.exports = function chunkify(markdown) {
 			visit(ast, 'code', node => {
 				let lang = node.lang || '';
 				let settings = {};
-				const startSettingsString = lang.indexOf('//');
+				const startSettingsString = lang.indexOf(' ');
 				if (startSettingsString !== -1) {
-					const settingsString = lang.slice(startSettingsString + 2);
+					const settingsString = lang.slice(startSettingsString + 1);
 					try {
 						settings = JSON.parse(settingsString);
 					} catch (exception) {
@@ -38,11 +38,11 @@ module.exports = function chunkify(markdown) {
 							});
 						} else {
 							node.value = `Settings not parsed! Use single settings modifiers or JSON to pass settings!
-								\`\`\`jsx // static noEditor
+								\`\`\`jsx static noEditor
 									...
 								\`\`\`
 								or 
-								\`\`\`jsx // { "static": true }
+								\`\`\`jsx { "static": true }
 									...
 								\`\`\`
 							`;

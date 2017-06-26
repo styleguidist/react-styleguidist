@@ -22,12 +22,12 @@ If you define a fenced code block with another language it will be rendered as a
 
 If you define a fenced code block with passed 'static' modifier it will be rendered as a regular Markdown code snippet:
 
-```jsx // static
+```jsx static
 import React from 'react';
 ```
 
 You can define a fenced code block with 'noEditor' modifier. It will be rendered without editor
 
-```jsx // noEditor
+```jsx noEditor
 <Button>Push Me</Button>
 ```
