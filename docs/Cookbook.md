@@ -390,6 +390,20 @@ initialState = {
 </div>
 ```
 
+## How to use Vagrant with Styleguidist?
+
+First of all, make sure you read [this guide](https://webpack.js.org/guides/development-vagrant/) from the webpack documentation.
+
+Then enable polling in your webpack config:
+
+```js
+devServer: {
+  watchOptions: {
+    poll: true,
+  },
+},
+```
+
 ## Are there any other projects like this?
 
 * [Atellier](https://github.com/scup/atellier), a React components emulator.
