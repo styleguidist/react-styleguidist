@@ -19,12 +19,13 @@ export default function loadPlugins(plugins, config) {
 	};
 
 	plugins.forEach(({ module, options }) => {
+
 		const func = module.default || module;
 		if (!isFunction(func)) {
 			throw Error('Plugin not a function'); // TODO
 		}
 
-		const plugin = func(config, options);
+		const plugin = func(options, config);
 		// TODO: validate
 
 		if (plugin.fills) {
