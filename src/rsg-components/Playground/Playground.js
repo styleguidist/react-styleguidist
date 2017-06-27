@@ -40,9 +40,10 @@ export default class Playground extends Component {
 		});
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
-		return nextState.code !== this.state.code || nextState.activeTab !== this.state.activeTab;
-	}
+	// TODO: Use isEqual?
+	// shouldComponentUpdate(nextProps, nextState) {
+	// 	return nextState.code !== this.state.code || nextState.activeTab !== this.state.activeTab;
+	// }
 
 	componentWillUnmount() {
 		// Clear pending changes
@@ -65,15 +66,24 @@ export default class Playground extends Component {
 		const { code, activeTab } = this.state;
 		const { evalInContext, index, name } = this.props;
 		const { isolatedExample } = this.context;
+		const slotProps = {
+			name,
+			code,
+			isolated: isolatedExample,
+			example: index,
+			state: this.state,
+			setState: this.setState.bind(this), // TODO: Bind in constructor
+		};
 		return (
 			<PlaygroundRenderer
+				{...this.state}
 				name={name}
 				preview={<Preview code={code} evalInContext={evalInContext} />}
 				tabButtons={
 					<Slot
 						name="exampleTabButton"
 						active={activeTab}
-						props={{ onClick: this.handleTabChange }}
+						props={{ ...slotProps, onClick: this.handleTabChange }}
 					/>
 				}
 				tabBody={
@@ -81,15 +91,10 @@ export default class Playground extends Component {
 						name="exampleTab"
 						active={activeTab}
 						onlyActive
-						props={{ code, onChange: this.handleChange }}
+						props={{ ...slotProps, onChange: this.handleChange }}
 					/>
 				}
-				toolbar={
-					<Slot
-						name="exampleToolbarButton"
-						props={{ name, isolated: isolatedExample, example: index }}
-					/>
-				}
+				toolbar={<Slot name="exampleToolbarButton" props={slotProps} />}
 			/>
 		);
 	}
