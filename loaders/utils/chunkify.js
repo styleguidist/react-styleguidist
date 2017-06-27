@@ -14,16 +14,45 @@ const CODE_PLACEHOLDER = '<%{#code#}%>';
  */
 module.exports = function chunkify(markdown) {
 	const codeChunks = [];
-
+	const codeLanguages = ['javascript', 'js', 'jsx'];
 	/*
-	 * - Highlight code in fenced code blocks with defined language (```html) if the language is not `example`.
-	 * - Extract indented and fenced code blocks without language or if language is `example`.
+	 * - Highlight code in fenced code blocks with defined language (```html).
+	 * - Extract indented and fenced code blocks with lang javascript | js | jsx or if lang is not defined.
 	 * - Leave all other Markdown or HTML as is.
 	 */
 	function processCode() {
 		return ast => {
 			visit(ast, 'code', node => {
-				if (node.lang && node.lang !== 'example') {
+				let lang = node.lang || '';
+				let settings = {};
+				const startSettingsString = lang.indexOf(' ');
+				if (startSettingsString !== -1) {
+					const settingsString = lang.slice(startSettingsString + 1);
+					try {
+						settings = JSON.parse(settingsString);
+					} catch (exception) {
+						const settingsModifiers = settingsString.split(' ');
+						if (settingsModifiers.length > 0) {
+							settingsModifiers.forEach(modifier => {
+								settings[modifier] = true;
+							});
+						} else {
+							node.value = `Settings not parsed! Use single settings modifiers or JSON to pass settings!
+								\`\`\`jsx static noEditor
+									...
+								\`\`\`
+								or 
+								\`\`\`jsx { "static": true }
+									...
+								\`\`\`
+							`;
+						}
+					}
+				}
+
+				lang = lang.slice(0, lang.indexOf(' ') !== -1 ? lang.indexOf(' ') : lang.length);
+				node.lang = lang;
+				if (lang && (codeLanguages.indexOf(lang) === -1 || (settings && settings.static))) {
 					let highlighted;
 					try {
 						highlighted = hljs.highlight(node.lang, node.value).value;
@@ -32,7 +61,11 @@ module.exports = function chunkify(markdown) {
 					}
 					node.value = highlighted;
 				} else {
-					codeChunks.push(node.value);
+					codeChunks.push({
+						type: 'code',
+						content: node.value,
+						settings,
+					});
 					node.type = 'html';
 					node.value = CODE_PLACEHOLDER;
 				}
@@ -54,10 +87,7 @@ module.exports = function chunkify(markdown) {
 		}
 		const code = codeChunks.shift();
 		if (code) {
-			chunks.push({
-				type: 'code',
-				content: code,
-			});
+			chunks.push(code);
 		}
 	});
 
