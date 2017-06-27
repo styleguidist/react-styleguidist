@@ -8,6 +8,7 @@ const removeDoclets = require('./removeDoclets');
 const requireIt = require('./requireIt');
 const doctrine = require('doctrine');
 const _ = require('lodash');
+const logger = require('glogg')('rsg');
 
 const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
 
@@ -23,14 +24,12 @@ const getDoctrineTags = documentation => {
 	return _.groupBy(documentation.tags, 'title');
 };
 
-const doesExampleFileExist = (basepath, exampleFile) => {
-	const exampleFilepath = path.resolve(path.dirname(basepath), exampleFile);
+const doesExternalExampleFileExist = (componentPath, exampleFile) => {
+	const exampleFilepath = path.resolve(path.dirname(componentPath), exampleFile);
 	const doesFileExist = fs.existsSync(exampleFilepath);
 
-	// Only warn when all conditions are met but file still isn't found
 	if (!doesFileExist) {
-		// eslint-disable-next-line no-console
-		console.warn(`An example file ${exampleFile} defined in ${basepath} component not found.`);
+		logger.warn(`An example file ${exampleFile} defined in ${componentPath} component not found.`);
 	}
 	return doesFileExist;
 };
@@ -73,7 +72,7 @@ module.exports = function getProps(doc, filepath) {
 		// doc.doclets.example might be a boolean or undefined
 		if (typeof doc.doclets.example === 'string') {
 			exampleFile = doc.doclets.example.trim();
-			exampleFileExists = doesExampleFileExist(filepath, exampleFile);
+			exampleFileExists = doesExternalExampleFileExist(filepath, exampleFile);
 		}
 
 		if (exampleFileExists) {

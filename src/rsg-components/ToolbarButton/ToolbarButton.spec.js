@@ -29,7 +29,7 @@ it('should pass a class name to a button', () => {
 		</ToolbarButtonRenderer>
 	);
 
-	expect(actual).toMatchSnapshot();
+	expect(actual.prop('className')).toBe('button foo-class');
 });
 
 it('should pass a class name to a link', () => {
@@ -39,5 +39,13 @@ it('should pass a class name to a link', () => {
 		</ToolbarButtonRenderer>
 	);
 
-	expect(actual).toMatchSnapshot();
+	expect(actual.prop('className')).toBe('button foo-class');
+});
+
+it('should render a button with small styles', () => {
+	const actual = shallow(
+		<ToolbarButtonRenderer {...props} onClick={() => {}} small>butterbrot</ToolbarButtonRenderer>
+	);
+
+	expect(actual.prop('className')).toBe('button isSmall');
 });

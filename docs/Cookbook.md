@@ -82,12 +82,8 @@ To use Redux store in every component redefine the `Wrapper` component:
 // styleguide.config.js
 const path = require('path');
 module.exports = {
-  webpackConfig: {
-    resolve: {
-      alias: {
-        'rsg-components/Wrapper': path.join(__dirname, 'lib/styleguide/Wrapper')
-      }
-    }
+  styleguideComponents: {
+    Wrapper: path.join(__dirname, 'lib/styleguide/Wrapper')
   }
 };
 ```
@@ -261,12 +257,8 @@ For example you can replace the `Wrapper` component to wrap any example in the [
 // styleguide.config.js
 const path = require('path');
 module.exports = {
-  webpackConfig: {
-    resolve: {
-      alias: {
-        'rsg-components/Wrapper': path.join(__dirname, 'lib/styleguide/Wrapper')
-      }
-    }
+  styleguideComponents: {
+    Wrapper: path.join(__dirname, 'lib/styleguide/Wrapper')
   }
 };
 ```
@@ -292,12 +284,8 @@ You can replace the `StyleGuideRenderer` component like this:
 // styleguide.config.js
 const path = require('path');
 module.exports = {
-  webpackConfig: {
-    resolve: {
-      alias: {
-        'rsg-components/StyleGuide/StyleGuideRenderer': path.join(__dirname, 'lib/styleguide/StyleGuideRenderer')
-      }
-    }
+  styleguideComponents: {
+    StyleGuideRenderer: path.join(__dirname, 'lib/styleguide/StyleGuideRenderer')
   }
 };
 ```
@@ -400,6 +388,20 @@ initialState = {
   {/* But this will render "active" as expected: */}
   {state.activeItemByPrimitive === items[0].id ? 'active' : 'not active'}
 </div>
+```
+
+## How to use Vagrant with Styleguidist?
+
+First of all, make sure you read [this guide](https://webpack.js.org/guides/development-vagrant/) from the webpack documentation.
+
+Then enable polling in your webpack config:
+
+```js
+devServer: {
+  watchOptions: {
+    poll: true,
+  },
+},
 ```
 
 ## Are there any other projects like this?

@@ -191,9 +191,9 @@ exports[`ReactComponentRenderer should render component 1`] = `
     <div>
       heading
     </div>
-    <div>
+    <Styled(Pathline)>
       components/test
-    </div>
+    </Styled(Pathline)>
   </header>
 </div>
 `;
@@ -206,9 +206,9 @@ exports[`ReactComponentRenderer should render description 1`] = `
     <div>
       heading
     </div>
-    <div>
+    <Styled(Pathline)>
       components/test
-    </div>
+    </Styled(Pathline)>
   </header>
   <div>
     <div>
@@ -226,9 +226,9 @@ exports[`ReactComponentRenderer should render docs 1`] = `
     <div>
       heading
     </div>
-    <div>
+    <Styled(Pathline)>
       components/test
-    </div>
+    </Styled(Pathline)>
   </header>
   <div>
     <div>
@@ -246,9 +246,9 @@ exports[`ReactComponentRenderer should render examples 1`] = `
     <div>
       heading
     </div>
-    <div>
+    <Styled(Pathline)>
       components/test
-    </div>
+    </Styled(Pathline)>
   </header>
   <div>
     example 1
@@ -267,9 +267,9 @@ exports[`ReactComponentRenderer should render usage section 1`] = `
     <div>
       heading
     </div>
-    <div>
+    <Styled(Pathline)>
       components/test
-    </div>
+    </Styled(Pathline)>
   </header>
   <div>
     <div>

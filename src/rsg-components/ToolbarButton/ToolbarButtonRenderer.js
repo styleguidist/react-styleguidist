@@ -28,12 +28,29 @@ export const styles = ({ space, color }) => ({
 			width: space[3],
 			height: space[3],
 			color: 'currentColor',
+			cursor: 'inherit',
+		},
+	},
+	isSmall: {
+		'& svg': {
+			width: 14,
+			height: 14,
 		},
 	},
 });
 
-export function ToolbarButtonRenderer({ classes, className, onClick, href, title, children }) {
-	const classNames = cx(classes.button, className);
+export function ToolbarButtonRenderer({
+	classes,
+	className,
+	onClick,
+	href,
+	title,
+	small,
+	children,
+}) {
+	const classNames = cx(classes.button, className, {
+		[classes.isSmall]: small,
+	});
 
 	if (href !== undefined) {
 		return (
@@ -56,6 +73,7 @@ ToolbarButtonRenderer.propTypes = {
 	href: PropTypes.string,
 	onClick: PropTypes.func,
 	title: PropTypes.string,
+	small: PropTypes.bool,
 	children: PropTypes.node,
 };
 

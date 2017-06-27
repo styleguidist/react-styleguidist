@@ -1,7 +1,5 @@
 'use strict';
 
-/* eslint-disable no-console */
-
 const fs = require('fs');
 const path = require('path');
 const isDirectory = require('is-directory');
@@ -17,6 +15,7 @@ const chalk = require('chalk');
 const leven = require('leven');
 const prettyFormat = require('pretty-format');
 const typeDetect = require('type-detect');
+const logger = require('glogg')('rsg');
 const StyleguidistError = require('./error');
 
 const format = value => prettyFormat(value, { min: true });
@@ -91,8 +90,7 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 				throw new StyleguidistError(message);
 			}
 		} else if (props.deprecated) {
-			console.warn(`${chalk.bold(key)} config option is deprecated. ${props.deprecated}`);
-			console.log();
+			logger.warn(`${chalk.bold(key)} config option is deprecated. ${props.deprecated}`);
 		} else if (props.removed) {
 			throw new StyleguidistError(`${chalk.bold(key)} config option was removed. ${props.removed}`);
 		}

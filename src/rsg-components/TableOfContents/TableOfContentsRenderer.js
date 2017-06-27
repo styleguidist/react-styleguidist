@@ -26,6 +26,7 @@ const styles = ({ space, color, fontFamily, fontSize, borderRadius }) => ({
 			outline: 0,
 		},
 		'&::placeholder': {
+			isolate: false,
 			fontFamily: fontFamily.base,
 			fontSize: fontSize.base,
 			color: color.light,

@@ -2,11 +2,12 @@
 
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
+const merge = require('webpack-merge');
 const makeWebpackConfig = require('./make-webpack-config');
 
 module.exports = function createServer(config, env) {
 	const webpackConfig = makeWebpackConfig(config, env);
-	const webpackDevServerConfig = Object.assign({}, webpackConfig.devServer, {
+	const webpackDevServerConfig = merge(webpackConfig.devServer, {
 		noInfo: true,
 		compress: true,
 		clientLogLevel: 'none',
