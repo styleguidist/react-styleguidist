@@ -12,7 +12,9 @@ export default class Playground extends Component {
 		evalInContext: PropTypes.func.isRequired,
 		index: PropTypes.number.isRequired,
 		name: PropTypes.string.isRequired,
+		settings: PropTypes.object,
 	};
+
 	static contextTypes = {
 		config: PropTypes.object.isRequired,
 		isolatedExample: PropTypes.bool,
@@ -21,8 +23,11 @@ export default class Playground extends Component {
 	constructor(props, context) {
 		super(props, context);
 		const { code } = props;
-		const { previewDelay, showCode } = context.config;
-
+		const { previewDelay } = context.config;
+		let { showCode } = this.context;
+		if (props.settings && typeof props.settings.showCode === 'boolean') {
+			showCode = props.settings.showCode;
+		}
 		this.handleChange = this.handleChange.bind(this);
 		this.handleTabChange = this.handleTabChange.bind(this);
 		this.handleChange = debounce(this.handleChange, previewDelay);
@@ -65,6 +70,14 @@ export default class Playground extends Component {
 		const { code, activeTab } = this.state;
 		const { evalInContext, index, name } = this.props;
 		const { isolatedExample } = this.context;
+		if (this.props.settings && this.props.settings.noEditor) {
+			return (
+				<PlaygroundRenderer
+					name={name}
+					preview={<Preview code={code} evalInContext={evalInContext} />}
+				/>
+			);
+		}
 		return (
 			<PlaygroundRenderer
 				name={name}

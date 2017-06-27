@@ -84,6 +84,56 @@ it('should open a code editor', () => {
 	expect(actual.find('.ReactCodeMirror')).toHaveLength(1);
 });
 
+it('should not render a code editor if noEditor option passed in example settings', () => {
+	const actual = mount(
+		<Playground
+			code={code}
+			evalInContext={a => () => a}
+			name="name"
+			index={0}
+			settings={{ noEditor: true }}
+		/>,
+		options
+	);
+	expect(actual.find(`button[name="${EXAMPLE_TAB_CODE_EDITOR}"]`)).toHaveLength(0);
+});
+
+it('should render a code editor opened by default if showCode:true option passed in example settings', () => {
+	const actual = mount(
+		<Playground
+			code={code}
+			evalInContext={a => () => a}
+			name="name"
+			index={0}
+			settings={{ showCode: true }}
+		/>,
+		options
+	);
+	expect(actual.find('.ReactCodeMirror')).toHaveLength(1);
+});
+
+it('should render a code editor closed by default if showCode:false option passed in example settings', () => {
+	const actual = mount(
+		<Playground
+			code={code}
+			evalInContext={a => () => a}
+			name="name"
+			index={0}
+			settings={{ showCode: false }}
+		/>,
+		{
+			context: {
+				...options.context,
+				config: {
+					...options.context.config,
+					showCode: true,
+				},
+			},
+		}
+	);
+	expect(actual.find('.ReactCodeMirror')).toHaveLength(0);
+});
+
 it('renderer should render preview', () => {
 	const actual = shallow(
 		<PlaygroundRenderer
