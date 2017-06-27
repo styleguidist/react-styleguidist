@@ -105,13 +105,13 @@ module.exports = {
 		default: 'base16-light',
 	},
 	plugins: {
-		type: 'object',
-		default: {},
+		type: 'array',
+		default: [],
 		process: val =>
 			CORE_PLUGINS.reduce((allPlugins, plugin) => {
-				allPlugins[plugin] = true;
+				allPlugins.push(plugin);
 				return allPlugins;
-			}, val || {}),
+			}, val || []),
 	},
 	previewDelay: {
 		type: 'number',
