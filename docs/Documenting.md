@@ -239,3 +239,7 @@ class SortTable extends React.Component {
 ```
 
 > **Note:** If you need a more complex demo it’s often a good idea to define it in a separate JavaScript file and `require` it in Markdown
+
+## Limitations
+
+In some cases Styleguidist may not understand your components, [see possible solutions](Thirdparties.md).

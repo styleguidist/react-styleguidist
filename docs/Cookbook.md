@@ -1,9 +1,5 @@
 # Cookbook
 
-## How to reuse project’s webpack config?
-
-See in [configuring webpack](Webpack.md#reusing-your-projects-webpack-config).
-
 ## How to use `ref`s in examples?
 
 Use `ref` prop as a function and assign a reference to a local variable:
@@ -58,113 +54,6 @@ module.exports = {
 };
 ```
 
-## How to connect Redux store?
-
-To use Redux store with one component require it from your example:
-
-```jsx
-const { Provider } = require('react-redux');
-const configureStore = require('../utils/configureStore').default;
-const initialState = {
-  app: {
-    name: 'Pizza Delivery'
-  }
-};
-const store = configureStore({ initialState });
-<Provider store={store}>
-  <App greeting="Choose your pizza!"/>
-</Provider>
-```
-
-To use Redux store in every component redefine the `Wrapper` component:
-
-```javascript
-// styleguide.config.js
-const path = require('path');
-module.exports = {
-  styleguideComponents: {
-    Wrapper: path.join(__dirname, 'lib/styleguide/Wrapper')
-  }
-};
-```
-
-```jsx
-// lib/styleguide/Wrapper.js
-import React, { Component } from 'react';
-const { Provider } = require('react-redux');
-const configureStore = require('../utils/configureStore').default;
-const initialState = {
-  app: {
-    name: 'Pizza Delivery'
-  }
-};
-const store = configureStore({ initialState });
-export default class Wrapper extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        {this.props.children}
-      </Provider>
-    );
-  }
-}
-```
-
-## How to write examples for Relay components?
-
-@mikberg wrote a [fantastic blog post](https://medium.com/@mikaelberg/writing-simple-unit-tests-with-relay-707f19e90129) on this topic. Here’s what to do:
-
-### 1. Mock out Relay
-
-You’ll need the content from [this Gist](https://gist.github.com/mikberg/07b4006e22aacf31ffe6) for your mocked-out Relay replacement.
-
-```js
-// styleguide.config.js
-const path = require('path')
-const webpackConfig = require('./webpack.config')
-webpackConfig.resolve.alias['react-relay'] = 'lib/styleguide/FakeRelay'
-webpackConfig.resolve.alias['real-react-relay'] = path.join(__dirname, '/node_modules/react-relay/')
-
-module.exports = {
-  // ...
-  webpackConfig
-}
-```
-
-```js
-// lib/styleguide/FakeRelay.js
-import Relay from 'real-react-relay'
-// Content too long to paste here; see https://gist.github.com/mikberg/07b4006e22aacf31ffe6
-```
-
-### 2. Provide sample data to your React components
-
-You’ll probably want to massage actual results from your GraphQL backend, and make it available to the examples:
-
-```js
-// styleguide.config.js
-module.exports = {
-  // ...
-  context: {
-    sample: 'lib/styleguide/sample_data'
-  }
-}
-```
-
-```js
-// lib/styleguide/sample_data.js
-module.exports = {
-  object: {
-    // something similar to your GraphQL results
-  }
-}
-```
-
-```jsx
-// src/MyComponent/index.md
-<MyComponent object={sample.object} />
-```
-
 ## How to use React Styleguidist with Preact?
 
 You need to alias `react` and `react-dom` to `preact-compat`:
@@ -174,7 +63,7 @@ module.exports = {
   webpackConfig: {
     resolve: {
       alias: {
-        react: 'preact-compat',
+        'react': 'preact-compat',
         'react-dom': 'preact-compat',
       }
     }
@@ -183,33 +72,6 @@ module.exports = {
 ```
 
 See the [Preact example style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/preact).
-
-## How to use React Styleguidist with styled-components?
-
-The [recommended way](https://github.com/styleguidist/react-styleguidist/issues/37#issuecomment-263502454) of using [styled-components](https://styled-components.com/) is like this:
-
-```jsx
-import React, { Component } from 'react';
-import styled from 'styled-components';
-
-const SalmonButton = styled.button`
-  background-color: salmon;
-  border: 1px solid indianred;
-  color: snow;
-`;
-
-class Button extends Component {
-  render() {
-    return <SalmonButton>{this.props.children}</SalmonButton>;
-  }
-}
-
-export default Button;
-```
-
-You may need an appropriate webpack loader to handle these files.
-
-> **Note:** To change style guide styles use `theme` and `styles` options (see the next question).
 
 ## How to change styles of a style guide?
 
@@ -392,17 +254,23 @@ initialState = {
 
 ## How to use Vagrant with Styleguidist?
 
-First of all, make sure you read [this guide](https://webpack.js.org/guides/development-vagrant/) from the webpack documentation.
-
-Then enable polling in your webpack config:
+First read [Vagrant guide](https://webpack.js.org/guides/development-vagrant/) from the webpack documentation. Then enable polling in your webpack config:
 
 ```js
 devServer: {
   watchOptions: {
-    poll: true,
-  },
-},
+    poll: true
+  }
+}
 ```
+
+## How to reuse project’s webpack config?
+
+See in [configuring webpack](Webpack.md#reusing-your-projects-webpack-config).
+
+## How to use React Styleguidist with Redux, Relay or Styled Components?
+
+See [working with third-party libraries](Thirdparties.md).
 
 ## Are there any other projects like this?
 
