@@ -92,11 +92,7 @@ export default class Wrapper extends Component {
 
 ### Relay
 
-Based on @mikberg’s [blog post](https://medium.com/@mikaelberg/writing-simple-unit-tests-with-relay-707f19e90129).
-
-#### 1. Mock out Relay
-
-You’ll need the content from [this Gist](https://gist.github.com/mikberg/07b4006e22aacf31ffe6) for your mocked-out Relay replacement.
+**First, mock out Relay.** You’ll need the content from [this Gist](https://gist.github.com/mikberg/07b4006e22aacf31ffe6) for your mocked-out Relay replacement.
 
 ```js
 // styleguide.config.js
@@ -120,9 +116,7 @@ import Relay from 'real-react-relay';
 // Copy contents from https://gist.github.com/mikberg/07b4006e22aacf31ffe6
 ```
 
-#### 2. Provide sample data to your React components
-
-You’ll probably want to massage actual results from your GraphQL backend, and make it available to the examples:
+**Second, provide sample data to your React components** to be able to message actual results from your GraphQL backend:
 
 ```js
 // styleguide.config.js
@@ -148,7 +142,10 @@ module.exports = {
 <MyComponent object={sample.object} />
 ```
 
-## How to use React Styleguidist with Styled Components?
+*Based on @mikberg’s [blog post](https://medium.com/@mikaelberg/writing-simple-unit-tests-with-relay-707f19e90129).*
+
+
+### Styled Components
 
 The [recommended way](https://github.com/styleguidist/react-styleguidist/issues/37#issuecomment-263502454) of using [Styled Components](https://styled-components.com/) is like this:
 
