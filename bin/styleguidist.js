@@ -15,6 +15,27 @@ const StyleguidistError = require('../scripts/utils/error');
 const argv = minimist(process.argv.slice(2));
 const command = argv._[0];
 
+// Do not show nasty stack traces for Styleguidist errors
+process.on('uncaughtException', err => {
+	if (err.code === 'EADDRINUSE') {
+		printErrorWithLink(
+			`You have another server running at port ${config.serverPort} somewhere, shut it down first`,
+			'You can change the port using the `serverPort` option in your style guide config:',
+			consts.DOCS_CONFIG
+		);
+	} else if (err instanceof StyleguidistError) {
+		console.error(chalk.bold.red(err.message));
+		logger.debug(err.stack);
+		process.exit(1);
+	} else {
+		throw err;
+	}
+	process.exit(1);
+});
+
+// Make sure user has webpack installed
+require('../scripts/utils/ensureWebpack');
+
 // Set environment before loading style guide config because user’s webpack config may use it
 const env = command === 'build' ? 'production' : 'development';
 process.env.NODE_ENV = env;
@@ -80,20 +101,6 @@ function commandBuild() {
 }
 
 function commandServer() {
-	process.on('uncaughtException', err => {
-		if (err.code === 'EADDRINUSE') {
-			printErrorWithLink(
-				`You have another server running at port ${config.serverPort} somewhere, shut it down first`,
-				'You can change the port using the `serverPort` option in your style guide config:',
-				consts.DOCS_CONFIG
-			);
-		} else {
-			console.error(chalk.bold.red(err.message));
-			logger.debug(err.stack);
-		}
-		process.exit(1);
-	});
-
 	const server = require('../scripts/server');
 	const compiler = server(config, err => {
 		if (err) {

@@ -1,5 +1,8 @@
 'use strict';
 
+// Make sure user has webpack installed
+require('./utils/ensureWebpack');
+
 const build = require('./build');
 const server = require('./server');
 const makeWebpackConfig = require('./make-webpack-config');

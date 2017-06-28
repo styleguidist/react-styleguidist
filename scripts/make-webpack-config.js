@@ -6,7 +6,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const forEach = require('lodash/forEach');
-const logger = require('glogg')('rsg');
 const hasJsonLoader = require('./utils/hasJsonLoader');
 const getWebpackVersion = require('./utils/getWebpackVersion');
 const mergeWebpackConfig = require('./utils/mergeWebpackConfig');
@@ -20,12 +19,6 @@ const htmlLoader = require.resolve('html-webpack-plugin/lib/loader');
 
 module.exports = function(config, env) {
 	process.env.NODE_ENV = process.env.NODE_ENV || env;
-
-	if (isWebpack1) {
-		logger.warn(
-			'Support for webpack 1 will be removed in the next major version of React Styleguidist.'
-		);
-	}
 
 	const isProd = env === 'production';
 
