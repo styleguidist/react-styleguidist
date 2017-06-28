@@ -18,11 +18,11 @@ npm install --save-dev react-styleguidist
 
 Add these scripts to your `package.json`:
 
-```json
+```diff
 {
   "scripts": {
-    "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build"
++    "styleguide": "styleguidist server",
++    "styleguide:build": "styleguidist build"
   }
 }
 ```
