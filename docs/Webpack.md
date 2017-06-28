@@ -2,7 +2,7 @@
 
 Styleguidist uses [webpack](https://webpack.js.org/) under the hood and it needs to know how to load your project’s files.
 
-*Webpack is a peer dependency but your project doesn’t have to use it. React Styleguidist works with webpack 1 and webpack 2.*
+*Webpack is required to run Styleguidist but your project doesn’t have to use it.*
 
 > **Note:** See [cookbook](Cookbook.md) for more examples.
 
@@ -25,7 +25,7 @@ module.exports = {
   webpackConfig: Object.assign({},
     require('./configs/webpack.js'),
     {
-        /* Custom config options */
+      /* Custom config options */
     }
   )
 };
