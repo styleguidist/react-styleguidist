@@ -19,7 +19,6 @@ export default function loadPlugins(plugins, config) {
 	};
 
 	plugins.forEach(({ module, options }) => {
-
 		const func = module.default || module;
 		if (!isFunction(func)) {
 			throw Error('Plugin not a function'); // TODO

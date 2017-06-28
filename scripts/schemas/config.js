@@ -112,12 +112,8 @@ module.exports = {
 	plugins: {
 		type: 'array',
 		default: [],
-		process: val =>
-			CORE_PLUGINS.reduce((allPlugins, plugin) => {
-				allPlugins.push(plugin);
-				return allPlugins;
-			}, val || []),
-  },
+		process: val => (val || []).concat(CORE_PLUGINS),
+	},
 	previewDelay: {
 		type: 'number',
 		default: 500,

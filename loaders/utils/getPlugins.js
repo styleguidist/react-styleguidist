@@ -11,8 +11,10 @@ const requireIt = require('./requireIt');
  */
 module.exports = function getPlugins(plugins) {
 	return map(plugins, module => {
-		const path = typeof module === 'string' ? module : module[0];
-		const options = typeof module === 'string' ? {} : module[1];
+		// './plugin/test' vs [ './plugin/test', { options } ]
+		const moduleIsString = typeof module === 'string';
+		const path = moduleIsString ? module : module[0];
+		const options = moduleIsString ? {} : module[1];
 		return {
 			module: requireIt(path),
 			options,

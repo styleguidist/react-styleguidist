@@ -31,6 +31,7 @@ exports[`renderer should render preview 1`] = `
 
 exports[`should render component renderer 1`] = `
 <Styled(Playground)
+  code="<button>OK</button>"
   name="name"
   preview={
     <Preview
@@ -45,7 +46,15 @@ exports[`should render component renderer 1`] = `
       props={
         Object {
           "code": "<button>OK</button>",
+          "example": 0,
+          "isolated": undefined,
+          "name": "name",
           "onChange": [Function],
+          "setState": [Function],
+          "state": Object {
+            "activeTab": undefined,
+            "code": "<button>OK</button>",
+          },
         }
       }
     />
@@ -55,7 +64,16 @@ exports[`should render component renderer 1`] = `
       name="exampleTabButton"
       props={
         Object {
+          "code": "<button>OK</button>",
+          "example": 0,
+          "isolated": undefined,
+          "name": "name",
           "onClick": [Function],
+          "setState": [Function],
+          "state": Object {
+            "activeTab": undefined,
+            "code": "<button>OK</button>",
+          },
         }
       }
     />
@@ -65,9 +83,15 @@ exports[`should render component renderer 1`] = `
       name="exampleToolbarButton"
       props={
         Object {
+          "code": "<button>OK</button>",
           "example": 0,
           "isolated": undefined,
           "name": "name",
+          "setState": [Function],
+          "state": Object {
+            "activeTab": undefined,
+            "code": "<button>OK</button>",
+          },
         }
       }
     />
