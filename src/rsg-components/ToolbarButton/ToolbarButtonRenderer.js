@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 import cx from 'classnames';
 
-export const styles = ({ space, color }) => ({
+export const styles = ({ space, color, fontFamily }) => ({
 	button: {
 		padding: 2, // Increase clickable area a bit
 		color: color.light,
 		background: 'transparent',
 		transition: 'color 750ms ease-out',
 		cursor: 'pointer',
+		fontFamily: fontFamily.base,
 		'&:hover, &:focus': {
 			isolate: false,
 			color: color.linkHover,
@@ -29,6 +30,8 @@ export const styles = ({ space, color }) => ({
 			height: space[3],
 			color: 'currentColor',
 			cursor: 'inherit',
+			position: 'relative',
+			top: -2,
 		},
 	},
 	isSmall: {
