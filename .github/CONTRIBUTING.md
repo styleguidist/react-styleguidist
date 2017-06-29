@@ -36,6 +36,18 @@ Or run tests in watch mode:
 npm run test:watch
 ```
 
+To update the jest tests:
+
+```bash
+jest -u
+```
+
+Or if that doesn't work, try:
+
+```bash
+./node_modules/.bin/jest -u
+```
+
 **Don’t forget to add tests and update documentation for your changes.**
 
 **Please update npm lock file (`package-lock.json`) if you add new dependencies.**
