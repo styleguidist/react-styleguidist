@@ -36,7 +36,7 @@ Or run tests in watch mode:
 npm run test:watch
 ```
 
-To update the Jest tests:
+To update the Jest snapshots:
 
 ```bash
 npm run test:jest -- -u
