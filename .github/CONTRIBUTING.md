@@ -36,16 +36,10 @@ Or run tests in watch mode:
 npm run test:watch
 ```
 
-To update the jest tests:
+To update the Jest tests:
 
 ```bash
-jest -u
-```
-
-Or if that doesn't work, try:
-
-```bash
-./node_modules/.bin/jest -u
+npm run test:jest -- -u
 ```
 
 **Don’t forget to add tests and update documentation for your changes.**

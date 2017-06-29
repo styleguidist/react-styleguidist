@@ -64,7 +64,7 @@ The change log can be found on the [Releases page](https://github.com/styleguidi
 
 ## Contributing
 
-Everyone is welcome to contribute. Please take a moment to review the [contributing guidelines](Contributing.md).
+Everyone is welcome to contribute. Please take a moment to review the [contributing guidelines](.github/Contributing.md).
 
 ## Authors and license
 
