@@ -1,9 +1,13 @@
 'use strict';
 
+// Make sure user has webpack installed
+require('./utils/ensureWebpack');
+
 const build = require('./build');
 const server = require('./server');
 const makeWebpackConfig = require('./make-webpack-config');
 const getConfig = require('./config');
+const setupLogger = require('./logger');
 
 /**
  * Initialize Styleguide API.
@@ -13,6 +17,7 @@ const getConfig = require('./config');
  */
 module.exports = function(config) {
 	config = getConfig(config);
+	setupLogger(config.logger, config.verbose, {});
 
 	return {
 		/**

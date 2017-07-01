@@ -17,7 +17,7 @@ const examples = [
 it('should render examples', () => {
 	const actual = shallow(<Examples examples={examples} name="button" />, {
 		context: {
-			codeKey: 1,
+			codeRevision: 1,
 			isolatedExample: false,
 		},
 	});
@@ -35,7 +35,7 @@ it('should not render a example with unknown type', () => {
 
 	const actual = mount(<Examples examples={faultyExample} name="button" />, {
 		context: {
-			codeKey: 1,
+			codeRevision: 1,
 		},
 	});
 	const article = actual.find('article');

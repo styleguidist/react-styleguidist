@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render a table 1`] = `
+<table
+  className="table"
+>
+  <thead
+    className="tableHead"
+  >
+    <tr>
+      <th
+        className="cellHeading"
+      >
+        Name
+      </th>
+      <th
+        className="cellHeading"
+      >
+        Type
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td
+        className="cell"
+      >
+        <span>
+          name: 
+          Quattro formaggi
+        </span>
+      </td>
+      <td
+        className="cell"
+      >
+        <span>
+          type: 
+          pizza
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="cell"
+      >
+        <span>
+          name: 
+          Tiramisu
+        </span>
+      </td>
+      <td
+        className="cell"
+      >
+        <span>
+          type: 
+          desert
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="cell"
+      >
+        <span>
+          name: 
+          Unicorn
+        </span>
+      </td>
+      <td
+        className="cell"
+      >
+        <span>
+          type: 
+          animal
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

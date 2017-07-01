@@ -1,37 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render JsDoc tags 1`] = `
-<table>
-  <thead>
-    <tr>
-      <th>
-        Name
-      </th>
-      <th>
-        Parameters
-      </th>
-      <th
-        className=""
+exports[`MethodsRenderer should render a table 1`] = `
+<Styled(Table)
+  columns={
+    Array [
+      Object {
+        "caption": "Method name",
+        "render": [Function],
+      },
+      Object {
+        "caption": "Parameters",
+        "render": [Function],
+      },
+      Object {
+        "caption": "Description",
+        "render": [Function],
+      },
+    ]
+  }
+  getRowKey={[Function]}
+  rows={
+    Array [
+      Object {
+        "description": "Public",
+        "modifiers": Array [],
+        "name": "method",
+        "params": Array [],
+      },
+    ]
+  }
+/>
+`;
+
+exports[`PropsRenderer should render JsDoc tags 1`] = `
+<ul>
+  <li>
+    <div>
+      <Styled(Name)
+        deprecated={false}
       >
-        Description
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <_class
-          name="Foo()"
-        />
-      </td>
-      <td>
-        <_class
-          args={Array []}
-        />
-      </td>
-      <td
-        className=""
-      >
+        Foo()
+      </Styled(Name)>
+    </div>
+    <div>
+      <Styled(Arguments)
+        args={Array []}
+      />
+    </div>
+    <div>
+      <div>
         <JsDoc
           since={
             Array [
@@ -42,52 +59,29 @@ exports[`should render JsDoc tags 1`] = `
             ]
           }
         />
-      </td>
-    </tr>
-  </tbody>
-</table>
+      </div>
+    </div>
+  </li>
+</ul>
 `;
 
-exports[`should render deprecated JsDoc tags 1`] = `
-<table>
-  <thead>
-    <tr>
-      <th>
-        Name
-      </th>
-      <th>
-        Parameters
-      </th>
-      <th
-        className=""
+exports[`PropsRenderer should render deprecated JsDoc tags 1`] = `
+<ul>
+  <li>
+    <div>
+      <Styled(Name)
+        deprecated={true}
       >
-        Description
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <_class
-          deprecated={
-            Array [
-              Object {
-                "description": "Use *another* method",
-                "title": "description",
-              },
-            ]
-          }
-          name="Foo()"
-        />
-      </td>
-      <td>
-        <_class
-          args={Array []}
-        />
-      </td>
-      <td
-        className=""
-      >
+        Foo()
+      </Styled(Name)>
+    </div>
+    <div>
+      <Styled(Arguments)
+        args={Array []}
+      />
+    </div>
+    <div>
+      <div>
         <JsDoc
           deprecated={
             Array [
@@ -98,140 +92,96 @@ exports[`should render deprecated JsDoc tags 1`] = `
             ]
           }
         />
-      </td>
-    </tr>
-  </tbody>
-</table>
+      </div>
+    </div>
+  </li>
+</ul>
 `;
 
-exports[`should render parameters 1`] = `
-<table>
-  <thead>
-    <tr>
-      <th>
-        Name
-      </th>
-      <th>
-        Parameters
-      </th>
-      <th
-        className=""
+exports[`PropsRenderer should render parameters 1`] = `
+<ul>
+  <li>
+    <div>
+      <Styled(Name)
+        deprecated={false}
       >
-        Description
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <_class
-          name="method()"
-        />
-      </td>
-      <td>
-        <_class
-          args={
-            Array [
-              Object {
-                "description": "Description",
-                "name": "value",
-                "optional": undefined,
-                "type": Object {
-                  "name": "Number",
-                },
+        method()
+      </Styled(Name)>
+    </div>
+    <div>
+      <Styled(Arguments)
+        args={
+          Array [
+            Object {
+              "description": "Description",
+              "name": "value",
+              "optional": undefined,
+              "type": Object {
+                "name": "Number",
               },
-            ]
-          }
-        />
-      </td>
-      <td
-        className=""
-      >
-        <_class
+            },
+          ]
+        }
+      />
+    </div>
+    <div>
+      <div>
+        <Styled(Markdown)
           text="Public"
         />
         <JsDoc />
-      </td>
-    </tr>
-  </tbody>
-</table>
+      </div>
+    </div>
+  </li>
+</ul>
 `;
 
-exports[`should render public method 1`] = `
-<table>
-  <thead>
-    <tr>
-      <th>
-        Name
-      </th>
-      <th>
-        Parameters
-      </th>
-      <th
-        className=""
+exports[`PropsRenderer should render public method 1`] = `
+<ul>
+  <li>
+    <div>
+      <Styled(Name)
+        deprecated={false}
       >
-        Description
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <_class
-          name="method()"
-        />
-      </td>
-      <td>
-        <_class
-          args={Array []}
-        />
-      </td>
-      <td
-        className=""
-      >
-        <_class
+        method()
+      </Styled(Name)>
+    </div>
+    <div>
+      <Styled(Arguments)
+        args={Array []}
+      />
+    </div>
+    <div>
+      <div>
+        <Styled(Markdown)
           text="Public"
         />
         <JsDoc />
-      </td>
-    </tr>
-  </tbody>
-</table>
+      </div>
+    </div>
+  </li>
+</ul>
 `;
 
-exports[`should render returns 1`] = `
-<table>
-  <thead>
-    <tr>
-      <th>
-        Name
-      </th>
-      <th>
-        Parameters
-      </th>
-      <th
-        className=""
+exports[`PropsRenderer should render returns 1`] = `
+<ul>
+  <li>
+    <div>
+      <Styled(Name)
+        deprecated={false}
       >
-        Description
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <_class
-          name="method()"
-        />
-      </td>
-      <td>
-        <_class
-          args={Array []}
-        />
-      </td>
-      <td
-        className=""
-      >
-        <_class
+        method()
+      </Styled(Name)>
+    </div>
+    <div>
+      <Styled(Arguments)
+        args={Array []}
+      />
+    </div>
+    <div>
+      <div>
+        <Styled(Argument)
+          block={true}
           description="Description"
           returns={true}
           type={
@@ -241,8 +191,8 @@ exports[`should render returns 1`] = `
           }
         />
         <JsDoc />
-      </td>
-    </tr>
-  </tbody>
-</table>
+      </div>
+    </div>
+  </li>
+</ul>
 `;

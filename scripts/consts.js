@@ -7,4 +7,5 @@ module.exports = {
 	DOCS_COMPONENTS: 'https://react-styleguidist.js.org/docs/components.html',
 	DOCS_WEBPACK: 'https://react-styleguidist.js.org/docs/webpack.html',
 	DOCS_DOCUMENTING: 'https://react-styleguidist.js.org/docs/documenting.html',
+	DOCS_THIRDPARTIES: 'https://react-styleguidist.js.org/docs/thirdparties.html',
 };

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should a path line 1`] = `
+<div
+  className="pathline"
+>
+  foo/bar
+  <Styled(ToolbarButton)
+    className="copyButton"
+    onClick={[Function]}
+    small={true}
+    title="Copy to clipboard"
+  >
+    <MdContentCopy />
+  </Styled(ToolbarButton)>
+</div>
+`;

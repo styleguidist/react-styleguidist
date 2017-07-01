@@ -2,7 +2,7 @@
 
 Styleguidist uses [webpack](https://webpack.js.org/) under the hood and it needs to know how to load your project’s files.
 
-*Webpack is a peer dependency but your project doesn’t have to use it. React Styleguidist works with webpack 1 and webpack 2.*
+*Webpack is required to run Styleguidist but your project doesn’t have to use it.*
 
 > **Note:** See [cookbook](Cookbook.md) for more examples.
 
@@ -25,7 +25,7 @@ module.exports = {
   webpackConfig: Object.assign({},
     require('./configs/webpack.js'),
     {
-        /* Custom config options */
+      /* Custom config options */
     }
   )
 };
@@ -72,6 +72,10 @@ module.exports = {
 > **Note:** `entry`, `externals`, `output`, `watch`, `stats` and `devtool` options will be ignored.
 
 > **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
+
+## Create React App
+
+[Create React App](https://github.com/facebookincubator/create-react-app) is supported our of the box, you don’t even need to create a style guide config if your components could be found using a default glob pattern, `src/components/**/*.{js,jsx}`.
 
 ## Non-webpack projects
 

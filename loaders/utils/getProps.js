@@ -1,12 +1,14 @@
 'use strict';
 
 const path = require('path');
+const fs = require('fs');
 const reactDocs = require('react-docgen');
 const highlightCode = require('./highlightCode');
 const removeDoclets = require('./removeDoclets');
 const requireIt = require('./requireIt');
 const doctrine = require('doctrine');
 const _ = require('lodash');
+const logger = require('glogg')('rsg');
 
 const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
 
@@ -22,6 +24,16 @@ const getDoctrineTags = documentation => {
 	return _.groupBy(documentation.tags, 'title');
 };
 
+const doesExternalExampleFileExist = (componentPath, exampleFile) => {
+	const exampleFilepath = path.resolve(path.dirname(componentPath), exampleFile);
+	const doesFileExist = fs.existsSync(exampleFilepath);
+
+	if (!doesFileExist) {
+		logger.warn(`An example file ${exampleFile} defined in ${componentPath} component not found.`);
+	}
+	return doesFileExist;
+};
+
 /**
  * 1. Remove non-public methods.
  * 2. Extract doclets.
@@ -29,9 +41,10 @@ const getDoctrineTags = documentation => {
  * 4. Extract @example doclet (load linked file with examples-loader).
  *
  * @param {object} doc
+ * @param {string} filepath
  * @returns {object}
  */
-module.exports = function getProps(doc) {
+module.exports = function getProps(doc, filepath) {
 	// Keep only public methods
 	doc.methods = (doc.methods || []).filter(method => {
 		const doclets = method.docblock && reactDocs.utils.docblock.getDoclets(method.docblock);
@@ -54,8 +67,16 @@ module.exports = function getProps(doc) {
 
 		doc.description = highlightCode(removeDoclets(doc.description));
 
-		if (doc.doclets.example) {
-			doc.example = requireIt(`!!${examplesLoader}!${doc.doclets.example}`);
+		let exampleFileExists = false;
+		let exampleFile = doc.doclets.example;
+		// doc.doclets.example might be a boolean or undefined
+		if (typeof doc.doclets.example === 'string') {
+			exampleFile = doc.doclets.example.trim();
+			exampleFileExists = doesExternalExampleFileExist(filepath, exampleFile);
+		}
+
+		if (exampleFileExists) {
+			doc.example = requireIt(`!!${examplesLoader}!${exampleFile}`);
 			delete doc.doclets.example;
 		}
 	} else {

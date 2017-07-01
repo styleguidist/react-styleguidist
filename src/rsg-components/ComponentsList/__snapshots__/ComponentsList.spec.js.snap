@@ -5,12 +5,12 @@ exports[`should ignore items without name 1`] = `
   <li
     className=""
   >
-    <_class
+    <Styled(Link)
       className=""
       href="#button"
     >
       Button
-    </_class>
+    </Styled(Link)>
   </li>
 </ul>
 `;
@@ -20,22 +20,22 @@ exports[`should render sections with nested components 1`] = `
   <li
     className=""
   >
-    <_class
+    <Styled(Link)
       className=""
       href="#button"
     >
       Button
-    </_class>
+    </Styled(Link)>
   </li>
   <li
     className=""
   >
-    <_class
+    <Styled(Link)
       className=""
       href="#input"
     >
       Input
-    </_class>
+    </Styled(Link)>
   </li>
 </ul>
 `;

@@ -8,7 +8,7 @@ import SectionRenderer from 'rsg-components/Section/SectionRenderer';
 export default function Section({ section }, { isolatedSection = false }) {
 	const { name, slug, content, components, sections } = section;
 
-	const contentJsx = content && <Examples examples={content} />;
+	const contentJsx = content && <Examples examples={content} name={name} />;
 	const componentsJsx = components && <Components components={components} />;
 	const sectionsJsx = sections && <Sections sections={sections} />;
 
@@ -19,7 +19,7 @@ export default function Section({ section }, { isolatedSection = false }) {
 			content={contentJsx}
 			components={componentsJsx}
 			sections={sectionsJsx}
-			isolatedSection={isolatedSection}
+			isolated={isolatedSection}
 		/>
 	);
 }

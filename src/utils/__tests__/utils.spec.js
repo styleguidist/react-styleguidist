@@ -246,7 +246,7 @@ describe('filterSectionsByName', () => {
 describe('getInfoFromHash', () => {
 	it('should return important part of hash if it contains component name', () => {
 		const result = utils.getInfoFromHash('#!/Button');
-		expect(result).toEqual({ targetName: 'Button', targetIndex: null });
+		expect(result).toEqual({ targetName: 'Button', targetIndex: undefined });
 	});
 
 	it('should return an empty object if hash contains no component name', () => {
@@ -273,7 +273,7 @@ describe('findSection', () => {
 });
 
 describe('filterComponentExamples', () => {
-	it('should return a shallow copy of the component with example filtered by given index', () => {
+	it('should return a shallow copy of a component with example filtered by given index', () => {
 		const comp = {
 			props: {
 				examples: ['a', 'b', 'c', 'd'],
@@ -287,5 +287,78 @@ describe('filterComponentExamples', () => {
 			},
 			other: 'info',
 		});
+	});
+});
+
+describe('filterSectionExamples', () => {
+	it('should return a shallow copy of a section with example filtered by given index', () => {
+		const comp = {
+			content: ['a', 'b', 'c', 'd'],
+			other: 'info',
+		};
+		const result = utils.filterSectionExamples(comp, 2);
+		expect(result).toEqual({
+			content: ['c'],
+			other: 'info',
+		});
+	});
+});
+
+describe('getUrl', () => {
+	const loc = {
+		origin: 'http://example.com',
+		pathname: '/styleguide/',
+	};
+	const name = 'FooBar';
+	const slug = 'foobar';
+
+	it('should return a home URL', () => {
+		const result = utils.getUrl({}, loc);
+		expect(result).toBe('/styleguide/');
+	});
+
+	it('should return an absolute home URL', () => {
+		const result = utils.getUrl({ absolute: true }, loc);
+		expect(result).toBe('http://example.com/styleguide/');
+	});
+
+	it('should return an anchor URL', () => {
+		const result = utils.getUrl({ name, slug, anchor: true }, loc);
+		expect(result).toBe('/styleguide/#foobar');
+	});
+
+	it('should return an absolute anchor URL', () => {
+		const result = utils.getUrl({ name, slug, anchor: true, absolute: true }, loc);
+		expect(result).toBe('http://example.com/styleguide/#foobar');
+	});
+
+	it('should return an isolated URL', () => {
+		const result = utils.getUrl({ name, slug, isolated: true }, loc);
+		expect(result).toBe('/styleguide/#!/FooBar');
+	});
+
+	it('should return an absolute isolated URL', () => {
+		const result = utils.getUrl({ name, slug, isolated: true, absolute: true }, loc);
+		expect(result).toBe('http://example.com/styleguide/#!/FooBar');
+	});
+
+	it('should return an isolated example URL', () => {
+		const result = utils.getUrl({ name, slug, example: 3, isolated: true }, loc);
+		expect(result).toBe('/styleguide/#!/FooBar/3');
+	});
+
+	it('should return an absolute isolated example URL', () => {
+		const result = utils.getUrl({ name, slug, example: 3, isolated: true, absolute: true }, loc);
+		expect(result).toBe('http://example.com/styleguide/#!/FooBar/3');
+	});
+
+	it('should return a nochrome URL', () => {
+		const result = utils.getUrl({ name, slug, nochrome: true }, loc);
+		expect(result).toBe('/styleguide/?nochrome#!/FooBar');
+	});
+
+	it('should return an absolute nochrome URL', () => {
+		const result = utils.getUrl({ name, slug, nochrome: true, absolute: true }, loc);
+		expect(result).toBe('http://example.com/styleguide/?nochrome#!/FooBar');
 	});
 });

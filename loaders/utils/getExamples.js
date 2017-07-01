@@ -15,7 +15,7 @@ const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
  * @returns {object|Array}
  */
 module.exports = function getExamples(examplesFile, displayName, defaultExample) {
-	if (fs.existsSync(examplesFile)) {
+	if (examplesFile && fs.existsSync(examplesFile)) {
 		return requireIt(`!!${examplesLoader}!${examplesFile}`);
 	}
 

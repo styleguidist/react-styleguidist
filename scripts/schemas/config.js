@@ -3,18 +3,17 @@
 // If you want to access any of these options in React, don’t forget to update CLIENT_CONFIG_OPTIONS array
 // in loaders/styleguide-loader.js
 
-/* eslint-disable no-console */
-
 const DEFAULT_COMPONENTS_PATTERN = 'src/@(components|Components)/**/*.{js,jsx}';
 
-const fs = require('fs');
 const path = require('path');
 const startCase = require('lodash/startCase');
 const reactDocgen = require('react-docgen');
 const createDisplayNameHandler = require('react-docgen-displayname-handler')
 	.createDisplayNameHandler;
+const logger = require('glogg')('rsg');
 const findUserWebpackConfig = require('../utils/findUserWebpackConfig');
 const getUserPackageJson = require('../utils/getUserPackageJson');
+const fileExistsCaseInsensitive = require('../utils/findFileCaseInsensitive');
 const consts = require('../consts');
 
 module.exports = {
@@ -68,8 +67,9 @@ module.exports = {
 			];
 
 			for (const file of files) {
-				if (fs.existsSync(file)) {
-					return file;
+				const existingFile = fileExistsCaseInsensitive(file);
+				if (existingFile) {
+					return existingFile;
 				}
 			}
 
@@ -89,6 +89,9 @@ module.exports = {
 	highlightTheme: {
 		type: 'string',
 		default: 'base16-light',
+	},
+	logger: {
+		type: 'object',
 	},
 	previewDelay: {
 		type: 'number',
@@ -141,6 +144,10 @@ module.exports = {
 		type: 'boolean',
 		default: false,
 	},
+	showUsage: {
+		type: 'boolean',
+		default: false,
+	},
 	showSidebar: {
 		type: 'boolean',
 		default: true,
@@ -148,6 +155,9 @@ module.exports = {
 	skipComponentsWithoutExample: {
 		type: 'boolean',
 		default: false,
+	},
+	styleguideComponents: {
+		type: 'object',
 	},
 	styleguideDir: {
 		type: 'directory path',
@@ -205,18 +215,15 @@ module.exports = {
 
 			const file = findUserWebpackConfig();
 			if (file) {
-				console.log('Loading webpack config from:');
-				console.log(file);
-				console.log();
+				logger.info(`Loading webpack config from:\n${file}`);
 				return require(file);
 			}
 
-			console.log(
+			logger.warn(
 				'No webpack config found. ' +
-					'You may need to specify "webpackConfig" option in your style guide config:'
+					'You may need to specify "webpackConfig" option in your style guide config:\n' +
+					consts.DOCS_WEBPACK
 			);
-			console.log(consts.DOCS_WEBPACK);
-			console.log();
 
 			return undefined;
 		},

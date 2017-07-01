@@ -90,7 +90,7 @@ it('render should render component', () => {
 			classes={{}}
 			name={section.name}
 			slug={section.slug}
-			content={<Examples examples={section.content} />}
+			content={<Examples name={section.name} examples={section.content} />}
 			components={<Components components={[]} />}
 			sections={<Sections sections={[]} />}
 		/>

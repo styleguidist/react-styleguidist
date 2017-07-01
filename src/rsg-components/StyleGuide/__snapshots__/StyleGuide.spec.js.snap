@@ -9,16 +9,16 @@ exports[`renderer should render logo, table of contents and passed children 1`] 
       Content
     </h1>
     <footer>
-      <_class
+      <Styled(Markdown)
         text="Generated with [React Styleguidist](http://react-styleguidist.js.org/)"
       />
     </footer>
   </main>
   <div>
     <div>
-      <_class>
+      <Styled(Logo)>
         Hello
-      </_class>
+      </Styled(Logo)>
     </div>
     <TableOfContents
       sections={
@@ -51,7 +51,7 @@ exports[`renderer should render logo, table of contents and passed children 1`] 
 `;
 
 exports[`should render components list 1`] = `
-<_class
+<Styled(StyleGuide)
   hasSidebar={true}
   homepageUrl="https://react-styleguidist.js.org/"
   title="Hello"
@@ -110,7 +110,7 @@ exports[`should render components list 1`] = `
       ]
     }
   />
-</_class>
+</Styled(StyleGuide)>
 `;
 
-exports[`should render welcome screen 1`] = `<_class />`;
+exports[`should render welcome screen 1`] = `<Styled(Welcome) />`;

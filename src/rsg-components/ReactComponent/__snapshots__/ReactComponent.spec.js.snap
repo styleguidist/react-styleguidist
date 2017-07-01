@@ -1,208 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renderer should render component 1`] = `
-<div
-  id="Foo-container"
->
-  <header>
-    <_class
-      className=""
-      level={2}
-      slug="foo"
-    >
-      Foo
-    </_class>
-    <div>
-      foo/bar.js
-    </div>
-    <div>
-      <_class
-        href="#!/Foo"
-      >
-        Open isolated ⇢
-      </_class>
-    </div>
-  </header>
-  <div>
-    <_class
+exports[`ReactComponent should pass rendered description, usage, examples, etc. to the renderer 1`] = `
+<Styled(ReactComponent)
+  description={
+    <Styled(Markdown)
       text="Bar"
     />
-    <JsDoc />
-  </div>
-  <Playground
-    code="<button>OK</button>"
-    evalInContext={[Function]}
-    index={0}
-    name="Component"
-  />
-  <_class
-    text="Hello *world*!"
-  />
-</div>
-`;
-
-exports[`renderer should render name with strike-through style when @deprecated is present in tags 1`] = `
-<_class
-  description="Bar"
-  examples={
-    <Component
-      name="Foo"
-    />
   }
-  isolated={false}
-  metadata={Object {}}
-  methods={false}
-  name="Foo"
-  pathLine="foo/bar.js"
-  slug="foo"
-  tags={
-    Object {
-      "deprecated": Array [
-        Object {
-          "description": "I am deprecated",
-          "title": "deprecated",
-        },
-      ],
-    }
-  }
-/>
-`;
-
-exports[`should not render props / methods section if there is no content 1`] = `
-<div
-  id="Test-container"
->
-  <header>
-    <_class
-      className=""
-      level={2}
-      slug="test"
-    >
-      Test
-    </_class>
-    <div>
-      test
-    </div>
-    <div>
-      <_class
-        href="#!/Test"
-      >
-        Open isolated ⇢
-      </_class>
-    </div>
-  </header>
-  <div>
-    <JsDoc />
-  </div>
-</div>
-`;
-
-exports[`should render both props and methods section 1`] = `
-<div
-  id="Test-container"
->
-  <header>
-    <_class
-      className=""
-      level={2}
-      slug="test"
-    >
-      Test
-    </_class>
-    <div>
-      test
-    </div>
-    <div>
-      <_class
-        href="#!/Test"
-      >
-        Open isolated ⇢
-      </_class>
-    </div>
-  </header>
-  <div>
-    <JsDoc />
-  </div>
-  <div>
-    <h3>
-      Props
-    </h3>
-    <div>
-      prop
-    </div>
-  </div>
-  <div>
-    <h3>
-      Methods
-    </h3>
-    <div>
-      method
-    </div>
-  </div>
-</div>
-`;
-
-exports[`should render component in isolation mode 1`] = `
-<div
-  id="Test-container"
->
-  <header>
-    <_class
-      className=""
-      level={2}
-      slug="Test"
-    >
-      Test
-    </_class>
-    <div>
-      test
-    </div>
-    <div>
-      <_class
-        href=""
-      >
-        ← Back
-      </_class>
-    </div>
-  </header>
-  <div>
-    <JsDoc />
-  </div>
-</div>
-`;
-
-exports[`should render component not in the isolation mode by default 1`] = `
-<div
-  id="Test-container"
->
-  <header>
-    <_class
-      className=""
-      level={2}
-      slug="test"
-    >
-      Test
-    </_class>
-    <div>
-      test
-    </div>
-    <div>
-      <_class
-        href="#!/Test"
-      >
-        Open isolated ⇢
-      </_class>
-    </div>
-  </header>
-  <div>
-    <JsDoc />
-  </div>
-</div>
-`;
-
-exports[`should render component renderer for component with examples 1`] = `
-<_class
-  description="Bar"
+  docs={<JsDoc />}
   examples={
     <Examples
       examples={
@@ -221,171 +26,259 @@ exports[`should render component renderer for component with examples 1`] = `
       name="Foo"
     />
   }
-  isolated={false}
-  metadata={Object {}}
-  methods={false}
-  name="Foo"
-  pathLine="foo/bar.js"
-  slug="foo"
-/>
-`;
-
-exports[`should render component renderer for component with methods 1`] = `
-<_class
-  description="Bar"
-  examples={
-    <Component
-      name="Foo"
-    />
-  }
-  isolated={false}
-  metadata={Object {}}
-  methods={
-    <_class
-      methods={
-        Array [
-          Object {
-            "description": "Sets the counter to a particular value.",
-            "name": "set",
-            "params": Array [
+  heading={
+    <SectionHeading
+      deprecated={false}
+      id="foo"
+      slotName="componentToolbar"
+      slotProps={
+        Object {
+          "isolated": undefined,
+          "metadata": Object {
+            "tags": Array [
+              "one",
+              "two",
+            ],
+          },
+          "name": "Foo",
+          "pathLine": "foo/bar.js",
+          "props": Object {
+            "description": "Bar",
+            "examples": Array [
               Object {
-                "description": "New value for the counter.",
-                "name": "newValue",
-                "type": Object {
-                  "name": "Number",
-                },
+                "content": "<button>OK</button>",
+                "evalInContext": [Function],
+                "type": "code",
+              },
+              Object {
+                "content": "Hello *world*!",
+                "type": "markdown",
               },
             ],
-            "returns": null,
+            "methods": Array [
+              Object {
+                "description": "Sets the counter to a particular value.",
+                "name": "set",
+                "params": Array [
+                  Object {
+                    "description": "New value for the counter.",
+                    "name": "newValue",
+                    "type": Object {
+                      "name": "Number",
+                    },
+                  },
+                ],
+                "returns": null,
+              },
+            ],
           },
-        ]
+          "slug": "foo",
+        }
       }
-    />
+    >
+      Foo
+    </SectionHeading>
   }
   name="Foo"
   pathLine="foo/bar.js"
   slug="foo"
-/>
-`;
-
-exports[`should render component renderer for component with props 1`] = `
-<_class
-  description="Bar"
-  examples={
-    <Component
-      name="Foo"
-    />
-  }
-  isolated={false}
-  metadata={Object {}}
-  methods={false}
-  name="Foo"
-  pathLine="foo/bar.js"
-  props={
-    <_class
+  tabBody={
+    <Slot
+      name="docsTabs"
+      onlyActive={true}
       props={
         Object {
-          "children": Object {
-            "description": "Button label.",
-            "required": true,
-            "type": Object {
-              "name": "string",
-            },
+          "metadata": Object {
+            "tags": Array [
+              "one",
+              "two",
+            ],
           },
+          "name": "Foo",
+          "pathLine": "foo/bar.js",
+          "props": Object {
+            "description": "Bar",
+            "examples": Array [
+              Object {
+                "content": "<button>OK</button>",
+                "evalInContext": [Function],
+                "type": "code",
+              },
+              Object {
+                "content": "Hello *world*!",
+                "type": "markdown",
+              },
+            ],
+            "methods": Array [
+              Object {
+                "description": "Sets the counter to a particular value.",
+                "name": "set",
+                "params": Array [
+                  Object {
+                    "description": "New value for the counter.",
+                    "name": "newValue",
+                    "type": Object {
+                      "name": "Number",
+                    },
+                  },
+                ],
+                "returns": null,
+              },
+            ],
+          },
+          "slug": "foo",
         }
       }
     />
   }
-  slug="foo"
-/>
-`;
-
-exports[`should render component renderer with example placeholder 1`] = `
-<_class
-  description="Bar"
-  examples={
-    <Component
-      name="Foo"
+  tabButtons={
+    <Slot
+      name="docsTabButtons"
+      props={
+        Object {
+          "metadata": Object {
+            "tags": Array [
+              "one",
+              "two",
+            ],
+          },
+          "name": "Foo",
+          "onClick": [Function],
+          "pathLine": "foo/bar.js",
+          "props": Object {
+            "description": "Bar",
+            "examples": Array [
+              Object {
+                "content": "<button>OK</button>",
+                "evalInContext": [Function],
+                "type": "code",
+              },
+              Object {
+                "content": "Hello *world*!",
+                "type": "markdown",
+              },
+            ],
+            "methods": Array [
+              Object {
+                "description": "Sets the counter to a particular value.",
+                "name": "set",
+                "params": Array [
+                  Object {
+                    "description": "New value for the counter.",
+                    "name": "newValue",
+                    "type": Object {
+                      "name": "Number",
+                    },
+                  },
+                ],
+                "returns": null,
+              },
+            ],
+          },
+          "slug": "foo",
+        }
+      }
     />
   }
-  isolated={false}
-  metadata={Object {}}
-  methods={false}
-  name="Foo"
-  pathLine="foo/bar.js"
-  slug="foo"
 />
 `;
 
-exports[`should render methods section 1`] = `
+exports[`ReactComponentRenderer should render component 1`] = `
 <div
   id="Test-container"
 >
   <header>
-    <_class
-      className=""
-      level={2}
-      slug="test"
-    >
-      Test
-    </_class>
     <div>
-      test
+      heading
     </div>
+    <Styled(Pathline)>
+      components/test
+    </Styled(Pathline)>
+  </header>
+</div>
+`;
+
+exports[`ReactComponentRenderer should render description 1`] = `
+<div
+  id="Test-container"
+>
+  <header>
     <div>
-      <_class
-        href="#!/Test"
-      >
-        Open isolated ⇢
-      </_class>
+      heading
     </div>
+    <Styled(Pathline)>
+      components/test
+    </Styled(Pathline)>
   </header>
   <div>
-    <JsDoc />
-  </div>
-  <div>
-    <h3>
-      Methods
-    </h3>
     <div>
-      test
+      description
     </div>
   </div>
 </div>
 `;
 
-exports[`should render props section 1`] = `
+exports[`ReactComponentRenderer should render docs 1`] = `
 <div
   id="Test-container"
 >
   <header>
-    <_class
-      className=""
-      level={2}
-      slug="test"
-    >
-      Test
-    </_class>
     <div>
-      test
+      heading
     </div>
-    <div>
-      <_class
-        href="#!/Test"
-      >
-        Open isolated ⇢
-      </_class>
-    </div>
+    <Styled(Pathline)>
+      components/test
+    </Styled(Pathline)>
   </header>
   <div>
-    <JsDoc />
+    <div>
+      docs
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ReactComponentRenderer should render examples 1`] = `
+<div
+  id="Test-container"
+>
+  <header>
+    <div>
+      heading
+    </div>
+    <Styled(Pathline)>
+      components/test
+    </Styled(Pathline)>
+  </header>
+  <div>
+    example 1
   </div>
   <div>
-    <h3>
-      Props
-    </h3>
+    example 2
+  </div>
+</div>
+`;
+
+exports[`ReactComponentRenderer should render usage section 1`] = `
+<div
+  id="Test-container"
+>
+  <header>
     <div>
-      test
+      heading
+    </div>
+    <Styled(Pathline)>
+      components/test
+    </Styled(Pathline)>
+  </header>
+  <div>
+    <div>
+      <div>
+        tab buttons
+      </div>
+    </div>
+    <div>
+      tab body
     </div>
   </div>
 </div>

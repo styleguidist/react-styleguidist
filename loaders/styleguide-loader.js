@@ -4,19 +4,20 @@ const pick = require('lodash/pick');
 const commonDir = require('common-dir');
 const generate = require('escodegen').generate;
 const toAst = require('to-ast');
+const logger = require('glogg')('rsg');
+const fileExistsCaseInsensitive = require('../scripts/utils/findFileCaseInsensitive');
 const getAllContentPages = require('./utils/getAllContentPages');
 const getComponentFilesFromSections = require('./utils/getComponentFilesFromSections');
 const getComponentPatternsFromSections = require('./utils/getComponentPatternsFromSections');
 const getSections = require('./utils/getSections');
 const filterComponentsWithExample = require('./utils/filterComponentsWithExample');
 
-/* eslint-disable no-console */
-
 // Config options that should be passed to the client
 const CLIENT_CONFIG_OPTIONS = [
 	'title',
 	'highlightTheme',
 	'showCode',
+	'showUsage',
 	'showSidebar',
 	'previewDelay',
 	'theme',
@@ -30,6 +31,9 @@ module.exports.pitch = function() {
 	if (this.cacheable) {
 		this.cacheable();
 	}
+
+	// Clear cache so it would detect new or renamed files
+	fileExistsCaseInsensitive.clearCache();
 
 	const config = this._styleguidist;
 
@@ -49,13 +53,7 @@ module.exports.pitch = function() {
 	const welcomeScreen = allContentPages.length === 0 && allComponentFiles.length === 0;
 	const patterns = welcomeScreen ? getComponentPatternsFromSections(config.sections) : undefined;
 
-	/* istanbul ignore if */
-	if (config.verbose) {
-		console.log();
-		console.log('Loading components:');
-		console.log(allComponentFiles.join('\n'));
-		console.log();
-	}
+	logger.debug('Loading components:\n' + allComponentFiles.join('\n'));
 
 	// Setup Webpack context dependencies to enable hot reload when adding new files
 	if (config.contextDependencies) {

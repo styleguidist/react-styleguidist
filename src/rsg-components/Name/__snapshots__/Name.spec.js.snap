@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renderer should render argument name 1`] = `
-<_class
+<Styled(Code)
   className="name"
 >
   Foo
-</_class>
+</Styled(Code)>
 `;
 
 exports[`renderer should render deprecated argument name 1`] = `
-<_class
+<Styled(Code)
   className="name isDeprecated"
 >
   Foo
-</_class>
+</Styled(Code)>
 `;

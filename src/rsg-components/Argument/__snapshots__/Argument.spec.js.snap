@@ -1,68 +1,75 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renderer should render argument 1`] = `
+exports[`should render argument 1`] = `
 <Group
   separator=" "
 >
   <span>
-    <_class
-      name="Foo"
-    />
+    <Styled(Name)>
+      Foo
+    </Styled(Name)>
     :
   </span>
-  <_class>
+  <Styled(Type)>
     Array
-  </_class>
-  <_class
+  </Styled(Type)>
+  <Styled(Markdown)
     inline={true}
     text="— Converts foo to bar"
   />
 </Group>
 `;
 
-exports[`renderer should render argument without description 1`] = `
+exports[`should render argument without description 1`] = `
 <Group
   separator=" "
 >
   <span>
-    <_class
-      name="Foo"
-    />
+    <Styled(Name)>
+      Foo
+    </Styled(Name)>
     :
   </span>
-  <_class>
+  <Styled(Type)>
     Array
-  </_class>
+  </Styled(Type)>
 </Group>
 `;
 
-exports[`renderer should render argument without type 1`] = `
+exports[`should render argument without type 1`] = `
 <Group
   separator=" "
 >
   <span>
-    <_class
-      name="Foo"
-    />
+    <Styled(Name)>
+      Foo
+    </Styled(Name)>
   </span>
-  <_class
+  <Styled(Markdown)
     inline={true}
     text="— Converts foo to bar"
   />
 </Group>
 `;
 
-exports[`renderer should render return value 1`] = `
+exports[`should render return value 1`] = `
 <Group
   separator=" "
 >
   Returns
-  <_class>
+  <Styled(Type)>
     Array
-  </_class>
-  <_class
+  </Styled(Type)>
+  <Styled(Markdown)
     inline={true}
     text="— Converts foo to bar"
   />
 </Group>
+`;
+
+exports[`should render with block styles 1`] = `
+<Group
+  className="block"
+  separator=" "
+/>
 `;

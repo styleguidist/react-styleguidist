@@ -191,6 +191,24 @@ Type: `String[]`, default: `['**/__tests__/**', '**/*.test.js', '**/*.test.jsx',
 
 Array of [glob pattern](https://github.com/isaacs/node-glob#glob-primer) or files of components that should not be included in the style guide.
 
+#### `logger`
+
+Type: `Object`, by default will use `console.*` in CLI or nothing in Node API
+
+Custom logger functions:
+
+```javascript
+module.exports = {
+	logger: {
+    // One of: info, debug, warn
+    // Suppress messages
+		info: () => {},
+    // Override display function
+		warn: message => console.warn(`NOOOOOO: ${message}`),
+	},
+};
+```
+
 #### `previewDelay`
 
 Type: `Number`, default: 500
@@ -262,7 +280,13 @@ Dev server port.
 
 Type: `Boolean`, default: `false`
 
-Show or hide example code initially. It can be toggled in the UI by clicking the show/hide code button before each example.
+Show or hide example code initially. It can be toggled in the UI by clicking the the Code button after each example.
+
+#### `showUsage`
+
+Type: `Boolean`, default: `false`
+
+Show or hide props and methods documentation initially. It can be toggled in the UI by clicking the Props & methods button after each component description.
 
 #### `showSidebar`
 
@@ -275,6 +299,23 @@ Toggle sidebar visibility. Sidebar will be hidden when opening components or exa
 Type: `Boolean`, default: `false`
 
 Ignore components that don’t have an example file (as determined by `getExampleFilename`). These components won’t be accessible from other examples unless you manually `require` them.
+
+#### `styleguideComponents`
+
+Type: `Object`, optional
+
+Override React components used to render the style guide.
+
+```javascript
+module.exports = {
+	styleguideComponents: {
+		Logo: path.join(__dirname, 'styleguide/components/Logo'),
+		StyleGuideRenderer: path.join(__dirname, 'styleguide/components/StyleGuide'),
+	},
+};
+```
+
+See an example of [customized style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/customised).
 
 #### `styleguideDir`
 

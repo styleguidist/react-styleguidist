@@ -1,9 +1,5 @@
 # Cookbook
 
-## How to reuse project’s webpack config?
-
-See in [configuring webpack](Webpack.md#reusing-your-projects-webpack-config).
-
 ## How to use `ref`s in examples?
 
 Use `ref` prop as a function and assign a reference to a local variable:
@@ -58,117 +54,6 @@ module.exports = {
 };
 ```
 
-## How to connect Redux store?
-
-To use Redux store with one component require it from your example:
-
-```jsx
-const { Provider } = require('react-redux');
-const configureStore = require('../utils/configureStore').default;
-const initialState = {
-  app: {
-    name: 'Pizza Delivery'
-  }
-};
-const store = configureStore({ initialState });
-<Provider store={store}>
-  <App greeting="Choose your pizza!"/>
-</Provider>
-```
-
-To use Redux store in every component redefine the `Wrapper` component:
-
-```javascript
-// styleguide.config.js
-const path = require('path');
-module.exports = {
-  webpackConfig: {
-    resolve: {
-      alias: {
-        'rsg-components/Wrapper': path.join(__dirname, 'lib/styleguide/Wrapper')
-      }
-    }
-  }
-};
-```
-
-```jsx
-// lib/styleguide/Wrapper.js
-import React, { Component } from 'react';
-const { Provider } = require('react-redux');
-const configureStore = require('../utils/configureStore').default;
-const initialState = {
-  app: {
-    name: 'Pizza Delivery'
-  }
-};
-const store = configureStore({ initialState });
-export default class Wrapper extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        {this.props.children}
-      </Provider>
-    );
-  }
-}
-```
-
-## How to write examples for Relay components?
-
-@mikberg wrote a [fantastic blog post](https://medium.com/@mikaelberg/writing-simple-unit-tests-with-relay-707f19e90129) on this topic. Here’s what to do:
-
-### 1. Mock out Relay
-
-You’ll need the content from [this Gist](https://gist.github.com/mikberg/07b4006e22aacf31ffe6) for your mocked-out Relay replacement.
-
-```js
-// styleguide.config.js
-const path = require('path')
-const webpackConfig = require('./webpack.config')
-webpackConfig.resolve.alias['react-relay'] = 'lib/styleguide/FakeRelay'
-webpackConfig.resolve.alias['real-react-relay'] = path.join(__dirname, '/node_modules/react-relay/')
-
-module.exports = {
-  // ...
-  webpackConfig
-}
-```
-
-```js
-// lib/styleguide/FakeRelay.js
-import Relay from 'real-react-relay'
-// Content too long to paste here; see https://gist.github.com/mikberg/07b4006e22aacf31ffe6
-```
-
-### 2. Provide sample data to your React components
-
-You’ll probably want to massage actual results from your GraphQL backend, and make it available to the examples:
-
-```js
-// styleguide.config.js
-module.exports = {
-  // ...
-  context: {
-    sample: 'lib/styleguide/sample_data'
-  }
-}
-```
-
-```js
-// lib/styleguide/sample_data.js
-module.exports = {
-  object: {
-    // something similar to your GraphQL results
-  }
-}
-```
-
-```jsx
-// src/MyComponent/index.md
-<MyComponent object={sample.object} />
-```
-
 ## How to use React Styleguidist with Preact?
 
 You need to alias `react` and `react-dom` to `preact-compat`:
@@ -178,7 +63,7 @@ module.exports = {
   webpackConfig: {
     resolve: {
       alias: {
-        react: 'preact-compat',
+        'react': 'preact-compat',
         'react-dom': 'preact-compat',
       }
     }
@@ -187,33 +72,6 @@ module.exports = {
 ```
 
 See the [Preact example style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/preact).
-
-## How to use React Styleguidist with styled-components?
-
-The [recommended way](https://github.com/styleguidist/react-styleguidist/issues/37#issuecomment-263502454) of using [styled-components](https://styled-components.com/) is like this:
-
-```jsx
-import React, { Component } from 'react';
-import styled from 'styled-components';
-
-const SalmonButton = styled.button`
-  background-color: salmon;
-  border: 1px solid indianred;
-  color: snow;
-`;
-
-class Button extends Component {
-  render() {
-    return <SalmonButton>{this.props.children}</SalmonButton>;
-  }
-}
-
-export default Button;
-```
-
-You may need an appropriate webpack loader to handle these files.
-
-> **Note:** To change style guide styles use `theme` and `styles` options (see the next question).
 
 ## How to change styles of a style guide?
 
@@ -261,12 +119,8 @@ For example you can replace the `Wrapper` component to wrap any example in the [
 // styleguide.config.js
 const path = require('path');
 module.exports = {
-  webpackConfig: {
-    resolve: {
-      alias: {
-        'rsg-components/Wrapper': path.join(__dirname, 'lib/styleguide/Wrapper')
-      }
-    }
+  styleguideComponents: {
+    Wrapper: path.join(__dirname, 'lib/styleguide/Wrapper')
   }
 };
 ```
@@ -292,12 +146,8 @@ You can replace the `StyleGuideRenderer` component like this:
 // styleguide.config.js
 const path = require('path');
 module.exports = {
-  webpackConfig: {
-    resolve: {
-      alias: {
-        'rsg-components/StyleGuide/StyleGuideRenderer': path.join(__dirname, 'lib/styleguide/StyleGuideRenderer')
-      }
-    }
+  styleguideComponents: {
+    StyleGuideRenderer: path.join(__dirname, 'lib/styleguide/StyleGuideRenderer')
   }
 };
 ```
@@ -353,13 +203,13 @@ module.exports = {
 1. Open your browser’s developer tools
 2. Write `debugger;` statement wherever you want: in a component source, a Markdown example or even in an editor in a browser.
 
-![](http://wow.sapegin.me/image/002N2q01470J/debugging.png)
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/3i3E3j2h3t1315141k0o/debugging.png)
 
 ## How to debug the exceptions thrown from my components?
 
 1. Put `debugger;` statement at the beginning of your code.
-2. Press the ![Debugger](http://wow.sapegin.me/image/2n2z0b0l320m/debugger.png) button in your browser’s developer tools.
-3. Press the ![Continue](http://wow.sapegin.me/image/2d2z1Y2o1z1m/continue.png) button and the debugger will stop execution at the next exception.
+2. Press the ![Debugger](https://d3vv6lp55qjaqc.cloudfront.net/items/2h2q3N123N3G3R252o41/debugger.png) button in your browser’s developer tools.
+3. Press the ![Continue](https://d3vv6lp55qjaqc.cloudfront.net/items/3b3c1P3g3O1h3q111I2l/continue.png) button and the debugger will stop execution at the next exception.
 
 ## Why does the style guide list one of my prop types as `unknown`?
 
@@ -401,6 +251,26 @@ initialState = {
   {state.activeItemByPrimitive === items[0].id ? 'active' : 'not active'}
 </div>
 ```
+
+## How to use Vagrant with Styleguidist?
+
+First read [Vagrant guide](https://webpack.js.org/guides/development-vagrant/) from the webpack documentation. Then enable polling in your webpack config:
+
+```js
+devServer: {
+  watchOptions: {
+    poll: true
+  }
+}
+```
+
+## How to reuse project’s webpack config?
+
+See in [configuring webpack](Webpack.md#reusing-your-projects-webpack-config).
+
+## How to use React Styleguidist with Redux, Relay or Styled Components?
+
+See [working with third-party libraries](Thirdparties.md).
 
 ## Are there any other projects like this?
 
