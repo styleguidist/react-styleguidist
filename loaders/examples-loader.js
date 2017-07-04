@@ -33,7 +33,7 @@ function examplesLoader(source) {
 	}
 
 	// Load examples
-	const examples = chunkify(source, config.examplePreprocessor);
+	const examples = chunkify(source, config.updateExample);
 
 	// We're analysing the examples' source code to figure out the require statements. We do it manually with regexes,
 	// because webpack unfortunately doesn't expose its smart logic for rewriting requires

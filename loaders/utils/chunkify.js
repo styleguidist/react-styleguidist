@@ -20,10 +20,10 @@ function keysToLowerCaseDeep(obj) {
  * Separate Markdown and code examples that should be rendered as a playground in a style guide.
  *
  * @param {string} markdown
- * @param {Function} examplePreprocessor
+ * @param {Function} updateExample
  * @returns {Array}
  */
-module.exports = function chunkify(markdown, examplePreprocessor) {
+module.exports = function chunkify(markdown, updateExample) {
 	const codeChunks = [];
 	const codeLanguages = ['javascript', 'js', 'jsx'];
 	/*
@@ -64,8 +64,8 @@ module.exports = function chunkify(markdown, examplePreprocessor) {
 				}
 
 				lang = lang.slice(0, lang.indexOf(' ') !== -1 ? lang.indexOf(' ') : lang.length);
-				if (examplePreprocessor) {
-					const processedExample = examplePreprocessor({ content, lang, settings });
+				if (updateExample) {
+					const processedExample = updateExample({ content, lang, settings });
 					content = processedExample.content;
 					lang = processedExample.lang;
 					settings = processedExample.settings;

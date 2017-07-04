@@ -52,3 +52,26 @@ it('should replace all occurrences of __COMPONENT__ with provided query.componen
 	expect(result).toMatch(/FooComponent/);
 	expect(result.match(/FooComponent/g).length).toBe(4);
 });
+
+it('should pass updateExample function from config to chunkify', () => {
+	const exampleMarkdown = `
+\`\`\`jsx static
+<h1>Hello world!</h2>
+\`\`\`
+`;
+	const updateExample = jest.fn(props => props);
+	examplesLoader.call(
+		{
+			query: '?componentName=FooComponent',
+			_styleguidist: {
+				updateExample,
+			},
+		},
+		exampleMarkdown
+	);
+	expect(updateExample).toBeCalledWith({
+		content: '<h1>Hello world!</h2>',
+		settings: { static: true },
+		lang: 'jsx',
+	});
+});

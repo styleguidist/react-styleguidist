@@ -145,7 +145,7 @@ Pass props to PreviewRenderer
 	expect(actual).toEqual(expected);
 });
 
-it('should call examplePreprocessor function for example', () => {
+it('should call updateExample function for example', () => {
 	const markdown = `
 \`\`\`jsx {"file": "./src/button/example.jsx"}
 \`\`\`
@@ -157,7 +157,7 @@ it('should call examplePreprocessor function for example', () => {
 			settings: {},
 		},
 	];
-	const examplePreprocessor = props => {
+	const updateExample = props => {
 		const content = props.content;
 		const lang = props.lang;
 		const settings = props.settings;
@@ -176,6 +176,6 @@ it('should call examplePreprocessor function for example', () => {
 			lang,
 		};
 	};
-	const actual = chunkify(markdown, examplePreprocessor);
+	const actual = chunkify(markdown, updateExample);
 	expect(actual).toEqual(expected);
 });

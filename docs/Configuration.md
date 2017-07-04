@@ -179,10 +179,14 @@ module.exports = {
 };
 ```
 
-#### `examplePreprocessor`
+#### `updateExample`
+
+Type: `Function`, optional
+Function that returns modified example.
+
 ```javascript
 module.exports = {
-  examplePreprocessor: function(props) {
+  updateExample: function(props) {
     const lang = props.lang;
     const content = props.content;
     const settings = props.settings
@@ -202,9 +206,6 @@ module.exports = {
     }
 };
 ```
-
-Type: `Function`, optional
-Function that returns modified example.
 
 #### `highlightTheme`
 
