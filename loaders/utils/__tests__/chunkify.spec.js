@@ -112,7 +112,7 @@ Pass props to PreviewRenderer
 			type: 'code',
 			content: '<h1>Hello Markdown!</h1>',
 			settings: {
-				showCode: true,
+				showcode: true,
 			},
 		},
 		{
@@ -132,7 +132,7 @@ Pass props to PreviewRenderer
 			type: 'code',
 			content: '<h2>Hello Markdown!</h2>',
 			settings: {
-				noEditor: true,
+				noeditor: true,
 			},
 		},
 		{

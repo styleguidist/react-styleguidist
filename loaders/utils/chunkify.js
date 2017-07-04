@@ -6,6 +6,16 @@ const hljs = require('highlight.js');
 
 const CODE_PLACEHOLDER = '<%{#code#}%>';
 
+function keysToLowerCaseDeep(obj) {
+	const newobj = {};
+	Object.keys(obj).forEach(key => {
+		newobj[key.toLowerCase()] = typeof obj[key] === 'object'
+			? keysToLowerCaseDeep(obj[key])
+			: obj[key];
+	});
+	return newobj;
+}
+
 /**
  * Separate Markdown and code examples that should be rendered as a playground in a style guide.
  *
@@ -60,6 +70,7 @@ module.exports = function chunkify(markdown, examplePreprocessor) {
 					lang = processedExample.lang;
 					settings = processedExample.settings;
 				}
+				settings = keysToLowerCaseDeep(settings);
 				node.lang = lang;
 				if (lang && (codeLanguages.indexOf(lang) === -1 || (settings && settings.static))) {
 					let highlighted;
