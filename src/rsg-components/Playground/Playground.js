@@ -25,8 +25,8 @@ export default class Playground extends Component {
 		const { code } = props;
 		const { previewDelay } = context.config;
 		let { showCode } = this.context;
-		if (props.settings && typeof props.settings.showCode === 'boolean') {
-			showCode = props.settings.showCode;
+		if (props.settings && typeof props.settings.showcode === 'boolean') {
+			showCode = props.settings.showcode;
 		}
 		this.handleChange = this.handleChange.bind(this);
 		this.handleTabChange = this.handleTabChange.bind(this);
@@ -70,7 +70,7 @@ export default class Playground extends Component {
 		const { code, activeTab } = this.state;
 		const { evalInContext, index, name } = this.props;
 		const { isolatedExample } = this.context;
-		if (this.props.settings && this.props.settings.noEditor) {
+		if (this.props.settings && this.props.settings.noeditor) {
 			return (
 				<PlaygroundRenderer
 					name={name}

@@ -179,6 +179,33 @@ module.exports = {
 };
 ```
 
+#### `examplePreprocessor`
+```javascript
+module.exports = {
+  examplePreprocessor: function(props) {
+    const lang = props.lang;
+    const content = props.content;
+    const settings = props.settings
+    if (typeof settings.file === 'string') {
+      const filepath = settings.file;
+      delete settings.file;
+      return {
+        content: fs.readFileSync(filepath),
+        settings,
+        lang,
+      }
+    }
+    return {
+      content,
+      settings,
+      lang,
+    }
+};
+```
+
+Type: `Function`, optional
+Function that returns modified example.
+
 #### `highlightTheme`
 
 Type: `String`, default: `base16-light`

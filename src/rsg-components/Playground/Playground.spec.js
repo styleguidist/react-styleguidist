@@ -91,7 +91,7 @@ it('should not render a code editor if noEditor option passed in example setting
 			evalInContext={a => () => a}
 			name="name"
 			index={0}
-			settings={{ noEditor: true }}
+			settings={{ noeditor: true }}
 		/>,
 		options
 	);
@@ -105,7 +105,7 @@ it('should render a code editor opened by default if showCode:true option passed
 			evalInContext={a => () => a}
 			name="name"
 			index={0}
-			settings={{ showCode: true }}
+			settings={{ showcode: true }}
 		/>,
 		options
 	);
@@ -119,7 +119,7 @@ it('should render a code editor closed by default if showCode:false option passe
 			evalInContext={a => () => a}
 			name="name"
 			index={0}
-			settings={{ showCode: false }}
+			settings={{ showcode: false }}
 		/>,
 		{
 			context: {

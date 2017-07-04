@@ -112,7 +112,7 @@ Pass props to PreviewRenderer
 			type: 'code',
 			content: '<h1>Hello Markdown!</h1>',
 			settings: {
-				showCode: true,
+				showcode: true,
 			},
 		},
 		{
@@ -132,7 +132,7 @@ Pass props to PreviewRenderer
 			type: 'code',
 			content: '<h2>Hello Markdown!</h2>',
 			settings: {
-				noEditor: true,
+				noeditor: true,
 			},
 		},
 		{
@@ -142,5 +142,40 @@ Pass props to PreviewRenderer
 		},
 	];
 	const actual = chunkify(markdown);
+	expect(actual).toEqual(expected);
+});
+
+it('should call examplePreprocessor function for example', () => {
+	const markdown = `
+\`\`\`jsx {"file": "./src/button/example.jsx"}
+\`\`\`
+`;
+	const expected = [
+		{
+			type: 'code',
+			content: '<h1>Hello Markdown!</h1>',
+			settings: {},
+		},
+	];
+	const examplePreprocessor = props => {
+		const content = props.content;
+		const lang = props.lang;
+		const settings = props.settings;
+		if (typeof settings.file === 'string') {
+			delete settings.file;
+			return {
+				content: '<h1>Hello Markdown!</h1>',
+				settings,
+				lang,
+			};
+		}
+
+		return {
+			content,
+			settings,
+			lang,
+		};
+	};
+	const actual = chunkify(markdown, examplePreprocessor);
 	expect(actual).toEqual(expected);
 });
