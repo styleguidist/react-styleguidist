@@ -10,9 +10,10 @@ const CODE_PLACEHOLDER = '<%{#code#}%>';
  * Separate Markdown and code examples that should be rendered as a playground in a style guide.
  *
  * @param {string} markdown
+ * @param {Function} examplePreprocessor
  * @returns {Array}
  */
-module.exports = function chunkify(markdown) {
+module.exports = function chunkify(markdown, examplePreprocessor) {
 	const codeChunks = [];
 	const codeLanguages = ['javascript', 'js', 'jsx'];
 	/*
@@ -25,6 +26,8 @@ module.exports = function chunkify(markdown) {
 			visit(ast, 'code', node => {
 				let lang = node.lang || '';
 				let settings = {};
+				let content = node.value;
+
 				const startSettingsString = lang.indexOf(' ');
 				if (startSettingsString !== -1) {
 					const settingsString = lang.slice(startSettingsString + 1);
@@ -51,6 +54,12 @@ module.exports = function chunkify(markdown) {
 				}
 
 				lang = lang.slice(0, lang.indexOf(' ') !== -1 ? lang.indexOf(' ') : lang.length);
+				if (examplePreprocessor) {
+					const processedExample = examplePreprocessor({ content, lang, settings });
+					content = processedExample.content;
+					lang = processedExample.lang;
+					settings = processedExample.settings;
+				}
 				node.lang = lang;
 				if (lang && (codeLanguages.indexOf(lang) === -1 || (settings && settings.static))) {
 					let highlighted;
@@ -63,7 +72,7 @@ module.exports = function chunkify(markdown) {
 				} else {
 					codeChunks.push({
 						type: 'code',
-						content: node.value,
+						content,
 						settings,
 					});
 					node.type = 'html';
