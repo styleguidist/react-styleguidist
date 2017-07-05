@@ -160,9 +160,15 @@ it('should return webpackConfig option as is', () => {
 });
 
 it('should return webpackConfig with user webpack config', () => {
-	process.chdir('test/apps/cra');
+	process.chdir('test/apps/basic');
 	const result = getConfig();
-	expect(result.webpackConfig).toEqual({ cra: true });
+	expect(result.webpackConfig).toEqual(
+		expect.objectContaining({
+			module: {
+				loaders: expect.any(Array),
+			},
+		})
+	);
 });
 
 it('should allow no webpack config', () => {
