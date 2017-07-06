@@ -10,6 +10,7 @@ const hasJsonLoader = require('./utils/hasJsonLoader');
 const getWebpackVersion = require('./utils/getWebpackVersion');
 const mergeWebpackConfig = require('./utils/mergeWebpackConfig');
 const StyleguidistOptionsPlugin = require('./utils/StyleguidistOptionsPlugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const RENDERER_REGEXP = /Renderer$/;
 
@@ -82,6 +83,15 @@ module.exports = function(config, env) {
 		});
 		if (isWebpack1) {
 			webpackConfig.plugins.push(new webpack.optimize.DedupePlugin());
+		}
+		if (config.assetsDir) {
+			webpackConfig.plugins.push(
+				new CopyWebpackPlugin([
+					{
+						from: config.assetsDir,
+					},
+				])
+			);
 		}
 	} else {
 		webpackConfig = merge(webpackConfig, {
