@@ -1,35 +1,28 @@
 {
-	"parser": "babel-eslint",
-	"extends": "tamia/react",
+  "parser": "babel-eslint",
+  "extends": "tamia/react",
   "env": {
     "browser": true,
-    "node": true,
-		"jest": true
+    "node": true
   },
-	"plugins": [
-		"compat",
-		"es5",
-		"import"
-	],
-	"settings": {
-		"import/core-modules": [ "prop-types" ],
-		"import/resolver": {
-			"node": {
-				"moduleDirectory": ["src", "node_modules"]
-			},
-		},
-	  "import/extensions": [
-	    ".js",
-	  ],
-	  "import/ignore": [
-	    "node_modules",
-			"lib",
-	    "\\.(css|hbs|svg|json)$",
-	  ],
-	},
-	"rules": {
-		"compat/compat": 2,
-    "import/no-unresolved": ["error", { "commonjs": true, "caseSensitive": true }],
+  "plugins": [
+    "compat",
+    "es5",
+    "import"
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["src", "node_modules"]
+      }
+    }
+  },
+  "rules": {
+    "compat/compat": "error",
+    "import/no-unresolved": ["error", {
+      "commonjs": true,
+      "caseSensitive": true
+    }],
     "import/export": "error",
     "import/no-named-as-default-member": "error",
     "import/no-mutable-exports": "error",
@@ -37,22 +30,17 @@
     "import/first": ["error", "absolute-first"],
     "import/no-duplicates": "error",
     "import/extensions": ["error", "always", {
-      "js": "never",
+      "js": "never"
     }],
-		"import/no-extraneous-dependencies": [
-      2,
-      {
-        "devDependencies": true
-      }
-    ],
+    "import/no-extraneous-dependencies": "error",
     "import/newline-after-import": "error",
     "import/prefer-default-export": "error",
-    "import/no-named-default": "error",
-	},
-	"globals": {
-		"classes": false,
-		"shallow": false,
-		"render": false,
-		"mount": false
-	}
+    "import/no-named-default": "error"
+  },
+  "globals": {
+    "classes": false,
+    "shallow": false,
+    "render": false,
+    "mount": false
+  }
 }
