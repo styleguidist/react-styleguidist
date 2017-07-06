@@ -47,9 +47,7 @@ export function TableRenderer({ classes, columns, rows, getRowKey }) {
 			<thead className={classes.tableHead}>
 				<tr>
 					{columns.map(({ caption }) =>
-						<th key={caption} className={classes.cellHeading}>
-							{caption}
-						</th>
+						<th key={caption} className={classes.cellHeading}>{caption}</th>
 					)}
 				</tr>
 			</thead>
@@ -57,9 +55,7 @@ export function TableRenderer({ classes, columns, rows, getRowKey }) {
 				{rows.map(row =>
 					<tr key={getRowKey(row)}>
 						{columns.map(({ render }, index) =>
-							<td key={index} className={classes.cell}>
-								{render(row)}
-							</td>
+							<td key={index} className={classes.cell}>{render(row)}</td>
 						)}
 					</tr>
 				)}

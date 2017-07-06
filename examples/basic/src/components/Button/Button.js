@@ -12,11 +12,7 @@ export default function Button({ color, size, onClick, children }) {
 		fontSize: Button.sizes[size],
 	};
 
-	return (
-		<button className="button" style={styles} onClick={onClick}>
-			{children}
-		</button>
-	);
+	return <button className="button" style={styles} onClick={onClick}>{children}</button>;
 }
 Button.propTypes = {
 	/** Button label */

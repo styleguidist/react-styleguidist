@@ -8,9 +8,7 @@ const props = {
 
 it('should render a button', () => {
 	const actual = shallow(
-		<ToolbarButtonRenderer {...props} onClick={() => {}}>
-			pizza
-		</ToolbarButtonRenderer>
+		<ToolbarButtonRenderer {...props} onClick={() => {}}>pizza</ToolbarButtonRenderer>
 	);
 
 	expect(actual).toMatchSnapshot();
@@ -18,9 +16,7 @@ it('should render a button', () => {
 
 it('should render a link', () => {
 	const actual = shallow(
-		<ToolbarButtonRenderer {...props} href="/foo">
-			pizza
-		</ToolbarButtonRenderer>
+		<ToolbarButtonRenderer {...props} href="/foo">pizza</ToolbarButtonRenderer>
 	);
 
 	expect(actual).toMatchSnapshot();
@@ -48,9 +44,7 @@ it('should pass a class name to a link', () => {
 
 it('should render a button with small styles', () => {
 	const actual = shallow(
-		<ToolbarButtonRenderer {...props} onClick={() => {}} small>
-			butterbrot
-		</ToolbarButtonRenderer>
+		<ToolbarButtonRenderer {...props} onClick={() => {}} small>butterbrot</ToolbarButtonRenderer>
 	);
 
 	expect(actual.prop('className')).toBe('button isSmall');

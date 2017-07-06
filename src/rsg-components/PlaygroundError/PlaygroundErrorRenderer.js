@@ -16,11 +16,7 @@ const styles = ({ fontFamily, fontSize, color, space }) => ({
 });
 
 export function PlaygroundErrorRenderer({ classes, message }) {
-	return (
-		<pre className={classes.root}>
-			{message}
-		</pre>
-	);
+	return <pre className={classes.root}>{message}</pre>;
 }
 
 PlaygroundErrorRenderer.propTypes = {

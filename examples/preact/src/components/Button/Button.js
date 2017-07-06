@@ -12,11 +12,7 @@ export default function Button({ color, size, children }) {
 		fontSize: Button.sizes[size],
 	};
 
-	return (
-		<button className="button" style={styles}>
-			{children}
-		</button>
-	);
+	return <button className="button" style={styles}>{children}</button>;
 }
 Button.propTypes = {
 	/**

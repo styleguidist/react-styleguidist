@@ -5,11 +5,7 @@ const href = '/foo';
 const children = 'Foo';
 
 it('renderer should render link', () => {
-	const actual = shallow(
-		<LinkRenderer href={href} classes={{}}>
-			{children}
-		</LinkRenderer>
-	);
+	const actual = shallow(<LinkRenderer href={href} classes={{}}>{children}</LinkRenderer>);
 
 	expect(actual).toMatchSnapshot();
 });

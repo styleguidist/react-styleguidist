@@ -10,20 +10,12 @@ const props = {
 };
 
 it('renderer should a path line', () => {
-	const actual = shallow(
-		<PathlineRenderer {...props}>
-			{pathline}
-		</PathlineRenderer>
-	);
+	const actual = shallow(<PathlineRenderer {...props}>{pathline}</PathlineRenderer>);
 	expect(actual).toMatchSnapshot();
 });
 
 test('should copy text on click', () => {
-	const actual = mount(
-		<PathlineRenderer {...props}>
-			{pathline}
-		</PathlineRenderer>
-	);
+	const actual = mount(<PathlineRenderer {...props}>{pathline}</PathlineRenderer>);
 	actual.find('button').simulate('click');
 	expect(copy).toBeCalledWith(pathline);
 });

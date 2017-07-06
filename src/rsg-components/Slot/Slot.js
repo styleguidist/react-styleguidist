@@ -40,11 +40,7 @@ export default function Slot({ name, active, onlyActive, className, props = {} }
 		return null;
 	}
 
-	return (
-		<div className={className}>
-			{filtered}
-		</div>
-	);
+	return <div className={className}>{filtered}</div>;
 }
 
 Slot.propTypes = {

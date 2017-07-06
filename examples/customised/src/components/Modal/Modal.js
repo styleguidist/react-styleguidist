@@ -18,10 +18,6 @@ export default class Modal extends Component {
 				zIndex: 999,
 			},
 		};
-		return (
-			<ReactModal contentLabel="Modal" isOpen={isOpen} style={style}>
-				{children}
-			</ReactModal>
-		);
+		return <ReactModal contentLabel="Modal" isOpen={isOpen} style={style}>{children}</ReactModal>;
 	}
 }

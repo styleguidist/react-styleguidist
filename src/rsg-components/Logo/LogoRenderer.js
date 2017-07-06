@@ -13,11 +13,7 @@ const styles = ({ color, fontFamily, fontSize }) => ({
 });
 
 export function LogoRenderer({ classes, children }) {
-	return (
-		<h1 className={classes.logo}>
-			{children}
-		</h1>
-	);
+	return <h1 className={classes.logo}>{children}</h1>;
 }
 
 LogoRenderer.propTypes = {

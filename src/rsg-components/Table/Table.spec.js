@@ -5,18 +5,12 @@ const columns = [
 	{
 		caption: 'Name',
 		// eslint-disable-next-line react/prop-types
-		render: ({ name }) =>
-			<span>
-				name: {name}
-			</span>,
+		render: ({ name }) => <span>name: {name}</span>,
 	},
 	{
 		caption: 'Type',
 		// eslint-disable-next-line react/prop-types
-		render: ({ type }) =>
-			<span>
-				type: {type}
-			</span>,
+		render: ({ type }) => <span>type: {type}</span>,
 	},
 ];
 const rows = [
