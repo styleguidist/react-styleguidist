@@ -106,7 +106,7 @@ function commandServer() {
 		if (err) {
 			console.error(err);
 		} else {
-			const isHttps = config.webpackConfig && config.webpackConfig.devServer && config.webpackConfig.devServer.https;
+			const isHttps = compiler.options.devServer && compiler.options.devServer.https;
 			logger.info(
 				'Style guide server started at:\n' + (isHttps ? 'https' : 'http') + '://' + config.serverHost + ':' + config.serverPort
 			);
