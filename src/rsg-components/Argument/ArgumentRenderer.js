@@ -18,10 +18,15 @@ export function ArgumentRenderer({ classes, name, type, description, returns, bl
 			{returns && 'Returns'}
 			{name &&
 				<span>
-					<Name>{name}</Name>
+					<Name>
+						{name}
+					</Name>
 					{type && ':'}
 				</span>}
-			{type && <Type>{type.name}</Type>}
+			{type &&
+				<Type>
+					{type.name}
+				</Type>}
 			{description && <Markdown text={`— ${description}`} inline />}
 		</Group>
 	);

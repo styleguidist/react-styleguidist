@@ -13,7 +13,11 @@ it('should render a button', () => {
 });
 
 it('should render active styles', () => {
-	const actual = shallow(<TabButtonRenderer {...props} active>pizza</TabButtonRenderer>);
+	const actual = shallow(
+		<TabButtonRenderer {...props} active>
+			pizza
+		</TabButtonRenderer>
+	);
 
 	expect(actual).toMatchSnapshot();
 });

@@ -33,11 +33,7 @@ const styles = ({ fontFamily, color, space, fontSize }) => ({
 });
 
 export function EditorLoaderRenderer({ classes }) {
-	return (
-		<div className={classes.root}>
-			Loading…
-		</div>
-	);
+	return <div className={classes.root}>Loading…</div>;
 }
 
 EditorLoaderRenderer.propTypes = {

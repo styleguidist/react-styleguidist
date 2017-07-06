@@ -27,12 +27,13 @@ module.exports = {
 		module: {
 			loaders: loaders.all,
 		},
-		performance: env === 'development'
-			? false
-			: {
-					maxAssetSize: 670000, // bytes
-					maxEntrypointSize: 670000, // bytes
-					hints: 'error',
-				},
+		performance:
+			env === 'development'
+				? false
+				: {
+						maxAssetSize: 670000, // bytes
+						maxEntrypointSize: 670000, // bytes
+						hints: 'error',
+					},
 	}),
 };

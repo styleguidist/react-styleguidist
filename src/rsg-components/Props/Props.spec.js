@@ -10,7 +10,11 @@ export default function ColumnsRenderer({ props }) {
 		<ul>
 			{propsToArray(props).map((row, rowIdx) =>
 				<li key={rowIdx}>
-					{columns.map(({ caption, render }, colIdx) => <div key={colIdx}>{render(row)}</div>)}
+					{columns.map(({ render }, colIdx) =>
+						<div key={colIdx}>
+							{render(row)}
+						</div>
+					)}
 				</li>
 			)}
 		</ul>

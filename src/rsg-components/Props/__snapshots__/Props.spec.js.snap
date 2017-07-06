@@ -227,7 +227,8 @@ exports[`props columns should render PropTypes.oneOf 1`] = `
       <div>
         <Styled(Para)>
           <span>
-            One of: 
+            One of:
+             
             <Group
               inline={true}
               separator=", "
@@ -271,7 +272,8 @@ exports[`props columns should render PropTypes.oneOfType 1`] = `
       <div>
         <Styled(Para)>
           <span>
-            One of type: 
+            One of type:
+             
             <Group
               inline={true}
               separator=", "

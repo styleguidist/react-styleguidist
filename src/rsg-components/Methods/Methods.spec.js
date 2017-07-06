@@ -9,7 +9,11 @@ export default function ColumnsRenderer({ methods }) {
 		<ul>
 			{methods.map((row, rowIdx) =>
 				<li key={rowIdx}>
-					{columns.map(({ caption, render }, colIdx) => <div key={colIdx}>{render(row)}</div>)}
+					{columns.map(({ render }, colIdx) =>
+						<div key={colIdx}>
+							{render(row)}
+						</div>
+					)}
 				</li>
 			)}
 		</ul>

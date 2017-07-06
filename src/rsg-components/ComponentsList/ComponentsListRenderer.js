@@ -47,7 +47,9 @@ export function ComponentsListRenderer({ classes, items }) {
 					className={cx(classes.item, (!content || !content.props.items.length) && classes.isChild)}
 					key={name}
 				>
-					<Link className={cx(heading && classes.heading)} href={`#${slug}`}>{name}</Link>
+					<Link className={cx(heading && classes.heading)} href={`#${slug}`}>
+						{name}
+					</Link>
 					{content}
 				</li>
 			)}
