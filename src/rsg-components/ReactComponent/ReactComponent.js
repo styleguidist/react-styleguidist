@@ -8,9 +8,10 @@ import Slot from 'rsg-components/Slot';
 import { DOCS_TAB_USAGE } from '../slots';
 import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponentRenderer';
 
-const ExamplePlaceholder = process.env.NODE_ENV !== 'production'
-	? require('rsg-components/ExamplePlaceholder').default
-	: () => <div />;
+const ExamplePlaceholder =
+	process.env.NODE_ENV !== 'production'
+		? require('rsg-components/ExamplePlaceholder').default
+		: () => <div />;
 
 export default class ReactComponent extends Component {
 	static propTypes = {

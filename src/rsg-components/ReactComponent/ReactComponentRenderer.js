@@ -37,7 +37,9 @@ export function ReactComponentRenderer({
 		<div className={classes.root} id={name + '-container'}>
 			<header className={classes.header}>
 				{heading}
-				<Pathline>{pathLine}</Pathline>
+				<Pathline>
+					{pathLine}
+				</Pathline>
 			</header>
 			{(description || docs) &&
 				<div className={classes.docs}>
@@ -46,7 +48,9 @@ export function ReactComponentRenderer({
 				</div>}
 			{tabButtons &&
 				<div className={classes.tabs}>
-					<div className={classes.tabButtons}>{tabButtons}</div>
+					<div className={classes.tabButtons}>
+						{tabButtons}
+					</div>
 					{tabBody}
 				</div>}
 			{examples}

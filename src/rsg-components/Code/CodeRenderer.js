@@ -15,7 +15,9 @@ const styles = ({ fontFamily }) => ({
 export function CodeRenderer({ classes, className, children }) {
 	return (
 		<span className={className}>
-			<code className={classes.code}>{children}</code>
+			<code className={classes.code}>
+				{children}
+			</code>
 		</span>
 	);
 }

@@ -34,13 +34,26 @@ function renderType(type) {
 
 function renderEnum(prop) {
 	if (!Array.isArray(getType(prop).value)) {
-		return <span>{getType(prop).value}</span>;
+		return (
+			<span>
+				{getType(prop).value}
+			</span>
+		);
 	}
 
 	const values = getType(prop).value.map(({ value }) =>
-		<Code key={value}>{showSpaces(unquote(value))}</Code>
+		<Code key={value}>
+			{showSpaces(unquote(value))}
+		</Code>
 	);
-	return <span>One of: <Group separator=", " inline>{values}</Group></span>;
+	return (
+		<span>
+			One of:{' '}
+			<Group separator=", " inline>
+				{values}
+			</Group>
+		</span>
+	);
 }
 
 function renderShape(props) {
@@ -51,9 +64,15 @@ function renderShape(props) {
 		const description = prop.description;
 		rows.push(
 			<div key={name}>
-				<Name>{name}</Name>{': '}
-				<Type>{renderType(prop)}</Type>
-				{defaultValue && ' — '}{defaultValue}
+				<Name>
+					{name}
+				</Name>
+				{': '}
+				<Type>
+					{renderType(prop)}
+				</Type>
+				{defaultValue && ' — '}
+				{defaultValue}
 				{description && ' — '}
 				{description && <Markdown text={description} inline />}
 			</div>
@@ -74,7 +93,11 @@ function renderDefault(prop) {
 			);
 		}
 
-		return <Code>{showSpaces(unquote(prop.defaultValue.value))}</Code>;
+		return (
+			<Code>
+				{showSpaces(unquote(prop.defaultValue.value))}
+			</Code>
+		);
 	}
 	return '';
 }
@@ -86,7 +109,10 @@ function renderDescription(prop) {
 	return (
 		<div>
 			{description && <Markdown text={description} />}
-			{extra && <Para>{extra}</Para>}
+			{extra &&
+				<Para>
+					{extra}
+				</Para>}
 			<JsDoc {...tags} />
 			{args.length > 0 && <Arguments args={args} heading />}
 		</div>
@@ -123,22 +149,43 @@ function renderExtra(prop) {
 
 function renderUnion(prop) {
 	if (!Array.isArray(getType(prop).value)) {
-		return <span>{getType(prop).value}</span>;
+		return (
+			<span>
+				{getType(prop).value}
+			</span>
+		);
 	}
 
 	const values = getType(prop).value.map(value =>
-		<Type key={value.name}>{renderType(value)}</Type>
+		<Type key={value.name}>
+			{renderType(value)}
+		</Type>
 	);
-	return <span>One of type: <Group separator=", " inline>{values}</Group></span>;
+	return (
+		<span>
+			One of type:{' '}
+			<Group separator=", " inline>
+				{values}
+			</Group>
+		</span>
+	);
 }
 
 function renderName(prop) {
 	const { name, tags = {} } = prop;
-	return <Name deprecated={!!tags.deprecated}>{name}</Name>;
+	return (
+		<Name deprecated={!!tags.deprecated}>
+			{name}
+		</Name>
+	);
 }
 
 function renderTypeColumn(prop) {
-	return <Type>{renderType(getType(prop))}</Type>;
+	return (
+		<Type>
+			{renderType(getType(prop))}
+		</Type>
+	);
 }
 
 export function getRowKey(row) {
