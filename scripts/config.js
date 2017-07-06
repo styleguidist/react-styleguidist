@@ -1,7 +1,5 @@
 'use strict';
 
-/* eslint-disable no-console */
-
 const fs = require('fs');
 const path = require('path');
 const findup = require('findup');
@@ -36,7 +34,7 @@ function getConfig(config) {
 	}
 
 	if (configFilepath) {
-		config = require(configFilepath); // eslint-disable-line import/no-dynamic-require
+		config = require(configFilepath);
 	}
 
 	const configDir = configFilepath ? path.dirname(configFilepath) : process.cwd();

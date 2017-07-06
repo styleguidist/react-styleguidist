@@ -4,6 +4,7 @@ import './polyfills';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import isFinite from 'lodash/isFinite';
+import slots from 'rsg-components/slots';
 import StyleGuide from 'rsg-components/StyleGuide';
 import {
 	getInfoFromHash,
@@ -21,7 +22,8 @@ import './styles';
 let codeRevision = 0;
 
 function renderStyleguide() {
-	const styleguide = require('!!../loaders/styleguide-loader!./index.js'); // eslint-disable-line
+	// eslint-disable-next-line import/no-unresolved
+	const styleguide = require('!!../loaders/styleguide-loader!./index.js');
 
 	let sections = processSections(styleguide.sections);
 
