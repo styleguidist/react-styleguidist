@@ -68,7 +68,7 @@
     "prop-types": "^15.5.10",
     "react-codemirror": "^1.0.0",
     "react-dev-utils": "^0.5.2",
-    "react-docgen": "^2.15.0",
+    "react-docgen": "^3.0.0-beta5",
     "react-docgen-displayname-handler": "^1.0.0",
     "react-group": "^1.0.4",
     "react-icons": "^2.2.5",
