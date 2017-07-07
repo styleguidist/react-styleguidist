@@ -67,6 +67,14 @@ function renderStyleguide() {
 	slugger.reset();
 	sections = setSlugs(sections);
 
+	let documentTitle = styleguide.config.title;
+	if (isolatedComponent || isolatedExample) {
+		documentTitle = sections[0].components[0].name + ' — ' + documentTitle;
+	} else if (isolatedSection) {
+		documentTitle = sections[0].name + ' — ' + documentTitle;
+	}
+	document.title = documentTitle;
+
 	ReactDOM.render(
 		<StyleGuide
 			codeRevision={codeRevision}
