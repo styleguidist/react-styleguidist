@@ -29,6 +29,7 @@ export default {
 	'height': 'auto',
 	'hyphens': 'none',
 	'left': 'auto',
+	'line-height': 'inherit',
 	'margin': '0',
 	'max-height': 'none',
 	'max-width': 'none',
@@ -57,5 +58,5 @@ export default {
 	'unicode-bidi': 'normal',
 	'vertical-align': 'baseline',
 	'width': 'auto',
-	'z-index': 'auto',
+	'z-index': 'auto'
 };
