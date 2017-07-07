@@ -52,6 +52,7 @@
     "highlight.js": "^9.11.0",
     "html-webpack-plugin": "^2.28.0",
     "is-directory": "^0.3.1",
+    "javascript-stringify": "^1.6.0",
     "json-loader": "^0.5.4",
     "jss": "^8.0.0",
     "jss-camel-case": "^5.0.0",
