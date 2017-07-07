@@ -9,9 +9,8 @@ const CODE_PLACEHOLDER = '<%{#code#}%>';
 function keysToLowerCaseDeep(obj) {
 	const newobj = {};
 	Object.keys(obj).forEach(key => {
-		newobj[key.toLowerCase()] = typeof obj[key] === 'object'
-			? keysToLowerCaseDeep(obj[key])
-			: obj[key];
+		newobj[key.toLowerCase()] =
+			typeof obj[key] === 'object' ? keysToLowerCaseDeep(obj[key]) : obj[key];
 	});
 	return newobj;
 }
