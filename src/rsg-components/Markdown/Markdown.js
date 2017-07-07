@@ -9,6 +9,7 @@ import { styles as paraStyles } from 'rsg-components/Para';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
 // That way we could avoid clashes between our loaders and user loaders.
+// eslint-disable-next-line import/no-unresolved
 require('!!../../../loaders/style-loader!../../../loaders/css-loader!highlight.js/styles/tomorrow.css');
 
 // Temporary disable memoization to fix: https://github.com/styleguidist/react-styleguidist/issues/348
@@ -21,7 +22,11 @@ function Code({ children, className }) {
 	if (isHighlighted) {
 		return <code className={className} dangerouslySetInnerHTML={{ __html: children }} />;
 	}
-	return <code className={className}>{children}</code>;
+	return (
+		<code className={className}>
+			{children}
+		</code>
+	);
 }
 Code.propTypes = {
 	children: PropTypes.node,

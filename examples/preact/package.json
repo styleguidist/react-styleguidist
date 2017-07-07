@@ -19,8 +19,10 @@
   "dependencies": {
     "dog-names": "^1.0.2",
     "loaders": "^1.1.2",
+    "lodash": "^4.17.4",
     "preact": "^7.2.0",
     "preact-compat": "^3.13.1",
+    "prop-types": "^15.5.10",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-modal": "^1.6.5",

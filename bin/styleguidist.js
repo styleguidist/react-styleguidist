@@ -108,7 +108,12 @@ function commandServer() {
 		} else {
 			const isHttps = compiler.options.devServer && compiler.options.devServer.https;
 			logger.info(
-				'Style guide server started at:\n' + (isHttps ? 'https' : 'http') + '://' + config.serverHost + ':' + config.serverPort
+				'Style guide server started at:\n' +
+					(isHttps ? 'https' : 'http') +
+					'://' +
+					config.serverHost +
+					':' +
+					config.serverPort
 			);
 		}
 	});

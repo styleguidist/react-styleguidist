@@ -1,6 +1,6 @@
-jest.mock('../requireIt');
-
 import getProps from '../getProps';
+
+jest.mock('../requireIt');
 
 it('should return an object for props', () => {
 	const result = getProps({

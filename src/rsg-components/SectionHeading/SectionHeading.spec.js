@@ -25,7 +25,9 @@ it('renderer should render H2 tag', () => {
 
 it('renderer should render H1 tag', () => {
 	const actual = shallow(
-		<SectionHeadingRenderer {...props} primary>Heading</SectionHeadingRenderer>
+		<SectionHeadingRenderer {...props} primary>
+			Heading
+		</SectionHeadingRenderer>
 	);
 
 	expect(actual).toMatchSnapshot();
@@ -33,7 +35,9 @@ it('renderer should render H1 tag', () => {
 
 it('renderer should render heading with deprecated styles', () => {
 	const actual = shallow(
-		<SectionHeadingRenderer {...props} deprecated>Heading</SectionHeadingRenderer>
+		<SectionHeadingRenderer {...props} deprecated>
+			Heading
+		</SectionHeadingRenderer>
 	);
 
 	expect(actual).toMatchSnapshot();

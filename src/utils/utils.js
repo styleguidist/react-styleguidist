@@ -30,9 +30,10 @@ export function globalizeComponent(component) {
 		return;
 	}
 
-	global[component.name] = !component.props.path || component.props.path === 'default'
-		? component.module.default || component.module
-		: component.module[component.props.path];
+	global[component.name] =
+		!component.props.path || component.props.path === 'default'
+			? component.module.default || component.module
+			: component.module[component.props.path];
 }
 
 /**

@@ -5,11 +5,7 @@ import TabButton from 'rsg-components/TabButton';
 const UsageTabButton = props => {
 	const component = props.props;
 	const showButton = component.props || (component.methods && component.methods.length > 0);
-	return showButton
-		? <TabButton {...props}>
-				Props & methods
-			</TabButton>
-		: null;
+	return showButton ? <TabButton {...props}>Props & methods</TabButton> : null;
 };
 
 UsageTabButton.propTypes = {

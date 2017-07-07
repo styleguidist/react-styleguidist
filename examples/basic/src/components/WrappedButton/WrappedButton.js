@@ -14,7 +14,11 @@ const WrappedButton = ({ color, size, children }) => {
 		fontSize: WrappedButton.sizes[size],
 	};
 
-	return <button className="wrapped-button" style={styles}>{children}</button>;
+	return (
+		<button className="wrapped-button" style={styles}>
+			{children}
+		</button>
+	);
 };
 WrappedButton.propTypes = {
 	/**

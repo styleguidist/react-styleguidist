@@ -25,8 +25,14 @@ export default class CustomEndpoint extends Component {
 	render() {
 		return (
 			<div>
-				<div>{this.state.response}</div>
-				{this.state.error ? <div>{this.state.error}</div> : null}
+				<div>
+					{this.state.response}
+				</div>
+				{this.state.error
+					? <div>
+							{this.state.error}
+						</div>
+					: null}
 				<button onClick={this.handleInvokeEndpoint}>Invoke server</button>
 			</div>
 		);

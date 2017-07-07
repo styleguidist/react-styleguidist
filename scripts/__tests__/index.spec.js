@@ -1,9 +1,9 @@
+import last from 'lodash/last';
+import styleguidist from '../index';
+
 jest.mock('../build');
 jest.mock('../server');
 jest.mock('../utils/getWebpackVersion');
-
-import last from 'lodash/last';
-import styleguidist from '../index';
 
 const getDefaultWebpackConfig = () => styleguidist().makeWebpackConfig();
 

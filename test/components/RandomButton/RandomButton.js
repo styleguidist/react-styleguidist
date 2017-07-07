@@ -27,6 +27,10 @@ export default class RandomButton extends Component {
 	}
 
 	render() {
-		return <button onClick={this.handleClick.bind(this)}>{this.state.label}</button>;
+		return (
+			<button onClick={this.handleClick.bind(this)}>
+				{this.state.label}
+			</button>
+		);
 	}
 }

@@ -14,7 +14,11 @@ export const styles = ({ space, fontFamily, color }) => ({
 });
 
 export function ParaRenderer({ classes, children }) {
-	return <div className={classes.para}>{children}</div>;
+	return (
+		<div className={classes.para}>
+			{children}
+		</div>
+	);
 }
 
 ParaRenderer.propTypes = {

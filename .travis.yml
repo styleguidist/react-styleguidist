@@ -10,7 +10,7 @@ cache:
 env:
   # Test everything in Webpack 1 and 2
   - export WEBPACK_VERSION="2"
-  - export WEBPACK_VERSION="1"
+  # - export WEBPACK_VERSION="1"
 before_install:
   # Upgrade npm
   - if [[ `npm -v` != 5* ]]; then npm install -g npm@latest; fi

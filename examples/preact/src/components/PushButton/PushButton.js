@@ -12,7 +12,11 @@ export default function PushButton({ color, size, children }) {
 		fontSize: PushButton.sizes[size],
 	};
 
-	return <button className="push-button" style={styles}>{children}</button>;
+	return (
+		<button className="push-button" style={styles}>
+			{children}
+		</button>
+	);
 }
 PushButton.propTypes = {
 	/**
