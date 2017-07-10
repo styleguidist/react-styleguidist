@@ -1,4 +1,4 @@
-import jss from 'jss';
+import { create } from 'jss';
 import global from 'jss-global';
 import isolate from 'jss-isolate';
 import nested from 'jss-nested';
@@ -7,7 +7,7 @@ import defaultUnit from 'jss-default-unit';
 import compose from 'jss-compose';
 import nonInheritedProps from './nonInheritedProps';
 
-jss.setup({
+export default create({
 	plugins: [
 		global(),
 		isolate({

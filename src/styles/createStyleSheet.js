@@ -1,6 +1,6 @@
-import jss from 'jss';
 import merge from 'lodash/merge';
 import memoize from 'lodash/memoize';
+import jss from './setupjss';
 import * as theme from './theme';
 
 export default memoize((styles, config, componentName) => {
