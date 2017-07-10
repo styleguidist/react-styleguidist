@@ -43,25 +43,28 @@ export default class Button extends React.Component {
 
 ## Usage examples and Readme files
 
-Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the component’s folder and display them. Any code block without a language tag will be rendered as a  React component with live editable preview.
+Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the component’s folder and display them. Any code block with a language tag of 'js', 'jsx'
+ or 'javascript' will be rendered as a React component with live editable preview.
 
     React component example:
 
-        <Button size="large">Push Me</Button>
-
-    One more with generic code fence:
-
-    ```
+    ```js
     <Button size="large">Push Me</Button>
     ```
 
-    One more with `example` code fence (text editors may alias to `jsx` or `javascript`):
-
-    ```example
-    <Button size="large">Push Me</Button>
+    You can disable an editor by passing a 'noeditor' modifier:
+    
+    ```jsx noeditor
+    <Button>Push Me</Button>
     ```
-
-    This example is rendered only as highlighted source code, not an actual component:
+    
+    You can disable a playground by passing a 'static' modifier:
+    
+    ```jsx static
+    import React from 'react';
+    ```
+ 
+    Examples with all other languages are rendered only as highlighted source code, not an actual component:
 
     ```html
     <Button size="large">Push Me</Button>

@@ -179,34 +179,6 @@ module.exports = {
 };
 ```
 
-#### `updateExample`
-
-Type: `Function`, optional
-Function that returns modified example.
-
-```javascript
-module.exports = {
-  updateExample: function(props) {
-    const lang = props.lang;
-    const content = props.content;
-    const settings = props.settings
-    if (typeof settings.file === 'string') {
-      const filepath = settings.file;
-      delete settings.file;
-      return {
-        content: fs.readFileSync(filepath),
-        settings,
-        lang,
-      }
-    }
-    return {
-      content,
-      settings,
-      lang,
-    }
-};
-```
-
 #### `highlightTheme`
 
 Type: `String`, default: `base16-light`
@@ -378,6 +350,37 @@ See example in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide)
 Type: `String`, default: `<app name from package.json> Style Guide`
 
 Style guide title.
+
+#### `updateExample`
+
+Type: `Function`, optional
+
+Function that modifies code example (Markdown fenced code block). For example you can use it to load examples from files:
+
+```javascript
+module.exports = {
+  updateExample: function(props) {
+    const { settings, lang } = props;
+    if (typeof settings.file === 'string') {
+      const filepath = settings.file;
+      delete settings.file;
+      return {
+        content: fs.readFileSync(filepath),
+        settings,
+        lang,
+      }
+    }
+    return props;
+  }
+};
+```
+
+Use it like this in you Markdown files:
+
+```md
+\`\`\`js { "file": "./some/file.js" }
+\`\`\`
+```
 
 #### `verbose`
 
