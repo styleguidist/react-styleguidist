@@ -62,6 +62,13 @@ export default class Preview extends Component {
 		}
 	}
 
+	componentWillUnmount() {
+		if (!this.mountNode) {
+			return;
+		}
+		ReactDOM.unmountComponentAtNode(this.mountNode);
+	}
+
 	executeCode() {
 		this.setState({
 			error: null,
