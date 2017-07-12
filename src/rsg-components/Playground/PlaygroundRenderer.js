@@ -45,9 +45,9 @@ PlaygroundRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	name: PropTypes.string.isRequired,
 	preview: PropTypes.node.isRequired,
-	tabButtons: PropTypes.node,
-	tabBody: PropTypes.node,
-	toolbar: PropTypes.node,
+	tabButtons: PropTypes.node.isRequired,
+	tabBody: PropTypes.node.isRequired,
+	toolbar: PropTypes.node.isRequired,
 };
 
 export default Styled(styles)(PlaygroundRenderer);

@@ -3,7 +3,7 @@
 const path = require('path');
 const fs = require('fs');
 const reactDocs = require('react-docgen');
-const highlightCode = require('./highlightCode');
+const highlightCodeInMarkdown = require('./highlightCodeInMarkdown');
 const removeDoclets = require('./removeDoclets');
 const requireIt = require('./requireIt');
 const doctrine = require('doctrine');
@@ -65,7 +65,7 @@ module.exports = function getProps(doc, filepath) {
 		const documentation = doctrine.parse(doc.description);
 		doc.tags = getDoctrineTags(documentation);
 
-		doc.description = highlightCode(removeDoclets(doc.description));
+		doc.description = highlightCodeInMarkdown(removeDoclets(doc.description));
 
 		let exampleFileExists = false;
 		let exampleFile = doc.doclets.example;

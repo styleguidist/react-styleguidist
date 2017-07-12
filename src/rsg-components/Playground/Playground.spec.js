@@ -9,6 +9,13 @@ const evalInContext = a =>
 	new Function('require', 'const React = require("react");' + a).bind(null, require); // eslint-disable-line no-new-func
 const code = '<button>OK</button>';
 const newCode = '<button>Not OK</button>';
+const props = {
+	index: 0,
+	name: 'name',
+	settings: {},
+	evalInContext,
+	code,
+};
 const options = {
 	context: {
 		config: {
@@ -23,19 +30,13 @@ const options = {
 };
 
 it('should render component renderer', () => {
-	const actual = shallow(
-		<Playground code={code} evalInContext={evalInContext} name="name" index={0} />,
-		options
-	);
+	const actual = shallow(<Playground {...props} />, options);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should update code via props', () => {
-	const actual = shallow(
-		<Playground code={code} evalInContext={evalInContext} name="name" index={0} />,
-		options
-	);
+	const actual = shallow(<Playground {...props} />, options);
 
 	expect(actual.state('code')).toEqual(code);
 
@@ -47,15 +48,12 @@ it('should update code via props', () => {
 });
 
 it('should update code with debounce', done => {
-	const actual = shallow(
-		<Playground code={code} evalInContext={evalInContext} name="name" index={0} />,
-		{
-			context: {
-				...options.context,
-				config: {
-					...options.context.config,
-					previewDelay: 1,
-				},
+	const actual = shallow(<Playground {...props} />, {
+		context: {
+			...options.context,
+			config: {
+				...options.context.config,
+				previewDelay: 1,
 			},
 		}
 	);
@@ -72,10 +70,7 @@ it('should update code with debounce', done => {
 });
 
 it('should open a code editor', () => {
-	const actual = mount(
-		<Playground code={code} evalInContext={evalInContext} name="name" index={0} />,
-		options
-	);
+	const actual = mount(<Playground {...props} />, options);
 
 	expect(actual.find('.ReactCodeMirror')).toHaveLength(0);
 
@@ -99,38 +94,20 @@ it('should not render a code editor if noEditor option passed in example setting
 });
 
 it('should render a code editor opened by default if showCode:true option passed in example settings', () => {
-	const actual = mount(
-		<Playground
-			code={code}
-			evalInContext={a => () => a}
-			name="name"
-			index={0}
-			settings={{ showcode: true }}
-		/>,
-		options
-	);
+	const actual = mount(<Playground {...props} settings={{ showcode: true }} />, options);
 	expect(actual.find('.ReactCodeMirror')).toHaveLength(1);
 });
 
 it('should render a code editor closed by default if showCode:false option passed in example settings', () => {
-	const actual = mount(
-		<Playground
-			code={code}
-			evalInContext={a => () => a}
-			name="name"
-			index={0}
-			settings={{ showcode: false }}
-		/>,
-		{
-			context: {
-				...options.context,
-				config: {
-					...options.context.config,
-					showCode: true,
-				},
+	const actual = mount(<Playground {...props} settings={{ showcode: false }} />, {
+		context: {
+			...options.context,
+			config: {
+				...options.context.config,
+				showCode: true,
 			},
-		}
-	);
+		},
+	});
 	expect(actual.find('.ReactCodeMirror')).toHaveLength(0);
 });
 
