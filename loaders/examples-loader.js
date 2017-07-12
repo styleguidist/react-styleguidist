@@ -16,11 +16,6 @@ const requireIt = require('./utils/requireIt');
 const absolutize = filepath => path.resolve(__dirname, filepath);
 
 function examplesLoader(source) {
-	/* istanbul ignore if */
-	if (this.cacheable) {
-		this.cacheable();
-	}
-
 	const query = loaderUtils.getOptions(this) || {};
 	const config = this._styleguidist;
 
