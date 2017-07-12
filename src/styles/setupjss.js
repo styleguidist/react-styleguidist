@@ -20,7 +20,7 @@ jss.setup({
 
 				// Allow inheritance because it may be set on body and should be available for user components
 				fontFamily: 'inherit',
-				'line-height': 'inherit',
+				lineHeight: 'inherit',
 			},
 		}),
 		nested(),
