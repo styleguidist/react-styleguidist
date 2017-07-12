@@ -7,10 +7,6 @@ cache:
   directories:
     - node_modules
     - travis_phantomjs
-env:
-  # Test everything in Webpack 1 and 2
-  - export WEBPACK_VERSION="2"
-  # - export WEBPACK_VERSION="1"
 before_install:
   # Upgrade npm
   - if [[ `npm -v` != 5* ]]; then npm install -g npm@latest; fi
@@ -25,9 +21,6 @@ before_install:
         tar -xvf phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 -C $PWD/travis_phantomjs
       fi
       phantomjs -v
-before_script:
-  # Manually install Webpack 1 or 2
-  - if [ "$WEBPACK_VERSION" == "1" ]; then npm install --no-save webpack@1; fi
 script:
   # Run lint
   - npm run lint
@@ -36,7 +29,7 @@ script:
     if [[ "$TRAVIS_NODE_VERSION" == "4" ]]; then
       NODE_ENV=test node --harmony-proxies $(npm bin)/jest --runInBand
     else
-      if [[ "$TRAVIS_NODE_VERSION" == "8" && "$WEBPACK_VERSION" == "2"  ]]; then
+      if [[ "$TRAVIS_NODE_VERSION" == "8" ]]; then
         npm run danger
         npm run test:coverage -- --runInBand
       else
@@ -55,7 +48,7 @@ after_success:
   # Make release with semantic-release if needed
   - npm run semantic-release
   - |
-    if [[ "$TRAVIS_NODE_VERSION" == "8" && "$WEBPACK_VERSION" == "2" ]]; then
+    if [[ "$TRAVIS_NODE_VERSION" == "8" ]]; then
       # Upload coverage report to Codecov
       bash <(curl -s https://codecov.io/bash)
       # Update site
