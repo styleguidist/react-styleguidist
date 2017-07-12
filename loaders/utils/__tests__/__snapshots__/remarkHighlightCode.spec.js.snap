@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should highlight code 1`] = `
+"The only true button.
+
+    <span class=\\"hljs-tag\\">&lt;<span class=\\"hljs-name\\">p</span>&gt;</span>Hello React<span class=\\"hljs-tag\\">&lt;/<span class=\\"hljs-name\\">p</span>&gt;</span>
+"
+`;
+
+exports[`should highlight code with specified language 1`] = `
+"The only true button.
+
+\`\`\`html
+<span class=\\"hljs-tag\\">&lt;<span class=\\"hljs-name\\">p</span>&gt;</span>Hello React<span class=\\"hljs-tag\\">&lt;/<span class=\\"hljs-name\\">p</span>&gt;</span>
+\`\`\`
+"
+`;

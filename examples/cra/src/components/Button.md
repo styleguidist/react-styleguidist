@@ -18,15 +18,15 @@ Fenced code blocks with `js`, `jsx` or `javascript` languages are rendered as an
 <Button>Push Me</Button>
 ```
 
-You can disable an editor by passing a 'noeditor' modifier (`\`\`\`js noeditor`):
+You can disable an editor by passing a `noeditor` modifier (```` ```js noeditor````):
 
 ```jsx noeditor
 <Button>Push Me</Button>
 ```
 
-You can disable playground by passing a 'static' modifier (`\`\`\`js static`):
+You can disable playground by passing a `static` modifier (```` ```js static````):
 
-```jsx static
+```js static
 import React from 'react';
 ```
 
