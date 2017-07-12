@@ -156,8 +156,8 @@ function renderUnion(prop) {
 		);
 	}
 
-	const values = getType(prop).value.map(value =>
-		<Type key={value.name}>
+	const values = getType(prop).value.map((value, index) =>
+		<Type key={`${value.name}-${index}`}>
 			{renderType(value)}
 		</Type>
 	);
