@@ -57,5 +57,5 @@ export default {
 	'unicode-bidi': 'normal',
 	'vertical-align': 'baseline',
 	'width': 'auto',
-	'z-index': 'auto'
+	'z-index': 'auto',
 };
