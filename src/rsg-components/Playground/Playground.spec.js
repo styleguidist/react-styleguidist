@@ -69,14 +69,17 @@ it('should update code with debounce', done => {
 	}, 3);
 });
 
-it('should open a code editor', () => {
+it('should open a code editor', done => {
 	const actual = mount(<Playground {...props} />, options);
 
 	expect(actual.find('.ReactCodeMirror')).toHaveLength(0);
 
 	actual.find(`button[name="${EXAMPLE_TAB_CODE_EDITOR}"]`).simulate('click');
 
-	expect(actual.find('.ReactCodeMirror')).toHaveLength(1);
+	setTimeout(() => {
+		expect(actual.find('.ReactCodeMirror')).toHaveLength(1);
+		done();
+	}, 1);
 });
 
 it('should not render a code editor if noEditor option passed in example settings', () => {
@@ -93,12 +96,12 @@ it('should not render a code editor if noEditor option passed in example setting
 	expect(actual.find(`button[name="${EXAMPLE_TAB_CODE_EDITOR}"]`)).toHaveLength(0);
 });
 
-it('should render a code editor opened by default if showCode:true option passed in example settings', () => {
+it('should open a code editor opened by default if showCode:true option passed in example settings', () => {
 	const actual = mount(<Playground {...props} settings={{ showcode: true }} />, options);
-	expect(actual.find('.ReactCodeMirror')).toHaveLength(1);
+	expect(actual.text()).toMatch('Loading');
 });
 
-it('should render a code editor closed by default if showCode:false option passed in example settings', () => {
+it('should open a code editor closed by default if showCode:false option passed in example settings', () => {
 	const actual = mount(<Playground {...props} settings={{ showcode: false }} />, {
 		context: {
 			...options.context,
@@ -108,7 +111,7 @@ it('should render a code editor closed by default if showCode:false option passe
 			},
 		},
 	});
-	expect(actual.find('.ReactCodeMirror')).toHaveLength(0);
+	expect(actual.text()).not.toMatch('Loading');
 });
 
 it('renderer should render preview', () => {
