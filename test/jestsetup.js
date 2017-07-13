@@ -42,7 +42,7 @@ document.createRange = function() {
 };
 
 // requestAnimationFrame “polyfill”
-window.requestAnimationFrame = a => a;
+window.requestAnimationFrame = a => a();
 
 jest.mock('react-scripts/config/webpack.config.dev', () => ({ cra: true }), { virtual: true });
 jest.mock('webpack-dev-server', function() {

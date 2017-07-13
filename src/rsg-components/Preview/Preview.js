@@ -63,10 +63,13 @@ export default class Preview extends Component {
 	}
 
 	componentWillUnmount() {
-		if (!this.mountNode) {
-			return;
+		this.unmountPreview();
+	}
+
+	unmountPreview() {
+		if (this.mountNode) {
+			ReactDOM.unmountComponentAtNode(this.mountNode);
 		}
-		ReactDOM.unmountComponentAtNode(this.mountNode);
 	}
 
 	executeCode() {
@@ -127,9 +130,7 @@ export default class Preview extends Component {
 	}
 
 	handleError(err) {
-		if (this.mountNode) {
-			ReactDOM.unmountComponentAtNode(this.mountNode);
-		}
+		this.unmountPreview();
 
 		this.setState({
 			error: err.toString(),
