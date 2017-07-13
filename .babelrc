@@ -9,7 +9,6 @@
 		"react"
 	],
 	"plugins": [
-    "syntax-dynamic-import",
 		"transform-class-properties",
 		"transform-object-rest-spread"
 	],
@@ -20,7 +19,6 @@
 	      "react"
 	    ],
       "plugins": [
-        "syntax-dynamic-import",
         "system-import-transformer",
         "transform-class-properties",
         "transform-object-rest-spread"

@@ -7,7 +7,7 @@ export default class EditorLoader extends Component {
 	};
 
 	componentDidMount() {
-		import('rsg-components/Editor/Editor').then(module => {
+		System.import('rsg-components/Editor/Editor').then(module => {
 			this.setState({ editor: module.default });
 		});
 	}
