@@ -377,10 +377,8 @@ module.exports = {
 
 Use it like this in you Markdown files:
 
-```md
-\`\`\`js { "file": "./some/file.js" }
-\`\`\`
-```
+    ```js { "file": "./some/file.js" }
+    ```
 
 #### `verbose`
 

@@ -138,7 +138,7 @@ module.exports = {
 ```
 
 ```jsx
-// src/MyComponent/index.md
+// src/MyComponent/Readme.md
 <MyComponent object={sample.object} />
 ```
 
