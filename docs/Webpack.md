@@ -82,15 +82,13 @@ module.exports = {
 If your project doesn’t use webpack you still need loaders for your files. You can use [webpack-blocks](https://github.com/andywer/webpack-blocks).
 
 ```bash
-npm install --save-dev @webpack-blocks/webpack2 @webpack-blocks/babel6 @webpack-blocks/postcss
+npm install --save-dev webpack-blocks
 ```
 
 Then add a `webpackConfig` section to your `styleguide.config.js`:
 
 ```javascript
-const { createConfig } = require('@webpack-blocks/webpack2');
-const babel = require('@webpack-blocks/babel6');
-const postcss = require('@webpack-blocks/postcss');
+const { createConfig, babel, postcss } = require('webpack-blocks');
 module.exports = {
 	webpackConfig: createConfig([
 		babel(),
@@ -100,8 +98,6 @@ module.exports = {
 ```
 
 > **Note:** `.babelrc` and `postcss.config.js` files will be taken into account if you have them.
-
-> **Note:** Use `@webpack-blocks/webpack` for webpack 1. See [webpack-blocks docs](https://github.com/andywer/webpack-blocks) for more options.
 
 ## When nothing else works
 
