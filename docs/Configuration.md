@@ -403,7 +403,7 @@ module.exports = {
       resolve: {
         extensions: ['.es6']
       },
-      loaders: [
+      rules: [
         {
           test: /\.scss$/,
           loaders: ['style-loader', 'css-loader', 'sass-loader?precision=10']

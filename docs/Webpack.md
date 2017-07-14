@@ -49,7 +49,7 @@ Add a `webpackConfig` section to your `styleguide.config.js`:
 module.exports = {
   webpackConfig: {
     module: {
-      loaders: [
+      rules: [
         // Babel loader, will use your project’s .babelrc
         {
           test: /\.jsx?$/,

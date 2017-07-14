@@ -12,7 +12,7 @@ const styleguide = styleguidist({
   components: './lib/components/**/*.js',
   webpackConfig: {
     module: {
-      loaders: [
+      rules: [
         {
           test: /\.jsx?$/,
           exclude: /node_modules/,
