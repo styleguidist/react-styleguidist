@@ -55,8 +55,8 @@ it('should update code with debounce', done => {
 				...options.context.config,
 				previewDelay: 1,
 			},
-		}
-	);
+		},
+	});
 
 	expect(actual.state('code')).toEqual(code);
 
@@ -83,16 +83,7 @@ it('should open a code editor', done => {
 });
 
 it('should not render a code editor if noEditor option passed in example settings', () => {
-	const actual = mount(
-		<Playground
-			code={code}
-			evalInContext={a => () => a}
-			name="name"
-			index={0}
-			settings={{ noeditor: true }}
-		/>,
-		options
-	);
+	const actual = mount(<Playground {...props} settings={{ noeditor: true }} />, options);
 	expect(actual.find(`button[name="${EXAMPLE_TAB_CODE_EDITOR}"]`)).toHaveLength(0);
 });
 
