@@ -49,7 +49,7 @@ export default class Preview extends Component {
 	};
 
 	componentDidMount() {
-		if (console) {
+		if (console.clear) { // eslint-disable-line no-console
 			console.clear(); // eslint-disable-line no-console
 		}
 		this.executeCode();
