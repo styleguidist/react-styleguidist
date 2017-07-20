@@ -79,11 +79,15 @@ module.exports = function(config, env) {
 					root: config.styleguideDir,
 					verbose: config.verbose,
 				}),
-				new CopyWebpackPlugin([
-					{
-						from: config.assetsDir,
-					},
-				]),
+				new CopyWebpackPlugin(
+					config.assetsDir
+						? [
+								{
+									from: config.assetsDir,
+								},
+							]
+						: []
+				),
 			],
 		});
 		if (isWebpack1) {
