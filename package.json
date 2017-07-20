@@ -38,6 +38,7 @@
     "clipboard-copy": "^1.2.0",
     "codemirror": "^5.26.0",
     "common-dir": "^1.0.1",
+    "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.4",
     "doctrine": "^2.0.0",
     "es6-object-assign": "~1.1.0",

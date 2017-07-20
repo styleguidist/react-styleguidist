@@ -3,8 +3,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const merge = require('webpack-merge');
 const forEach = require('lodash/forEach');
 const hasJsonLoader = require('./utils/hasJsonLoader');
 const getWebpackVersion = require('./utils/getWebpackVersion');
@@ -78,6 +79,11 @@ module.exports = function(config, env) {
 					root: config.styleguideDir,
 					verbose: config.verbose,
 				}),
+				new CopyWebpackPlugin([
+					{
+						from: config.assetsDir,
+					},
+				]),
 			],
 		});
 		if (isWebpack1) {
