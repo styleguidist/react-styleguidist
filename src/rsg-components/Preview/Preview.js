@@ -95,6 +95,7 @@ export default class Preview extends Component {
 		);
 
 		window.requestAnimationFrame(() => {
+			this.unmountPreview();
 			try {
 				ReactDOM.render(wrappedComponent, this.mountNode);
 			} catch (err) {
