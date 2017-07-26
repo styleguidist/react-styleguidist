@@ -104,7 +104,7 @@ Because of isolation and theming you need to explicitly declare `fontFamily`, `f
 
 ## Testing
 
-We’re using [Jest with Enzyme](http://blog.sapegin.me/all/react-jest) for testing. Put your component tests into `Component.spec.js` file in the same folder and all other tests into `__tests__/filename.spece.js`.
+We’re using [Jest with Enzyme](http://blog.sapegin.me/all/react-jest) for testing. Put your component tests into `Component.spec.js` file in the same folder and all other tests into `__tests__/filename.spec.js`.
 
 To test particular class names use `classes` function (available in the global namespace in tests):
 
