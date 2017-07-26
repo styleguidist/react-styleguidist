@@ -12,7 +12,7 @@ Big pink button:
 
 And you *can* **use** `any` [Markdown](http://daringfireball.net/projects/markdown/) here.
 
-Fenced code blocks with `js`, `jsx` or `javascript` languages are rendered as an interactive playgrounds:
+Fenced code blocks with `js`, `jsx` or `javascript` languages are rendered as a interactive playgrounds:
 
 ```jsx
 <Button>Push Me</Button>
@@ -24,7 +24,7 @@ You can disable an editor by passing a `noeditor` modifier (```` ```js noeditor`
 <Button>Push Me</Button>
 ```
 
-You can disable playground by passing a `static` modifier (```` ```js static````):
+To render an example as highlighted source code add a `static` modifier: (```` ```js static````):
 
 ```js static
 import React from 'react';
