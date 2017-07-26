@@ -147,7 +147,7 @@ module.exports = {
 
 ### Styled Components
 
-The [recommended way](https://github.com/styleguidist/react-styleguidist/issues/37#issuecomment-263502454) of using [Styled Components](https://styled-components.com/) is like this:
+The [recommended way](https://github.com/styleguidist/react-styleguidist/issues/37#issuecomment-263502454) of using [Styled Components](https://www.styled-components.com/) is like this:
 
 ```jsx
 import React from 'react';

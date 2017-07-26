@@ -280,7 +280,7 @@ Dev server port.
 
 Type: `Boolean`, default: `false`
 
-Show or hide example code initially. It can be toggled in the UI by clicking the the Code button after each example.
+Show or hide example code initially. It can be toggled in the UI by clicking the Code button after each example.
 
 #### `showUsage`
 
