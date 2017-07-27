@@ -37,9 +37,10 @@ export function ReactComponentRenderer({
 		<div className={classes.root} id={name + '-container'}>
 			<header className={classes.header}>
 				{heading}
-				<Pathline>
-					{pathLine}
-				</Pathline>
+				{(pathLine || null) &&
+					<Pathline>
+						{pathLine}
+					</Pathline>}
 			</header>
 			{(description || docs) &&
 				<div className={classes.docs}>
