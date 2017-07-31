@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 import Preview from 'rsg-components/Preview';
+import Para from 'rsg-components/Para';
 import Slot from 'rsg-components/Slot';
 import PlaygroundRenderer from 'rsg-components/Playground/PlaygroundRenderer';
 import { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
@@ -12,7 +13,9 @@ export default class Playground extends Component {
 		evalInContext: PropTypes.func.isRequired,
 		index: PropTypes.number.isRequired,
 		name: PropTypes.string.isRequired,
+		settings: PropTypes.object,
 	};
+
 	static contextTypes = {
 		config: PropTypes.object.isRequired,
 		isolatedExample: PropTypes.bool,
@@ -20,9 +23,9 @@ export default class Playground extends Component {
 
 	constructor(props, context) {
 		super(props, context);
-		const { code } = props;
-		const { previewDelay, showCode } = context.config;
-
+		const { code, settings } = props;
+		const { previewDelay } = context.config;
+		const showCode = settings.showcode !== undefined ? settings.showcode : this.context.showCode;
 		this.handleChange = this.handleChange.bind(this);
 		this.handleTabChange = this.handleTabChange.bind(this);
 		this.handleChange = debounce(this.handleChange, previewDelay);
@@ -63,12 +66,20 @@ export default class Playground extends Component {
 
 	render() {
 		const { code, activeTab } = this.state;
-		const { evalInContext, index, name } = this.props;
+		const { evalInContext, index, name, settings } = this.props;
 		const { isolatedExample } = this.context;
+		const preview = <Preview code={code} evalInContext={evalInContext} />;
+		if (settings.noeditor) {
+			return (
+				<Para>
+					{preview}
+				</Para>
+			);
+		}
 		return (
 			<PlaygroundRenderer
 				name={name}
-				preview={<Preview code={code} evalInContext={evalInContext} />}
+				preview={preview}
 				tabButtons={
 					<Slot
 						name="exampleTabButtons"

@@ -3,7 +3,6 @@ import styleguidist from '../index';
 
 jest.mock('../build');
 jest.mock('../server');
-jest.mock('../utils/getWebpackVersion');
 
 const getDefaultWebpackConfig = () => styleguidist().makeWebpackConfig();
 
@@ -108,14 +107,6 @@ describe('makeWebpackConfig', () => {
 
 		expect(result).toBeTruthy();
 		expect(result.module).toBeTruthy();
-	});
-
-	it('should add json-loader', () => {
-		const api = styleguidist();
-		const result = api.makeWebpackConfig();
-
-		expect(result.module.loaders).toHaveLength(1);
-		expect(last(result.module.loaders).loader).toEqual('json-loader');
 	});
 
 	it('should add webpack entry for each require config option item', () => {

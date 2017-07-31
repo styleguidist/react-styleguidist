@@ -1,1 +1,3 @@
-    <CounterButton/>
+```jsx
+<CounterButton/>
+```

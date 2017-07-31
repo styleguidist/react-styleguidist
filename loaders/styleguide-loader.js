@@ -27,11 +27,6 @@ const CLIENT_CONFIG_OPTIONS = [
 
 module.exports = function() {};
 module.exports.pitch = function() {
-	/* istanbul ignore if */
-	if (this.cacheable) {
-		this.cacheable();
-	}
-
 	// Clear cache so it would detect new or renamed files
 	fileExistsCaseInsensitive.clearCache();
 

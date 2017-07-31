@@ -1,15 +1,37 @@
 Basic button:
 
-    <Button>Push Me</Button>
+```jsx
+<Button>Push Me</Button>
+```
 
 Big pink button:
 
-    <Button size="large" color="deeppink">Lick Me</Button>
+```jsx
+<Button size="large" color="deeppink">Lick Me</Button>
+```
 
 And you *can* **use** `any` [Markdown](http://daringfireball.net/projects/markdown/) here.
 
-If you define a fenced code block with a language flag it will be rendered as a regular Markdown code snippet:
+Fenced code blocks with `js`, `jsx` or `javascript` languages are rendered as a interactive playgrounds:
 
-```javascript
+```jsx
+<Button>Push Me</Button>
+```
+
+You can disable an editor by passing a `noeditor` modifier (```` ```js noeditor````):
+
+```jsx noeditor
+<Button>Push Me</Button>
+```
+
+To render an example as highlighted source code add a `static` modifier: (```` ```js static````):
+
+```js static
 import React from 'react';
+```
+
+Fenced blocks with other languages are rendered as highlighted code:
+
+```html
+<h1>Hello world</h1>
 ```

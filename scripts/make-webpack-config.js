@@ -7,14 +7,11 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const merge = require('webpack-merge');
 const forEach = require('lodash/forEach');
-const hasJsonLoader = require('./utils/hasJsonLoader');
-const getWebpackVersion = require('./utils/getWebpackVersion');
 const mergeWebpackConfig = require('./utils/mergeWebpackConfig');
 const StyleguidistOptionsPlugin = require('./utils/StyleguidistOptionsPlugin');
 
 const RENDERER_REGEXP = /Renderer$/;
 
-const isWebpack1 = getWebpackVersion() < 2;
 const sourceDir = path.resolve(__dirname, '../lib');
 const htmlLoader = require.resolve('html-webpack-plugin/lib/loader');
 
@@ -31,7 +28,7 @@ module.exports = function(config, env) {
 			chunkFilename: 'build/[name].js',
 		},
 		resolve: {
-			extensions: isWebpack1 ? ['.js', '.jsx', '.json', ''] : ['.js', '.jsx', '.json'],
+			extensions: ['.js', '.jsx', '.json'],
 			alias: {
 				'rsg-codemirror-theme.css': `codemirror/theme/${config.highlightTheme}.css`,
 			},
@@ -90,9 +87,6 @@ module.exports = function(config, env) {
 				),
 			],
 		});
-		if (isWebpack1) {
-			webpackConfig.plugins.push(new webpack.optimize.DedupePlugin());
-		}
 	} else {
 		webpackConfig = merge(webpackConfig, {
 			entry: [require.resolve('react-dev-utils/webpackHotDevClient')],
@@ -106,20 +100,6 @@ module.exports = function(config, env) {
 
 	if (config.webpackConfig) {
 		webpackConfig = mergeWebpackConfig(webpackConfig, config.webpackConfig, env);
-	}
-
-	// Add JSON loader if user config has no one (Webpack 2 includes it by default)
-	if (isWebpack1 && !hasJsonLoader(webpackConfig)) {
-		webpackConfig = merge(webpackConfig, {
-			module: {
-				loaders: [
-					{
-						test: /\.json$/,
-						loader: 'json-loader',
-					},
-				],
-			},
-		});
 	}
 
 	// Custom style guide components

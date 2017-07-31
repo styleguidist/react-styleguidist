@@ -1,5 +1,4 @@
 const path = require('path');
-const loaders = require('loaders');
 
 module.exports = {
 	title: 'Style guide example',
@@ -14,20 +13,11 @@ module.exports = {
 	},
 	styles: {
 		Playground: {
-			root: {
-				borderRadius: 0,
-				borderWidth: [[0, 0, 1, 0]],
-			},
 			preview: {
 				paddingLeft: 0,
 				paddingRight: 0,
-			},
-			codeToggle: {
-				marginTop: 1,
-				border: 0,
-			},
-			hideCode: {
-				background: 'none',
+				borderWidth: [[0, 0, 1, 0]],
+				borderRadius: 0,
 			},
 		},
 		Markdown: {
@@ -51,12 +41,19 @@ module.exports = {
 	},
 	webpackConfig: {
 		module: {
-			loaders: [
-				loaders.babel,
-				loaders.url,
+			rules: [
+				{
+					test: /\.jsx?$/,
+					exclude: /node_modules/,
+					loader: 'babel-loader',
+				},
 				{
 					test: /\.css$/,
 					loader: 'style-loader!css-loader?modules',
+				},
+				{
+					test: /\.svg$/,
+					loader: 'url-loader',
 				},
 			],
 		},

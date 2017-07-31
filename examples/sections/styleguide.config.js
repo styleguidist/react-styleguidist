@@ -1,5 +1,4 @@
 const path = require('path');
-const loaders = require('loaders');
 
 module.exports = {
 	title: 'React Style Guide Example',
@@ -25,14 +24,24 @@ module.exports = {
 	require: [path.join(__dirname, 'src/styles.css')],
 	webpackConfig: env => ({
 		module: {
-			loaders: loaders.all,
+			rules: [
+				{
+					test: /\.jsx?$/,
+					exclude: /node_modules/,
+					loader: 'babel-loader',
+				},
+				{
+					test: /\.css$/,
+					loader: 'style-loader!css-loader?modules',
+				},
+			],
 		},
 		performance:
 			env === 'development'
 				? false
 				: {
-						maxAssetSize: 680000, // bytes
-						maxEntrypointSize: 680000, // bytes
+						maxAssetSize: 685000, // bytes
+						maxEntrypointSize: 685000, // bytes
 						hints: 'error',
 					},
 	}),

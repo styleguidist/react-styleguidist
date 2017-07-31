@@ -1,25 +1,22 @@
 import highlightCode from '../highlightCode';
 
 it('should highlight code', () => {
-	const text = `
-The only true button.
-
-\`\`\`
+	const code = `
 <p>Hello React</p>
-\`\`\`
 `;
-	const actual = highlightCode(text);
+	const actual = highlightCode(code);
 	expect(actual).toMatchSnapshot();
 });
 
 it('should highlight code with specified language', () => {
-	const text = `
-The only true button.
-
-\`\`\`html
+	const code = `
 <p>Hello React</p>
-\`\`\`
 `;
-	const actual = highlightCode(text);
+	const actual = highlightCode(code, 'html');
 	expect(actual).toMatchSnapshot();
+});
+
+it('should return an error message', () => {
+	const actual = highlightCode('', 'pizza');
+	expect(actual).toBe('Unknown language: "pizza"');
 });

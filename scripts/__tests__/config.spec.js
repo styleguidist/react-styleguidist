@@ -165,7 +165,7 @@ it('should return webpackConfig with user webpack config', () => {
 	expect(result.webpackConfig).toEqual(
 		expect.objectContaining({
 			module: {
-				loaders: expect.any(Array),
+				rules: expect.any(Array),
 			},
 		})
 	);

@@ -12,61 +12,37 @@ Text with *some* **formatting** and a [link](/foo).
 
 ![Image](/bar.png)
 
+This code example should be rendered as a playground:
+
 	<h1>Hello Markdown!</h1>
 
-Text with some \`code\`.
+Text with some \`code\` (playground too).
 
 \`\`\`
 <h2>Hello Markdown!</h2>
 \`\`\`
 
-This is the same as above:
+And some language and modifier (playground again):
 
-\`\`\`example
+\`\`\`jsx noeditor
 <h3>Hello Markdown!</h3>
 \`\`\`
 
-This should be highlighted:
+This should be just highlighted:
 
-\`\`\`html
+\`\`\`jsx static
 <h4>Hello Markdown!</h4>
 \`\`\`
+
+This should be highlighted too:
+
+\`\`\`html
+<h5>Hello Markdown!</h5>
+\`\`\`
 `;
-	const expected = [
-		{
-			type: 'markdown',
-			content:
-				'# Header\n\nText with _some_ **formatting** and a [link](/foo).\n\n<div>And some HTML.</div>\n\n![Image](/bar.png)',
-		},
-		{
-			type: 'code',
-			content: '<h1>Hello Markdown!</h1>',
-		},
-		{
-			type: 'markdown',
-			content: 'Text with some `code`.',
-		},
-		{
-			type: 'code',
-			content: '<h2>Hello Markdown!</h2>',
-		},
-		{
-			type: 'markdown',
-			content: 'This is the same as above:',
-		},
-		{
-			type: 'code',
-			content: '<h3>Hello Markdown!</h3>',
-		},
-		{
-			type: 'markdown',
-			content:
-				'This should be highlighted:\n\n```html\n<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Hello Markdown!<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>\n```',
-		},
-	];
 
 	const actual = chunkify(markdown);
-	expect(actual).toEqual(expected);
+	expect(actual).toMatchSnapshot();
 });
 
 it('should not add empty Markdown chunks', () => {
@@ -83,9 +59,71 @@ Foo:
 		{
 			type: 'code',
 			content: '<h1>Hello Markdown!</h1>',
+			settings: {},
 		},
 	];
 
 	const actual = chunkify(markdown);
+	expect(actual).toEqual(expected);
+});
+
+it('should parse examples settings correctly', () => {
+	const markdown = `
+Pass props to CodeRenderer
+
+\`\`\`js { "showCode": true }
+<h1>Hello Markdown!</h1>
+\`\`\`
+
+\`\`\`js { "frame": {"width": "400px"} }
+<h1>Example in frame and Without editor</h1>
+\`\`\`
+	
+Pass props to PreviewRenderer
+
+\`\`\`jsx { "noEditor": true }
+<h2>Hello Markdown!</h2>
+\`\`\`
+
+\`\`\`jsx static
+<h2>This is Highlighted!</h2>
+\`\`\`
+`;
+	const actual = chunkify(markdown);
+	expect(actual).toMatchSnapshot();
+});
+
+it('should call updateExample function for example', () => {
+	const markdown = `
+\`\`\`jsx {"file": "./src/button/example.jsx"}
+\`\`\`
+`;
+	const expected = [
+		{
+			type: 'code',
+			content: '<h1>Hello Markdown!</h1>',
+			settings: {},
+		},
+	];
+	const updateExample = props => {
+		const content = props.content;
+		const lang = props.lang;
+		const settings = props.settings;
+		if (typeof settings.file === 'string') {
+			delete settings.file;
+			return {
+				content: '<h1>Hello Markdown!</h1>',
+				settings,
+				lang,
+			};
+		}
+
+		return {
+			content,
+			settings,
+			lang,
+		};
+	};
+	const actual = chunkify(markdown, updateExample);
 	expect(actual).toEqual(expected);
 });

@@ -280,7 +280,7 @@ Dev server port.
 
 Type: `Boolean`, default: `false`
 
-Show or hide example code initially. It can be toggled in the UI by clicking the the Code button after each example.
+Show or hide example code initially. It can be toggled in the UI by clicking the Code button after each example.
 
 #### `showUsage`
 
@@ -351,6 +351,35 @@ Type: `String`, default: `<app name from package.json> Style Guide`
 
 Style guide title.
 
+#### `updateExample`
+
+Type: `Function`, optional
+
+Function that modifies code example (Markdown fenced code block). For example you can use it to load examples from files:
+
+```javascript
+module.exports = {
+  updateExample: function(props) {
+    const { settings, lang } = props;
+    if (typeof settings.file === 'string') {
+      const filepath = settings.file;
+      delete settings.file;
+      return {
+        content: fs.readFileSync(filepath),
+        settings,
+        lang,
+      }
+    }
+    return props;
+  }
+};
+```
+
+Use it like this in you Markdown files:
+
+    ```js { "file": "./some/file.js" }
+    ```
+
 #### `verbose`
 
 Type: `Boolean`, default: `false`
@@ -372,7 +401,7 @@ module.exports = {
       resolve: {
         extensions: ['.es6']
       },
-      loaders: [
+      rules: [
         {
           test: /\.scss$/,
           loaders: ['style-loader', 'css-loader', 'sass-loader?precision=10']

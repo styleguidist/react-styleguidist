@@ -11,11 +11,6 @@ const getProps = require('./utils/getProps');
 const consts = require('../scripts/consts');
 
 module.exports = function(source) {
-	/* istanbul ignore if */
-	if (this.cacheable) {
-		this.cacheable();
-	}
-
 	const file = this.request.split('!').pop();
 	const config = this._styleguidist;
 
