@@ -79,6 +79,7 @@
     "style-loader": "^0.18.2",
     "to-ast": "^1.0.0",
     "type-detect": "^4.0.3",
+    "uglifyjs-webpack-plugin": "^1.0.0-beta.2",
     "unist-util-visit": "^1.1.3",
     "webpack-dev-server": "^2.6.1",
     "webpack-merge": "^4.1.0",

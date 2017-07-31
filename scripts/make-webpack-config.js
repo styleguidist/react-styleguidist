@@ -2,6 +2,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -59,17 +60,20 @@ module.exports = function(config, env) {
 			},
 			plugins: [
 				new webpack.optimize.OccurrenceOrderPlugin(),
-				new webpack.optimize.UglifyJsPlugin({
-					compress: {
-						keep_fnames: true,
-						screw_ie8: true,
-						warnings: false,
+				new UglifyJSPlugin({
+					parallel: {
+						cache: true,
 					},
-					output: {
-						comments: false,
-					},
-					mangle: {
-						keep_fnames: true,
+					uglifyOptions: {
+						ie8: false,
+						ecma: 5,
+						compress: {
+							keep_fnames: true,
+							warnings: false,
+						},
+						mangle: {
+							keep_fnames: true,
+						},
 					},
 				}),
 				new CleanWebpackPlugin(['build'], {
