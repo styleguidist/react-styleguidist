@@ -59,7 +59,6 @@ module.exports = function(config, env) {
 				chunkFilename: 'build/[name].[chunkhash:8].js',
 			},
 			plugins: [
-				new webpack.optimize.OccurrenceOrderPlugin(),
 				new UglifyJSPlugin({
 					parallel: {
 						cache: true,
