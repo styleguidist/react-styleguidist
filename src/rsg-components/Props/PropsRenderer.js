@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Group from 'react-group';
+import objectToString from 'javascript-stringify';
 import Arguments from 'rsg-components/Arguments';
 import Code from 'rsg-components/Code';
 import JsDoc from 'rsg-components/JsDoc';
@@ -85,12 +86,27 @@ function renderDefault(prop) {
 	if (prop.required) {
 		return <Text>Required</Text>;
 	} else if (prop.defaultValue) {
-		if (prop.type && prop.type.name === 'func') {
-			return (
-				<Text underlined title={showSpaces(unquote(prop.defaultValue.value))}>
-					Function
-				</Text>
-			);
+		if (prop.type) {
+			const propName = prop.type.name;
+
+			if (propName === 'func') {
+				return (
+					<Text underlined title={showSpaces(unquote(prop.defaultValue.value))}>
+						Function
+					</Text>
+				);
+			} else if (propName === 'shape' || propName === 'object') {
+				// We eval source code to be able to format the defaultProp here. This
+				// can be considered safe, as it is the source code that is evaled,
+				// which is from a known source and safe by default
+				// eslint-disable-next-line no-eval
+				const object = eval(`(${prop.defaultValue.value})`);
+				return (
+					<Text underlined title={objectToString(object, null, 2)}>
+						Shape
+					</Text>
+				);
+			}
 		}
 
 		return (

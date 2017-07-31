@@ -402,6 +402,74 @@ exports[`props columns should render PropTypes.shape with description 1`] = `
 </ul>
 `;
 
+exports[`props columns should render PropTypes.shape with formatted defaultProps 1`] = `
+<ul>
+  <li>
+    <div>
+      <Styled(Name)
+        deprecated={false}
+      >
+        foo
+      </Styled(Name)>
+    </div>
+    <div>
+      <Styled(Type)>
+        shape
+      </Styled(Type)>
+    </div>
+    <div>
+      <Styled(Text)
+        title="{
+        bar: 123,
+        baz: baz() {
+                return 'foo';
+            },
+        bing: bing() {
+                return 'badaboom';
+            },
+        trotskij: () => 1935,
+        qwarc: {
+          si: 'señor'
+        }
+      }"
+        underlined={true}
+      >
+        Shape
+      </Styled(Text)>
+    </div>
+    <div>
+      <div>
+        <Styled(Para)>
+          <div>
+            <Styled(Name)>
+              bar
+            </Styled(Name)>
+            : 
+            <Styled(Type)>
+              number
+            </Styled(Type)>
+             — 
+            <Styled(Text)>
+              Required
+            </Styled(Text)>
+          </div>
+          <div>
+            <Styled(Name)>
+              baz
+            </Styled(Name)>
+            : 
+            <Styled(Type)>
+              any
+            </Styled(Type)>
+          </div>
+        </Styled(Para)>
+        <JsDoc />
+      </div>
+    </div>
+  </li>
+</ul>
+`;
+
 exports[`props columns should render PropTypes.string 1`] = `
 <ul>
   <li>

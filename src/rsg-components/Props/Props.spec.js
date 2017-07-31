@@ -98,6 +98,35 @@ describe('props columns', () => {
 		expect(actual).toMatchSnapshot();
 	});
 
+	it('should render PropTypes.shape with formatted defaultProps', () => {
+		const actual = render(
+			[
+				`
+				foo: PropTypes.shape({
+					bar: PropTypes.number.isRequired,
+					baz: PropTypes.any,
+				})
+			`,
+			],
+			[
+				`
+				foo: {
+					bar: 123, baz() {
+						return 'foo';
+					},
+					bing() {
+						return 'badaboom';
+					},
+					trotskij: () => 1935,
+					qwarc: { si: 'señor', },
+				}
+			`,
+			]
+		);
+
+		expect(actual).toMatchSnapshot();
+	});
+
 	it('should render PropTypes.shape with description', () => {
 		const actual = render([
 			`foo: PropTypes.shape({
