@@ -677,6 +677,64 @@ exports[`props columns should render function body in tooltip 1`] = `
 </ul>
 `;
 
+exports[`props columns should render function defaultValue as code when null 1`] = `
+<ul>
+  <li>
+    <div>
+      <Styled(Name)
+        deprecated={false}
+      >
+        fn
+      </Styled(Name)>
+    </div>
+    <div>
+      <Styled(Type)>
+        func
+      </Styled(Type)>
+    </div>
+    <div>
+      <Styled(Code)>
+        null
+      </Styled(Code)>
+    </div>
+    <div>
+      <div>
+        <JsDoc />
+      </div>
+    </div>
+  </li>
+</ul>
+`;
+
+exports[`props columns should render function defaultValue as code when undefined 1`] = `
+<ul>
+  <li>
+    <div>
+      <Styled(Name)
+        deprecated={false}
+      >
+        fn
+      </Styled(Name)>
+    </div>
+    <div>
+      <Styled(Type)>
+        func
+      </Styled(Type)>
+    </div>
+    <div>
+      <Styled(Code)>
+        undefined
+      </Styled(Code)>
+    </div>
+    <div>
+      <div>
+        <JsDoc />
+      </div>
+    </div>
+  </li>
+</ul>
+`;
+
 exports[`props columns should render name as deprecated when tag deprecated is present 1`] = `
 <ul>
   <li>
