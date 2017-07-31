@@ -6,7 +6,6 @@ exports[`render should render component 1`] = `
 <section>
   <SectionHeading
     id="foo"
-    primary={true}
     slotName="sectionToolbar"
     slotProps={
       Object {
@@ -65,11 +64,30 @@ exports[`render should render component 1`] = `
 </section>
 `;
 
-exports[`render should render title if name is set 1`] = `
+exports[`render should render primary title if primary is set 1`] = `
 <section>
   <SectionHeading
     id="test"
     primary={true}
+    slotName="sectionToolbar"
+    slotProps={
+      Object {
+        "classes": Object {},
+        "name": "test",
+        "primary": true,
+        "slug": "test",
+      }
+    }
+  >
+    test
+  </SectionHeading>
+</section>
+`;
+
+exports[`render should render title if name is set 1`] = `
+<section>
+  <SectionHeading
+    id="test"
     slotName="sectionToolbar"
     slotProps={
       Object {
@@ -127,6 +145,43 @@ exports[`should render component renderer 1`] = `
   }
   isolated={false}
   name="Foo"
+  sections={
+    <Sections
+      sections={Array []}
+    />
+  }
+  slug="foo"
+/>
+`;
+
+exports[`should render component renderer with primary title 1`] = `
+<Styled(Section)
+  components={
+    <Components
+      components={Array []}
+    />
+  }
+  content={
+    <Examples
+      examples={
+        Array [
+          Object {
+            "content": "<button>OK</button>",
+            "evalInContext": [Function],
+            "type": "code",
+          },
+          Object {
+            "content": "Hello *world*!",
+            "type": "markdown",
+          },
+        ]
+      }
+      name="Foo"
+    />
+  }
+  isolated={false}
+  name="Foo"
+  primary={true}
   sections={
     <Sections
       sections={Array []}

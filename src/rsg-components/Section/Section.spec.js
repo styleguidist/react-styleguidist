@@ -30,6 +30,12 @@ it('should render component renderer', () => {
 	expect(actual).toMatchSnapshot();
 });
 
+it('should render component renderer with primary title', () => {
+	const actual = shallow(<Section section={section} primary />);
+
+	expect(actual).toMatchSnapshot();
+});
+
 it('should render components list', () => {
 	const actual = shallow(
 		<Section
@@ -107,6 +113,12 @@ it('render should not render title if name is not set', () => {
 
 it('render should render title if name is set', () => {
 	const actual = shallow(<SectionRenderer classes={{}} name="test" slug="test" />);
+
+	expect(actual).toMatchSnapshot();
+});
+
+it('render should render primary title if primary is set', () => {
+	const actual = shallow(<SectionRenderer classes={{}} name="test" slug="test" primary />);
 
 	expect(actual).toMatchSnapshot();
 });

@@ -46,6 +46,12 @@ it('should render component renderer', () => {
 	expect(actual).toMatchSnapshot();
 });
 
+it('should render component renderer with primary sections if root is true', () => {
+	const actual = shallow(<Sections sections={sections} root />);
+
+	expect(actual).toMatchSnapshot();
+});
+
 it('render should render styled component', () => {
 	const actual = shallow(
 		<StyledSectionsRenderer classes={{}}>
