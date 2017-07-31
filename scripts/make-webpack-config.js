@@ -93,10 +93,6 @@ module.exports = function(config, env) {
 	} else {
 		webpackConfig = merge(webpackConfig, {
 			entry: [require.resolve('react-dev-utils/webpackHotDevClient')],
-			stats: {
-				colors: true,
-				reasons: true,
-			},
 			plugins: [new webpack.HotModuleReplacementPlugin()],
 		});
 	}
