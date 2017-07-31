@@ -82,6 +82,8 @@ function renderShape(props) {
 	return rows;
 }
 
+const defaultValueBlacklist = ['null', 'undefined'];
+
 function renderDefault(prop) {
 	if (prop.required) {
 		return <Text>Required</Text>;
@@ -89,7 +91,13 @@ function renderDefault(prop) {
 		if (prop.type) {
 			const propName = prop.type.name;
 
-			if (propName === 'func') {
+			if (defaultValueBlacklist.indexOf(prop.defaultValue.value) > -1) {
+				return (
+					<Code>
+						{showSpaces(unquote(prop.defaultValue.value))}
+					</Code>
+				);
+			} else if (propName === 'func') {
 				return (
 					<Text underlined title={showSpaces(unquote(prop.defaultValue.value))}>
 						Function

@@ -191,6 +191,18 @@ describe('props columns', () => {
 		expect(actual).toMatchSnapshot();
 	});
 
+	it('should render function defaultValue as code when undefined', () => {
+		const actual = render(['fn: PropTypes.func'], ['fn: undefined']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render function defaultValue as code when null', () => {
+		const actual = render(['fn: PropTypes.func'], ['fn: null']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
 	it('should render arguments from JsDoc tags', () => {
 		const props = {
 			size: {
