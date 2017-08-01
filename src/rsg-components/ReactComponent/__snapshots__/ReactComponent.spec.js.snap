@@ -198,7 +198,7 @@ exports[`ReactComponentRenderer should render component 1`] = `
 </div>
 `;
 
-exports[`ReactComponentRenderer should render component without a pathline component 1`] = `
+exports[`ReactComponentRenderer should render component without a pathline 1`] = `
 <div
   id="Test-container"
 >
