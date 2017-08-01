@@ -37,9 +37,10 @@ export function ReactComponentRenderer({
 		<div className={classes.root} id={name + '-container'}>
 			<header className={classes.header}>
 				{heading}
-				<Pathline>
-					{pathLine}
-				</Pathline>
+				{pathLine &&
+					<Pathline>
+						{pathLine}
+					</Pathline>}
 			</header>
 			{(description || docs) &&
 				<div className={classes.docs}>
@@ -62,7 +63,7 @@ ReactComponentRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	name: PropTypes.string.isRequired,
 	heading: PropTypes.node.isRequired,
-	pathLine: PropTypes.string.isRequired,
+	pathLine: PropTypes.string,
 	tabButtons: PropTypes.node,
 	tabBody: PropTypes.node,
 	description: PropTypes.node,

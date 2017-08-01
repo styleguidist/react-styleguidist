@@ -173,6 +173,12 @@ describe('ReactComponentRenderer', () => {
 		expect(actual).toMatchSnapshot();
 	});
 
+	test('should render component without a pathline', () => {
+		const actual = shallow(<ReactComponentRenderer {...props} pathLine='' />);
+
+		expect(actual).toMatchSnapshot();
+	});
+
 	test('should render usage section', () => {
 		const actual = shallow(
 			<ReactComponentRenderer
