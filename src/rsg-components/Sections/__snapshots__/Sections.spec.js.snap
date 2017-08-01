@@ -155,3 +155,56 @@ exports[`should render component renderer 1`] = `
   />
 </Styled(Sections)>
 `;
+
+exports[`should render component renderer with primary sections if root is true 1`] = `
+<Styled(Sections)>
+  <Section
+    primary={true}
+    section={
+      Object {
+        "components": Array [],
+        "content": Array [
+          Object {
+            "content": "<button>OK</button>",
+            "evalInContext": [Function],
+            "type": "code",
+          },
+        ],
+        "name": "Foo",
+      }
+    }
+  />
+  <Section
+    primary={true}
+    section={
+      Object {
+        "components": Array [],
+        "content": Array [
+          Object {
+            "content": "Hello *world*!",
+            "type": "markdown",
+          },
+        ],
+        "name": "Bar",
+      }
+    }
+  />
+  <Section
+    primary={true}
+    section={
+      Object {
+        "sections": Array [
+          Object {
+            "content": Array [],
+            "name": "One",
+          },
+          Object {
+            "content": Array [],
+            "name": "Two",
+          },
+        ],
+      }
+    }
+  />
+</Styled(Sections)>
+`;
