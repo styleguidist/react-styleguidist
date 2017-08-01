@@ -63,7 +63,7 @@ ReactComponentRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	name: PropTypes.string.isRequired,
 	heading: PropTypes.node.isRequired,
-	pathLine: PropTypes.string.isRequired,
+	pathLine: PropTypes.string,
 	tabButtons: PropTypes.node,
 	tabBody: PropTypes.node,
 	description: PropTypes.node,
