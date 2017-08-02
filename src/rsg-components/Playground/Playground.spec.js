@@ -82,17 +82,30 @@ it('should open a code editor', done => {
 	}, 1);
 });
 
-it('should not render a code editor if noEditor option passed in example settings', () => {
+it('should not render a code editor if noeditor option passed in example settings', () => {
 	const actual = mount(<Playground {...props} settings={{ noeditor: true }} />, options);
 	expect(actual.find(`button[name="${EXAMPLE_TAB_CODE_EDITOR}"]`)).toHaveLength(0);
 });
 
-it('should open a code editor opened by default if showCode:true option passed in example settings', () => {
+it('should open a code editor by default if showcode=true option passed in example settings', () => {
 	const actual = mount(<Playground {...props} settings={{ showcode: true }} />, options);
 	expect(actual.text()).toMatch('Loading');
 });
 
-it('should open a code editor closed by default if showCode:false option passed in example settings', () => {
+it('should open a code editor by default if showCode=true option specified in style guide config', () => {
+	const actual = mount(<Playground {...props} />, {
+		context: {
+			...options.context,
+			config: {
+				...options.context.config,
+				showCode: true,
+			},
+		},
+	});
+	expect(actual.text()).toMatch('Loading');
+});
+
+it('showcode option in example settings should overwrite style guide config option', () => {
 	const actual = mount(<Playground {...props} settings={{ showcode: false }} />, {
 		context: {
 			...options.context,

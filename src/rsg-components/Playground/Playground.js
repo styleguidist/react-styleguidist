@@ -24,11 +24,11 @@ export default class Playground extends Component {
 	constructor(props, context) {
 		super(props, context);
 		const { code, settings } = props;
-		const { previewDelay } = context.config;
-		const showCode = settings.showcode !== undefined ? settings.showcode : this.context.showCode;
+		const { config } = context;
+		const showCode = settings.showcode !== undefined ? settings.showcode : config.showCode;
 		this.handleChange = this.handleChange.bind(this);
 		this.handleTabChange = this.handleTabChange.bind(this);
-		this.handleChange = debounce(this.handleChange, previewDelay);
+		this.handleChange = debounce(this.handleChange, config.previewDelay);
 
 		this.state = {
 			code,
