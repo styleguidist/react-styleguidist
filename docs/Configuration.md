@@ -380,6 +380,20 @@ Use it like this in you Markdown files:
     ```js { "file": "./some/file.js" }
     ```
 
+You can also use this function to dynamically update some of your fenced code blocks that you do not want to be interpreted as React components by using the [static modifier](Documenting.md#usage-examples-and-readme-files).
+
+```javascript
+module.exports = {
+  updateExample: function(props) {
+    const { settings, lang } = props;
+    if (lang === 'javascript' || lang === 'js' || lang === 'jsx') {
+      settings.static = true;
+    }
+    return props;
+  }
+};
+```
+
 #### `verbose`
 
 Type: `Boolean`, default: `false`
