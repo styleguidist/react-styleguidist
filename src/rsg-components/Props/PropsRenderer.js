@@ -104,16 +104,27 @@ function renderDefault(prop) {
 					</Text>
 				);
 			} else if (propName === 'shape' || propName === 'object') {
-				// We eval source code to be able to format the defaultProp here. This
-				// can be considered safe, as it is the source code that is evaled,
-				// which is from a known source and safe by default
-				// eslint-disable-next-line no-eval
-				const object = eval(`(${prop.defaultValue.value})`);
-				return (
-					<Text underlined title={objectToString(object, null, 2)}>
-						Shape
-					</Text>
-				);
+				try {
+					// We eval source code to be able to format the defaultProp here. This
+					// can be considered safe, as it is the source code that is evaled,
+					// which is from a known source and safe by default
+					// eslint-disable-next-line no-eval
+					const object = eval(`(${prop.defaultValue.value})`);
+					return (
+						<Text underlined title={objectToString(object, null, 2)}>
+							Shape
+						</Text>
+					);
+				} catch (e) {
+					// eval will throw if it contains a reference to a property not in the
+					// local scope. To avoid any breakage we fall back to rendering the
+					// prop without any formatting
+					return (
+						<Text underlined title={prop.defaultValue.value}>
+							Shape
+						</Text>
+					);
+				}
 			}
 		}
 

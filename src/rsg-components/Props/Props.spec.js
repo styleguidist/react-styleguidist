@@ -127,6 +127,26 @@ describe('props columns', () => {
 		expect(actual).toMatchSnapshot();
 	});
 
+	it('should render PropTypes.shape defaultProps, falling back to Object', () => {
+		const actual = render(
+			[
+				`
+				foo: PropTypes.shape({
+					bar: PropTypes.number.isRequired,
+					baz: PropTypes.any,
+				})
+			`,
+			],
+			[
+				`
+				foo: somethingThatDoesntExist
+			`,
+			]
+		);
+
+		expect(actual).toMatchSnapshot();
+	});
+
 	it('should render PropTypes.shape with description', () => {
 		const actual = render([
 			`foo: PropTypes.shape({
