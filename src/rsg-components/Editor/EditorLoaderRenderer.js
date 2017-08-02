@@ -13,20 +13,24 @@ const styles = ({ fontFamily, color, space, fontSize }) => ({
 	// Tweak CodeMirror styles. Duplicate selectors are for increased specificity
 	'@global': {
 		'.CodeMirror.CodeMirror': {
+			isolate: false,
 			fontFamily: fontFamily.monospace,
 			height: 'auto',
 			padding: [[space[1], space[2]]],
 			fontSize: fontSize.small,
 		},
 		'.CodeMirror.CodeMirror pre': {
+			isolate: false,
 			padding: 0,
 		},
 		'.CodeMirror-scroll.CodeMirror-scroll': {
+			isolate: false,
 			height: 'auto',
 			overflowY: 'hidden',
 			overflowX: 'auto',
 		},
 		'.cm-error.cm-error': {
+			isolate: false,
 			background: 'none',
 		},
 	},
