@@ -144,7 +144,6 @@ module.exports = {
 
 *Based on @mikberg’s [blog post](https://medium.com/@mikaelberg/writing-simple-unit-tests-with-relay-707f19e90129).*
 
-
 ### Styled Components
 
 The [recommended way](https://github.com/styleguidist/react-styleguidist/issues/37#issuecomment-263502454) of using [Styled Components](https://www.styled-components.com/) is like this:
@@ -163,6 +162,10 @@ export default function Button({ children, ...props }) {
   return <SalmonButton {...props}>{children}</SalmonButton>;
 }
 ```
+
+### Fela
+
+Check out the [official example](https://github.com/rofrischmann/fela/tree/master/packages/example-with-styleguidist).
 
 ### CSS Modules with react-css-modules
 
