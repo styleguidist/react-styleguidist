@@ -38,3 +38,13 @@ it('should ignore certain Webpack plugins', () => {
 	expect(result.plugins[0].constructor.name).toBe('UglifyJsPlugin');
 	expect(result.plugins[1].constructor.name).toBe('MyPlugin');
 });
+
+[
+	{ env: 'development', action: 'pass', expected: 'source-map' },
+	{ env: 'production', action: 'ignore', expected: false },
+].forEach(t => {
+	it(`should ${t.action} devtool settings in ${t.env}`, () => {
+		const result = mergeWebpackConfig({ devtool: false }, () => ({ devtool: 'source-map' }), t.env);
+		expect(result).toEqual({ devtool: t.expected });
+	});
+});

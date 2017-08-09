@@ -31,7 +31,7 @@ module.exports = {
 };
 ```
 
-> **Note:** `entry`, `externals`, `output`, `watch`, `stats` and `devtool` options will be ignored.
+> **Note:** `entry`, `externals`, `output`, `watch`, and `stats` options will be ignored. For production builds, `devtool` will also be ignored.
 
 > **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
 
@@ -69,7 +69,7 @@ module.exports = {
 
 > **Warning:** This option disables config load from `webpack.config.js`, see above how to load your config manually.
 
-> **Note:** `entry`, `externals`, `output`, `watch`, `stats` and `devtool` options will be ignored.
+> **Note:** `entry`, `externals`, `output`, `watch`, and `stats` options will be ignored. For production builds, `devtool` will also be ignored.
 
 > **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
 
