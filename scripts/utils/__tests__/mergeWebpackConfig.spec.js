@@ -39,12 +39,20 @@ it('should ignore certain Webpack plugins', () => {
 	expect(result.plugins[1].constructor.name).toBe('MyPlugin');
 });
 
-[
-	{ env: 'development', action: 'pass', expected: 'source-map' },
-	{ env: 'production', action: 'ignore', expected: false },
-].forEach(t => {
-	it(`should ${t.action} devtool settings in ${t.env}`, () => {
-		const result = mergeWebpackConfig({ devtool: false }, () => ({ devtool: 'source-map' }), t.env);
-		expect(result).toEqual({ devtool: t.expected });
-	});
+it('should pass devtool settings in development', () => {
+	const result = mergeWebpackConfig(
+		{ devtool: false },
+		() => ({ devtool: 'source-map' }),
+		'development'
+	);
+	expect(result).toEqual({ devtool: 'source-map' });
+});
+
+it('should ignore devtool settings in production', () => {
+	const result = mergeWebpackConfig(
+		{ devtool: false },
+		() => ({ devtool: 'source-map' }),
+		'production'
+	);
+	expect(result).toEqual({ devtool: false });
 });
