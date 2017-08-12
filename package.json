@@ -58,7 +58,7 @@
     "jss-compose": "^4.0.0",
     "jss-default-unit": "^7.0.0",
     "jss-global": "^2.0.0",
-    "jss-isolate": "^4.0.0",
+    "jss-isolate": "4.0.0",
     "jss-nested": "^5.0.0",
     "leven": "^2.1.0",
     "listify": "^1.0.0",
