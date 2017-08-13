@@ -17,15 +17,21 @@
     "node": ">=4"
   },
   "dependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.4",
     "dog-names": "^1.0.2",
-    "loaders": "^1.1.2",
     "lodash": "^4.17.4",
     "prop-types": "^15.5.10",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-modal": "^1.6.5",
-    "react-styleguidist": "^5.0.0",
-    "webpack": "^2.2.1"
+    "react-styleguidist": "^6.0.11",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.5.4"
   },
   "scripts": {
     "styleguide": "styleguidist server",
