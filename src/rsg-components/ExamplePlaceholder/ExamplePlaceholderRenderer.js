@@ -50,7 +50,9 @@ Create **Readme.md** or **${name}.md** file in the component’s folder like thi
 
     ${name} example:
 
-        &lt;${name} pizza="&#x1f355;" /&gt;
+    \`\`\`js
+    &lt;${name} pizza="&#x1f355;" /&gt;
+	\`\`\`
 
 You may need to **restart** the style guide server after adding an example file.
 
