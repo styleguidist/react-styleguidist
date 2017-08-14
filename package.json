@@ -68,7 +68,7 @@
     "minimist": "^1.2.0",
     "pretty-format": "^20.0.3",
     "prop-types": "^15.5.10",
-    "react-codemirror": "^1.0.0",
+    "react-codemirror2": "0.0.13",
     "react-dev-utils": "^3.0.2",
     "react-docgen": "^3.0.0-beta5",
     "react-docgen-displayname-handler": "^1.0.0",
