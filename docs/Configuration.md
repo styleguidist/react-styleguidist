@@ -244,6 +244,8 @@ module.exports = {
 };
 ```
 
+> **Note:** This will add a separate webpack entry for each array item.
+
 #### `resolver`
 
 Type: `Function`, optional
