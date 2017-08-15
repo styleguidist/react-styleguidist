@@ -246,6 +246,28 @@ module.exports = {
 
 > **Note:** This will add a separate webpack entry for each array item.
 
+Don’t forget to add webpack loaders for each file you add here. For example, to require a CSS file you’ll need:
+
+```javascript
+module.exports = {
+  webpackConfig: {
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          use: [
+            'style-loader',
+            'css-loader'
+          ]
+        }
+      ]
+    }
+  }
+};
+```
+
+See [Configuring webpack](Webpack.md) for mode details.
+
 #### `resolver`
 
 Type: `Function`, optional
