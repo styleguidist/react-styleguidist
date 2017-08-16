@@ -26,14 +26,14 @@ export default class Playground extends Component {
 		const { code, settings } = props;
 		const { config } = context;
 		const showCode = settings.showcode !== undefined ? settings.showcode : config.showCode;
-		this.handleChange = this.handleChange.bind(this);
-		this.handleTabChange = this.handleTabChange.bind(this);
-		this.handleChange = debounce(this.handleChange, config.previewDelay);
 
 		this.state = {
 			code,
 			activeTab: showCode ? EXAMPLE_TAB_CODE_EDITOR : undefined,
 		};
+
+		this.handleTabChange = this.handleTabChange.bind(this);
+		this.handleChange = debounce(this.handleChange.bind(this), config.previewDelay);
 	}
 
 	componentWillReceiveProps(nextProps) {
