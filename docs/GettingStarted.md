@@ -5,7 +5,12 @@
 Install Styleguidist from npm:
 
 ```bash
-npm install --save-dev react-styleguidist
+npm install --save-dev react-styleguidist react react-dom webpack node-pre-gyp nan
+```
+And ignore the resulting npm error:
+
+```bash
+npm ERR! peer dep missing: react-docgen@2.x, required by react-docgen-displayname-handler@1.0.0
 ```
 
 ## 2. Configure your style guide
