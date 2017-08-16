@@ -73,9 +73,35 @@ module.exports = {
 
 See the [Preact example style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/preact).
 
-## How to change styles of a style guide?
+## How to change the style of the guide?
 
-Use config option [theme](Configuration.md#theme) to change fonts, colors, etc. and option [styles](Configuration.md#styles) to tweak style of particular Styleguidist’s components:
+The style guide UI can be manipulated through two config objects: [theme](Configuration.md#theme) and [styles](Configuration.md#styles)
+
+```javascript
+module.exports = {
+  theme: { ... },
+  styles: { ... },
+}
+```
+
+Use [theme](Configuration.md#theme) to change fonts, colors, etc. and [styles](Configuration.md#styles) to tweak the style of any particular Styleguidist component.
+
+It's possible to override any of the following [theme properties](https://github.com/styleguidist/react-styleguidist/blob/master/src/styles/theme.js):
+
+```javascript
+// Theme object
+spaceFactor: {},
+space: {},
+color: {},
+fontFamily: {...},
+fontSize: {...},
+mq: {...},
+borderRadius: {...},
+maxWidth: {...},
+sidebarWidth: {...};
+```
+
+As an example:
 
 ```javascript
 module.exports = {
