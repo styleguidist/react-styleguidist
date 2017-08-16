@@ -35,7 +35,7 @@ Modules that will be available for examples. You can use it for utility function
 module.exports = {
   context: {
     map: 'lodash/map',
-    users: './fixtures/users'
+    users: path.resolve(__dirname, 'fixtures/users')
   }
 };
 ```
