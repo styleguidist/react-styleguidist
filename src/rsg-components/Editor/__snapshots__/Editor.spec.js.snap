@@ -1,6 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renderer should render loader 1`] = `
+exports[`Editor should renderer and editor 1`] = `
+<CodeMirror
+  onValueChange={[Function]}
+  options={
+    Object {
+      "lineNumbers": false,
+      "lineWrapping": true,
+      "matchBrackets": true,
+      "mode": "jsx",
+      "smartIndent": false,
+      "theme": "base16-light",
+      "viewportMargin": Infinity,
+    }
+  }
+  value="<button>MyAwesomeCode</button>"
+/>
+`;
+
+exports[`EditorLoaderRenderer should renderer should render loader 1`] = `
 <div>
   Loading…
 </div>

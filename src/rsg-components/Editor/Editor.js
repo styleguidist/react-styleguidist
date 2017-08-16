@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
-import Codemirror from 'react-codemirror';
+import CodeMirror from 'react-codemirror2';
 import 'codemirror/mode/jsx/jsx';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
@@ -40,7 +40,7 @@ export default class Editor extends Component {
 		return false;
 	}
 
-	handleChange(newCode) {
+	handleChange(editor, metadata, newCode) {
 		this.props.onChange(newCode);
 	}
 
@@ -51,6 +51,6 @@ export default class Editor extends Component {
 			...codemirrorOptions,
 			theme: highlightTheme,
 		};
-		return <Codemirror value={code} onChange={this.handleChange} options={options} />;
+		return <CodeMirror value={code} onValueChange={this.handleChange} options={options} />;
 	}
 }
