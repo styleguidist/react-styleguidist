@@ -7,6 +7,7 @@ import { PlaygroundRenderer } from './PlaygroundRenderer';
 
 const evalInContext = a =>
 	new Function('require', 'const React = require("react");' + a).bind(null, require); // eslint-disable-line no-new-func
+const reactCodeMirrorSelector = '.react-codemirror2';
 const code = '<button>OK</button>';
 const newCode = '<button>Not OK</button>';
 const props = {
@@ -72,12 +73,12 @@ it('should update code with debounce', done => {
 it('should open a code editor', done => {
 	const actual = mount(<Playground {...props} />, options);
 
-	expect(actual.find('.ReactCodeMirror')).toHaveLength(0);
+	expect(actual.find(reactCodeMirrorSelector)).toHaveLength(0);
 
 	actual.find(`button[name="${EXAMPLE_TAB_CODE_EDITOR}"]`).simulate('click');
 
 	setTimeout(() => {
-		expect(actual.find('.ReactCodeMirror')).toHaveLength(1);
+		expect(actual.find(reactCodeMirrorSelector)).toHaveLength(1);
 		done();
 	}, 1);
 });
