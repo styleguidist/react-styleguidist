@@ -239,7 +239,7 @@ Modules that are required for your style guide. Useful for third-party styles or
 module.exports = {
   require: [
     'babel-polyfill',
-    'path/to/styles.css',
+    '/absolute/path/to/styles.css',
   ]
 };
 ```
