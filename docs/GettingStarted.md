@@ -2,7 +2,13 @@
 
 ## 1. Install Styleguidist
 
-Install Styleguidist from npm:
+Install webpack if you don’t have it already and not using Create React App:
+
+```bash
+npm install --save-dev webpack
+```
+
+Install Styleguidist:
 
 ```bash
 npm install --save-dev react-styleguidist
