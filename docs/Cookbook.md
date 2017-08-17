@@ -75,7 +75,7 @@ See the [Preact example style guide](https://github.com/styleguidist/react-style
 
 ## How to change styles of a style guide?
 
-The are two config options to change your style guide UI: [theme](Configuration.md#theme) and [styles](Configuration.md#styles)
+There are two config options to change your style guide UI: [theme](Configuration.md#theme) and [styles](Configuration.md#styles)
 
 Use [theme](Configuration.md#theme) to change fonts, colors, etc.
 
