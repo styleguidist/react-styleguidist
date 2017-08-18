@@ -383,10 +383,10 @@ Function that modifies code example (Markdown fenced code block). For example yo
 
 ```javascript
 module.exports = {
-  updateExample: function(props) {
+  updateExample: function(props, exampleFilePath) {
     const { settings, lang } = props;
     if (typeof settings.file === 'string') {
-      const filepath = settings.file;
+      const filepath = path.resolve(exampleFilePath, settings.file);
       delete settings.file;
       return {
         content: fs.readFileSync(filepath),

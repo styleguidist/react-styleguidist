@@ -63,15 +63,19 @@ it('should pass updateExample function from config to chunkify', () => {
 	examplesLoader.call(
 		{
 			query: '?componentName=FooComponent',
+			resourcePath: '/path/to/foo/examples/file',
 			_styleguidist: {
 				updateExample,
 			},
 		},
 		exampleMarkdown
 	);
-	expect(updateExample).toBeCalledWith({
-		content: '<h1>Hello world!</h2>',
-		settings: { static: true },
-		lang: 'jsx',
-	});
+	expect(updateExample).toBeCalledWith(
+		{
+			content: '<h1>Hello world!</h2>',
+			settings: { static: true },
+			lang: 'jsx',
+		},
+		'/path/to/foo/examples/file'
+	);
 });
