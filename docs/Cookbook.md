@@ -75,7 +75,13 @@ See the [Preact example style guide](https://github.com/styleguidist/react-style
 
 ## How to change styles of a style guide?
 
-Use config option [theme](Configuration.md#theme) to change fonts, colors, etc. and option [styles](Configuration.md#styles) to tweak style of particular Styleguidist’s components:
+There are two config options to change your style guide UI: [theme](Configuration.md#theme) and [styles](Configuration.md#styles).
+
+Use [theme](Configuration.md#theme) to change fonts, colors, etc.
+
+Use [styles](Configuration.md#styles) to tweak the style of any particular Styleguidist component.
+
+As an example:
 
 ```javascript
 module.exports = {
