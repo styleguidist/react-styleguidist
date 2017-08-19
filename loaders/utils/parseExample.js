@@ -1,7 +1,7 @@
 'use strict';
 
 const consts = require('../../scripts/consts');
-const keysToLowerCaseDeep = require('./keysToLowerCaseDeep');
+const lowercaseKeys = require('lowercase-keys');
 
 const splitLangAndModifiers = header => {
 	const m = (header || '').match(/(\w*)(?: (.*))?/);
@@ -49,7 +49,7 @@ module.exports = function parseExample(content, header, updateExample) {
 		example = updateExample(example);
 	}
 
-	example.settings = keysToLowerCaseDeep(example.settings);
+	example.settings = lowercaseKeys(example.settings);
 
 	return example;
 };

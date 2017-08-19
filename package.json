@@ -64,6 +64,7 @@
     "listify": "^1.0.0",
     "loader-utils": "^1.1.0",
     "lodash": "^4.17.4",
+    "lowercase-keys": "^1.0.0",
     "markdown-to-jsx": "^5.4.2",
     "minimist": "^1.2.0",
     "pretty-format": "^20.0.3",

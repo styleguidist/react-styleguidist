@@ -51,7 +51,13 @@ Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the co
     <Button size="large">Push Me</Button>
     ```
 
-    You can disable an editor by passing a `noeditor` modifier:
+    You can add a custom props to an example wrapper:
+    
+    ```js { "props": { "className": "checks" } }
+    <Button>I’m transparent!</Button>
+    ```
+    
+    Or disable an editor by passing a `noeditor` modifier:
 
     ```jsx noeditor
     <Button>Push Me</Button>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Playground from './Playground';
 import '../../styles/setupjss';
 import slots, { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
-import { PlaygroundRenderer } from './PlaygroundRenderer';
+import { PlaygroundRenderer, styles } from './PlaygroundRenderer';
 
 const evalInContext = a =>
 	new Function('require', 'const React = require("react");' + a).bind(null, require); // eslint-disable-line no-new-func
@@ -122,9 +122,10 @@ it('showcode option in example settings should overwrite style guide config opti
 it('renderer should render preview', () => {
 	const actual = shallow(
 		<PlaygroundRenderer
-			classes={{}}
+			classes={classes(styles)}
 			name="name"
 			preview={<div>preview</div>}
+			previewProps={{ className: 'pizza', title: 'salami' }}
 			tabButtons={<div>tab buttons</div>}
 			tabBody={<div>tab body</div>}
 			toolbar={<div>toolbar</div>}

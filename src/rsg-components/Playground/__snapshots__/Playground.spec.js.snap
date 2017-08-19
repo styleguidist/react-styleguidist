@@ -1,21 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renderer should render preview 1`] = `
-<div>
+<div
+  className="root"
+>
   <div
+    className="preview pizza"
     data-preview="name"
+    title="salami"
   >
     <div>
       preview
     </div>
   </div>
-  <div>
+  <div
+    className="controls"
+  >
     <div>
       <div>
         tab buttons
       </div>
     </div>
-    <div>
+    <div
+      className="toolbar"
+    >
       <div>
         toolbar
       </div>
@@ -38,6 +46,7 @@ exports[`should render component renderer 1`] = `
       evalInContext={[Function]}
     />
   }
+  previewProps={Object {}}
   tabBody={
     <Slot
       name="exampleTabs"

@@ -30,6 +30,7 @@ function examplesLoader(source) {
 	const updateExample = config.updateExample
 		? props => config.updateExample(props, this.resourcePath)
 		: undefined;
+
 	// Load examples
 	const examples = chunkify(source, updateExample);
 

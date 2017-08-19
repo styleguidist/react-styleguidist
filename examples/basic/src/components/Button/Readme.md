@@ -18,7 +18,13 @@ Fenced code blocks with `js`, `jsx` or `javascript` languages are rendered as a 
 <Button>Push Me</Button>
 ```
 
-You can disable an editor by passing a `noeditor` modifier (```` ```js noeditor````):
+You can add a custom props to an example wrapper (```` ```js { "props": { "className": "checks" } }````):
+
+```js { "props": { "className": "checks" } }
+<Button>I’m transparent!</Button>
+```
+
+Or disable an editor by passing a `noeditor` modifier (```` ```js noeditor````):
 
 ```jsx noeditor
 <Button>Push Me</Button>
