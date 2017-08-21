@@ -10,6 +10,8 @@ const getExamples = require('./utils/getExamples');
 const getProps = require('./utils/getProps');
 const consts = require('../scripts/consts');
 
+const ERROR_MISSING_DEFINITION = 'No suitable component definition found.';
+
 module.exports = function(source) {
 	const file = this.request.split('!').pop();
 	const config = this._styleguidist;
@@ -26,11 +28,19 @@ module.exports = function(source) {
 	let props = {};
 	try {
 		props = propsParser(file, source, config.resolver, config.handlers(file));
+
+		// Support only one component
+		if (isArray(props)) {
+			if (props.length === 0) {
+				throw new Error(ERROR_MISSING_DEFINITION);
+			}
+			props = props[0];
+		}
 	} catch (err) {
 		const errorMessage = err.toString();
 		const componentPath = path.relative(process.cwd(), file);
 		const message =
-			errorMessage === 'Error: No suitable component definition found.'
+			errorMessage === `Error: ${ERROR_MISSING_DEFINITION}`
 				? `${componentPath} matches a pattern defined in “components” or “sections” options in your ` +
 					'style guide config but doesn’t export a component.\n\n' +
 					'It usually happens when using third-party libraries, see possible solutions here:\n' +
@@ -39,11 +49,6 @@ module.exports = function(source) {
 					'It usually means that react-docgen don’t understand your source code, try to file an issue here:\n' +
 					'https://github.com/reactjs/react-docgen/issues';
 		logger.warn(message);
-	}
-
-	// Support only one component
-	if (isArray(props)) {
-		props = props[0];
 	}
 
 	props = getProps(props, file);
