@@ -42,7 +42,7 @@ module.exports = function(source) {
 	}
 
 	// Support only one component
-	if (isArray(props)) {
+	if (isArray(props) && props.length > 0) {
 		props = props[0];
 	}
 
