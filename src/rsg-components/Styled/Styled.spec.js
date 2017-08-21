@@ -30,5 +30,5 @@ it('should wrap a component and pass classes', () => {
 	expect(actual.name()).toBe('Cmpnt');
 	expect(actual.prop('bar')).toBe('baz');
 	expect(typeof actual.prop('classes')).toBe('object');
-	expect(actual.prop('classes').foo).toMatch(/^foo-\d+-\d+$/);
+	expect(actual.prop('classes').foo).toMatch(/^rsg--foo-\d+$/);
 });

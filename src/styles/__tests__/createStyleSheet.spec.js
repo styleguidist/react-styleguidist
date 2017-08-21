@@ -42,8 +42,8 @@ describe('createStyleSheet', () => {
 		const styleSheet = createStyleSheet(styles, config, testComponentName);
 		const style = styleSheet.getRule(testRuleName).style;
 
-		expect(style.backgroundColor).toBe(theme.color.baseBackground);
-		expect(style.borderRadius).toBe(theme.borderRadius);
+		expect(style['background-color']).toBe(theme.color.baseBackground);
+		expect(style['border-radius']).toBe(`${theme.borderRadius}px`);
 	});
 
 	it('should override theme variables with config theme', () => {
@@ -51,13 +51,13 @@ describe('createStyleSheet', () => {
 		const style = styleSheet.getRule(testRuleName).style;
 
 		expect(style.color).toBe(customThemeColor);
-		expect(style.maxWidth).toBe(customThemeMaxWidth);
+		expect(style['max-width']).toBe(`${customThemeMaxWidth}px`);
 	});
 
 	it('should override config theme variables with config styles', () => {
 		const styleSheet = createStyleSheet(styles, config, testComponentName);
 		const style = styleSheet.getRule(testRuleName).style;
 
-		expect(style.borderColor).toBe(customStyleBorderColor);
+		expect(style['border-color']).toBe(customStyleBorderColor);
 	});
 });

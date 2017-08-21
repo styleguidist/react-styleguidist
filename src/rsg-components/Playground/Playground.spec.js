@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Playground from './Playground';
-import '../../styles/setupjss';
 import slots, { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
 import { PlaygroundRenderer, styles } from './PlaygroundRenderer';
 

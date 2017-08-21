@@ -54,7 +54,7 @@ exports[`render should render styled component 1`] = `
 <SectionsRenderer
   classes={
     Object {
-      "root": "root-0-0",
+      "root": "rsg--root-0",
     }
   }
 >

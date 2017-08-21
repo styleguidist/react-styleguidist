@@ -7,7 +7,13 @@ import defaultUnit from 'jss-default-unit';
 import compose from 'jss-compose';
 import nonInheritedProps from './nonInheritedProps';
 
+const createGenerateClassName = () => {
+	let counter = 0;
+	return rule => `rsg--${rule.key}-${counter++}`;
+};
+
 jss.setup({
+	createGenerateClassName,
 	plugins: [
 		global(),
 		isolate({
@@ -30,3 +36,5 @@ jss.setup({
 		compose(),
 	],
 });
+
+export default jss;

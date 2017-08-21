@@ -1,19 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Markdown should render Markdown in span in inline mode 1`] = `"<span class=\\"base-0-0\\">Hello <em class=\\"em-0-16\\">world</em>!</span>"`;
+exports[`Markdown should render Markdown in span in inline mode 1`] = `"<span class=\\"rsg--base-0\\">Hello <em class=\\"rsg--em-16 rsg--base-0\\">world</em>!</span>"`;
 
-exports[`Markdown should render Markdown with custom CSS classes 1`] = `"<div><h1 class=\\"h1-0-3\\">Header</h1><p class=\\"p-0-9\\">Text with <em class=\\"em-0-16\\">some</em> <strong class=\\"strong-0-17\\">formatting</strong> and a <a class=\\"a-0-2\\" href=\\"/foo\\">link</a>.</p><p class=\\"p-0-9\\"><img alt=\\"Image\\" src=\\"/bar.png\\"></p></div>"`;
+exports[`Markdown should render Markdown with custom CSS classes 1`] = `"<div><h1 class=\\"rsg--h1-3 rsg--para-1\\">Header</h1><p class=\\"rsg--p-9 rsg--para-1\\">Text with <em class=\\"rsg--em-16 rsg--base-0\\">some</em> <strong class=\\"rsg--strong-17 rsg--base-0\\">formatting</strong> and a <a class=\\"rsg--a-2\\" href=\\"/foo\\">link</a>.</p><p class=\\"rsg--p-9 rsg--para-1\\"><img alt=\\"Image\\" src=\\"/bar.png\\"></p></div>"`;
 
-exports[`Markdown should render check-lists correctly 1`] = `"<ul class=\\"ul-0-10\\"><li class=\\"li-0-12\\"><input type=\\"checkbox\\" class=\\"input-0-13\\" readonly>list 1</li><li class=\\"li-0-12\\"><input type=\\"checkbox\\" class=\\"input-0-13\\" readonly>list 2</li><li class=\\"li-0-12\\"><input type=\\"checkbox\\" class=\\"input-0-13\\" checked readonly>list 3</li></ul>"`;
+exports[`Markdown should render check-lists correctly 1`] = `"<ul class=\\"rsg--ul-10 rsg--para-1\\"><li class=\\"rsg--li-12 rsg--base-0\\"><input type=\\"checkbox\\" class=\\"rsg--input-13\\" readonly>list 1</li><li class=\\"rsg--li-12 rsg--base-0\\"><input type=\\"checkbox\\" class=\\"rsg--input-13\\" readonly>list 2</li><li class=\\"rsg--li-12 rsg--base-0\\"><input type=\\"checkbox\\" class=\\"rsg--input-13\\" checked readonly>list 3</li></ul>"`;
 
-exports[`Markdown should render code blocks without escaping 1`] = `"<pre class=\\"pre-0-19\\"><code class=\\"code-0-18 lang-html\\"><foo></foo></code></pre>"`;
+exports[`Markdown should render code blocks without escaping 1`] = `"<pre class=\\"rsg--pre-19 rsg--para-1\\"><code class=\\"rsg--code-18 lang-html\\"><foo></foo></code></pre>"`;
 
-exports[`Markdown should render headings correctly 1`] = `"<div><h1 class=\\"h1-0-3\\">one</h1><h2 class=\\"h2-0-4\\">two</h2><h3 class=\\"h3-0-5\\">three</h3><h4 class=\\"h4-0-6\\">four</h4><h5 class=\\"h5-0-7\\">five</h5><h6 class=\\"h6-0-8\\">six</h6></div>"`;
+exports[`Markdown should render headings correctly 1`] = `"<div><h1 class=\\"rsg--h1-3 rsg--para-1\\">one</h1><h2 class=\\"rsg--h2-4 rsg--para-1\\">two</h2><h3 class=\\"rsg--h3-5 rsg--para-1\\">three</h3><h4 class=\\"rsg--h4-6 rsg--para-1\\">four</h4><h5 class=\\"rsg--h5-7 rsg--para-1\\">five</h5><h6 class=\\"rsg--h6-8 rsg--para-1\\">six</h6></div>"`;
 
-exports[`Markdown should render inline code with escaping 1`] = `"<p class=\\"p-0-9\\">Foo <code class=\\"code-0-18\\">&lt;bar&gt;</code> baz</p>"`;
+exports[`Markdown should render inline code with escaping 1`] = `"<p class=\\"rsg--p-9 rsg--para-1\\">Foo <code class=\\"rsg--code-18\\">&lt;bar&gt;</code> baz</p>"`;
 
-exports[`Markdown should render mixed nested lists correctly 1`] = `"<ul class=\\"ul-0-10\\"><li class=\\"li-0-12\\">list 1</li><li class=\\"li-0-12\\"><p class=\\"p-0-9\\">list 2</p><ol class=\\"ol-0-11\\" start=\\"1\\"><li class=\\"li-0-12\\">Sub-list</li><li class=\\"li-0-12\\">Sub-list</li><li class=\\"li-0-12\\">Sub-list</li></ol></li><li class=\\"li-0-12\\">list 3</li></ul>"`;
+exports[`Markdown should render mixed nested lists correctly 1`] = `"<ul class=\\"rsg--ul-10 rsg--para-1\\"><li class=\\"rsg--li-12 rsg--base-0\\">list 1</li><li class=\\"rsg--li-12 rsg--base-0\\"><p class=\\"rsg--p-9 rsg--para-1\\">list 2</p><ol class=\\"rsg--ol-11 rsg--para-1\\" start=\\"1\\"><li class=\\"rsg--li-12 rsg--base-0\\">Sub-list</li><li class=\\"rsg--li-12 rsg--base-0\\">Sub-list</li><li class=\\"rsg--li-12 rsg--base-0\\">Sub-list</li></ol></li><li class=\\"rsg--li-12 rsg--base-0\\">list 3</li></ul>"`;
 
-exports[`Markdown should render ordered lists correctly 1`] = `"<ol class=\\"ol-0-11\\" start=\\"1\\"><li class=\\"li-0-12\\">list</li><li class=\\"li-0-12\\">item</li><li class=\\"li-0-12\\">three</li></ol>"`;
+exports[`Markdown should render ordered lists correctly 1`] = `"<ol class=\\"rsg--ol-11 rsg--para-1\\" start=\\"1\\"><li class=\\"rsg--li-12 rsg--base-0\\">list</li><li class=\\"rsg--li-12 rsg--base-0\\">item</li><li class=\\"rsg--li-12 rsg--base-0\\">three</li></ol>"`;
 
-exports[`Markdown should render unordered lists correctly 1`] = `"<ul class=\\"ul-0-10\\"><li class=\\"li-0-12\\">list</li><li class=\\"li-0-12\\">item</li><li class=\\"li-0-12\\">three</li></ul>"`;
+exports[`Markdown should render unordered lists correctly 1`] = `"<ul class=\\"rsg--ul-10 rsg--para-1\\"><li class=\\"rsg--li-12 rsg--base-0\\">list</li><li class=\\"rsg--li-12 rsg--base-0\\">item</li><li class=\\"rsg--li-12 rsg--base-0\\">three</li></ul>"`;

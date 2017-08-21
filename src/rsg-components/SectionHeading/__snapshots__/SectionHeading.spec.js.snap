@@ -55,11 +55,12 @@ exports[`should pass props to slots 1`] = `
 <SectionHeadingRenderer
   classes={
     Object {
-      "heading": "heading-0-1",
-      "isDeprecated": "isDeprecated-0-3",
-      "isPrimary": "isPrimary-0-2",
-      "root": "root-0-0",
-      "toolbar": "toolbar-0-4",
+      ".rsg--heading-1:hover, .rsg--heading-1:active": "rsg--heading-1:hover, .rsg--heading-1:active",
+      "heading": "rsg--heading-1",
+      "isDeprecated": "rsg--isDeprecated-3",
+      "isPrimary": "rsg--isPrimary-2",
+      "root": "rsg--root-0",
+      "toolbar": "rsg--toolbar-4",
     }
   }
   href="/heading"
