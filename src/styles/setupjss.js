@@ -1,4 +1,4 @@
-import jss from 'jss';
+import { create } from 'jss';
 import global from 'jss-global';
 import isolate from 'jss-isolate';
 import nested from 'jss-nested';
@@ -12,7 +12,7 @@ const createGenerateClassName = () => {
 	return rule => `rsg--${rule.key}-${counter++}`;
 };
 
-jss.setup({
+const jss = create({
 	createGenerateClassName,
 	plugins: [
 		global(),
