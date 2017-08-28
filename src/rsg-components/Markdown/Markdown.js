@@ -22,11 +22,7 @@ function Code({ children, className }) {
 	if (isHighlighted) {
 		return <code className={className} dangerouslySetInnerHTML={{ __html: children }} />;
 	}
-	return (
-		<code className={className}>
-			{children}
-		</code>
-	);
+	return <code className={className}>{children}</code>;
 }
 Code.propTypes = {
 	children: PropTypes.node,

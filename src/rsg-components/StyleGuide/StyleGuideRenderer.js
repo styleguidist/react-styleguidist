@@ -63,15 +63,14 @@ export function StyleGuideRenderer({ classes, title, homepageUrl, children, toc,
 					<Markdown text={`Generated with [React Styleguidist](${homepageUrl})`} />
 				</footer>
 			</main>
-			{hasSidebar &&
+			{hasSidebar && (
 				<div className={classes.sidebar}>
 					<div className={classes.logo}>
-						<Logo>
-							{title}
-						</Logo>
+						<Logo>{title}</Logo>
 					</div>
 					{toc}
-				</div>}
+				</div>
+			)}
 		</div>
 	);
 }

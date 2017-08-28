@@ -70,9 +70,11 @@ export default class ReactComponent extends Component {
 					</SectionHeading>
 				}
 				examples={
-					examples.length > 0
-						? <Examples examples={examples} name={name} />
-						: <ExamplePlaceholder name={name} />
+					examples.length > 0 ? (
+						<Examples examples={examples} name={name} />
+					) : (
+						<ExamplePlaceholder name={name} />
+					)
 				}
 				tabButtons={
 					<Slot

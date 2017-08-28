@@ -16,17 +16,13 @@ export function ArgumentRenderer({ classes, name, type, description, returns, bl
 	return (
 		<Group className={block && classes.block} {...props}>
 			{returns && 'Returns'}
-			{name &&
+			{name && (
 				<span>
-					<Name>
-						{name}
-					</Name>
+					<Name>{name}</Name>
 					{type && ':'}
-				</span>}
-			{type &&
-				<Type>
-					{type.name}
-				</Type>}
+				</span>
+			)}
+			{type && <Type>{type.name}</Type>}
 			{description && <Markdown text={`— ${description}`} inline />}
 		</Group>
 	);

@@ -12,11 +12,7 @@ const styles = ({ fontFamily, fontSize, color }) => ({
 });
 
 export function TypeRenderer({ classes, children }) {
-	return (
-		<Code className={classes.type}>
-			{children}
-		</Code>
-	);
+	return <Code className={classes.type}>{children}</Code>;
 }
 
 TypeRenderer.propTypes = {

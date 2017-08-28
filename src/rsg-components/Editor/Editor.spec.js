@@ -39,7 +39,10 @@ describe('Editor', () => {
 		expect(actual.text()).toMatch(code);
 
 		// Set new value by calling a method on the CodeMirror instance
-		actual.find('div').node.querySelector('.CodeMirror').CodeMirror.setValue(newCode);
+		actual
+			.find('div')
+			.node.querySelector('.CodeMirror')
+			.CodeMirror.setValue(newCode);
 
 		setTimeout(() => {
 			expect(onChange).toBeCalledWith(newCode);

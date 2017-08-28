@@ -8,15 +8,11 @@ import { unquote, getType, showSpaces } from './util';
 export default function ColumnsRenderer({ props }) {
 	return (
 		<ul>
-			{propsToArray(props).map((row, rowIdx) =>
+			{propsToArray(props).map((row, rowIdx) => (
 				<li key={rowIdx}>
-					{columns.map(({ render }, colIdx) =>
-						<div key={colIdx}>
-							{render(row)}
-						</div>
-					)}
+					{columns.map(({ render }, colIdx) => <div key={colIdx}>{render(row)}</div>)}
 				</li>
-			)}
+			))}
 		</ul>
 	);
 }

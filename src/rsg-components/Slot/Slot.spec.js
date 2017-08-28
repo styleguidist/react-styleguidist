@@ -74,7 +74,10 @@ it('should pass slot ID to onClick handler', () => {
 		},
 	});
 
-	actual.find('button').first().simulate('click');
+	actual
+		.find('button')
+		.first()
+		.simulate('click');
 
 	expect(onClick).toBeCalledWith('one', expect.any(Object));
 });

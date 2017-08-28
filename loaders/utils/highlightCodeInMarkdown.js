@@ -19,5 +19,8 @@ function highlight() {
  * @returns {string}
  */
 module.exports = function highlightCodeInMarkdown(markdown) {
-	return remark().use(highlight).processSync(markdown).toString();
+	return remark()
+		.use(highlight)
+		.processSync(markdown)
+		.toString();
 };

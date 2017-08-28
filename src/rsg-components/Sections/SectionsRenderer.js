@@ -8,11 +8,7 @@ const styles = () => ({
 });
 
 export function SectionsRenderer({ classes, children }) {
-	return (
-		<section className={classes.root}>
-			{children}
-		</section>
-	);
+	return <section className={classes.root}>{children}</section>;
 }
 
 SectionsRenderer.propTypes = {

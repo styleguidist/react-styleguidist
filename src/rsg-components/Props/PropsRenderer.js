@@ -35,18 +35,12 @@ function renderType(type) {
 
 function renderEnum(prop) {
 	if (!Array.isArray(getType(prop).value)) {
-		return (
-			<span>
-				{getType(prop).value}
-			</span>
-		);
+		return <span>{getType(prop).value}</span>;
 	}
 
-	const values = getType(prop).value.map(({ value }) =>
-		<Code key={value}>
-			{showSpaces(unquote(value))}
-		</Code>
-	);
+	const values = getType(prop).value.map(({ value }) => (
+		<Code key={value}>{showSpaces(unquote(value))}</Code>
+	));
 	return (
 		<span>
 			One of:{' '}
@@ -65,13 +59,9 @@ function renderShape(props) {
 		const description = prop.description;
 		rows.push(
 			<div key={name}>
-				<Name>
-					{name}
-				</Name>
+				<Name>{name}</Name>
 				{': '}
-				<Type>
-					{renderType(prop)}
-				</Type>
+				<Type>{renderType(prop)}</Type>
 				{defaultValue && ' — '}
 				{defaultValue}
 				{description && ' — '}
@@ -92,11 +82,7 @@ function renderDefault(prop) {
 			const propName = prop.type.name;
 
 			if (defaultValueBlacklist.indexOf(prop.defaultValue.value) > -1) {
-				return (
-					<Code>
-						{showSpaces(unquote(prop.defaultValue.value))}
-					</Code>
-				);
+				return <Code>{showSpaces(unquote(prop.defaultValue.value))}</Code>;
 			} else if (propName === 'func') {
 				return (
 					<Text underlined title={showSpaces(unquote(prop.defaultValue.value))}>
@@ -128,11 +114,7 @@ function renderDefault(prop) {
 			}
 		}
 
-		return (
-			<Code>
-				{showSpaces(unquote(prop.defaultValue.value))}
-			</Code>
-		);
+		return <Code>{showSpaces(unquote(prop.defaultValue.value))}</Code>;
 	}
 	return '';
 }
@@ -144,10 +126,7 @@ function renderDescription(prop) {
 	return (
 		<div>
 			{description && <Markdown text={description} />}
-			{extra &&
-				<Para>
-					{extra}
-				</Para>}
+			{extra && <Para>{extra}</Para>}
 			<JsDoc {...tags} />
 			{args.length > 0 && <Arguments args={args} heading />}
 		</div>
@@ -184,18 +163,12 @@ function renderExtra(prop) {
 
 function renderUnion(prop) {
 	if (!Array.isArray(getType(prop).value)) {
-		return (
-			<span>
-				{getType(prop).value}
-			</span>
-		);
+		return <span>{getType(prop).value}</span>;
 	}
 
-	const values = getType(prop).value.map((value, index) =>
-		<Type key={`${value.name}-${index}`}>
-			{renderType(value)}
-		</Type>
-	);
+	const values = getType(prop).value.map((value, index) => (
+		<Type key={`${value.name}-${index}`}>{renderType(value)}</Type>
+	));
 	return (
 		<span>
 			One of type:{' '}
@@ -208,19 +181,11 @@ function renderUnion(prop) {
 
 function renderName(prop) {
 	const { name, tags = {} } = prop;
-	return (
-		<Name deprecated={!!tags.deprecated}>
-			{name}
-		</Name>
-	);
+	return <Name deprecated={!!tags.deprecated}>{name}</Name>;
 }
 
 function renderTypeColumn(prop) {
-	return (
-		<Type>
-			{renderType(getType(prop))}
-		</Type>
-	);
+	return <Type>{renderType(getType(prop))}</Type>;
 }
 
 export function getRowKey(row) {

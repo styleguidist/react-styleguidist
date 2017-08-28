@@ -22,9 +22,7 @@ export function SectionHeadingRenderer({
 			<a href={href} className={headingClasses}>
 				{children}
 			</a>
-			<div className={classes.toolbar}>
-				{toolbar}
-			</div>
+			<div className={classes.toolbar}>{toolbar}</div>
 		</Tag>
 	);
 }

@@ -8,11 +8,7 @@ const styles = () => ({
 });
 
 export function ExamplesRenderer({ classes, children }) {
-	return (
-		<article className={classes.root}>
-			{children}
-		</article>
-	);
+	return <article className={classes.root}>{children}</article>;
 }
 
 ExamplesRenderer.propTypes = {

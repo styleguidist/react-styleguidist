@@ -7,15 +7,11 @@ import MethodsRenderer, { columns } from './MethodsRenderer';
 export default function ColumnsRenderer({ methods }) {
 	return (
 		<ul>
-			{methods.map((row, rowIdx) =>
+			{methods.map((row, rowIdx) => (
 				<li key={rowIdx}>
-					{columns.map(({ render }, colIdx) =>
-						<div key={colIdx}>
-							{render(row)}
-						</div>
-					)}
+					{columns.map(({ render }, colIdx) => <div key={colIdx}>{render(row)}</div>)}
 				</li>
-			)}
+			))}
 		</ul>
 	);
 }

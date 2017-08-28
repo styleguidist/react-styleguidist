@@ -6,13 +6,15 @@ import ToolbarButton from 'rsg-components/ToolbarButton';
 import { getUrl } from '../../utils/utils';
 
 const IsolateButton = ({ name, example, isolated }) =>
-	isolated
-		? <ToolbarButton href={getUrl()} title="Show all components">
-				<MdFullscreenExit />
-			</ToolbarButton>
-		: <ToolbarButton href={getUrl({ name, example, isolated: true })} title="Open isolated">
-				<MdFullscreen />
-			</ToolbarButton>;
+	isolated ? (
+		<ToolbarButton href={getUrl()} title="Show all components">
+			<MdFullscreenExit />
+		</ToolbarButton>
+	) : (
+		<ToolbarButton href={getUrl({ name, example, isolated: true })} title="Open isolated">
+			<MdFullscreen />
+		</ToolbarButton>
+	);
 
 IsolateButton.propTypes = {
 	name: PropTypes.string.isRequired,

@@ -51,7 +51,10 @@ module.exports = function chunkify(markdown, updateExample) {
 		};
 	}
 
-	const rendered = remark().use(processCode).processSync(markdown).toString();
+	const rendered = remark()
+		.use(processCode)
+		.processSync(markdown)
+		.toString();
 
 	const chunks = [];
 	const textChunks = rendered.split(CODE_PLACEHOLDER);

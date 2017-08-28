@@ -46,23 +46,23 @@ export function TableRenderer({ classes, columns, rows, getRowKey }) {
 		<table className={classes.table}>
 			<thead className={classes.tableHead}>
 				<tr>
-					{columns.map(({ caption }) =>
+					{columns.map(({ caption }) => (
 						<th key={caption} className={classes.cellHeading}>
 							{caption}
 						</th>
-					)}
+					))}
 				</tr>
 			</thead>
 			<tbody>
-				{rows.map(row =>
+				{rows.map(row => (
 					<tr key={getRowKey(row)}>
-						{columns.map(({ render }, index) =>
+						{columns.map(({ render }, index) => (
 							<td key={index} className={classes.cell}>
 								{render(row)}
 							</td>
-						)}
+						))}
 					</tr>
-				)}
+				))}
 			</tbody>
 		</table>
 	);
