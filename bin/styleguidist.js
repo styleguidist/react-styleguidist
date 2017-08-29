@@ -108,11 +108,7 @@ function commandServer() {
 			console.error(err);
 		} else {
 			const isHttps = compiler.options.devServer && compiler.options.devServer.https;
-			devServerUtils.printInstructions(
-				isHttps ? 'https' : 'http',
-				config.serverHost,
-				config.serverPort
-			);
+			devServerUtils.printInstructions(isHttps, config.serverHost, config.serverPort);
 		}
 	});
 

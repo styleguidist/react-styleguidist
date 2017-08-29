@@ -10,8 +10,6 @@ function printInstructions(protocol, host, port) {
 
 	logger.info(`  ${chalk.bold('Local:')}            ${urls.localUrlForTerminal}`);
 	logger.info(`  ${chalk.bold('On your network:')}  ${urls.lanUrlForTerminal}`);
-
-	logger.info('Note that the development build is not optimized.');
 }
 
 module.exports = {
