@@ -11,6 +11,7 @@ const setupLogger = require('../scripts/logger');
 const consts = require('../scripts/consts');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const StyleguidistError = require('../scripts/utils/error');
+const devServerUtils = require('../scripts/utils/devServerUtils');
 
 const argv = minimist(process.argv.slice(2));
 const command = argv._[0];
@@ -107,14 +108,7 @@ function commandServer() {
 			console.error(err);
 		} else {
 			const isHttps = compiler.options.devServer && compiler.options.devServer.https;
-			logger.info(
-				'Style guide server started at:\n' +
-					(isHttps ? 'https' : 'http') +
-					'://' +
-					config.serverHost +
-					':' +
-					config.serverPort
-			);
+			devServerUtils.printInstructions(isHttps, config.serverHost, config.serverPort);
 		}
 	});
 
