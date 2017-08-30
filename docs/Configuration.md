@@ -399,7 +399,7 @@ module.exports = {
 };
 ```
 
-Use it like this in you Markdown files:
+Use it like this in your Markdown files:
 
     ```js { "file": "./some/file.js" }
     ```
