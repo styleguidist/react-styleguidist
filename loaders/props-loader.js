@@ -46,7 +46,7 @@ module.exports = function(source) {
 					'It usually happens when using third-party libraries, see possible solutions here:\n' +
 					`${consts.DOCS_THIRDPARTIES}`
 				: `Cannot parse ${componentPath}: ${err}\n\n` +
-					'It usually means that react-docgen don’t understand your source code, try to file an issue here:\n' +
+					'It usually means that react-docgen does not understand your source code, try to file an issue here:\n' +
 					'https://github.com/reactjs/react-docgen/issues';
 		logger.warn(message);
 	}
