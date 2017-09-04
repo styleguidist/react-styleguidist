@@ -57,7 +57,7 @@ export default class StyleGuide extends Component {
 				toc={<TableOfContents sections={sections} />}
 				hasSidebar={config.showSidebar && !isolatedComponent}
 			>
-				<Sections sections={sections} root />
+				<Sections sections={sections} depth={1} />
 			</StyleGuideRenderer>
 		);
 	}

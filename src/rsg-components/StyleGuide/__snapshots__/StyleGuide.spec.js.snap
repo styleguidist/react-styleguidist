@@ -85,7 +85,7 @@ exports[`should render components list 1`] = `
   }
 >
   <Sections
-    root={true}
+    depth={1}
     sections={
       Array [
         Object {

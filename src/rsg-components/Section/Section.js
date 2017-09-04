@@ -5,12 +5,12 @@ import Components from 'rsg-components/Components';
 import Sections from 'rsg-components/Sections';
 import SectionRenderer from 'rsg-components/Section/SectionRenderer';
 
-export default function Section({ section, primary }, { isolatedSection = false }) {
+export default function Section({ section, depth }, { isolatedSection = false }) {
 	const { name, slug, content, components, sections } = section;
 
 	const contentJsx = content && <Examples examples={content} name={name} />;
-	const componentsJsx = components && <Components components={components} />;
-	const sectionsJsx = sections && <Sections sections={sections} />;
+	const componentsJsx = components && <Components components={components} depth={depth + 1} />;
+	const sectionsJsx = sections && <Sections sections={sections} depth={depth + 1} />;
 
 	return (
 		<SectionRenderer
@@ -20,14 +20,14 @@ export default function Section({ section, primary }, { isolatedSection = false 
 			components={componentsJsx}
 			sections={sectionsJsx}
 			isolated={isolatedSection}
-			primary={primary}
+			depth={depth}
 		/>
 	);
 }
 
 Section.propTypes = {
 	section: PropTypes.object.isRequired,
-	primary: PropTypes.bool,
+	depth: PropTypes.number.isRequired,
 };
 
 Section.contextTypes = {

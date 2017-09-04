@@ -29,6 +29,7 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
   heading={
     <SectionHeading
       deprecated={false}
+      depth={3}
       id="foo"
       slotName="componentToolbar"
       slotProps={

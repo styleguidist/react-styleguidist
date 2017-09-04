@@ -23,6 +23,6 @@ SectionHeading.propTypes = {
 	id: PropTypes.string.isRequired,
 	slotName: PropTypes.string.isRequired,
 	slotProps: PropTypes.object.isRequired,
-	primary: PropTypes.bool,
+	depth: PropTypes.number.isRequired,
 	deprecated: PropTypes.bool,
 };
