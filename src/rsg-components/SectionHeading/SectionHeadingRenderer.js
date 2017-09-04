@@ -10,11 +10,12 @@ export function SectionHeadingRenderer({
 	id,
 	href,
 	primary,
+	depth,
 	deprecated,
 }) {
-	const Tag = primary ? 'h1' : 'h2';
-	const headingClasses = cx(classes.heading, {
-		[classes.isPrimary]: primary,
+	const headingLevel = primary ? 1 : Math.min(6, depth + 1);
+	const Tag = `h${headingLevel}`;
+	const headingClasses = cx(classes.heading, classes[`heading${headingLevel}`], {
 		[classes.isDeprecated]: deprecated,
 	});
 	return (
@@ -35,7 +36,6 @@ export const styles = ({ color, space, fontSize, fontFamily }) => ({
 	},
 	heading: {
 		color: color.base,
-		fontSize: fontSize.h2,
 		fontFamily: fontFamily.base,
 		fontWeight: 'normal',
 		'&:hover, &:active': {
@@ -43,8 +43,23 @@ export const styles = ({ color, space, fontSize, fontFamily }) => ({
 			textDecoration: 'underline',
 		},
 	},
-	isPrimary: {
+	heading1: {
 		fontSize: fontSize.h1,
+	},
+	heading2: {
+		fontSize: fontSize.h2,
+	},
+	heading3: {
+		fontSize: fontSize.h3,
+	},
+	heading4: {
+		fontSize: fontSize.h4,
+	},
+	heading5: {
+		fontSize: fontSize.h5,
+	},
+	heading6: {
+		fontSize: fontSize.h6,
 	},
 	isDeprecated: {
 		textDecoration: 'line-through',
@@ -62,6 +77,7 @@ SectionHeadingRenderer.propTypes = {
 	id: PropTypes.string.isRequired,
 	href: PropTypes.string.isRequired,
 	primary: PropTypes.bool,
+	depth: PropTypes.number.isRequired,
 	deprecated: PropTypes.bool,
 };
 

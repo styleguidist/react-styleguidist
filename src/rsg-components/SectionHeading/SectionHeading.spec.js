@@ -5,11 +5,18 @@ const props = {
 	classes: classes(styles),
 	id: 'heading',
 	href: '/heading',
+	depth: 3,
 };
 
 it('should pass props to slots', () => {
 	const actual = shallow(
-		<SectionHeading id="heading" href="/heading" slotName="slot" slotProps={{ foo: 1, bar: 'baz' }}>
+		<SectionHeading
+			id="heading"
+			depth={1}
+			href="/heading"
+			slotName="slot"
+			slotProps={{ foo: 1, bar: 'baz' }}
+		>
 			Heading
 		</SectionHeading>
 	);
@@ -17,18 +24,8 @@ it('should pass props to slots', () => {
 	expect(actual).toMatchSnapshot();
 });
 
-it('renderer should render H2 tag', () => {
+it('renderer should render H4 tag', () => {
 	const actual = shallow(<SectionHeadingRenderer {...props}>Heading</SectionHeadingRenderer>);
-
-	expect(actual).toMatchSnapshot();
-});
-
-it('renderer should render H1 tag', () => {
-	const actual = shallow(
-		<SectionHeadingRenderer {...props} primary>
-			Heading
-		</SectionHeadingRenderer>
-	);
 
 	expect(actual).toMatchSnapshot();
 });

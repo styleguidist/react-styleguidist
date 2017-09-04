@@ -4,19 +4,39 @@ module.exports = {
 	title: 'React Style Guide Example',
 	sections: [
 		{
-			name: 'Components',
-			components: './src/components/**/[A-Z]*.js',
-		},
-		{
 			name: 'Documentation',
 			sections: [
 				{
-					name: 'First File',
-					content: 'docs/One.md',
+					name: 'Files',
+					sections: [
+						{
+							name: 'First File',
+							content: 'docs/One.md',
+						},
+						{
+							name: 'Second File',
+							content: 'docs/Two.md',
+						},
+					],
+				},
+			],
+		},
+		{
+			name: 'Components',
+			sections: [
+				{
+					name: 'Buttons',
+					components: () => [
+						'./src/components/Button/Button.js',
+						'./src/components/RandomButton/RandomButton.js',
+					],
 				},
 				{
-					name: 'Second File',
-					content: 'docs/Two.md',
+					name: 'Fields',
+					components: () => [
+						'./src/components/Label/Label.js',
+						'./src/components/Placeholder/Placeholder.js',
+					],
 				},
 			],
 		},

@@ -25,13 +25,7 @@ const section = {
 };
 
 it('should render component renderer', () => {
-	const actual = shallow(<Section section={section} />);
-
-	expect(actual).toMatchSnapshot();
-});
-
-it('should render component renderer with primary title', () => {
-	const actual = shallow(<Section section={section} primary />);
+	const actual = shallow(<Section section={section} depth={3} />);
 
 	expect(actual).toMatchSnapshot();
 });
@@ -44,6 +38,7 @@ it('should render components list', () => {
 				slug: 'components',
 				components: [],
 			}}
+			depth={3}
 		/>
 	);
 
@@ -57,6 +52,7 @@ it('should not render components list if not defined', () => {
 				name: 'No components',
 				slug: 'no-components',
 			}}
+			depth={3}
 		/>
 	);
 
@@ -71,6 +67,7 @@ it('should render sections if defined', () => {
 				slug: 'nested-sections',
 				sections: [],
 			}}
+			depth={3}
 		/>
 	);
 
@@ -84,6 +81,7 @@ it('should not render sections if not defined', () => {
 				name: 'No sections',
 				slug: 'no-sections',
 			}}
+			depth={3}
 		/>
 	);
 
@@ -97,8 +95,9 @@ it('render should render component', () => {
 			name={section.name}
 			slug={section.slug}
 			content={<Examples name={section.name} examples={section.content} />}
-			components={<Components components={[]} />}
-			sections={<Sections sections={[]} />}
+			components={<Components components={[]} depth={3} />}
+			sections={<Sections sections={[]} depth={3} />}
+			depth={3}
 		/>
 	);
 
@@ -106,19 +105,13 @@ it('render should render component', () => {
 });
 
 it('render should not render title if name is not set', () => {
-	const actual = shallow(<SectionRenderer classes={{}} />);
+	const actual = shallow(<SectionRenderer classes={{}} depth={3} />);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('render should render title if name is set', () => {
-	const actual = shallow(<SectionRenderer classes={{}} name="test" slug="test" />);
-
-	expect(actual).toMatchSnapshot();
-});
-
-it('render should render primary title if primary is set', () => {
-	const actual = shallow(<SectionRenderer classes={{}} name="test" slug="test" primary />);
+	const actual = shallow(<SectionRenderer classes={{}} name="test" slug="test" depth={3} />);
 
 	expect(actual).toMatchSnapshot();
 });
