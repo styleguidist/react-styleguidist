@@ -24,15 +24,15 @@ it('should pass props to slots', () => {
 	expect(actual).toMatchSnapshot();
 });
 
-it('renderer should render H4 tag for depth of 3', () => {
+it('renderer should render H3 tag for depth of 3', () => {
 	const actual = shallow(<SectionHeadingRenderer {...props}>Heading</SectionHeadingRenderer>);
 
 	expect(actual).toMatchSnapshot();
 });
 
-it('renderer should render H1 tag if depth of 0', () => {
+it('renderer should render H1 tag if depth of 1', () => {
 	const actual = shallow(
-		<SectionHeadingRenderer {...props} depth={0}>
+		<SectionHeadingRenderer {...props} depth={1}>
 			Heading
 		</SectionHeadingRenderer>
 	);
@@ -40,19 +40,9 @@ it('renderer should render H1 tag if depth of 0', () => {
 	expect(actual).toMatchSnapshot();
 });
 
-it('renderer should render H6 tag if depth is over 5', () => {
+it('renderer should render H6 tag if depth is over 6', () => {
 	const actual = shallow(
 		<SectionHeadingRenderer {...props} depth={7}>
-			Heading
-		</SectionHeadingRenderer>
-	);
-
-	expect(actual).toMatchSnapshot();
-});
-
-it('renderer should add isPrimary styles if is primary', () => {
-	const actual = shallow(
-		<SectionHeadingRenderer {...props} primary depth={0}>
 			Heading
 		</SectionHeadingRenderer>
 	);

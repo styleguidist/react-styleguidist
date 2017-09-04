@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 import Section from 'rsg-components/Section';
 import SectionsRenderer from 'rsg-components/Sections/SectionsRenderer';
 
-export default function Sections({ sections, root, depth }) {
+export default function Sections({ sections, depth }) {
 	return (
 		<SectionsRenderer>
-			{sections.map((section, idx) => (
-				<Section key={idx} section={section} primary={root || depth === 0} depth={depth} />
-			))}
+			{sections.map((section, idx) => <Section key={idx} section={section} depth={depth} />)}
 		</SectionsRenderer>
 	);
 }

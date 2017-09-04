@@ -9,14 +9,12 @@ export function SectionHeadingRenderer({
 	toolbar,
 	id,
 	href,
-	primary,
 	depth,
 	deprecated,
 }) {
-	const headingLevel = primary ? 1 : Math.min(6, depth + 1);
+	const headingLevel = Math.min(6, depth);
 	const Tag = `h${headingLevel}`;
 	const headingClasses = cx(classes.heading, classes[`heading${headingLevel}`], {
-		[classes.isPrimary]: primary,
 		[classes.isDeprecated]: deprecated,
 	});
 	return (
@@ -43,9 +41,6 @@ export const styles = ({ color, space, fontSize, fontFamily }) => ({
 			isolate: false,
 			textDecoration: 'underline',
 		},
-	},
-	isPrimary: {
-		fontSize: fontSize.h1,
 	},
 	heading1: {
 		fontSize: fontSize.h1,
@@ -80,7 +75,6 @@ SectionHeadingRenderer.propTypes = {
 	toolbar: PropTypes.node,
 	id: PropTypes.string.isRequired,
 	href: PropTypes.string.isRequired,
-	primary: PropTypes.bool,
 	depth: PropTypes.number.isRequired,
 	deprecated: PropTypes.bool,
 };

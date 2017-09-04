@@ -1,23 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renderer should add isPrimary styles if is primary 1`] = `
-<h1
-  className="root"
-  id="heading"
->
-  <a
-    className="heading heading1 isPrimary"
-    href="/heading"
-  >
-    Heading
-  </a>
-  <div
-    className="toolbar"
-  />
-</h1>
-`;
-
-exports[`renderer should render H1 tag if depth of 0 1`] = `
+exports[`renderer should render H1 tag if depth of 1 1`] = `
 <h1
   className="root"
   id="heading"
@@ -34,13 +17,13 @@ exports[`renderer should render H1 tag if depth of 0 1`] = `
 </h1>
 `;
 
-exports[`renderer should render H4 tag for depth of 3 1`] = `
-<h4
+exports[`renderer should render H3 tag for depth of 3 1`] = `
+<h3
   className="root"
   id="heading"
 >
   <a
-    className="heading heading4"
+    className="heading heading3"
     href="/heading"
   >
     Heading
@@ -48,10 +31,10 @@ exports[`renderer should render H4 tag for depth of 3 1`] = `
   <div
     className="toolbar"
   />
-</h4>
+</h3>
 `;
 
-exports[`renderer should render H6 tag if depth is over 5 1`] = `
+exports[`renderer should render H6 tag if depth is over 6 1`] = `
 <h6
   className="root"
   id="heading"
@@ -69,12 +52,12 @@ exports[`renderer should render H6 tag if depth is over 5 1`] = `
 `;
 
 exports[`renderer should render heading with deprecated styles 1`] = `
-<h4
+<h3
   className="root"
   id="heading"
 >
   <a
-    className="heading heading4 isDeprecated"
+    className="heading heading3 isDeprecated"
     href="/heading"
   >
     Heading
@@ -82,7 +65,7 @@ exports[`renderer should render heading with deprecated styles 1`] = `
   <div
     className="toolbar"
   />
-</h4>
+</h3>
 `;
 
 exports[`should pass props to slots 1`] = `
@@ -91,16 +74,15 @@ exports[`should pass props to slots 1`] = `
     Object {
       ".rsg--heading-1:hover, .rsg--heading-1:active": "rsg--heading-1:hover, .rsg--heading-1:active",
       "heading": "rsg--heading-1",
-      "heading1": "rsg--heading1-3",
-      "heading2": "rsg--heading2-4",
-      "heading3": "rsg--heading3-5",
-      "heading4": "rsg--heading4-6",
-      "heading5": "rsg--heading5-7",
-      "heading6": "rsg--heading6-8",
-      "isDeprecated": "rsg--isDeprecated-9",
-      "isPrimary": "rsg--isPrimary-2",
+      "heading1": "rsg--heading1-2",
+      "heading2": "rsg--heading2-3",
+      "heading3": "rsg--heading3-4",
+      "heading4": "rsg--heading4-5",
+      "heading5": "rsg--heading5-6",
+      "heading6": "rsg--heading6-7",
+      "isDeprecated": "rsg--isDeprecated-8",
       "root": "rsg--root-0",
-      "toolbar": "rsg--toolbar-10",
+      "toolbar": "rsg--toolbar-9",
     }
   }
   depth={1}

@@ -116,7 +116,6 @@ exports[`should render component renderer 1`] = `
 <Styled(Sections)>
   <Section
     depth={3}
-    primary={false}
     section={
       Object {
         "components": Array [],
@@ -133,7 +132,6 @@ exports[`should render component renderer 1`] = `
   />
   <Section
     depth={3}
-    primary={false}
     section={
       Object {
         "components": Array [],
@@ -149,63 +147,6 @@ exports[`should render component renderer 1`] = `
   />
   <Section
     depth={3}
-    primary={false}
-    section={
-      Object {
-        "sections": Array [
-          Object {
-            "content": Array [],
-            "name": "One",
-          },
-          Object {
-            "content": Array [],
-            "name": "Two",
-          },
-        ],
-      }
-    }
-  />
-</Styled(Sections)>
-`;
-
-exports[`should render component renderer with primary sections if depth is 0 1`] = `
-<Styled(Sections)>
-  <Section
-    depth={0}
-    primary={true}
-    section={
-      Object {
-        "components": Array [],
-        "content": Array [
-          Object {
-            "content": "<button>OK</button>",
-            "evalInContext": [Function],
-            "type": "code",
-          },
-        ],
-        "name": "Foo",
-      }
-    }
-  />
-  <Section
-    depth={0}
-    primary={true}
-    section={
-      Object {
-        "components": Array [],
-        "content": Array [
-          Object {
-            "content": "Hello *world*!",
-            "type": "markdown",
-          },
-        ],
-        "name": "Bar",
-      }
-    }
-  />
-  <Section
-    depth={0}
-    primary={true}
     section={
       Object {
         "sections": Array [

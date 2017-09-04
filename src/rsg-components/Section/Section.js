@@ -5,7 +5,7 @@ import Components from 'rsg-components/Components';
 import Sections from 'rsg-components/Sections';
 import SectionRenderer from 'rsg-components/Section/SectionRenderer';
 
-export default function Section({ section, primary, depth }, { isolatedSection = false }) {
+export default function Section({ section, depth }, { isolatedSection = false }) {
 	const { name, slug, content, components, sections } = section;
 
 	const contentJsx = content && <Examples examples={content} name={name} />;
@@ -20,7 +20,6 @@ export default function Section({ section, primary, depth }, { isolatedSection =
 			components={componentsJsx}
 			sections={sectionsJsx}
 			isolated={isolatedSection}
-			primary={primary}
 			depth={depth}
 		/>
 	);
@@ -28,7 +27,6 @@ export default function Section({ section, primary, depth }, { isolatedSection =
 
 Section.propTypes = {
 	section: PropTypes.object.isRequired,
-	primary: PropTypes.bool,
 	depth: PropTypes.number.isRequired,
 };
 

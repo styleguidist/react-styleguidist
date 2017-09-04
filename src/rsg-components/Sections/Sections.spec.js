@@ -46,12 +46,6 @@ it('should render component renderer', () => {
 	expect(actual).toMatchSnapshot();
 });
 
-it('should render component renderer with primary sections if depth is 0', () => {
-	const actual = shallow(<Sections sections={sections} depth={0} />);
-
-	expect(actual).toMatchSnapshot();
-});
-
 it('render should render styled component', () => {
 	const actual = shallow(
 		<StyledSectionsRenderer classes={{}}>

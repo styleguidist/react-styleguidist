@@ -10,17 +10,11 @@ const styles = ({ space }) => ({
 });
 
 export function SectionRenderer(allProps) {
-	const { classes, name, slug, content, components, sections, primary, depth } = allProps;
+	const { classes, name, slug, content, components, sections, depth } = allProps;
 	return (
 		<section className={classes.root}>
 			{name && (
-				<SectionHeading
-					primary={primary}
-					depth={depth}
-					id={slug}
-					slotName="sectionToolbar"
-					slotProps={allProps}
-				>
+				<SectionHeading depth={depth} id={slug} slotName="sectionToolbar" slotProps={allProps}>
 					{name}
 				</SectionHeading>
 			)}
