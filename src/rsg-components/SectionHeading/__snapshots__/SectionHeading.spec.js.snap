@@ -1,6 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renderer should render H4 tag 1`] = `
+exports[`renderer should add isPrimary styles if is primary 1`] = `
+<h1
+  className="root"
+  id="heading"
+>
+  <a
+    className="heading heading1 isPrimary"
+    href="/heading"
+  >
+    Heading
+  </a>
+  <div
+    className="toolbar"
+  />
+</h1>
+`;
+
+exports[`renderer should render H1 tag if depth of 0 1`] = `
+<h1
+  className="root"
+  id="heading"
+>
+  <a
+    className="heading heading1"
+    href="/heading"
+  >
+    Heading
+  </a>
+  <div
+    className="toolbar"
+  />
+</h1>
+`;
+
+exports[`renderer should render H4 tag for depth of 3 1`] = `
 <h4
   className="root"
   id="heading"
@@ -57,15 +91,16 @@ exports[`should pass props to slots 1`] = `
     Object {
       ".rsg--heading-1:hover, .rsg--heading-1:active": "rsg--heading-1:hover, .rsg--heading-1:active",
       "heading": "rsg--heading-1",
-      "heading1": "rsg--heading1-2",
-      "heading2": "rsg--heading2-3",
-      "heading3": "rsg--heading3-4",
-      "heading4": "rsg--heading4-5",
-      "heading5": "rsg--heading5-6",
-      "heading6": "rsg--heading6-7",
-      "isDeprecated": "rsg--isDeprecated-8",
+      "heading1": "rsg--heading1-3",
+      "heading2": "rsg--heading2-4",
+      "heading3": "rsg--heading3-5",
+      "heading4": "rsg--heading4-6",
+      "heading5": "rsg--heading5-7",
+      "heading6": "rsg--heading6-8",
+      "isDeprecated": "rsg--isDeprecated-9",
+      "isPrimary": "rsg--isPrimary-2",
       "root": "rsg--root-0",
-      "toolbar": "rsg--toolbar-9",
+      "toolbar": "rsg--toolbar-10",
     }
   }
   depth={1}

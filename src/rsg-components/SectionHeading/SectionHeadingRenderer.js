@@ -16,6 +16,7 @@ export function SectionHeadingRenderer({
 	const headingLevel = primary ? 1 : Math.min(6, depth + 1);
 	const Tag = `h${headingLevel}`;
 	const headingClasses = cx(classes.heading, classes[`heading${headingLevel}`], {
+		[classes.isPrimary]: primary,
 		[classes.isDeprecated]: deprecated,
 	});
 	return (
@@ -42,6 +43,9 @@ export const styles = ({ color, space, fontSize, fontFamily }) => ({
 			isolate: false,
 			textDecoration: 'underline',
 		},
+	},
+	isPrimary: {
+		fontSize: fontSize.h1,
 	},
 	heading1: {
 		fontSize: fontSize.h1,

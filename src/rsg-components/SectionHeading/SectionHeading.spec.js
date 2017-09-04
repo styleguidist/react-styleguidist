@@ -30,9 +30,29 @@ it('renderer should render H4 tag for depth of 3', () => {
 	expect(actual).toMatchSnapshot();
 });
 
+it('renderer should render H1 tag if depth of 0', () => {
+	const actual = shallow(
+		<SectionHeadingRenderer {...props} depth={0}>
+			Heading
+		</SectionHeadingRenderer>
+	);
+
+	expect(actual).toMatchSnapshot();
+});
+
 it('renderer should render H6 tag if depth is over 5', () => {
 	const actual = shallow(
 		<SectionHeadingRenderer {...props} depth={7}>
+			Heading
+		</SectionHeadingRenderer>
+	);
+
+	expect(actual).toMatchSnapshot();
+});
+
+it('renderer should add isPrimary styles if is primary', () => {
+	const actual = shallow(
+		<SectionHeadingRenderer {...props} primary depth={0}>
 			Heading
 		</SectionHeadingRenderer>
 	);
