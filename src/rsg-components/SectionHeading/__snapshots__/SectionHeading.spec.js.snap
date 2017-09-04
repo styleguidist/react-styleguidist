@@ -17,6 +17,23 @@ exports[`renderer should render H4 tag 1`] = `
 </h4>
 `;
 
+exports[`renderer should render H6 tag if depth is over 5 1`] = `
+<h6
+  className="root"
+  id="heading"
+>
+  <a
+    className="heading heading6"
+    href="/heading"
+  >
+    Heading
+  </a>
+  <div
+    className="toolbar"
+  />
+</h6>
+`;
+
 exports[`renderer should render heading with deprecated styles 1`] = `
 <h4
   className="root"

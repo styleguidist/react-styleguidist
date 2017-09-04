@@ -24,8 +24,18 @@ it('should pass props to slots', () => {
 	expect(actual).toMatchSnapshot();
 });
 
-it('renderer should render H4 tag', () => {
+it('renderer should render H4 tag for depth of 3', () => {
 	const actual = shallow(<SectionHeadingRenderer {...props}>Heading</SectionHeadingRenderer>);
+
+	expect(actual).toMatchSnapshot();
+});
+
+it('renderer should render H6 tag if depth is over 5', () => {
+	const actual = shallow(
+		<SectionHeadingRenderer {...props} depth={7}>
+			Heading
+		</SectionHeadingRenderer>
+	);
 
 	expect(actual).toMatchSnapshot();
 });
