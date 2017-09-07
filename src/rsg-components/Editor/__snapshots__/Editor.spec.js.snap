@@ -2,7 +2,7 @@
 
 exports[`Editor should renderer and editor 1`] = `
 <CodeMirror
-  onValueChange={[Function]}
+  onChange={[Function]}
   options={
     Object {
       "lineNumbers": false,

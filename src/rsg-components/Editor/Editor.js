@@ -51,6 +51,6 @@ export default class Editor extends Component {
 			...codemirrorOptions,
 			theme: highlightTheme,
 		};
-		return <CodeMirror value={code} onValueChange={this.handleChange} options={options} />;
+		return <CodeMirror value={code} onChange={this.handleChange} options={options} />;
 	}
 }
