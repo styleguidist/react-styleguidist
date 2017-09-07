@@ -39,6 +39,23 @@ const Button = require('../common/Button');
 <Button>Push Me Tender</Button>
 ```
 
+Or, if you want to make these components available for all examples:
+
+```jsx
+// styleguide.config.js
+module.exports = {
+  require: [
+    path.resolve(__dirname, 'styleguide/setup.js')
+  ]
+}
+
+// styleguide/setup.js
+import Buttom from './src/components/common/Button';
+global.Button = Button;
+```
+
+The `Button` component will be available in every example without a need to `require` it.
+
 ## How to add custom JavaScript and CSS or polyfills?
 
 In your style guide config:
