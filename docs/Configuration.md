@@ -66,7 +66,7 @@ module.exports = {
 
 Type: `Function`, optional
 
-Function that allows you to add endpoints to the underlying `express` server:
+Function that allows you to add endpoints to the underlying Express server:
 
 ```javascript
 module.exports = {
@@ -79,7 +79,7 @@ module.exports = {
 };
 ```
 
-Your components will be able to invoke the url `http://localhost:6060/custom-endpoint` from their examples.
+Your components will be able to invoke the URL `http://localhost:6060/custom-endpoint` from their examples.
 
 #### `dangerouslyUpdateWebpackConfig`
 
@@ -108,7 +108,7 @@ Type: `Boolean` or `String`, default: `false`
 
 For components that do not have an example, a default one can be used. When set to `true`, the [DefaultExample.md](https://github.com/styleguidist/react-styleguidist/blob/master/scripts/templates/DefaultExample.md) is used, or you can provide the path to your own example Markdown file.
 
-When writing your own default example file, `__COMPONENT__` will be replaced by the actual component name at compile-time.
+When writing your own default example file, `__COMPONENT__` will be replaced by the actual component name at compile time.
 
 #### `getComponentPathLine`
 
@@ -149,7 +149,7 @@ module.exports = {
 
 Type: `Function`, optional, default: [[react-docgen-displayname-handler](https://github.com/nerdlabs/react-docgen-displayname-handler)]
 
-Function that returns functions used to process the discovered components and generate documentation objects. Default behaviors include discovering component documentation blocks, prop types, and defaults. If setting this property, it is best to build from the default `react-docgen` handler list, such as in the example below. See the [react-docgen handler documentation](https://github.com/reactjs/react-docgen#handlers) for more information about handlers.
+Function that returns functions used to process the discovered components and generate documentation objects. Default behaviors include discovering component documentation blocks, prop types, and defaults. If setting this property, it is best to build from the default [react-docgen](https://github.com/reactjs/react-docgen) handler list, such as in the example below. See the [react-docgen handler documentation](https://github.com/reactjs/react-docgen#handlers) for more information about handlers.
 
 Also note that the default handler, `react-docgen-displayname-handler` should be included to better support higher order components.
 
@@ -286,7 +286,7 @@ Type: `Array`, optional
 
 Allows components to be grouped into sections with a title and overview content. Sections can also be content only, with no associated components (for example, a textual introduction). Sections can be nested.
 
-See examples in the [Sections section](Components.md#sections).
+See examples of [sections configuration](Components.md#sections).
 
 #### `serverHost`
 
@@ -322,7 +322,7 @@ Toggle sidebar visibility. Sidebar will be hidden when opening components or exa
 
 Type: `Boolean`, default: `false`
 
-Ignore components that don’t have an example file (as determined by `getExampleFilename`). These components won’t be accessible from other examples unless you manually `require` them.
+Ignore components that don’t have an example file (as determined by [getExampleFilename](#getexamplefilename)). These components won’t be accessible from other examples unless you [manually `require` them](Cookbook.md#how-to-hide-some-components-in-style-guide-but-make-them-available-in-examples).
 
 #### `styleguideComponents`
 
