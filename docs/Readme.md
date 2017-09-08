@@ -10,4 +10,4 @@
 
 * [Configuration](https://react-styleguidist.js.org/docs/configuration.html)
 * [CLI commands and options](https://react-styleguidist.js.org/docs/cli.html)
-* [Node API](https://react-styleguidist.js.org/docs/api.html)
+* [Node.js API](https://react-styleguidist.js.org/docs/api.html)

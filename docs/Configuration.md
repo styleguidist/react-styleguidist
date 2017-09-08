@@ -193,7 +193,7 @@ Array of [glob pattern](https://github.com/isaacs/node-glob#glob-primer) or file
 
 #### `logger`
 
-Type: `Object`, by default will use `console.*` in CLI or nothing in Node API
+Type: `Object`, by default will use `console.*` in CLI or nothing in Node.js API
 
 Custom logger functions:
 

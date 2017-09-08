@@ -26,7 +26,7 @@ We use webpack loaders to hot reload the style guide on changes in user componen
 * `props-loaders`: loads props documentation using react-docgen;
 * `examples-loader`: loads examples from Markdown files;
 
-There are two more loaders — `css-loader` and `styles-loader` but they are just one-line aliases to corresponding webpack loaders. We don’t want to rely on webpack loader resolver because its behavior can be changed by user’s webpack config (Create React App does that for example). This way we can bypass webpack resolver and use Node resolver instead. These loaders are used like this:
+There are two more loaders — `css-loader` and `styles-loader` but they are just one-line aliases to corresponding webpack loaders. We don’t want to rely on webpack loader resolver because its behavior can be changed by user’s webpack config (Create React App does that for example). This way we can bypass webpack resolver and use Node.js resolver instead. These loaders are used like this:
 
 ```js
 require('!!../../../loaders/style-loader!../../../loaders/css-loader!codemirror/lib/codemirror.css');

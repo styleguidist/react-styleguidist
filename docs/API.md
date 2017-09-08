@@ -1,4 +1,4 @@
-# Node API
+# Node.js API
 
 ## Initialization
 
