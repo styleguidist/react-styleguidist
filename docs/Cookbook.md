@@ -50,7 +50,7 @@ module.exports = {
 }
 
 // styleguide/setup.js
-import Buttom from './src/components/common/Button';
+import Button from './src/components/common/Button';
 global.Button = Button;
 ```
 
