@@ -45,7 +45,8 @@ Real projects using React Styleguidist:
 ## Integration with other tools
 
 * Create React App — just works, see the [Getting Started](https://react-styleguidist.js.org/docs/getting-started.html) guide!
-* [TypeScript](https://github.com/styleguidist/react-docgen-typescript)
+* Create React App + TypeScript, see [Configuring webpack](https://react-styleguidist.js.org/docs/webpack.html)
+* TypeScript, see [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript)
 
 ## Resources
 

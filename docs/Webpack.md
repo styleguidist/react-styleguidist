@@ -77,6 +77,15 @@ module.exports = {
 
 [Create React App](https://github.com/facebookincubator/create-react-app) is supported out of the box, you don’t even need to create a style guide config if your components could be found using a default glob pattern, `src/components/**/*.{js,jsx}`.
 
+If you're using Create react App together with Typescript, you have to install [react-docgen-typescript](url) and add a `webpackConfig` and `propsParser` section to your  `styleguide.config.js`:
+
+```javascript
+module.exports = {
+  propsParser: require('react-docgen-typescript'.parse,
+  webpackConfig: require('./node_modules/react-scripts-ts/config/webpack.config.dev.js')
+}
+```
+
 ## Non-webpack projects
 
 If your project doesn’t use webpack you still need loaders for your files. You can use [webpack-blocks](https://github.com/andywer/webpack-blocks).
