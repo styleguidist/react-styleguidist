@@ -4,7 +4,7 @@
 
 const minimist = require('minimist');
 const chalk = require('chalk');
-const prettyFormat = require('pretty-format');
+const stringify = require('q-i').stringify;
 const logger = require('glogg')('rsg');
 const getConfig = require('../scripts/config');
 const setupLogger = require('../scripts/logger');
@@ -228,5 +228,5 @@ function printNoLoaderError(errors) {
 }
 
 function verbose(header, object) {
-	logger.debug(chalk.bold(header) + '\n' + prettyFormat(object));
+	logger.debug(chalk.bold(header) + '\n\n' + stringify(object));
 }
