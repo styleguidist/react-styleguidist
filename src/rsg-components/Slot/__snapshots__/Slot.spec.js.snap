@@ -4,10 +4,12 @@ exports[`should pass active flag to active slot 1`] = `
 <div>
   <Button
     active={false}
+    key="0"
     name="one"
   />
   <Button2
     active={true}
+    key="1"
     name="two"
   />
 </div>
@@ -17,6 +19,7 @@ exports[`should renderer only active slot if onlyActive=true 1`] = `
 <div>
   <Button2
     active={true}
+    key="1"
     name="two"
   />
 </div>
@@ -26,9 +29,11 @@ exports[`should renderer slots and pass props 1`] = `
 <div>
   <Button
     id="Pizza"
+    key="0"
   />
   <Button2
     id="Pizza"
+    key="1"
   />
 </div>
 `;
@@ -37,10 +42,12 @@ exports[`should renderer slots in id/render format 1`] = `
 <div>
   <Button
     id="Pizza"
+    key="0"
     name="one"
   />
   <Button2
     id="Pizza"
+    key="1"
     name="two"
   />
 </div>

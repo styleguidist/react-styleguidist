@@ -14,29 +14,29 @@ exports[`render should render component 1`] = `
         "components": <Components
           components={Array []}
           depth={3}
-      />,
+        />,
         "content": <Examples
           examples={
-              Array [
-                  Object {
-                    "content": "<button>OK</button>",
-                    "evalInContext": [Function],
-                    "type": "code",
-                  },
-                  Object {
-                    "content": "Hello *world*!",
-                    "type": "markdown",
-                  },
-                ]
+            Array [
+              Object {
+                "content": "<button>OK</button>",
+                "evalInContext": [Function],
+                "type": "code",
+              },
+              Object {
+                "content": "Hello *world*!",
+                "type": "markdown",
+              },
+            ]
           }
           name="Foo"
-      />,
+        />,
         "depth": 3,
         "name": "Foo",
         "sections": <Sections
           depth={3}
           sections={Array []}
-      />,
+        />,
         "slug": "foo",
       }
     }

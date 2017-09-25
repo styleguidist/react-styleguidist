@@ -40,21 +40,31 @@ exports[`PropsRenderer should render a table 1`] = `
 
 exports[`props columns should render PropTypes.arrayOf 1`] = `
 <ul>
-  <li>
-    <div>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
       <Styled(Name)
         deprecated={false}
       >
         colors
       </Styled(Name)>
     </div>
-    <div>
+    <div
+      key="1"
+    >
       <Styled(Type)>
         string[]
       </Styled(Type)>
     </div>
-    <div />
-    <div>
+    <div
+      key="2"
+    />
+    <div
+      key="3"
+    >
       <div>
         <JsDoc />
       </div>
@@ -65,24 +75,36 @@ exports[`props columns should render PropTypes.arrayOf 1`] = `
 
 exports[`props columns should render PropTypes.arrayOf(PropTypes.shape) 1`] = `
 <ul>
-  <li>
-    <div>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
       <Styled(Name)
         deprecated={false}
       >
         foos
       </Styled(Name)>
     </div>
-    <div>
+    <div
+      key="1"
+    >
       <Styled(Type)>
         shape[]
       </Styled(Type)>
     </div>
-    <div />
-    <div>
+    <div
+      key="2"
+    />
+    <div
+      key="3"
+    >
       <div>
         <Styled(Para)>
-          <div>
+          <div
+            key="bar"
+          >
             <Styled(Name)>
               bar
             </Styled(Name)>
@@ -91,7 +113,9 @@ exports[`props columns should render PropTypes.arrayOf(PropTypes.shape) 1`] = `
               number
             </Styled(Type)>
           </div>
-          <div>
+          <div
+            key="baz"
+          >
             <Styled(Name)>
               baz
             </Styled(Name)>
@@ -110,21 +134,31 @@ exports[`props columns should render PropTypes.arrayOf(PropTypes.shape) 1`] = `
 
 exports[`props columns should render PropTypes.instanceOf 1`] = `
 <ul>
-  <li>
-    <div>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
       <Styled(Name)
         deprecated={false}
       >
         num
       </Styled(Name)>
     </div>
-    <div>
+    <div
+      key="1"
+    >
       <Styled(Type)>
         Number
       </Styled(Type)>
     </div>
-    <div />
-    <div>
+    <div
+      key="2"
+    />
+    <div
+      key="3"
+    >
       <div>
         <JsDoc />
       </div>
@@ -135,21 +169,31 @@ exports[`props columns should render PropTypes.instanceOf 1`] = `
 
 exports[`props columns should render PropTypes.objectOf 1`] = `
 <ul>
-  <li>
-    <div>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
       <Styled(Name)
         deprecated={false}
       >
         colors
       </Styled(Name)>
     </div>
-    <div>
+    <div
+      key="1"
+    >
       <Styled(Type)>
         {string}
       </Styled(Type)>
     </div>
-    <div />
-    <div>
+    <div
+      key="2"
+    />
+    <div
+      key="3"
+    >
       <div>
         <JsDoc />
       </div>
@@ -160,24 +204,36 @@ exports[`props columns should render PropTypes.objectOf 1`] = `
 
 exports[`props columns should render PropTypes.objectOf(PropTypes.shape) 1`] = `
 <ul>
-  <li>
-    <div>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
       <Styled(Name)
         deprecated={false}
       >
         colors
       </Styled(Name)>
     </div>
-    <div>
+    <div
+      key="1"
+    >
       <Styled(Type)>
         {shape}
       </Styled(Type)>
     </div>
-    <div />
-    <div>
+    <div
+      key="2"
+    />
+    <div
+      key="3"
+    >
       <div>
         <Styled(Para)>
-          <div>
+          <div
+            key="bar"
+          >
             <Styled(Name)>
               bar
             </Styled(Name)>
@@ -190,7 +246,9 @@ exports[`props columns should render PropTypes.objectOf(PropTypes.shape) 1`] = `
               Required
             </Styled(Text)>
           </div>
-          <div>
+          <div
+            key="baz"
+          >
             <Styled(Name)>
               baz
             </Styled(Name)>
@@ -209,21 +267,31 @@ exports[`props columns should render PropTypes.objectOf(PropTypes.shape) 1`] = `
 
 exports[`props columns should render PropTypes.oneOf 1`] = `
 <ul>
-  <li>
-    <div>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
       <Styled(Name)
         deprecated={false}
       >
         size
       </Styled(Name)>
     </div>
-    <div>
+    <div
+      key="1"
+    >
       <Styled(Type)>
         enum
       </Styled(Type)>
     </div>
-    <div />
-    <div>
+    <div
+      key="2"
+    />
+    <div
+      key="3"
+    >
       <div>
         <Styled(Para)>
           <span>
@@ -233,13 +301,19 @@ exports[`props columns should render PropTypes.oneOf 1`] = `
               inline={true}
               separator=", "
             >
-              <Styled(Code)>
+              <Styled(Code)
+                key="\\"small\\""
+              >
                 small
               </Styled(Code)>
-              <Styled(Code)>
+              <Styled(Code)
+                key="\\"normal\\""
+              >
                 normal
               </Styled(Code)>
-              <Styled(Code)>
+              <Styled(Code)
+                key="\\"large\\""
+              >
                 large
               </Styled(Code)>
             </Group>
@@ -254,21 +328,31 @@ exports[`props columns should render PropTypes.oneOf 1`] = `
 
 exports[`props columns should render PropTypes.oneOfType 1`] = `
 <ul>
-  <li>
-    <div>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
       <Styled(Name)
         deprecated={false}
       >
         union
       </Styled(Name)>
     </div>
-    <div>
+    <div
+      key="1"
+    >
       <Styled(Type)>
         union
       </Styled(Type)>
     </div>
-    <div />
-    <div>
+    <div
+      key="2"
+    />
+    <div
+      key="3"
+    >
       <div>
         <Styled(Para)>
           <span>
@@ -278,10 +362,14 @@ exports[`props columns should render PropTypes.oneOfType 1`] = `
               inline={true}
               separator=", "
             >
-              <Styled(Type)>
+              <Styled(Type)
+                key="string-0"
+              >
                 string
               </Styled(Type)>
-              <Styled(Type)>
+              <Styled(Type)
+                key="number-1"
+              >
                 number
               </Styled(Type)>
             </Group>
@@ -296,24 +384,36 @@ exports[`props columns should render PropTypes.oneOfType 1`] = `
 
 exports[`props columns should render PropTypes.shape 1`] = `
 <ul>
-  <li>
-    <div>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
       <Styled(Name)
         deprecated={false}
       >
         foo
       </Styled(Name)>
     </div>
-    <div>
+    <div
+      key="1"
+    >
       <Styled(Type)>
         shape
       </Styled(Type)>
     </div>
-    <div />
-    <div>
+    <div
+      key="2"
+    />
+    <div
+      key="3"
+    >
       <div>
         <Styled(Para)>
-          <div>
+          <div
+            key="bar"
+          >
             <Styled(Name)>
               bar
             </Styled(Name)>
@@ -326,7 +426,9 @@ exports[`props columns should render PropTypes.shape 1`] = `
               Required
             </Styled(Text)>
           </div>
-          <div>
+          <div
+            key="baz"
+          >
             <Styled(Name)>
               baz
             </Styled(Name)>
@@ -345,20 +447,28 @@ exports[`props columns should render PropTypes.shape 1`] = `
 
 exports[`props columns should render PropTypes.shape defaultProps, falling back to Object 1`] = `
 <ul>
-  <li>
-    <div>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
       <Styled(Name)
         deprecated={false}
       >
         foo
       </Styled(Name)>
     </div>
-    <div>
+    <div
+      key="1"
+    >
       <Styled(Type)>
         shape
       </Styled(Type)>
     </div>
-    <div>
+    <div
+      key="2"
+    >
       <Styled(Text)
         title="somethingThatDoesntExist"
         underlined={true}
@@ -366,10 +476,14 @@ exports[`props columns should render PropTypes.shape defaultProps, falling back 
         Shape
       </Styled(Text)>
     </div>
-    <div>
+    <div
+      key="3"
+    >
       <div>
         <Styled(Para)>
-          <div>
+          <div
+            key="bar"
+          >
             <Styled(Name)>
               bar
             </Styled(Name)>
@@ -382,7 +496,9 @@ exports[`props columns should render PropTypes.shape defaultProps, falling back 
               Required
             </Styled(Text)>
           </div>
-          <div>
+          <div
+            key="baz"
+          >
             <Styled(Name)>
               baz
             </Styled(Name)>
@@ -401,24 +517,36 @@ exports[`props columns should render PropTypes.shape defaultProps, falling back 
 
 exports[`props columns should render PropTypes.shape with description 1`] = `
 <ul>
-  <li>
-    <div>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
       <Styled(Name)
         deprecated={false}
       >
         foo
       </Styled(Name)>
     </div>
-    <div>
+    <div
+      key="1"
+    >
       <Styled(Type)>
         shape
       </Styled(Type)>
     </div>
-    <div />
-    <div>
+    <div
+      key="2"
+    />
+    <div
+      key="3"
+    >
       <div>
         <Styled(Para)>
-          <div>
+          <div
+            key="bar"
+          >
             <Styled(Name)>
               bar
             </Styled(Name)>
@@ -436,7 +564,9 @@ exports[`props columns should render PropTypes.shape with description 1`] = `
               text="Number"
             />
           </div>
-          <div>
+          <div
+            key="baz"
+          >
             <Styled(Name)>
               baz
             </Styled(Name)>
@@ -460,43 +590,55 @@ exports[`props columns should render PropTypes.shape with description 1`] = `
 
 exports[`props columns should render PropTypes.shape with formatted defaultProps 1`] = `
 <ul>
-  <li>
-    <div>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
       <Styled(Name)
         deprecated={false}
       >
         foo
       </Styled(Name)>
     </div>
-    <div>
+    <div
+      key="1"
+    >
       <Styled(Type)>
         shape
       </Styled(Type)>
     </div>
-    <div>
+    <div
+      key="2"
+    >
       <Styled(Text)
         title="{
-        bar: 123,
-        baz: baz() {
-                return 'foo';
-            },
-        bing: bing() {
-                return 'badaboom';
-            },
-        trotskij: () => 1935,
-        qwarc: {
-          si: 'señor'
-        }
-      }"
+  bar: 123,
+  baz: baz() {
+          return 'foo';
+      },
+  bing: bing() {
+          return 'badaboom';
+      },
+  trotskij: () => 1935,
+  qwarc: {
+    si: 'señor'
+  }
+}"
         underlined={true}
       >
         Shape
       </Styled(Text)>
     </div>
-    <div>
+    <div
+      key="3"
+    >
       <div>
         <Styled(Para)>
-          <div>
+          <div
+            key="bar"
+          >
             <Styled(Name)>
               bar
             </Styled(Name)>
@@ -509,7 +651,9 @@ exports[`props columns should render PropTypes.shape with formatted defaultProps
               Required
             </Styled(Text)>
           </div>
-          <div>
+          <div
+            key="baz"
+          >
             <Styled(Name)>
               baz
             </Styled(Name)>
@@ -528,21 +672,31 @@ exports[`props columns should render PropTypes.shape with formatted defaultProps
 
 exports[`props columns should render PropTypes.string 1`] = `
 <ul>
-  <li>
-    <div>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
       <Styled(Name)
         deprecated={false}
       >
         color
       </Styled(Name)>
     </div>
-    <div>
+    <div
+      key="1"
+    >
       <Styled(Type)>
         string
       </Styled(Type)>
     </div>
-    <div />
-    <div>
+    <div
+      key="2"
+    />
+    <div
+      key="3"
+    >
       <div>
         <JsDoc />
       </div>
@@ -553,25 +707,35 @@ exports[`props columns should render PropTypes.string 1`] = `
 
 exports[`props columns should render PropTypes.string with a default value 1`] = `
 <ul>
-  <li>
-    <div>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
       <Styled(Name)
         deprecated={false}
       >
         color
       </Styled(Name)>
     </div>
-    <div>
+    <div
+      key="1"
+    >
       <Styled(Type)>
         string
       </Styled(Type)>
     </div>
-    <div>
+    <div
+      key="2"
+    >
       <Styled(Code)>
         pink
       </Styled(Code)>
     </div>
-    <div>
+    <div
+      key="3"
+    >
       <div>
         <JsDoc />
       </div>
@@ -582,25 +746,35 @@ exports[`props columns should render PropTypes.string with a default value 1`] =
 
 exports[`props columns should render PropTypes.string.isRequired 1`] = `
 <ul>
-  <li>
-    <div>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
       <Styled(Name)
         deprecated={false}
       >
         color
       </Styled(Name)>
     </div>
-    <div>
+    <div
+      key="1"
+    >
       <Styled(Type)>
         string
       </Styled(Type)>
     </div>
-    <div>
+    <div
+      key="2"
+    >
       <Styled(Text)>
         Required
       </Styled(Text)>
     </div>
-    <div>
+    <div
+      key="3"
+    >
       <div>
         <JsDoc />
       </div>
@@ -611,21 +785,31 @@ exports[`props columns should render PropTypes.string.isRequired 1`] = `
 
 exports[`props columns should render arguments from JsDoc tags 1`] = `
 <ul>
-  <li>
-    <div>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
       <Styled(Name)
         deprecated={false}
       >
         size
       </Styled(Name)>
     </div>
-    <div>
+    <div
+      key="1"
+    >
       <Styled(Type)>
         number
       </Styled(Type)>
     </div>
-    <div />
-    <div>
+    <div
+      key="2"
+    />
+    <div
+      key="3"
+    >
       <div>
         <Styled(Markdown)
           text="Test description"
@@ -675,21 +859,31 @@ exports[`props columns should render arguments from JsDoc tags 1`] = `
 
 exports[`props columns should render description in Markdown 1`] = `
 <ul>
-  <li>
-    <div>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
       <Styled(Name)
         deprecated={false}
       >
         color
       </Styled(Name)>
     </div>
-    <div>
+    <div
+      key="1"
+    >
       <Styled(Type)>
         string
       </Styled(Type)>
     </div>
-    <div />
-    <div>
+    <div
+      key="2"
+    />
+    <div
+      key="3"
+    >
       <div>
         <Styled(Markdown)
           text="Label"
@@ -703,20 +897,28 @@ exports[`props columns should render description in Markdown 1`] = `
 
 exports[`props columns should render function body in tooltip 1`] = `
 <ul>
-  <li>
-    <div>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
       <Styled(Name)
         deprecated={false}
       >
         fn
       </Styled(Name)>
     </div>
-    <div>
+    <div
+      key="1"
+    >
       <Styled(Type)>
         func
       </Styled(Type)>
     </div>
-    <div>
+    <div
+      key="2"
+    >
       <Styled(Text)
         title="(e) => console.log(e)"
         underlined={true}
@@ -724,7 +926,9 @@ exports[`props columns should render function body in tooltip 1`] = `
         Function
       </Styled(Text)>
     </div>
-    <div>
+    <div
+      key="3"
+    >
       <div>
         <JsDoc />
       </div>
@@ -735,25 +939,35 @@ exports[`props columns should render function body in tooltip 1`] = `
 
 exports[`props columns should render function defaultValue as code when null 1`] = `
 <ul>
-  <li>
-    <div>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
       <Styled(Name)
         deprecated={false}
       >
         fn
       </Styled(Name)>
     </div>
-    <div>
+    <div
+      key="1"
+    >
       <Styled(Type)>
         func
       </Styled(Type)>
     </div>
-    <div>
+    <div
+      key="2"
+    >
       <Styled(Code)>
         null
       </Styled(Code)>
     </div>
-    <div>
+    <div
+      key="3"
+    >
       <div>
         <JsDoc />
       </div>
@@ -764,25 +978,35 @@ exports[`props columns should render function defaultValue as code when null 1`]
 
 exports[`props columns should render function defaultValue as code when undefined 1`] = `
 <ul>
-  <li>
-    <div>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
       <Styled(Name)
         deprecated={false}
       >
         fn
       </Styled(Name)>
     </div>
-    <div>
+    <div
+      key="1"
+    >
       <Styled(Type)>
         func
       </Styled(Type)>
     </div>
-    <div>
+    <div
+      key="2"
+    >
       <Styled(Code)>
         undefined
       </Styled(Code)>
     </div>
-    <div>
+    <div
+      key="3"
+    >
       <div>
         <JsDoc />
       </div>
@@ -793,21 +1017,31 @@ exports[`props columns should render function defaultValue as code when undefine
 
 exports[`props columns should render name as deprecated when tag deprecated is present 1`] = `
 <ul>
-  <li>
-    <div>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
       <Styled(Name)
         deprecated={true}
       >
         size
       </Styled(Name)>
     </div>
-    <div>
+    <div
+      key="1"
+    >
       <Styled(Type)>
         number
       </Styled(Type)>
     </div>
-    <div />
-    <div>
+    <div
+      key="2"
+    />
+    <div
+      key="3"
+    >
       <div>
         <Styled(Markdown)
           text="Test description"
@@ -830,25 +1064,35 @@ exports[`props columns should render name as deprecated when tag deprecated is p
 
 exports[`props columns should render unknown proptype for a prop when a relevant proptype is not assigned 1`] = `
 <ul>
-  <li>
-    <div>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
       <Styled(Name)
         deprecated={false}
       >
         color
       </Styled(Name)>
     </div>
-    <div>
+    <div
+      key="1"
+    >
       <Styled(Type)>
         unknown
       </Styled(Type)>
     </div>
-    <div>
+    <div
+      key="2"
+    >
       <Styled(Code)>
         pink
       </Styled(Code)>
     </div>
-    <div>
+    <div
+      key="3"
+    >
       <div>
         <JsDoc />
       </div>

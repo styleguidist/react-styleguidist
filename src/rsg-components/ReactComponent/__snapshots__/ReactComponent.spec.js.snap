@@ -263,10 +263,14 @@ exports[`ReactComponentRenderer should render examples 1`] = `
       components/test
     </Styled(Pathline)>
   </header>
-  <div>
+  <div
+    key="1"
+  >
     example 1
   </div>
-  <div>
+  <div
+    key="2"
+  >
     example 2
   </div>
 </div>

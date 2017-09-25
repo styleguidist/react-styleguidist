@@ -14,6 +14,7 @@ exports[`renderer should render components list layout 1`] = `
       }
     }
     depth={3}
+    key="0"
   />
   <ReactComponent
     component={
@@ -27,6 +28,7 @@ exports[`renderer should render components list layout 1`] = `
       }
     }
     depth={3}
+    key="1"
   />
 </div>
 `;
@@ -45,6 +47,7 @@ exports[`should render components list 1`] = `
       }
     }
     depth={3}
+    key="components/foo.js"
   />
   <ReactComponent
     component={
@@ -58,6 +61,7 @@ exports[`should render components list 1`] = `
       }
     }
     depth={3}
+    key="components/bar.js"
   />
 </ComponentsRenderer>
 `;

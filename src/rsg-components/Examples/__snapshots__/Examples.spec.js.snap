@@ -6,9 +6,11 @@ exports[`should render examples 1`] = `
     code="<button>OK</button>"
     evalInContext={[Function]}
     index={0}
+    key="1/0"
     name="button"
   />
   <Styled(Markdown)
+    key="1"
     text="Hello *world*!"
   />
 </Styled(Examples)>
