@@ -32,6 +32,7 @@ script:
   # Check that examples really works: no JS errors on load
   - |
     if [[ "$TRAVIS_NODE_VERSION" == "8" ]]; then
+      npm run test:browser:pre
       npm run test:browser
       npm run test:browser:customised
       npm run test:browser:sections
