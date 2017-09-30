@@ -7,18 +7,20 @@ const path = require('path');
 
 const args = process.argv.slice(2);
 
-async function onerror(browser, err) {
+let browser;
+
+async function onerror(err) {
 	console.error(err.stack);
 	await browser.close();
 	process.exit(1);
 }
 
 (async () => {
-	const browser = await puppeteer.launch();
+	browser = await puppeteer.launch();
 	const page = await browser.newPage();
 	await page.setViewport({ width: 1024, height: 768 });
-	page.on('error', e => onerror(browser, e));
-	page.on('pageerror', e => onerror(browser, e));
+	page.on('error', onerror);
+	page.on('pageerror', e => onerror);
 
 	page.on('console', (...args) => console.log('PAGE LOG:', ...args));
 
@@ -30,6 +32,4 @@ async function onerror(browser, err) {
 	}
 
 	await browser.close();
-})().catch(err => {
-	console.error('Browser error', err);
-});
+})().catch(onerror);
