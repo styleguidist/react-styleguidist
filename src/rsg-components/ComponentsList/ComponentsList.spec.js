@@ -20,7 +20,7 @@ it('should render sections with nested components', () => {
 it('should return null when the list is empty', () => {
 	const actual = shallow(<ComponentsListRenderer items={[]} classes={{}} />);
 
-	expect(actual.node).toBe(null);
+	expect(actual.getElement()).toBe(null);
 });
 
 it('should ignore items without name', () => {

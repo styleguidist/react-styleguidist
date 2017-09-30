@@ -31,5 +31,5 @@ it('renderer should render heading', () => {
 it('renderer should render nothing for empty array', () => {
 	const actual = shallow(<ArgumentsRenderer {...props} args={[]} />);
 
-	expect(actual.node).toBe(null);
+	expect(actual.getElement()).toBe(null);
 });
