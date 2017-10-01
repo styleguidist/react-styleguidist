@@ -69,8 +69,7 @@ it('should update code with debounce', done => {
 	}, 3);
 });
 
-it('should open a code editor', () => {
-	expect.assertions(1);
+it('should open a code editor', done => {
 	const actual = mount(<Playground {...props} />, options);
 
 	expect(actual.find(reactCodeMirrorSelector)).toHaveLength(0);
@@ -78,7 +77,9 @@ it('should open a code editor', () => {
 	actual.find(`button[name="${EXAMPLE_TAB_CODE_EDITOR}"]`).simulate('click');
 
 	setTimeout(() => {
+		actual.update();
 		expect(actual.find(reactCodeMirrorSelector)).toHaveLength(1);
+		done();
 	}, 1);
 });
 
