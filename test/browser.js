@@ -20,7 +20,7 @@ async function onerror(err) {
 	const page = await browser.newPage();
 	await page.setViewport({ width: 1024, height: 768 });
 	page.on('error', onerror);
-	page.on('pageerror', e => onerror);
+	page.on('pageerror', onerror);
 
 	page.on('console', (...args) => console.log('PAGE LOG:', ...args));
 
