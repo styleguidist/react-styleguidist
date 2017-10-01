@@ -1,10 +1,10 @@
-Basic button:
+## Basic button:
 
 ```jsx
 <Button>Push Me</Button>
 ```
 
-Big pink button:
+### Big pink button:
 
 ```jsx
 <Button size="large" color="deeppink">Lick Me</Button>

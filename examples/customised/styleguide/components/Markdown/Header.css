@@ -1,0 +1,26 @@
+.h1 {
+	font-size: 2rem;
+	color: gold;
+}
+
+.h2 {
+	font-size: 1.5rem;
+	color: red;
+}
+
+.h3 {
+	font-size: 1.25rem;
+	color: cadetblue;
+}
+
+.h4 {
+	font-size: 1rem;
+}
+
+.h5 {
+	font-size: 1rem;
+}
+
+.h6 {
+	font-size: 1rem;
+}
