@@ -15,5 +15,5 @@ it('should renderer a button', () => {
 it('should renderer null if there are not props or methods', () => {
 	const actual = shallow(<UsageTabButton {...props} props={{}} />);
 
-	expect(actual.node).toBeFalsy();
+	expect(actual.getElement()).toBeFalsy();
 });

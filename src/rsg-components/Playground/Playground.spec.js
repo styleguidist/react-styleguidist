@@ -77,6 +77,7 @@ it('should open a code editor', done => {
 	actual.find(`button[name="${EXAMPLE_TAB_CODE_EDITOR}"]`).simulate('click');
 
 	setTimeout(() => {
+		actual.update();
 		expect(actual.find(reactCodeMirrorSelector)).toHaveLength(1);
 		done();
 	}, 1);
@@ -101,6 +102,7 @@ it('should open a code editor by default if showCode=true option specified in st
 				showCode: true,
 			},
 		},
+		childContextTypes: options.childContextTypes,
 	});
 	expect(actual.text()).toMatch('Loading');
 });
@@ -114,6 +116,7 @@ it('showcode option in example settings should overwrite style guide config opti
 				showCode: true,
 			},
 		},
+		childContextTypes: options.childContextTypes,
 	});
 	expect(actual.text()).not.toMatch('Loading');
 });

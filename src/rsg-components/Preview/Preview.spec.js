@@ -38,7 +38,10 @@ it('should not not fail when Wrapper wasn’t mounted', () => {
 });
 
 it('should render component renderer', () => {
-	const actual = shallow(<Preview code={code} evalInContext={evalInContext} />, options);
+	const actual = shallow(
+		<Preview code={code} evalInContext={evalInContext} />,
+		Object.assign({}, options, { disableLifecycleMethods: true })
+	);
 
 	expect(actual).toMatchSnapshot();
 });

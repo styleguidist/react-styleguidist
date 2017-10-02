@@ -85,6 +85,7 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
   slug="foo"
   tabBody={
     <Slot
+      active={undefined}
       name="docsTabs"
       onlyActive={true}
       props={
@@ -134,6 +135,7 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
   }
   tabButtons={
     <Slot
+      active={undefined}
       name="docsTabButtons"
       props={
         Object {

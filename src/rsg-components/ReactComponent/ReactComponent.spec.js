@@ -120,7 +120,7 @@ describe('ReactComponent', () => {
 			options
 		);
 
-		expect(actual.node).toBe(null);
+		expect(actual.getElement()).toBe(null);
 	});
 
 	test('should not render component in isolation mode by default', () => {

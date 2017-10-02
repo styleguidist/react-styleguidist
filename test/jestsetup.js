@@ -1,8 +1,11 @@
 /* eslint-disable no-console */
 
-import { shallow, render, mount } from 'enzyme';
+import { configure, shallow, render, mount } from 'enzyme';
 import keymirror from 'keymirror';
+import Adapter from 'enzyme-adapter-react-15';
 import * as theme from '../src/styles/theme';
+
+configure({ adapter: new Adapter() });
 
 // Make Enzyme functions available in all test files without importing
 global.shallow = shallow;

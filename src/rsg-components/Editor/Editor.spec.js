@@ -41,7 +41,8 @@ describe('Editor', () => {
 		// Set new value by calling a method on the CodeMirror instance
 		actual
 			.find('div')
-			.node.querySelector('.CodeMirror')
+			.getDOMNode()
+			.querySelector('.CodeMirror')
 			.CodeMirror.setValue(newCode);
 
 		setTimeout(() => {

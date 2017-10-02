@@ -1,4 +1,5 @@
 import React from 'react';
+import { html } from 'cheerio';
 import Markdown from './Markdown';
 
 describe('Markdown', () => {
@@ -11,14 +12,14 @@ Text with *some* **formatting** and a [link](/foo).
 ![Image](/bar.png)`;
 		const actual = render(<Markdown text={markdown} />);
 
-		expect(actual.html()).toMatchSnapshot();
+		expect(html(actual)).toMatchSnapshot();
 	});
 
 	it('should render Markdown in span in inline mode', () => {
 		const markdown = 'Hello *world*!';
 		const actual = render(<Markdown text={markdown} inline />);
 
-		expect(actual.html()).toMatchSnapshot();
+		expect(html(actual)).toMatchSnapshot();
 	});
 
 	it('should render headings correctly', () => {
@@ -32,7 +33,7 @@ Text with *some* **formatting** and a [link](/foo).
 `;
 		const actual = render(<Markdown text={markdown} />);
 
-		expect(actual.html()).toMatchSnapshot();
+		expect(html(actual)).toMatchSnapshot();
 	});
 
 	it('should render unordered lists correctly', () => {
@@ -43,7 +44,7 @@ Text with *some* **formatting** and a [link](/foo).
 `;
 		const actual = render(<Markdown text={markdown} />);
 
-		expect(actual.html()).toMatchSnapshot();
+		expect(html(actual)).toMatchSnapshot();
 	});
 
 	it('should render ordered lists correctly', () => {
@@ -54,7 +55,7 @@ Text with *some* **formatting** and a [link](/foo).
 `;
 		const actual = render(<Markdown text={markdown} />);
 
-		expect(actual.html()).toMatchSnapshot();
+		expect(html(actual)).toMatchSnapshot();
 	});
 
 	it('should render check-lists correctly', () => {
@@ -65,7 +66,7 @@ Text with *some* **formatting** and a [link](/foo).
 `;
 		const actual = render(<Markdown text={markdown} />);
 
-		expect(actual.html()).toMatchSnapshot();
+		expect(html(actual)).toMatchSnapshot();
 	});
 
 	it('should render mixed nested lists correctly', () => {
@@ -79,7 +80,7 @@ Text with *some* **formatting** and a [link](/foo).
 `;
 		const actual = render(<Markdown text={markdown} />);
 
-		expect(actual.html()).toMatchSnapshot();
+		expect(html(actual)).toMatchSnapshot();
 	});
 
 	it('should render code blocks without escaping', () => {
@@ -90,7 +91,7 @@ Text with *some* **formatting** and a [link](/foo).
 `;
 		const actual = render(<Markdown text={markdown} />);
 
-		expect(actual.html()).toMatchSnapshot();
+		expect(html(actual)).toMatchSnapshot();
 	});
 
 	it('should render inline code with escaping', () => {
@@ -98,6 +99,6 @@ Text with *some* **formatting** and a [link](/foo).
 
 		const actual = render(<Markdown text={markdown} />);
 
-		expect(actual.html()).toMatchSnapshot();
+		expect(html(actual)).toMatchSnapshot();
 	});
 });
