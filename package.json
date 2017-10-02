@@ -129,7 +129,6 @@
     "semantic-release": "^6.3.6",
     "semantic-release-tamia": "^1.1.1",
     "strip-shebang": "^1.0.2",
-    "system": "^1.3.0",
     "url-loader": "^0.5.9",
     "webpack": "^3.6.0"
   },
@@ -156,9 +155,10 @@
     "build:sections": "bin/styleguidist.js build --config examples/sections/styleguide.config.js",
     "prepublish": "npm run compile",
     "publish": "npm run build",
-    "phantomjs": "phantomjs test/phantom.js examples/basic/styleguide/index.html",
-    "phantomjs:customised": "phantomjs test/phantom.js examples/customised/styleguide/index.html",
-    "phantomjs:sections": "phantomjs test/phantom.js examples/sections/styleguide/index.html",
+    "test:browser:pre": "npm i --no-save puppeteer",
+    "test:browser": "node test/browser.js examples/basic/styleguide/index.html",
+    "test:browser:customised": "node test/browser.js examples/customised/styleguide/index.html",
+    "test:browser:sections": "node test/browser.js examples/sections/styleguide/index.html",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "danger": "danger",
     "precommit": "lint-staged"
