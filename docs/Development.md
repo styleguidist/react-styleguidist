@@ -1,5 +1,17 @@
 # Developer guide
 
+<!-- To update run: npx markdown-toc --maxdepth 2 -i docs/Development.md -->
+
+<!-- toc -->
+
+- [How it works](#how-it-works)
+- [Webpack loaders and webpack configuration](#webpack-loaders-and-webpack-configuration)
+- [React components](#react-components)
+- [Styles](#styles)
+- [Testing](#testing)
+
+<!-- tocstop -->
+
 *For basics see [How to contribute](https://github.com/styleguidist/react-styleguidist/blob/master/.github/Contributing.md).*
 
 Styleguidist isn’t an ordinary single page app and some design decisions may look confusing to an outsider. In this guide we’ll explain these decisions to un-confuse potential contributors.

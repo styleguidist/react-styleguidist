@@ -1,5 +1,19 @@
 # Working with third-party libraries
 
+<!-- To update run: npx markdown-toc --maxdepth 3 -i docs/Thirdparties.md -->
+
+<!-- toc -->
+
+- [How Styleguidist works](#how-styleguidist-works)
+- [Using Styleguidist with other libraries](#using-styleguidist-with-other-libraries)
+  * [Redux](#redux)
+  * [Relay](#relay)
+  * [Styled Components](#styled-components)
+  * [Fela](#fela)
+  * [CSS Modules with react-css-modules](#css-modules-with-react-css-modules)
+
+<!-- tocstop -->
+
 ## How Styleguidist works
 
 Styleguidist always uses the default export to *load* your components but it uses [react-docgen](https://github.com/reactjs/react-docgen) to *generate documentation* which may require changes in your code to work properly.

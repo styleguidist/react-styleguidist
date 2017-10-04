@@ -2,6 +2,47 @@
 
 By default, Styleguidist will look for `styleguide.config.js` file in your project’s root folder. You can change the location of the config file using `--config` [CLI](CLI.md) option.
 
+<!-- To update run: npx markdown-toc --maxdepth 4 -i docs/Configuration.md -->
+
+<!-- toc -->
+
+- [`assetsDir`](#assetsdir)
+- [`compilerConfig`](#compilerconfig)
+- [`components`](#components)
+- [`context`](#context)
+- [`contextDependencies`](#contextdependencies)
+- [`configureServer`](#configureserver)
+- [`dangerouslyUpdateWebpackConfig`](#dangerouslyupdatewebpackconfig)
+- [`defaultExample`](#defaultexample)
+- [`getComponentPathLine`](#getcomponentpathline)
+- [`getExampleFilename`](#getexamplefilename)
+- [`handlers`](#handlers)
+- [`highlightTheme`](#highlighttheme)
+- [`ignore`](#ignore)
+- [`logger`](#logger)
+- [`previewDelay`](#previewdelay)
+- [`propsParser`](#propsparser)
+- [`require`](#require)
+- [`resolver`](#resolver)
+- [`sections`](#sections)
+- [`serverHost`](#serverhost)
+- [`serverPort`](#serverport)
+- [`showCode`](#showcode)
+- [`showUsage`](#showusage)
+- [`showSidebar`](#showsidebar)
+- [`skipComponentsWithoutExample`](#skipcomponentswithoutexample)
+- [`styleguideComponents`](#styleguidecomponents)
+- [`styleguideDir`](#styleguidedir)
+- [`styles`](#styles)
+- [`template`](#template)
+- [`theme`](#theme)
+- [`title`](#title)
+- [`updateExample`](#updateexample)
+- [`verbose`](#verbose)
+- [`webpackConfig`](#webpackconfig)
+
+<!-- tocstop -->
+
 #### `assetsDir`
 
 Type: `String`, optional

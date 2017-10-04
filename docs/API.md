@@ -1,5 +1,14 @@
 # Node.js API
 
+<!-- To update run: npx markdown-toc --maxdepth 2 -i docs/API.md -->
+
+<!-- toc -->
+
+- [Initialization](#initialization)
+- [Methods](#methods)
+
+<!-- tocstop -->
+
 ## Initialization
 
 First, you need to initialize the API for your style guide config.

@@ -1,5 +1,15 @@
 # Locating your components and organizing your style guide
 
+<!-- To update run: npx markdown-toc --maxdepth 2 -i docs/Components.md -->
+
+<!-- toc -->
+
+- [Finding components](#finding-components)
+- [Sections](#sections)
+- [Limitations](#limitations)
+
+<!-- tocstop -->
+
 ## Finding components
 
 By default Styleguidist will search components using this [glob pattern](https://github.com/isaacs/node-glob#glob-primer): `src/components/**/*.{js,jsx}`.

@@ -4,6 +4,21 @@ Styleguidist generates documentation for your components based on the comments i
 
 > **Note:** [See examples](https://github.com/styleguidist/react-styleguidist/tree/master/examples/basic/src/components) of documented components in our demo style guide.
 
+<!-- To update run: npx markdown-toc --maxdepth 2 -i docs/Documenting.md -->
+
+<!-- toc -->
+
+- [Code comments and propTypes](#code-comments-and-proptypes)
+- [Usage examples and Readme files](#usage-examples-and-readme-files)
+- [External examples using doclet tags](#external-examples-using-doclet-tags)
+- [Public methods](#public-methods)
+- [Ignoring props](#ignoring-props)
+- [Using JSDoc tags](#using-jsdoc-tags)
+- [Writing code examples](#writing-code-examples)
+- [Limitations](#limitations)
+
+<!-- tocstop -->
+
 ## Code comments and propTypes
 
 Styleguidist will display your components’ JSDoc comment blocks. Also, it will pick up props from propTypes declarations and display them in a table.
@@ -52,11 +67,11 @@ Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the co
     ```
 
     You can add a custom props to an example wrapper:
-    
+
     ```js { "props": { "className": "checks" } }
     <Button>I’m transparent!</Button>
     ```
-    
+
     Or disable an editor by passing a `noeditor` modifier:
 
     ```jsx noeditor

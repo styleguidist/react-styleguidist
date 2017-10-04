@@ -6,6 +6,19 @@ Styleguidist uses [webpack](https://webpack.js.org/) under the hood and it needs
 
 > **Note:** See [cookbook](Cookbook.md) for more examples.
 
+<!-- To update run: npx markdown-toc --maxdepth 2 -i docs/Webpack.md -->
+
+<!-- toc -->
+
+- [Reusing your project’s webpack config](#reusing-your-projects-webpack-config)
+- [Custom webpack config](#custom-webpack-config)
+- [Create React App](#create-react-app)
+- [Create React App, TypeScript](#create-react-app-typescript)
+- [Non-webpack projects](#non-webpack-projects)
+- [When nothing else works](#when-nothing-else-works)
+
+<!-- tocstop -->
+
 ## Reusing your project’s webpack config
 
 By default Styleguidist will try to find `webpack.config.js` in your project’s root directory and use it.
