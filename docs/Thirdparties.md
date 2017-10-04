@@ -11,6 +11,7 @@
   * [Styled Components](#styled-components)
   * [Fela](#fela)
   * [CSS Modules with react-css-modules](#css-modules-with-react-css-modules)
+  * [Styletron](#styletron)
 
 <!-- tocstop -->
 
@@ -193,4 +194,47 @@ import styles from './Button.css';
 export function Button({ color, size, children }) { /* ... */ }
 
 export default CSSModules(Button, styles);
+```
+
+### Styletron
+
+To use Styletron store with one component, require it from your example:
+
+```jsx
+const Styletron = require('styletron-client');
+const { StyletronProvider } = require('styletron-react');
+
+<StyletronProvider styletron={new Styletron()}>
+  <App greeting="Choose your pizza!"/>
+</StyletronProvider>
+```
+
+To use Styletron in every component, which is similar to [Redux](#redux), redefine the Wrapper component:
+
+```javascript
+// styleguide.config.js
+const path = require('path');
+module.exports = {
+  styleguideComponents: {
+    Wrapper: path.join(__dirname, 'lib/styleguide/Wrapper')
+  }
+};
+```
+
+```jsx
+// lib/styleguide/Wrapper.js
+import React, { Component } from 'react';
+
+import Styletron from 'styletron-client';
+import { StyletronProvider } from 'styletron-react';
+
+export default class Wrapper extends Component {
+  render() {
+    return (
+      <StyletronProvider styletron={new Styletron()}>
+        {this.props.children}
+      </StyletronProvider>
+    );
+  }
+}
 ```
