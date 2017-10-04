@@ -75,6 +75,14 @@ function renderStyleguide() {
 	}
 	document.title = documentTitle;
 
+	// If the current hash location was set to just `/` (e.g. when navigating back from isolated view to overview)
+	// replace the URL with one without hash, to present the user with a single address of the overview screen
+	const hash = location.hash.slice(1);
+	if (hash === '/') {
+		const url = window.location.pathname + window.location.search;
+		history.replaceState('', document.title, url);
+	}
+
 	ReactDOM.render(
 		<StyleGuide
 			codeRevision={codeRevision}
