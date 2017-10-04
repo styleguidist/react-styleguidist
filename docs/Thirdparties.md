@@ -225,8 +225,8 @@ module.exports = {
 // lib/styleguide/Wrapper.js
 import React, { Component } from 'react';
 
-const Styletron = require('styletron-client');
-const { StyletronProvider } = require('styletron-react');
+import Styletron from 'styletron-client';
+import { StyletronProvider } from 'styletron-react';
 
 export default class Wrapper extends Component {
   render() {
