@@ -297,6 +297,60 @@ See in [configuring webpack](Webpack.md#reusing-your-projects-webpack-config).
 
 See [working with third-party libraries](Thirdparties.md).
 
+## What’s the difference betweeen Styleguidist and Storybook
+
+Both tools are good and mature, they have many similarities but also some distinctions that may make you choose one or the other. For me the biggest distinction is how you describe component variations.
+
+With Storybook you write *stories* in JavaScript files:
+
+```js
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import Button from '../components/Button';
+
+storiesOf('Button', module)
+  .add('default', () => (
+    <Button onClick={action('clicked')}>Push Me</Button>
+  ))
+  .add('large size', () => (
+    <Button size="large">Push Me</Button>
+  ));
+```
+
+![Storybook screenshot](https://storybook.js.org/2c663defce0e8f4d0c256e911f74b727.gif)
+
+And with Styleguidist you write *examples* in Markdown files:
+
+    React button component example:
+
+    ```js
+    <Button onClick={() => console.log('clicked')>Push Me</Button>
+    ```
+
+    Large size:
+
+    ```js
+    <Button size="large">Push Me</Button>
+    ```
+
+![Styleguidist screenshot](https://camo.githubusercontent.com/7af8e5fc43288807978f28530656275008c5afbf/68747470733a2f2f64337676366c703535716a6171632e636c6f756466726f6e742e6e65742f6974656d732f32373142333732783130325330633035326933462f72656163742d7374796c6567756964697374372e676966)
+
+Another important distinction is that Storybook shows only one variation of one component at a time but Styleguidist can show all variations of all components, all variations of a single component or one variation.
+
+| Feature | Storybook | Styleguidist |
+| ------- | --------- | ------------ |
+| Component examples | JavaScript | Markdown |
+| Props docs | Yes | Yes |
+| Public methods docs | No | Yes |
+| Style guide¹ | No | Yes  |
+| Customizable design | No | Yes |
+| Extra documentation | No | Yes |
+| Plugins | Many | No² |
+
+¹ All components on a single page.
+² [In development](https://github.com/styleguidist/react-styleguidist/issues/354).
+
 ## Are there any other projects like this?
 
 * [Atellier](https://github.com/scup/atellier), a React components emulator.
