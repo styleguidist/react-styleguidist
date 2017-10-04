@@ -23,10 +23,12 @@ Use [ignore](Configuration.md#ignore) option to customize this behavior:
 module.exports = {
   ignore: [
     '**/*.spec.js',
-    'src/components/Button.js'
+    '**/components/Button.js'
   ]
 };
 ```
+
+> **Note:** You should pass glob patterns, for example, use `**/components/Button.js` instead of `components/Button.js`.
 
 ## How to hide some components in style guide but make them available in examples?
 

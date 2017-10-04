@@ -189,7 +189,9 @@ Type: `String`, default: `base16-light`
 
 Type: `String[]`, default: `['**/__tests__/**', '**/*.test.js', '**/*.test.jsx', '**/*.spec.js', '**/*.spec.jsx']`
 
-Array of [glob pattern](https://github.com/isaacs/node-glob#glob-primer) or files of components that should not be included in the style guide.
+Array of [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that should not be included in the style guide.
+
+> **Note:** You should pass glob patterns, for example, use `**/components/Button.js` instead of `components/Button.js`.
 
 #### `logger`
 
