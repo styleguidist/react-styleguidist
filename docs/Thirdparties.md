@@ -209,7 +209,7 @@ const { StyletronProvider } = require('styletron-react');
 </StyletronProvider>
 ```
 
-To use Styletron in every component, which is the same way as [Redux](#redux), redefine the Wrapper component:
+To use Styletron in every component, which is similar to [Redux](#redux), redefine the Wrapper component:
 
 ```javascript
 // styleguide.config.js
