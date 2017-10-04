@@ -69,7 +69,7 @@
     "minimist": "^1.2.0",
     "prop-types": "^15.5.10",
     "q-i": "^1.1.4",
-    "react-codemirror2": "2.0.0",
+    "react-codemirror2": "^2.0.2",
     "react-dev-utils": "^3.0.2",
     "react-docgen": "^3.0.0-beta7",
     "react-docgen-displayname-handler": "^1.0.1",
