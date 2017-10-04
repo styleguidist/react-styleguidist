@@ -75,6 +75,12 @@ function renderStyleguide() {
 	}
 	document.title = documentTitle;
 
+	const hash = location.hash.slice(1);
+	if (hash === '/') {
+		const url = window.location.pathname + window.location.search;
+		history.replaceState('', document.title, url);
+	}
+
 	ReactDOM.render(
 		<StyleGuide
 			codeRevision={codeRevision}
