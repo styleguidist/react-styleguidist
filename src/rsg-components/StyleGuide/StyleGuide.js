@@ -56,6 +56,7 @@ export default class StyleGuide extends Component {
 				homepageUrl={HOMEPAGE}
 				toc={<TableOfContents sections={sections} />}
 				hasSidebar={config.showSidebar && !isolatedComponent}
+				toggleAllProps={() => console.log('you toggled the props')} // eslint-disable-line no-console
 			>
 				<Sections sections={sections} depth={1} />
 			</StyleGuideRenderer>

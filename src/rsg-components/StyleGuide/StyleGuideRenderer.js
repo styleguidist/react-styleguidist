@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Logo from 'rsg-components/Logo';
-import Markdown from 'rsg-components/Markdown';
-import Styled from 'rsg-components/Styled';
 import cx from 'classnames';
+import Styled from 'rsg-components/Styled';
+import Footer from './FooterRenderer';
+import Sidebar from './SidebarRenderer';
 
-const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth }) => ({
+const styles = ({ color, sidebarWidth, mq, space, maxWidth }) => ({
 	root: {
 		color: color.base,
 		backgroundColor: color.baseBackground,
+		transition: 'padding-left 200ms ease-in-out',
 	},
 	hasSidebar: {
 		paddingLeft: sidebarWidth,
@@ -25,54 +26,43 @@ const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth
 		},
 		display: 'block',
 	},
-	sidebar: {
-		backgroundColor: color.sidebarBackground,
-		border: [[color.border, 'solid']],
-		borderWidth: [[0, 1, 0, 0]],
-		position: 'fixed',
-		top: 0,
-		left: 0,
-		bottom: 0,
-		width: sidebarWidth,
-		overflow: 'auto',
-		[mq.small]: {
-			position: 'static',
-			width: 'auto',
-			borderWidth: [[1, 0, 0, 0]],
-			paddingBottom: space[0],
-		},
-	},
-	logo: {
-		padding: space[2],
-		borderBottom: [[1, color.border, 'solid']],
-	},
-	footer: {
-		display: 'block',
-		color: color.light,
-		fontFamily: fontFamily.base,
-		fontSize: fontSize.small,
-	},
 });
 
-export function StyleGuideRenderer({ classes, title, homepageUrl, children, toc, hasSidebar }) {
-	return (
-		<div className={cx(classes.root, hasSidebar && classes.hasSidebar)}>
-			<main className={classes.content}>
-				{children}
-				<footer className={classes.footer}>
-					<Markdown text={`Generated with [React Styleguidist](${homepageUrl})`} />
-				</footer>
-			</main>
-			{hasSidebar && (
-				<div className={classes.sidebar}>
-					<div className={classes.logo}>
-						<Logo>{title}</Logo>
-					</div>
-					{toc}
-				</div>
-			)}
-		</div>
-	);
+class StyleGuideRenderer extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			sidebarVisible: true,
+		};
+
+		this.handleToggleSidebar = this.handleToggleSidebar.bind(this);
+	}
+
+	handleToggleSidebar() {
+		this.setState({ sidebarVisible: !this.state.sidebarVisible });
+	}
+
+	render() {
+		const { classes, title, homepageUrl, children, toc, hasSidebar, toggleAllProps } = this.props;
+		const { sidebarVisible } = this.state;
+
+		return (
+			<div className={cx(classes.root, hasSidebar && sidebarVisible && classes.hasSidebar)}>
+				<main className={classes.content}>
+					{children}
+					<Footer homepageUrl={homepageUrl} />
+				</main>
+				<Sidebar
+					title={title}
+					hasSidebar={hasSidebar}
+					toc={toc}
+					toggleAllProps={toggleAllProps}
+					sidebarVisible={sidebarVisible}
+					onToggleSidebar={this.handleToggleSidebar}
+				/>
+			</div>
+		);
+	}
 }
 
 StyleGuideRenderer.propTypes = {
@@ -82,6 +72,7 @@ StyleGuideRenderer.propTypes = {
 	children: PropTypes.node.isRequired,
 	toc: PropTypes.node.isRequired,
 	hasSidebar: PropTypes.bool,
+	toggleAllProps: PropTypes.func,
 };
 
 export default Styled(styles)(StyleGuideRenderer);

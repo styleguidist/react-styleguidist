@@ -13,5 +13,9 @@ exports[`should renderer a button 1`] = `
   }
 >
   Props & methods
+  <MdKeyboardArrowDown
+    height="20px"
+    width="20px"
+  />
 </Styled(TabButton)>
 `;

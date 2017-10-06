@@ -1,55 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renderer should render logo, table of contents and passed children 1`] = `
-<div
-  className=""
->
-  <main>
-    <h1>
-      Content
-    </h1>
-    <footer>
-      <Styled(Markdown)
-        text="Generated with [React Styleguidist](http://react-styleguidist.js.org/)"
-      />
-    </footer>
-  </main>
-  <div>
-    <div>
-      <Styled(Logo)>
-        Hello
-      </Styled(Logo)>
-    </div>
-    <TableOfContents
-      sections={
-        Array [
-          Object {
-            "components": Array [
-              Object {
-                "filepath": "components/foo.js",
-                "name": "Foo",
-                "pathLine": "components/foo.js",
-                "props": Object {
-                  "description": "Foo foo",
-                },
-              },
-              Object {
-                "filepath": "components/bar.js",
-                "name": "Bar",
-                "pathLine": "components/bar.js",
-                "props": Object {
-                  "description": "Bar bar",
-                },
-              },
-            ],
-          },
-        ]
-      }
-    />
-  </div>
-</div>
-`;
-
 exports[`should render components list 1`] = `
 <Styled(StyleGuide)
   hasSidebar={true}
@@ -83,6 +33,7 @@ exports[`should render components list 1`] = `
       }
     />
   }
+  toggleAllProps={[Function]}
 >
   <Sections
     depth={1}
