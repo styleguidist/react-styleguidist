@@ -4,7 +4,6 @@ import TableOfContents from 'rsg-components/TableOfContents';
 import StyleGuideRenderer from 'rsg-components/StyleGuide/StyleGuideRenderer';
 import Sections from 'rsg-components/Sections';
 import Welcome from 'rsg-components/Welcome';
-import PlaygroundError from 'rsg-components/PlaygroundError';
 import { HOMEPAGE } from '../../../scripts/consts';
 
 export default class StyleGuide extends Component {
@@ -61,24 +60,20 @@ export default class StyleGuide extends Component {
 
 		if (this.state.error) {
 			return (
-				<PlaygroundError
-					classes={{}}
-					message={
-						<div style={{ margin: 10 }}>
-							{`${this.state.error} ${this.state.info.componentStack}`}
-							<p>
-								This may be due to an error in a component you are overriding, or a bug in
-								react-styleguidist.<br />If you believe this is a bug, please submit an issue:&nbsp;
-								<a
-									style={{ color: 'inherit' }}
-									href="https://github.com/styleguidist/react-styleguidist/issues"
-								>
-									https://github.com/styleguidist/react-styleguidist/issues
-								</a>
-							</p>
-						</div>
-					}
-				/>
+				<div style={{ margin: 10, color: 'crimson' }}>
+					<code style={{ whiteSpace: 'pre' }}>{`${this.state.error} ${this.state.info
+						.componentStack}`}</code>
+					<p>
+						This may be due to an error in a component you are overriding, or a bug in React
+						Styleguidist.<br />If you believe this is a bug,&nbsp;
+						<a
+							style={{ color: 'inherit' }}
+							href="https://github.com/styleguidist/react-styleguidist/issues"
+						>
+							please submit an issue
+						</a>.
+					</p>
+				</div>
 			);
 		}
 

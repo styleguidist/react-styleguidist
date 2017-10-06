@@ -21,7 +21,7 @@ export function PlaygroundErrorRenderer({ classes, message }) {
 
 PlaygroundErrorRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
-	message: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
+	message: PropTypes.string.isRequired,
 };
 
 export default Styled(styles)(PlaygroundErrorRenderer);
