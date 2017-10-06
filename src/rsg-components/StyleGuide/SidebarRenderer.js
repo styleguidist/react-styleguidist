@@ -19,6 +19,9 @@ const styles = ({ color, sidebarWidth, mq, space }) => ({
 	toggleProps: {
 		left: space[5] + space[3],
 		padding: space[0] / 2,
+		[mq.small]: {
+			display: 'none',
+		},
 	},
 	sidebar: {
 		backgroundColor: color.sidebarBackground,
@@ -30,12 +33,6 @@ const styles = ({ color, sidebarWidth, mq, space }) => ({
 		bottom: 0,
 		width: sidebarWidth,
 		overflow: 'auto',
-		[mq.small]: {
-			position: 'static',
-			width: 'auto',
-			borderWidth: [[1, 0, 0, 0]],
-			paddingBottom: space[0],
-		},
 	},
 	logo: {
 		padding: space[2],

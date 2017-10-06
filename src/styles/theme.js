@@ -56,6 +56,7 @@ export const fontSize = {
 
 export const mq = {
 	small: '@media (max-width: 600px)',
+	smallValue: 600,
 };
 
 export const borderRadius = 3;

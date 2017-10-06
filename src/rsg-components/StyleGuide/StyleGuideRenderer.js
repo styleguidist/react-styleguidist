@@ -4,6 +4,7 @@ import cx from 'classnames';
 import Styled from 'rsg-components/Styled';
 import Footer from './FooterRenderer';
 import Sidebar from './SidebarRenderer';
+import { mq } from '../../styles/theme';
 
 const styles = ({ color, sidebarWidth, mq, space, maxWidth }) => ({
 	root: {
@@ -32,10 +33,23 @@ class StyleGuideRenderer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			sidebarVisible: true,
+			sidebarVisible: window.innerWidth >= mq.smallValue,
 		};
 
 		this.handleToggleSidebar = this.handleToggleSidebar.bind(this);
+		this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
+	}
+
+	componentWillMount() {
+		window.addEventListener('resize', this.handleWindowSizeChange);
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('resize', this.handleWindowSizeChange);
+	}
+
+	handleWindowSizeChange() {
+		this.setState({ sidebarVisible: window.innerWidth >= mq.smallValue });
 	}
 
 	handleToggleSidebar() {
