@@ -5,6 +5,7 @@ import StyleGuideRenderer from 'rsg-components/StyleGuide/StyleGuideRenderer';
 import Sections from 'rsg-components/Sections';
 import Welcome from 'rsg-components/Welcome';
 import { HOMEPAGE } from '../../../scripts/consts';
+import { space, color, fontFamily } from '../../styles/theme';
 
 export default class StyleGuide extends Component {
 	static propTypes = {
@@ -60,19 +61,32 @@ export default class StyleGuide extends Component {
 
 		if (this.state.error) {
 			return (
-				<div style={{ margin: 10, color: 'crimson' }}>
-					<code style={{ whiteSpace: 'pre' }}>{`${this.state.error} ${this.state.info
-						.componentStack}`}</code>
-					<p>
-						This may be due to an error in a component you are overriding, or a bug in React
-						Styleguidist.<br />If you believe this is a bug,&nbsp;
-						<a
-							style={{ color: 'inherit' }}
-							href="https://github.com/styleguidist/react-styleguidist/issues"
-						>
-							please submit an issue
-						</a>.
-					</p>
+				<div
+					style={{
+						margin: space[2],
+						color: color.errorBackground,
+						background: color.error,
+					}}
+				>
+					<pre style={{ fontFamily: fontFamily.monospace }}>
+						{this.state.error.toString()}
+						{this.state.info.componentStack.toString()}
+					</pre>
+					<div style={{ fontFamily: fontFamily.base }}>
+						<p>
+							This may be due to an error in a component you are overriding, or a bug in React
+							Styleguidist.
+						</p>
+						<p>
+							If you believe this is a bug,&nbsp;
+							<a
+								style={{ color: 'inherit' }}
+								href="https://github.com/styleguidist/react-styleguidist/issues"
+							>
+								please submit an issue
+							</a>.
+						</p>
+					</div>
 				</div>
 			);
 		}
