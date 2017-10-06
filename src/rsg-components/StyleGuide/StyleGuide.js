@@ -70,7 +70,7 @@ export default class StyleGuide extends Component {
 								This may be due to an error in a component you are overriding, or a bug in
 								react-styleguidist.<br />If you believe this is a bug, please submit an issue:&nbsp;
 								<a
-									style={{ color: 'white' }}
+									style={{ color: 'inherit' }}
 									href="https://github.com/styleguidist/react-styleguidist/issues"
 								>
 									https://github.com/styleguidist/react-styleguidist/issues
