@@ -4,6 +4,7 @@ import TableOfContents from 'rsg-components/TableOfContents';
 import StyleGuideRenderer from 'rsg-components/StyleGuide/StyleGuideRenderer';
 import Sections from 'rsg-components/Sections';
 import Welcome from 'rsg-components/Welcome';
+import PlaygroundError from 'rsg-components/PlaygroundError';
 import { HOMEPAGE } from '../../../scripts/consts';
 
 export default class StyleGuide extends Component {
@@ -32,6 +33,11 @@ export default class StyleGuide extends Component {
 		isolatedComponent: false,
 	};
 
+	state = {
+		error: false,
+		info: null,
+	};
+
 	getChildContext() {
 		return {
 			codeRevision: this.props.codeRevision,
@@ -43,8 +49,38 @@ export default class StyleGuide extends Component {
 		};
 	}
 
+	componentDidCatch(error, info) {
+		this.setState({
+			error,
+			info,
+		});
+	}
+
 	render() {
 		const { config, sections, welcomeScreen, patterns, isolatedComponent } = this.props;
+
+		if (this.state.error) {
+			return (
+				<PlaygroundError
+					classes={{}}
+					message={
+						<div style={{ margin: 10 }}>
+							{`${this.state.error} ${this.state.info.componentStack}`}
+							<p>
+								This may be due to an error in a component you are overriding, or a bug in
+								react-styleguidist.<br />If you believe this is a bug, please submit an issue:&nbsp;
+								<a
+									style={{ color: 'white' }}
+									href="https://github.com/styleguidist/react-styleguidist/issues"
+								>
+									https://github.com/styleguidist/react-styleguidist/issues
+								</a>
+							</p>
+						</div>
+					}
+				/>
+			);
+		}
 
 		if (welcomeScreen) {
 			return <Welcome patterns={patterns} />;
