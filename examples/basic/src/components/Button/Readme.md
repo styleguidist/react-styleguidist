@@ -41,3 +41,19 @@ Fenced blocks with other languages are rendered as highlighted code:
 ```html
 <h1>Hello world</h1>
 ```
+
+Each example has its own state that you can access at the `state` variable and change with the `setState` function. Default state is `{}`:
+
+```jsx
+<div>
+  <Button size="small" onClick={() => setState({isOpen: true})} disabled={state.isOpen}>Show Me</Button>
+  {state.isOpen && <Button size="small" onClick={() => setState({isOpen: false})}>Hide Me</Button>}
+</div>
+```
+
+You can change the default state:
+
+```jsx
+initialState = {count: 42};
+<Button onClick={() => setState({count: state.count+1})}>{state.count}</Button>
+```

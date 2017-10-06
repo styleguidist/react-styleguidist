@@ -124,7 +124,6 @@
     "prettier": "^1.7.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-modal": "^2.2.2",
     "react-test-renderer": "^15.6.1",
     "rimraf": "^2.6.2",
     "semantic-release": "^6.3.6",

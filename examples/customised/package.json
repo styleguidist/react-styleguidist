@@ -23,7 +23,6 @@
     "prop-types": "^15.5.10",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-modal": "^1.6.5",
     "react-styleguidist": "^5.0.0",
     "webpack": "^2.2.1"
   },
