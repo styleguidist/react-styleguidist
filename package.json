@@ -74,7 +74,7 @@
     "react-docgen": "^3.0.0-beta7",
     "react-docgen-displayname-handler": "^1.0.1",
     "react-group": "^1.0.5",
-    "react-icons": "^2.2.5",
+    "react-icons": "^2.2.7",
     "remark": "^8.0.0",
     "semver-utils": "^1.1.1",
     "style-loader": "^0.18.2",
