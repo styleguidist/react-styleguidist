@@ -2,6 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 import cx from 'classnames';
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/lib/md';
+
+const iconSize = {
+	width: '20px',
+	height: '20px',
+};
 
 export const styles = ({ space, color, fontFamily, fontSize }) => ({
 	button: {
@@ -42,6 +48,7 @@ export function TabButtonRenderer({ classes, name, className, onClick, active, c
 	return (
 		<button type="button" name={name} className={classNames} onClick={onClick}>
 			{children}
+			{active ? <MdKeyboardArrowUp {...iconSize} /> : <MdKeyboardArrowDown {...iconSize} />}
 		</button>
 	);
 }
