@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Styled from 'rsg-components/Styled';
 import FaFileTextO from 'react-icons/lib/fa/file-text-o';
+import ToolbarButton from 'rsg-components/ToolbarButton';
 import Footer from './FooterRenderer';
 import Sidebar from './SidebarRenderer';
 import { mq } from '../../styles/theme';
@@ -17,10 +18,6 @@ const styles = ({ color, sidebarWidth, mq, space, maxWidth }) => ({
 		position: 'fixed',
 		left: space[2],
 		bottom: space[2],
-		width: 30,
-		height: 30,
-		cursor: 'pointer',
-		backgroundColor: color.sidebarBackground,
 	},
 	hasSidebar: {
 		paddingLeft: sidebarWidth,
@@ -86,7 +83,13 @@ class StyleGuideRenderer extends Component {
 						styles={classes.sidebarActions}
 					/>
 				) : (
-					<FaFileTextO onClick={toggleAllProps} className={classes.sidebarActions} />
+					<ToolbarButton
+						onClick={toggleAllProps}
+						title="Toggle Focus Mode"
+						className={classes.sidebarActions}
+					>
+						<FaFileTextO />
+					</ToolbarButton>
 				)}
 			</div>
 		);

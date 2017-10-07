@@ -2,14 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { MdFormatIndentDecrease, MdFormatIndentIncrease } from 'react-icons/lib/md';
 import FaFileTextO from 'react-icons/lib/fa/file-text-o';
+import ToolbarButton from 'rsg-components/ToolbarButton';
 import cx from 'classnames';
 import Styled from 'rsg-components/Styled';
 import Logo from 'rsg-components/Logo';
 
 const styles = ({ color, sidebarWidth, mq, space }) => ({
 	toggleProps: {
-		left: space[5] + space[3],
-		padding: space[0] / 2,
+		left: space[5] + space[1],
+		'& svg': {
+			padding: space[0] / 2,
+		},
 		[mq.small]: {
 			display: 'none',
 		},
@@ -47,18 +50,33 @@ const Sidebar = ({
 					<Logo>{title}</Logo>
 				</div>
 				{toc}
-				<MdFormatIndentDecrease className={styles} onClick={onToggleSidebar} />
-				<FaFileTextO onClick={toggleAllProps} className={cx(styles, classes.toggleProps)} />
+				<ToolbarButton
+					className={styles}
+					onClick={onToggleSidebar}
+					title="Collapse Sidebar"
+					className={styles}
+				>
+					<MdFormatIndentDecrease />
+				</ToolbarButton>
+				<ToolbarButton
+					onClick={toggleAllProps}
+					title="Toggle Focus Mode"
+					className={cx(styles, classes.toggleProps)}
+				>
+					<FaFileTextO />
+				</ToolbarButton>
 			</aside>
 		) : (
-			<MdFormatIndentIncrease className={styles} onClick={onToggleSidebar} />
+			<ToolbarButton title="Expand Sidebar" className={styles} onClick={onToggleSidebar}>
+				<MdFormatIndentIncrease />
+			</ToolbarButton>
 		)}
 	</div>
 );
 
 Sidebar.propTypes = {
 	classes: PropTypes.object.isRequired,
-	styles: PropTypes.object.isRequired,
+	styles: PropTypes.string.isRequired,
 	onToggleSidebar: PropTypes.func.isRequired,
 	toggleAllProps: PropTypes.func.isRequired,
 	title: PropTypes.string.isRequired,
