@@ -1,5 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`should render an error when componentDidCatch() is triggered 1`] = `
+<Styled(Error)
+  error={
+    Object {
+      "toString": [Function],
+    }
+  }
+  info={
+    Object {
+      "componentStack": Object {
+        "toString": [Function],
+      },
+    }
+  }
+/>
+`;
+
 exports[`should render components list 1`] = `
 <Styled(StyleGuide)
   hasSidebar={true}

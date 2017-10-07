@@ -47,6 +47,7 @@ export function ToolbarButtonRenderer({
 	title,
 	small,
 	children,
+	name,
 }) {
 	const classNames = cx(classes.button, className, {
 		[classes.isSmall]: small,
@@ -61,7 +62,7 @@ export function ToolbarButtonRenderer({
 	}
 
 	return (
-		<button type="button" onClick={onClick} title={title} className={classNames}>
+		<button type="button" onClick={onClick} name={name} title={title} className={classNames}>
 			{children}
 		</button>
 	);
@@ -70,6 +71,7 @@ export function ToolbarButtonRenderer({
 ToolbarButtonRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	className: PropTypes.string,
+	name: PropTypes.string,
 	href: PropTypes.string,
 	onClick: PropTypes.func,
 	title: PropTypes.string,

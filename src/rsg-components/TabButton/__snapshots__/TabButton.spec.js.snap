@@ -1,43 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should pass a class name to a button 1`] = `
-<button
+<Styled(ToolbarButton)
   className="button foo-class"
   onClick={[Function]}
+  title="Expand"
   type="button"
 >
   pizza
-  <MdKeyboardArrowDown
-    height="20px"
-    width="20px"
-  />
-</button>
+  <MdKeyboardArrowDown />
+</Styled(ToolbarButton)>
 `;
 
 exports[`should render a button 1`] = `
-<button
+<Styled(ToolbarButton)
   className="button"
   onClick={[Function]}
+  title="Expand"
   type="button"
 >
   pizza
-  <MdKeyboardArrowDown
-    height="20px"
-    width="20px"
-  />
-</button>
+  <MdKeyboardArrowDown />
+</Styled(ToolbarButton)>
 `;
 
 exports[`should render active styles 1`] = `
-<button
+<Styled(ToolbarButton)
   className="button isActive"
   onClick={[Function]}
+  title="Collapse"
   type="button"
 >
   pizza
-  <MdKeyboardArrowUp
-    height="20px"
-    width="20px"
-  />
-</button>
+  <MdKeyboardArrowUp />
+</Styled(ToolbarButton)>
 `;
