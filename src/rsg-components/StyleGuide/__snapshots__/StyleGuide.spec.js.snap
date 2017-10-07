@@ -51,68 +51,20 @@ exports[`renderer should render logo, table of contents and passed children 1`] 
 `;
 
 exports[`should render an error when componentDidCatch() is triggered 1`] = `
-<div
-  style={
+<Styled(Error)
+  error={
     Object {
-      "background": "#fff",
-      "color": "#c00",
-      "margin": 16,
+      "toString": [Function],
     }
   }
->
-  <pre
-    style={
-      Object {
-        "fontFamily": Array [
-          "Consolas",
-          "\\"Liberation Mono\\"",
-          "Menlo",
-          "monospace",
-        ],
-      }
+  info={
+    Object {
+      "componentStack": Object {
+        "toString": [Function],
+      },
     }
-  >
-    error
-    info
-  </pre>
-  <div
-    style={
-      Object {
-        "fontFamily": Array [
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "\\"Segoe UI\\"",
-          "\\"Roboto\\"",
-          "\\"Oxygen\\"",
-          "\\"Ubuntu\\"",
-          "\\"Cantarell\\"",
-          "\\"Fira Sans\\"",
-          "\\"Droid Sans\\"",
-          "\\"Helvetica Neue\\"",
-          "sans-serif",
-        ],
-      }
-    }
-  >
-    <p>
-      This may be due to an error in a component you are overriding, or a bug in React Styleguidist.
-    </p>
-    <p>
-      If you believe this is a bug, 
-      <a
-        href="https://github.com/styleguidist/react-styleguidist/issues"
-        style={
-          Object {
-            "color": "inherit",
-          }
-        }
-      >
-        please submit an issue
-      </a>
-      .
-    </p>
-  </div>
-</div>
+  }
+/>
 `;
 
 exports[`should render components list 1`] = `

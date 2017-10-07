@@ -4,8 +4,8 @@ import TableOfContents from 'rsg-components/TableOfContents';
 import StyleGuideRenderer from 'rsg-components/StyleGuide/StyleGuideRenderer';
 import Sections from 'rsg-components/Sections';
 import Welcome from 'rsg-components/Welcome';
+import Error from 'rsg-components/Error';
 import { HOMEPAGE } from '../../../scripts/consts';
-import { space, color, fontFamily } from '../../styles/theme';
 
 export default class StyleGuide extends Component {
 	static propTypes = {
@@ -60,35 +60,7 @@ export default class StyleGuide extends Component {
 		const { config, sections, welcomeScreen, patterns, isolatedComponent } = this.props;
 
 		if (this.state.error) {
-			return (
-				<div
-					style={{
-						margin: space[2],
-						color: color.errorBackground,
-						background: color.error,
-					}}
-				>
-					<pre style={{ fontFamily: fontFamily.monospace }}>
-						{this.state.error.toString()}
-						{this.state.info.componentStack.toString()}
-					</pre>
-					<div style={{ fontFamily: fontFamily.base }}>
-						<p>
-							This may be due to an error in a component you are overriding, or a bug in React
-							Styleguidist.
-						</p>
-						<p>
-							If you believe this is a bug,&nbsp;
-							<a
-								style={{ color: 'inherit' }}
-								href="https://github.com/styleguidist/react-styleguidist/issues"
-							>
-								please submit an issue
-							</a>.
-						</p>
-					</div>
-				</div>
-			);
+			return <Error error={this.state.error} info={this.state.info} />;
 		}
 
 		if (welcomeScreen) {
