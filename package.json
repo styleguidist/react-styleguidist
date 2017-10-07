@@ -19,12 +19,7 @@
 	"bin": {
 		"styleguidist": "bin/styleguidist.js"
 	},
-	"files": [
-		"bin",
-		"lib",
-		"loaders",
-		"scripts"
-	],
+	"files": [ "bin", "lib", "loaders", "scripts" ],
 	"engines": {
 		"node": ">=4",
 		"npm": ">=3"
@@ -171,29 +166,19 @@
 		"verifyRelease": "semantic-release-tamia/verifyRelease"
 	},
 	"jest": {
-		"setupFiles": [
-			"./test/raf-polyfill.js",
-			"./test/jestsetup.js"
-		],
-		"modulePaths": [
-			"./src"
-		],
+		"setupFiles": [ "./test/raf-polyfill.js", "./test/jestsetup.js" ],
+		"modulePaths": [ "./src" ],
 		"moduleNameMapper": {
 			"^.+\\.css$": "identity-obj-proxy"
 		},
-		"testPathIgnorePatterns": [
-			"<rootDir>/lib/",
-			"<rootDir>/examples/"
-		],
+		"testPathIgnorePatterns": [ "<rootDir>/lib/", "<rootDir>/examples/" ],
 		"coveragePathIgnorePatterns": [
 			"<rootDir>/src/utils/markdown-to-jsx.js",
 			"<rootDir>/scripts/server.js",
 			"<rootDir>/scripts/build.js",
 			"<rootDir>/test/jestsetup.js"
 		],
-		"snapshotSerializers": [
-			"<rootDir>/node_modules/enzyme-to-json/serializer"
-		]
+		"snapshotSerializers": [ "<rootDir>/node_modules/enzyme-to-json/serializer" ]
 	},
 	"keywords": [
 		"react",
@@ -207,9 +192,6 @@
 		"components"
 	],
 	"lint-staged": {
-		"*.js": [
-			"eslint --fix",
-			"git add"
-		]
+		"*.js": [ "eslint --fix", "git add" ]
 	}
 }
