@@ -4,6 +4,7 @@ import TableOfContents from 'rsg-components/TableOfContents';
 import StyleGuideRenderer from 'rsg-components/StyleGuide/StyleGuideRenderer';
 import Sections from 'rsg-components/Sections';
 import Welcome from 'rsg-components/Welcome';
+import Error from 'rsg-components/Error';
 import { HOMEPAGE } from '../../../scripts/consts';
 
 export default class StyleGuide extends Component {
@@ -32,6 +33,11 @@ export default class StyleGuide extends Component {
 		isolatedComponent: false,
 	};
 
+	state = {
+		error: false,
+		info: null,
+	};
+
 	getChildContext() {
 		return {
 			codeRevision: this.props.codeRevision,
@@ -43,8 +49,19 @@ export default class StyleGuide extends Component {
 		};
 	}
 
+	componentDidCatch(error, info) {
+		this.setState({
+			error,
+			info,
+		});
+	}
+
 	render() {
 		const { config, sections, welcomeScreen, patterns, isolatedComponent } = this.props;
+
+		if (this.state.error) {
+			return <Error error={this.state.error} info={this.state.info} />;
+		}
 
 		if (welcomeScreen) {
 			return <Welcome patterns={patterns} />;

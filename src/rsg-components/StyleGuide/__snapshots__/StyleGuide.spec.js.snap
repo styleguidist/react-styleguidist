@@ -50,6 +50,23 @@ exports[`renderer should render logo, table of contents and passed children 1`] 
 </div>
 `;
 
+exports[`should render an error when componentDidCatch() is triggered 1`] = `
+<Styled(Error)
+  error={
+    Object {
+      "toString": [Function],
+    }
+  }
+  info={
+    Object {
+      "componentStack": Object {
+        "toString": [Function],
+      },
+    }
+  }
+/>
+`;
+
 exports[`should render components list 1`] = `
 <Styled(StyleGuide)
   hasSidebar={true}
