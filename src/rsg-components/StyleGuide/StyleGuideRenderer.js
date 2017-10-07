@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Styled from 'rsg-components/Styled';
+import FaFileTextO from 'react-icons/lib/fa/file-text-o';
 import Footer from './FooterRenderer';
 import Sidebar from './SidebarRenderer';
 import { mq } from '../../styles/theme';
@@ -11,6 +12,15 @@ const styles = ({ color, sidebarWidth, mq, space, maxWidth }) => ({
 		color: color.base,
 		backgroundColor: color.baseBackground,
 		transition: 'padding-left 200ms ease-in-out',
+	},
+	sidebarActions: {
+		position: 'fixed',
+		left: space[2],
+		bottom: space[2],
+		width: 30,
+		height: 30,
+		cursor: 'pointer',
+		backgroundColor: color.sidebarBackground,
 	},
 	hasSidebar: {
 		paddingLeft: sidebarWidth,
@@ -66,14 +76,18 @@ class StyleGuideRenderer extends Component {
 					{children}
 					<Footer homepageUrl={homepageUrl} />
 				</main>
-				<Sidebar
-					title={title}
-					hasSidebar={hasSidebar}
-					toc={toc}
-					toggleAllProps={toggleAllProps}
-					sidebarVisible={sidebarVisible}
-					onToggleSidebar={this.handleToggleSidebar}
-				/>
+				{hasSidebar ? (
+					<Sidebar
+						title={title}
+						toc={toc}
+						toggleAllProps={toggleAllProps}
+						sidebarVisible={sidebarVisible}
+						onToggleSidebar={this.handleToggleSidebar}
+						styles={classes.sidebarActions}
+					/>
+				) : (
+					<FaFileTextO onClick={toggleAllProps} className={classes.sidebarActions} />
+				)}
 			</div>
 		);
 	}
