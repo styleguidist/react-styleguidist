@@ -27,9 +27,9 @@ process.on('uncaughtException', err => {
 	} else if (err instanceof StyleguidistError) {
 		console.error(chalk.bold.red(err.message));
 		logger.debug(err.stack);
-		process.exit(1);
 	} else {
-		throw err;
+		console.error(err.toString());
+		console.error(err.stack);
 	}
 	process.exit(1);
 });
