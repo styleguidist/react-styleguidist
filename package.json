@@ -71,7 +71,7 @@
     "q-i": "^1.1.4",
     "react-codemirror2": "^2.0.2",
     "react-dev-utils": "^3.0.2",
-    "react-docgen": "^3.0.0-beta7",
+    "react-docgen": "^3.0.0-beta8",
     "react-docgen-displayname-handler": "^1.0.1",
     "react-group": "^1.0.5",
     "react-icons": "^2.2.7",
