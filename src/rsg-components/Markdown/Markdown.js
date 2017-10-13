@@ -6,8 +6,8 @@ import mapValues from 'lodash/mapValues';
 import Styled from 'rsg-components/Styled';
 import { styles as paraStyles } from 'rsg-components/Para';
 
-import linkConfig from 'rsg-components/Markdown/Link';
-import headerConfig from 'rsg-components/Markdown/Header';
+import Link from 'rsg-components/Link';
+import MarkdownHeading from 'rsg-components/Markdown/Heading';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
 // That way we could avoid clashes between our loaders and user loaders.
@@ -41,8 +41,45 @@ const getBaseOverrides = memoize(classes => {
 
 	return {
 		...styleOverrides,
-		...linkConfig,
-		...headerConfig,
+		a: {
+			component: Link,
+		},
+		h1: {
+			component: MarkdownHeading,
+			props: {
+				depth: 1,
+			},
+		},
+		h2: {
+			component: MarkdownHeading,
+			props: {
+				depth: 2,
+			},
+		},
+		h3: {
+			component: MarkdownHeading,
+			props: {
+				depth: 3,
+			},
+		},
+		h4: {
+			component: MarkdownHeading,
+			props: {
+				depth: 4,
+			},
+		},
+		h5: {
+			component: MarkdownHeading,
+			props: {
+				depth: 5,
+			},
+		},
+		h6: {
+			component: MarkdownHeading,
+			props: {
+				depth: 6,
+			},
+		},
 		code: {
 			component: Code,
 			props: {

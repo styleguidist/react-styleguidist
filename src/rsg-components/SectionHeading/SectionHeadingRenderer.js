@@ -1,39 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
 import Styled from 'rsg-components/Styled';
+import HeadingRenderer from 'rsg-components/Heading/HeadingRenderer';
 
 export function SectionHeadingRenderer({
 	classes,
-	children,
-	toolbar,
 	id,
-	href,
 	depth,
 	deprecated,
+	href,
+	toolbar,
+	children,
 }) {
-	const headingLevel = Math.min(6, depth);
-	const Tag = `h${headingLevel}`;
-	const headingClasses = cx(classes.heading, classes[`heading${headingLevel}`], {
-		[classes.isDeprecated]: deprecated,
-	});
 	return (
-		<Tag id={id} className={classes.root}>
-			<a href={href} className={headingClasses}>
-				{children}
-			</a>
-			<div className={classes.toolbar}>{toolbar}</div>
-		</Tag>
+		<HeadingRenderer id={id} depth={depth} deprecated={deprecated}>
+			<div className={classes.root}>
+				<a href={href} className={classes.link}>
+					{children}
+				</a>
+				<div className={classes.toolbar}>{toolbar}</div>
+			</div>
+		</HeadingRenderer>
 	);
 }
 
-export const styles = ({ color, space, fontSize, fontFamily }) => ({
+export const styles = ({ color, space, fontFamily }) => ({
 	root: {
 		display: 'flex',
 		marginBottom: space[1],
 		alignItems: 'center',
 	},
-	heading: {
+	link: {
 		color: color.base,
 		fontFamily: fontFamily.base,
 		fontWeight: 'normal',
@@ -42,28 +39,6 @@ export const styles = ({ color, space, fontSize, fontFamily }) => ({
 			textDecoration: 'underline',
 		},
 	},
-	heading1: {
-		fontSize: fontSize.h1,
-	},
-	heading2: {
-		fontSize: fontSize.h2,
-	},
-	heading3: {
-		fontSize: fontSize.h3,
-	},
-	heading4: {
-		fontSize: fontSize.h4,
-	},
-	heading5: {
-		fontSize: fontSize.h5,
-	},
-	heading6: {
-		fontSize: fontSize.h6,
-	},
-	isDeprecated: {
-		textDecoration: 'line-through',
-		color: color.light,
-	},
 	toolbar: {
 		marginLeft: 'auto',
 	},
@@ -71,12 +46,12 @@ export const styles = ({ color, space, fontSize, fontFamily }) => ({
 
 SectionHeadingRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
-	children: PropTypes.node,
-	toolbar: PropTypes.node,
 	id: PropTypes.string.isRequired,
-	href: PropTypes.string.isRequired,
-	depth: PropTypes.number.isRequired,
+	depth: PropTypes.oneOf([1, 2, 3, 4, 5, 6]).isRequired,
 	deprecated: PropTypes.bool,
+	href: PropTypes.string.isRequired,
+	toolbar: PropTypes.node,
+	children: PropTypes.node,
 };
 
 export default Styled(styles)(SectionHeadingRenderer);

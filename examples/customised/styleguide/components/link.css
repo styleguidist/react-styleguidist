@@ -1,0 +1,7 @@
+:global .link {
+  color: salmon;
+  text-decoration: underline;
+}
+:global :link:hover {
+  text-decoration: none;
+}

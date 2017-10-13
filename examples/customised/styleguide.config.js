@@ -36,12 +36,12 @@ module.exports = {
 	},
 	// Override Styleguidist components
 	styleguideComponents: {
-		'Markdown/Link': path.join(__dirname, 'styleguide/components/Markdown/Link.js'),
-		'Markdown/Header': path.join(__dirname, 'styleguide/components/Markdown/Header.js'),
+		HeadingRenderer: path.join(__dirname, 'styleguide/components/Heading'),
+		Link: path.join(__dirname, 'styleguide/components/Link'),
 		Logo: path.join(__dirname, 'styleguide/components/Logo'),
 		StyleGuideRenderer: path.join(__dirname, 'styleguide/components/StyleGuide'),
 	},
-	require: [path.join(__dirname, 'src/link.css')],
+	require: [path.join(__dirname, 'styleguide/components/link.css')],
 	webpackConfig: {
 		module: {
 			rules: [

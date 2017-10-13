@@ -1,26 +1,42 @@
+.header {
+	margin: 0;
+}
+
 .h1 {
+	composes: header;
+
 	font-size: 2rem;
 	color: gold;
 }
 
 .h2 {
+	composes: header;
+
 	font-size: 1.5rem;
 	color: red;
 }
 
 .h3 {
+	composes: header;
+
 	font-size: 1.25rem;
 	color: cadetblue;
 }
 
 .h4 {
+	composes: header;
+
 	font-size: 1rem;
 }
 
 .h5 {
+	composes: header;
+
 	font-size: 1rem;
 }
 
 .h6 {
+	composes: header;
+
 	font-size: 1rem;
 }
