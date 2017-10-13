@@ -55,5 +55,5 @@ You can change the default state:
 
 ```jsx
 initialState = {count: 42};
-<Button onClick={() => setState({count: state.count+1})}>{state.count}</Button>
+<Button onClick={() => setState({count: state.count+1})}>{state.count.toString()}</Button>
 ```
