@@ -26,6 +26,8 @@ console.error = message => {
 	}
 };
 
+console.clear = jest.fn();
+
 // document.createRange “polyfill” for CodeMirror
 document.createRange = function() {
 	return {
