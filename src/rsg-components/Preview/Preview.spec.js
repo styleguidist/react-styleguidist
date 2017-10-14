@@ -45,3 +45,10 @@ it('should render component renderer', () => {
 
 	expect(actual).toMatchSnapshot();
 });
+
+it('should call console.clear when mounted', () => {
+	console.clear = jest.fn();
+	mount(<Preview code={code} evalInContext={evalInContext} />, options);
+
+	expect(console.clear.mock.calls.length).toBe(1);
+});
