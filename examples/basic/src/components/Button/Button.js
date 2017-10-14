@@ -20,7 +20,7 @@ export default function Button({ color, size, onClick, disabled, children }) {
 }
 Button.propTypes = {
 	/** Button label */
-	children: PropTypes.string.isRequired,
+	children: PropTypes.node.isRequired,
 	/** The color for the button */
 	color: PropTypes.string,
 	/** The size of the button */
