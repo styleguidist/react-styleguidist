@@ -94,7 +94,7 @@ Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the co
 
 > **Note:** You can configure examples file name with the [getExampleFilename](Configuration.md#getexamplefilename) option.
 
-> **Note:** If you need to display some JavaScript code in your documentation that you don't want rendered as an interactive playground you can use `static` in place of a language tag
+> **Note:** If you need to display some JavaScript code in your documentation that you don't want rendered as an interactive playground you can use the `static` modifier with a language tag (e.g. `js static`).
 
 ## External examples using doclet tags
 
