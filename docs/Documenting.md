@@ -58,7 +58,7 @@ export default class Button extends React.Component {
 
 ## Usage examples and Readme files
 
-Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the component’s folder and display them. Any code block with a language tag of `js`, `jsx` or `javascript` will be rendered as a React component with an interactive playground.
+Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the component’s folder and display them. Any code block with a language tag of `js`, `jsx` or `javascript` will be rendered as a React component with an interactive playground. For backwards compatibility, code blocks without a language tag are also rendered in this way. It is recommended to always use the proper language tag for new documentation.
 
     React component example:
 
@@ -93,6 +93,8 @@ Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the co
     Any [Markdown](http://daringfireball.net/projects/markdown/) is **allowed** _here_.
 
 > **Note:** You can configure examples file name with the [getExampleFilename](Configuration.md#getexamplefilename) option.
+
+> **Note:** If you need to display some JavaScript code in your documentation that you don't want rendered as an interactive playground you can use `static` in place of a language tag
 
 ## External examples using doclet tags
 
