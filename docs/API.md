@@ -18,6 +18,11 @@ Using a JavaScript object:
 ```javascript
 const styleguidist = require('react-styleguidist');
 const styleguide = styleguidist({
+  logger: {
+		warn: console.warn,
+		info: console.log,
+		debug: console.log,
+	},
   components: './lib/components/**/*.js',
   webpackConfig: {
     module: {
@@ -36,6 +41,8 @@ const styleguide = styleguidist({
   },
 });
 ```
+
+**Note:** any output is disabled by default, you may need to define your own [logger](Configuration.md#logger).
 
 Using a config file:
 
