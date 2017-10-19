@@ -73,6 +73,7 @@ export default class StyleGuide extends Component {
 				homepageUrl={HOMEPAGE}
 				toc={<TableOfContents sections={sections} />}
 				hasSidebar={config.showSidebar && !isolatedComponent}
+				ribbon={config.ribbon}
 			>
 				<Sections sections={sections} depth={1} />
 			</StyleGuideRenderer>

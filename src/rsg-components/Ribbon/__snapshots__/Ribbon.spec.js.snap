@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ribbon with a text 1`] = `
+<div
+  className="root"
+>
+  <a
+    className="link"
+    href="http://example.com"
+    style={
+      Object {
+        "background": undefined,
+        "color": undefined,
+      }
+    }
+  >
+    Share the repo
+  </a>
+</div>
+`;
+
+exports[`should render ribbon with custom background and color 1`] = `
+<div
+  className="root"
+>
+  <a
+    className="link"
+    href="http://example.com"
+    style={
+      Object {
+        "background": "#cdcdcd",
+        "color": "#aa00bb",
+      }
+    }
+  >
+    Share the repo
+  </a>
+</div>
+`;
+
+exports[`should render ribbon with url 1`] = `
+<div
+  className="root"
+>
+  <a
+    className="link"
+    href="http://example.com"
+    style={
+      Object {
+        "background": undefined,
+        "color": undefined,
+      }
+    }
+  >
+    Fork me on GitHub
+  </a>
+</div>
+`;
