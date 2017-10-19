@@ -146,6 +146,15 @@ module.exports = {
 			return annotatedComponents.concat(exportedComponents);
 		},
 	},
+	ribbon: {
+		type: 'object',
+		example: {
+			url: 'http://example.com/',
+			text: 'Fork me on GitHub',
+			color: '#fff',
+			background: '#24292e',
+		},
+	},
 	sections: {
 		type: 'array',
 		default: [],
