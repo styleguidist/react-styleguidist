@@ -20,7 +20,15 @@ const options = {
 	context: {
 		config: {
 			showCode: false,
-			highlightTheme: 'base16-light',
+			codemirrorOptions: {
+				mode: 'jsx',
+				lineNumbers: false,
+				lineWrapping: true,
+				smartIndent: false,
+				matchBrackets: true,
+				viewportMargin: Infinity,
+				theme: 'base16-light',
+			},
 		},
 		slots,
 	},

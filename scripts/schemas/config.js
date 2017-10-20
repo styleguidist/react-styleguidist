@@ -39,6 +39,18 @@ module.exports = {
 			map: 'lodash/map',
 		},
 	},
+	codemirrorOptions: {
+		type: 'object',
+		default: {
+			mode: 'jsx',
+			lineNumbers: false,
+			lineWrapping: true,
+			smartIndent: false,
+			matchBrackets: true,
+			viewportMargin: Infinity,
+			theme: 'base16-light',
+		},
+	},
 	contextDependencies: {
 		type: 'array',
 	},
@@ -85,10 +97,6 @@ module.exports = {
 	ignore: {
 		type: 'array',
 		default: ['**/__tests__/**', '**/*.test.js', '**/*.spec.js', '**/*.test.jsx', '**/*.spec.jsx'],
-	},
-	highlightTheme: {
-		type: 'string',
-		default: 'base16-light',
 	},
 	logger: {
 		type: 'object',

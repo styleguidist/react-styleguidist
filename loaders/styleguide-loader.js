@@ -15,7 +15,7 @@ const filterComponentsWithExample = require('./utils/filterComponentsWithExample
 // Config options that should be passed to the client
 const CLIENT_CONFIG_OPTIONS = [
 	'title',
-	'highlightTheme',
+	'codemirrorOptions',
 	'showCode',
 	'showUsage',
 	'showSidebar',

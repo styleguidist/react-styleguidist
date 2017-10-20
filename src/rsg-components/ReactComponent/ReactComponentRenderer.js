@@ -40,11 +40,11 @@ export function ReactComponentRenderer({
 				{pathLine && <Pathline>{pathLine}</Pathline>}
 			</header>
 			{(description || docs) && (
-					<div className={classes.docs}>
-						{description}
-						{docs}
-					</div>
-				)}
+				<div className={classes.docs}>
+					{description}
+					{docs}
+				</div>
+			)}
 			{tabButtons && (
 				<div className={classes.tabs}>
 					<div className={classes.tabButtons}>{tabButtons}</div>
