@@ -4,7 +4,7 @@ import Styled from 'rsg-components/Styled';
 import Heading from 'rsg-components/Heading';
 
 const styles = ({ space }) => ({
-	markdownHeading: {
+	spacing: {
 		marginTop: 0,
 		marginBottom: space[2],
 	},
@@ -12,7 +12,7 @@ const styles = ({ space }) => ({
 
 function MarkdownHeadingRenderer({ classes, level, children }) {
 	return (
-		<div className={classes.markdownHeading}>
+		<div className={classes.spacing}>
 			<Heading level={level}>{children}</Heading>
 		</div>
 	);
