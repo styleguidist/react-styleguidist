@@ -5,6 +5,7 @@ import Styled from 'rsg-components/Styled';
 
 const styles = ({ color, fontFamily, fontSize }) => ({
 	heading: {
+		margin: 0,
 		color: color.base,
 		fontFamily: fontFamily.base,
 		fontWeight: 'normal',
