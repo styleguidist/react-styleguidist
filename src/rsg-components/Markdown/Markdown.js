@@ -4,7 +4,7 @@ import { compiler } from 'markdown-to-jsx';
 import mapValues from 'lodash/mapValues';
 // import memoize from 'lodash/memoize';
 import Styled from 'rsg-components/Styled';
-import { styles as linkStyles } from 'rsg-components/Link';
+import Link from 'rsg-components/Link';
 import { styles as paraStyles } from 'rsg-components/Para';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
@@ -39,6 +39,9 @@ const getBaseOverrides = memoize(classes => {
 
 	return {
 		...styleOverrides,
+		a: {
+			component: Link,
+		},
 		code: {
 			component: Code,
 			props: {
@@ -70,7 +73,6 @@ const styles = ({ space, fontFamily, fontSize, color, borderRadius }) => ({
 		fontSize: 'inherit',
 	},
 	para: paraStyles({ space, color, fontFamily }).para,
-	a: linkStyles({ color }).link,
 	h1: {
 		composes: '$para',
 		fontSize: fontSize.h1,

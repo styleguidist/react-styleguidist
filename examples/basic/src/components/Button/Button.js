@@ -6,36 +6,37 @@ import './Button.css';
 /**
  * The only true button.
  */
-export default function Button({ color, size, onClick, children }) {
+export default function Button({ color, size, onClick, disabled, children }) {
 	const styles = {
 		color,
 		fontSize: Button.sizes[size],
 	};
 
 	return (
-		<button className="button" style={styles} onClick={onClick}>
+		<button className="button" style={styles} onClick={onClick} disabled={disabled}>
 			{children}
 		</button>
 	);
 }
 Button.propTypes = {
 	/** Button label */
-	children: PropTypes.string.isRequired,
+	children: PropTypes.node.isRequired,
 	/** The color for the button */
 	color: PropTypes.string,
 	/** The size of the button */
 	size: PropTypes.oneOf(['small', 'normal', 'large']),
+	/** Disable button */
+	disabled: PropTypes.bool,
 	/** Gets called when the user clicks on the button */
 	onClick: PropTypes.func,
 };
 Button.defaultProps = {
 	color: '#333',
 	size: 'normal',
-	/* eslint-disable no-console */
 	onClick: event => {
+		// eslint-disable-next-line no-console
 		console.log('You have clicked me!', event.target);
 	},
-	/* eslint-enable no-console */
 };
 Button.sizes = {
 	small: '10px',

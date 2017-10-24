@@ -3,6 +3,14 @@ import { html } from 'cheerio';
 import Markdown from './Markdown';
 
 describe('Markdown', () => {
+	it('should render links', () => {
+		const markdown = 'a [link](http://test.com)';
+
+		const actual = render(<Markdown text={markdown} />);
+
+		expect(html(actual)).toMatchSnapshot();
+	});
+
 	it('should render Markdown with custom CSS classes', () => {
 		const markdown = `
 # Header

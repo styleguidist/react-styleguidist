@@ -71,4 +71,6 @@ Everyone is welcome to contribute. Please take a moment to review the [contribut
 
 [Artem Sapegin](http://sapegin.me) and [contributors](https://github.com/styleguidist/react-styleguidist/graphs/contributors).
 
+Logo by @SaraVieira and @okonet
+
 MIT License, see the included [License.md](License.md) file.

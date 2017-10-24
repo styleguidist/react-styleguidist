@@ -60,9 +60,8 @@ module.exports = function(config, env) {
 			},
 			plugins: [
 				new UglifyJSPlugin({
-					parallel: {
-						cache: true,
-					},
+					parallel: true,
+					cache: true,
 					uglifyOptions: {
 						ie8: false,
 						ecma: 5,
