@@ -21,7 +21,6 @@ class PreviewComponent extends Component {
 		this.state = {};
 		this.setState = this.setState.bind(this);
 		this.setInitialState = this.setInitialState.bind(this);
-		this.handleError = this.handleError.bind(this);
 	}
 
 	// Synchronously set initial state, so it will be ready before first render
@@ -91,7 +90,7 @@ export default class Preview extends Component {
 
 		const exampleComponent = this.evalInContext(compiledCode);
 		const wrappedComponent = (
-			<Wrapper onError={this.handleError}>
+			<Wrapper onError={err => this.handleError(err)}>
 				<PreviewComponent component={exampleComponent} />
 			</Wrapper>
 		);
