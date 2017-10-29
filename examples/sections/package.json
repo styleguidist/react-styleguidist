@@ -25,9 +25,9 @@
     "css-loader": "^0.28.4",
     "dog-names": "^1.0.2",
     "lodash": "^4.17.4",
-    "prop-types": "^15.5.10",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-styleguidist": "^6.0.11",
     "style-loader": "^0.18.2",
     "webpack": "^3.5.4"

@@ -44,9 +44,15 @@ export default class Preview extends Component {
 		config: PropTypes.object.isRequired,
 	};
 
-	state = {
-		error: null,
-	};
+	constructor() {
+		super();
+
+		this.state = {
+			error: null,
+		};
+
+		this.handleError = this.handleError.bind(this);
+	}
 
 	componentDidMount() {
 		console.clear(); // eslint-disable-line no-console
@@ -90,7 +96,7 @@ export default class Preview extends Component {
 
 		const exampleComponent = this.evalInContext(compiledCode);
 		const wrappedComponent = (
-			<Wrapper>
+			<Wrapper onError={this.handleError}>
 				<PreviewComponent component={exampleComponent} />
 			</Wrapper>
 		);
