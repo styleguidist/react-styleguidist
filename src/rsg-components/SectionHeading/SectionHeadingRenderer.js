@@ -11,28 +11,23 @@ function SectionHeadingRenderer({ classes, children, toolbar, id, href, depth, d
 	});
 
 	return (
-		<div className={classes.spacing}>
+		<div className={classes.wrapper}>
 			<Heading level={headingLevel} id={id}>
-				<div className={classes.row}>
-					<a href={href} className={sectionNameClasses}>
-						{children}
-					</a>
-					<div className={classes.toolbar}>{toolbar}</div>
-				</div>
+				<a href={href} className={sectionNameClasses}>
+					{children}
+				</a>
 			</Heading>
+			<div className={classes.toolbar}>{toolbar}</div>
 		</div>
 	);
 }
 
 const styles = ({ color, space }) => ({
-	spacing: {
-		marginTop: 0,
-		marginBottom: space[1],
-	},
-	row: {
+	wrapper: {
 		display: 'flex',
 		flexDirection: 'row',
 		alignItems: 'center',
+		marginBottom: space[1],
 	},
 	toolbar: {
 		marginLeft: 'auto',
