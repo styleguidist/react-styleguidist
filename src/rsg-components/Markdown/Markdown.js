@@ -4,7 +4,7 @@ import { compiler } from 'markdown-to-jsx';
 import mapValues from 'lodash/mapValues';
 // import memoize from 'lodash/memoize';
 import Styled from 'rsg-components/Styled';
-import { styles as linkStyles } from 'rsg-components/Link';
+import Link from 'rsg-components/Link';
 import { styles as paraStyles } from 'rsg-components/Para';
 import MarkdownHeading from 'rsg-components/Markdown/MarkdownHeading';
 
@@ -40,6 +40,9 @@ const getBaseOverrides = memoize(classes => {
 
 	return {
 		...styleOverrides,
+    a: {
+			component: Link,
+    },
 		h1: {
 			component: MarkdownHeading,
 			props: {
@@ -107,7 +110,6 @@ const styles = ({ space, fontFamily, fontSize, color, borderRadius }) => ({
 		fontSize: 'inherit',
 	},
 	para: paraStyles({ space, color, fontFamily }).para,
-	a: linkStyles({ color }).link,
 	p: {
 		composes: '$para',
 	},
