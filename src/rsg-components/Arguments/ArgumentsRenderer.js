@@ -9,8 +9,7 @@ export const styles = ({ space }) => ({
 		marginBottom: space[2],
 		fontSize: 'inherit',
 	},
-	headingSpacing: {
-		marginTop: 0,
+	headingWrapper: {
 		marginBottom: space[0],
 	},
 });
@@ -23,7 +22,7 @@ export function ArgumentsRenderer({ classes, args, heading }) {
 	return (
 		<div className={classes.root}>
 			{heading && (
-				<div className={classes.headingSpacing}>
+				<div className={classes.headingWrapper}>
 					<Heading level={5}>Arguments</Heading>
 				</div>
 			)}
