@@ -5,7 +5,6 @@ import Heading from 'rsg-components/Heading';
 
 const styles = ({ space }) => ({
 	spacing: {
-		marginTop: 0,
 		marginBottom: space[2],
 	},
 });
