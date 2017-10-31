@@ -11,16 +11,16 @@ require('!!../../../loaders/style-loader!../../../loaders/css-loader!codemirror/
 // eslint-disable-next-line import/no-unresolved
 require('!!../../../loaders/style-loader!../../../loaders/css-loader!rsg-codemirror-theme.css');
 
-const codemirrorOptions = {
+const UPDATE_DELAY = 10;
+
+const codeMirrorDefault = {
 	mode: 'jsx',
-	lineNumbers: false,
 	lineWrapping: true,
 	smartIndent: false,
 	matchBrackets: true,
 	viewportMargin: Infinity,
+	lineNumbers: false,
 };
-
-const UPDATE_DELAY = 10;
 
 export default class Editor extends Component {
 	static propTypes = {
@@ -46,10 +46,11 @@ export default class Editor extends Component {
 
 	render() {
 		const { code } = this.props;
-		const { highlightTheme } = this.context.config;
+		const { highlightTheme, codeMirrorOptions } = this.context.config;
 		const options = {
-			...codemirrorOptions,
+			...codeMirrorDefault,
 			theme: highlightTheme,
+			...codeMirrorOptions,
 		};
 		return <CodeMirror value={code} onChange={this.handleChange} options={options} />;
 	}

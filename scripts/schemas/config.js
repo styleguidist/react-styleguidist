@@ -94,6 +94,17 @@ module.exports = {
 		type: 'string',
 		default: 'base16-light',
 	},
+	codeMirrorOptions: {
+		type: 'object',
+		default: {
+			mode: 'jsx',
+			lineWrapping: true,
+			smartIndent: false,
+			matchBrackets: true,
+			viewportMargin: Infinity,
+			lineNumbers: false,
+		},
+	},
 	logger: {
 		type: 'object',
 	},
