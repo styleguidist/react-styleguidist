@@ -4,7 +4,7 @@ import Styled from 'rsg-components/Styled';
 
 const styles = ({ fontFamily, fontSize, color, space }) => ({
 	root: {
-		margin: [[-space[2], -space[2], -(space[2] + space[0])]],
+		margin: 0,
 		padding: space[2],
 		lineHeight: 1.2,
 		fontSize: fontSize.small,

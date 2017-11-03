@@ -15,7 +15,7 @@ const options = {
 };
 
 it('should unmount Wrapper component', () => {
-	const actual = mount(<Preview code={code} evalInContext={evalInContext} />, options);
+	const actual = mount(<Preview name="name" code={code} evalInContext={evalInContext} />, options);
 
 	expect(actual.html()).toMatch('<button');
 	actual.unmount();
@@ -26,7 +26,7 @@ it('should not not fail when Wrapper wasn’t mounted', () => {
 	const consoleError = console.error;
 	console.error = jest.fn();
 
-	const actual = mount(<Preview code="pizza" evalInContext={evalInContext} />, options);
+	const actual = mount(<Preview name="name" code="pizza" evalInContext={evalInContext} />, options);
 	const node = actual.instance().mountNode;
 
 	expect(console.error).toHaveBeenCalled();
@@ -39,7 +39,7 @@ it('should not not fail when Wrapper wasn’t mounted', () => {
 
 it('should render component renderer', () => {
 	const actual = shallow(
-		<Preview code={code} evalInContext={evalInContext} />,
+		<Preview name="name" code={code} evalInContext={evalInContext} />,
 		Object.assign({}, options, { disableLifecycleMethods: true })
 	);
 
