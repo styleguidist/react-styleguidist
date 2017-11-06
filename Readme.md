@@ -40,6 +40,7 @@ Real projects using React Styleguidist:
 * [Semantic UI Components for React](http://hallister.github.io/semantic-react/)
 * [Dialog Components](https://dialogs.github.io/dialog-web-components/)
 * [Bulma Components](http://bokuweb.github.io/re-bulma/)
+* [Yammer Components](https://microsoft.github.io/YamUI/)
 * [More projects…](https://github.com/styleguidist/react-styleguidist/issues/127)
 
 ## Integration with other tools
