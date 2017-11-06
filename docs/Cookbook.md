@@ -14,6 +14,7 @@
 - [How to change style guide dev server logs output?](#how-to-change-style-guide-dev-server-logs-output)
 - [How to debug my components and examples?](#how-to-debug-my-components-and-examples)
 - [How to debug the exceptions thrown from my components?](#how-to-debug-the-exceptions-thrown-from-my-components)
+- [How to make styleguidist server publicly accessible?](#how-to-make-styleguidist-server-publicly-accessible)
 - [Why does the style guide list one of my prop types as `unknown`?](#why-does-the-style-guide-list-one-of-my-prop-types-as-unknown)
 - [Why object references don’t work in example component state?](#why-object-references-dont-work-in-example-component-state)
 - [How to use Vagrant with Styleguidist?](#how-to-use-vagrant-with-styleguidist)
@@ -253,6 +254,21 @@ module.exports = {
 2. Write `debugger;` statement wherever you want: in a component source, a Markdown example or even in an editor in a browser.
 
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/3i3E3j2h3t1315141k0o/debugging.png)
+
+## How to make styleguidist server publicly accessible?
+
+In order to make styleguidist server publicly accessible, add the following to the styleguide.config.js file:
+
+```javascript
+module.exports = {
+  webpackConfig: {
+    ...
+    devServer: {
+        disableHostCheck: true
+    }
+  }
+};
+```
 
 ## How to debug the exceptions thrown from my components?
 
