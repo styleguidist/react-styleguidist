@@ -6,6 +6,7 @@ const reactDocs = require('react-docgen');
 const highlightCodeInMarkdown = require('./highlightCodeInMarkdown');
 const removeDoclets = require('./removeDoclets');
 const requireIt = require('./requireIt');
+const getNameFromFilePath = require('./getNameFromFilePath');
 const doctrine = require('doctrine');
 const _ = require('lodash');
 const logger = require('glogg')('rsg');
@@ -103,9 +104,8 @@ module.exports = function getProps(doc, filepath) {
 	}
 
 	if (!doc.displayName && filepath) {
-		// The file name is our best guess for the exported component's display name
-		const fileName = path.basename(filepath, path.extname(filepath));
-		doc.displayName = fileName;
+		// Guess for the exported component's display name based on the file path
+		doc.displayName = getNameFromFilePath(filepath);
 	}
 
 	return doc;
