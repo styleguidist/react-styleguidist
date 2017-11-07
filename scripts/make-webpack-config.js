@@ -76,7 +76,7 @@ module.exports = function(config, env) {
 				}),
 				new CleanWebpackPlugin(['build'], {
 					root: config.styleguideDir,
-					verbose: config.verbose,
+					verbose: config.verbose === true,
 				}),
 				new CopyWebpackPlugin(
 					config.assetsDir
