@@ -68,15 +68,23 @@ export default class Playground extends Component {
 		const { code, activeTab } = this.state;
 		const { evalInContext, index, name, settings } = this.props;
 		const { isolatedExample } = this.context;
-		const preview = <Preview code={code} evalInContext={evalInContext} />;
+		const preview = (
+			<Preview
+				{...settings.props || {}}
+				name={name}
+				code={code}
+				evalInContext={evalInContext}
+				hasEditor={!settings.noeditor}
+			/>
+		);
+
 		if (settings.noeditor) {
 			return <Para>{preview}</Para>;
 		}
+
 		return (
 			<PlaygroundRenderer
-				name={name}
 				preview={preview}
-				previewProps={settings.props || {}}
 				tabButtons={
 					<Slot
 						name="exampleTabButtons"

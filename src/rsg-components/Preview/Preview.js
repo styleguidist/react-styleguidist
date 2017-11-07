@@ -5,6 +5,7 @@ import noop from 'lodash/noop';
 import { transform } from 'buble';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import Wrapper from 'rsg-components/Wrapper';
+import PreviewRenderer from './PreviewRenderer';
 
 /* eslint-disable react/no-multi-comp */
 
@@ -37,11 +38,16 @@ class PreviewComponent extends Component {
 
 export default class Preview extends Component {
 	static propTypes = {
+		name: PropTypes.string.isRequired,
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
+		hasEditor: PropTypes.bool,
 	};
 	static contextTypes = {
 		config: PropTypes.object.isRequired,
+	};
+	static defaultProps = {
+		hasEditor: true,
 	};
 
 	constructor() {
@@ -148,12 +154,13 @@ export default class Preview extends Component {
 	}
 
 	render() {
+		const { name, code, evalInContext, hasEditor, ...props } = this.props; // eslint-disable-line no-unused-vars
 		const { error } = this.state;
 		return (
-			<div>
+			<PreviewRenderer {...props} name={name} hasEditor={hasEditor} hasError={!!error}>
 				<div ref={ref => (this.mountNode = ref)} />
 				{error && <PlaygroundError message={error} />}
-			</div>
+			</PreviewRenderer>
 		);
 	}
 }

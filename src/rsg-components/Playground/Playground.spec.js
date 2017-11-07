@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Playground from './Playground';
 import slots, { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
+import Preview from '../Preview';
 import { PlaygroundRenderer, styles } from './PlaygroundRenderer';
 
 const evalInContext = a =>
@@ -125,9 +126,15 @@ it('renderer should render preview', () => {
 	const actual = shallow(
 		<PlaygroundRenderer
 			classes={classes(styles)}
-			name="name"
-			preview={<div>preview</div>}
-			previewProps={{ className: 'pizza', title: 'salami' }}
+			preview={
+				<Preview
+					className="pizza"
+					title="salami"
+					name="name"
+					code={code}
+					evalInContext={evalInContext}
+				/>
+			}
 			tabButtons={<div>tab buttons</div>}
 			tabBody={<div>tab body</div>}
 			toolbar={<div>toolbar</div>}

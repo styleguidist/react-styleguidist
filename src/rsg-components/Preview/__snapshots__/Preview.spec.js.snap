@@ -1,7 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render component renderer 1`] = `
-<div>
+<Styled(Preview)
+  hasEditor={true}
+  hasError={false}
+  name="name"
+>
   <div />
-</div>
+</Styled(Preview)>
 `;

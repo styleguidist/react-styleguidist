@@ -1,16 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
 import Styled from 'rsg-components/Styled';
 
-export const styles = ({ space, color, borderRadius }) => ({
+export const styles = ({ space }) => ({
 	root: {
 		marginBottom: space[4],
-	},
-	preview: {
-		padding: space[2],
-		border: [[1, color.border, 'solid']],
-		borderRadius,
 	},
 	controls: {
 		display: 'flex',
@@ -21,21 +15,10 @@ export const styles = ({ space, color, borderRadius }) => ({
 	},
 });
 
-export function PlaygroundRenderer({
-	classes,
-	name,
-	preview,
-	previewProps,
-	tabButtons,
-	tabBody,
-	toolbar,
-}) {
-	const { className, ...props } = previewProps;
+export function PlaygroundRenderer({ classes, preview, tabButtons, tabBody, toolbar }) {
 	return (
 		<div className={classes.root}>
-			<div className={cx(classes.preview, className)} {...props} data-preview={name}>
-				{preview}
-			</div>
+			{preview}
 			<div className={classes.controls}>
 				<div className={classes.tabs}>{tabButtons}</div>
 				<div className={classes.toolbar}>{toolbar}</div>
@@ -47,9 +30,7 @@ export function PlaygroundRenderer({
 
 PlaygroundRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
-	name: PropTypes.string.isRequired,
 	preview: PropTypes.node.isRequired,
-	previewProps: PropTypes.object.isRequired,
 	tabButtons: PropTypes.node.isRequired,
 	tabBody: PropTypes.node.isRequired,
 	toolbar: PropTypes.node.isRequired,

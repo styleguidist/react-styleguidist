@@ -4,15 +4,14 @@ exports[`renderer should render preview 1`] = `
 <div
   className="root"
 >
-  <div
-    className="preview pizza"
-    data-preview="name"
+  <Preview
+    className="pizza"
+    code="<button>OK</button>"
+    evalInContext={[Function]}
+    hasEditor={true}
+    name="name"
     title="salami"
-  >
-    <div>
-      preview
-    </div>
-  </div>
+  />
   <div
     className="controls"
   >
@@ -39,14 +38,14 @@ exports[`renderer should render preview 1`] = `
 
 exports[`should render component renderer 1`] = `
 <Styled(Playground)
-  name="name"
   preview={
     <Preview
       code="<button>OK</button>"
       evalInContext={[Function]}
+      hasEditor={true}
+      name="name"
     />
   }
-  previewProps={Object {}}
   tabBody={
     <Slot
       active={undefined}
