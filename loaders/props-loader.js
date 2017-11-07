@@ -41,7 +41,9 @@ module.exports = function(source) {
 		const componentPath = path.relative(process.cwd(), file);
 		const message =
 			errorMessage === `Error: ${ERROR_MISSING_DEFINITION}`
-				? `${componentPath} matches a pattern defined in “components” or “sections” options in your ` +
+				? `${
+						componentPath
+					} matches a pattern defined in “components” or “sections” options in your ` +
 					'style guide config but doesn’t export a component.\n\n' +
 					'It usually happens when using third-party libraries, see possible solutions here:\n' +
 					`${consts.DOCS_THIRDPARTIES}`

@@ -39,7 +39,9 @@ module.exports = function parseExample(content, header, updateExample) {
 				example.settings = JSON.parse(modifiers);
 			} catch (err) {
 				return {
-					error: `Cannot parse modifiers for "${header}". Use space-separated strings or JSON:\n\n${consts.DOCS_DOCUMENTING}`,
+					error: `Cannot parse modifiers for "${header}". Use space-separated strings or JSON:\n\n${
+						consts.DOCS_DOCUMENTING
+					}`,
 				};
 			}
 		}

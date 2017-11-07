@@ -21,6 +21,8 @@ if (!webpackVersion) {
 	);
 } else if (webpackVersion < MIN_WEBPACK_VERSION) {
 	throw new StyleguidistError(
-		`Webpack ${webpackVersion} is not supported by Styleguidist, the minimum version is ${MIN_WEBPACK_VERSION}`
+		`Webpack ${webpackVersion} is not supported by Styleguidist, the minimum version is ${
+			MIN_WEBPACK_VERSION
+		}`
 	);
 }
