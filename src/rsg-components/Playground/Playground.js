@@ -43,10 +43,6 @@ export default class Playground extends Component {
 		});
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
-		return nextState.code !== this.state.code || nextState.activeTab !== this.state.activeTab;
-	}
-
 	componentWillUnmount() {
 		// Clear pending changes
 		this.handleChange.cancel();

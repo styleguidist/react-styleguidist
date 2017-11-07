@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash/cloneDeep';
 import isNaN from 'lodash/isNaN';
 import GithubSlugger from 'github-slugger';
 
@@ -66,7 +67,7 @@ export function processComponents(components) {
  * @return {Array}
  */
 export function processSections(sections) {
-	return sections.map(section => {
+	return cloneDeep(sections).map(section => {
 		section.components = processComponents(section.components || []);
 		section.sections = processSections(section.sections || []);
 		return section;
