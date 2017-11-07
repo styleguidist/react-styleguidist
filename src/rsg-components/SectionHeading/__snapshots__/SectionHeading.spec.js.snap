@@ -72,7 +72,6 @@ exports[`should pass props to slots 1`] = `
 <SectionHeadingRenderer
   classes={
     Object {
-      ".rsg--heading-1:hover, .rsg--heading-1:active": "rsg--heading-1:hover, .rsg--heading-1:active",
       "heading": "rsg--heading-1",
       "heading1": "rsg--heading1-2",
       "heading2": "rsg--heading2-3",
