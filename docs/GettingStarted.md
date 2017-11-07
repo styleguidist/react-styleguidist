@@ -35,7 +35,7 @@ Add these scripts to your `package.json`:
 
 ## 4. Start your style guide
 
-Run **`npm run styleguide`** to start a styleguide dev server.
+Run **`npm run styleguide`** to start a style guide dev server.
 
 Run **`npm run styleguide:build`** to build a static version.
 
