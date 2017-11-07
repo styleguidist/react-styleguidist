@@ -104,7 +104,7 @@ module.exports = function getProps(doc, filepath) {
 	}
 
 	if (!doc.displayName && filepath) {
-		// Guess for the exported component's display name based on the file path
+		// Guess the exported component's display name based on the file path
 		doc.displayName = getNameFromFilePath(filepath);
 	}
 
