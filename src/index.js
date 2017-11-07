@@ -39,7 +39,7 @@ function renderStyleguide() {
 	let isolatedExample = false;
 	let isolatedSection = false;
 
-	// Filter the requested component id required
+	// Filter the requested component if required
 	if (targetName) {
 		const filteredComponents = filterComponentsInSectionsByExactName(sections, targetName);
 		if (filteredComponents.length) {
