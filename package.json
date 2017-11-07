@@ -70,7 +70,7 @@
     "prop-types": "^15.6.0",
     "q-i": "^1.2.0",
     "react-codemirror2": "^3.0.7",
-    "react-dev-utils": "^3.0.2",
+    "react-dev-utils": "^4.2.1",
     "react-docgen": "^3.0.0-beta8",
     "react-docgen-displayname-handler": "^1.0.1",
     "react-group": "^1.0.5",
