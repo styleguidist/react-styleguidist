@@ -29,6 +29,7 @@ module.exports = {
 					components: () => [
 						'./src/components/Button/Button.js',
 						'./src/components/RandomButton/RandomButton.js',
+						'./src/components/WrappedButton/WrappedButton.js',
 					],
 				},
 				{

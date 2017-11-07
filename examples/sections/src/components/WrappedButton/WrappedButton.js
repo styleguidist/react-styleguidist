@@ -1,11 +1,11 @@
 import React from 'react';
-import CounterButton from '../CounterButton';
+import Button from '../Button';
 
 const dummyWrapper = WrappedComponent => props => <WrappedComponent {...props} />;
 
 /**
  * A button wrapped by a Decorator/Enhancer
  */
-const WrappedCounterButton = dummyWrapper(CounterButton);
+const WrappedButton = dummyWrapper(Button);
 
-export default WrappedCounterButton;
+export default WrappedButton;
