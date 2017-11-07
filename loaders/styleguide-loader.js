@@ -23,6 +23,7 @@ const CLIENT_CONFIG_OPTIONS = [
 	'theme',
 	'styles',
 	'compilerConfig',
+	'ribbon',
 ];
 
 module.exports = function() {};

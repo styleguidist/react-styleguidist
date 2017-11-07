@@ -4,6 +4,7 @@ import Logo from 'rsg-components/Logo';
 import Markdown from 'rsg-components/Markdown';
 import Styled from 'rsg-components/Styled';
 import cx from 'classnames';
+import Ribbon from '../Ribbon';
 
 const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth }) => ({
 	root: {
@@ -54,7 +55,15 @@ const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth
 	},
 });
 
-export function StyleGuideRenderer({ classes, title, homepageUrl, children, toc, hasSidebar }) {
+export function StyleGuideRenderer({
+	classes,
+	title,
+	homepageUrl,
+	children,
+	toc,
+	hasSidebar,
+	ribbon,
+}) {
 	return (
 		<div className={cx(classes.root, hasSidebar && classes.hasSidebar)}>
 			<main className={classes.content}>
@@ -71,6 +80,7 @@ export function StyleGuideRenderer({ classes, title, homepageUrl, children, toc,
 					{toc}
 				</div>
 			)}
+			{ribbon && <Ribbon />}
 		</div>
 	);
 }
@@ -82,6 +92,7 @@ StyleGuideRenderer.propTypes = {
 	children: PropTypes.node.isRequired,
 	toc: PropTypes.node.isRequired,
 	hasSidebar: PropTypes.bool,
+	ribbon: PropTypes.object,
 };
 
 export default Styled(styles)(StyleGuideRenderer);

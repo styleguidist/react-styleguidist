@@ -24,6 +24,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 - [`propsParser`](#propsparser)
 - [`require`](#require)
 - [`resolver`](#resolver)
+- [`ribbon`](#ribbon)
 - [`sections`](#sections)
 - [`serverHost`](#serverhost)
 - [`serverPort`](#serverport)
@@ -319,6 +320,23 @@ Function that allows you to override the mechanism used to identify classes/comp
 ```javascript
 module.exports = {
   resolver: require('react-docgen').resolver.findAllComponentDefinitions
+};
+```
+
+#### `ribbon`
+
+Type: `Object`, optional
+
+Shows 'Fork Me' ribbon in the top-right corner. If `ribbon` key is present, then it's required to add `url` property. `text`, `color`, and `background` are optional.
+
+```javascript
+module.exports = {
+  ribbon: {
+    url: 'http://example.com/',
+    text: 'Fork me on GitHub',
+    color: '#bbb',
+    background: '#aa0000',
+  }
 };
 ```
 

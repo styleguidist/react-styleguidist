@@ -109,6 +109,15 @@ module.exports = {
 		type: 'function',
 		default: reactDocgen.resolver.findAllExportedComponentDefinitions,
 	},
+	ribbon: {
+		type: 'object',
+		example: {
+			url: 'http://example.com/',
+			text: 'Fork me on GitHub',
+			color: '#fff',
+			background: '#24292e',
+		},
+	},
 	sections: {
 		type: 'array',
 		default: [],
