@@ -7,15 +7,14 @@ const styles = ({ fontFamily, fontSize, color, space }) => ({
 		margin: space[2],
 		lineHeight: 1.2,
 		fontSize: fontSize.small,
-		backgroundColor: color.error,
 	},
 	stack: {
-		color: color.errorBackground,
+		color: color.error,
 		whiteSpace: 'pre',
 		fontFamily: fontFamily.monospace,
 	},
 	message: {
-		color: color.errorBackground,
+		color: color.error,
 		fontFamily: fontFamily.base,
 	},
 });
