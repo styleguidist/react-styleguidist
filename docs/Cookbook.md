@@ -257,6 +257,8 @@ module.exports = {
 
 ## How to make styleguidist server publicly accessible?
 
+Warning: this setup is not recommended for security reasons, it should only be enabled on dev environments.
+
 In order to make styleguidist server publicly accessible, add the following to the styleguide.config.js file:
 
 ```javascript
