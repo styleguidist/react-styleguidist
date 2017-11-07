@@ -192,7 +192,7 @@ Type: `Function`, optional, default: [[react-docgen-displayname-handler](https:/
 
 Function that returns functions used to process the discovered components and generate documentation objects. Default behaviors include discovering component documentation blocks, prop types, and defaults. If setting this property, it is best to build from the default [react-docgen](https://github.com/reactjs/react-docgen) handler list, such as in the example below. See the [react-docgen handler documentation](https://github.com/reactjs/react-docgen#handlers) for more information about handlers.
 
-Also note that the default handler, `react-docgen-displayname-handler` should be included to better support higher order components.
+> **Note:** `react-docgen-displayname-handler` should be included.
 
 ```javascript
 module.exports = {
@@ -214,7 +214,6 @@ module.exports = {
       }
     },
 
-    // To better support higher order components
     require('react-docgen-displayname-handler').createDisplayNameHandler(componentPath),
   )
 };
