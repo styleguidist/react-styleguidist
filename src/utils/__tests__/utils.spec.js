@@ -347,6 +347,11 @@ describe('getUrl', () => {
 		expect(result).toBe('/styleguide/#!/FooBar/3');
 	});
 
+	it('should return an isolated example=0 URL', () => {
+		const result = utils.getUrl({ name, slug, example: 0, isolated: true }, loc);
+		expect(result).toBe('/styleguide/#!/FooBar/0');
+	});
+
 	it('should return an absolute isolated example URL', () => {
 		const result = utils.getUrl({ name, slug, example: 3, isolated: true, absolute: true }, loc);
 		expect(result).toBe('http://example.com/styleguide/#!/FooBar/3');

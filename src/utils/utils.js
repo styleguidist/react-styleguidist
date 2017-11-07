@@ -250,7 +250,7 @@ export function getUrl(
 		url += `#!/${name}`;
 	}
 
-	if (example) {
+	if (example !== undefined) {
 		url += `/${example}`;
 	}
 
