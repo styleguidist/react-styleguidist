@@ -1,9 +1,11 @@
+import path from 'path';
 import getProps from '../getProps';
 
 jest.mock('../requireIt');
 
 it('should return an object for props', () => {
 	const result = getProps({
+		displayName: 'Button',
 		description: 'The only true button.',
 		methods: [],
 		props: {
@@ -25,6 +27,7 @@ it('should return an object for props', () => {
 
 it('should return an object for props without description', () => {
 	const result = getProps({
+		displayName: 'Button',
 		props: {
 			children: {
 				type: {},
@@ -40,6 +43,7 @@ it('should return an object for props without description', () => {
 it('should remove non-public methods', () => {
 	const result = getProps(
 		{
+			displayName: 'Button',
 			methods: [
 				{
 					docblock: `Public method.
@@ -63,6 +67,7 @@ it('should remove non-public methods', () => {
 it('should return an object for props with doclets', () => {
 	const result = getProps(
 		{
+			displayName: 'Button',
 			description: `
 The only true button.
 
@@ -79,6 +84,7 @@ The only true button.
 it('should return require statement for @example doclet', () => {
 	const result = getProps(
 		{
+			displayName: 'Button',
 			description: `
 The only true button.
 
@@ -94,6 +100,7 @@ The only true button.
 it('should return require statement for @example doclet only when the file exists', () => {
 	const result = getProps(
 		{
+			displayName: 'Button',
 			description: `
 The only true button.
 
@@ -144,4 +151,15 @@ it("should not crash when using doctrine to parse a default prop that isn't in t
 	});
 
 	expect(result).toMatchSnapshot();
+});
+
+it('should guess a displayName for components that react-docgen was not able to recognize', () => {
+	const result = getProps(
+		{
+			methods: [],
+			props: {},
+		},
+		path.join('an', 'absolute', 'path', 'to', 'YourComponent.js')
+	);
+	expect(result).toHaveProperty('displayName', 'YourComponent');
 });
