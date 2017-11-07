@@ -118,8 +118,6 @@
     "jest": "^21.1.0",
     "keymirror": "^0.1.1",
     "lint-staged": "^4.3.0",
-    "preact": "^8.2.1",
-    "preact-compat": "^3.16.0",
     "prettier": "~1.8.1",
     "raf": "^3.4.0",
     "react": "^16.0.0",
