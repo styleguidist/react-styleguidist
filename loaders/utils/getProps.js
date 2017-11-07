@@ -103,7 +103,7 @@ module.exports = function getProps(doc, filepath) {
 	}
 
 	if (!doc.displayName && filepath) {
-		// The file name is our best guess for the exported component's the display name
+		// The file name is our best guess for the exported component's display name
 		const fileName = path.basename(filepath, path.extname(filepath));
 		doc.displayName = fileName;
 	}
