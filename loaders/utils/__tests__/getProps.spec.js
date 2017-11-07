@@ -1,3 +1,4 @@
+import path from 'path';
 import getProps from '../getProps';
 
 jest.mock('../requireIt');
@@ -158,7 +159,7 @@ it('should guess a displayName for components that react-docgen was not able to 
 			methods: [],
 			props: {},
 		},
-		'/an/absolute/path/to/YourComponent.js'
+		path.join('an', 'absolute', 'path', 'to', 'YourComponent.js')
 	);
 	expect(result).toHaveProperty('displayName', 'YourComponent');
 });
