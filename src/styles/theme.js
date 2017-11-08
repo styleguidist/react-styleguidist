@@ -18,9 +18,8 @@ export const color = {
 	border: '#e8e8e8',
 	name: '#7f9a44',
 	type: '#b77daa',
-	error: '#fff',
+	error: '#c00',
 	baseBackground: '#fff',
-	errorBackground: '#c00',
 	codeBackground: '#f5f5f5',
 	sidebarBackground: '#f5f5f5',
 };
