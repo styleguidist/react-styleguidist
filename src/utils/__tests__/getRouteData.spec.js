@@ -1,6 +1,7 @@
+import deepfreeze from 'deepfreeze';
 import getRouteData from '../getRouteData';
 
-const sections = [
+const sections = deepfreeze([
 	{
 		sections: [
 			{
@@ -26,7 +27,7 @@ const sections = [
 			},
 		],
 	},
-];
+]);
 
 describe('getRouteData', () => {
 	it('should return "all" mode by default', () => {

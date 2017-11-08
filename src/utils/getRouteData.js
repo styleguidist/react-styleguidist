@@ -1,12 +1,10 @@
 import isFinite from 'lodash/isFinite';
-import {
-	getInfoFromHash,
-	filterComponentExamples,
-	filterSectionExamples,
-	filterComponentsInSectionsByExactName,
-	findSection,
-	processSections,
-} from './utils';
+import filterComponentExamples from './filterComponentExamples';
+import filterComponentsInSectionsByExactName from './filterComponentsInSectionsByExactName';
+import filterSectionExamples from './filterSectionExamples';
+import findSection from './findSection';
+import getInfoFromHash from './getInfoFromHash';
+import processSections from './processSections';
 
 /**
  * Return sections / components / examples to show on a screen according to a current route.
@@ -32,6 +30,8 @@ export default function getRouteData(allSections, hash) {
 	// section: show one section
 	// component: show one component
 	// example: show one example
+	// TODO: error (404)
+	// TODO: Use consts
 	let displayMode = 'all';
 
 	let sections = processSections(allSections);
@@ -51,10 +51,10 @@ export default function getRouteData(allSections, hash) {
 		// If a single component or section is filtered and a fenced block index is specified hide all other examples
 		if (isFinite(targetIndex)) {
 			if (filteredComponents.length === 1) {
-				filteredComponents[0] = filterComponentExamples(filteredComponents[0], targetIndex);
+				sections = [{ components: [filterComponentExamples(filteredComponents[0], targetIndex)] }];
 				displayMode = 'example';
 			} else if (sections.length === 1) {
-				sections[0] = filterSectionExamples(sections[0], targetIndex);
+				sections = [filterSectionExamples(sections[0], targetIndex)];
 				displayMode = 'example';
 			}
 		}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ComponentsList from 'rsg-components/ComponentsList';
 import TableOfContentsRenderer from 'rsg-components/TableOfContents/TableOfContentsRenderer';
-import { filterSectionsByName } from '../../utils/utils';
+import filterSectionsByName from '../../utils/filterSectionsByName';
 
 export default class TableOfContents extends Component {
 	static propTypes = {

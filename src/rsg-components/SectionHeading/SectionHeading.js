@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Slot from 'rsg-components/Slot';
 import SectionHeadingRenderer from 'rsg-components/SectionHeading/SectionHeadingRenderer';
-import { getUrl } from '../../utils/utils';
+import getUrl from '../../utils/getUrl';
 
 export default function SectionHeading({ slotName, slotProps, children, id, ...rest }) {
 	const href = getUrl({ slug: id, anchor: true });

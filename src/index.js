@@ -7,6 +7,7 @@ import slots from 'rsg-components/slots';
 import StyleGuide from 'rsg-components/StyleGuide';
 import getPageTitle from './utils/getPageTitle';
 import getRouteData from './utils/getRouteData';
+import globalizeComponents from './utils/globalizeComponents';
 import './styles';
 
 // Examples code revision to rerender only code examples (not the whole page) when code changes
@@ -29,6 +30,8 @@ function renderStyleguide() {
 		const url = window.location.pathname + window.location.search;
 		history.replaceState('', document.title, url);
 	}
+
+	globalizeComponents(sections);
 
 	ReactDOM.render(
 		<StyleGuide
