@@ -2,7 +2,7 @@
 
 exports[`render should not render title if name is not set 1`] = `<section />`;
 
-exports[`render should render component 1`] = `
+exports[`render should render section 1`] = `
 <section>
   <SectionHeading
     depth={3}
@@ -108,7 +108,22 @@ exports[`should not render sections if not defined 1`] = `
 />
 `;
 
-exports[`should render component renderer 1`] = `
+exports[`should render components list 1`] = `
+<Styled(Section)
+  components={
+    <Components
+      components={Array []}
+      depth={4}
+    />
+  }
+  depth={3}
+  isolated={false}
+  name="Components"
+  slug="components"
+/>
+`;
+
+exports[`should render section renderer 1`] = `
 <Styled(Section)
   components={
     <Components
@@ -144,21 +159,6 @@ exports[`should render component renderer 1`] = `
     />
   }
   slug="foo"
-/>
-`;
-
-exports[`should render components list 1`] = `
-<Styled(Section)
-  components={
-    <Components
-      components={Array []}
-      depth={4}
-    />
-  }
-  depth={3}
-  isolated={false}
-  name="Components"
-  slug="components"
 />
 `;
 

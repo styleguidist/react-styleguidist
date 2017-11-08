@@ -35,30 +35,32 @@ function renderStyleguide() {
 		targetIndex,
 	} = getInfoFromHash();
 
-	let isolatedComponent = false;
-	let isolatedExample = false;
-	let isolatedSection = false;
+	// all: show all section and components (default)
+	// section: show one section
+	// component: show one component
+	// example: show one example
+	let displayMode = 'all';
 
 	// Filter the requested component if required
 	if (targetName) {
 		const filteredComponents = filterComponentsInSectionsByExactName(sections, targetName);
 		if (filteredComponents.length) {
 			sections = [{ components: filteredComponents }];
-			isolatedComponent = true;
+			displayMode = 'component';
 		} else {
 			const section = findSection(sections, targetName);
 			sections = section ? [section] : [];
-			isolatedSection = true;
+			displayMode = 'section';
 		}
 
 		// If a single component or section is filtered and a fenced block index is specified hide all other examples
 		if (isFinite(targetIndex)) {
 			if (filteredComponents.length === 1) {
 				filteredComponents[0] = filterComponentExamples(filteredComponents[0], targetIndex);
-				isolatedExample = true;
+				displayMode = 'example';
 			} else if (sections.length === 1) {
 				sections[0] = filterSectionExamples(sections[0], targetIndex);
-				isolatedExample = true;
+				displayMode = 'example';
 			}
 		}
 	}
@@ -68,9 +70,9 @@ function renderStyleguide() {
 	sections = setSlugs(sections);
 
 	let documentTitle = styleguide.config.title;
-	if (isolatedComponent || isolatedExample) {
+	if (displayMode === 'component' || displayMode === 'example') {
 		documentTitle = sections[0].components[0].name + ' — ' + documentTitle;
-	} else if (isolatedSection) {
+	} else if (displayMode === 'section') {
 		documentTitle = sections[0].name + ' — ' + documentTitle;
 	}
 	document.title = documentTitle;
@@ -91,9 +93,7 @@ function renderStyleguide() {
 			welcomeScreen={styleguide.welcomeScreen}
 			patterns={styleguide.patterns}
 			sections={sections}
-			isolatedComponent={isolatedComponent}
-			isolatedExample={isolatedExample}
-			isolatedSection={isolatedSection}
+			displayMode={displayMode}
 		/>,
 		document.getElementById('app')
 	);

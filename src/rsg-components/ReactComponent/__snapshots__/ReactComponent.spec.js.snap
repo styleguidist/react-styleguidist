@@ -34,7 +34,7 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
       slotName="componentToolbar"
       slotProps={
         Object {
-          "isolated": undefined,
+          "isolated": false,
           "metadata": Object {
             "tags": Array [
               "one",
