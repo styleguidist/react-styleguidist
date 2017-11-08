@@ -5,7 +5,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import slots from 'rsg-components/slots';
 import StyleGuide from 'rsg-components/StyleGuide';
-import { setSlugs, slugger } from './utils/utils';
 import getPageTitle from './utils/getPageTitle';
 import getRouteData from './utils/getRouteData';
 import './styles';
@@ -16,9 +15,6 @@ let codeRevision = 0;
 function renderStyleguide() {
 	// eslint-disable-next-line import/no-unresolved
 	const styleguide = require('!!../loaders/styleguide-loader!./index.js');
-
-	// Reset slugger for each render to be deterministic
-	slugger.reset();
 
 	const { hash } = window.location;
 
@@ -41,7 +37,7 @@ function renderStyleguide() {
 			slots={slots}
 			welcomeScreen={styleguide.welcomeScreen}
 			patterns={styleguide.patterns}
-			sections={setSlugs(sections)}
+			sections={sections}
 			displayMode={displayMode}
 		/>,
 		document.getElementById('app')

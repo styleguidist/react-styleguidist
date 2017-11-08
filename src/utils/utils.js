@@ -1,25 +1,5 @@
 import cloneDeep from 'lodash/cloneDeep';
 import isNaN from 'lodash/isNaN';
-import GithubSlugger from 'github-slugger';
-
-// Export the singleton instance of GithubSlugger
-export const slugger = new GithubSlugger();
-
-export function setSlugs(sections) {
-	return sections.map(section => {
-		const { name, components, sections } = section;
-		if (name) {
-			section.slug = slugger.slug(section.name);
-		}
-		if (components && components.length) {
-			section.components = setSlugs(components);
-		}
-		if (sections && sections.length) {
-			section.sections = setSlugs(sections);
-		}
-		return section;
-	});
-}
 
 /**
  * Expose component as global variables.
