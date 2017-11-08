@@ -2,6 +2,7 @@ import React from 'react';
 import TableOfContents from '../TableOfContents';
 import StyleGuide from './StyleGuide';
 import { StyleGuideRenderer } from './StyleGuideRenderer';
+import { DisplayModes } from '../../consts';
 
 const sections = [
 	{
@@ -87,7 +88,7 @@ describe('sidebar rendering', () => {
 				config={config}
 				sections={sections}
 				slots={{}}
-				displayMode="component"
+				displayMode={DisplayModes.component}
 			/>
 		);
 

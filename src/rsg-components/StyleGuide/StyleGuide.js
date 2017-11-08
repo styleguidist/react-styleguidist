@@ -6,6 +6,7 @@ import Sections from 'rsg-components/Sections';
 import Welcome from 'rsg-components/Welcome';
 import Error from 'rsg-components/Error';
 import { HOMEPAGE } from '../../../scripts/consts';
+import { DisplayModes } from '../../consts';
 
 export default class StyleGuide extends Component {
 	static propTypes = {
@@ -26,7 +27,7 @@ export default class StyleGuide extends Component {
 	};
 
 	static defaultProps = {
-		displayMode: 'all',
+		displayMode: DisplayModes.all,
 	};
 
 	state = {
@@ -66,7 +67,7 @@ export default class StyleGuide extends Component {
 				title={config.title}
 				homepageUrl={HOMEPAGE}
 				toc={<TableOfContents sections={sections} />}
-				hasSidebar={config.showSidebar && displayMode === 'all'}
+				hasSidebar={config.showSidebar && displayMode === DisplayModes.all}
 			>
 				<Sections sections={sections} depth={1} />
 			</StyleGuideRenderer>

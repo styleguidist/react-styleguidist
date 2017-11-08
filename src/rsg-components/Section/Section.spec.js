@@ -5,10 +5,11 @@ import Components from '../Components';
 import Sections from '../Sections';
 import Section from './Section';
 import { SectionRenderer } from './SectionRenderer';
+import { DisplayModes } from '../../consts';
 
 const options = {
 	context: {
-		displayMode: 'all',
+		displayMode: DisplayModes.all,
 	},
 };
 
@@ -125,7 +126,7 @@ test('should render section in isolation mode', () => {
 		{
 			context: {
 				...options.context,
-				displayMode: 'section',
+				displayMode: DisplayModes.section,
 			},
 		}
 	);
