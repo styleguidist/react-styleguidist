@@ -12,5 +12,6 @@ Object {
   "props": RequireStatement {
     "filepath": "!!<rootDir>/loaders/props-loader.js!pizza.js",
   },
+  "slug": "pizza",
 }
 `;

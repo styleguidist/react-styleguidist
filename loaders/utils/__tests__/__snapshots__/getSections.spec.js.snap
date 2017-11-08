@@ -9,6 +9,7 @@ Array [
     },
     "name": "Readme",
     "sections": Array [],
+    "slug": "readme-1",
   },
   Object {
     "components": Array [
@@ -23,6 +24,7 @@ Array [
         "props": RequireStatement {
           "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/Button/Button.js",
         },
+        "slug": "button-1",
       },
       Object {
         "filepath": "components/Placeholder/Placeholder.js",
@@ -37,6 +39,7 @@ Array [
         "props": RequireStatement {
           "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/Placeholder/Placeholder.js",
         },
+        "slug": "placeholder-1",
       },
       Object {
         "filepath": "components/RandomButton/RandomButton.js",
@@ -49,11 +52,13 @@ Array [
         "props": RequireStatement {
           "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/RandomButton/RandomButton.js",
         },
+        "slug": "randombutton-1",
       },
     ],
     "content": undefined,
     "name": "Components",
     "sections": Array [],
+    "slug": "components-1",
   },
 ]
 `;
@@ -72,6 +77,7 @@ Object {
       "props": RequireStatement {
         "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/Button/Button.js",
       },
+      "slug": "button",
     },
     Object {
       "filepath": "components/Placeholder/Placeholder.js",
@@ -86,6 +92,7 @@ Object {
       "props": RequireStatement {
         "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/Placeholder/Placeholder.js",
       },
+      "slug": "placeholder",
     },
     Object {
       "filepath": "components/RandomButton/RandomButton.js",
@@ -98,11 +105,13 @@ Object {
       "props": RequireStatement {
         "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/RandomButton/RandomButton.js",
       },
+      "slug": "randombutton",
     },
   ],
   "content": undefined,
   "name": "Components",
   "sections": Array [],
+  "slug": "components",
 }
 `;
 
@@ -114,5 +123,6 @@ Object {
   },
   "name": "Readme",
   "sections": Array [],
+  "slug": "readme",
 }
 `;

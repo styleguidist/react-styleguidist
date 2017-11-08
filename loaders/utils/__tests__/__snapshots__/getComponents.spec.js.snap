@@ -13,6 +13,7 @@ Array [
     "props": RequireStatement {
       "filepath": "!!<rootDir>/loaders/props-loader.js!Foo.js",
     },
+    "slug": "foo",
   },
   Object {
     "filepath": "../Bar.js",
@@ -25,6 +26,7 @@ Array [
     "props": RequireStatement {
       "filepath": "!!<rootDir>/loaders/props-loader.js!Bar.js",
     },
+    "slug": "bar",
   },
 ]
 `;

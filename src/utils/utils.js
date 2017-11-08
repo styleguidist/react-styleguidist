@@ -163,8 +163,8 @@ export function findSection(sections, name) {
 /**
  * Returns an object containing component/section name and, optionally, an example index
  * from hash part or page URL:
- * http://localhost:6060/#!/Button → { targetName: 'Button' }
- * http://localhost:6060/#!/Button/1 → { targetName: 'Button', targetIndex: 1 }
+ * #!/Button → { targetName: 'Button' }
+ * #!/Button/1 → { targetName: 'Button', targetIndex: 1 }
  *
  * @param {string} hash
  * @returns {object}
