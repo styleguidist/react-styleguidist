@@ -186,10 +186,10 @@ export function findSection(sections, name) {
  * http://localhost:6060/#!/Button → { targetName: 'Button' }
  * http://localhost:6060/#!/Button/1 → { targetName: 'Button', targetIndex: 1 }
  *
- * @param {string} [hash]
+ * @param {string} hash
  * @returns {object}
  */
-export function getInfoFromHash(hash = window.location.hash) {
+export function getInfoFromHash(hash) {
 	if (hash.substr(0, 3) === '#!/') {
 		const tokens = hash.substr(3).split('/');
 		const index = parseInt(tokens[1], 10);
