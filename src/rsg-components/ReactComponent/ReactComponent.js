@@ -20,7 +20,7 @@ export default class ReactComponent extends Component {
 	};
 	static contextTypes = {
 		config: PropTypes.object.isRequired,
-		isolatedComponent: PropTypes.bool,
+		displayMode: PropTypes.string,
 	};
 
 	constructor(props, context) {
@@ -42,7 +42,7 @@ export default class ReactComponent extends Component {
 
 	render() {
 		const { activeTab } = this.state;
-		const { isolatedComponent } = this.context;
+		const { displayMode } = this.context;
 		const { component, depth } = this.props;
 		const { name, slug, pathLine } = component;
 		const { description, examples = [], tags = {} } = component.props;
@@ -64,7 +64,7 @@ export default class ReactComponent extends Component {
 						slotName="componentToolbar"
 						slotProps={{
 							...component,
-							isolated: isolatedComponent,
+							isolated: displayMode !== 'all',
 						}}
 						depth={depth}
 					>

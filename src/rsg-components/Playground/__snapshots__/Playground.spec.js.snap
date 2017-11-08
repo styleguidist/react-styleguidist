@@ -77,7 +77,7 @@ exports[`should render component renderer 1`] = `
       props={
         Object {
           "example": 0,
-          "isolated": undefined,
+          "isolated": false,
           "name": "name",
         }
       }

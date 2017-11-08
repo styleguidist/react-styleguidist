@@ -6,6 +6,12 @@ import Sections from '../Sections';
 import Section from './Section';
 import { SectionRenderer } from './SectionRenderer';
 
+const options = {
+	context: {
+		displayMode: 'all',
+	},
+};
+
 const section = {
 	name: 'Foo',
 	slug: 'foo',
@@ -24,8 +30,8 @@ const section = {
 	sections: [],
 };
 
-it('should render component renderer', () => {
-	const actual = shallow(<Section section={section} depth={3} />);
+it('should render section renderer', () => {
+	const actual = shallow(<Section section={section} depth={3} />, options);
 
 	expect(actual).toMatchSnapshot();
 });
@@ -39,7 +45,8 @@ it('should render components list', () => {
 				components: [],
 			}}
 			depth={3}
-		/>
+		/>,
+		options
 	);
 
 	expect(actual).toMatchSnapshot();
@@ -53,7 +60,8 @@ it('should not render components list if not defined', () => {
 				slug: 'no-components',
 			}}
 			depth={3}
-		/>
+		/>,
+		options
 	);
 
 	expect(actual).toMatchSnapshot();
@@ -68,7 +76,8 @@ it('should render sections if defined', () => {
 				sections: [],
 			}}
 			depth={3}
-		/>
+		/>,
+		options
 	);
 
 	expect(actual).toMatchSnapshot();
@@ -82,13 +91,49 @@ it('should not render sections if not defined', () => {
 				slug: 'no-sections',
 			}}
 			depth={3}
-		/>
+		/>,
+		options
 	);
 
 	expect(actual).toMatchSnapshot();
 });
 
-it('render should render component', () => {
+test('should not render section in isolation mode by default', () => {
+	const actual = shallow(
+		<Section
+			section={{
+				name: 'A',
+				slug: 'a',
+			}}
+			depth={3}
+		/>,
+		options
+	);
+
+	expect(actual.prop('isolated')).toBeFalsy();
+});
+
+test('should render section in isolation mode', () => {
+	const actual = shallow(
+		<Section
+			section={{
+				name: 'A',
+				slug: 'a',
+			}}
+			depth={3}
+		/>,
+		{
+			context: {
+				...options.context,
+				displayMode: 'section',
+			},
+		}
+	);
+
+	expect(actual.prop('isolated')).toBeTruthy();
+});
+
+it('render should render section', () => {
 	const actual = shallow(
 		<SectionRenderer
 			classes={{}}
@@ -98,20 +143,24 @@ it('render should render component', () => {
 			components={<Components components={[]} depth={3} />}
 			sections={<Sections sections={[]} depth={3} />}
 			depth={3}
-		/>
+		/>,
+		options
 	);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('render should not render title if name is not set', () => {
-	const actual = shallow(<SectionRenderer classes={{}} depth={3} />);
+	const actual = shallow(<SectionRenderer classes={{}} depth={3} />, options);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('render should render title if name is set', () => {
-	const actual = shallow(<SectionRenderer classes={{}} name="test" slug="test" depth={3} />);
+	const actual = shallow(
+		<SectionRenderer classes={{}} name="test" slug="test" depth={3} />,
+		options
+	);
 
 	expect(actual).toMatchSnapshot();
 });

@@ -8,6 +8,7 @@ const options = {
 		config: {
 			showUsage: false,
 		},
+		displayMode: 'all',
 		slots,
 	},
 	metadata: {},
@@ -133,7 +134,7 @@ describe('ReactComponent', () => {
 		const actual = shallow(<ReactComponent component={component} depth={3} />, {
 			context: {
 				...options.context,
-				isolatedComponent: true,
+				displayMode: 'component',
 			},
 		});
 

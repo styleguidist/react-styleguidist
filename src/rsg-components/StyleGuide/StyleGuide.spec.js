@@ -87,7 +87,7 @@ describe('sidebar rendering', () => {
 				config={config}
 				sections={sections}
 				slots={{}}
-				isolatedComponent
+				displayMode="component"
 			/>
 		);
 

@@ -18,7 +18,7 @@ it('should render examples', () => {
 	const actual = shallow(<Examples examples={examples} name="button" />, {
 		context: {
 			codeRevision: 1,
-			isolatedExample: false,
+			displayMode: 'example',
 		},
 	});
 
