@@ -2,7 +2,9 @@
 
 const fs = require('fs');
 const path = require('path');
+const getNameFromFilePath = require('./getNameFromFilePath');
 const requireIt = require('./requireIt');
+const slugger = require('./slugger');
 
 const propsLoader = path.resolve(__dirname, '../props-loader.js');
 
@@ -26,10 +28,12 @@ function getComponentMetadataPath(filepath) {
  */
 module.exports = function processComponent(filepath, config) {
 	const componentPath = path.relative(config.configDir, filepath);
+	const componentName = getNameFromFilePath(filepath);
 	const examplesFile = config.getExampleFilename(filepath);
 	const componentMetadataPath = getComponentMetadataPath(filepath);
 	return {
 		filepath: componentPath,
+		slug: slugger.slug(componentName),
 		pathLine: config.getComponentPathLine(componentPath),
 		module: requireIt(filepath),
 		props: requireIt(`!!${propsLoader}!${filepath}`),
