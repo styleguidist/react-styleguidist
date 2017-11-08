@@ -7,6 +7,7 @@ import Markdown from 'rsg-components/Markdown';
 import Slot from 'rsg-components/Slot';
 import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponentRenderer';
 import { DOCS_TAB_USAGE } from '../slots';
+import { DisplayModes } from '../../consts';
 
 const ExamplePlaceholder =
 	process.env.NODE_ENV !== 'production'
@@ -64,7 +65,7 @@ export default class ReactComponent extends Component {
 						slotName="componentToolbar"
 						slotProps={{
 							...component,
-							isolated: displayMode !== 'all',
+							isolated: displayMode !== DisplayModes.all,
 						}}
 						depth={depth}
 					>

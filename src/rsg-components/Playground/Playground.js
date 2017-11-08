@@ -6,6 +6,7 @@ import Para from 'rsg-components/Para';
 import Slot from 'rsg-components/Slot';
 import PlaygroundRenderer from 'rsg-components/Playground/PlaygroundRenderer';
 import { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
+import { DisplayModes } from '../../consts';
 
 export default class Playground extends Component {
 	static propTypes = {
@@ -91,7 +92,7 @@ export default class Playground extends Component {
 				toolbar={
 					<Slot
 						name="exampleToolbar"
-						props={{ name, isolated: displayMode === 'example', example: index }}
+						props={{ name, isolated: displayMode === DisplayModes.example, example: index }}
 					/>
 				}
 			/>

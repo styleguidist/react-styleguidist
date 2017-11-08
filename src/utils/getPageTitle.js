@@ -1,3 +1,5 @@
+import { DisplayModes } from '../consts';
+
 /**
  * Return page title:
  * “Style Guide Title” for all components view;
@@ -10,9 +12,9 @@
  * @return {string}
  */
 export default function getPageTitle(sections, baseTitle, displayMode) {
-	if (displayMode === 'component' || displayMode === 'example') {
+	if (displayMode === DisplayModes.component || displayMode === DisplayModes.example) {
 		return `${sections[0].components[0].name} — ${baseTitle}`;
-	} else if (displayMode === 'section') {
+	} else if (displayMode === DisplayModes.section) {
 		return `${sections[0].name} — ${baseTitle}`;
 	}
 	return baseTitle;

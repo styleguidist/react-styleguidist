@@ -1,5 +1,6 @@
 import deepfreeze from 'deepfreeze';
 import getRouteData from '../getRouteData';
+import { DisplayModes } from '../../consts';
 
 const sections = deepfreeze([
 	{
@@ -32,7 +33,7 @@ const sections = deepfreeze([
 describe('getRouteData', () => {
 	it('should return "all" mode by default', () => {
 		const result = getRouteData([], '');
-		expect(result.displayMode).toBe('all');
+		expect(result.displayMode).toBe(DisplayModes.all);
 	});
 
 	it('should return one component', () => {

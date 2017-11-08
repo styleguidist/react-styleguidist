@@ -5,6 +5,7 @@ import filterSectionExamples from './filterSectionExamples';
 import findSection from './findSection';
 import getInfoFromHash from './getInfoFromHash';
 import processSections from './processSections';
+import { DisplayModes } from '../consts';
 
 /**
  * Return sections / components / examples to show on a screen according to a current route.
@@ -26,13 +27,7 @@ export default function getRouteData(allSections, hash) {
 		targetIndex,
 	} = getInfoFromHash(hash);
 
-	// all: show all section and components (default)
-	// section: show one section
-	// component: show one component
-	// example: show one example
-	// TODO: error (404)
-	// TODO: Use consts
-	let displayMode = 'all';
+	let displayMode = DisplayModes.all;
 
 	let sections = processSections(allSections);
 
@@ -41,21 +36,21 @@ export default function getRouteData(allSections, hash) {
 		const filteredComponents = filterComponentsInSectionsByExactName(sections, targetName);
 		if (filteredComponents.length) {
 			sections = [{ components: filteredComponents }];
-			displayMode = 'component';
+			displayMode = DisplayModes.component;
 		} else {
 			const section = findSection(sections, targetName);
 			sections = section ? [section] : [];
-			displayMode = 'section';
+			displayMode = DisplayModes.section;
 		}
 
 		// If a single component or section is filtered and a fenced block index is specified hide all other examples
 		if (isFinite(targetIndex)) {
 			if (filteredComponents.length === 1) {
 				sections = [{ components: [filterComponentExamples(filteredComponents[0], targetIndex)] }];
-				displayMode = 'example';
+				displayMode = DisplayModes.example;
 			} else if (sections.length === 1) {
 				sections = [filterSectionExamples(sections[0], targetIndex)];
-				displayMode = 'example';
+				displayMode = DisplayModes.example;
 			}
 		}
 	}
