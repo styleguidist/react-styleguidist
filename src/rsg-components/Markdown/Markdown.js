@@ -6,6 +6,7 @@ import mapValues from 'lodash/mapValues';
 import Styled from 'rsg-components/Styled';
 import Link from 'rsg-components/Link';
 import { styles as paraStyles } from 'rsg-components/Para';
+import MarkdownHeading from 'rsg-components/Markdown/MarkdownHeading';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
 // That way we could avoid clashes between our loaders and user loaders.
@@ -42,6 +43,42 @@ const getBaseOverrides = memoize(classes => {
 		a: {
 			component: Link,
 		},
+		h1: {
+			component: MarkdownHeading,
+			props: {
+				level: 1,
+			},
+		},
+		h2: {
+			component: MarkdownHeading,
+			props: {
+				level: 2,
+			},
+		},
+		h3: {
+			component: MarkdownHeading,
+			props: {
+				level: 3,
+			},
+		},
+		h4: {
+			component: MarkdownHeading,
+			props: {
+				level: 4,
+			},
+		},
+		h5: {
+			component: MarkdownHeading,
+			props: {
+				level: 5,
+			},
+		},
+		h6: {
+			component: MarkdownHeading,
+			props: {
+				level: 6,
+			},
+		},
 		code: {
 			component: Code,
 			props: {
@@ -73,37 +110,6 @@ const styles = ({ space, fontFamily, fontSize, color, borderRadius }) => ({
 		fontSize: 'inherit',
 	},
 	para: paraStyles({ space, color, fontFamily }).para,
-	h1: {
-		composes: '$para',
-		fontSize: fontSize.h1,
-		fontWeight: 'normal',
-	},
-	h2: {
-		composes: '$para',
-		fontSize: fontSize.h2,
-		fontWeight: 'normal',
-	},
-	h3: {
-		composes: '$para',
-		fontSize: fontSize.h3,
-		fontWeight: 'normal',
-	},
-	h4: {
-		composes: '$para',
-		fontSize: fontSize.h4,
-		fontWeight: 'normal',
-	},
-	h5: {
-		composes: '$para',
-		fontSize: fontSize.h5,
-		fontWeight: 'normal',
-	},
-	h6: {
-		composes: '$para',
-		fontSize: fontSize.h6,
-		fontWeight: 'normal',
-		fontStyle: 'italic',
-	},
 	p: {
 		composes: '$para',
 	},

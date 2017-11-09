@@ -1,19 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Argument from 'rsg-components/Argument';
+import Heading from 'rsg-components/Heading';
 import Styled from 'rsg-components/Styled';
 
-export const styles = ({ space, color, fontFamily, fontSize }) => ({
+export const styles = ({ space }) => ({
 	root: {
 		marginBottom: space[2],
 		fontSize: 'inherit',
 	},
-	heading: {
+	headingWrapper: {
 		marginBottom: space[0],
-		color: color.base,
-		fontFamily: fontFamily.base,
-		fontSize: fontSize.base,
-		fontWeight: 'normal',
 	},
 });
 
@@ -24,7 +21,11 @@ export function ArgumentsRenderer({ classes, args, heading }) {
 
 	return (
 		<div className={classes.root}>
-			{heading && <h5 className={classes.heading}>Arguments</h5>}
+			{heading && (
+				<div className={classes.headingWrapper}>
+					<Heading level={5}>Arguments</Heading>
+				</div>
+			)}
 			{args.map(arg => <Argument key={arg.name} {...arg} />)}
 		</div>
 	);

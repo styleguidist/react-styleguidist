@@ -25,11 +25,15 @@ exports[`renderer should render heading 1`] = `
 <div
   className="root"
 >
-  <h5
-    className="heading"
+  <div
+    className="headingWrapper"
   >
-    Arguments
-  </h5>
+    <Styled(Heading)
+      level={5}
+    >
+      Arguments
+    </Styled(Heading)>
+  </div>
   <Styled(Argument)
     key="Foo"
     name="Foo"
