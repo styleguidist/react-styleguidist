@@ -40,9 +40,9 @@ const getBaseOverrides = memoize(classes => {
 
 	return {
 		...styleOverrides,
-    a: {
+		a: {
 			component: Link,
-    },
+		},
 		h1: {
 			component: MarkdownHeading,
 			props: {
