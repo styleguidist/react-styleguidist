@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
-import CodeMirror from 'react-codemirror2';
+import { UnControlled as CodeMirror } from 'react-codemirror2';
 import 'codemirror/mode/jsx/jsx';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.

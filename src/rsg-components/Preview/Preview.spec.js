@@ -16,20 +16,20 @@ const options = {
 
 it('should unmount Wrapper component', () => {
 	const actual = mount(<Preview code={code} evalInContext={evalInContext} />, options);
-	const node = actual.instance().mountNode;
 
-	expect(node.innerHTML).toMatch('<button');
+	expect(actual.html()).toMatch('<button');
 	actual.unmount();
-	expect(node.innerHTML).toBe('');
+	expect(actual.html()).toBe(null);
 });
 
 it('should not not fail when Wrapper wasn’t mounted', () => {
 	const consoleError = console.error;
-	console.error = () => {};
+	console.error = jest.fn();
 
 	const actual = mount(<Preview code="pizza" evalInContext={evalInContext} />, options);
 	const node = actual.instance().mountNode;
 
+	expect(console.error).toHaveBeenCalled();
 	expect(node.innerHTML).toBe('');
 	actual.unmount();
 	expect(node.innerHTML).toBe('');

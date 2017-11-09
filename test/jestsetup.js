@@ -2,7 +2,7 @@
 
 import { configure, shallow, render, mount } from 'enzyme';
 import keymirror from 'keymirror';
-import Adapter from 'enzyme-adapter-react-15';
+import Adapter from 'enzyme-adapter-react-16';
 import * as theme from '../src/styles/theme';
 
 configure({ adapter: new Adapter() });
@@ -45,9 +45,6 @@ document.createRange = function() {
 		},
 	};
 };
-
-// requestAnimationFrame “polyfill”
-window.requestAnimationFrame = a => a();
 
 jest.mock('react-scripts/config/webpack.config.dev', () => ({ cra: true }), { virtual: true });
 jest.mock('webpack-dev-server', function() {

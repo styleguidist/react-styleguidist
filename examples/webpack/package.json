@@ -27,9 +27,9 @@
     "file-loader": "^0.10.1",
     "loaders": "^1.1.2",
     "lodash": "^4.17.4",
-    "prop-types": "^15.5.10",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-styleguidist": "^5.0.0",
     "style-loader": "^0.13.2",
     "webpack": "^2.2.1"
