@@ -94,9 +94,10 @@ module.exports = {
 		type: 'string',
 		default: 'base16-light',
 	},
-	codeMirrorOptions: {
+	editorConfig: {
 		type: 'object',
 		default: {
+			theme: 'base16-light',
 			mode: 'jsx',
 			lineWrapping: true,
 			smartIndent: false,

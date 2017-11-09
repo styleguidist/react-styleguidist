@@ -46,11 +46,11 @@ export default class Editor extends Component {
 
 	render() {
 		const { code } = this.props;
-		const { highlightTheme, codeMirrorOptions } = this.context.config;
+		const { highlightTheme, editorConfig } = this.context.config;
 		const options = {
 			...codeMirrorDefault,
 			theme: highlightTheme,
-			...codeMirrorOptions,
+			...editorConfig,
 		};
 		return <CodeMirror value={code} onChange={this.handleChange} options={options} />;
 	}
