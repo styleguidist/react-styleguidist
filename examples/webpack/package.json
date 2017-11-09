@@ -17,26 +17,28 @@
     "node": ">=4"
   },
   "dependencies": {
-    "babel-core": "^6.25.0",
-    "babel-loader": "^6.4.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-preset-env": "^1.5.2",
-    "css-loader": "^0.26.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "css-loader": "^0.28.7",
     "dog-names": "^1.0.2",
-    "file-loader": "^0.10.1",
-    "loaders": "^1.1.2",
+    "file-loader": "^1.1.5",
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-styleguidist": "^5.0.0",
-    "style-loader": "^0.13.2",
-    "webpack": "^2.2.1"
+    "react-styleguidist": "^6.0.0",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.8.1"
   },
   "scripts": {
     "build": "webpack",
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build"
+  },
+  "devDependencies": {
+    "babel-preset-react": "^6.24.1"
   }
 }
