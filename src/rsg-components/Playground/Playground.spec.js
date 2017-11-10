@@ -39,6 +39,7 @@ const options = {
 					render: CodeTabButton,
 				},
 			],
+			previewContainer: [],
 		},
 	},
 	childContextTypes: {
@@ -145,6 +146,7 @@ it('renderer should render preview', () => {
 			name="name"
 			preview={<div>preview</div>}
 			previewProps={{ className: 'pizza', title: 'salami' }}
+			previewContainer={children => <div>{children}</div>}
 			tabButtons={<div>tab buttons</div>}
 			tabBody={<div>tab body</div>}
 			toolbar={<div>toolbar</div>}

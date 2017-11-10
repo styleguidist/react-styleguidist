@@ -5,13 +5,19 @@ exports[`renderer should render preview 1`] = `
   className="root"
 >
   <div
-    className="preview pizza"
+    className="previewContainer pizza"
     data-preview="name"
     title="salami"
   >
-    <div>
-      preview
-    </div>
+    <previewContainer>
+      <div
+        className="preview"
+      >
+        <div>
+          preview
+        </div>
+      </div>
+    </previewContainer>
   </div>
   <div
     className="controls"
@@ -47,6 +53,7 @@ exports[`should render component renderer 1`] = `
       evalInContext={[Function]}
     />
   }
+  previewContainer={[Function]}
   previewProps={Object {}}
   tabBody={
     <Slot

@@ -7,10 +7,12 @@ export const styles = ({ space, color, borderRadius }) => ({
 	root: {
 		marginBottom: space[4],
 	},
-	preview: {
-		padding: space[2],
+	previewContainer: {
 		border: [[1, color.border, 'solid']],
 		borderRadius,
+	},
+	preview: {
+		padding: space[2],
 	},
 	controls: {
 		display: 'flex',
@@ -26,6 +28,7 @@ export function PlaygroundRenderer({
 	name,
 	preview,
 	previewProps,
+	previewContainer: Container,
 	tabButtons,
 	tabBody,
 	toolbar,
@@ -33,8 +36,10 @@ export function PlaygroundRenderer({
 	const { className, ...props } = previewProps;
 	return (
 		<div className={classes.root}>
-			<div className={cx(classes.preview, className)} {...props} data-preview={name}>
-				{preview}
+			<div className={cx(classes.previewContainer, className)} {...props} data-preview={name}>
+				<Container>
+					<div className={classes.preview}>{preview}</div>
+				</Container>
 			</div>
 			<div className={classes.controls}>
 				<div className={classes.tabs}>{tabButtons}</div>
@@ -50,6 +55,7 @@ PlaygroundRenderer.propTypes = {
 	name: PropTypes.string.isRequired,
 	preview: PropTypes.node.isRequired,
 	previewProps: PropTypes.object.isRequired,
+	previewContainer: PropTypes.func.isRequired,
 	tabButtons: PropTypes.node.isRequired,
 	tabBody: PropTypes.node.isRequired,
 	toolbar: PropTypes.node.isRequired,

@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should renderer slots and pass props and children 1`] = `
+<div
+  name="one"
+  title="Pizza"
+>
+  <div
+    name="two"
+  >
+    <span>
+      coffee
+    </span>
+  </div>
+</div>
+`;
+
+exports[`should return children if there are no slots 1`] = `
+<span>
+  coffee
+</span>
+`;

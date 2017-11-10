@@ -16,6 +16,7 @@ export default function loadPlugins(plugins, config) {
 		exampleTab: [],
 		docsTabButton: [],
 		docsTab: [],
+		previewContainer: [],
 	};
 
 	plugins.forEach(({ module, options }) => {

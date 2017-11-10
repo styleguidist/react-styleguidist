@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
+import Container from 'rsg-components/Container';
 import Preview from 'rsg-components/Preview';
 import Para from 'rsg-components/Para';
 import Slot from 'rsg-components/Slot';
@@ -81,12 +82,19 @@ export default class Playground extends Component {
 			setState: this.setState.bind(this), // TODO: Bind in constructor
 		};
 
+		const previewContainer = ({ children }) => (
+			<Container name="previewContainer" props={slotProps}>
+				{children}
+			</Container>
+		);
+
 		return (
 			<PlaygroundRenderer
 				{...this.state}
 				name={name}
 				preview={preview}
 				previewProps={settings.props || {}}
+				previewContainer={previewContainer}
 				tabButtons={
 					<Slot
 						name="exampleTabButton"
