@@ -12,7 +12,7 @@ const isolatePlugin = () => ({
 			render: IsolateButton,
 		},
 		{
-			type: Slots.previewToolbarButton,
+			type: Slots.playgroundToolbarButton,
 			render: IsolateButton,
 		},
 	],
