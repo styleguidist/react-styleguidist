@@ -10,8 +10,10 @@ import { Slots } from '../consts';
  */
 export default function loadPlugins(plugins, config) {
 	const slotNames = Object.keys(Slots);
-	const slots = {};
-	slotNames.forEach(key => (slots[key] = []));
+	const slots = slotNames.reduce((slots, key) => {
+		slots[key] = [];
+		return slots;
+	}, {});
 
 	plugins.forEach(({ module, options }) => {
 		const func = module.default || module;
