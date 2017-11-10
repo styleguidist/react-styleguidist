@@ -1,4 +1,5 @@
 import isFunction from 'lodash/isFunction';
+import { Slots } from '../consts';
 
 /**
  * TODO
@@ -8,16 +9,9 @@ import isFunction from 'lodash/isFunction';
  * @return {object}
  */
 export default function loadPlugins(plugins, config) {
-	const slots = {
-		sectionToolbarButton: [],
-		componentToolbarButton: [],
-		exampleToolbarButton: [],
-		exampleTabButton: [],
-		exampleTab: [],
-		docsTabButton: [],
-		docsTab: [],
-		previewContainer: [],
-	};
+	const slotNames = Object.keys(Slots);
+	const slots = {};
+	slotNames.forEach(key => (slots[key] = []));
 
 	plugins.forEach(({ module, options }) => {
 		const func = module.default || module;
@@ -32,8 +26,8 @@ export default function loadPlugins(plugins, config) {
 			plugin.fills.forEach(fill => {
 				// TODO: validate
 
-				if (!slots[fill.type]) {
-					throw Error('Unknown fill'); // TODO
+				if (!Slots[fill.type]) {
+					throw new Error(`Unknown fill type "${name}", available types: ${slotNames.join(', ')}`);
 				}
 
 				slots[fill.type].push(fill);
