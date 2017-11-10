@@ -9,7 +9,7 @@ styleguidist({
 	components: path.resolve(dir, 'components/**/[A-Z]*.js'),
 	webpackConfig: {
 		module: {
-			loaders: [
+			rules: [
 				{
 					test: /\.jsx?$/,
 					include: dir,

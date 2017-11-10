@@ -2,9 +2,22 @@
 
 Styleguidist uses [webpack](https://webpack.js.org/) under the hood and it needs to know how to load your project’s files.
 
-*Webpack is a peer dependency but your project doesn’t have to use it. React Styleguidist works with webpack 1 and webpack 2.*
+*Webpack is required to run Styleguidist but your project doesn’t have to use it.*
 
 > **Note:** See [cookbook](Cookbook.md) for more examples.
+
+<!-- To update run: npx markdown-toc --maxdepth 2 -i docs/Webpack.md -->
+
+<!-- toc -->
+
+- [Reusing your project’s webpack config](#reusing-your-projects-webpack-config)
+- [Custom webpack config](#custom-webpack-config)
+- [Create React App](#create-react-app)
+- [Create React App, TypeScript](#create-react-app-typescript)
+- [Non-webpack projects](#non-webpack-projects)
+- [When nothing else works](#when-nothing-else-works)
+
+<!-- tocstop -->
 
 ## Reusing your project’s webpack config
 
@@ -25,13 +38,13 @@ module.exports = {
   webpackConfig: Object.assign({},
     require('./configs/webpack.js'),
     {
-        /* Custom config options */
+      /* Custom config options */
     }
   )
 };
 ```
 
-> **Note:** `entry`, `externals`, `output`, `watch`, `stats` and `devtool` options will be ignored.
+> **Note:** `entry`, `externals`, `output`, `watch`, and `stats` options will be ignored. For production builds, `devtool` will also be ignored.
 
 > **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
 
@@ -49,7 +62,7 @@ Add a `webpackConfig` section to your `styleguide.config.js`:
 module.exports = {
   webpackConfig: {
     module: {
-      loaders: [
+      rules: [
         // Babel loader, will use your project’s .babelrc
         {
           test: /\.jsx?$/,
@@ -69,28 +82,41 @@ module.exports = {
 
 > **Warning:** This option disables config load from `webpack.config.js`, see above how to load your config manually.
 
-> **Note:** `entry`, `externals`, `output`, `watch`, `stats` and `devtool` options will be ignored.
+> **Note:** `entry`, `externals`, `output`, `watch`, and `stats` options will be ignored. For production builds, `devtool` will also be ignored.
 
 > **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
 
 ## Create React App
 
-[Create React App](https://github.com/facebookincubator/create-react-app) is supported our of the box, you don’t even need to create a style guide config if your components could be found using a default glob pattern, `src/components/**/*.{js,jsx}`.
+[Create React App](https://github.com/facebookincubator/create-react-app) is supported out of the box, you don’t even need to create a style guide config if your components could be found using a default glob pattern, `src/components/**/*.{js,jsx}`.
+
+## Create React App, TypeScript
+
+If you're using [Create React App](https://github.com/facebookincubator/create-react-app) and Typescript, you need to:
+- Install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript)
+- Create a `styleguide.config.js`, see [this guide](Configuration.md)
+- Add a `components`, `webpackConfig` and `propsParser` section to your `styleguide.config.js`:
+
+```javascript
+module.exports = {
+  components: 'src/components/**/*.{ts,tsx}',
+  propsParser: require('react-docgen-typescript').parse,
+  webpackConfig: require('react-scripts-ts/config/webpack.config.dev.js')
+}
+```
 
 ## Non-webpack projects
 
 If your project doesn’t use webpack you still need loaders for your files. You can use [webpack-blocks](https://github.com/andywer/webpack-blocks).
 
 ```bash
-npm install --save-dev @webpack-blocks/webpack2 @webpack-blocks/babel6 @webpack-blocks/postcss
+npm install --save-dev webpack-blocks
 ```
 
 Then add a `webpackConfig` section to your `styleguide.config.js`:
 
 ```javascript
-const { createConfig } = require('@webpack-blocks/webpack2');
-const babel = require('@webpack-blocks/babel6');
-const postcss = require('@webpack-blocks/postcss');
+const { createConfig, babel, postcss } = require('webpack-blocks');
 module.exports = {
 	webpackConfig: createConfig([
 		babel(),
@@ -100,8 +126,6 @@ module.exports = {
 ```
 
 > **Note:** `.babelrc` and `postcss.config.js` files will be taken into account if you have them.
-
-> **Note:** Use `@webpack-blocks/webpack` for webpack 1. See [webpack-blocks docs](https://github.com/andywer/webpack-blocks) for more options.
 
 ## When nothing else works
 

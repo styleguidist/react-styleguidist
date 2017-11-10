@@ -12,13 +12,21 @@ it('should render text', () => {
 });
 
 it('should render underlined text', () => {
-	const actual = shallow(<TextRenderer {...props} underlined>Pizza</TextRenderer>);
+	const actual = shallow(
+		<TextRenderer {...props} underlined>
+			Pizza
+		</TextRenderer>
+	);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should render text with a title', () => {
-	const actual = shallow(<TextRenderer {...props} title="Pasta">Pizza</TextRenderer>);
+	const actual = shallow(
+		<TextRenderer {...props} title="Pasta">
+			Pizza
+		</TextRenderer>
+	);
 
 	expect(actual).toMatchSnapshot();
 });

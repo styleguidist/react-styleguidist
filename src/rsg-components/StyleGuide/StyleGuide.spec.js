@@ -2,6 +2,7 @@ import React from 'react';
 import TableOfContents from '../TableOfContents';
 import StyleGuide from './StyleGuide';
 import { StyleGuideRenderer } from './StyleGuideRenderer';
+import { DisplayModes } from '../../consts';
 
 const sections = [
 	{
@@ -46,6 +47,15 @@ it('should render welcome screen', () => {
 	expect(actual).toMatchSnapshot();
 });
 
+it('should render an error when componentDidCatch() is triggered', () => {
+	const wrapper = shallow(<StyleGuide codeRevision={1} config={config} sections={[]} slots={{}} />);
+	wrapper
+		.instance()
+		.componentDidCatch({ toString: () => 'error' }, { componentStack: { toString: () => 'info' } });
+	wrapper.update();
+	expect(wrapper).toMatchSnapshot();
+});
+
 describe('sidebar rendering', () => {
 	it('renderer should have sidebar if showSidebar is not set', () => {
 		const wrapper = shallow(
@@ -78,7 +88,7 @@ describe('sidebar rendering', () => {
 				config={config}
 				sections={sections}
 				slots={{}}
-				isolatedComponent
+				displayMode={DisplayModes.component}
 			/>
 		);
 

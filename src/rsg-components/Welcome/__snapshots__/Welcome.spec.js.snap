@@ -4,21 +4,21 @@ exports[`renderer should render welcome screen 1`] = `
 <div>
   <Styled(Markdown)
     text="
-  # Welcome to React Styleguidist!
-  
-  **We couldn’t find any components** using these patterns:
-  
-  - \`foo/*.js\`
-  - \`bar/*.js\`
-  
-  Create **styleguide.config.js** file in your project root directory like this:
-  
-      module.exports = {
-        components: 'src/components/**/*.js'
-      };
-  
-  Read more in the [locating components guide](https://react-styleguidist.js.org/docs/components.html).
-  				"
+# Welcome to React Styleguidist!
+
+**We couldn’t find any components** using these patterns:
+
+- \`foo/*.js\`
+- \`bar/*.js\`
+
+Create **styleguide.config.js** file in your project root directory like this:
+
+    module.exports = {
+      components: 'src/components/**/*.js'
+    };
+
+Read more in the [locating components guide](https://react-styleguidist.js.org/docs/components.html).
+				"
   />
 </div>
 `;

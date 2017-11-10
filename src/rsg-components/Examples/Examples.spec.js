@@ -1,6 +1,7 @@
 import React from 'react';
 import noop from 'lodash/noop';
 import Examples from '../Examples';
+import { DisplayModes } from '../../consts';
 
 const examples = [
 	{
@@ -18,7 +19,7 @@ it('should render examples', () => {
 	const actual = shallow(<Examples examples={examples} name="button" />, {
 		context: {
 			codeRevision: 1,
-			isolatedExample: false,
+			displayMode: DisplayModes.example,
 		},
 	});
 

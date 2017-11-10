@@ -2,44 +2,44 @@
 
 ## 1. Install Styleguidist
 
-1. Install Styleguidist and peer dependencies from npm:
-
-   ```bash
-   npm install --save-dev react-styleguidist react react-dom webpack
-   ```
-
-2. [Point Styleguidist to your React components](Components.md)
-
-3. [Tell Styleguidist how to load your code](Webpack.md)
-
-> **Note:** Webpack is a peer dependency but your project doesn’t have to use it. Styleguidist works with webpack 1 and webpack 2.
-
-**If you’re using [Create React App](https://github.com/facebookincubator/create-react-app) you only need this:**
+Install webpack if you don’t have it already and aren't using Create React App:
 
 ```bash
-npm install --save-dev react-styleguidist webpack
+npm install --save-dev webpack
 ```
 
-## 2. Add npm scripts for convenience (optional)
+Install Styleguidist:
+
+```bash
+npm install --save-dev react-styleguidist
+```
+
+## 2. Configure your style guide
+
+**If you’re using [Create React App](https://github.com/facebookincubator/create-react-app) you can skip this step.**
+
+[Point Styleguidist to your React components](Components.md) and [tell it how to load your code](Webpack.md).
+
+## 3. Add npm scripts for convenience
 
 Add these scripts to your `package.json`:
 
-```json
+```diff
 {
   "scripts": {
-    "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build"
++    "styleguide": "styleguidist server",
++    "styleguide:build": "styleguidist build"
   }
 }
 ```
 
-## 3. Start your style guide
+## 4. Start your style guide
 
-Run **`npm run styleguide`** to start style a guide dev server.
+Run **`npm run styleguide`** to start a style guide dev server.
 
 Run **`npm run styleguide:build`** to build a static version.
 
-## 4. Start documenting your components
+## 5. Start documenting your components
 
 See how to [document your components](Documenting.md)
 

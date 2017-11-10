@@ -2,8 +2,6 @@
 
 // If you want to access any of these options in React, don’t forget to update CLIENT_CONFIG_OPTIONS array
 
-/* eslint-disable no-console */
-
 // Config options that should be passed to the client
 const CLIENT_CONFIG_OPTIONS = [
 	'compilerConfig',
@@ -219,6 +217,19 @@ module.exports = {
 		},
 		example: 'My Style Guide',
 	},
+	updateExample: {
+		type: 'function',
+		default: props => {
+			if (props.lang === 'example') {
+				props.lang = 'js';
+				logger.warn(
+					'"example" code block language is deprecated. Use "js", "jsx" or "javascript" instead:\n' +
+						consts.DOCS_DOCUMENTING
+				);
+			}
+			return props;
+		},
+	},
 	updateWebpackConfig: {
 		type: 'function',
 		removed: `Use "webpackConfig" option instead:\n${consts.DOCS_WEBPACK}`,
@@ -237,6 +248,7 @@ module.exports = {
 			const file = findUserWebpackConfig();
 			if (file) {
 				logger.info(`Loading webpack config from:\n${file}`);
+				// eslint-disable-next-line import/no-dynamic-require
 				return require(file);
 			}
 
@@ -250,7 +262,7 @@ module.exports = {
 		},
 		example: {
 			module: {
-				loaders: [
+				rules: [
 					{
 						test: /\.jsx?$/,
 						exclude: /node_modules/,

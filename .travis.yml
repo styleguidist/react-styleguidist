@@ -6,28 +6,9 @@ node_js:
 cache:
   directories:
     - node_modules
-    - travis_phantomjs
-env:
-  # Test everything in Webpack 1 and 2
-  - export WEBPACK_VERSION="2"
-  - export WEBPACK_VERSION="1"
 before_install:
   # Upgrade npm
   - if [[ `npm -v` != 5* ]]; then npm install -g npm@latest; fi
-  # Upgrade PhantomJS
-  - |
-      export PHANTOMJS_VERSION=2.1.1
-      export PATH=$PWD/travis_phantomjs/phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin:$PATH
-      if [ $(phantomjs --version) != $PHANTOMJS_VERSION ]; then
-        rm -rf $PWD/travis_phantomjs
-        mkdir -p $PWD/travis_phantomjs
-        wget https://github.com/Medium/phantomjs/releases/download/v$PHANTOMJS_VERSION/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2
-        tar -xvf phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 -C $PWD/travis_phantomjs
-      fi
-      phantomjs -v
-before_script:
-  # Manually install Webpack 1 or 2
-  - if [ "$WEBPACK_VERSION" == "1" ]; then npm install --no-save webpack@1; fi
 script:
   # Run lint
   - npm run lint
@@ -36,7 +17,7 @@ script:
     if [[ "$TRAVIS_NODE_VERSION" == "4" ]]; then
       NODE_ENV=test node --harmony-proxies $(npm bin)/jest --runInBand
     else
-      if [[ "$TRAVIS_NODE_VERSION" == "8" && "$WEBPACK_VERSION" == "2"  ]]; then
+      if [[ "$TRAVIS_NODE_VERSION" == "8" ]]; then
         npm run danger
         npm run test:coverage -- --runInBand
       else
@@ -48,14 +29,20 @@ script:
   - npm run build:customised
   - npm run build:sections
   # Check that examples really works: no JS errors on load
-  - npm run phantomjs
-  - npm run phantomjs:customised
-  - npm run phantomjs:sections
+  - |
+    if [[ "$TRAVIS_NODE_VERSION" == "8" ]]; then
+      npm run test:browser:pre
+      npm run test:browser
+      npm run test:browser:customised
+      npm run test:browser:sections
+    fi
 after_success:
   # Make release with semantic-release if needed
-  - npm run semantic-release
+  - npm install -g semantic-release
+  - npm install --no-save semantic-release-tamia
+  - semantic-release pre && npm publish && semantic-release post
   - |
-    if [[ "$TRAVIS_NODE_VERSION" == "8" && "$WEBPACK_VERSION" == "2" ]]; then
+    if [[ "$TRAVIS_NODE_VERSION" == "8" ]]; then
       # Upload coverage report to Codecov
       bash <(curl -s https://codecov.io/bash)
       # Update site

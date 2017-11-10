@@ -1,8 +1,20 @@
 # Developer guide
 
-*For basics see [How to contribute](https://github.com/styleguidist/react-styleguidist/blob/master/Contributing.md).*
+<!-- To update run: npx markdown-toc --maxdepth 2 -i docs/Development.md -->
 
-Styleguidist isn’t an ordinary single page app and some design decisions may look confusing to an outsider. In this guide we'll explain these decisions to un-confuse potential contributors. 
+<!-- toc -->
+
+- [How it works](#how-it-works)
+- [Webpack loaders and webpack configuration](#webpack-loaders-and-webpack-configuration)
+- [React components](#react-components)
+- [Styles](#styles)
+- [Testing](#testing)
+
+<!-- tocstop -->
+
+*For basics see [How to contribute](https://github.com/styleguidist/react-styleguidist/blob/master/.github/Contributing.md).*
+
+Styleguidist isn’t an ordinary single page app and some design decisions may look confusing to an outsider. In this guide we’ll explain these decisions to un-confuse potential contributors.
 
 The main thing is that we’re running two apps at the same time: user’s components and Styleguidist UI. They share a webpack configuration and have styles in the same scope (there’s only one scope in CSS). And we can control only one of these two apps: Styleguidist UI. That puts us under some restrictions:
 
@@ -26,7 +38,7 @@ We use webpack loaders to hot reload the style guide on changes in user componen
 * `props-loaders`: loads props documentation using react-docgen;
 * `examples-loader`: loads examples from Markdown files;
 
-There are two more loaders — `css-loader` and `styles-loader` but they are just one-line aliases to corresponding webpack loaders. We don’t want to rely on webpack loader resolver because its behavior can be changed by user’s webpack config (Create React App does that for example). This way we can bypass webpack resolver and use Node resolver instead. These loaders are used like this:
+There are two more loaders — `css-loader` and `styles-loader` but they are just one-line aliases to corresponding webpack loaders. We don’t want to rely on webpack loader resolver because its behavior can be changed by user’s webpack config (Create React App does that for example). This way we can bypass webpack resolver and use Node.js resolver instead. These loaders are used like this:
 
 ```js
 require('!!../../../loaders/style-loader!../../../loaders/css-loader!codemirror/lib/codemirror.css');
@@ -104,7 +116,7 @@ Because of isolation and theming you need to explicitly declare `fontFamily`, `f
 
 ## Testing
 
-We’re using [Jest with Enzyme](http://blog.sapegin.me/all/react-jest) for testing. Put your component tests into `Component.spec.js` file in the same folder and all other tests into `__tests__/filename.spece.js`.
+We’re using [Jest with Enzyme](http://blog.sapegin.me/all/react-jest) for testing. Put your component tests into `Component.spec.js` file in the same folder and all other tests into `__tests__/filename.spec.js`.
 
 To test particular class names use `classes` function (available in the global namespace in tests):
 

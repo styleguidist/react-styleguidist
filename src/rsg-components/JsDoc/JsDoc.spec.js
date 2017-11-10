@@ -79,6 +79,6 @@ describe('JsDoc', () => {
 	it('should render null for empty tags', () => {
 		const actual = shallow(<JsDoc />);
 
-		expect(actual.node).toBe(null);
+		expect(actual.getElement()).toBe(null);
 	});
 });

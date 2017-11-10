@@ -8,5 +8,9 @@ const semverUtils = require('semver-utils');
  * @return {number}
  */
 module.exports = function getWebpackVersion() {
-	return Number(semverUtils.parseRange(require('webpack/package.json').version)[0].major);
+	try {
+		return Number(semverUtils.parseRange(require('webpack/package.json').version)[0].major);
+	} catch (err) {
+		return undefined;
+	}
 };

@@ -8,7 +8,7 @@ module.exports = {
 	components: './components/**/[A-Z]*.js',
 	webpackConfig: {
 		module: {
-			loaders: [
+			rules: [
 				{
 					test: /\.jsx?$/,
 					include: dir,

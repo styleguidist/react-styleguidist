@@ -44,11 +44,18 @@ export default class Preview extends Component {
 		config: PropTypes.object.isRequired,
 	};
 
-	state = {
-		error: null,
-	};
+	constructor() {
+		super();
+
+		this.state = {
+			error: null,
+		};
+
+		this.handleError = this.handleError.bind(this);
+	}
 
 	componentDidMount() {
+		console.clear(); // eslint-disable-line no-console
 		this.executeCode();
 	}
 
@@ -59,6 +66,16 @@ export default class Preview extends Component {
 	componentDidUpdate(prevProps) {
 		if (this.props.code !== prevProps.code) {
 			this.executeCode();
+		}
+	}
+
+	componentWillUnmount() {
+		this.unmountPreview();
+	}
+
+	unmountPreview() {
+		if (this.mountNode) {
+			ReactDOM.unmountComponentAtNode(this.mountNode);
 		}
 	}
 
@@ -79,12 +96,13 @@ export default class Preview extends Component {
 
 		const exampleComponent = this.evalInContext(compiledCode);
 		const wrappedComponent = (
-			<Wrapper>
+			<Wrapper onError={this.handleError}>
 				<PreviewComponent component={exampleComponent} />
 			</Wrapper>
 		);
 
 		window.requestAnimationFrame(() => {
+			this.unmountPreview();
 			try {
 				ReactDOM.render(wrappedComponent, this.mountNode);
 			} catch (err) {
@@ -120,9 +138,7 @@ export default class Preview extends Component {
 	}
 
 	handleError(err) {
-		if (this.mountNode) {
-			ReactDOM.unmountComponentAtNode(this.mountNode);
-		}
+		this.unmountPreview();
 
 		this.setState({
 			error: err.toString(),

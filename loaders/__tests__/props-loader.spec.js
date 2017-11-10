@@ -110,3 +110,24 @@ it('should warn if a file cannot be parsed', () => {
 	expect(() => new vm.Script(result)).not.toThrow();
 	expect(warn).toBeCalledWith(expect.stringMatching('Cannot parse'));
 });
+
+it('should add context dependencies to webpack from contextDependencies config option', () => {
+	const contextDependencies = ['foo', 'bar'];
+	const addContextDependency = jest.fn();
+	const file = './test/components/Button/Button.js';
+	const result = propsLoader.call(
+		{
+			request: file,
+			_styleguidist: Object.assign(_styleguidist, {
+				contextDependencies,
+			}),
+			addContextDependency,
+		},
+		readFileSync(file, 'utf8')
+	);
+
+	expect(() => new vm.Script(result)).not.toThrow();
+	expect(addContextDependency).toHaveBeenCalledTimes(2);
+	expect(addContextDependency).toBeCalledWith(contextDependencies[0]);
+	expect(addContextDependency).toBeCalledWith(contextDependencies[1]);
+});

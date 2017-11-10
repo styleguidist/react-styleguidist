@@ -4,13 +4,14 @@ import Examples from 'rsg-components/Examples';
 import Components from 'rsg-components/Components';
 import Sections from 'rsg-components/Sections';
 import SectionRenderer from 'rsg-components/Section/SectionRenderer';
+import { DisplayModes } from '../../consts';
 
-export default function Section({ section }, { isolatedSection = false }) {
+export default function Section({ section, depth }, { displayMode }) {
 	const { name, slug, content, components, sections } = section;
 
 	const contentJsx = content && <Examples examples={content} name={name} />;
-	const componentsJsx = components && <Components components={components} />;
-	const sectionsJsx = sections && <Sections sections={sections} />;
+	const componentsJsx = components && <Components components={components} depth={depth + 1} />;
+	const sectionsJsx = sections && <Sections sections={sections} depth={depth + 1} />;
 
 	return (
 		<SectionRenderer
@@ -19,15 +20,17 @@ export default function Section({ section }, { isolatedSection = false }) {
 			content={contentJsx}
 			components={componentsJsx}
 			sections={sectionsJsx}
-			isolated={isolatedSection}
+			isolated={displayMode !== DisplayModes.all}
+			depth={depth}
 		/>
 	);
 }
 
 Section.propTypes = {
 	section: PropTypes.object.isRequired,
+	depth: PropTypes.number.isRequired,
 };
 
 Section.contextTypes = {
-	isolatedSection: PropTypes.bool,
+	displayMode: PropTypes.string,
 };

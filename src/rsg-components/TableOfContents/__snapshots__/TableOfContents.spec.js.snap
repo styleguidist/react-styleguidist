@@ -99,16 +99,16 @@ exports[`should filter section names 1`] = `
           ],
           "content": <Styled(ComponentsList)
             items={
-                  Array [
-                        Object {
-                          "content": false,
-                          "heading": false,
-                          "name": "Button",
-                          "slug": "button",
-                        },
-                      ]
+              Array [
+                Object {
+                  "content": false,
+                  "heading": false,
+                  "name": "Button",
+                  "slug": "button",
+                },
+              ]
             }
-      />,
+          />,
           "heading": true,
           "name": "Buttons",
           "sections": Array [],
@@ -127,22 +127,22 @@ exports[`should filter section names 1`] = `
           ],
           "content": <Styled(ComponentsList)
             items={
-                  Array [
-                        Object {
-                          "content": false,
-                          "heading": false,
-                          "name": "Input",
-                          "slug": "input",
-                        },
-                        Object {
-                          "content": false,
-                          "heading": false,
-                          "name": "Textarea",
-                          "slug": "textarea",
-                        },
-                      ]
+              Array [
+                Object {
+                  "content": false,
+                  "heading": false,
+                  "name": "Input",
+                  "slug": "input",
+                },
+                Object {
+                  "content": false,
+                  "heading": false,
+                  "name": "Textarea",
+                  "slug": "textarea",
+                },
+              ]
             }
-      />,
+          />,
           "heading": true,
           "name": "Forms",
           "sections": Array [],
@@ -239,16 +239,16 @@ exports[`should render renderer with sections with nested components 1`] = `
           ],
           "content": <Styled(ComponentsList)
             items={
-                  Array [
-                        Object {
-                          "content": false,
-                          "heading": false,
-                          "name": "Button",
-                          "slug": "button",
-                        },
-                      ]
+              Array [
+                Object {
+                  "content": false,
+                  "heading": false,
+                  "name": "Button",
+                  "slug": "button",
+                },
+              ]
             }
-      />,
+          />,
           "heading": true,
           "name": "Buttons",
           "sections": Array [],
@@ -267,22 +267,22 @@ exports[`should render renderer with sections with nested components 1`] = `
           ],
           "content": <Styled(ComponentsList)
             items={
-                  Array [
-                        Object {
-                          "content": false,
-                          "heading": false,
-                          "name": "Input",
-                          "slug": "input",
-                        },
-                        Object {
-                          "content": false,
-                          "heading": false,
-                          "name": "Textarea",
-                          "slug": "textarea",
-                        },
-                      ]
+              Array [
+                Object {
+                  "content": false,
+                  "heading": false,
+                  "name": "Input",
+                  "slug": "input",
+                },
+                Object {
+                  "content": false,
+                  "heading": false,
+                  "name": "Textarea",
+                  "slug": "textarea",
+                },
+              ]
             }
-      />,
+          />,
           "heading": true,
           "name": "Forms",
           "sections": Array [],

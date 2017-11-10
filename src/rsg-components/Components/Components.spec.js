@@ -23,7 +23,7 @@ const components = [
 ];
 
 it('should render components list', () => {
-	const actual = shallow(<Components components={components} />);
+	const actual = shallow(<Components components={components} depth={3} />);
 
 	expect(actual).toMatchSnapshot();
 });
@@ -31,8 +31,8 @@ it('should render components list', () => {
 it('renderer should render components list layout', () => {
 	const actual = shallow(
 		<ComponentsRenderer>
-			<ReactComponent key={0} component={components[0]} />
-			<ReactComponent key={1} component={components[1]} />
+			<ReactComponent key={0} component={components[0]} depth={3} />
+			<ReactComponent key={1} component={components[1]} depth={3} />
 		</ComponentsRenderer>
 	);
 

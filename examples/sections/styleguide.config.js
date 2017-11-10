@@ -1,22 +1,43 @@
 const path = require('path');
-const loaders = require('loaders');
+
 module.exports = {
 	title: 'React Style Guide Example',
 	sections: [
 		{
-			name: 'Components',
-			components: './src/components/**/[A-Z]*.js',
-		},
-		{
 			name: 'Documentation',
 			sections: [
 				{
-					name: 'First File',
-					content: 'docs/One.md',
+					name: 'Files',
+					sections: [
+						{
+							name: 'First File',
+							content: 'docs/One.md',
+						},
+						{
+							name: 'Second File',
+							content: 'docs/Two.md',
+						},
+					],
+				},
+			],
+		},
+		{
+			name: 'Components',
+			sections: [
+				{
+					name: 'Buttons',
+					components: () => [
+						'./src/components/Button/Button.js',
+						'./src/components/RandomButton/RandomButton.js',
+						'./src/components/WrappedButton/WrappedButton.js',
+					],
 				},
 				{
-					name: 'Second File',
-					content: 'docs/Two.md',
+					name: 'Fields',
+					components: () => [
+						'./src/components/Label/Label.js',
+						'./src/components/Placeholder/Placeholder.js',
+					],
 				},
 			],
 		},
@@ -24,14 +45,25 @@ module.exports = {
 	require: [path.join(__dirname, 'src/styles.css')],
 	webpackConfig: env => ({
 		module: {
-			loaders: loaders.all,
-		},
-		performance: env === 'development'
-			? false
-			: {
-					maxAssetSize: 670000, // bytes
-					maxEntrypointSize: 670000, // bytes
-					hints: 'error',
+			rules: [
+				{
+					test: /\.jsx?$/,
+					exclude: /node_modules/,
+					loader: 'babel-loader',
 				},
+				{
+					test: /\.css$/,
+					loader: 'style-loader!css-loader',
+				},
+			],
+		},
+		performance:
+			env === 'development'
+				? false
+				: {
+						maxAssetSize: 685000, // bytes
+						maxEntrypointSize: 685000, // bytes
+						hints: 'error',
+					},
 	}),
 };

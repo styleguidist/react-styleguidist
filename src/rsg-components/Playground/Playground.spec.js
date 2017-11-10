@@ -1,14 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Playground from './Playground';
+import Editor from '../Editor';
+import CodeTabButton from '../../plugins/code-editor/CodeTabButton';
 import '../../styles/setupjss';
 import { EXAMPLE_TAB_CODE_EDITOR } from '../../plugins/code-editor';
-import { PlaygroundRenderer } from './PlaygroundRenderer';
+import { PlaygroundRenderer, styles } from './PlaygroundRenderer';
 
-/* eslint-disable react/prop-types */
-
+const evalInContext = a =>
+	new Function('require', 'const React = require("react");' + a).bind(null, require); // eslint-disable-line no-new-func
+const reactCodeMirrorSelector = '.react-codemirror2';
 const code = '<button>OK</button>';
 const newCode = '<button>Not OK</button>';
+const props = {
+	index: 0,
+	name: 'name',
+	settings: {},
+	evalInContext,
+	code,
+};
 const options = {
 	context: {
 		config: {
@@ -20,13 +30,13 @@ const options = {
 			exampleTab: [
 				{
 					id: EXAMPLE_TAB_CODE_EDITOR,
-					render: () => <div className="ReactCodeMirror">editor</div>,
+					render: Editor,
 				},
 			],
 			exampleTabButton: [
 				{
 					id: EXAMPLE_TAB_CODE_EDITOR,
-					render: ({ onClick, id }) => <button name={id} onClick={onClick}>code</button>,
+					render: CodeTabButton,
 				},
 			],
 		},
@@ -37,19 +47,13 @@ const options = {
 };
 
 it('should render component renderer', () => {
-	const actual = shallow(
-		<Playground code={code} evalInContext={a => () => a} name="name" index={0} />,
-		options
-	);
+	const actual = shallow(<Playground {...props} />, options);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should update code via props', () => {
-	const actual = shallow(
-		<Playground code={code} evalInContext={a => () => a} name="name" index={0} />,
-		options
-	);
+	const actual = shallow(<Playground {...props} />, options);
 
 	expect(actual.state('code')).toEqual(code);
 
@@ -61,7 +65,7 @@ it('should update code via props', () => {
 });
 
 it('should update code with debounce', done => {
-	const actual = shallow(<Playground code={code} evalInContext={a => a} name="name" index={0} />, {
+	const actual = shallow(<Playground {...props} />, {
 		context: {
 			...options.context,
 			config: {
@@ -82,25 +86,65 @@ it('should update code with debounce', done => {
 	}, 3);
 });
 
-it('should open a code editor', () => {
-	const actual = mount(
-		<Playground code={code} evalInContext={a => () => a} name="name" index={0} />,
-		options
-	);
+it('should open a code editor', done => {
+	const actual = mount(<Playground {...props} />, options);
 
-	expect(actual.find('.ReactCodeMirror')).toHaveLength(0);
+	expect(actual.find(reactCodeMirrorSelector)).toHaveLength(0);
 
 	actual.find(`button[name="${EXAMPLE_TAB_CODE_EDITOR}"]`).simulate('click');
 
-	expect(actual.find('.ReactCodeMirror')).toHaveLength(1);
+	setTimeout(() => {
+		actual.update();
+		expect(actual.find(reactCodeMirrorSelector)).toHaveLength(1);
+		done();
+	}, 100);
+});
+
+it('should not render a code editor if noeditor option passed in example settings', () => {
+	const actual = mount(<Playground {...props} settings={{ noeditor: true }} />, options);
+	expect(actual.find(`button[name="${EXAMPLE_TAB_CODE_EDITOR}"]`)).toHaveLength(0);
+});
+
+it('should open a code editor by default if showcode=true option passed in example settings', () => {
+	const actual = mount(<Playground {...props} settings={{ showcode: true }} />, options);
+	expect(actual.text()).toMatch('Loading');
+});
+
+it('should open a code editor by default if showCode=true option specified in style guide config', () => {
+	const actual = mount(<Playground {...props} />, {
+		context: {
+			...options.context,
+			config: {
+				...options.context.config,
+				showCode: true,
+			},
+		},
+		childContextTypes: options.childContextTypes,
+	});
+	expect(actual.text()).toMatch('Loading');
+});
+
+it('showcode option in example settings should overwrite style guide config option', () => {
+	const actual = mount(<Playground {...props} settings={{ showcode: false }} />, {
+		context: {
+			...options.context,
+			config: {
+				...options.context.config,
+				showCode: true,
+			},
+		},
+		childContextTypes: options.childContextTypes,
+	});
+	expect(actual.text()).not.toMatch('Loading');
 });
 
 it('renderer should render preview', () => {
 	const actual = shallow(
 		<PlaygroundRenderer
-			classes={{}}
+			classes={classes(styles)}
 			name="name"
 			preview={<div>preview</div>}
+			previewProps={{ className: 'pizza', title: 'salami' }}
 			tabButtons={<div>tab buttons</div>}
 			tabBody={<div>tab body</div>}
 			toolbar={<div>toolbar</div>}

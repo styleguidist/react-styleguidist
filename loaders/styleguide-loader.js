@@ -1,5 +1,4 @@
 'use strict';
-/* eslint-disable no-console */
 
 const pick = require('lodash/pick');
 const commonDir = require('common-dir');
@@ -13,17 +12,16 @@ const getComponentPatternsFromSections = require('./utils/getComponentPatternsFr
 const getSections = require('./utils/getSections');
 const getPlugins = require('./utils/getPlugins');
 const filterComponentsWithExample = require('./utils/filterComponentsWithExample');
+const slugger = require('./utils/slugger');
 const CLIENT_CONFIG_OPTIONS = require('../scripts/schemas/config').CLIENT_CONFIG_OPTIONS;
 
 module.exports = function() {};
 module.exports.pitch = function() {
-	/* istanbul ignore if */
-	if (this.cacheable) {
-		this.cacheable();
-	}
-
 	// Clear cache so it would detect new or renamed files
 	fileExistsCaseInsensitive.clearCache();
+
+	// Reset slugger for each code reload to be deterministic
+	slugger.reset();
 
 	const config = this._styleguidist;
 

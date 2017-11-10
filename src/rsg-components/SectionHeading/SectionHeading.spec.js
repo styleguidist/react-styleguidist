@@ -1,40 +1,58 @@
 import React from 'react';
-import SectionHeading, { SectionHeadingRenderer, styles } from './SectionHeadingRenderer';
+import SectionHeading from './index';
+import SectionHeadingRenderer from './SectionHeadingRenderer';
 
-const props = {
-	classes: classes(styles),
-	id: 'heading',
-	href: '/heading',
-};
+describe('SectionHeading', () => {
+	const FakeToolbar = () => <div>Fake toolbar</div>;
 
-it('should pass props to slots', () => {
-	const actual = shallow(
-		<SectionHeading id="heading" href="/heading" slotName="slot" slotProps={{ foo: 1, bar: 'baz' }}>
-			Heading
-		</SectionHeading>
-	);
+	it('should forward slot properties to the toolbar', () => {
+		const actual = shallow(
+			<SectionHeading id="section" slotName="slot" slotProps={{ foo: 1, bar: 'baz' }} depth={2}>
+				A Section
+			</SectionHeading>
+		);
 
-	expect(actual).toMatchSnapshot();
-});
+		expect(actual).toMatchSnapshot();
+	});
 
-it('renderer should render H2 tag', () => {
-	const actual = shallow(<SectionHeadingRenderer {...props}>Heading</SectionHeadingRenderer>);
+	it('should render a section heading', () => {
+		const actual = shallow(
+			<SectionHeadingRenderer id="section" href="/section" depth={2} toolbar={<FakeToolbar />}>
+				A Section
+			</SectionHeadingRenderer>
+		);
 
-	expect(actual).toMatchSnapshot();
-});
+		expect(actual.dive()).toMatchSnapshot();
+	});
 
-it('renderer should render H1 tag', () => {
-	const actual = shallow(
-		<SectionHeadingRenderer {...props} primary>Heading</SectionHeadingRenderer>
-	);
+	it('should render a deprecated section heading', () => {
+		const actual = shallow(
+			<SectionHeadingRenderer
+				id="section"
+				href="/section"
+				depth={2}
+				toolbar={<FakeToolbar />}
+				deprecated
+			>
+				A Section
+			</SectionHeadingRenderer>
+		);
 
-	expect(actual).toMatchSnapshot();
-});
+		expect(actual.dive()).toMatchSnapshot();
+	});
 
-it('renderer should render heading with deprecated styles', () => {
-	const actual = shallow(
-		<SectionHeadingRenderer {...props} deprecated>Heading</SectionHeadingRenderer>
-	);
+	it('should prevent the heading level from exceeding the maximum allowed by the Heading component', () => {
+		const actual = shallow(
+			<SectionHeadingRenderer id="section" href="/section" depth={7} toolbar={<FakeToolbar />}>
+				A Section
+			</SectionHeadingRenderer>
+		);
 
-	expect(actual).toMatchSnapshot();
+		expect(
+			actual
+				.dive()
+				.find('Styled(Heading)')
+				.prop('level')
+		).toEqual(6);
+	});
 });

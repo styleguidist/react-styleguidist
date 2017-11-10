@@ -12,7 +12,7 @@ exports[`renderer should render message for array 1`] = `
 <div>
   <Styled(Markdown)
     text="Hello *world*!
-  Foo _bar_"
+Foo _bar_"
   />
 </div>
 `;

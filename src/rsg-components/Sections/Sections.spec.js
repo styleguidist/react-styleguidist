@@ -41,7 +41,7 @@ const sections = [
 ];
 
 it('should render component renderer', () => {
-	const actual = shallow(<Sections sections={sections} />);
+	const actual = shallow(<Sections sections={sections} depth={3} />);
 
 	expect(actual).toMatchSnapshot();
 });
@@ -49,9 +49,9 @@ it('should render component renderer', () => {
 it('render should render styled component', () => {
 	const actual = shallow(
 		<StyledSectionsRenderer classes={{}}>
-			<Section key={0} section={sections[0]} />
-			<Section key={1} section={sections[1]} />
-			<Section key={2} section={sections[2]} />
+			<Section key={0} section={sections[0]} depth={3} />
+			<Section key={1} section={sections[1]} depth={3} />
+			<Section key={2} section={sections[2]} depth={3} />
 		</StyledSectionsRenderer>
 	);
 
@@ -61,9 +61,9 @@ it('render should render styled component', () => {
 it('render should render component', () => {
 	const actual = shallow(
 		<SectionsRenderer classes={{}}>
-			<Section key={0} section={sections[0]} />
-			<Section key={1} section={sections[1]} />
-			<Section key={2} section={sections[2]} />
+			<Section key={0} section={sections[0]} depth={3} />
+			<Section key={1} section={sections[1]} depth={3} />
+			<Section key={2} section={sections[2]} depth={3} />
 		</SectionsRenderer>
 	);
 

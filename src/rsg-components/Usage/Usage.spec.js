@@ -39,6 +39,6 @@ describe('Usage', () => {
 	it('should render nothing without props and methods', () => {
 		const actual = shallow(<Usage props={{}} />);
 
-		expect(actual.node).toBe(null);
+		expect(actual.getElement()).toBe(null);
 	});
 });

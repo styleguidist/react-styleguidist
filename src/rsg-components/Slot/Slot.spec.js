@@ -44,7 +44,10 @@ it('should pass slot ID to onClick handler', () => {
 	const onClick = jest.fn();
 	const actual = mount(<Slot name="slot" props={{ onClick }} />, options);
 
-	actual.find('button').first().simulate('click');
+	actual
+		.find('button')
+		.first()
+		.simulate('click');
 
 	expect(onClick).toBeCalledWith('one', expect.any(Object));
 });

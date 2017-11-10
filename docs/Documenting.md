@@ -4,6 +4,21 @@ Styleguidist generates documentation for your components based on the comments i
 
 > **Note:** [See examples](https://github.com/styleguidist/react-styleguidist/tree/master/examples/basic/src/components) of documented components in our demo style guide.
 
+<!-- To update run: npx markdown-toc --maxdepth 2 -i docs/Documenting.md -->
+
+<!-- toc -->
+
+- [Code comments and propTypes](#code-comments-and-proptypes)
+- [Usage examples and Readme files](#usage-examples-and-readme-files)
+- [External examples using doclet tags](#external-examples-using-doclet-tags)
+- [Public methods](#public-methods)
+- [Ignoring props](#ignoring-props)
+- [Using JSDoc tags](#using-jsdoc-tags)
+- [Writing code examples](#writing-code-examples)
+- [Limitations](#limitations)
+
+<!-- tocstop -->
+
 ## Code comments and propTypes
 
 Styleguidist will display your components’ JSDoc comment blocks. Also, it will pick up props from propTypes declarations and display them in a table.
@@ -43,25 +58,33 @@ export default class Button extends React.Component {
 
 ## Usage examples and Readme files
 
-Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the component’s folder and display them. Any code block without a language tag will be rendered as a  React component with live editable preview.
+Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the component’s folder and display them. Any code block with a language tag of `js`, `jsx` or `javascript` will be rendered as a React component with an interactive playground. For backwards compatibility, code blocks without a language tag are also rendered in this way. It is recommended to always use the proper language tag for new documentation.
 
     React component example:
 
-        <Button size="large">Push Me</Button>
-
-    One more with generic code fence:
-
-    ```
+    ```js
     <Button size="large">Push Me</Button>
     ```
 
-    One more with `example` code fence (text editors may alias to `jsx` or `javascript`):
+    You can add a custom props to an example wrapper:
 
-    ```example
-    <Button size="large">Push Me</Button>
+    ```js { "props": { "className": "checks" } }
+    <Button>I’m transparent!</Button>
     ```
 
-    This example is rendered only as highlighted source code, not an actual component:
+    Or disable an editor by passing a `noeditor` modifier:
+
+    ```jsx noeditor
+    <Button>Push Me</Button>
+    ```
+
+    To render an example as highlighted source code add a `static` modifier:
+
+    ```jsx static
+    import React from 'react';
+    ```
+
+    Examples with all other languages are rendered only as highlighted source code, not an actual component:
 
     ```html
     <Button size="large">Push Me</Button>
@@ -70,6 +93,8 @@ Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the co
     Any [Markdown](http://daringfireball.net/projects/markdown/) is **allowed** _here_.
 
 > **Note:** You can configure examples file name with the [getExampleFilename](Configuration.md#getexamplefilename) option.
+
+> **Note:** If you need to display some JavaScript code in your documentation that you don't want rendered as an interactive playground you can use the `static` modifier with a language tag (e.g. `js static`).
 
 ## External examples using doclet tags
 
@@ -239,3 +264,7 @@ class SortTable extends React.Component {
 ```
 
 > **Note:** If you need a more complex demo it’s often a good idea to define it in a separate JavaScript file and `require` it in Markdown
+
+## Limitations
+
+In some cases Styleguidist may not understand your components, [see possible solutions](Thirdparties.md).

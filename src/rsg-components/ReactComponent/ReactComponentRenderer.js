@@ -14,7 +14,7 @@ const styles = ({ color, fontSize, space }) => ({
 		marginBottom: space[3],
 	},
 	tabButtons: {
-		marginBottom: space[1],
+		marginBottom: space[2],
 	},
 	docs: {
 		color: color.base,
@@ -37,18 +37,20 @@ export function ReactComponentRenderer({
 		<div className={classes.root} id={name + '-container'}>
 			<header className={classes.header}>
 				{heading}
-				<Pathline>{pathLine}</Pathline>
+				{pathLine && <Pathline>{pathLine}</Pathline>}
 			</header>
-			{(description || docs) &&
+			{(description || docs) && (
 				<div className={classes.docs}>
 					{description}
 					{docs}
-				</div>}
-			{tabButtons &&
+				</div>
+			)}
+			{tabButtons && (
 				<div className={classes.tabs}>
 					<div className={classes.tabButtons}>{tabButtons}</div>
 					{tabBody}
-				</div>}
+				</div>
+			)}
 			{examples}
 		</div>
 	);
@@ -58,7 +60,7 @@ ReactComponentRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	name: PropTypes.string.isRequired,
 	heading: PropTypes.node.isRequired,
-	pathLine: PropTypes.string.isRequired,
+	pathLine: PropTypes.string,
 	tabButtons: PropTypes.node,
 	tabBody: PropTypes.node,
 	description: PropTypes.node,

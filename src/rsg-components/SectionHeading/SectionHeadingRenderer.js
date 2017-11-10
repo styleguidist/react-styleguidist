@@ -1,55 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import Heading from 'rsg-components/Heading';
 import Styled from 'rsg-components/Styled';
 
-export function SectionHeadingRenderer({
-	classes,
-	children,
-	toolbar,
-	id,
-	href,
-	primary,
-	deprecated,
-}) {
-	const Tag = primary ? 'h1' : 'h2';
-	const headingClasses = cx(classes.heading, {
-		[classes.isPrimary]: primary,
+function SectionHeadingRenderer({ classes, children, toolbar, id, href, depth, deprecated }) {
+	const headingLevel = Math.min(6, depth);
+	const sectionNameClasses = cx(classes.sectionName, {
 		[classes.isDeprecated]: deprecated,
 	});
+
 	return (
-		<Tag id={id} className={classes.root}>
-			<a href={href} className={headingClasses}>{children}</a>
+		<div className={classes.wrapper}>
+			<Heading level={headingLevel} id={id}>
+				<a href={href} className={sectionNameClasses}>
+					{children}
+				</a>
+			</Heading>
 			<div className={classes.toolbar}>{toolbar}</div>
-		</Tag>
+		</div>
 	);
 }
 
-export const styles = ({ color, space, fontSize, fontFamily }) => ({
-	root: {
+const styles = ({ color, space }) => ({
+	wrapper: {
 		display: 'flex',
-		marginBottom: space[1],
+		flexDirection: 'row',
 		alignItems: 'center',
+		marginBottom: space[1],
 	},
-	heading: {
-		color: color.base,
-		fontSize: fontSize.h2,
-		fontFamily: fontFamily.base,
-		fontWeight: 'normal',
+	toolbar: {
+		marginLeft: 'auto',
+	},
+	sectionName: {
 		'&:hover, &:active': {
 			isolate: false,
 			textDecoration: 'underline',
 		},
 	},
-	isPrimary: {
-		fontSize: fontSize.h1,
-	},
 	isDeprecated: {
 		textDecoration: 'line-through',
 		color: color.light,
-	},
-	toolbar: {
-		marginLeft: 'auto',
 	},
 });
 
@@ -59,7 +50,7 @@ SectionHeadingRenderer.propTypes = {
 	toolbar: PropTypes.node,
 	id: PropTypes.string.isRequired,
 	href: PropTypes.string.isRequired,
-	primary: PropTypes.bool,
+	depth: PropTypes.number.isRequired,
 	deprecated: PropTypes.bool,
 };
 

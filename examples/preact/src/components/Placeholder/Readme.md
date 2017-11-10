@@ -1,1 +1,3 @@
-    <Placeholder type="beard"/>
+```jsx
+<Placeholder type="beard"/>
+```

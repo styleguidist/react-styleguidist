@@ -1,8 +1,28 @@
 # Cookbook
 
-## How to reuse project’s webpack config?
+<!-- To update run: npx markdown-toc --maxdepth 2 -i docs/Cookbook.md -->
 
-See in [configuring webpack](Webpack.md#reusing-your-projects-webpack-config).
+<!-- toc -->
+
+- [How to use `ref`s in examples?](#how-to-use-refs-in-examples)
+- [How to exclude some components from style guide?](#how-to-exclude-some-components-from-style-guide)
+- [How to hide some components in style guide but make them available in examples?](#how-to-hide-some-components-in-style-guide-but-make-them-available-in-examples)
+- [How to add custom JavaScript and CSS or polyfills?](#how-to-add-custom-javascript-and-css-or-polyfills)
+- [How to use React Styleguidist with Preact?](#how-to-use-react-styleguidist-with-preact)
+- [How to change styles of a style guide?](#how-to-change-styles-of-a-style-guide)
+- [How to change the layout of a style guide?](#how-to-change-the-layout-of-a-style-guide)
+- [How to change style guide dev server logs output?](#how-to-change-style-guide-dev-server-logs-output)
+- [How to debug my components and examples?](#how-to-debug-my-components-and-examples)
+- [How to debug the exceptions thrown from my components?](#how-to-debug-the-exceptions-thrown-from-my-components)
+- [Why does the style guide list one of my prop types as `unknown`?](#why-does-the-style-guide-list-one-of-my-prop-types-as-unknown)
+- [Why object references don’t work in example component state?](#why-object-references-dont-work-in-example-component-state)
+- [How to use Vagrant with Styleguidist?](#how-to-use-vagrant-with-styleguidist)
+- [How to reuse project’s webpack config?](#how-to-reuse-projects-webpack-config)
+- [How to use React Styleguidist with Redux, Relay or Styled Components?](#how-to-use-react-styleguidist-with-redux-relay-or-styled-components)
+- [What’s the difference betweeen Styleguidist and Storybook](#whats-the-difference-betweeen-styleguidist-and-storybook)
+- [Are there any other projects like this?](#are-there-any-other-projects-like-this)
+
+<!-- tocstop -->
 
 ## How to use `ref`s in examples?
 
@@ -27,10 +47,12 @@ Use [ignore](Configuration.md#ignore) option to customize this behavior:
 module.exports = {
   ignore: [
     '**/*.spec.js',
-    'src/components/Button.js'
+    '**/components/Button.js'
   ]
 };
 ```
+
+> **Note:** You should pass glob patterns, for example, use `**/components/Button.js` instead of `components/Button.js`.
 
 ## How to hide some components in style guide but make them available in examples?
 
@@ -42,6 +64,23 @@ Require these components in your examples:
 const Button = require('../common/Button');
 <Button>Push Me Tender</Button>
 ```
+
+Or, if you want to make these components available for all examples:
+
+```jsx
+// styleguide.config.js
+module.exports = {
+  require: [
+    path.resolve(__dirname, 'styleguide/setup.js')
+  ]
+}
+
+// styleguide/setup.js
+import Button from './src/components/common/Button';
+global.Button = Button;
+```
+
+The `Button` component will be available in every example without a need to `require` it.
 
 ## How to add custom JavaScript and CSS or polyfills?
 
@@ -58,113 +97,6 @@ module.exports = {
 };
 ```
 
-## How to connect Redux store?
-
-To use Redux store with one component require it from your example:
-
-```jsx
-const { Provider } = require('react-redux');
-const configureStore = require('../utils/configureStore').default;
-const initialState = {
-  app: {
-    name: 'Pizza Delivery'
-  }
-};
-const store = configureStore({ initialState });
-<Provider store={store}>
-  <App greeting="Choose your pizza!"/>
-</Provider>
-```
-
-To use Redux store in every component redefine the `Wrapper` component:
-
-```javascript
-// styleguide.config.js
-const path = require('path');
-module.exports = {
-  styleguideComponents: {
-    Wrapper: path.join(__dirname, 'lib/styleguide/Wrapper')
-  }
-};
-```
-
-```jsx
-// lib/styleguide/Wrapper.js
-import React, { Component } from 'react';
-const { Provider } = require('react-redux');
-const configureStore = require('../utils/configureStore').default;
-const initialState = {
-  app: {
-    name: 'Pizza Delivery'
-  }
-};
-const store = configureStore({ initialState });
-export default class Wrapper extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        {this.props.children}
-      </Provider>
-    );
-  }
-}
-```
-
-## How to write examples for Relay components?
-
-@mikberg wrote a [fantastic blog post](https://medium.com/@mikaelberg/writing-simple-unit-tests-with-relay-707f19e90129) on this topic. Here’s what to do:
-
-### 1. Mock out Relay
-
-You’ll need the content from [this Gist](https://gist.github.com/mikberg/07b4006e22aacf31ffe6) for your mocked-out Relay replacement.
-
-```js
-// styleguide.config.js
-const path = require('path')
-const webpackConfig = require('./webpack.config')
-webpackConfig.resolve.alias['react-relay'] = 'lib/styleguide/FakeRelay'
-webpackConfig.resolve.alias['real-react-relay'] = path.join(__dirname, '/node_modules/react-relay/')
-
-module.exports = {
-  // ...
-  webpackConfig
-}
-```
-
-```js
-// lib/styleguide/FakeRelay.js
-import Relay from 'real-react-relay'
-// Content too long to paste here; see https://gist.github.com/mikberg/07b4006e22aacf31ffe6
-```
-
-### 2. Provide sample data to your React components
-
-You’ll probably want to massage actual results from your GraphQL backend, and make it available to the examples:
-
-```js
-// styleguide.config.js
-module.exports = {
-  // ...
-  context: {
-    sample: 'lib/styleguide/sample_data'
-  }
-}
-```
-
-```js
-// lib/styleguide/sample_data.js
-module.exports = {
-  object: {
-    // something similar to your GraphQL results
-  }
-}
-```
-
-```jsx
-// src/MyComponent/index.md
-<MyComponent object={sample.object} />
-```
-
 ## How to use React Styleguidist with Preact?
 
 You need to alias `react` and `react-dom` to `preact-compat`:
@@ -174,7 +106,7 @@ module.exports = {
   webpackConfig: {
     resolve: {
       alias: {
-        react: 'preact-compat',
+        'react': 'preact-compat',
         'react-dom': 'preact-compat',
       }
     }
@@ -184,36 +116,15 @@ module.exports = {
 
 See the [Preact example style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/preact).
 
-## How to use React Styleguidist with styled-components?
-
-The [recommended way](https://github.com/styleguidist/react-styleguidist/issues/37#issuecomment-263502454) of using [styled-components](https://styled-components.com/) is like this:
-
-```jsx
-import React, { Component } from 'react';
-import styled from 'styled-components';
-
-const SalmonButton = styled.button`
-  background-color: salmon;
-  border: 1px solid indianred;
-  color: snow;
-`;
-
-class Button extends Component {
-  render() {
-    return <SalmonButton>{this.props.children}</SalmonButton>;
-  }
-}
-
-export default Button;
-```
-
-You may need an appropriate webpack loader to handle these files.
-
-> **Note:** To change style guide styles use `theme` and `styles` options (see the next question).
-
 ## How to change styles of a style guide?
 
-Use config option [theme](Configuration.md#theme) to change fonts, colors, etc. and option [styles](Configuration.md#styles) to tweak style of particular Styleguidist’s components:
+There are two config options to change your style guide UI: [theme](Configuration.md#theme) and [styles](Configuration.md#styles).
+
+Use [theme](Configuration.md#theme) to change fonts, colors, etc.
+
+Use [styles](Configuration.md#styles) to tweak the style of any particular Styleguidist component.
+
+As an example:
 
 ```javascript
 module.exports = {
@@ -392,17 +303,77 @@ initialState = {
 
 ## How to use Vagrant with Styleguidist?
 
-First of all, make sure you read [this guide](https://webpack.js.org/guides/development-vagrant/) from the webpack documentation.
-
-Then enable polling in your webpack config:
+First read [Vagrant guide](https://webpack.js.org/guides/development-vagrant/) from the webpack documentation. Then enable polling in your webpack config:
 
 ```js
 devServer: {
   watchOptions: {
-    poll: true,
-  },
-},
+    poll: true
+  }
+}
 ```
+
+## How to reuse project’s webpack config?
+
+See in [configuring webpack](Webpack.md#reusing-your-projects-webpack-config).
+
+## How to use React Styleguidist with Redux, Relay or Styled Components?
+
+See [working with third-party libraries](Thirdparties.md).
+
+## What’s the difference betweeen Styleguidist and Storybook
+
+Both tools are good and mature, they have many similarities but also some distinctions that may make you choose one or the other. For me the biggest distinction is how you describe component variations.
+
+With Storybook you write *stories* in JavaScript files:
+
+```js
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import Button from '../components/Button';
+
+storiesOf('Button', module)
+  .add('default', () => (
+    <Button onClick={action('clicked')}>Push Me</Button>
+  ))
+  .add('large size', () => (
+    <Button size="large">Push Me</Button>
+  ));
+```
+
+![Storybook screenshot](https://storybook.js.org/2c663defce0e8f4d0c256e911f74b727.gif)
+
+And with Styleguidist you write *examples* in Markdown files:
+
+    React button component example:
+
+    ```js
+    <Button onClick={() => console.log('clicked')>Push Me</Button>
+    ```
+
+    Large size:
+
+    ```js
+    <Button size="large">Push Me</Button>
+    ```
+
+![Styleguidist screenshot](https://camo.githubusercontent.com/7af8e5fc43288807978f28530656275008c5afbf/68747470733a2f2f64337676366c703535716a6171632e636c6f756466726f6e742e6e65742f6974656d732f32373142333732783130325330633035326933462f72656163742d7374796c6567756964697374372e676966)
+
+Another important distinction is that Storybook shows only one variation of one component at a time but Styleguidist can show all variations of all components, all variations of a single component or one variation.
+
+| Feature | Storybook | Styleguidist |
+| ------- | --------- | ------------ |
+| Component examples | JavaScript | Markdown |
+| Props docs | Yes | Yes |
+| Public methods docs | No | Yes |
+| Style guide¹ | No | Yes  |
+| Customizable design | No | Yes |
+| Extra documentation | No | Yes |
+| Plugins | Many | No² |
+
+¹ All components on a single page.
+² [In development](https://github.com/styleguidist/react-styleguidist/issues/354).
 
 ## Are there any other projects like this?
 

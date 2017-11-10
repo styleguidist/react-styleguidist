@@ -38,3 +38,21 @@ it('should ignore certain Webpack plugins', () => {
 	expect(result.plugins[0].constructor.name).toBe('UglifyJsPlugin');
 	expect(result.plugins[1].constructor.name).toBe('MyPlugin');
 });
+
+it('should pass devtool settings in development', () => {
+	const result = mergeWebpackConfig(
+		{ devtool: false },
+		() => ({ devtool: 'source-map' }),
+		'development'
+	);
+	expect(result).toEqual({ devtool: 'source-map' });
+});
+
+it('should ignore devtool settings in production', () => {
+	const result = mergeWebpackConfig(
+		{ devtool: false },
+		() => ({ devtool: 'source-map' }),
+		'production'
+	);
+	expect(result).toEqual({ devtool: false });
+});

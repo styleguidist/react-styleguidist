@@ -7,6 +7,7 @@ const path = require('path');
 const requireIt = require('./requireIt');
 const getComponentFiles = require('./getComponentFiles');
 const getComponents = require('./getComponents');
+const slugger = require('./slugger');
 
 const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
 
@@ -40,6 +41,7 @@ function processSection(section, config) {
 
 	return {
 		name: section.name,
+		slug: slugger.slug(section.name),
 		components: getComponents(
 			getComponentFiles(section.components, config.configDir, config.ignore),
 			config

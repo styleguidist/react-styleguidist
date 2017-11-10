@@ -13,12 +13,10 @@ const map = require('lodash/map');
 const listify = require('listify');
 const chalk = require('chalk');
 const leven = require('leven');
-const prettyFormat = require('pretty-format');
+const stringify = require('q-i').stringify;
 const typeDetect = require('type-detect');
 const logger = require('glogg')('rsg');
 const StyleguidistError = require('./error');
-
-const format = value => prettyFormat(value, { min: true });
 
 const typeCheckers = {
 	number: isFinite,
@@ -61,7 +59,8 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 			}, null);
 
 			throw new StyleguidistError(
-				`Unknown config option ${chalk.bold(key)} with value "${format(value)}" was found.` +
+				`Unknown config option ${chalk.bold(key)} was found, the value is:\n` +
+					stringify(value) +
 					(suggestion ? `\n\nDid you mean ${chalk.bold(suggestion)}?` : '')
 			);
 		}
@@ -107,6 +106,10 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 			});
 			if (!hasRightType) {
 				const exampleValue = props.example || props.default;
+				const example = {};
+				if (exampleValue) {
+					example[key] = exampleValue;
+				}
 				throw new StyleguidistError(
 					`${chalk.bold(key)} config option should be ${typesList(types)}, received ${typeDetect(
 						value
@@ -115,9 +118,7 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 							? `
 Example:
 
-{
-  ${key}: ${isFunction(exampleValue) ? exampleValue.toString() : format(exampleValue)}
-}`
+${stringify(example)}`
 							: '')
 				);
 			}

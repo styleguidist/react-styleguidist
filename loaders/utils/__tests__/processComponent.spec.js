@@ -1,7 +1,7 @@
-jest.mock('../requireIt');
-
 import path from 'path';
 import processComponent from '../processComponent';
+
+jest.mock('../requireIt');
 
 const config = {
 	configDir: __dirname,

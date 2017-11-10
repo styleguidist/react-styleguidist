@@ -23,12 +23,13 @@ export const columns = [
 	{
 		caption: 'Description',
 		// eslint-disable-next-line react/prop-types
-		render: ({ description, returns, tags = {} }) =>
+		render: ({ description, returns, tags = {} }) => (
 			<div>
 				{description && <Markdown text={description} />}
 				{returns && <Argument block returns {...returns} />}
 				<JsDoc {...tags} />
-			</div>,
+			</div>
+		),
 	},
 ];
 

@@ -2,12 +2,14 @@ import React from 'react';
 import { DOCS_TAB_USAGE } from '../../plugins/usage';
 import ReactComponent from './ReactComponent';
 import { ReactComponentRenderer } from './ReactComponentRenderer';
+import { DisplayModes } from '../../consts';
 
 const options = {
 	context: {
 		config: {
 			showUsage: false,
 		},
+		displayMode: DisplayModes.all,
 		slots: {
 			componentToolbarButton: {}, // TODO
 			docsTab: {}, // TODO
@@ -66,37 +68,51 @@ const componentWithEverything = {
 };
 
 describe('ReactComponent', () => {
-	it('should render an example placeholder', () => {
-		const actual = shallow(<ReactComponent component={component} />, options);
+	const props = {
+		component,
+		depth: 3,
+	};
 
-		const props = actual.prop('examples').props;
-		expect(props.name).toBeTruthy();
-		expect(props.examples).toBeFalsy();
+	it('should render an example placeholder', () => {
+		const actual = shallow(<ReactComponent {...props} />, options);
+
+		const actualProps = actual.prop('examples').props;
+		expect(actualProps.name).toBeTruthy();
+		expect(actualProps.examples).toBeFalsy();
 	});
 
 	it('should render examples', () => {
-		const actual = shallow(<ReactComponent component={componentWithEverything} />, options);
+		const actual = shallow(
+			<ReactComponent {...props} component={componentWithEverything} />,
+			options
+		);
 
-		const props = actual.prop('examples').props;
-		expect(props.name).toBeTruthy();
-		expect(props.examples).toBeTruthy();
+		const actualProps = actual.prop('examples').props;
+		expect(actualProps.name).toBeTruthy();
+		expect(actualProps.examples).toBeTruthy();
 	});
 
 	it('should pass rendered description, usage, examples, etc. to the renderer', () => {
-		const actual = shallow(<ReactComponent component={componentWithEverything} />, options);
+		const actual = shallow(
+			<ReactComponent {...props} component={componentWithEverything} />,
+			options
+		);
 
 		expect(actual).toMatchSnapshot();
 	});
 
 	it('should render usage closed by default when showUsage config options is false', () => {
-		const actual = shallow(<ReactComponent component={componentWithEverything} />, options);
+		const actual = shallow(
+			<ReactComponent {...props} component={componentWithEverything} />,
+			options
+		);
 
 		expect(actual.prop('tabButtons').props.active).toBeFalsy();
 		expect(actual.prop('tabBody').props.active).toBeFalsy();
 	});
 
 	it('should render usage opened by default when showUsage config options is true', () => {
-		const actual = shallow(<ReactComponent component={componentWithEverything} />, {
+		const actual = shallow(<ReactComponent {...props} component={componentWithEverything} />, {
 			...options,
 			context: {
 				config: {
@@ -110,30 +126,39 @@ describe('ReactComponent', () => {
 	});
 
 	it('should return null when component has no name', () => {
-		const actual = shallow(<ReactComponent component={{ slug: 'foo', props: {} }} />, options);
+		const actual = shallow(
+			<ReactComponent {...props} component={{ slug: 'foo', props: {} }} />,
+			options
+		);
 
-		expect(actual.node).toBe(null);
+		expect(actual.getElement()).toBe(null);
 	});
 
 	test('should not render component in isolation mode by default', () => {
-		const actual = shallow(<ReactComponent component={component} />, options);
+		const actual = shallow(<ReactComponent {...props} />, options);
 
 		expect(actual.prop('heading').props.slotProps.isolated).toBeFalsy();
 	});
 
 	test('should render component in isolation mode', () => {
-		const actual = shallow(<ReactComponent component={component} />, {
+		const actual = shallow(<ReactComponent {...props} />, {
 			context: {
 				...options.context,
-				isolatedComponent: true,
+				displayMode: DisplayModes.component,
 			},
 		});
 
 		expect(actual.prop('heading').props.slotProps.isolated).toBeTruthy();
 	});
 
+	it('should pass depth to heading', () => {
+		const actual = shallow(<ReactComponent component={component} depth={3} />, options);
+
+		expect(actual.prop('heading').props.depth).toBe(3);
+	});
+
 	it('should not render heading as deprecated by default', () => {
-		const actual = shallow(<ReactComponent component={component} />, options);
+		const actual = shallow(<ReactComponent {...props} />, options);
 
 		expect(actual.prop('heading').props.deprecated).toBeFalsy();
 	});
@@ -141,6 +166,7 @@ describe('ReactComponent', () => {
 	it('should render heading as deprecated when @deprecated is present in tags', () => {
 		const actual = shallow(
 			<ReactComponent
+				{...props}
 				component={{
 					...component,
 					props: {
@@ -173,6 +199,12 @@ describe('ReactComponentRenderer', () => {
 
 	test('should render component', () => {
 		const actual = shallow(<ReactComponentRenderer {...props} />);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	test('should render component without a pathline', () => {
+		const actual = shallow(<ReactComponentRenderer {...props} pathLine="" />);
 
 		expect(actual).toMatchSnapshot();
 	});

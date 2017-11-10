@@ -2,38 +2,41 @@
 
 exports[`render should not render title if name is not set 1`] = `<section />`;
 
-exports[`render should render component 1`] = `
+exports[`render should render section 1`] = `
 <section>
   <SectionHeading
+    depth={3}
     id="foo"
-    primary={true}
     slotName="sectionToolbarButton"
     slotProps={
       Object {
         "classes": Object {},
         "components": <Components
           components={Array []}
-      />,
+          depth={3}
+        />,
         "content": <Examples
           examples={
-              Array [
-                  Object {
-                    "content": "<button>OK</button>",
-                    "evalInContext": [Function],
-                    "type": "code",
-                  },
-                  Object {
-                    "content": "Hello *world*!",
-                    "type": "markdown",
-                  },
-                ]
+            Array [
+              Object {
+                "content": "<button>OK</button>",
+                "evalInContext": [Function],
+                "type": "code",
+              },
+              Object {
+                "content": "Hello *world*!",
+                "type": "markdown",
+              },
+            ]
           }
           name="Foo"
-      />,
+        />,
+        "depth": 3,
         "name": "Foo",
         "sections": <Sections
+          depth={3}
           sections={Array []}
-      />,
+        />,
         "slug": "foo",
       }
     }
@@ -58,8 +61,10 @@ exports[`render should render component 1`] = `
   />
   <Components
     components={Array []}
+    depth={3}
   />
   <Sections
+    depth={3}
     sections={Array []}
   />
 </section>
@@ -68,12 +73,13 @@ exports[`render should render component 1`] = `
 exports[`render should render title if name is set 1`] = `
 <section>
   <SectionHeading
+    depth={3}
     id="test"
-    primary={true}
     slotName="sectionToolbarButton"
     slotProps={
       Object {
         "classes": Object {},
+        "depth": 3,
         "name": "test",
         "slug": "test",
       }
@@ -86,6 +92,7 @@ exports[`render should render title if name is set 1`] = `
 
 exports[`should not render components list if not defined 1`] = `
 <Styled(Section)
+  depth={3}
   isolated={false}
   name="No components"
   slug="no-components"
@@ -94,17 +101,34 @@ exports[`should not render components list if not defined 1`] = `
 
 exports[`should not render sections if not defined 1`] = `
 <Styled(Section)
+  depth={3}
   isolated={false}
   name="No sections"
   slug="no-sections"
 />
 `;
 
-exports[`should render component renderer 1`] = `
+exports[`should render components list 1`] = `
 <Styled(Section)
   components={
     <Components
       components={Array []}
+      depth={4}
+    />
+  }
+  depth={3}
+  isolated={false}
+  name="Components"
+  slug="components"
+/>
+`;
+
+exports[`should render section renderer 1`] = `
+<Styled(Section)
+  components={
+    <Components
+      components={Array []}
+      depth={4}
     />
   }
   content={
@@ -125,10 +149,12 @@ exports[`should render component renderer 1`] = `
       name="Foo"
     />
   }
+  depth={3}
   isolated={false}
   name="Foo"
   sections={
     <Sections
+      depth={4}
       sections={Array []}
     />
   }
@@ -136,25 +162,14 @@ exports[`should render component renderer 1`] = `
 />
 `;
 
-exports[`should render components list 1`] = `
-<Styled(Section)
-  components={
-    <Components
-      components={Array []}
-    />
-  }
-  isolated={false}
-  name="Components"
-  slug="components"
-/>
-`;
-
 exports[`should render sections if defined 1`] = `
 <Styled(Section)
+  depth={3}
   isolated={false}
   name="Nested sections"
   sections={
     <Sections
+      depth={4}
       sections={Array []}
     />
   }

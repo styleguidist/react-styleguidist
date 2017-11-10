@@ -15,7 +15,9 @@ Create **Readme.md** or **Pizza.md** file in the component’s folder like this:
 
     Pizza example:
 
-        &lt;Pizza pizza=\\"&#x1f355;\\" /&gt;
+    \`\`\`js
+    &lt;Pizza pizza=\\"&#x1f355;\\" /&gt;
+	\`\`\`
 
 You may need to **restart** the style guide server after adding an example file.
 

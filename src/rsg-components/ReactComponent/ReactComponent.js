@@ -5,20 +5,23 @@ import SectionHeading from 'rsg-components/SectionHeading';
 import JsDoc from 'rsg-components/JsDoc';
 import Markdown from 'rsg-components/Markdown';
 import Slot from 'rsg-components/Slot';
-import { DOCS_TAB_USAGE } from '../../plugins/usage';
 import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponentRenderer';
+import { DOCS_TAB_USAGE } from '../../plugins/usage';
+import { DisplayModes } from '../../consts';
 
-const ExamplePlaceholder = process.env.NODE_ENV === 'development'
-	? require('rsg-components/ExamplePlaceholder').default
-	: () => <div />;
+const ExamplePlaceholder =
+	process.env.NODE_ENV !== 'production'
+		? require('rsg-components/ExamplePlaceholder').default
+		: () => <div />;
 
 export default class ReactComponent extends Component {
 	static propTypes = {
 		component: PropTypes.object.isRequired,
+		depth: PropTypes.number.isRequired,
 	};
 	static contextTypes = {
 		config: PropTypes.object.isRequired,
-		isolatedComponent: PropTypes.bool,
+		displayMode: PropTypes.string,
 	};
 
 	constructor(props, context) {
@@ -40,8 +43,8 @@ export default class ReactComponent extends Component {
 
 	render() {
 		const { activeTab } = this.state;
-		const { isolatedComponent } = this.context;
-		const { component } = this.props;
+		const { displayMode } = this.context;
+		const { component, depth } = this.props;
 		const { name, slug, pathLine } = component;
 		const { description, examples = [], tags = {} } = component.props;
 		if (!name) {
@@ -62,16 +65,19 @@ export default class ReactComponent extends Component {
 						slotName="componentToolbarButton"
 						slotProps={{
 							...component,
-							isolated: isolatedComponent,
+							isolated: displayMode !== DisplayModes.all,
 						}}
+						depth={depth}
 					>
 						{name}
 					</SectionHeading>
 				}
 				examples={
-					examples.length > 0
-						? <Examples examples={examples} name={name} />
-						: <ExamplePlaceholder name={name} />
+					examples.length > 0 ? (
+						<Examples examples={examples} name={name} />
+					) : (
+						<ExamplePlaceholder name={name} />
+					)
 				}
 				tabButtons={
 					<Slot

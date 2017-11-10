@@ -1,17 +1,46 @@
 {
-	"parser": "babel-eslint",
-	"extends": "tamia/react",
-	"plugins": [
-		"compat",
-		"es5"
-	],
-	"rules": {
-		"compat/compat": 2
-	},
-	"globals": {
-		"classes": false,
-		"shallow": false,
-		"render": false,
-		"mount": false
-	}
+  "parser": "babel-eslint",
+  "extends": "tamia/react",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "plugins": [
+    "compat",
+    "es5",
+    "import"
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["src", "node_modules"]
+      }
+    }
+  },
+  "rules": {
+    "compat/compat": "error",
+    "import/no-unresolved": ["error", {
+      "commonjs": true,
+      "caseSensitive": true
+    }],
+    "import/export": "error",
+    "import/no-named-as-default-member": "error",
+    "import/no-mutable-exports": "error",
+    "import/no-amd": "error",
+    "import/first": ["error", "absolute-first"],
+    "import/no-duplicates": "error",
+    "import/extensions": ["error", "always", {
+      "js": "never"
+    }],
+    "import/no-extraneous-dependencies": "error",
+    "import/newline-after-import": "error",
+    "import/prefer-default-export": "error",
+    "import/no-named-default": "error"
+  },
+  "globals": {
+    "classes": false,
+    "shallow": false,
+    "render": false,
+    "mount": false
+  }
 }

@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 import Preview from 'rsg-components/Preview';
+import Para from 'rsg-components/Para';
 import Slot from 'rsg-components/Slot';
 import PlaygroundRenderer from 'rsg-components/Playground/PlaygroundRenderer';
 import { EXAMPLE_TAB_CODE_EDITOR } from '../../plugins/code-editor';
+import { DisplayModes } from '../../consts';
 
 export default class Playground extends Component {
 	static propTypes = {
@@ -12,25 +14,27 @@ export default class Playground extends Component {
 		evalInContext: PropTypes.func.isRequired,
 		index: PropTypes.number.isRequired,
 		name: PropTypes.string.isRequired,
+		settings: PropTypes.object,
 	};
+
 	static contextTypes = {
 		config: PropTypes.object.isRequired,
-		isolatedExample: PropTypes.bool,
+		displayMode: PropTypes.string,
 	};
 
 	constructor(props, context) {
 		super(props, context);
-		const { code } = props;
-		const { previewDelay, showCode } = context.config;
-
-		this.handleChange = this.handleChange.bind(this);
-		this.handleTabChange = this.handleTabChange.bind(this);
-		this.handleChange = debounce(this.handleChange, previewDelay);
+		const { code, settings } = props;
+		const { config } = context;
+		const showCode = settings.showcode !== undefined ? settings.showcode : config.showCode;
 
 		this.state = {
 			code,
 			activeTab: showCode ? EXAMPLE_TAB_CODE_EDITOR : undefined,
 		};
+
+		this.handleTabChange = this.handleTabChange.bind(this);
+		this.handleChange = debounce(this.handleChange.bind(this), config.previewDelay);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -39,11 +43,6 @@ export default class Playground extends Component {
 			code,
 		});
 	}
-
-	// TODO: Use isEqual?
-	// shouldComponentUpdate(nextProps, nextState) {
-	// 	return nextState.code !== this.state.code || nextState.activeTab !== this.state.activeTab;
-	// }
 
 	componentWillUnmount() {
 		// Clear pending changes
@@ -64,21 +63,30 @@ export default class Playground extends Component {
 
 	render() {
 		const { code, activeTab } = this.state;
-		const { evalInContext, index, name } = this.props;
-		const { isolatedExample } = this.context;
+		const { evalInContext, index, name, settings } = this.props;
+
+		const preview = <Preview code={code} evalInContext={evalInContext} />;
+
+		if (settings.noeditor) {
+			return <Para>{preview}</Para>;
+		}
+
+		const { displayMode } = this.context;
 		const slotProps = {
 			name,
 			code,
-			isolated: isolatedExample,
+			isolated: displayMode === DisplayModes.example,
 			example: index,
 			state: this.state,
 			setState: this.setState.bind(this), // TODO: Bind in constructor
 		};
+
 		return (
 			<PlaygroundRenderer
 				{...this.state}
 				name={name}
-				preview={<Preview code={code} evalInContext={evalInContext} />}
+				preview={preview}
+				previewProps={settings.props || {}}
 				tabButtons={
 					<Slot
 						name="exampleTabButton"

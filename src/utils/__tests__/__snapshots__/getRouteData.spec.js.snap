@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getRouteData should return one component 1`] = `
+Object {
+  "displayMode": "component",
+  "sections": Array [
+    Object {
+      "components": Array [
+        Object {
+          "module": 1,
+          "name": "Button",
+          "props": Object {
+            "displayName": "Button",
+            "examples": Array [
+              "example 0",
+              "example 1",
+            ],
+          },
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`getRouteData should return one example from a component 1`] = `
+Object {
+  "displayMode": "example",
+  "sections": Array [
+    Object {
+      "components": Array [
+        Object {
+          "module": 1,
+          "name": "Button",
+          "props": Object {
+            "displayName": "Button",
+            "examples": Array [
+              "example 1",
+            ],
+          },
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`getRouteData should return one example from a section 1`] = `
+Object {
+  "displayMode": "example",
+  "sections": Array [
+    Object {
+      "components": Array [],
+      "content": Array [
+        "example 1",
+      ],
+      "name": "Section",
+      "sections": Array [],
+    },
+  ],
+}
+`;
+
+exports[`getRouteData should return one section 1`] = `
+Object {
+  "displayMode": "section",
+  "sections": Array [
+    Object {
+      "components": Array [],
+      "content": Array [
+        "example 0",
+        "example 1",
+      ],
+      "name": "Section",
+      "sections": Array [],
+    },
+  ],
+}
+`;

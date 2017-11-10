@@ -34,7 +34,9 @@ export default class CounterButton extends Component {
 
 	render() {
 		return (
-			<button className="button" onClick={this.increment.bind(this)}>{this.state.value}</button>
+			<button className="button" onClick={this.increment.bind(this)}>
+				{this.state.value}
+			</button>
 		);
 	}
 }

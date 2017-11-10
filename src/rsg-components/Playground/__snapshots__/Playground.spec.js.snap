@@ -1,21 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renderer should render preview 1`] = `
-<div>
+<div
+  className="root"
+>
   <div
+    className="preview pizza"
     data-preview="name"
+    title="salami"
   >
     <div>
       preview
     </div>
   </div>
-  <div>
+  <div
+    className="controls"
+  >
     <div>
       <div>
         tab buttons
       </div>
     </div>
-    <div>
+    <div
+      className="toolbar"
+    >
       <div>
         toolbar
       </div>
@@ -39,15 +47,17 @@ exports[`should render component renderer 1`] = `
       evalInContext={[Function]}
     />
   }
+  previewProps={Object {}}
   tabBody={
     <Slot
+      active={undefined}
       name="exampleTab"
       onlyActive={true}
       props={
         Object {
           "code": "<button>OK</button>",
           "example": 0,
-          "isolated": undefined,
+          "isolated": false,
           "name": "name",
           "onChange": [Function],
           "setState": [Function],
@@ -61,12 +71,13 @@ exports[`should render component renderer 1`] = `
   }
   tabButtons={
     <Slot
+      active={undefined}
       name="exampleTabButton"
       props={
         Object {
           "code": "<button>OK</button>",
           "example": 0,
-          "isolated": undefined,
+          "isolated": false,
           "name": "name",
           "onClick": [Function],
           "setState": [Function],
@@ -85,7 +96,7 @@ exports[`should render component renderer 1`] = `
         Object {
           "code": "<button>OK</button>",
           "example": 0,
-          "isolated": undefined,
+          "isolated": false,
           "name": "name",
           "setState": [Function],
           "state": Object {

@@ -4,20 +4,42 @@
 
 const minimist = require('minimist');
 const chalk = require('chalk');
-const prettyFormat = require('pretty-format');
+const stringify = require('q-i').stringify;
 const logger = require('glogg')('rsg');
 const getConfig = require('../scripts/config');
 const setupLogger = require('../scripts/logger');
 const consts = require('../scripts/consts');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const StyleguidistError = require('../scripts/utils/error');
+const devServerUtils = require('../scripts/utils/devServerUtils');
 
 const argv = minimist(process.argv.slice(2));
 const command = argv._[0];
 
+// Do not show nasty stack traces for Styleguidist errors
+process.on('uncaughtException', err => {
+	if (err.code === 'EADDRINUSE') {
+		printErrorWithLink(
+			`You have another server running at port ${config.serverPort} somewhere, shut it down first`,
+			'You can change the port using the `serverPort` option in your style guide config:',
+			consts.DOCS_CONFIG
+		);
+	} else if (err instanceof StyleguidistError) {
+		console.error(chalk.bold.red(err.message));
+		logger.debug(err.stack);
+	} else {
+		console.error(err.toString());
+		console.error(err.stack);
+	}
+	process.exit(1);
+});
+
+// Make sure user has webpack installed
+require('../scripts/utils/ensureWebpack');
+
 // Set environment before loading style guide config because user’s webpack config may use it
 const env = command === 'build' ? 'production' : 'development';
-process.env.NODE_ENV = env;
+process.env.NODE_ENV = process.env.NODE_ENV || env;
 
 // Load style guide config
 let config;
@@ -80,28 +102,13 @@ function commandBuild() {
 }
 
 function commandServer() {
-	process.on('uncaughtException', err => {
-		if (err.code === 'EADDRINUSE') {
-			printErrorWithLink(
-				`You have another server running at port ${config.serverPort} somewhere, shut it down first`,
-				'You can change the port using the `serverPort` option in your style guide config:',
-				consts.DOCS_CONFIG
-			);
-		} else {
-			console.error(chalk.bold.red(err.message));
-			logger.debug(err.stack);
-		}
-		process.exit(1);
-	});
-
 	const server = require('../scripts/server');
 	const compiler = server(config, err => {
 		if (err) {
 			console.error(err);
 		} else {
-			logger.info(
-				'Style guide server started at:\nhttp://' + config.serverHost + ':' + config.serverPort
-			);
+			const isHttps = compiler.options.devServer && compiler.options.devServer.https;
+			devServerUtils.printInstructions(isHttps, config.serverHost, config.serverPort);
 		}
 	});
 
@@ -212,15 +219,14 @@ function printNoLoaderError(errors) {
 		return;
 	}
 
-	const filePath = noLoaderError.match(/Error in (.*?)\n/)[1];
 	printErrorWithLink(
-		`Cannot load ${filePath}: you may need an appropriate webpack loader to handle this file type.`,
-		'Learn how to configure your style guide:',
+		noLoaderError,
+		'Learn how to add webpack loaders to your style guide:',
 		consts.DOCS_WEBPACK
 	);
 	process.exit(1);
 }
 
 function verbose(header, object) {
-	logger.debug(chalk.bold(header) + '\n' + prettyFormat(object));
+	logger.debug(chalk.bold(header) + '\n\n' + stringify(object));
 }

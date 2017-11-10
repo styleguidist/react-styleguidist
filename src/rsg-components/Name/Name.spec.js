@@ -12,7 +12,11 @@ it('renderer should render argument name', () => {
 });
 
 it('renderer should render deprecated argument name', () => {
-	const actual = shallow(<NameRenderer {...props} deprecated>Foo</NameRenderer>);
+	const actual = shallow(
+		<NameRenderer {...props} deprecated>
+			Foo
+		</NameRenderer>
+	);
 
 	expect(actual).toMatchSnapshot();
 });
