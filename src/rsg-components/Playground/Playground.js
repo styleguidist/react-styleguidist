@@ -7,7 +7,7 @@ import Para from 'rsg-components/Para';
 import Slot from 'rsg-components/Slot';
 import PlaygroundRenderer from 'rsg-components/Playground/PlaygroundRenderer';
 import { EXAMPLE_TAB_CODE_EDITOR } from '../../plugins/code-editor';
-import { DisplayModes } from '../../consts';
+import { DisplayModes, Slots } from '../../consts';
 
 export default class Playground extends Component {
 	static propTypes = {
@@ -83,7 +83,7 @@ export default class Playground extends Component {
 		};
 
 		const previewContainer = ({ children }) => (
-			<Container name="previewContainer" props={slotProps}>
+			<Container name={Slots.previewContainer} props={slotProps}>
 				{children}
 			</Container>
 		);
@@ -97,20 +97,20 @@ export default class Playground extends Component {
 				previewContainer={previewContainer}
 				tabButtons={
 					<Slot
-						name="exampleTabButton"
+						name={Slots.playgroundTabButton}
 						active={activeTab}
 						props={{ ...slotProps, onClick: this.handleTabChange }}
 					/>
 				}
 				tabBody={
 					<Slot
-						name="exampleTab"
+						name={Slots.playgroundTab}
 						active={activeTab}
 						onlyActive
 						props={{ ...slotProps, onChange: this.handleChange }}
 					/>
 				}
-				toolbar={<Slot name="exampleToolbarButton" props={slotProps} />}
+				toolbar={<Slot name={Slots.playgroundToolbarButton} props={slotProps} />}
 			/>
 		);
 	}

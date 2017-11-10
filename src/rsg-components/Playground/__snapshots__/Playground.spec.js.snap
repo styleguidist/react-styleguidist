@@ -58,7 +58,7 @@ exports[`should render component renderer 1`] = `
   tabBody={
     <Slot
       active={undefined}
-      name="exampleTab"
+      name="playgroundTab"
       onlyActive={true}
       props={
         Object {
@@ -79,7 +79,7 @@ exports[`should render component renderer 1`] = `
   tabButtons={
     <Slot
       active={undefined}
-      name="exampleTabButton"
+      name="playgroundTabButton"
       props={
         Object {
           "code": "<button>OK</button>",
@@ -98,7 +98,7 @@ exports[`should render component renderer 1`] = `
   }
   toolbar={
     <Slot
-      name="exampleToolbarButton"
+      name="playgroundToolbarButton"
       props={
         Object {
           "code": "<button>OK</button>",

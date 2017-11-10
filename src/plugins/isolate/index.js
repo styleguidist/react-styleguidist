@@ -1,17 +1,18 @@
 import IsolateButton from './IsolateButton';
+import { Slots } from '../../consts';
 
 const isolatePlugin = () => ({
 	fills: [
 		{
-			type: 'sectionToolbarButton',
+			type: Slots.sectionToolbarButton,
 			render: IsolateButton,
 		},
 		{
-			type: 'componentToolbarButton',
+			type: Slots.componentToolbarButton,
 			render: IsolateButton,
 		},
 		{
-			type: 'exampleToolbarButton',
+			type: Slots.previewToolbarButton,
 			render: IsolateButton,
 		},
 	],

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 import SectionHeading from 'rsg-components/SectionHeading';
+import { Slots } from '../../consts';
 
 const styles = ({ space }) => ({
 	root: {
@@ -17,7 +18,7 @@ export function SectionRenderer(allProps) {
 				<SectionHeading
 					depth={depth}
 					id={slug}
-					slotName="sectionToolbarButton"
+					slotName={Slots.sectionToolbarButton}
 					slotProps={allProps}
 				>
 					{name}

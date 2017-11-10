@@ -26,14 +26,14 @@ const options = {
 			highlightTheme: 'base16-light',
 		},
 		slots: {
-			exampleToolbarButton: [],
-			exampleTab: [
+			playgroundToolbarButton: [],
+			playgroundTab: [
 				{
 					id: EXAMPLE_TAB_CODE_EDITOR,
 					render: Editor,
 				},
 			],
-			exampleTabButton: [
+			playgroundTabButton: [
 				{
 					id: EXAMPLE_TAB_CODE_EDITOR,
 					render: CodeTabButton,

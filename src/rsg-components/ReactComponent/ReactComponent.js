@@ -7,7 +7,7 @@ import Markdown from 'rsg-components/Markdown';
 import Slot from 'rsg-components/Slot';
 import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponentRenderer';
 import { DOCS_TAB_USAGE } from '../../plugins/usage';
-import { DisplayModes } from '../../consts';
+import { DisplayModes, Slots } from '../../consts';
 
 const ExamplePlaceholder =
 	process.env.NODE_ENV !== 'production'
@@ -62,7 +62,7 @@ export default class ReactComponent extends Component {
 					<SectionHeading
 						id={slug}
 						deprecated={!!tags.deprecated}
-						slotName="componentToolbarButton"
+						slotName={Slots.componentToolbarButton}
 						slotProps={{
 							...component,
 							isolated: displayMode !== DisplayModes.all,
@@ -81,12 +81,12 @@ export default class ReactComponent extends Component {
 				}
 				tabButtons={
 					<Slot
-						name="docsTabButton"
+						name={Slots.docsTabButton}
 						active={activeTab}
 						props={{ ...component, onClick: this.handleTabChange }}
 					/>
 				}
-				tabBody={<Slot name="docsTab" active={activeTab} onlyActive props={component} />}
+				tabBody={<Slot name={Slots.docsTab} active={activeTab} onlyActive props={component} />}
 			/>
 		);
 	}
