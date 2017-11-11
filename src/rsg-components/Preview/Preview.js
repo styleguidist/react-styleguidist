@@ -149,9 +149,12 @@ export default class Preview extends Component {
 
 	render() {
 		const { error } = this.state;
+		const { styles } = this.context.config;
+		const previewStyle = styles && styles.Preview ? { style: styles.Preview } : null;
+
 		return (
-			<div>
-				<div ref={ref => (this.mountNode = ref)} />
+			<div {...previewStyle}>
+				<div {...previewStyle} ref={ref => (this.mountNode = ref)} />
 				{error && <PlaygroundError message={error} />}
 			</div>
 		);
