@@ -262,7 +262,7 @@ module.exports = {
 3. Press the ![Continue](https://d3vv6lp55qjaqc.cloudfront.net/items/3b3c1P3g3O1h3q111I2l/continue.png) button and the debugger will stop execution at the next exception.
 
 ## How to use React's production or development build?
-In some cases, you might need to use React's development build instead of the default [production one](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build). For example, this might be needed if you use React Native and make references to a React Native component's propTypes in your code. As React removes all propTypes in its production build, your code will fail. By default, React Styleguidist uses the development build for the dev server, and the production one for the static build.
+In some cases, you might need to use React's development build instead of the default [production one](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build). For example, this might be needed if you use React Native and make references to a React Native component's propTypes in your code. As React removes all propTypes in its production build, your code will fail. By default, React Styleguidist uses the development build for the dev server, and the production one for  static builds.
 ```js
 import React from 'react';
 import { TextInput } from 'react-native';
