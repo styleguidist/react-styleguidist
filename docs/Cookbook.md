@@ -281,10 +281,11 @@ To avoid this, you need to tell React Styleguidist to use React's development bu
 ```json
 {
   "scripts": {
-    "build": "NODE_ENV=development react-styleguidist build"
+    "build": "cross-env NODE_ENV=development react-styleguidist build"
   }
 }
 ```
+The script above uses [cross-env](https://github.com/kentcdodds/cross-env) to make sure the environment variable is properly set on all platforms. Run `npm i -D cross-env` to add it.
 
 
 ## Why does the style guide list one of my prop types as `unknown`?
