@@ -9,7 +9,7 @@ import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponent
 import { DOCS_TAB_USAGE } from '../slots';
 
 const ExamplePlaceholder =
-	process.env.NODE_ENV !== 'production'
+	process.env.STYLEGUIDIST_ENV !== 'production'
 		? require('rsg-components/ExamplePlaceholder').default
 		: () => <div />;
 
