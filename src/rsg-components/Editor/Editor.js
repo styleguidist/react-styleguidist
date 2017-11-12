@@ -20,6 +20,7 @@ const codeMirrorDefault = {
 	matchBrackets: true,
 	viewportMargin: Infinity,
 	lineNumbers: false,
+	theme: 'base16-light',
 };
 
 export default class Editor extends Component {
@@ -49,8 +50,8 @@ export default class Editor extends Component {
 		const { highlightTheme, editorConfig } = this.context.config;
 		const options = {
 			...codeMirrorDefault,
-			theme: highlightTheme,
 			...editorConfig,
+			theme: highlightTheme,
 		};
 		return <CodeMirror value={code} onChange={this.handleChange} options={options} />;
 	}

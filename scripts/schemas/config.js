@@ -93,6 +93,7 @@ module.exports = {
 	highlightTheme: {
 		type: 'string',
 		default: 'base16-light',
+		deprecated: 'Please use the theme option in editorConfig',
 	},
 	editorConfig: {
 		type: 'object',
