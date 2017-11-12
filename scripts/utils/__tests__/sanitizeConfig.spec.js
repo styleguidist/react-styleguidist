@@ -1,8 +1,5 @@
 import path from 'path';
-import glogg from 'glogg';
 import sanitizeConfig from '../sanitizeConfig';
-
-const logger = glogg('rsg');
 
 it('should return non-empty required field as is', () => {
 	const result = sanitizeConfig(
@@ -439,8 +436,8 @@ it('should throw for unknown options with suggestion', () => {
 });
 
 it('should warn for deprecated options', () => {
-	const warn = jest.fn();
-	logger.once('warn', warn);
+	// eslint-disable-next-line no-console
+	console.log = jest.genMockFn();
 
 	const result = sanitizeConfig(
 		{
@@ -453,7 +450,10 @@ it('should warn for deprecated options', () => {
 		}
 	);
 	expect(result.food).toBe('pizza');
-	expect(warn).toBeCalledWith(expect.stringMatching('config option is deprecated. Don’t use!'));
+	// eslint-disable-next-line no-console
+	expect(console.log).toBeCalledWith(
+		expect.stringMatching('config option is deprecated. Don’t use!')
+	);
 });
 
 it('should throw for removed options', () => {
