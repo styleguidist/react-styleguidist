@@ -43,7 +43,8 @@ module.exports = function(config, env) {
 			}),
 			new webpack.DefinePlugin({
 				'process.env': {
-					NODE_ENV: JSON.stringify(env),
+					NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+					STYLEGUIDIST_ENV: JSON.stringify(env),
 				},
 			}),
 		],

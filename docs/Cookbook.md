@@ -14,6 +14,7 @@
 - [How to change style guide dev server logs output?](#how-to-change-style-guide-dev-server-logs-output)
 - [How to debug my components and examples?](#how-to-debug-my-components-and-examples)
 - [How to debug the exceptions thrown from my components?](#how-to-debug-the-exceptions-thrown-from-my-components)
+- [How to use React's production or development build?](#how-to-use-reacts-production-or-development-build)
 - [Why does the style guide list one of my prop types as `unknown`?](#why-does-the-style-guide-list-one-of-my-prop-types-as-unknown)
 - [Why object references don’t work in example component state?](#why-object-references-dont-work-in-example-component-state)
 - [How to use Vagrant with Styleguidist?](#how-to-use-vagrant-with-styleguidist)
@@ -259,6 +260,33 @@ module.exports = {
 1. Put `debugger;` statement at the beginning of your code.
 2. Press the ![Debugger](https://d3vv6lp55qjaqc.cloudfront.net/items/2h2q3N123N3G3R252o41/debugger.png) button in your browser’s developer tools.
 3. Press the ![Continue](https://d3vv6lp55qjaqc.cloudfront.net/items/3b3c1P3g3O1h3q111I2l/continue.png) button and the debugger will stop execution at the next exception.
+
+## How to use React's production or development build?
+In some cases, you might need to use React's development build instead of the default [production one](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build). For example, this might be needed if you use React Native and make references to a React Native component's propTypes in your code. As React removes all propTypes in its production build, your code will fail. By default, React Styleguidist uses the development build for the dev server, and the production one for  static builds.
+```js
+import React from 'react';
+import { TextInput } from 'react-native';
+
+const CustomInput = ({value}) => <TextInput value={value} />;
+
+CustomInput.propTypes = {
+  // will fail in a static build
+  value: TextInput.value.isRequired,
+};
+```
+If you use code similar to this, you might encounter errors such as `Cannot read property 'isRequired' of undefined`.
+
+To avoid this, you need to tell React Styleguidist to use React's development build. To do this, simply set the `NODE_ENV` variable to `development` in your npm script.
+
+```json
+{
+  "scripts": {
+    "build": "cross-env NODE_ENV=development react-styleguidist build"
+  }
+}
+```
+The script above uses [cross-env](https://github.com/kentcdodds/cross-env) to make sure the environment variable is properly set on all platforms. Run `npm i -D cross-env` to add it.
+
 
 ## Why does the style guide list one of my prop types as `unknown`?
 
