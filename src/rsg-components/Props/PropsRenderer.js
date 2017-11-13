@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Group from 'react-group';
 import objectToString from 'javascript-stringify';
 import Arguments from 'rsg-components/Arguments';
-import Returns from 'rsg-components/Returns';
+import Argument from 'rsg-components/Argument';
+import Heading from 'rsg-components/Heading';
 import Code from 'rsg-components/Code';
 import JsDoc from 'rsg-components/JsDoc';
 import Markdown from 'rsg-components/Markdown';
@@ -124,7 +125,7 @@ function renderDescription(prop) {
 	const { description, tags = {} } = prop;
 	const extra = renderExtra(prop);
 	const args = [...(tags.arg || []), ...(tags.argument || []), ...(tags.param || [])];
-	const returnDocumentation = tags.return && tags.return[0];
+	const returnDocumentation = (tags.return && tags.return[0]) || (tags.returns && tags.returns[0]);
 
 	return (
 		<div>
@@ -132,7 +133,8 @@ function renderDescription(prop) {
 			{extra && <Para>{extra}</Para>}
 			<JsDoc {...tags} />
 			{args.length > 0 && <Arguments args={args} heading />}
-			{returnDocumentation && <Returns returnDocumentation={returnDocumentation} heading />}
+			{returnDocumentation && <Heading level={5}>Returns</Heading>}
+			{returnDocumentation && <Argument {...returnDocumentation} />}
 		</div>
 	);
 }
