@@ -15,6 +15,7 @@ const chalk = require('chalk');
 const leven = require('leven');
 const stringify = require('q-i').stringify;
 const typeDetect = require('type-detect');
+const logger = require('glogg')('rsg');
 const StyleguidistError = require('./error');
 
 const typeCheckers = {
@@ -88,8 +89,7 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 				throw new StyleguidistError(message);
 			}
 		} else if (props.deprecated) {
-			// eslint-disable-next-line no-console
-			console.log(chalk.yellow.bold(`${key} config option is deprecated. ${props.deprecated}`));
+			logger.info(`${key} config option is deprecated. ${props.deprecated}`);
 		} else if (props.removed) {
 			throw new StyleguidistError(`${chalk.bold(key)} config option was removed. ${props.removed}`);
 		}
