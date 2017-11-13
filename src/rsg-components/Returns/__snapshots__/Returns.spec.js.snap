@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render heading 1`] = `
+<div
+  className="root"
+>
+  <div
+    className="headingWrapper"
+  >
+    <Styled(Heading)
+      level={5}
+    >
+      Returns
+    </Styled(Heading)>
+  </div>
+  <Styled(Argument)
+    description="Converts foo to bar"
+    key="Foo"
+    title="Foo"
+    type={
+      Object {
+        "name": "String",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`renderer should render only description 1`] = `
+<div
+  className="root"
+>
+  <Styled(Argument)
+    description="Converts bar to foo"
+    key="Bar"
+    title="Bar"
+    type={null}
+  />
+</div>
+`;
+
+exports[`renderer should render only type 1`] = `
+<div
+  className="root"
+>
+  <Styled(Argument)
+    key="Baz"
+    title="Baz"
+    type={
+      Object {
+        "name": "SyntheticEvent",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`renderer should render type and description 1`] = `
+<div
+  className="root"
+>
+  <Styled(Argument)
+    description="Converts foo to bar"
+    key="Foo"
+    title="Foo"
+    type={
+      Object {
+        "name": "String",
+      }
+    }
+  />
+</div>
+`;
