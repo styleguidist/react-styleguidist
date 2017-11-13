@@ -23,7 +23,8 @@ export function ArgumentRenderer({ classes, name, type, description, returns, bl
 				</span>
 			)}
 			{type && <Type>{type.name}</Type>}
-			{description && <Markdown text={`— ${description}`} inline />}
+			{type && description && ` — `}
+			{description && <Markdown text={`${description}`} inline />}
 		</Group>
 	);
 }

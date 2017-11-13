@@ -1062,6 +1062,126 @@ exports[`props columns should render name as deprecated when tag deprecated is p
 </ul>
 `;
 
+exports[`props columns should render return from JsDoc tags 1`] = `
+<ul>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
+      <Styled(Name)
+        deprecated={false}
+      >
+        size
+      </Styled(Name)>
+    </div>
+    <div
+      key="1"
+    >
+      <Styled(Type)>
+        number
+      </Styled(Type)>
+    </div>
+    <div
+      key="2"
+    />
+    <div
+      key="3"
+    >
+      <div>
+        <Styled(Markdown)
+          text="Test description"
+        />
+        <JsDoc
+          return={
+            Array [
+              Object {
+                "description": "Returns foo from bar",
+                "title": "Foo",
+                "type": Object {
+                  "name": "Array",
+                },
+              },
+            ]
+          }
+        />
+        <Styled(Argument)
+          description="Returns foo from bar"
+          returns={true}
+          title="Foo"
+          type={
+            Object {
+              "name": "Array",
+            }
+          }
+        />
+      </div>
+    </div>
+  </li>
+</ul>
+`;
+
+exports[`props columns should render return from JsDoc tags 2`] = `
+<ul>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
+      <Styled(Name)
+        deprecated={false}
+      >
+        size
+      </Styled(Name)>
+    </div>
+    <div
+      key="1"
+    >
+      <Styled(Type)>
+        number
+      </Styled(Type)>
+    </div>
+    <div
+      key="2"
+    />
+    <div
+      key="3"
+    >
+      <div>
+        <Styled(Markdown)
+          text="Test description"
+        />
+        <JsDoc
+          returns={
+            Array [
+              Object {
+                "description": "Returns foo from bar",
+                "title": "Foo",
+                "type": Object {
+                  "name": "Array",
+                },
+              },
+            ]
+          }
+        />
+        <Styled(Argument)
+          description="Returns foo from bar"
+          returns={true}
+          title="Foo"
+          type={
+            Object {
+              "name": "Array",
+            }
+          }
+        />
+      </div>
+    </div>
+  </li>
+</ul>
+`;
+
 exports[`props columns should render unknown proptype for a prop when a relevant proptype is not assigned 1`] = `
 <ul>
   <li

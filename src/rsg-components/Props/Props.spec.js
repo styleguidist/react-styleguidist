@@ -248,6 +248,35 @@ describe('props columns', () => {
 		expect(actual).toMatchSnapshot();
 	});
 
+	it('should render return from JsDoc tags', () => {
+		const getProps = tag => ({
+			size: {
+				type: {
+					name: 'number',
+				},
+				required: false,
+				description: 'Test description',
+				tags: {
+					[tag]: [
+						{
+							title: 'Foo',
+							description: 'Returns foo from bar',
+							type: { name: 'Array' },
+						},
+					],
+				},
+			},
+		});
+
+		const actualForReturn = shallow(<ColumnsRenderer props={getProps('return')} />);
+
+		expect(actualForReturn).toMatchSnapshot();
+
+		const actualForReturns = shallow(<ColumnsRenderer props={getProps('returns')} />);
+
+		expect(actualForReturns).toMatchSnapshot();
+	});
+
 	it('should render name as deprecated when tag deprecated is present', () => {
 		const props = {
 			size: {

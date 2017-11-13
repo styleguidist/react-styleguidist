@@ -47,6 +47,7 @@ WrappedButton.propTypes = {
 	 * Gets called when the user clicks on the button
 	 *
 	 * @param { SyntheticEvent } event The react `SyntheticEvent`
+	 * @return { SyntheticEvent } The `onClick` `SyntheticEvent`
 	 */
 	onClick: PropTypes.func,
 	/**
