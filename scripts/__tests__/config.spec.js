@@ -9,14 +9,12 @@ afterEach(() => {
 
 it('should read a config file', () => {
 	const result = getConfig('./test/data/styleguide.config.js');
-	expect(result).toBeTruthy();
-	expect(result.title).toBe('React Style Guide Example');
+	expect(result).toMatchObject({ title: 'React Style Guide Example' });
 });
 
 it('should accept absolute path', () => {
 	const result = getConfig(path.join(__dirname, '../../test/data/styleguide.config.js'));
-	expect(result).toBeTruthy();
-	expect(result.title).toBe('React Style Guide Example');
+	expect(result).toMatchObject({ title: 'React Style Guide Example' });
 });
 
 it('should throw when passed config file not found', () => {
@@ -27,16 +25,14 @@ it('should throw when passed config file not found', () => {
 it('should find config file automatically', () => {
 	process.chdir('test/apps/basic');
 	const result = getConfig({});
-	expect(result).toBeTruthy();
-	expect(result.title).toBe('React Style Guide Example');
+	expect(result).toMatchObject({ title: 'React Style Guide Example' });
 });
 
 it('should accept config as an object', () => {
 	const result = getConfig({
 		title: 'Style guide',
 	});
-	expect(result).toBeTruthy();
-	expect(result.title).toBe('Style guide');
+	expect(result).toMatchObject({ title: 'Style guide' });
 });
 
 it('should throw if config has errors', () => {
@@ -45,6 +41,19 @@ it('should throw if config has errors', () => {
 			components: 42,
 		});
 	expect(fn).toThrowError('should be string or function');
+});
+
+it('should change the config using the update callback', () => {
+	const result = getConfig(
+		{
+			title: 'Style guide',
+		},
+		config => {
+			config.title = 'Pizza';
+			return config;
+		}
+	);
+	expect(result).toMatchObject({ title: 'Pizza' });
 });
 
 it('should have default getExampleFilename implementation', () => {
@@ -82,6 +91,18 @@ it('should have default getComponentPathLine implementation', () => {
 it('should have default title based on package.json name', () => {
 	const result = getConfig();
 	expect(result.title).toEqual('React Styleguidist Style Guide');
+});
+
+it('configDir option should be a directory of a passed config', () => {
+	const dir = path.resolve('test/apps/basic');
+	process.chdir(dir);
+	const result = getConfig(path.join(dir, 'styleguide.config.js'));
+	expect(result).toMatchObject({ configDir: dir });
+});
+
+it('configDir option should be a current directory if the config was passed as an object', () => {
+	const result = getConfig();
+	expect(result).toMatchObject({ configDir: process.cwd() });
 });
 
 it('should absolutize assetsDir if it exists', () => {

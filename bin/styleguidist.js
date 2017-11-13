@@ -44,7 +44,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || env;
 // Load style guide config
 let config;
 try {
-	config = getConfig(argv.config);
+	config = getConfig(argv.config, updateConfig);
 } catch (err) {
 	if (err instanceof StyleguidistError) {
 		printErrorWithLink(
@@ -58,11 +58,6 @@ try {
 	}
 }
 
-// Set verbose mode
-config.verbose = config.verbose || argv.verbose;
-
-setupLogger(config.logger, config.verbose);
-
 verbose('Styleguidist config:', config);
 
 switch (command) {
@@ -74,6 +69,16 @@ switch (command) {
 		break;
 	default:
 		commandHelp();
+}
+
+function updateConfig(config) {
+	// Set verbose mode from config option or command line switch
+	config.verbose = config.verbose || argv.verbose;
+
+	// Setup logger *before* config validation (because validations may use logger to print warnings)
+	setupLogger(config.logger, config.verbose);
+
+	return config;
 }
 
 function commandBuild() {

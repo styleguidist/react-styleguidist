@@ -32,6 +32,9 @@ module.exports = {
 		type: ['string', 'function'],
 		example: 'components/**/[A-Z]*.js',
 	},
+	configDir: {
+		process: (value, config, rootDir) => rootDir,
+	},
 	context: {
 		type: 'object',
 		default: {},
