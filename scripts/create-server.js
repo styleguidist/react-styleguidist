@@ -17,7 +17,7 @@ module.exports = function createServer(config, env) {
 			ignored: /node_modules/,
 		},
 		contentBase: config.assetsDir,
-		watchContentBase: config.assetsDir != null,
+		watchContentBase: config.assetsDir !== undefined,
 		stats: webpackConfig.stats || {},
 	});
 
