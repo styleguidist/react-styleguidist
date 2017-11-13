@@ -1106,13 +1106,9 @@ exports[`props columns should render return from JsDoc tags 1`] = `
             ]
           }
         />
-        <Styled(Heading)
-          level={5}
-        >
-          Returns
-        </Styled(Heading)>
         <Styled(Argument)
           description="Returns foo from bar"
+          returns={true}
           title="Foo"
           type={
             Object {
@@ -1170,13 +1166,9 @@ exports[`props columns should render return from JsDoc tags 2`] = `
             ]
           }
         />
-        <Styled(Heading)
-          level={5}
-        >
-          Returns
-        </Styled(Heading)>
         <Styled(Argument)
           description="Returns foo from bar"
+          returns={true}
           title="Foo"
           type={
             Object {

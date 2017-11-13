@@ -4,7 +4,6 @@ import Group from 'react-group';
 import objectToString from 'javascript-stringify';
 import Arguments from 'rsg-components/Arguments';
 import Argument from 'rsg-components/Argument';
-import Heading from 'rsg-components/Heading';
 import Code from 'rsg-components/Code';
 import JsDoc from 'rsg-components/JsDoc';
 import Markdown from 'rsg-components/Markdown';
@@ -133,8 +132,7 @@ function renderDescription(prop) {
 			{extra && <Para>{extra}</Para>}
 			<JsDoc {...tags} />
 			{args.length > 0 && <Arguments args={args} heading />}
-			{returnDocumentation && <Heading level={5}>Returns</Heading>}
-			{returnDocumentation && <Argument {...returnDocumentation} />}
+			{returnDocumentation && <Argument {...returnDocumentation} returns />}
 		</div>
 	);
 }
