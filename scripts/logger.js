@@ -2,13 +2,14 @@
 /* eslint-disable no-console */
 
 const _ = require('lodash/fp');
+const chalk = require('chalk');
 const logger = require('glogg')('rsg');
 
 const format = message => message.trim() + '\n';
 
 const printers = {
 	info: message => console.log(format(message)),
-	warn: message => console.warn(`Warning: ${format(message)}`),
+	warn: message => console.warn(chalk.yellow(`Warning: ${format(message)}`)),
 	debug: message => console.log(format(message)),
 };
 
