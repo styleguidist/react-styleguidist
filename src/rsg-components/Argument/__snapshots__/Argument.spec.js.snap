@@ -13,9 +13,10 @@ exports[`should render argument 1`] = `
   <Styled(Type)>
     Array
   </Styled(Type)>
+   — 
   <Styled(Markdown)
     inline={true}
-    text="— Converts foo to bar"
+    text="Converts foo to bar"
   />
 </Group>
 `;
@@ -47,7 +48,7 @@ exports[`should render argument without type 1`] = `
   </span>
   <Styled(Markdown)
     inline={true}
-    text="— Converts foo to bar"
+    text="Converts foo to bar"
   />
 </Group>
 `;
@@ -60,9 +61,10 @@ exports[`should render return value 1`] = `
   <Styled(Type)>
     Array
   </Styled(Type)>
+   — 
   <Styled(Markdown)
     inline={true}
-    text="— Converts foo to bar"
+    text="Converts foo to bar"
   />
 </Group>
 `;
