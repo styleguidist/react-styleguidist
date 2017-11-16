@@ -16,10 +16,11 @@ module.exports = function createServer(config, env) {
 		watchOptions: {
 			ignored: /node_modules/,
 		},
-		contentBase: config.assetsDir,
 		watchContentBase: config.assetsDir !== undefined,
 		stats: webpackConfig.stats || {},
 	}, webpackConfig.devServer);
+
+	webpackDevServerConfig.contentBase = config.assetsDir;
 
 	const compiler = webpack(webpackConfig);
 	const devServer = new WebpackDevServer(compiler, webpackDevServerConfig);
