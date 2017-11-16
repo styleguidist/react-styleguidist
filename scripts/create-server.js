@@ -18,9 +18,9 @@ module.exports = function createServer(config, env) {
 		},
 		watchContentBase: config.assetsDir !== undefined,
 		stats: webpackConfig.stats || {},
-	}, webpackConfig.devServer);
-
-	webpackDevServerConfig.contentBase = config.assetsDir;
+	}, webpackConfig.devServer, { 
+		contentBase: config.assetsDir 
+	});
 
 	const compiler = webpack(webpackConfig);
 	const devServer = new WebpackDevServer(compiler, webpackDevServerConfig);
