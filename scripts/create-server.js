@@ -7,7 +7,7 @@ const makeWebpackConfig = require('./make-webpack-config');
 
 module.exports = function createServer(config, env) {
 	const webpackConfig = makeWebpackConfig(config, env);
-	const webpackDevServerConfig = merge(webpackConfig.devServer, {
+	const webpackDevServerConfig = merge({
 		noInfo: true,
 		compress: true,
 		clientLogLevel: 'none',
@@ -16,9 +16,10 @@ module.exports = function createServer(config, env) {
 		watchOptions: {
 			ignored: /node_modules/,
 		},
-		contentBase: config.assetsDir,
 		watchContentBase: config.assetsDir !== undefined,
 		stats: webpackConfig.stats || {},
+	}, webpackConfig.devServer, { 
+		contentBase: config.assetsDir 
 	});
 
 	const compiler = webpack(webpackConfig);
