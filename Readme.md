@@ -15,6 +15,10 @@ React Styleguidist is a component development environment with hot reloaded dev 
 
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/271B372x102S0c052i3F/react-styleguidist7.gif)
 
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/Ehc9nFenMsMG6p9KFod8F3df/styleguidist/react-styleguidist'>
+  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/Ehc9nFenMsMG6p9KFod8F3df/styleguidist/react-styleguidist.svg' />
+</a>
+
 ## Usage
 
 * **[Getting Started](https://react-styleguidist.js.org/docs/getting-started.html): install and run Styleguidist**
@@ -75,12 +79,6 @@ The change log can be found on the [Releases page](https://github.com/styleguidi
 ## Contributing
 
 Everyone is welcome to contribute. Please take a moment to read the [contributing guidelines](.github/Contributing.md) and the [developer guide](https://react-styleguidist.js.org/docs/development.html).
-
-## Sponsor
-
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/Ehc9nFenMsMG6p9KFod8F3df/styleguidist/react-styleguidist'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/Ehc9nFenMsMG6p9KFod8F3df/styleguidist/react-styleguidist.svg' />
-</a>
 
 ## Authors and license
 
