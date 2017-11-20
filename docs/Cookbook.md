@@ -349,11 +349,11 @@ See in [configuring webpack](Webpack.md#reusing-your-projects-webpack-config).
 
 See [working with third-party libraries](Thirdparties.md).
 
-## What’s the difference betweeen Styleguidist and Storybook
+## What’s the difference between Styleguidist and Storybook
 
 Both tools are good and mature, they have many similarities but also some distinctions that may make you choose one or the other. For me the biggest distinction is how you describe component variations.
 
-With Storybook you write *stories* in JavaScript files:
+With [Storybook](https://storybook.js.org/) you write *stories* in JavaScript files:
 
 ```js
 import React from 'react';
@@ -388,7 +388,7 @@ And with Styleguidist you write *examples* in Markdown files:
 
 ![Styleguidist screenshot](https://camo.githubusercontent.com/7af8e5fc43288807978f28530656275008c5afbf/68747470733a2f2f64337676366c703535716a6171632e636c6f756466726f6e742e6e65742f6974656d732f32373142333732783130325330633035326933462f72656163742d7374796c6567756964697374372e676966)
 
-Another important distinction is that Storybook shows only one variation of one component at a time but Styleguidist can show all variations of all components, all variations of a single component or one variation.
+Another important distinction is that Storybook shows only one variation of one component at a time but Styleguidist can show all variations of all components, all variations of a single component or one variation. It’s easier to create a style guide with Styleguidist but Storybook has more tools to develop components (though we’re working on that too).
 
 | Feature | Storybook | Styleguidist |
 | ------- | --------- | ------------ |
@@ -397,11 +397,15 @@ Another important distinction is that Storybook shows only one variation of one 
 | Public methods docs | No | Yes |
 | Style guide¹ | No | Yes  |
 | Customizable design | No | Yes |
-| Extra documentation | No | Yes |
-| Plugins | Many | No² |
+| Extra documentation² | No | Yes |
+| Plugins | Many | [In development](https://github.com/styleguidist/react-styleguidist/issues/354) |
+| React | Yes | Yes |
+| Preact | Yes | Yes |
+| React Native | Yes | [react-native-web](https://github.com/styleguidist/react-styleguidist/issues/675) |
+| Vue | Yes | [Fork](https://github.com/vue-styleguidist/vue-styleguidist) |
 
-¹ All components on a single page.
-² [In development](https://github.com/styleguidist/react-styleguidist/issues/354).
+¹ All components on a single page.<br>
+² Include non-component documentation.
 
 ## Are there any other projects like this?
 
