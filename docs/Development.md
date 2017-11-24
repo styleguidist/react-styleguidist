@@ -4,15 +4,15 @@
 
 <!-- toc -->
 
-- [How it works](#how-it-works)
-- [Webpack loaders and webpack configuration](#webpack-loaders-and-webpack-configuration)
-- [React components](#react-components)
-- [Styles](#styles)
-- [Testing](#testing)
+* [How it works](#how-it-works)
+* [Webpack loaders and webpack configuration](#webpack-loaders-and-webpack-configuration)
+* [React components](#react-components)
+* [Styles](#styles)
+* [Testing](#testing)
 
 <!-- tocstop -->
 
-*For basics see [How to contribute](https://github.com/styleguidist/react-styleguidist/blob/master/.github/Contributing.md).*
+_For basics see [How to contribute](https://github.com/styleguidist/react-styleguidist/blob/master/.github/Contributing.md)._
 
 Styleguidist isn’t an ordinary single page app and some design decisions may look confusing to an outsider. In this guide we’ll explain these decisions to un-confuse potential contributors.
 
@@ -24,7 +24,7 @@ The main thing is that we’re running two apps at the same time: user’s compo
 
 ## How it works
 
-Styleguidist uses [react-docgen](https://github.com/reactjs/react-docgen) to parse *source* files (not transpiled). react-docgen finds exported React components and generates documentation based on PropTypes or Flow annotations.
+Styleguidist uses [react-docgen](https://github.com/reactjs/react-docgen) to parse _source_ files (not transpiled). react-docgen finds exported React components and generates documentation based on PropTypes or Flow annotations.
 
 Styleguidist uses Markdown for documentation: each JavaScript code block is rendered as an interactive playground with [CodeMirror](http://codemirror.net/). To do that we extract all these code blocks using [Remark](http://remark.js.org/).
 
@@ -61,7 +61,10 @@ module.exports = {
   webpackConfig: {
     resolve: {
       alias: {
-        'rsg-components/Wrapper': path.join(__dirname, 'lib/styleguide/Wrapper')
+        'rsg-components/Wrapper': path.join(
+          __dirname,
+          'lib/styleguide/Wrapper'
+        )
       }
     }
   }
@@ -72,7 +75,7 @@ All Styleguidist components should be imported like this: `import Foo from 'rsg-
 
 Each component folder usually has several files:
 
-* `Foo/Foo.js`  (optional for simple components);
+* `Foo/Foo.js` (optional for simple components);
 * `Foo/FooRenderer.js`;
 * `Foo/Foo.spec.js` — tests;
 * `Foo/index.js` — reexport of `Foo.js` or `FooRenderer.js`.
@@ -96,16 +99,14 @@ export const styles = ({ fontFamily, fontSize, color }) => ({
     color: color.light,
     '&:hover, &:active': {
       isolate: false,
-      color: color.lightest,
-    },
-  },
+      color: color.lightest
+    }
+  }
 });
 
 export function ExamplePlaceholderRenderer({ classes }) {
   return (
-    <button className={classes.button}>
-      I am a styled button
-    </button>
+    <button className={classes.button}>I am a styled button</button>
   );
 }
 ```
@@ -124,11 +125,15 @@ To test particular class names use `classes` function (available in the global n
 import { TabButtonRenderer, styles } from './TabButtonRenderer';
 
 const props = {
-  classes: classes(styles),
+  classes: classes(styles)
 };
 
 it('should render active styles', () => {
-  const actual = shallow(<TabButtonRenderer {...props} active>pizza</TabButtonRenderer>);
+  const actual = shallow(
+    <TabButtonRenderer {...props} active>
+      pizza
+    </TabButtonRenderer>
+  );
   expect(actual).toMatchSnapshot();
 });
 ```

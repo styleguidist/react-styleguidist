@@ -8,14 +8,14 @@ Styleguidist generates documentation for your components based on the comments i
 
 <!-- toc -->
 
-- [Code comments and propTypes](#code-comments-and-proptypes)
-- [Usage examples and Readme files](#usage-examples-and-readme-files)
-- [External examples using doclet tags](#external-examples-using-doclet-tags)
-- [Public methods](#public-methods)
-- [Ignoring props](#ignoring-props)
-- [Using JSDoc tags](#using-jsdoc-tags)
-- [Writing code examples](#writing-code-examples)
-- [Limitations](#limitations)
+* [Code comments and propTypes](#code-comments-and-proptypes)
+* [Usage examples and Readme files](#usage-examples-and-readme-files)
+* [External examples using doclet tags](#external-examples-using-doclet-tags)
+* [Public methods](#public-methods)
+* [Ignoring props](#ignoring-props)
+* [Using JSDoc tags](#using-jsdoc-tags)
+* [Writing code examples](#writing-code-examples)
+* [Limitations](#limitations)
 
 <!-- tocstop -->
 
@@ -35,13 +35,10 @@ export default class Button extends React.Component {
     /** Description of prop "foo". */
     foo: PropTypes.number,
     /** Description of prop "baz". */
-    baz: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string
-    ]),
+    baz: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   };
   static defaultProps = {
-    foo: 42,
+    foo: 42
   };
 
   render() {
@@ -143,22 +140,22 @@ MyComponent.propTypes = {
    * @ignore
    */
   hiddenProp: React.PropTypes.string
-}
+};
 ```
 
 ## Using JSDoc tags
 
 You can use the following [JSDoc](http://usejsdoc.org/) tags when documenting components, props and methods:
 
-- [@deprecated](http://usejsdoc.org/tags-deprecated.html)
-- [@see, @link](http://usejsdoc.org/tags-see.html)
-- [@author](http://usejsdoc.org/tags-author.html)
-- [@since](http://usejsdoc.org/tags-since.html)
-- [@version](http://usejsdoc.org/tags-version.html)
+* [@deprecated](http://usejsdoc.org/tags-deprecated.html)
+* [@see, @link](http://usejsdoc.org/tags-see.html)
+* [@author](http://usejsdoc.org/tags-author.html)
+* [@since](http://usejsdoc.org/tags-since.html)
+* [@version](http://usejsdoc.org/tags-version.html)
 
 When documenting props you can also use:
 
-- [@param, @arg, @argument](http://usejsdoc.org/tags-param.html)
+* [@param, @arg, @argument](http://usejsdoc.org/tags-param.html)
 
 All tags can render Markdown.
 
@@ -169,7 +166,7 @@ All tags can render Markdown.
  * @version 1.0.1
  * @author [Artem Sapegin](https://github.com/sapegin)
  * @author [Andy Krings-Stern](https://github.com/ankri)
-*/
+ */
 class Button extends React.Component {
   static propTypes = {
     /**
@@ -212,9 +209,11 @@ Code examples in Markdown use the ES6+JSX syntax. They can access all the compon
 
 ```jsx
 <Panel>
-  <p>Using the Button component in the example of the Panel component:</p>
+  <p>
+    Using the Button component in the example of the Panel component:
+  </p>
   <Button>Push Me</Button>
-</Panel>
+</Panel>;
 ```
 
 > **Note:** Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the frontend, it supports [most of the ES6 features](https://buble.surge.sh/guide/#unsupported-features).
@@ -223,12 +222,12 @@ You can also `require` other modules (e.g. mock data that you use in your unit t
 
 ```jsx
 const mockData = require('./mocks');
-<Message content={mockData.hello} />
+<Message content={mockData.hello} />;
 ```
 
 > **Note:** You can `require` only from examples in Markdown files. ES6 `import` syntax isn’t supported.
 
-Each example has its own state that you can access at the `state` variable and change with the `setState` function. Default state is `{}`.
+Each example has its own state that you can access at the `state` variable and change with the `setState` function. Default state is `{}`.
 
 ```jsx
 initialState = { isOpen: false };
@@ -238,20 +237,24 @@ initialState = { isOpen: false };
     <h1>Hallo!</h1>
     <button onClick={() => setState({ isOpen: false })}>Close</button>
   </Modal>
-</div>
+</div>;
 ```
 
-You *can* create `React.Component`s in your code examples:
+You _can_ create `React.Component`s in your code examples:
 
 ```jsx
 class SortTable extends React.Component {
   constructor() {
     super();
-    this.state = { /* ... */ };
+    this.state = {
+      /* ... */
+    };
   }
   render() {
     const { columns, rows } = this.state;
-    const sortedRows = require('sortabular').sorter({ /* ... */ })(rows);
+    const sortedRows = require('sortabular').sorter({
+      /* ... */
+    })(rows);
     return (
       <TableProvider columns={columns}>
         <Table.Header />
@@ -260,7 +263,7 @@ class SortTable extends React.Component {
     );
   }
 }
-<SortTable />
+<SortTable />;
 ```
 
 > **Note:** If you need a more complex demo it’s often a good idea to define it in a separate JavaScript file and `require` it in Markdown

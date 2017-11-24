@@ -4,9 +4,9 @@
 
 <!-- toc -->
 
-- [Finding components](#finding-components)
-- [Sections](#sections)
-- [Limitations](#limitations)
+* [Finding components](#finding-components)
+* [Sections](#sections)
+* [Limitations](#limitations)
 
 <!-- tocstop -->
 
@@ -45,10 +45,10 @@ Group components into sections or add extra Markdown documents to your style gui
 
 Each section consists of (all fields are optional):
 
-- `name` — section title.
-- `content` — location of a Markdown file containing the overview content.
-- `components` — a glob pattern string or a function returning a list of components. The same rules apply as for the root `components` option.
-- `sections` — array of subsections (can be nested).
+* `name` — section title.
+* `content` — location of a Markdown file containing the overview content.
+* `components` — a glob pattern string or a function returning a list of components. The same rules apply as for the root `components` option.
+* `sections` — array of subsections (can be nested).
 
 Configuring a style guide with textual documentation section and a list of components would look like:
 

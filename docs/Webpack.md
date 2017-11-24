@@ -2,7 +2,7 @@
 
 Styleguidist uses [webpack](https://webpack.js.org/) under the hood and it needs to know how to load your project’s files.
 
-*Webpack is required to run Styleguidist but your project doesn’t have to use it.*
+_Webpack is required to run Styleguidist but your project doesn’t have to use it._
 
 > **Note:** See [cookbook](Cookbook.md) for more examples.
 
@@ -10,12 +10,12 @@ Styleguidist uses [webpack](https://webpack.js.org/) under the hood and it needs
 
 <!-- toc -->
 
-- [Reusing your project’s webpack config](#reusing-your-projects-webpack-config)
-- [Custom webpack config](#custom-webpack-config)
-- [Create React App](#create-react-app)
-- [Create React App, TypeScript](#create-react-app-typescript)
-- [Non-webpack projects](#non-webpack-projects)
-- [When nothing else works](#when-nothing-else-works)
+* [Reusing your project’s webpack config](#reusing-your-projects-webpack-config)
+* [Custom webpack config](#custom-webpack-config)
+* [Create React App](#create-react-app)
+* [Create React App, TypeScript](#create-react-app-typescript)
+* [Non-webpack projects](#non-webpack-projects)
+* [When nothing else works](#when-nothing-else-works)
 
 <!-- tocstop -->
 
@@ -35,12 +35,9 @@ Or if you want to merge it with other options:
 
 ```javascript
 module.exports = {
-  webpackConfig: Object.assign({},
-    require('./configs/webpack.js'),
-    {
-      /* Custom config options */
-    }
-  )
+  webpackConfig: Object.assign({}, require('./configs/webpack.js'), {
+    /* Custom config options */
+  })
 };
 ```
 
@@ -93,16 +90,17 @@ module.exports = {
 ## Create React App, TypeScript
 
 If you're using [Create React App](https://github.com/facebookincubator/create-react-app) and Typescript, you need to:
-- Install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript)
-- Create a `styleguide.config.js`, see [this guide](Configuration.md)
-- Add a `components`, `webpackConfig` and `propsParser` section to your `styleguide.config.js`:
+
+* Install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript)
+* Create a `styleguide.config.js`, see [this guide](Configuration.md)
+* Add a `components`, `webpackConfig` and `propsParser` section to your `styleguide.config.js`:
 
 ```javascript
 module.exports = {
   components: 'src/components/**/*.{ts,tsx}',
   propsParser: require('react-docgen-typescript').parse,
   webpackConfig: require('react-scripts-ts/config/webpack.config.dev.js')
-}
+};
 ```
 
 ## Non-webpack projects
@@ -118,10 +116,7 @@ Then add a `webpackConfig` section to your `styleguide.config.js`:
 ```javascript
 const { createConfig, babel, postcss } = require('webpack-blocks');
 module.exports = {
-	webpackConfig: createConfig([
-		babel(),
-		postcss()
-	])
+  webpackConfig: createConfig([babel(), postcss()])
 };
 ```
 

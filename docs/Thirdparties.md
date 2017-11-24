@@ -4,8 +4,8 @@
 
 <!-- toc -->
 
-- [How Styleguidist works](#how-styleguidist-works)
-- [Using Styleguidist with other libraries](#using-styleguidist-with-other-libraries)
+* [How Styleguidist works](#how-styleguidist-works)
+* [Using Styleguidist with other libraries](#using-styleguidist-with-other-libraries)
   * [Redux](#redux)
   * [Relay](#relay)
   * [Styled Components](#styled-components)
@@ -17,7 +17,7 @@
 
 ## How Styleguidist works
 
-Styleguidist always uses the default export to *load* your components but it uses [react-docgen](https://github.com/reactjs/react-docgen) to *generate documentation* which may require changes in your code to work properly.
+Styleguidist always uses the default export to _load_ your components but it uses [react-docgen](https://github.com/reactjs/react-docgen) to _generate documentation_ which may require changes in your code to work properly.
 
 React-docgen reads your components as static text files and looks for patterns like class or function declarations that looks like React components. It does not run any JavaScript code, so, if your component is dynamically generated, is wrapped in a higher-order component, or is split into several files, then react-docgen may not understand it.
 
@@ -31,7 +31,9 @@ import CSSModules from 'react-css-modules';
 import styles from './Button.css';
 
 // Base component will be used by react-docgen to generate documentation
-export function Button({ color, size, children }) { /* ... */ }
+export function Button({ color, size, children }) {
+  /* ... */
+}
 
 // Enhanced component will be used when you write <Button /> in your example files
 export default CSSModules(Button, styles);
@@ -67,8 +69,8 @@ const initialState = {
 };
 const store = configureStore({ initialState });
 <Provider store={store}>
-  <App greeting="Choose your pizza!"/>
-</Provider>
+  <App greeting="Choose your pizza!" />
+</Provider>;
 ```
 
 To use Redux store in every component redefine the `Wrapper` component:
@@ -96,11 +98,7 @@ const initialState = {
 const store = configureStore({ initialState });
 export default class Wrapper extends Component {
   render() {
-    return (
-      <Provider store={store}>
-        {this.props.children}
-      </Provider>
-    );
+    return <Provider store={store}>{this.props.children}</Provider>;
   }
 }
 ```
@@ -117,12 +115,15 @@ module.exports = {
   webpackConfig: merge(require('./webpack.config'), {
     resolve: {
       alias: {
-        'react-relay': path.join(__dirname, 'src/styleguide/FakeRelay'),
-        'real-react-relay': require.resolve('react-relay'),
-      },
-    },
+        'react-relay': path.join(
+          __dirname,
+          'src/styleguide/FakeRelay'
+        ),
+        'real-react-relay': require.resolve('react-relay')
+      }
+    }
   })
-}
+};
 ```
 
 ```js
@@ -140,7 +141,7 @@ module.exports = {
   context: {
     sample: path.join(__dirname, 'src/styleguide/sample_data')
   }
-}
+};
 ```
 
 ```js
@@ -149,15 +150,15 @@ module.exports = {
   object: {
     // Something similar to your GraphQL results
   }
-}
+};
 ```
 
 ```jsx
 // src/MyComponent/Readme.md
-<MyComponent object={sample.object} />
+<MyComponent object={sample.object} />;
 ```
 
-*Based on @mikberg’s [blog post](https://medium.com/@mikaelberg/writing-simple-unit-tests-with-relay-707f19e90129).*
+_Based on @mikberg’s [blog post](https://medium.com/@mikaelberg/writing-simple-unit-tests-with-relay-707f19e90129)._
 
 ### Styled Components
 
@@ -191,7 +192,9 @@ import React from 'react';
 import CSSModules from 'react-css-modules';
 import styles from './Button.css';
 
-export function Button({ color, size, children }) { /* ... */ }
+export function Button({ color, size, children }) {
+  /* ... */
+}
 
 export default CSSModules(Button, styles);
 ```
@@ -205,8 +208,8 @@ const Styletron = require('styletron-client');
 const { StyletronProvider } = require('styletron-react');
 
 <StyletronProvider styletron={new Styletron()}>
-  <App greeting="Choose your pizza!"/>
-</StyletronProvider>
+  <App greeting="Choose your pizza!" />
+</StyletronProvider>;
 ```
 
 To use Styletron in every component, which is similar to [Redux](#redux), redefine the Wrapper component:

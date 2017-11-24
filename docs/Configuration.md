@@ -6,40 +6,40 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 
 <!-- toc -->
 
-- [`assetsDir`](#assetsdir)
-- [`compilerConfig`](#compilerconfig)
-- [`components`](#components)
-- [`context`](#context)
-- [`contextDependencies`](#contextdependencies)
-- [`configureServer`](#configureserver)
-- [`dangerouslyUpdateWebpackConfig`](#dangerouslyupdatewebpackconfig)
-- [`defaultExample`](#defaultexample)
-- [`getComponentPathLine`](#getcomponentpathline)
-- [`getExampleFilename`](#getexamplefilename)
-- [`handlers`](#handlers)
-- [`highlightTheme`](#highlighttheme)
-- [`ignore`](#ignore)
-- [`logger`](#logger)
-- [`previewDelay`](#previewdelay)
-- [`propsParser`](#propsparser)
-- [`require`](#require)
-- [`resolver`](#resolver)
-- [`sections`](#sections)
-- [`serverHost`](#serverhost)
-- [`serverPort`](#serverport)
-- [`showCode`](#showcode)
-- [`showUsage`](#showusage)
-- [`showSidebar`](#showsidebar)
-- [`skipComponentsWithoutExample`](#skipcomponentswithoutexample)
-- [`styleguideComponents`](#styleguidecomponents)
-- [`styleguideDir`](#styleguidedir)
-- [`styles`](#styles)
-- [`template`](#template)
-- [`theme`](#theme)
-- [`title`](#title)
-- [`updateExample`](#updateexample)
-- [`verbose`](#verbose)
-- [`webpackConfig`](#webpackconfig)
+* [`assetsDir`](#assetsdir)
+* [`compilerConfig`](#compilerconfig)
+* [`components`](#components)
+* [`context`](#context)
+* [`contextDependencies`](#contextdependencies)
+* [`configureServer`](#configureserver)
+* [`dangerouslyUpdateWebpackConfig`](#dangerouslyupdatewebpackconfig)
+* [`defaultExample`](#defaultexample)
+* [`getComponentPathLine`](#getcomponentpathline)
+* [`getExampleFilename`](#getexamplefilename)
+* [`handlers`](#handlers)
+* [`highlightTheme`](#highlighttheme)
+* [`ignore`](#ignore)
+* [`logger`](#logger)
+* [`previewDelay`](#previewdelay)
+* [`propsParser`](#propsparser)
+* [`require`](#require)
+* [`resolver`](#resolver)
+* [`sections`](#sections)
+* [`serverHost`](#serverhost)
+* [`serverPort`](#serverport)
+* [`showCode`](#showcode)
+* [`showUsage`](#showusage)
+* [`showSidebar`](#showsidebar)
+* [`skipComponentsWithoutExample`](#skipcomponentswithoutexample)
+* [`styleguideComponents`](#styleguidecomponents)
+* [`styleguideDir`](#styleguidedir)
+* [`styles`](#styles)
+* [`template`](#template)
+* [`theme`](#theme)
+* [`title`](#title)
+* [`updateExample`](#updateexample)
+* [`verbose`](#verbose)
+* [`webpackConfig`](#webpackconfig)
 
 <!-- tocstop -->
 
@@ -59,8 +59,8 @@ Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the
 
 Type: `String` or `Function`, default: `src/components/**/*.{js,jsx}`
 
-- when `String`: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules.
-- when `Function`: a function that returns an array of module paths.
+* when `String`: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules.
+* when `Function`: a function that returns an array of module paths.
 
 All paths are relative to config folder.
 
@@ -84,7 +84,7 @@ module.exports = {
 Then you can use them in any example:
 
 ```jsx
-<Message>{map(users, 'name').join(', ')}</Message>
+<Message>{map(users, 'name').join(', ')}</Message>;
 ```
 
 #### `contextDependencies`
@@ -97,10 +97,8 @@ By default Styleguidist uses common parent directory of your components.
 
 ```javascript
 module.exports = {
-  contextDependencies: [
-    path.resolve(__dirname, 'lib/components')
-  ]
-}
+  contextDependencies: [path.resolve(__dirname, 'lib/components')]
+};
 ```
 
 #### `configureServer`
@@ -112,7 +110,7 @@ Function that allows you to add endpoints to the underlying Express server:
 ```javascript
 module.exports = {
   configureServer(app) {
-     // `app` is the instance of the express server running Styleguidist
+    // `app` is the instance of the express server running Styleguidist
     app.get('/custom-endpoint', (req, res) => {
       res.status(200).send({ response: 'Server invoked' });
     });
@@ -136,7 +134,7 @@ module.exports = {
     // WARNING: inspect Styleguidist Webpack config before modifying it, otherwise you may break Styleguidist
     console.log(webpackConfig);
     webpackConfig.externals = {
-        jquery: 'jQuery'
+      jquery: 'jQuery'
     };
     return webpackConfig;
   }
@@ -196,26 +194,36 @@ Function that returns functions used to process the discovered components and ge
 
 ```javascript
 module.exports = {
-  handlers: componentPath => require('react-docgen').defaultHandlers.concat(
-    (documentation, path) => {
-      // Calculate a display name for components based upon the declared class name.
-      if (path.value.type === 'ClassDeclaration' && path.value.id.type === 'Identifier') {
-        documentation.set('displayName', path.value.id.name);
+  handlers: componentPath =>
+    require('react-docgen').defaultHandlers.concat(
+      (documentation, path) => {
+        // Calculate a display name for components based upon the declared class name.
+        if (
+          path.value.type === 'ClassDeclaration' &&
+          path.value.id.type === 'Identifier'
+        ) {
+          documentation.set('displayName', path.value.id.name);
 
-        // Calculate the key required to find the component in the module exports
-        if (path.parentPath.value.type === 'ExportNamedDeclaration') {
-          documentation.set('path', path.value.id.name);
+          // Calculate the key required to find the component in the module exports
+          if (
+            path.parentPath.value.type === 'ExportNamedDeclaration'
+          ) {
+            documentation.set('path', path.value.id.name);
+          }
         }
-      }
 
-      // The component is the default export
-      if (path.parentPath.value.type === 'ExportDefaultDeclaration') {
-        documentation.set('path', 'default');
-      }
-    },
+        // The component is the default export
+        if (
+          path.parentPath.value.type === 'ExportDefaultDeclaration'
+        ) {
+          documentation.set('path', 'default');
+        }
+      },
 
-    require('react-docgen-displayname-handler').createDisplayNameHandler(componentPath),
-  )
+      require('react-docgen-displayname-handler').createDisplayNameHandler(
+        componentPath
+      )
+    )
 };
 ```
 
@@ -241,13 +249,13 @@ Custom logger functions:
 
 ```javascript
 module.exports = {
-	logger: {
+  logger: {
     // One of: info, debug, warn
     // Suppress messages
-		info: () => {},
+    info: () => {},
     // Override display function
-		warn: message => console.warn(`NOOOOOO: ${message}`),
-	},
+    warn: message => console.warn(`NOOOOOO: ${message}`)
+  }
 };
 ```
 
@@ -281,7 +289,7 @@ Modules that are required for your style guide. Useful for third-party styles or
 module.exports = {
   require: [
     'babel-polyfill',
-    path.join(__dirname, 'styleguide/styles.css'),
+    path.join(__dirname, 'styleguide/styles.css')
   ]
 };
 ```
@@ -297,10 +305,7 @@ module.exports = {
       rules: [
         {
           test: /\.css$/,
-          use: [
-            'style-loader',
-            'css-loader'
-          ]
+          use: ['style-loader', 'css-loader']
         }
       ]
     }
@@ -318,7 +323,8 @@ Function that allows you to override the mechanism used to identify classes/comp
 
 ```javascript
 module.exports = {
-  resolver: require('react-docgen').resolver.findAllComponentDefinitions
+  resolver: require('react-docgen').resolver
+    .findAllComponentDefinitions
 };
 ```
 
@@ -374,10 +380,13 @@ Override React components used to render the style guide.
 
 ```javascript
 module.exports = {
-	styleguideComponents: {
-		Logo: path.join(__dirname, 'styleguide/components/Logo'),
-		StyleGuideRenderer: path.join(__dirname, 'styleguide/components/StyleGuide'),
-	},
+  styleguideComponents: {
+    Logo: path.join(__dirname, 'styleguide/components/Logo'),
+    StyleGuideRenderer: path.join(
+      __dirname,
+      'styleguide/components/StyleGuide'
+    )
+  }
 };
 ```
 
@@ -433,8 +442,8 @@ module.exports = {
       return {
         content: fs.readFileSync(filepath),
         settings,
-        lang,
-      }
+        lang
+      };
     }
     return props;
   }
@@ -484,7 +493,11 @@ module.exports = {
       rules: [
         {
           test: /\.scss$/,
-          loaders: ['style-loader', 'css-loader', 'sass-loader?precision=10']
+          loaders: [
+            'style-loader',
+            'css-loader',
+            'sass-loader?precision=10'
+          ]
         }
       ]
     }
@@ -498,9 +511,9 @@ Or a function:
 module.exports = {
   webpackConfig(env) {
     if (env === 'development') {
-        return {
-            // custom options
-        };
+      return {
+        // custom options
+      };
     }
     return {};
   }
