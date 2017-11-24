@@ -57,9 +57,7 @@ export const mq = {
 	small: '@media (max-width: 600px)',
 };
 
-export const textTransform = {
-	base: 'uppercase',
-};
+export const buttonTextTransform = 'uppercase';
 
 export const borderRadius = 3;
 export const maxWidth = 1000;
