@@ -10,6 +10,7 @@ export const styles = ({ space, fontFamily, fontSize, color }) => ({
 		fontFamily: fontFamily.monospace,
 		fontSize: fontSize.small,
 		color: color.light,
+		cursor: 'pointer',
 	},
 	copyButton: {
 		marginLeft: space[0],
