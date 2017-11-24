@@ -10,6 +10,7 @@ const startCase = require('lodash/startCase');
 const reactDocgen = require('react-docgen');
 const createDisplayNameHandler = require('react-docgen-displayname-handler')
 	.createDisplayNameHandler;
+const annotationResolver = require('react-docgen-annotation-resolver').default;
 const logger = require('glogg')('rsg');
 const findUserWebpackConfig = require('../utils/findUserWebpackConfig');
 const getUserPackageJson = require('../utils/getUserPackageJson');
@@ -110,7 +111,13 @@ module.exports = {
 	},
 	resolver: {
 		type: 'function',
-		default: reactDocgen.resolver.findAllExportedComponentDefinitions,
+		default: (ast, recast) => {
+			const findAllExportedComponentDefinitions =
+				reactDocgen.resolver.findAllExportedComponentDefinitions;
+			const annotatedComponents = annotationResolver(ast, recast);
+			const exportedComponents = findAllExportedComponentDefinitions(ast, recast);
+			return annotatedComponents.concat(exportedComponents);
+		},
 	},
 	sections: {
 		type: 'array',
