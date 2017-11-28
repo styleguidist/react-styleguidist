@@ -72,6 +72,7 @@
     "react-codemirror2": "^3.0.7",
     "react-dev-utils": "^4.2.1",
     "react-docgen": "^3.0.0-beta9",
+    "react-docgen-annotation-resolver": "^1.0.0",
     "react-docgen-displayname-handler": "^1.0.1",
     "react-group": "^1.0.5",
     "react-icons": "^2.2.7",

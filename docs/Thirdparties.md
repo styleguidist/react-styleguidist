@@ -161,7 +161,7 @@ module.exports = {
 
 ### Styled Components
 
-The [recommended way](https://github.com/styleguidist/react-styleguidist/issues/37#issuecomment-263502454) of using [Styled Components](https://www.styled-components.com/) is like this:
+The recommended way of using [Styled Components](https://www.styled-components.com/) is by using a special `@component` JSDoc annotation:
 
 ```jsx
 import React from 'react';
@@ -173,9 +173,9 @@ const SalmonButton = styled.button`
   color: snow;
 `;
 
-export default function Button({ children, ...props }) {
-  return <SalmonButton {...props}>{children}</SalmonButton>;
-}
+/** @component */
+export default SalmonButton;
+
 ```
 
 ### Fela
