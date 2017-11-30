@@ -13,6 +13,11 @@ const sections = [
 		name: 'Components',
 		components: 'components/**/[A-Z]*.js',
 	},
+	{
+		name: 'Ignore',
+		components: 'components/**/*.js',
+		ignore: '**/components/Annotation/*',
+	},
 ];
 const config = {
 	configDir,
@@ -34,6 +39,12 @@ it('processSection() should throw when content file not found', () => {
 
 it('processSection() should return an object for section with components', () => {
 	const result = processSection(sections[1], config);
+
+	expect(result).toMatchSnapshot();
+});
+
+it('processSection() should return an object for section without ignored components', () => {
+	const result = processSection(sections[2], config);
 
 	expect(result).toMatchSnapshot();
 });
