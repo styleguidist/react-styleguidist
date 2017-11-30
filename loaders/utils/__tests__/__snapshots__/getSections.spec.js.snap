@@ -37,7 +37,7 @@ Array [
         "props": RequireStatement {
           "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/Button/Button.js",
         },
-        "slug": "button-1",
+        "slug": "button-2",
       },
       Object {
         "filepath": "components/Placeholder/Placeholder.js",
@@ -52,7 +52,7 @@ Array [
         "props": RequireStatement {
           "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/Placeholder/Placeholder.js",
         },
-        "slug": "placeholder-1",
+        "slug": "placeholder-2",
       },
       Object {
         "filepath": "components/RandomButton/RandomButton.js",
@@ -65,13 +65,62 @@ Array [
         "props": RequireStatement {
           "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/RandomButton/RandomButton.js",
         },
-        "slug": "randombutton-1",
+        "slug": "randombutton-2",
       },
     ],
     "content": undefined,
     "name": "Components",
     "sections": Array [],
     "slug": "components-1",
+  },
+  Object {
+    "components": Array [
+      Object {
+        "filepath": "components/Button/Button.js",
+        "hasExamples": true,
+        "metadata": Object {},
+        "module": RequireStatement {
+          "filepath": "<rootDir>/test/components/Button/Button.js",
+        },
+        "pathLine": "components/Button/Button.js",
+        "props": RequireStatement {
+          "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/Button/Button.js",
+        },
+        "slug": "button-3",
+      },
+      Object {
+        "filepath": "components/Placeholder/Placeholder.js",
+        "hasExamples": true,
+        "metadata": RequireStatement {
+          "filepath": "!!json-loader!<rootDir>/test/components/Placeholder/Placeholder.json",
+        },
+        "module": RequireStatement {
+          "filepath": "<rootDir>/test/components/Placeholder/Placeholder.js",
+        },
+        "pathLine": "components/Placeholder/Placeholder.js",
+        "props": RequireStatement {
+          "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/Placeholder/Placeholder.js",
+        },
+        "slug": "placeholder-3",
+      },
+      Object {
+        "filepath": "components/RandomButton/RandomButton.js",
+        "hasExamples": true,
+        "metadata": Object {},
+        "module": RequireStatement {
+          "filepath": "<rootDir>/test/components/RandomButton/RandomButton.js",
+        },
+        "pathLine": "components/RandomButton/RandomButton.js",
+        "props": RequireStatement {
+          "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/RandomButton/RandomButton.js",
+        },
+        "slug": "randombutton-3",
+      },
+    ],
+    "content": undefined,
+    "name": "Ignore",
+    "sections": Array [],
+    "slug": "ignore-1",
   },
 ]
 `;
@@ -150,5 +199,57 @@ Object {
   "name": "Readme",
   "sections": Array [],
   "slug": "readme",
+}
+`;
+
+exports[`processSection() should return an object for section without ignored components 1`] = `
+Object {
+  "components": Array [
+    Object {
+      "filepath": "components/Button/Button.js",
+      "hasExamples": true,
+      "metadata": Object {},
+      "module": RequireStatement {
+        "filepath": "<rootDir>/test/components/Button/Button.js",
+      },
+      "pathLine": "components/Button/Button.js",
+      "props": RequireStatement {
+        "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/Button/Button.js",
+      },
+      "slug": "button-1",
+    },
+    Object {
+      "filepath": "components/Placeholder/Placeholder.js",
+      "hasExamples": true,
+      "metadata": RequireStatement {
+        "filepath": "!!json-loader!<rootDir>/test/components/Placeholder/Placeholder.json",
+      },
+      "module": RequireStatement {
+        "filepath": "<rootDir>/test/components/Placeholder/Placeholder.js",
+      },
+      "pathLine": "components/Placeholder/Placeholder.js",
+      "props": RequireStatement {
+        "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/Placeholder/Placeholder.js",
+      },
+      "slug": "placeholder-1",
+    },
+    Object {
+      "filepath": "components/RandomButton/RandomButton.js",
+      "hasExamples": true,
+      "metadata": Object {},
+      "module": RequireStatement {
+        "filepath": "<rootDir>/test/components/RandomButton/RandomButton.js",
+      },
+      "pathLine": "components/RandomButton/RandomButton.js",
+      "props": RequireStatement {
+        "filepath": "!!<rootDir>/loaders/props-loader.js!<rootDir>/test/components/RandomButton/RandomButton.js",
+      },
+      "slug": "randombutton-1",
+    },
+  ],
+  "content": undefined,
+  "name": "Ignore",
+  "sections": Array [],
+  "slug": "ignore",
 }
 `;

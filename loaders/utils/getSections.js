@@ -4,6 +4,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const _ = require('lodash');
 const requireIt = require('./requireIt');
 const getComponentFiles = require('./getComponentFiles');
 const getComponents = require('./getComponents');
@@ -39,11 +40,17 @@ function processSection(section, config) {
 		content = requireIt(`!!${examplesLoader}!${filepath}`);
 	}
 
+	let ignore = config.ignore ? _.castArray(config.ignore) : [];
+
+	if (section.ignore) {
+		ignore = ignore.concat(_.castArray(section.ignore));
+	}
+
 	return {
 		name: section.name,
 		slug: slugger.slug(section.name),
 		components: getComponents(
-			getComponentFiles(section.components, config.configDir, config.ignore),
+			getComponentFiles(section.components, config.configDir, ignore),
 			config
 		),
 		sections: getSections(section.sections || [], config),
