@@ -7,7 +7,7 @@
 - [How to use `ref`s in examples?](#how-to-use-refs-in-examples)
 - [How to exclude some components from style guide?](#how-to-exclude-some-components-from-style-guide)
 - [How to hide some components in style guide but make them available in examples?](#how-to-hide-some-components-in-style-guide-but-make-them-available-in-examples)
-- [How to set global styles for user components](#how-to-set-global-styles-for-user-components)
+- [How to set global styles for user components?](#how-to-set-global-styles-for-user-components)
 - [How to add custom JavaScript and CSS or polyfills?](#how-to-add-custom-javascript-and-css-or-polyfills)
 - [How to use React Styleguidist with Preact?](#how-to-use-react-styleguidist-with-preact)
 - [How to change styles of a style guide?](#how-to-change-styles-of-a-style-guide)
