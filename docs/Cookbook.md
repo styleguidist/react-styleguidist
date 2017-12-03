@@ -86,24 +86,24 @@ The `Button` component will be available in every example without a need to `req
 
 ## How to set global styles for user components?
 
-Using the [jss-global](https://github.com/cssinjs/jss-global) API you can set global styles in your config so that you don't have to set them in each component:
+Using the [jss-global](https://github.com/cssinjs/jss-global) API you can set global styles in your config:
 
 ```javascript
 module.exports = {
-	components: 'src/components/**/[A-Z]*.js',
-	styles: {
-		StyleGuide: {
-			'@global body': {
-				fontFamily: 'Helvetica',
-			},
-		},
-	},
+  components: 'src/components/**/[A-Z]*.js',
+  styles: {
+    StyleGuide: {
+      '@global body': {
+        fontFamily: 'Helvetica',
+      },
+    },
+  },
 };
 ```
 
 Above, we have set `font-family: 'Helvetica';` on the body.
 
-> **Note:** This does not set styles on the style guide UI.
+> **Note:** This does not set styles on the style guide UI, for that read [How to change styles of a style guide](#how-to-change-styles-of-a-style-guide).
 
 ## How to add custom JavaScript and CSS or polyfills?
 
