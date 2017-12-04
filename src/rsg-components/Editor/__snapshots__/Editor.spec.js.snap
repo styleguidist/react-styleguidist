@@ -14,7 +14,11 @@ exports[`Editor should renderer and editor 1`] = `
       "viewportMargin": Infinity,
     }
   }
-  value="<button>MyAwesomeCode</button>"
+  value=
+<button>
+  MyAwesomeCode
+</button>
+
 />
 `;
 

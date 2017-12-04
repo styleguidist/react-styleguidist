@@ -118,6 +118,7 @@
     "husky": "^0.14.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^21.2.1",
+    "jest-serializer-html": "^4.0.1",
     "keymirror": "^0.1.1",
     "lint-staged": "^4.3.0",
     "prettier": "~1.8.1",
@@ -184,7 +185,8 @@
       "<rootDir>/test/jestsetup.js"
     ],
     "snapshotSerializers": [
-      "<rootDir>/node_modules/enzyme-to-json/serializer"
+      "<rootDir>/node_modules/enzyme-to-json/serializer",
+      "jest-serializer-html"
     ]
   },
   "keywords": [
