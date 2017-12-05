@@ -28,7 +28,7 @@ If your webpack config is located somewhere else, you need to load it manually:
 ```javascript
 module.exports = {
   webpackConfig: require('./configs/webpack.js')
-};
+}
 ```
 
 Or if you want to merge it with other options:
@@ -38,7 +38,7 @@ module.exports = {
   webpackConfig: Object.assign({}, require('./configs/webpack.js'), {
     /* Custom config options */
   })
-};
+}
 ```
 
 > **Note:** `entry`, `externals`, `output`, `watch`, and `stats` options will be ignored. For production builds, `devtool` will also be ignored.
@@ -74,7 +74,7 @@ module.exports = {
       ]
     }
   }
-};
+}
 ```
 
 > **Warning:** This option disables config load from `webpack.config.js`, see above how to load your config manually.
@@ -100,7 +100,7 @@ module.exports = {
   components: 'src/components/**/*.{ts,tsx}',
   propsParser: require('react-docgen-typescript').parse,
   webpackConfig: require('react-scripts-ts/config/webpack.config.dev.js')
-};
+}
 ```
 
 ## Non-webpack projects
@@ -114,10 +114,10 @@ npm install --save-dev webpack-blocks
 Then add a `webpackConfig` section to your `styleguide.config.js`:
 
 ```javascript
-const { createConfig, babel, postcss } = require('webpack-blocks');
+const { createConfig, babel, postcss } = require('webpack-blocks')
 module.exports = {
   webpackConfig: createConfig([babel(), postcss()])
-};
+}
 ```
 
 > **Note:** `.babelrc` and `postcss.config.js` files will be taken into account if you have them.

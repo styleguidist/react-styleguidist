@@ -31,9 +31,9 @@
 Use `ref` prop as a function and assign a reference to a local variable:
 
 ```jsx
-initialState = { value: '' };
-let textarea;
-<div>
+initialState = { value: '' }
+let textarea
+;<div>
   <Button onClick={() => textarea.insertAtCursor('Pizza')}>
     Insert
   </Button>
@@ -42,7 +42,7 @@ let textarea;
     onChange={e => setState({ value: e.target.value })}
     ref={ref => (textarea = ref)}
   />
-</div>;
+</div>
 ```
 
 ## How to exclude some components from style guide?
@@ -54,7 +54,7 @@ Use [ignore](Configuration.md#ignore) option to customize this behavior:
 ```javascript
 module.exports = {
   ignore: ['**/*.spec.js', '**/components/Button.js']
-};
+}
 ```
 
 > **Note:** You should pass glob patterns, for example, use `**/components/Button.js` instead of `components/Button.js`.
@@ -66,8 +66,8 @@ Enable [skipComponentsWithoutExample](Configuration.md#skipcomponentswithoutexam
 Require these components in your examples:
 
 ```jsx
-const Button = require('../common/Button');
-<Button>Push Me Tender</Button>;
+const Button = require('../common/Button')
+;<Button>Push Me Tender</Button>
 ```
 
 Or, if you want to make these components available for all examples:
@@ -76,11 +76,11 @@ Or, if you want to make these components available for all examples:
 // styleguide.config.js
 module.exports = {
   require: [path.resolve(__dirname, 'styleguide/setup.js')]
-};
+}
 
 // styleguide/setup.js
-import Button from './src/components/common/Button';
-global.Button = Button;
+import Button from './src/components/common/Button'
+global.Button = Button
 ```
 
 The `Button` component will be available in every example without a need to `require` it.
@@ -99,7 +99,7 @@ module.exports = {
       }
     }
   }
-};
+}
 ```
 
 Above, we have set `font-family: 'Helvetica';` on the body.
@@ -111,14 +111,14 @@ Above, we have set `font-family: 'Helvetica';` on the body.
 In your style guide config:
 
 ```javascript
-const path = require('path');
+const path = require('path')
 module.exports = {
   require: [
     'babel-polyfill',
     path.join(__dirname, 'path/to/script.js'),
     path.join(__dirname, 'path/to/styles.css')
   ]
-};
+}
 ```
 
 ## How to use React Styleguidist with Preact?
@@ -135,7 +135,7 @@ module.exports = {
       }
     }
   }
-};
+}
 ```
 
 See the [Preact example style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/preact).
@@ -171,7 +171,7 @@ module.exports = {
       }
     }
   }
-};
+}
 ```
 
 > **Note:** See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/styles/theme.js).
@@ -190,23 +190,23 @@ For example you can replace the `Wrapper` component to wrap any example in the [
 
 ```javascript
 // styleguide.config.js
-const path = require('path');
+const path = require('path')
 module.exports = {
   styleguideComponents: {
     Wrapper: path.join(__dirname, 'lib/styleguide/Wrapper')
   }
-};
+}
 ```
 
 ```jsx
 // lib/styleguide/Wrapper.js
-import React, { Component } from 'react';
-import { IntlProvider } from 'react-intl';
+import React, { Component } from 'react'
+import { IntlProvider } from 'react-intl'
 export default class Wrapper extends Component {
   render() {
     return (
       <IntlProvider locale="en">{this.props.children}</IntlProvider>
-    );
+    )
   }
 }
 ```
@@ -215,7 +215,7 @@ You can replace the `StyleGuideRenderer` component like this:
 
 ```javascript
 // styleguide.config.js
-const path = require('path');
+const path = require('path')
 module.exports = {
   styleguideComponents: {
     StyleGuideRenderer: path.join(
@@ -223,12 +223,12 @@ module.exports = {
       'lib/styleguide/StyleGuideRenderer'
     )
   }
-};
+}
 ```
 
 ```jsx
 // lib/styleguide/StyleGuideRenderer.js
-import React from 'react';
+import React from 'react'
 const StyleGuideRenderer = ({
   title,
   homepageUrl,
@@ -250,7 +250,7 @@ const StyleGuideRenderer = ({
       {hasSidebar && <div className="sidebar">{toc}</div>}
     </main>
   </div>
-);
+)
 ```
 
 We have [an example style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/customised) with custom components.
@@ -269,11 +269,11 @@ module.exports = {
           chunkModules: false,
           chunkOrigins: false
         }
-      };
+      }
     }
-    return {};
+    return {}
   }
-};
+}
 ```
 
 ## How to debug my components and examples?
@@ -294,15 +294,15 @@ module.exports = {
 In some cases, you might need to use React's development build instead of the default [production one](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build). For example, this might be needed if you use React Native and make references to a React Native component's propTypes in your code. As React removes all propTypes in its production build, your code will fail. By default, React Styleguidist uses the development build for the dev server, and the production one for static builds.
 
 ```js
-import React from 'react';
-import { TextInput } from 'react-native';
+import React from 'react'
+import { TextInput } from 'react-native'
 
-const CustomInput = ({ value }) => <TextInput value={value} />;
+const CustomInput = ({ value }) => <TextInput value={value} />
 
 CustomInput.propTypes = {
   // will fail in a static build
   value: TextInput.value.isRequired
-};
+}
 ```
 
 If you use code similar to this, you might encounter errors such as `Cannot read property 'isRequired' of undefined`.
@@ -329,12 +329,12 @@ For example, the color prop here is assigned via `getDefaultProps` but missing f
 Button.propTypes = {
   children: PropTypes.string.isRequired,
   size: PropTypes.oneOf(['small', 'normal', 'large'])
-};
+}
 
 Button.defaultProps = {
   color: '#333',
   size: 'normal'
-};
+}
 ```
 
 ## Why object references don’t work in example component state?
@@ -342,21 +342,20 @@ Button.defaultProps = {
 Object references will not work as expected in examples state due to how the examples code is evaluated:
 
 ```jsx
-const items = [{ id: 0 }, { id: 1 }];
+const items = [{ id: 0 }, { id: 1 }]
 
 initialState = {
   activeItemByReference: items[0],
   activeItemByPrimitive: items[0].id
-};
-
-<div>
+}
+;<div>
   {/* Will render "not active" because of object reference: */}
   {state.activeItemByReference === items[0] ? 'active' : 'not active'}
   {/* But this will render "active" as expected: */}
   {state.activeItemByPrimitive === items[0].id
     ? 'active'
     : 'not active'}
-</div>;
+</div>
 ```
 
 ## How to use Vagrant with Styleguidist?
@@ -366,7 +365,7 @@ First read [Vagrant guide](https://webpack.js.org/guides/development-vagrant/) f
 ```js
 devServer: {
   watchOptions: {
-    poll: true;
+    poll: true
   }
 }
 ```
@@ -386,16 +385,16 @@ Both tools are good and mature, they have many similarities but also some distin
 With [Storybook](https://storybook.js.org/) you write _stories_ in JavaScript files:
 
 ```js
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import Button from '../components/Button';
+import React from 'react'
+import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
+import Button from '../components/Button'
 
 storiesOf('Button', module)
   .add('default', () => (
     <Button onClick={action('clicked')}>Push Me</Button>
   ))
-  .add('large size', () => <Button size="large">Push Me</Button>);
+  .add('large size', () => <Button size="large">Push Me</Button>)
 ```
 
 ![Storybook screenshot](https://storybook.js.org/2c663defce0e8f4d0c256e911f74b727.gif)

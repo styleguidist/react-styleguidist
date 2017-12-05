@@ -30,7 +30,7 @@ If it doesn’t work for you, create a `styleguide.config.js` file in your proje
 ```javascript
 module.exports = {
   components: 'src/components/**/[A-Z]*.js'
-};
+}
 ```
 
 > **Note:** All paths are relative to the config folder.
@@ -79,7 +79,7 @@ module.exports = {
       components: 'lib/components/ui/*.js'
     }
   ]
-};
+}
 ```
 
 ## Limitations

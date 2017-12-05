@@ -24,8 +24,8 @@ Styleguidist generates documentation for your components based on the comments i
 Styleguidist will display your components’ JSDoc comment blocks. Also, it will pick up props from propTypes declarations and display them in a table.
 
 ```javascript
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 /**
  * General component description in JSDoc format. Markdown is *supported*.
@@ -36,10 +36,10 @@ export default class Button extends React.Component {
     foo: PropTypes.number,
     /** Description of prop "baz". */
     baz: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  };
+  }
   static defaultProps = {
     foo: 42
-  };
+  }
 
   render() {
     /* ... */
@@ -140,7 +140,7 @@ MyComponent.propTypes = {
    * @ignore
    */
   hiddenProp: React.PropTypes.string
-};
+}
 ```
 
 ## Using JSDoc tags
@@ -199,7 +199,7 @@ class Button extends React.Component {
      * @param {Object} allProps All props of this Button
      */
     onClick: PropTypes.func
-  };
+  }
 }
 ```
 
@@ -221,8 +221,8 @@ Code examples in Markdown use the ES6+JSX syntax. They can access all the compon
 You can also `require` other modules (e.g. mock data that you use in your unit tests) from examples in Markdown:
 
 ```jsx
-const mockData = require('./mocks');
-<Message content={mockData.hello} />;
+const mockData = require('./mocks')
+;<Message content={mockData.hello} />
 ```
 
 > **Note:** You can `require` only from examples in Markdown files. ES6 `import` syntax isn’t supported.
@@ -230,14 +230,14 @@ const mockData = require('./mocks');
 Each example has its own state that you can access at the `state` variable and change with the `setState` function. Default state is `{}`.
 
 ```jsx
-initialState = { isOpen: false };
-<div>
+initialState = { isOpen: false }
+;<div>
   <button onClick={() => setState({ isOpen: true })}>Open</button>
   <Modal isOpen={state.isOpen}>
     <h1>Hallo!</h1>
     <button onClick={() => setState({ isOpen: false })}>Close</button>
   </Modal>
-</div>;
+</div>
 ```
 
 You _can_ create `React.Component`s in your code examples:
@@ -245,25 +245,25 @@ You _can_ create `React.Component`s in your code examples:
 ```jsx
 class SortTable extends React.Component {
   constructor() {
-    super();
+    super()
     this.state = {
       /* ... */
-    };
+    }
   }
   render() {
-    const { columns, rows } = this.state;
+    const { columns, rows } = this.state
     const sortedRows = require('sortabular').sorter({
       /* ... */
-    })(rows);
+    })(rows)
     return (
       <TableProvider columns={columns}>
         <Table.Header />
         <Table.Body rows={sortedRows} rowKey="id" />
       </TableProvider>
-    );
+    )
   }
 }
-<SortTable />;
+;<SortTable />
 ```
 
 > **Note:** If you need a more complex demo it’s often a good idea to define it in a separate JavaScript file and `require` it in Markdown

@@ -66,8 +66,8 @@ Each example has its own state that you can access at the `state` variable and c
 You can change the default state:
 
 ```jsx
-initialState = { count: 42 };
-<Button onClick={() => setState({ count: state.count + 1 })}>
+initialState = { count: 42 }
+;<Button onClick={() => setState({ count: state.count + 1 })}>
   {state.count}
-</Button>;
+</Button>
 ```

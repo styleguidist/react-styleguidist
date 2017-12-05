@@ -41,7 +41,7 @@ We use webpack loaders to hot reload the style guide on changes in user componen
 There are two more loaders — `css-loader` and `styles-loader` but they are just one-line aliases to corresponding webpack loaders. We don’t want to rely on webpack loader resolver because its behavior can be changed by user’s webpack config (Create React App does that for example). This way we can bypass webpack resolver and use Node.js resolver instead. These loaders are used like this:
 
 ```js
-require('!!../../../loaders/style-loader!../../../loaders/css-loader!codemirror/lib/codemirror.css');
+require('!!../../../loaders/style-loader!../../../loaders/css-loader!codemirror/lib/codemirror.css')
 ```
 
 `!!` prefix tells webpack not to use any other loaders that may be listed in a webpack configuration to load this module. This ensures that user’s webpack configuration won’t affect Styleguidist.
@@ -56,7 +56,7 @@ Most of StyleGuidist UI components consist of two parts: `Foo/Foo.js` that conta
 
 ```js
 // styleguide.config.js
-const path = require('path');
+const path = require('path')
 module.exports = {
   webpackConfig: {
     resolve: {
@@ -68,7 +68,7 @@ module.exports = {
       }
     }
   }
-};
+}
 ```
 
 All Styleguidist components should be imported like this: `import Foo from 'rsg-components/Foo'` to make aliases work.
@@ -89,8 +89,8 @@ Use [classnames](https://github.com/JedWatson/classnames) to merge several class
 We use `Styled` higher-order component to allow theming (see [theme](Configuration.md#theme) and [style](Configuration.md#style) style guide config options). Use it like this:
 
 ```jsx
-import React from 'react';
-import Styled from 'rsg-components/Styled';
+import React from 'react'
+import Styled from 'rsg-components/Styled'
 
 export const styles = ({ fontFamily, fontSize, color }) => ({
   button: {
@@ -102,12 +102,12 @@ export const styles = ({ fontFamily, fontSize, color }) => ({
       color: color.lightest
     }
   }
-});
+})
 
 export function ExamplePlaceholderRenderer({ classes }) {
   return (
     <button className={classes.button}>I am a styled button</button>
-  );
+  )
 }
 ```
 
@@ -122,18 +122,18 @@ We’re using [Jest with Enzyme](http://blog.sapegin.me/all/react-jest) for test
 To test particular class names use `classes` function (available in the global namespace in tests):
 
 ```js
-import { TabButtonRenderer, styles } from './TabButtonRenderer';
+import { TabButtonRenderer, styles } from './TabButtonRenderer'
 
 const props = {
   classes: classes(styles)
-};
+}
 
 it('should render active styles', () => {
   const actual = shallow(
     <TabButtonRenderer {...props} active>
       pizza
     </TabButtonRenderer>
-  );
-  expect(actual).toMatchSnapshot();
-});
+  )
+  expect(actual).toMatchSnapshot()
+})
 ```

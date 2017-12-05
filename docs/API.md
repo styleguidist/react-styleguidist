@@ -16,7 +16,7 @@ First, you need to initialize the API for your style guide config.
 Using a JavaScript object:
 
 ```javascript
-const styleguidist = require('react-styleguidist');
+const styleguidist = require('react-styleguidist')
 const styleguide = styleguidist({
   logger: {
     warn: console.warn,
@@ -39,7 +39,7 @@ const styleguide = styleguidist({
       ]
     }
   }
-});
+})
 ```
 
 **Note:** any output is disabled by default, you may need to define your own [logger](Configuration.md#logger).
@@ -47,15 +47,15 @@ const styleguide = styleguidist({
 Using a config file:
 
 ```javascript
-const styleguidist = require('react-styleguidist');
-const styleguide = styleguidist(require('../styleguide.config.js'));
+const styleguidist = require('react-styleguidist')
+const styleguide = styleguidist(require('../styleguide.config.js'))
 ```
 
 Or auto searching a config file:
 
 ```javascript
-const styleguidist = require('react-styleguidist');
-const styleguide = styleguidist();
+const styleguidist = require('react-styleguidist')
+const styleguide = styleguidist()
 ```
 
 See all available [config options](Configuration.md).
@@ -67,9 +67,10 @@ See all available [config options](Configuration.md).
 #### Arguments
 
 1. `callback(err, config, stats)` (_Function_): A callback to be invoked when style guide is built:
-1. `err` (_Object_): error details.
-1. `config` (_Object_): normalized style guide config.
-1. `stats` (_Object_): webpack build stats.
+
+   1. `err` (_Object_): error details.
+   2. `config` (_Object_): normalized style guide config.
+   3. `stats` (_Object_): webpack build stats.
 
 #### Returns
 
@@ -78,16 +79,16 @@ See all available [config options](Configuration.md).
 #### Example
 
 ```javascript
-const styleguidist = require('react-styleguidist');
+const styleguidist = require('react-styleguidist')
 styleguidist(require('../styleguide.config.js')).build(
   (err, config) => {
     if (err) {
-      console.log(err);
+      console.log(err)
     } else {
-      console.log('Style guide published to', config.styleguideDir);
+      console.log('Style guide published to', config.styleguideDir)
     }
   }
-);
+)
 ```
 
 ### `server(callback)`
@@ -95,8 +96,9 @@ styleguidist(require('../styleguide.config.js')).build(
 #### Arguments
 
 1. `callback(err, config)` (_Function_): A callback to be invoked when style guide is built:
-1. `err` (_Object_): error details.
-1. `config` (_Object_): normalized style guide config.
+
+   1. `err` (_Object_): error details.
+   2. `config` (_Object_): normalized style guide config.
 
 #### Returns
 
@@ -105,21 +107,17 @@ styleguidist(require('../styleguide.config.js')).build(
 #### Example
 
 ```javascript
-const styleguidist = require('react-styleguidist');
+const styleguidist = require('react-styleguidist')
 styleguidist(require('../styleguide.config.js')).server(
   (err, config) => {
     if (err) {
-      console.log(err);
+      console.log(err)
     } else {
-      console.log(
-        'Listening at http://' +
-          config.serverHost +
-          ':' +
-          config.serverPort
-      );
+      const url = `http://${config.serverHost}:${config.serverPort}`
+      console.log(`Listening at ${url}`)
     }
   }
-);
+)
 ```
 
 ### `makeWebpackConfig([env])`
@@ -141,5 +139,5 @@ module.exports = [
     // User webpack config
   },
   require('react-styleguidist')().makeWebpackConfig()
-];
+]
 ```
