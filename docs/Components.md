@@ -49,7 +49,7 @@ Each section consists of (all fields are optional):
 * `content` — location of a Markdown file containing the overview content.
 * `components` — a glob pattern string or a function returning a list of components. The same rules apply as for the root `components` option.
 * `sections` — array of subsections (can be nested).
-
+* `ignore` — string/array of globs that should not be included in the section.
 Configuring a style guide with textual documentation section and a list of components would look like:
 
 ```javascript

@@ -9,6 +9,7 @@ const logger = glogg('rsg');
 const _styleguidist = {
 	handlers: config.handlers.default,
 	getExampleFilename: config.getExampleFilename.default,
+	resolver: config.resolver.default,
 };
 
 it('should return valid, parsable JS', () => {
@@ -41,6 +42,29 @@ it('should extract doclets', () => {
 	expect(result).toMatch(/'see': '\{@link link\}'/);
 	expect(result).toMatch(/'link': 'link'/);
 	expect(result).toMatch(/require\('!!.*?\/loaders\/examples-loader\.js!\.\/examples.md'\)/);
+});
+
+it('should work with JSDoc annnotated components', () => {
+	const file = './test/components/Annotation/Annotation.js';
+	const result = propsLoader.call(
+		{
+			request: file,
+			_styleguidist,
+		},
+		readFileSync(file, 'utf8')
+	);
+	expect(result).toBeTruthy();
+	expect(() => new vm.Script(result)).not.toThrow();
+	// eslint-disable-next-line no-eval
+	expect(eval(result)).toEqual(
+		expect.objectContaining({
+			displayName: 'Annotation',
+			description: 'Styled-component test\n',
+			doclets: {
+				component: true,
+			},
+		})
+	);
 });
 
 it('should not render ignored props', () => {
