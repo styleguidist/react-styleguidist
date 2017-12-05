@@ -4,25 +4,25 @@
 
 <!-- toc -->
 
-- [How to use `ref`s in examples?](#how-to-use-refs-in-examples)
-- [How to exclude some components from style guide?](#how-to-exclude-some-components-from-style-guide)
-- [How to hide some components in style guide but make them available in examples?](#how-to-hide-some-components-in-style-guide-but-make-them-available-in-examples)
-- [How to set global styles for user components?](#how-to-set-global-styles-for-user-components)
-- [How to add custom JavaScript and CSS or polyfills?](#how-to-add-custom-javascript-and-css-or-polyfills)
-- [How to use React Styleguidist with Preact?](#how-to-use-react-styleguidist-with-preact)
-- [How to change styles of a style guide?](#how-to-change-styles-of-a-style-guide)
-- [How to change the layout of a style guide?](#how-to-change-the-layout-of-a-style-guide)
-- [How to change style guide dev server logs output?](#how-to-change-style-guide-dev-server-logs-output)
-- [How to debug my components and examples?](#how-to-debug-my-components-and-examples)
-- [How to debug the exceptions thrown from my components?](#how-to-debug-the-exceptions-thrown-from-my-components)
-- [How to use React's production or development build?](#how-to-use-reacts-production-or-development-build)
-- [Why does the style guide list one of my prop types as `unknown`?](#why-does-the-style-guide-list-one-of-my-prop-types-as-unknown)
-- [Why object references don’t work in example component state?](#why-object-references-dont-work-in-example-component-state)
-- [How to use Vagrant with Styleguidist?](#how-to-use-vagrant-with-styleguidist)
-- [How to reuse project’s webpack config?](#how-to-reuse-projects-webpack-config)
-- [How to use React Styleguidist with Redux, Relay or Styled Components?](#how-to-use-react-styleguidist-with-redux-relay-or-styled-components)
-- [What’s the difference betweeen Styleguidist and Storybook](#whats-the-difference-betweeen-styleguidist-and-storybook)
-- [Are there any other projects like this?](#are-there-any-other-projects-like-this)
+* [How to use `ref`s in examples?](#how-to-use-refs-in-examples)
+* [How to exclude some components from style guide?](#how-to-exclude-some-components-from-style-guide)
+* [How to hide some components in style guide but make them available in examples?](#how-to-hide-some-components-in-style-guide-but-make-them-available-in-examples)
+* [How to set global styles for user components?](#how-to-set-global-styles-for-user-components)
+* [How to add custom JavaScript and CSS or polyfills?](#how-to-add-custom-javascript-and-css-or-polyfills)
+* [How to use React Styleguidist with Preact?](#how-to-use-react-styleguidist-with-preact)
+* [How to change styles of a style guide?](#how-to-change-styles-of-a-style-guide)
+* [How to change the layout of a style guide?](#how-to-change-the-layout-of-a-style-guide)
+* [How to change style guide dev server logs output?](#how-to-change-style-guide-dev-server-logs-output)
+* [How to debug my components and examples?](#how-to-debug-my-components-and-examples)
+* [How to debug the exceptions thrown from my components?](#how-to-debug-the-exceptions-thrown-from-my-components)
+* [How to use React's production or development build?](#how-to-use-reacts-production-or-development-build)
+* [Why does the style guide list one of my prop types as `unknown`?](#why-does-the-style-guide-list-one-of-my-prop-types-as-unknown)
+* [Why object references don’t work in example component state?](#why-object-references-dont-work-in-example-component-state)
+* [How to use Vagrant with Styleguidist?](#how-to-use-vagrant-with-styleguidist)
+* [How to reuse project’s webpack config?](#how-to-reuse-projects-webpack-config)
+* [How to use React Styleguidist with Redux, Relay or Styled Components?](#how-to-use-react-styleguidist-with-redux-relay-or-styled-components)
+* [What’s the difference betweeen Styleguidist and Storybook](#whats-the-difference-betweeen-styleguidist-and-storybook)
+* [Are there any other projects like this?](#are-there-any-other-projects-like-this)
 
 <!-- tocstop -->
 
@@ -95,10 +95,10 @@ module.exports = {
   styles: {
     StyleGuide: {
       '@global body': {
-        fontFamily: 'Helvetica',
-      },
-    },
-  },
+        fontFamily: 'Helvetica'
+      }
+    }
+  }
 };
 ```
 
@@ -243,9 +243,7 @@ const StyleGuideRenderer = ({
         {components}
         <footer className="footer">
           <Markdown
-            text={`Generated with [React Styleguidist](${
-              homepageUrl
-            })`}
+            text={`Generated with [React Styleguidist](${homepageUrl})`}
           />
         </footer>
       </div>

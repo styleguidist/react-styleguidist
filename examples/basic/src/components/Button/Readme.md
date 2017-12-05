@@ -1,7 +1,7 @@
 Basic button:
 
 ```jsx
-<Button>Push Me</Button>;
+<Button>Push Me</Button>
 ```
 
 Big pink button:
@@ -9,7 +9,7 @@ Big pink button:
 ```jsx
 <Button size="large" color="deeppink">
   Lick Me
-</Button>;
+</Button>
 ```
 
 And you _can_ **use** `any` [Markdown](http://daringfireball.net/projects/markdown/) here.
@@ -17,7 +17,7 @@ And you _can_ **use** `any` [Markdown](http://daringfireball.net/projects/markdo
 Fenced code blocks with `js`, `jsx` or `javascript` languages are rendered as a interactive playgrounds:
 
 ```jsx
-<Button>Push Me</Button>;
+<Button>Push Me</Button>
 ```
 
 You can add a custom props to an example wrapper (` ```js { "props": { "className": "checks" } } `):
@@ -60,7 +60,7 @@ Each example has its own state that you can access at the `state` variable and c
       Hide Me
     </Button>
   )}
-</div>;
+</div>
 ```
 
 You can change the default state:

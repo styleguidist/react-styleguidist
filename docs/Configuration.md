@@ -84,7 +84,7 @@ module.exports = {
 Then you can use them in any example:
 
 ```jsx
-<Message>{map(users, 'name').join(', ')}</Message>;
+<Message>{map(users, 'name').join(', ')}</Message>
 ```
 
 #### `contextDependencies`

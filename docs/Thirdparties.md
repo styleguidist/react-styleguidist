@@ -155,7 +155,7 @@ module.exports = {
 
 ```jsx
 // src/MyComponent/Readme.md
-<MyComponent object={sample.object} />;
+<MyComponent object={sample.object} />
 ```
 
 _Based on @mikberg’s [blog post](https://medium.com/@mikaelberg/writing-simple-unit-tests-with-relay-707f19e90129)._
@@ -176,7 +176,6 @@ const SalmonButton = styled.button`
 
 /** @component */
 export default SalmonButton;
-
 ```
 
 ### Fela

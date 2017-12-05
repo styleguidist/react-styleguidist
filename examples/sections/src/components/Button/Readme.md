@@ -1,7 +1,7 @@
 Basic button:
 
 ```jsx
-<Button>Push Me</Button>;
+<Button>Push Me</Button>
 ```
 
 Big pink button:
@@ -9,7 +9,7 @@ Big pink button:
 ```jsx
 <Button size="large" color="deeppink">
   Lick Me
-</Button>;
+</Button>
 ```
 
 And you _can_ **use** `any` [Markdown](http://daringfireball.net/projects/markdown/) here.
@@ -17,7 +17,7 @@ And you _can_ **use** `any` [Markdown](http://daringfireball.net/projects/markdo
 Fenced code blocks with `js`, `jsx` or `javascript` languages are rendered as an interactive playgrounds:
 
 ```jsx
-<Button>Push Me</Button>;
+<Button>Push Me</Button>
 ```
 
 You can disable an editor by passing a `noeditor` modifier (` ```js noeditor `):

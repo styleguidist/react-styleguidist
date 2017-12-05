@@ -213,7 +213,7 @@ Code examples in Markdown use the ES6+JSX syntax. They can access all the compon
     Using the Button component in the example of the Panel component:
   </p>
   <Button>Push Me</Button>
-</Panel>;
+</Panel>
 ```
 
 > **Note:** Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the frontend, it supports [most of the ES6 features](https://buble.surge.sh/guide/#unsupported-features).
