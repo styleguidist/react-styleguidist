@@ -77,7 +77,7 @@ exports[`Markdown should render check-lists correctly 1`] = `
 exports[`Markdown should render code blocks without escaping 1`] = `
 
 <pre class="rsg--pre-12 rsg--para-1">
-  <code class="rsg--code-11 lang-html">
+  <code class="lang-html rsg--code-11">
     <foo>
     </foo>
   </code>
@@ -154,9 +154,7 @@ exports[`Markdown should render mixed nested lists correctly 1`] = `
     list 1
   </li>
   <li class="rsg--li-5 rsg--base-0">
-    <p class="rsg--p-2 rsg--para-1">
-      list 2
-    </p>
+    list 2
     <ol class="rsg--ol-4 rsg--para-1"
         start="1"
     >
