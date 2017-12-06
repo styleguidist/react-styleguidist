@@ -6,7 +6,7 @@
 * [Configuring webpack](https://react-styleguidist.js.org/docs/webpack.html): tell Styleguidist how to load your code
 * [Cookbook](https://react-styleguidist.js.org/docs/cookbook.html): how to solve common tasks with Styleguidist
 
-***
+---
 
 * [Configuration](https://react-styleguidist.js.org/docs/configuration.html)
 * [CLI commands and options](https://react-styleguidist.js.org/docs/cli.html)

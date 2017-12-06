@@ -1,3 +1,3 @@
 ```jsx
-<Placeholder type="beard"/>
+<Placeholder type="beard" />
 ```

@@ -120,7 +120,7 @@
     "jest": "^21.2.1",
     "keymirror": "^0.1.1",
     "lint-staged": "^4.3.0",
-    "prettier": "~1.8.1",
+    "prettier": "^1.9.1",
     "raf": "^3.4.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
@@ -134,6 +134,7 @@
   "scripts": {
     "pretest": "npm run lint",
     "test": "npm run test:jest",
+    "posttest": "npm run format:md",
     "test:jest": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
@@ -155,7 +156,8 @@
     "test:browser:customised": "node test/browser.js examples/customised/styleguide/index.html",
     "test:browser:sections": "node test/browser.js examples/sections/styleguide/index.html",
     "danger": "danger",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "format:md": "prettier --write '**/*.md'"
   },
   "release": {
     "analyzeCommits": "semantic-release-tamia/analyzeCommits",

@@ -4,9 +4,9 @@
 
 <!-- toc -->
 
-- [Finding components](#finding-components)
-- [Sections](#sections)
-- [Limitations](#limitations)
+* [Finding components](#finding-components)
+* [Sections](#sections)
+* [Limitations](#limitations)
 
 <!-- tocstop -->
 
@@ -30,7 +30,7 @@ If it doesn’t work for you, create a `styleguide.config.js` file in your proje
 ```javascript
 module.exports = {
   components: 'src/components/**/[A-Z]*.js'
-};
+}
 ```
 
 > **Note:** All paths are relative to the config folder.
@@ -45,11 +45,11 @@ Group components into sections or add extra Markdown documents to your style gui
 
 Each section consists of (all fields are optional):
 
-- `name` — section title.
-- `content` — location of a Markdown file containing the overview content.
-- `components` — a glob pattern string or a function returning a list of components. The same rules apply as for the root `components` option.
-- `ignore` — string/array of globs that should not be included in the section.
-- `sections` — array of subsections (can be nested).
+* `name` — section title.
+* `content` — location of a Markdown file containing the overview content.
+* `components` — a glob pattern string or a function returning a list of components. The same rules apply as for the root `components` option.
+* `sections` — array of subsections (can be nested).
+* `ignore` — string/array of globs that should not be included in the section.
 
 Configuring a style guide with textual documentation section and a list of components would look like:
 
@@ -79,7 +79,7 @@ module.exports = {
       components: 'lib/components/ui/*.js'
     }
   ]
-};
+}
 ```
 
 ## Limitations
