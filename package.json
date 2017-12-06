@@ -133,7 +133,8 @@
   },
   "scripts": {
     "pretest": "npm run lint",
-    "test": "npm run test:jest && npm run format:md",
+    "test": "npm run test:jest",
+    "posttest": "npm run format:md",
     "test:jest": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
