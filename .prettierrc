@@ -3,7 +3,7 @@
   "singleQuote": true,
   "trailingComma": "es5",
   "useTabs": true,
-  "proseWrap": "never",
+  "proseWrap": false,
   "overrides": [{
     "files": "*.md",
     "options": {

@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 import cx from 'classnames';
 
-export const styles = ({ space, color, fontFamily, fontSize }) => ({
+export const styles = ({ space, color, fontFamily, fontSize, tabButtonTextTransform }) => ({
 	button: {
 		padding: [[space[1], 0]],
 		fontFamily: fontFamily.base,
 		fontSize: fontSize.base,
 		color: color.light,
 		background: 'transparent',
-		textTransform: 'uppercase',
+		textTransform: tabButtonTextTransform,
 		transition: 'color 750ms ease-out',
 		border: 'none',
 		cursor: 'pointer',
