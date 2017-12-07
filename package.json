@@ -65,7 +65,7 @@
     "loader-utils": "^1.1.0",
     "lodash": "^4.17.4",
     "lowercase-keys": "^1.0.0",
-    "markdown-to-jsx": "^5.4.2",
+    "markdown-to-jsx": "^6.1.3",
     "minimist": "^1.2.0",
     "prop-types": "^15.6.0",
     "q-i": "^1.2.0",
@@ -119,6 +119,7 @@
     "husky": "^0.14.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^21.2.1",
+    "jest-serializer-html": "^4.0.1",
     "keymirror": "^0.1.1",
     "lint-staged": "^4.3.0",
     "prettier": "^1.9.1",
@@ -188,7 +189,8 @@
     ],
     "snapshotSerializers": [
       "deabsdeep/serializer",
-      "enzyme-to-json/serializer"
+      "enzyme-to-json/serializer",
+      "jest-serializer-html"
     ]
   },
   "keywords": [
