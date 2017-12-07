@@ -35,6 +35,7 @@ const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth
 		bottom: 0,
 		width: sidebarWidth,
 		overflow: 'auto',
+		'-webkit-overflow-scrolling': 'touch',
 		[mq.small]: {
 			position: 'static',
 			width: 'auto',

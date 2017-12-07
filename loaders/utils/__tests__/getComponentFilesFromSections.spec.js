@@ -1,4 +1,5 @@
 import path from 'path';
+import deabsDeep from 'deabsdeep';
 import getComponentFilesFromSections from '../getComponentFilesFromSections';
 
 const configDir = path.resolve(__dirname, '../../../test');
@@ -22,16 +23,17 @@ const sections = [
 	},
 ];
 
-const absolutize = files => files.map(file => path.join(configDir, file));
+const deabs = x => deabsDeep(x, { root: configDir });
 
 it('getComponentFilesFromSections() should return a list of files', () => {
 	const result = getComponentFilesFromSections(sections, configDir);
-	expect(result).toEqual(
-		absolutize(['components/Button/Button.js', 'components/Placeholder/Placeholder.js'])
-	);
+	expect(deabs(result)).toEqual([
+		'~/components/Button/Button.js',
+		'~/components/Placeholder/Placeholder.js',
+	]);
 });
 
 it('getComponentFilesFromSections() should ignore specified patterns', () => {
 	const result = getComponentFilesFromSections(sections, configDir, ['**/*Button*']);
-	expect(result).toEqual(absolutize(['components/Placeholder/Placeholder.js']));
+	expect(deabs(result)).toEqual(['~/components/Placeholder/Placeholder.js']);
 });

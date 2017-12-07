@@ -6,12 +6,12 @@ Array [
     "filepath": "../Foo.js",
     "hasExamples": false,
     "metadata": Object {},
-    "module": RequireStatement {
-      "filepath": "Foo.js",
+    "module": Object {
+      "require": "Foo.js",
     },
     "pathLine": "../Foo.js",
-    "props": RequireStatement {
-      "filepath": "!!<rootDir>/loaders/props-loader.js!Foo.js",
+    "props": Object {
+      "require": "!!~/loaders/props-loader.js!Foo.js",
     },
     "slug": "foo",
   },
@@ -19,12 +19,12 @@ Array [
     "filepath": "../Bar.js",
     "hasExamples": false,
     "metadata": Object {},
-    "module": RequireStatement {
-      "filepath": "Bar.js",
+    "module": Object {
+      "require": "Bar.js",
     },
     "pathLine": "../Bar.js",
-    "props": RequireStatement {
-      "filepath": "!!<rootDir>/loaders/props-loader.js!Bar.js",
+    "props": Object {
+      "require": "!!~/loaders/props-loader.js!Bar.js",
     },
     "slug": "bar",
   },

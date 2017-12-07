@@ -60,3 +60,5 @@ export const mq = {
 export const borderRadius = 3;
 export const maxWidth = 1000;
 export const sidebarWidth = 200;
+
+export const buttonTextTransform = 'uppercase';
