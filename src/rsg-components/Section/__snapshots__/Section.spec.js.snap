@@ -19,7 +19,11 @@ exports[`render should render section 1`] = `
           examples={
             Array [
               Object {
-                "content": "<button>OK</button>",
+                "content": 
+<button>
+  OK
+</button>
+,
                 "evalInContext": [Function],
                 "type": "code",
               },
@@ -47,7 +51,11 @@ exports[`render should render section 1`] = `
     examples={
       Array [
         Object {
-          "content": "<button>OK</button>",
+          "content": 
+<button>
+  OK
+</button>
+,
           "evalInContext": [Function],
           "type": "code",
         },
@@ -136,7 +144,11 @@ exports[`should render section renderer 1`] = `
       examples={
         Array [
           Object {
-            "content": "<button>OK</button>",
+            "content": 
+<button>
+  OK
+</button>
+,
             "evalInContext": [Function],
             "type": "code",
           },

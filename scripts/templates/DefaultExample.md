@@ -1,2 +1,1 @@
-
-	<__COMPONENT__>Default Example Usage</__COMPONENT__>
+    <__COMPONENT__>Default Example Usage</__COMPONENT__>

@@ -136,8 +136,8 @@ Object {
 ",
   "displayName": "Button",
   "doclets": Object {},
-  "example": RequireStatement {
-    "filepath": "!!<rootDir>/loaders/examples-loader.js!../../../test/components/Placeholder/examples.md",
+  "example": Object {
+    "require": "!!~/loaders/examples-loader.js!../../../test/components/Placeholder/examples.md",
   },
   "methods": Array [],
   "tags": Object {

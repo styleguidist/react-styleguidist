@@ -4,8 +4,8 @@ it('getExamples() should return require with examples-loader is component ha exa
 	const examplesFile = __filename;
 	const result = getExamples(examplesFile);
 
-	expect(result.filepath.includes(examplesFile)).toBe(true);
-	expect(result.filepath.includes('componentName=')).toBe(false);
+	expect(result.require.includes(examplesFile)).toBe(true);
+	expect(result.require.includes('componentName=')).toBe(false);
 });
 
 it('getExamples() should return require with examples-loader is component has examples', () => {
@@ -14,10 +14,10 @@ it('getExamples() should return require with examples-loader is component has ex
 	const defaultExample = 'foo.js';
 	const result = getExamples(examplesFile, fallbackName, defaultExample);
 
-	expect(result.filepath.includes(__filename)).toBe(false);
-	expect(result.filepath.includes(fallbackName)).toBe(true);
-	expect(result.filepath.includes(defaultExample)).toBe(true);
-	expect(result.filepath.includes('componentName=')).toBe(true);
+	expect(result.require.includes(__filename)).toBe(false);
+	expect(result.require.includes(fallbackName)).toBe(true);
+	expect(result.require.includes(defaultExample)).toBe(true);
+	expect(result.require.includes('componentName=')).toBe(true);
 });
 
 it('getExamples() should return an empty array if component has no example file', () => {

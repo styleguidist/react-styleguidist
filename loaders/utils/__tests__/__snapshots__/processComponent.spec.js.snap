@@ -5,12 +5,12 @@ Object {
   "filepath": "../../../pizza.js",
   "hasExamples": true,
   "metadata": Object {},
-  "module": RequireStatement {
-    "filepath": "pizza.js",
+  "module": Object {
+    "require": "pizza.js",
   },
   "pathLine": "../../../pizza.js",
-  "props": RequireStatement {
-    "filepath": "!!<rootDir>/loaders/props-loader.js!pizza.js",
+  "props": Object {
+    "require": "!!~/loaders/props-loader.js!pizza.js",
   },
   "slug": "pizza",
 }

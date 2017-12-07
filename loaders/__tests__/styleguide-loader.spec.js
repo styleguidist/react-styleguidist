@@ -63,6 +63,7 @@ it('should return correct component paths: glob', () => {
 	expect(() => new vm.Script(result)).not.toThrow();
 	expect(result).toMatch(`'filepath': 'components/Button/Button.js'`);
 	expect(result).toMatch(`'filepath': 'components/Placeholder/Placeholder.js'`);
+	expect(result).toMatch(`'filepath': 'components/RandomButton/RandomButton.js'`);
 });
 
 it('should return correct component paths: function returning absolute paths', () => {
@@ -90,6 +91,7 @@ it('should return correct component paths: function returning absolute paths', (
 	expect(() => new vm.Script(result)).not.toThrow();
 	expect(result).toMatch(`'filepath': 'components/Button/Button.js'`);
 	expect(result).toMatch(`'filepath': 'components/Placeholder/Placeholder.js'`);
+	expect(result).not.toMatch(`'filepath': 'components/RandomButton/RandomButton.js'`);
 });
 
 it('should return correct component paths: function returning relative paths', () => {
@@ -117,6 +119,7 @@ it('should return correct component paths: function returning relative paths', (
 	expect(() => new vm.Script(result)).not.toThrow();
 	expect(result).toMatch(`'filepath': 'components/Button/Button.js'`);
 	expect(result).toMatch(`'filepath': 'components/Placeholder/Placeholder.js'`);
+	expect(result).not.toMatch(`'filepath': 'components/RandomButton/RandomButton.js'`);
 });
 
 it('should filter out components without examples if skipComponentsWithoutExample=true', () => {
@@ -144,7 +147,7 @@ it('should filter out components without examples if skipComponentsWithoutExampl
 	expect(result).toBeTruthy();
 	expect(() => new vm.Script(result)).not.toThrow();
 	expect(result).toMatch(`'filepath': 'components/Button/Button.js'`);
-	expect(result.includes('RandomButton.js')).toBeFalsy();
+	expect(result).not.toMatch(`'filepath': 'components/RandomButton/RandomButton.js'`);
 });
 
 it('should add context dependencies to webpack from contextDependencies config option', () => {

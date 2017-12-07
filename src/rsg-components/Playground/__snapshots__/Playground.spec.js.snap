@@ -42,7 +42,11 @@ exports[`should render component renderer 1`] = `
   name="name"
   preview={
     <Preview
-      code="<button>OK</button>"
+      code=
+<button>
+  OK
+</button>
+
       evalInContext={[Function]}
     />
   }
@@ -54,7 +58,11 @@ exports[`should render component renderer 1`] = `
       onlyActive={true}
       props={
         Object {
-          "code": "<button>OK</button>",
+          "code": 
+<button>
+  OK
+</button>
+,
           "onChange": [Function],
         }
       }
