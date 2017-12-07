@@ -17,17 +17,8 @@ Array [
         "filepath": "components/Annotation/Annotation.js",
         "hasExamples": true,
         "metadata": Object {},
-<<<<<<< es-upgrade-md2jsx
-        "module": RequireStatement {
-          "filepath": 
-<rootDir>
-  /test/components/Annotation/Annotation.js
-</rootDir>
-,
-=======
         "module": Object {
           "require": "~/test/components/Annotation/Annotation.js",
->>>>>>> master
         },
         "pathLine": "components/Annotation/Annotation.js",
         "props": Object {
@@ -39,17 +30,8 @@ Array [
         "filepath": "components/Button/Button.js",
         "hasExamples": true,
         "metadata": Object {},
-<<<<<<< es-upgrade-md2jsx
-        "module": RequireStatement {
-          "filepath": 
-<rootDir>
-  /test/components/Button/Button.js
-</rootDir>
-,
-=======
         "module": Object {
           "require": "~/test/components/Button/Button.js",
->>>>>>> master
         },
         "pathLine": "components/Button/Button.js",
         "props": Object {
@@ -63,17 +45,8 @@ Array [
         "metadata": Object {
           "require": "!!json-loader!~/test/components/Placeholder/Placeholder.json",
         },
-<<<<<<< es-upgrade-md2jsx
-        "module": RequireStatement {
-          "filepath": 
-<rootDir>
-  /test/components/Placeholder/Placeholder.js
-</rootDir>
-,
-=======
         "module": Object {
           "require": "~/test/components/Placeholder/Placeholder.js",
->>>>>>> master
         },
         "pathLine": "components/Placeholder/Placeholder.js",
         "props": Object {
@@ -85,17 +58,8 @@ Array [
         "filepath": "components/RandomButton/RandomButton.js",
         "hasExamples": true,
         "metadata": Object {},
-<<<<<<< es-upgrade-md2jsx
-        "module": RequireStatement {
-          "filepath": 
-<rootDir>
-  /test/components/RandomButton/RandomButton.js
-</rootDir>
-,
-=======
         "module": Object {
           "require": "~/test/components/RandomButton/RandomButton.js",
->>>>>>> master
         },
         "pathLine": "components/RandomButton/RandomButton.js",
         "props": Object {
@@ -115,17 +79,8 @@ Array [
         "filepath": "components/Button/Button.js",
         "hasExamples": true,
         "metadata": Object {},
-<<<<<<< es-upgrade-md2jsx
-        "module": RequireStatement {
-          "filepath": 
-<rootDir>
-  /test/components/Button/Button.js
-</rootDir>
-,
-=======
         "module": Object {
           "require": "~/test/components/Button/Button.js",
->>>>>>> master
         },
         "pathLine": "components/Button/Button.js",
         "props": Object {
@@ -139,17 +94,8 @@ Array [
         "metadata": Object {
           "require": "!!json-loader!~/test/components/Placeholder/Placeholder.json",
         },
-<<<<<<< es-upgrade-md2jsx
-        "module": RequireStatement {
-          "filepath": 
-<rootDir>
-  /test/components/Placeholder/Placeholder.js
-</rootDir>
-,
-=======
         "module": Object {
           "require": "~/test/components/Placeholder/Placeholder.js",
->>>>>>> master
         },
         "pathLine": "components/Placeholder/Placeholder.js",
         "props": Object {
@@ -161,17 +107,8 @@ Array [
         "filepath": "components/RandomButton/RandomButton.js",
         "hasExamples": true,
         "metadata": Object {},
-<<<<<<< es-upgrade-md2jsx
-        "module": RequireStatement {
-          "filepath": 
-<rootDir>
-  /test/components/RandomButton/RandomButton.js
-</rootDir>
-,
-=======
         "module": Object {
           "require": "~/test/components/RandomButton/RandomButton.js",
->>>>>>> master
         },
         "pathLine": "components/RandomButton/RandomButton.js",
         "props": Object {
@@ -195,17 +132,8 @@ Object {
       "filepath": "components/Annotation/Annotation.js",
       "hasExamples": true,
       "metadata": Object {},
-<<<<<<< es-upgrade-md2jsx
-      "module": RequireStatement {
-        "filepath": 
-<rootDir>
-  /test/components/Annotation/Annotation.js
-</rootDir>
-,
-=======
       "module": Object {
         "require": "~/test/components/Annotation/Annotation.js",
->>>>>>> master
       },
       "pathLine": "components/Annotation/Annotation.js",
       "props": Object {
@@ -217,17 +145,8 @@ Object {
       "filepath": "components/Button/Button.js",
       "hasExamples": true,
       "metadata": Object {},
-<<<<<<< es-upgrade-md2jsx
-      "module": RequireStatement {
-        "filepath": 
-<rootDir>
-  /test/components/Button/Button.js
-</rootDir>
-,
-=======
       "module": Object {
         "require": "~/test/components/Button/Button.js",
->>>>>>> master
       },
       "pathLine": "components/Button/Button.js",
       "props": Object {
@@ -241,17 +160,8 @@ Object {
       "metadata": Object {
         "require": "!!json-loader!~/test/components/Placeholder/Placeholder.json",
       },
-<<<<<<< es-upgrade-md2jsx
-      "module": RequireStatement {
-        "filepath": 
-<rootDir>
-  /test/components/Placeholder/Placeholder.js
-</rootDir>
-,
-=======
       "module": Object {
         "require": "~/test/components/Placeholder/Placeholder.js",
->>>>>>> master
       },
       "pathLine": "components/Placeholder/Placeholder.js",
       "props": Object {
@@ -263,17 +173,8 @@ Object {
       "filepath": "components/RandomButton/RandomButton.js",
       "hasExamples": true,
       "metadata": Object {},
-<<<<<<< es-upgrade-md2jsx
-      "module": RequireStatement {
-        "filepath": 
-<rootDir>
-  /test/components/RandomButton/RandomButton.js
-</rootDir>
-,
-=======
       "module": Object {
         "require": "~/test/components/RandomButton/RandomButton.js",
->>>>>>> master
       },
       "pathLine": "components/RandomButton/RandomButton.js",
       "props": Object {
@@ -308,17 +209,8 @@ Object {
       "filepath": "components/Button/Button.js",
       "hasExamples": true,
       "metadata": Object {},
-<<<<<<< es-upgrade-md2jsx
-      "module": RequireStatement {
-        "filepath": 
-<rootDir>
-  /test/components/Button/Button.js
-</rootDir>
-,
-=======
       "module": Object {
         "require": "~/test/components/Button/Button.js",
->>>>>>> master
       },
       "pathLine": "components/Button/Button.js",
       "props": Object {
@@ -332,17 +224,8 @@ Object {
       "metadata": Object {
         "require": "!!json-loader!~/test/components/Placeholder/Placeholder.json",
       },
-<<<<<<< es-upgrade-md2jsx
-      "module": RequireStatement {
-        "filepath": 
-<rootDir>
-  /test/components/Placeholder/Placeholder.js
-</rootDir>
-,
-=======
       "module": Object {
         "require": "~/test/components/Placeholder/Placeholder.js",
->>>>>>> master
       },
       "pathLine": "components/Placeholder/Placeholder.js",
       "props": Object {
@@ -354,17 +237,8 @@ Object {
       "filepath": "components/RandomButton/RandomButton.js",
       "hasExamples": true,
       "metadata": Object {},
-<<<<<<< es-upgrade-md2jsx
-      "module": RequireStatement {
-        "filepath": 
-<rootDir>
-  /test/components/RandomButton/RandomButton.js
-</rootDir>
-,
-=======
       "module": Object {
         "require": "~/test/components/RandomButton/RandomButton.js",
->>>>>>> master
       },
       "pathLine": "components/RandomButton/RandomButton.js",
       "props": Object {
