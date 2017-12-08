@@ -3,7 +3,11 @@
 exports[`should render examples 1`] = `
 <Styled(Examples)>
   <Playground
-    code="<button>OK</button>"
+    code=
+<button>
+  OK
+</button>
+
     evalInContext={[Function]}
     index={0}
     key="1/0"

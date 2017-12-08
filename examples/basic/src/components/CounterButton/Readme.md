@@ -1,7 +1,9 @@
 ```js
-let ref;
-<div>
+let ref
+;<div>
   <CounterButton ref={r => (ref = r)} />
-  <Button size="small" onClick={() => ref.set(0)}>Reset</Button>
+  <Button size="small" onClick={() => ref.set(0)}>
+    Reset
+  </Button>
 </div>
 ```

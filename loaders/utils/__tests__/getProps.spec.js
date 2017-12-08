@@ -1,8 +1,6 @@
 import path from 'path';
 import getProps from '../getProps';
 
-jest.mock('../requireIt');
-
 it('should return an object for props', () => {
 	const result = getProps({
 		displayName: 'Button',

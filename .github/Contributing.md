@@ -6,11 +6,11 @@ If you want to contribute but don’t know what to do, take a look at these two 
 
 ## Prerequisites
 
-- If it’s your first pull request, watch [this amazing course](http://makeapullrequest.com/) by [Kent C. Dodds](https://twitter.com/kentcdodds).
-- Install [EditorConfig](http://editorconfig.org/) plugin for your code editor to make sure it uses correct settings.
-- Fork the repository and clone your fork.
-- Install dependencies: `npm install`.
-- Read the [developer guide](https://react-styleguidist.js.org/docs/development.html).
+* If it’s your first pull request, watch [this amazing course](http://makeapullrequest.com/) by [Kent C. Dodds](https://twitter.com/kentcdodds).
+* Install [EditorConfig](http://editorconfig.org/) plugin for your code editor to make sure it uses correct settings.
+* Fork the repository and clone your fork.
+* Install dependencies: `npm install`.
+* Read the [developer guide](https://react-styleguidist.js.org/docs/development.html).
 
 ## Development workflow
 
@@ -22,7 +22,7 @@ npm run compile:watch & npm start
 
 Open [localhost:6060](http://localhost:6060) in a browser.
 
-(There are other example style guides to test particular features too, run `npm run` to see a list.)
+(There are other example style guides to test particular features too, run `npm run` to see a list.)
 
 Run linters and tests:
 
@@ -48,11 +48,11 @@ npm run test:jest -- -u
 
 ## Other notes
 
-- If you have commit access to repository and want to make big change or not sure about something, make a new branch and open pull request.
-- We’re using [Prettier](https://github.com/prettier/prettier) to format JavaScript, so don’t worry much about code formatting.
-- Don’t commit generated files, like minified JavaScript.
-- Don’t change version number and change log.
+* If you have commit access to repository and want to make big change or not sure about something, make a new branch and open pull request.
+* We’re using [Prettier](https://github.com/prettier/prettier) to format JavaScript, so don’t worry much about code formatting.
+* Don’t commit generated files, like minified JavaScript.
+* Don’t change version number and change log.
 
 ## Need help?
 
-- Join our [Gitter](https://gitter.im/styleguidist/styleguidist) or [Spectrum](https://spectrum.chat/styleguidist) chats and ask everything you need.
+* Join our [Gitter](https://gitter.im/styleguidist/styleguidist) or [Spectrum](https://spectrum.chat/styleguidist) chats and ask everything you need.

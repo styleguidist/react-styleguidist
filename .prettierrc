@@ -1,0 +1,16 @@
+{
+  "printWidth": 100,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "useTabs": true,
+  "proseWrap": "never",
+  "overrides": [{
+    "files": "*.md",
+    "options": {
+      "printWidth": 70,
+      "useTabs": false,
+      "semi": false,
+      "trailingComma": "none"
+    }
+  }]
+}

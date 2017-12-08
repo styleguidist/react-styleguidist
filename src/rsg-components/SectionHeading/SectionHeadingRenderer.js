@@ -36,6 +36,7 @@ const styles = ({ color, space }) => ({
 		'&:hover, &:active': {
 			isolate: false,
 			textDecoration: 'underline',
+			cursor: 'pointer',
 		},
 	},
 	isDeprecated: {
