@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-
 import React, { Component } from 'react';
 import EditorLoaderRenderer from 'rsg-components/Editor/EditorLoaderRenderer';
 
