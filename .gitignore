@@ -13,3 +13,4 @@ Thumbs.db
 *.sublime-workspace
 *.log
 .eslintcache
+yarn.lock
