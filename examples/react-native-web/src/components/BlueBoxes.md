@@ -1,0 +1,5 @@
+BlueBoxes example:
+
+```js
+<BlueBoxes />;
+```
