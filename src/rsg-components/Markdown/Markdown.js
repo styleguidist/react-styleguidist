@@ -5,7 +5,8 @@ import mapValues from 'lodash/mapValues';
 // import memoize from 'lodash/memoize';
 import Styled from 'rsg-components/Styled';
 import Link from 'rsg-components/Link';
-import { styles as paraStyles } from 'rsg-components/Para';
+import Text from 'rsg-components/Text';
+import Para, { styles as paraStyles } from 'rsg-components/Para';
 import MarkdownHeading from 'rsg-components/Markdown/MarkdownHeading';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
@@ -79,6 +80,24 @@ const getBaseOverrides = memoize(classes => {
 				level: 6,
 			},
 		},
+		p: {
+			component: Para,
+			props: {
+				semantic: 'p',
+			},
+		},
+		em: {
+			component: Text,
+			props: {
+				semantic: 'em',
+			},
+		},
+		strong: {
+			component: Text,
+			props: {
+				semantic: 'strong',
+			},
+		},
 		code: {
 			component: Code,
 			props: {
@@ -95,10 +114,7 @@ const getInlineOverrides = memoize(classes => {
 	return {
 		...overrides,
 		p: {
-			component: 'span',
-			props: {
-				className: classes.base,
-			},
+			component: Text,
 		},
 	};
 }, () => 'getInlineOverrides');
@@ -110,9 +126,6 @@ const styles = ({ space, fontFamily, fontSize, color, borderRadius }) => ({
 		fontSize: 'inherit',
 	},
 	para: paraStyles({ space, color, fontFamily }).para,
-	p: {
-		composes: '$para',
-	},
 	ul: {
 		composes: '$para',
 		paddingLeft: space[3],
@@ -143,14 +156,6 @@ const styles = ({ space, fontFamily, fontSize, color, borderRadius }) => ({
 		borderWidth: [[0, 0, 1, 0]],
 		borderColor: color.border,
 		borderStyle: 'solid',
-	},
-	em: {
-		composes: '$base',
-		fontStyle: 'italic',
-	},
-	strong: {
-		composes: '$base',
-		fontWeight: 'bold',
 	},
 	code: {
 		fontFamily: fontFamily.monospace,

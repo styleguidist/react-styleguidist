@@ -242,7 +242,10 @@ exports[`props columns should render PropTypes.objectOf(PropTypes.shape) 1`] = `
               number
             </Styled(Type)>
              — 
-            <Styled(Text)>
+            <Styled(Text)
+              color="light"
+              size="small"
+            >
               Required
             </Styled(Text)>
           </div>
@@ -422,7 +425,10 @@ exports[`props columns should render PropTypes.shape 1`] = `
               number
             </Styled(Type)>
              — 
-            <Styled(Text)>
+            <Styled(Text)
+              color="light"
+              size="small"
+            >
               Required
             </Styled(Text)>
           </div>
@@ -470,6 +476,8 @@ exports[`props columns should render PropTypes.shape defaultProps, falling back 
       key="2"
     >
       <Styled(Text)
+        color="light"
+        size="small"
         title="somethingThatDoesntExist"
         underlined={true}
       >
@@ -492,7 +500,10 @@ exports[`props columns should render PropTypes.shape defaultProps, falling back 
               number
             </Styled(Type)>
              — 
-            <Styled(Text)>
+            <Styled(Text)
+              color="light"
+              size="small"
+            >
               Required
             </Styled(Text)>
           </div>
@@ -555,7 +566,10 @@ exports[`props columns should render PropTypes.shape with description 1`] = `
               number
             </Styled(Type)>
              — 
-            <Styled(Text)>
+            <Styled(Text)
+              color="light"
+              size="small"
+            >
               Required
             </Styled(Text)>
              — 
@@ -613,6 +627,8 @@ exports[`props columns should render PropTypes.shape with formatted defaultProps
       key="2"
     >
       <Styled(Text)
+        color="light"
+        size="small"
         title="{
   bar: 123,
   baz: baz() {
@@ -647,7 +663,10 @@ exports[`props columns should render PropTypes.shape with formatted defaultProps
               number
             </Styled(Type)>
              — 
-            <Styled(Text)>
+            <Styled(Text)
+              color="light"
+              size="small"
+            >
               Required
             </Styled(Text)>
           </div>
@@ -768,7 +787,10 @@ exports[`props columns should render PropTypes.string.isRequired 1`] = `
     <div
       key="2"
     >
-      <Styled(Text)>
+      <Styled(Text)
+        color="light"
+        size="small"
+      >
         Required
       </Styled(Text)>
     </div>
@@ -920,6 +942,8 @@ exports[`props columns should render function body in tooltip 1`] = `
       key="2"
     >
       <Styled(Text)
+        color="light"
+        size="small"
         title="(e) => console.log(e)"
         underlined={true}
       >

@@ -77,7 +77,11 @@ const defaultValueBlacklist = ['null', 'undefined'];
 
 function renderDefault(prop) {
 	if (prop.required) {
-		return <Text>Required</Text>;
+		return (
+			<Text size="small" color="light">
+				Required
+			</Text>
+		);
 	} else if (prop.defaultValue) {
 		if (prop.type) {
 			const propName = prop.type.name;
@@ -86,7 +90,12 @@ function renderDefault(prop) {
 				return <Code>{showSpaces(unquote(prop.defaultValue.value))}</Code>;
 			} else if (propName === 'func') {
 				return (
-					<Text underlined title={showSpaces(unquote(prop.defaultValue.value))}>
+					<Text
+						size="small"
+						color="light"
+						underlined
+						title={showSpaces(unquote(prop.defaultValue.value))}
+					>
 						Function
 					</Text>
 				);
@@ -98,7 +107,7 @@ function renderDefault(prop) {
 					// eslint-disable-next-line no-eval
 					const object = eval(`(${prop.defaultValue.value})`);
 					return (
-						<Text underlined title={objectToString(object, null, 2)}>
+						<Text size="small" color="light" underlined title={objectToString(object, null, 2)}>
 							Shape
 						</Text>
 					);
@@ -107,7 +116,7 @@ function renderDefault(prop) {
 					// local scope. To avoid any breakage we fall back to rendering the
 					// prop without any formatting
 					return (
-						<Text underlined title={prop.defaultValue.value}>
+						<Text size="small" color="light" underlined title={prop.defaultValue.value}>
 							Shape
 						</Text>
 					);
