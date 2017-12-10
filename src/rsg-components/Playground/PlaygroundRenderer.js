@@ -19,7 +19,7 @@ export const styles = ({ space, color, borderRadius }) => ({
 	toolbar: {
 		marginLeft: 'auto',
 	},
-	tab: {},
+	tab: {}, // expose className to allow using it in 'styles' settings
 });
 
 export function PlaygroundRenderer({
