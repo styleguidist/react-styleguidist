@@ -9,6 +9,7 @@ module.exports = {
 				{
 					test: /\.js$/,
 					include: fileName => {
+						// include any packages that need to be transpiled
 						if (fileName.includes(path.join('node_modules', 'react-native-vector-icons', 'lib'))) {
 							return true;
 						}
