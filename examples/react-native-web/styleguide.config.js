@@ -1,11 +1,8 @@
 const path = require('path');
 
 module.exports = {
-	verbose: false,
 	require: ['babel-polyfill'],
 	skipComponentsWithoutExample: false,
-	components: './src/components/**/[A-Z]*.js',
-	ignore: ['**/__tests__/**', '**/*.test.js', '**/*.test.jsx', '**/*.spec.js', '**/*.spec.jsx'],
 	webpackConfig: {
 		module: {
 			rules: [
