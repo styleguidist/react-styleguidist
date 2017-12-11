@@ -1,0 +1,217 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should enable verbose mode in CleanWebpackPlugin 1`] = `
+Array [
+  CleanWebpackPlugin {
+    "options": Object {
+      "allowExternal": false,
+      "dry": false,
+      "root": "~/scripts/__tests__",
+      "verbose": true,
+    },
+    "paths": Array [
+      "build",
+    ],
+  },
+]
+`;
+
+exports[`should merge user webpack config 1`] = `
+Object {
+  "foo": "bar",
+  "rsg-codemirror-theme.css": "codemirror/theme/hl-theme.css",
+  "rsg-components": "~/lib/rsg-components",
+}
+`;
+
+exports[`should not owerwrite user DefinePlugin 1`] = `
+Array [
+  DefinePlugin {
+    "definitions": Object {
+      "process.env.NODE_ENV": "\\"test\\"",
+      "process.env.STYLEGUIDIST_ENV": "\\"development\\"",
+    },
+  },
+  DefinePlugin {
+    "definitions": Object {
+      "process.env.PIZZA": "\\"salami\\"",
+    },
+  },
+]
+`;
+
+exports[`should prepend requires as webpack entries 1`] = `
+Array [
+  "a/b.js",
+  "c/d.css",
+  "~/lib/index",
+  "~/node_modules/react-dev-utils/webpackHotDevClient.js",
+]
+`;
+
+exports[`should return a development config 1`] = `
+Object {
+  "entry": Array [
+    "~/lib/index",
+    "~/node_modules/react-dev-utils/webpackHotDevClient.js",
+  ],
+  "output": Object {
+    "chunkFilename": "build/[name].js",
+    "filename": "build/[name].bundle.js",
+    "path": "~/scripts/__tests__",
+  },
+  "performance": Object {
+    "hints": false,
+  },
+  "plugins": Array [
+    StyleguidistOptionsPlugin {
+      "options": Object {
+        "highlightTheme": "hl-theme",
+        "require": Array [],
+        "styleguideDir": "~/scripts/__tests__",
+        "template": "template.html",
+        "title": "Style Guide",
+      },
+    },
+    HtmlWebpackPlugin {
+      "options": Object {
+        "cache": true,
+        "chunks": "all",
+        "compile": true,
+        "excludeChunks": Array [],
+        "favicon": false,
+        "filename": "index.html",
+        "hash": false,
+        "inject": true,
+        "minify": false,
+        "showErrors": true,
+        "template": "!!~/node_modules/html-webpack-plugin/lib/loader.js!template.html",
+        "title": "Style Guide",
+        "xhtml": false,
+      },
+    },
+    DefinePlugin {
+      "definitions": Object {
+        "process.env.NODE_ENV": "\\"test\\"",
+        "process.env.STYLEGUIDIST_ENV": "\\"development\\"",
+      },
+    },
+    HotModuleReplacementPlugin {
+      "fullBuildTimeout": 200,
+      "multiStep": undefined,
+      "options": Object {},
+      "requestTimeout": 10000,
+    },
+  ],
+  "resolve": Object {
+    "alias": Object {
+      "rsg-codemirror-theme.css": "codemirror/theme/hl-theme.css",
+      "rsg-components": "~/lib/rsg-components",
+    },
+    "extensions": Array [
+      ".js",
+      ".jsx",
+      ".json",
+    ],
+  },
+}
+`;
+
+exports[`should return a production config 1`] = `
+Object {
+  "entry": Array [
+    "~/lib/index",
+  ],
+  "output": Object {
+    "chunkFilename": "build/[name].[chunkhash:8].js",
+    "filename": "build/bundle.[chunkhash:8].js",
+    "path": "~/scripts/__tests__",
+  },
+  "performance": Object {
+    "hints": false,
+  },
+  "plugins": Array [
+    StyleguidistOptionsPlugin {
+      "options": Object {
+        "highlightTheme": "hl-theme",
+        "require": Array [],
+        "styleguideDir": "~/scripts/__tests__",
+        "template": "template.html",
+        "title": "Style Guide",
+      },
+    },
+    HtmlWebpackPlugin {
+      "options": Object {
+        "cache": true,
+        "chunks": "all",
+        "compile": true,
+        "excludeChunks": Array [],
+        "favicon": false,
+        "filename": "index.html",
+        "hash": false,
+        "inject": true,
+        "minify": false,
+        "showErrors": true,
+        "template": "!!~/node_modules/html-webpack-plugin/lib/loader.js!template.html",
+        "title": "Style Guide",
+        "xhtml": false,
+      },
+    },
+    DefinePlugin {
+      "definitions": Object {
+        "process.env.NODE_ENV": "\\"test\\"",
+        "process.env.STYLEGUIDIST_ENV": "\\"production\\"",
+      },
+    },
+    UglifyJsPlugin {
+      "options": Object {
+        "cache": true,
+        "extractComments": false,
+        "parallel": true,
+        "sourceMap": false,
+        "test": /\\\\\\.js\\$/i,
+        "uglifyOptions": Object {
+          "compress": Object {
+            "keep_fnames": true,
+            "warnings": false,
+          },
+          "ecma": 5,
+          "ie8": false,
+          "mangle": Object {
+            "keep_fnames": true,
+          },
+          "output": Object {
+            "comments": /\\^\\\\\\*\\*!\\|@preserve\\|@license\\|@cc_on/,
+          },
+        },
+        "warningsFilter": [Function],
+      },
+    },
+    CleanWebpackPlugin {
+      "options": Object {
+        "allowExternal": false,
+        "dry": false,
+        "root": "~/scripts/__tests__",
+        "verbose": false,
+      },
+      "paths": Array [
+        "build",
+      ],
+    },
+    Object {
+      "apply": [Function],
+    },
+  ],
+  "resolve": Object {
+    "alias": Object {
+      "rsg-codemirror-theme.css": "codemirror/theme/hl-theme.css",
+      "rsg-components": "~/lib/rsg-components",
+    },
+    "extensions": Array [
+      ".js",
+      ".jsx",
+      ".json",
+    ],
+  },
+}
+`;

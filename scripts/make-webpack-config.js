@@ -42,10 +42,8 @@ module.exports = function(config, env) {
 				inject: true,
 			}),
 			new webpack.DefinePlugin({
-				'process.env': {
-					NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-					STYLEGUIDIST_ENV: JSON.stringify(env),
-				},
+				'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+				'process.env.STYLEGUIDIST_ENV': JSON.stringify(env),
 			}),
 		],
 		performance: {
