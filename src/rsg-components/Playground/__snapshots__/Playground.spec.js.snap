@@ -29,7 +29,9 @@ exports[`renderer should render preview 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    className="tab"
+  >
     <div>
       tab body
     </div>
