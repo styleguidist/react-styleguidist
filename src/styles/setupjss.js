@@ -27,6 +27,7 @@ const jss = create({
 				// Allow inheritance because it may be set on body and should be available for user components
 				color: 'inherit',
 				fontFamily: 'inherit',
+				fontWeight: 'inherit',
 				lineHeight: 'inherit',
 				fontSize: 'inherit',
 			},
