@@ -22,10 +22,12 @@ const options = {
 			showCode: false,
 			highlightTheme: 'base16-light',
 		},
+		codeRevision: 0,
 		slots,
 	},
 	childContextTypes: {
 		slots: PropTypes.object.isRequired,
+		codeRevision: PropTypes.number.isRequired,
 	},
 };
 

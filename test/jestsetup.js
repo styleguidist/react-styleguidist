@@ -15,19 +15,6 @@ global.mount = mount;
 // Get class names from styles function
 global.classes = styles => keymirror(styles(theme));
 
-// Skip createElement warnings but fail tests on any other warning
-console.error = message => {
-	if (
-		!/(Warning: Accessing PropTypes via the main React package|React.createClass is deprecated)/.test(
-			message
-		)
-	) {
-		throw new Error(message);
-	}
-};
-
-console.clear = jest.fn();
-
 // document.createRange “polyfill” for CodeMirror
 document.createRange = function() {
 	return {

@@ -42,6 +42,7 @@ export default class Preview extends Component {
 	};
 	static contextTypes = {
 		config: PropTypes.object.isRequired,
+		codeRevision: PropTypes.number.isRequired,
 	};
 
 	constructor() {
@@ -55,7 +56,12 @@ export default class Preview extends Component {
 	}
 
 	componentDidMount() {
-		console.clear(); // eslint-disable-line no-console
+		// Clear console after hot reload, do not clear on the first load to keep any warnings
+		if (this.context.codeRevision > 0) {
+			// eslint-disable-next-line no-console
+			console.clear();
+		}
+
 		this.executeCode();
 	}
 
