@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Markdown should render Markdown in a p tag even for one paragraph 1`] = `
+
+<p class="rsg--para-17">
+  pizza
+</p>
+
+`;
+
 exports[`Markdown should render Markdown in span in inline mode 1`] = `
 
 <span class="rsg--text-27 rsg--inheritSize-28 rsg--baseColor-32">

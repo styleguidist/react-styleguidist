@@ -23,6 +23,12 @@ Text with *some* **formatting** and a [link](/foo).
 		expect(html(actual)).toMatchSnapshot();
 	});
 
+	it('should render Markdown in a p tag even for one paragraph', () => {
+		const actual = render(<Markdown text="pizza" />);
+
+		expect(html(actual)).toMatchSnapshot();
+	});
+
 	it('should render Markdown in span in inline mode', () => {
 		const markdown = 'Hello *world*!';
 		const actual = render(<Markdown text={markdown} inline />);

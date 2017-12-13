@@ -195,7 +195,9 @@ const styles = ({ space, fontFamily, fontSize, color, borderRadius }) => ({
 
 function Markdown({ classes, text, inline }) {
 	const overrides = inline ? getInlineOverrides(classes) : getBaseOverrides(classes);
-	return compiler(text, { overrides });
+	// HACK: Add \n to force markdown-to-jsx to render text in a <p> instead of a <span>
+	// https://github.com/probablyup/markdown-to-jsx/issues/132
+	return compiler(text + '\n', { overrides });
 }
 
 Markdown.propTypes = {
