@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { compiler } from 'markdown-to-jsx';
 import mapValues from 'lodash/mapValues';
-// import memoize from 'lodash/memoize';
+import memoize from 'lodash/memoize';
 import Styled from 'rsg-components/Styled';
 import Link from 'rsg-components/Link';
 import Text from 'rsg-components/Text';
@@ -13,10 +13,6 @@ import MarkdownHeading from 'rsg-components/Markdown/MarkdownHeading';
 // That way we could avoid clashes between our loaders and user loaders.
 // eslint-disable-next-line import/no-unresolved
 require('!!../../../loaders/style-loader!../../../loaders/css-loader!highlight.js/styles/tomorrow.css');
-
-// Temporary disable memoization to fix: https://github.com/styleguidist/react-styleguidist/issues/348
-// TODO: Remove after merge: https://github.com/probablyup/markdown-to-jsx/pull/96
-const memoize = a => a;
 
 // Code blocks with server-side syntax highlight
 function Code({ children, className }) {
