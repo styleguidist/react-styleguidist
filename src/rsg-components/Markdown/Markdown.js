@@ -136,9 +136,8 @@ const styles = ({ space, fontFamily, fontSize, color, borderRadius }) => ({
 		listStyleType: 'inherit',
 	},
 	input: {
-		color: color.base,
+		isolate: false,
 		display: 'inline-block',
-		margin: [[0, '0.35em', '0.25em', '-1.2em']],
 		verticalAlign: 'middle',
 	},
 	blockquote: {
