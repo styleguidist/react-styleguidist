@@ -4,14 +4,15 @@
 
 const minimist = require('minimist');
 const chalk = require('chalk');
+const ora = require('ora');
 const stringify = require('q-i').stringify;
+const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
+const webpackDevServerUtils = require('react-dev-utils/WebpackDevServerUtils');
 const logger = require('glogg')('rsg');
 const getConfig = require('../scripts/config');
 const setupLogger = require('../scripts/logger');
 const consts = require('../scripts/consts');
-const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const StyleguidistError = require('../scripts/utils/error');
-const devServerUtils = require('../scripts/utils/devServerUtils');
 
 const argv = minimist(process.argv.slice(2));
 const command = argv._[0];
@@ -82,7 +83,7 @@ function updateConfig(config) {
 }
 
 function commandBuild() {
-	logger.info('Building style guide...');
+	console.log('Building style guide...');
 
 	const build = require('../scripts/build');
 	const compiler = build(config, err => {
@@ -90,7 +91,7 @@ function commandBuild() {
 			console.error(err);
 			process.exit(1);
 		} else {
-			logger.info('Style guide published to:\n' + chalk.underline(config.styleguideDir));
+			console.log('Style guide published to:\n' + chalk.underline(config.styleguideDir));
 		}
 	});
 
@@ -107,29 +108,36 @@ function commandBuild() {
 }
 
 function commandServer() {
+	let spinner;
+
 	const server = require('../scripts/server');
 	const compiler = server(config, err => {
 		if (err) {
 			console.error(err);
 		} else {
 			const isHttps = compiler.options.devServer && compiler.options.devServer.https;
-			devServerUtils.printInstructions(isHttps, config.serverHost, config.serverPort);
+			printInstructions(isHttps, config.serverHost, config.serverPort);
 		}
 	});
 
 	verbose('Webpack config:', compiler.options);
 
-	// Show message when Webpack is recompiling the bundle
+	// Show message when webpack is recompiling the bundle
 	compiler.plugin('invalid', function() {
-		logger.info('Compiling…');
+		console.log();
+		spinner = ora('Compiling...').start();
 	});
 
 	// Custom error reporting
 	compiler.plugin('done', function(stats) {
+		if (spinner) {
+			spinner.stop();
+		}
+
 		const messages = formatWebpackMessages(stats.toJson({}, true));
 
 		if (!messages.errors.length && !messages.warnings.length) {
-			logger.info(chalk.green('Compiled successfully!'));
+			printStatus('Compiled successfully!', 'success');
 		}
 
 		printAllErrorsAndWarnings(messages, stats.compilation);
@@ -137,7 +145,7 @@ function commandServer() {
 }
 
 function commandHelp() {
-	logger.info(
+	console.log(
 		[
 			chalk.underline('Usage'),
 			'',
@@ -162,16 +170,51 @@ function commandHelp() {
 	);
 }
 
+/**
+ * @param {boolean} isHttps
+ * @param {string} host
+ * @param {number} port
+ */
+function printInstructions(isHttps, host, port) {
+	const urls = webpackDevServerUtils.prepareUrls(isHttps ? 'https' : 'http', host, port);
+	console.log(`You can now view your style guide in the browser:`);
+	console.log();
+	console.log(`  ${chalk.bold('Local:')}            ${urls.localUrlForTerminal}`);
+	console.log(`  ${chalk.bold('On your network:')}  ${urls.lanUrlForTerminal}`);
+	console.log();
+}
+
 function printErrorWithLink(message, linkTitle, linkUrl) {
 	console.error(`${chalk.bold.red(message)}\n\n${linkTitle}\n${chalk.underline(linkUrl)}\n`);
 }
 
-function printErrors(header, errors, originalErrors, printer) {
-	console.error(printer(header));
+/**
+ * @param {string} header
+ * @param {object} errors
+ * @param {object} originalErrors
+ * @param {'success'|'error'|'warning'} type
+ */
+function printErrors(header, errors, originalErrors, type) {
+	printStatus(header, type);
+	console.error();
 	const messages = argv.verbose ? originalErrors : errors;
 	messages.forEach(message => {
 		console.error(message.message || message);
 	});
+}
+
+/**
+ * @param {string} text
+ * @param {'success'|'error'|'warning'} type
+ */
+function printStatus(text, type) {
+	if (type === 'success') {
+		console.log(chalk.inverse.bold.green(' DONE ') + ' ' + text);
+	} else if (type === 'error') {
+		console.error(chalk.reset.inverse.bold.red(' FAIL ') + ' ' + chalk.reset.red(text));
+	} else {
+		console.error(chalk.reset.inverse.bold.yellow(' WARN ') + ' ' + chalk.reset.yellow(text));
+	}
 }
 
 function printAllErrorsAndWarnings(messages, compilation) {
@@ -192,11 +235,11 @@ function printAllErrorsAndWarnings(messages, compilation) {
 function printAllErrors(errors, originalErrors) {
 	printStyleguidistError(errors);
 	printNoLoaderError(errors);
-	printErrors('Failed to compile.', errors, originalErrors, chalk.red);
+	printErrors('Failed to compile', errors, originalErrors, 'error');
 }
 
 function printAllWarnings(warnings, originalWarnings) {
-	printErrors('Compiled with warnings.', warnings, originalWarnings, chalk.yellow);
+	printErrors('Compiled with warnings', warnings, originalWarnings, 'warning');
 }
 
 function printStyleguidistError(errors) {
