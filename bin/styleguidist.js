@@ -72,6 +72,10 @@ switch (command) {
 		commandHelp();
 }
 
+/**
+ * @param {object} config
+ * @return {object}
+ */
 function updateConfig(config) {
 	// Set verbose mode from config option or command line switch
 	config.verbose = config.verbose || argv.verbose;
@@ -184,6 +188,11 @@ function printInstructions(isHttps, host, port) {
 	console.log();
 }
 
+/**
+ * @param {string} message
+ * @param {string} linkTitle
+ * @param {string} linkUrl
+ */
 function printErrorWithLink(message, linkTitle, linkUrl) {
 	console.error(`${chalk.bold.red(message)}\n\n${linkTitle}\n${chalk.underline(linkUrl)}\n`);
 }
@@ -217,14 +226,19 @@ function printStatus(text, type) {
 	}
 }
 
+/**
+ * @param {object} messages
+ * @param {object} compilation
+ * @return {boolean}
+ */
 function printAllErrorsAndWarnings(messages, compilation) {
-	// If errors exist, only show errors.
+	// If errors exist, only show errors
 	if (messages.errors.length) {
 		printAllErrors(messages.errors, compilation.errors);
 		return true;
 	}
 
-	// Show warnings if no errors were found.
+	// Show warnings if no errors were found
 	if (messages.warnings.length) {
 		printAllWarnings(messages.warnings, compilation.warnings);
 	}
@@ -232,16 +246,27 @@ function printAllErrorsAndWarnings(messages, compilation) {
 	return false;
 }
 
+/**
+ * @param {object} errors
+ * @param {object} originalErrors
+ */
 function printAllErrors(errors, originalErrors) {
 	printStyleguidistError(errors);
 	printNoLoaderError(errors);
 	printErrors('Failed to compile', errors, originalErrors, 'error');
 }
 
+/**
+ * @param {object} warnings
+ * @param {object} originalWarnings
+ */
 function printAllWarnings(warnings, originalWarnings) {
 	printErrors('Compiled with warnings', warnings, originalWarnings, 'warning');
 }
 
+/**
+ * @param {object} errors
+ */
 function printStyleguidistError(errors) {
 	const styleguidistError = errors.find(message =>
 		message.includes('Module build failed: Error: Styleguidist:')
@@ -255,6 +280,9 @@ function printStyleguidistError(errors) {
 	process.exit(1);
 }
 
+/**
+ * @param {object} errors
+ */
 function printNoLoaderError(errors) {
 	if (argv.verbose) {
 		return;
@@ -275,6 +303,10 @@ function printNoLoaderError(errors) {
 	process.exit(1);
 }
 
+/**
+ * @param {string} header
+ * @param {object} object
+ */
 function verbose(header, object) {
 	logger.debug(chalk.bold(header) + '\n\n' + stringify(object));
 }
