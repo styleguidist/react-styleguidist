@@ -38,6 +38,7 @@
     "import/no-named-default": "error"
   },
   "globals": {
+    "System": false,
     "classes": false,
     "shallow": false,
     "render": false,

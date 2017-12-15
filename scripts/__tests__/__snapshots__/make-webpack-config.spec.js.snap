@@ -166,7 +166,9 @@ Object {
     UglifyJsPlugin {
       "options": Object {
         "cache": true,
+        "exclude": undefined,
         "extractComments": false,
+        "include": undefined,
         "parallel": true,
         "sourceMap": false,
         "test": /\\\\\\.js\\$/i,
@@ -181,7 +183,7 @@ Object {
             "keep_fnames": true,
           },
           "output": Object {
-            "comments": /\\^\\\\\\*\\*!\\|@preserve\\|@license\\|@cc_on/,
+            "comments": false,
           },
         },
         "warningsFilter": [Function],
