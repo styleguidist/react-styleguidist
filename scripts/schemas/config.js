@@ -100,6 +100,15 @@ module.exports = {
 		process: (value, config) => {
 			return Object.assign({}, { theme: config.highlightTheme }, value);
 		},
+		default: {
+			theme: 'base16-light',
+			mode: 'jsx',
+			lineWrapping: true,
+			smartIndent: false,
+			matchBrackets: true,
+			viewportMargin: Infinity,
+			lineNumbers: false,
+		},
 	},
 	logger: {
 		type: 'object',
