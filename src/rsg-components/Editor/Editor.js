@@ -13,16 +13,6 @@ require('!!../../../loaders/style-loader!../../../loaders/css-loader!rsg-codemir
 
 const UPDATE_DELAY = 10;
 
-const codeMirrorDefault = {
-	mode: 'jsx',
-	lineWrapping: true,
-	smartIndent: false,
-	matchBrackets: true,
-	viewportMargin: Infinity,
-	lineNumbers: false,
-	theme: 'base16-light',
-};
-
 export default class Editor extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
@@ -47,11 +37,10 @@ export default class Editor extends Component {
 
 	render() {
 		const { code } = this.props;
-		const { highlightTheme, editorConfig } = this.context.config;
+		const { editorConfig, highlightTheme } = this.context.config;
 		const options = {
-			...codeMirrorDefault,
-			...editorConfig,
-			theme: highlightTheme,
+			...highlightTheme,
+			...editorConfig.default,
 		};
 		return <CodeMirror value={code} onChange={this.handleChange} options={options} />;
 	}
