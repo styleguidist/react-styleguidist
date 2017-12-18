@@ -53,6 +53,7 @@
     "html-webpack-plugin": "^2.30.1",
     "is-directory": "^0.3.1",
     "javascript-stringify": "^1.6.0",
+    "jest-cli": "^22.0.0",
     "jss": "^9.3.3",
     "jss-camel-case": "^6.0.0",
     "jss-compose": "^5.0.0",
