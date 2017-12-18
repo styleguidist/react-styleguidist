@@ -7,6 +7,16 @@ afterEach(() => {
 	process.chdir(cwd);
 });
 
+const defaultEditorConfig = {
+	theme: 'base16-light',
+	mode: 'jsx',
+	lineWrapping: true,
+	smartIndent: false,
+	matchBrackets: true,
+	viewportMargin: Infinity,
+	lineNumbers: false,
+};
+
 it('should read a config file', () => {
 	const result = getConfig('./test/data/styleguide.config.js');
 	expect(result).toMatchObject({ title: 'React Style Guide Example' });
@@ -196,4 +206,47 @@ it('should allow no webpack config', () => {
 	process.chdir('test/apps/no-webpack');
 	const fn = () => getConfig();
 	expect(fn).not.toThrow();
+});
+
+it('should return defaultEditorConfig if nothing passed', () => {
+	const result = getConfig({
+		editorConfig: {},
+	});
+	expect(result.editorConfig).toEqual(defaultEditorConfig);
+});
+
+it('should return apply user preferences', () => {
+	const result = getConfig({
+		editorConfig: {
+			mode: 'js',
+		},
+	});
+	expect(result.editorConfig).toEqual({
+		...defaultEditorConfig,
+		mode: 'js',
+	});
+});
+
+it('should allow user to pass highlightTheme', () => {
+	const result = getConfig({
+		highlightTheme: 'dracula',
+		editorConfig: {},
+	});
+	expect(result.editorConfig).toEqual({
+		...defaultEditorConfig,
+		theme: 'dracula',
+	});
+});
+
+it('should allow override highlightTheme', () => {
+	const result = getConfig({
+		highlightTheme: 'dracula',
+		editorConfig: {
+			theme: 'base-16-dark',
+		},
+	});
+	expect(result.editorConfig).toEqual({
+		...defaultEditorConfig,
+		theme: 'base-16-dark',
+	});
 });

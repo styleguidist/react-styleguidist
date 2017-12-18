@@ -95,19 +95,25 @@ module.exports = {
 		default: 'base16-light',
 		deprecated: 'Use the theme property in the editorConfig option instead',
 	},
-	defaultEditorConfig: {
-		theme: 'base16-light',
-		mode: 'jsx',
-		lineWrapping: true,
-		smartIndent: false,
-		matchBrackets: true,
-		viewportMargin: Infinity,
-		lineNumbers: false,
-	},
 	editorConfig: {
 		type: 'object',
 		process: (value, config) => {
-			return Object.assign({}, config.defaultEditorConfig, { theme: config.highlightTheme }, value);
+			const defaultEditorConfig = {
+				theme: 'base16-light',
+				mode: 'jsx',
+				lineWrapping: true,
+				smartIndent: false,
+				matchBrackets: true,
+				viewportMargin: Infinity,
+				lineNumbers: false,
+			};
+
+			return Object.assign(
+				{},
+				defaultEditorConfig,
+				{ theme: config.highlightTheme || defaultEditorConfig.theme },
+				value
+			);
 		},
 	},
 	logger: {

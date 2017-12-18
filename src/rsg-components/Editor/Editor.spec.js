@@ -10,6 +10,9 @@ const options = {
 		config: {
 			showCode: false,
 			highlightTheme: 'base16-light',
+			editorConfig: {
+				mode: 'js',
+			},
 		},
 	},
 	childContextTypes: {
@@ -27,6 +30,33 @@ describe('EditorLoaderRenderer', () => {
 
 describe('Editor', () => {
 	it('should renderer and editor', () => {
+		const actual = shallow(<Editor code={code} onChange={() => {}} />, options);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should allow user to use highlightTheme in editor', () => {
+		const actual = shallow(<Editor code={code} onChange={() => {}} />, options);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should allow override user with editorConfig', () => {
+		const options = {
+			context: {
+				config: {
+					showCode: false,
+					highlightTheme: 'base16-light',
+					editorConfig: {
+						mode: 'js',
+						highlightTheme: 'darcula',
+					},
+				},
+			},
+			childContextTypes: {
+				config: PropTypes.object.isRequired,
+			},
+		};
 		const actual = shallow(<Editor code={code} onChange={() => {}} />, options);
 
 		expect(actual).toMatchSnapshot();
