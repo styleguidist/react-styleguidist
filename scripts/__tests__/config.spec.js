@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import getConfig from '../config';
-import config from '../schemas/config';
+import consts from '../consts';
 
 const cwd = process.cwd();
 afterEach(() => {
@@ -199,9 +199,9 @@ it('should allow no webpack config', () => {
 	expect(fn).not.toThrow();
 });
 
-it('should return defaultEditorConfig if nothing passed', () => {
+it('should return EDITOR_CONFIG if nothing passed', () => {
 	const result = getConfig();
-	expect(result.editorConfig).toEqual(config.defaultEditorConfig);
+	expect(result.editorConfig).toEqual(consts.EDITOR_CONFIG);
 });
 
 it('should return apply user preferences', () => {
@@ -211,7 +211,7 @@ it('should return apply user preferences', () => {
 		},
 	});
 	expect(result.editorConfig).toEqual({
-		...config.defaultEditorConfig,
+		...consts.EDITOR_CONFIG,
 		mode: 'js',
 	});
 });
@@ -222,7 +222,7 @@ it('should allow user to pass highlightTheme', () => {
 		editorConfig: {},
 	});
 	expect(result.editorConfig).toEqual({
-		...config.defaultEditorConfig,
+		...consts.EDITOR_CONFIG,
 		theme: 'dracula',
 	});
 });
@@ -235,7 +235,7 @@ it('should allow override highlightTheme', () => {
 		},
 	});
 	expect(result.editorConfig).toEqual({
-		...config.defaultEditorConfig,
+		...consts.EDITOR_CONFIG,
 		theme: 'base-16-dark',
 	});
 });
