@@ -17,7 +17,18 @@ const getUserPackageJson = require('../utils/getUserPackageJson');
 const fileExistsCaseInsensitive = require('../utils/findFileCaseInsensitive');
 const consts = require('../consts');
 
+const defaultEditorConfig = {
+	theme: 'base16-light',
+	mode: 'jsx',
+	lineWrapping: true,
+	smartIndent: false,
+	matchBrackets: true,
+	viewportMargin: Infinity,
+	lineNumbers: false,
+};
+
 module.exports = {
+	defaultEditorConfig,
 	assetsDir: {
 		type: 'existing directory path',
 		example: 'assets',
@@ -98,20 +109,10 @@ module.exports = {
 	editorConfig: {
 		type: 'object',
 		process: (value, config) => {
-			const defaultEditorConfig = {
-				theme: 'base16-light',
-				mode: 'jsx',
-				lineWrapping: true,
-				smartIndent: false,
-				matchBrackets: true,
-				viewportMargin: Infinity,
-				lineNumbers: false,
-			};
-
 			return Object.assign(
 				{},
 				defaultEditorConfig,
-				{ theme: config.highlightTheme || defaultEditorConfig.theme },
+				config.highlightTheme && { theme: config.highlightTheme },
 				value
 			);
 		},

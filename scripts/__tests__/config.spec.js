@@ -1,21 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 import getConfig from '../config';
+import config from '../schemas/config';
 
 const cwd = process.cwd();
 afterEach(() => {
 	process.chdir(cwd);
 });
-
-const defaultEditorConfig = {
-	theme: 'base16-light',
-	mode: 'jsx',
-	lineWrapping: true,
-	smartIndent: false,
-	matchBrackets: true,
-	viewportMargin: Infinity,
-	lineNumbers: false,
-};
 
 it('should read a config file', () => {
 	const result = getConfig('./test/data/styleguide.config.js');
@@ -209,10 +200,8 @@ it('should allow no webpack config', () => {
 });
 
 it('should return defaultEditorConfig if nothing passed', () => {
-	const result = getConfig({
-		editorConfig: {},
-	});
-	expect(result.editorConfig).toEqual(defaultEditorConfig);
+	const result = getConfig();
+	expect(result.editorConfig).toEqual(config.defaultEditorConfig);
 });
 
 it('should return apply user preferences', () => {
@@ -222,7 +211,7 @@ it('should return apply user preferences', () => {
 		},
 	});
 	expect(result.editorConfig).toEqual({
-		...defaultEditorConfig,
+		...config.defaultEditorConfig,
 		mode: 'js',
 	});
 });
@@ -233,7 +222,7 @@ it('should allow user to pass highlightTheme', () => {
 		editorConfig: {},
 	});
 	expect(result.editorConfig).toEqual({
-		...defaultEditorConfig,
+		...config.defaultEditorConfig,
 		theme: 'dracula',
 	});
 });
@@ -246,7 +235,7 @@ it('should allow override highlightTheme', () => {
 		},
 	});
 	expect(result.editorConfig).toEqual({
-		...defaultEditorConfig,
+		...config.defaultEditorConfig,
 		theme: 'base-16-dark',
 	});
 });
