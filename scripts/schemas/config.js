@@ -97,14 +97,8 @@ module.exports = {
 	},
 	editorConfig: {
 		type: 'object',
-		default: {
-			theme: 'base16-light',
-			mode: 'jsx',
-			lineWrapping: true,
-			smartIndent: false,
-			matchBrackets: true,
-			viewportMargin: Infinity,
-			lineNumbers: false,
+		process: (value, config) => {
+			return Object.assign({}, { theme: config.highlightTheme }, value);
 		},
 	},
 	logger: {

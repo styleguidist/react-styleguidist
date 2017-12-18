@@ -11,6 +11,16 @@ require('!!../../../loaders/style-loader!../../../loaders/css-loader!codemirror/
 // eslint-disable-next-line import/no-unresolved
 require('!!../../../loaders/style-loader!../../../loaders/css-loader!rsg-codemirror-theme.css');
 
+const editorDefaults = {
+	theme: 'base16-light',
+	mode: 'jsx',
+	lineWrapping: true,
+	smartIndent: false,
+	matchBrackets: true,
+	viewportMargin: Infinity,
+	lineNumbers: false,
+};
+
 const UPDATE_DELAY = 10;
 
 export default class Editor extends Component {
@@ -37,9 +47,9 @@ export default class Editor extends Component {
 
 	render() {
 		const { code } = this.props;
-		const { editorConfig, highlightTheme } = this.context.config;
+		const { editorConfig } = this.context.config;
 		const options = {
-			...highlightTheme,
+			...editorDefaults,
 			...editorConfig,
 		};
 		return <CodeMirror value={code} onChange={this.handleChange} options={options} />;
