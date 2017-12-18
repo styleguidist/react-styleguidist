@@ -40,7 +40,7 @@ export default class Editor extends Component {
 		const { editorConfig, highlightTheme } = this.context.config;
 		const options = {
 			...highlightTheme,
-			...editorConfig.default,
+			...editorConfig,
 		};
 		return <CodeMirror value={code} onChange={this.handleChange} options={options} />;
 	}
