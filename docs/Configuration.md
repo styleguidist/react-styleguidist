@@ -170,7 +170,7 @@ module.exports = {
 
 #### `editorConfig`
 
-Type: `Object`, default: [scripts/schemas/config.js](https://github.com/styleguidist/react-styleguidist/blob/87efdde2d52209e9c4072368402d11030943d69f/scripts/schemas/config.js#L101)
+Type: `Object`, default: [scripts/schemas/config.js](https://github.com/styleguidist/react-styleguidist/tree/master/scripts/schemas/config.js#L101)
 
 Source code editor options, see [CodeMirror docs](https://codemirror.net/doc/manual.html#config) for all available options.
 
