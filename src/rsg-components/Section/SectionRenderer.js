@@ -20,7 +20,7 @@ export function SectionRenderer(allProps) {
 					{name}
 				</SectionHeading>
 			)}
-			{description && <Markdown text={`${description}`} inline />}
+			{description && <Markdown text={description} />}
 			{content}
 			{components}
 			{sections}
@@ -31,6 +31,7 @@ export function SectionRenderer(allProps) {
 SectionRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	name: PropTypes.string,
+	description: PropTypes.string,
 	slug: PropTypes.string,
 	content: PropTypes.node,
 	components: PropTypes.node,
