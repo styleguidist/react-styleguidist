@@ -93,6 +93,27 @@ module.exports = {
 	highlightTheme: {
 		type: 'string',
 		default: 'base16-light',
+		deprecated: 'Use the theme property in the editorConfig option instead',
+	},
+	editorConfig: {
+		type: 'object',
+		process: (value, config) => {
+			const defaults = {
+				theme: 'base16-light',
+				mode: 'jsx',
+				lineWrapping: true,
+				smartIndent: false,
+				matchBrackets: true,
+				viewportMargin: Infinity,
+				lineNumbers: false,
+			};
+			return Object.assign(
+				{},
+				defaults,
+				config.highlightTheme && { theme: config.highlightTheme },
+				value
+			);
+		},
 	},
 	logger: {
 		type: 'object',

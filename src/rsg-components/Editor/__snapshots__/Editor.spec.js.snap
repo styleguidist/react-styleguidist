@@ -5,13 +5,7 @@ exports[`Editor should renderer and editor 1`] = `
   onChange={[Function]}
   options={
     Object {
-      "lineNumbers": false,
-      "lineWrapping": true,
-      "matchBrackets": true,
-      "mode": "jsx",
-      "smartIndent": false,
-      "theme": "base16-light",
-      "viewportMargin": Infinity,
+      "mode": "js",
     }
   }
   value=

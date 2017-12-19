@@ -14,10 +14,10 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`configureServer`](#configureserver)
 * [`dangerouslyUpdateWebpackConfig`](#dangerouslyupdatewebpackconfig)
 * [`defaultExample`](#defaultexample)
+* [`editorConfig`](#editorConfig)
 * [`getComponentPathLine`](#getcomponentpathline)
 * [`getExampleFilename`](#getexamplefilename)
 * [`handlers`](#handlers)
-* [`highlightTheme`](#highlighttheme)
 * [`ignore`](#ignore)
 * [`logger`](#logger)
 * [`previewDelay`](#previewdelay)
@@ -168,6 +168,12 @@ module.exports = {
 }
 ```
 
+#### `editorConfig`
+
+Type: `Object`, default: [scripts/schemas/config.js](https://github.com/styleguidist/react-styleguidist/tree/master/scripts/schemas/config.js#L101)
+
+Source code editor options, see [CodeMirror docs](https://codemirror.net/doc/manual.html#config) for all available options.
+
 #### `getExampleFilename`
 
 Type: `Function`, default: finds `Readme.md` or `ComponentName.md` in the component folder
@@ -226,12 +232,6 @@ module.exports = {
     )
 }
 ```
-
-#### `highlightTheme`
-
-Type: `String`, default: `base16-light`
-
-[CodeMirror theme](http://codemirror.net/demo/theme.html) name to use for syntax highlighting in the editor.
 
 #### `ignore`
 

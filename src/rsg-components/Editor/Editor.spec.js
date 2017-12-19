@@ -10,6 +10,9 @@ const options = {
 		config: {
 			showCode: false,
 			highlightTheme: 'base16-light',
+			editorConfig: {
+				mode: 'js',
+			},
 		},
 	},
 	childContextTypes: {

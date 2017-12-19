@@ -197,3 +197,20 @@ it('should allow no webpack config', () => {
 	const fn = () => getConfig();
 	expect(fn).not.toThrow();
 });
+
+it('editorConfig option should have default values', () => {
+	const result = getConfig();
+	expect(result.editorConfig).toHaveProperty('mode', 'jsx');
+	expect(result.editorConfig).toHaveProperty('theme', 'base16-light');
+});
+
+it('should merge default editorConfig with options provided by the user', () => {
+	const result = getConfig({
+		editorConfig: {
+			mode: 'js',
+		},
+	});
+
+	expect(result.editorConfig).toHaveProperty('mode', 'js');
+	expect(result.editorConfig).toHaveProperty('theme', 'base16-light');
+});

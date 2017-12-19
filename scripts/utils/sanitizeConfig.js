@@ -89,7 +89,7 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 				throw new StyleguidistError(message);
 			}
 		} else if (props.deprecated) {
-			logger.warn(`${chalk.bold(key)} config option is deprecated. ${props.deprecated}`);
+			logger.warn(`${key} config option is deprecated. ${props.deprecated}`);
 		} else if (props.removed) {
 			throw new StyleguidistError(`${chalk.bold(key)} config option was removed. ${props.removed}`);
 		}
