@@ -16,6 +16,7 @@ const options = {
 const section = {
 	name: 'Foo',
 	slug: 'foo',
+	description: 'This is a description',
 	content: [
 		{
 			type: 'code',

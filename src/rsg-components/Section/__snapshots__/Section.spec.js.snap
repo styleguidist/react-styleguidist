@@ -162,6 +162,7 @@ exports[`should render section renderer 1`] = `
     />
   }
   depth={3}
+  description="This is a description"
   isolated={false}
   name="Foo"
   sections={

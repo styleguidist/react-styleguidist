@@ -12,6 +12,7 @@ module.exports = {
 						{
 							name: 'First File',
 							content: 'docs/One.md',
+							description: 'This is the first section description',
 						},
 						{
 							name: 'Second File',
