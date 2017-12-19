@@ -1,38 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Editor should allow override user with editorConfig 1`] = `
-<UnControlled
-  onChange={[Function]}
-  options={
-    Object {
-      "highlightTheme": "darcula",
-      "mode": "js",
-    }
-  }
-  value=
-<button>
-  MyAwesomeCode
-</button>
-
-/>
-`;
-
-exports[`Editor should allow user to use highlightTheme in editor 1`] = `
-<UnControlled
-  onChange={[Function]}
-  options={
-    Object {
-      "mode": "js",
-    }
-  }
-  value=
-<button>
-  MyAwesomeCode
-</button>
-
-/>
-`;
-
 exports[`Editor should renderer and editor 1`] = `
 <UnControlled
   onChange={[Function]}

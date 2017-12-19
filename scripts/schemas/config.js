@@ -98,9 +98,18 @@ module.exports = {
 	editorConfig: {
 		type: 'object',
 		process: (value, config) => {
+			const _defaults = {
+				theme: 'base16-light',
+				mode: 'jsx',
+				lineWrapping: true,
+				smartIndent: false,
+				matchBrackets: true,
+				viewportMargin: Infinity,
+				lineNumbers: false,
+			};
 			return Object.assign(
 				{},
-				consts.EDITOR_CONFIG,
+				_defaults,
 				config.highlightTheme && { theme: config.highlightTheme },
 				value
 			);

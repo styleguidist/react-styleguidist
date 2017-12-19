@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import getConfig from '../config';
-import consts from '../consts';
 
 const cwd = process.cwd();
 afterEach(() => {
@@ -199,9 +198,10 @@ it('should allow no webpack config', () => {
 	expect(fn).not.toThrow();
 });
 
-it('should return EDITOR_CONFIG if nothing passed', () => {
+it('should return editorConfig if nothing passed', () => {
 	const result = getConfig();
-	expect(result.editorConfig).toEqual(consts.EDITOR_CONFIG);
+	expect(result.editorConfig).toHaveProperty('mode', 'jsx');
+	expect(result.editorConfig).toHaveProperty('theme', 'base16-light');
 });
 
 it('should return apply user preferences', () => {
@@ -210,32 +210,7 @@ it('should return apply user preferences', () => {
 			mode: 'js',
 		},
 	});
-	expect(result.editorConfig).toEqual({
-		...consts.EDITOR_CONFIG,
-		mode: 'js',
-	});
-});
 
-it('should allow user to pass highlightTheme', () => {
-	const result = getConfig({
-		highlightTheme: 'dracula',
-		editorConfig: {},
-	});
-	expect(result.editorConfig).toEqual({
-		...consts.EDITOR_CONFIG,
-		theme: 'dracula',
-	});
-});
-
-it('should allow override highlightTheme', () => {
-	const result = getConfig({
-		highlightTheme: 'dracula',
-		editorConfig: {
-			theme: 'base-16-dark',
-		},
-	});
-	expect(result.editorConfig).toEqual({
-		...consts.EDITOR_CONFIG,
-		theme: 'base-16-dark',
-	});
+	expect(result.editorConfig).toHaveProperty('mode', 'js');
+	expect(result.editorConfig).toHaveProperty('lineWrapping', true);
 });

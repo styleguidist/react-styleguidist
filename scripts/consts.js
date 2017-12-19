@@ -8,13 +8,4 @@ module.exports = {
 	DOCS_WEBPACK: 'https://react-styleguidist.js.org/docs/webpack.html',
 	DOCS_DOCUMENTING: 'https://react-styleguidist.js.org/docs/documenting.html',
 	DOCS_THIRDPARTIES: 'https://react-styleguidist.js.org/docs/thirdparties.html',
-	EDITOR_CONFIG: {
-		theme: 'base16-light',
-		mode: 'jsx',
-		lineWrapping: true,
-		smartIndent: false,
-		matchBrackets: true,
-		viewportMargin: Infinity,
-		lineNumbers: false,
-	},
 };
