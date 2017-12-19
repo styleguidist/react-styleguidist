@@ -17,7 +17,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`getComponentPathLine`](#getcomponentpathline)
 * [`getExampleFilename`](#getexamplefilename)
 * [`handlers`](#handlers)
-* [`highlightTheme`](#highlighttheme)
+* [`editorConfig`](#editorConfig)
 * [`ignore`](#ignore)
 * [`logger`](#logger)
 * [`previewDelay`](#previewdelay)
@@ -227,11 +227,22 @@ module.exports = {
 }
 ```
 
-#### `highlightTheme`
+#### `editorConfig`
 
-Type: `String`, default: `base16-light`
+Type: `Object`, default:
+```
+{
+  theme: 'base16-light',
+  mode: 'jsx',
+  lineWrapping: true,
+  smartIndent: false,
+  matchBrackets: true,
+  viewportMargin: Infinity,
+  lineNumbers: false,
+}
+```
 
-[CodeMirror theme](http://codemirror.net/demo/theme.html) name to use for syntax highlighting in the editor.
+This will determine how your editor looks, you can check [here](https://codemirror.net/doc/manual.html#config) all the available options
 
 #### `ignore`
 
