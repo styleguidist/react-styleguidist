@@ -198,13 +198,13 @@ it('should allow no webpack config', () => {
 	expect(fn).not.toThrow();
 });
 
-it('should return editorConfig if nothing passed', () => {
+it('editorConfig option should have default values', () => {
 	const result = getConfig();
 	expect(result.editorConfig).toHaveProperty('mode', 'jsx');
 	expect(result.editorConfig).toHaveProperty('theme', 'base16-light');
 });
 
-it('should return apply user preferences', () => {
+it('should merge default editorConfig with options provided by the user', () => {
 	const result = getConfig({
 		editorConfig: {
 			mode: 'js',
@@ -212,5 +212,5 @@ it('should return apply user preferences', () => {
 	});
 
 	expect(result.editorConfig).toHaveProperty('mode', 'js');
-	expect(result.editorConfig).toHaveProperty('lineWrapping', true);
+	expect(result.editorConfig).toHaveProperty('theme', 'base16-light');
 });

@@ -98,7 +98,7 @@ module.exports = {
 	editorConfig: {
 		type: 'object',
 		process: (value, config) => {
-			const _defaults = {
+			const defaults = {
 				theme: 'base16-light',
 				mode: 'jsx',
 				lineWrapping: true,
@@ -109,7 +109,7 @@ module.exports = {
 			};
 			return Object.assign(
 				{},
-				_defaults,
+				defaults,
 				config.highlightTheme && { theme: config.highlightTheme },
 				value
 			);
