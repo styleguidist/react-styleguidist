@@ -1,5 +1,9 @@
 import globalizeComponent from '../globalizeComponent';
 
+afterEach(() => {
+	delete global.Foo;
+});
+
 describe('globalizeComponent', () => {
 	it('should set component’s module as a global variable', () => {
 		const globalsCount = Object.keys(global).length;

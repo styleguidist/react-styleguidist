@@ -8,6 +8,7 @@ const sections = deepfreeze([
 			{
 				components: [
 					{
+						name: 'Button',
 						props: {
 							displayName: 'Button',
 							examples: ['example 0', 'example 1'],
@@ -15,16 +16,20 @@ const sections = deepfreeze([
 						module: 1,
 					},
 					{
+						name: 'Image',
 						props: {
 							displayName: 'Image',
 						},
 						module: 2,
 					},
 				],
+				sections: [],
 			},
 			{
 				name: 'Section',
 				content: ['example 0', 'example 1'],
+				components: [],
+				sections: [],
 			},
 		],
 	},

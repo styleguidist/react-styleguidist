@@ -1,5 +1,10 @@
 import globalizeComponents from '../globalizeComponents';
 
+afterEach(() => {
+	delete global.Foo;
+	delete global.Bar;
+});
+
 describe('globalizeComponents', () => {
 	it('should set all components’ modules as a global variables', () => {
 		const globalsCount = Object.keys(global).length;
