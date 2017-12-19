@@ -14,10 +14,10 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`configureServer`](#configureserver)
 * [`dangerouslyUpdateWebpackConfig`](#dangerouslyupdatewebpackconfig)
 * [`defaultExample`](#defaultexample)
+* [`editorConfig`](#editorConfig)
 * [`getComponentPathLine`](#getcomponentpathline)
 * [`getExampleFilename`](#getexamplefilename)
 * [`handlers`](#handlers)
-* [`editorConfig`](#editorConfig)
 * [`ignore`](#ignore)
 * [`logger`](#logger)
 * [`previewDelay`](#previewdelay)
@@ -168,6 +168,12 @@ module.exports = {
 }
 ```
 
+#### `editorConfig`
+
+Type: `Object`, default: [scripts/schemas/config.js](https://github.com/styleguidist/react-styleguidist/blob/87efdde2d52209e9c4072368402d11030943d69f/scripts/schemas/config.js#L101)
+
+Source code editor options, see [CodeMirror docs](https://codemirror.net/doc/manual.html#config) for all available options.
+
 #### `getExampleFilename`
 
 Type: `Function`, default: finds `Readme.md` or `ComponentName.md` in the component folder
@@ -226,23 +232,6 @@ module.exports = {
     )
 }
 ```
-
-#### `editorConfig`
-
-Type: `Object`, default:
-```
-{
-  theme: 'base16-light',
-  mode: 'jsx',
-  lineWrapping: true,
-  smartIndent: false,
-  matchBrackets: true,
-  viewportMargin: Infinity,
-  lineNumbers: false,
-}
-```
-
-This will determine how your editor looks, you can check [here](https://codemirror.net/doc/manual.html#config) all the available options
 
 #### `ignore`
 
