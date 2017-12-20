@@ -7,7 +7,6 @@ import cx from 'classnames';
 
 const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth }) => ({
 	root: {
-		color: color.base,
 		backgroundColor: color.baseBackground,
 	},
 	hasSidebar: {
