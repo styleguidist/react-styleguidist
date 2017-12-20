@@ -373,7 +373,7 @@ devServer: {
 
 ## How to force client-side scripts or css links with Styleguidist?
 
-Use the `template` property in your styleguidist config, and point it to an html file of your own creation, into which you can add whatever `script` or `link` tags you need. The styleguide that's generated will use this html file, and any css files, or scripts you have loaded therein will be applied. Be sure to have a div in your body with an id of `app` as react-styleguidist will look for this.
+Use the `template` property in your styleguidist config, and point it to an html file of your own creation, into which you can add whatever `script` or `link` tags you need. The styleguide that's generated will use this html file, and any css files, or scripts you have loaded therein will be applied. Be sure to have a div in your body with an id of `app`, as react-styleguidist will look for this.
 
 For example
 
