@@ -19,6 +19,7 @@
 * [Why does the style guide list one of my prop types as `unknown`?](#why-does-the-style-guide-list-one-of-my-prop-types-as-unknown)
 * [Why object references don’t work in example component state?](#why-object-references-dont-work-in-example-component-state)
 * [How to use Vagrant with Styleguidist?](#how-to-use-vagrant-with-styleguidist)
+* [How to force client-side scripts or css links with Styleguidist?](#how-to-use-client-side-scripts-css-with-styleguidist)
 * [How to reuse project’s webpack config?](#how-to-reuse-projects-webpack-config)
 * [How to use React Styleguidist with Redux, Relay or Styled Components?](#how-to-use-react-styleguidist-with-redux-relay-or-styled-components)
 * [What’s the difference betweeen Styleguidist and Storybook](#whats-the-difference-betweeen-styleguidist-and-storybook)
@@ -368,6 +369,26 @@ devServer: {
     poll: true
   }
 }
+```
+
+## How to force client-side scripts or css links with Styleguidist?
+
+Use the `template` property in your styleguidist config, and point it to an html file of your own creation, into which you can add whatever `script` or `link` tags you need. The styleguide that's generated will use this html file, and any css files, or scripts you have loaded therein will be applied. Be sure to have a div in your body with an id of `app` as react-styleguidist will look for this.
+
+For example
+
+```html
+<html>
+    <head>
+        <script src="assets/js/babelHelpers.min.js"></script>
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
 ```
 
 ## How to reuse project’s webpack config?
