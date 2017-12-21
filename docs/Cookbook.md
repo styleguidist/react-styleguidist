@@ -19,7 +19,7 @@
 * [Why does the style guide list one of my prop types as `unknown`?](#why-does-the-style-guide-list-one-of-my-prop-types-as-unknown)
 * [Why object references don’t work in example component state?](#why-object-references-dont-work-in-example-component-state)
 * [How to use Vagrant with Styleguidist?](#how-to-use-vagrant-with-styleguidist)
-* [How to force client-side scripts or css links with Styleguidist?](#how-to-use-client-side-scripts-css-with-styleguidist)
+* [How to add external JavaScript and CSS files?](#how-to-add-external-javascript-and-css-files)
 * [How to reuse project’s webpack config?](#how-to-reuse-projects-webpack-config)
 * [How to use React Styleguidist with Redux, Relay or Styled Components?](#how-to-use-react-styleguidist-with-redux-relay-or-styled-components)
 * [What’s the difference betweeen Styleguidist and Storybook](#whats-the-difference-betweeen-styleguidist-and-storybook)
@@ -371,11 +371,11 @@ devServer: {
 }
 ```
 
-## How to force client-side scripts or css links with Styleguidist?
+## How to add external JavaScript and CSS files?
 
-Use the `template` property in your styleguidist config, and point it to an html file of your own creation, into which you can add whatever `script` or `link` tags you need. The styleguide that's generated will use this html file, and any css files, or scripts you have loaded therein will be applied. Be sure to have a div in your body with an id of `app`, as react-styleguidist will look for this.
+Use the `template` property in your Styleguidist config, and point it to an HTML file of your own creation, into which you can add whatever `script` or `link` tags you need. The style guide that's generated will use this HTML file, and any CSS files, or scripts you have loaded therein will be applied. Be sure to have a div in your body with an id of `app`, as Styleguidist will look for this.
 
-For example
+For example:
 
 ```html
 <html>
