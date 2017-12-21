@@ -38,7 +38,7 @@ module.exports = {
 			],
 		},
 	},
-	dangerouslyUpdateWebpackConfig(webpackConfig, env) {
+	dangerouslyUpdateWebpackConfig(webpackConfig) {
 		webpackConfig.resolve.alias['react-native'] = 'react-native-web';
 		webpackConfig.resolve.extensions = ['.web.js', '.js'];
 		return webpackConfig;
