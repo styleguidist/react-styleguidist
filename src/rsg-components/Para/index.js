@@ -1,1 +1,1 @@
-export { default, styles } from './ParaRenderer.js';
+export { default, styles } from 'rsg-components/Para/ParaRenderer';

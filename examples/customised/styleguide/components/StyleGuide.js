@@ -6,7 +6,7 @@ import Styled from 'rsg-components/Styled';
 
 const xsmall = '@media (max-width: 600px)';
 
-const styles = ({ font, base, light, link, baseBackground, small }) => ({
+const styles = ({ font, base, light, link, baseBackground, mq }) => ({
 	root: {
 		color: base,
 		backgroundColor: baseBackground,
@@ -17,6 +17,7 @@ const styles = ({ font, base, light, link, baseBackground, small }) => ({
 	},
 	bar: {
 		display: 'flex',
+		alignItems: 'center',
 		[xsmall]: {
 			flexDirection: 'column',
 			alignItems: 'center',
@@ -45,7 +46,7 @@ const styles = ({ font, base, light, link, baseBackground, small }) => ({
 		maxWidth: 1000,
 		padding: [[15, 30]],
 		margin: [[0, 'auto']],
-		[small]: {
+		[mq.small]: {
 			padding: 15,
 		},
 		display: 'block',

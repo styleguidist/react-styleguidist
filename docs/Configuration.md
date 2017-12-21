@@ -381,7 +381,7 @@ Override React components used to render the style guide.
 ```javascript
 module.exports = {
   styleguideComponents: {
-    Logo: path.join(__dirname, 'styleguide/components/Logo'),
+    Wrapper: path.join(__dirname, 'styleguide/components/Wrapper'),
     StyleGuideRenderer: path.join(
       __dirname,
       'styleguide/components/StyleGuide'

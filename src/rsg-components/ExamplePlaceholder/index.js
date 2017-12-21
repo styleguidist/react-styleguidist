@@ -1,1 +1,1 @@
-export { default } from './ExamplePlaceholderRenderer.js';
+export { default } from 'rsg-components/ExamplePlaceholder/ExamplePlaceholderRenderer';

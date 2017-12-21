@@ -36,7 +36,7 @@ module.exports = {
 	},
 	// Override Styleguidist components
 	styleguideComponents: {
-		Logo: path.join(__dirname, 'styleguide/components/Logo'),
+		LogoRenderer: path.join(__dirname, 'styleguide/components/Logo'),
 		StyleGuideRenderer: path.join(__dirname, 'styleguide/components/StyleGuide'),
 	},
 	webpackConfig: {
