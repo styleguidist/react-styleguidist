@@ -3,7 +3,8 @@
 // If you want to access any of these options in React, don’t forget to update CLIENT_CONFIG_OPTIONS array
 // in loaders/styleguide-loader.js
 
-const DEFAULT_COMPONENTS_PATTERN = 'src/@(components|Components)/**/*.{js,jsx}';
+const EXTENSIONS = 'js,jsx,ts,tsx';
+const DEFAULT_COMPONENTS_PATTERN = `src/@(components|Components)/**/*.{${EXTENSIONS}}`;
 
 const path = require('path');
 const startCase = require('lodash/startCase');
@@ -88,7 +89,12 @@ module.exports = {
 	},
 	ignore: {
 		type: 'array',
-		default: ['**/__tests__/**', '**/*.test.js', '**/*.spec.js', '**/*.test.jsx', '**/*.spec.jsx'],
+		default: [
+			'**/__tests__/**',
+			`**/*.test.{${EXTENSIONS}}`,
+			`**/*.spec.{${EXTENSIONS}}`,
+			'**/*.d.ts',
+		],
 	},
 	highlightTheme: {
 		type: 'string',

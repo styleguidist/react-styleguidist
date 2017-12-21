@@ -57,7 +57,7 @@ Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the
 
 #### `components`
 
-Type: `String` or `Function`, default: `src/components/**/*.{js,jsx}`
+Type: `String` or `Function`, default: `src/components/**/*.{js,jsx,ts,tsx}`
 
 * when `String`: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules.
 * when `Function`: a function that returns an array of module paths.
@@ -235,7 +235,7 @@ module.exports = {
 
 #### `ignore`
 
-Type: `String[]`, default: `['**/__tests__/**', '**/*.test.js', '**/*.test.jsx', '**/*.spec.js', '**/*.spec.jsx']`
+Type: `String[]`, default: `['**/__tests__/**', '**/*.test.{js,jsx,ts,tsx}', '**/*.spec.{js,jsx,ts,tsx}', '**/*.d.ts']`
 
 Array of [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that should not be included in the style guide.
 
