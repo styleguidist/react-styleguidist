@@ -1,1 +1,1 @@
-export { default } from './TabButtonRenderer.js';
+export { default } from 'rsg-components/TabButton/TabButtonRenderer';

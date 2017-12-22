@@ -1,1 +1,1 @@
-export { default } from './ErrorRenderer.js';
+export { default } from 'rsg-components/Error/ErrorRenderer';

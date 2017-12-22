@@ -1,1 +1,1 @@
-export { default } from './TableRenderer.js';
+export { default } from 'rsg-components/Table/TableRenderer';

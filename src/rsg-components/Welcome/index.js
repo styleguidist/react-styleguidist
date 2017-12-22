@@ -1,1 +1,1 @@
-export { default } from './WelcomeRenderer.js';
+export { default } from 'rsg-components/Welcome/WelcomeRenderer';

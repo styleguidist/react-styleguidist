@@ -122,14 +122,14 @@ describe('makeWebpackConfig', () => {
 	it('should add webpack alias for each styleguideComponents config option item', () => {
 		const api = styleguidist({
 			styleguideComponents: {
-				Logo: 'styleguide/components/Logo',
+				Wrapper: 'styleguide/components/Wrapper',
 				StyleGuideRenderer: 'styleguide/components/StyleGuide',
 			},
 		});
 		const result = api.makeWebpackConfig();
 
 		expect(result.resolve.alias).toMatchObject({
-			'rsg-components/Logo': 'styleguide/components/Logo',
+			'rsg-components/Wrapper': 'styleguide/components/Wrapper',
 			'rsg-components/StyleGuide/StyleGuideRenderer': 'styleguide/components/StyleGuide',
 		});
 	});

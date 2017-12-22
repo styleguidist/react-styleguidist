@@ -1,1 +1,1 @@
-export { default } from './PathlineRenderer.js';
+export { default } from 'rsg-components/Pathline/PathlineRenderer';

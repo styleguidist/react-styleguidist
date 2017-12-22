@@ -12,7 +12,7 @@
 
 ## Finding components
 
-By default Styleguidist will search components using this [glob pattern](https://github.com/isaacs/node-glob#glob-primer): `src/components/**/*.{js,jsx}`.
+By default Styleguidist will search components using this [glob pattern](https://github.com/isaacs/node-glob#glob-primer): `src/components/**/*.{js,jsx,ts,tsx}`.
 
 It will pick up files like:
 
@@ -23,7 +23,7 @@ It will pick up files like:
 But will ignore tests:
 
 * `__tests__` folder,
-* files containing `.test.js`, `.test.jsx`, `.spec.js` and `.spec.jsx`.
+* files containing `.test.js` or `.spec.js` (or same for `.jsx`, `.ts` and `.tsx`).
 
 If it doesn’t work for you, create a `styleguide.config.js` file in your project’s root folder and configure the patterns to fit your project structure. For example, if your components look like `components/Button/Button.js` + `components/Button/index.js` (meaning you need to skip `index.js`, otherwise the component will be loaded twice):
 
@@ -67,7 +67,7 @@ module.exports = {
         {
           name: 'Installation',
           content: 'docs/installation.md',
-          description: 'The description for the installation section',
+          description: 'The description for the installation section'
         },
         {
           name: 'Configuration',

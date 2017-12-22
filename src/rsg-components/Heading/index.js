@@ -1,1 +1,1 @@
-export { default } from './HeadingRenderer';
+export { default } from 'rsg-components/Heading/HeadingRenderer';

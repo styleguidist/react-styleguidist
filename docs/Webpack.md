@@ -85,7 +85,7 @@ module.exports = {
 
 ## Create React App
 
-[Create React App](https://github.com/facebookincubator/create-react-app) is supported out of the box, you don’t even need to create a style guide config if your components could be found using a default glob pattern, `src/components/**/*.{js,jsx}`.
+[Create React App](https://github.com/facebookincubator/create-react-app) is supported out of the box, you don’t even need to create a style guide config if your components could be found using a default pattern: all files with `.js` or `.jsx` extensions inside `src/components` or `src/Components` folders.
 
 ## Create React App, TypeScript
 

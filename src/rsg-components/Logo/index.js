@@ -1,1 +1,1 @@
-export { default } from './LogoRenderer.js';
+export { default } from 'rsg-components/Logo/LogoRenderer';
