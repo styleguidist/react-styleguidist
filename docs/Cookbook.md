@@ -391,6 +391,8 @@ For example:
 </html>
 ```
 
+The script tags added here will be run in the browser, as opposed to being run during webpack's build process. This can be useful for side effect-causing scripts which your components, or in this case Babel output, need to function properly. Of course you can also load resources from third-party CDNs if you'd like.
+
 ## How to reuse project’s webpack config?
 
 See in [configuring webpack](Webpack.md#reusing-your-projects-webpack-config).
