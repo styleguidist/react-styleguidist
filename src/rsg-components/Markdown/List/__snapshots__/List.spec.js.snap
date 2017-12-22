@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Markdown List should render an ordered list 1`] = `
+<div
+  class="rsg--para-3"
+>
+  <ol
+    class="rsg--list-0 rsg--ordered-1"
+  >
+    <li>
+      First
+    </li>
+    <li>
+      Second
+    </li>
+  </ol>
+</div>
+`;
+
+exports[`Markdown List should render an unordered list 1`] = `
+<div
+  class="rsg--para-3"
+>
+  <ul
+    class="rsg--list-0"
+  >
+    <li>
+      First
+    </li>
+    <li>
+      Second
+    </li>
+  </ul>
+</div>
+`;
