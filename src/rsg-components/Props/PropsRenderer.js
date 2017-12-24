@@ -129,7 +129,6 @@ function renderDefault(prop) {
 }
 
 function renderDescription(prop) {
-console.log(prop)
 	const { description, tags = {} } = prop;
 	const extra = renderExtra(prop);
 	const args = [...(tags.arg || []), ...(tags.argument || []), ...(tags.param || [])];
