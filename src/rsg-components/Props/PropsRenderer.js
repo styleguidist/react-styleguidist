@@ -12,6 +12,7 @@ import Type from 'rsg-components/Type';
 import Text from 'rsg-components/Text';
 import Para from 'rsg-components/Para';
 import Table from 'rsg-components/Table';
+import ColorSwatch from 'rsg-components/ColorSwatch';
 import map from 'lodash/map';
 import { unquote, getType, showSpaces } from './util';
 
@@ -73,6 +74,7 @@ function renderShape(props) {
 	return rows;
 }
 
+const defaultColorKeys = ['backgroundColor', 'color'];
 const defaultValueBlacklist = ['null', 'undefined'];
 
 function renderDefault(prop) {
@@ -115,12 +117,19 @@ function renderDefault(prop) {
 			}
 		}
 
-		return <Code>{showSpaces(unquote(prop.defaultValue.value))}</Code>;
+		return (
+			<Code>
+				{showSpaces(unquote(prop.defaultValue.value))}
+				{defaultColorKeys.indexOf(prop.name) > -1 ? <ColorSwatch color={unquote(prop.defaultValue.value)} margin="0 0 0 0.25rem" /> : null}
+			</Code>
+		);
 	}
+
 	return '';
 }
 
 function renderDescription(prop) {
+console.log(prop)
 	const { description, tags = {} } = prop;
 	const extra = renderExtra(prop);
 	const args = [...(tags.arg || []), ...(tags.argument || []), ...(tags.param || [])];
