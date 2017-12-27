@@ -103,7 +103,7 @@
     "babel-preset-react": "^6.24.1",
     "cheerio": "^1.0.0-rc.2",
     "danger": "^2.1.5",
-    "deabsdeep": "^1.0.4",
+    "deabsdeep": "^1.0.5",
     "deepfreeze": "^2.0.0",
     "dog-names": "^1.0.2",
     "enzyme": "^3.2.0",
