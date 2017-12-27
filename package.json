@@ -152,7 +152,7 @@
     "build": "node bin/styleguidist.js build --config examples/basic/styleguide.config.js",
     "build:customised": "node bin/styleguidist.js build --config examples/customised/styleguide.config.js",
     "build:sections": "node bin/styleguidist.js build --config examples/sections/styleguide.config.js",
-    "prepublish": "npm run compile",
+    "prepublishOnly": "npm run compile",
     "publish": "npm run build",
     "test:browser:pre": "npm i --no-save puppeteer",
     "test:browser": "node test/browser.js examples/basic/styleguide/index.html",
