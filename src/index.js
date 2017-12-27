@@ -14,7 +14,7 @@ const render = () => {
 	ReactDOM.render(renderStyleguide(styleguide, codeRevision), document.getElementById('app'));
 };
 
-window.addEventListener('hashchange', renderStyleguide);
+window.addEventListener('hashchange', render);
 
 /* istanbul ignore if */
 if (module.hot) {
