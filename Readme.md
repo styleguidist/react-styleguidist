@@ -10,12 +10,13 @@
 
 React Styleguidist is a component development environment with hot reloaded dev server and a living style guide that you can share with your team. It lists component `propTypes` and shows live, editable usage examples based on Markdown files. Check out [**the demo style guide**](https://react-styleguidist.js.org/examples/basic/).
 
-![](https://d3vv6lp55qjaqc.cloudfront.net/items/271B372x102S0c052i3F/react-styleguidist7.gif)
-
 # Deviations from original styleguidist package
 - changes in babel configuration to fix MobX observables
 - groups support ( create any groups by defining path regex and group title, it will modify TableOfContents and what components are visible on the view )
 - more in progress 
+
+![](https://i.imgur.com/5rwCH8d.png)
+![](https://i.imgur.com/o5AvWiu.png)
 
 ## Usage
 

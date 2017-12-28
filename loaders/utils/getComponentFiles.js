@@ -23,6 +23,12 @@ module.exports = function getComponentFiles(components, rootDir, ignore) {
 		componentFiles = components();
 	} else if (isString(components)) {
 		componentFiles = glob.sync(path.resolve(rootDir, components), { ignore });
+	} else if (Array.isArray(components)) {
+		componentFiles = [];
+		for (const componentPath of components) {
+			const files = glob.sync(path.resolve(rootDir, componentPath), { ignore });
+			componentFiles = componentFiles.concat(files);
+		}
 	} else {
 		throw new Error(
 			`Styleguidist: components should be string or function, received ${typeof components}.`

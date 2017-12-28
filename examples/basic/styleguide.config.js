@@ -55,23 +55,19 @@ module.exports = {
 				{
 					name: 'UI',
 					static: false,
-					components: 'src/app/core/components/ui/**/[A-Z]*.js'
+					components: [
+						'src/app/components/ui/**/[A-Z]*.js',
+						'src/app/core/components/ui/**/[A-Z]*.js',
+					]
 				},
 				{
 					name: 'Others',
 					static: false,
-					components: 'src/app/core/components/others/**/[A-Z]*.js'
+					components: [
+						'src/app/components/others/**/[A-Z]*.js',
+						'src/app/core/components/others/**/[A-Z]*.js',
+					]
 				},
-				{
-					name: 'UI',
-					static: false,
-					components: 'src/app/components/ui/**/[A-Z]*.js'
-				},
-				{
-					name: 'Others',
-					static: false,
-					components: 'src/app/components/others/**/[A-Z]*.js'
-				}
 			]
 		}
 	],
