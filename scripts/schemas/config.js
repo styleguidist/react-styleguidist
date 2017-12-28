@@ -189,6 +189,10 @@ module.exports = {
 		type: 'boolean',
 		default: true,
 	},
+	groups: {
+		type: 'object',
+		default: null,
+	},
 	skipComponentsWithoutExample: {
 		type: 'boolean',
 		default: false,

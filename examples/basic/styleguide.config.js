@@ -1,6 +1,16 @@
 module.exports = {
-	components: 'src/components/**/[A-Z]*.js',
+	components: 'src/app/**/[A-Z]*.js',
 	defaultExample: true,
+	groups: {
+		core: {
+			title: 'CORE',
+			pathRegExp: /core/
+		},
+		default: {
+			title: 'default',
+			pathRegExp: /(?!(core))/,
+		}
+	},
 	webpackConfig: {
 		module: {
 			rules: [

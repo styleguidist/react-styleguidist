@@ -12,6 +12,11 @@ React Styleguidist is a component development environment with hot reloaded dev 
 
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/271B372x102S0c052i3F/react-styleguidist7.gif)
 
+# Deviations from original styledist package
+- changes in babel configuration to fix MobX observables
+- groups support ( create any groups by defining path regex and group title, it will modify TableOfContents and what components are visible on the view )
+- more in progress 
+
 ## Usage
 
 * **[Getting Started](https://react-styleguidist.js.org/docs/getting-started.html): install and run Styleguidist**

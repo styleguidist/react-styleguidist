@@ -13,7 +13,7 @@ const StyleguidistOptionsPlugin = require('./utils/StyleguidistOptionsPlugin');
 
 const RENDERER_REGEXP = /Renderer$/;
 
-const sourceDir = path.resolve(__dirname, '../lib');
+const sourceDir = path.resolve(__dirname, '../src');
 const htmlLoader = require.resolve('html-webpack-plugin/lib/loader');
 
 module.exports = function(config, env) {
@@ -106,16 +106,37 @@ module.exports = function(config, env) {
 				? `${name.replace(RENDERER_REGEXP, '')}/${name}`
 				: name;
 			webpackConfig.resolve.alias[`rsg-components/${fullName}`] = filepath;
+			webpackConfig.resolve.alias[`custom-rsg-components/${fullName}`] = filepath;
+			webpackConfig.resolve.alias[`store/${fullName}`] = filepath;
 		});
 	}
 
 	// Add components folder alias at the end so users can override our components to customize the style guide
 	// (their aliases should be before this one)
 	webpackConfig.resolve.alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
+	webpackConfig.resolve.alias['custom-rsg-components'] = path.resolve(sourceDir, 	'custom-rsg-components');
+	webpackConfig.resolve.alias.store = path.resolve(sourceDir, 	'store');
 
 	if (config.dangerouslyUpdateWebpackConfig) {
 		webpackConfig = config.dangerouslyUpdateWebpackConfig(webpackConfig, env);
 	}
+
+	// add basic support for scss
+	webpackConfig.module.rules.push({
+		test: /\.scss$/,
+		exclude: /node_modules/,
+		use: [
+			{
+				loader: 'style-loader',
+			},
+			{
+				loader: 'css-loader',
+			},
+			{
+				loader: 'sass-loader',
+			},
+		],
+	});
 
 	return webpackConfig;
 };

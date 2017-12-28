@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import DevTools from 'mobx-react-devtools';
 import TableOfContents from 'rsg-components/TableOfContents';
 import StyleGuideRenderer from 'rsg-components/StyleGuide/StyleGuideRenderer';
 import Sections from 'rsg-components/Sections';
@@ -63,14 +64,17 @@ export default class StyleGuide extends Component {
 		}
 
 		return (
-			<StyleGuideRenderer
-				title={config.title}
-				homepageUrl={HOMEPAGE}
-				toc={<TableOfContents sections={sections} />}
-				hasSidebar={config.showSidebar && displayMode === DisplayModes.all}
-			>
-				<Sections sections={sections} depth={1} />
-			</StyleGuideRenderer>
+			<div>
+				<DevTools />
+				<StyleGuideRenderer
+					title={config.title}
+					homepageUrl={HOMEPAGE}
+					toc={<TableOfContents sections={sections} />}
+					hasSidebar={config.showSidebar && displayMode === DisplayModes.all}
+				>
+					<Sections sections={sections} depth={1} />
+				</StyleGuideRenderer>
+			</div>
 		);
 	}
 }

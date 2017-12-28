@@ -25,6 +25,7 @@ const CLIENT_CONFIG_OPTIONS = [
 	'styles',
 	'compilerConfig',
 	'editorConfig',
+	'groups',
 ];
 
 module.exports = function() {};

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Logo from 'rsg-components/Logo';
 import Markdown from 'rsg-components/Markdown';
 import Styled from 'rsg-components/Styled';
+import HocTableOfContents from 'custom-rsg-components/HocTableOfContents';
 import cx from 'classnames';
 
 const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth }) => ({
@@ -57,6 +58,9 @@ const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth
 export function StyleGuideRenderer({ classes, title, homepageUrl, children, toc, hasSidebar }) {
 	return (
 		<div className={cx(classes.root, hasSidebar && classes.hasSidebar)}>
+			<div>
+				<HocTableOfContents />
+			</div>
 			<main className={classes.content}>
 				{children}
 				<footer className={classes.footer}>
