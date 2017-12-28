@@ -18,6 +18,9 @@
     }
   },
   "rules": {
+    "no-invalid-this": "off",
+    "no-console": "off",
+    "curly": "off",
     "new-parens": "off",
     "prettier/prettier": "off",
     "react/prefer-stateless-function": "off",

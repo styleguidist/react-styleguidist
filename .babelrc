@@ -6,23 +6,24 @@
       },
       "modules": false
     }],
-		"react"
+    "stage-2"
 	],
 	"plugins": [
-		"transform-class-properties",
-		"transform-object-rest-spread",
+    "transform-runtime",
+    "transform-react-jsx",
+    "system-import-transformer",
     "transform-decorators-legacy"
   ],
 	"env": {
 	  "test": {
 	    "presets": [
 	      "env",
-	      "react"
+        "stage-2"
 	    ],
       "plugins": [
+        "transform-runtime",
+        "transform-react-jsx",
         "system-import-transformer",
-        "transform-class-properties",
-        "transform-object-rest-spread",
         "transform-decorators-legacy"
       ]
     }

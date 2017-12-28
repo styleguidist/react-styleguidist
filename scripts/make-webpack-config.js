@@ -115,7 +115,7 @@ module.exports = function(config, env) {
 	// (their aliases should be before this one)
 	webpackConfig.resolve.alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
 	webpackConfig.resolve.alias['custom-rsg-components'] = path.resolve(sourceDir, 	'custom-rsg-components');
-	webpackConfig.resolve.alias.store = path.resolve(sourceDir, 	'storec');
+	webpackConfig.resolve.alias.store = path.resolve(sourceDir, 	'store');
 
 	if (config.dangerouslyUpdateWebpackConfig) {
 		webpackConfig = config.dangerouslyUpdateWebpackConfig(webpackConfig, env);

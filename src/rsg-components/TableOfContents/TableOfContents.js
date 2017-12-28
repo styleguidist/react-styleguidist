@@ -1,26 +1,44 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { observer } from 'mobx-react';
 import ComponentsList from 'rsg-components/ComponentsList';
 import TableOfContentsRenderer from 'rsg-components/TableOfContents/TableOfContentsRenderer';
+import styleguide from 'store/styleguide';
 import filterSectionsByName from '../../utils/filterSectionsByName';
 
+@observer
 export default class TableOfContents extends Component {
+
 	static propTypes = {
 		sections: PropTypes.array.isRequired,
 	};
+
+	static contextTypes = {
+		config: PropTypes.object,
+	};
+
 	state = {
 		searchTerm: '',
 	};
 
 	renderLevel(sections) {
-		const items = sections.map(section => {
-			console.log(section);
+		let items = sections.map(section => {
 			const children = [...(section.sections || []), ...(section.components || [])];
 			return Object.assign({}, section, {
 				heading: !!section.name && children.length > 0,
 				content: children.length > 0 && this.renderLevel(children),
 			});
 		});
+
+		if (this.context.config.groups) {
+			console.error('--------- filter ---------');
+			console.log(styleguide.type);
+			console.log(this.context.config.groups);
+			items = items.filter((item) => this.context.config.groups[styleguide.type].pathRegExp.test(item.pathLine));
+		}
+
+		console.log(items);
+
 		return <ComponentsList items={items} />;
 	}
 
@@ -39,12 +57,15 @@ export default class TableOfContents extends Component {
 	render() {
 		const { searchTerm } = this.state;
 		return (
-			<TableOfContentsRenderer
-				searchTerm={searchTerm}
-				onSearchTermChange={searchTerm => this.setState({ searchTerm })}
-			>
-				{this.renderSections()}
-			</TableOfContentsRenderer>
+			<div>
+				{styleguide.type}
+				<TableOfContentsRenderer
+					searchTerm={searchTerm}
+					onSearchTermChange={searchTerm => this.setState({ searchTerm })}
+				>
+					{this.renderSections()}
+				</TableOfContentsRenderer>
+			</div>
 		);
 	}
 }
