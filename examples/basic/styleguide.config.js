@@ -1,5 +1,5 @@
 module.exports = {
-	components: 'src/components/**/[A-Z]*.js',
+	components: 'src/app/**/[A-Z]*.js',
 	defaultExample: true,
 	webpackConfig: {
 		module: {

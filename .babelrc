@@ -10,8 +10,9 @@
 	],
 	"plugins": [
 		"transform-class-properties",
-		"transform-object-rest-spread"
-	],
+		"transform-object-rest-spread",
+    "transform-decorators-legacy"
+  ],
 	"env": {
 	  "test": {
 	    "presets": [
@@ -21,7 +22,8 @@
       "plugins": [
         "system-import-transformer",
         "transform-class-properties",
-        "transform-object-rest-spread"
+        "transform-object-rest-spread",
+        "transform-decorators-legacy"
       ]
     }
   }

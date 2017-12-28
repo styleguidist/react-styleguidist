@@ -107,13 +107,15 @@ module.exports = function(config, env) {
 				: name;
 			webpackConfig.resolve.alias[`rsg-components/${fullName}`] = filepath;
 			webpackConfig.resolve.alias[`custom-rsg-components/${fullName}`] = filepath;
+			webpackConfig.resolve.alias[`store/${fullName}`] = filepath;
 		});
 	}
 
 	// Add components folder alias at the end so users can override our components to customize the style guide
 	// (their aliases should be before this one)
 	webpackConfig.resolve.alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
-	webpackConfig.resolve.alias['custom-rsg-components'] = path.resolve(sourceDir, 'custom-rsg-components');
+	webpackConfig.resolve.alias['custom-rsg-components'] = path.resolve(sourceDir, 	'custom-rsg-components');
+	webpackConfig.resolve.alias.store = path.resolve(sourceDir, 	'storec');
 
 	if (config.dangerouslyUpdateWebpackConfig) {
 		webpackConfig = config.dangerouslyUpdateWebpackConfig(webpackConfig, env);

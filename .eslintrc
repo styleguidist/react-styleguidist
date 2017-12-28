@@ -18,6 +18,10 @@
     }
   },
   "rules": {
+    "new-parens": "off",
+    "prettier/prettier": "off",
+    "react/prefer-stateless-function": "off",
+    "react/jsx-no-undef": "off",
     "compat/compat": "error",
     "import/no-unresolved": ["error", {
       "commonjs": true,
