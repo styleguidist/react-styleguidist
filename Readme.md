@@ -2,6 +2,8 @@
 
 <img src="https://d3vv6lp55qjaqc.cloudfront.net/items/061f0A2n1B0H3p0T1p1f/react-styleguidist-logo.png" alt="React Styleguidist" width="400">
 
+**MODIFIED VERSION**
+
 **Isolated React component development environment with a living style guide**
 
 [![Build Status](https://travis-ci.org/styleguidist/react-styleguidist.svg)](https://travis-ci.org/styleguidist/react-styleguidist) [![npm](https://img.shields.io/npm/v/react-styleguidist.svg)](https://www.npmjs.com/package/react-styleguidist) [![Join the chat at https://gitter.im/styleguidist/styleguidist](https://badges.gitter.im/styleguidist/styleguidist.svg)](https://gitter.im/styleguidist/styleguidist?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/styleguidist) [![Codecov](https://codecov.io/gh/styleguidist/react-styleguidist/branch/master/graph/badge.svg)](https://codecov.io/gh/styleguidist/react-styleguidist)
