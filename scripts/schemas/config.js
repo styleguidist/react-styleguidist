@@ -193,6 +193,10 @@ module.exports = {
 		type: 'object',
 		default: null,
 	},
+	groupsOptions: {
+		type: 'object',
+		default: null,
+	},
 	skipComponentsWithoutExample: {
 		type: 'boolean',
 		default: false,
@@ -235,7 +239,7 @@ module.exports = {
 				return val;
 			}
 			const name = getUserPackageJson().name;
-			return `${startCase(name)} Style Guide`;
+			return `${startCase(name)}`;
 		},
 		example: 'My Style Guide',
 	},

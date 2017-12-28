@@ -4,6 +4,7 @@ import './polyfills';
 import './styles';
 import ReactDOM from 'react-dom';
 import renderStyleguide from './utils/renderStyleguide';
+import 'antd/dist/antd.css';
 
 // Examples code revision to rerender only code examples (not the whole page) when code changes
 let codeRevision = 0;

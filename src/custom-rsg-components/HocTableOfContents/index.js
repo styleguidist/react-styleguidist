@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
+import { Tabs } from 'antd';
 
 import styleguide from 'store/styleguide';
 
 import './index.scss';
+
+const TabPane = Tabs.TabPane;
 
 @observer
 export default class HocTableOfContents extends Component {
@@ -15,23 +18,27 @@ export default class HocTableOfContents extends Component {
 
 	handleChange = (type) => {
 		styleguide.setType(type);
-		console.log(styleguide.getType());
-		console.warn(this.context.config);
 	};
 
 	render() {
+
+		const cfg = this.context.config;
 
 		// if no groups in config, skip
 		if (!this.context.config.groups) return null;
 
 		return (
-			<div>
-				{Object.entries(this.context.config.groups).map(([key, group]) => {
+			<Tabs className="groups" defaultActiveKey={cfg.groupsOptions.defaultGroup} onChange={this.handleChange}>
+				{Object.entries(cfg.groups).map(([key, group]) => {
 					return (
-						<Button key={key} onClick={this.handleChange.bind(this, key)}>{group.title}</Button>
+						<TabPane className="groups__pane" key={key} tab={group.title}>
+							<div className="groups__content">
+								<h2 className="groups__title">{group.description}</h2>
+							</div>
+						</TabPane>
 					);
 				})}
-			</div>
+			</Tabs>
 		);
 	}
 }

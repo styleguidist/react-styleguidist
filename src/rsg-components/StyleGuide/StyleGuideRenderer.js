@@ -69,9 +69,7 @@ export function StyleGuideRenderer({ classes, title, homepageUrl, children, toc,
 			</main>
 			{hasSidebar && (
 				<div className={classes.sidebar}>
-					<div className={classes.logo}>
-						<Logo>{title}</Logo>
-					</div>
+					<Logo>{title}</Logo>
 					{toc}
 				</div>
 			)}

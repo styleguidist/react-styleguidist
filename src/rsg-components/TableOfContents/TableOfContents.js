@@ -31,13 +31,8 @@ export default class TableOfContents extends Component {
 		});
 
 		if (this.context.config.groups) {
-			console.error('--------- filter ---------');
-			console.log(styleguide.type);
-			console.log(this.context.config.groups);
 			items = items.filter((item) => this.context.config.groups[styleguide.type].pathRegExp.test(item.pathLine));
 		}
-
-		console.log(items);
 
 		return <ComponentsList items={items} />;
 	}
@@ -58,7 +53,6 @@ export default class TableOfContents extends Component {
 		const { searchTerm } = this.state;
 		return (
 			<div>
-				{styleguide.type}
 				<TableOfContentsRenderer
 					searchTerm={searchTerm}
 					onSearchTermChange={searchTerm => this.setState({ searchTerm })}

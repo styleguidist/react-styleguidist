@@ -7,6 +7,9 @@
     "name": "Artem Sapegin",
     "url": "http://sapegin.me/"
   },
+  "theme": {
+    "primary-color": "#1DA57A"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/styleguidist/react-styleguidist.git"
@@ -30,6 +33,7 @@
     "npm": ">=3"
   },
   "dependencies": {
+    "antd": "^3.0.3",
     "ast-types": "^0.10.1",
     "buble": "^0.18.0",
     "chalk": "^2.3.0",
