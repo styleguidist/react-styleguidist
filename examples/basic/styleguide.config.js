@@ -10,7 +10,7 @@ module.exports = {
 		},
 		default: {
 			title: 'default',
-			pathRegExp: /(?!(core))/,
+			pathRegExp: /^((?!(core)).)*$/,
 			description: 'DEFAULT components'
 		}
 	},
