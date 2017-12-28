@@ -5,6 +5,7 @@ import ComponentsList from 'rsg-components/ComponentsList';
 import TableOfContentsRenderer from 'rsg-components/TableOfContents/TableOfContentsRenderer';
 import styleguide from 'store/styleguide';
 import filterSectionsByName from '../../utils/filterSectionsByName';
+import filterByGroups from '../../utils/filterByGroups';
 
 @observer
 export default class TableOfContents extends Component {
@@ -22,17 +23,18 @@ export default class TableOfContents extends Component {
 	};
 
 	renderLevel(sections) {
-		let items = sections.map(section => {
+		const groupsConfig = this.context.config.groups[styleguide.type];
+
+		sections = filterByGroups(sections, groupsConfig);
+
+		const items = sections.map(section => {
+
 			const children = [...(section.sections || []), ...(section.components || [])];
 			return Object.assign({}, section, {
 				heading: !!section.name && children.length > 0,
 				content: children.length > 0 && this.renderLevel(children),
 			});
 		});
-
-		if (this.context.config.groups) {
-			items = items.filter((item) => this.context.config.groups[styleguide.type].pathRegExp.test(item.pathLine));
-		}
 
 		return <ComponentsList items={items} />;
 	}

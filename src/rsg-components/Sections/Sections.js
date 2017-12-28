@@ -7,6 +7,8 @@ import Section from 'rsg-components/Section';
 import SectionsRenderer from 'rsg-components/Sections/SectionsRenderer';
 import styleguide from 'store/styleguide';
 
+import filterByGroups from '../../utils/filterByGroups';
+
 @observer
 export default class Sections extends Component {
 
@@ -22,20 +24,21 @@ export default class Sections extends Component {
 
 	render() {
 
-		const cfg = this.context.config;
+		const groupsConfig = this.context.config.groups[styleguide.type];
 		// we can't modify props, lets clone them!
-		const sections = clone(this.props.sections);
+		let sections = clone(this.props.sections);
+
+		// filter sections by groups
+		// its not enough to just filter section.components,
+		// as not all sections contains components ( static won't )
+		sections = filterByGroups(sections, groupsConfig);
 
 		return (
 			<SectionsRenderer>
 				{sections.map((section, idx) => {
 
 					// filter section components by groups
-					if (cfg.groups) {
-						section.components = section.components.filter(
-							(component) => cfg.groups[styleguide.type].pathRegExp.test(component.pathLine)
-						);
-					}
+					section.components = filterByGroups(section.components, groupsConfig);
 
 					return (
 						<Section key={idx} section={section} depth={this.props.depth} />

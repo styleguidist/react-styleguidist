@@ -49,6 +49,7 @@ function processSection(section, config) {
 	return {
 		name: section.name,
 		description: section.description,
+		static: section.static,
 		slug: slugger.slug(section.name),
 		components: getComponents(
 			getComponentFiles(section.components, config.configDir, ignore),
