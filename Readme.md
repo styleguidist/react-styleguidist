@@ -16,9 +16,9 @@ React Styleguidist is a component development environment with hot reloaded dev 
 - add extra comments column for special md comment blocks ( work in progress, screenshot below )
 - more in progress 
 
-![](https://i.imgur.com/5rwCH8d.png)
-![](https://i.imgur.com/o5AvWiu.png)
-![](https://i.imgur.com/LBqytBS.png)
+![](https://i.imgur.com/Ifof2of.png)
+![](https://i.imgur.com/bL0lsVz.png)
+![](https://i.imgur.com/G8EboqS.png)
 
 ## Usage
 
