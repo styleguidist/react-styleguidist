@@ -200,6 +200,7 @@ export function asArrayMarkdown({ text }) {
 	const markdowns = [];
 	text.map((example) => {
 		const rhs = example.content.split(OS.EOL).filter((line) => /^(>)([\s\w\W]+)$/.test(line));
+		console.log(rhs);
 		rhs.map((rhsText) => {
 			markdowns.push(compiler(rhsText, { overrides: {
 					blockquote: {

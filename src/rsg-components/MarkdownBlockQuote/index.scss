@@ -8,6 +8,13 @@
   border: 1px solid #5d5d5d;
   border-width: 1px 0px 1px 0px;
 
+  &--plain {
+	background: none;
+	border: none;
+	padding: 0px 12px;
+	color: #b3b3b3;
+  }
+
   &--hidden {
 	height: 1px;
 	padding: 0;
