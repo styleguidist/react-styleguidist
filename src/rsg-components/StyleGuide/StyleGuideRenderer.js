@@ -6,6 +6,8 @@ import Styled from 'rsg-components/Styled';
 import HocTableOfContents from 'custom-rsg-components/HocTableOfContents';
 import cx from 'classnames';
 
+import './index.scss';
+
 const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth }) => ({
 	root: {
 		backgroundColor: color.baseBackground,
@@ -61,10 +63,10 @@ export function StyleGuideRenderer({ classes, title, homepageUrl, children, toc,
 			<div>
 				<HocTableOfContents />
 			</div>
-			<main className={classes.content}>
+			<main className="main">
 				{children}
-				<footer className={classes.footer}>
-					<Markdown text={`Generated with [React Styleguidist](${homepageUrl})`} />
+				<footer className="footer">
+					<Markdown text={`Generated with [React Styleguidist](${homepageUrl}) modified by [RadSwiat](https://github.com/radswiat)`} />
 				</footer>
 			</main>
 			{hasSidebar && (

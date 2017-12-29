@@ -1,0 +1,22 @@
+.main {
+  position: relative;
+  max-width: 200000px;
+  padding: 0px 0px 46px 32px;
+  margin: 0 auto;
+  display: block;
+}
+
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: whitesmoke;
+  padding: 12px 32px;
+  border: 1px solid #e8e8e8;
+  border-width: 1px 0px 0px 0px;
+
+  p {
+	margin: 0;
+  }
+}

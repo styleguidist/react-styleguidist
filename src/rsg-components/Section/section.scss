@@ -1,5 +1,9 @@
 .section {
 
+  &--standalone {
+	padding: 12px;
+  }
+
   &--flex {
 	display: flex;
 	flex-direction: row;
@@ -9,6 +13,7 @@
   &__lhs {
 	position: relative;
 	width: 60%;
+	padding-top: 20px;
   }
 
   &__rhs {
@@ -16,7 +21,7 @@
 	width: 40%;
 	background: #424242;
 	color: whitesmoke;
-	padding: 20px;
+	padding-top: 20px;
   }
 
 }
