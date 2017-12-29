@@ -197,6 +197,10 @@ module.exports = {
 		type: 'object',
 		default: null,
 	},
+	customScss: {
+		type: 'string',
+		default: '',
+	},
 	skipComponentsWithoutExample: {
 		type: 'boolean',
 		default: false,

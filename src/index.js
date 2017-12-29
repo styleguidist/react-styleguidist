@@ -6,6 +6,8 @@ import ReactDOM from 'react-dom';
 import renderStyleguide from './utils/renderStyleguide';
 import 'antd/dist/antd.css';
 
+import 'rsg-custom-theme.scss';
+
 // Examples code revision to rerender only code examples (not the whole page) when code changes
 let codeRevision = 0;
 

@@ -19,7 +19,7 @@ This is modified version of the original React Styleguidist.
 - changes in babel configuration to fix MobX observables
 - groups support ( create any groups by defining path regex and group title, it will modify TableOfContents and what components are visible on the view )
 - add extra comments column for special md comment blocks ( work in progress, screenshot below )
-- more in progress 
+- inject custom scss file to modify styles ( customScss: './examples/basic/custom.scss', )
 
 ![](https://i.imgur.com/Ifof2of.png)
 ![](https://i.imgur.com/bL0lsVz.png)

@@ -20,6 +20,8 @@ module.exports = function(config, env) {
 	process.env.NODE_ENV = process.env.NODE_ENV || env;
 
 	const isProd = env === 'production';
+	const customScssPath = config.customScss && config.customScss.length ?
+		path.resolve(process.cwd(), config.customScss) : path.resolve(process.cwd(), 'src/custom.scss');
 
 	let webpackConfig = {
 		entry: config.require.concat([path.resolve(sourceDir, 'index')]),
@@ -32,6 +34,7 @@ module.exports = function(config, env) {
 			extensions: ['.js', '.jsx', '.json'],
 			alias: {
 				'rsg-codemirror-theme.css': `codemirror/theme/${config.highlightTheme}.css`,
+				'rsg-custom-theme.scss': customScssPath,
 			},
 		},
 		plugins: [

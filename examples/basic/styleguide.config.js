@@ -2,6 +2,7 @@ module.exports = {
 	title: "Styleguide",
 	components: 'src/app/**/[A-Z]*.js',
 	defaultExample: true,
+	customScss: './examples/basic/custom.scss',
 	groups: {
 		documentation: {
 			title: 'Documentation',
