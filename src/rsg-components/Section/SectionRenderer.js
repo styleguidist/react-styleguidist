@@ -4,6 +4,8 @@ import Styled from 'rsg-components/Styled';
 import SectionHeading from 'rsg-components/SectionHeading';
 import Markdown from 'rsg-components/Markdown';
 
+import './section.scss';
+
 const styles = ({ space }) => ({
 	root: {
 		marginBottom: space[4],
@@ -11,20 +13,29 @@ const styles = ({ space }) => ({
 });
 
 export function SectionRenderer(allProps) {
-	const { classes, name, slug, content, components, sections, depth, description } = allProps;
+	const { classes, name, slug, content, contentAsArray, components, sections, depth, description } = allProps;
 
 	return (
-		<section className={classes.root}>
-			{name && (
-				<SectionHeading depth={depth} id={slug} slotName="sectionToolbar" slotProps={allProps}>
-					{name}
-				</SectionHeading>
-			)}
-			{description && <Markdown text={description} />}
-			{content}
-			{components}
+		<div>
+			<section className="section section--flex">
+				<div className="section__lhs">
+					{name && (
+						<SectionHeading depth={depth} id={slug} slotName="sectionToolbar" slotProps={allProps}>
+							{name}
+						</SectionHeading>
+					)}
+					{description && <Markdown text={description} />}
+					{content}
+					{components}
+				</div>
+				<div className="section__rhs">
+					{contentAsArray && contentAsArray.map((content, key) => (
+						<div key={key}>{content}</div>
+					))}
+				</div>
+			</section>
 			{sections}
-		</section>
+		</div>
 	);
 }
 
@@ -34,6 +45,7 @@ SectionRenderer.propTypes = {
 	description: PropTypes.string,
 	slug: PropTypes.string,
 	content: PropTypes.node,
+	contentAsArray: PropTypes.array,
 	components: PropTypes.node,
 	sections: PropTypes.node,
 	isolated: PropTypes.bool,

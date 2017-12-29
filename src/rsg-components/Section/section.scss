@@ -1,0 +1,22 @@
+.section {
+
+  &--flex {
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+  }
+
+  &__lhs {
+	position: relative;
+	width: 60%;
+  }
+
+  &__rhs {
+	position: relative;
+	width: 40%;
+	background: #424242;
+	color: whitesmoke;
+	padding: 20px;
+  }
+
+}

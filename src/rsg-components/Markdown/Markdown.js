@@ -7,7 +7,9 @@ import Styled from 'rsg-components/Styled';
 import Link from 'rsg-components/Link';
 import Text from 'rsg-components/Text';
 import Para, { styles as paraStyles } from 'rsg-components/Para';
+import MarkdownBlockQuote from 'rsg-components/MarkdownBlockQuote';
 import MarkdownHeading from 'rsg-components/Markdown/MarkdownHeading';
+import OS from 'os';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
 // That way we could avoid clashes between our loaders and user loaders.
@@ -28,7 +30,7 @@ Code.propTypes = {
 };
 
 // Custom CSS classes for each tag: <em> → <em className={s.em}> + custom components
-const getBaseOverrides = memoize(classes => {
+const getBaseOverrides = memoize((classes, isRhs) => {
 	const styleOverrides = mapValues(classes, value => ({
 		props: {
 			className: value,
@@ -88,6 +90,12 @@ const getBaseOverrides = memoize(classes => {
 				semantic: 'em',
 			},
 		},
+		blockquote: {
+			component: MarkdownBlockQuote,
+			props: {
+				isRhs: false,
+			},
+		},
 		strong: {
 			component: Text,
 			props: {
@@ -140,12 +148,6 @@ const styles = ({ space, fontFamily, fontSize, color, borderRadius }) => ({
 		display: 'inline-block',
 		verticalAlign: 'middle',
 	},
-	blockquote: {
-		composes: '$para',
-		fontSize: fontSize.base,
-		margin: [[space[2], space[4]]],
-		padding: 0,
-	},
 	hr: {
 		composes: '$para',
 		borderWidth: [[0, 0, 1, 0]],
@@ -190,7 +192,29 @@ const styles = ({ space, fontFamily, fontSize, color, borderRadius }) => ({
 
 function Markdown({ classes, text, inline }) {
 	const overrides = inline ? getInlineOverrides(classes) : getBaseOverrides(classes);
+	console.log('--------', overrides);
 	return compiler(text, { overrides, forceBlock: true });
+}
+
+// instead of rendering, return as array outside of react component rendering way
+export function asArrayMarkdown({ text }) {
+	const markdowns = [];
+	text.map((example) => {
+		const rhs = example.content.split(OS.EOL).filter((line) => /^(>)([\s\w\W]+)$/.test(line));
+		rhs.map((rhsText) => {
+			markdowns.push(compiler(rhsText, { overrides: {
+					blockquote: {
+						component: MarkdownBlockQuote,
+						props: {
+							isRhs: true,
+						},
+					},
+				}, forceBlock: true }));
+		});
+	});
+	console.error('--------- as array --------');
+	console.log(markdowns);
+	return markdowns;
 }
 
 Markdown.propTypes = {

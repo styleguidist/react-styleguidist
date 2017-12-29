@@ -13,10 +13,12 @@ React Styleguidist is a component development environment with hot reloaded dev 
 # Deviations from original styleguidist package
 - changes in babel configuration to fix MobX observables
 - groups support ( create any groups by defining path regex and group title, it will modify TableOfContents and what components are visible on the view )
+- add extra comments column for special md comment blocks ( work in progress, screenshot below )
 - more in progress 
 
 ![](https://i.imgur.com/5rwCH8d.png)
 ![](https://i.imgur.com/o5AvWiu.png)
+![](https://i.imgur.com/LBqytBS.png)
 
 ## Usage
 
