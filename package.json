@@ -1,12 +1,18 @@
 {
-  "name": "react-styleguidist",
-  "description": "React components style guide generator",
+  "name": "react-styleguidist-extended",
+  "description": "React components style guide generator - extended version",
   "version": "6.1.0",
   "homepage": "https://github.com/styleguidist/react-styleguidist",
-  "author": {
-    "name": "Artem Sapegin",
-    "url": "http://sapegin.me/"
-  },
+  "authors": [
+    {
+      "name": "Artem Sapegin",
+      "url": "http://sapegin.me/"
+    },
+    {
+      "name": "Radoslaw Swiat",
+      "url": "http://rad.swiat.co.uk"
+    }
+  ],
   "theme": {
     "primary-color": "#1DA57A"
   },

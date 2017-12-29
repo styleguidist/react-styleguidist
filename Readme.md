@@ -4,6 +4,14 @@
 
 **MODIFIED VERSION**
 
+This is modified version of the original React Styleguidist.
+
+**Please do not use if you need a bug-free solution**
+
+My goal is not to create a bug free solution, but rather to fit existing one into my own needs.
+
+No support provided for this repo!
+
 **Isolated React component development environment with a living style guide**
 
 </div>
