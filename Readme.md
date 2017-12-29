@@ -6,17 +6,14 @@
 
 This is modified version of the original React Styleguidist.
 
-**Please do not use if you need a bug-free solution**
-
-My goal is not to create a bug free solution, but rather to fit existing one into my own needs.
-
-No support provided for this repo!
-
-**Isolated React component development environment with a living style guide**
-
 </div>
 
-React Styleguidist is a component development environment with hot reloaded dev server and a living style guide that you can share with your team. It lists component `propTypes` and shows live, editable usage examples based on Markdown files. Check out [**the demo style guide**](https://react-styleguidist.js.org/examples/basic/).
+### Read below before use
+- this repo will not be maintained
+- no support will be provided
+- no documentation updates for new features
+- there can be lots of issues with different configurations as I only made this to work for my own needs
+- use on your own responsibility
 
 # Deviations from original styleguidist package
 - changes in babel configuration to fix MobX observables
