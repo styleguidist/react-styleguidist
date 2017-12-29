@@ -1,7 +1,7 @@
 {
   "name": "react-styleguidist-extended",
   "description": "React components style guide generator - extended version",
-  "version": "6.1.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/styleguidist/react-styleguidist",
   "authors": [
     {
