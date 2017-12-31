@@ -55,32 +55,30 @@ exports[`Markdown should render Markdown with custom CSS classes 1`] = `
 
 exports[`Markdown should render check-lists correctly 1`] = `
 
-<div class="rsg--para-14">
-  <ul class="rsg--list-34">
-    <li>
-      <input type="checkbox"
-             class="rsg--input-2"
-             readonly
-      >
-      list 1
-    </li>
-    <li>
-      <input type="checkbox"
-             class="rsg--input-2"
-             readonly
-      >
-      list 2
-    </li>
-    <li>
-      <input type="checkbox"
-             class="rsg--input-2"
-             checked
-             readonly
-      >
-      list 3
-    </li>
-  </ul>
-</div>
+<ul class="rsg--list-34">
+  <li class="rsg--li-36">
+    <input type="checkbox"
+           class="rsg--input-2"
+           readonly
+    >
+    list 1
+  </li>
+  <li class="rsg--li-36">
+    <input type="checkbox"
+           class="rsg--input-2"
+           readonly
+    >
+    list 2
+  </li>
+  <li class="rsg--li-36">
+    <input type="checkbox"
+           class="rsg--input-2"
+           checked
+           readonly
+    >
+    list 3
+  </li>
+</ul>
 
 `;
 
@@ -159,67 +157,59 @@ exports[`Markdown should render links 1`] = `
 
 exports[`Markdown should render mixed nested lists correctly 1`] = `
 
-<div class="rsg--para-14">
-  <ul class="rsg--list-34">
-    <li>
-      list 1
-    </li>
-    <li>
-      list 2
-      <div class="rsg--para-14">
-        <ol class="rsg--list-34 rsg--ordered-35">
-          <li>
-            Sub-list
-          </li>
-          <li>
-            Sub-list
-          </li>
-          <li>
-            Sub-list
-          </li>
-        </ol>
-      </div>
-    </li>
-    <li>
-      list 3
-    </li>
-  </ul>
-</div>
+<ul class="rsg--list-34">
+  <li class="rsg--li-36">
+    list 1
+  </li>
+  <li class="rsg--li-36">
+    list 2
+    <ol class="rsg--list-34 rsg--ordered-35">
+      <li class="rsg--li-36">
+        Sub-list
+      </li>
+      <li class="rsg--li-36">
+        Sub-list
+      </li>
+      <li class="rsg--li-36">
+        Sub-list
+      </li>
+    </ol>
+  </li>
+  <li class="rsg--li-36">
+    list 3
+  </li>
+</ul>
 
 `;
 
 exports[`Markdown should render ordered lists correctly 1`] = `
 
-<div class="rsg--para-14">
-  <ol class="rsg--list-34 rsg--ordered-35">
-    <li>
-      list
-    </li>
-    <li>
-      item
-    </li>
-    <li>
-      three
-    </li>
-  </ol>
-</div>
+<ol class="rsg--list-34 rsg--ordered-35">
+  <li class="rsg--li-36">
+    list
+  </li>
+  <li class="rsg--li-36">
+    item
+  </li>
+  <li class="rsg--li-36">
+    three
+  </li>
+</ol>
 
 `;
 
 exports[`Markdown should render unordered lists correctly 1`] = `
 
-<div class="rsg--para-14">
-  <ul class="rsg--list-34">
-    <li>
-      list
-    </li>
-    <li>
-      item
-    </li>
-    <li>
-      three
-    </li>
-  </ul>
-</div>
+<ul class="rsg--list-34">
+  <li class="rsg--li-36">
+    list
+  </li>
+  <li class="rsg--li-36">
+    item
+  </li>
+  <li class="rsg--li-36">
+    three
+  </li>
+</ul>
 
 `;

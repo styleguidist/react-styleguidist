@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import Styled from 'rsg-components/Styled';
-import Para from 'rsg-components/Para';
+import { styles as paraStyles } from 'rsg-components/Para';
 
-const styles = ({ space }) => ({
+const styles = ({ space, color, fontFamily }) => ({
 	list: {
+		...paraStyles({ space, color, fontFamily }).para,
 		paddingLeft: space[3],
 	},
 	ordered: {
 		listStyleType: 'decimal',
+	},
+	li: {
+		color: color.base,
+		fontFamily: fontFamily.base,
+		fontSize: 'inherit',
+		listStyleType: 'inherit',
 	},
 });
 
@@ -20,9 +27,9 @@ export function ListRenderer({ classes, ordered, children }) {
 	const classNames = cx(classes.list, ordered && classes.ordered);
 
 	return (
-		<Para>
-			<Tag className={classNames}>{children}</Tag>
-		</Para>
+		<Tag className={classNames}>
+			{Children.map(children, li => cloneElement(li, { className: classes.li }))}
+		</Tag>
 	);
 }
 ListRenderer.propTypes = {
