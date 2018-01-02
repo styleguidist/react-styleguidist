@@ -1,12 +1,11 @@
 /* eslint-disable import/first */
-
 import './polyfills';
 import './styles';
 import ReactDOM from 'react-dom';
 import renderStyleguide from './utils/renderStyleguide';
 import 'antd/dist/antd.css';
 
-// import 'rsg-custom-theme.scss';
+import '../../../styleguide.scss';
 
 // Examples code revision to rerender only code examples (not the whole page) when code changes
 let codeRevision = 0;
