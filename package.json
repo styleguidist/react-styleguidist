@@ -1,7 +1,7 @@
 {
   "name": "react-styleguidist-extended",
   "description": "React components style guide generator - extended version",
-  "version": "1.0.1",
+  "version": "1.0.9",
   "homepage": "https://github.com/radswiat/react-styleguidist",
   "authors": [
     {
@@ -119,6 +119,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "cheerio": "^1.0.0-rc.2",
+    "cpx": "^1.5.0",
     "danger": "^2.1.5",
     "deabsdeep": "^1.0.5",
     "deepfreeze": "^2.0.0",
@@ -167,7 +168,7 @@
     "lint": "eslint . --cache --fix",
     "lint-staged": "lint-staged",
     "precompile": "rimraf lib/",
-    "compile": "babel --ignore '*.spec.js' -d lib/ src/",
+    "compile": "babel --ignore '*.spec.js' -d lib/ src/ && npm run copy-scss",
     "compile:watch": "babel --ignore '*.spec.js' --watch -d lib/ src/",
     "build": "node bin/styleguidist.js build --config examples/basic/styleguide.config.js",
     "build:customised": "node bin/styleguidist.js build --config examples/customised/styleguide.config.js",
@@ -179,7 +180,8 @@
     "test:browser:sections": "node test/browser.js examples/sections/styleguide/index.html",
     "danger": "danger",
     "precommit": "lint-staged",
-    "format:md": "prettier --write '**/*.md'"
+    "format:md": "prettier --write '**/*.md'",
+    "copy-scss": "cpx \"src/**/*.scss\" lib"
   },
   "release": {
     "analyzeCommits": "semantic-release-tamia/analyzeCommits",

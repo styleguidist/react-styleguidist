@@ -13,15 +13,22 @@ const StyleguidistOptionsPlugin = require('./utils/StyleguidistOptionsPlugin');
 
 const RENDERER_REGEXP = /Renderer$/;
 
-const sourceDir = path.resolve(__dirname, '../src');
+let sourceDir = null;
+
 const htmlLoader = require.resolve('html-webpack-plugin/lib/loader');
 
 module.exports = function(config, env) {
 	process.env.NODE_ENV = process.env.NODE_ENV || env;
 
+	if (config.dev) {
+		sourceDir = path.resolve(__dirname, '../src');
+	} else {
+		sourceDir = path.resolve(__dirname, '../lib');
+	}
+
 	const isProd = env === 'production';
 	const customScssPath = config.customScss && config.customScss.length ?
-		path.resolve(process.cwd(), config.customScss) : path.resolve(process.cwd(), 'src/custom.scss');
+		path.resolve(process.cwd(), config.customScss) : path.resolve(__dirname, 'src/custom.scss');
 
 	let webpackConfig = {
 		entry: config.require.concat([path.resolve(sourceDir, 'index')]),
@@ -125,21 +132,22 @@ module.exports = function(config, env) {
 	}
 
 	// add basic support for scss
-	webpackConfig.module.rules.push({
-		test: /\.scss$/,
-		exclude: /node_modules/,
-		use: [
-			{
-				loader: 'style-loader',
-			},
-			{
-				loader: 'css-loader',
-			},
-			{
-				loader: 'sass-loader',
-			},
-		],
-	});
+	// TODO temporary removed due to conflict with production
+	// webpackConfig.module.rules.push({
+	// 	test: /\.scss$/,
+	// 	exclude: /node_modules/,
+	// 	use: [
+	// 		{
+	// 			loader: 'style-loader',
+	// 		},
+	// 		{
+	// 			loader: 'css-loader',
+	// 		},
+	// 		{
+	// 			loader: 'sass-loader',
+	// 		},
+	// 	],
+	// });
 
 	return webpackConfig;
 };
