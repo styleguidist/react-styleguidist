@@ -1,8 +1,8 @@
 {
   "name": "react-styleguidist-extended",
   "description": "React components style guide generator - extended version",
-  "version": "1.0.0",
-  "homepage": "https://github.com/styleguidist/react-styleguidist",
+  "version": "1.0.1",
+  "homepage": "https://github.com/radswiat/react-styleguidist",
   "authors": [
     {
       "name": "Artem Sapegin",
@@ -18,10 +18,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/styleguidist/react-styleguidist.git"
+    "url": "https://github.com/radswiat/react-styleguidist.git"
   },
   "bugs": {
-    "url": "https://github.com/styleguidist/react-styleguidist/issues"
+    "url": "https://github.com/radswiat/react-styleguidist/issues"
   },
   "license": "MIT",
   "main": "scripts/index.js",
@@ -222,7 +222,8 @@
     "docs",
     "generator",
     "component",
-    "components"
+    "components",
+    "extended"
   ],
   "lint-staged": {
     "*.js": [
