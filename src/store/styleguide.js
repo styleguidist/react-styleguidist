@@ -11,10 +11,16 @@ export default new class Demo {
 
 	// make type observable
 	// component will be updated when it will change
-	@observable type = 'default';
+	@observable type;
 
 	@action setType(type) {
 		this.type = type;
+	}
+
+	@action setDefault(type) {
+		if (!this.type) {
+			this.type = type;
+		}
 	}
 
 };

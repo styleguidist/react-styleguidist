@@ -18,6 +18,7 @@
     }
   },
   "rules": {
+    "import/no-unresolved": "off",
     "no-invalid-this": "off",
     "no-console": "off",
     "curly": "off",
@@ -26,10 +27,6 @@
     "react/prefer-stateless-function": "off",
     "react/jsx-no-undef": "off",
     "compat/compat": "error",
-    "import/no-unresolved": ["error", {
-      "commonjs": true,
-      "caseSensitive": true
-    }],
     "import/export": "error",
     "import/no-named-as-default-member": "error",
     "import/no-mutable-exports": "error",

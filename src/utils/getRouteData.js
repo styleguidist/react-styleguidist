@@ -18,6 +18,8 @@ import { DisplayModes } from '../consts';
  * @returns {object}
  */
 export default function getRouteData(sections, hash) {
+	console.log('get route!');
+
 	// Parse URL hash to check if the components list must be filtered
 	const {
 		// Name of the filtered component/section to show isolated (/#!/Button → Button)

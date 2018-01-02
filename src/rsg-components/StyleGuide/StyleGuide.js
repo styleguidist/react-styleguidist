@@ -40,7 +40,7 @@ export default class StyleGuide extends Component {
 	getChildContext() {
 		// set default group
 		// TODO: what if groups are "off" ? we need to handle it in future
-		styleguide.setType(this.props.config.groupsOptions.defaultGroup);
+		styleguide.setDefault(this.props.config.groupsOptions.defaultGroup);
 
 		return {
 			codeRevision: this.props.codeRevision,

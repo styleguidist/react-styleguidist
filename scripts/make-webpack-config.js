@@ -131,23 +131,5 @@ module.exports = function(config, env) {
 		webpackConfig = config.dangerouslyUpdateWebpackConfig(webpackConfig, env);
 	}
 
-	// add basic support for scss
-	// TODO temporary removed due to conflict with production
-	// webpackConfig.module.rules.push({
-	// 	test: /\.scss$/,
-	// 	exclude: /node_modules/,
-	// 	use: [
-	// 		{
-	// 			loader: 'style-loader',
-	// 		},
-	// 		{
-	// 			loader: 'css-loader',
-	// 		},
-	// 		{
-	// 			loader: 'sass-loader',
-	// 		},
-	// 	],
-	// });
-
 	return webpackConfig;
 };

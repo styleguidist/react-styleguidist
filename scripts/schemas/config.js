@@ -201,9 +201,9 @@ module.exports = {
 		type: 'object',
 		default: null,
 	},
-	customScss: {
-		type: 'string',
-		default: '',
+	useCustomScss: {
+		type: 'boolean',
+		default: false,
 	},
 	skipComponentsWithoutExample: {
 		type: 'boolean',

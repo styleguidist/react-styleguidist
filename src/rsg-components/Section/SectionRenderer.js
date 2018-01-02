@@ -35,18 +35,6 @@ export class SectionRenderer extends Component {
 	render() {
 		const groupsConfig = this.context.config.groups[styleguide.type];
 
-		// // flatten
-		// console.log(this.props.depth);
-		// if (this.props.depth === 1) {
-		// 	return (
-		// 		<div>
-		// 			{this.props.content}
-		// 			{this.props.components}
-		// 			{this.props.sections}
-		// 		</div>
-		// 	);
-		// }
-
 		// render no static views,
 		// those will not have lhs and rhs separation
 		if (!groupsConfig.includeStatic) {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Logo from 'rsg-components/Logo';
 import Markdown from 'rsg-components/Markdown';
 import Styled from 'rsg-components/Styled';
-import HocTableOfContents from 'custom-rsg-components/HocTableOfContents';
+import Groups from 'rsg-components/Groups';
 import cx from 'classnames';
 
 import './index.scss';
@@ -61,7 +61,7 @@ export function StyleGuideRenderer({ classes, title, homepageUrl, children, toc,
 	return (
 		<div className={cx(classes.root, hasSidebar && classes.hasSidebar)}>
 			<div>
-				<HocTableOfContents />
+				<Groups />
 			</div>
 			<main className="main">
 				{children}
