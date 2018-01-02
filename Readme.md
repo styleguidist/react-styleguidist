@@ -20,6 +20,7 @@ This is modified version of the original React Styleguidist.
 - groups support `( see screenshots and ./examples/basic/styleguide.config.js )`
 - add extra comments column for special md comment blocks `usage: "> header" and ">> text" in MD files`
 - inject custom scss file to modify styles `( customScss: './examples/basic/custom.scss' )`
+- auto generate navigation headings by reading md headings ( ## Test -> will create Test in navigation )
 
 ![](https://i.imgur.com/Ifof2of.png)
 ![](https://i.imgur.com/bL0lsVz.png)

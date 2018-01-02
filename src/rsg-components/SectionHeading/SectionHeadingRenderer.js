@@ -12,7 +12,7 @@ function SectionHeadingRenderer({ classes, children, toolbar, id, href, depth, d
 
 	return (
 		<div className={classes.wrapper}>
-			<Heading level={headingLevel} id={id}>
+			<Heading level={headingLevel} id={id} section>
 				<a href={href} className={sectionNameClasses}>
 					{children}
 				</a>

@@ -1,0 +1,35 @@
+.heading {
+
+  &--level-1 {
+    font-size: 32px;
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  &--level-2 {
+    font-size: 28px;
+    color: #1978c8;
+    display: block;
+    width: 100%;
+    border: 1px solid #1978c8;
+    border-width: 0px 0px 1px 0px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+
+  &--level-3 {
+    font-size: 24px;
+    color: #444444;
+  }
+
+  &--level-4 {
+    font-size: 20px;
+    color: #444444;
+  }
+
+  &--level-5 {
+    font-size: 16px;
+    color: #444444;
+  }
+}

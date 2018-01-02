@@ -40,7 +40,7 @@ export class SectionRenderer extends Component {
 		if (!groupsConfig.includeStatic) {
 			return (
 				<div className="section section--standalone">
-					{this.props.name && this.props.depth !== 1 && (
+					{this.props.name && (
 						<SectionHeading depth={this.props.depth} id={this.props.slug} slotName="sectionToolbar" slotProps={this.props}>
 							{this.props.name}
 						</SectionHeading>
@@ -58,7 +58,7 @@ export class SectionRenderer extends Component {
 			<div>
 				<section className="section section--flex">
 					<div className="section__lhs">
-						{this.props.name && this.props.depth !== 1 && (
+						{this.props.name && (
 							<SectionHeading depth={this.props.depth} id={this.props.slug} slotName="sectionToolbar" slotProps={this.props}>
 								{this.props.name}
 							</SectionHeading>

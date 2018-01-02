@@ -9,6 +9,7 @@ import Text from 'rsg-components/Text';
 import Para, { styles as paraStyles } from 'rsg-components/Para';
 import MarkdownBlockQuote from 'rsg-components/MarkdownBlockQuote';
 import MarkdownHeading from 'rsg-components/Markdown/MarkdownHeading';
+import InlineCode from 'rsg-components/InlineCode';
 import OS from 'os';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
@@ -16,21 +17,8 @@ import OS from 'os';
 // eslint-disable-next-line import/no-unresolved
 require('!!../../../loaders/style-loader!../../../loaders/css-loader!highlight.js/styles/tomorrow.css');
 
-// Code blocks with server-side syntax highlight
-function Code({ children, className }) {
-	const isHighlighted = className && className.indexOf('lang-') !== -1;
-	if (isHighlighted) {
-		return <code className={className} dangerouslySetInnerHTML={{ __html: children }} />;
-	}
-	return <code className={className}>{children}</code>;
-}
-Code.propTypes = {
-	children: PropTypes.node,
-	className: PropTypes.string,
-};
-
 // Custom CSS classes for each tag: <em> → <em className={s.em}> + custom components
-const getBaseOverrides = memoize((classes, isRhs) => {
+const getBaseOverrides = memoize((classes) => {
 	const styleOverrides = mapValues(classes, value => ({
 		props: {
 			className: value,
@@ -103,7 +91,7 @@ const getBaseOverrides = memoize((classes, isRhs) => {
 			},
 		},
 		code: {
-			component: Code,
+			component: InlineCode,
 			props: {
 				className: classes.code,
 			},

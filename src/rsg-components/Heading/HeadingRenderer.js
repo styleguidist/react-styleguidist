@@ -1,50 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import Styled from 'rsg-components/Styled';
+import Slugger from 'github-slugger';
 
-const styles = ({ color, fontFamily, fontSize }) => ({
-	heading: {
-		margin: 0,
-		color: color.base,
-		fontFamily: fontFamily.base,
-		fontWeight: 'normal',
-	},
-	heading1: {
-		fontSize: fontSize.h1,
-	},
-	heading2: {
-		fontSize: fontSize.h2,
-	},
-	heading3: {
-		fontSize: fontSize.h3,
-	},
-	heading4: {
-		fontSize: fontSize.h4,
-	},
-	heading5: {
-		fontSize: fontSize.h5,
-	},
-	heading6: {
-		fontSize: fontSize.h6,
-	},
-});
+import './index.scss';
 
-function HeadingRenderer({ classes, level, children, ...props }) {
+export default function HeadingRenderer({ level, children, section, ...props }) {
 	const Tag = `h${level}`;
-	const headingClasses = cx(classes.heading, classes[`heading${level}`]);
+
+	if (!section) {
+	  const slugger = new Slugger();
+    const id = slugger.slug(children[0]);
+    return (
+      <div id={id}>
+        <Tag
+          className={cx([
+            'heading',
+            `heading--level-${level}`,
+          ])}
+          {...props}
+        >
+          {children}
+        </Tag>
+      </div>
+    );
+  };
 
 	return (
-		<Tag {...props} className={headingClasses}>
+		<Tag
+      className={cx([
+        'heading',
+        `heading--level-${level}`,
+      ])}
+      {...props}
+    >
 			{children}
 		</Tag>
 	);
 }
 
 HeadingRenderer.propTypes = {
-	classes: PropTypes.object.isRequired,
 	level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]).isRequired,
 	children: PropTypes.node,
+  section: PropTypes.bool,
 };
-
-export default Styled(styles)(HeadingRenderer);
