@@ -27,6 +27,7 @@ export const styles = ({ fontFamily, fontSize, color }) => ({
 	},
 	em: {
 		fontStyle: 'italic',
+    color: '#9E9E9E',
 	},
 	strong: {
 		fontWeight: 'bold',
