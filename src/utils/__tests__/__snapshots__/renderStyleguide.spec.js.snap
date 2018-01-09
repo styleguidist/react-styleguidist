@@ -6,7 +6,6 @@ exports[`renderStyleguide should render StyleGuide component 1`] = `
   title="My Style Guide"
   toc={
     <TableOfContents
-      oneComponentPerPage={undefined}
       sections={
         Array [
           Object {

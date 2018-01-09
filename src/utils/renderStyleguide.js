@@ -49,7 +49,6 @@ export default function renderStyleguide(
 			sections={sections}
 			allSections={allSections}
 			displayMode={displayMode}
-			oneComponentPerPage={styleguide.config.oneComponentPerPage}
 		/>
 	);
 }

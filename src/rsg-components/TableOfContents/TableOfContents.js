@@ -7,7 +7,6 @@ import filterSectionsByName from '../../utils/filterSectionsByName';
 export default class TableOfContents extends Component {
 	static propTypes = {
 		sections: PropTypes.array.isRequired,
-		oneComponentPerPage: PropTypes.bool,
 	};
 	state = {
 		searchTerm: '',
@@ -26,8 +25,8 @@ export default class TableOfContents extends Component {
 
 	renderSections() {
 		const { searchTerm } = this.state;
-		const { sections, oneComponentPerPage } = this.props;
-
+		const { sections } = this.props;
+		const oneComponentPerPage = (this.context.config || {}).oneComponentPerPage;
 		// If there is only one section, we treat it as a root section
 		// In this case the name of the section won't be rendered and it won't get left padding
 		const firstLevel = sections.length === 1 ? sections[0].components : sections;
