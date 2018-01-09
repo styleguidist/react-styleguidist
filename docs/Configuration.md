@@ -20,6 +20,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`handlers`](#handlers)
 * [`ignore`](#ignore)
 * [`logger`](#logger)
+* [`oneComponentPerPage`](#oneComponentPerPage)
 * [`previewDelay`](#previewdelay)
 * [`propsParser`](#propsparser)
 * [`require`](#require)
@@ -258,6 +259,12 @@ module.exports = {
   }
 }
 ```
+
+#### `oneComponentPerPage`
+
+Type: `Boolean`, default: `false`
+
+Render one component per page.
 
 #### `previewDelay`
 
