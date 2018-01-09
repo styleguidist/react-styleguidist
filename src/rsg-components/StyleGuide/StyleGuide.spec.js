@@ -33,7 +33,13 @@ const config = {
 
 it('should render components list', () => {
 	const actual = shallow(
-		<StyleGuide codeRevision={1} config={config} sections={sections} slots={{}} />
+		<StyleGuide
+			codeRevision={1}
+			config={config}
+			sections={sections}
+			allSections={sections}
+			slots={{}}
+		/>
 	);
 
 	expect(actual).toMatchSnapshot();

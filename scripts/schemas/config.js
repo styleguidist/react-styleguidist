@@ -290,4 +290,8 @@ module.exports = {
 			},
 		},
 	},
+	oneComponentPerPage: {
+		type: 'boolean',
+		default: false,
+	},
 };

@@ -74,6 +74,7 @@ exports[`should render components list 1`] = `
   title="Hello"
   toc={
     <TableOfContents
+      oneComponentPerPage={undefined}
       sections={
         Array [
           Object {
