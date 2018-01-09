@@ -53,8 +53,16 @@ export default function getRouteData(sections, hash, oneComponentPerPage) {
 		}
 	} else if (oneComponentPerPage) {
 		// If one component per page mode then show demos for first component
-		sections = [{ components: [sections[0].components[0]] }];
+		sections = [getFirstSectionWithFirstComponent(sections)];
 	}
 
 	return { sections, displayMode };
+}
+
+function getFirstSectionWithFirstComponent(sections) {
+	const firstSection = sections[0];
+	if (firstSection.components) {
+		return { ...firstSection, components: firstSection.components[0] };
+	}
+	return getFirstSectionWithFirstComponent(firstSection.sections);
 }

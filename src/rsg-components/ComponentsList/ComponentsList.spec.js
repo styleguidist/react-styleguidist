@@ -37,3 +37,20 @@ it('should ignore items without name', () => {
 
 	expect(actual).toMatchSnapshot();
 });
+
+it('should render links to isolated component page if oneComponentPerPage passed', () => {
+	const components = [
+		{
+			name: 'Button',
+			slug: 'button',
+		},
+		{
+			slug: 'input',
+		},
+	];
+	const actual = shallow(
+		<ComponentsListRenderer items={components} classes={{}} oneComponentPerPage />
+	);
+
+	expect(actual).toMatchSnapshot();
+});

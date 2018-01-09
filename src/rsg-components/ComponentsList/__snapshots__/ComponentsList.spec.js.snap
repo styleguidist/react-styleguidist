@@ -16,6 +16,22 @@ exports[`should ignore items without name 1`] = `
 </ul>
 `;
 
+exports[`should render links to isolated component page if oneComponentPerPage passed 1`] = `
+<ul>
+  <li
+    className=""
+    key="Button"
+  >
+    <Styled(Link)
+      className=""
+      href="blank#!/Button"
+    >
+      Button
+    </Styled(Link)>
+  </li>
+</ul>
+`;
+
 exports[`should render sections with nested components 1`] = `
 <ul>
   <li
