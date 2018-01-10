@@ -61,6 +61,7 @@ export default class ReactComponent extends Component {
 				heading={
 					<SectionHeading
 						id={slug}
+            type="component"
 						deprecated={!!tags.deprecated}
 						slotName="componentToolbar"
 						slotProps={{

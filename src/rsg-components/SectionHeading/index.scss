@@ -1,0 +1,27 @@
+.section-heading {
+
+  &--deprecated {
+    text-decoration: line-through;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  &__toolbar {
+    margin-left: auto;
+  }
+
+  &__sectionName {
+
+    &:hover, &:active {
+      isolate: false;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+}

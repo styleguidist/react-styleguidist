@@ -14,6 +14,11 @@ var s = 5;
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
 
+*Italic text*
+
+Lorem Ipsum is simply dummy *italic text inside* Lorem Ipsum is simply dummy 
+
+
 ## Features
 
 * Lorem Ipsum is simply dummy text of the printing
