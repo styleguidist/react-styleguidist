@@ -2,7 +2,7 @@
 
 exports[`Markdown should render Markdown in a p tag even for one paragraph 1`] = `
 
-<p class="rsg--para-17">
+<p class="rsg--para-14">
   pizza
 </p>
 
@@ -10,9 +10,9 @@ exports[`Markdown should render Markdown in a p tag even for one paragraph 1`] =
 
 exports[`Markdown should render Markdown in span in inline mode 1`] = `
 
-<span class="rsg--text-27 rsg--inheritSize-28 rsg--baseColor-32">
+<span class="rsg--text-24 rsg--inheritSize-25 rsg--baseColor-29">
   Hello
-  <em class="rsg--text-27 rsg--inheritSize-28 rsg--baseColor-32 rsg--em-34">
+  <em class="rsg--text-24 rsg--inheritSize-25 rsg--baseColor-29 rsg--em-31">
     world
   </em>
   !
@@ -23,28 +23,28 @@ exports[`Markdown should render Markdown in span in inline mode 1`] = `
 exports[`Markdown should render Markdown with custom CSS classes 1`] = `
 
 <div>
-  <div class="rsg--spacing-19">
-    <h1 class="rsg--heading-20 rsg--heading1-21">
+  <div class="rsg--spacing-16">
+    <h1 class="rsg--heading-17 rsg--heading1-18">
       Header
     </h1>
   </div>
-  <p class="rsg--para-17">
+  <p class="rsg--para-14">
     Text with
-    <em class="rsg--text-27 rsg--inheritSize-28 rsg--baseColor-32 rsg--em-34">
+    <em class="rsg--text-24 rsg--inheritSize-25 rsg--baseColor-29 rsg--em-31">
       some
     </em>
-    <strong class="rsg--text-27 rsg--inheritSize-28 rsg--baseColor-32 rsg--strong-35">
+    <strong class="rsg--text-24 rsg--inheritSize-25 rsg--baseColor-29 rsg--strong-32">
       formatting
     </strong>
     and a
     <a href="/foo"
-       class="rsg--link-18"
+       class="rsg--link-15"
     >
       link
     </a>
     .
   </p>
-  <p class="rsg--para-17">
+  <p class="rsg--para-14">
     <img alt="Image"
          src="/bar.png"
     >
@@ -55,24 +55,24 @@ exports[`Markdown should render Markdown with custom CSS classes 1`] = `
 
 exports[`Markdown should render check-lists correctly 1`] = `
 
-<ul class="rsg--ul-2 rsg--para-1">
-  <li class="rsg--li-4 rsg--base-0">
+<ul class="rsg--list-34">
+  <li class="rsg--li-36">
     <input type="checkbox"
-           class="rsg--input-5"
+           class="rsg--input-2"
            readonly
     >
     list 1
   </li>
-  <li class="rsg--li-4 rsg--base-0">
+  <li class="rsg--li-36">
     <input type="checkbox"
-           class="rsg--input-5"
+           class="rsg--input-2"
            readonly
     >
     list 2
   </li>
-  <li class="rsg--li-4 rsg--base-0">
+  <li class="rsg--li-36">
     <input type="checkbox"
-           class="rsg--input-5"
+           class="rsg--input-2"
            checked
            readonly
     >
@@ -84,8 +84,8 @@ exports[`Markdown should render check-lists correctly 1`] = `
 
 exports[`Markdown should render code blocks without escaping 1`] = `
 
-<pre class="rsg--pre-9 rsg--para-1">
-  <code class="lang-html rsg--code-8">
+<pre class="rsg--pre-6 rsg--para-1">
+  <code class="lang-html rsg--code-5">
     <foo>
     </foo>
   </code>
@@ -96,33 +96,33 @@ exports[`Markdown should render code blocks without escaping 1`] = `
 exports[`Markdown should render headings correctly 1`] = `
 
 <div>
-  <div class="rsg--spacing-19">
-    <h1 class="rsg--heading-20 rsg--heading1-21">
+  <div class="rsg--spacing-16">
+    <h1 class="rsg--heading-17 rsg--heading1-18">
       one
     </h1>
   </div>
-  <div class="rsg--spacing-19">
-    <h2 class="rsg--heading-20 rsg--heading2-22">
+  <div class="rsg--spacing-16">
+    <h2 class="rsg--heading-17 rsg--heading2-19">
       two
     </h2>
   </div>
-  <div class="rsg--spacing-19">
-    <h3 class="rsg--heading-20 rsg--heading3-23">
+  <div class="rsg--spacing-16">
+    <h3 class="rsg--heading-17 rsg--heading3-20">
       three
     </h3>
   </div>
-  <div class="rsg--spacing-19">
-    <h4 class="rsg--heading-20 rsg--heading4-24">
+  <div class="rsg--spacing-16">
+    <h4 class="rsg--heading-17 rsg--heading4-21">
       four
     </h4>
   </div>
-  <div class="rsg--spacing-19">
-    <h5 class="rsg--heading-20 rsg--heading5-25">
+  <div class="rsg--spacing-16">
+    <h5 class="rsg--heading-17 rsg--heading5-22">
       five
     </h5>
   </div>
-  <div class="rsg--spacing-19">
-    <h6 class="rsg--heading-20 rsg--heading6-26">
+  <div class="rsg--spacing-16">
+    <h6 class="rsg--heading-17 rsg--heading6-23">
       six
     </h6>
   </div>
@@ -132,9 +132,9 @@ exports[`Markdown should render headings correctly 1`] = `
 
 exports[`Markdown should render inline code with escaping 1`] = `
 
-<p class="rsg--para-17">
+<p class="rsg--para-14">
   Foo
-  <code class="rsg--code-8">
+  <code class="rsg--code-5">
     &lt;bar&gt;
   </code>
   baz
@@ -144,10 +144,10 @@ exports[`Markdown should render inline code with escaping 1`] = `
 
 exports[`Markdown should render links 1`] = `
 
-<p class="rsg--para-17">
+<p class="rsg--para-14">
   a
   <a href="http://test.com"
-     class="rsg--link-18"
+     class="rsg--link-15"
   >
     link
   </a>
@@ -157,27 +157,25 @@ exports[`Markdown should render links 1`] = `
 
 exports[`Markdown should render mixed nested lists correctly 1`] = `
 
-<ul class="rsg--ul-2 rsg--para-1">
-  <li class="rsg--li-4 rsg--base-0">
+<ul class="rsg--list-34">
+  <li class="rsg--li-36">
     list 1
   </li>
-  <li class="rsg--li-4 rsg--base-0">
+  <li class="rsg--li-36">
     list 2
-    <ol class="rsg--ol-3 rsg--para-1"
-        start="1"
-    >
-      <li class="rsg--li-4 rsg--base-0">
+    <ol class="rsg--list-34 rsg--ordered-35">
+      <li class="rsg--li-36">
         Sub-list
       </li>
-      <li class="rsg--li-4 rsg--base-0">
+      <li class="rsg--li-36">
         Sub-list
       </li>
-      <li class="rsg--li-4 rsg--base-0">
+      <li class="rsg--li-36">
         Sub-list
       </li>
     </ol>
   </li>
-  <li class="rsg--li-4 rsg--base-0">
+  <li class="rsg--li-36">
     list 3
   </li>
 </ul>
@@ -186,16 +184,14 @@ exports[`Markdown should render mixed nested lists correctly 1`] = `
 
 exports[`Markdown should render ordered lists correctly 1`] = `
 
-<ol class="rsg--ol-3 rsg--para-1"
-    start="1"
->
-  <li class="rsg--li-4 rsg--base-0">
+<ol class="rsg--list-34 rsg--ordered-35">
+  <li class="rsg--li-36">
     list
   </li>
-  <li class="rsg--li-4 rsg--base-0">
+  <li class="rsg--li-36">
     item
   </li>
-  <li class="rsg--li-4 rsg--base-0">
+  <li class="rsg--li-36">
     three
   </li>
 </ol>
@@ -204,14 +200,14 @@ exports[`Markdown should render ordered lists correctly 1`] = `
 
 exports[`Markdown should render unordered lists correctly 1`] = `
 
-<ul class="rsg--ul-2 rsg--para-1">
-  <li class="rsg--li-4 rsg--base-0">
+<ul class="rsg--list-34">
+  <li class="rsg--li-36">
     list
   </li>
-  <li class="rsg--li-4 rsg--base-0">
+  <li class="rsg--li-36">
     item
   </li>
-  <li class="rsg--li-4 rsg--base-0">
+  <li class="rsg--li-36">
     three
   </li>
 </ul>

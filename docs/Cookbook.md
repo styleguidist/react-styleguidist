@@ -401,7 +401,7 @@ See in [configuring webpack](Webpack.md#reusing-your-projects-webpack-config).
 
 See [working with third-party libraries](Thirdparties.md).
 
-## What’s the difference between Styleguidist and Storybook
+## What’s the difference between Styleguidist and Storybook?
 
 Both tools are good and mature, they have many similarities but also some distinctions that may make you choose one or the other. For me the biggest distinction is how you describe component variations.
 
@@ -420,7 +420,7 @@ storiesOf('Button', module)
   .add('large size', () => <Button size="large">Push Me</Button>)
 ```
 
-![Storybook screenshot](https://storybook.js.org/2c663defce0e8f4d0c256e911f74b727.gif)
+![Storybook screenshot](https://storybook.js.org/static/demo.f13d28a7.gif)
 
 And with Styleguidist you write _examples_ in Markdown files:
 
