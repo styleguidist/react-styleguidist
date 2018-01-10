@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { compiler } from 'markdown-to-jsx';
 import mapValues from 'lodash/mapValues';
@@ -11,6 +10,7 @@ import MarkdownBlockQuote from 'rsg-components/MarkdownBlockQuote';
 import MarkdownHeading from 'rsg-components/Markdown/MarkdownHeading';
 import InlineCode from 'rsg-components/InlineCode';
 import OS from 'os';
+import List from 'rsg-components/Markdown/List';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
 // That way we could avoid clashes between our loaders and user loaders.
@@ -90,6 +90,15 @@ const getBaseOverrides = memoize((classes) => {
 				semantic: 'strong',
 			},
 		},
+		ul: {
+			component: List,
+		},
+		ol: {
+			component: List,
+			props: {
+				ordered: true,
+			},
+		},
 		code: {
 			component: InlineCode,
 			props: {
@@ -118,19 +127,6 @@ const styles = ({ space, fontFamily, fontSize, color, borderRadius }) => ({
 		fontSize: 'inherit',
 	},
 	para: paraStyles({ space, color, fontFamily }).para,
-	ul: {
-		composes: '$para',
-		paddingLeft: space[3],
-	},
-	ol: {
-		composes: '$para',
-		listStyleType: 'decimal',
-		paddingLeft: space[3],
-	},
-	li: {
-		composes: '$base',
-		listStyleType: 'inherit',
-	},
 	input: {
 		isolate: false,
 		display: 'inline-block',
