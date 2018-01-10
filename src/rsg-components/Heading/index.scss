@@ -9,13 +9,7 @@
 
   &--level-2 {
     font-size: 28px;
-    color: #1978c8;
-    display: block;
-    width: 100%;
-    border: 1px solid #1978c8;
-    border-width: 0px 0px 1px 0px;
-    margin-top: 30px;
-    margin-bottom: 20px;
+    color: #444444;
   }
 
   &--level-3 {
@@ -35,6 +29,13 @@
 
   // type component exception css
   &--type-component {
-    color: red;
+    font-size: 28px;
+    color: #1978c8;
+    display: block;
+    width: 100%;
+    border: 1px solid #1978c8;
+    border-width: 0px 0px 1px 0px;
+    margin-top: 30px;
+    margin-bottom: 20px;
   }
 }

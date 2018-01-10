@@ -41,7 +41,7 @@ export class SectionRenderer extends Component {
 			return (
 				<div className="section section--standalone">
 					{this.props.name && (
-						<SectionHeading depth={this.props.depth} id={this.props.slug} slotName="sectionToolbar" slotProps={this.props}>
+						<SectionHeading depth={this.props.depth} id={this.props.slug} type="section" slotName="sectionToolbar" slotProps={this.props}>
 							{this.props.name}
 						</SectionHeading>
 					)}
@@ -59,7 +59,7 @@ export class SectionRenderer extends Component {
 				<section className="section section--flex">
 					<div className="section__lhs">
 						{this.props.name && (
-							<SectionHeading depth={this.props.depth} id={this.props.slug} slotName="sectionToolbar" slotProps={this.props}>
+							<SectionHeading depth={this.props.depth} id={this.props.slug} type="docs" slotName="sectionToolbar" slotProps={this.props}>
 								{this.props.name}
 							</SectionHeading>
 						)}
