@@ -205,7 +205,7 @@ class Button extends React.Component {
 
 ## Writing code examples
 
-Code examples in Markdown use the ES6+JSX syntax. They can access all the components of your style guide using global variables:
+Code examples in Markdown use ES6+JSX syntax. All components covered by the style guide can be used in all examples:
 
 ```jsx
 <Panel>
@@ -218,16 +218,16 @@ Code examples in Markdown use the ES6+JSX syntax. They can access all the compon
 
 > **Note:** Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the frontend, it supports [most of the ES6 features](https://buble.surge.sh/guide/#unsupported-features).
 
-You can also `require` other modules (e.g. mock data that you use in your unit tests) from examples in Markdown:
+You can also `require()` other modules (e.g. mock data that you use in your unit tests):
 
 ```jsx
 const mockData = require('./mocks')
 ;<Message content={mockData.hello} />
 ```
 
-> **Note:** You can `require` only from examples in Markdown files. ES6 `import` syntax isn’t supported.
+> **Note:** You can only use `require()` in Markdown files. ES6 `import()` syntax isn’t supported.
 
-Each example has its own state that you can access at the `state` variable and change with the `setState` function. Default state is `{}`.
+Each example has its own state that you can access as `state` variable and change with `setState()` function. Default state is `{}` and can be set with `initialState`.
 
 ```jsx
 initialState = { isOpen: false }
@@ -240,33 +240,38 @@ initialState = { isOpen: false }
 </div>
 ```
 
-You _can_ create `React.Component`s in your code examples:
+`initialState`, `state` and `setState()` helpers are good to show components in different states, but to let users copy-paste your example code without modifications into their React app you may want to use `React.Component` instead. We can rewrite the example above like this:
 
 ```jsx
-class SortTable extends React.Component {
+class ModalExample extends React.Component {
   constructor() {
     super()
     this.state = {
-      /* ... */
+      isOpen: false
     }
+    this.toggleOpen = this.toggleOpen.bind(this)
+  }
+  toggleOpen() {
+    this.setState((prevState, props) => ({
+      isOpen: !prevState.isOpen
+    }))
   }
   render() {
-    const { columns, rows } = this.state
-    const sortedRows = require('sortabular').sorter({
-      /* ... */
-    })(rows)
     return (
-      <TableProvider columns={columns}>
-        <Table.Header />
-        <Table.Body rows={sortedRows} rowKey="id" />
-      </TableProvider>
+      <div>
+        <button onClick={this.toggleOpen}>Open</button>
+        <Modal isOpen={this.state.isOpen}>
+          <h1>Hallo!</h1>
+          <button onClick={this.toggleOpen}>Close</button>
+        </Modal>
+      </div>
     )
   }
 }
-;<SortTable />
+;<ModalExample />
 ```
 
-> **Note:** If you need a more complex demo it’s often a good idea to define it in a separate JavaScript file and `require` it in Markdown
+> **Note:** If you need a more complex demo it’s often a good idea to define it in a separate JavaScript file and `require` it in Markdown.
 
 ## Limitations
 
