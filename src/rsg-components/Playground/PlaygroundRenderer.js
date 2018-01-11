@@ -11,8 +11,9 @@ export const styles = ({ space, color, borderRadius }) => ({
 		padding: space[2],
 		border: [[1, color.border, 'solid']],
 		borderRadius,
-		width: '100%', // expands following inline-block
-		display: 'inline-block', // block formatting context required to contain floats
+		// the next 2 lines are required to contain floated components
+		width: '100%',
+		display: 'inline-block',
 	},
 	controls: {
 		display: 'flex',
