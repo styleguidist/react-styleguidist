@@ -185,7 +185,8 @@
       "<rootDir>/src/utils/markdown-to-jsx.js",
       "<rootDir>/scripts/server.js",
       "<rootDir>/scripts/build.js",
-      "<rootDir>/test/jestsetup.js"
+      "<rootDir>/test/jestsetup.js",
+      "<rootDir>/examples/react-native-web"
     ],
     "snapshotSerializers": [
       "deabsdeep/serializer",
