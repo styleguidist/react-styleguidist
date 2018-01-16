@@ -5,10 +5,12 @@ import StyleGuideRenderer from 'rsg-components/StyleGuide/StyleGuideRenderer';
 import Sections from 'rsg-components/Sections';
 import Welcome from 'rsg-components/Welcome';
 import Error from 'rsg-components/Error';
+import styleguide from 'store/styleguide';
 import { HOMEPAGE } from '../../../scripts/consts';
 import { DisplayModes } from '../../consts';
 
 export default class StyleGuide extends Component {
+
 	static propTypes = {
 		codeRevision: PropTypes.number.isRequired,
 		config: PropTypes.object.isRequired,
@@ -36,6 +38,10 @@ export default class StyleGuide extends Component {
 	};
 
 	getChildContext() {
+		// set default group
+		// TODO: what if groups are "off" ? we need to handle it in future
+		styleguide.setDefault(this.props.config.groupsOptions.defaultGroup);
+
 		return {
 			codeRevision: this.props.codeRevision,
 			config: this.props.config,
@@ -63,14 +69,16 @@ export default class StyleGuide extends Component {
 		}
 
 		return (
-			<StyleGuideRenderer
-				title={config.title}
-				homepageUrl={HOMEPAGE}
-				toc={<TableOfContents sections={sections} />}
-				hasSidebar={config.showSidebar && displayMode === DisplayModes.all}
-			>
-				<Sections sections={sections} depth={1} />
-			</StyleGuideRenderer>
+			<div>
+				<StyleGuideRenderer
+					title={config.title}
+					homepageUrl={HOMEPAGE}
+					toc={<TableOfContents sections={sections} />}
+					hasSidebar={config.showSidebar && displayMode === DisplayModes.all}
+				>
+					<Sections sections={sections} depth={1} />
+				</StyleGuideRenderer>
+			</div>
 		);
 	}
 }

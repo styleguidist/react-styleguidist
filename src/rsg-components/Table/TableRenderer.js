@@ -5,8 +5,10 @@ import Styled from 'rsg-components/Styled';
 export const styles = ({ space, color, fontFamily, fontSize }) => ({
 	table: {
 		width: '100%',
-		borderCollapse: 'collapse',
 		marginBottom: space[4],
+    backgroundColor: 'whitesmoke',
+    border: '1px solid #e8e8e8',
+    padding: '10px',
 	},
 	tableHead: {
 		borderBottom: [[1, color.border, 'solid']],

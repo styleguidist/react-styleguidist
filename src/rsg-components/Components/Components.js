@@ -4,6 +4,16 @@ import ReactComponent from 'rsg-components/ReactComponent';
 import ComponentsRenderer from 'rsg-components/Components/ComponentsRenderer';
 
 export default function Components({ components, depth }) {
+
+  // filter out components with static styleguide false
+  components = components.filter((comp) => {
+    if (comp.module.default) {
+      return comp.module.default.styleguide !== false;
+    }
+    const mod = Object.keys(comp.module);
+    return comp.module[mod[0]].styleguide !== false;
+  });
+
 	return (
 		<ComponentsRenderer>
 			{components.map(component => (

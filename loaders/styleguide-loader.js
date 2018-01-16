@@ -25,6 +25,9 @@ const CLIENT_CONFIG_OPTIONS = [
 	'styles',
 	'compilerConfig',
 	'editorConfig',
+	'groups',
+	'groupsOptions',
+	'useCustomScss',
 ];
 
 module.exports = function() {};

@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import Logo from 'rsg-components/Logo';
 import Markdown from 'rsg-components/Markdown';
 import Styled from 'rsg-components/Styled';
+import Groups from 'rsg-components/Groups';
 import cx from 'classnames';
+
+import './index.scss';
 
 const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth }) => ({
 	root: {
@@ -17,7 +20,7 @@ const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth
 	},
 	content: {
 		maxWidth,
-		padding: [[space[2], space[4]]],
+		padding: '0px 0px 0px 32px',
 		margin: [[0, 'auto']],
 		[mq.small]: {
 			padding: space[2],
@@ -57,17 +60,18 @@ const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth
 export function StyleGuideRenderer({ classes, title, homepageUrl, children, toc, hasSidebar }) {
 	return (
 		<div className={cx(classes.root, hasSidebar && classes.hasSidebar)}>
-			<main className={classes.content}>
+			<div>
+				<Groups />
+			</div>
+			<main className="main">
 				{children}
-				<footer className={classes.footer}>
-					<Markdown text={`Generated with [React Styleguidist](${homepageUrl})`} />
+				<footer className="footer">
+					<Markdown text={`Generated with [React Styleguidist](${homepageUrl}) modified by [RadSwiat](https://github.com/radswiat)`} />
 				</footer>
 			</main>
 			{hasSidebar && (
 				<div className={classes.sidebar}>
-					<div className={classes.logo}>
-						<Logo>{title}</Logo>
-					</div>
+					<Logo>{title}</Logo>
 					{toc}
 				</div>
 			)}

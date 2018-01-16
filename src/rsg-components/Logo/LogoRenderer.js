@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 
+import './index.scss';
+
 const styles = ({ color, fontFamily, fontSize }) => ({
 	logo: {
 		color: color.base,
@@ -13,7 +15,11 @@ const styles = ({ color, fontFamily, fontSize }) => ({
 });
 
 export function LogoRenderer({ classes, children }) {
-	return <h1 className={classes.logo}>{children}</h1>;
+	return (
+		<div className="logo">
+			<h1 className="logo__title">{children}</h1>
+		</div>
+	)
 }
 
 LogoRenderer.propTypes = {

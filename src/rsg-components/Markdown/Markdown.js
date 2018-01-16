@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { compiler } from 'markdown-to-jsx';
 import mapValues from 'lodash/mapValues';
@@ -7,7 +6,10 @@ import Styled from 'rsg-components/Styled';
 import Link from 'rsg-components/Link';
 import Text from 'rsg-components/Text';
 import Para, { styles as paraStyles } from 'rsg-components/Para';
+import MarkdownBlockQuote from 'rsg-components/MarkdownBlockQuote';
 import MarkdownHeading from 'rsg-components/Markdown/MarkdownHeading';
+import InlineCode from 'rsg-components/InlineCode';
+import OS from 'os';
 import List from 'rsg-components/Markdown/List';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
@@ -15,21 +17,8 @@ import List from 'rsg-components/Markdown/List';
 // eslint-disable-next-line import/no-unresolved
 require('!!../../../loaders/style-loader!../../../loaders/css-loader!highlight.js/styles/tomorrow.css');
 
-// Code blocks with server-side syntax highlight
-function Code({ children, className }) {
-	const isHighlighted = className && className.indexOf('lang-') !== -1;
-	if (isHighlighted) {
-		return <code className={className} dangerouslySetInnerHTML={{ __html: children }} />;
-	}
-	return <code className={className}>{children}</code>;
-}
-Code.propTypes = {
-	children: PropTypes.node,
-	className: PropTypes.string,
-};
-
 // Custom CSS classes for each tag: <em> → <em className={s.em}> + custom components
-const getBaseOverrides = memoize(classes => {
+const getBaseOverrides = memoize((classes) => {
 	const styleOverrides = mapValues(classes, value => ({
 		props: {
 			className: value,
@@ -89,6 +78,12 @@ const getBaseOverrides = memoize(classes => {
 				semantic: 'em',
 			},
 		},
+		blockquote: {
+			component: MarkdownBlockQuote,
+			props: {
+				isRhs: false,
+			},
+		},
 		strong: {
 			component: Text,
 			props: {
@@ -105,7 +100,7 @@ const getBaseOverrides = memoize(classes => {
 			},
 		},
 		code: {
-			component: Code,
+			component: InlineCode,
 			props: {
 				className: classes.code,
 			},
@@ -136,12 +131,6 @@ const styles = ({ space, fontFamily, fontSize, color, borderRadius }) => ({
 		isolate: false,
 		display: 'inline-block',
 		verticalAlign: 'middle',
-	},
-	blockquote: {
-		composes: '$para',
-		fontSize: fontSize.base,
-		margin: [[space[2], space[4]]],
-		padding: 0,
 	},
 	hr: {
 		composes: '$para',
@@ -188,6 +177,26 @@ const styles = ({ space, fontFamily, fontSize, color, borderRadius }) => ({
 function Markdown({ classes, text, inline }) {
 	const overrides = inline ? getInlineOverrides(classes) : getBaseOverrides(classes);
 	return compiler(text, { overrides, forceBlock: true });
+}
+
+// instead of rendering, return as array outside of react component rendering way
+export function asArrayMarkdown({ text }) {
+	const markdowns = [];
+	text.map((example) => {
+		const rhs = example.content.split(OS.EOL).filter((line) => /^(>)([\s\w\W]+)$/.test(line));
+		console.log(rhs);
+		rhs.map((rhsText) => {
+			markdowns.push(compiler(rhsText, { overrides: {
+					blockquote: {
+						component: MarkdownBlockQuote,
+						props: {
+							isRhs: true,
+						},
+					},
+				}, forceBlock: true }));
+		});
+	});
+	return markdowns;
 }
 
 Markdown.propTypes = {

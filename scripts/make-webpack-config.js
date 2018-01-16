@@ -13,13 +13,22 @@ const StyleguidistOptionsPlugin = require('./utils/StyleguidistOptionsPlugin');
 
 const RENDERER_REGEXP = /Renderer$/;
 
-const sourceDir = path.resolve(__dirname, '../lib');
+let sourceDir = null;
+
 const htmlLoader = require.resolve('html-webpack-plugin/lib/loader');
 
 module.exports = function(config, env) {
 	process.env.NODE_ENV = process.env.NODE_ENV || env;
 
+	if (config.dev) {
+		sourceDir = path.resolve(__dirname, '../src');
+	} else {
+		sourceDir = path.resolve(__dirname, '../lib');
+	}
+
 	const isProd = env === 'production';
+	const customScssPath = config.customScss && config.customScss.length ?
+		path.resolve(process.cwd(), config.customScss) : path.resolve(__dirname, 'src/custom.scss');
 
 	let webpackConfig = {
 		entry: config.require.concat([path.resolve(sourceDir, 'index')]),
@@ -32,6 +41,7 @@ module.exports = function(config, env) {
 			extensions: ['.js', '.jsx', '.json'],
 			alias: {
 				'rsg-codemirror-theme.css': `codemirror/theme/${config.highlightTheme}.css`,
+				'rsg-custom-theme.scss': customScssPath,
 			},
 		},
 		plugins: [
@@ -106,12 +116,16 @@ module.exports = function(config, env) {
 				? `${name.replace(RENDERER_REGEXP, '')}/${name}`
 				: name;
 			webpackConfig.resolve.alias[`rsg-components/${fullName}`] = filepath;
+			webpackConfig.resolve.alias[`custom-rsg-components/${fullName}`] = filepath;
+			webpackConfig.resolve.alias[`store/${fullName}`] = filepath;
 		});
 	}
 
 	// Add components folder alias at the end so users can override our components to customize the style guide
 	// (their aliases should be before this one)
 	webpackConfig.resolve.alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
+	webpackConfig.resolve.alias['custom-rsg-components'] = path.resolve(sourceDir, 	'custom-rsg-components');
+	webpackConfig.resolve.alias.store = path.resolve(sourceDir, 	'store');
 
 	if (config.dangerouslyUpdateWebpackConfig) {
 		webpackConfig = config.dangerouslyUpdateWebpackConfig(webpackConfig, env);

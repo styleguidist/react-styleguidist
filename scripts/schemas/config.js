@@ -19,6 +19,10 @@ const fileExistsCaseInsensitive = require('../utils/findFileCaseInsensitive');
 const consts = require('../consts');
 
 module.exports = {
+	dev: {
+		type: 'boolean',
+		default: false,
+	},
 	assetsDir: {
 		type: 'existing directory path',
 		example: 'assets',
@@ -189,6 +193,18 @@ module.exports = {
 		type: 'boolean',
 		default: true,
 	},
+	groups: {
+		type: 'object',
+		default: null,
+	},
+	groupsOptions: {
+		type: 'object',
+		default: null,
+	},
+	useCustomScss: {
+		type: 'boolean',
+		default: false,
+	},
 	skipComponentsWithoutExample: {
 		type: 'boolean',
 		default: false,
@@ -231,7 +247,7 @@ module.exports = {
 				return val;
 			}
 			const name = getUserPackageJson().name;
-			return `${startCase(name)} Style Guide`;
+			return `${startCase(name)}`;
 		},
 		example: 'My Style Guide',
 	},

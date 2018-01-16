@@ -2,6 +2,7 @@
 	"parser": "babel-eslint",
 	"extends": "tamia/react",
 	"rules": {
+    "prettier/prettier": "off",
 		"valid-jsdoc": 0,
 		"react/prefer-stateless-function": 0
 	}

@@ -1,13 +1,12 @@
-# editorconfig.org
 root = true
 
 [*]
-indent_style = tab
-end_of_line = lf
-charset = utf-8
-trim_trailing_whitespace = true
+charset=utf-8
+end_of_line=lf
+insert_final_newline=false
+indent_style=space
+indent_size=2
+max_line_length = 140
+wrap_width = 140
 insert_final_newline = true
-
-[*.{json,yml,md,babelrc,eslintrc,remarkrc}]
-indent_style = space
-indent_size = 2
+trim_trailing_whitespace = true

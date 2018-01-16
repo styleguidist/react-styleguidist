@@ -2,15 +2,47 @@
 
 <img src="https://d3vv6lp55qjaqc.cloudfront.net/items/061f0A2n1B0H3p0T1p1f/react-styleguidist-logo.png" alt="React Styleguidist" width="400">
 
-**Isolated React component development environment with a living style guide**
+**MODIFIED VERSION**
 
-[![Build Status](https://travis-ci.org/styleguidist/react-styleguidist.svg)](https://travis-ci.org/styleguidist/react-styleguidist) [![npm](https://img.shields.io/npm/v/react-styleguidist.svg)](https://www.npmjs.com/package/react-styleguidist) [![Join the chat at https://gitter.im/styleguidist/styleguidist](https://badges.gitter.im/styleguidist/styleguidist.svg)](https://gitter.im/styleguidist/styleguidist?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/styleguidist) [![Codecov](https://codecov.io/gh/styleguidist/react-styleguidist/branch/master/graph/badge.svg)](https://codecov.io/gh/styleguidist/react-styleguidist)
+This is modified version of the original React Styleguidist.
 
 </div>
 
-React Styleguidist is a component development environment with hot reloaded dev server and a living style guide that you can share with your team. It lists component `propTypes` and shows live, editable usage examples based on Markdown files. Check out [**the demo style guide**](https://react-styleguidist.js.org/examples/basic/).
+### Read below before use
+- this repo will not be maintained
+- no support will be provided
+- no documentation updates for new features
+- there can be lots of issues with different configurations as I only made this to work for my own needs
+- use on your own responsibility
 
-![](https://d3vv6lp55qjaqc.cloudfront.net/items/271B372x102S0c052i3F/react-styleguidist7.gif)
+# Deviations from original styleguidist package
+- changes in babel configuration to fix MobX observables
+- groups support `( see screenshots and ./examples/basic/styleguide.config.js )`
+- add extra comments column for special md comment blocks `usage: "> header" and ">> text" in MD files`
+- inject custom scss file to modify styles `( customScss: './examples/basic/custom.scss' )`
+- auto generate navigation headings by reading md headings ( ## Test -> will create Test in navigation )
+
+![](https://i.imgur.com/Ifof2of.png)
+![](https://i.imgur.com/bL0lsVz.png)
+![](https://i.imgur.com/G8EboqS.png)
+
+# Change Log
+
+All notable changes to this project will be documented in this file.
+
+> **[ 1.2.* ]** - 10 - Jan - 2018
+- styling changes
+
+> **[ 1.2.4 ]** - 9 - Jan - 2018
+- headings
+  - **improvements**
+    - headings will use pure scss
+  - **new features**
+    - add type support, component heading will have extra class now `heading--type-component`
+
+
+
+---------- Original styleguidist readme ----------
 
 ## Usage
 

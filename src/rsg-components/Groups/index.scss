@@ -1,0 +1,20 @@
+.groups {
+
+  &__pane {
+	margin-top: -16px;
+	background: #f5f5f5;
+	border: 1px solid #e8e8e8;
+	border-width: 0px 0px 1px 0px;
+  }
+
+  &__content {
+	padding: 32px 32px 14px 32px;
+	margin: 0 auto;
+	display: block;
+  }
+
+  &__title {
+	color: #5a5a5a;
+  }
+
+}

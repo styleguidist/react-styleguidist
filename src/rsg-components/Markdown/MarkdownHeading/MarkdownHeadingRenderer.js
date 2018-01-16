@@ -9,10 +9,10 @@ const styles = ({ space }) => ({
 	},
 });
 
-function MarkdownHeadingRenderer({ classes, level, children }) {
+function MarkdownHeadingRenderer({ classes, level, children, type }) {
 	return (
 		<div className={classes.spacing}>
-			<Heading level={level}>{children}</Heading>
+			<Heading level={level} type={type}>{children}</Heading>
 		</div>
 	);
 }

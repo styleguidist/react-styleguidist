@@ -22,7 +22,8 @@ export default function renderStyleguide(
 	hist = window.history
 ) {
 	const allSections = processSections(styleguide.sections);
-
+  console.log('================= allSections =================');
+  console.log(allSections);
 	// Globalize all components, not just ones we see on the screen, to make
 	// all components accessible to all examples
 	globalizeComponents(allSections);

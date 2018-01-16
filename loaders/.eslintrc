@@ -4,6 +4,7 @@
 		"sourceType": "script"
 	},
 	"rules": {
+    "prettier/prettier": "off",
 		"no-invalid-this": 0,
 		"strict": [2, "global"],
 		"es5/no-default-parameters": 2,

@@ -1,0 +1,15 @@
+.logo {
+  height: 44px;
+  overflow: hidden;
+  border: 1px solid #e8e8e8;
+  border-width: 0px 0px 1px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__title {
+	font-size: 20px;
+	margin: 0;
+  }
+
+}

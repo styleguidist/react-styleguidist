@@ -1,0 +1,28 @@
+.section {
+
+  &--standalone {
+	padding: 12px;
+  }
+
+  &--flex {
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+  }
+
+  &__lhs {
+	position: relative;
+	width: 60%;
+	padding: 20px 32px 0px 0px;
+
+  }
+
+  &__rhs {
+	position: relative;
+	width: 40%;
+	background: #424242;
+	color: whitesmoke;
+	padding-top: 20px;
+  }
+
+}
