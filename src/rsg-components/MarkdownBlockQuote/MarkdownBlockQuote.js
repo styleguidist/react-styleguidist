@@ -13,7 +13,6 @@ export default class MarkdownBlockQuote extends Component {
 	};
 
 	static contentToId = function(node) {
-
 		let extractedChild = null;
 
 		if (node.props && node.props.children) {
@@ -51,7 +50,6 @@ export default class MarkdownBlockQuote extends Component {
 		if (sibling) {
 			sibling = sibling.querySelector('.blockQuote');
 		}
-		// console.log('root', rootNode.parentElement.previousSibling.querySelector('.blockQuote'));
 
 		const id = MarkdownBlockQuote.contentToId(this.child);
 		const element = document.getElementById(id);
@@ -106,12 +104,12 @@ export default class MarkdownBlockQuote extends Component {
 			)
 		}
 
-
 		// is nested blockQuote ?
 		// handle md of: ">> some text"
 		// render as plain text instead of blockQuote with darker color
 		if (this.props.children[0].props.children[0].props) {
 			this.child = this.props.children[0].props.children;
+			console.warn(this.props.children);
 			return (
 				<div className="blockQuote blockQuote--plain" style={this.state.stylePosition}>{this.props.children[0].props.children}</div>
 			);

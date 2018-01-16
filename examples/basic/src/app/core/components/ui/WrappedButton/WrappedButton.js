@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 
 /**
  * A button wrapped by a Decorator/Enhancer
- *
- * @version 1.0.1
- * @author [Jeremy Gayed](https://github.com/tizmagik)
- * @deprecated Use the [only true button](#button) instead
  */
 const WrappedButton = ({ color, size, children }) => {
 	const styles = {

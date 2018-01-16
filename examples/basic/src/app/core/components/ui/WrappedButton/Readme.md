@@ -1,10 +1,19 @@
+`version: 1.0.0`
+
 Modal is a singleton & HOC component.
 
-#### Prerequisites
+## Prerequisites
 
-To start working with Modal you have to make sure it is included inside App container as follow:
+Modal is using singleton component pattern.
+
+First you have to include this singleton
+component inside the app. 
+
+Best will be to include it inside your `App` container.
 
 ```jsx static
+/* src/app/components/containers/app/app.jsx */
+
 import { ModalHoc } from 'core/components/singletons/modal/modal';
 
 export default class App extends Component {
@@ -17,12 +26,13 @@ export default class App extends Component {
           {this.props.children}
         ...
       );
-      
 
 ```
 
-Using the modal is simple. Import the modal class, and call `modal.open`.
-Remember that modal doesn't have any templates/components by default, you have to pass over
+## Usage
+
+Import the modal class, and call `modal.open`.
+Remember that modal does not have any templates/components by default, you have to pass over
 your own template into it.
 
 ```jsx static
@@ -30,19 +40,20 @@ import modal from 'core/components/singletons/modal/modal';
 
 ...
 
-modal.open({
-  component: ModalSwitch,
-  data: {
-    id: d.id,
-    data: d.data,
-    type: d.data.type,
-    baseUrl: this.baseUrl,
-  },
-});
+handleExample() {
+  modal.open({
+    component: ModalSwitch, // your custom template component
+    data: null, // object to be passed as props into your template component
+  });
+}
     
 ```
 
-Modal component/template example:
+## Template component
+
+Modal requires you to create your own template component.
+
+Please find example below:
 
 ```jsx static
 
@@ -77,3 +88,9 @@ export default class ModalTopGuides extends Component {
 }
 
 ```
+
+## Change Log
+
+All notable changes to this component
+
+\> **[ 1.0.0 ]** - 10 - Jan - 2018

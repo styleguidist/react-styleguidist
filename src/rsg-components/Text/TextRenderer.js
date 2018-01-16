@@ -26,8 +26,8 @@ export const styles = ({ fontFamily, fontSize, color }) => ({
 		color: color.light,
 	},
 	em: {
-		fontStyle: 'italic',
-    color: '#9E9E9E',
+		fontStyle: 'normal',
+    color: '#8a8a8a',
 	},
 	strong: {
 		fontWeight: 'bold',

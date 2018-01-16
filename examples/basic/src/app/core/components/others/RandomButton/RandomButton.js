@@ -8,6 +8,9 @@ import './RandomButton.css';
  * Button that changes label on every click.
  */
 export default class RandomButton extends Component {
+
+  static styleguide = false;
+
 	static propTypes = {
 		/**
 		 * List of possible labels.

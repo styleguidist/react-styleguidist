@@ -30,7 +30,10 @@ This is modified version of the original React Styleguidist.
 
 All notable changes to this project will be documented in this file.
 
-> **[ 1.2.4 ]** - 9 - Jan - 2017
+> **[ 1.2.* ]** - 10 - Jan - 2018
+- styling changes
+
+> **[ 1.2.4 ]** - 9 - Jan - 2018
 - headings
   - **improvements**
     - headings will use pure scss
