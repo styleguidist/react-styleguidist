@@ -13,7 +13,7 @@ import Text from 'rsg-components/Text';
 import Para from 'rsg-components/Para';
 import Table from 'rsg-components/Table';
 import map from 'lodash/map';
-import { unquote, getType, showSpaces } from './util';
+import { unquote, getType, showSpaces, isFlowTyped } from './util';
 
 function renderType(type) {
 	if (!type) {
@@ -31,6 +31,19 @@ function renderType(type) {
 			return type.value;
 		default:
 			return name;
+	}
+}
+
+function renderFlowType(type) {
+	if (!type) {
+		return 'unknown';
+	}
+
+	const { name, raw } = type;
+
+	switch (name) {
+		default:
+			return raw || name;
 	}
 }
 
@@ -76,19 +89,15 @@ function renderShape(props) {
 const defaultValueBlacklist = ['null', 'undefined'];
 
 function renderDefault(prop) {
-	if (prop.required) {
-		return (
-			<Text size="small" color="light">
-				Required
-			</Text>
-		);
-	} else if (prop.defaultValue) {
-		if (prop.type) {
-			const propName = prop.type.name;
+	// Workaround for issue https://github.com/reactjs/react-docgen/issues/221
+	// If prop has defaultValue it can not be required
+	if (prop.defaultValue) {
+		if (prop.type || prop.flowType) {
+			const propName = prop.type ? prop.type.name : prop.flowType.type;
 
 			if (defaultValueBlacklist.indexOf(prop.defaultValue.value) > -1) {
 				return <Code>{showSpaces(unquote(prop.defaultValue.value))}</Code>;
-			} else if (propName === 'func') {
+			} else if (propName === 'func' || propName === 'function') {
 				return (
 					<Text
 						size="small"
@@ -125,6 +134,12 @@ function renderDefault(prop) {
 		}
 
 		return <Code>{showSpaces(unquote(prop.defaultValue.value))}</Code>;
+	} else if (prop.required) {
+		return (
+			<Text size="small" color="light">
+				Required
+			</Text>
+		);
 	}
 	return '';
 }
@@ -198,6 +213,9 @@ function renderName(prop) {
 }
 
 function renderTypeColumn(prop) {
+	if (isFlowTyped(prop)) {
+		return <Type>{renderFlowType(getType(prop))}</Type>;
+	}
 	return <Type>{renderType(getType(prop))}</Type>;
 }
 
