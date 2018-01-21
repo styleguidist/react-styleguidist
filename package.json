@@ -161,11 +161,6 @@
     "precommit": "lint-staged",
     "format:md": "prettier --write '**/*.md'"
   },
-  "release": {
-    "analyzeCommits": "semantic-release-tamia/analyzeCommits",
-    "generateNotes": "semantic-release-tamia/generateNotes",
-    "verifyRelease": "semantic-release-tamia/verifyRelease"
-  },
   "jest": {
     "setupFiles": [
       "./test/raf-polyfill.js",

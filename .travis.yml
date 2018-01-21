@@ -21,7 +21,7 @@ script:
     if [[ "$TRAVIS_NODE_VERSION" == "4" ]]; then
       NODE_ENV=test node --harmony-proxies $(npm bin)/jest --runInBand
     else
-      if [[ "$TRAVIS_NODE_VERSION" == "8" ]]; then
+      if [[ "$TRAVIS_NODE_VERSION" == "9" ]]; then
         npm run danger
         npm run test:coverage -- --runInBand
       else
@@ -36,7 +36,7 @@ script:
   - npm run build:sections
   # Check that examples really works: no JS errors on load
   - |
-    if [[ "$TRAVIS_NODE_VERSION" == "8" ]]; then
+    if [[ "$TRAVIS_NODE_VERSION" == "9" ]]; then
       npm run test:browser:pre
       npm run test:browser
       npm run test:browser:customised
@@ -46,9 +46,9 @@ after_success:
   # Make release with semantic-release if needed
   - npm install -g semantic-release
   - npm install --no-save semantic-release-tamia
-  - semantic-release pre && npm publish && semantic-release post
+  - semantic-release --analyze-commits semantic-release-tamia/analyzeCommits --verify-release semantic-release-tamia/verifyRelease --generate-notes semantic-release-tamia/generateNotes
   - |
-    if [[ "$TRAVIS_NODE_VERSION" == "8" ]]; then
+    if [[ "$TRAVIS_NODE_VERSION" == "9" ]]; then
       # Upload coverage report to Codecov
       bash <(curl -s https://codecov.io/bash)
       # Update site
