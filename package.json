@@ -129,7 +129,6 @@
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
     "rimraf": "^2.6.2",
-    "semantic-release-tamia": "^1.1.1",
     "strip-shebang": "^1.0.2",
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0"
