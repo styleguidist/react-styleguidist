@@ -35,6 +35,24 @@ function render(propTypes, defaultProps = []) {
 	return shallow(<ColumnsRenderer props={props.props} />);
 }
 
+function renderFlow(propsType, defaultProps = []) {
+	const props = parse(`
+	  // @flow
+		import * as React from 'react';
+		type Props = {
+			${propsType.join(',')}
+		};
+		export default class Cmpnt extends React.Component<Props> {
+			static defaultProps = {
+				${defaultProps.join(',')}
+			}
+			render() {
+			}
+		}
+	`);
+	return shallow(<ColumnsRenderer props={props.props} />);
+}
+
 describe('PropsRenderer', () => {
 	it('should render a table', () => {
 		const actual = shallow(
@@ -296,6 +314,60 @@ describe('props columns', () => {
 			},
 		};
 		const actual = shallow(<ColumnsRenderer props={props} />);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render type string', () => {
+		const actual = renderFlow(['foo: string']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render optional type string', () => {
+		const actual = renderFlow(['foo?: string']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render type string with a default value', () => {
+		const actual = renderFlow(['foo?: string'], ['foo: "bar"']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render literal type', () => {
+		const actual = renderFlow(['foo?: "bar"']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render object type with body in tooltip', () => {
+		const actual = renderFlow(['foo: { bar: string }']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render function type with body in tooltip', () => {
+		const actual = renderFlow(['foo: () => void']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render union type with body in tooltip', () => {
+		const actual = renderFlow(['foo: "bar" | number']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render tuple type with body in tooltip', () => {
+		const actual = renderFlow(['foo: ["bar", number]']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render custom class type', () => {
+		const actual = renderFlow(['foo: React.ReactNode']);
 
 		expect(actual).toMatchSnapshot();
 	});

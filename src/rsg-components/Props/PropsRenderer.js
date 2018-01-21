@@ -39,12 +39,27 @@ function renderFlowType(type) {
 		return 'unknown';
 	}
 
-	const { name, raw } = type;
+	const { name, raw, value } = type;
 
 	switch (name) {
+		case 'literal':
+			return value;
+		case 'signature':
+			return renderComplexType(type.type, raw);
+		case 'union':
+		case 'tuple':
+			return renderComplexType(name, raw);
 		default:
 			return raw || name;
 	}
+}
+
+function renderComplexType(name, title) {
+	return (
+		<Text size="small" underlined title={title}>
+			<Type>{name}</Type>
+		</Text>
+	);
 }
 
 function renderEnum(prop) {

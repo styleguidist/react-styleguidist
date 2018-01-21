@@ -3,13 +3,6 @@ import * as React from 'react';
 
 import './FlowButton.css';
 
-type Padding = string | number;
-
-type Styles = {
-	width?: number,
-	padding?: Padding,
-};
-
 type Props = {
 	/** Button label */
 	children: React.ReactNode,
@@ -22,7 +15,10 @@ type Props = {
 	/** Gets called when the user clicks on the button */
 	onClick: (event: SyntheticEvent<HTMLButtonElement>) => void,
 	/** Width and padding for the button */
-	styles?: Styles,
+	styles?: {
+		width?: number,
+		padding?: string | number,
+	},
 };
 
 /**
