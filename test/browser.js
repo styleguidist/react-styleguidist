@@ -26,7 +26,7 @@ async function onerror(err) {
 }
 
 (async () => {
-	browser = await puppeteer.launch();
+	browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
 	const page = await browser.newPage();
 	await page.setViewport({ width: 1024, height: 768 });
 	page.on('error', onerror);
