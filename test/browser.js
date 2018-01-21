@@ -9,8 +9,8 @@ const args = process.argv.slice(2);
 
 let browser;
 
-process.on('unhandledRejection', (reason, promise) => {
-	console.log('Unhandled Promise rejection at', promise, 'reason:', reason);
+process.on('unhandledRejection', reason => {
+	console.log('Unhandled Promise rejection:', reason);
 	if (browser) {
 		browser.close().then(() => process.exit(1));
 	}
@@ -19,7 +19,9 @@ process.on('unhandledRejection', (reason, promise) => {
 
 async function onerror(err) {
 	console.error(err.stack);
-	await browser.close();
+	if (browser) {
+		await browser.close();
+	}
 	process.exit(1);
 }
 
