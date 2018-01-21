@@ -9,6 +9,14 @@ const args = process.argv.slice(2);
 
 let browser;
 
+process.on('unhandledRejection', (reason, promise) => {
+	console.log('Unhandled Promise rejection at', promise, 'reason:', reason);
+	if (browser) {
+		browser.close().then(() => process.exit(1));
+	}
+	process.exit(1);
+});
+
 async function onerror(err) {
 	console.error(err.stack);
 	await browser.close();
@@ -22,7 +30,11 @@ async function onerror(err) {
 	page.on('error', onerror);
 	page.on('pageerror', onerror);
 
-	page.on('console', (...args) => console.log('PAGE LOG:', ...args));
+	page.on('console', msg => {
+		if (msg.type() !== 'clear') {
+			console.log('PAGE LOG:', msg.text());
+		}
+	});
 
 	const url = /https?/.test(args[0]) ? args[0] : `file://${path.resolve(args[0])}`;
 	await page.goto(url);
