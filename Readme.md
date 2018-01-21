@@ -73,6 +73,76 @@ The change log can be found on the [Releases page](https://github.com/styleguidi
 
 Everyone is welcome to contribute. Please take a moment to read the [contributing guidelines](.github/Contributing.md) and the [developer guide](https://react-styleguidist.js.org/docs/development.html).
 
+## Sponsoring
+
+[Become a sponsor](https://opencollective.com/styleguidist#sponsor) and get your logo on our Readme on GitHub with a link to your site.
+
+<!-- prettier-ignore -->
+<a href="https://opencollective.com/styleguidist/sponsor/0/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/1/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/2/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/3/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/4/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/5/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/6/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/7/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/8/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/9/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/9/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/10/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/10/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/11/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/11/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/12/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/12/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/13/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/13/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/14/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/14/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/15/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/15/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/16/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/16/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/17/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/17/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/18/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/18/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/19/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/19/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/20/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/20/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/21/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/21/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/22/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/22/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/23/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/23/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/24/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/24/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/25/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/25/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/26/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/26/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/27/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/27/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/28/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/28/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/sponsor/29/website" target="_blank"><img src="https://opencollective.com/styleguidist/sponsor/29/avatar.svg"></a>
+
+[Become a backer](https://opencollective.com/styleguidist#backer) get your image on our Readme on GitHub with a link to your site.
+
+<!-- prettier-ignore -->
+<a href="https://opencollective.com/styleguidist/backer/0/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/0/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/1/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/1/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/2/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/2/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/3/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/3/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/4/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/4/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/5/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/5/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/6/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/6/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/7/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/7/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/8/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/8/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/9/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/9/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/10/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/10/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/11/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/11/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/12/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/12/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/13/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/13/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/14/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/14/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/15/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/15/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/16/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/16/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/17/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/17/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/18/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/18/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/19/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/19/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/20/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/20/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/21/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/21/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/22/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/22/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/23/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/23/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/24/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/24/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/25/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/25/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/26/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/26/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/27/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/27/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/28/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/28/avatar.svg"></a>
+<a href="https://opencollective.com/styleguidist/backer/29/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/29/avatar.svg"></a>
+
 ## Authors and license
 
 [Artem Sapegin](http://sapegin.me) and [contributors](https://github.com/styleguidist/react-styleguidist/graphs/contributors).

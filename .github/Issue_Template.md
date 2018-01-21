@@ -21,4 +21,7 @@ Most likely you’ll find an issue yourself, while creating a demo.
 
 If you want to request a feature, consider opening a pull request instead.
 
+Love Styleguidist? Please consider supporting us:
+👉  https://opencollective.com/styleguidist
+
 -->
