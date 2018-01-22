@@ -13,7 +13,7 @@ import Text from 'rsg-components/Text';
 import Para from 'rsg-components/Para';
 import Table from 'rsg-components/Table';
 import map from 'lodash/map';
-import { unquote, getType, showSpaces, isFlowTyped } from './util';
+import { unquote, getType, showSpaces } from './util';
 
 function renderType(type) {
 	if (!type) {
@@ -228,7 +228,7 @@ function renderName(prop) {
 }
 
 function renderTypeColumn(prop) {
-	if (isFlowTyped(prop)) {
+	if (prop.flowType) {
 		return <Type>{renderFlowType(getType(prop))}</Type>;
 	}
 	return <Type>{renderType(getType(prop))}</Type>;

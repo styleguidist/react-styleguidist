@@ -19,16 +19,6 @@ export function getType(prop) {
 }
 
 /**
- * Checks if prop has flow type definitions.
- *
- * @param {object} prop
- * @returns {boolean}
- */
-export function isFlowTyped(prop) {
-	return Boolean(prop.flowType);
-}
-
-/**
  * Show starting and ending whitespace around given string.
  *
  * @param {string} string
