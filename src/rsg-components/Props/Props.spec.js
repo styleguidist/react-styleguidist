@@ -299,6 +299,42 @@ describe('props columns', () => {
 
 		expect(actual).toMatchSnapshot();
 	});
+
+	it('should sort properties', () => {
+		const props = {
+			size2: {
+				type: {
+					name: 'number',
+				},
+				required: false,
+				description: 'Test description',
+			},
+			foo2: {
+				type: {
+					name: 'number',
+				},
+				required: true,
+				description: 'Test description',
+			},
+			foo1: {
+				type: {
+					name: 'number',
+				},
+				required: true,
+				description: 'Test description',
+			},
+			size1: {
+				type: {
+					name: 'number',
+				},
+				required: false,
+				description: 'Test description',
+			},
+		};
+		const actual = shallow(<ColumnsRenderer props={props} />);
+
+		expect(actual).toMatchSnapshot();
+	});
 });
 
 describe('unquote', () => {

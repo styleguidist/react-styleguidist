@@ -12,7 +12,6 @@ import Type from 'rsg-components/Type';
 import Text from 'rsg-components/Text';
 import Para from 'rsg-components/Para';
 import Table from 'rsg-components/Table';
-import map from 'lodash/map';
 import { unquote, getType, showSpaces } from './util';
 
 function renderType(type) {
@@ -206,7 +205,14 @@ export function getRowKey(row) {
 }
 
 export function propsToArray(props) {
-	return map(props, (prop, name) => ({ ...prop, name }));
+	const propNames = Object.keys(props);
+	const requiredPropNames = propNames.filter(propName => props[propName].required).sort();
+	const optionalPropNames = propNames.filter(propName => !props[propName].required).sort();
+	const sortedPropNames = requiredPropNames.concat(optionalPropNames);
+	return sortedPropNames.map(name => ({
+		...props[name],
+		name,
+	}));
 }
 
 export const columns = [
