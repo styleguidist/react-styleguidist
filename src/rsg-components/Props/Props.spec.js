@@ -1,6 +1,6 @@
 import React from 'react';
 import { parse } from 'react-docgen';
-import PropsRenderer, { propsToArray, columns } from './PropsRenderer';
+import PropsRenderer, { propsToArray, columns, getRowKey } from './PropsRenderer';
 import { unquote, getType, showSpaces } from './util';
 
 // Test renderers with clean readable snapshot diffs
@@ -404,5 +404,12 @@ describe('showSpaces', () => {
 	it('should replace leading and trailing spaces with a visible character', () => {
 		const result = showSpaces(' pizza ');
 		expect(result).toBe('␣pizza␣');
+	});
+});
+
+describe('getRowKey', () => {
+	it('should return type name', () => {
+		const result = getRowKey({ name: 'number' });
+		expect(result).toBe('number');
 	});
 });
