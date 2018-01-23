@@ -30,6 +30,7 @@ it('getComponentFiles() should accept components as a glob', () => {
 		'~/components/Annotation/Annotation.js',
 		'~/components/Button/Button.js',
 		'~/components/Placeholder/Placeholder.js',
+		'~/components/Price/Price.js',
 		'~/components/RandomButton/RandomButton.js',
 	]);
 });
@@ -39,6 +40,7 @@ it('getComponentFiles() should ignore specified patterns', () => {
 	expect(deabs(result)).toEqual([
 		'~/components/Annotation/Annotation.js',
 		'~/components/Placeholder/Placeholder.js',
+		'~/components/Price/Price.js',
 	]);
 });
 

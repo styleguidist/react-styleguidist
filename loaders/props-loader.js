@@ -12,6 +12,18 @@ const consts = require('../scripts/consts');
 
 const ERROR_MISSING_DEFINITION = 'No suitable component definition found.';
 
+function sortProps(props) {
+	const propNames = Object.keys(props);
+	const requiredPropNames = propNames.filter(propName => props[propName].required).sort();
+	const optionalPropNames = propNames.filter(propName => !props[propName].required).sort();
+	const sortedProps = requiredPropNames.concat(optionalPropNames).reduce((acc, name) => {
+		props[name].name = name;
+		acc.push(props[name]);
+		return acc;
+	}, []);
+	return sortedProps;
+}
+
 module.exports = function(source) {
 	const file = this.request.split('!').pop();
 	const config = this._styleguidist;
@@ -52,6 +64,10 @@ module.exports = function(source) {
 	}
 
 	props = getProps(props, file);
+	if (props.props) {
+		const sortedProps = sortProps(props.props);
+		props.props = sortedProps;
+	}
 
 	// Examples from Markdown file
 	const examplesFile = config.getExampleFilename(file);

@@ -44,6 +44,24 @@ it('should extract doclets', () => {
 	expect(result).toMatch(/require\('!!.*?\/loaders\/examples-loader\.js!\.\/examples.md'\)/);
 });
 
+it('should sort properties', () => {
+	const file = './test/components/Price/Price.js';
+	const result = propsLoader.call(
+		{
+			request: file,
+			_styleguidist,
+		},
+		readFileSync(file, 'utf8')
+	);
+	expect(result).toBeTruthy();
+
+	expect(() => new vm.Script(result)).not.toThrow();
+	expect(result.includes('makeABarrelRoll')).toBe(false);
+	expect(result).toMatch(
+		/props[\s\S]*?name': 'symbol'[\s\S]*?name': 'value'[\s\S]*?name': 'emphasize'[\s\S]*?name': 'unit'/m
+	);
+});
+
 it('should work with JSDoc annnotated components', () => {
 	const file = './test/components/Annotation/Annotation.js';
 	const result = propsLoader.call(
