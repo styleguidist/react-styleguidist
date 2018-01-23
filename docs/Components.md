@@ -25,7 +25,9 @@ But will ignore tests:
 * `__tests__` folder,
 * files containing `.test.js` or `.spec.js` (or same for `.jsx`, `.ts` and `.tsx`).
 
-If it doesn’t work for you, create a `styleguide.config.js` file in your project’s root folder and configure the patterns to fit your project structure. For example, if your components look like `components/Button/Button.js` + `components/Button/index.js` (meaning you need to skip `index.js`, otherwise the component will be loaded twice):
+If it doesn’t work for you, create a `styleguide.config.js` file in your project’s root folder and configure the patterns to fit your project structure.
+
+For example, if your component files look like `components/Button/Button.js`, but you rexport them in `components/Button/index.js` (like `export { default } from './Button'`) to simplify imports (`components/Button` instead of `components/Button/Button`), you need to skip `index.js`:
 
 ```javascript
 module.exports = {
