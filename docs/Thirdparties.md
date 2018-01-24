@@ -178,6 +178,45 @@ const SalmonButton = styled.button`
 export default SalmonButton
 ```
 
+#### Adding Styled Components `ThemeProvider`
+
+If your styled-components require a theme to render properly, you'll want to add a ThemeProvider Wrapper component to the docs.
+
+First, you'll need to create your Wrapper component. For this example we'll put it in the `styleguide/` directory, but you can add it anywhere you want.
+
+```sh
+$ mkdir styleguide
+$ touch styleguide/ThemeWrapper.js
+```
+Great! Now let's create the component:
+
+```jsx
+import React, { Component } from 'react'
+import { ThemeProvider } from 'styled-components';
+import theme from 'where/your/theme/lives';
+
+export default class ThemeWrapper extends Component {
+  render() {
+    return <ThemeProvider theme={theme}>{this.props.children}</ThemeProvider>
+  }
+}
+```
+
+Next, you'll need to add ThemeWrapper to your `styleguide.config.js`.
+
+```javascript
+const path = require('path');
+
+module.exports = {
+  ...
+  styleguideComponents: {
+    Wrapper: path.join(__dirname, 'styleguide/ThemeWrapper'),
+  },
+}
+```
+
+Cool! This will automatically apply your theme to your styled-components. When you fire up the styleguide, `npm run styleguide`, you should see your components render as expected.
+
 ### Fela
 
 Check out the [official example](https://github.com/rofrischmann/fela/tree/master/packages/example-with-styleguidist).
