@@ -1,20 +1,18 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { parse } from 'react-docgen';
 import PropsRenderer, { columns } from './PropsRenderer';
 import { unquote, getType, showSpaces } from './util';
 
 // Test renderers with clean readable snapshot diffs
-// eslint-disable-next-line react/prop-types
 export default function ColumnsRenderer({ props }) {
 	return (
 		<ul>
-			{/* eslint-disable react/prop-types */}
 			{props.map((row, rowIdx) => (
 				<li key={rowIdx}>
 					{columns.map(({ render }, colIdx) => <div key={colIdx}>{render(row)}</div>)}
 				</li>
 			))}
-			{/* eslint-enable react/prop-types */}
 		</ul>
 	);
 }
