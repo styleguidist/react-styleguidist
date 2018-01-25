@@ -235,6 +235,9 @@ module.exports = {
 		},
 		example: 'My Style Guide',
 	},
+	transformProps: {
+		type: 'function',
+	},
 	updateExample: {
 		type: 'function',
 		default: props => {

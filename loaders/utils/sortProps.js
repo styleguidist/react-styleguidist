@@ -1,21 +1,18 @@
 'use strict';
 
+const sortBy = require('lodash/sortBy');
+
 /**
- * Transforms the properties from an object to an array and sort them by the their 'required'
- * property and names.
+ * Sorts an array of properties by their 'required' property first and 'name'
+ * property second.
  *
- * @param {object} props
+ * @param {array} props
  * @return {array} Sorted properties
  */
 function sortProps(props) {
-	const propNames = Object.keys(props);
-	const requiredPropNames = propNames.filter(propName => props[propName].required).sort();
-	const optionalPropNames = propNames.filter(propName => !props[propName].required).sort();
-	const sortedProps = requiredPropNames.concat(optionalPropNames).reduce((acc, name) => {
-		props[name].name = name;
-		acc.push(props[name]);
-		return acc;
-	}, []);
+	const requiredPropNames = sortBy(props.filter(prop => prop.required), 'name');
+	const optionalPropNames = sortBy(props.filter(prop => !prop.required), 'name');
+	const sortedProps = requiredPropNames.concat(optionalPropNames);
 	return sortedProps;
 }
 

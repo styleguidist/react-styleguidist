@@ -51,7 +51,7 @@ export default class Button extends React.Component {
 
 > **Note:** You can change its behavior using [propsParser](Configuration.md#propsparser) and [resolver](Configuration.md#resolver) options.
 
-> **Note:** Component’s `PropTypes` and documentation comments are parsed by the [react-docgen](https://github.com/reactjs/react-docgen) library.
+> **Note:** Component’s `PropTypes` and documentation comments are parsed by the [react-docgen](https://github.com/reactjs/react-docgen) library. They can be modified using the [transformProps](Configuration.md#transformprops) function.
 
 ## Usage examples and Readme files
 

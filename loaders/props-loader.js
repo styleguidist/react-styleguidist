@@ -25,6 +25,7 @@ module.exports = function(source) {
 	const defaultParser = (filePath, source, resolver, handlers) =>
 		reactDocs.parse(source, resolver, handlers);
 	const propsParser = config.propsParser || defaultParser;
+	const propsTransform = config.propsTransform || sortProps;
 
 	let props = {};
 	try {
@@ -53,8 +54,18 @@ module.exports = function(source) {
 	}
 
 	props = getProps(props, file);
-	if (props.props) {
-		props.props = sortProps(props.props);
+
+	const componentProps = props.props;
+	if (componentProps) {
+		// Transform the properties to an array. This will allow for sorting.
+		const propsAsArray = Object.keys(componentProps).reduce((acc, name) => {
+			componentProps[name].name = name;
+			acc.push(componentProps[name]);
+			return acc;
+		}, []);
+
+		// Pipe through transform method and override component properties.
+		props.props = propsTransform(propsAsArray);
 	}
 
 	// Examples from Markdown file

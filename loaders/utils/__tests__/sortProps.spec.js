@@ -6,48 +6,32 @@ function makeProp(name, required, defaultValue, type) {
 	type = type === undefined ? { name: 'string' } : type;
 
 	return {
-		[name]: {
-			required,
-			defaultValue,
-			type,
-		},
+		name,
+		required,
+		defaultValue,
+		type,
 	};
 }
 
-it('should map props object to array', () => {
-	const props = {
-		...makeProp('prop1', true),
-		...makeProp('prop2', true),
-	};
-	const result = sortProps(props);
-	expect(Array.isArray(result)).toEqual(true);
-});
-
 it('should sort required props', () => {
-	const props = {
-		...makeProp('prop2', true),
-		...makeProp('prop1', true),
-	};
+	const props = [makeProp('prop2', true), makeProp('prop1', true)];
 	const result = sortProps(props);
 	expect(result.map(prop => prop.name)).toEqual(['prop1', 'prop2']);
 });
 
 it('should sort optional props', () => {
-	const props = {
-		...makeProp('prop2', false),
-		...makeProp('prop1', false),
-	};
+	const props = [makeProp('prop2', false), makeProp('prop1', false)];
 	const result = sortProps(props);
 	expect(result.map(prop => prop.name)).toEqual(['prop1', 'prop2']);
 });
 
 it('should sort mixed props (required props should come first)', () => {
-	const props = {
-		...makeProp('prop2', false),
-		...makeProp('prop1', true),
-		...makeProp('prop3', true),
-		...makeProp('prop4', false),
-	};
+	const props = [
+		makeProp('prop2', false),
+		makeProp('prop1', true),
+		makeProp('prop3', true),
+		makeProp('prop4', false),
+	];
 	const result = sortProps(props);
 	expect(result.map(prop => prop.name)).toEqual(['prop1', 'prop3', 'prop2', 'prop4']);
 });

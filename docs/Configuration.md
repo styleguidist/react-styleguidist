@@ -37,6 +37,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`template`](#template)
 * [`theme`](#theme)
 * [`title`](#title)
+* [`transformProps`](#transformprops)
 * [`updateExample`](#updateexample)
 * [`verbose`](#verbose)
 * [`webpackConfig`](#webpackconfig)
@@ -425,6 +426,12 @@ See example in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide)
 Type: `String`, default: `<app name from package.json> Style Guide`
 
 Style guide title.
+
+#### `transformProps`
+
+Type: `Function`, optional
+
+Function that transforms component properties.
 
 #### `updateExample`
 
