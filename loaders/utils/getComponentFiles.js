@@ -4,7 +4,6 @@ const path = require('path');
 const glob = require('glob');
 const isFunction = require('lodash/isFunction');
 const isString = require('lodash/isString');
-const isArray = require('lodash/isArray');
 
 /**
  * Return absolute paths of components that should be rendered in the style guide.
@@ -22,7 +21,7 @@ module.exports = function getComponentFiles(components, rootDir, ignore) {
 	let componentFiles;
 	if (isFunction(components)) {
 		componentFiles = components();
-	} else if (isArray(components)) {
+	} else if (Array.isArray(components)) {
 		componentFiles = components;
 	} else if (isString(components)) {
 		componentFiles = glob.sync(path.resolve(rootDir, components), { ignore });
