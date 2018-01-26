@@ -49,7 +49,7 @@ Each section consists of (all fields are optional):
 
 * `name` — section title.
 * `content` — location of a Markdown file containing the overview content.
-* `components` — a glob pattern string or a function returning a list of components. The same rules apply as for the root `components` option.
+* `components` — a glob pattern string, an array of component paths or a function returning a list of components. The same rules apply as for the root `components` option.
 * `sections` — array of subsections (can be nested).
 * `description` — A small description of this section.
 * `ignore` — string/array of globs that should not be included in the section.

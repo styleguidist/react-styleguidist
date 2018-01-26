@@ -4,6 +4,7 @@ const path = require('path');
 const glob = require('glob');
 const isFunction = require('lodash/isFunction');
 const isString = require('lodash/isString');
+const isArray = require('lodash/isArray');
 
 /**
  * Return absolute paths of components that should be rendered in the style guide.
@@ -21,11 +22,13 @@ module.exports = function getComponentFiles(components, rootDir, ignore) {
 	let componentFiles;
 	if (isFunction(components)) {
 		componentFiles = components();
+	} else if (isArray(components)) {
+		componentFiles = components;
 	} else if (isString(components)) {
 		componentFiles = glob.sync(path.resolve(rootDir, components), { ignore });
 	} else {
 		throw new Error(
-			`Styleguidist: components should be string or function, received ${typeof components}.`
+			`Styleguidist: components should be string, function or array, received ${typeof components}.`
 		);
 	}
 
