@@ -184,13 +184,9 @@ If your styled-components require a theme to render properly, you'll want to add
 
 First, you'll need to create your Wrapper component. For this example we'll put it in the `styleguide/` directory, but you can add it anywhere you want.
 
-```sh
-$ mkdir styleguide
-$ touch styleguide/ThemeWrapper.js
-```
-Great! Now let's create the component:
-
 ```jsx
+// styleguide/ThemeWrapper.js
+
 import React, { Component } from 'react'
 import { ThemeProvider } from 'styled-components';
 import theme from 'where/your/theme/lives';
@@ -215,7 +211,7 @@ module.exports = {
 }
 ```
 
-Cool! This will automatically apply your theme to your styled-components. When you fire up the styleguide, `npm run styleguide`, you should see your components render as expected.
+This will automatically apply your theme to your styled-components. When you fire up the styleguide, `npm run styleguide`, you should see your components render as expected.
 
 ### Fela
 
