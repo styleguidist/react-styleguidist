@@ -437,9 +437,7 @@ To disable sorting the identity function can be used:
 
 ```javascript
 module.exports = {
-  transformProps: function(props) {
-    return props
-  }
+  transformProps: props => props
 }
 ```
 
