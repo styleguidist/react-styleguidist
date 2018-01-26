@@ -1,2 +1,2 @@
-<!-- Love styleguidist? Please consider supporting our collective:
+<!-- Love Styleguidist? Please consider supporting our collective:
 👉  https://opencollective.com/styleguidist/donate -->
