@@ -3,12 +3,14 @@
   "extends": "tamia/react",
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "cypress/globals": true
   },
   "plugins": [
     "compat",
     "es5",
-    "import"
+    "import",
+    "cypress"
   ],
   "settings": {
     "import/resolver": {
