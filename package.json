@@ -102,7 +102,6 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "cheerio": "^1.0.0-rc.2",
-    "cypress": "^1.4.1",
     "danger": "^2.1.5",
     "deabsdeep": "^1.0.5",
     "deepfreeze": "^2.0.0",
@@ -160,9 +159,11 @@
     "danger": "danger",
     "precommit": "lint-staged",
     "format:md": "prettier --write '**/*.md'",
+    "test:cypress:pre": "npm i --no-save cypress wait-on",
     "test:cypress:open": "cypress open",
     "test:cypress:run": "cypress run",
-    "test:cypress:startTestServer": "node test/run.server.js"
+    "test:cypress:startServer": "node test/run.server.js",
+    "test:cypress:startServer:post": "wait-on http://localhost:8082"
   },
   "jest": {
     "setupFiles": [

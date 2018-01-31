@@ -42,6 +42,11 @@ script:
       npm run test:browser:customised
       npm run test:browser:sections
     fi
+  # Run integration tests with cypress
+  - npm run test:cypress:pre
+  - npm run test:cypress:startTestServer &
+  - npm run test:cypress:startTestServer:post
+  - npm run test:cypress:run
 after_success:
   # Make release with semantic-release if needed
   - npm install -g semantic-release
