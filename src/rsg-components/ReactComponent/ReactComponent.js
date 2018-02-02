@@ -45,7 +45,7 @@ export default class ReactComponent extends Component {
 		const { activeTab } = this.state;
 		const { displayMode } = this.context;
 		const { component, depth } = this.props;
-		const { name, slug, pathLine } = component;
+		const { name, slug, filepath, pathLine } = component;
 		const { description, examples = [], tags = {} } = component.props;
 		if (!name) {
 			return null;
@@ -55,6 +55,7 @@ export default class ReactComponent extends Component {
 			<ReactComponentRenderer
 				name={name}
 				slug={slug}
+				filepath={filepath}
 				pathLine={pathLine}
 				docs={<JsDoc {...tags} />}
 				description={description && <Markdown text={description} />}
