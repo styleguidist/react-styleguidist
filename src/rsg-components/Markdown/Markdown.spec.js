@@ -115,4 +115,14 @@ Text with *some* **formatting** and a [link](/foo).
 
 		expect(html(actual)).toMatchSnapshot();
 	});
+
+	it('should render a blockquote', () => {
+		const markdown = `
+> This is a blockquote.
+> And this is a second line.
+`;
+		const actual = render(<Markdown text={markdown} />);
+
+		expect(html(actual)).toMatchSnapshot();
+	});
 });
