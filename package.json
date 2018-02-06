@@ -158,7 +158,12 @@
     "test:browser:sections": "node test/browser.js examples/sections/styleguide/index.html",
     "danger": "danger",
     "precommit": "lint-staged",
-    "format:md": "prettier --write '**/*.md'"
+    "format:md": "prettier --write '**/*.md'",
+    "test:cypress:pre": "npm i --no-save cypress wait-on",
+    "test:cypress:open": "cypress open",
+    "test:cypress:run": "cypress run",
+    "test:cypress:startServer": "node test/run.server.js",
+    "test:cypress:startServer:post": "wait-on http://localhost:8082"
   },
   "jest": {
     "setupFiles": [

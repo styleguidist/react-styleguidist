@@ -27,6 +27,7 @@ styleguidist({
 		info: console.log,
 		warn: message => console.warn(`Warning: ${message}`),
 	},
+	serverPort: 8082,
 }).server((err, config) => {
 	if (err) {
 		console.log(err);
