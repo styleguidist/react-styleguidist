@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "ast-types": "^0.10.1",
-    "buble": "^0.18.0",
+    "buble": "0.16.0",
     "chalk": "^2.3.0",
     "classnames": "^2.2.5",
     "clean-webpack-plugin": "^0.1.17",
@@ -82,7 +82,7 @@
     "style-loader": "^0.19.1",
     "to-ast": "^1.0.0",
     "type-detect": "^4.0.5",
-    "uglifyjs-webpack-plugin": "1.1.4",
+    "uglifyjs-webpack-plugin": "1.1.5",
     "unist-util-visit": "^1.3.0",
     "webpack-dev-server": "^2.9.7",
     "webpack-merge": "^4.1.1"
@@ -159,7 +159,12 @@
     "danger": "danger",
     "precommit": "lint-staged",
     "format:md": "prettier --write '**/*.md'",
-    "postinstall": "node -e \"console.log('\\u001b[32mLove Styleguidist? Support us on the Open Collective:\\u001b[22m\\u001b[39m\\n > \\u001b[96m\\u001b[1mhttps://opencollective.com/styleguidist\\u001b[0m\\n')\" || exit 0"
+    "postinstall": "node -e \"console.log('\\u001b[32mLove Styleguidist? Support us on the Open Collective:\\u001b[22m\\u001b[39m\\n > \\u001b[96m\\u001b[1mhttps://opencollective.com/styleguidist\\u001b[0m\\n')\" || exit 0",
+    "test:cypress:pre": "npm i --no-save cypress wait-on",
+    "test:cypress:open": "cypress open",
+    "test:cypress:run": "cypress run",
+    "test:cypress:startServer": "node test/run.server.js",
+    "test:cypress:startServer:post": "wait-on http://localhost:8082"
   },
   "jest": {
     "setupFiles": [
