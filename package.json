@@ -159,7 +159,7 @@
     "danger": "danger",
     "precommit": "lint-staged",
     "format:md": "prettier --write '**/*.md'",
-    "postinstall": "node -e \"console.log('\\u001b[32mLove React Styleguidist? You can now support the project via the open collective:\\u001b[22m\\u001b[39m\\n > \\u001b[96m\\u001b[1mhttps://opencollective.com/styleguidist/donate\\u001b[0m\\n')\" || exit 0"
+    "postinstall": "node -e \"console.log('\\u001b[32mLove Styleguidist? Support us on the Open Collective:\\u001b[22m\\u001b[39m\\n > \\u001b[96m\\u001b[1mhttps://opencollective.com/styleguidist\\u001b[0m\\n')\" || exit 0"
   },
   "jest": {
     "setupFiles": [
