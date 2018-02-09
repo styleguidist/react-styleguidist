@@ -89,14 +89,12 @@ The `Button` component will be available in every example without a need to `req
 
 ## How to dynamically load other components in an example?
 
-Although examples do not direct access to use webpack's `require.context` feature, you *can* use it in a separate
-helper file which you require in your example code.  As an example, if you wanted to create an example to load and 
-show all of your icon components, you could do this:
+Although examples don't have direct access to webpack's `require.context` feature, you *can* use it in a separate helper file which you require in your example code. If you wanted to create an example to load and show all of your icon components, you could do this:
 
 ```jsx
 // load-icons.js
 const iconsContext = require.context('./icons/', true, /js$/);
-const icons = iconsContext.keys().reduce( (icons, file) => {
+const icons = Object.keys(iconsContext).reduce( (icons, file) => {
 	const Icon = iconsContext(file).default;
 	const label = file.slice(2, -3); // strip './' and '.js'
 	icons[label] = Icon;
