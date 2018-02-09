@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { compiler } from 'markdown-to-jsx';
 import mapValues from 'lodash/mapValues';
@@ -10,24 +9,13 @@ import Para, { styles as paraStyles } from 'rsg-components/Para';
 import MarkdownHeading from 'rsg-components/Markdown/MarkdownHeading';
 import List from 'rsg-components/Markdown/List';
 import Blockquote from 'rsg-components/Markdown/Blockquote';
+import Pre from 'rsg-components/Markdown/Pre';
+import Code from 'rsg-components/Code';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
 // That way we could avoid clashes between our loaders and user loaders.
 // eslint-disable-next-line import/no-unresolved
 require('!!../../../loaders/style-loader!../../../loaders/css-loader!highlight.js/styles/tomorrow.css');
-
-// Code blocks with server-side syntax highlight
-function Code({ children, className }) {
-	const isHighlighted = className && className.indexOf('lang-') !== -1;
-	if (isHighlighted) {
-		return <code className={className} dangerouslySetInnerHTML={{ __html: children }} />;
-	}
-	return <code className={className}>{children}</code>;
-}
-Code.propTypes = {
-	children: PropTypes.node,
-	className: PropTypes.string,
-};
 
 // Custom CSS classes for each tag: <em> → <em className={s.em}> + custom components
 const getBaseOverrides = memoize(classes => {
@@ -110,9 +98,9 @@ const getBaseOverrides = memoize(classes => {
 		},
 		code: {
 			component: Code,
-			props: {
-				className: classes.code,
-			},
+		},
+		pre: {
+			component: Pre,
 		},
 	};
 }, () => 'getBaseOverrides');
@@ -129,7 +117,7 @@ const getInlineOverrides = memoize(classes => {
 	};
 }, () => 'getInlineOverrides');
 
-const styles = ({ space, fontFamily, fontSize, color, borderRadius }) => ({
+const styles = ({ space, fontFamily, fontSize, color }) => ({
 	base: {
 		color: color.base,
 		fontFamily: fontFamily.base,
@@ -146,22 +134,6 @@ const styles = ({ space, fontFamily, fontSize, color, borderRadius }) => ({
 		borderWidth: [[0, 0, 1, 0]],
 		borderColor: color.border,
 		borderStyle: 'solid',
-	},
-	code: {
-		fontFamily: fontFamily.monospace,
-		fontSize: 'inherit',
-		color: 'inherit',
-		background: 'transparent',
-		whiteSpace: 'inherit',
-	},
-	pre: {
-		composes: '$para',
-		backgroundColor: color.codeBackground,
-		border: [[1, color.border, 'solid']],
-		padding: [[space[1], space[2]]],
-		fontSize: fontSize.small,
-		borderRadius,
-		whiteSpace: 'pre',
 	},
 	table: {
 		composes: '$para',

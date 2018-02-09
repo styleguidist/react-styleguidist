@@ -1,7 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renderer should render type 1`] = `
-<Styled(Code)>
-  Array
-</Styled(Code)>
+<span
+  className="type"
+>
+  <Styled(Code)>
+    Array
+  </Styled(Code)>
+</span>
 `;

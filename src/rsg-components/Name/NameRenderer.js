@@ -4,9 +4,8 @@ import Code from 'rsg-components/Code';
 import Styled from 'rsg-components/Styled';
 import cx from 'classnames';
 
-export const styles = ({ fontFamily, fontSize, color }) => ({
+export const styles = ({ fontSize, color }) => ({
 	name: {
-		fontFamily: fontFamily.monospace,
 		fontSize: fontSize.small,
 		color: color.name,
 	},
@@ -20,7 +19,11 @@ export function NameRenderer({ classes, children, deprecated }) {
 	const classNames = cx(classes.name, {
 		[classes.isDeprecated]: deprecated,
 	});
-	return <Code className={classNames}>{children}</Code>;
+	return (
+		<span className={classNames}>
+			<Code>{children}</Code>
+		</span>
+	);
 }
 
 NameRenderer.propTypes = {
