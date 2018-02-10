@@ -7,6 +7,7 @@
 * [How to use `ref`s in examples?](#how-to-use-refs-in-examples)
 * [How to exclude some components from style guide?](#how-to-exclude-some-components-from-style-guide)
 * [How to hide some components in style guide but make them available in examples?](#how-to-hide-some-components-in-style-guide-but-make-them-available-in-examples)
+* [How to dynamically load other components in an example?](#how-to-dynamically-load-other-components-in-an-example)
 * [How to set global styles for user components?](#how-to-set-global-styles-for-user-components)
 * [How to add custom JavaScript and CSS or polyfills?](#how-to-add-custom-javascript-and-css-or-polyfills)
 * [How to use React Styleguidist with Preact?](#how-to-use-react-styleguidist-with-preact)
@@ -85,6 +86,33 @@ global.Button = Button
 ```
 
 The `Button` component will be available in every example without a need to `require` it.
+
+## How to dynamically load other components in an example?
+
+Although examples don't have direct access to webpack's `require.context` feature, you *can* use it in a separate helper file which you require in your example code. If you wanted to create an example to load and show all of your icon components, you could do this:
+
+```jsx
+// load-icons.js
+const iconsContext = require.context('./icons/', true, /js$/);
+const icons = Object.keys(iconsContext).reduce( (icons, file) => {
+	const Icon = iconsContext(file).default;
+	const label = file.slice(2, -3); // strip './' and '.js'
+	icons[label] = Icon;
+	return icons;
+}, {});
+
+export default icons;
+
+// IconGallery.md
+const icons = require('./load-icons').default;
+
+const iconElements = Object.keys(icons).map(iconName => {
+  const Icon = icons[iconName];
+  return <span key={iconName}>{iconName}: {<Icon />}</span>;
+});
+
+<div>{iconElements}</div>
+```
 
 ## How to set global styles for user components?
 

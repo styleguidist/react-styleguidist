@@ -9,6 +9,7 @@ import Text from 'rsg-components/Text';
 import Para, { styles as paraStyles } from 'rsg-components/Para';
 import MarkdownHeading from 'rsg-components/Markdown/MarkdownHeading';
 import List from 'rsg-components/Markdown/List';
+import Blockquote from 'rsg-components/Markdown/Blockquote';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
 // That way we could avoid clashes between our loaders and user loaders.
@@ -104,6 +105,9 @@ const getBaseOverrides = memoize(classes => {
 				ordered: true,
 			},
 		},
+		blockquote: {
+			component: Blockquote,
+		},
 		code: {
 			component: Code,
 			props: {
@@ -136,12 +140,6 @@ const styles = ({ space, fontFamily, fontSize, color, borderRadius }) => ({
 		isolate: false,
 		display: 'inline-block',
 		verticalAlign: 'middle',
-	},
-	blockquote: {
-		composes: '$para',
-		fontSize: fontSize.base,
-		margin: [[space[2], space[4]]],
-		padding: 0,
 	},
 	hr: {
 		composes: '$para',

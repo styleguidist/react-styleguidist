@@ -34,13 +34,18 @@ script:
   - npm run build
   - npm run build:customised
   - npm run build:sections
-  # Check that examples really works: no JS errors on load
   - |
     if [[ "$TRAVIS_NODE_VERSION" == "8" ]]; then
+      # Check that examples really works: no JS errors on load
       npm run test:browser:pre
       npm run test:browser
       npm run test:browser:customised
       npm run test:browser:sections
+      # Run integration tests with cypress
+      npm run test:cypress:pre
+      npm run test:cypress:startServer &
+      npm run test:cypress:startServer:post
+      npm run test:cypress:run
     fi
 after_success:
   # Make release with semantic-release if needed
