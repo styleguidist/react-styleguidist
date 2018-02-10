@@ -1,18 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { styles as paraStyles } from 'rsg-components/Para';
 import Styled from 'rsg-components/Styled';
 
 const styles = ({ space, color, fontSize, fontFamily, borderRadius }) => ({
 	pre: {
-		...paraStyles({ space, color, fontFamily }).para,
+		fontFamily: fontFamily.base,
 		fontSize: fontSize.small,
+		lineHeight: 1.5,
+		color: color.base,
 		whiteSpace: 'pre',
 		backgroundColor: color.codeBackground,
 		padding: [[space[1], space[2]]],
 		border: [[1, color.border, 'solid']],
 		borderRadius,
+		marginTop: 0,
+		marginBottom: space[2],
 	},
 });
 
