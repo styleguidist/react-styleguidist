@@ -22,6 +22,16 @@ npm run start
 
 Then open [http://localhost:6060](http://localhost:6060) in your browser.
 
+## Add styleguidest to an exsisting react-native project
+
+A collection of dev-dependencies related to webpack are required to get `react-native` and `react-styleguidist` running on a browser. `babel-preset-react-native` reflects the webpack server that normally bundles react-native apps to the simulators and/or devices.
+
+```
+npm install --save-dev react-styleguidist react-native-web webpack babel-loader babel-plugin-react-native-web babel-polyfill babel-preset-react-native file-loader
+```
+
+Add and configure `styleguide.config.js` to the root of your `react-native` project.
+
 ## Common Caveats
 
 [react-native-web](https://github.com/necolas/react-native-web) does not support everything, components requiring DeviceInfo is a common breaking point for example. Configuring components or selections in your `styleguide.config.js` to only select ui components is recomended. A good rule of thumb is to expect an approximate visual representation with code examples and props documentation.
