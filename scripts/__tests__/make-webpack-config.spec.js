@@ -4,7 +4,9 @@ import makeWebpackConfig from '../make-webpack-config';
 const styleguideConfig = {
 	styleguideDir: __dirname,
 	require: [],
-	highlightTheme: 'hl-theme',
+	editorConfig: {
+		theme: 'hl-theme',
+	},
 	title: 'Style Guide',
 	template: 'template.html',
 };
@@ -31,6 +33,14 @@ it('should prepend requires as webpack entries', () => {
 		'development'
 	);
 	expect(result.entry).toMatchSnapshot();
+});
+
+it('should use editorConfig theme over highlightTheme', () => {
+	const result = makeWebpackConfig(
+		{ ...styleguideConfig, highlightTheme: 'deprecated' },
+		'development'
+	);
+	expect(result.resolve.alias).toMatchSnapshot();
 });
 
 it('should enable verbose mode in CleanWebpackPlugin', () => {
