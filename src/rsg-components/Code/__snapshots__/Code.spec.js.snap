@@ -1,9 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renderer should render code 1`] = `
-<span>
-  <code>
-    &lt;button&gt;OK&lt;/button&gt;
-  </code>
-</span>
+exports[`Code blocks should render code 1`] = `
+<code
+  className=""
+>
+  &lt;button&gt;OK&lt;/button&gt;
+</code>
+`;
+
+exports[`Code blocks should render code to be highlighted 1`] = `
+<code
+  class="lang-html"
+>
+  <button>
+    OK
+  </button>
+</code>
 `;
