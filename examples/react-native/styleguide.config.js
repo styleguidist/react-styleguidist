@@ -38,8 +38,10 @@ module.exports = {
 	dangerouslyUpdateWebpackConfig(webpackConfig) {
 		const newWebpackConfig = webpackConfig;
 
-		// Add enviornment variables to the browser
+		// Most react native projects will need some extra configuration, push any needed plugins here.
+		// Use with caution.
 		newWebpackConfig.plugins.push(
+			// Add __DEV__ flag to browser example.
 			new webpack.DefinePlugin({
 				__DEV__: process.env,
 			})
