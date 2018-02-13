@@ -8,7 +8,7 @@ cd react-styleguidist/examples/react-native
 npm install
 ```
 
-Run styleguidest
+Run Styleguidist
 
 ```
 npm run styleguide
@@ -22,7 +22,7 @@ npm run start
 
 Then open [http://localhost:6060](http://localhost:6060) in your browser.
 
-## Add styleguidest to an exsisting react-native project
+## Add Styleguidist to an exsisting react-native project
 
 A collection of dev-dependencies related to webpack are required to get `react-native` and `react-styleguidist` running on a browser. `babel-preset-react-native` reflects the webpack server that normally bundles react-native apps to the simulators and/or devices.
 
