@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "ast-types": "^0.10.1",
-    "buble": "0.16.0",
+    "buble": "^0.19.2",
     "chalk": "^2.3.0",
     "classnames": "^2.2.5",
     "clean-webpack-plugin": "^0.1.17",
