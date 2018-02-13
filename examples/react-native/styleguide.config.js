@@ -4,6 +4,11 @@ module.exports = {
 	require: ['babel-polyfill'],
 	components: 'src/**/[A-Z]*.js',
 	webpackConfig: {
+		resolve: {
+			// auto resolves any react-native import as react-native-web
+			alias: { 'react-native': 'react-native-web' },
+			extensions: ['.web.js', '.js'],
+		},
 		module: {
 			rules: [
 				{
@@ -34,23 +39,12 @@ module.exports = {
 				},
 			],
 		},
-	},
-	dangerouslyUpdateWebpackConfig(webpackConfig) {
-		const newWebpackConfig = webpackConfig;
-
-		// Most react native projects will need some extra configuration, push any needed plugins here.
-		// Use with caution.
-		newWebpackConfig.plugins.push(
+		// Most react native projects will need some extra plugin configuration.
+		plugins: [
 			// Add __DEV__ flag to browser example.
 			new webpack.DefinePlugin({
 				__DEV__: process.env,
-			})
-		);
-
-		// auto resolves any react-native import as react-native-web
-		newWebpackConfig.resolve.alias['react-native'] = 'react-native-web';
-		newWebpackConfig.resolve.extensions = ['.web.js', '.js'];
-
-		return newWebpackConfig;
+			}),
+		],
 	},
 };
