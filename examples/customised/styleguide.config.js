@@ -38,6 +38,7 @@ module.exports = {
 	styleguideComponents: {
 		LogoRenderer: path.join(__dirname, 'styleguide/components/Logo'),
 		StyleGuideRenderer: path.join(__dirname, 'styleguide/components/StyleGuide'),
+		SectionsRenderer: path.join(__dirname, 'styleguide/components/Sections'),
 	},
 	webpackConfig: {
 		module: {
