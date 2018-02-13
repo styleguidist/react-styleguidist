@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Markdown Input should render an input with the specified type 1`] = `
+<input
+  class="rsg--input-0"
+  type="checkbox"
+/>
+`;
