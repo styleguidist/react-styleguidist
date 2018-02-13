@@ -1,8 +1,3 @@
-import React from 'react';
-import WelcomeMessage from './src/WelcomeMessage';
+import Root from './src/Root';
 
-export default class App extends React.Component {
-	render() {
-		return <WelcomeMessage />;
-	}
-}
+export default Root;
