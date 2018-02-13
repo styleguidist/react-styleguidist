@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
 	container: {
-		// flex: 1,
 		backgroundColor: '#fff',
 		borderWidth: 1,
 		marginBottom: 12,
