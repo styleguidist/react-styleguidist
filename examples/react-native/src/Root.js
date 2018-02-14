@@ -23,10 +23,10 @@ export default class Root extends Component {
 					<Text>Shake your phone to open the developer menu.</Text>
 				</SimpleCard>
 				<SimpleCard title="Card 2" color="#26572c">
-					<Text>This is a second card</Text>
+					<Text>This is a second card.</Text>
 				</SimpleCard>
 				<SimpleCard title="Card 3">
-					<Text>This is a third card</Text>
+					<Text>This is a third card.</Text>
 				</SimpleCard>
 			</ScrollView>
 		);

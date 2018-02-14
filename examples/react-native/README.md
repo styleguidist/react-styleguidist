@@ -1,5 +1,7 @@
 # React Styleguidist react-native example style guide
 
+![](https://media.giphy.com/media/3ohs4v5loJ50dKw9FK/giphy.gif)
+
 How to start locally:
 
 ```
@@ -24,7 +26,7 @@ Then open [http://localhost:6060](http://localhost:6060) in your browser.
 
 ## Add Styleguidist to an exsisting react-native project
 
-A collection of dev-dependencies related to webpack are required to get `react-native` and `react-styleguidist` running on a browser. `babel-preset-react-native` reflects the webpack server that normally bundles react-native apps to the simulators and/or devices.
+A collection of dev-dependencies related to webpack are required to get `react-native` and `react-styleguidist` running on a browser. `babel-preset-react-native` reflects the bundle server that normally serves to react-native apps to the simulators and/or devices.
 
 ```
 npm install --save-dev react-styleguidist react-native-web webpack babel-loader babel-plugin-react-native-web babel-polyfill babel-preset-react-native file-loader
