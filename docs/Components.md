@@ -27,7 +27,7 @@ But will ignore tests:
 
 If it doesn’t work for you, create a `styleguide.config.js` file in your project’s root folder and configure the patterns to fit your project structure.
 
-For example, if your component files look like `components/Button/Button.js`, but you rexport them in `components/Button/index.js` (like `export { default } from './Button'`) to simplify imports (`components/Button` instead of `components/Button/Button`), you need to skip `index.js`:
+For example, if your component files look like `components/Button/Button.js`, but you reexport them in `components/Button/index.js` (like `export { default } from './Button'`) to simplify imports (`components/Button` instead of `components/Button/Button`), you need to skip `index.js`:
 
 ```javascript
 module.exports = {
