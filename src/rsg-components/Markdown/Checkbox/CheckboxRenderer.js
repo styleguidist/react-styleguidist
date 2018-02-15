@@ -11,11 +11,11 @@ const styles = () => ({
 	},
 });
 
-export function InputRenderer({ classes, ...rest }) {
+export function CheckboxRenderer({ classes, ...rest }) {
 	return <input {...rest} className={classes.input} />;
 }
-InputRenderer.propTypes = {
+CheckboxRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-export default Styled(styles)(InputRenderer);
+export default Styled(styles)(CheckboxRenderer);

@@ -11,7 +11,7 @@ import List from 'rsg-components/Markdown/List';
 import Blockquote from 'rsg-components/Markdown/Blockquote';
 import Pre from 'rsg-components/Markdown/Pre';
 import Code from 'rsg-components/Code';
-import Input from 'rsg-components/Markdown/Input';
+import Checkbox from 'rsg-components/Markdown/Checkbox';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
 // That way we could avoid clashes between our loaders and user loaders.
@@ -104,7 +104,7 @@ const getBaseOverrides = memoize(classes => {
 			component: Pre,
 		},
 		input: {
-			component: Input,
+			component: Checkbox,
 		},
 	};
 }, () => 'getBaseOverrides');
