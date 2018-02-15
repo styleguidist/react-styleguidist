@@ -5,6 +5,7 @@
 <!-- toc -->
 
 * [Finding components](#finding-components)
+* [Loading and exposing components](#loading-and-exposing-components)
 * [Sections](#sections)
 * [Limitations](#limitations)
 
@@ -40,6 +41,81 @@ module.exports = {
 > **Note:** Use [ignore](Configuration.md#ignore) option to exclude some files from the style guide.
 
 > **Note:** Use [getComponentPathLine](Configuration.md#getcomponentpathline) option to change a path you see below a component name.
+
+## Loading and exposing components
+
+Styleguidist _loads_ your components and _exposes_ them globally for your examples to consume.
+
+### Identifier
+
+It will try to use the `displayName` of your component as the identifier.
+
+```javascript
+// /path/to/component-one.js
+export default function Component() { ... }
+// will be exposed globally as Component
+
+// /path/to/component-two.js
+export default function Component() { ... }
+Component.displayName = 'ComponentTwo'
+// will be exposed globally as ComponentTwo
+```
+
+If it cannot understand a `displayName` (for example if it is dynamically generated), it will fall back to something it can understand.
+
+```javascript
+// /path/to/component-three.js
+export default function Component() { ... }
+Component.displayName = getDisplayName() // can't understand this
+// will fall back to the name at declaration and expose globally as Component
+
+// /path/to/component-four.js
+const name = 'Component';
+const componentMap = {
+  [name]: function() { ... } // can't understand this
+}
+export default componentMap[name]; // can't understand this either
+// will fall back on the file name, convert it to PascalCase
+// and expose globally as ComponentFour
+```
+
+### default vs named exports
+
+Styleguidist defaults to exposing the `default` export from your component file. It understands functions exported as CommonJs `module.exports` as default exports.
+
+```javascript
+// /path/to/component-five.js
+export default function ComponentFive() { ... }
+// will be exposed globally as ComponentFive
+
+// /path/to/component-six.js
+function ComponentSix() { ... }
+module.exports = ComponentSix;
+// will be exposed globally as ComponentSix
+```
+
+If you do not use `default` exports, Styleguidist will expose named exports from modules as follows...
+
+If there is only one named export, it will expose that.
+
+```javascript
+// /path/to/component-seven.js
+export function ComponentSeven() { ... }
+// will be exposed globally as ComponentSeven
+```
+
+If there are several named exports, it will expose the named export which has the same name as the understood identifier.
+
+```javascript
+// /path/to/component-eight.js
+export function someUtil() { ... }
+// will not be exposed
+
+export function ComponentEight() { ... }
+// will be exposed globally as ComponentEight
+```
+
+If you export several React components as named exports from a single module, Styleguidist is likely to behave unreliably. If it cannot understand which named export to expose, it will fall back to exposing the module as a whole.
 
 ## Sections
 
