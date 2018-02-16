@@ -122,7 +122,7 @@ function commandServer() {
 			const isHttps = compiler.options.devServer && compiler.options.devServer.https;
 			printInstructions(isHttps, config.serverHost, config.serverPort);
 		}
-	});
+	}).compiler;
 
 	verbose('Webpack config:', compiler.options);
 
