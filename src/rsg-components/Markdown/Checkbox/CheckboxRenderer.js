@@ -12,7 +12,7 @@ const styles = () => ({
 });
 
 export function CheckboxRenderer({ classes, ...rest }) {
-	return <input {...rest} className={classes.input} />;
+	return <input {...rest} type="checkbox" className={classes.input} />;
 }
 CheckboxRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
