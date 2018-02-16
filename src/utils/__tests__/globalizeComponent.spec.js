@@ -11,15 +11,20 @@ afterEach(() => {
 });
 
 describe('globalizeComponent', () => {
+	it('should not add anything as a global variable if there is no component name', () => {
+		expect(global[component.name]).toBeUndefined();
+		globalizeComponent({});
+		expect(global[component.name]).toBeUndefined();
+	});
+
 	it('should call the getComponent function with the correct arguments', () => {
 		globalizeComponent(component);
 		expect(getComponent).toHaveBeenCalledWith(component.module, component.name);
 	});
 
 	it('should set the return value of getComponent as a global variable', () => {
-		const globalsCount = Object.keys(global).length;
+		expect(global[component.name]).toBeUndefined();
 		globalizeComponent(component);
-		expect(Object.keys(global).length).toBe(globalsCount + 1);
 		expect(global[component.name]).toBe(returnValue);
 	});
 });
