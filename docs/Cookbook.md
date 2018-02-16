@@ -89,29 +89,33 @@ The `Button` component will be available in every example without a need to `req
 
 ## How to dynamically load other components in an example?
 
-Although examples don't have direct access to webpack's `require.context` feature, you *can* use it in a separate helper file which you require in your example code. If you wanted to create an example to load and show all of your icon components, you could do this:
+Although examples don't have direct access to webpack's `require.context` feature, you _can_ use it in a separate helper file which you require in your example code. If you wanted to create an example to load and show all of your icon components, you could do this:
 
 ```jsx
 // load-icons.js
-const iconsContext = require.context('./icons/', true, /js$/);
-const icons = Object.keys(iconsContext).reduce( (icons, file) => {
-	const Icon = iconsContext(file).default;
-	const label = file.slice(2, -3); // strip './' and '.js'
-	icons[label] = Icon;
-	return icons;
-}, {});
+const iconsContext = require.context('./icons/', true, /js$/)
+const icons = Object.keys(iconsContext).reduce((icons, file) => {
+  const Icon = iconsContext(file).default
+  const label = file.slice(2, -3) // strip './' and '.js'
+  icons[label] = Icon
+  return icons
+}, {})
 
-export default icons;
+export default icons
 
 // IconGallery.md
-const icons = require('./load-icons').default;
+const icons = require('./load-icons').default
 
 const iconElements = Object.keys(icons).map(iconName => {
-  const Icon = icons[iconName];
-  return <span key={iconName}>{iconName}: {<Icon />}</span>;
-});
+  const Icon = icons[iconName]
+  return (
+    <span key={iconName}>
+      {iconName}: {<Icon />}
+    </span>
+  )
+})
 
-<div>{iconElements}</div>
+;<div>{iconElements}</div>
 ```
 
 ## How to set global styles for user components?
