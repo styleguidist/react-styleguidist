@@ -1,6 +1,6 @@
 # React Styleguidist customized example style guide
 
-![](./screenshot.png)
+![](https://d3vv6lp55qjaqc.cloudfront.net/items/0h0d3k2f172v3t3a2d1U/customised.png)
 
 How to start locally:
 
