@@ -1,16 +1,13 @@
 import globalizeComponent from '../globalizeComponent';
-
-jest.mock('../getComponent');
-// eslint-disable-next-line import/first
-import getComponent, { returnValue } from '../getComponent';
+import getComponent from '../getComponent';
 
 const component = { module: 'someModule', name: 'SomeName' };
 
-afterEach(() => {
-	delete global[component.name];
-});
-
 describe('globalizeComponent', () => {
+	afterEach(() => {
+		delete global[component.name];
+	});
+
 	it('should not add anything as a global variable if there is no component name', () => {
 		expect(global[component.name]).toBeUndefined();
 		globalizeComponent({});
@@ -25,6 +22,6 @@ describe('globalizeComponent', () => {
 	it('should set the return value of getComponent as a global variable', () => {
 		expect(global[component.name]).toBeUndefined();
 		globalizeComponent(component);
-		expect(global[component.name]).toBe(returnValue);
+		expect(global[component.name]).toBe(component.module);
 	});
 });
