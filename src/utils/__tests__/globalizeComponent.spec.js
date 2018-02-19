@@ -1,5 +1,4 @@
 import globalizeComponent from '../globalizeComponent';
-import getComponent from '../getComponent';
 
 const component = { module: 'someModule', name: 'SomeName' };
 
@@ -12,11 +11,6 @@ describe('globalizeComponent', () => {
 		expect(global[component.name]).toBeUndefined();
 		globalizeComponent({});
 		expect(global[component.name]).toBeUndefined();
-	});
-
-	it('should call the getComponent function with the correct arguments', () => {
-		globalizeComponent(component);
-		expect(getComponent).toHaveBeenCalledWith(component.module, component.name);
 	});
 
 	it('should set the return value of getComponent as a global variable', () => {
