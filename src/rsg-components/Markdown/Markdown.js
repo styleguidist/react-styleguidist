@@ -11,6 +11,7 @@ import List from 'rsg-components/Markdown/List';
 import Blockquote from 'rsg-components/Markdown/Blockquote';
 import Pre from 'rsg-components/Markdown/Pre';
 import Code from 'rsg-components/Code';
+import Checkbox from 'rsg-components/Markdown/Checkbox';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
 // That way we could avoid clashes between our loaders and user loaders.
@@ -102,6 +103,9 @@ const getBaseOverrides = memoize(classes => {
 		pre: {
 			component: Pre,
 		},
+		input: {
+			component: Checkbox,
+		},
 	};
 }, () => 'getBaseOverrides');
 
@@ -124,11 +128,6 @@ const styles = ({ space, fontFamily, fontSize, color }) => ({
 		fontSize: 'inherit',
 	},
 	para: paraStyles({ space, color, fontFamily }).para,
-	input: {
-		isolate: false,
-		display: 'inline-block',
-		verticalAlign: 'middle',
-	},
 	hr: {
 		composes: '$para',
 		borderWidth: [[0, 0, 1, 0]],
