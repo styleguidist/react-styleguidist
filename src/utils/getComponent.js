@@ -8,6 +8,7 @@
  * @return {function|object}
  */
 export default function getComponent(module, name) {
+	//
 	// If the module defines a default export, return that
 	// e.g.
 	// ```
@@ -16,6 +17,7 @@ export default function getComponent(module, name) {
 	if (module.default) {
 		return module.default;
 	}
+
 	// If it is a CommonJS module which exports a function, return that
 	// e.g.
 	// ```
@@ -26,6 +28,7 @@ export default function getComponent(module, name) {
 		return module;
 	}
 	const moduleKeys = Object.keys(module);
+
 	// If the module exports just one named export, return that
 	// e.g.
 	// ```
@@ -34,6 +37,7 @@ export default function getComponent(module, name) {
 	if (moduleKeys.length === 1) {
 		return module[moduleKeys[0]];
 	}
+
 	// If the module exports a named export with the same name as the
 	// understood Component identifier, return that
 	// e.g.
