@@ -50,75 +50,15 @@ Styleguidist _loads_ your components and _exposes_ them globally for your exampl
 
 It will try to use the `displayName` of your component as the identifier. If it cannot understand a `displayName` (for example if it is dynamically generated), it will fall back to something it can understand.
 
-<table>
-  <tr>
-    <th>Path</th>
-    <th>Code</th>
-    <th>displayName</th>
-    <th>Fallback</th>
-    <th>Global identifier</th>
-  </tr>
-  <tr>
-    <td>/component.js</td>
-    <td>
-      <pre style="margin:0;">export default function Component() { ... }</pre>
-    </td>
-    <td>Component</td>
-    <td>-</td>
-    <td>Component</td>
-  </tr>
-  <tr>
-    <td>/component.js</td>
-    <td>
-      <pre style="margin:0;">
-export default function Component() { ... }
-Component.displayName = 'SomeName';</pre>
-    </td>
-    <td>SomeName</td>
-    <td>-</td>
-    <td>SomeName</td>
-  </tr>
-  <tr>
-    <td>/component.js</td>
-    <td>
-      <pre style="margin:0;">
-export default function Component() { ... }
-Component.displayName = dynamicNamer();</pre>
-    </td>
-    <td>Component
-    </td>
-    <td>- </td>
-    <td>Component</td>
-  </tr>
-  <tr>
-    <td>/component.js</td>
-    <td>
-      <pre style="margin:0;">
-const name = 'Component';
-const componentMap = {
-  [name]: function() { ... }
-};
-export default componentMap[name];</pre>
-    </td>
-    <td>Cannot understand</td>
-    <td>File name</td>
-    <td>Component</td>
-  </tr>
-  <tr>
-    <td>/component/index.js</td>
-    <td>
-      <pre style="margin:0;">
-const name = 'Component';
-const componentMap = {
-  [name]: function() { ... }
-};
-export default componentMap[name];</pre>
-    </td>
-    <td>Cannot understand</td>
-    <td>Folder name</td>
-    <td>Component</td>
-  </tr>
-</table>
+In each of the following cases, the global identifier will be `Component`.
+
+| Path | Code | Styleguidist understands |
+| ---- | ---- | ------------------------ |
+| /whatever.js | `export default function Component() { ... }` | displayName |
+| /whatever.js | `export default function SomeName() { ... }`<br>`SomeName.displayName = 'Component';` | displayName |
+| /whatever.js | `export default function Component() { ... }`<br>`Component.displayName = dynamicNamer();` | displayName at declaration
+| /component.js | `const name = 'SomeName';`<br>`const componentMap = {`<br>`[name]: function() { ... }`<br>`};`<br>`export default componentMap[name];` | File name |
+| /component/index.js | `const name = 'SomeName';`<br>`const componentMap = {`<br>`[name]: function() { ... }`<br>`};`<br>`export default componentMap[name];` | Folder name |
 
 
 ### Default vs named exports
