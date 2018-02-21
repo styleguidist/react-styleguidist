@@ -5,20 +5,40 @@ Object {
   "displayMode": "all",
   "sections": Array [
     Object {
-      "components": Array [
+      "sections": Array [
         Object {
-          "module": 1,
-          "name": "Button",
-          "props": Object {
-            "displayName": "Button",
-            "examples": Array [
-              "example 0",
-              "example 1",
-            ],
-          },
+          "components": Array [
+            Object {
+              "module": 1,
+              "name": "Button",
+              "props": Object {
+                "displayName": "Button",
+                "examples": Array [
+                  "example 0",
+                  "example 1",
+                ],
+              },
+            },
+            Object {
+              "module": 2,
+              "name": "Image",
+              "props": Object {
+                "displayName": "Image",
+              },
+            },
+          ],
+          "sections": Array [],
+        },
+        Object {
+          "components": Array [],
+          "content": Array [
+            "example 0",
+            "example 1",
+          ],
+          "name": "Section",
+          "sections": Array [],
         },
       ],
-      "sections": Array [],
     },
   ],
 }

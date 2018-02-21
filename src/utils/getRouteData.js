@@ -64,5 +64,5 @@ function getFirstSectionOrComponent(sections) {
 	if (firstSection.components && firstSection.components.length > 0) {
 		return { ...firstSection, components: [firstSection.components[0]] };
 	}
-	return getFirstSectionOrComponent(firstSection.sections);
+	return firstSection;
 }
