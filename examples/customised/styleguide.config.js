@@ -58,5 +58,12 @@ module.exports = {
 				},
 			],
 		},
+		resolve: {
+			alias: {
+				// Make sure the example uses the local version of react-styleguidist
+				// This is only for the examples in this repo, you won't need it for your own project
+				'react-styleguidist': path.join(__dirname, '../../'),
+			},
+		},
 	},
 };
