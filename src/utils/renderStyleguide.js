@@ -29,11 +29,8 @@ export default function renderStyleguide(
 	globalizeComponents(allSections);
 
 	const { pagePerSection } = styleguide.config;
-	const { sections, displayMode } = getRouteData(
-		allSections,
-		loc.hash,
-		isFunction(pagePerSection) ? pagePerSection() : pagePerSection
-	);
+	const renderPagePerSection = isFunction(pagePerSection) ? pagePerSection() : pagePerSection;
+	const { sections, displayMode } = getRouteData(allSections, loc.hash, renderPagePerSection);
 
 	// Update page title
 	doc.title = getPageTitle(sections, styleguide.config.title, displayMode);
@@ -55,6 +52,7 @@ export default function renderStyleguide(
 			sections={sections}
 			allSections={allSections}
 			displayMode={displayMode}
+			pagePerSection={renderPagePerSection}
 		/>
 	);
 }

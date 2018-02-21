@@ -19,6 +19,7 @@ export default class StyleGuide extends Component {
 		patterns: PropTypes.array,
 		displayMode: PropTypes.string,
 		allSections: PropTypes.array.isRequired,
+		pagePerSection: PropTypes.bool,
 	};
 
 	static childContextTypes = {
@@ -63,7 +64,15 @@ export default class StyleGuide extends Component {
 	}
 
 	render() {
-		const { config, sections, welcomeScreen, patterns, displayMode, allSections } = this.props;
+		const {
+			config,
+			sections,
+			welcomeScreen,
+			patterns,
+			displayMode,
+			allSections,
+			pagePerSection,
+		} = this.props;
 
 		if (this.state.error) {
 			return <Error error={this.state.error} info={this.state.info} />;
@@ -77,9 +86,9 @@ export default class StyleGuide extends Component {
 			<StyleGuideRenderer
 				title={config.title}
 				homepageUrl={HOMEPAGE}
-				toc={<TableOfContents sections={allSections} useIsolatedLinks={config.pagePerSection} />}
+				toc={<TableOfContents sections={allSections} useIsolatedLinks={pagePerSection} />}
 				hasSidebar={
-					(config.pagePerSection && displayMode !== DisplayModes.example) ||
+					(pagePerSection && displayMode !== DisplayModes.example) ||
 					(config.showSidebar && displayMode === DisplayModes.all)
 				}
 			>
