@@ -122,11 +122,12 @@ describe('sidebar rendering', () => {
 		const wrapper = shallow(
 			<StyleGuide
 				codeRevision={1}
-				config={{ ...config, pagePerSection: true }}
+				config={config}
 				sections={sections}
 				allSections={sections}
 				slots={{}}
 				displayMode={DisplayModes.component}
+				pagePerSection
 			/>
 		);
 
