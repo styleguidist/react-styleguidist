@@ -24,7 +24,7 @@ const CLIENT_CONFIG_OPTIONS = [
 	'styles',
 	'compilerConfig',
 	'editorConfig',
-	'oneComponentPerPage',
+	'pagePerSection',
 ];
 
 module.exports = function() {};

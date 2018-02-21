@@ -124,6 +124,10 @@ module.exports = {
 	logger: {
 		type: 'object',
 	},
+	pagePerSection: {
+		type: 'boolean',
+		default: false,
+	},
 	previewDelay: {
 		type: 'number',
 		default: 500,
@@ -289,9 +293,5 @@ module.exports = {
 				],
 			},
 		},
-	},
-	oneComponentPerPage: {
-		type: 'boolean',
-		default: false,
 	},
 };

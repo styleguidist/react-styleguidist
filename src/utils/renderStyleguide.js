@@ -27,7 +27,11 @@ export default function renderStyleguide(
 	// all components accessible to all examples
 	globalizeComponents(allSections);
 
-	const { sections, displayMode } = getRouteData(allSections, loc.hash);
+	const { sections, displayMode } = getRouteData(
+		allSections,
+		loc.hash,
+		styleguide.config.pagePerSection
+	);
 
 	// Update page title
 	doc.title = getPageTitle(sections, styleguide.config.title, displayMode);

@@ -5,17 +5,19 @@ Object {
   "displayMode": "all",
   "sections": Array [
     Object {
-      "components": Object {
-        "module": 1,
-        "name": "Button",
-        "props": Object {
-          "displayName": "Button",
-          "examples": Array [
-            "example 0",
-            "example 1",
-          ],
+      "components": Array [
+        Object {
+          "module": 1,
+          "name": "Button",
+          "props": Object {
+            "displayName": "Button",
+            "examples": Array [
+              "example 0",
+              "example 1",
+            ],
+          },
         },
-      },
+      ],
       "sections": Array [],
     },
   ],

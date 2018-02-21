@@ -20,7 +20,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`handlers`](#handlers)
 * [`ignore`](#ignore)
 * [`logger`](#logger)
-* [`oneComponentPerPage`](#oneComponentPerPage)
+* [`pagePerSection`](#pagepersection)
 * [`previewDelay`](#previewdelay)
 * [`propsParser`](#propsparser)
 * [`require`](#require)
@@ -260,11 +260,13 @@ module.exports = {
 }
 ```
 
-#### `oneComponentPerPage`
+#### `pagePerSection`
 
 Type: `Boolean`, default: `false`
 
-Render one component per page.
+Render one section or component per page.
+
+If set to `true`, the sidebar will be visible on each page, except for the examples.
 
 #### `previewDelay`
 

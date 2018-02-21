@@ -34,7 +34,7 @@ const styles = ({ color, fontFamily, fontSize, space, mq }) => ({
 	},
 });
 
-export function ComponentsListRenderer({ classes, items, oneComponentPerPage }) {
+export function ComponentsListRenderer({ classes, items, useIsolatedLinks }) {
 	items = items.filter(item => item.name);
 
 	if (!items.length) {
@@ -53,8 +53,8 @@ export function ComponentsListRenderer({ classes, items, oneComponentPerPage }) 
 						href={getUrl({
 							name,
 							slug,
-							anchor: !oneComponentPerPage,
-							isolated: oneComponentPerPage,
+							anchor: !useIsolatedLinks,
+							isolated: useIsolatedLinks,
 						})}
 					>
 						{name}
@@ -69,7 +69,7 @@ export function ComponentsListRenderer({ classes, items, oneComponentPerPage }) 
 ComponentsListRenderer.propTypes = {
 	items: PropTypes.array.isRequired,
 	classes: PropTypes.object.isRequired,
-	oneComponentPerPage: PropTypes.bool,
+	useIsolatedLinks: PropTypes.bool,
 };
 
 export default Styled(styles)(ComponentsListRenderer);

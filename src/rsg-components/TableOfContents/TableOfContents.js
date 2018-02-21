@@ -7,32 +7,33 @@ import filterSectionsByName from '../../utils/filterSectionsByName';
 export default class TableOfContents extends Component {
 	static propTypes = {
 		sections: PropTypes.array.isRequired,
+		useIsolatedLinks: PropTypes.bool,
 	};
 	state = {
 		searchTerm: '',
 	};
 
-	renderLevel(sections, oneComponentPerPage) {
+	renderLevel(sections, useIsolatedLinks = false) {
 		const items = sections.map(section => {
 			const children = [...(section.sections || []), ...(section.components || [])];
 			return Object.assign({}, section, {
 				heading: !!section.name && children.length > 0,
-				content: children.length > 0 && this.renderLevel(children),
+				content: children.length > 0 && this.renderLevel(children, useIsolatedLinks),
 			});
 		});
-		return <ComponentsList items={items} oneComponentPerPage={oneComponentPerPage} />;
+		return <ComponentsList items={items} useIsolatedLinks={useIsolatedLinks} />;
 	}
 
 	renderSections() {
 		const { searchTerm } = this.state;
 		const { sections } = this.props;
-		const oneComponentPerPage = (this.context.config || {}).oneComponentPerPage;
+		const useIsolatedLinks = (this.context.config || {}).useIsolatedLinks;
 		// If there is only one section, we treat it as a root section
 		// In this case the name of the section won't be rendered and it won't get left padding
 		const firstLevel = sections.length === 1 ? sections[0].components : sections;
 		const filtered = filterSectionsByName(firstLevel, searchTerm);
 
-		return this.renderLevel(filtered, oneComponentPerPage);
+		return this.renderLevel(filtered, useIsolatedLinks);
 	}
 
 	render() {

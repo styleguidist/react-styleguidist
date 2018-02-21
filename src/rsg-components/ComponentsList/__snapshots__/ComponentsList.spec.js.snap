@@ -24,7 +24,7 @@ exports[`should render links to isolated component page if oneComponentPerPage p
   >
     <Styled(Link)
       className=""
-      href="blank#!/Button"
+      href="blank#button"
     >
       Button
     </Styled(Link)>

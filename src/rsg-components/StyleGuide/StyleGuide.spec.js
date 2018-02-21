@@ -118,11 +118,11 @@ describe('sidebar rendering', () => {
 		expect(wrapper.prop('hasSidebar')).toEqual(false);
 	});
 
-	it('renderer should have sidebar if oneComponentPerPage is true', () => {
+	it('renderer should have sidebar if pagePerSection is true', () => {
 		const wrapper = shallow(
 			<StyleGuide
 				codeRevision={1}
-				config={{ ...config, oneComponentPerPage: true }}
+				config={{ ...config, pagePerSection: true }}
 				sections={sections}
 				allSections={sections}
 				slots={{}}
