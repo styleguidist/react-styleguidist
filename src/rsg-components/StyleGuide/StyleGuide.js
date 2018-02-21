@@ -1,3 +1,4 @@
+import { isEqual, isFunction } from 'lodash';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TableOfContents from 'rsg-components/TableOfContents';
@@ -43,6 +44,15 @@ export default class StyleGuide extends Component {
 			slots: this.props.slots,
 			displayMode: this.props.displayMode,
 		};
+	}
+
+	componentDidUpdate(prevProps) {
+		// scroll to top of styleguide container when sections changed
+		if (!isEqual(this.props.sections, prevProps.sections)) {
+			if (window && isFunction(window.scrollTo)) {
+				window.scrollTo(0, 0);
+			}
+		}
 	}
 
 	componentDidCatch(error, info) {
