@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getRouteData should return first component if oneComponentPerPage and hash is empty 1`] = `
+exports[`getRouteData should return first component if pagePerSection and hash is empty 1`] = `
 Object {
   "displayMode": "all",
   "sections": Array [

@@ -61,7 +61,7 @@ describe('getRouteData', () => {
 		expect(result).toMatchSnapshot();
 	});
 
-	it('should return first component if oneComponentPerPage and hash is empty', () => {
+	it('should return first component if pagePerSection and hash is empty', () => {
 		const result = getRouteData(sections, '', true);
 		expect(result).toMatchSnapshot();
 	});
