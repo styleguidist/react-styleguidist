@@ -1,3 +1,4 @@
+import { isFunction } from 'lodash';
 import React from 'react';
 import slots from 'rsg-components/slots';
 import StyleGuide from 'rsg-components/StyleGuide';
@@ -27,10 +28,11 @@ export default function renderStyleguide(
 	// all components accessible to all examples
 	globalizeComponents(allSections);
 
+	const { pagePerSection } = styleguide.config;
 	const { sections, displayMode } = getRouteData(
 		allSections,
 		loc.hash,
-		styleguide.config.pagePerSection
+		isFunction(pagePerSection) ? pagePerSection() : pagePerSection
 	);
 
 	// Update page title

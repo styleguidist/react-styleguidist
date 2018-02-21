@@ -125,7 +125,7 @@ module.exports = {
 		type: 'object',
 	},
 	pagePerSection: {
-		type: 'boolean',
+		type: ['boolean', 'function'],
 		default: false,
 	},
 	previewDelay: {
