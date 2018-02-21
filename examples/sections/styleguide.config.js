@@ -2,7 +2,6 @@ const path = require('path');
 
 module.exports = {
 	title: 'React Style Guide Example',
-	pagePerSection: true,
 	sections: [
 		{
 			name: 'Documentation',

@@ -49,7 +49,7 @@ export default class StyleGuide extends Component {
 
 	componentDidUpdate(prevProps) {
 		// scroll to top of styleguide container when sections changed
-		if (!isEqual(this.props.sections, prevProps.sections)) {
+		if (this.props.pagePerSection && !isEqual(this.props.sections, prevProps.sections)) {
 			if (window && isFunction(window.scrollTo)) {
 				window.scrollTo(0, 0);
 			}
