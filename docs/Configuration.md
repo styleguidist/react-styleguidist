@@ -392,6 +392,10 @@ module.exports = {
 
 See an example of [customized style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/customised).
 
+If you want to wrap, rather than replace a component, make sure to import the default implementation using the full path to `react-styleguidist`. See an example of [wrapping a Styleguidist component](https://github.com/styleguidist/react-styleguidist/tree/master/examples/customised/styleguide/components/Sections).
+
+**Note**: these components are not guaranteed to be safe from breaking changes in react-styleguidist updates.
+
 #### `styleguideDir`
 
 Type: `String`, default: `styleguide`
