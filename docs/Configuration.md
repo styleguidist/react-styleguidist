@@ -14,7 +14,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`configureServer`](#configureserver)
 * [`dangerouslyUpdateWebpackConfig`](#dangerouslyupdatewebpackconfig)
 * [`defaultExample`](#defaultexample)
-* [`editorConfig`](#editorConfig)
+* [`editorConfig`](#editorconfig)
 * [`getComponentPathLine`](#getcomponentpathline)
 * [`getExampleFilename`](#getexamplefilename)
 * [`handlers`](#handlers)

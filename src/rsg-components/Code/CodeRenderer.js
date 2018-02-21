@@ -1,29 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 import Styled from 'rsg-components/Styled';
 
 const styles = ({ fontFamily }) => ({
 	code: {
-		display: 'inline',
 		fontFamily: fontFamily.monospace,
 		fontSize: 'inherit',
 		color: 'inherit',
 		background: 'transparent',
+		whiteSpace: 'inherit',
 	},
 });
 
 export function CodeRenderer({ classes, className, children }) {
-	return (
-		<span className={className}>
-			<code className={classes.code}>{children}</code>
-		</span>
-	);
-}
+	const classNames = cx(className, classes.code);
 
+	const isHighlighted = className && className.indexOf('lang-') !== -1;
+	if (isHighlighted) {
+		return <code className={classNames} dangerouslySetInnerHTML={{ __html: children }} />;
+	}
+	return <code className={classNames}>{children}</code>;
+}
 CodeRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	className: PropTypes.string,
-	children: PropTypes.node,
+	children: PropTypes.node.isRequired,
 };
 
 export default Styled(styles)(CodeRenderer);

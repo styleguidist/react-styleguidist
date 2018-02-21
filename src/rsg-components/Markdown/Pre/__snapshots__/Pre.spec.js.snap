@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Markdown Pre should render a pre 1`] = `
+<pre
+  class="rsg--pre-0"
+>
+  This is pre-formatted text.
+</pre>
+`;

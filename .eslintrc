@@ -42,6 +42,7 @@
     "classes": false,
     "shallow": false,
     "render": false,
-    "mount": false
+    "mount": false,
+    "cy": false
   }
 }
