@@ -26,8 +26,7 @@ export default class TableOfContents extends Component {
 
 	renderSections() {
 		const { searchTerm } = this.state;
-		const { sections } = this.props;
-		const useIsolatedLinks = (this.context.config || {}).useIsolatedLinks;
+		const { sections, useIsolatedLinks } = this.props;
 		// If there is only one section, we treat it as a root section
 		// In this case the name of the section won't be rendered and it won't get left padding
 		const firstLevel = sections.length === 1 ? sections[0].components : sections;
