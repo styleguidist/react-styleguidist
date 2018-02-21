@@ -114,6 +114,7 @@ const iconElements = Object.keys(icons).map(iconName => {
     </span>
   )
 })
+
 ;<div>{iconElements}</div>
 ```
 

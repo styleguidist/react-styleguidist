@@ -10,14 +10,14 @@ https://react-styleguidist.js.org/docs/getting-started.html
 
 Make sure you’re using the latest versions of React Styleguidist.
 
+💀 Issues without a demo will be closed! 💀
+
 When something isn’t working for you, include a reproducible demo:
   1. Fork the example project: https://github.com/styleguidist/example
   2. Modify it to reproduce the issue.
   3. Push to GitHub and paste the link here.
 
 Most likely you’ll find an issue yourself, while creating a demo.
-
-**Issues without a demo will be closed!**
 
 If you want to request a feature, consider opening a pull request instead.
 
