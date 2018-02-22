@@ -62,27 +62,12 @@ describe('getRouteData', () => {
 	});
 
 	it('should return first section if pagePerSection and hash is empty', () => {
-		const result = getRouteData(
-			[
-				{
-					sections: [
-						{
-							name: 'Single section',
-							content: ['Some content'],
-							components: [],
-							sections: [],
-						},
-					],
-				},
-			],
-			'',
-			true
-		);
+		const result = getRouteData(sections, '', true);
 		expect(result).toMatchSnapshot();
 	});
 
 	it('should return first component if pagePerSection and hash is empty', () => {
-		const result = getRouteData(sections, '', true);
+		const result = getRouteData(sections[0].sections, '', true);
 		expect(result).toMatchSnapshot();
 	});
 });

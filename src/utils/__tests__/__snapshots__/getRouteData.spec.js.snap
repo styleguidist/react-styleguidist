@@ -5,6 +5,30 @@ Object {
   "displayMode": "all",
   "sections": Array [
     Object {
+      "components": Array [
+        Object {
+          "module": 1,
+          "name": "Button",
+          "props": Object {
+            "displayName": "Button",
+            "examples": Array [
+              "example 0",
+              "example 1",
+            ],
+          },
+        },
+      ],
+      "sections": Array [],
+    },
+  ],
+}
+`;
+
+exports[`getRouteData should return first section if pagePerSection and hash is empty 1`] = `
+Object {
+  "displayMode": "all",
+  "sections": Array [
+    Object {
       "sections": Array [
         Object {
           "components": Array [
@@ -36,26 +60,6 @@ Object {
             "example 1",
           ],
           "name": "Section",
-          "sections": Array [],
-        },
-      ],
-    },
-  ],
-}
-`;
-
-exports[`getRouteData should return first section if pagePerSection and hash is empty 1`] = `
-Object {
-  "displayMode": "all",
-  "sections": Array [
-    Object {
-      "sections": Array [
-        Object {
-          "components": Array [],
-          "content": Array [
-            "Some content",
-          ],
-          "name": "Single section",
           "sections": Array [],
         },
       ],
