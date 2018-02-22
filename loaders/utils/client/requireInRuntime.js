@@ -1,5 +1,3 @@
-'use strict';
-
 // WARNING: This function’s source is returned by a loader without transpilation.
 // Do not use any unsupported by IE11+ features.
 

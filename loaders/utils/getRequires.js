@@ -1,5 +1,3 @@
-'use strict';
-
 // Need to supply the regex test as a string for reuse in unit tests
 // Currently, trying to change flags throws a TypeError
 // Slated for change in ES6, but not possible now:

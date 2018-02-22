@@ -1,5 +1,3 @@
-'use strict';
-
 const path = require('path');
 const filter = require('lodash/filter');
 const map = require('lodash/map');

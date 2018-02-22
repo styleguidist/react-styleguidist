@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
 	HOMEPAGE: 'https://react-styleguidist.js.org/',
 	BUGS: 'https://github.com/styleguidist/react-styleguidist/issues',

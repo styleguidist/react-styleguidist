@@ -1,5 +1,3 @@
-'use strict';
-
 const processComponent = require('./processComponent');
 
 /**

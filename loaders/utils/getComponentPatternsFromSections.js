@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Return all glob patterns from all sections.
  *

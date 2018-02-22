@@ -1,5 +1,3 @@
-'use strict';
-
 const b = require('ast-types').builders;
 
 /**

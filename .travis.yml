@@ -1,12 +1,8 @@
 language: node_js
 node_js:
-  - 4
   - 6
   - 8
   - 9
-matrix:
-  allow_failures:
-    - node_js: 4
 cache:
   directories:
     - node_modules
@@ -18,15 +14,11 @@ script:
   - npm run lint
   # Run tests and Danger.js
   - |
-    if [[ "$TRAVIS_NODE_VERSION" == "4" ]]; then
-      NODE_ENV=test node --harmony-proxies $(npm bin)/jest --runInBand
+    if [[ "$TRAVIS_NODE_VERSION" == "9" ]]; then
+      npm run danger
+      npm run test:coverage -- --runInBand
     else
-      if [[ "$TRAVIS_NODE_VERSION" == "9" ]]; then
-        npm run danger
-        npm run test:coverage -- --runInBand
-      else
-        npm run test:jest -- --runInBand
-      fi
+      npm run test:jest -- --runInBand
     fi
   # Compile code
   - npm run compile

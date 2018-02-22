@@ -1,5 +1,3 @@
-'use strict';
-
 const remark = require('remark');
 const visit = require('unist-util-visit');
 const highlightCode = require('./highlightCode');
