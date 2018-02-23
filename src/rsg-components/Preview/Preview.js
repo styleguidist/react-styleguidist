@@ -119,8 +119,8 @@ export default class Preview extends Component {
 
 	compileCode(code) {
 		try {
-			const wrappedCode = `const __F = React.Fragment || <div />;
-<__F>${code}</__F>;`;
+			const wrappedCode = `const __f = React.Fragment || <div />;
+<__f>${code}</__f>;`;
 			return compileCode(wrappedCode, this.context.config.compilerConfig);
 		} catch (err) {
 			this.handleError(err);
