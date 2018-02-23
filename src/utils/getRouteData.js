@@ -15,7 +15,7 @@ import { DisplayModes } from '../consts';
  *
  * @param {object} sections
  * @param {string} hash
- * @param {bool} pagePerSection
+ * @param {boolean} pagePerSection
  * @returns {object}
  */
 export default function getRouteData(sections, hash, pagePerSection) {

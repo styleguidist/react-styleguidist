@@ -9,6 +9,29 @@ import Error from 'rsg-components/Error';
 import { HOMEPAGE } from '../../../scripts/consts';
 import { DisplayModes } from '../../consts';
 
+/**
+ * This function will return true, if the sidebar should be visible and false otherwise.
+ *
+ * These sorted conditions (highest precedence first) define the visibility
+ * state of the sidebar.
+ *
+ * - Sidebar is hidden for isolated example views
+ * - Sidebar is always visible when pagePerSection
+ * - Sidebar is hidden when showSidebar is set to false
+ * - Sidebar is visible when showSidebar is set to true for non-isolated views
+ *
+ * @param {boolean} displayMode
+ * @param {boolean} showSidebar
+ * @param {boolean} pagePerSection
+ * @returns {boolean}
+ */
+function hasSidebar(displayMode, showSidebar, pagePerSection = false) {
+	return (
+		(pagePerSection && displayMode !== DisplayModes.example) ||
+		(showSidebar && displayMode === DisplayModes.all)
+	);
+}
+
 export default class StyleGuide extends Component {
 	static propTypes = {
 		codeRevision: PropTypes.number.isRequired,
@@ -87,10 +110,7 @@ export default class StyleGuide extends Component {
 				title={config.title}
 				homepageUrl={HOMEPAGE}
 				toc={<TableOfContents sections={allSections} useIsolatedLinks={pagePerSection} />}
-				hasSidebar={
-					(pagePerSection && displayMode !== DisplayModes.example) ||
-					(config.showSidebar && displayMode === DisplayModes.all)
-				}
+				hasSidebar={hasSidebar(displayMode, config.showSidebar, pagePerSection)}
 			>
 				<Sections sections={sections} depth={1} />
 			</StyleGuideRenderer>

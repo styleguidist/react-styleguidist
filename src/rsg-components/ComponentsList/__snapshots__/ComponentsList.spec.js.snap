@@ -16,7 +16,7 @@ exports[`should ignore items without name 1`] = `
 </ul>
 `;
 
-exports[`should render links to isolated component page if oneComponentPerPage passed 1`] = `
+exports[`should render links to isolated component page if useIsolatedLinks passed 1`] = `
 <ul>
   <li
     className=""
@@ -24,7 +24,7 @@ exports[`should render links to isolated component page if oneComponentPerPage p
   >
     <Styled(Link)
       className=""
-      href="blank#button"
+      href="blank#!/Button"
     >
       Button
     </Styled(Link)>

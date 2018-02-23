@@ -1,4 +1,3 @@
-import { isFunction } from 'lodash';
 import React from 'react';
 import slots from 'rsg-components/slots';
 import StyleGuide from 'rsg-components/StyleGuide';
@@ -28,12 +27,11 @@ export default function renderStyleguide(
 	// all components accessible to all examples
 	globalizeComponents(allSections);
 
-	const { pagePerSection } = styleguide.config;
-	const renderPagePerSection = isFunction(pagePerSection) ? pagePerSection() : pagePerSection;
-	const { sections, displayMode } = getRouteData(allSections, loc.hash, renderPagePerSection);
+	const { title, pagePerSection } = styleguide.config;
+	const { sections, displayMode } = getRouteData(allSections, loc.hash, pagePerSection);
 
 	// Update page title
-	doc.title = getPageTitle(sections, styleguide.config.title, displayMode);
+	doc.title = getPageTitle(sections, title, displayMode);
 
 	// If the current hash location was set to just `/` (e.g. when navigating back from isolated view to overview)
 	// replace the URL with one without hash, to present the user with a single address of the overview screen
@@ -52,7 +50,7 @@ export default function renderStyleguide(
 			sections={sections}
 			allSections={allSections}
 			displayMode={displayMode}
-			pagePerSection={renderPagePerSection}
+			pagePerSection={pagePerSection}
 		/>
 	);
 }

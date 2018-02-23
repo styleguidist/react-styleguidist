@@ -38,7 +38,7 @@ it('should ignore items without name', () => {
 	expect(actual).toMatchSnapshot();
 });
 
-it('should render links to isolated component page if oneComponentPerPage passed', () => {
+it('should render links to isolated component page if useIsolatedLinks passed', () => {
 	const components = [
 		{
 			name: 'Button',
@@ -49,7 +49,7 @@ it('should render links to isolated component page if oneComponentPerPage passed
 		},
 	];
 	const actual = shallow(
-		<ComponentsListRenderer items={components} classes={{}} oneComponentPerPage />
+		<ComponentsListRenderer items={components} classes={{}} useIsolatedLinks />
 	);
 
 	expect(actual).toMatchSnapshot();

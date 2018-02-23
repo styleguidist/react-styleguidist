@@ -262,17 +262,17 @@ module.exports = {
 
 #### `pagePerSection`
 
-Type: `Boolean` or `Function`, default: `false`
+Type: `Boolean`, default: `false`
 
-Render one section or component per page. Can be set by a function in order to control the behaviour for different environments.
+Render one section or component per page, starting with the first.
 
 If set to `true`, the sidebar will be visible on each page, except for the examples.
 
+The value may be differ on each environment.
+
 ```javascript
 module.exports = {
-  pagePerSection: function() {
-    return process.env.NODE_ENV !== 'production'
-  }
+  pagePerSection: process.env.NODE_ENV !== 'production'
 }
 ```
 
