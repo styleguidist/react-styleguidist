@@ -119,7 +119,11 @@ export default class Preview extends Component {
 
 	compileCode(code) {
 		try {
-			return compileCode(code, this.context.config.compilerConfig);
+			const wrappedCode = `
+const __F = React.Fragment || <div />;
+<__F>${code}</__F>
+	`;
+			return compileCode(wrappedCode, this.context.config.compilerConfig);
 		} catch (err) {
 			this.handleError(err);
 		}
