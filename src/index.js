@@ -6,12 +6,13 @@ import ReactDOM from 'react-dom';
 import renderStyleguide from './utils/renderStyleguide';
 
 // Examples code revision to rerender only code examples (not the whole page) when code changes
+// eslint-disable-next-line no-unused-vars
 let codeRevision = 0;
 
 const render = () => {
 	// eslint-disable-next-line import/no-unresolved
 	const styleguide = require('!!../loaders/styleguide-loader!./index.js');
-	ReactDOM.render(renderStyleguide(styleguide, codeRevision), document.getElementById('app'));
+	ReactDOM.render(renderStyleguide(styleguide, status), document.getElementById('app'));
 };
 
 window.addEventListener('hashchange', render);
