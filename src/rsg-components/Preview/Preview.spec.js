@@ -43,6 +43,15 @@ it('should not not fail when Wrapper wasn’t mounted', () => {
 	expect(node.innerHTML).toBe('');
 });
 
+it('should wrap code in Fragment when Adjacent JSX error is thrown', () => {
+	console.error = jest.fn();
+
+	const actual = mount(<Preview code="<span /><span />" evalInContext={evalInContext} />, options);
+
+	expect(console.error).not.toHaveBeenCalled();
+	expect(actual.html()).toMatch('<span');
+});
+
 it('should render component renderer', () => {
 	const actual = shallow(<Preview code={code} evalInContext={evalInContext} />, {
 		...options,

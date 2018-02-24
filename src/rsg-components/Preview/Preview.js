@@ -7,8 +7,8 @@ import PlaygroundError from 'rsg-components/PlaygroundError';
 import Wrapper from 'rsg-components/Wrapper';
 
 /* eslint-disable react/no-multi-comp */
-
 const compileCode = (code, config) => transform(code, config).code;
+const wrapCodeInFragment = code => `const __f = React.Fragment || <div />; <__f>${code}</__f>;`;
 
 // Wrap everything in a React component to leverage the state management of this component
 class PreviewComponent extends Component {
@@ -119,10 +119,15 @@ export default class Preview extends Component {
 
 	compileCode(code) {
 		try {
-			const wrappedCode = `const __f = React.Fragment || <div />;
-<__f>${code}</__f>;`;
-			return compileCode(wrappedCode, this.context.config.compilerConfig);
+			return compileCode(code, this.context.config.compilerConfig);
 		} catch (err) {
+			if (
+				err
+					.toString()
+					.match(/SyntaxError: Adjacent JSX elements must be wrapped in an enclosing tag/)
+			) {
+				return this.compileCode(wrapCodeInFragment(code));
+			}
 			this.handleError(err);
 		}
 		return false;
