@@ -3,6 +3,7 @@
 const path = require('path');
 const glob = require('glob');
 const isFunction = require('lodash/isFunction');
+const isArray = require('lodash/isArray');
 const isString = require('lodash/isString');
 
 /**
@@ -21,6 +22,8 @@ module.exports = function getComponentFiles(components, rootDir, ignore) {
 	let componentFiles;
 	if (isFunction(components)) {
 		componentFiles = components();
+	} else if (isArray(components)) {
+		componentFiles = components;
 	} else if (isString(components)) {
 		componentFiles = glob.sync(path.resolve(rootDir, components), { ignore });
 	} else {
