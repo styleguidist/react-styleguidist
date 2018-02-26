@@ -12,7 +12,7 @@ import Blockquote from 'rsg-components/Markdown/Blockquote';
 import Pre from 'rsg-components/Markdown/Pre';
 import Code from 'rsg-components/Code';
 import Checkbox from 'rsg-components/Markdown/Checkbox';
-import { Table, TableHead, TableCell } from 'rsg-components/Markdown/Table';
+import { Table, TableHead, TableBody, TableRow, TableCell } from 'rsg-components/Markdown/Table';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
 // That way we could avoid clashes between our loaders and user loaders.
@@ -118,6 +118,12 @@ const getBaseOverrides = memoize(classes => {
 			props: {
 				header: true,
 			},
+		},
+		tbody: {
+			component: TableBody,
+		},
+		tr: {
+			component: TableRow,
 		},
 		td: {
 			component: TableCell,

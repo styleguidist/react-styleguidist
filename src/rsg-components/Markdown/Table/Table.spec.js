@@ -1,23 +1,23 @@
 import React from 'react';
 
-import { Table, TableHead, TableCell } from './index';
+import { Table, TableHead, TableBody, TableRow, TableCell } from './index';
 
 describe('Markdown Table', () => {
 	it('should render a table', () => {
 		const actual = render(
 			<Table>
 				<TableHead>
-					<tr>
+					<TableRow>
 						<TableCell header>1st header</TableCell>
 						<TableCell header>2nd header</TableCell>
-					</tr>
+					</TableRow>
 				</TableHead>
-				<tbody>
-					<tr>
+				<TableBody>
+					<TableRow>
 						<TableCell>1st cell</TableCell>
 						<TableCell>2nd cell</TableCell>
-					</tr>
-				</tbody>
+					</TableRow>
+				</TableBody>
 			</Table>
 		);
 
