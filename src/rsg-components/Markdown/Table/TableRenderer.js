@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { styles as paraStyles } from 'rsg-components/Para';
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ space, color, fontFamily }) => ({
+const styles = ({ space }) => ({
 	table: {
-		...paraStyles({ space, color, fontFamily }).para,
+		marginTop: 0,
+		marginBottom: space[2],
 		borderCollapse: 'collapse',
 	},
 });

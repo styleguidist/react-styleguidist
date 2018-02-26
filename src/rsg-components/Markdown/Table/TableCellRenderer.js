@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ space, fontSize, fontFamily }) => ({
+const styles = ({ space, color, fontSize, fontFamily }) => ({
 	td: {
-		fontFamily: fontFamily.base,
 		padding: [[space[0], space[2], space[0], 0]],
+		fontFamily: fontFamily.base,
 		fontSize: fontSize.base,
+		color: color.base,
+		lineHeight: 1.5,
 	},
 	th: {
 		composes: '$td',
