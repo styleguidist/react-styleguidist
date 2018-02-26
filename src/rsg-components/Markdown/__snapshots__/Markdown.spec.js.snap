@@ -69,10 +69,10 @@ exports[`Markdown should render a table 1`] = `
 <table class="rsg--table-31">
   <thead class="rsg--thead-32">
     <tr>
-      <th class="rsg--td-33 rsg--th-34">
+      <th class="rsg--th-34 rsg--td-33">
         heading 1
       </th>
-      <th class="rsg--td-33 rsg--th-34">
+      <th class="rsg--th-34 rsg--td-33">
         heading 2
       </th>
     </tr>

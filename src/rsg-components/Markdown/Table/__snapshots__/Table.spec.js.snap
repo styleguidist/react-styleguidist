@@ -9,12 +9,12 @@ exports[`Markdown Table should render a table 1`] = `
   >
     <tr>
       <th
-        class="rsg--td-3 rsg--th-4"
+        class="rsg--th-4 rsg--td-3"
       >
         1st header
       </th>
       <th
-        class="rsg--td-3 rsg--th-4"
+        class="rsg--th-4 rsg--td-3"
       >
         2nd header
       </th>

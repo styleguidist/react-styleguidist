@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
 
 import Styled from 'rsg-components/Styled';
 
@@ -11,13 +10,14 @@ const styles = ({ space, fontSize, fontFamily }) => ({
 		fontSize: fontSize.base,
 	},
 	th: {
+		composes: '$td',
 		fontWeight: 'bold',
 	},
 });
 
 export function TableCellRenderer({ classes, header, children }) {
 	if (header) {
-		return <th className={cx(classes.td, classes.th)}>{children}</th>;
+		return <th className={classes.th}>{children}</th>;
 	}
 
 	return <td className={classes.td}>{children}</td>;
