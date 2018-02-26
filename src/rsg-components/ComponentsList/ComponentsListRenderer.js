@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Link from 'rsg-components/Link';
 import Styled from 'rsg-components/Styled';
-import getUrl from '../../utils/getUrl';
 
 const styles = ({ color, fontFamily, fontSize, space, mq }) => ({
 	list: {
@@ -34,7 +33,7 @@ const styles = ({ color, fontFamily, fontSize, space, mq }) => ({
 	},
 });
 
-export function ComponentsListRenderer({ classes, items, useIsolatedLinks }) {
+export function ComponentsListRenderer({ classes, items }) {
 	items = items.filter(item => item.name);
 
 	if (!items.length) {
@@ -43,20 +42,12 @@ export function ComponentsListRenderer({ classes, items, useIsolatedLinks }) {
 
 	return (
 		<ul className={classes.list}>
-			{items.map(({ heading, name, slug, content }) => (
+			{items.map(({ heading, name, href, content }) => (
 				<li
 					className={cx(classes.item, (!content || !content.props.items.length) && classes.isChild)}
 					key={name}
 				>
-					<Link
-						className={cx(heading && classes.heading)}
-						href={getUrl({
-							name,
-							slug,
-							anchor: !useIsolatedLinks,
-							isolated: useIsolatedLinks,
-						})}
-					>
+					<Link className={cx(heading && classes.heading)} href={href}>
 						{name}
 					</Link>
 					{content}
