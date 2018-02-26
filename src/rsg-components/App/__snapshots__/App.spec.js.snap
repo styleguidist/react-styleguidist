@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> should render StyleGuide component 1`] = `
+<StyleGuide
+  allSections={
+    Array [
+      Object {
+        "components": Array [
+          Object {
+            "module": "ButtonModule",
+            "name": "Button",
+            "props": Object {
+              "displayName": "Button",
+              "examples": Array [],
+            },
+          },
+          Object {
+            "module": "ImageModule",
+            "name": "Image",
+            "props": Object {
+              "displayName": "Image",
+              "examples": Array [],
+            },
+          },
+        ],
+        "sections": Array [],
+      },
+    ]
+  }
+  codeRevision={1}
+  config={
+    Object {
+      "title": "My Style Guide",
+    }
+  }
+  displayMode="all"
+  patterns={
+    Array [
+      "button",
+      "input",
+    ]
+  }
+  sections={
+    Array [
+      Object {
+        "components": Array [
+          Object {
+            "module": "ButtonModule",
+            "name": "Button",
+            "props": Object {
+              "displayName": "Button",
+              "examples": Array [],
+            },
+          },
+          Object {
+            "module": "ImageModule",
+            "name": "Image",
+            "props": Object {
+              "displayName": "Image",
+              "examples": Array [],
+            },
+          },
+        ],
+        "sections": Array [],
+      },
+    ]
+  }
+  slots={
+    Object {
+      "componentToolbar": Array [
+        [Function],
+      ],
+      "docsTabButtons": Array [
+        Object {
+          "id": "rsg-usage",
+          "render": [Function],
+        },
+      ],
+      "docsTabs": Array [
+        Object {
+          "id": "rsg-usage",
+          "render": [Function],
+        },
+      ],
+      "exampleTabButtons": Array [
+        Object {
+          "id": "rsg-code-editor",
+          "render": [Function],
+        },
+      ],
+      "exampleTabs": Array [
+        Object {
+          "id": "rsg-code-editor",
+          "render": [Function],
+        },
+      ],
+      "exampleToolbar": Array [
+        [Function],
+      ],
+      "sectionToolbar": Array [
+        [Function],
+      ],
+    }
+  }
+  welcomeScreen={false}
+/>
+`;

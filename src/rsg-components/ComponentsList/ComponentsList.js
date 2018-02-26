@@ -17,8 +17,8 @@ function ComponentsList({ classes, items, useIsolatedLinks = false }) {
 }
 
 ComponentsList.propTypes = {
-	classes: PropTypes.object.isRequired,
 	items: PropTypes.array.isRequired,
+	classes: PropTypes.object,
 	useIsolatedLinks: PropTypes.bool,
 };
 

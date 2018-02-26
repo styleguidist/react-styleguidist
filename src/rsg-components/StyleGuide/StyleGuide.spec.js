@@ -71,46 +71,6 @@ it('should render an error when componentDidCatch() is triggered', () => {
 	expect(wrapper).toMatchSnapshot();
 });
 
-it('should scroll to top on sections change, when pagePerSections is true', () => {
-	const scrollTo = jest.fn();
-	global.window.scrollTo = scrollTo;
-
-	const props = {
-		codeRevision: 1,
-		config,
-		sections: [],
-		allSections: [],
-		slots: {},
-		pagePerSection: true,
-	};
-
-	const wrapper = shallow(<StyleGuide {...props} />);
-
-	wrapper.instance().componentDidUpdate({ ...props, sections });
-
-	expect(scrollTo.mock.calls.length).toBe(1);
-});
-
-it('should not scroll to top on sections change, when pagePerSections is false', () => {
-	const scrollTo = jest.fn();
-	global.window.scrollTo = scrollTo;
-
-	const props = {
-		codeRevision: 1,
-		config,
-		sections: [],
-		allSections: [],
-		slots: {},
-		pagePerSection: false,
-	};
-
-	const wrapper = shallow(<StyleGuide {...props} />);
-
-	wrapper.instance().componentDidUpdate({ ...props, sections });
-
-	expect(scrollTo.mock.calls.length).toBe(0);
-});
-
 describe('sidebar rendering', () => {
 	it('renderer should have sidebar if showSidebar is not set', () => {
 		const wrapper = shallow(
