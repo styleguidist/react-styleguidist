@@ -125,4 +125,16 @@ Text with *some* **formatting** and a [link](/foo).
 
 		expect(html(actual)).toMatchSnapshot();
 	});
+
+	it('should render a table', () => {
+		const markdown = `
+| heading 1 | heading 2 |
+| --------- | --------- |
+| foo		| bar		|
+| more foo	| more bar	|
+`;
+		const actual = render(<Markdown text={markdown} />);
+
+		expect(html(actual)).toMatchSnapshot();
+	});
 });
