@@ -2,6 +2,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const webpackVersion = require('webpack/package.json').version;
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -50,6 +51,9 @@ module.exports = function(config, env) {
 			hints: false,
 		},
 	};
+	if (parseInt(webpackVersion[0], 10) >= 4) {
+		webpackConfig.mode = env;
+	}
 
 	if (isProd) {
 		webpackConfig = merge(webpackConfig, {
