@@ -2,7 +2,6 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const webpackVersion = require('webpack/package.json').version;
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -11,6 +10,7 @@ const merge = require('webpack-merge');
 const forEach = require('lodash/forEach');
 const mergeWebpackConfig = require('./utils/mergeWebpackConfig');
 const StyleguidistOptionsPlugin = require('./utils/StyleguidistOptionsPlugin');
+const getWebpackVersion = require('./utils/getWebpackVersion');
 
 const RENDERER_REGEXP = /Renderer$/;
 
@@ -51,7 +51,8 @@ module.exports = function(config, env) {
 			hints: false,
 		},
 	};
-	if (parseInt(webpackVersion[0], 10) >= 4) {
+
+	if (getWebpackVersion() >= 4) {
 		webpackConfig.mode = env;
 	}
 
