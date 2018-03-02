@@ -7,6 +7,21 @@ import getInfoFromHash from './getInfoFromHash';
 import { DisplayModes } from '../consts';
 
 /**
+ * Returns the first element of the sections, which can be one of section or
+ * component.
+ *
+ * @param {object} sections
+ * @returns {object}
+ */
+const getFirstSectionOrComponent = sections => {
+	const firstSection = sections[0];
+	if (firstSection.components && firstSection.components.length > 0) {
+		return { ...firstSection, components: [firstSection.components[0]] };
+	}
+	return firstSection;
+};
+
+/**
  * Return sections / components / examples to show on a screen according to a current route.
  *
  * Default: show all sections and components.
@@ -57,12 +72,4 @@ export default function getRouteData(sections, hash, pagePerSection) {
 	}
 
 	return { sections, displayMode };
-}
-
-function getFirstSectionOrComponent(sections) {
-	const firstSection = sections[0];
-	if (firstSection.components && firstSection.components.length > 0) {
-		return { ...firstSection, components: [firstSection.components[0]] };
-	}
-	return firstSection;
 }

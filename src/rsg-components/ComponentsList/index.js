@@ -1,1 +1,1 @@
-export { default } from './ComponentsList.js';
+export { default } from 'rsg-components/ComponentsList/ComponentsList';
