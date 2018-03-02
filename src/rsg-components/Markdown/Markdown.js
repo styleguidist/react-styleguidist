@@ -12,6 +12,7 @@ import Blockquote from 'rsg-components/Markdown/Blockquote';
 import Pre from 'rsg-components/Markdown/Pre';
 import Code from 'rsg-components/Code';
 import Checkbox from 'rsg-components/Markdown/Checkbox';
+import Hr from 'rsg-components/Markdown/Hr';
 import { Table, TableHead, TableBody, TableRow, TableCell } from 'rsg-components/Markdown/Table';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
@@ -107,6 +108,9 @@ const getBaseOverrides = memoize(classes => {
 		input: {
 			component: Checkbox,
 		},
+		hr: {
+			component: Hr,
+		},
 		table: {
 			component: Table,
 		},
@@ -150,12 +154,6 @@ const styles = ({ space, fontFamily, color }) => ({
 		fontSize: 'inherit',
 	},
 	para: paraStyles({ space, color, fontFamily }).para,
-	hr: {
-		composes: '$para',
-		borderWidth: [[0, 0, 1, 0]],
-		borderColor: color.border,
-		borderStyle: 'solid',
-	},
 });
 
 function Markdown({ classes, text, inline }) {
