@@ -2,9 +2,9 @@
 
 import './polyfills';
 import './styles';
-import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './rsg-components/App';
+import renderStyleguide from './utils/renderStyleguide';
+import { get } from 'lodash';
 
 // Examples code revision to rerender only code examples (not the whole page) when code changes
 // eslint-disable-next-line no-unused-vars
@@ -13,10 +13,10 @@ let codeRevision = 0;
 const render = () => {
 	// eslint-disable-next-line import/no-unresolved
 	const styleguide = require('!!../loaders/styleguide-loader!./index.js');
-	ReactDOM.render(
-		<App styleguide={styleguide} codeRevision={codeRevision} />,
-		document.getElementById('app')
-	);
+	ReactDOM.render(renderStyleguide(styleguide, status), document.getElementById('app'));
+	if (get(window, 'location.hash', '').startsWith('#!/')) {
+		window.scrollTo(0, 0);
+	}
 };
 
 window.addEventListener('hashchange', render);
