@@ -119,15 +119,11 @@ export default class Preview extends Component {
 
 	compileCode(code) {
 		try {
-			return compileCode(code, this.context.config.compilerConfig);
+			return compileCode(
+				code.trim().startsWith('<') ? wrapCodeInFragment(code) : code,
+				this.context.config.compilerConfig
+			);
 		} catch (err) {
-			if (
-				err
-					.toString()
-					.match(/SyntaxError: Adjacent JSX elements must be wrapped in an enclosing tag/)
-			) {
-				return this.compileCode(wrapCodeInFragment(code));
-			}
 			this.handleError(err);
 		}
 		return false;
