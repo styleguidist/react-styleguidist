@@ -120,7 +120,7 @@ export default class Preview extends Component {
 	compileCode(code) {
 		try {
 			return compileCode(
-				code.trim().startsWith('<') ? wrapCodeInFragment(code) : code,
+				code.trim().match(/^</) ? wrapCodeInFragment(code) : code,
 				this.context.config.compilerConfig
 			);
 		} catch (err) {
