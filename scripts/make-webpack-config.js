@@ -24,6 +24,7 @@ module.exports = function(config, env) {
 
 	let webpackConfig = {
 		entry: config.require.concat([path.resolve(sourceDir, 'index')]),
+		mode: env,
 		output: {
 			path: config.styleguideDir,
 			filename: 'build/[name].bundle.js',
@@ -62,22 +63,26 @@ module.exports = function(config, env) {
 				filename: 'build/bundle.[chunkhash:8].js',
 				chunkFilename: 'build/[name].[chunkhash:8].js',
 			},
+			optimization: {
+				minimizer: [
+					new UglifyJSPlugin({
+						parallel: true,
+						cache: true,
+						uglifyOptions: {
+							ie8: false,
+							ecma: 5,
+							compress: {
+								keep_fnames: true,
+								warnings: false,
+							},
+							mangle: {
+								keep_fnames: true,
+							},
+						},
+					}),
+				],
+			},
 			plugins: [
-				new UglifyJSPlugin({
-					parallel: true,
-					cache: true,
-					uglifyOptions: {
-						ie8: false,
-						ecma: 5,
-						compress: {
-							keep_fnames: true,
-							warnings: false,
-						},
-						mangle: {
-							keep_fnames: true,
-						},
-					},
-				}),
 				new CleanWebpackPlugin(['build'], {
 					root: config.styleguideDir,
 					verbose: config.verbose === true,
