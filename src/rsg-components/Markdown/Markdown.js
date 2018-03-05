@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { compiler } from 'markdown-to-jsx';
-
 import Link from 'rsg-components/Link';
 import Text from 'rsg-components/Text';
 import Para from 'rsg-components/Para';
