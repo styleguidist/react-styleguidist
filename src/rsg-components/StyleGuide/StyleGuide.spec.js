@@ -96,7 +96,7 @@ describe('sidebar rendering', () => {
 	});
 });
 
-it('renderer should render logo, table of contents and passed children', () => {
+it('renderer should render logo, table of contents, ribbon and passed children', () => {
 	const actual = shallow(
 		<StyleGuideRenderer
 			classes={{}}

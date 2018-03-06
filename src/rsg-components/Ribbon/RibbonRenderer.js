@@ -27,6 +27,7 @@ export const styles = ({ color, fontSize, fontFamily }) => ({
 		textShadow: '0 -1px 0 rgba(0,0,0,.15)',
 		transformOrigin: '0 0',
 		transform: 'rotate(45deg)',
+		cursor: 'pointer',
 	},
 });
 

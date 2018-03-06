@@ -55,15 +55,7 @@ const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth
 	},
 });
 
-export function StyleGuideRenderer({
-	classes,
-	title,
-	homepageUrl,
-	children,
-	toc,
-	hasSidebar,
-	ribbon,
-}) {
+export function StyleGuideRenderer({ classes, title, homepageUrl, children, toc, hasSidebar }) {
 	return (
 		<div className={cx(classes.root, hasSidebar && classes.hasSidebar)}>
 			<main className={classes.content}>
@@ -80,7 +72,7 @@ export function StyleGuideRenderer({
 					{toc}
 				</div>
 			)}
-			{ribbon && <Ribbon />}
+			<Ribbon />
 		</div>
 	);
 }
@@ -92,7 +84,6 @@ StyleGuideRenderer.propTypes = {
 	children: PropTypes.node.isRequired,
 	toc: PropTypes.node.isRequired,
 	hasSidebar: PropTypes.bool,
-	ribbon: PropTypes.object,
 };
 
 export default Styled(styles)(StyleGuideRenderer);
