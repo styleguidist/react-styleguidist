@@ -1,1 +1,1 @@
-export { default } from './Ribbon.js';
+export { default } from 'rsg-components/Ribbon/Ribbon.js';

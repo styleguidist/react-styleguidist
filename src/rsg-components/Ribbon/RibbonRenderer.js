@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 
-export const styles = ({ color, fontSize, fontFamily }) => ({
+export const styles = ({ color, space, fontSize, fontFamily }) => ({
 	root: {
 		position: 'fixed',
 		top: 0,
@@ -18,7 +18,7 @@ export const styles = ({ color, fontSize, fontFamily }) => ({
 		top: -22,
 		display: 'block',
 		width: 190,
-		padding: '5px 15px',
+		padding: `${space[0]}px ${space[2]}px`,
 		textAlign: 'center',
 		color: color.ribbonText,
 		fontSize: fontSize.base,
@@ -35,18 +35,20 @@ export function RibbonRenderer({ classes, url, text }) {
 	return (
 		<div className={classes.root}>
 			<a href={url} className={classes.link}>
-				{text || 'Fork me on GitHub'}
+				{text}
 			</a>
 		</div>
 	);
 }
 
+RibbonRenderer.defaultProps = {
+	text: 'Fork me on GitHub',
+};
+
 RibbonRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	url: PropTypes.string.isRequired,
 	text: PropTypes.string,
-	color: PropTypes.string,
-	background: PropTypes.string,
 };
 
 export default Styled(styles)(RibbonRenderer);
