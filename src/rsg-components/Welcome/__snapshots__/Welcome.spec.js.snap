@@ -2,7 +2,7 @@
 
 exports[`renderer should render welcome screen 1`] = `
 <div>
-  <Styled(Markdown)
+  <Markdown
     text="
 # Welcome to React Styleguidist!
 
