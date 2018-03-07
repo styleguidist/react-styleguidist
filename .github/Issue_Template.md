@@ -14,8 +14,9 @@ Make sure you’re using the latest versions of React Styleguidist.
 
 When something isn’t working for you, include a reproducible demo:
   1. Fork the example project: https://github.com/styleguidist/example
-  2. Modify it to reproduce the issue.
-  3. Push to GitHub and paste the link here.
+  2. Update the react-styleguidist npm package.
+  3. Modify it to reproduce the issue.
+  4. Push to GitHub and paste the link here.
 
 Most likely you’ll find an issue yourself, while creating a demo.
 
