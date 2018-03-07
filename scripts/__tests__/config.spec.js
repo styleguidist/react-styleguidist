@@ -1,4 +1,3 @@
-import { isFunction, isArray } from 'lodash';
 import fs from 'fs';
 import path from 'path';
 import getConfig from '../config';
@@ -34,30 +33,6 @@ it('should accept config as an object', () => {
 		title: 'Style guide',
 	});
 	expect(result).toMatchObject({ title: 'Style guide' });
-});
-
-it('should accept components as a string', () => {
-	const result = getConfig({
-		components: './components/**/[A-Z]*.js',
-	});
-	expect(result).toHaveProperty('components');
-	expect(result.components).toBe('./components/**/[A-Z]*.js');
-});
-
-it('should accept components as a function', () => {
-	const result = getConfig({
-		components: () => ['./components/**/[A-Z]*.js'],
-	});
-	expect(result).toHaveProperty('components');
-	expect(isFunction(result.components)).toBeTruthy();
-});
-
-it('should accept components as an array', () => {
-	const result = getConfig({
-		components: ['./components/**/[A-Z]*.js'],
-	});
-	expect(result).toHaveProperty('components');
-	expect(isArray(result.components)).toBeTruthy();
 });
 
 it('should throw if config has errors', () => {
