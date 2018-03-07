@@ -12,6 +12,7 @@ import Blockquote from 'rsg-components/Markdown/Blockquote';
 import Pre from 'rsg-components/Markdown/Pre';
 import Code from 'rsg-components/Code';
 import Checkbox from 'rsg-components/Markdown/Checkbox';
+import { Table, TableHead, TableBody, TableRow, TableCell } from 'rsg-components/Markdown/Table';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
 // That way we could avoid clashes between our loaders and user loaders.
@@ -106,6 +107,27 @@ const getBaseOverrides = memoize(classes => {
 		input: {
 			component: Checkbox,
 		},
+		table: {
+			component: Table,
+		},
+		thead: {
+			component: TableHead,
+		},
+		th: {
+			component: TableCell,
+			props: {
+				header: true,
+			},
+		},
+		tbody: {
+			component: TableBody,
+		},
+		tr: {
+			component: TableRow,
+		},
+		td: {
+			component: TableCell,
+		},
 	};
 }, () => 'getBaseOverrides');
 
@@ -121,7 +143,7 @@ const getInlineOverrides = memoize(classes => {
 	};
 }, () => 'getInlineOverrides');
 
-const styles = ({ space, fontFamily, fontSize, color }) => ({
+const styles = ({ space, fontFamily, color }) => ({
 	base: {
 		color: color.base,
 		fontFamily: fontFamily.base,
@@ -134,24 +156,6 @@ const styles = ({ space, fontFamily, fontSize, color }) => ({
 		borderColor: color.border,
 		borderStyle: 'solid',
 	},
-	table: {
-		composes: '$para',
-		borderCollapse: 'collapse',
-	},
-	thead: {
-		composes: '$hr',
-	},
-	tbody: {},
-	td: {
-		fontFamily: fontFamily.base,
-		padding: [[space[0], space[2], space[0], 0]],
-		fontSize: fontSize.base,
-	},
-	th: {
-		composes: '$td',
-		fontWeight: 'bold',
-	},
-	tr: {},
 });
 
 function Markdown({ classes, text, inline }) {
