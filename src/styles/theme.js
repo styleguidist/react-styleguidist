@@ -23,6 +23,7 @@ export const color = {
 	codeBackground: '#f5f5f5',
 	sidebarBackground: '#f5f5f5',
 	ribbonBackground: '#f9970d',
+	ribbonText: '#fff',
 };
 
 export const fontFamily = {

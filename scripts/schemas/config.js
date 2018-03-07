@@ -151,8 +151,6 @@ module.exports = {
 		example: {
 			url: 'http://example.com/',
 			text: 'Fork me on GitHub',
-			color: '#fff',
-			background: '#24292e',
 		},
 	},
 	sections: {

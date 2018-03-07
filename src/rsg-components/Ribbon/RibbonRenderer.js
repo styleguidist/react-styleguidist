@@ -20,7 +20,7 @@ export const styles = ({ color, fontSize, fontFamily }) => ({
 		width: 190,
 		padding: '5px 15px',
 		textAlign: 'center',
-		color: 'white',
+		color: color.ribbonText,
 		fontSize: fontSize.base,
 		background: color.ribbonBackground,
 		textDecoration: 'none',
@@ -31,10 +31,10 @@ export const styles = ({ color, fontSize, fontFamily }) => ({
 	},
 });
 
-export function RibbonRenderer({ classes, url, text, color, background }) {
+export function RibbonRenderer({ classes, url, text }) {
 	return (
 		<div className={classes.root}>
-			<a href={url} className={classes.link} style={{ color, background }}>
+			<a href={url} className={classes.link}>
 				{text || 'Fork me on GitHub'}
 			</a>
 		</div>
