@@ -5,6 +5,7 @@
 const minimist = require('minimist');
 const chalk = require('chalk');
 const ora = require('ora');
+const opn = require('opn');
 const stringify = require('q-i').stringify;
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const webpackDevServerUtils = require('react-dev-utils/WebpackDevServerUtils');
@@ -120,7 +121,13 @@ function commandServer() {
 			console.error(err);
 		} else {
 			const isHttps = compiler.options.devServer && compiler.options.devServer.https;
-			printInstructions(isHttps, config.serverHost, config.serverPort);
+			const host = config.serverHost;
+			const port = config.serverPort;
+			const urls = webpackDevServerUtils.prepareUrls(isHttps ? 'https' : 'http', host, port);
+			printInstructions(urls.localUrlForTerminal, urls.lanUrlForTerminal);
+			if (argv.open) {
+				opn(urls.localUrlForTerminal.slice(0, -1));
+			}
 		}
 	});
 
@@ -175,16 +182,14 @@ function commandHelp() {
 }
 
 /**
- * @param {boolean} isHttps
- * @param {string} host
- * @param {number} port
+ * @param {string} localUrlForTerminal
+ * @param {string} lanUrlForTerminal
  */
-function printInstructions(isHttps, host, port) {
-	const urls = webpackDevServerUtils.prepareUrls(isHttps ? 'https' : 'http', host, port);
+function printInstructions(localUrlForTerminal, lanUrlForTerminal) {
 	console.log(`You can now view your style guide in the browser:`);
 	console.log();
-	console.log(`  ${chalk.bold('Local:')}            ${urls.localUrlForTerminal}`);
-	console.log(`  ${chalk.bold('On your network:')}  ${urls.lanUrlForTerminal}`);
+	console.log(`  ${chalk.bold('Local:')}            ${localUrlForTerminal}`);
+	console.log(`  ${chalk.bold('On your network:')}  ${lanUrlForTerminal}`);
 	console.log();
 }
 
