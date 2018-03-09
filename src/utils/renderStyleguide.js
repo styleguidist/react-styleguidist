@@ -44,7 +44,7 @@ export default function renderStyleguide(
 		<StyleGuide
 			codeRevision={codeRevision}
 			config={styleguide.config}
-			slots={slots}
+			slots={slots(styleguide.config)}
 			welcomeScreen={styleguide.welcomeScreen}
 			patterns={styleguide.patterns}
 			sections={sections}
