@@ -14,5 +14,6 @@ Thumbs.db
 *.log
 .eslintcache
 yarn.lock
-cypress/screenshots/
-cypress/videos/
+/cypress/
+test/cypress/screenshots/
+test/cypress/videos/
