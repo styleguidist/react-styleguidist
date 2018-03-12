@@ -63,6 +63,12 @@ module.exports = function getProps(doc, filepath) {
 		// Read doclets from the description and remove them
 		doc.doclets = getDocletsObject(doc.description);
 
+		// If there is a filename for the version, then load it in.
+		if (doc.doclets.version) {
+			const versionFilePath = path.resolve(path.dirname(filepath), doc.doclets.version);
+			doc.doclets.version = require(versionFilePath).version;
+		}
+
 		const documentation = doctrine.parse(doc.description);
 		doc.tags = getDoctrineTags(documentation);
 
