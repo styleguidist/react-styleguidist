@@ -13,7 +13,8 @@ Make sure you’re using the latest versions of React Styleguidist.
 💀 Issues without a demo will be closed! 💀
 
 When something isn’t working for you, include a reproducible demo:
-  1. Fork the example project: https://github.com/styleguidist/example
+  1. Fork the example project repository: https://github.com/styleguidist/example
+     (please don’t use the main, styleguidist/react-styleguidist, repository).
   2. Modify it to reproduce the issue.
   3. Push to GitHub and paste the link here.
 
