@@ -49,9 +49,9 @@ script:
     fi
 after_success:
   # Make release with semantic-release if needed
-  - npm install -g semantic-release
+  - npm install -g semantic-release travis-deploy-once
   - npm install --no-save semantic-release-tamia
-  - semantic-release --analyze-commits semantic-release-tamia/analyzeCommits --verify-release semantic-release-tamia/verifyRelease --generate-notes semantic-release-tamia/generateNotes
+  - travis-deploy-once "semantic-release --analyze-commits semantic-release-tamia/analyzeCommits --verify-release semantic-release-tamia/verifyRelease --generate-notes semantic-release-tamia/generateNotes"
   - |
     if [[ "$TRAVIS_NODE_VERSION" == "9" ]]; then
       # Upload coverage report to Codecov
