@@ -131,6 +131,9 @@ module.exports = {
 	propsParser: {
 		type: 'function',
 	},
+	propsPostProcessor: {
+		type: 'function',
+	},
 	require: {
 		type: 'array',
 		default: [],
