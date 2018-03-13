@@ -118,7 +118,6 @@
     "eslint-plugin-react": "^7.5.1",
     "file-loader": "^1.1.5",
     "husky": "^0.14.3",
-    "identity-obj-proxy": "^3.0.0",
     "jest": "^21.2.1",
     "jest-serializer-html": "^4.0.1",
     "keymirror": "^0.1.1",
@@ -175,7 +174,7 @@
       "./src"
     ],
     "moduleNameMapper": {
-      "^.+\\.css$": "identity-obj-proxy"
+      "^.+\\.css$": "<rootDir>/test/empty.js"
     },
     "testPathIgnorePatterns": [
       "<rootDir>/lib/",
