@@ -178,13 +178,12 @@
     },
     "testPathIgnorePatterns": [
       "<rootDir>/lib/",
-      "<rootDir>/examples/"
+      "<rootDir>/examples/",
+      "<rootDir>/test/"
     ],
     "coveragePathIgnorePatterns": [
-      "<rootDir>/src/utils/markdown-to-jsx.js",
       "<rootDir>/scripts/server.js",
-      "<rootDir>/scripts/build.js",
-      "<rootDir>/test/jestsetup.js"
+      "<rootDir>/scripts/build.js"
     ],
     "snapshotSerializers": [
       "deabsdeep/serializer",
