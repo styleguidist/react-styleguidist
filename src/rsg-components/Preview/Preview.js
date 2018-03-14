@@ -26,7 +26,7 @@ class PreviewComponent extends Component {
 	// Synchronously set initial state, so it will be ready before first render
 	// Ignore all consequent calls
 	setInitialState(initialState) {
-		Object.assign(this.state, initialState);
+		this.state = initialState;
 		this.setInitialState = noop;
 	}
 
