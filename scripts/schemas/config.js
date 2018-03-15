@@ -131,9 +131,6 @@ module.exports = {
 	propsParser: {
 		type: 'function',
 	},
-	propsPostProcessor: {
-		type: 'function',
-	},
 	require: {
 		type: 'array',
 		default: [],
@@ -250,6 +247,9 @@ module.exports = {
 			}
 			return props;
 		},
+	},
+	updateProps: {
+		type: 'function',
 	},
 	updateWebpackConfig: {
 		type: 'function',

@@ -57,8 +57,8 @@ module.exports = function(source) {
 	const examplesFile = config.getExampleFilename(file);
 	props.examples = getExamples(examplesFile, props.displayName, config.defaultExample);
 
-	if (config.propsPostProcessor) {
-		props = config.propsPostProcessor(props, file);
+	if (config.updateProps) {
+		props = config.updateProps(props, file);
 	}
 
 	return `
