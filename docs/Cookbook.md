@@ -23,7 +23,7 @@
 * [How to add external JavaScript and CSS files?](#how-to-add-external-javascript-and-css-files)
 * [How to reuse project’s webpack config?](#how-to-reuse-projects-webpack-config)
 * [How to use React Styleguidist with Redux, Relay or Styled Components?](#how-to-use-react-styleguidist-with-redux-relay-or-styled-components)
-* [What’s the difference betweeen Styleguidist and Storybook](#whats-the-difference-betweeen-styleguidist-and-storybook)
+* [What’s the difference between Styleguidist and Storybook?](#whats-the-difference-between-styleguidist-and-storybook)
 * [Are there any other projects like this?](#are-there-any-other-projects-like-this)
 
 <!-- tocstop -->
