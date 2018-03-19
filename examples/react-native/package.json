@@ -1,0 +1,49 @@
+{
+  "name": "react-styleguidist-example-react-native",
+  "version": "0.1.0",
+  "private": true,
+  "author": {
+    "name": "Terry Smith",
+    "url": "https://designcollider.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/styleguidist/react-styleguidist.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=4"
+  },
+  "devDependencies": {
+    "babel-loader": "^7.1.2",
+    "babel-plugin-react-native-web": "^0.4.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react-native": "^4.0.0",
+    "jest-expo": "25.0.0",
+    "react-native-scripts": "1.11.1",
+    "react-test-renderer": "16.2.0",
+    "webpack": "^3.11.0"
+  },
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "scripts": {
+    "start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "test": "node node_modules/jest/bin/jest.js",
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "expo": "^25.0.0",
+    "prop-types": "^15.6.0",
+    "react": "16.2.0",
+    "react-dom": "^16.2.0",
+    "react-native": "0.52.0",
+    "react-native-web": "^0.4.0",
+    "react-styleguidist": "^6.2.3"
+  }
+}

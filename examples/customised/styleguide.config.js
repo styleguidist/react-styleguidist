@@ -38,6 +38,7 @@ module.exports = {
 	styleguideComponents: {
 		LogoRenderer: path.join(__dirname, 'styleguide/components/Logo'),
 		StyleGuideRenderer: path.join(__dirname, 'styleguide/components/StyleGuide'),
+		SectionsRenderer: path.join(__dirname, 'styleguide/components/Sections'),
 	},
 	webpackConfig: {
 		module: {
@@ -56,6 +57,13 @@ module.exports = {
 					loader: 'url-loader',
 				},
 			],
+		},
+		resolve: {
+			alias: {
+				// Make sure the example uses the local version of react-styleguidist
+				// This is only for the examples in this repo, you won't need it for your own project
+				'react-styleguidist': path.join(__dirname, '../../'),
+			},
 		},
 	},
 };

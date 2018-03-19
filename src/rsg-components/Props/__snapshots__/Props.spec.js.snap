@@ -573,7 +573,7 @@ exports[`props columns should render PropTypes.shape with description 1`] = `
               Required
             </Styled(Text)>
              — 
-            <Styled(Markdown)
+            <Markdown
               inline={true}
               text="Number"
             />
@@ -589,7 +589,7 @@ exports[`props columns should render PropTypes.shape with description 1`] = `
               any
             </Styled(Type)>
              — 
-            <Styled(Markdown)
+            <Markdown
               inline={true}
               text="Any"
             />
@@ -833,7 +833,7 @@ exports[`props columns should render arguments from JsDoc tags 1`] = `
       key="3"
     >
       <div>
-        <Styled(Markdown)
+        <Markdown
           text="Test description"
         />
         <JsDoc
@@ -907,7 +907,7 @@ exports[`props columns should render description in Markdown 1`] = `
       key="3"
     >
       <div>
-        <Styled(Markdown)
+        <Markdown
           text="Label"
         />
         <JsDoc />
@@ -1067,7 +1067,7 @@ exports[`props columns should render name as deprecated when tag deprecated is p
       key="3"
     >
       <div>
-        <Styled(Markdown)
+        <Markdown
           text="Test description"
         />
         <JsDoc
@@ -1114,7 +1114,7 @@ exports[`props columns should render return from JsDoc tags 1`] = `
       key="3"
     >
       <div>
-        <Styled(Markdown)
+        <Markdown
           text="Test description"
         />
         <JsDoc
@@ -1174,7 +1174,7 @@ exports[`props columns should render return from JsDoc tags 2`] = `
       key="3"
     >
       <div>
-        <Styled(Markdown)
+        <Markdown
           text="Test description"
         />
         <JsDoc

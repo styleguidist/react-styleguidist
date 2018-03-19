@@ -22,8 +22,8 @@ export function SectionRenderer(allProps) {
 			)}
 			{description && <Markdown text={description} />}
 			{content}
-			{components}
 			{sections}
+			{components}
 		</section>
 	);
 }
