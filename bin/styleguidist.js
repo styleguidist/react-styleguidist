@@ -94,6 +94,8 @@ function commandBuild() {
 		if (err) {
 			console.error(err);
 			process.exit(1);
+		} else if (typeof config.printBuildInstructions === 'function') {
+			config.printBuildInstructions(config);
 		} else {
 			printBuildInstructions(config);
 		}
@@ -121,7 +123,11 @@ function commandServer() {
 		} else {
 			const isHttps = compiler.options.devServer && compiler.options.devServer.https;
 			const configuration = Object.assign({ isHttps }, config);
-			printServerInstructions(configuration);
+			if (typeof config.printServerInstructions === 'function') {
+				config.printServerInstructions(configuration);
+			} else {
+				printServerInstructions(configuration);
+			}
 		}
 	});
 

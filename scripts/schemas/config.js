@@ -128,6 +128,12 @@ module.exports = {
 		type: 'number',
 		default: 500,
 	},
+	printBuildInstructions: {
+		type: 'function',
+	},
+	printServerInstructions: {
+		type: 'function',
+	},
 	propsParser: {
 		type: 'function',
 	},

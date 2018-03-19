@@ -259,6 +259,18 @@ module.exports = {
 }
 ```
 
+#### `printBuildInstructions`
+
+Type: `Function`, optional
+
+Function that allows you to override the printing of build messages to console.log. Takes the `config` object with `isHttps` merged in.
+
+#### `printServerInstructions`
+
+Type: `Function`, optional
+
+Function that allows you to override the printing of build messages to console.log. Takes the `config` object with `isHttps` merged in.
+
 #### `previewDelay`
 
 Type: `Number`, default: 500

@@ -1,0 +1,45 @@
+{
+  "name": "react-styleguidist-example-custom-message",
+  "description": "React styleguidist custom message example",
+  "version": "1.0.0",
+  "private": true,
+  "homepage": "https://github.com/styleguidist/react-styleguidist",
+  "author": {
+    "name": "Artem Sapegin",
+    "url": "http://sapegin.me/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/styleguidist/react-styleguidist.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build"
+  },
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "dog-names": "^1.0.2",
+    "lodash": "^4.17.4",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-styleguidist": "^6.0.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "file-loader": "^1.1.5",
+    "style-loader": "^0.18.2",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.8.1"
+  }
+}
