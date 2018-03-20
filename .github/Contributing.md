@@ -63,7 +63,7 @@ See the `scripts` section of the top level `package.json`. If an example doesn't
 
 ```bash
 node bin/styleguidist.js server --config examples/path/to/example/styleguide.config.js
-```bash
+```
 
 ## Need help?
 
