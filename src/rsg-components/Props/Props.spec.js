@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { parse } from 'react-docgen';
-import PropsRenderer, { propsToArray, columns, getRowKey } from './PropsRenderer';
+import PropsRenderer, { columns, getRowKey } from './PropsRenderer';
 import { unquote, getType, showSpaces } from './util';
+
+const propsToArray = props => Object.keys(props).map(name => ({ ...props[name], name }));
 
 // Test renderers with clean readable snapshot diffs
 export default function ColumnsRenderer({ props }) {
@@ -32,8 +34,7 @@ function render(propTypes, defaultProps = []) {
 			}
 		}
 	`);
-	const propsArray = Object.keys(props.props).map(name => ({ ...props.props[name], name }));
-	return shallow(<ColumnsRenderer props={propsArray} />);
+	return shallow(<ColumnsRenderer props={propsToArray(props.props)} />);
 }
 
 function renderFlow(propsType, defaultProps = []) {
@@ -51,7 +52,7 @@ function renderFlow(propsType, defaultProps = []) {
 			}
 		}
 	`);
-	return shallow(<ColumnsRenderer props={props.props} />);
+	return shallow(<ColumnsRenderer props={propsToArray(props.props)} />);
 }
 
 describe('PropsRenderer', () => {
