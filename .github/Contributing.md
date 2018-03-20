@@ -55,8 +55,8 @@ npm run test:jest -- -u
 * If you're updating examples other then `examples/basic`, you'll need to modify your watch and start commands:
 
 ```bash
-npm run compile:watch & npm start:customised # if making changes to examples/customized
-npm run compile:watch & npm start:sections # if making changes to examples/sections
+npm run compile:watch & npm run start:customised # if making changes to examples/customised
+npm run compile:watch & npm run start:sections # if making changes to examples/sections
 ```
 
 See the `scripts` section of the top level `package.json`. If an example doesn't have a script just point to it's config:
