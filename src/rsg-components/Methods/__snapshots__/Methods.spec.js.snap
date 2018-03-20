@@ -150,7 +150,7 @@ exports[`PropsRenderer should render parameters 1`] = `
       key="2"
     >
       <div>
-        <Styled(Markdown)
+        <Markdown
           text="Public"
         />
         <JsDoc />
@@ -185,7 +185,7 @@ exports[`PropsRenderer should render public method 1`] = `
       key="2"
     >
       <div>
-        <Styled(Markdown)
+        <Markdown
           text="Public"
         />
         <JsDoc />

@@ -22,8 +22,8 @@ export function SectionRenderer(allProps) {
 			)}
 			{description && <Markdown text={description} />}
 			{content}
-			{components}
 			{sections}
+			{components}
 		</section>
 	);
 }
@@ -33,6 +33,7 @@ SectionRenderer.propTypes = {
 	name: PropTypes.string,
 	description: PropTypes.string,
 	slug: PropTypes.string,
+	filepath: PropTypes.string,
 	content: PropTypes.node,
 	components: PropTypes.node,
 	sections: PropTypes.node,

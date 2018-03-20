@@ -10,6 +10,7 @@ const merge = require('webpack-merge');
 const forEach = require('lodash/forEach');
 const mergeWebpackConfig = require('./utils/mergeWebpackConfig');
 const StyleguidistOptionsPlugin = require('./utils/StyleguidistOptionsPlugin');
+const getWebpackVersion = require('./utils/getWebpackVersion');
 
 const RENDERER_REGEXP = /Renderer$/;
 
@@ -31,7 +32,7 @@ module.exports = function(config, env) {
 		resolve: {
 			extensions: ['.js', '.jsx', '.json'],
 			alias: {
-				'rsg-codemirror-theme.css': `codemirror/theme/${config.highlightTheme}.css`,
+				'rsg-codemirror-theme.css': `codemirror/theme/${config.editorConfig.theme}.css`,
 			},
 		},
 		plugins: [
@@ -50,6 +51,10 @@ module.exports = function(config, env) {
 			hints: false,
 		},
 	};
+
+	if (getWebpackVersion() >= 4) {
+		webpackConfig.mode = env;
+	}
 
 	if (isProd) {
 		webpackConfig = merge(webpackConfig, {

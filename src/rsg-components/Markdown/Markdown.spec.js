@@ -3,116 +3,136 @@ import { html } from 'cheerio';
 import Markdown from './Markdown';
 
 describe('Markdown', () => {
+	const expectSnapshotToMatch = markdown => {
+		const actual = render(<Markdown text={markdown} />);
+
+		expect(html(actual)).toMatchSnapshot();
+	};
+
+	it('should forward DOM attributes onto resulting HTML', () => {
+		const markdown =
+			'<a href="test.com" id="preserve-my-id" class="preserve-my-class">Something</a>';
+
+		const actual = mount(<Markdown text={markdown} />);
+
+		expect(actual.find('a').props().id).toEqual('preserve-my-id');
+		expect(actual.find('a').props().className).toContain('preserve-my-class');
+	});
+
 	it('should render links', () => {
-		const markdown = 'a [link](http://test.com)';
-
-		const actual = render(<Markdown text={markdown} />);
-
-		expect(html(actual)).toMatchSnapshot();
+		expectSnapshotToMatch('a [link](http://test.com)');
 	});
 
-	it('should render Markdown with custom CSS classes', () => {
-		const markdown = `
-# Header
-
-Text with *some* **formatting** and a [link](/foo).
-
-![Image](/bar.png)`;
-		const actual = render(<Markdown text={markdown} />);
-
-		expect(html(actual)).toMatchSnapshot();
-	});
-
-	it('should render Markdown in a p tag even for one paragraph', () => {
-		const actual = render(<Markdown text="pizza" />);
-
-		expect(html(actual)).toMatchSnapshot();
-	});
-
-	it('should render Markdown in span in inline mode', () => {
-		const markdown = 'Hello *world*!';
-		const actual = render(<Markdown text={markdown} inline />);
-
-		expect(html(actual)).toMatchSnapshot();
-	});
-
-	it('should render headings correctly', () => {
-		const markdown = `
+	it('should render headings', () => {
+		expectSnapshotToMatch(`
 # one
 ## two
 ### three
 #### four
 ##### five
 ###### six
-`;
-		const actual = render(<Markdown text={markdown} />);
-
-		expect(html(actual)).toMatchSnapshot();
+`);
 	});
 
-	it('should render unordered lists correctly', () => {
-		const markdown = `
+	it('should render paragraphs', () => {
+		expectSnapshotToMatch(`
+a paragraph
+
+another paragraph
+		`);
+	});
+
+	it('should render emphasis and strong text', () => {
+		expectSnapshotToMatch(`
+this text is **strong**
+
+and this is _emphasized_
+		`);
+	});
+
+	it('should render unordered lists', () => {
+		expectSnapshotToMatch(`
 * list
 * item
 * three
-`;
-		const actual = render(<Markdown text={markdown} />);
-
-		expect(html(actual)).toMatchSnapshot();
+`);
 	});
 
-	it('should render ordered lists correctly', () => {
-		const markdown = `
+	it('should render ordered lists', () => {
+		expectSnapshotToMatch(`
 1. list
 1. item
 1. three
-`;
-		const actual = render(<Markdown text={markdown} />);
-
-		expect(html(actual)).toMatchSnapshot();
+`);
 	});
 
-	it('should render check-lists correctly', () => {
-		const markdown = `
-* [ ] list 1
-* [ ] list 2
-* [x] list 3
-`;
-		const actual = render(<Markdown text={markdown} />);
-
-		expect(html(actual)).toMatchSnapshot();
-	});
-
-	it('should render mixed nested lists correctly', () => {
-		const markdown = `
+	it('should render mixed nested lists', () => {
+		expectSnapshotToMatch(`
 * list 1
 * list 2
   1. Sub-list
   1. Sub-list
   1. Sub-list
 * list 3
-`;
-		const actual = render(<Markdown text={markdown} />);
+`);
+	});
 
-		expect(html(actual)).toMatchSnapshot();
+	it('should render check-lists', () => {
+		expectSnapshotToMatch(`
+* [ ] to do 1
+* [ ] to do 2
+* [x] to do 3
+`);
+	});
+
+	it('should render a blockquote', () => {
+		expectSnapshotToMatch(`
+> This is a blockquote.
+> And this is a second line.
+`);
+	});
+
+	it('should render pre-formatted text', () => {
+		expectSnapshotToMatch(`
+    this is preformatted
+    so is this
+`);
 	});
 
 	it('should render code blocks without escaping', () => {
-		const markdown = `
+		expectSnapshotToMatch(`
 \`\`\`html
 <foo></foo>
 \`\`\`
-`;
-		const actual = render(<Markdown text={markdown} />);
-
-		expect(html(actual)).toMatchSnapshot();
+`);
 	});
 
 	it('should render inline code with escaping', () => {
-		const markdown = 'Foo `<bar>` baz';
+		expectSnapshotToMatch('Foo `<bar>` baz');
+	});
 
-		const actual = render(<Markdown text={markdown} />);
+	it('should render a horizontal rule', () => {
+		expectSnapshotToMatch(`---`);
+	});
+
+	it('should render a table', () => {
+		expectSnapshotToMatch(`
+| heading 1 | heading 2 |
+| --------- | --------- |
+| foo		| bar		|
+| more foo	| more bar	|
+`);
+	});
+});
+
+describe('Markdown inline', () => {
+	const expectSnapshotToMatch = markdown => {
+		const actual = render(<Markdown text={markdown} inline />);
 
 		expect(html(actual)).toMatchSnapshot();
+	};
+
+	it('should render text in a span', () => {
+		expectSnapshotToMatch('Hello world!');
 	});
 });
