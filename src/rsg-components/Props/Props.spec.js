@@ -1,14 +1,16 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { parse } from 'react-docgen';
-import PropsRenderer, { propsToArray, columns, getRowKey } from './PropsRenderer';
+import PropsRenderer, { columns, getRowKey } from './PropsRenderer';
 import { unquote, getType, showSpaces } from './util';
 
+const propsToArray = props => Object.keys(props).map(name => ({ ...props[name], name }));
+
 // Test renderers with clean readable snapshot diffs
-// eslint-disable-next-line react/prop-types
 export default function ColumnsRenderer({ props }) {
 	return (
 		<ul>
-			{propsToArray(props).map((row, rowIdx) => (
+			{props.map((row, rowIdx) => (
 				<li key={rowIdx}>
 					{columns.map(({ render }, colIdx) => <div key={colIdx}>{render(row)}</div>)}
 				</li>
@@ -32,7 +34,7 @@ function render(propTypes, defaultProps = []) {
 			}
 		}
 	`);
-	return shallow(<ColumnsRenderer props={props.props} />);
+	return shallow(<ColumnsRenderer props={propsToArray(props.props)} />);
 }
 
 function renderFlow(propsType, defaultProps = []) {
@@ -50,14 +52,14 @@ function renderFlow(propsType, defaultProps = []) {
 			}
 		}
 	`);
-	return shallow(<ColumnsRenderer props={props.props} />);
+	return shallow(<ColumnsRenderer props={propsToArray(props.props)} />);
 }
 
 describe('PropsRenderer', () => {
 	it('should render a table', () => {
 		const actual = shallow(
 			<PropsRenderer
-				props={{ color: { type: { name: 'string' }, required: false, description: '' } }}
+				props={[{ type: { name: 'string' }, required: false, description: '', name: 'color' }]}
 			/>
 		);
 
@@ -238,8 +240,9 @@ describe('props columns', () => {
 	});
 
 	it('should render arguments from JsDoc tags', () => {
-		const props = {
-			size: {
+		const props = [
+			{
+				name: 'size',
 				type: {
 					name: 'number',
 				},
@@ -260,15 +263,16 @@ describe('props columns', () => {
 					],
 				},
 			},
-		};
+		];
 		const actual = shallow(<ColumnsRenderer props={props} />);
 
 		expect(actual).toMatchSnapshot();
 	});
 
 	it('should render return from JsDoc tags', () => {
-		const getProps = tag => ({
-			size: {
+		const getProps = tag => [
+			{
+				name: 'size',
 				type: {
 					name: 'number',
 				},
@@ -284,7 +288,7 @@ describe('props columns', () => {
 					],
 				},
 			},
-		});
+		];
 
 		const actualForReturn = shallow(<ColumnsRenderer props={getProps('return')} />);
 
@@ -296,8 +300,9 @@ describe('props columns', () => {
 	});
 
 	it('should render name as deprecated when tag deprecated is present', () => {
-		const props = {
-			size: {
+		const props = [
+			{
+				name: 'size',
 				type: {
 					name: 'number',
 				},
@@ -312,7 +317,7 @@ describe('props columns', () => {
 					],
 				},
 			},
-		};
+		];
 		const actual = shallow(<ColumnsRenderer props={props} />);
 
 		expect(actual).toMatchSnapshot();

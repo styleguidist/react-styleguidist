@@ -57,6 +57,19 @@ Array [
         "slug": "placeholder-2",
       },
       Object {
+        "filepath": "components/Price/Price.js",
+        "hasExamples": true,
+        "metadata": Object {},
+        "module": Object {
+          "require": "~/test/components/Price/Price.js",
+        },
+        "pathLine": "components/Price/Price.js",
+        "props": Object {
+          "require": "!!~/loaders/props-loader.js!~/test/components/Price/Price.js",
+        },
+        "slug": "price-2",
+      },
+      Object {
         "filepath": "components/RandomButton/RandomButton.js",
         "hasExamples": true,
         "metadata": Object {},
@@ -106,6 +119,19 @@ Array [
           "require": "!!~/loaders/props-loader.js!~/test/components/Placeholder/Placeholder.js",
         },
         "slug": "placeholder-3",
+      },
+      Object {
+        "filepath": "components/Price/Price.js",
+        "hasExamples": true,
+        "metadata": Object {},
+        "module": Object {
+          "require": "~/test/components/Price/Price.js",
+        },
+        "pathLine": "components/Price/Price.js",
+        "props": Object {
+          "require": "!!~/loaders/props-loader.js!~/test/components/Price/Price.js",
+        },
+        "slug": "price-3",
       },
       Object {
         "filepath": "components/RandomButton/RandomButton.js",
@@ -176,6 +202,19 @@ Object {
       "slug": "placeholder",
     },
     Object {
+      "filepath": "components/Price/Price.js",
+      "hasExamples": true,
+      "metadata": Object {},
+      "module": Object {
+        "require": "~/test/components/Price/Price.js",
+      },
+      "pathLine": "components/Price/Price.js",
+      "props": Object {
+        "require": "!!~/loaders/props-loader.js!~/test/components/Price/Price.js",
+      },
+      "slug": "price",
+    },
+    Object {
       "filepath": "components/RandomButton/RandomButton.js",
       "hasExamples": true,
       "metadata": Object {},
@@ -242,6 +281,19 @@ Object {
         "require": "!!~/loaders/props-loader.js!~/test/components/Placeholder/Placeholder.js",
       },
       "slug": "placeholder-1",
+    },
+    Object {
+      "filepath": "components/Price/Price.js",
+      "hasExamples": true,
+      "metadata": Object {},
+      "module": Object {
+        "require": "~/test/components/Price/Price.js",
+      },
+      "pathLine": "components/Price/Price.js",
+      "props": Object {
+        "require": "!!~/loaders/props-loader.js!~/test/components/Price/Price.js",
+      },
+      "slug": "price-1",
     },
     Object {
       "filepath": "components/RandomButton/RandomButton.js",

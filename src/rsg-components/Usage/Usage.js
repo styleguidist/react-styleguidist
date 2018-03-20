@@ -21,7 +21,7 @@ export default function Usage({ props: { props, methods } }) {
 
 Usage.propTypes = {
 	props: PropTypes.shape({
-		props: PropTypes.object,
+		props: PropTypes.array,
 		methods: PropTypes.array,
 	}).isRequired,
 };
