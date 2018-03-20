@@ -1,6 +1,6 @@
 import React from 'react';
 import { parse } from 'react-docgen';
-import PropsRenderer, { propsToArray, columns } from './PropsRenderer';
+import PropsRenderer, { propsToArray, columns, getRowKey } from './PropsRenderer';
 import { unquote, getType, showSpaces } from './util';
 
 // Test renderers with clean readable snapshot diffs
@@ -25,6 +25,24 @@ function render(propTypes, defaultProps = []) {
 			static propTypes = {
 				${propTypes.join(',')}
 			}
+			static defaultProps = {
+				${defaultProps.join(',')}
+			}
+			render() {
+			}
+		}
+	`);
+	return shallow(<ColumnsRenderer props={props.props} />);
+}
+
+function renderFlow(propsType, defaultProps = []) {
+	const props = parse(`
+	  // @flow
+		import * as React from 'react';
+		type Props = {
+			${propsType.join(',')}
+		};
+		export default class Cmpnt extends React.Component<Props> {
 			static defaultProps = {
 				${defaultProps.join(',')}
 			}
@@ -299,6 +317,60 @@ describe('props columns', () => {
 
 		expect(actual).toMatchSnapshot();
 	});
+
+	it('should render type string', () => {
+		const actual = renderFlow(['foo: string']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render optional type string', () => {
+		const actual = renderFlow(['foo?: string']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render type string with a default value', () => {
+		const actual = renderFlow(['foo?: string'], ['foo: "bar"']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render literal type', () => {
+		const actual = renderFlow(['foo?: "bar"']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render object type with body in tooltip', () => {
+		const actual = renderFlow(['foo: { bar: string }']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render function type with body in tooltip', () => {
+		const actual = renderFlow(['foo: () => void']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render union type with body in tooltip', () => {
+		const actual = renderFlow(['foo: "bar" | number']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render tuple type with body in tooltip', () => {
+		const actual = renderFlow(['foo: ["bar", number]']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render custom class type', () => {
+		const actual = renderFlow(['foo: React.ReactNode']);
+
+		expect(actual).toMatchSnapshot();
+	});
 });
 
 describe('unquote', () => {
@@ -332,5 +404,12 @@ describe('showSpaces', () => {
 	it('should replace leading and trailing spaces with a visible character', () => {
 		const result = showSpaces(' pizza ');
 		expect(result).toBe('␣pizza␣');
+	});
+});
+
+describe('getRowKey', () => {
+	it('should return type name', () => {
+		const result = getRowKey({ name: 'number' });
+		expect(result).toBe('number');
 	});
 });
