@@ -19,8 +19,6 @@ const CLIENT_CONFIG_OPTIONS = [
 	'showCode',
 	'showUsage',
 	'showSidebar',
-	'printBuildInstructions',
-	'printServerInstructions',
 	'previewDelay',
 	'theme',
 	'styles',

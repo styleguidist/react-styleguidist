@@ -265,13 +265,30 @@ module.exports = {
 
 Type: `Function`, optional
 
-Function that allows you to override the printing of build messages to console.log. Takes the `config` object with `isHttps` merged in.
+Function that allows you to override the printing of build messages to console.log.
+
+```javascript
+module.exports = {
+  printBuildInstructions(config) {
+    console.log('Style guide published to ${config.styleguideDir}. Something else interesting.');
+  },
+}
+```
 
 #### `printServerInstructions`
 
 Type: `Function`, optional
 
-Function that allows you to override the printing of build messages to console.log. Takes the `config` object with `isHttps` merged in.
+Function that allows you to override the printing of local dev server messages to console.log.
+
+```javascript
+module.exports = {
+  serverHost: 'your-domain',
+  printServerInstructions(config) {
+    console.log(`'Local style guide: http://${config.serverHost}`);
+  },
+}
+```
 
 #### `previewDelay`
 

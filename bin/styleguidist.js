@@ -94,7 +94,7 @@ function commandBuild() {
 		if (err) {
 			console.error(err);
 			process.exit(1);
-		} else if (typeof config.printBuildInstructions === 'function') {
+		} else if (config.printBuildInstructions) {
 			config.printBuildInstructions(config);
 		} else {
 			printBuildInstructions(config);
@@ -122,11 +122,10 @@ function commandServer() {
 			console.error(err);
 		} else {
 			const isHttps = compiler.options.devServer && compiler.options.devServer.https;
-			const configuration = Object.assign({ isHttps }, config);
-			if (typeof config.printServerInstructions === 'function') {
-				config.printServerInstructions(configuration);
+			if (config.printServerInstructions) {
+				config.printServerInstructions(config, { isHttps });
 			} else {
-				printServerInstructions(configuration);
+				printServerInstructions(config, { isHttps });
 			}
 		}
 	});
@@ -183,10 +182,11 @@ function commandHelp() {
 
 /**
  * @param {object} config
+ * @param {options} options
  */
-function printServerInstructions(config) {
+function printServerInstructions(config, options) {
 	const urls = webpackDevServerUtils.prepareUrls(
-		config.isHttps ? 'https' : 'http',
+		options.isHttps ? 'https' : 'http',
 		config.serverHost,
 		config.serverPort
 	);
