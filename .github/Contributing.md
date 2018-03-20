@@ -52,6 +52,18 @@ npm run test:jest -- -u
 * We’re using [Prettier](https://github.com/prettier/prettier) to format JavaScript, so don’t worry much about code formatting.
 * Don’t commit generated files, like minified JavaScript.
 * Don’t change version number and change log.
+* If you're updating examples other then `examples/basic`, you'll need to modify your watch and start commands:
+
+```bash
+npm run compile:watch & npm start:customised # if making changes to examples/customized
+npm run compile:watch & npm start:sections # if making changes to examples/sections
+```
+
+See the `scripts` section of the top level `package.json`. If an example doesn't have a script just point to it's config:
+
+```bash
+node bin/styleguidist.js server --config examples/path/to/example/styleguide.config.js
+```bash
 
 ## Need help?
 
