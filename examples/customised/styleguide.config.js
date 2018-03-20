@@ -35,7 +35,9 @@ module.exports = {
 		return `import { ${name} } from 'my-awesome-library';`;
 	},
 
-	// Example of overriding the CLI message in local development
+	// Example of overriding the CLI message in local development.
+	// Uncomment/edit the following `serverHost` entry to see in output
+	// serverHost: 'your-domain',
 	printServerInstructions(config) {
 		// eslint-disable-next-line no-console
 		console.log(`'View your styleguide at: http://${config.serverHost}`);
