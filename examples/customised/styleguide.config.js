@@ -34,6 +34,13 @@ module.exports = {
 		const name = path.basename(componentPath, '.js');
 		return `import { ${name} } from 'my-awesome-library';`;
 	},
+
+	// Example of overriding the CLI message in local development
+	printServerInstructions(config) {
+		// eslint-disable-next-line no-console
+		console.log(`'View your styleguide at: http://${config.serverHost}`);
+	},
+
 	// Override Styleguidist components
 	styleguideComponents: {
 		LogoRenderer: path.join(__dirname, 'styleguide/components/Logo'),

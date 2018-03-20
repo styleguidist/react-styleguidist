@@ -20,6 +20,8 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`handlers`](#handlers)
 * [`ignore`](#ignore)
 * [`logger`](#logger)
+* [`printBuildInstructions`](#printBuildInstructions)
+* [`printServerInstructions`](#printServerInstructions)
 * [`previewDelay`](#previewdelay)
 * [`propsParser`](#propsparser)
 * [`require`](#require)

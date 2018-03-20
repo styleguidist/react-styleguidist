@@ -1,3 +1,0 @@
-```jsx
-<Placeholder type="beard" />
-```
