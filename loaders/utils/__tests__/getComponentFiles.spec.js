@@ -24,6 +24,17 @@ it('getComponentFiles() should accept components as a function that returns abso
 	expect(deabs(result)).toEqual(['~/one.js', '~/two.js']);
 });
 
+it('getComponentFiles() should accept components as an array of file names', () => {
+	const result = getComponentFiles(components, configDir);
+	expect(deabs(result)).toEqual(['~/one.js', '~/two.js']);
+});
+
+it('getComponentFiles() should accept components as a function that returns absolute paths', () => {
+	const absolutize = files => files.map(file => path.join(configDir, file));
+	const result = getComponentFiles(absolutize(components), configDir);
+	expect(deabs(result)).toEqual(['~/one.js', '~/two.js']);
+});
+
 it('getComponentFiles() should accept components as a glob', () => {
 	const result = getComponentFiles(glob, configDir);
 	expect(deabs(result)).toEqual([
@@ -44,7 +55,7 @@ it('getComponentFiles() should ignore specified patterns', () => {
 	]);
 });
 
-it('getComponentFiles() should throw if components is not a function or a string', () => {
+it('getComponentFiles() should throw if components is not a function, array or a string', () => {
 	const fn = () => getComponentFiles(42, configDir);
-	expect(fn).toThrowError('should be string or function');
+	expect(fn).toThrowError('should be string, function or array');
 });
