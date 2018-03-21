@@ -72,6 +72,10 @@ module.exports = function(source) {
 	const examplesFile = config.getExampleFilename(file);
 	props.examples = getExamples(examplesFile, props.displayName, config.defaultExample);
 
+	if (config.updateProps) {
+		props = config.updateProps(props, file);
+	}
+
 	return `
 if (module.hot) {
 	module.hot.accept([])

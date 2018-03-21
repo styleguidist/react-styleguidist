@@ -205,9 +205,7 @@ it('should add context dependencies to webpack from contextDependencies config o
 	const result = propsLoader.call(
 		{
 			request: file,
-			_styleguidist: Object.assign(_styleguidist, {
-				contextDependencies,
-			}),
+			_styleguidist: { ..._styleguidist, contextDependencies },
 			addContextDependency,
 		},
 		readFileSync(file, 'utf8')
@@ -217,4 +215,22 @@ it('should add context dependencies to webpack from contextDependencies config o
 	expect(addContextDependency).toHaveBeenCalledTimes(2);
 	expect(addContextDependency).toBeCalledWith(contextDependencies[0]);
 	expect(addContextDependency).toBeCalledWith(contextDependencies[1]);
+});
+
+it('should update the returned props object after enhancing from the updateProps config option', () => {
+	const updateProps = jest.fn();
+	const file = './test/components/Button/Button.js';
+	const result = propsLoader.call(
+		{
+			request: file,
+			_styleguidist: { ..._styleguidist, updateProps },
+		},
+		readFileSync(file, 'utf8')
+	);
+
+	expect(() => new vm.Script(result)).not.toThrow();
+	expect(updateProps).toHaveBeenCalledWith(
+		expect.objectContaining({ displayName: 'Button' }),
+		'./test/components/Button/Button.js'
+	);
 });

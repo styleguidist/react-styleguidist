@@ -43,6 +43,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`title`](#title)
 * [`transformProps`](#transformprops)
 * [`updateExample`](#updateexample)
+* [`updateProps`](#updateprops)
 * [`verbose`](#verbose)
 * [`webpackConfig`](#webpackconfig)
 
@@ -552,6 +553,45 @@ module.exports = {
     return props
   }
 }
+```
+
+#### `updateProps`
+
+Type: `Function`, optional
+
+Function that modifies props after parsing from a source file. For example you can use it to load a component version from a package.json file:
+
+```javascript
+module.exports = {
+  updateProps: function(props) {
+    if (props.doclets.version) {
+      const versionFilePath = path.resolve(
+        path.dirname(file),
+        props.doclets.version
+      )
+      const version = require(versionFilePath).version
+
+      props.doclets.version = version
+      props.tags.version[0].description = version
+    }
+
+    return props
+  }
+}
+```
+
+With this component JSDoc comment block:
+
+```javascript
+/**
+ * Component is described here.
+ *
+ * @version ./package.json
+ */
+export default class Button extends React.Component {
+  // ...
+}
+export default
 ```
 
 #### `verbose`

@@ -268,6 +268,9 @@ module.exports = {
 			return props;
 		},
 	},
+	updateProps: {
+		type: 'function',
+	},
 	updateWebpackConfig: {
 		type: 'function',
 		removed: `Use "webpackConfig" option instead:\n${consts.DOCS_WEBPACK}`,
