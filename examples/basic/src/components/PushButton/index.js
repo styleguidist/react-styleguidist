@@ -1,1 +1,1 @@
-export { default } from './PushButton.js';
+export { default } from './PushButton';

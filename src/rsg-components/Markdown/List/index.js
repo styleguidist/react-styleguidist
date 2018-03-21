@@ -1,1 +1,1 @@
-export { default } from './ListRenderer.js';
+export { default } from './ListRenderer';

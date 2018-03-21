@@ -23,15 +23,15 @@ Bullet list:
 
 Numbered list:
 
-1. coffee
-2. croissant
+1.  coffee
+2.  croissant
 
 Nested list:
 
 * coffee
 * food
-  1. croissant
-  1. pizza
+  1.  croissant
+  1.  pizza
 * dog
 
 List with checkboxes:

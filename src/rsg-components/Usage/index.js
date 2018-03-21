@@ -1,1 +1,1 @@
-export { default } from './Usage.js';
+export { default } from './Usage';

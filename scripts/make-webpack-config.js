@@ -88,7 +88,7 @@ module.exports = function(config, env) {
 								{
 									from: config.assetsDir,
 								},
-							]
+						  ]
 						: []
 				),
 			],

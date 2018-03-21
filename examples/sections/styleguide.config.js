@@ -65,6 +65,6 @@ module.exports = {
 						maxAssetSize: 685000, // bytes
 						maxEntrypointSize: 685000, // bytes
 						hints: 'error',
-					},
+				  },
 	}),
 };

@@ -50,7 +50,7 @@ try {
 	if (err instanceof StyleguidistError) {
 		printErrorWithLink(
 			err.message,
-			err.extra + '\n\n' + 'Learn how to configure your style guide:',
+			`${err.extra}\n\nLearn how to configure your style guide:`,
 			consts.DOCS_CONFIG
 		);
 		process.exit(1);

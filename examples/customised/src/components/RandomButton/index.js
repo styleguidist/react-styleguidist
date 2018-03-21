@@ -1,1 +1,1 @@
-export { default } from './RandomButton.js';
+export { default } from './RandomButton';

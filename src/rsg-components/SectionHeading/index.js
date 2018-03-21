@@ -1,1 +1,1 @@
-export { default } from './SectionHeading.js';
+export { default } from './SectionHeading';

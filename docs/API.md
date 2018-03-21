@@ -66,11 +66,11 @@ See all available [config options](Configuration.md).
 
 #### Arguments
 
-1. `callback(err, config, stats)` (_Function_): A callback to be invoked when style guide is built:
+1.  `callback(err, config, stats)` (_Function_): A callback to be invoked when style guide is built:
 
-   1. `err` (_Object_): error details.
-   2. `config` (_Object_): normalized style guide config.
-   3. `stats` (_Object_): webpack build stats.
+    1.  `err` (_Object_): error details.
+    2.  `config` (_Object_): normalized style guide config.
+    3.  `stats` (_Object_): webpack build stats.
 
 #### Returns
 
@@ -95,10 +95,10 @@ styleguidist(require('../styleguide.config.js')).build(
 
 #### Arguments
 
-1. `callback(err, config)` (_Function_): A callback to be invoked when style guide is built:
+1.  `callback(err, config)` (_Function_): A callback to be invoked when style guide is built:
 
-   1. `err` (_Object_): error details.
-   2. `config` (_Object_): normalized style guide config.
+    1.  `err` (_Object_): error details.
+    2.  `config` (_Object_): normalized style guide config.
 
 #### Returns
 
@@ -124,7 +124,7 @@ styleguidist(require('../styleguide.config.js')).server(
 
 #### Arguments
 
-1. \[`env`=`'production'`\] (_String_): `production` or `development`.
+1.  \[`env`=`'production'`\] (_String_): `production` or `development`.
 
 #### Returns
 
