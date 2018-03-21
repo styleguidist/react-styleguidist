@@ -47,6 +47,7 @@ export default function renderStyleguide(
 			welcomeScreen={styleguide.welcomeScreen}
 			patterns={styleguide.patterns}
 			sections={sections}
+			allSections={allSections}
 			displayMode={displayMode}
 		/>
 	);

@@ -12,7 +12,7 @@ export default class TableOfContents extends Component {
 		searchTerm: '',
 	};
 
-	renderLevel(sections) {
+	renderLevel(sections, oneComponentPerPage) {
 		const items = sections.map(section => {
 			const children = [...(section.sections || []), ...(section.components || [])];
 			return Object.assign({}, section, {
@@ -20,19 +20,19 @@ export default class TableOfContents extends Component {
 				content: children.length > 0 && this.renderLevel(children),
 			});
 		});
-		return <ComponentsList items={items} />;
+		return <ComponentsList items={items} oneComponentPerPage={oneComponentPerPage} />;
 	}
 
 	renderSections() {
 		const { searchTerm } = this.state;
 		const { sections } = this.props;
-
+		const oneComponentPerPage = (this.context.config || {}).oneComponentPerPage;
 		// If there is only one section, we treat it as a root section
 		// In this case the name of the section won't be rendered and it won't get left padding
 		const firstLevel = sections.length === 1 ? sections[0].components : sections;
 		const filtered = filterSectionsByName(firstLevel, searchTerm);
 
-		return this.renderLevel(filtered);
+		return this.renderLevel(filtered, oneComponentPerPage);
 	}
 
 	render() {

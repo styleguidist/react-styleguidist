@@ -1,5 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`getRouteData should return first component if oneComponentPerPage and hash is empty 1`] = `
+Object {
+  "displayMode": "all",
+  "sections": Array [
+    Object {
+      "components": Object {
+        "module": 1,
+        "name": "Button",
+        "props": Object {
+          "displayName": "Button",
+          "examples": Array [
+            "example 0",
+            "example 1",
+          ],
+        },
+      },
+      "sections": Array [],
+    },
+  ],
+}
+`;
+
 exports[`getRouteData should return one component 1`] = `
 Object {
   "displayMode": "component",

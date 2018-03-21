@@ -15,9 +15,10 @@ import { DisplayModes } from '../consts';
  *
  * @param {object} sections
  * @param {string} hash
+ * @param {bool} oneComponentPerPage
  * @returns {object}
  */
-export default function getRouteData(sections, hash) {
+export default function getRouteData(sections, hash, oneComponentPerPage) {
 	// Parse URL hash to check if the components list must be filtered
 	const {
 		// Name of the filtered component/section to show isolated (/#!/Button → Button)
@@ -50,7 +51,18 @@ export default function getRouteData(sections, hash) {
 				displayMode = DisplayModes.example;
 			}
 		}
+	} else if (oneComponentPerPage) {
+		// If one component per page mode then show demos for first component
+		sections = [getFirstSectionWithFirstComponent(sections)];
 	}
 
 	return { sections, displayMode };
+}
+
+function getFirstSectionWithFirstComponent(sections) {
+	const firstSection = sections[0];
+	if (firstSection.components) {
+		return { ...firstSection, components: firstSection.components[0] };
+	}
+	return getFirstSectionWithFirstComponent(firstSection.sections);
 }

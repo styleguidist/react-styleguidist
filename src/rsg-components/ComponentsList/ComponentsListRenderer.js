@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Link from 'rsg-components/Link';
 import Styled from 'rsg-components/Styled';
+import getUrl from '../../utils/getUrl';
 
 const styles = ({ color, fontFamily, fontSize, space, mq }) => ({
 	list: {
@@ -33,7 +34,7 @@ const styles = ({ color, fontFamily, fontSize, space, mq }) => ({
 	},
 });
 
-export function ComponentsListRenderer({ classes, items }) {
+export function ComponentsListRenderer({ classes, items, oneComponentPerPage }) {
 	items = items.filter(item => item.name);
 
 	if (!items.length) {
@@ -47,7 +48,15 @@ export function ComponentsListRenderer({ classes, items }) {
 					className={cx(classes.item, (!content || !content.props.items.length) && classes.isChild)}
 					key={name}
 				>
-					<Link className={cx(heading && classes.heading)} href={`#${slug}`}>
+					<Link
+						className={cx(heading && classes.heading)}
+						href={getUrl({
+							name,
+							slug,
+							anchor: !oneComponentPerPage,
+							isolated: oneComponentPerPage,
+						})}
+					>
 						{name}
 					</Link>
 					{content}
@@ -60,6 +69,7 @@ export function ComponentsListRenderer({ classes, items }) {
 ComponentsListRenderer.propTypes = {
 	items: PropTypes.array.isRequired,
 	classes: PropTypes.object.isRequired,
+	oneComponentPerPage: PropTypes.bool,
 };
 
 export default Styled(styles)(ComponentsListRenderer);
