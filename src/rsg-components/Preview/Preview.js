@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import noop from 'lodash/noop';
 import { transform } from 'buble';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import Wrapper from 'rsg-components/Wrapper';
 
 /* eslint-disable react/no-multi-comp */
 
+const noop = () => {};
 const compileCode = (code, config) => transform(code, config).code;
 
 // Wrap everything in a React component to leverage the state management of this component
@@ -23,10 +23,9 @@ class PreviewComponent extends Component {
 		this.setInitialState = this.setInitialState.bind(this);
 	}
 
-	// Synchronously set initial state, so it will be ready before first render
-	// Ignore all consequent calls
+	// Set the initial state, ignore all consequent calls
 	setInitialState(initialState) {
-		Object.assign(this.state, initialState);
+		this.setState(initialState);
 		this.setInitialState = noop;
 	}
 

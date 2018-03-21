@@ -4,7 +4,14 @@ import Preview from '../Preview';
 /* eslint-disable no-console */
 
 const evalInContext = a =>
-	new Function('require', 'const React = require("react");' + a).bind(null, require); // eslint-disable-line no-new-func
+	// eslint-disable-next-line no-new-func
+	new Function(
+		'require',
+		'state',
+		'setState',
+		'__setInitialState',
+		'const React = require("react");' + a
+	).bind(null, require);
 const code = '<button>OK</button>';
 const options = {
 	context: {
@@ -64,4 +71,38 @@ it('should clear console on second mount', () => {
 		context: { ...options.context, codeRevision: 1 },
 	});
 	expect(console.clear).toHaveBeenCalledTimes(1);
+});
+
+// XXX: “Warning: Cannot update during an existing state transition” doesn’t
+// happend in the browser, only in tests
+it('should set initialState before the first render', () => {
+	const code = `
+initialState = {count:1};
+<span>{state.count}</span>
+	`;
+	const actual = mount(<Preview code={code} evalInContext={evalInContext} />, options);
+	expect(actual.html()).toMatchSnapshot();
+});
+
+it('should update state on setState', done => {
+	const code = `
+initialState = {count:1};
+setTimeout(() => state.count === 1 && setState({count:2}));
+<button>{state.count}</button>
+	`;
+	const actual = mount(<Preview code={code} evalInContext={evalInContext} />, options);
+
+	actual
+		.instance()
+		.mountNode.querySelector('button')
+		.click();
+
+	setTimeout(() => {
+		try {
+			expect(actual.html()).toMatchSnapshot();
+			done();
+		} catch (err) {
+			done.fail(err);
+		}
+	});
 });
