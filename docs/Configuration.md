@@ -484,14 +484,17 @@ Function that modifies props after parsing from a source file. For example you c
 module.exports = {
   updateProps: function(props) {
     if (props.doclets.version) {
-    	const versionFilePath = path.resolve(path.dirname(file), props.doclets.version);
-      const version = require(versionFilePath).version;
+      const versionFilePath = path.resolve(
+        path.dirname(file),
+        props.doclets.version
+      )
+      const version = require(versionFilePath).version
 
-      props.doclets.version = version;
-      props.tags.version[0].description = version;
+      props.doclets.version = version
+      props.tags.version[0].description = version
     }
-    
-    return props;
+
+    return props
   }
 }
 ```
@@ -507,7 +510,7 @@ With this component JSDoc comment block:
 export default class Button extends React.Component {
   // ...
 }
-export default 
+export default
 ```
 
 #### `verbose`
