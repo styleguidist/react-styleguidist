@@ -6,9 +6,11 @@ exports[`should renderer a button 1`] = `
   onClick={[Function]}
   props={
     Object {
-      "props": Object {
-        "foo": Object {},
-      },
+      "props": Array [
+        Object {
+          "name": "foo",
+        },
+      ],
     }
   }
 >
