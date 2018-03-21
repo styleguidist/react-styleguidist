@@ -24,6 +24,7 @@ const CLIENT_CONFIG_OPTIONS = [
 	'styles',
 	'compilerConfig',
 	'editorConfig',
+	'ribbon',
 	'pagePerSection',
 ];
 

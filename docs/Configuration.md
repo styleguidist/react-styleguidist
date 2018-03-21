@@ -25,6 +25,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`propsParser`](#propsparser)
 * [`require`](#require)
 * [`resolver`](#resolver)
+* [`ribbon`](#ribbon)
 * [`sections`](#sections)
 * [`serverHost`](#serverhost)
 * [`serverPort`](#serverport)
@@ -345,6 +346,21 @@ module.exports = {
   resolver: require('react-docgen').resolver
     .findAllComponentDefinitions
 }
+```
+
+#### `ribbon`
+
+Type: `Object`, optional
+
+Shows 'Fork Me' ribbon in the top-right corner. If `ribbon` key is present, then it's required to add `url` property; `text` property is optional. If you want to change styling of the ribbon, please, refer to the [theme section](#theme).
+
+```javascript
+module.exports = {
+  ribbon: {
+    url: 'http://example.com/',
+    text: 'Fork me on GitHub',
+  }
+};
 ```
 
 #### `sections`
