@@ -290,8 +290,10 @@ Function that allows you to override the printing of build messages to console.l
 ```javascript
 module.exports = {
   printBuildInstructions(config) {
-    console.log('Style guide published to ${config.styleguideDir}. Something else interesting.');
-  },
+    console.log(
+      'Style guide published to ${config.styleguideDir}. Something else interesting.'
+    )
+  }
 }
 ```
 
@@ -388,9 +390,9 @@ Shows 'Fork Me' ribbon in the top-right corner. If `ribbon` key is present, then
 module.exports = {
   ribbon: {
     url: 'http://example.com/',
-    text: 'Fork me on GitHub',
+    text: 'Fork me on GitHub'
   }
-};
+}
 ```
 
 #### `sections`

@@ -58,6 +58,7 @@ npm run test:jest -- -u
 npm run compile:watch & npm run start:customised # if making changes to examples/customised
 npm run compile:watch & npm run start:sections # if making changes to examples/sections
 ```
+
 See the `scripts` section of the top level [package.json](https://github.com/styleguidist/react-styleguidist/blob/master/package.json#L135)
 
 . If an example doesn't have a script just point to its config:

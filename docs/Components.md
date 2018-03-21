@@ -52,14 +52,13 @@ It will try to use the `displayName` of your component as the identifier. If it 
 
 In each of the following cases, the global identifier will be `Component`.
 
-| Path | Code | Styleguidist understands |
-| ---- | ---- | ------------------------ |
-| /whatever.js | `export default function Component() { ... }` | displayName |
-| /whatever.js | `export default function SomeName() { ... }`<br>`SomeName.displayName = 'Component';` | displayName |
-| /whatever.js | `export default function Component() { ... }`<br>`Component.displayName = dynamicNamer();` | displayName at declaration
-| /component.js | `const name = 'SomeName';`<br>`const componentMap = {`<br>`[name]: function() { ... }`<br>`};`<br>`export default componentMap[name];` | File name |
-| /component/index.js | `const name = 'SomeName';`<br>`const componentMap = {`<br>`[name]: function() { ... }`<br>`};`<br>`export default componentMap[name];` | Folder name |
-
+| Path                | Code                                                                                                                                   | Styleguidist understands   |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| /whatever.js        | `export default function Component() { ... }`                                                                                          | displayName                |
+| /whatever.js        | `export default function SomeName() { ... }`<br>`SomeName.displayName = 'Component';`                                                  | displayName                |
+| /whatever.js        | `export default function Component() { ... }`<br>`Component.displayName = dynamicNamer();`                                             | displayName at declaration |
+| /component.js       | `const name = 'SomeName';`<br>`const componentMap = {`<br>`[name]: function() { ... }`<br>`};`<br>`export default componentMap[name];` | File name                  |
+| /component/index.js | `const name = 'SomeName';`<br>`const componentMap = {`<br>`[name]: function() { ... }`<br>`};`<br>`export default componentMap[name];` | Folder name                |
 
 ### Default vs named exports
 
