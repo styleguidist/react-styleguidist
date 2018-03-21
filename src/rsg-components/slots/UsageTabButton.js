@@ -12,7 +12,7 @@ UsageTabButton.propTypes = {
 	onClick: PropTypes.func.isRequired,
 	name: PropTypes.string.isRequired,
 	props: PropTypes.shape({
-		props: PropTypes.object,
+		props: PropTypes.array,
 		methods: PropTypes.array,
 	}).isRequired,
 	active: PropTypes.bool,
