@@ -71,7 +71,7 @@
     "prop-types": "^15.6.1",
     "q-i": "^2.0.1",
     "react-codemirror2": "^4.2.1",
-    "react-dev-utils": "^4.2.1",
+    "react-dev-utils": "^5.0.0",
     "react-docgen": "^3.0.0-beta9",
     "react-docgen-annotation-resolver": "^1.0.0",
     "react-docgen-displayname-handler": "^1.0.1",
