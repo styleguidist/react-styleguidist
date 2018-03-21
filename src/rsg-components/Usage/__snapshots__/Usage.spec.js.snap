@@ -29,15 +29,16 @@ exports[`Usage should render props table 1`] = `
 <div>
   <PropsRenderer
     props={
-      Object {
-        "children": Object {
+      Array [
+        Object {
           "description": "Button label.",
+          "name": "children",
           "required": true,
           "type": Object {
             "name": "string",
           },
         },
-      }
+      ]
     }
   />
 </div>

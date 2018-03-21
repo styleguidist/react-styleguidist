@@ -1,3 +1,5 @@
+import getComponent from './getComponent';
+
 /**
  * Expose component as global variables.
  *
@@ -8,8 +10,5 @@ export default function globalizeComponent(component) {
 		return;
 	}
 
-	global[component.name] =
-		!component.props.path || component.props.path === 'default'
-			? component.module.default || component.module
-			: component.module[component.props.path];
+	global[component.name] = getComponent(component.module, component.name);
 }

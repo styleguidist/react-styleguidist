@@ -1,18 +1,21 @@
 import globalizeComponent from '../globalizeComponent';
 
-afterEach(() => {
-	delete global.Foo;
-});
+const component = { module: 'someModule', name: 'SomeName' };
 
 describe('globalizeComponent', () => {
-	it('should set component’s module as a global variable', () => {
-		const globalsCount = Object.keys(global).length;
-		globalizeComponent({
-			name: 'Foo',
-			props: {},
-			module: 13,
-		});
-		expect(Object.keys(global).length).toBe(globalsCount + 1);
-		expect(global.Foo).toBe(13);
+	afterEach(() => {
+		delete global[component.name];
+	});
+
+	it('should not add anything as a global variable if there is no component name', () => {
+		expect(global[component.name]).toBeUndefined();
+		globalizeComponent({});
+		expect(global[component.name]).toBeUndefined();
+	});
+
+	it('should set the return value of getComponent as a global variable', () => {
+		expect(global[component.name]).toBeUndefined();
+		globalizeComponent(component);
+		expect(global[component.name]).toBe(component.module);
 	});
 });

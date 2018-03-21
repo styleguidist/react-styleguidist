@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Ribbon should render ribbon if the ribbon is present in the config 1`] = `
+<Styled(Ribbon)
+  url="foo.bar"
+/>
+`;
+
+exports[`RibbonRenderer should render ribbon with a text 1`] = `
+<div
+  className="root"
+>
+  <a
+    className="link"
+    href="http://example.com"
+  >
+    Share the repo
+  </a>
+</div>
+`;
+
+exports[`RibbonRenderer should render ribbon with url 1`] = `
+<div
+  className="root"
+>
+  <a
+    className="link"
+    href="http://example.com"
+  >
+    Fork me on GitHub
+  </a>
+</div>
+`;

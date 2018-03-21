@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renderer should render logo, table of contents and passed children 1`] = `
+exports[`renderer should render logo, table of contents, ribbon and passed children 1`] = `
 <div
   className=""
 >
@@ -47,6 +47,7 @@ exports[`renderer should render logo, table of contents and passed children 1`] 
       }
     />
   </div>
+  <Ribbon />
 </div>
 `;
 
@@ -98,6 +99,7 @@ exports[`should render components list 1`] = `
           },
         ]
       }
+      useIsolatedLinks={undefined}
     />
   }
 >

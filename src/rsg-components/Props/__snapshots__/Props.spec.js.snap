@@ -879,6 +879,48 @@ exports[`props columns should render arguments from JsDoc tags 1`] = `
 </ul>
 `;
 
+exports[`props columns should render custom class type 1`] = `
+<ul>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
+      <Styled(Name)
+        deprecated={false}
+      >
+        foo
+      </Styled(Name)>
+    </div>
+    <div
+      key="1"
+    >
+      <Styled(Type)>
+        React.ReactNode
+      </Styled(Type)>
+    </div>
+    <div
+      key="2"
+    >
+      <Styled(Text)
+        color="light"
+        size="small"
+      >
+        Required
+      </Styled(Text)>
+    </div>
+    <div
+      key="3"
+    >
+      <div>
+        <JsDoc />
+      </div>
+    </div>
+  </li>
+</ul>
+`;
+
 exports[`props columns should render description in Markdown 1`] = `
 <ul>
   <li
@@ -1039,6 +1081,91 @@ exports[`props columns should render function defaultValue as code when undefine
 </ul>
 `;
 
+exports[`props columns should render function type with body in tooltip 1`] = `
+<ul>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
+      <Styled(Name)
+        deprecated={false}
+      >
+        foo
+      </Styled(Name)>
+    </div>
+    <div
+      key="1"
+    >
+      <Styled(Type)>
+        <Styled(Text)
+          size="small"
+          title="() => void"
+          underlined={true}
+        >
+          <Styled(Type)>
+            function
+          </Styled(Type)>
+        </Styled(Text)>
+      </Styled(Type)>
+    </div>
+    <div
+      key="2"
+    >
+      <Styled(Text)
+        color="light"
+        size="small"
+      >
+        Required
+      </Styled(Text)>
+    </div>
+    <div
+      key="3"
+    >
+      <div>
+        <JsDoc />
+      </div>
+    </div>
+  </li>
+</ul>
+`;
+
+exports[`props columns should render literal type 1`] = `
+<ul>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
+      <Styled(Name)
+        deprecated={false}
+      >
+        foo
+      </Styled(Name)>
+    </div>
+    <div
+      key="1"
+    >
+      <Styled(Type)>
+        "bar"
+      </Styled(Type)>
+    </div>
+    <div
+      key="2"
+    />
+    <div
+      key="3"
+    >
+      <div>
+        <JsDoc />
+      </div>
+    </div>
+  </li>
+</ul>
+`;
+
 exports[`props columns should render name as deprecated when tag deprecated is present 1`] = `
 <ul>
   <li
@@ -1080,6 +1207,91 @@ exports[`props columns should render name as deprecated when tag deprecated is p
             ]
           }
         />
+      </div>
+    </div>
+  </li>
+</ul>
+`;
+
+exports[`props columns should render object type with body in tooltip 1`] = `
+<ul>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
+      <Styled(Name)
+        deprecated={false}
+      >
+        foo
+      </Styled(Name)>
+    </div>
+    <div
+      key="1"
+    >
+      <Styled(Type)>
+        <Styled(Text)
+          size="small"
+          title="{ bar: string }"
+          underlined={true}
+        >
+          <Styled(Type)>
+            object
+          </Styled(Type)>
+        </Styled(Text)>
+      </Styled(Type)>
+    </div>
+    <div
+      key="2"
+    >
+      <Styled(Text)
+        color="light"
+        size="small"
+      >
+        Required
+      </Styled(Text)>
+    </div>
+    <div
+      key="3"
+    >
+      <div>
+        <JsDoc />
+      </div>
+    </div>
+  </li>
+</ul>
+`;
+
+exports[`props columns should render optional type string 1`] = `
+<ul>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
+      <Styled(Name)
+        deprecated={false}
+      >
+        foo
+      </Styled(Name)>
+    </div>
+    <div
+      key="1"
+    >
+      <Styled(Type)>
+        string
+      </Styled(Type)>
+    </div>
+    <div
+      key="2"
+    />
+    <div
+      key="3"
+    >
+      <div>
+        <JsDoc />
       </div>
     </div>
   </li>
@@ -1200,6 +1412,190 @@ exports[`props columns should render return from JsDoc tags 2`] = `
             }
           }
         />
+      </div>
+    </div>
+  </li>
+</ul>
+`;
+
+exports[`props columns should render tuple type with body in tooltip 1`] = `
+<ul>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
+      <Styled(Name)
+        deprecated={false}
+      >
+        foo
+      </Styled(Name)>
+    </div>
+    <div
+      key="1"
+    >
+      <Styled(Type)>
+        <Styled(Text)
+          size="small"
+          title="[\\"bar\\", number]"
+          underlined={true}
+        >
+          <Styled(Type)>
+            tuple
+          </Styled(Type)>
+        </Styled(Text)>
+      </Styled(Type)>
+    </div>
+    <div
+      key="2"
+    >
+      <Styled(Text)
+        color="light"
+        size="small"
+      >
+        Required
+      </Styled(Text)>
+    </div>
+    <div
+      key="3"
+    >
+      <div>
+        <JsDoc />
+      </div>
+    </div>
+  </li>
+</ul>
+`;
+
+exports[`props columns should render type string 1`] = `
+<ul>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
+      <Styled(Name)
+        deprecated={false}
+      >
+        foo
+      </Styled(Name)>
+    </div>
+    <div
+      key="1"
+    >
+      <Styled(Type)>
+        string
+      </Styled(Type)>
+    </div>
+    <div
+      key="2"
+    >
+      <Styled(Text)
+        color="light"
+        size="small"
+      >
+        Required
+      </Styled(Text)>
+    </div>
+    <div
+      key="3"
+    >
+      <div>
+        <JsDoc />
+      </div>
+    </div>
+  </li>
+</ul>
+`;
+
+exports[`props columns should render type string with a default value 1`] = `
+<ul>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
+      <Styled(Name)
+        deprecated={false}
+      >
+        foo
+      </Styled(Name)>
+    </div>
+    <div
+      key="1"
+    >
+      <Styled(Type)>
+        string
+      </Styled(Type)>
+    </div>
+    <div
+      key="2"
+    >
+      <Styled(Code)>
+        bar
+      </Styled(Code)>
+    </div>
+    <div
+      key="3"
+    >
+      <div>
+        <JsDoc />
+      </div>
+    </div>
+  </li>
+</ul>
+`;
+
+exports[`props columns should render union type with body in tooltip 1`] = `
+<ul>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
+      <Styled(Name)
+        deprecated={false}
+      >
+        foo
+      </Styled(Name)>
+    </div>
+    <div
+      key="1"
+    >
+      <Styled(Type)>
+        <Styled(Text)
+          size="small"
+          title="\\"bar\\" | number"
+          underlined={true}
+        >
+          <Styled(Type)>
+            union
+          </Styled(Type)>
+        </Styled(Text)>
+      </Styled(Type)>
+    </div>
+    <div
+      key="2"
+    >
+      <Styled(Text)
+        color="light"
+        size="small"
+      >
+        Required
+      </Styled(Text)>
+    </div>
+    <div
+      key="3"
+    >
+      <div>
+        <Styled(Para)>
+          <span />
+        </Styled(Para)>
+        <JsDoc />
       </div>
     </div>
   </li>

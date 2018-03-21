@@ -124,6 +124,10 @@ module.exports = {
 	logger: {
 		type: 'object',
 	},
+	pagePerSection: {
+		type: 'boolean',
+		default: false,
+	},
 	previewDelay: {
 		type: 'number',
 		default: 500,
@@ -150,6 +154,13 @@ module.exports = {
 			const annotatedComponents = annotationResolver(ast, recast);
 			const exportedComponents = findAllExportedComponentDefinitions(ast, recast);
 			return annotatedComponents.concat(exportedComponents);
+		},
+	},
+	ribbon: {
+		type: 'object',
+		example: {
+			url: 'http://example.com/',
+			text: 'Fork me on GitHub',
 		},
 	},
 	sections: {
@@ -240,6 +251,9 @@ module.exports = {
 			return `${startCase(name)} Style Guide`;
 		},
 		example: 'My Style Guide',
+	},
+	transformProps: {
+		type: 'function',
 	},
 	updateExample: {
 		type: 'function',

@@ -1,13 +1,14 @@
 import React from 'react';
 import Usage from './Usage';
 
-const props = {
-	children: {
+const props = [
+	{
+		name: 'children',
 		type: { name: 'string' },
 		required: true,
 		description: 'Button label.',
 	},
-};
+];
 const methods = [
 	{
 		name: 'set',
