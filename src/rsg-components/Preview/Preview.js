@@ -5,32 +5,22 @@ import { transform } from 'buble';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import Wrapper from 'rsg-components/Wrapper';
 
-/* eslint-disable react/no-multi-comp */
+/* eslint-disable no-invalid-this, react/no-multi-comp */
 
-const noop = () => {};
 const compileCode = (code, config) => transform(code, config).code;
 
 // Wrap everything in a React component to leverage the state management of this component
 class PreviewComponent extends Component {
 	static propTypes = {
 		component: PropTypes.func.isRequired,
+		initialState: PropTypes.object.isRequired,
 	};
 
-	constructor() {
-		super();
-		this.state = {};
-		this.setState = this.setState.bind(this);
-		this.setInitialState = this.setInitialState.bind(this);
-	}
-
-	// Set the initial state, ignore all consequent calls
-	setInitialState(initialState) {
-		this.setState(initialState);
-		this.setInitialState = noop;
-	}
+	state = this.props.initialState;
+	setStateBinded = this.setState.bind(this);
 
 	render() {
-		return this.props.component(this.state, this.setState, this.setInitialState);
+		return this.props.component(this.state, this.setStateBinded);
 	}
 }
 
@@ -43,16 +33,9 @@ export default class Preview extends Component {
 		config: PropTypes.object.isRequired,
 		codeRevision: PropTypes.number.isRequired,
 	};
-
-	constructor() {
-		super();
-
-		this.state = {
-			error: null,
-		};
-
-		this.handleError = this.handleError.bind(this);
-	}
+	state = {
+		error: null,
+	};
 
 	componentDidMount() {
 		// Clear console after hot reload, do not clear on the first load to keep any warnings
@@ -78,6 +61,29 @@ export default class Preview extends Component {
 		this.unmountPreview();
 	}
 
+	getExampleInitialState(compiledCode) {
+		// Strip JSX: this is a bit hacky
+		const code = compiledCode.replace(/React\.createElement\([\S\s]*$/m, '');
+
+		// Eval the rest of the code to extract the value of the initial state
+		return this.props.evalInContext(`
+			var state = {};
+			var initialState = {};
+			try {
+				${code};
+			} catch (err) {}
+			return initialState;
+		`)();
+	}
+
+	// Wrap code in JSON.stringify/eval to catch the component and return it
+	evalInContext(compiledCode) {
+		return this.props.evalInContext(`
+			var initialState = {};
+			return eval(${JSON.stringify(compiledCode)});
+		`);
+	}
+
 	unmountPreview() {
 		if (this.mountNode) {
 			ReactDOM.unmountComponentAtNode(this.mountNode);
@@ -99,10 +105,11 @@ export default class Preview extends Component {
 			return;
 		}
 
+		const initialState = this.getExampleInitialState(compiledCode);
 		const exampleComponent = this.evalInContext(compiledCode);
 		const wrappedComponent = (
 			<Wrapper onError={this.handleError}>
-				<PreviewComponent component={exampleComponent} />
+				<PreviewComponent component={exampleComponent} initialState={initialState} />
 			</Wrapper>
 		);
 
@@ -125,24 +132,7 @@ export default class Preview extends Component {
 		return false;
 	}
 
-	evalInContext(compiledCode) {
-		// 1. Use setter/with to call our callback function when user write `initialState = {...}`
-		// 2. Wrap code in JSON.stringify/eval to catch the component and return it
-		const exampleComponentCode = `
-			var stateWrapper = {
-				set initialState(value) {
-					__setInitialState(value)
-				},
-			}
-			with (stateWrapper) {
-				return eval(${JSON.stringify(compiledCode)})
-			}
-		`;
-
-		return this.props.evalInContext(exampleComponentCode);
-	}
-
-	handleError(err) {
+	handleError = err => {
 		this.unmountPreview();
 
 		this.setState({
@@ -150,7 +140,7 @@ export default class Preview extends Component {
 		});
 
 		console.error(err); // eslint-disable-line no-console
-	}
+	};
 
 	render() {
 		const { error } = this.state;

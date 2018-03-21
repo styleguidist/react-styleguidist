@@ -5,13 +5,10 @@ import Preview from '../Preview';
 
 const evalInContext = a =>
 	// eslint-disable-next-line no-new-func
-	new Function(
-		'require',
-		'state',
-		'setState',
-		'__setInitialState',
-		'const React = require("react");' + a
-	).bind(null, require);
+	new Function('require', 'state', 'setState', 'const React = require("react");' + a).bind(
+		null,
+		require
+	);
 const code = '<button>OK</button>';
 const options = {
 	context: {
