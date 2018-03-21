@@ -5,6 +5,7 @@
 <!-- toc -->
 
 * [Finding components](#finding-components)
+* [Loading and exposing components](#loading-and-exposing-components)
 * [Sections](#sections)
 * [Limitations](#limitations)
 
@@ -40,6 +41,63 @@ module.exports = {
 > **Note:** Use [ignore](Configuration.md#ignore) option to exclude some files from the style guide.
 
 > **Note:** Use [getComponentPathLine](Configuration.md#getcomponentpathline) option to change a path you see below a component name.
+
+## Loading and exposing components
+
+Styleguidist _loads_ your components and _exposes_ them globally for your examples to consume.
+
+### Identifier
+
+It will try to use the `displayName` of your component as the identifier. If it cannot understand a `displayName` (for example if it is dynamically generated), it will fall back to something it can understand.
+
+In each of the following cases, the global identifier will be `Component`.
+
+| Path | Code | Styleguidist understands |
+| ---- | ---- | ------------------------ |
+| /whatever.js | `export default function Component() { ... }` | displayName |
+| /whatever.js | `export default function SomeName() { ... }`<br>`SomeName.displayName = 'Component';` | displayName |
+| /whatever.js | `export default function Component() { ... }`<br>`Component.displayName = dynamicNamer();` | displayName at declaration
+| /component.js | `const name = 'SomeName';`<br>`const componentMap = {`<br>`[name]: function() { ... }`<br>`};`<br>`export default componentMap[name];` | File name |
+| /component/index.js | `const name = 'SomeName';`<br>`const componentMap = {`<br>`[name]: function() { ... }`<br>`};`<br>`export default componentMap[name];` | Folder name |
+
+
+### Default vs named exports
+
+Stylegudist will use an ECMAScript module’s `default` export or CommonJS `module.exports` if they are defined.
+
+```javascript
+// /component.js
+export default function Component() { ... }
+// will be exposed globally as Component
+
+// /component.js
+function Component() { ... }
+module.exports = Component;
+// will be exposed globally as Component
+```
+
+If you use only named exports, Styleguidist will expose named exports from modules as follows...
+
+If there is only one named export, it will expose that.
+
+```javascript
+// /component.js
+export function Component() { ... }
+// will be exposed globally as Component
+```
+
+If there are several named exports, it will expose the named export which has the same name as the understood identifier.
+
+```javascript
+// /component.js
+export function someUtil() { ... }
+// will not be exposed
+
+export function Component() { ... }
+// will be exposed globally as Component
+```
+
+If you export several React components as named exports from a single module, Styleguidist is likely to behave unreliably. If it cannot understand which named export to expose, you may not be able to access that export.
 
 ## Sections
 
