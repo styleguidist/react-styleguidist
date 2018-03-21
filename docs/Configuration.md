@@ -20,6 +20,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`handlers`](#handlers)
 * [`ignore`](#ignore)
 * [`logger`](#logger)
+* [`pagePerSection`](#pagepersection)
 * [`previewDelay`](#previewdelay)
 * [`propsParser`](#propsparser)
 * [`require`](#require)
@@ -38,6 +39,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`template`](#template)
 * [`theme`](#theme)
 * [`title`](#title)
+* [`transformProps`](#transformprops)
 * [`updateExample`](#updateexample)
 * [`verbose`](#verbose)
 * [`webpackConfig`](#webpackconfig)
@@ -58,10 +60,11 @@ Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the
 
 #### `components`
 
-Type: `String` or `Function`, default: `src/components/**/*.{js,jsx,ts,tsx}`
+Type: `String`, `Function` or `Array`, default: `src/components/**/*.{js,jsx,ts,tsx}`
 
 * when `String`: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules.
 * when `Function`: a function that returns an array of module paths.
+* when `Array`: an array of module paths.
 
 All paths are relative to config folder.
 
@@ -260,6 +263,22 @@ module.exports = {
 }
 ```
 
+#### `pagePerSection`
+
+Type: `Boolean`, default: `false`
+
+Render one section or component per page, starting with the first.
+
+If set to `true`, the sidebar will be visible on each page, except for the examples.
+
+The value may be differ on each environment.
+
+```javascript
+module.exports = {
+  pagePerSection: process.env.NODE_ENV !== 'production'
+}
+```
+
 #### `previewDelay`
 
 Type: `Number`, default: 500
@@ -445,6 +464,20 @@ See example in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide)
 Type: `String`, default: `<app name from package.json> Style Guide`
 
 Style guide title.
+
+#### `transformProps`
+
+Type: `Function`, optional
+
+Function that transforms component properties. By default properties are sorted such that required properties come first, optional prameters come second. Properties in both groups are sorted by their property names.
+
+To disable sorting the identity function can be used:
+
+```javascript
+module.exports = {
+  transformProps: props => props
+}
+```
 
 #### `updateExample`
 

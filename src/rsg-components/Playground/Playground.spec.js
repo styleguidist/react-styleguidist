@@ -23,7 +23,7 @@ const options = {
 			highlightTheme: 'base16-light',
 		},
 		codeRevision: 0,
-		slots,
+		slots: slots({}),
 	},
 	childContextTypes: {
 		slots: PropTypes.object.isRequired,

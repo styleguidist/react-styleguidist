@@ -1,14 +1,16 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { parse } from 'react-docgen';
-import PropsRenderer, { propsToArray, columns } from './PropsRenderer';
+import PropsRenderer, { columns, getRowKey } from './PropsRenderer';
 import { unquote, getType, showSpaces } from './util';
 
+const propsToArray = props => Object.keys(props).map(name => ({ ...props[name], name }));
+
 // Test renderers with clean readable snapshot diffs
-// eslint-disable-next-line react/prop-types
 export default function ColumnsRenderer({ props }) {
 	return (
 		<ul>
-			{propsToArray(props).map((row, rowIdx) => (
+			{props.map((row, rowIdx) => (
 				<li key={rowIdx}>
 					{columns.map(({ render }, colIdx) => <div key={colIdx}>{render(row)}</div>)}
 				</li>
@@ -32,14 +34,32 @@ function render(propTypes, defaultProps = []) {
 			}
 		}
 	`);
-	return shallow(<ColumnsRenderer props={props.props} />);
+	return shallow(<ColumnsRenderer props={propsToArray(props.props)} />);
+}
+
+function renderFlow(propsType, defaultProps = []) {
+	const props = parse(`
+	  // @flow
+		import * as React from 'react';
+		type Props = {
+			${propsType.join(',')}
+		};
+		export default class Cmpnt extends React.Component<Props> {
+			static defaultProps = {
+				${defaultProps.join(',')}
+			}
+			render() {
+			}
+		}
+	`);
+	return shallow(<ColumnsRenderer props={propsToArray(props.props)} />);
 }
 
 describe('PropsRenderer', () => {
 	it('should render a table', () => {
 		const actual = shallow(
 			<PropsRenderer
-				props={{ color: { type: { name: 'string' }, required: false, description: '' } }}
+				props={[{ type: { name: 'string' }, required: false, description: '', name: 'color' }]}
 			/>
 		);
 
@@ -220,8 +240,9 @@ describe('props columns', () => {
 	});
 
 	it('should render arguments from JsDoc tags', () => {
-		const props = {
-			size: {
+		const props = [
+			{
+				name: 'size',
 				type: {
 					name: 'number',
 				},
@@ -242,15 +263,16 @@ describe('props columns', () => {
 					],
 				},
 			},
-		};
+		];
 		const actual = shallow(<ColumnsRenderer props={props} />);
 
 		expect(actual).toMatchSnapshot();
 	});
 
 	it('should render return from JsDoc tags', () => {
-		const getProps = tag => ({
-			size: {
+		const getProps = tag => [
+			{
+				name: 'size',
 				type: {
 					name: 'number',
 				},
@@ -266,7 +288,7 @@ describe('props columns', () => {
 					],
 				},
 			},
-		});
+		];
 
 		const actualForReturn = shallow(<ColumnsRenderer props={getProps('return')} />);
 
@@ -278,8 +300,9 @@ describe('props columns', () => {
 	});
 
 	it('should render name as deprecated when tag deprecated is present', () => {
-		const props = {
-			size: {
+		const props = [
+			{
+				name: 'size',
 				type: {
 					name: 'number',
 				},
@@ -294,8 +317,62 @@ describe('props columns', () => {
 					],
 				},
 			},
-		};
+		];
 		const actual = shallow(<ColumnsRenderer props={props} />);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render type string', () => {
+		const actual = renderFlow(['foo: string']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render optional type string', () => {
+		const actual = renderFlow(['foo?: string']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render type string with a default value', () => {
+		const actual = renderFlow(['foo?: string'], ['foo: "bar"']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render literal type', () => {
+		const actual = renderFlow(['foo?: "bar"']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render object type with body in tooltip', () => {
+		const actual = renderFlow(['foo: { bar: string }']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render function type with body in tooltip', () => {
+		const actual = renderFlow(['foo: () => void']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render union type with body in tooltip', () => {
+		const actual = renderFlow(['foo: "bar" | number']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render tuple type with body in tooltip', () => {
+		const actual = renderFlow(['foo: ["bar", number]']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('should render custom class type', () => {
+		const actual = renderFlow(['foo: React.ReactNode']);
 
 		expect(actual).toMatchSnapshot();
 	});
@@ -332,5 +409,12 @@ describe('showSpaces', () => {
 	it('should replace leading and trailing spaces with a visible character', () => {
 		const result = showSpaces(' pizza ');
 		expect(result).toBe('␣pizza␣');
+	});
+});
+
+describe('getRowKey', () => {
+	it('should return type name', () => {
+		const result = getRowKey({ name: 'number' });
+		expect(result).toBe('number');
 	});
 });

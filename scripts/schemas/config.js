@@ -124,6 +124,10 @@ module.exports = {
 	logger: {
 		type: 'object',
 	},
+	pagePerSection: {
+		type: 'boolean',
+		default: false,
+	},
 	previewDelay: {
 		type: 'number',
 		default: 500,
@@ -241,6 +245,9 @@ module.exports = {
 			return `${startCase(name)} Style Guide`;
 		},
 		example: 'My Style Guide',
+	},
+	transformProps: {
+		type: 'function',
 	},
 	updateExample: {
 		type: 'function',

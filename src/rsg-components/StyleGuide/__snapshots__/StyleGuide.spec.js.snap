@@ -9,7 +9,7 @@ exports[`renderer should render logo, table of contents, ribbon and passed child
       Content
     </h1>
     <footer>
-      <Styled(Markdown)
+      <Markdown
         text="Generated with [React Styleguidist](http://react-styleguidist.js.org/)"
       />
     </footer>
@@ -99,6 +99,7 @@ exports[`should render components list 1`] = `
           },
         ]
       }
+      useIsolatedLinks={undefined}
     />
   }
 >

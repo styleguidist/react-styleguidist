@@ -13,7 +13,7 @@ exports[`should render examples 1`] = `
     key="1/0"
     name="button"
   />
-  <Styled(Markdown)
+  <Markdown
     key="1"
     text="Hello *world*!"
   />

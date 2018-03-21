@@ -60,4 +60,14 @@ describe('getRouteData', () => {
 		const result = getRouteData(sections, '#!/Section/1');
 		expect(result).toMatchSnapshot();
 	});
+
+	it('should return first section if pagePerSection and hash is empty', () => {
+		const result = getRouteData(sections, '', true);
+		expect(result).toMatchSnapshot();
+	});
+
+	it('should return first component if pagePerSection and hash is empty', () => {
+		const result = getRouteData(sections[0].sections, '', true);
+		expect(result).toMatchSnapshot();
+	});
 });

@@ -8,6 +8,29 @@ import Error from 'rsg-components/Error';
 import { HOMEPAGE } from '../../../scripts/consts';
 import { DisplayModes } from '../../consts';
 
+/**
+ * This function will return true, if the sidebar should be visible and false otherwise.
+ *
+ * These sorted conditions (highest precedence first) define the visibility
+ * state of the sidebar.
+ *
+ * - Sidebar is hidden for isolated example views
+ * - Sidebar is always visible when pagePerSection
+ * - Sidebar is hidden when showSidebar is set to false
+ * - Sidebar is visible when showSidebar is set to true for non-isolated views
+ *
+ * @param {boolean} displayMode
+ * @param {boolean} showSidebar
+ * @param {boolean} pagePerSection
+ * @returns {boolean}
+ */
+function hasSidebar(displayMode, showSidebar, pagePerSection = false) {
+	return (
+		(pagePerSection && displayMode !== DisplayModes.example) ||
+		(showSidebar && displayMode === DisplayModes.all)
+	);
+}
+
 export default class StyleGuide extends Component {
 	static propTypes = {
 		codeRevision: PropTypes.number.isRequired,
@@ -17,6 +40,8 @@ export default class StyleGuide extends Component {
 		welcomeScreen: PropTypes.bool,
 		patterns: PropTypes.array,
 		displayMode: PropTypes.string,
+		allSections: PropTypes.array.isRequired,
+		pagePerSection: PropTypes.bool,
 	};
 
 	static childContextTypes = {
@@ -52,7 +77,15 @@ export default class StyleGuide extends Component {
 	}
 
 	render() {
-		const { config, sections, welcomeScreen, patterns, displayMode } = this.props;
+		const {
+			config,
+			sections,
+			welcomeScreen,
+			patterns,
+			displayMode,
+			allSections,
+			pagePerSection,
+		} = this.props;
 
 		if (this.state.error) {
 			return <Error error={this.state.error} info={this.state.info} />;
@@ -66,8 +99,8 @@ export default class StyleGuide extends Component {
 			<StyleGuideRenderer
 				title={config.title}
 				homepageUrl={HOMEPAGE}
-				toc={<TableOfContents sections={sections} />}
-				hasSidebar={config.showSidebar && displayMode === DisplayModes.all}
+				toc={<TableOfContents sections={allSections} useIsolatedLinks={pagePerSection} />}
+				hasSidebar={hasSidebar(displayMode, config.showSidebar, pagePerSection)}
 			>
 				<Sections sections={sections} depth={1} />
 			</StyleGuideRenderer>

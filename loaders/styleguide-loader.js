@@ -25,6 +25,7 @@ const CLIENT_CONFIG_OPTIONS = [
 	'compilerConfig',
 	'editorConfig',
 	'ribbon',
+	'pagePerSection',
 ];
 
 module.exports = function() {};
