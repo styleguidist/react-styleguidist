@@ -49,7 +49,7 @@ ErrorRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	error: PropTypes.object.isRequired,
 	info: PropTypes.shape({
-		componentStack: PropTypes.object.isRequired,
+		componentStack: PropTypes.any.isRequired,
 	}).isRequired,
 };
 
