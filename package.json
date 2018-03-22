@@ -142,7 +142,6 @@
     "start:customised": "node bin/styleguidist.js server --config examples/customised/styleguide.config.js",
     "start:sections": "node bin/styleguidist.js server --config examples/sections/styleguide.config.js",
     "lint": "eslint . --cache --fix",
-    "lint-staged": "lint-staged",
     "precompile": "rimraf lib/",
     "compile": "babel --ignore '*.spec.js' -d lib/ src/",
     "compile:watch": "babel --ignore '*.spec.js' --watch -d lib/ src/",
