@@ -40,7 +40,7 @@ module.exports = {
 	// serverHost: 'your-domain',
 	printServerInstructions(config) {
 		// eslint-disable-next-line no-console
-		console.log(`View your styleguide at: http://${config.serverHost}`);
+		console.log(`View your styleguide at: http://${config.serverHost}:${config.serverPort}`);
 	},
 
 	// Override Styleguidist components
