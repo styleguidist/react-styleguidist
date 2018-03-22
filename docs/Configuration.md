@@ -292,7 +292,9 @@ Function that allows you to override the printing of build messages to console.l
 module.exports = {
   printBuildInstructions(config) {
     console.log(
-      'Style guide published to ${config.styleguideDir}. Something else interesting.'
+      `Style guide published to ${
+        config.styleguideDir
+      }. Something else interesting.`
     )
   }
 }
@@ -307,8 +309,8 @@ Function that allows you to override the printing of local dev server messages t
 ```javascript
 module.exports = {
   serverHost: 'your-domain',
-  printServerInstructions(config) {
-    console.log(`'Local style guide: http://${config.serverHost}`);
+  printServerInstructions(config, { isHttps }) {
+    console.log(`Local style guide: http://${config.serverHost}`);
   },
 ```
 
