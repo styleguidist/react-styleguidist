@@ -8,7 +8,7 @@ const toAst = require('to-ast');
 const logger = require('glogg')('rsg');
 const getExamples = require('./utils/getExamples');
 const getProps = require('./utils/getProps');
-const sortProps = require('./utils/sortProps');
+const defaultSortProps = require('./utils/sortProps');
 const consts = require('../scripts/consts');
 
 const ERROR_MISSING_DEFINITION = 'No suitable component definition found.';
@@ -25,18 +25,17 @@ module.exports = function(source) {
 	const defaultParser = (filePath, source, resolver, handlers) =>
 		reactDocs.parse(source, resolver, handlers);
 	const propsParser = config.propsParser || defaultParser;
-	const propsTransform = config.propsTransform || sortProps;
 
-	let props = {};
+	let docs = {};
 	try {
-		props = propsParser(file, source, config.resolver, config.handlers(file));
+		docs = propsParser(file, source, config.resolver, config.handlers(file));
 
 		// Support only one component
-		if (isArray(props)) {
-			if (props.length === 0) {
+		if (isArray(docs)) {
+			if (docs.length === 0) {
 				throw new Error(ERROR_MISSING_DEFINITION);
 			}
-			props = props[0];
+			docs = docs[0];
 		}
 	} catch (err) {
 		const errorMessage = err.toString();
@@ -53,27 +52,28 @@ module.exports = function(source) {
 		logger.warn(message);
 	}
 
-	props = getProps(props, file);
+	docs = getProps(docs, file);
 
-	const componentProps = props.props;
+	const componentProps = docs.props;
 	if (componentProps) {
-		// Transform the properties to an array. This will allow for sorting.
+		// Transform the properties to an array. This will allow sorting
+		// TODO: Extract to a module
 		const propsAsArray = Object.keys(componentProps).reduce((acc, name) => {
 			componentProps[name].name = name;
 			acc.push(componentProps[name]);
 			return acc;
 		}, []);
 
-		// Pipe through transform method and override component properties.
-		props.props = propsTransform(propsAsArray);
+		const sortProps = config.sortProps || defaultSortProps;
+		docs.props = sortProps(propsAsArray);
 	}
 
 	// Examples from Markdown file
 	const examplesFile = config.getExampleFilename(file);
-	props.examples = getExamples(examplesFile, props.displayName, config.defaultExample);
+	docs.examples = getExamples(examplesFile, docs.displayName, config.defaultExample);
 
-	if (config.updateProps) {
-		props = config.updateProps(props, file);
+	if (config.updateDocs) {
+		docs = config.updateDocs(docs, file);
 	}
 
 	return `
@@ -81,6 +81,6 @@ if (module.hot) {
 	module.hot.accept([])
 }
 
-module.exports = ${generate(toAst(props))}
+module.exports = ${generate(toAst(docs))}
 	`;
 };

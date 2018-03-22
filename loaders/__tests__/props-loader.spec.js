@@ -70,7 +70,7 @@ describe('property sorting', () => {
 		const result = propsLoader.call(
 			{
 				request: file,
-				_styleguidist: { ..._styleguidist, propsTransform: props => props },
+				_styleguidist: { ..._styleguidist, sortProps: props => props },
 			},
 			readFileSync(file, 'utf8')
 		);
@@ -93,7 +93,7 @@ describe('property sorting', () => {
 		const result = propsLoader.call(
 			{
 				request: file,
-				_styleguidist: { ..._styleguidist, propsTransform: sortFn },
+				_styleguidist: { ..._styleguidist, sortProps: sortFn },
 			},
 			readFileSync(file, 'utf8')
 		);
@@ -217,19 +217,19 @@ it('should add context dependencies to webpack from contextDependencies config o
 	expect(addContextDependency).toBeCalledWith(contextDependencies[1]);
 });
 
-it('should update the returned props object after enhancing from the updateProps config option', () => {
-	const updateProps = jest.fn();
+it('should update the returned props object after enhancing from the updateDocs config option', () => {
+	const updateDocs = jest.fn();
 	const file = './test/components/Button/Button.js';
 	const result = propsLoader.call(
 		{
 			request: file,
-			_styleguidist: { ..._styleguidist, updateProps },
+			_styleguidist: { ..._styleguidist, updateDocs },
 		},
 		readFileSync(file, 'utf8')
 	);
 
 	expect(() => new vm.Script(result)).not.toThrow();
-	expect(updateProps).toHaveBeenCalledWith(
+	expect(updateDocs).toHaveBeenCalledWith(
 		expect.objectContaining({ displayName: 'Button' }),
 		'./test/components/Button/Button.js'
 	);

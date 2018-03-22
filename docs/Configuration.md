@@ -35,15 +35,15 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`showUsage`](#showusage)
 * [`showSidebar`](#showsidebar)
 * [`skipComponentsWithoutExample`](#skipcomponentswithoutexample)
+* [`sortProps`](#sortprops)
 * [`styleguideComponents`](#styleguidecomponents)
 * [`styleguideDir`](#styleguidedir)
 * [`styles`](#styles)
 * [`template`](#template)
 * [`theme`](#theme)
 * [`title`](#title)
-* [`transformProps`](#transformprops)
+* [`updateDocs`](#updatedocs)
 * [`updateExample`](#updateexample)
-* [`updateProps`](#updateprops)
 * [`verbose`](#verbose)
 * [`webpackConfig`](#webpackconfig)
 
@@ -501,18 +501,57 @@ Type: `String`, default: `<app name from package.json> Style Guide`
 
 Style guide title.
 
-#### `transformProps`
+#### `sortProps`
 
 Type: `Function`, optional
 
-Function that transforms component properties. By default properties are sorted such that required properties come first, optional prameters come second. Properties in both groups are sorted by their property names.
+Function that sorts component props. By default props are sorted such that required props come first, optional props come second. Props in both groups are sorted by their property names.
 
-To disable sorting the identity function can be used:
+To disable sorting, use the identity function:
 
 ```javascript
 module.exports = {
-  transformProps: props => props
+  sortProps: props => props
 }
+```
+
+#### `updateDocs`
+
+Type: `Function`, optional
+
+Function that modifies props, methods, and metadata after parsing a source file. For example, load a component version from a JSON file:
+
+```javascript
+module.exports = {
+  updateDocs(docs) {
+    if (docs.doclets.version) {
+      const versionFilePath = path.resolve(
+        path.dirname(file),
+        docs.doclets.version
+      )
+      const version = require(versionFilePath).version
+
+      docs.doclets.version = version
+      docs.tags.version[0].description = version
+    }
+
+    return docs
+  }
+}
+```
+
+With this component JSDoc comment block:
+
+```javascript
+/**
+ * Component is described here.
+ *
+ * @version ./package.json
+ */
+export default class Button extends React.Component {
+  // ...
+}
+export default
 ```
 
 #### `updateExample`
@@ -523,7 +562,7 @@ Function that modifies code example (Markdown fenced code block). For example yo
 
 ```javascript
 module.exports = {
-  updateExample: function(props, exampleFilePath) {
+  updateExample(props, exampleFilePath) {
     const { settings, lang } = props
     if (typeof settings.file === 'string') {
       const filepath = path.resolve(exampleFilePath, settings.file)
@@ -548,7 +587,7 @@ You can also use this function to dynamically update some of your fenced code bl
 
 ```javascript
 module.exports = {
-  updateExample: function(props) {
+  updateExample(props) {
     const { settings, lang } = props
     if (lang === 'javascript' || lang === 'js' || lang === 'jsx') {
       settings.static = true
@@ -556,45 +595,6 @@ module.exports = {
     return props
   }
 }
-```
-
-#### `updateProps`
-
-Type: `Function`, optional
-
-Function that modifies props after parsing from a source file. For example you can use it to load a component version from a package.json file:
-
-```javascript
-module.exports = {
-  updateProps: function(props) {
-    if (props.doclets.version) {
-      const versionFilePath = path.resolve(
-        path.dirname(file),
-        props.doclets.version
-      )
-      const version = require(versionFilePath).version
-
-      props.doclets.version = version
-      props.tags.version[0].description = version
-    }
-
-    return props
-  }
-}
-```
-
-With this component JSDoc comment block:
-
-```javascript
-/**
- * Component is described here.
- *
- * @version ./package.json
- */
-export default class Button extends React.Component {
-  // ...
-}
-export default
 ```
 
 #### `verbose`

@@ -210,6 +210,9 @@ module.exports = {
 		type: 'boolean',
 		default: false,
 	},
+	sortProps: {
+		type: 'function',
+	},
 	styleguideComponents: {
 		type: 'object',
 	},
@@ -252,7 +255,7 @@ module.exports = {
 		},
 		example: 'My Style Guide',
 	},
-	transformProps: {
+	updateDocs: {
 		type: 'function',
 	},
 	updateExample: {
@@ -267,9 +270,6 @@ module.exports = {
 			}
 			return props;
 		},
-	},
-	updateProps: {
-		type: 'function',
 	},
 	updateWebpackConfig: {
 		type: 'function',
