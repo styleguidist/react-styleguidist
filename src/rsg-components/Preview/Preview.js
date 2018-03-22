@@ -4,12 +4,14 @@ import ReactDOM from 'react-dom';
 import { transform } from 'buble';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import Wrapper from 'rsg-components/Wrapper';
+import splitExampleCode from '../../utils/splitExampleCode';
 
 /* eslint-disable no-invalid-this, react/no-multi-comp */
 
 const compileCode = (code, config) => transform(code, config).code;
 
-// Wrap everything in a React component to leverage the state management of this component
+// Wrap everything in a React component to leverage the state management
+// of this component
 class PreviewComponent extends Component {
 	static propTypes = {
 		component: PropTypes.func.isRequired,
@@ -38,7 +40,8 @@ export default class Preview extends Component {
 	};
 
 	componentDidMount() {
-		// Clear console after hot reload, do not clear on the first load to keep any warnings
+		// Clear console after hot reload, do not clear on the first load
+		// to keep any warnings
 		if (this.context.codeRevision > 0) {
 			// eslint-disable-next-line no-console
 			console.clear();
@@ -61,26 +64,22 @@ export default class Preview extends Component {
 		this.unmountPreview();
 	}
 
+	// Eval the code to extract the value of the initial state
 	getExampleInitialState(compiledCode) {
-		// Strip JSX: this is a bit hacky
-		const code = compiledCode.replace(/React\.createElement\([\S\s]*$/m, '');
-
-		// Eval the rest of the code to extract the value of the initial state
 		return this.props.evalInContext(`
-			var state = {};
-			var initialState = {};
+			var state = {}, initialState = {};
 			try {
-				${code};
+				${compiledCode};
 			} catch (err) {}
 			return initialState;
 		`)();
 	}
 
-	// Wrap code in JSON.stringify/eval to catch the component and return it
-	evalInContext(compiledCode) {
+	// Run example code and return the last top-level expression
+	getExampleComponent(compiledCode) {
 		return this.props.evalInContext(`
 			var initialState = {};
-			return eval(${JSON.stringify(compiledCode)});
+			${compiledCode}
 		`);
 	}
 
@@ -105,8 +104,9 @@ export default class Preview extends Component {
 			return;
 		}
 
-		const initialState = this.getExampleInitialState(compiledCode);
-		const exampleComponent = this.evalInContext(compiledCode);
+		const { head, example } = splitExampleCode(compiledCode);
+		const initialState = this.getExampleInitialState(head);
+		const exampleComponent = this.getExampleComponent(example);
 		const wrappedComponent = (
 			<Wrapper onError={this.handleError}>
 				<PreviewComponent component={exampleComponent} initialState={initialState} />

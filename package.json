@@ -30,6 +30,7 @@
     "npm": ">=3"
   },
   "dependencies": {
+    "acorn": "^5.4.1",
     "ast-types": "^0.11.3",
     "buble": "^0.19.3",
     "chalk": "^2.3.2",
