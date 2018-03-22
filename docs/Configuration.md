@@ -310,8 +310,9 @@ Function that allows you to override the printing of local dev server messages t
 module.exports = {
   serverHost: 'your-domain',
   printServerInstructions(config, { isHttps }) {
-    console.log(`Local style guide: http://${config.serverHost}`);
-  },
+    console.log(`Local style guide: http://${config.serverHost}`)
+  }
+}
 ```
 
 #### `previewDelay`
