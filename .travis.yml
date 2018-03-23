@@ -22,7 +22,7 @@ script:
       NODE_ENV=test node --harmony-proxies $(npm bin)/jest --runInBand
     else
       if [[ "$TRAVIS_NODE_VERSION" == "9" ]]; then
-        npm run danger
+        npx danger ci
         npm run test:coverage -- --runInBand
       else
         npm run test:jest -- --runInBand
