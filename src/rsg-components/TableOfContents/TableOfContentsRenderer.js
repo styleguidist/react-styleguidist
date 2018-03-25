@@ -43,10 +43,11 @@ export function TableOfContentsRenderer({ classes, children, searchTerm, onSearc
 						value={searchTerm}
 						className={classes.input}
 						placeholder="Filter by name"
+						aria-label="Filter by name"
 						onChange={event => onSearchTermChange(event.target.value)}
 					/>
 				</div>
-				{children}
+				<nav>{children}</nav>
 			</div>
 		</div>
 	);

@@ -7,11 +7,19 @@ import getUrl from '../../utils/getUrl';
 
 const IsolateButton = ({ name, example, isolated }) =>
 	isolated ? (
-		<ToolbarButton href={getUrl({ anchor: true, slug: '/' })} title="Show all components">
+		<ToolbarButton
+			href={getUrl({ anchor: true, slug: '/' })}
+			title="Show all components"
+			ariaLabel="Show all components"
+		>
 			<MdFullscreenExit />
 		</ToolbarButton>
 	) : (
-		<ToolbarButton href={getUrl({ name, example, isolated: true })} title="Open isolated">
+		<ToolbarButton
+			href={getUrl({ name, example, isolated: true })}
+			title="Open isolated"
+			ariaLabel="Open isolated"
+		>
 			<MdFullscreen />
 		</ToolbarButton>
 	);

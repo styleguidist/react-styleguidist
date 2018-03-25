@@ -25,6 +25,7 @@ export function PathlineRenderer({ classes, children }) {
 				className={classes.copyButton}
 				onClick={() => copy(children)}
 				title="Copy to clipboard"
+				ariaLabel="Copy to clipboard"
 			>
 				<MdContentCopy />
 			</ToolbarButton>

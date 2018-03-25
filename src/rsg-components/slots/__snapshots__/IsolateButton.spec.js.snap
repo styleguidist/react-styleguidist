@@ -2,6 +2,7 @@
 
 exports[`should renderer a link home in isolated mode 1`] = `
 <Styled(ToolbarButton)
+  ariaLabel="Show all components"
   href="blank#/"
   title="Show all components"
 >
@@ -11,6 +12,7 @@ exports[`should renderer a link home in isolated mode 1`] = `
 
 exports[`should renderer a link to example isolated mode 1`] = `
 <Styled(ToolbarButton)
+  ariaLabel="Open isolated"
   href="blank#!/Pizza/3"
   title="Open isolated"
 >
@@ -20,6 +22,7 @@ exports[`should renderer a link to example isolated mode 1`] = `
 
 exports[`should renderer a link to isolated mode 1`] = `
 <Styled(ToolbarButton)
+  ariaLabel="Open isolated"
   href="blank#!/Pizza"
   title="Open isolated"
 >

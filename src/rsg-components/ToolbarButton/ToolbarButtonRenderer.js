@@ -47,6 +47,7 @@ export function ToolbarButtonRenderer({
 	title,
 	small,
 	children,
+	ariaLabel,
 }) {
 	const classNames = cx(classes.button, className, {
 		[classes.isSmall]: small,
@@ -54,14 +55,20 @@ export function ToolbarButtonRenderer({
 
 	if (href !== undefined) {
 		return (
-			<a href={href} title={title} className={classNames}>
+			<a href={href} title={title} className={classNames} aria-label={ariaLabel}>
 				{children}
 			</a>
 		);
 	}
 
 	return (
-		<button type="button" onClick={onClick} title={title} className={classNames}>
+		<button
+			type="button"
+			onClick={onClick}
+			title={title}
+			className={classNames}
+			aria-label={ariaLabel}
+		>
 			{children}
 		</button>
 	);
@@ -75,6 +82,7 @@ ToolbarButtonRenderer.propTypes = {
 	title: PropTypes.string,
 	small: PropTypes.bool,
 	children: PropTypes.node,
+	ariaLabel: PropTypes.string,
 };
 
 export default Styled(styles)(ToolbarButtonRenderer);

@@ -6,6 +6,7 @@ exports[`renderer should a path line 1`] = `
 >
   foo/bar
   <Styled(ToolbarButton)
+    ariaLabel="Copy to clipboard"
     className="copyButton"
     onClick={[Function]}
     small={true}
