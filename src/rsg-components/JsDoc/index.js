@@ -1,1 +1,1 @@
-export { default } from './JsDoc';
+export { default } from 'rsg-components/JsDoc/JsDoc';

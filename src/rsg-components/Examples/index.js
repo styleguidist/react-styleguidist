@@ -1,1 +1,1 @@
-export { default } from './Examples';
+export { default } from 'rsg-components/Examples/Examples';

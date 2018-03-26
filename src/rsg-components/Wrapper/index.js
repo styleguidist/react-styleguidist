@@ -1,1 +1,1 @@
-export { default } from './Wrapper';
+export { default } from 'rsg-components/Wrapper/Wrapper';

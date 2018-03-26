@@ -1,1 +1,1 @@
-export { default } from './ListRenderer';
+export { default } from 'rsg-components/Markdown/List/ListRenderer';
