@@ -1,14 +1,14 @@
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-
 import Styled from 'rsg-components/Styled';
-import { styles as paraStyles } from 'rsg-components/Para';
 
 const styles = ({ space, color, fontFamily }) => ({
 	list: {
-		...paraStyles({ space, color, fontFamily }).para,
+		marginTop: 0,
+		marginBottom: space[2],
 		paddingLeft: space[3],
+		fontSize: 'inherit',
 	},
 	ordered: {
 		listStyleType: 'decimal',
@@ -17,6 +17,7 @@ const styles = ({ space, color, fontFamily }) => ({
 		color: color.base,
 		fontFamily: fontFamily.base,
 		fontSize: 'inherit',
+		lineHeight: 1.5,
 		listStyleType: 'inherit',
 	},
 });
