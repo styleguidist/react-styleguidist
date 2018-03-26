@@ -20,6 +20,12 @@ React Styleguidist is a component development environment with hot reloaded dev 
 * [Configuring webpack](https://react-styleguidist.js.org/docs/webpack.html): tell Styleguidist how to load your code
 * [Cookbook](https://react-styleguidist.js.org/docs/cookbook.html): how to solve common tasks with Styleguidist
 
+## Advanced documentation
+
+* [Configuration](https://react-styleguidist.js.org/docs/configuration.html)
+* [CLI commands and options](https://react-styleguidist.js.org/docs/cli.html)
+* [Node.js API](https://react-styleguidist.js.org/docs/api.html)
+
 ## Examples
 
 * [Basic style guide](https://react-styleguidist.js.org/examples/basic/), [source](./examples/basic)
@@ -58,12 +64,6 @@ Real projects using React Styleguidist:
 * [Building React Components Library](https://skillsmatter.com/skillscasts/8140-building-react-components-library) talk by [Robert Haritonov](https://github.com/operatino)
 * [Say Cheese: Snapshots and Visual Testing](https://developers.livechatinc.com/blog/snapshots-visual-testing/)
 * [Interview with Artem Sapegin](https://survivejs.com/blog/styleguidist-interview/) about React Styleguidist.
-
-## Advanced documentation
-
-* [Configuration](https://react-styleguidist.js.org/docs/configuration.html)
-* [CLI commands and options](https://react-styleguidist.js.org/docs/cli.html)
-* [Node.js API](https://react-styleguidist.js.org/docs/api.html)
 
 ## Change log
 
