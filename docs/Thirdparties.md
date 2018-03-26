@@ -237,6 +237,8 @@ export function Button({ color, size, children }) {
 export default CSSModules(Button, styles)
 ```
 
+This approach will also work with [react-css-themr](https://github.com/javivelasco/react-css-themr) and other similar libraries.
+
 ### Styletron
 
 To use Styletron store with one component, require it from your example:
