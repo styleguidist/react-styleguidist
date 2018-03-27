@@ -56,6 +56,36 @@ Object {
     "~/node_modules/react-dev-utils/webpackHotDevClient.js",
   ],
   "mode": "development",
+  "optimization": Object {
+    "minimizer": Array [
+      UglifyJsPlugin {
+        "options": Object {
+          "cache": true,
+          "exclude": undefined,
+          "extractComments": false,
+          "include": undefined,
+          "parallel": true,
+          "sourceMap": false,
+          "test": /\\\\\\.js\\(\\\\\\?\\.\\*\\)\\?\\$/i,
+          "uglifyOptions": Object {
+            "compress": Object {
+              "keep_fnames": true,
+              "warnings": false,
+            },
+            "ecma": 5,
+            "ie8": false,
+            "mangle": Object {
+              "keep_fnames": true,
+            },
+            "output": Object {
+              "comments": /\\^\\\\\\*\\*!\\|@preserve\\|@license\\|@cc_on/,
+            },
+          },
+          "warningsFilter": [Function],
+        },
+      },
+    ],
+  },
   "output": Object {
     "chunkFilename": "build/[name].js",
     "filename": "build/[name].bundle.js",

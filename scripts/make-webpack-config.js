@@ -24,7 +24,6 @@ module.exports = function(config, env) {
 
 	let webpackConfig = {
 		entry: config.require.concat([path.resolve(sourceDir, 'index')]),
-		mode: env,
 		output: {
 			path: config.styleguideDir,
 			filename: 'build/[name].bundle.js',
@@ -53,8 +52,29 @@ module.exports = function(config, env) {
 		},
 	};
 
+	const uglifier = new UglifyJSPlugin({
+		parallel: true,
+		cache: true,
+		uglifyOptions: {
+			ie8: false,
+			ecma: 5,
+			compress: {
+				keep_fnames: true,
+				warnings: false,
+			},
+			mangle: {
+				keep_fnames: true,
+			},
+		},
+	});
+
 	if (getWebpackVersion() >= 4) {
 		webpackConfig.mode = env;
+		webpackConfig.optimization = {
+			minimizer: [uglifier],
+		};
+	} else {
+		webpackConfig.plugins.unshift(uglifier);
 	}
 
 	if (isProd) {
@@ -62,25 +82,6 @@ module.exports = function(config, env) {
 			output: {
 				filename: 'build/bundle.[chunkhash:8].js',
 				chunkFilename: 'build/[name].[chunkhash:8].js',
-			},
-			optimization: {
-				minimizer: [
-					new UglifyJSPlugin({
-						parallel: true,
-						cache: true,
-						uglifyOptions: {
-							ie8: false,
-							ecma: 5,
-							compress: {
-								keep_fnames: true,
-								warnings: false,
-							},
-							mangle: {
-								keep_fnames: true,
-							},
-						},
-					}),
-				],
 			},
 			plugins: [
 				new CleanWebpackPlugin(['build'], {
@@ -93,7 +94,7 @@ module.exports = function(config, env) {
 								{
 									from: config.assetsDir,
 								},
-						  ]
+							]
 						: []
 				),
 			],
