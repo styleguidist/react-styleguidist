@@ -35,9 +35,9 @@ Add these scripts to your `package.json`:
 
 ## 4. Start your style guide
 
-Run **`npm run styleguide`** to start a style guide dev server.
+Run **`npx styleguidist server`** to start a style guide dev server.
 
-Run **`npm run styleguide:build`** to build a static version.
+Run **`npx styleguidist server:build`** to build a static version.
 
 ## 5. Start documenting your components
 

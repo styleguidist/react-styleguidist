@@ -215,7 +215,7 @@ module.exports = {
 }
 ```
 
-This will automatically apply your theme to your styled-components. When you fire up the styleguide, `npm run styleguide`, you should see your components render as expected.
+This will automatically apply your theme to your styled-components. When you fire up the styleguide, `npx styleguidist server`, you should see your components render as expected.
 
 ### Fela
 
