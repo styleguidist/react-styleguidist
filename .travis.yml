@@ -16,8 +16,6 @@ before_script:
   # Manually install Webpack version
   - npm install --no-save webpack@$WEBPACK_VERSION
 script:
-  - echo $WEBPACK_VERSION
-  # Run tests and Danger.js
   - |
     if [[ "$TRAVIS_NODE_VERSION" == "9" ]]; then
       npm run test:coverage -- --runInBand
