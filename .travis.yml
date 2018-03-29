@@ -16,12 +16,8 @@ before_script:
   # Manually install Webpack version
   - npm install --no-save webpack@$WEBPACK_VERSION
 script:
-  - |
-    if [[ "$TRAVIS_NODE_VERSION" == "9" ]]; then
-      npm run test:coverage -- --runInBand
-    else
-      npm run test:jest -- --runInBand
-    fi
+  # Run tests without coverage since it's 2x faster
+  - npm run test:jest -- --runInBand
   # Build all examples
   - npm run build
   - npm run build:customised
@@ -62,6 +58,8 @@ jobs:
     - stage: coverage
       node_js: lts/*
       script:
+        # Run tests with coverage
+        - npm run test:coverage -- --runInBand
         # Upload coverage report to Codecov
         - bash <(curl -s https://codecov.io/bash)
 
