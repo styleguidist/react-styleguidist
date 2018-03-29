@@ -6,5 +6,5 @@ module.exports = function server(config, callback) {
 
 	serverInfo.app.listen(config.serverPort, config.serverHost, callback);
 
-	return serverInfo.compiler;
+	return serverInfo;
 };

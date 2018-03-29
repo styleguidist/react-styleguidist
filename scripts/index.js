@@ -34,7 +34,8 @@ module.exports = function(config) {
 		 * Start style guide dev server.
 		 *
 		 * @param {Function} callback callback(err, config).
-		 * @return {Compiler} Webpack Compiler instance.
+		 * @return {ServerInfo.App} Webpack-Dev-Server.
+		 * @return {ServerInfo.Compiler} Webpack Compiler instance.
 		 */
 		server(callback) {
 			return server(config, err => callback(err, config));

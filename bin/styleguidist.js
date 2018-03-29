@@ -127,7 +127,7 @@ function commandServer() {
 				printServerInstructions(config, { isHttps });
 			}
 		}
-	});
+	}).compiler;
 
 	verbose('Webpack config:', compiler.options);
 
