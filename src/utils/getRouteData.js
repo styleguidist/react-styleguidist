@@ -7,6 +7,21 @@ import getInfoFromHash from './getInfoFromHash';
 import { DisplayModes } from '../consts';
 
 /**
+ * Returns the first element of the sections, which can be one of section or
+ * component.
+ *
+ * @param {object} sections
+ * @returns {object}
+ */
+const getFirstSectionOrComponent = sections => {
+	const firstSection = sections[0];
+	if (firstSection.components && firstSection.components.length > 0) {
+		return { ...firstSection, components: [firstSection.components[0]] };
+	}
+	return firstSection;
+};
+
+/**
  * Return sections / components / examples to show on a screen according to a current route.
  *
  * Default: show all sections and components.
@@ -15,9 +30,10 @@ import { DisplayModes } from '../consts';
  *
  * @param {object} sections
  * @param {string} hash
+ * @param {boolean} pagePerSection
  * @returns {object}
  */
-export default function getRouteData(sections, hash) {
+export default function getRouteData(sections, hash, pagePerSection) {
 	// Parse URL hash to check if the components list must be filtered
 	const {
 		// Name of the filtered component/section to show isolated (/#!/Button → Button)
@@ -50,6 +66,9 @@ export default function getRouteData(sections, hash) {
 				displayMode = DisplayModes.example;
 			}
 		}
+	} else if (pagePerSection) {
+		// If one component per page mode then show demos for first component
+		sections = [getFirstSectionOrComponent(sections)];
 	}
 
 	return { sections, displayMode };

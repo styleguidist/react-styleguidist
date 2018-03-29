@@ -49,7 +49,7 @@ try {
 	if (err instanceof StyleguidistError) {
 		printErrorWithLink(
 			err.message,
-			err.extra + '\n\n' + 'Learn how to configure your style guide:',
+			`${err.extra}\n\nLearn how to configure your style guide:`,
 			consts.DOCS_CONFIG
 		);
 		process.exit(1);
@@ -93,8 +93,10 @@ function commandBuild() {
 		if (err) {
 			console.error(err);
 			process.exit(1);
+		} else if (config.printBuildInstructions) {
+			config.printBuildInstructions(config);
 		} else {
-			console.log('Style guide published to:\n' + chalk.underline(config.styleguideDir));
+			printBuildInstructions(config);
 		}
 	});
 
@@ -119,7 +121,11 @@ function commandServer() {
 			console.error(err);
 		} else {
 			const isHttps = compiler.options.devServer && compiler.options.devServer.https;
-			printInstructions(isHttps, config.serverHost, config.serverPort);
+			if (config.printServerInstructions) {
+				config.printServerInstructions(config, { isHttps });
+			} else {
+				printServerInstructions(config, { isHttps });
+			}
 		}
 	});
 
@@ -174,17 +180,27 @@ function commandHelp() {
 }
 
 /**
- * @param {boolean} isHttps
- * @param {string} host
- * @param {number} port
+ * @param {object} config
+ * @param {options} options
  */
-function printInstructions(isHttps, host, port) {
-	const urls = webpackDevServerUtils.prepareUrls(isHttps ? 'https' : 'http', host, port);
+function printServerInstructions(config, options) {
+	const urls = webpackDevServerUtils.prepareUrls(
+		options.isHttps ? 'https' : 'http',
+		config.serverHost,
+		config.serverPort
+	);
 	console.log(`You can now view your style guide in the browser:`);
 	console.log();
 	console.log(`  ${chalk.bold('Local:')}            ${urls.localUrlForTerminal}`);
 	console.log(`  ${chalk.bold('On your network:')}  ${urls.lanUrlForTerminal}`);
 	console.log();
+}
+
+/**
+ * @param {object} config
+ */
+function printBuildInstructions(config) {
+	console.log('Style guide published to:\n' + chalk.underline(config.styleguideDir));
 }
 
 /**

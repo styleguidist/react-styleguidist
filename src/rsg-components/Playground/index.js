@@ -1,1 +1,1 @@
-export { default } from './Playground.js';
+export { default } from 'rsg-components/Playground/Playground';

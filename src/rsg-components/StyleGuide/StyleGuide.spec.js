@@ -33,7 +33,13 @@ const config = {
 
 it('should render components list', () => {
 	const actual = shallow(
-		<StyleGuide codeRevision={1} config={config} sections={sections} slots={{}} />
+		<StyleGuide
+			codeRevision={1}
+			config={config}
+			sections={sections}
+			allSections={sections}
+			slots={{}}
+		/>
 	);
 
 	expect(actual).toMatchSnapshot();
@@ -41,14 +47,23 @@ it('should render components list', () => {
 
 it('should render welcome screen', () => {
 	const actual = shallow(
-		<StyleGuide codeRevision={1} config={config} sections={[]} slots={{}} welcomeScreen />
+		<StyleGuide
+			codeRevision={1}
+			config={config}
+			sections={[]}
+			allSections={[]}
+			slots={{}}
+			welcomeScreen
+		/>
 	);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should render an error when componentDidCatch() is triggered', () => {
-	const wrapper = shallow(<StyleGuide codeRevision={1} config={config} sections={[]} slots={{}} />);
+	const wrapper = shallow(
+		<StyleGuide codeRevision={1} config={config} sections={[]} allSections={[]} slots={{}} />
+	);
 	wrapper
 		.instance()
 		.componentDidCatch({ toString: () => 'error' }, { componentStack: { toString: () => 'info' } });
@@ -59,7 +74,13 @@ it('should render an error when componentDidCatch() is triggered', () => {
 describe('sidebar rendering', () => {
 	it('renderer should have sidebar if showSidebar is not set', () => {
 		const wrapper = shallow(
-			<StyleGuide codeRevision={1} config={config} sections={sections} slots={{}} />
+			<StyleGuide
+				codeRevision={1}
+				config={config}
+				sections={sections}
+				allSections={sections}
+				slots={{}}
+			/>
 		);
 
 		expect(wrapper.prop('hasSidebar')).toEqual(true);
@@ -74,6 +95,7 @@ describe('sidebar rendering', () => {
 					showSidebar: false,
 				}}
 				sections={sections}
+				allSections={sections}
 				slots={{}}
 			/>
 		);
@@ -87,6 +109,7 @@ describe('sidebar rendering', () => {
 				codeRevision={1}
 				config={config}
 				sections={sections}
+				allSections={sections}
 				slots={{}}
 				displayMode={DisplayModes.component}
 			/>
@@ -94,9 +117,25 @@ describe('sidebar rendering', () => {
 
 		expect(wrapper.prop('hasSidebar')).toEqual(false);
 	});
+
+	it('renderer should have sidebar if pagePerSection is true', () => {
+		const wrapper = shallow(
+			<StyleGuide
+				codeRevision={1}
+				config={config}
+				sections={sections}
+				allSections={sections}
+				slots={{}}
+				displayMode={DisplayModes.component}
+				pagePerSection
+			/>
+		);
+
+		expect(wrapper.prop('hasSidebar')).toEqual(true);
+	});
 });
 
-it('renderer should render logo, table of contents and passed children', () => {
+it('renderer should render logo, table of contents, ribbon and passed children', () => {
 	const actual = shallow(
 		<StyleGuideRenderer
 			classes={{}}

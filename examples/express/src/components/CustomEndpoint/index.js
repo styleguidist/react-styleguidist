@@ -1,1 +1,1 @@
-export { default } from './CustomEndpoint.js';
+export { default } from './CustomEndpoint';

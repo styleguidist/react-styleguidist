@@ -1,1 +1,1 @@
-export { default } from './CounterButton.js';
+export { default } from './CounterButton';

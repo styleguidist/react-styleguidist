@@ -8,6 +8,7 @@ const merge = require('webpack-merge');
 const forEach = require('lodash/forEach');
 const mergeWebpackConfig = require('./utils/mergeWebpackConfig');
 const StyleguidistOptionsPlugin = require('./utils/StyleguidistOptionsPlugin');
+const getWebpackVersion = require('./utils/getWebpackVersion');
 
 const RENDERER_REGEXP = /Renderer$/;
 
@@ -49,6 +50,10 @@ module.exports = function(config, env) {
 		},
 	};
 
+	if (getWebpackVersion() >= 4) {
+		webpackConfig.mode = env;
+	}
+
 	if (isProd) {
 		webpackConfig = merge(webpackConfig, {
 			output: {
@@ -81,7 +86,7 @@ module.exports = function(config, env) {
 								{
 									from: config.assetsDir,
 								},
-							]
+						  ]
 						: []
 				),
 			],

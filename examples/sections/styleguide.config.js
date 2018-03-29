@@ -2,6 +2,7 @@ const path = require('path');
 
 module.exports = {
 	title: 'React Style Guide Example',
+	pagePerSection: true,
 	sections: [
 		{
 			name: 'Documentation',
@@ -65,6 +66,6 @@ module.exports = {
 						maxAssetSize: 685000, // bytes
 						maxEntrypointSize: 685000, // bytes
 						hints: 'error',
-					},
+				  },
 	}),
 };

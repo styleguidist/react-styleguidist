@@ -52,7 +52,7 @@ const styles = ({ font, base, light, link, baseBackground, mq }) => ({
 		display: 'block',
 	},
 	components: {
-		overflow: 'auto',  // To prevent the pane from growing out of the screen
+		overflow: 'auto', // To prevent the pane from growing out of the screen
 	},
 	footer: {
 		display: 'block',
@@ -62,12 +62,7 @@ const styles = ({ font, base, light, link, baseBackground, mq }) => ({
 	},
 });
 
-export function StyleGuideRenderer({
-	classes,
-	title,
-	homepageUrl,
-	children,
-}) {
+export function StyleGuideRenderer({ classes, title, homepageUrl, children }) {
 	return (
 		<div className={classes.root}>
 			<header className={classes.header}>
@@ -75,9 +70,21 @@ export function StyleGuideRenderer({
 					<div className={classes.bar}>
 						<Logo>{title}</Logo>
 						<nav className={classes.nav}>
-							<a className={classes.headerLink} href="https://github.com/styleguidist/react-styleguidist/tree/master/docs">Docs</a>
-							<a className={classes.headerLink} href="https://github.com/styleguidist/react-styleguidist">GitHub</a>
-							<a className={classes.headerLink} href="https://gitter.im/styleguidist/styleguidist">Gitter</a>
+							<a
+								className={classes.headerLink}
+								href="https://github.com/styleguidist/react-styleguidist/tree/master/docs"
+							>
+								Docs
+							</a>
+							<a
+								className={classes.headerLink}
+								href="https://github.com/styleguidist/react-styleguidist"
+							>
+								GitHub
+							</a>
+							<a className={classes.headerLink} href="https://gitter.im/styleguidist/styleguidist">
+								Gitter
+							</a>
 						</nav>
 					</div>
 				</div>

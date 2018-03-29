@@ -1,1 +1,1 @@
-export { default } from './Preview.js';
+export { default } from 'rsg-components/Preview/Preview';

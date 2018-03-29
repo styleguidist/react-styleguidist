@@ -23,7 +23,7 @@
 * [How to add external JavaScript and CSS files?](#how-to-add-external-javascript-and-css-files)
 * [How to reuse project’s webpack config?](#how-to-reuse-projects-webpack-config)
 * [How to use React Styleguidist with Redux, Relay or Styled Components?](#how-to-use-react-styleguidist-with-redux-relay-or-styled-components)
-* [What’s the difference betweeen Styleguidist and Storybook](#whats-the-difference-betweeen-styleguidist-and-storybook)
+* [What’s the difference between Styleguidist and Storybook?](#whats-the-difference-between-styleguidist-and-storybook)
 * [Are there any other projects like this?](#are-there-any-other-projects-like-this)
 
 <!-- tocstop -->
@@ -310,16 +310,16 @@ module.exports = {
 
 ## How to debug my components and examples?
 
-1. Open your browser’s developer tools
-2. Write `debugger;` statement wherever you want: in a component source, a Markdown example or even in an editor in a browser.
+1.  Open your browser’s developer tools
+2.  Write `debugger;` statement wherever you want: in a component source, a Markdown example or even in an editor in a browser.
 
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/3i3E3j2h3t1315141k0o/debugging.png)
 
 ## How to debug the exceptions thrown from my components?
 
-1. Put `debugger;` statement at the beginning of your code.
-2. Press the ![Debugger](https://d3vv6lp55qjaqc.cloudfront.net/items/2h2q3N123N3G3R252o41/debugger.png) button in your browser’s developer tools.
-3. Press the ![Continue](https://d3vv6lp55qjaqc.cloudfront.net/items/3b3c1P3g3O1h3q111I2l/continue.png) button and the debugger will stop execution at the next exception.
+1.  Put `debugger;` statement at the beginning of your code.
+2.  Press the ![Debugger](https://d3vv6lp55qjaqc.cloudfront.net/items/2h2q3N123N3G3R252o41/debugger.png) button in your browser’s developer tools.
+3.  Press the ![Continue](https://d3vv6lp55qjaqc.cloudfront.net/items/3b3c1P3g3O1h3q111I2l/continue.png) button and the debugger will stop execution at the next exception.
 
 ## How to use React's production or development build?
 

@@ -3,7 +3,7 @@
 exports[`ReactComponent should pass rendered description, usage, examples, etc. to the renderer 1`] = `
 <Styled(ReactComponent)
   description={
-    <Styled(Markdown)
+    <Markdown
       text="Bar"
     />
   }

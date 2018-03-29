@@ -1,1 +1,1 @@
-export { default } from './ReactComponent.js';
+export { default } from 'rsg-components/ReactComponent/ReactComponent';

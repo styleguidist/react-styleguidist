@@ -12,7 +12,6 @@ import Type from 'rsg-components/Type';
 import Text from 'rsg-components/Text';
 import Para from 'rsg-components/Para';
 import Table from 'rsg-components/Table';
-import map from 'lodash/map';
 import { unquote, getType, showSpaces } from './util';
 
 function renderType(type) {
@@ -32,6 +31,34 @@ function renderType(type) {
 		default:
 			return name;
 	}
+}
+
+function renderFlowType(type) {
+	if (!type) {
+		return 'unknown';
+	}
+
+	const { name, raw, value } = type;
+
+	switch (name) {
+		case 'literal':
+			return value;
+		case 'signature':
+			return renderComplexType(type.type, raw);
+		case 'union':
+		case 'tuple':
+			return renderComplexType(name, raw);
+		default:
+			return raw || name;
+	}
+}
+
+function renderComplexType(name, title) {
+	return (
+		<Text size="small" underlined title={title}>
+			<Type>{name}</Type>
+		</Text>
+	);
 }
 
 function renderEnum(prop) {
@@ -76,19 +103,15 @@ function renderShape(props) {
 const defaultValueBlacklist = ['null', 'undefined'];
 
 function renderDefault(prop) {
-	if (prop.required) {
-		return (
-			<Text size="small" color="light">
-				Required
-			</Text>
-		);
-	} else if (prop.defaultValue) {
-		if (prop.type) {
-			const propName = prop.type.name;
+	// Workaround for issue https://github.com/reactjs/react-docgen/issues/221
+	// If prop has defaultValue it can not be required
+	if (prop.defaultValue) {
+		if (prop.type || prop.flowType) {
+			const propName = prop.type ? prop.type.name : prop.flowType.type;
 
 			if (defaultValueBlacklist.indexOf(prop.defaultValue.value) > -1) {
 				return <Code>{showSpaces(unquote(prop.defaultValue.value))}</Code>;
-			} else if (propName === 'func') {
+			} else if (propName === 'func' || propName === 'function') {
 				return (
 					<Text
 						size="small"
@@ -125,6 +148,12 @@ function renderDefault(prop) {
 		}
 
 		return <Code>{showSpaces(unquote(prop.defaultValue.value))}</Code>;
+	} else if (prop.required) {
+		return (
+			<Text size="small" color="light">
+				Required
+			</Text>
+		);
 	}
 	return '';
 }
@@ -198,15 +227,14 @@ function renderName(prop) {
 }
 
 function renderTypeColumn(prop) {
+	if (prop.flowType) {
+		return <Type>{renderFlowType(getType(prop))}</Type>;
+	}
 	return <Type>{renderType(getType(prop))}</Type>;
 }
 
 export function getRowKey(row) {
 	return row.name;
-}
-
-export function propsToArray(props) {
-	return map(props, (prop, name) => ({ ...prop, name }));
 }
 
 export const columns = [
@@ -229,9 +257,9 @@ export const columns = [
 ];
 
 export default function PropsRenderer({ props }) {
-	return <Table columns={columns} rows={propsToArray(props)} getRowKey={getRowKey} />;
+	return <Table columns={columns} rows={props} getRowKey={getRowKey} />;
 }
 
 PropsRenderer.propTypes = {
-	props: PropTypes.object.isRequired,
+	props: PropTypes.array.isRequired,
 };

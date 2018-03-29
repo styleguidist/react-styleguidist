@@ -16,16 +16,16 @@
     "node": ">=4"
   },
   "devDependencies": {
-    "react-scripts": "^1.0.0",
-    "react-styleguidist": "^6.0.28",
+    "react-scripts": "^1.1.1",
+    "react-styleguidist": "^6.5.3",
     "webpack": "^2.6.0"
   },
   "dependencies": {
     "dog-names": "^1.0.2",
-    "lodash": "^4.17.4",
-    "prop-types": "^15.6.0",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "lodash": "^4.17.5",
+    "prop-types": "^15.6.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -10,4 +10,9 @@ describe('getInfoFromHash', () => {
 		const result = getInfoFromHash('Button');
 		expect(result).toEqual({});
 	});
+
+	it('should return the decoded targetName when router name is not English such as Chinese', () => {
+		const result = getInfoFromHash('#!/Api%20%E7%BB%84%E4%BB%B6');
+		expect(result).toEqual({ targetName: 'Api 组件', targetIndex: undefined });
+	});
 });

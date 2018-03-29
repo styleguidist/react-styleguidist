@@ -5,3 +5,27 @@ exports[`should render component renderer 1`] = `
   <div />
 </div>
 `;
+
+exports[`should set initialState before the first render 1`] = `
+
+<div>
+  <div>
+    <span>
+      1
+    </span>
+  </div>
+</div>
+
+`;
+
+exports[`should update state on setState 1`] = `
+
+<div>
+  <div>
+    <button>
+      2
+    </button>
+  </div>
+</div>
+
+`;

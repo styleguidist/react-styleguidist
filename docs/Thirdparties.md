@@ -17,7 +17,7 @@
 
 ## How Styleguidist works
 
-Styleguidist always uses the default export to _load_ your components but it uses [react-docgen](https://github.com/reactjs/react-docgen) to _generate documentation_ which may require changes in your code to work properly.
+Styleguidist _loads_ your components (see [Loading and exposing components](Components.md#loading-and-exposing-components) for more) but it uses [react-docgen](https://github.com/reactjs/react-docgen) to _generate documentation_ which may require changes in your code to work properly.
 
 React-docgen reads your components as static text files and looks for patterns like class or function declarations that looks like React components. It does not run any JavaScript code, so, if your component is dynamically generated, is wrapped in a higher-order component, or is split into several files, then react-docgen may not understand it.
 
@@ -236,6 +236,8 @@ export function Button({ color, size, children }) {
 
 export default CSSModules(Button, styles)
 ```
+
+This approach will also work with [react-css-themr](https://github.com/javivelasco/react-css-themr) and other similar libraries.
 
 ### Styletron
 

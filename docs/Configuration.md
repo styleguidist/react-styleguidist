@@ -20,10 +20,14 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`handlers`](#handlers)
 * [`ignore`](#ignore)
 * [`logger`](#logger)
+* [`pagePerSection`](#pagepersection)
+* [`printBuildInstructions`](#printbuildinstructions)
+* [`printServerInstructions`](#printserverinstructions)
 * [`previewDelay`](#previewdelay)
 * [`propsParser`](#propsparser)
 * [`require`](#require)
 * [`resolver`](#resolver)
+* [`ribbon`](#ribbon)
 * [`sections`](#sections)
 * [`serverHost`](#serverhost)
 * [`serverPort`](#serverport)
@@ -31,12 +35,14 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`showUsage`](#showusage)
 * [`showSidebar`](#showsidebar)
 * [`skipComponentsWithoutExample`](#skipcomponentswithoutexample)
+* [`sortProps`](#sortprops)
 * [`styleguideComponents`](#styleguidecomponents)
 * [`styleguideDir`](#styleguidedir)
 * [`styles`](#styles)
 * [`template`](#template)
 * [`theme`](#theme)
 * [`title`](#title)
+* [`updateDocs`](#updatedocs)
 * [`updateExample`](#updateexample)
 * [`verbose`](#verbose)
 * [`webpackConfig`](#webpackconfig)
@@ -57,10 +63,11 @@ Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the
 
 #### `components`
 
-Type: `String` or `Function`, default: `src/components/**/*.{js,jsx,ts,tsx}`
+Type: `String`, `Function` or `Array`, default: `src/components/**/*.{js,jsx,ts,tsx}`
 
 * when `String`: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules.
 * when `Function`: a function that returns an array of module paths.
+* when `Array`: an array of module paths.
 
 All paths are relative to config folder.
 
@@ -259,6 +266,55 @@ module.exports = {
 }
 ```
 
+#### `pagePerSection`
+
+Type: `Boolean`, default: `false`
+
+Render one section or component per page, starting with the first.
+
+If set to `true`, the sidebar will be visible on each page, except for the examples.
+
+The value may be differ on each environment.
+
+```javascript
+module.exports = {
+  pagePerSection: process.env.NODE_ENV !== 'production'
+}
+```
+
+#### `printBuildInstructions`
+
+Type: `Function`, optional
+
+Function that allows you to override the printing of build messages to console.log.
+
+```javascript
+module.exports = {
+  printBuildInstructions(config) {
+    console.log(
+      `Style guide published to ${
+        config.styleguideDir
+      }. Something else interesting.`
+    )
+  }
+}
+```
+
+#### `printServerInstructions`
+
+Type: `Function`, optional
+
+Function that allows you to override the printing of local dev server messages to console.log.
+
+```javascript
+module.exports = {
+  serverHost: 'your-domain',
+  printServerInstructions(config, { isHttps }) {
+    console.log(`Local style guide: http://${config.serverHost}`)
+  }
+}
+```
+
 #### `previewDelay`
 
 Type: `Number`, default: 500
@@ -328,6 +384,21 @@ module.exports = {
 }
 ```
 
+#### `ribbon`
+
+Type: `Object`, optional
+
+Shows 'Fork Me' ribbon in the top-right corner. If `ribbon` key is present, then it's required to add `url` property; `text` property is optional. If you want to change styling of the ribbon, please, refer to the [theme section](#theme).
+
+```javascript
+module.exports = {
+  ribbon: {
+    url: 'http://example.com/',
+    text: 'Fork me on GitHub'
+  }
+}
+```
+
 #### `sections`
 
 Type: `Array`, optional
@@ -392,7 +463,7 @@ module.exports = {
 
 See an example of [customized style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/customised).
 
-If you want to wrap, rather than replace a component, make sure to import the default implementation using the full path to `react-styleguidist`. See an example of [wrapping a Styleguidist component](https://github.com/styleguidist/react-styleguidist/tree/master/examples/customised/styleguide/components/Sections).
+If you want to wrap, rather than replace a component, make sure to import the default implementation using the full path to `react-styleguidist`. See an example of [wrapping a Styleguidist component](https://github.com/styleguidist/react-styleguidist/tree/master/examples/customised/styleguide/components/Sections.js).
 
 **Note**: these components are not guaranteed to be safe from breaking changes in react-styleguidist updates.
 
@@ -430,6 +501,59 @@ Type: `String`, default: `<app name from package.json> Style Guide`
 
 Style guide title.
 
+#### `sortProps`
+
+Type: `Function`, optional
+
+Function that sorts component props. By default props are sorted such that required props come first, optional props come second. Props in both groups are sorted by their property names.
+
+To disable sorting, use the identity function:
+
+```javascript
+module.exports = {
+  sortProps: props => props
+}
+```
+
+#### `updateDocs`
+
+Type: `Function`, optional
+
+Function that modifies props, methods, and metadata after parsing a source file. For example, load a component version from a JSON file:
+
+```javascript
+module.exports = {
+  updateDocs(docs) {
+    if (docs.doclets.version) {
+      const versionFilePath = path.resolve(
+        path.dirname(file),
+        docs.doclets.version
+      )
+      const version = require(versionFilePath).version
+
+      docs.doclets.version = version
+      docs.tags.version[0].description = version
+    }
+
+    return docs
+  }
+}
+```
+
+With this component JSDoc comment block:
+
+```javascript
+/**
+ * Component is described here.
+ *
+ * @version ./package.json
+ */
+export default class Button extends React.Component {
+  // ...
+}
+export default
+```
+
 #### `updateExample`
 
 Type: `Function`, optional
@@ -438,7 +562,7 @@ Function that modifies code example (Markdown fenced code block). For example yo
 
 ```javascript
 module.exports = {
-  updateExample: function(props, exampleFilePath) {
+  updateExample(props, exampleFilePath) {
     const { settings, lang } = props
     if (typeof settings.file === 'string') {
       const filepath = path.resolve(exampleFilePath, settings.file)
@@ -463,7 +587,7 @@ You can also use this function to dynamically update some of your fenced code bl
 
 ```javascript
 module.exports = {
-  updateExample: function(props) {
+  updateExample(props) {
     const { settings, lang } = props
     if (lang === 'javascript' || lang === 'js' || lang === 'jsx') {
       settings.static = true

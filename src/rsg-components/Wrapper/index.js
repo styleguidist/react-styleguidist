@@ -1,1 +1,1 @@
-export { default } from './Wrapper.js';
+export { default } from 'rsg-components/Wrapper/Wrapper';

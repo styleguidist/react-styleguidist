@@ -1,1 +1,1 @@
-export { default } from './WrappedButton.js';
+export { default } from './WrappedButton';
