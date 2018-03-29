@@ -50,8 +50,29 @@ module.exports = function(config, env) {
 		},
 	};
 
+	const uglifier = new UglifyJSPlugin({
+		parallel: true,
+		cache: true,
+		uglifyOptions: {
+			ie8: false,
+			ecma: 5,
+			compress: {
+				keep_fnames: true,
+				warnings: false,
+			},
+			mangle: {
+				keep_fnames: true,
+			},
+		},
+	});
+
 	if (getWebpackVersion() >= 4) {
 		webpackConfig.mode = env;
+		webpackConfig.optimization = {
+			minimizer: [uglifier],
+		};
+	} else {
+		webpackConfig.plugins.unshift(uglifier);
 	}
 
 	if (isProd) {
@@ -61,21 +82,6 @@ module.exports = function(config, env) {
 				chunkFilename: 'build/[name].[chunkhash:8].js',
 			},
 			plugins: [
-				new UglifyJSPlugin({
-					parallel: true,
-					cache: true,
-					uglifyOptions: {
-						ie8: false,
-						ecma: 5,
-						compress: {
-							keep_fnames: true,
-							warnings: false,
-						},
-						mangle: {
-							keep_fnames: true,
-						},
-					},
-				}),
 				new CleanWebpackPlugin(['build'], {
 					root: config.styleguideDir,
 					verbose: config.verbose === true,
@@ -86,7 +92,7 @@ module.exports = function(config, env) {
 								{
 									from: config.assetsDir,
 								},
-						  ]
+							]
 						: []
 				),
 			],

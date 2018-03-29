@@ -55,6 +55,37 @@ Object {
     "~/lib/index",
     "~/node_modules/react-dev-utils/webpackHotDevClient.js",
   ],
+  "mode": "development",
+  "optimization": Object {
+    "minimizer": Array [
+      UglifyJsPlugin {
+        "options": Object {
+          "cache": true,
+          "exclude": undefined,
+          "extractComments": false,
+          "include": undefined,
+          "parallel": true,
+          "sourceMap": false,
+          "test": /\\\\\\.js\\(\\\\\\?\\.\\*\\)\\?\\$/i,
+          "uglifyOptions": Object {
+            "compress": Object {
+              "keep_fnames": true,
+              "warnings": false,
+            },
+            "ecma": 5,
+            "ie8": false,
+            "mangle": Object {
+              "keep_fnames": true,
+            },
+            "output": Object {
+              "comments": /\\^\\\\\\*\\*!\\|@preserve\\|@license\\|@cc_on/,
+            },
+          },
+          "warningsFilter": [Function],
+        },
+      },
+    ],
+  },
   "output": Object {
     "chunkFilename": "build/[name].js",
     "filename": "build/[name].bundle.js",
@@ -88,6 +119,7 @@ Object {
         "minify": false,
         "showErrors": true,
         "template": "!!~/node_modules/html-webpack-plugin/lib/loader.js!template.html",
+        "templateParameters": [Function],
         "title": "Style Guide",
         "xhtml": false,
       },
@@ -124,6 +156,37 @@ Object {
   "entry": Array [
     "~/lib/index",
   ],
+  "mode": "production",
+  "optimization": Object {
+    "minimizer": Array [
+      UglifyJsPlugin {
+        "options": Object {
+          "cache": true,
+          "exclude": undefined,
+          "extractComments": false,
+          "include": undefined,
+          "parallel": true,
+          "sourceMap": false,
+          "test": /\\\\\\.js\\(\\\\\\?\\.\\*\\)\\?\\$/i,
+          "uglifyOptions": Object {
+            "compress": Object {
+              "keep_fnames": true,
+              "warnings": false,
+            },
+            "ecma": 5,
+            "ie8": false,
+            "mangle": Object {
+              "keep_fnames": true,
+            },
+            "output": Object {
+              "comments": /\\^\\\\\\*\\*!\\|@preserve\\|@license\\|@cc_on/,
+            },
+          },
+          "warningsFilter": [Function],
+        },
+      },
+    ],
+  },
   "output": Object {
     "chunkFilename": "build/[name].[chunkhash:8].js",
     "filename": "build/bundle.[chunkhash:8].js",
@@ -157,6 +220,7 @@ Object {
         "minify": false,
         "showErrors": true,
         "template": "!!~/node_modules/html-webpack-plugin/lib/loader.js!template.html",
+        "templateParameters": [Function],
         "title": "Style Guide",
         "xhtml": false,
       },
@@ -165,32 +229,6 @@ Object {
       "definitions": Object {
         "process.env.NODE_ENV": "\\"test\\"",
         "process.env.STYLEGUIDIST_ENV": "\\"production\\"",
-      },
-    },
-    UglifyJsPlugin {
-      "options": Object {
-        "cache": true,
-        "exclude": undefined,
-        "extractComments": false,
-        "include": undefined,
-        "parallel": true,
-        "sourceMap": false,
-        "test": /\\\\\\.js\\(\\\\\\?\\.\\*\\)\\?\\$/i,
-        "uglifyOptions": Object {
-          "compress": Object {
-            "keep_fnames": true,
-            "warnings": false,
-          },
-          "ecma": 5,
-          "ie8": false,
-          "mangle": Object {
-            "keep_fnames": true,
-          },
-          "output": Object {
-            "comments": /\\^\\\\\\*\\*!\\|@preserve\\|@license\\|@cc_on/,
-          },
-        },
-        "warningsFilter": [Function],
       },
     },
     CleanWebpackPlugin {
