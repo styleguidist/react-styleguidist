@@ -1,1 +1,1 @@
-export { default } from './TableOfContents.js';
+export { default } from 'rsg-components/TableOfContents/TableOfContents';

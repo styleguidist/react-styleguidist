@@ -7,7 +7,7 @@ const props = {
 };
 
 it('should renderer a button', () => {
-	const actual = shallow(<UsageTabButton {...props} props={{ props: { foo: {} } }} />);
+	const actual = shallow(<UsageTabButton {...props} props={{ props: [{ name: 'foo' }] }} />);
 
 	expect(actual).toMatchSnapshot();
 });

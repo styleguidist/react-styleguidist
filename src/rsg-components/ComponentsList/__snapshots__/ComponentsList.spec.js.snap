@@ -42,3 +42,43 @@ exports[`should render sections with nested components 1`] = `
   </li>
 </ul>
 `;
+
+exports[`should set the correct href for items 1`] = `
+<Styled(ComponentsList)
+  classes={Object {}}
+  items={
+    Array [
+      Object {
+        "href": "blank#button",
+        "name": "Button",
+        "slug": "button",
+      },
+      Object {
+        "href": "blank#input",
+        "name": "Input",
+        "slug": "input",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`should set the correct href for items when isolated links should be used 1`] = `
+<Styled(ComponentsList)
+  classes={Object {}}
+  items={
+    Array [
+      Object {
+        "href": "blank#!/Button",
+        "name": "Button",
+        "slug": "button",
+      },
+      Object {
+        "href": "blank#!/Input",
+        "name": "Input",
+        "slug": "input",
+      },
+    ]
+  }
+/>
+`;

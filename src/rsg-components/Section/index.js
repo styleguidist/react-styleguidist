@@ -1,1 +1,1 @@
-export { default } from './Section.js';
+export { default } from 'rsg-components/Section/Section';

@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Get all section content pages.
  *

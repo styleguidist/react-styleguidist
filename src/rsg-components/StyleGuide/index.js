@@ -1,1 +1,1 @@
-export { default } from './StyleGuide.js';
+export { default } from 'rsg-components/StyleGuide/StyleGuide';

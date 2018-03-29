@@ -1,1 +1,1 @@
-export { default } from './Styled.js';
+export { default } from 'rsg-components/Styled/Styled';

@@ -22,22 +22,22 @@
   },
   "dependencies": {
     "dog-names": "^1.0.2",
-    "lodash": "^4.17.4",
-    "prop-types": "^15.6.0",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-styleguidist": "^6.0.2"
+    "lodash": "^4.17.5",
+    "prop-types": "^15.6.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-styleguidist": "^6.5.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
+    "babel-loader": "^7.1.4",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "css-loader": "^0.28.7",
-    "file-loader": "^1.1.5",
-    "style-loader": "^0.18.2",
+    "css-loader": "^0.28.11",
+    "file-loader": "^1.1.11",
+    "style-loader": "^0.20.3",
     "url-loader": "^0.6.2",
     "webpack": "^3.8.1"
   }

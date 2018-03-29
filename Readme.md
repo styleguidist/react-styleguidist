@@ -4,8 +4,7 @@
 
 **Isolated React component development environment with a living style guide**
 
-[![Build Status](https://travis-ci.org/styleguidist/react-styleguidist.svg)](https://travis-ci.org/styleguidist/react-styleguidist) [![npm](https://img.shields.io/npm/v/react-styleguidist.svg)](https://www.npmjs.com/package/react-styleguidist) [![Join the chat at https://gitter.im/styleguidist/styleguidist](https://badges.gitter.im/styleguidist/styleguidist.svg)](https://gitter.im/styleguidist/styleguidist?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/styleguidist) [![Codecov](https://codecov.io/gh/styleguidist/react-styleguidist/branch/master/graph/badge.svg)](https://codecov.io/gh/styleguidist/react-styleguidist)
-[![Open Source Helpers](https://www.codetriage.com/styleguidist/react-styleguidist/badges/users.svg)](https://www.codetriage.com/styleguidist/react-styleguidist)
+[![Build Status](https://travis-ci.org/styleguidist/react-styleguidist.svg)](https://travis-ci.org/styleguidist/react-styleguidist) [![npm](https://img.shields.io/npm/v/react-styleguidist.svg)](https://www.npmjs.com/package/react-styleguidist) [![Join the chat at https://gitter.im/styleguidist/styleguidist](https://badges.gitter.im/styleguidist/styleguidist.svg)](https://gitter.im/styleguidist/styleguidist?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Codecov](https://codecov.io/gh/styleguidist/react-styleguidist/branch/master/graph/badge.svg)](https://codecov.io/gh/styleguidist/react-styleguidist) [![Open Source Helpers](https://www.codetriage.com/styleguidist/react-styleguidist/badges/users.svg)](https://www.codetriage.com/styleguidist/react-styleguidist)
 
 </div>
 
@@ -20,6 +19,12 @@ React Styleguidist is a component development environment with hot reloaded dev 
 * [Locating components](https://react-styleguidist.js.org/docs/components.html): point Styleguidist to your React components
 * [Configuring webpack](https://react-styleguidist.js.org/docs/webpack.html): tell Styleguidist how to load your code
 * [Cookbook](https://react-styleguidist.js.org/docs/cookbook.html): how to solve common tasks with Styleguidist
+
+## Advanced documentation
+
+* [Configuration](https://react-styleguidist.js.org/docs/configuration.html)
+* [CLI commands and options](https://react-styleguidist.js.org/docs/cli.html)
+* [Node.js API](https://react-styleguidist.js.org/docs/api.html)
 
 ## Examples
 
@@ -59,12 +64,6 @@ Real projects using React Styleguidist:
 * [Building React Components Library](https://skillsmatter.com/skillscasts/8140-building-react-components-library) talk by [Robert Haritonov](https://github.com/operatino)
 * [Say Cheese: Snapshots and Visual Testing](https://developers.livechatinc.com/blog/snapshots-visual-testing/)
 * [Interview with Artem Sapegin](https://survivejs.com/blog/styleguidist-interview/) about React Styleguidist.
-
-## Advanced documentation
-
-* [Configuration](https://react-styleguidist.js.org/docs/configuration.html)
-* [CLI commands and options](https://react-styleguidist.js.org/docs/cli.html)
-* [Node.js API](https://react-styleguidist.js.org/docs/api.html)
 
 ## Change log
 

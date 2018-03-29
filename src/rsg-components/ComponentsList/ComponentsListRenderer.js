@@ -42,12 +42,12 @@ export function ComponentsListRenderer({ classes, items }) {
 
 	return (
 		<ul className={classes.list}>
-			{items.map(({ heading, name, slug, content }) => (
+			{items.map(({ heading, name, href, content }) => (
 				<li
 					className={cx(classes.item, (!content || !content.props.items.length) && classes.isChild)}
 					key={name}
 				>
-					<Link className={cx(heading && classes.heading)} href={`#${slug}`}>
+					<Link className={cx(heading && classes.heading)} href={href}>
 						{name}
 					</Link>
 					{content}
@@ -60,6 +60,7 @@ export function ComponentsListRenderer({ classes, items }) {
 ComponentsListRenderer.propTypes = {
 	items: PropTypes.array.isRequired,
 	classes: PropTypes.object.isRequired,
+	useIsolatedLinks: PropTypes.bool,
 };
 
 export default Styled(styles)(ComponentsListRenderer);

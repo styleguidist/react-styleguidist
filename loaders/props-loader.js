@@ -1,5 +1,3 @@
-'use strict';
-
 const path = require('path');
 const isArray = require('lodash/isArray');
 const reactDocs = require('react-docgen');
@@ -8,6 +6,7 @@ const toAst = require('to-ast');
 const logger = require('glogg')('rsg');
 const getExamples = require('./utils/getExamples');
 const getProps = require('./utils/getProps');
+const defaultSortProps = require('./utils/sortProps');
 const consts = require('../scripts/consts');
 
 const ERROR_MISSING_DEFINITION = 'No suitable component definition found.';
@@ -25,16 +24,16 @@ module.exports = function(source) {
 		reactDocs.parse(source, resolver, handlers);
 	const propsParser = config.propsParser || defaultParser;
 
-	let props = {};
+	let docs = {};
 	try {
-		props = propsParser(file, source, config.resolver, config.handlers(file));
+		docs = propsParser(file, source, config.resolver, config.handlers(file));
 
 		// Support only one component
-		if (isArray(props)) {
-			if (props.length === 0) {
+		if (isArray(docs)) {
+			if (docs.length === 0) {
 				throw new Error(ERROR_MISSING_DEFINITION);
 			}
-			props = props[0];
+			docs = docs[0];
 		}
 	} catch (err) {
 		const errorMessage = err.toString();
@@ -42,26 +41,44 @@ module.exports = function(source) {
 		const message =
 			errorMessage === `Error: ${ERROR_MISSING_DEFINITION}`
 				? `${componentPath} matches a pattern defined in “components” or “sections” options in your ` +
-					'style guide config but doesn’t export a component.\n\n' +
-					'It usually happens when using third-party libraries, see possible solutions here:\n' +
-					`${consts.DOCS_THIRDPARTIES}`
+				  'style guide config but doesn’t export a component.\n\n' +
+				  'It usually happens when using third-party libraries, see possible solutions here:\n' +
+				  `${consts.DOCS_THIRDPARTIES}`
 				: `Cannot parse ${componentPath}: ${err}\n\n` +
-					'It usually means that react-docgen does not understand your source code, try to file an issue here:\n' +
-					'https://github.com/reactjs/react-docgen/issues';
+				  'It usually means that react-docgen does not understand your source code, try to file an issue here:\n' +
+				  'https://github.com/reactjs/react-docgen/issues';
 		logger.warn(message);
 	}
 
-	props = getProps(props, file);
+	docs = getProps(docs, file);
+
+	const componentProps = docs.props;
+	if (componentProps) {
+		// Transform the properties to an array. This will allow sorting
+		// TODO: Extract to a module
+		const propsAsArray = Object.keys(componentProps).reduce((acc, name) => {
+			componentProps[name].name = name;
+			acc.push(componentProps[name]);
+			return acc;
+		}, []);
+
+		const sortProps = config.sortProps || defaultSortProps;
+		docs.props = sortProps(propsAsArray);
+	}
 
 	// Examples from Markdown file
 	const examplesFile = config.getExampleFilename(file);
-	props.examples = getExamples(examplesFile, props.displayName, config.defaultExample);
+	docs.examples = getExamples(examplesFile, docs.displayName, config.defaultExample);
+
+	if (config.updateDocs) {
+		docs = config.updateDocs(docs, file);
+	}
 
 	return `
 if (module.hot) {
 	module.hot.accept([])
 }
 
-module.exports = ${generate(toAst(props))}
+module.exports = ${generate(toAst(docs))}
 	`;
 };

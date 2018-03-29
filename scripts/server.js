@@ -1,5 +1,3 @@
-'use strict';
-
 const createServer = require('./create-server');
 
 module.exports = function server(config, callback) {
@@ -8,5 +6,5 @@ module.exports = function server(config, callback) {
 
 	serverInfo.app.listen(config.serverPort, config.serverHost, callback);
 
-	return serverInfo.compiler;
+	return serverInfo;
 };

@@ -4,6 +4,7 @@ import Logo from 'rsg-components/Logo';
 import Markdown from 'rsg-components/Markdown';
 import Styled from 'rsg-components/Styled';
 import cx from 'classnames';
+import Ribbon from 'rsg-components/Ribbon';
 
 const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth }) => ({
 	root: {
@@ -71,6 +72,7 @@ export function StyleGuideRenderer({ classes, title, homepageUrl, children, toc,
 					{toc}
 				</div>
 			)}
+			<Ribbon />
 		</div>
 	);
 }

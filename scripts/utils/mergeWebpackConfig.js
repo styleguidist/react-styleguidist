@@ -1,5 +1,3 @@
-'use strict';
-
 const isFunction = require('lodash/isFunction');
 const omit = require('lodash/omit');
 const mergeBase = require('webpack-merge');

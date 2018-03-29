@@ -1,5 +1,3 @@
-'use strict';
-
 const path = require('path');
 const glob = require('glob');
 const isFunction = require('lodash/isFunction');
@@ -21,11 +19,13 @@ module.exports = function getComponentFiles(components, rootDir, ignore) {
 	let componentFiles;
 	if (isFunction(components)) {
 		componentFiles = components();
+	} else if (Array.isArray(components)) {
+		componentFiles = components;
 	} else if (isString(components)) {
 		componentFiles = glob.sync(path.resolve(rootDir, components), { ignore });
 	} else {
 		throw new Error(
-			`Styleguidist: components should be string or function, received ${typeof components}.`
+			`Styleguidist: components should be string, function or array, received ${typeof components}.`
 		);
 	}
 

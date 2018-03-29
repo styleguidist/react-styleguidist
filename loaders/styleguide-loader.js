@@ -1,5 +1,3 @@
-'use strict';
-
 const pick = require('lodash/pick');
 const commonDir = require('common-dir');
 const generate = require('escodegen').generate;
@@ -24,6 +22,8 @@ const CLIENT_CONFIG_OPTIONS = [
 	'styles',
 	'compilerConfig',
 	'editorConfig',
+	'ribbon',
+	'pagePerSection',
 ];
 
 module.exports = function() {};
