@@ -52,8 +52,9 @@ it('should wrap code in Fragment when it starts with <', () => {
 
 	const actual = mount(<Preview code="<span /><span />" evalInContext={evalInContext} />, options);
 
+	// If two spans weren't wrapped in a Fragment, we'd see an error in console
 	expect(console.error).not.toHaveBeenCalled();
-	expect(actual.html()).toMatch('<__f');
+	expect(actual.html()).toMatchSnapshot();
 });
 
 it('should render component renderer', () => {
@@ -79,8 +80,6 @@ it('should clear console on second mount', () => {
 	expect(console.clear).toHaveBeenCalledTimes(1);
 });
 
-// XXX: “Warning: Cannot update during an existing state transition” doesn’t
-// happend in the browser, only in tests
 it('should set initialState before the first render', () => {
 	const code = `
 initialState = {count:1};
