@@ -9,6 +9,7 @@ import splitExampleCode from '../../utils/splitExampleCode';
 /* eslint-disable no-invalid-this, react/no-multi-comp */
 
 const compileCode = (code, config) => transform(code, config).code;
+const wrapCodeInFragment = code => `const __f = React.Fragment || <div />; <__f>${code}</__f>;`;
 
 // Wrap everything in a React component to leverage the state management
 // of this component
@@ -125,7 +126,10 @@ export default class Preview extends Component {
 
 	compileCode(code) {
 		try {
-			return compileCode(code, this.context.config.compilerConfig);
+			return compileCode(
+				code.trim().match(/^</) ? wrapCodeInFragment(code) : code,
+				this.context.config.compilerConfig
+			);
 		} catch (err) {
 			this.handleError(err);
 		}
