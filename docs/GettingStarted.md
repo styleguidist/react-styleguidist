@@ -20,26 +20,13 @@ npm install --save-dev react-styleguidist
 
 [Point Styleguidist to your React components](Components.md) and [tell it how to load your code](Webpack.md).
 
-## 3. Add npm scripts for convenience
+## 3. Start your style guide
 
-Add these scripts to your `package.json`:
+Run **`npx styleguidist server`** to start a style guide dev server.
 
-```diff
-{
-  "scripts": {
-+    "styleguide": "styleguidist server",
-+    "styleguide:build": "styleguidist build"
-  }
-}
-```
+Run **`npx styleguidist build`** to build a static version.
 
-## 4. Start your style guide
-
-Run **`npm run styleguide`** to start a style guide dev server.
-
-Run **`npm run styleguide:build`** to build a static version.
-
-## 5. Start documenting your components
+## 4. Start documenting your components
 
 See how to [document your components](Documenting.md)
 

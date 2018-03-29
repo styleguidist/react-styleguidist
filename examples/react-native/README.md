@@ -13,7 +13,7 @@ npm install
 Run Styleguidist
 
 ```
-npm run styleguide
+npx styleguidist server
 ```
 
 (Optional) Run the react-native app via simulator (or [Expo Client](https://expo.io/learn))
