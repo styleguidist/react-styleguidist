@@ -1,5 +1,3 @@
-'use strict';
-
 const path = require('path');
 const isArray = require('lodash/isArray');
 const reactDocs = require('react-docgen');

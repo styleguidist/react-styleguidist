@@ -1,5 +1,3 @@
-'use strict';
-
 const pick = require('lodash/pick');
 const commonDir = require('common-dir');
 const generate = require('escodegen').generate;

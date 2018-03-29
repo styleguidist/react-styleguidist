@@ -1,5 +1,3 @@
-'use strict';
-
 const consts = require('../../scripts/consts');
 const lowercaseKeys = require('lowercase-keys');
 

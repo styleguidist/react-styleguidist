@@ -1,5 +1,3 @@
-'use strict';
-
 // This two functions should be in the same file because of cyclic imports
 
 const fs = require('fs');

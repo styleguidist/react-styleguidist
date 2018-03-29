@@ -1,5 +1,3 @@
-'use strict';
-
 // Make sure user has webpack installed
 require('./utils/ensureWebpack');
 

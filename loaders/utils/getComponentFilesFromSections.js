@@ -1,5 +1,3 @@
-'use strict';
-
 const getComponentFiles = require('./getComponentFiles');
 
 /**

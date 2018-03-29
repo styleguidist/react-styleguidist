@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Filter out components without an example file.
  *

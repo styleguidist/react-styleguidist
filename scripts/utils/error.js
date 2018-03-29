@@ -1,5 +1,3 @@
-'use strict';
-
 class StyleguidistError extends Error {
 	constructor(message, extra) {
 		super(message);

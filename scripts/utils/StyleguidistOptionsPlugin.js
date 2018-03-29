@@ -1,5 +1,3 @@
-'use strict';
-
 // Webpack plugin that makes Styleguidist config available for Styleguidist webpack loaders.
 // It will be available as `this._styleguidist`.
 //

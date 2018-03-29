@@ -1,5 +1,3 @@
-'use strict';
-
 const webpack = require('webpack');
 const makeWebpackConfig = require('./make-webpack-config');
 

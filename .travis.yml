@@ -1,12 +1,8 @@
 language: node_js
 node_js:
-  - 4
   - 6
   - 8
   - 9
-matrix:
-  allow_failures:
-    - node_js: 4
 cache:
   directories:
     - node_modules
@@ -18,15 +14,11 @@ script:
   - npm run lint
   # Run tests and Danger.js
   - |
-    if [[ "$TRAVIS_NODE_VERSION" == "4" ]]; then
-      NODE_ENV=test node --harmony-proxies $(npm bin)/jest --runInBand
+    if [[ "$TRAVIS_NODE_VERSION" == "9" ]]; then
+      npx danger ci
+      npm run test:coverage -- --runInBand
     else
-      if [[ "$TRAVIS_NODE_VERSION" == "9" ]]; then
-        npx danger ci
-        npm run test:coverage -- --runInBand
-      else
-        npm run test:jest -- --runInBand
-      fi
+      npm run test:jest -- --runInBand
     fi
   # Compile code
   - npm run compile
@@ -35,7 +27,7 @@ script:
   - npm run build:customised
   - npm run build:sections
   - |
-    if [[ "$TRAVIS_NODE_VERSION" == "8" ]]; then
+    if [[ "$TRAVIS_NODE_VERSION" == "9" ]]; then
       # Check that examples really works: no JS errors on load
       npm run test:browser:pre
       npm run test:browser
