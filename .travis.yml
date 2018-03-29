@@ -43,8 +43,6 @@ jobs:
   include:
     - stage: lint
       node_js: lts/*
-      env:
-        - WEBPACK_VERSION=4
       script:
         - npm run lint
         - npx danger ci
@@ -65,16 +63,12 @@ jobs:
 
     - stage: coverage
       node_js: lts/*
-      env:
-        - WEBPACK_VERSION=4
       script:
         # Upload coverage report to Codecov
         - bash <(curl -s https://codecov.io/bash)
 
     - stage: release
       node_js: lts/*
-      env:
-        - WEBPACK_VERSION=4
       script:
         - npm install -g semantic-release
         - npm install --no-save semantic-release-tamia
@@ -82,10 +76,8 @@ jobs:
         - semantic-release-tamia/analyzeCommits --verify-release
         - semantic-release-tamia/verifyRelease --generate-notes
         - semantic-release-tamia/generateNotes
-  
+
     - stage: documentation
       node_js: lts/*
-      env:
-        - WEBPACK_VERSION=4
       script:
         - curl -X POST -d '{}' https://api.netlify.com/build_hooks/591308eba700c425fc1e8a54
