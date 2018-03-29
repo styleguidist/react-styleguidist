@@ -11,7 +11,7 @@ export const space = [
 
 export const color = {
 	base: '#333',
-	light: '#999',
+	light: '#767676',
 	lightest: '#ccc',
 	link: '#1978c8',
 	linkHover: '#f28a25',
