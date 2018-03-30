@@ -104,6 +104,7 @@ Object {
         "styleguideDir": "~/scripts/__tests__",
         "title": "Style Guide",
       },
+      "plugin": [Function],
     },
     MiniHtmlWebpackPlugin {
       "options": Object {
@@ -114,6 +115,7 @@ Object {
         },
         "template": [Function],
       },
+      "plugin": [Function],
     },
     DefinePlugin {
       "definitions": Object {
@@ -196,6 +198,7 @@ Object {
         "styleguideDir": "~/scripts/__tests__",
         "title": "Style Guide",
       },
+      "plugin": [Function],
     },
     MiniHtmlWebpackPlugin {
       "options": Object {
@@ -206,6 +209,7 @@ Object {
         },
         "template": [Function],
       },
+      "plugin": [Function],
     },
     DefinePlugin {
       "definitions": Object {
