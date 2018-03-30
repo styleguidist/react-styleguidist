@@ -239,7 +239,7 @@ module.exports = {
 		},
 	},
 	template: {
-		type: ['object', 'function', 'existing file path'],
+		type: ['object', 'function'],
 		default: {},
 		process: val => {
 			if (typeof val === 'string') {
