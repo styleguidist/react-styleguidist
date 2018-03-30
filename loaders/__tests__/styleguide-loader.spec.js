@@ -122,6 +122,30 @@ it('should return correct component paths: function returning relative paths', (
 	expect(result).not.toMatch(`'filepath': 'components/RandomButton/RandomButton.js'`);
 });
 
+it('should return correct component paths: array of of relative paths', () => {
+	const result = styleguideLoader.pitch.call(
+		{
+			request: file,
+			_styleguidist: {
+				sections: [
+					{
+						components: ['components/Button/Button.js', 'components/Placeholder/Placeholder.js'],
+					},
+				],
+				configDir: __dirname,
+				getExampleFilename: () => 'Readme.md',
+				getComponentPathLine: filepath => filepath,
+			},
+			addContextDependency: () => {},
+		},
+		readFileSync(file, 'utf8')
+	);
+	expect(result).toBeTruthy();
+	expect(() => new vm.Script(result)).not.toThrow();
+	expect(result).toMatch(`'filepath': 'components/Button/Button.js'`);
+	expect(result).toMatch(`'filepath': 'components/Placeholder/Placeholder.js'`);
+});
+
 it('should filter out components without examples if skipComponentsWithoutExample=true', () => {
 	const result = styleguideLoader.pitch.call(
 		{

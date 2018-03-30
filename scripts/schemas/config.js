@@ -29,9 +29,10 @@ module.exports = {
 			objectAssign: 'Object.assign',
 		},
 	},
-	// `components` is a shortcut for { sections: [{ components }] }, see `sections` below
+	// `components` is a shortcut for { sections: [{ components }] },
+	// see `sections` below
 	components: {
-		type: ['string', 'function'],
+		type: ['string', 'function', 'array'],
 		example: 'components/**/[A-Z]*.js',
 	},
 	configDir: {
