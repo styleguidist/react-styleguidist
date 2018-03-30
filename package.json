@@ -30,7 +30,7 @@
     "npm": ">=3"
   },
   "dependencies": {
-    "@vxna/mini-html-webpack-template": "^0.1.1",
+    "@vxna/mini-html-webpack-template": "^0.1.3",
     "acorn": "^5.4.1",
     "ast-types": "^0.11.3",
     "buble": "^0.19.3",

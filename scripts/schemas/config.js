@@ -245,7 +245,8 @@ module.exports = {
 				throw new StyleguidistError(
 					`${chalk.bold(
 						'template'
-					)} config option format was changed, you need to update your config.`
+					)} config option format has been changed, you need to update your config.`,
+					'template'
 				);
 			}
 			return val;
