@@ -483,9 +483,21 @@ See example in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide)
 
 #### `template`
 
-Type: `String`, default: [src/templates/index.html](https://github.com/styleguidist/react-styleguidist/blob/master/scripts/templates/index.html)
+Type: `Object` or `Function`, optional.
 
-HTML file to use as the template for the style guide. HTML webpack Plugin is used under the hood, see [their docs for details](https://github.com/jantimon/html-webpack-plugin/blob/master/docs/template-option.md).
+Change HTML for the style guide app.
+
+An object with options to add a favicon, meta tags, inline JavaScript or CSS, etc. See [@vxna/mini-html-webpack-template docs](https://www.npmjs.com/package/@vxna/mini-html-webpack-template).
+
+```javascript
+module.exports = {
+  template: {
+    favicon: 'https://assets-cdn.github.com/favicon.ico'
+  }
+}
+```
+
+A function that returns an HTML string, see [mini-html-webpack-plugin docs](https://github.com/styleguidist/mini-html-webpack-plugin#custom-templates).
 
 #### `theme`
 

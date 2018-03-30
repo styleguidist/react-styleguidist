@@ -20,7 +20,9 @@
 * [Why does the style guide list one of my prop types as `unknown`?](#why-does-the-style-guide-list-one-of-my-prop-types-as-unknown)
 * [Why object references don’t work in example component state?](#why-object-references-dont-work-in-example-component-state)
 * [How to use Vagrant with Styleguidist?](#how-to-use-vagrant-with-styleguidist)
+* [How to add a favicon?](#how-to-add-a-favicon)
 * [How to add external JavaScript and CSS files?](#how-to-add-external-javascript-and-css-files)
+* [How to add fonts from Google Fonts?](#how-to-add-fonts-from-google-fonts)
 * [How to reuse project’s webpack config?](#how-to-reuse-projects-webpack-config)
 * [How to use React Styleguidist with Redux, Relay or Styled Components?](#how-to-use-react-styleguidist-with-redux-relay-or-styled-components)
 * [What’s the difference between Styleguidist and Storybook?](#whats-the-difference-between-styleguidist-and-storybook)
@@ -402,27 +404,72 @@ devServer: {
 }
 ```
 
-## How to add external JavaScript and CSS files?
+## How to add a favicon?
 
-Use the `template` property in your Styleguidist config, and point it to an HTML file of your own creation, into which you can add whatever `script` or `link` tags you need. The style guide that's generated will use this HTML file, and any CSS files, or scripts you have loaded therein will be applied. Be sure to have a div in your body with an id of `app`, as Styleguidist will look for this.
+Two options:
 
-For example:
+1.  Put a `favicon.ico` file into the root folder or your site.
 
-```html
-<html>
-    <head>
-        <script src="assets/js/babelHelpers.min.js"></script>
-        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
+2.  Use [template](Configuration.md#template) option:
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div id="app"></div>
-    </body>
-</html>
+```javascript
+module.exports = {
+  template: {
+    favicon: 'https://assets-cdn.github.com/favicon.ico'
+  }
+}
 ```
 
-The script tags added here will be run in the browser, as opposed to being run during webpack's build process. This can be useful for side effect-causing scripts which your components, or in this case Babel output, need to function properly. Of course you can also load resources from third-party CDNs if you'd like.
+## How to add external JavaScript and CSS files?
+
+Use [template](Configuration.md#template) option:
+
+```javascript
+module.exports = {
+  template: {
+    head: {
+      scripts: [
+        {
+          src: 'assets/js/babelHelpers.min.js'
+        }
+      ],
+      links: [
+        {
+          rel: 'stylesheet',
+          href:
+            'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'
+        }
+      ]
+    }
+  }
+}
+```
+
+In comparison to [require](Configuration.md#require) option, these scripts and links are run in the browser, not during webpack build process. It can be useful for side effect-causing scripts which your components, or in this case Babel output, need to function properly.
+
+## How to add fonts from Google Fonts?
+
+Use [template](Configuration.md#template) and [theme](Configuration.md#theme) options:
+
+```javascript
+module.exports = {
+  template: {
+    head: {
+      links: [
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css?family=Roboto'
+        }
+      ]
+    }
+  },
+  theme: {
+    fontFamily: {
+      base: '"Roboto", sans-serif'
+    }
+  }
+}
+```
 
 ## How to reuse project’s webpack config?
 
