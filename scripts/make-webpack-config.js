@@ -24,12 +24,11 @@ module.exports = function(config, env) {
 	const template = isFunction(config.template) ? config.template : MiniHtmlWebpackTemplate;
 	const templateContext = isFunction(config.template) ? {} : config.template;
 	const htmlPluginOptions = {
-		context: {
-			...templateContext,
+		context: Object.assign({}, templateContext, {
 			title: config.title,
 			container: 'rsg-root',
 			trimWhitespace: true,
-		},
+		}),
 		template,
 	};
 
