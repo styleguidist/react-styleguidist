@@ -214,3 +214,11 @@ it('should merge default editorConfig with options provided by the user', () => 
 	expect(result.editorConfig).toHaveProperty('mode', 'js');
 	expect(result.editorConfig).toHaveProperty('theme', 'base16-light');
 });
+
+it('should throw when old template as a string option passed', () => {
+	const fn = () =>
+		getConfig({
+			template: 'pizza',
+		});
+	expect(fn).toThrow('format has been changed');
+});
