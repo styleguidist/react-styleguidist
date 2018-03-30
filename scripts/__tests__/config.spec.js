@@ -40,7 +40,7 @@ it('should throw if config has errors', () => {
 		getConfig({
 			components: 42,
 		});
-	expect(fn).toThrowError('should be string or function');
+	expect(fn).toThrowError('should be string, function, or array');
 });
 
 it('should change the config using the update callback', () => {
