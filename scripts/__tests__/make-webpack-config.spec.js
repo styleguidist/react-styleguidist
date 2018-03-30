@@ -1,5 +1,13 @@
-import webpack from 'webpack';
+import path from 'path';
+import fs from 'fs';
+import pkgDir from 'pkg-dir';
+import format from 'pretty-format';
+import webpack, { validate } from 'webpack';
+import getWebpackVersion from '../utils/getWebpackVersion';
 import makeWebpackConfig from '../make-webpack-config';
+
+const rootDir = pkgDir.sync(__dirname);
+const re = new RegExp(rootDir, 'g');
 
 const styleguideConfig = {
 	styleguideDir: __dirname,
@@ -12,19 +20,36 @@ const styleguideConfig = {
 };
 
 const process$env$nodeEnv = process.env.NODE_ENV;
+const webpackVersion = getWebpackVersion();
 
 afterEach(() => {
 	process.env.NODE_ENV = process$env$nodeEnv;
 });
 
 it('should return a development config', () => {
-	const result = makeWebpackConfig(styleguideConfig, 'development');
-	expect(result).toMatchSnapshot();
+	const env = 'development';
+	const fixturePath = path.join(__dirname, '__fixtures__', `webpack${webpackVersion}.${env}`);
+	const result = makeWebpackConfig(styleguideConfig, env);
+	const errors = validate(result);
+	const actual = format(result).replace(re, '~');
+	// Uncomment to update fixture
+	// fs.writeFileSync(fixturePath, actual)
+	const expected = fs.readFileSync(fixturePath, { encoding: 'utf8' });
+	expect(errors.length).toEqual(0);
+	expect(actual).toEqual(expected);
 });
 
 it('should return a production config', () => {
-	const result = makeWebpackConfig(styleguideConfig, 'production');
-	expect(result).toMatchSnapshot();
+	const env = 'production';
+	const fixturePath = path.join(__dirname, '__fixtures__', `webpack${webpackVersion}.${env}`);
+	const result = makeWebpackConfig(styleguideConfig, env);
+	const errors = validate(result);
+	const actual = format(result).replace(re, '~');
+	// Uncomment to update fixture
+	// fs.writeFileSync(fixturePath, actual)
+	const expected = fs.readFileSync(fixturePath, { encoding: 'utf8' });
+	expect(errors.length).toEqual(0);
+	expect(actual).toEqual(expected);
 });
 
 it('should prepend requires as webpack entries', () => {
