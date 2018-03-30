@@ -67,7 +67,7 @@
     "lodash": "^4.17.5",
     "lowercase-keys": "^1.0.0",
     "markdown-to-jsx": "^6.5.2",
-    "mini-html-webpack-plugin": "^0.2.1",
+    "mini-html-webpack-plugin": "^0.2.2",
     "minimist": "^1.2.0",
     "ora": "^2.0.0",
     "prop-types": "^15.6.1",
