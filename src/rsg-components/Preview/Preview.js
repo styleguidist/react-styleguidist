@@ -8,7 +8,13 @@ import splitExampleCode from '../../utils/splitExampleCode';
 
 /* eslint-disable no-invalid-this, react/no-multi-comp */
 
+const Fragment = React.Fragment ? React.Fragment : 'div';
+
 const compileCode = (code, config) => transform(code, config).code;
+const wrapCodeInFragment = code =>
+	`var Fragment__ = ${
+		React.Fragment ? 'React.Fragment' : "'div'"
+	}; <Fragment__>${code}</Fragment__>;`;
 
 // Wrap everything in a React component to leverage the state management
 // of this component
@@ -125,7 +131,8 @@ export default class Preview extends Component {
 
 	compileCode(code) {
 		try {
-			return compileCode(code, this.context.config.compilerConfig);
+			const wrappedCode = code.trim().match(/^</) ? wrapCodeInFragment(code) : code;
+			return compileCode(wrappedCode, this.context.config.compilerConfig);
 		} catch (err) {
 			this.handleError(err);
 		}
@@ -145,10 +152,10 @@ export default class Preview extends Component {
 	render() {
 		const { error } = this.state;
 		return (
-			<div>
+			<Fragment>
 				<div ref={ref => (this.mountNode = ref)} />
 				{error && <PlaygroundError message={error} />}
-			</div>
+			</Fragment>
 		);
 	}
 }

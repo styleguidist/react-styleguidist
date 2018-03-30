@@ -47,6 +47,16 @@ it('should not not fail when Wrapper wasn’t mounted', () => {
 	expect(node.innerHTML).toBe('');
 });
 
+it('should wrap code in Fragment when it starts with <', () => {
+	console.error = jest.fn();
+
+	const actual = mount(<Preview code="<span /><span />" evalInContext={evalInContext} />, options);
+
+	// If two spans weren't wrapped in a Fragment, we'd see an error in console
+	expect(console.error).not.toHaveBeenCalled();
+	expect(actual.html()).toMatchSnapshot();
+});
+
 it('should render component renderer', () => {
 	const actual = shallow(<Preview code={code} evalInContext={evalInContext} />, {
 		...options,
@@ -70,8 +80,6 @@ it('should clear console on second mount', () => {
 	expect(console.clear).toHaveBeenCalledTimes(1);
 });
 
-// XXX: “Warning: Cannot update during an existing state transition” doesn’t
-// happend in the browser, only in tests
 it('should set initialState before the first render', () => {
 	const code = `
 initialState = {count:1};

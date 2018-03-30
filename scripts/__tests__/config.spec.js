@@ -40,7 +40,7 @@ it('should throw if config has errors', () => {
 		getConfig({
 			components: 42,
 		});
-	expect(fn).toThrowError('should be string or function');
+	expect(fn).toThrowError('should be string, function, or array');
 });
 
 it('should change the config using the update callback', () => {
@@ -213,4 +213,12 @@ it('should merge default editorConfig with options provided by the user', () => 
 
 	expect(result.editorConfig).toHaveProperty('mode', 'js');
 	expect(result.editorConfig).toHaveProperty('theme', 'base16-light');
+});
+
+it('should throw when old template as a string option passed', () => {
+	const fn = () =>
+		getConfig({
+			template: 'pizza',
+		});
+	expect(fn).toThrow('format has been changed');
 });

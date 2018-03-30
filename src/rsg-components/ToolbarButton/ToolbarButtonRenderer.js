@@ -54,14 +54,14 @@ export function ToolbarButtonRenderer({
 
 	if (href !== undefined) {
 		return (
-			<a href={href} title={title} className={classNames}>
+			<a href={href} title={title} className={classNames} aria-label={title}>
 				{children}
 			</a>
 		);
 	}
 
 	return (
-		<button type="button" onClick={onClick} title={title} className={classNames}>
+		<button type="button" onClick={onClick} title={title} className={classNames} aria-label={title}>
 			{children}
 		</button>
 	);
