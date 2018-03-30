@@ -6,6 +6,7 @@ const DEFAULT_COMPONENTS_PATTERN = `src/@(components|Components)/**/*.{${EXTENSI
 
 const path = require('path');
 const startCase = require('lodash/startCase');
+const chalk = require('chalk');
 const reactDocgen = require('react-docgen');
 const createDisplayNameHandler = require('react-docgen-displayname-handler')
 	.createDisplayNameHandler;
@@ -14,6 +15,7 @@ const logger = require('glogg')('rsg');
 const findUserWebpackConfig = require('../utils/findUserWebpackConfig');
 const getUserPackageJson = require('../utils/getUserPackageJson');
 const fileExistsCaseInsensitive = require('../utils/findFileCaseInsensitive');
+const StyleguidistError = require('../utils/error');
 const consts = require('../consts');
 
 module.exports = {
@@ -114,7 +116,9 @@ module.exports = {
 			return Object.assign(
 				{},
 				defaults,
-				config.highlightTheme && { theme: config.highlightTheme },
+				config.highlightTheme && {
+					theme: config.highlightTheme,
+				},
 				value
 			);
 		},
@@ -169,7 +173,11 @@ module.exports = {
 				// If root `components` isn't empty, make it a first section
 				// If `components` and `sections` weren’t specified, use default pattern
 				const components = config.components || DEFAULT_COMPONENTS_PATTERN;
-				return [{ components }];
+				return [
+					{
+						components,
+					},
+				];
 			}
 			return val;
 		},
@@ -230,9 +238,19 @@ module.exports = {
 		},
 	},
 	template: {
-		type: 'existing file path',
-		default: path.resolve(__dirname, '../templates/index.html'),
-		example: 'templates/styleguide.html',
+		type: ['object', 'function', 'existing file path'],
+		default: {},
+		process: val => {
+			if (typeof val === 'string') {
+				throw new StyleguidistError(
+					`${chalk.bold(
+						'template'
+					)} config option format has been changed, you need to update your config.`,
+					'template'
+				);
+			}
+			return val;
+		},
 	},
 	theme: {
 		type: 'object',
