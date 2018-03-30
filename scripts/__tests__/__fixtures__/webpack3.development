@@ -12,6 +12,32 @@ Object {
     "hints": false,
   },
   "plugins": Array [
+    UglifyJsPlugin {
+      "options": Object {
+        "cache": true,
+        "exclude": undefined,
+        "extractComments": false,
+        "include": undefined,
+        "parallel": true,
+        "sourceMap": false,
+        "test": /\.js(\?.*)?$/i,
+        "uglifyOptions": Object {
+          "compress": Object {
+            "keep_fnames": true,
+            "warnings": false,
+          },
+          "ecma": 5,
+          "ie8": false,
+          "mangle": Object {
+            "keep_fnames": true,
+          },
+          "output": Object {
+            "comments": /^\**!|@preserve|@license|@cc_on/,
+          },
+        },
+        "warningsFilter": [Function anonymous],
+      },
+    },
     StyleguidistOptionsPlugin {
       "options": Object {
         "editorConfig": Object {
@@ -19,26 +45,20 @@ Object {
         },
         "require": Array [],
         "styleguideDir": "~/scripts/__tests__",
-        "template": "template.html",
         "title": "Style Guide",
       },
+      "plugin": [Function bound plugin],
     },
-    HtmlWebpackPlugin {
+    MiniHtmlWebpackPlugin {
       "options": Object {
-        "cache": true,
-        "chunks": "all",
-        "compile": true,
-        "excludeChunks": Array [],
-        "favicon": false,
-        "filename": "index.html",
-        "hash": false,
-        "inject": true,
-        "minify": false,
-        "showErrors": true,
-        "template": "!!~/node_modules/html-webpack-plugin/lib/loader.js!template.html",
-        "title": "Style Guide",
-        "xhtml": false,
+        "context": Object {
+          "container": "rsg-root",
+          "title": "Style Guide",
+          "trimWhitespace": true,
+        },
+        "template": [Function template],
       },
+      "plugin": [Function bound plugin],
     },
     DefinePlugin {
       "definitions": Object {
