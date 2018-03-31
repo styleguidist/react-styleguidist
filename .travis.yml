@@ -64,9 +64,9 @@ jobs:
       script:
         - npm install --no-save semantic-release-tamia
         - >-
-          npx semantic-release \
-          --analyze-commits semantic-release-tamia/analyzeCommits \
-          --verify-release semantic-release-tamia/verifyRelease \
+          npx semantic-release
+          --analyze-commits semantic-release-tamia/analyzeCommits
+          --verify-release semantic-release-tamia/verifyRelease
           --generate-notes semantic-release-tamia/generateNotes
 
     - stage: documentation
