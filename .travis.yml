@@ -66,11 +66,11 @@ jobs:
     - stage: release
       node_js: lts/*
       script:
-        - npm install -g semantic-release
         - npm install --no-save semantic-release-tamia
-        - semantic-release --analyze-commits semantic-release-tamia/analyzeCommits
-        --verify-release semantic-release-tamia/verifyRelease --generate-notes 
-        semantic-release-tamia/generateNotes
+        - npx semantic-release \
+        - --analyze-commits semantic-release-tamia/analyzeCommits \
+        - --verify-release semantic-release-tamia/verifyRelease \
+        - --generate-notes semantic-release-tamia/generateNotes
 
     - stage: documentation
       node_js: lts/*
