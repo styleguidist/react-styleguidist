@@ -59,6 +59,7 @@ module.exports = function(config, env) {
 		},
 	};
 
+	/* istanbul ignore if */
 	if (isWebpack4) {
 		webpackConfig.mode = env;
 	}
@@ -102,6 +103,7 @@ module.exports = function(config, env) {
 			},
 		});
 
+		/* istanbul ignore if */
 		if (isWebpack4) {
 			webpackConfig.optimization = {
 				minimizer: [uglifier],
