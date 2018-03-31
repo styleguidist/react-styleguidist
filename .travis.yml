@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-  - 6
-  - 8
   - 9
+  - 8
+  - 6
 env:
   - WEBPACK_VERSION= # Current, from package.json
   - WEBPACK_VERSION=3
@@ -30,13 +30,11 @@ stages:
 jobs:
   include:
     - stage: lint
-      node_js: lts/*
       script:
         - npm run lint
         - npx danger ci
 
     - stage: integration
-      node_js: lts/*
       script:
         # Compile JS
         - npm run compile
@@ -56,7 +54,6 @@ jobs:
         - npm run test:cypress:run
 
     - stage: coverage
-      node_js: lts/*
       script:
         # Run tests with coverage
         - npm run test:coverage -- --runInBand
@@ -64,7 +61,6 @@ jobs:
         - bash <(curl -s https://codecov.io/bash)
 
     - stage: release
-      node_js: lts/*
       script:
         - npm install --no-save semantic-release-tamia
         - >-
@@ -74,6 +70,5 @@ jobs:
           --generate-notes semantic-release-tamia/generateNotes
 
     - stage: documentation
-      node_js: lts/*
       script:
         - curl -X POST -d '{}' https://api.netlify.com/build_hooks/591308eba700c425fc1e8a54
