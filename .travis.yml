@@ -9,9 +9,10 @@ env:
 cache:
   directories:
     - node_modules
-before_install:
-  # Upgrade npm
-  - if [[ `npm -v` != 5* ]]; then npm install -g npm@latest; fi
+install:
+  # Use npm 5.7.x since it has introduced `npm ci`
+  - if [[ `npm -v` != 5.7* ]]; then npm install -g npm@>=5.x; fi
+  - npm ci
 before_script:
   # Install Webpack version
   - if [[ -n "$WEBPACK_VERSION" ]]; then npm install --no-save webpack@$WEBPACK_VERSION; fi
