@@ -18,10 +18,6 @@ before_script:
 script:
   # Run tests without coverage since it's 2x faster
   - npm run test:jest -- --runInBand
-  # Build all examples
-  - npm run build
-  - npm run build:customised
-  - npm run build:sections
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
@@ -44,9 +40,15 @@ jobs:
     - stage: integration
       node_js: lts/*
       script:
+        # Compile JS
+        - npm run compile
+        # Build all examples
+        - npm run build:basic
+        - npm run build:customised
+        - npm run build:sections
         # Check that examples really works: no JS errors on load
         - npm run test:browser:pre
-        - npm run test:browser
+        - npm run test:browser:basic
         - npm run test:browser:customised
         - npm run test:browser:sections
         # Run integration tests with Cypress
