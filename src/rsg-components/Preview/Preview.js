@@ -70,6 +70,10 @@ export default class Preview extends Component {
 
 	// Eval the code to extract the value of the initial state
 	getExampleInitialState(compiledCode) {
+		if (compiledCode.indexOf('initialState') === -1) {
+			return {};
+		}
+
 		return this.props.evalInContext(`
 			var state = {}, initialState = {};
 			try {
