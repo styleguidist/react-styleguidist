@@ -4,7 +4,7 @@ node_js:
   - 8
   - 9
 env:
-  - WEBPACK_VERSION=4
+  - WEBPACK_VERSION= # Current, from package.json
   - WEBPACK_VERSION=3
 cache:
   directories:
@@ -13,8 +13,8 @@ before_install:
   # Upgrade npm
   - if [[ `npm -v` != 5* ]]; then npm install -g npm@latest; fi
 before_script:
-  # Manually install Webpack version
-  - npm install --no-save webpack@$WEBPACK_VERSION
+  # Install Webpack version
+  - if [[ -n "$WEBPACK_VERSION" ]]; then npm install --no-save webpack@$WEBPACK_VERSION; fi
 script:
   # Run tests without coverage since it's 2x faster
   - npm run test:jest -- --runInBand
@@ -49,7 +49,7 @@ jobs:
         - npm run test:browser
         - npm run test:browser:customised
         - npm run test:browser:sections
-        # Run integration tests with cypress
+        # Run integration tests with Cypress
         - npm run test:cypress:pre
         - npm run test:cypress:startServer &
         - npm run test:cypress:startServer:post
