@@ -102,7 +102,7 @@ styleguidist(require('../styleguide.config.js')).build(
 
 #### Returns
 
-(_Object_): Object containing a webpack `Compiler` instance and the react-styleguidist `Server`
+(_Object_): Object containing a webpack `Compiler` instance and the React Styleguidist server
 
 #### Example
 
