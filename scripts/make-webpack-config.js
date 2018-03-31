@@ -14,6 +14,7 @@ const getWebpackVersion = require('./utils/getWebpackVersion');
 
 const RENDERER_REGEXP = /Renderer$/;
 
+const isWebpack4 = getWebpackVersion() >= 4;
 const sourceDir = path.resolve(__dirname, '../lib');
 
 module.exports = function(config, env) {
@@ -58,29 +59,9 @@ module.exports = function(config, env) {
 		},
 	};
 
-	const uglifier = new UglifyJSPlugin({
-		parallel: true,
-		cache: true,
-		uglifyOptions: {
-			ie8: false,
-			ecma: 5,
-			compress: {
-				keep_fnames: true,
-				warnings: false,
-			},
-			mangle: {
-				keep_fnames: true,
-			},
-		},
-	});
-
-	if (getWebpackVersion() >= 4) {
+	/* istanbul ignore if */
+	if (isWebpack4) {
 		webpackConfig.mode = env;
-		webpackConfig.optimization = {
-			minimizer: [uglifier],
-		};
-	} else {
-		webpackConfig.plugins.unshift(uglifier);
 	}
 
 	if (isProd) {
@@ -105,6 +86,31 @@ module.exports = function(config, env) {
 				),
 			],
 		});
+
+		const uglifier = new UglifyJSPlugin({
+			parallel: true,
+			cache: true,
+			uglifyOptions: {
+				ie8: false,
+				ecma: 5,
+				compress: {
+					keep_fnames: true,
+					warnings: false,
+				},
+				mangle: {
+					keep_fnames: true,
+				},
+			},
+		});
+
+		/* istanbul ignore if */
+		if (isWebpack4) {
+			webpackConfig.optimization = {
+				minimizer: [uglifier],
+			};
+		} else {
+			webpackConfig.plugins.unshift(uglifier);
+		}
 	} else {
 		webpackConfig = merge(webpackConfig, {
 			entry: [require.resolve('react-dev-utils/webpackHotDevClient')],

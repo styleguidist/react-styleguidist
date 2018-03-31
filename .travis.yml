@@ -1,58 +1,74 @@
 language: node_js
 node_js:
-  - 6
-  - 8
   - 9
-cache:
-  directories:
-    - node_modules
-before_install:
-  # Upgrade npm
-  - if [[ `npm -v` != 5* ]]; then npm install -g npm@latest; fi
+  - 8
+  - 6
+env:
+  - WEBPACK_VERSION= # Current, from package.json
+  - WEBPACK_VERSION=3
+install:
+  # Use npm 5.7.x since it has introduced `npm ci`
+  - if [[ `npm -v` != 5.7* ]]; then npm install -g npm@'>=5.7.1'; fi
+  - npm ci
+before_script:
+  # Install Webpack version
+  - if [[ -n "$WEBPACK_VERSION" ]]; then npm install --no-save webpack@$WEBPACK_VERSION; fi
 script:
-  # Run lint
-  - npm run lint
-  # Run tests and Danger.js
-  - |
-    if [[ "$TRAVIS_NODE_VERSION" == "9" ]]; then
-      npx danger ci
-      npm run test:coverage -- --runInBand
-    else
-      npm run test:jest -- --runInBand
-    fi
-  # Compile code
-  - npm run compile
-  # Build all examples
-  - npm run build
-  - npm run build:customised
-  - npm run build:sections
-  - |
-    if [[ "$TRAVIS_NODE_VERSION" == "9" ]]; then
-      # Check that examples really works: no JS errors on load
-      npm run test:browser:pre
-      npm run test:browser
-      npm run test:browser:customised
-      npm run test:browser:sections
-      # Run integration tests with cypress
-      npm run test:cypress:pre
-      npm run test:cypress:startServer &
-      npm run test:cypress:startServer:post
-      npm run test:cypress:run
-    fi
-after_success:
-  # Make release with semantic-release if needed
-  - npm install -g semantic-release travis-deploy-once
-  - npm install --no-save semantic-release-tamia
-  - travis-deploy-once "semantic-release --analyze-commits semantic-release-tamia/analyzeCommits --verify-release semantic-release-tamia/verifyRelease --generate-notes semantic-release-tamia/generateNotes"
-  - |
-    if [[ "$TRAVIS_NODE_VERSION" == "9" ]]; then
-      # Upload coverage report to Codecov
-      bash <(curl -s https://codecov.io/bash)
-      # Update site
-      if [[ "$TRAVIS_BRANCH" == "master" ]]; then
-        curl -X POST -d '{}' https://api.netlify.com/build_hooks/591308eba700c425fc1e8a54
-      fi
-    fi
+  # Run tests without coverage since it's 2x faster
+  - npm run test:jest -- --runInBand
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
+stages:
+  - lint
+  - test
+  - integration
+  - coverage
+  - release
+  - name: documentation
+    if: branch = master
+jobs:
+  include:
+    - stage: lint
+      script:
+        - npm run lint
+        - npx danger ci
+
+    - stage: integration
+      script:
+        # Compile JS
+        - npm run compile
+        # Build all examples
+        - npm run build:basic
+        - npm run build:customised
+        - npm run build:sections
+        # Check that examples really works: no JS errors on load
+        - npm run test:browser:pre
+        - npm run test:browser:basic
+        - npm run test:browser:customised
+        - npm run test:browser:sections
+        # Run integration tests with Cypress
+        - npm run test:cypress:pre
+        - npm run test:cypress:startServer &
+        - npm run test:cypress:startServer:post
+        - npm run test:cypress:run
+
+    - stage: coverage
+      script:
+        # Run tests with coverage
+        - npm run test:coverage -- --runInBand
+        # Upload coverage report to Codecov
+        - bash <(curl -s https://codecov.io/bash)
+
+    - stage: release
+      script:
+        - npm install --no-save semantic-release-tamia
+        - >-
+          npx semantic-release
+          --analyze-commits semantic-release-tamia/analyzeCommits
+          --verify-release semantic-release-tamia/verifyRelease
+          --generate-notes semantic-release-tamia/generateNotes
+
+    - stage: documentation
+      script:
+        - curl -X POST -d '{}' https://api.netlify.com/build_hooks/591308eba700c425fc1e8a54

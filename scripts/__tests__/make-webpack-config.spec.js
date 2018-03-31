@@ -1,31 +1,77 @@
-import webpack from 'webpack';
+import webpack, { validate } from 'webpack';
+import getWebpackVersion from '../utils/getWebpackVersion';
 import makeWebpackConfig from '../make-webpack-config';
 
+const theme = 'hl-theme';
 const styleguideConfig = {
 	styleguideDir: __dirname,
 	require: [],
 	editorConfig: {
-		theme: 'hl-theme',
+		theme,
 	},
 	title: 'Style Guide',
 };
 
-const getPluign = (config, name) => config.plugins.filter(x => x.constructor.name === name);
+const getClasses = (plugins, name) => plugins.filter(x => x.constructor.name === name);
+const getClassNames = plugins => plugins.map(x => x.constructor.name);
 
 const process$env$nodeEnv = process.env.NODE_ENV;
+const isWebpack4 = getWebpackVersion() >= 4;
 
 afterEach(() => {
 	process.env.NODE_ENV = process$env$nodeEnv;
 });
 
 it('should return a development config', () => {
-	const result = makeWebpackConfig(styleguideConfig, 'development');
-	expect(result).toMatchSnapshot();
+	const env = 'development';
+	const config = makeWebpackConfig(styleguideConfig, env);
+
+	const errors = validate(config);
+	expect(errors).toHaveLength(0);
+
+	const plugins = getClassNames(config.plugins);
+	expect(plugins).toContain('HotModuleReplacementPlugin');
+
+	if (isWebpack4) {
+		expect(config).toMatchObject({
+			mode: env,
+		});
+		expect(config).not.toHaveProperty('optimization');
+	} else {
+		expect(plugins).not.toContain('UglifyJsPlugin');
+	}
 });
 
 it('should return a production config', () => {
-	const result = makeWebpackConfig(styleguideConfig, 'production');
-	expect(result).toMatchSnapshot();
+	const env = 'production';
+	const config = makeWebpackConfig(styleguideConfig, env);
+	const errors = validate(config);
+	expect(errors).toHaveLength(0);
+
+	const plugins = getClassNames(config.plugins);
+	expect(plugins).toContain('CleanWebpackPlugin');
+	expect(plugins).not.toContain('HotModuleReplacementPlugin');
+
+	expect(config).toMatchObject({
+		output: {
+			filename: expect.stringContaining('[chunkhash'),
+			chunkFilename: expect.stringContaining('[chunkhash'),
+		},
+	});
+
+	if (isWebpack4) {
+		expect(config).toMatchObject({
+			mode: env,
+		});
+		expect(getClasses(config.optimization.minimizer, 'UglifyJsPlugin')).toHaveLength(1);
+	} else {
+		expect(plugins).toContain('UglifyJsPlugin');
+	}
+});
+
+it('should set aliases', () => {
+	const result = makeWebpackConfig(styleguideConfig, 'development');
+	expect(result.resolve.alias).toMatchSnapshot();
 });
 
 it('should prepend requires as webpack entries', () => {
@@ -36,17 +82,24 @@ it('should prepend requires as webpack entries', () => {
 	expect(result.entry).toMatchSnapshot();
 });
 
-it('should use editorConfig theme over highlightTheme', () => {
+it('editorConfig theme should change alias', () => {
+	const highlightTheme = 'solarized';
 	const result = makeWebpackConfig(
-		{ ...styleguideConfig, highlightTheme: 'deprecated' },
+		{ ...styleguideConfig, editorConfig: { theme: highlightTheme } },
 		'development'
 	);
-	expect(result.resolve.alias).toMatchSnapshot();
+	expect(result.resolve.alias['rsg-codemirror-theme.css']).toMatch(highlightTheme);
+});
+
+it('should use editorConfig theme over highlightTheme', () => {
+	const highlightTheme = 'solarized';
+	const result = makeWebpackConfig({ ...styleguideConfig, highlightTheme }, 'development');
+	expect(result.resolve.alias['rsg-codemirror-theme.css']).toMatch(theme);
 });
 
 it('should enable verbose mode in CleanWebpackPlugin', () => {
 	const result = makeWebpackConfig({ ...styleguideConfig, verbose: true }, 'production');
-	expect(getPluign(result, 'CleanWebpackPlugin')).toMatchSnapshot();
+	expect(getClasses(result.plugins, 'CleanWebpackPlugin')).toMatchSnapshot();
 });
 
 it('should merge user webpack config', () => {
@@ -75,7 +128,7 @@ it('should not owerwrite user DefinePlugin', () => {
 	// Doesn’t really test that values won’t be overwritten, just that
 	// DefinePlugin is applied twice. To write a real test we’d have to run
 	// webpack
-	expect(getPluign(result, 'DefinePlugin')).toMatchSnapshot();
+	expect(getClasses(result.plugins, 'DefinePlugin')).toMatchSnapshot();
 });
 
 it('should update webpack config', () => {
@@ -104,7 +157,7 @@ it('should pass template context to HTML plugin', () => {
 		},
 		'development'
 	);
-	expect(getPluign(result, 'MiniHtmlWebpackPlugin')[0]).toMatchObject({
+	expect(getClasses(result.plugins, 'MiniHtmlWebpackPlugin')[0]).toMatchObject({
 		options: {
 			context: template,
 			template: expect.any(Function),
@@ -121,7 +174,7 @@ it('should pass template function to HTML plugin', () => {
 		},
 		'development'
 	);
-	expect(getPluign(result, 'MiniHtmlWebpackPlugin')[0]).toMatchObject({
+	expect(getClasses(result.plugins, 'MiniHtmlWebpackPlugin')[0]).toMatchObject({
 		options: {
 			context: expect.any(Object),
 			template,
