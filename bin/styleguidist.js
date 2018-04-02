@@ -4,6 +4,7 @@
 const minimist = require('minimist');
 const chalk = require('chalk');
 const ora = require('ora');
+const opn = require('opn');
 const stringify = require('q-i').stringify;
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const webpackDevServerUtils = require('react-dev-utils/WebpackDevServerUtils');
@@ -122,10 +123,16 @@ function commandServer() {
 			console.error(err);
 		} else {
 			const isHttps = compiler.options.devServer && compiler.options.devServer.https;
+			const host = config.serverHost;
+			const port = config.serverPort;
+			const urls = webpackDevServerUtils.prepareUrls(isHttps ? 'https' : 'http', host, port);
 			if (config.printServerInstructions) {
 				config.printServerInstructions(config, { isHttps });
 			} else {
 				printServerInstructions(config, { isHttps });
+			}
+			if (argv.open) {
+				opn(urls.localUrlForBrowser);
 			}
 		}
 	}).compiler;
