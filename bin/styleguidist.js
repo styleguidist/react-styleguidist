@@ -130,8 +130,8 @@ function commandServer() {
 			}
 			if (argv.open) {
 				const protocol = isHttps ? 'https' : 'http';
-				const { localUrlForBrowser } = webpackDevServerUtils.prepareUrls(protocol, config.serverHost, config.serverPort);
-				opn(localUrlForBrowser);
+				const utils = webpackDevServerUtils.prepareUrls(protocol, config.serverHost, config.serverPort);
+				opn(utils.localUrlForBrowser);
 			}
 		}
 	}).compiler;
