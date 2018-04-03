@@ -130,8 +130,8 @@ function commandServer() {
 			}
 			if (argv.open) {
 				const protocol = isHttps ? 'https' : 'http';
-				const utils = webpackDevServerUtils.prepareUrls(protocol, config.serverHost, config.serverPort);
-				opn(utils.localUrlForBrowser);
+				const { localUrlForBrowser } = webpackDevServerUtils.prepareUrls(protocol, config.serverHost, config.serverPort);
+				opn(localUrlForBrowser);
 			}
 		}
 	}).compiler;
@@ -182,6 +182,7 @@ function commandHelp() {
 			'',
 			'    ' + chalk.yellow('--config') + '        Config file path',
 			'    ' + chalk.yellow('--verbose') + '       Print debug information',
+			'    ' + chalk.yellow('--open') + '          Opens the url in default browser',
 		].join('\n')
 	);
 }
