@@ -7,7 +7,6 @@
   },
   "plugins": [
     "compat",
-    "es5",
     "import"
   ],
   "settings": {
