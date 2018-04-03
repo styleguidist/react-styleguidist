@@ -123,16 +123,15 @@ function commandServer() {
 			console.error(err);
 		} else {
 			const isHttps = compiler.options.devServer && compiler.options.devServer.https;
-			const host = config.serverHost;
-			const port = config.serverPort;
-			const urls = webpackDevServerUtils.prepareUrls(isHttps ? 'https' : 'http', host, port);
 			if (config.printServerInstructions) {
 				config.printServerInstructions(config, { isHttps });
 			} else {
 				printServerInstructions(config, { isHttps });
 			}
 			if (argv.open) {
-				opn(urls.localUrlForBrowser);
+				const protocol = isHttps ? 'https' : 'http';
+				const { localUrlForBrowser } = webpackDevServerUtils.prepareUrls(protocol, config.serverHost, config.serverPort);
+				opn(localUrlForBrowser);
 			}
 		}
 	}).compiler;
