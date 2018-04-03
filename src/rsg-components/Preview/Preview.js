@@ -9,7 +9,7 @@ import splitExampleCode from '../../utils/splitExampleCode';
 /* eslint-disable no-invalid-this, react/no-multi-comp */
 
 const Fragment = React.Fragment ? React.Fragment : 'div';
-const FragmentTag = React.Fragment ? 'React.Fragment' : "'div'";
+const FragmentTag = React.Fragment ? 'React.Fragment' : 'div';
 
 const compileCode = (code, config) => transform(code, config).code;
 const wrapCodeInFragment = code => `<${FragmentTag}>${code}</${FragmentTag}>;`;
