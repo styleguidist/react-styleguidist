@@ -10,4 +10,4 @@ CLI Options:
 
 * `--config <file>`: Specify path to a config file.
 * `--verbose`: Print debug information.
-* `--open`: Opens the url in default browser.
+* `--open`: Open the URL in default browser.

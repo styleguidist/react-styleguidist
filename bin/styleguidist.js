@@ -182,7 +182,7 @@ function commandHelp() {
 			'',
 			'    ' + chalk.yellow('--config') + '        Config file path',
 			'    ' + chalk.yellow('--verbose') + '       Print debug information',
-			'    ' + chalk.yellow('--open') + '          Opens the url in default browser',
+			'    ' + chalk.yellow('--open') + '          Open the URL in default browser',
 		].join('\n')
 	);
 }
