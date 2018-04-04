@@ -20,7 +20,9 @@ const command = argv._[0];
 process.on('uncaughtException', err => {
 	if (err.code === 'EADDRINUSE') {
 		printErrorWithLink(
-			`You have another server running at port ${config.serverPort} somewhere, shut it down first`,
+			`Another server is running at port ${
+				config.serverPort
+			} already. Please stop it or change the default port to continue.`,
 			'You can change the port using the `serverPort` option in your style guide config:',
 			consts.DOCS_CONFIG
 		);
