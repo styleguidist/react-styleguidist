@@ -4,6 +4,7 @@
  * @param {string} $.name Name
  * @param {string} $.slug Slug
  * @param {number} $.example Example index
+ * @param {string} $.external An external URL to be opened in new tab
  * @param {boolean} $.anchor Anchor?
  * @param {boolean} $.isolated Isolated mode?
  * @param {boolean} $.nochrome No chrome? (Can be combined with anchor or isolated)
@@ -12,10 +13,14 @@
  * @return {string}
  */
 export default function getUrl(
-	{ name, slug, example, anchor, isolated, nochrome, absolute } = {},
+	{ name, slug, example, anchor, isolated, nochrome, absolute, external } = {},
 	{ origin, pathname } = window.location
 ) {
 	let url = pathname;
+
+	if (external) {
+		return external;
+	}
 
 	if (nochrome) {
 		url += '?nochrome';

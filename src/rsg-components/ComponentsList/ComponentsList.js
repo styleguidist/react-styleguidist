@@ -9,6 +9,7 @@ function ComponentsList({ classes, items, useIsolatedLinks = false }) {
 		href: getUrl({
 			name: item.name,
 			slug: item.slug,
+			external: item.external,
 			anchor: !useIsolatedLinks,
 			isolated: useIsolatedLinks,
 		}),

@@ -23,3 +23,13 @@ it('should compose passed class names', () => {
 
 	expect(actual.find('a').prop('className')).toBe('baseLinkClass customClass');
 });
+
+it('should open external links in new window', () => {
+	const actual = shallow(
+		<LinkRenderer href={href} target="_blank" classes={{}}>
+			{children}
+		</LinkRenderer>
+	);
+
+	expect(actual.find('a').prop('target')).toBe('_blank');
+});
