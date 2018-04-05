@@ -4,7 +4,7 @@ exports[`should ignore items without name 1`] = `
 <ul>
   <li
     className=""
-    key="Button"
+    key="#button"
   >
     <Styled(Link)
       className=""
@@ -20,7 +20,7 @@ exports[`should render sections with nested components 1`] = `
 <ul>
   <li
     className=""
-    key="Button"
+    key="#button"
   >
     <Styled(Link)
       className=""
@@ -31,7 +31,7 @@ exports[`should render sections with nested components 1`] = `
   </li>
   <li
     className=""
-    key="Input"
+    key="#input"
   >
     <Styled(Link)
       className=""

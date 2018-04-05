@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const findup = require('findup');
 const isString = require('lodash/isString');
+const isPlainObject = require('lodash/isPlainObject');
 const StyleguidistError = require('./utils/error');
 const sanitizeConfig = require('./utils/sanitizeConfig');
 const schema = require('./schemas/config');
@@ -16,8 +17,6 @@ const CONFIG_FILENAME = 'styleguide.config.js';
  * @returns {object}
  */
 function getConfig(config, update) {
-	config = config || {};
-
 	let configFilepath;
 	if (isString(config)) {
 		// Load config from a given file
@@ -26,9 +25,10 @@ function getConfig(config, update) {
 			throw new StyleguidistError('Styleguidist config not found: ' + configFilepath + '.');
 		}
 		config = {};
-	} else {
+	} else if (!isPlainObject(config)) {
 		// Try to read config options from a file
 		configFilepath = findConfigFile();
+		config = {};
 	}
 
 	if (configFilepath) {

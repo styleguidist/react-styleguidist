@@ -267,7 +267,7 @@ module.exports = {
 			if (val) {
 				return val;
 			}
-			const name = getUserPackageJson().name;
+			const name = getUserPackageJson().name || '';
 			return `${startCase(name)} Style Guide`;
 		},
 		example: 'My Style Guide',
