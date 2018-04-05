@@ -1,6 +1,5 @@
 module.exports = {
 	components: 'src/rsg-components/**/[A-Z]*.js',
-	defaultExample: true,
 	webpackConfig: {
 		module: {
 			rules: [
