@@ -219,7 +219,7 @@ This will automatically apply your theme to your styled-components. When you fir
 
 ### Fela
 
-Check out the [official example](https://github.com/rofrischmann/fela/tree/master/packages/example-with-styleguidist).
+Check out the [official example](https://github.com/rofrischmann/fela/tree/master/examples/example-with-styleguidist).
 
 ### CSS Modules with react-css-modules
 
