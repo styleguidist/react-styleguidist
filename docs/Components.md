@@ -135,7 +135,6 @@ module.exports = {
         },
         {
           name: 'Live Demo',
-          skip: true,
           href: 'http://example.com'
         }
       ]

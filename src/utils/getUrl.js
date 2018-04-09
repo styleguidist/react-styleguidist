@@ -13,14 +13,10 @@
  * @return {string}
  */
 export default function getUrl(
-	{ name, slug, example, anchor, isolated, nochrome, absolute, external } = {},
+	{ name, slug, example, anchor, isolated, nochrome, absolute } = {},
 	{ origin, pathname } = window.location
 ) {
 	let url = pathname;
-
-	if (external) {
-		return external;
-	}
 
 	if (nochrome) {
 		url += '?nochrome';
