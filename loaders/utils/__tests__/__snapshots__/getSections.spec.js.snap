@@ -8,11 +8,10 @@ Array [
       "require": "!!~/loaders/examples-loader.js!~/test/components/Button/Readme.md",
     },
     "description": undefined,
-    "external": undefined,
     "filepath": "components/Button/Readme.md",
+    "href": undefined,
     "name": "Readme",
     "sections": Array [],
-    "skip": undefined,
     "slug": "readme-1",
   },
   Object {
@@ -87,11 +86,10 @@ Array [
     ],
     "content": undefined,
     "description": undefined,
-    "external": undefined,
     "filepath": undefined,
+    "href": undefined,
     "name": "Components",
     "sections": Array [],
-    "skip": undefined,
     "slug": "components-1",
   },
   Object {
@@ -153,11 +151,10 @@ Array [
     ],
     "content": undefined,
     "description": undefined,
-    "external": undefined,
     "filepath": undefined,
+    "href": undefined,
     "name": "Ignore",
     "sections": Array [],
-    "skip": undefined,
     "slug": "ignore-1",
   },
 ]
@@ -236,11 +233,10 @@ Object {
   ],
   "content": undefined,
   "description": undefined,
-  "external": undefined,
   "filepath": undefined,
+  "href": undefined,
   "name": "Components",
   "sections": Array [],
-  "skip": undefined,
   "slug": "components",
 }
 `;
@@ -252,11 +248,10 @@ Object {
     "require": "!!~/loaders/examples-loader.js!~/test/components/Button/Readme.md",
   },
   "description": undefined,
-  "external": undefined,
   "filepath": "components/Button/Readme.md",
+  "href": undefined,
   "name": "Readme",
   "sections": Array [],
-  "skip": undefined,
   "slug": "readme",
 }
 `;
@@ -321,11 +316,10 @@ Object {
   ],
   "content": undefined,
   "description": undefined,
-  "external": undefined,
   "filepath": undefined,
+  "href": undefined,
   "name": "Ignore",
   "sections": Array [],
-  "skip": undefined,
   "slug": "ignore",
 }
 `;

@@ -55,8 +55,7 @@ function processSection(section, config) {
 		slug: slugger.slug(section.name),
 		sections: getSections(section.sections || [], config),
 		filepath: contentRelativePath,
-		external: section.external,
-		skip: section.skip,
+		href: section.href,
 		components: getSectionComponents(section, config),
 		content,
 	};

@@ -6,13 +6,15 @@ import getUrl from '../../utils/getUrl';
 function ComponentsList({ classes, items, useIsolatedLinks = false }) {
 	const mappedItems = items.map(item => ({
 		...item,
-		href: getUrl({
-			name: item.name,
-			slug: item.slug,
-			external: item.external,
-			anchor: !useIsolatedLinks,
-			isolated: useIsolatedLinks,
-		}),
+		href: item.href
+			? item.href
+			: getUrl({
+					name: item.name,
+					slug: item.slug,
+					anchor: !useIsolatedLinks,
+					isolated: useIsolatedLinks,
+			  }),
+		target: item.href ? '_blank' : undefined,
 	}));
 	return <ComponentsListRenderer classes={classes} items={mappedItems} />;
 }

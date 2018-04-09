@@ -7,7 +7,7 @@ export default function Sections({ sections, depth }) {
 	return (
 		<SectionsRenderer>
 			{sections
-				.filter(section => !section.skip)
+				.filter(section => !section.href)
 				.map((section, idx) => <Section key={idx} section={section} depth={depth} />)}
 		</SectionsRenderer>
 	);

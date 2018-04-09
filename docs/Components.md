@@ -110,8 +110,7 @@ Each section consists of (all fields are optional):
 * `sections` — array of subsections (can be nested).
 * `description` — A small description of this section.
 * `ignore` — string/array of globs that should not be included in the section.
-* `external` - an URL to be opened (in a new tab) instead of navigating to the section content
-* `skip` - do not render the content of the section (useful for headers)
+* `href` - an URL to be opened (in a new tab) instead of navigating to the section content
 
 Configuring a style guide with textual documentation section and a list of components would look like:
 
@@ -137,7 +136,7 @@ module.exports = {
         {
           name: 'Live Demo',
           skip: true,
-          external: 'http://example.com'
+          href: 'http://example.com'
         }
       ]
     },
