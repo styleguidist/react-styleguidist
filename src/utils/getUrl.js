@@ -4,7 +4,6 @@
  * @param {string} $.name Name
  * @param {string} $.slug Slug
  * @param {number} $.example Example index
- * @param {string} $.external An external URL to be opened in new tab
  * @param {boolean} $.anchor Anchor?
  * @param {boolean} $.isolated Isolated mode?
  * @param {boolean} $.nochrome No chrome? (Can be combined with anchor or isolated)
