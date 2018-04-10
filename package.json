@@ -143,6 +143,7 @@
     "start": "node bin/styleguidist.js server --config examples/basic/styleguide.config.js",
     "start:customised": "node bin/styleguidist.js server --config examples/customised/styleguide.config.js",
     "start:sections": "node bin/styleguidist.js server --config examples/sections/styleguide.config.js",
+    "start:ui": "node bin/styleguidist.js server",
     "lint": "eslint . --cache --fix",
     "precompile": "rimraf lib/",
     "compile": "babel --ignore '*.spec.js' -d lib/ src/",
