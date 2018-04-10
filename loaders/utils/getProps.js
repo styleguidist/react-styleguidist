@@ -106,5 +106,13 @@ module.exports = function getProps(doc, filepath) {
 		doc.displayName = getNameFromFilePath(filepath);
 	}
 
+	if (doc.doclets && doc.doclets.sgDisplayName) {
+		doc.sgDisplayName = doc.doclets.sgDisplayName;
+		delete doc.doclets.sgDisplayName;
+		if (doc.tags) {
+			delete doc.tags.sgDisplayName;
+		}
+	}
+
 	return doc;
 };
