@@ -188,7 +188,7 @@ function commandHelp() {
 			chalk.underline('Options'),
 			'',
 			'    ' + chalk.yellow('--config') + '        Config file path',
-			'    ' + chalk.yellow('--open') + '          Opens Styleguidist with the default browser.',
+			'    ' + chalk.yellow('--open') + '          Open Styleguidist in the default browser',
 			'    ' + chalk.yellow('--verbose') + '       Print debug information',
 		].join('\n')
 	);
