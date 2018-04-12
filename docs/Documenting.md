@@ -152,6 +152,7 @@ You can use the following [JSDoc](http://usejsdoc.org/) tags when documenting co
 * [@author](http://usejsdoc.org/tags-author.html)
 * [@since](http://usejsdoc.org/tags-since.html)
 * [@version](http://usejsdoc.org/tags-version.html)
+* [@visibleName](#-visiblename-custom-tag)
 
 When documenting props you can also use:
 
@@ -202,6 +203,23 @@ class Button extends React.Component {
   }
 }
 ```
+
+### @visibleName custom tag
+
+Apart from most of the jsDocs tags that can be used with RSG, @visibleName is not present in jsDoc specs. This is a custom tag, that we have added to provide users with a way to define names for components to be used in the UI.
+
+Let's take a look at the example:
+
+```javascript
+/**
+ * The only true button.
+ *
+ * @visibleName The Best Button Ever 🐙
+ */
+class Button extends React.Component {
+```
+
+By defining the @visibleName tag above, you let the Styleguidist know that this name should be used whenever the component is displayed in the UI as 'The Best Button Ever 🐙' instead of it's original 'Button' name.
 
 ## Writing code examples
 

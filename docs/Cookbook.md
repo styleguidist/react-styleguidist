@@ -25,6 +25,7 @@
 * [How to add fonts from Google Fonts?](#how-to-add-fonts-from-google-fonts)
 * [How to reuse project’s webpack config?](#how-to-reuse-projects-webpack-config)
 * [How to use React Styleguidist with Redux, Relay or Styled Components?](#how-to-use-react-styleguidist-with-redux-relay-or-styled-components)
+* [How to change the names of components displayed in Styleguidist UI?](#how-to-change-the-names-of-components-displayed-in-styleguidist-ui)
 * [What’s the difference between Styleguidist and Storybook?](#whats-the-difference-between-styleguidist-and-storybook)
 * [Are there any other projects like this?](#are-there-any-other-projects-like-this)
 
@@ -478,6 +479,29 @@ See in [configuring webpack](Webpack.md#reusing-your-projects-webpack-config).
 ## How to use React Styleguidist with Redux, Relay or Styled Components?
 
 See [working with third-party libraries](Thirdparties.md).
+
+## How to change the names of components displayed in Styleguidist UI?
+
+Often you might want to change your components' names to be displayed differently, for example, for stylistic purposes or to give them a more descriptive names in your styleguide.
+
+This can be done by adding [@visibleName](Documenting.md#-visiblename-custom-tag) tag to your component documentation.
+
+In case you want to change components' names in bulk, for example, based on their current name, you can utilize [updateDocs](Configuration.md#updatedocs) configuration option.
+
+Here's an example of how this can be achieved:
+
+```javascript
+const _ = require('lodash')
+
+module.exports = {
+  updateDocs(docs) {
+    if (docs && docs.displayName) {
+      docs.visibleName = _.lowerCase(docs.displayName)
+    }
+    return docs
+  }
+}
+```
 
 ## What’s the difference between Styleguidist and Storybook?
 
