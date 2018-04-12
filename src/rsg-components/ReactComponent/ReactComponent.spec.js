@@ -17,7 +17,7 @@ const options = {
 
 const component = {
 	name: 'Foo',
-	sgDisplayName: 'Foo',
+	visibleName: 'Foo',
 	slug: 'foo',
 	pathLine: 'foo/bar.js',
 	props: {
@@ -29,7 +29,7 @@ const component = {
 };
 const componentWithEverything = {
 	name: 'Foo',
-	sgDisplayName: 'Foo',
+	visibleName: 'Foo',
 	slug: 'foo',
 	pathLine: 'foo/bar.js',
 	props: {

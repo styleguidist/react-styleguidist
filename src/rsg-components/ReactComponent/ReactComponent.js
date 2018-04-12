@@ -45,7 +45,7 @@ export default class ReactComponent extends Component {
 		const { activeTab } = this.state;
 		const { displayMode } = this.context;
 		const { component, depth } = this.props;
-		const { name, sgDisplayName, slug, filepath, pathLine } = component;
+		const { name, visibleName, slug, filepath, pathLine } = component;
 		const { description, examples = [], tags = {} } = component.props;
 		if (!name) {
 			return null;
@@ -70,7 +70,7 @@ export default class ReactComponent extends Component {
 						}}
 						depth={depth}
 					>
-						{sgDisplayName}
+						{visibleName}
 					</SectionHeading>
 				}
 				examples={

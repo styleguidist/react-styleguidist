@@ -15,22 +15,22 @@ describe('processComponents', () => {
 		expect(result[0].name).toBe('Foo');
 	});
 
-	describe('should set sgDisplayName property on the component', () => {
-		it('from an sgDisplayName component prop if available', () => {
+	describe('should set visibleName property on the component', () => {
+		it('from an visibleName component prop if available', () => {
 			const components = deepfreeze([
 				{
 					props: {
 						displayName: 'Foo',
-						sgDisplayName: 'Foo Bar',
+						visibleName: 'Foo Bar',
 					},
 					module: 13,
 				},
 			]);
 			const result = processComponents(components);
-			expect(result[0].sgDisplayName).toBe('Foo Bar');
+			expect(result[0].visibleName).toBe('Foo Bar');
 		});
 
-		it('from an displayName component prop if sgDisplayName prop is not available', () => {
+		it('from an displayName component prop if visibleName prop is not available', () => {
 			const components = deepfreeze([
 				{
 					props: {
@@ -40,7 +40,7 @@ describe('processComponents', () => {
 				},
 			]);
 			const result = processComponents(components);
-			expect(result[0].sgDisplayName).toBe('Foo');
+			expect(result[0].visibleName).toBe('Foo');
 		});
 	});
 

@@ -162,19 +162,19 @@ it('should guess a displayName for components that react-docgen was not able to 
 	expect(result).toHaveProperty('displayName', 'YourComponent');
 });
 
-describe('with @sgDisplayName tag present in the description', () => {
+describe('with @visibleName tag present in the description', () => {
 	const result = getProps({
-		description: 'bar\n@sgDisplayName foo',
+		description: 'bar\n@visibleName foo',
 	});
-	it('should set sgDisplayName property on the docs object', () => {
-		expect(result).toHaveProperty('sgDisplayName', 'foo');
-	});
-
-	it('should delete sgDisplayName from doclets on the docs object', () => {
-		expect(result.doclets).not.toHaveProperty('sgDisplayName');
+	it('should set visibleName property on the docs object', () => {
+		expect(result).toHaveProperty('visibleName', 'foo');
 	});
 
-	it('should delete sgDisplayName from tags on the docs object', () => {
-		expect(result.tags).not.toHaveProperty('sgDisplayName');
+	it('should delete visibleName from doclets on the docs object', () => {
+		expect(result.doclets).not.toHaveProperty('visibleName');
+	});
+
+	it('should delete visibleName from tags on the docs object', () => {
+		expect(result.tags).not.toHaveProperty('visibleName');
 	});
 });

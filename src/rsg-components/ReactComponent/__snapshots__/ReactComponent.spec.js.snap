@@ -81,8 +81,8 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
               },
             ],
           },
-          "sgDisplayName": "Foo",
           "slug": "foo",
+          "visibleName": "Foo",
         }
       }
     >
@@ -141,8 +141,8 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
               },
             ],
           },
-          "sgDisplayName": "Foo",
           "slug": "foo",
+          "visibleName": "Foo",
         }
       }
     />
@@ -196,8 +196,8 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
               },
             ],
           },
-          "sgDisplayName": "Foo",
           "slug": "foo",
+          "visibleName": "Foo",
         }
       }
     />

@@ -12,7 +12,7 @@ export default function processComponents(components) {
 
 			// Add .name shortcuts for names instead of .props.displayName.
 			name: component.props.displayName,
-			sgDisplayName: component.props.sgDisplayName || component.props.displayName,
+			visibleName: component.props.visibleName || component.props.displayName,
 
 			props: {
 				...component.props,

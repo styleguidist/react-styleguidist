@@ -5,7 +5,7 @@ import './PushButton.css';
 
 /**
  * An example-less button with custom display name.
- * @sgDisplayName Push Button 🎉
+ * @visibleName Push Button 🎉
  */
 export default function PushButton({ color, size, children }) {
 	const styles = {
