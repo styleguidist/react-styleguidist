@@ -24,7 +24,7 @@ npm run start
 
 Then open [http://localhost:6060](http://localhost:6060) in your browser.
 
-## Add Styleguidist to an exsisting react-native project
+## Add Styleguidist to an existing react-native project
 
 A collection of dev-dependencies related to webpack are required to get `react-native` and `react-styleguidist` running on a browser. `babel-preset-react-native` reflects the bundle server that normally serves to react-native apps to the simulators and/or devices.
 
@@ -36,7 +36,7 @@ Add and configure `styleguide.config.js` to the root of your `react-native` proj
 
 ## Common Caveats
 
-[react-native-web](https://github.com/necolas/react-native-web) does not support everything, components requiring DeviceInfo is a common breaking point for example. Configuring components or selections in your `styleguide.config.js` to only select ui components is recomended. A good rule of thumb is to expect an approximate visual representation with code examples and props documentation.
+[react-native-web](https://github.com/necolas/react-native-web) does not support everything, components requiring DeviceInfo is a common breaking point for example. Configuring components or selections in your `styleguide.config.js` to only select ui components is recommended. A good rule of thumb is to expect an approximate visual representation with code examples and props documentation.
 
 [react-native-vector-icons](https://oblador.github.io/react-native-vector-icons/) (or any other dependency using external assets) can be solved by adding a custom template to `styleguide.config.js`
 
@@ -259,6 +259,6 @@ There are a few steps you may want to take to troubleshoot these kinds of errors
 
 ### QR Code does not scan
 
-If you're not able to scan the QR code, make sure your phone's camera is focusing correctly, and also make sure that the contrast on the two colors in your terminal is high enough. For example, WebStorm's default themes may [not have enough contrast](https://github.com/react-community/create-react-native-app/issues/49) for terminal QR codes to be scannable with the system barcode scanners that the Expo app uses.
+If you're not able to scan the QR code, make sure your phone's camera is focusing correctly, and also make sure that the contrast between the two colors in your terminal is high enough. For example, WebStorm's default themes may [not have enough contrast](https://github.com/react-community/create-react-native-app/issues/49) for terminal QR codes to be scannable with the system barcode scanners that the Expo app uses.
 
 If this causes problems for you, you may want to try changing your terminal's color theme to have more contrast, or running Create React Native App from a different terminal. You can also manually enter the URL printed by the packager script in the Expo app's search bar to load it manually.
