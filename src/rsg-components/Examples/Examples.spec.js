@@ -8,10 +8,12 @@ const examples = [
 		type: 'code',
 		content: '<button>OK</button>',
 		evalInContext: noop,
+		codeSamples: 'collapse',
 	},
 	{
 		type: 'markdown',
 		content: 'Hello *world*!',
+		codeSamples: 'collapse',
 	},
 ];
 
