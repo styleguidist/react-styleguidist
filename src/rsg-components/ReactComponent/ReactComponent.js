@@ -33,7 +33,7 @@ export default class ReactComponent extends Component {
 		this.handleTabChange = this.handleTabChange.bind(this);
 
 		this.state = {
-			activeTab: propsMethods === PropsMethodsModes.collapse ? DOCS_TAB_USAGE : undefined,
+			activeTab: propsMethods === PropsMethodsModes.expand ? DOCS_TAB_USAGE : undefined,
 		};
 	}
 
