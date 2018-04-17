@@ -69,6 +69,7 @@
     "markdown-to-jsx": "^6.4.1",
     "mini-html-webpack-plugin": "^0.2.3",
     "minimist": "^1.2.0",
+    "opn": "^5.3.0",
     "ora": "^2.0.0",
     "prop-types": "^15.6.1",
     "q-i": "^2.0.1",

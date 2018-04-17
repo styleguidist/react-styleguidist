@@ -4,6 +4,7 @@
 const minimist = require('minimist');
 const chalk = require('chalk');
 const ora = require('ora');
+const opn = require('opn');
 const stringify = require('q-i').stringify;
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const webpackDevServerUtils = require('react-dev-utils/WebpackDevServerUtils');
@@ -129,6 +130,11 @@ function commandServer() {
 			} else {
 				printServerInstructions(config, { isHttps });
 			}
+			if (argv.open) {
+				const protocol = isHttps ? 'https' : 'http';
+				const { localUrlForBrowser } = webpackDevServerUtils.prepareUrls(protocol, config.serverHost, config.serverPort);
+				opn(localUrlForBrowser);
+			}
 		}
 	}).compiler;
 
@@ -178,6 +184,7 @@ function commandHelp() {
 			'',
 			'    ' + chalk.yellow('--config') + '        Config file path',
 			'    ' + chalk.yellow('--verbose') + '       Print debug information',
+			'    ' + chalk.yellow('--open') + '          Open the URL in default browser',
 		].join('\n')
 	);
 }
