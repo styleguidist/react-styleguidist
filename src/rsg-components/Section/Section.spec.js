@@ -16,6 +16,8 @@ const options = {
 const section = {
 	name: 'Foo',
 	slug: 'foo',
+	codeSamples: 'collapse',
+	propsMethods: 'collapse',
 	description: 'This is a description',
 	content: [
 		{
@@ -141,8 +143,21 @@ it('render should render section', () => {
 			classes={{}}
 			name={section.name}
 			slug={section.slug}
-			content={<Examples name={section.name} examples={section.content} />}
-			components={<Components components={[]} depth={3} />}
+			content={
+				<Examples
+					name={section.name}
+					examples={section.content}
+					codeSamples={section.codeSamples}
+				/>
+			}
+			components={
+				<Components
+					components={[]}
+					depth={3}
+					propsMethods={section.propsMethods}
+					codeSamples={section.codeSamples}
+				/>
+			}
 			sections={<Sections sections={[]} depth={3} />}
 			depth={3}
 		/>,

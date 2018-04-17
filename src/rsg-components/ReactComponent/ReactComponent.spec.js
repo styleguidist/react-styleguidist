@@ -5,6 +5,7 @@ import { ReactComponentRenderer } from './ReactComponentRenderer';
 import { DisplayModes } from '../../consts';
 
 const codeSamples = 'collapse';
+const propsMethods = 'collapse';
 
 const options = {
 	context: {
@@ -68,7 +69,7 @@ const componentWithEverything = {
 describe('ReactComponent', () => {
 	it('should render an example placeholder', () => {
 		const actual = shallow(
-			<ReactComponent component={component} depth={3} codeSamples={codeSamples} />,
+			<ReactComponent component={component} depth={3} codeSamples={codeSamples} propsMethods={propsMethods} />,
 			options
 		);
 
@@ -79,7 +80,7 @@ describe('ReactComponent', () => {
 
 	it('should render examples', () => {
 		const actual = shallow(
-			<ReactComponent component={componentWithEverything} depth={3} codeSamples={codeSamples} />,
+			<ReactComponent component={componentWithEverything} depth={3} codeSamples={codeSamples} propsMethods={propsMethods} />,
 			options
 		);
 
@@ -90,7 +91,7 @@ describe('ReactComponent', () => {
 
 	it('should pass rendered description, usage, examples, etc. to the renderer', () => {
 		const actual = shallow(
-			<ReactComponent component={componentWithEverything} depth={3} codeSamples={codeSamples} />,
+			<ReactComponent component={componentWithEverything} depth={3} codeSamples={codeSamples} propsMethods={propsMethods} />,
 			options
 		);
 
@@ -99,7 +100,7 @@ describe('ReactComponent', () => {
 
 	it('should render usage closed by default when showUsage config options is false', () => {
 		const actual = shallow(
-			<ReactComponent component={componentWithEverything} depth={3} codeSamples={codeSamples} />,
+			<ReactComponent component={componentWithEverything} depth={3} codeSamples={codeSamples} propsMethods={propsMethods} />,
 			options
 		);
 
@@ -109,13 +110,11 @@ describe('ReactComponent', () => {
 
 	it('should render usage opened by default when showUsage config options is true', () => {
 		const actual = shallow(
-			<ReactComponent component={componentWithEverything} depth={3} codeSamples={codeSamples} />,
+			<ReactComponent component={componentWithEverything} depth={3} codeSamples={codeSamples} propsMethods='expand' />,
 			{
 				...options,
 				context: {
-					config: {
-						showUsage: true,
-					},
+					config: {},
 				},
 			}
 		);
@@ -126,7 +125,7 @@ describe('ReactComponent', () => {
 
 	it('should return null when component has no name', () => {
 		const actual = shallow(
-			<ReactComponent component={{ slug: 'foo', props: {} }} depth={3} codeSamples={codeSamples} />,
+			<ReactComponent component={{ slug: 'foo', props: {} }} depth={3} codeSamples={codeSamples} propsMethods={propsMethods} />,
 			options
 		);
 
@@ -135,7 +134,7 @@ describe('ReactComponent', () => {
 
 	test('should not render component in isolation mode by default', () => {
 		const actual = shallow(
-			<ReactComponent component={component} depth={3} codeSamples={codeSamples} />,
+			<ReactComponent component={component} depth={3} codeSamples={codeSamples} propsMethods={propsMethods} />,
 			options
 		);
 
@@ -144,7 +143,7 @@ describe('ReactComponent', () => {
 
 	test('should render component in isolation mode', () => {
 		const actual = shallow(
-			<ReactComponent component={component} depth={3} codeSamples={codeSamples} />,
+			<ReactComponent component={component} depth={3} codeSamples={codeSamples} propsMethods={propsMethods} />,
 			{
 				context: {
 					...options.context,
@@ -158,7 +157,7 @@ describe('ReactComponent', () => {
 
 	it('should pass depth to heading', () => {
 		const actual = shallow(
-			<ReactComponent component={component} depth={3} codeSamples={codeSamples} />,
+			<ReactComponent component={component} depth={3} codeSamples={codeSamples} propsMethods={propsMethods} />,
 			options
 		);
 
@@ -167,7 +166,7 @@ describe('ReactComponent', () => {
 
 	it('should not render heading as deprecated by default', () => {
 		const actual = shallow(
-			<ReactComponent component={component} depth={3} codeSamples={codeSamples} />,
+			<ReactComponent component={component} depth={3} codeSamples={codeSamples} propsMethods={propsMethods} />,
 			options
 		);
 

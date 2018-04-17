@@ -3,6 +3,7 @@
 exports[`getSections() should return an array 1`] = `
 Array [
   Object {
+    "codeSamples": "collapse",
     "components": Array [],
     "content": Object {
       "require": "!!~/loaders/examples-loader.js!~/test/components/Button/Readme.md",
@@ -10,10 +11,12 @@ Array [
     "description": undefined,
     "filepath": "components/Button/Readme.md",
     "name": "Readme",
+    "propsMethods": "collapse",
     "sections": Array [],
     "slug": "readme-1",
   },
   Object {
+    "codeSamples": "collapse",
     "components": Array [
       Object {
         "filepath": "components/Annotation/Annotation.js",
@@ -87,10 +90,12 @@ Array [
     "description": undefined,
     "filepath": undefined,
     "name": "Components",
+    "propsMethods": "collapse",
     "sections": Array [],
     "slug": "components-1",
   },
   Object {
+    "codeSamples": "collapse",
     "components": Array [
       Object {
         "filepath": "components/Button/Button.js",
@@ -151,6 +156,7 @@ Array [
     "description": undefined,
     "filepath": undefined,
     "name": "Ignore",
+    "propsMethods": "collapse",
     "sections": Array [],
     "slug": "ignore-1",
   },
@@ -159,6 +165,7 @@ Array [
 
 exports[`processSection() should return an object for section with components 1`] = `
 Object {
+  "codeSamples": "collapse",
   "components": Array [
     Object {
       "filepath": "components/Annotation/Annotation.js",
@@ -232,6 +239,7 @@ Object {
   "description": undefined,
   "filepath": undefined,
   "name": "Components",
+  "propsMethods": "collapse",
   "sections": Array [],
   "slug": "components",
 }
@@ -239,6 +247,7 @@ Object {
 
 exports[`processSection() should return an object for section with content 1`] = `
 Object {
+  "codeSamples": "collapse",
   "components": Array [],
   "content": Object {
     "require": "!!~/loaders/examples-loader.js!~/test/components/Button/Readme.md",
@@ -246,6 +255,7 @@ Object {
   "description": undefined,
   "filepath": "components/Button/Readme.md",
   "name": "Readme",
+  "propsMethods": "collapse",
   "sections": Array [],
   "slug": "readme",
 }
@@ -253,6 +263,7 @@ Object {
 
 exports[`processSection() should return an object for section without ignored components 1`] = `
 Object {
+  "codeSamples": "collapse",
   "components": Array [
     Object {
       "filepath": "components/Button/Button.js",
@@ -313,6 +324,7 @@ Object {
   "description": undefined,
   "filepath": undefined,
   "name": "Ignore",
+  "propsMethods": "collapse",
   "sections": Array [],
   "slug": "ignore",
 }
