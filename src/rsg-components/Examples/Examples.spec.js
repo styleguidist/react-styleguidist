@@ -8,17 +8,15 @@ const examples = [
 		type: 'code',
 		content: '<button>OK</button>',
 		evalInContext: noop,
-		codeSamples: 'collapse',
 	},
 	{
 		type: 'markdown',
 		content: 'Hello *world*!',
-		codeSamples: 'collapse',
 	},
 ];
 
 it('should render examples', () => {
-	const actual = shallow(<Examples examples={examples} name="button" />, {
+	const actual = shallow(<Examples examples={examples} name="button" codeSamples="collapse" />, {
 		context: {
 			codeRevision: 1,
 			displayMode: DisplayModes.example,
@@ -36,7 +34,7 @@ it('should not render a example with unknown type', () => {
 		},
 	];
 
-	const actual = mount(<Examples examples={faultyExample} name="button" />, {
+	const actual = mount(<Examples examples={faultyExample} name="button" codeSamples="collapse" />, {
 		context: {
 			codeRevision: 1,
 		},

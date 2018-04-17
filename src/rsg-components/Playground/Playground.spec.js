@@ -96,7 +96,7 @@ it('should open a code editor by default if showcode=true option passed in examp
 });
 
 it('should open a code editor by default if codeSamples="expand" option specified in style guide config', () => {
-	const actual = mount(<Playground codeSamples="expand" {...props} />, {
+	const actual = mount(<Playground {...props} codeSamples="expand" />, {
 		context: {
 			...options.context,
 			config: {
