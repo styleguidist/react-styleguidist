@@ -96,6 +96,7 @@ module.exports = function(config, env) {
 				compress: {
 					keep_fnames: true,
 					warnings: false,
+					reduce_funcs: false
 				},
 				mangle: {
 					keep_fnames: true,
