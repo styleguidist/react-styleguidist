@@ -22,7 +22,7 @@ exports[`render should render section 1`] = `
           examples={
             Array [
               Object {
-                "content": 
+                "content":
 <button>
   OK
 </button>
@@ -55,7 +55,7 @@ exports[`render should render section 1`] = `
     examples={
       Array [
         Object {
-          "content": 
+          "content":
 <button>
   OK
 </button>
@@ -126,10 +126,10 @@ exports[`should render components list 1`] = `
 <Styled(Section)
   components={
     <Components
-      codeSamples={undefined}
+      codeSamples="collapse"
       components={Array []}
       depth={4}
-      propsMethods={undefined}
+      propsMethods="collapse"
     />
   }
   depth={3}
@@ -155,7 +155,7 @@ exports[`should render section renderer 1`] = `
       examples={
         Array [
           Object {
-            "content": 
+            "content":
 <button>
   OK
 </button>
