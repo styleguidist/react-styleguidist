@@ -22,7 +22,7 @@ exports[`render should render section 1`] = `
           examples={
             Array [
               Object {
-                "content":
+                "content": 
 <button>
   OK
 </button>
@@ -55,7 +55,7 @@ exports[`render should render section 1`] = `
     examples={
       Array [
         Object {
-          "content":
+          "content": 
 <button>
   OK
 </button>
@@ -155,7 +155,7 @@ exports[`should render section renderer 1`] = `
       examples={
         Array [
           Object {
-            "content":
+            "content": 
 <button>
   OK
 </button>
