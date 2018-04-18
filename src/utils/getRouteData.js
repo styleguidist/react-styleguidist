@@ -46,9 +46,9 @@ export default function getRouteData(sections, hash, pagePerSection) {
 
 	// Filter the requested component if required
 	if (targetName) {
-		const filteredComponents = filterComponentsInSectionsByExactName(sections, targetName);
-		if (filteredComponents.length) {
-			sections = [{ components: filteredComponents }];
+		const filteredSections = filterComponentsInSectionsByExactName(sections, targetName);
+		if (filteredSections.length) {
+			sections = filteredSections;
 			displayMode = DisplayModes.component;
 		} else {
 			const section = findSection(sections, targetName);
@@ -58,8 +58,14 @@ export default function getRouteData(sections, hash, pagePerSection) {
 
 		// If a single component or section is filtered and a fenced block index is specified hide all other examples
 		if (isFinite(targetIndex)) {
-			if (filteredComponents.length === 1) {
-				sections = [{ components: [filterComponentExamples(filteredComponents[0], targetIndex)] }];
+			if (filteredSections.length === 1) {
+				const filteredComponents = filteredSections[0].components;
+				sections = [
+					{
+						...filteredSections[0],
+						components: [filterComponentExamples(filteredComponents[0], targetIndex)],
+					},
+				];
 				displayMode = DisplayModes.example;
 			} else if (sections.length === 1) {
 				sections = [filterSectionExamples(sections[0], targetIndex)];

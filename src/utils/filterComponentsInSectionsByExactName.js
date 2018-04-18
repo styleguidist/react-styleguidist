@@ -5,17 +5,24 @@ import filterComponentsByExactName from './filterComponentsByExactName';
  *
  * @param {object} sections
  * @param {string} name
- * @return {Array}
+ * @return {Array} sections
  */
 export default function filterComponentsInSectionsByExactName(sections, name) {
-	const components = [];
+	const output = [];
 	sections.forEach(section => {
 		if (section.components) {
-			components.push(...filterComponentsByExactName(section.components, name));
+			const components = filterComponentsByExactName(section.components, name);
+			if (components.length) {
+				output.push({
+					codeSamples: section.codeSamples,
+					propsMethods: section.propsMethods,
+					components,
+				});
+			}
 		}
 		if (section.sections) {
-			components.push(...filterComponentsInSectionsByExactName(section.sections, name));
+			output.push(...filterComponentsInSectionsByExactName(section.sections, name));
 		}
 	});
-	return components;
+	return output;
 }
