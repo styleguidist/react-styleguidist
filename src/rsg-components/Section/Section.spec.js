@@ -16,6 +16,8 @@ const options = {
 const section = {
 	name: 'Foo',
 	slug: 'foo',
+	codeSamples: 'collapse',
+	propsMethods: 'collapse',
 	description: 'This is a description',
 	content: [
 		{
@@ -44,6 +46,8 @@ it('should render components list', () => {
 			section={{
 				name: 'Components',
 				slug: 'components',
+				propsMethods: 'collapse',
+				codeSamples: 'collapse',
 				components: [],
 			}}
 			depth={3}
@@ -60,6 +64,8 @@ it('should not render components list if not defined', () => {
 			section={{
 				name: 'No components',
 				slug: 'no-components',
+				propsMethods: 'collapse',
+				codeSamples: 'collapse',
 			}}
 			depth={3}
 		/>,
@@ -75,6 +81,8 @@ it('should render sections if defined', () => {
 			section={{
 				name: 'Nested sections',
 				slug: 'nested-sections',
+				propsMethods: 'collapse',
+				codeSamples: 'collapse',
 				sections: [],
 			}}
 			depth={3}
@@ -91,6 +99,8 @@ it('should not render sections if not defined', () => {
 			section={{
 				name: 'No sections',
 				slug: 'no-sections',
+				propsMethods: 'collapse',
+				codeSamples: 'collapse',
 			}}
 			depth={3}
 		/>,
@@ -106,6 +116,8 @@ test('should not render section in isolation mode by default', () => {
 			section={{
 				name: 'A',
 				slug: 'a',
+				propsMethods: 'collapse',
+				codeSamples: 'collapse',
 			}}
 			depth={3}
 		/>,
@@ -121,6 +133,8 @@ test('should render section in isolation mode', () => {
 			section={{
 				name: 'A',
 				slug: 'a',
+				propsMethods: 'collapse',
+				codeSamples: 'collapse',
 			}}
 			depth={3}
 		/>,
@@ -141,8 +155,21 @@ it('render should render section', () => {
 			classes={{}}
 			name={section.name}
 			slug={section.slug}
-			content={<Examples name={section.name} examples={section.content} />}
-			components={<Components components={[]} depth={3} />}
+			content={
+				<Examples
+					name={section.name}
+					examples={section.content}
+					codeSamples={section.codeSamples}
+				/>
+			}
+			components={
+				<Components
+					components={[]}
+					depth={3}
+					propsMethods={section.propsMethods}
+					codeSamples={section.codeSamples}
+				/>
+			}
 			sections={<Sections sections={[]} depth={3} />}
 			depth={3}
 		/>,

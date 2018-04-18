@@ -23,6 +23,10 @@ module.exports = {
 		type: 'existing directory path',
 		example: 'assets',
 	},
+	codeSamples: {
+		type: 'string',
+		default: 'collapse',
+	},
 	compilerConfig: {
 		type: 'object',
 		default: {
@@ -144,6 +148,10 @@ module.exports = {
 	propsParser: {
 		type: 'function',
 	},
+	propsMethods: {
+		type: 'string',
+		default: 'collapse',
+	},
 	require: {
 		type: 'array',
 		default: [],
@@ -204,10 +212,12 @@ module.exports = {
 	showCode: {
 		type: 'boolean',
 		default: false,
+		deprecated: 'Use codeSamples option instead',
 	},
 	showUsage: {
 		type: 'boolean',
 		default: false,
+		deprecated: 'Use propsMethods option instead',
 	},
 	showSidebar: {
 		type: 'boolean',
