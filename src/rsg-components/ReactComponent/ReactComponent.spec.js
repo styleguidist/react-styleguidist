@@ -191,6 +191,7 @@ describe('ReactComponent', () => {
 				}}
 				depth={3}
 				codeSamples={codeSamples}
+				propsMethods={propsMethods}
 			/>,
 			options
 		);
