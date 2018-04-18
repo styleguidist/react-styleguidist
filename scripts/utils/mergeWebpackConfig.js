@@ -12,6 +12,7 @@ const IGNORE_SECTIONS_ENV = {
 
 const IGNORE_PLUGINS = [
 	'CommonsChunkPlugins',
+	'MiniHtmlWebpackPlugin',
 	'HtmlWebpackPlugin',
 	'OccurrenceOrderPlugin',
 	'DedupePlugin',
