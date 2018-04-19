@@ -2,7 +2,6 @@ const path = require('path');
 
 module.exports = {
 	title: 'React Style Guide Example',
-	pagePerSection: true,
 	sections: [
 		{
 			name: 'Documentation',
@@ -34,7 +33,7 @@ module.exports = {
 				{
 					name: 'Buttons',
 					components: () => ['./src/components/Button/Button.js'],
-					codeSamples: 'hide', // 'hide' | 'collapse' | 'expand'
+					codeSamples: 'expand', // 'hide' | 'collapse' | 'expand'
 					propsMethods: 'hide', // 'hide' | 'collapse' | 'expand'
 				},
 				{

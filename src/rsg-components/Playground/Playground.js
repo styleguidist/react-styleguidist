@@ -67,12 +67,13 @@ export default class Playground extends Component {
 		const { code, activeTab } = this.state;
 		const { evalInContext, index, name, settings, codeSamples } = this.props;
 		const { displayMode } = this.context;
-		const hideEditor = codeSamples === CodeSamplesModes.hide;
+		const isSampleHide = codeSamples === CodeSamplesModes.hide;
+		const hideEditor = settings.noeditor || isSampleHide;
 		const preview = <Preview code={code} evalInContext={evalInContext} />;
-		if (settings.noeditor || hideEditor) {
-			return <Para>{preview}</Para>;
-		}
-		return (
+
+		return hideEditor ? (
+			<Para>{preview}</Para>
+		) : (
 			<PlaygroundRenderer
 				name={name}
 				preview={preview}
