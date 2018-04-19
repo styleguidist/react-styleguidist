@@ -195,7 +195,9 @@ function printServerInstructions(config, options) {
 	console.log(`You can now view your style guide in the browser:`);
 	console.log();
 	console.log(`  ${chalk.bold('Local:')}            ${urls.localUrlForTerminal}`);
-	console.log(`  ${chalk.bold('On your network:')}  ${urls.lanUrlForTerminal}`);
+	if (urls.lanUrlForTerminal) {
+		console.log(`  ${chalk.bold('On your network:')}  ${urls.lanUrlForTerminal}`);
+	}
 	console.log();
 }
 
