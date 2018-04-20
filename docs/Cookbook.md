@@ -482,21 +482,17 @@ See [working with third-party libraries](Thirdparties.md).
 
 ## How to change the names of components displayed in Styleguidist UI?
 
-Often you might want to change your components' names to be displayed differently, for example, for stylistic purposes or to give them a more descriptive names in your styleguide.
+You might want to change your components' names to be displayed differently, for example, for stylistic purposes or to give them a more descriptive names in your styleguide.
 
-This can be done by adding [@visibleName](Documenting.md#-visiblename-custom-tag) tag to your component documentation.
+This can be done by adding [@visibleName](Documenting.md#defining-custom-component-names) tag to your component documentation.
 
-In case you want to change components' names in bulk, for example, based on their current name, you can utilize [updateDocs](Configuration.md#updatedocs) configuration option.
-
-Here's an example of how this can be achieved:
+In case you want to change components' names in bulk, for example, based on their current name, you can use [updateDocs](Configuration.md#updatedocs) config option:
 
 ```javascript
-const _ = require('lodash')
-
 module.exports = {
   updateDocs(docs) {
     if (docs && docs.displayName) {
-      docs.visibleName = _.lowerCase(docs.displayName)
+      docs.visibleName = docs.displayName.toLowerCase()
     }
     return docs
   }

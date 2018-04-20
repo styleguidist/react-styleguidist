@@ -13,6 +13,7 @@ Styleguidist generates documentation for your components based on the comments i
 * [External examples using doclet tags](#external-examples-using-doclet-tags)
 * [Public methods](#public-methods)
 * [Ignoring props](#ignoring-props)
+* [Defining custom component names](#defining-custom-component-names)
 * [Using JSDoc tags](#using-jsdoc-tags)
 * [Writing code examples](#writing-code-examples)
 * [Limitations](#limitations)
@@ -143,6 +144,21 @@ MyComponent.propTypes = {
 }
 ```
 
+## Defining custom component names
+
+Use @visibleName JSDoc tag to define component names that are used in the Styleguidist UI:
+
+```javascript
+/**
+ * The only true button.
+ *
+ * @visibleName The Best Button Ever 🐙
+ */
+class Button extends React.Component {
+```
+
+Now the component will be displayed with a custom 'The Bust Button Ever🐙' name and this will not change the name of the component that is used in the JSX.
+
 ## Using JSDoc tags
 
 You can use the following [JSDoc](http://usejsdoc.org/) tags when documenting components, props and methods:
@@ -152,7 +168,6 @@ You can use the following [JSDoc](http://usejsdoc.org/) tags when documenting co
 * [@author](http://usejsdoc.org/tags-author.html)
 * [@since](http://usejsdoc.org/tags-since.html)
 * [@version](http://usejsdoc.org/tags-version.html)
-* [@visibleName](#-visiblename-custom-tag)
 
 When documenting props you can also use:
 
@@ -203,23 +218,6 @@ class Button extends React.Component {
   }
 }
 ```
-
-### @visibleName custom tag
-
-Apart from most of the jsDocs tags that can be used with RSG, @visibleName is not present in jsDoc specs. This is a custom tag, that we have added to provide users with a way to define names for components to be used in the UI.
-
-Let's take a look at the example:
-
-```javascript
-/**
- * The only true button.
- *
- * @visibleName The Best Button Ever 🐙
- */
-class Button extends React.Component {
-```
-
-By defining the @visibleName tag above, you let the Styleguidist know that this name should be used whenever the component is displayed in the UI as 'The Best Button Ever 🐙' instead of it's original 'Button' name.
 
 ## Writing code examples
 
