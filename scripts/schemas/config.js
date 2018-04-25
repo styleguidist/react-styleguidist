@@ -146,7 +146,7 @@ module.exports = {
 	},
 	publicPath: {
 		type: 'directory path',
-		default: '',
+		default: undefined,
 	},
 	require: {
 		type: 'array',
