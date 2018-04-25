@@ -145,7 +145,7 @@ module.exports = {
 		type: 'function',
 	},
 	publicPath: {
-		type: 'directory path',
+		type: 'string',
 		default: undefined,
 	},
 	require: {
