@@ -1,0 +1,17 @@
+{
+  "name": "react-styleguidist-plugin-tableofcontents",
+  "version": "8.0.0",
+  "source": "src",
+  "main": "lib",
+  "scripts": {
+    "build": "rsg-builder"
+  },
+  "devDependencies": {
+    "react-styleguidist-builder": "^8.0.0"
+  },
+  "dependencies": {
+    "react-styleguidist-plugin-componentslist":"^8.0.0",
+    "react-styleguidist-plugin-styled":"^8.0.0",
+    "react-styleguidist-utils":"^8.0.0"
+  }
+}

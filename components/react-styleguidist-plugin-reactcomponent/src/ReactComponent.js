@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Examples from 'rsg-components/Examples';
-import SectionHeading from 'rsg-components/SectionHeading';
-import JsDoc from 'rsg-components/JsDoc';
-import Markdown from 'rsg-components/Markdown';
-import Slot from 'rsg-components/Slot';
-import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponentRenderer';
+import Examples from 'react-styleguidist-plugin-examples'
+import SectionHeading from 'react-styleguidist-plugin-sectionheading'
+import JsDoc from 'react-styleguidist-plugin-jsdoc'
+import Markdown from 'react-styleguidist-plugin-markdown'
+import Slot from 'react-styleguidist-plugin-slot'
+import ReactComponentRenderer from 'react-styleguidist-plugin-reactcomponent/reactcomponentrenderer'
 import { DOCS_TAB_USAGE } from '../slots';
 import { DisplayModes } from '../../consts';
 

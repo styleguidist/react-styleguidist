@@ -1,11 +1,21 @@
 {
   "name": "react-styleguidist-builder",
+  "version": "8.0.0",
   "bin": {
     "rsg-builder": "./bin/builder.js"
   },
   "description": "Build tool for React Style Guidist",
   "dependencies": {
-    "mrbuilder":"^2.1.0",
+    "react-group": "^1.0.6",
+    "react-icons": "^2.2.7",
+    "mrbuilder-plugin-babel": "^2.1.0",
+    "mrbuilder-plugin-css": "^2.1.0",
+    "mrbuilder-plugin-env": "^2.1.0",
+    "mrbuilder-plugin-filetypes": "^2.1.0",
+    "mrbuilder-plugin-fonts": "^2.1.0",
+    "mrbuilder-plugin-react": "^2.1.0",
+    "mrbuilder-plugin-webpack": "^2.1.0",
+    "mrbuilder": "^2.1.0",
     "@vxna/mini-html-webpack-template": "^0.1.6",
     "acorn": "^5.5.3",
     "ast-types": "^0.11.3",
@@ -56,10 +66,12 @@
     "remark": "^9.0.0",
     "to-ast": "^1.0.0",
     "type-detect": "^4.0.8",
-    "unist-util-visit": "^1.3.0",
+    "unist-util-visit": "^1.3.0"
   },
   "peerDependencies": {
     "react": ">=15",
     "react-dom": ">=15"
-  }
+  },
+  "source": "src",
+  "main": "src"
 }

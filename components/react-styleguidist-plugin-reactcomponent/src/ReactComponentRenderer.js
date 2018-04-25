@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Pathline from 'rsg-components/Pathline';
-import Styled from 'rsg-components/Styled';
+import Pathline from 'react-styleguidist-plugin-pathline'
+import Styled from 'react-styleguidist-plugin-styled'
 
 const styles = ({ color, fontSize, space }) => ({
 	root: {

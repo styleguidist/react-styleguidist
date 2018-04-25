@@ -79,13 +79,14 @@
     ]
   },
   "workspaces": [
-    "components/*",
+    "react-styleguidist-builder",
+    "common",
     "utils",
     "styles",
-    "loaders",
-    "common"
+    "components/*"
   ],
   "dependencies": {
-    "lerna": "^2.11.0"
+    "lerna": "^2.11.0",
+    "mrbuilder-tool": "^2.1.0"
   }
 }

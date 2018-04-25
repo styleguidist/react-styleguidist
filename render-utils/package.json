@@ -1,0 +1,18 @@
+{
+  "name": "react-styleguidist-render-utils",
+  "version": "8.0.0",
+  "source": "src",
+  "main": "lib",
+  "devDependencies": {
+    "react-styleguidist-builder": "^8.0.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.10",
+    "acorn": "^5.5.3",
+    "react-styleguidist-common": "^8.0.0",
+    "react-styleguidist-utils": "^8.0.0"
+  },
+  "scripts": {
+    "prepublish": "rsg-builder"
+  }
+}

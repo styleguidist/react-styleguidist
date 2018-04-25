@@ -1,0 +1,18 @@
+{
+  "name": "react-styleguidist-plugin-playground",
+  "version": "8.0.0",
+  "source": "src",
+  "main": "lib",
+  "scripts": {
+    "build": "rsg-builder"
+  },
+  "devDependencies": {
+    "react-styleguidist-builder": "^8.0.0"
+  },
+  "dependencies": {
+    "react-styleguidist-plugin-para":"^8.0.0",
+    "react-styleguidist-plugin-preview":"^8.0.0",
+    "react-styleguidist-plugin-slot":"^8.0.0",
+    "react-styleguidist-plugin-styled": "^8.0.0"
+  }
+}

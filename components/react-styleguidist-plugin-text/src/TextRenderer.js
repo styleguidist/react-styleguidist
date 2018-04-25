@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Styled from 'rsg-components/Styled';
+import Styled from 'react-styleguidist-plugin-styled'
 import cx from 'classnames';
 
 export const styles = ({ fontFamily, fontSize, color }) => ({

@@ -1,7 +1,7 @@
 import React from 'react';
-import ComponentsListRenderer from 'rsg-components/ComponentsList/ComponentsListRenderer';
+import ComponentsListRenderer from './ComponentsListRenderer'
 import PropTypes from 'prop-types';
-import getUrl from '../../utils/getUrl';
+import {getUrl} from 'react-styleguidist-utils';
 
 function ComponentsList({ classes, items, useIsolatedLinks = false }) {
 	const mappedItems = items.map(item => ({

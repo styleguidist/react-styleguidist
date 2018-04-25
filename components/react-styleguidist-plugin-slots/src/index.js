@@ -1,5 +1,5 @@
-import Editor from 'rsg-components/Editor';
-import Usage from 'rsg-components/Usage';
+import Editor from 'react-styleguidist-plugin-editor';
+import Usage from 'react-styleguidist-plugin-usage';
 import IsolateButton from './IsolateButton';
 import CodeTabButton from './CodeTabButton';
 import UsageTabButton from './UsageTabButton';

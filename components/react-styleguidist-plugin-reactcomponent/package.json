@@ -1,0 +1,21 @@
+{
+  "name": "react-styleguidist-plugin-reactcomponent",
+  "version": "8.0.0",
+  "source": "src",
+  "main": "lib",
+  "scripts": {
+    "build": "rsg-builder"
+  },
+  "devDependencies": {
+    "react-styleguidist-builder": "^8.0.0"
+  },
+  "dependencies": {
+    "react-styleguidist-plugin-examples": "^8.0.0",
+    "react-styleguidist-plugin-jsdoc": "^8.0.0",
+    "react-styleguidist-plugin-markdown": "^8.0.0",
+    "react-styleguidist-plugin-pathline": "^8.0.0",
+    "react-styleguidist-plugin-sectionheading": "^8.0.0",
+    "react-styleguidist-plugin-slot": "^8.0.0",
+    "react-styleguidist-plugin-styled": "^8.0.0"
+  }
+}

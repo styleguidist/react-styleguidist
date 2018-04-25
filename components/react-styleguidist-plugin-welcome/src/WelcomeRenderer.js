@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Markdown from 'rsg-components/Markdown';
-import Styled from 'rsg-components/Styled';
+import Markdown from 'react-styleguidist-plugin-markdown'
+import Styled from 'react-styleguidist-plugin-styled'
 import { DOCS_COMPONENTS } from '../../../scripts/consts';
 
 const styles = ({ space, maxWidth }) => ({

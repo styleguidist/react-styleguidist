@@ -1,0 +1,22 @@
+{
+  "name": "react-styleguidist-plugin-methods",
+  "version": "8.0.0",
+  "source": "src",
+  "main": "lib",
+  "scripts": {
+    "build": "rsg-builder"
+  },
+  "devDependencies": {
+    "react-styleguidist-builder": "^8.0.0"
+  },
+  "dependencies": {
+    "react-docgen":"^2.20.1",
+    "react-styleguidist-plugin-argument":"^8.0.0",
+    "react-styleguidist-plugin-arguments":"^8.0.0",
+    "react-styleguidist-plugin-jsdoc":"^8.0.0",
+    "react-styleguidist-plugin-markdown":"^8.0.0",
+    "react-styleguidist-plugin-name":"^8.0.0",
+    "react-styleguidist-plugin-table":"^8.0.0",
+    "react-styleguidist-plugin-styled": "^8.0.0"
+  }
+}

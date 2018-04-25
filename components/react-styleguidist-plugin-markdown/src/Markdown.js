@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
 import { compiler } from 'markdown-to-jsx';
-import Link from 'rsg-components/Link';
-import Text from 'rsg-components/Text';
-import Para from 'rsg-components/Para';
-import MarkdownHeading from 'rsg-components/Markdown/MarkdownHeading';
-import List from 'rsg-components/Markdown/List';
-import Blockquote from 'rsg-components/Markdown/Blockquote';
-import Pre from 'rsg-components/Markdown/Pre';
-import Code from 'rsg-components/Code';
-import Checkbox from 'rsg-components/Markdown/Checkbox';
-import Hr from 'rsg-components/Markdown/Hr';
-import { Table, TableHead, TableBody, TableRow, TableCell } from 'rsg-components/Markdown/Table';
+import Link from 'react-styleguidist-plugin-link';
+import Text from 'react-styleguidist-plugin-text';
+import Para from 'react-styleguidist-plugin-para';
+import MarkdownHeading from './MarkdownHeading';
+import List from './List';
+import Blockquote from './Blockquote';
+import Pre from './Pre';
+import Code from 'react-styleguidist-plugin-code';
+import Checkbox from 'react-styleguidist-plugin-markdown/Checkbox';
+import Hr from 'react-styleguidist-plugin-markdown/Hr';
+import { Table, TableHead, TableBody, TableRow, TableCell } from 'react-styleguidist-plugin-markdown/table'
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
 // That way we could avoid clashes between our loaders and user loaders.

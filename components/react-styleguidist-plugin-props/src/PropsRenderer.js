@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Group from 'react-group';
 import objectToString from 'javascript-stringify';
-import Arguments from 'rsg-components/Arguments';
-import Argument from 'rsg-components/Argument';
-import Code from 'rsg-components/Code';
-import JsDoc from 'rsg-components/JsDoc';
-import Markdown from 'rsg-components/Markdown';
-import Name from 'rsg-components/Name';
-import Type from 'rsg-components/Type';
-import Text from 'rsg-components/Text';
-import Para from 'rsg-components/Para';
-import Table from 'rsg-components/Table';
+import Arguments from 'react-styleguidist-plugin-arguments'
+import Argument from 'react-styleguidist-plugin-argument'
+import Code from 'react-styleguidist-plugin-code'
+import JsDoc from 'react-styleguidist-plugin-jsdoc'
+import Markdown from 'react-styleguidist-plugin-markdown'
+import Name from 'react-styleguidist-plugin-name'
+import Type from 'react-styleguidist-plugin-type'
+import Text from 'react-styleguidist-plugin-text'
+import Para from 'react-styleguidist-plugin-para'
+import Table from 'react-styleguidist-plugin-table'
 import { unquote, getType, showSpaces } from './util';
 
 function renderType(type) {

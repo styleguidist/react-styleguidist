@@ -1,0 +1,20 @@
+{
+  "name": "react-styleguidist-plugin-slots",
+  "version": "8.0.0",
+  "source": "src",
+  "main": "lib",
+  "scripts": {
+    "build": "rsg-builder"
+  },
+  "devDependencies": {
+    "react-styleguidist-builder": "^8.0.0"
+  },
+  "dependencies": {
+    "react-styleguidist-plugin-editor":"^8.0.0",
+    "react-styleguidist-plugin-usage":"^8.0.0",
+    "react-styleguidist-plugin-styled": "^8.0.0",
+    "react-styleguidist-plugin-tabbutton": "^8.0.0",
+    "react-styleguidist-utils": "^8.0.0",
+    "react-styleguidist-plugin-toolbarbutton": "^8.0.0"
+  }
+}

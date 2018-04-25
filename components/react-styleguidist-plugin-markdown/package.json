@@ -1,0 +1,21 @@
+{
+  "name": "react-styleguidist-plugin-markdown",
+  "version": "8.0.0",
+  "source": "src",
+  "main": "lib",
+  "scripts": {
+    "build": "rsg-builder"
+  },
+  "devDependencies": {
+    "react-styleguidist-builder": "^8.0.0"
+  },
+  "dependencies": {
+    "react-styleguidist-plugin-styled": "^8.0.0",
+    "markdown-to-jsx": "^6.6.1",
+    "react-styleguidist-plugin-code": "^8.0.0",
+    "react-styleguidist-plugin-heading": "^8.0.0",
+    "react-styleguidist-plugin-link": "^8.0.0",
+    "react-styleguidist-plugin-para": "^8.0.0",
+    "react-styleguidist-plugin-text": "^8.0.0"
+  }
+}

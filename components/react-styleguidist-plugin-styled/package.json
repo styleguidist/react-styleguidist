@@ -1,0 +1,15 @@
+{
+  "name": "react-styleguidist-plugin-styled",
+  "version": "8.0.0",
+  "source": "src",
+  "main": "lib",
+  "scripts": {
+    "build": "rsg-builder"
+  },
+  "devDependencies": {
+    "react-styleguidist-builder": "^8.0.0"
+  },
+  "dependencies": {
+    "react-styleguidist-styles": "^8.0.0"
+  }
+}

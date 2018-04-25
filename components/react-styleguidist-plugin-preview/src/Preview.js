@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { transform } from 'buble';
-import PlaygroundError from 'rsg-components/PlaygroundError';
-import Wrapper from 'rsg-components/Wrapper';
+import PlaygroundError from 'react-styleguidist-plugin-playgrounderror'
+import Wrapper from 'react-styleguidist-plugin-wrapper'
 import splitExampleCode from '../../utils/splitExampleCode';
 
 /* eslint-disable no-invalid-this, react/no-multi-comp */

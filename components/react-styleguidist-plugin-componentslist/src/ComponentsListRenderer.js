@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import Link from 'rsg-components/Link';
-import Styled from 'rsg-components/Styled';
+import Link from 'react-styleguidist-plugin-link'
+import Styled from 'react-styleguidist-plugin-styled'
 
 const styles = ({ color, fontFamily, fontSize, space, mq }) => ({
 	list: {

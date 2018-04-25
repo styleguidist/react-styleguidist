@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Slot from 'rsg-components/Slot';
-import SectionHeadingRenderer from 'rsg-components/SectionHeading/SectionHeadingRenderer';
+import Slot from 'react-styleguidist-plugin-slot'
+import SectionHeadingRenderer from 'react-styleguidist-plugin-sectionheading/sectionheadingrenderer'
 import getUrl from '../../utils/getUrl';
 
 export default function SectionHeading({ slotName, slotProps, children, id, ...rest }) {

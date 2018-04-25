@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Playground from 'rsg-components/Playground';
-import Markdown from 'rsg-components/Markdown';
-import ExamplesRenderer from 'rsg-components/Examples/ExamplesRenderer';
+import Playground from 'react-styleguidist-plugin-playground';
+import Markdown from 'react-styleguidist-plugin-markdown';
+import ExamplesRenderer from './ExamplesRenderer';
 
 export default function Examples({ examples, name }, { codeRevision }) {
 	return (

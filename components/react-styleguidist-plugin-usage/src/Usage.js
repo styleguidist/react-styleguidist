@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Props from 'rsg-components/Props';
-import Methods from 'rsg-components/Methods';
+import Props from 'react-styleguidist-plugin-props'
+import Methods from 'react-styleguidist-plugin-methods'
 
 export default function Usage({ props: { props, methods } }) {
 	const propsNode = props && <Props props={props} />;

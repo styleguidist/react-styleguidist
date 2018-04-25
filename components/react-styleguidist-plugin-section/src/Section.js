@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Examples from 'rsg-components/Examples';
-import Components from 'rsg-components/Components';
-import Sections from 'rsg-components/Sections';
-import SectionRenderer from 'rsg-components/Section/SectionRenderer';
-import { DisplayModes } from '../../consts';
+import Examples from 'react-styleguidist-plugin-examples'
+import Components from 'react-styleguidist-plugin-components'
+import Sections from 'react-styleguidist-plugin-sections'
+import SectionRenderer from './SectionRenderer'
+import { DisplayModes } from 'react-styleguidist-common';
 
 export default function Section({ section, depth }, { displayMode }) {
 	const { name, slug, filepath, content, components, sections, description } = section;

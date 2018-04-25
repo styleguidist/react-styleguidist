@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactComponent from 'rsg-components/ReactComponent';
-import ComponentsRenderer from 'rsg-components/Components/ComponentsRenderer';
+import ReactComponent from 'react-styleguidist-plugin-reactcomponent';
+import ComponentsRenderer from './ComponentsRenderer';
 
 export default function Components({ components, depth }) {
 	return (

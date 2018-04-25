@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import MdContentCopy from 'react-icons/lib/md/content-copy';
-import ToolbarButton from 'rsg-components/ToolbarButton';
-import Styled from 'rsg-components/Styled';
+import ToolbarButton from 'react-styleguidist-plugin-toolbarbutton'
+import Styled from 'react-styleguidist-plugin-styled'
 
 export const styles = ({ space, fontFamily, fontSize, color }) => ({
 	pathline: {

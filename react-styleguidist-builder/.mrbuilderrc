@@ -1,0 +1,67 @@
+{
+  "plugins": [
+	"mrbuilder-plugin-babel",
+	"mrbuilder-plugin-react",
+	"mrbuilder-plugin-browserslist",
+	"mrbuilder-plugin-env",
+	"mrbuilder-plugin-fonts",
+	"mrbuilder-plugin-filetypes",
+	[
+	  "mrbuilder-plugin-css",
+	  {
+		"useNameHash": "style.css",
+		"useStyleLoader": false
+	  }
+	],
+	[
+	  "mrbuilder-plugin-webpack",
+	  {
+		"externalizePeers": true,
+		"libraryTarget": "umd",
+		"useExternals": true,
+		"mode": "none",
+		"alias": {
+		  "rsg-components/Argument/ArgumentRenderer": "react-styleguidist-plugin-argument",
+		  "rsg-components/Arguments/ArgumentsRenderer": "react-styleguidist-plugin-arguments",
+		  "rsg-components/Code/CodeRenderer": "react-styleguidist-plugin-code",
+		  "rsg-components/ComponentsList/ComponentsList": "react-styleguidist-plugin-componentslist",
+		  "rsg-components/Editor/EditorLoader": "react-styleguidist-plugin-editor",
+		  "rsg-components/Error/ErrorRenderer": "react-styleguidist-plugin-error",
+		  "rsg-components/ExamplePlaceholder/ExamplePlaceholderRenderer": "react-styleguidist-plugin-exampleplaceholder",
+		  "rsg-components/Examples/Examples": "react-styleguidist-plugin-examples",
+		  "rsg-components/Heading/HeadingRenderer": "react-styleguidist-plugin-heading",
+		  "rsg-components/JsDoc/JsDoc": "react-styleguidist-plugin-jsdoc",
+		  "rsg-components/Link/LinkRenderer": "react-styleguidist-plugin-link",
+		  "rsg-components/Logo/LogoRenderer": "react-styleguidist-plugin-logo",
+		  "rsg-components/Markdown/Markdown": "react-styleguidist-plugin-markdown",
+		  "rsg-components/Message/MessageRenderer": "react-styleguidist-plugin-message",
+		  "rsg-components/Methods/MethodsRenderer": "react-styleguidist-plugin-methods",
+		  "rsg-components/Name/NameRenderer": "react-styleguidist-plugin-name",
+		  "rsg-components/Para/ParaRenderer": "react-styleguidist-plugin-para",
+		  "rsg-components/Pathline/PathlineRenderer": "react-styleguidist-plugin-pathline",
+		  "rsg-components/Playground/Playground": "react-styleguidist-plugin-playground",
+		  "rsg-components/PlaygroundError/PlaygroundErrorRenderer": "react-styleguidist-plugin-playgrounderror",
+		  "rsg-components/Preview/Preview": "react-styleguidist-plugin-preview",
+		  "rsg-components/Props/PropsRenderer": "react-styleguidist-plugin-props",
+		  "rsg-components/ReactComponent/ReactComponent": "react-styleguidist-plugin-reactcomponent",
+		  "rsg-components/Ribbon/Ribbon": "react-styleguidist-plugin-ribbon",
+		  "rsg-components/Section/Section": "react-styleguidist-plugin-section",
+		  "rsg-components/SectionHeading/SectionHeading": "react-styleguidist-plugin-sectionheading",
+		  "rsg-components/Sections/Sections": "react-styleguidist-plugin-sections",
+		  "rsg-components/Slot/Slot": "react-styleguidist-plugin-slot",
+		  "rsg-components/Styled/Styled": "react-styleguidist-plugin-styled",
+		  "rsg-components/StyleGuide/StyleGuide": "react-styleguidist-plugin-styleguide",
+		  "rsg-components/TabButton/TabButtonRenderer": "react-styleguidist-plugin-tabbutton",
+		  "rsg-components/Table/TableRenderer": "react-styleguidist-plugin-table",
+		  "rsg-components/TableOfContents/TableOfContents": "react-styleguidist-plugin-tableofcontents",
+		  "rsg-components/Text/TextRenderer": "react-styleguidist-plugin-text",
+		  "rsg-components/ToolbarButton/ToolbarButtonRenderer": "react-styleguidist-plugin-toolbarbutton",
+		  "rsg-components/Type/TypeRenderer": "react-styleguidist-plugin-type",
+		  "rsg-components/Usage/Usage": "react-styleguidist-plugin-usage",
+		  "rsg-components/Welcome/WelcomeRenderer": "react-styleguidist-plugin-welcome",
+		  "rsg-components/Wrapper/Wrapper": "react-styleguidist-plugin-wrapper"
+		}
+	  }
+	]
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "react-styleguidist-common",
+  "version": "8.0.0",
+  "devDependencies": {
+    "react-styleguidist-builder": "^8.0.0"
+  },
+  "source": "src",
+  "main": "lib",
+  "scripts": {
+    "prepublish": "rsg-builder",
+    "build": "rsg-builder"
+  }
+}

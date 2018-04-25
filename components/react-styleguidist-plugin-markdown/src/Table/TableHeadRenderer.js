@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Styled from 'rsg-components/Styled';
+import Styled from 'react-styleguidist-plugin-styled'
 
 const styles = ({ color }) => ({
 	thead: {

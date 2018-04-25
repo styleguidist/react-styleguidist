@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Markdown from 'rsg-components/Markdown';
+import Markdown from 'react-styleguidist-plugin-markdown'
 import map from 'lodash/map';
 
 const plural = (array, caption) => (array.length === 1 ? caption : `${caption}s`);

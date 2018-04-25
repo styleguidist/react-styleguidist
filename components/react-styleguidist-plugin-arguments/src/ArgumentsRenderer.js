@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Argument from 'rsg-components/Argument';
-import Heading from 'rsg-components/Heading';
-import Styled from 'rsg-components/Styled';
+import Argument from 'react-styleguidist-plugin-argument'
+import Heading from 'react-styleguidist-plugin-heading'
+import Styled from 'react-styleguidist-plugin-styled'
 
 export const styles = ({ space }) => ({
 	root: {

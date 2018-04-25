@@ -1,4 +1,5 @@
 node_modules/
+**/lib
 /examples/**/styleguide/build
 /examples/**/styleguide/index.html
 /.publish/

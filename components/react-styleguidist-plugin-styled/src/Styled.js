@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import createStyleSheet from '../../styles/createStyleSheet';
+import {createStyleSheet} from 'react-styleguidist-styles';
 
 export default styles => WrappedComponent => {
 	const componentName = WrappedComponent.name.replace(/Renderer$/, '');

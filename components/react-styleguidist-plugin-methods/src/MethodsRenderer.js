@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Markdown from 'rsg-components/Markdown';
-import Argument from 'rsg-components/Argument';
-import Arguments from 'rsg-components/Arguments';
-import Name from 'rsg-components/Name';
-import JsDoc from 'rsg-components/JsDoc';
-import Table from 'rsg-components/Table';
+import Markdown from 'react-styleguidist-plugin-markdown'
+import Argument from 'react-styleguidist-plugin-argument'
+import Arguments from 'react-styleguidist-plugin-arguments'
+import Name from 'react-styleguidist-plugin-name'
+import JsDoc from 'react-styleguidist-plugin-jsdoc'
+import Table from 'react-styleguidist-plugin-table'
 
 const getRowKey = row => row.name;
 

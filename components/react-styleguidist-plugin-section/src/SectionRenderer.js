@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Styled from 'rsg-components/Styled';
-import SectionHeading from 'rsg-components/SectionHeading';
-import Markdown from 'rsg-components/Markdown';
+import Styled from 'react-styleguidist-plugin-styled'
+import SectionHeading from 'react-styleguidist-plugin-sectionheading'
+import Markdown from 'react-styleguidist-plugin-markdown'
 
 const styles = ({ space }) => ({
 	root: {

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Styled from 'rsg-components/Styled';
-import Markdown from 'rsg-components/Markdown';
-import Name from 'rsg-components/Name';
-import Type from 'rsg-components/Type';
+import Styled from 'react-styleguidist-plugin-styled'
+import Markdown from 'react-styleguidist-plugin-markdown'
+import Name from 'react-styleguidist-plugin-name'
+import Type from 'react-styleguidist-plugin-type'
 import Group from 'react-group';
 
 export const styles = ({ space }) => ({

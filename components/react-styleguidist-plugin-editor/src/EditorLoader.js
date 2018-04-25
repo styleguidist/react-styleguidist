@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EditorLoaderRenderer from 'rsg-components/Editor/EditorLoaderRenderer';
+import EditorLoaderRenderer from './EditorLoaderRenderer';
 
 export default class EditorLoader extends Component {
 	state = {

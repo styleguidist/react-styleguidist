@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ComponentsList from 'rsg-components/ComponentsList';
-import TableOfContentsRenderer from 'rsg-components/TableOfContents/TableOfContentsRenderer';
-import filterSectionsByName from '../../utils/filterSectionsByName';
+import ComponentsList from 'react-styleguidist-plugin-componentslist';
+import TableOfContentsRenderer from './TableOfContentsRenderer';
+import {filterSectionsByName} from 'react-styleguidist-utils';
 
 export default class TableOfContents extends Component {
 	static propTypes = {

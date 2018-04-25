@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Styled from 'rsg-components/Styled';
-import Markdown from 'rsg-components/Markdown';
-import { DOCS_DOCUMENTING } from '../../../scripts/consts';
+import Styled from 'react-styleguidist-plugin-styled';
+import Markdown from 'react-styleguidist-plugin-markdown';
+import { constants } from 'react-styleguidist-common';
+
+const { DOCS_DOCUMENTING } = constants;
 
 const styles = ({ fontFamily, fontSize, color }) => ({
 	button: {
-		padding: 0,
-		fontSize: fontSize.base,
-		fontFamily: fontFamily.base,
-		textDecoration: 'underline',
-		color: color.light,
-		border: 0,
-		cursor: 'pointer',
-		background: 'transparent',
+		padding            : 0,
+		fontSize           : fontSize.base,
+		fontFamily         : fontFamily.base,
+		textDecoration     : 'underline',
+		color              : color.light,
+		border             : 0,
+		cursor             : 'pointer',
+		background         : 'transparent',
 		'&:hover, &:active': {
 			isolate: false,
-			color: color.lightest,
+			color  : color.lightest,
 		},
 	},
 });
@@ -24,13 +26,13 @@ const styles = ({ fontFamily, fontSize, color }) => ({
 export class ExamplePlaceholderRenderer extends Component {
 	static propTypes = {
 		classes: PropTypes.object.isRequired,
-		name: PropTypes.string,
+		name   : PropTypes.string,
 	};
 
 	constructor() {
 		super();
 		this.handleOpen = this.handleOpen.bind(this);
-		this.state = {
+		this.state      = {
 			isVisible: false,
 		};
 	}
@@ -41,7 +43,7 @@ export class ExamplePlaceholderRenderer extends Component {
 
 	render() {
 		const { classes, name } = this.props;
-		const { isVisible } = this.state;
+		const { isVisible }     = this.state;
 		if (isVisible) {
 			return (
 				<Markdown

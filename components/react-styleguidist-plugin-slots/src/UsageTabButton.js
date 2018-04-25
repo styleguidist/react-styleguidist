@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TabButton from 'rsg-components/TabButton';
+import TabButton from 'react-styleguidist-plugin-tabbutton'
 
 const UsageTabButton = props => {
 	const component = props.props;

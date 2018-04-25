@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
-import Preview from 'rsg-components/Preview';
-import Para from 'rsg-components/Para';
-import Slot from 'rsg-components/Slot';
-import PlaygroundRenderer from 'rsg-components/Playground/PlaygroundRenderer';
+import Preview from 'react-styleguidist-plugin-preview'
+import Para from 'react-styleguidist-plugin-para'
+import Slot from 'react-styleguidist-plugin-slot'
+import PlaygroundRenderer from 'react-styleguidist-plugin-playground/playgroundrenderer'
 import { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
 import { DisplayModes } from '../../consts';
 

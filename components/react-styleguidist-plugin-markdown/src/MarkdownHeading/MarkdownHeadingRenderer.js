@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Styled from 'rsg-components/Styled';
-import Heading from 'rsg-components/Heading';
+import Styled from 'react-styleguidist-plugin-styled'
+import Heading from 'react-styleguidist-plugin-heading'
 
 const styles = ({ space }) => ({
 	spacing: {

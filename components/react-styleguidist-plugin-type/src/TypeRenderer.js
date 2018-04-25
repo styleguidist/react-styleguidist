@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Code from 'rsg-components/Code';
-import Styled from 'rsg-components/Styled';
+import Code from 'react-styleguidist-plugin-code'
+import Styled from 'react-styleguidist-plugin-styled'
 
 export const styles = ({ fontSize, color }) => ({
 	type: {

@@ -3,8 +3,7 @@ import slots from 'rsg-components/slots';
 import StyleGuide from 'rsg-components/StyleGuide';
 import getPageTitle from './getPageTitle';
 import getRouteData from './getRouteData';
-import globalizeComponents from './globalizeComponents';
-import processSections from './processSections';
+import {processSections, globalizeComponents} from 'react-styleguidist-utils';
 
 /**
  * @param {object} styleguide An object returned by styleguide-loader

@@ -1,7 +1,7 @@
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import Styled from 'rsg-components/Styled';
+import Styled from 'react-styleguidist-plugin-styled'
 
 const styles = ({ space, color, fontFamily }) => ({
 	list: {
