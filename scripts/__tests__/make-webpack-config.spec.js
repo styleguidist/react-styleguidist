@@ -22,6 +22,34 @@ afterEach(() => {
 	process.env.NODE_ENV = process$env$nodeEnv;
 });
 
+it('sets the `output.path` to the `styleguideDir` option', () => {
+	const config = makeWebpackConfig(
+		Object.assign({}, styleguideConfig, {
+			styleguideDir: 'diiir',
+		})
+	);
+
+	expect(config).toMatchObject({
+		output: {
+			path: 'diiir',
+		},
+	});
+});
+
+it('sets the `output.publicPath` to the `publicPath` option', () => {
+	const config = makeWebpackConfig(
+		Object.assign({}, styleguideConfig, {
+			publicPath: 'publicPaaaath',
+		})
+	);
+
+	expect(config).toMatchObject({
+		output: {
+			publicPath: 'publicPaaaath',
+		},
+	});
+});
+
 it('should return a development config', () => {
 	const env = 'development';
 	const config = makeWebpackConfig(styleguideConfig, env);
