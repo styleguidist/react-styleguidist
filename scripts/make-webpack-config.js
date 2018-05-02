@@ -37,6 +37,7 @@ module.exports = function(config, env) {
 		entry: config.require.concat([path.resolve(sourceDir, 'index')]),
 		output: {
 			path: config.styleguideDir,
+			publicPath: config.publicPath,
 			filename: 'build/[name].bundle.js',
 			chunkFilename: 'build/[name].js',
 		},
@@ -96,13 +97,13 @@ module.exports = function(config, env) {
 				compress: {
 					keep_fnames: true,
 					warnings: false,
-          			/**
-					  * We disable 'reduce_funcs' for keeping uglify from inlining Preact's VNode.
-					  * If enabled, the 'new VNode()' is replaced with a anonymous 'function(){}',
-					  * which is problematic for 'preact-compat', since it extends the VNode prototype
-					  * to accomodate React's API.
-					  * */
-					reduce_funcs: false
+					/**
+					 * We disable 'reduce_funcs' for keeping uglify from inlining Preact's VNode.
+					 * If enabled, the 'new VNode()' is replaced with a anonymous 'function(){}',
+					 * which is problematic for 'preact-compat', since it extends the VNode prototype
+					 * to accomodate React's API.
+					 * */
+					reduce_funcs: false,
 				},
 				mangle: {
 					keep_fnames: true,

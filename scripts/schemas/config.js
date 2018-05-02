@@ -144,6 +144,10 @@ module.exports = {
 	propsParser: {
 		type: 'function',
 	},
+	publicPath: {
+		type: 'string',
+		default: undefined,
+	},
 	require: {
 		type: 'array',
 		default: [],
