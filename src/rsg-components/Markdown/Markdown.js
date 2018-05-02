@@ -17,7 +17,7 @@ import { Table, TableHead, TableBody, TableRow, TableCell } from 'rsg-components
 // eslint-disable-next-line import/no-unresolved
 require('!!../../../loaders/style-loader!../../../loaders/css-loader!highlight.js/styles/tomorrow.css');
 
-const baseOverrides = {
+export const baseOverrides = {
 	a: {
 		component: Link,
 	},
@@ -122,7 +122,7 @@ const baseOverrides = {
 	},
 };
 
-const inlineOverrides = {
+export const inlineOverrides = {
 	...baseOverrides,
 	p: {
 		component: Text,
