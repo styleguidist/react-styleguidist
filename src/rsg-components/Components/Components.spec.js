@@ -2,9 +2,10 @@ import React from 'react';
 import ReactComponent from '../ReactComponent';
 import Components from './Components';
 import ComponentsRenderer from './ComponentsRenderer';
+import { ExampleModes, UsageModes } from '../../consts';
 
-const codeSamples = 'collapse';
-const propsMethods = 'collapse';
+const codeSamples = ExampleModes.collapse;
+const propsMethods = UsageModes.collapse;
 const components = [
 	{
 		name: 'Foo',

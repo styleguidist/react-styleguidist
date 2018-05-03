@@ -7,7 +7,7 @@ import Markdown from 'rsg-components/Markdown';
 import Slot from 'rsg-components/Slot';
 import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponentRenderer';
 import { DOCS_TAB_USAGE } from '../slots';
-import { DisplayModes, PropsMethodsModes } from '../../consts';
+import { DisplayModes, UsageModes } from '../../consts';
 
 const ExamplePlaceholder =
 	process.env.STYLEGUIDIST_ENV !== 'production'
@@ -33,7 +33,7 @@ export default class ReactComponent extends Component {
 		this.handleTabChange = this.handleTabChange.bind(this);
 
 		this.state = {
-			activeTab: propsMethods === PropsMethodsModes.expand ? DOCS_TAB_USAGE : undefined,
+			activeTab: propsMethods === UsageModes.expand ? DOCS_TAB_USAGE : undefined,
 		};
 	}
 
@@ -52,7 +52,7 @@ export default class ReactComponent extends Component {
 		if (!name) {
 			return null;
 		}
-		const showUsage = propsMethods !== PropsMethodsModes.hide;
+		const showUsage = propsMethods !== UsageModes.hide;
 
 		return (
 			<ReactComponentRenderer
