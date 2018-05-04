@@ -1,6 +1,6 @@
 ---
 name: "\U0001F41B Bug report"
-about: "Something isn’t working as expected \U0001F914"
+about: Something isn’t working as expected
 
 ---
 
