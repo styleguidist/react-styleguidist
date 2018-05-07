@@ -129,18 +129,21 @@ First, coode examples can receive [props and settings](Documenting.md#usage-exam
 
 The above example adds a setting called `file` with the **relative path** to the file we want to display as value.
 
-Second, use the [updateExample](Configuration#updateexample) configuration option, to detect the setting and change the content of a fenced code block:
+Second, use the [updateExample](Configuration#updateexample) config option, to detect the setting and change the content of a fenced code block:
 
 ```javascript
 module.exports = {
   updateExample(props, exampleFilePath) {
     // props.settings are passed by any fenced code block, in this case
     const { settings, lang } = props
+    // "../mySourceCode.js"
     if (typeof settings.file === 'string') {
-      // "../mySourceCode.js"
-      const filepath = path.resolve(exampleFilePath, settings.file) // "absolute path to mySourceCode.js"
-      settings.static = true // Displays the block as static code
-      delete settings.file // no longer needed
+      // "absolute path to mySourceCode.js"
+      const filepath = path.resolve(exampleFilePath, settings.file)
+      // displays the block as static code
+      settings.static = true
+      // no longer needed
+      delete settings.file
       return {
         content: fs.readFileSync(filepath, 'utf8'),
         settings,
