@@ -8,4 +8,12 @@ describe('Markdown Blockquote', () => {
 
 		expect(actual).toMatchSnapshot();
 	});
+
+	it('should preserve custom css class', () => {
+		const actual = render(
+			<Blockquote className="test-class">To be, or not to be: that is the question</Blockquote>
+		);
+
+		expect(actual).toMatchSnapshot();
+	});
 });

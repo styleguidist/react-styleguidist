@@ -8,6 +8,7 @@
 * [How to exclude some components from style guide?](#how-to-exclude-some-components-from-style-guide)
 * [How to hide some components in style guide but make them available in examples?](#how-to-hide-some-components-in-style-guide-but-make-them-available-in-examples)
 * [How to dynamically load other components in an example?](#how-to-dynamically-load-other-components-in-an-example)
+* [How to display the source code of any file?](#how-to-display-the-source-code-of-any-file)
 * [How to set global styles for user components?](#how-to-set-global-styles-for-user-components)
 * [How to add custom JavaScript and CSS or polyfills?](#how-to-add-custom-javascript-and-css-or-polyfills)
 * [How to use React Styleguidist with Preact?](#how-to-use-react-styleguidist-with-preact)
@@ -117,6 +118,41 @@ const iconElements = Object.keys(icons).map(iconName => {
   )
 })
 ;<div>{iconElements}</div>
+```
+
+## How to display the source code of any file?
+
+First, coode examples can receive [props and settings](Documenting.md#usage-examples-and-readme-files):
+
+    ```js { "file": "../mySourceCode.js" }
+    ```
+
+The above example adds a setting called `file` with the **relative path** to the file we want to display as value.
+
+Second, use the [updateExample](Configuration#updateexample) config option, to detect the setting and change the content of a fenced code block:
+
+```javascript
+module.exports = {
+  updateExample(props, exampleFilePath) {
+    // props.settings are passed by any fenced code block, in this case
+    const { settings, lang } = props
+    // "../mySourceCode.js"
+    if (typeof settings.file === 'string') {
+      // "absolute path to mySourceCode.js"
+      const filepath = path.resolve(exampleFilePath, settings.file)
+      // displays the block as static code
+      settings.static = true
+      // no longer needed
+      delete settings.file
+      return {
+        content: fs.readFileSync(filepath, 'utf8'),
+        settings,
+        lang
+      }
+    }
+    return props
+  }
+}
 ```
 
 ## How to set global styles for user components?

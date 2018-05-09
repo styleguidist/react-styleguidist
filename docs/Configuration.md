@@ -588,7 +588,7 @@ module.exports = {
       const filepath = path.resolve(exampleFilePath, settings.file)
       delete settings.file
       return {
-        content: fs.readFileSync(filepath),
+        content: fs.readFileSync(filepath, 'utf8'),
         settings,
         lang
       }
