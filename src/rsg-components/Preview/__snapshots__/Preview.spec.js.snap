@@ -1,29 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`should handle errors 1`] = `
+<React.Fragment>
+  <div />
+  <Styled(PlaygroundError)
+    message="Invariant Violation: Target container is not a DOM element."
+  />
+</React.Fragment>
+`;
+
 exports[`should render component renderer 1`] = `
 <React.Fragment>
   <div />
 </React.Fragment>
-`;
-
-exports[`should set initialState before the first render 1`] = `
-
-<div>
-  <span>
-    1
-  </span>
-</div>
-
-`;
-
-exports[`should update state on setState 1`] = `
-
-<div>
-  <button>
-    2
-  </button>
-</div>
-
 `;
 
 exports[`should wrap code in Fragment when it starts with < 1`] = `
