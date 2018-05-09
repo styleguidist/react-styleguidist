@@ -11,6 +11,7 @@ const options = {
 			showCode: false,
 			highlightTheme: 'base16-light',
 			editorConfig: {
+				lineWrapping: true,
 				mode: 'js',
 			},
 		},
@@ -30,7 +31,10 @@ describe('EditorLoaderRenderer', () => {
 
 describe('Editor', () => {
 	it('should renderer and editor', () => {
-		const actual = shallow(<Editor code={code} onChange={() => {}} />, options);
+		const actual = shallow(
+			<Editor code={code} editorConfig={{ readOnly: true, mode: 'text/html' }} />,
+			options
+		);
 
 		expect(actual).toMatchSnapshot();
 	});
