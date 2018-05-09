@@ -57,4 +57,20 @@ describe('Editor', () => {
 			done();
 		}, 13);
 	});
+
+	it('should not update if not read only', () => {
+		const actual = shallow(<Editor code={code} />, options);
+
+		const shouldUpdate = actual.instance().shouldComponentUpdate({ code: newCode });
+		expect(shouldUpdate).toBe(false);
+	});
+
+	it('should update if read only and code has changed', () => {
+		const actual = shallow(<Editor code={code} editorConfig={{ readOnly: true }} />, options);
+
+		const shouldUpdate = actual
+			.instance()
+			.shouldComponentUpdate({ code: newCode, editorConfig: { readOnly: true } });
+		expect(shouldUpdate).toBe(true);
+	});
 });

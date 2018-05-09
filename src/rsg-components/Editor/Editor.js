@@ -28,8 +28,14 @@ export default class Editor extends Component {
 		this.handleChange = debounce(this.handleChange.bind(this), UPDATE_DELAY);
 	}
 
-	shouldComponentUpdate() {
-		return false;
+	shouldComponentUpdate(nextProps) {
+		return !!(this.getEditorConfig(nextProps).readOnly && nextProps.code !== this.props.code);
+	}
+
+	getEditorConfig(props) {
+		const { editorConfig } = props;
+		const contextEditorConfig = this.context.config.editorConfig;
+		return Object.assign({}, contextEditorConfig, editorConfig);
 	}
 
 	handleChange(editor, metadata, newCode) {
@@ -40,13 +46,12 @@ export default class Editor extends Component {
 	}
 
 	render() {
-		const { code, editorConfig } = this.props;
-		const contextEditorConfig = this.context.config.editorConfig;
+		const { code } = this.props;
 		return (
 			<CodeMirror
 				value={code}
 				onChange={this.handleChange}
-				options={Object.assign({}, contextEditorConfig, editorConfig)}
+				options={this.getEditorConfig(this.props)}
 			/>
 		);
 	}
