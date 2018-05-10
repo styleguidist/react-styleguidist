@@ -1,10 +1,10 @@
 ---
 name: "\U0001F41B Bug report"
 about: Something isn’t working as expected
-
 ---
 
 **Current behavior**
+
 <!-- A clear and concise description of what the bug is -->
 
 **To reproduce**
@@ -25,4 +25,5 @@ Make sure you’re using the latest version of React Styleguidist.
 -->
 
 **Expected behavior**
+
 <!-- A clear and concise description of what you expected to happen -->

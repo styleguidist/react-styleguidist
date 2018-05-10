@@ -20,6 +20,12 @@ describe('getPageTitle', () => {
 		expect(result).toMatch(name);
 	});
 
+	it('should return section name for example isolation mode, if no components are passed', () => {
+		const name = 'Section';
+		const result = getPageTitle([{ name }], baseTitle, 'example');
+		expect(result).toMatch(name);
+	});
+
 	it('should return section name for section isolation mode', () => {
 		const name = 'Section';
 		const result = getPageTitle([{ name }], baseTitle, 'section');
