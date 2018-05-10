@@ -7,6 +7,7 @@
 * [How to use `ref`s in examples?](#how-to-use-refs-in-examples)
 * [How to exclude some components from style guide?](#how-to-exclude-some-components-from-style-guide)
 * [How to hide some components in style guide but make them available in examples?](#how-to-hide-some-components-in-style-guide-but-make-them-available-in-examples)
+* [How to render React components that aren’t part of the style guide?](#how-to-render-react-components-that-arent-part-of-the-style-guide)
 * [How to dynamically load other components in an example?](#how-to-dynamically-load-other-components-in-an-example)
 * [How to display the source code of any file?](#how-to-display-the-source-code-of-any-file)
 * [How to set global styles for user components?](#how-to-set-global-styles-for-user-components)
@@ -17,7 +18,7 @@
 * [How to change style guide dev server logs output?](#how-to-change-style-guide-dev-server-logs-output)
 * [How to debug my components and examples?](#how-to-debug-my-components-and-examples)
 * [How to debug the exceptions thrown from my components?](#how-to-debug-the-exceptions-thrown-from-my-components)
-* [How to use React's production or development build?](#how-to-use-reacts-production-or-development-build)
+* [How to use production or development build of React?](#how-to-use-production-or-development-build-of-react)
 * [Why does the style guide list one of my prop types as `unknown`?](#why-does-the-style-guide-list-one-of-my-prop-types-as-unknown)
 * [Why object references don’t work in example component state?](#why-object-references-dont-work-in-example-component-state)
 * [How to use Vagrant with Styleguidist?](#how-to-use-vagrant-with-styleguidist)
@@ -90,9 +91,18 @@ global.Button = Button
 
 The `Button` component will be available in every example without a need to `require` it.
 
+## How to render React components that aren’t part of the style guide?
+
+Require these components in your examples:
+
+    ```jsx noeditor
+    const ColorPalette = require('./components/ColorPalette').default
+    ;<ColorPalette />
+    ```
+
 ## How to dynamically load other components in an example?
 
-Although examples don't have direct access to webpack's `require.context` feature, you _can_ use it in a separate helper file which you require in your example code. If you wanted to create an example to load and show all of your icon components, you could do this:
+Although examples don’t have direct access to webpack’s `require.context` feature, you _can_ use it in a separate helper file which you require in your example code. If you wanted to create an example to load and show all of your icon components, you could do this:
 
 ```jsx
 // load-icons.js
@@ -122,7 +132,7 @@ const iconElements = Object.keys(icons).map(iconName => {
 
 ## How to display the source code of any file?
 
-First, coode examples can receive [props and settings](Documenting.md#usage-examples-and-readme-files):
+First, code examples can receive [props and settings](Documenting.md#usage-examples-and-readme-files):
 
     ```js { "file": "../mySourceCode.js" }
     ```
@@ -359,9 +369,9 @@ module.exports = {
 2.  Press the ![Debugger](https://d3vv6lp55qjaqc.cloudfront.net/items/2h2q3N123N3G3R252o41/debugger.png) button in your browser’s developer tools.
 3.  Press the ![Continue](https://d3vv6lp55qjaqc.cloudfront.net/items/3b3c1P3g3O1h3q111I2l/continue.png) button and the debugger will stop execution at the next exception.
 
-## How to use React's production or development build?
+## How to use production or development build of React?
 
-In some cases, you might need to use React's development build instead of the default [production one](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build). For example, this might be needed if you use React Native and make references to a React Native component's propTypes in your code. As React removes all propTypes in its production build, your code will fail. By default, React Styleguidist uses the development build for the dev server, and the production one for static builds.
+In some cases, you might need to use development build of React instead of the default [production one](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build). For example, this might be needed if you use React Native and make references to a React Native component's PropTypes in your code. As React removes all PropTypes in its production build, your code will fail. By default, React Styleguidist uses the development build for the dev server, and the production one for static builds.
 
 ```js
 import React from 'react'
@@ -377,7 +387,7 @@ CustomInput.propTypes = {
 
 If you use code similar to this, you might encounter errors such as `Cannot read property 'isRequired' of undefined`.
 
-To avoid this, you need to tell React Styleguidist to use React's development build. To do this, simply set the `NODE_ENV` variable to `development` in your npm script.
+To avoid this, you need to tell React Styleguidist to use React’s development build. To do this, simply set the `NODE_ENV` variable to `development` in your npm script.
 
 ```json
 {
