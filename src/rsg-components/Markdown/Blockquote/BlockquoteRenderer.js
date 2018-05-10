@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 
 import Styled from 'rsg-components/Styled';
 
@@ -14,11 +15,13 @@ const styles = ({ space, color, fontSize, fontFamily }) => ({
 	},
 });
 
-export function BlockquoteRenderer({ classes, children }) {
-	return <blockquote className={classes.blockquote}>{children}</blockquote>;
+export function BlockquoteRenderer({ classes, className, children }) {
+	const blockquoteClasses = cx(classes.blockquote, className);
+	return <blockquote className={blockquoteClasses}>{children}</blockquote>;
 }
 BlockquoteRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
+	className: PropTypes.string,
 	children: PropTypes.node.isRequired,
 };
 
