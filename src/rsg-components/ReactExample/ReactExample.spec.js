@@ -1,6 +1,6 @@
 import React from 'react';
 import noop from 'lodash/noop';
-import CodeEvaluator from '../CodeEvaluator';
+import ReactExample from '../ReactExample';
 
 const evalInContext = a =>
 	// eslint-disable-next-line no-new-func
@@ -11,7 +11,7 @@ const evalInContext = a =>
 
 it('should render code', () => {
 	const actual = shallow(
-		<CodeEvaluator code={'<button>OK</button>'} evalInContext={evalInContext} onError={noop} />
+		<ReactExample code={'<button>OK</button>'} evalInContext={evalInContext} onError={noop} />
 	);
 
 	expect(actual).toMatchSnapshot();
@@ -20,7 +20,7 @@ it('should render code', () => {
 it('should wrap code in Fragment when it starts with <', () => {
 	const actual = mount(
 		<div>
-			<CodeEvaluator code="<span /><span />" evalInContext={evalInContext} onError={noop} />
+			<ReactExample code="<span /><span />" evalInContext={evalInContext} onError={noop} />
 		</div>
 	);
 
@@ -30,7 +30,7 @@ it('should wrap code in Fragment when it starts with <', () => {
 it('should handle errors', () => {
 	const onError = jest.fn();
 
-	shallow(<CodeEvaluator code={'<invalid code'} evalInContext={evalInContext} onError={onError} />);
+	shallow(<ReactExample code={'<invalid code'} evalInContext={evalInContext} onError={onError} />);
 
 	expect(onError).toHaveBeenCalledTimes(1);
 });
@@ -40,7 +40,7 @@ it('should set initialState before the first render', () => {
 initialState = {count:1};
 <span>{state.count}</span>
 	`;
-	const actual = mount(<CodeEvaluator code={code} evalInContext={evalInContext} onError={noop} />);
+	const actual = mount(<ReactExample code={code} evalInContext={evalInContext} onError={noop} />);
 	expect(actual.html()).toMatchSnapshot();
 });
 
@@ -50,7 +50,7 @@ initialState = {count:1};
 setTimeout(() => state.count === 1 && setState({count:2}));
 <button>{state.count}</button>
 	`;
-	const actual = mount(<CodeEvaluator code={code} evalInContext={evalInContext} onError={noop} />);
+	const actual = mount(<ReactExample code={code} evalInContext={evalInContext} onError={noop} />);
 
 	actual.find('button').simulate('click');
 

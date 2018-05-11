@@ -27,7 +27,7 @@ class InitialStateComponent extends Component {
 	}
 }
 
-export default class CodeEvaluator extends Component {
+export default class ReactExample extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,

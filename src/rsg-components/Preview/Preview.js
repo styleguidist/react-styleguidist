@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 
-import CodeEvaluator from '../CodeEvaluator';
+import ReactExample from '../ReactExample';
 
 /* eslint-disable no-invalid-this */
 
@@ -64,7 +64,7 @@ export default class Preview extends Component {
 		}
 
 		const wrappedComponent = (
-			<CodeEvaluator
+			<ReactExample
 				code={code}
 				evalInContext={this.props.evalInContext}
 				onError={this.handleError}
