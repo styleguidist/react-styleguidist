@@ -33,9 +33,10 @@ export default class Editor extends Component {
 	}
 
 	getEditorConfig(props) {
-		const { editorConfig } = props;
-		const contextEditorConfig = this.context.config.editorConfig;
-		return Object.assign({}, contextEditorConfig, editorConfig);
+		return {
+			...this.context.config.editorConfig,
+			...props.editorConfig,
+		};
 	}
 
 	handleChange(editor, metadata, newCode) {
