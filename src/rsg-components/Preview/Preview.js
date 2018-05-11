@@ -72,10 +72,6 @@ export default class Preview extends Component {
 			/>
 		);
 
-		if (!wrappedComponent) {
-			return;
-		}
-
 		window.requestAnimationFrame(() => {
 			this.unmountPreview();
 			try {

@@ -9,10 +9,27 @@ exports[`should handle errors 1`] = `
 </React.Fragment>
 `;
 
+exports[`should handle no code 1`] = `
+
+<div>
+</div>
+
+`;
+
 exports[`should render component renderer 1`] = `
 <React.Fragment>
   <div />
 </React.Fragment>
+`;
+
+exports[`should update 1`] = `
+
+<div>
+  <button>
+    Cancel
+  </button>
+</div>
+
 `;
 
 exports[`should wrap code in Fragment when it starts with < 1`] = `

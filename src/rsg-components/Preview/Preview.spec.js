@@ -10,6 +10,7 @@ const evalInContext = a =>
 		require
 	);
 const code = '<button>OK</button>';
+const newCode = '<button>Cancel</button>';
 const options = {
 	context: {
 		config: {
@@ -58,12 +59,28 @@ it('should wrap code in Fragment when it starts with <', () => {
 });
 
 it('should render component renderer', () => {
+	console.error = jest.fn();
+
 	const actual = shallow(<Preview code={code} evalInContext={evalInContext} />, {
 		...options,
 		disableLifecycleMethods: true,
 	});
 
 	expect(actual).toMatchSnapshot();
+});
+
+it('should update', () => {
+	const actual = mount(<Preview code={code} evalInContext={evalInContext} />, options);
+
+	actual.setProps({ code: newCode });
+
+	expect(actual.html()).toMatchSnapshot();
+});
+
+it('should handle no code', () => {
+	const actual = mount(<Preview code="" evalInContext={evalInContext} />, options);
+
+	expect(actual.html()).toMatchSnapshot();
 });
 
 it('should handle errors', () => {
