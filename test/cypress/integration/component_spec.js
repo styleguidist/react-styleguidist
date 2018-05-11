@@ -77,19 +77,21 @@ describe('Single component', () => {
 		});
 
 		it('changes the render after code change', () => {
+			const codeToDelete = '</Button>';
 			cy
 				.get('@container')
 				.find('.CodeMirror textarea')
-				// CodeMirror actually listens to keystrokes on an empty textarea to update the div with the code
-				// so we have to hack our way around it with a bunch of backspacing, since there's no way to place the cursor
-				.type(
-					`{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace} Harder</Button>`,
-					{
-						force: true,
-					}
-				);
-			// need to wait for CodeMirror to update
+				// CodeMirror actually listens to keystrokes on an empty textarea
+				// to update the div with the code, so we have to hack our way
+				// around it with a bunch of backspacing, since there's no way
+				// to place the cursor
+				.type(`${'{backspace}'.repeat(codeToDelete.length)} Harder${codeToDelete}`, {
+					force: true,
+				});
+
+			// Wait for CodeMirror to update
 			cy.wait(500);
+
 			cy
 				.get('@preview')
 				.find('button')
