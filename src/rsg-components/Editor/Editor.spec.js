@@ -11,6 +11,7 @@ const options = {
 			showCode: false,
 			highlightTheme: 'base16-light',
 			editorConfig: {
+				lineWrapping: true,
 				mode: 'js',
 			},
 		},
@@ -30,7 +31,10 @@ describe('EditorLoaderRenderer', () => {
 
 describe('Editor', () => {
 	it('should renderer and editor', () => {
-		const actual = shallow(<Editor code={code} onChange={() => {}} />, options);
+		const actual = shallow(
+			<Editor code={code} editorConfig={{ readOnly: true, mode: 'text/html' }} />,
+			options
+		);
 
 		expect(actual).toMatchSnapshot();
 	});
@@ -52,5 +56,21 @@ describe('Editor', () => {
 			expect(onChange).toBeCalledWith(newCode);
 			done();
 		}, 13);
+	});
+
+	it('should not update if not read only', () => {
+		const actual = shallow(<Editor code={code} />, options);
+
+		const shouldUpdate = actual.instance().shouldComponentUpdate({ code: newCode });
+		expect(shouldUpdate).toBe(false);
+	});
+
+	it('should update if read only and code has changed', () => {
+		const actual = shallow(<Editor code={code} editorConfig={{ readOnly: true }} />, options);
+
+		const shouldUpdate = actual
+			.instance()
+			.shouldComponentUpdate({ code: newCode, editorConfig: { readOnly: true } });
+		expect(shouldUpdate).toBe(true);
 	});
 });
