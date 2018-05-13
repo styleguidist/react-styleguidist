@@ -13,7 +13,7 @@ const wrapCodeInFragment = code => `<${FragmentTag}>${code}</${FragmentTag}>;`;
 
 // Wrap everything in a React component to leverage the state management
 // of this component
-class InitialStateComponent extends Component {
+class StateHolder extends Component {
 	static propTypes = {
 		component: PropTypes.func.isRequired,
 		initialState: PropTypes.object.isRequired,
@@ -86,7 +86,7 @@ export default class ReactExample extends Component {
 		const exampleComponent = this.getExampleComponent(example);
 		const wrappedComponent = (
 			<Wrapper onError={this.props.onError}>
-				<InitialStateComponent component={exampleComponent} initialState={initialState} />
+				<StateHolder component={exampleComponent} initialState={initialState} />
 			</Wrapper>
 		);
 		return wrappedComponent;
