@@ -4,11 +4,19 @@ import IsolateButton from './IsolateButton';
 import CodeTabButton from './CodeTabButton';
 import UsageTabButton from './UsageTabButton';
 
+export const EXAMPLE_ISOLATE = 'rsg-isolate';
 export const EXAMPLE_TAB_CODE_EDITOR = 'rsg-code-editor';
 export const DOCS_TAB_USAGE = 'rsg-usage';
 
 export default ({ pagePerSection }) => {
-	const toolbar = pagePerSection ? [] : [IsolateButton];
+	const toolbar = pagePerSection
+		? []
+		: [
+				{
+					id: EXAMPLE_ISOLATE,
+					render: IsolateButton,
+				},
+		  ];
 
 	return {
 		sectionToolbar: toolbar,
