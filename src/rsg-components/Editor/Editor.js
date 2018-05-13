@@ -16,7 +16,8 @@ const UPDATE_DELAY = 10;
 export default class Editor extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
-		onChange: PropTypes.func.isRequired,
+		onChange: PropTypes.func,
+		editorConfig: PropTypes.object,
 	};
 	static contextTypes = {
 		config: PropTypes.object.isRequired,
@@ -27,17 +28,32 @@ export default class Editor extends Component {
 		this.handleChange = debounce(this.handleChange.bind(this), UPDATE_DELAY);
 	}
 
-	shouldComponentUpdate() {
-		return false;
+	shouldComponentUpdate(nextProps) {
+		return !!(this.getEditorConfig(nextProps).readOnly && nextProps.code !== this.props.code);
+	}
+
+	getEditorConfig(props) {
+		return {
+			...this.context.config.editorConfig,
+			...props.editorConfig,
+		};
 	}
 
 	handleChange(editor, metadata, newCode) {
-		this.props.onChange(newCode);
+		const { onChange } = this.props;
+		if (onChange) {
+			onChange(newCode);
+		}
 	}
 
 	render() {
 		const { code } = this.props;
-		const { editorConfig } = this.context.config;
-		return <CodeMirror value={code} onChange={this.handleChange} options={editorConfig} />;
+		return (
+			<CodeMirror
+				value={code}
+				onChange={this.handleChange}
+				options={this.getEditorConfig(this.props)}
+			/>
+		);
 	}
 }
