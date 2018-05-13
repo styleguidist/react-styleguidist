@@ -4,7 +4,7 @@ exports[`should render code 1`] = `
 <Wrapper
   onError={[Function]}
 >
-  <InitialStateComponent
+  <StateHolder
     component={[Function]}
     initialState={Object {}}
   />
