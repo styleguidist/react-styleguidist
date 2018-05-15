@@ -201,6 +201,8 @@ module.exports = {
 }
 ```
 
+You may also want to use MiniCssExtractPlugin.loader in conjunction when loading 3rd-party CSS.
+
 ## How to use React Styleguidist with Preact?
 
 You need to alias `react` and `react-dom` to `preact-compat`:
