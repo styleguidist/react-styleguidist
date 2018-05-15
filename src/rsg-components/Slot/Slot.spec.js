@@ -26,7 +26,7 @@ it('should renderer slots and pass props', () => {
 	const actual = shallow(<Slot name="slot" props={{ id: 'Pizza' }} />, {
 		context: {
 			slots: {
-				slot: [{ id: 'button1', render: Button }, { id: 'button2', render: Button2 }],
+				slot: [Button, Button2],
 			},
 		},
 	});
@@ -89,7 +89,7 @@ it('should return null if all slots render null', () => {
 	const actual = render(<Slot name="slot" props={{ id: 'Pizza' }} />, {
 		context: {
 			slots: {
-				slot: [{ id: 'fill', render: () => null }],
+				slot: [() => null],
 			},
 		},
 	});
