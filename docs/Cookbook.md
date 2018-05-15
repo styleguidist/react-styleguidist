@@ -201,6 +201,8 @@ module.exports = {
 }
 ```
 
+You may also want to use [MiniCssExtractPlugin](https://github.com/webpack-contrib/mini-css-extract-plugin#configuration) in conjunction when loading 3rd-party CSS.  This will automatically add `<link rel="stylesheet" href="path/to/local/style.css" />` to your styleguide.
+
 ## How to use React Styleguidist with Preact?
 
 You need to alias `react` and `react-dom` to `preact-compat`:
