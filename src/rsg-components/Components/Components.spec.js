@@ -2,7 +2,10 @@ import React from 'react';
 import ReactComponent from '../ReactComponent';
 import Components from './Components';
 import ComponentsRenderer from './ComponentsRenderer';
+import { ExampleModes, UsageModes } from '../../consts';
 
+const exampleModes = ExampleModes.collapse;
+const usageModes = UsageModes.collapse;
 const components = [
 	{
 		name: 'Foo',
@@ -23,7 +26,14 @@ const components = [
 ];
 
 it('should render components list', () => {
-	const actual = shallow(<Components components={components} depth={3} />);
+	const actual = shallow(
+		<Components
+			components={components}
+			exampleModes={exampleModes}
+			usageModes={usageModes}
+			depth={3}
+		/>
+	);
 
 	expect(actual).toMatchSnapshot();
 });
@@ -31,8 +41,20 @@ it('should render components list', () => {
 it('renderer should render components list layout', () => {
 	const actual = shallow(
 		<ComponentsRenderer>
-			<ReactComponent key={0} component={components[0]} depth={3} />
-			<ReactComponent key={1} component={components[1]} depth={3} />
+			<ReactComponent
+				key={0}
+				component={components[0]}
+				exampleModes={exampleModes}
+				usageModes={usageModes}
+				depth={3}
+			/>
+			<ReactComponent
+				key={1}
+				component={components[1]}
+				exampleModes={exampleModes}
+				usageModes={usageModes}
+				depth={3}
+			/>
 		</ComponentsRenderer>
 	);
 

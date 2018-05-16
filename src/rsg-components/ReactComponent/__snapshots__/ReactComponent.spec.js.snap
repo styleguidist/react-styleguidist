@@ -10,10 +10,11 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
   docs={<JsDoc />}
   examples={
     <Examples
+      exampleModes="collapse"
       examples={
         Array [
           Object {
-            "content": 
+            "content":
 <button>
   OK
 </button>
@@ -51,7 +52,7 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
             "description": "Bar",
             "examples": Array [
               Object {
-                "content": 
+                "content":
 <button>
   OK
 </button>
@@ -110,7 +111,7 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
             "description": "Bar",
             "examples": Array [
               Object {
-                "content": 
+                "content":
 <button>
   OK
 </button>
@@ -164,7 +165,7 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
             "description": "Bar",
             "examples": Array [
               Object {
-                "content": 
+                "content":
 <button>
   OK
 </button>

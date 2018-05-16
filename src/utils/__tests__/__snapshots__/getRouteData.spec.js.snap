@@ -18,7 +18,9 @@ Object {
           },
         },
       ],
+      "exampleModes": "collapse",
       "sections": Array [],
+      "usageModes": "collapse",
     },
   ],
 }
@@ -51,7 +53,9 @@ Object {
               },
             },
           ],
+          "exampleModes": "collapse",
           "sections": Array [],
+          "usageModes": "collapse",
         },
         Object {
           "components": Array [],
@@ -59,8 +63,10 @@ Object {
             "example 0",
             "example 1",
           ],
+          "exampleModes": "collapse",
           "name": "Section",
           "sections": Array [],
+          "usageModes": "collapse",
         },
       ],
     },
@@ -86,6 +92,8 @@ Object {
           },
         },
       ],
+      "exampleModes": "collapse",
+      "usageModes": "collapse",
     },
   ],
 }
@@ -108,6 +116,8 @@ Object {
           },
         },
       ],
+      "exampleModes": "collapse",
+      "usageModes": "collapse",
     },
   ],
 }
@@ -122,8 +132,10 @@ Object {
       "content": Array [
         "example 1",
       ],
+      "exampleModes": "collapse",
       "name": "Section",
       "sections": Array [],
+      "usageModes": "collapse",
     },
   ],
 }
@@ -139,8 +151,10 @@ Object {
         "example 0",
         "example 1",
       ],
+      "exampleModes": "collapse",
       "name": "Section",
       "sections": Array [],
+      "usageModes": "collapse",
     },
   ],
 }

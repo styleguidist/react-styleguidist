@@ -15,6 +15,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`dangerouslyUpdateWebpackConfig`](#dangerouslyupdatewebpackconfig)
 * [`defaultExample`](#defaultexample)
 * [`editorConfig`](#editorconfig)
+* [`exampleModes`](#examplemodes)
 * [`getComponentPathLine`](#getcomponentpathline)
 * [`getExampleFilename`](#getexamplefilename)
 * [`handlers`](#handlers)
@@ -31,8 +32,6 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`sections`](#sections)
 * [`serverHost`](#serverhost)
 * [`serverPort`](#serverport)
-* [`showCode`](#showcode)
-* [`showUsage`](#showusage)
 * [`showSidebar`](#showsidebar)
 * [`skipComponentsWithoutExample`](#skipcomponentswithoutexample)
 * [`sortProps`](#sortprops)
@@ -44,6 +43,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`title`](#title)
 * [`updateDocs`](#updatedocs)
 * [`updateExample`](#updateexample)
+* [`usageModes`](#usagemodes)
 * [`verbose`](#verbose)
 * [`webpackConfig`](#webpackconfig)
 
@@ -196,6 +196,16 @@ module.exports = {
   }
 }
 ```
+
+#### `exampleModes`
+
+Type: `String`, default: `collapse`
+
+Defines the initial state of the example code tab:
+
+* `collapse`: collapses the tab by default.
+* `hide`: hide the tab and it can´t be toggled in the UI.
+* `expand`: expand the tab by default.
 
 #### `handlers`
 
@@ -419,18 +429,6 @@ Type: `Number`, default: `6060`
 
 Dev server port.
 
-#### `showCode`
-
-Type: `Boolean`, default: `false`
-
-Show or hide example code initially. It can be toggled in the UI by clicking the Code button after each example.
-
-#### `showUsage`
-
-Type: `Boolean`, default: `false`
-
-Show or hide props and methods documentation initially. It can be toggled in the UI by clicking the Props & methods button after each component description.
-
 #### `showSidebar`
 
 Type: `Boolean`, default: `true`
@@ -589,6 +587,16 @@ module.exports = {
   }
 }
 ```
+
+#### `usageModes`
+
+Type: `String`, default: `collapse`
+
+Defines the initial state of the props and methods tab:
+
+* `collapse`: collapses the tab by default.
+* `hide`: hide the tab and it can´t be toggled in the UI.
+* `expand`: expand the tab by default.
 
 Use it like this in your Markdown files:
 

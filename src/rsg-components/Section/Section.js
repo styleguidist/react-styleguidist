@@ -7,10 +7,29 @@ import SectionRenderer from 'rsg-components/Section/SectionRenderer';
 import { DisplayModes } from '../../consts';
 
 export default function Section({ section, depth }, { displayMode }) {
-	const { name, slug, filepath, content, components, sections, description } = section;
+	const {
+		name,
+		slug,
+		filepath,
+		content,
+		components,
+		sections,
+		description,
+		exampleModes,
+		usageModes,
+	} = section;
 
-	const contentJsx = content && <Examples examples={content} name={name} />;
-	const componentsJsx = components && <Components components={components} depth={depth + 1} />;
+	const contentJsx = content && (
+		<Examples examples={content} name={name} exampleModes={exampleModes} />
+	);
+	const componentsJsx = components && (
+		<Components
+			usageModes={usageModes}
+			exampleModes={exampleModes}
+			components={components}
+			depth={depth + 1}
+		/>
+	);
 	const sectionsJsx = sections && <Sections sections={sections} depth={depth + 1} />;
 
 	return (

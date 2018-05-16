@@ -8,14 +8,21 @@ import filterComponentsByExactName from './filterComponentsByExactName';
  * @return {Array}
  */
 export default function filterComponentsInSectionsByExactName(sections, name) {
-	const components = [];
+	const filteredSections = [];
 	sections.forEach(section => {
 		if (section.components) {
-			components.push(...filterComponentsByExactName(section.components, name));
+			const filteredComponents = filterComponentsByExactName(section.components, name);
+			if (filteredComponents.length) {
+				filteredSections.push({
+					exampleModes: section.exampleModes,
+					usageModes: section.usageModes,
+					components: filteredComponents,
+				});
+			}
 		}
 		if (section.sections) {
-			components.push(...filterComponentsInSectionsByExactName(section.sections, name));
+			filteredSections.push(...filterComponentsInSectionsByExactName(section.sections, name));
 		}
 	});
-	return components;
+	return filteredSections;
 }

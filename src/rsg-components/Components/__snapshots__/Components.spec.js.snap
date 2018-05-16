@@ -14,7 +14,9 @@ exports[`renderer should render components list layout 1`] = `
       }
     }
     depth={3}
+    exampleModes="collapse"
     key="0"
+    usageModes="collapse"
   />
   <ReactComponent
     component={
@@ -28,7 +30,9 @@ exports[`renderer should render components list layout 1`] = `
       }
     }
     depth={3}
+    exampleModes="collapse"
     key="1"
+    usageModes="collapse"
   />
 </div>
 `;
@@ -47,7 +51,9 @@ exports[`should render components list 1`] = `
       }
     }
     depth={3}
+    exampleModes="collapse"
     key="components/foo.js"
+    usageModes="collapse"
   />
   <ReactComponent
     component={
@@ -61,7 +67,9 @@ exports[`should render components list 1`] = `
       }
     }
     depth={3}
+    exampleModes="collapse"
     key="components/bar.js"
+    usageModes="collapse"
   />
 </ComponentsRenderer>
 `;

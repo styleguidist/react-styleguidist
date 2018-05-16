@@ -60,6 +60,10 @@ module.exports = {
 		process: val =>
 			val === true ? path.resolve(__dirname, '../templates/DefaultExample.md') : val,
 	},
+	exampleModes: {
+		type: 'string',
+		default: 'collapse',
+	},
 	getComponentPathLine: {
 		type: 'function',
 		default: componentPath => componentPath,
@@ -204,10 +208,12 @@ module.exports = {
 	showCode: {
 		type: 'boolean',
 		default: false,
+		deprecated: 'Use exampleModes option instead',
 	},
 	showUsage: {
 		type: 'boolean',
 		default: false,
+		deprecated: 'Use usageModes option instead',
 	},
 	showSidebar: {
 		type: 'boolean',
@@ -291,6 +297,10 @@ module.exports = {
 	updateWebpackConfig: {
 		type: 'function',
 		removed: `Use "webpackConfig" option instead:\n${consts.DOCS_WEBPACK}`,
+	},
+	usageModes: {
+		type: 'string',
+		default: 'collapse',
 	},
 	verbose: {
 		type: 'boolean',

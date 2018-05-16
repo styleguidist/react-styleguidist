@@ -6,14 +6,18 @@ module.exports = {
 	sections: [
 		{
 			name: 'Documentation',
+			content: 'docs/Documentation.md',
 			sections: [
 				{
 					name: 'Files',
+					content: 'docs/Files.md',
+					components: () => ['./src/components/WrappedButton/WrappedButton.js'],
 					sections: [
 						{
 							name: 'First File',
 							content: 'docs/One.md',
 							description: 'This is the first section description',
+							components: () => ['./src/components/Label/Label.js'],
 						},
 						{
 							name: 'Second File',
@@ -25,21 +29,25 @@ module.exports = {
 		},
 		{
 			name: 'Components',
+			content: 'docs/Components.md',
 			sections: [
 				{
 					name: 'Buttons',
-					components: () => [
-						'./src/components/Button/Button.js',
-						'./src/components/RandomButton/RandomButton.js',
-						'./src/components/WrappedButton/WrappedButton.js',
-					],
+					components: () => ['./src/components/Button/Button.js'],
+					exampleModes: 'expand', // 'hide' | 'collapse' | 'expand'
+					usageModes: 'hide', // 'hide' | 'collapse' | 'expand'
 				},
 				{
 					name: 'Fields',
-					components: () => [
-						'./src/components/Label/Label.js',
-						'./src/components/Placeholder/Placeholder.js',
-					],
+					components: () => ['./src/components/Placeholder/Placeholder.js'],
+					exampleModes: 'expand', // 'hide' | 'collapse' | 'expand'
+					usageModes: 'expand', // 'hide' | 'collapse' | 'expand'
+				},
+				{
+					name: 'Others',
+					components: () => ['./src/components/RandomButton/RandomButton.js'],
+					exampleModes: 'collapse', // 'hide' | 'collapse' | 'expand'
+					usageModes: 'collapse', // 'hide' | 'collapse' | 'expand'
 				},
 			],
 		},

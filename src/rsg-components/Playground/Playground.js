@@ -6,7 +6,7 @@ import Para from 'rsg-components/Para';
 import Slot from 'rsg-components/Slot';
 import PlaygroundRenderer from 'rsg-components/Playground/PlaygroundRenderer';
 import { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
-import { DisplayModes } from '../../consts';
+import { DisplayModes, ExampleModes } from '../../consts';
 
 export default class Playground extends Component {
 	static propTypes = {
@@ -14,6 +14,7 @@ export default class Playground extends Component {
 		evalInContext: PropTypes.func.isRequired,
 		index: PropTypes.number.isRequired,
 		name: PropTypes.string.isRequired,
+		exampleModes: PropTypes.string.isRequired,
 		settings: PropTypes.object,
 	};
 
@@ -24,13 +25,14 @@ export default class Playground extends Component {
 
 	constructor(props, context) {
 		super(props, context);
-		const { code, settings } = props;
+		const { code, settings, exampleModes } = props;
 		const { config } = context;
-		const showCode = settings.showcode !== undefined ? settings.showcode : config.showCode;
+		const expandCode = exampleModes === ExampleModes.expand;
+		const activeTab = settings.showcode !== undefined ? settings.showcode : expandCode;
 
 		this.state = {
 			code,
-			activeTab: showCode ? EXAMPLE_TAB_CODE_EDITOR : undefined,
+			activeTab: activeTab ? EXAMPLE_TAB_CODE_EDITOR : undefined,
 		};
 
 		this.handleTabChange = this.handleTabChange.bind(this);
@@ -63,13 +65,15 @@ export default class Playground extends Component {
 
 	render() {
 		const { code, activeTab } = this.state;
-		const { evalInContext, index, name, settings } = this.props;
+		const { evalInContext, index, name, settings, exampleModes } = this.props;
 		const { displayMode } = this.context;
+		const isSampleHide = exampleModes === ExampleModes.hide;
+		const hideEditor = settings.noeditor || isSampleHide;
 		const preview = <Preview code={code} evalInContext={evalInContext} />;
-		if (settings.noeditor) {
-			return <Para>{preview}</Para>;
-		}
-		return (
+
+		return hideEditor ? (
+			<Para>{preview}</Para>
+		) : (
 			<PlaygroundRenderer
 				name={name}
 				preview={preview}
@@ -86,7 +90,7 @@ export default class Playground extends Component {
 						name="exampleTabs"
 						active={activeTab}
 						onlyActive
-						props={{ code, onChange: this.handleChange, evalInContext }}
+						props={{ code, onChange: this.handleChange }}
 					/>
 				}
 				toolbar={

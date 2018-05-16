@@ -16,7 +16,7 @@ const examples = [
 ];
 
 it('should render examples', () => {
-	const actual = shallow(<Examples examples={examples} name="button" />, {
+	const actual = shallow(<Examples examples={examples} name="button" exampleModes="collapse" />, {
 		context: {
 			codeRevision: 1,
 			displayMode: DisplayModes.example,
@@ -34,11 +34,14 @@ it('should not render a example with unknown type', () => {
 		},
 	];
 
-	const actual = mount(<Examples examples={faultyExample} name="button" />, {
-		context: {
-			codeRevision: 1,
-		},
-	});
+	const actual = mount(
+		<Examples examples={faultyExample} name="button" exampleModes="collapse" />,
+		{
+			context: {
+				codeRevision: 1,
+			},
+		}
+	);
 	const article = actual.find('article');
 	expect(article.length).toEqual(1);
 	expect(article.text().includes('FooBar')).toEqual(false);
