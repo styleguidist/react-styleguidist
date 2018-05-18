@@ -8,12 +8,12 @@ Array [
       "require": "!!~/loaders/examples-loader.js!~/test/components/Button/Readme.md",
     },
     "description": undefined,
-    "exampleModes": "collapse",
+    "exampleMode": "collapse",
     "filepath": "components/Button/Readme.md",
     "name": "Readme",
     "sections": Array [],
     "slug": "readme-1",
-    "usageModes": "collapse",
+    "usageMode": "collapse",
   },
   Object {
     "components": Array [
@@ -87,12 +87,12 @@ Array [
     ],
     "content": undefined,
     "description": undefined,
-    "exampleModes": "collapse",
+    "exampleMode": "collapse",
     "filepath": undefined,
     "name": "Components",
     "sections": Array [],
     "slug": "components-1",
-    "usageModes": "collapse",
+    "usageMode": "collapse",
   },
   Object {
     "components": Array [
@@ -153,12 +153,12 @@ Array [
     ],
     "content": undefined,
     "description": undefined,
-    "exampleModes": "collapse",
+    "exampleMode": "collapse",
     "filepath": undefined,
     "name": "Ignore",
     "sections": Array [],
     "slug": "ignore-1",
-    "usageModes": "collapse",
+    "usageMode": "collapse",
   },
 ]
 `;
@@ -236,12 +236,12 @@ Object {
   ],
   "content": undefined,
   "description": undefined,
-  "exampleModes": "collapse",
+  "exampleMode": "collapse",
   "filepath": undefined,
   "name": "Components",
   "sections": Array [],
   "slug": "components",
-  "usageModes": "collapse",
+  "usageMode": "collapse",
 }
 `;
 
@@ -252,12 +252,12 @@ Object {
     "require": "!!~/loaders/examples-loader.js!~/test/components/Button/Readme.md",
   },
   "description": undefined,
-  "exampleModes": "collapse",
+  "exampleMode": "collapse",
   "filepath": "components/Button/Readme.md",
   "name": "Readme",
   "sections": Array [],
   "slug": "readme",
-  "usageModes": "collapse",
+  "usageMode": "collapse",
 }
 `;
 
@@ -321,11 +321,11 @@ Object {
   ],
   "content": undefined,
   "description": undefined,
-  "exampleModes": "collapse",
+  "exampleMode": "collapse",
   "filepath": undefined,
   "name": "Ignore",
   "sections": Array [],
   "slug": "ignore",
-  "usageModes": "collapse",
+  "usageMode": "collapse",
 }
 `;

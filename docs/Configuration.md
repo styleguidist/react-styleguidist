@@ -15,7 +15,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`dangerouslyUpdateWebpackConfig`](#dangerouslyupdatewebpackconfig)
 * [`defaultExample`](#defaultexample)
 * [`editorConfig`](#editorconfig)
-* [`exampleModes`](#examplemodes)
+* [`exampleMode`](#examplemode)
 * [`getComponentPathLine`](#getcomponentpathline)
 * [`getExampleFilename`](#getexamplefilename)
 * [`handlers`](#handlers)
@@ -43,7 +43,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`title`](#title)
 * [`updateDocs`](#updatedocs)
 * [`updateExample`](#updateexample)
-* [`usageModes`](#usagemodes)
+* [`usageMode`](#usagemode)
 * [`verbose`](#verbose)
 * [`webpackConfig`](#webpackconfig)
 
@@ -197,7 +197,7 @@ module.exports = {
 }
 ```
 
-#### `exampleModes`
+#### `exampleMode`
 
 Type: `String`, default: `collapse`
 
@@ -588,7 +588,7 @@ module.exports = {
 }
 ```
 
-#### `usageModes`
+#### `usageMode`
 
 Type: `String`, default: `collapse`
 

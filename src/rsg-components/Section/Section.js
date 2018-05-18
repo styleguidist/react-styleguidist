@@ -15,17 +15,17 @@ export default function Section({ section, depth }, { displayMode }) {
 		components,
 		sections,
 		description,
-		exampleModes,
-		usageModes,
+		exampleMode,
+		usageMode,
 	} = section;
 
 	const contentJsx = content && (
-		<Examples examples={content} name={name} exampleModes={exampleModes} />
+		<Examples examples={content} name={name} exampleMode={exampleMode} />
 	);
 	const componentsJsx = components && (
 		<Components
-			usageModes={usageModes}
-			exampleModes={exampleModes}
+			usageMode={usageMode}
+			exampleMode={exampleMode}
 			components={components}
 			depth={depth + 1}
 		/>

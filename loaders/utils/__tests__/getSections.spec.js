@@ -19,8 +19,8 @@ const sections = [
 ];
 const config = {
 	configDir,
-	exampleModes: 'collapse',
-	usageModes: 'collapse',
+	exampleMode: 'collapse',
+	usageMode: 'collapse',
 	getExampleFilename: a => a,
 	getComponentPathLine: a => a,
 };

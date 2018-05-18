@@ -14,11 +14,11 @@ exports[`render should render section 1`] = `
         "components": <Components
           components={Array []}
           depth={3}
-          exampleModes="collapse"
-          usageModes="collapse"
+          exampleMode="collapse"
+          usageMode="collapse"
         />,
         "content": <Examples
-          exampleModes="collapse"
+          exampleMode="collapse"
           examples={
             Array [
               Object {
@@ -51,7 +51,7 @@ exports[`render should render section 1`] = `
     Foo
   </SectionHeading>
   <Examples
-    exampleModes="collapse"
+    exampleMode="collapse"
     examples={
       Array [
         Object {
@@ -78,8 +78,8 @@ exports[`render should render section 1`] = `
   <Components
     components={Array []}
     depth={3}
-    exampleModes="collapse"
-    usageModes="collapse"
+    exampleMode="collapse"
+    usageMode="collapse"
   />
 </section>
 `;
@@ -128,8 +128,8 @@ exports[`should render components list 1`] = `
     <Components
       components={Array []}
       depth={4}
-      exampleModes="collapse"
-      usageModes="collapse"
+      exampleMode="collapse"
+      usageMode="collapse"
     />
   }
   depth={3}
@@ -145,13 +145,13 @@ exports[`should render section renderer 1`] = `
     <Components
       components={Array []}
       depth={4}
-      exampleModes="collapse"
-      usageModes="collapse"
+      exampleMode="collapse"
+      usageMode="collapse"
     />
   }
   content={
     <Examples
-      exampleModes="collapse"
+      exampleMode="collapse"
       examples={
         Array [
           Object {

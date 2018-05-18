@@ -4,8 +4,8 @@ import ReactComponent from './ReactComponent';
 import { ReactComponentRenderer } from './ReactComponentRenderer';
 import { DisplayModes } from '../../consts';
 
-const exampleModes = 'collapse';
-const usageModes = 'collapse';
+const exampleMode = 'collapse';
+const usageMode = 'collapse';
 
 const options = {
 	context: {
@@ -72,8 +72,8 @@ describe('ReactComponent', () => {
 			<ReactComponent
 				component={component}
 				depth={3}
-				exampleModes={exampleModes}
-				usageModes={usageModes}
+				exampleMode={exampleMode}
+				usageMode={usageMode}
 			/>,
 			options
 		);
@@ -88,8 +88,8 @@ describe('ReactComponent', () => {
 			<ReactComponent
 				component={componentWithEverything}
 				depth={3}
-				exampleModes={exampleModes}
-				usageModes={usageModes}
+				exampleMode={exampleMode}
+				usageMode={usageMode}
 			/>,
 			options
 		);
@@ -104,8 +104,8 @@ describe('ReactComponent', () => {
 			<ReactComponent
 				component={componentWithEverything}
 				depth={3}
-				exampleModes={exampleModes}
-				usageModes={usageModes}
+				exampleMode={exampleMode}
+				usageMode={usageMode}
 			/>,
 			options
 		);
@@ -118,8 +118,8 @@ describe('ReactComponent', () => {
 			<ReactComponent
 				component={componentWithEverything}
 				depth={3}
-				exampleModes={exampleModes}
-				usageModes={usageModes}
+				exampleMode={exampleMode}
+				usageMode={usageMode}
 			/>,
 			options
 		);
@@ -133,8 +133,8 @@ describe('ReactComponent', () => {
 			<ReactComponent
 				component={componentWithEverything}
 				depth={3}
-				exampleModes={exampleModes}
-				usageModes="expand"
+				exampleMode={exampleMode}
+				usageMode="expand"
 			/>,
 			{
 				...options,
@@ -153,8 +153,8 @@ describe('ReactComponent', () => {
 			<ReactComponent
 				component={{ slug: 'foo', props: {} }}
 				depth={3}
-				exampleModes={exampleModes}
-				usageModes={usageModes}
+				exampleMode={exampleMode}
+				usageMode={usageMode}
 			/>,
 			options
 		);
@@ -167,8 +167,8 @@ describe('ReactComponent', () => {
 			<ReactComponent
 				component={component}
 				depth={3}
-				exampleModes={exampleModes}
-				usageModes={usageModes}
+				exampleMode={exampleMode}
+				usageMode={usageMode}
 			/>,
 			options
 		);
@@ -181,8 +181,8 @@ describe('ReactComponent', () => {
 			<ReactComponent
 				component={component}
 				depth={3}
-				exampleModes={exampleModes}
-				usageModes={usageModes}
+				exampleMode={exampleMode}
+				usageMode={usageMode}
 			/>,
 			{
 				context: {
@@ -200,8 +200,8 @@ describe('ReactComponent', () => {
 			<ReactComponent
 				component={component}
 				depth={3}
-				exampleModes={exampleModes}
-				usageModes={usageModes}
+				exampleMode={exampleMode}
+				usageMode={usageMode}
 			/>,
 			options
 		);
@@ -214,8 +214,8 @@ describe('ReactComponent', () => {
 			<ReactComponent
 				component={component}
 				depth={3}
-				exampleModes={exampleModes}
-				usageModes={usageModes}
+				exampleMode={exampleMode}
+				usageMode={usageMode}
 			/>,
 			options
 		);
@@ -240,8 +240,8 @@ describe('ReactComponent', () => {
 					},
 				}}
 				depth={3}
-				exampleModes={exampleModes}
-				usageModes={usageModes}
+				exampleMode={exampleMode}
+				usageMode={usageMode}
 			/>,
 			options
 		);

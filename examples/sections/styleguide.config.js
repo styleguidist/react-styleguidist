@@ -34,20 +34,20 @@ module.exports = {
 				{
 					name: 'Buttons',
 					components: () => ['./src/components/Button/Button.js'],
-					exampleModes: 'expand', // 'hide' | 'collapse' | 'expand'
-					usageModes: 'hide', // 'hide' | 'collapse' | 'expand'
+					exampleMode: 'expand', // 'hide' | 'collapse' | 'expand'
+					usageMode: 'hide', // 'hide' | 'collapse' | 'expand'
 				},
 				{
 					name: 'Fields',
 					components: () => ['./src/components/Placeholder/Placeholder.js'],
-					exampleModes: 'expand', // 'hide' | 'collapse' | 'expand'
-					usageModes: 'expand', // 'hide' | 'collapse' | 'expand'
+					exampleMode: 'expand', // 'hide' | 'collapse' | 'expand'
+					usageMode: 'expand', // 'hide' | 'collapse' | 'expand'
 				},
 				{
 					name: 'Others',
 					components: () => ['./src/components/RandomButton/RandomButton.js'],
-					exampleModes: 'collapse', // 'hide' | 'collapse' | 'expand'
-					usageModes: 'collapse', // 'hide' | 'collapse' | 'expand'
+					exampleMode: 'collapse', // 'hide' | 'collapse' | 'expand'
+					usageMode: 'collapse', // 'hide' | 'collapse' | 'expand'
 				},
 			],
 		},

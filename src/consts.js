@@ -12,13 +12,13 @@ export const DisplayModes = Object.freeze({
 	// TODO: error (404)
 });
 
-export const ExampleModes = Object.freeze({
+export const ExampleMode = Object.freeze({
 	hide: 'hide',
 	collapse: 'collapse',
 	expand: 'expand',
 });
 
-export const UsageModes = Object.freeze({
+export const UsageMode = Object.freeze({
 	hide: 'hide',
 	collapse: 'collapse',
 	expand: 'expand',

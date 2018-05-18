@@ -6,7 +6,7 @@ import Para from 'rsg-components/Para';
 import Slot from 'rsg-components/Slot';
 import PlaygroundRenderer from 'rsg-components/Playground/PlaygroundRenderer';
 import { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
-import { DisplayModes, ExampleModes } from '../../consts';
+import { DisplayModes, ExampleMode } from '../../consts';
 
 export default class Playground extends Component {
 	static propTypes = {
@@ -14,7 +14,7 @@ export default class Playground extends Component {
 		evalInContext: PropTypes.func.isRequired,
 		index: PropTypes.number.isRequired,
 		name: PropTypes.string.isRequired,
-		exampleModes: PropTypes.string.isRequired,
+		exampleMode: PropTypes.string.isRequired,
 		settings: PropTypes.object,
 	};
 
@@ -25,9 +25,9 @@ export default class Playground extends Component {
 
 	constructor(props, context) {
 		super(props, context);
-		const { code, settings, exampleModes } = props;
+		const { code, settings, exampleMode } = props;
 		const { config } = context;
-		const expandCode = exampleModes === ExampleModes.expand;
+		const expandCode = exampleMode === ExampleMode.expand;
 		const activeTab = settings.showcode !== undefined ? settings.showcode : expandCode;
 
 		this.state = {
@@ -65,9 +65,9 @@ export default class Playground extends Component {
 
 	render() {
 		const { code, activeTab } = this.state;
-		const { evalInContext, index, name, settings, exampleModes } = this.props;
+		const { evalInContext, index, name, settings, exampleMode } = this.props;
 		const { displayMode } = this.context;
-		const isSampleHide = exampleModes === ExampleModes.hide;
+		const isSampleHide = exampleMode === ExampleMode.hide;
 		const hideEditor = settings.noeditor || isSampleHide;
 		const preview = <Preview code={code} evalInContext={evalInContext} />;
 

@@ -51,14 +51,8 @@ function processSection(section, config) {
 
 	return {
 		name: section.name,
-		exampleModes:
-			section.exampleModes || config.showCode === undefined
-				? config.exampleModes
-				: config.showUsage ? 'expand' : 'collapse',
-		usageModes:
-			section.usageModes || config.showUsage === undefined
-				? config.usageModes
-				: config.showUsage ? 'expand' : 'collapse',
+		exampleMode: section.exampleMode || config.exampleMode,
+		usageMode: section.usageMode || config.usageMode,
 		description: section.description,
 		slug: slugger.slug(section.name),
 		sections: getSections(section.sections || [], config),

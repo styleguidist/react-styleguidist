@@ -13,7 +13,7 @@ const props = {
 	index: 0,
 	name: 'name',
 	settings: {},
-	exampleModes: 'collapse',
+	exampleMode: 'collapse',
 	evalInContext,
 	code,
 };
@@ -95,8 +95,8 @@ it('should open a code editor by default if showcode=true option passed in examp
 	expect(actual.text()).toMatch('Loading');
 });
 
-it('should open a code editor by default if exampleModes="expand" option specified in style guide config', () => {
-	const actual = mount(<Playground {...props} exampleModes="expand" />, {
+it('should open a code editor by default if exampleMode="expand" option specified in style guide config', () => {
+	const actual = mount(<Playground {...props} exampleMode="expand" />, {
 		context: {
 			...options.context,
 			config: {
@@ -110,7 +110,7 @@ it('should open a code editor by default if exampleModes="expand" option specifi
 
 it('showcode option in example settings should overwrite style guide config option', () => {
 	const actual = mount(
-		<Playground {...props} exampleModes="expand" settings={{ showcode: false }} />,
+		<Playground {...props} exampleMode="expand" settings={{ showcode: false }} />,
 		{
 			context: {
 				...options.context,

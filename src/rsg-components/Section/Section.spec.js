@@ -16,8 +16,8 @@ const options = {
 const section = {
 	name: 'Foo',
 	slug: 'foo',
-	exampleModes: 'collapse',
-	usageModes: 'collapse',
+	exampleMode: 'collapse',
+	usageMode: 'collapse',
 	description: 'This is a description',
 	content: [
 		{
@@ -46,8 +46,8 @@ it('should render components list', () => {
 			section={{
 				name: 'Components',
 				slug: 'components',
-				usageModes: 'collapse',
-				exampleModes: 'collapse',
+				usageMode: 'collapse',
+				exampleMode: 'collapse',
 				components: [],
 			}}
 			depth={3}
@@ -64,8 +64,8 @@ it('should not render components list if not defined', () => {
 			section={{
 				name: 'No components',
 				slug: 'no-components',
-				usageModes: 'collapse',
-				exampleModes: 'collapse',
+				usageMode: 'collapse',
+				exampleMode: 'collapse',
 			}}
 			depth={3}
 		/>,
@@ -81,8 +81,8 @@ it('should render sections if defined', () => {
 			section={{
 				name: 'Nested sections',
 				slug: 'nested-sections',
-				usageModes: 'collapse',
-				exampleModes: 'collapse',
+				usageMode: 'collapse',
+				exampleMode: 'collapse',
 				sections: [],
 			}}
 			depth={3}
@@ -99,8 +99,8 @@ it('should not render sections if not defined', () => {
 			section={{
 				name: 'No sections',
 				slug: 'no-sections',
-				usageModes: 'collapse',
-				exampleModes: 'collapse',
+				usageMode: 'collapse',
+				exampleMode: 'collapse',
 			}}
 			depth={3}
 		/>,
@@ -116,8 +116,8 @@ test('should not render section in isolation mode by default', () => {
 			section={{
 				name: 'A',
 				slug: 'a',
-				usageModes: 'collapse',
-				exampleModes: 'collapse',
+				usageMode: 'collapse',
+				exampleMode: 'collapse',
 			}}
 			depth={3}
 		/>,
@@ -133,8 +133,8 @@ test('should render section in isolation mode', () => {
 			section={{
 				name: 'A',
 				slug: 'a',
-				usageModes: 'collapse',
-				exampleModes: 'collapse',
+				usageMode: 'collapse',
+				exampleMode: 'collapse',
 			}}
 			depth={3}
 		/>,
@@ -159,15 +159,15 @@ it('render should render section', () => {
 				<Examples
 					name={section.name}
 					examples={section.content}
-					exampleModes={section.exampleModes}
+					exampleMode={section.exampleMode}
 				/>
 			}
 			components={
 				<Components
 					components={[]}
 					depth={3}
-					usageModes={section.usageModes}
-					exampleModes={section.exampleModes}
+					usageMode={section.usageMode}
+					exampleMode={section.exampleMode}
 				/>
 			}
 			sections={<Sections sections={[]} depth={3} />}

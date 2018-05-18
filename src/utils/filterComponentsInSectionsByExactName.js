@@ -14,8 +14,8 @@ export default function filterComponentsInSectionsByExactName(sections, name) {
 			const filteredComponents = filterComponentsByExactName(section.components, name);
 			if (filteredComponents.length) {
 				filteredSections.push({
-					exampleModes: section.exampleModes,
-					usageModes: section.usageModes,
+					exampleMode: section.exampleMode,
+					usageMode: section.usageMode,
 					components: filteredComponents,
 				});
 			}
