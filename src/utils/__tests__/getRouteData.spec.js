@@ -104,4 +104,9 @@ describe('getRouteData', () => {
 		const result = getRouteData(sections, '#/Buttons/Label', true);
 		expect(result).toMatchSnapshot();
 	});
+
+	it('should return not found if pagePerSection and hash is #/Buttons/Label/Not', () => {
+		const result = getRouteData(sections, '#/Buttons/Label/Not', true);
+		expect(result).toMatchSnapshot();
+	});
 });

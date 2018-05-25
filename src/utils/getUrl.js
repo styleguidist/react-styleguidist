@@ -15,7 +15,12 @@ export default function getUrl(
 	{ name, slug, example, anchor, isolated, nochrome, absolute, hashPath, id, takeHash } = {},
 	{ origin, pathname, hash } = window.location
 ) {
-	let url = takeHash ? hash.replace(/\?id=[^]*/, '') : pathname;
+	let url = pathname;
+
+	if (takeHash) {
+		url += hash.replace(/\?id=[^]*/, '');
+	}
+
 	if (nochrome) {
 		url += '?nochrome';
 	}

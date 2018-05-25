@@ -35,6 +35,13 @@ Object {
 }
 `;
 
+exports[`getRouteData should return not found if pagePerSection and hash is #/Buttons/Label/Not 1`] = `
+Object {
+  "displayMode": "notFound",
+  "sections": Array [],
+}
+`;
+
 exports[`getRouteData should return one component 1`] = `
 Object {
   "displayMode": "component",
