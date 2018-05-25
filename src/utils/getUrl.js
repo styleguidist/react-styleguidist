@@ -29,7 +29,9 @@ export default function getUrl(
 		url += `#${slug}`;
 	} else if (isolated || nochrome) {
 		url += `#!/${name}`;
-	} else if (hashPath) {
+	}
+
+	if (hashPath) {
 		if (!id) {
 			hashPath = [...hashPath, name];
 		}
