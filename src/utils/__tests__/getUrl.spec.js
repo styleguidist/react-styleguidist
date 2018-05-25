@@ -69,13 +69,31 @@ describe('getUrl', () => {
 		expect(result).toBe('/styleguide/#/Documentation/FooBar');
 	});
 
+	it('should return an absolute route path', () => {
+		const result = getUrl({ name, slug, hashPath: ['Documentation'], absolute: true }, loc);
+		expect(result).toBe('http://example.com/styleguide/#/Documentation/FooBar');
+	});
+
 	it('should return a route path with a param id=foobar', () => {
 		const result = getUrl({ name, slug, hashPath: ['Documentation'], id: true }, loc);
 		expect(result).toBe('/styleguide/#/Documentation?id=foobar');
 	});
 
+	it('should return an absolute route path with a param id=foobar', () => {
+		const result = getUrl(
+			{ name, slug, hashPath: ['Documentation'], id: true, absolute: true },
+			loc
+		);
+		expect(result).toBe('http://example.com/styleguide/#/Documentation?id=foobar');
+	});
+
 	it('should return a param id=foobar', () => {
 		const result = getUrl({ name, slug, takeHash: true, id: true }, loc);
 		expect(result).toBe('/styleguide/#/Components?id=foobar');
+	});
+
+	it('should return an absolute with a param id=foobar', () => {
+		const result = getUrl({ name, slug, takeHash: true, id: true, absolute: true }, loc);
+		expect(result).toBe('http://example.com/styleguide/#/Components?id=foobar');
 	});
 });
