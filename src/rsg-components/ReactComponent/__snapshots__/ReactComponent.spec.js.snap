@@ -36,6 +36,7 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
       deprecated={false}
       depth={3}
       id="foo"
+      pagePerSection={false}
       slotName="componentToolbar"
       slotProps={
         Object {

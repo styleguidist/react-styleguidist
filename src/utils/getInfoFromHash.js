@@ -10,11 +10,18 @@ import isNaN from 'lodash/isNaN';
  * @returns {object}
  */
 export default function getInfoFromHash(hash) {
-	if (hash.substr(0, 3) === '#!/') {
-		const tokens = hash.substr(3).split('/');
-		const index = parseInt(tokens[1], 10);
+	const shouldIsolate = hash.substr(0, 3) === '#!/';
+	if (shouldIsolate || hash.substr(0, 2) === '#/') {
+		const path = hash.replace(/\?id=[^]*/, '');
+		const tokens = path
+			.substr(shouldIsolate ? 3 : 2)
+			.split('/')
+			.map(token => decodeURIComponent(token));
+		const index = parseInt(tokens[tokens.length - 1], 10);
 		return {
-			targetName: decodeURIComponent(tokens[0]),
+			isolate: shouldIsolate,
+			tokens: tokens.filter(token => isNaN(parseInt(token, 10)) && token !== ''),
+			targetName: tokens[0],
 			targetIndex: isNaN(index) ? undefined : index,
 		};
 	}

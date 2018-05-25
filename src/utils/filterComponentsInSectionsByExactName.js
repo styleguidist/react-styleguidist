@@ -5,9 +5,10 @@ import filterComponentsByExactName from './filterComponentsByExactName';
  *
  * @param {object} sections
  * @param {string} name
+ * @param {boolean} recursive
  * @return {Array}
  */
-export default function filterComponentsInSectionsByExactName(sections, name) {
+export default function filterComponentsInSectionsByExactName(sections, name, recursive) {
 	const filteredSections = [];
 	sections.forEach(section => {
 		if (section.components) {
@@ -20,8 +21,10 @@ export default function filterComponentsInSectionsByExactName(sections, name) {
 				});
 			}
 		}
-		if (section.sections) {
-			filteredSections.push(...filterComponentsInSectionsByExactName(section.sections, name));
+		if (section.sections && recursive) {
+			filteredSections.push(
+				...filterComponentsInSectionsByExactName(section.sections, name, recursive)
+			);
 		}
 	});
 	return filteredSections;

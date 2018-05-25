@@ -24,11 +24,8 @@ import { DisplayModes } from '../../consts';
  * @param {boolean} pagePerSection
  * @returns {boolean}
  */
-function hasSidebar(displayMode, showSidebar, pagePerSection = false) {
-	return (
-		(pagePerSection && displayMode !== DisplayModes.example) ||
-		(showSidebar && displayMode === DisplayModes.all)
-	);
+function hasSidebar(displayMode, showSidebar) {
+	return displayMode === DisplayModes.notFound || (showSidebar && displayMode === DisplayModes.all);
 }
 
 export default class StyleGuide extends Component {
@@ -99,8 +96,8 @@ export default class StyleGuide extends Component {
 			<StyleGuideRenderer
 				title={config.title}
 				homepageUrl={HOMEPAGE}
-				toc={<TableOfContents sections={allSections} useIsolatedLinks={pagePerSection} />}
-				hasSidebar={hasSidebar(displayMode, config.showSidebar, pagePerSection)}
+				toc={<TableOfContents sections={allSections} useRouterLinks={pagePerSection} />}
+				hasSidebar={hasSidebar(displayMode, config.showSidebar)}
 			>
 				<Sections sections={sections} depth={1} />
 			</StyleGuideRenderer>

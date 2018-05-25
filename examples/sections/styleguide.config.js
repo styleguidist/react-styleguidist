@@ -26,6 +26,7 @@ module.exports = {
 					],
 				},
 			],
+			sectionDepth: 2,
 		},
 		{
 			name: 'Components',
@@ -50,6 +51,7 @@ module.exports = {
 					usageMode: 'collapse', // 'hide' | 'collapse' | 'expand'
 				},
 			],
+			sectionDepth: 0,
 		},
 	],
 	require: [path.join(__dirname, 'src/styles.css')],

@@ -109,6 +109,7 @@ exports[`should not render components list if not defined 1`] = `
   depth={3}
   isolated={false}
   name="No components"
+  pagePerSection={false}
   slug="no-components"
 />
 `;
@@ -118,6 +119,7 @@ exports[`should not render sections if not defined 1`] = `
   depth={3}
   isolated={false}
   name="No sections"
+  pagePerSection={false}
   slug="no-sections"
 />
 `;
@@ -135,6 +137,7 @@ exports[`should render components list 1`] = `
   depth={3}
   isolated={false}
   name="Components"
+  pagePerSection={false}
   slug="components"
 />
 `;
@@ -176,6 +179,7 @@ exports[`should render section renderer 1`] = `
   description="This is a description"
   isolated={false}
   name="Foo"
+  pagePerSection={false}
   sections={
     <Sections
       depth={4}
@@ -191,6 +195,7 @@ exports[`should render sections if defined 1`] = `
   depth={3}
   isolated={false}
   name="Nested sections"
+  pagePerSection={false}
   sections={
     <Sections
       depth={4}

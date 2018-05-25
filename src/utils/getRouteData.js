@@ -7,21 +7,6 @@ import getInfoFromHash from './getInfoFromHash';
 import { DisplayModes } from '../consts';
 
 /**
- * Returns the first element of the sections, which can be one of section or
- * component.
- *
- * @param {object} sections
- * @returns {object}
- */
-const getFirstSectionOrComponent = sections => {
-	const firstSection = sections[0];
-	if (firstSection.components && firstSection.components.length > 0) {
-		return { ...firstSection, components: [firstSection.components[0]] };
-	}
-	return firstSection;
-};
-
-/**
  * Return sections / components / examples to show on a screen according to a current route.
  *
  * Default: show all sections and components.
@@ -35,25 +20,60 @@ const getFirstSectionOrComponent = sections => {
  */
 export default function getRouteData(sections, hash, pagePerSection) {
 	// Parse URL hash to check if the components list must be filtered
+	const infoFromHash = getInfoFromHash(hash, pagePerSection);
+
+	// Name of the filtered component/section to show isolated (/#!/Button → Button)
+	let { targetName, tokens } = infoFromHash;
+
 	const {
-		// Name of the filtered component/section to show isolated (/#!/Button → Button)
-		targetName,
 		// Index of the fenced block example of the filtered component isolate (/#!/Button/1 → 1)
 		targetIndex,
-	} = getInfoFromHash(hash);
+		isolate,
+	} = infoFromHash;
 
-	let displayMode = DisplayModes.all;
+	let displayMode = isolate ? DisplayModes.example : DisplayModes.all;
 
-	// Filter the requested component if required
+	if (pagePerSection && !targetName && sections[0]) {
+		targetName = sections[0].name;
+		tokens = [targetName];
+	}
+
 	if (targetName) {
-		const filteredSections = filterComponentsInSectionsByExactName(sections, targetName);
-		if (filteredSections.length) {
-			sections = filteredSections;
-			displayMode = DisplayModes.component;
+		let filteredSections;
+		if (pagePerSection) {
+			tokens.forEach((tokenName, index) => {
+				filteredSections = filterComponentsInSectionsByExactName(sections, tokenName, isolate);
+				if (filteredSections.length) {
+					sections = filteredSections;
+				} else {
+					let section = findSection(sections, tokenName);
+					if (section) {
+						const filterChildren = section.sectionDepth !== 0 && !tokens[index + 1];
+						if (filterChildren) {
+							section = {
+								...section,
+								sections: [],
+								components: [],
+							};
+						}
+						sections = [section];
+					} else {
+						sections = [];
+					}
+				}
+			});
+			targetName = tokens[tokens.length - 1];
 		} else {
-			const section = findSection(sections, targetName);
-			sections = section ? [section] : [];
-			displayMode = DisplayModes.section;
+			// Filter the requested component if required
+			filteredSections = filterComponentsInSectionsByExactName(sections, targetName, true);
+			if (filteredSections.length) {
+				sections = filteredSections;
+				displayMode = DisplayModes.component;
+			} else {
+				const section = findSection(sections, targetName);
+				sections = section ? [section] : [];
+				displayMode = DisplayModes.section;
+			}
 		}
 
 		// If a single component or section is filtered and a fenced block index is specified hide all other examples
@@ -72,9 +92,6 @@ export default function getRouteData(sections, hash, pagePerSection) {
 				displayMode = DisplayModes.example;
 			}
 		}
-	} else if (pagePerSection) {
-		// If one component per page mode then show demos for first component
-		sections = [getFirstSectionOrComponent(sections)];
 	}
 
 	return { sections, displayMode };

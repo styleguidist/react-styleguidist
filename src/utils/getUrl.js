@@ -12,11 +12,10 @@
  * @return {string}
  */
 export default function getUrl(
-	{ name, slug, example, anchor, isolated, nochrome, absolute } = {},
-	{ origin, pathname } = window.location
+	{ name, slug, example, anchor, isolated, nochrome, absolute, hashPath, id, takeHash } = {},
+	{ origin, pathname, hash } = window.location
 ) {
-	let url = pathname;
-
+	let url = takeHash ? hash.replace(/\?id=[^]*/, '') : pathname;
 	if (nochrome) {
 		url += '?nochrome';
 	}
@@ -25,6 +24,17 @@ export default function getUrl(
 		url += `#${slug}`;
 	} else if (isolated || nochrome) {
 		url += `#!/${name}`;
+	}
+
+	if (hashPath) {
+		if (!id) {
+			hashPath = [...hashPath, name];
+		}
+		url += `#/${hashPath.join('/')}`;
+	}
+
+	if (id) {
+		url += `?id=${slug}`;
 	}
 
 	if (example !== undefined) {

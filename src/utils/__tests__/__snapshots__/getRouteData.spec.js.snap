@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getRouteData should return first component if pagePerSection and hash is empty 1`] = `
+exports[`getRouteData should return first section if pagePerSection and hash is empty 1`] = `
 Object {
   "displayMode": "all",
   "sections": Array [
@@ -17,58 +17,19 @@ Object {
             ],
           },
         },
+        Object {
+          "module": 2,
+          "name": "Image",
+          "props": Object {
+            "displayName": "Image",
+          },
+        },
       ],
       "exampleMode": "collapse",
+      "name": "Components",
+      "sectionDepth": 0,
       "sections": Array [],
       "usageMode": "collapse",
-    },
-  ],
-}
-`;
-
-exports[`getRouteData should return first section if pagePerSection and hash is empty 1`] = `
-Object {
-  "displayMode": "all",
-  "sections": Array [
-    Object {
-      "sections": Array [
-        Object {
-          "components": Array [
-            Object {
-              "module": 1,
-              "name": "Button",
-              "props": Object {
-                "displayName": "Button",
-                "examples": Array [
-                  "example 0",
-                  "example 1",
-                ],
-              },
-            },
-            Object {
-              "module": 2,
-              "name": "Image",
-              "props": Object {
-                "displayName": "Image",
-              },
-            },
-          ],
-          "exampleMode": "collapse",
-          "sections": Array [],
-          "usageMode": "collapse",
-        },
-        Object {
-          "components": Array [],
-          "content": Array [
-            "example 0",
-            "example 1",
-          ],
-          "exampleMode": "collapse",
-          "name": "Section",
-          "sections": Array [],
-          "usageMode": "collapse",
-        },
-      ],
     },
   ],
 }
@@ -90,6 +51,24 @@ Object {
               "example 1",
             ],
           },
+        },
+      ],
+      "exampleMode": "collapse",
+      "usageMode": "collapse",
+    },
+  ],
+}
+`;
+
+exports[`getRouteData should return one component if pagePerSection and hash is #/Buttons/Label 1`] = `
+Object {
+  "displayMode": "all",
+  "sections": Array [
+    Object {
+      "components": Array [
+        Object {
+          "module": 1,
+          "name": "Label",
         },
       ],
       "exampleMode": "collapse",
@@ -134,6 +113,7 @@ Object {
       ],
       "exampleMode": "collapse",
       "name": "Section",
+      "sectionDepth": 0,
       "sections": Array [],
       "usageMode": "collapse",
     },
@@ -153,6 +133,43 @@ Object {
       ],
       "exampleMode": "collapse",
       "name": "Section",
+      "sectionDepth": 0,
+      "sections": Array [],
+      "usageMode": "collapse",
+    },
+  ],
+}
+`;
+
+exports[`getRouteData should return one section if pagePerSection and hash is #/Section 1`] = `
+Object {
+  "displayMode": "all",
+  "sections": Array [
+    Object {
+      "components": Array [],
+      "content": Array [
+        "example 0",
+        "example 1",
+      ],
+      "exampleMode": "collapse",
+      "name": "Section",
+      "sectionDepth": 0,
+      "sections": Array [],
+      "usageMode": "collapse",
+    },
+  ],
+}
+`;
+
+exports[`getRouteData should return one section without components if pagePerSection and hash is #/Buttons 1`] = `
+Object {
+  "displayMode": "all",
+  "sections": Array [
+    Object {
+      "components": Array [],
+      "exampleMode": "collapse",
+      "name": "Buttons",
+      "sectionDepth": 2,
       "sections": Array [],
       "usageMode": "collapse",
     },

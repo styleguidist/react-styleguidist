@@ -10,8 +10,20 @@ let codeRevision = 0;
 
 /** Scrolls to origin when current window location hash points to an isolated view. */
 const scrollToOrigin = () => {
-	if (window.location.hash.indexOf('#!/') === 0) {
-		window.scrollTo(0, 0);
+	const hash = window.location.hash;
+	if (hash.indexOf('#!/') === 0 || hash.indexOf('#/') === 0) {
+		const element = document.scrollingElement || document.documentElement; // cross-browsers
+		let scrollTop = 0;
+
+		if (hash.indexOf('?id=') > -1) {
+			const regex = new RegExp('[\\?&]id=([^&#]*)');
+			const results = regex.exec(hash);
+			const idElement = document.getElementById(results[1]);
+			if (idElement && idElement.offsetTop) {
+				scrollTop = idElement.offsetTop;
+			}
+		}
+		element.scrollTop = scrollTop;
 	}
 };
 

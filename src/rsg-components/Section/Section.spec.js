@@ -10,6 +10,9 @@ import { DisplayModes } from '../../consts';
 const options = {
 	context: {
 		displayMode: DisplayModes.all,
+		config: {
+			pagePerSection: false,
+		},
 	},
 };
 

@@ -45,7 +45,7 @@ export default class ReactComponent extends Component {
 
 	render() {
 		const { activeTab } = this.state;
-		const { displayMode } = this.context;
+		const { displayMode, config: { pagePerSection } } = this.context;
 		const { component, depth, usageMode, exampleMode } = this.props;
 		const { name, slug, filepath, pathLine } = component;
 		const { description, examples = [], tags = {} } = component.props;
@@ -65,6 +65,7 @@ export default class ReactComponent extends Component {
 				heading={
 					<SectionHeading
 						id={slug}
+						pagePerSection={pagePerSection}
 						deprecated={!!tags.deprecated}
 						slotName="componentToolbar"
 						slotProps={{

@@ -11,6 +11,7 @@ const options = {
 	context: {
 		config: {
 			showUsage: false,
+			pagePerSection: false,
 		},
 		displayMode: DisplayModes.all,
 		slots,
