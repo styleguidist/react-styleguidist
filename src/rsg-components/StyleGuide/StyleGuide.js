@@ -5,6 +5,7 @@ import StyleGuideRenderer from 'rsg-components/StyleGuide/StyleGuideRenderer';
 import Sections from 'rsg-components/Sections';
 import Welcome from 'rsg-components/Welcome';
 import Error from 'rsg-components/Error';
+import NotFound from 'rsg-components/NotFound';
 import { HOMEPAGE } from '../../../scripts/consts';
 import { DisplayModes } from '../../consts';
 
@@ -99,7 +100,7 @@ export default class StyleGuide extends Component {
 				toc={<TableOfContents sections={allSections} useRouterLinks={pagePerSection} />}
 				hasSidebar={hasSidebar(displayMode, config.showSidebar)}
 			>
-				<Sections sections={sections} depth={1} />
+				{sections.length ? <Sections sections={sections} depth={1} /> : <NotFound />}
 			</StyleGuideRenderer>
 		);
 	}

@@ -62,6 +62,9 @@ export default function getRouteData(sections, hash, pagePerSection) {
 					}
 				}
 			});
+			if (!sections.length) {
+				displayMode = DisplayModes.notFound;
+			}
 			targetName = tokens[tokens.length - 1];
 		} else {
 			// Filter the requested component if required

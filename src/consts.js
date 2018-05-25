@@ -9,7 +9,8 @@ export const DisplayModes = Object.freeze({
 	component: 'component',
 	// Show one example inside component or section
 	example: 'example',
-	// TODO: error (404)
+	// Show error 404
+	notFound: 'notFound',
 });
 
 export const ExampleMode = Object.freeze({
