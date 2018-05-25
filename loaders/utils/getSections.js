@@ -19,7 +19,7 @@ const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
  * @returns {Array}
  */
 function getSections(sections, config, sectionDepth = 0) {
-	return sections.map(section => processSection(section, config, sectionDepth));
+	return sections.map(section => processSection(section, config, sectionDepth, true));
 }
 
 const getSectionComponents = (section, config) => {
@@ -36,9 +36,10 @@ const getSectionComponents = (section, config) => {
  * @param {object} section
  * @param {object} config
  * @param {number} sectionDepth
+ * @param {boolean} firstDepth
  * @returns {object}
  */
-function processSection(section, config, sectionDepth = 0) {
+function processSection(section, config, sectionDepth = 0, firstDepth = false) {
 	const contentRelativePath = section.content;
 
 	// Try to load section content file
@@ -51,9 +52,7 @@ function processSection(section, config, sectionDepth = 0) {
 		content = requireIt(`!!${examplesLoader}!${contentAbsolutePath}`);
 	}
 	sectionDepth =
-		section.sectionDepth !== undefined && section.sectionDepth <= sectionDepth
-			? section.sectionDepth
-			: sectionDepth;
+		section.sectionDepth !== undefined && firstDepth ? section.sectionDepth : sectionDepth;
 
 	const childrenSectionDepth = sectionDepth === 0 ? sectionDepth : sectionDepth - 1;
 
