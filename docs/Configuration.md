@@ -415,7 +415,7 @@ Dev server host name.
 
 #### `serverPort`
 
-Type: `Number`, default: `6060`
+Type: `Number`, default: `process.env.NODE_ENV` or `6060`
 
 Dev server port.
 
