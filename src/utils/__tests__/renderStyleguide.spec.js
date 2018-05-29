@@ -12,12 +12,14 @@ const styleguide = {
 						displayName: 'Button',
 					},
 					module: 'ButtonModule',
+					slug: 'button',
 				},
 				{
 					props: {
 						displayName: 'Image',
 					},
 					module: 'ImageModule',
+					slug: 'image',
 				},
 			],
 		},
@@ -54,7 +56,7 @@ describe('renderStyleguide', () => {
 	});
 
 	it('should globalize all components in isolated mode', () => {
-		renderStyleguide(styleguide, codeRevision, { hash: '#!/Button' }, doc, history);
+		renderStyleguide(styleguide, codeRevision, { hash: '#!/button' }, doc, history);
 		expect(global.Button).toBe('ButtonModule');
 		expect(global.Image).toBe('ImageModule');
 	});
@@ -71,7 +73,7 @@ describe('renderStyleguide', () => {
 
 	it('should change document title in isolated mode', () => {
 		const title = jest.fn();
-		const location = { hash: '#!/Button' };
+		const location = { hash: '#!/button' };
 		Object.defineProperty(location, 'title', {
 			set: title,
 		});

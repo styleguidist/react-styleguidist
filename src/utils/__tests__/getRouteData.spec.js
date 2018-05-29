@@ -9,6 +9,7 @@ const sections = deepfreeze([
 				components: [
 					{
 						name: 'Button',
+						slug: 'button',
 						props: {
 							displayName: 'Button',
 							examples: ['example 0', 'example 1'],
@@ -17,6 +18,7 @@ const sections = deepfreeze([
 					},
 					{
 						name: 'Image',
+						slug: 'image',
 						props: {
 							displayName: 'Image',
 						},
@@ -27,6 +29,7 @@ const sections = deepfreeze([
 			},
 			{
 				name: 'Section',
+				slug: 'section',
 				content: ['example 0', 'example 1'],
 				components: [],
 				sections: [],
@@ -42,22 +45,22 @@ describe('getRouteData', () => {
 	});
 
 	it('should return one component', () => {
-		const result = getRouteData(sections, '#!/Button');
+		const result = getRouteData(sections, '#!/button');
 		expect(result).toMatchSnapshot();
 	});
 
 	it('should return one section', () => {
-		const result = getRouteData(sections, '#!/Section');
+		const result = getRouteData(sections, '#!/section');
 		expect(result).toMatchSnapshot();
 	});
 
 	it('should return one example from a component', () => {
-		const result = getRouteData(sections, '#!/Button/1');
+		const result = getRouteData(sections, '#!/button/1');
 		expect(result).toMatchSnapshot();
 	});
 
 	it('should return one example from a section', () => {
-		const result = getRouteData(sections, '#!/Section/1');
+		const result = getRouteData(sections, '#!/section/1');
 		expect(result).toMatchSnapshot();
 	});
 

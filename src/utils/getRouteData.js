@@ -1,6 +1,6 @@
 import isFinite from 'lodash/isFinite';
 import filterComponentExamples from './filterComponentExamples';
-import filterComponentsInSectionsByExactName from './filterComponentsInSectionsByExactName';
+import filterComponentsInSectionsBySlug from './filterComponentsInSectionsBySlug';
 import filterSectionExamples from './filterSectionExamples';
 import findSection from './findSection';
 import getInfoFromHash from './getInfoFromHash';
@@ -37,7 +37,7 @@ export default function getRouteData(sections, hash, pagePerSection) {
 	// Parse URL hash to check if the components list must be filtered
 	const {
 		// Name of the filtered component/section to show isolated (/#!/Button → Button)
-		targetName,
+		targetSlug,
 		// Index of the fenced block example of the filtered component isolate (/#!/Button/1 → 1)
 		targetIndex,
 	} = getInfoFromHash(hash);
@@ -45,13 +45,13 @@ export default function getRouteData(sections, hash, pagePerSection) {
 	let displayMode = DisplayModes.all;
 
 	// Filter the requested component if required
-	if (targetName) {
-		const filteredComponents = filterComponentsInSectionsByExactName(sections, targetName);
+	if (targetSlug) {
+		const filteredComponents = filterComponentsInSectionsBySlug(sections, targetSlug);
 		if (filteredComponents.length) {
 			sections = [{ components: filteredComponents }];
 			displayMode = DisplayModes.component;
 		} else {
-			const section = findSection(sections, targetName);
+			const section = findSection(sections, targetSlug);
 			sections = section ? [section] : [];
 			displayMode = DisplayModes.section;
 		}

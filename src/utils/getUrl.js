@@ -1,7 +1,6 @@
 /**
  * Get component / section URL.
  *
- * @param {string} $.name Name
  * @param {string} $.slug Slug
  * @param {number} $.example Example index
  * @param {boolean} $.anchor Anchor?
@@ -11,8 +10,8 @@
  * @param {object} [location] Location object (will use current page location by default)
  * @return {string}
  */
-export default function getUrl(
-	{ name, slug, example, anchor, isolated, nochrome, absolute } = {},
+export default function(
+	{ slug, example, anchor, isolated, nochrome, absolute } = {},
 	{ origin, pathname } = window.location
 ) {
 	let url = pathname;
@@ -24,7 +23,7 @@ export default function getUrl(
 	if (anchor) {
 		url += `#${slug}`;
 	} else if (isolated || nochrome) {
-		url += `#!/${name}`;
+		url += `#!/${slug}`;
 	}
 
 	if (example !== undefined) {

@@ -69,12 +69,12 @@ exports[`should set the correct href for items when isolated links should be use
   items={
     Array [
       Object {
-        "href": "blank#!/Button",
+        "href": "blank#!/button",
         "name": "Button",
         "slug": "button",
       },
       Object {
-        "href": "blank#!/Input",
+        "href": "blank#!/input",
         "name": "Input",
         "slug": "input",
       },
