@@ -45,6 +45,6 @@ describe('getPageTitle', () => {
 	it('should return Error 404 for notFound isolation mode', () => {
 		const name = 'Section';
 		const result = getPageTitle([{ name }], baseTitle, 'notFound');
-		expect(result).toMatch('Error 404 - ' + baseTitle);
+		expect(result).toMatch('Error 404 - Page not found');
 	});
 });

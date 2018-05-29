@@ -6,7 +6,7 @@ import Para from 'rsg-components/Para';
 import Slot from 'rsg-components/Slot';
 import PlaygroundRenderer from 'rsg-components/Playground/PlaygroundRenderer';
 import { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
-import { DisplayModes, ExampleMode } from '../../consts';
+import { DisplayModes, ExampleModes } from '../../consts';
 
 export default class Playground extends Component {
 	static propTypes = {
@@ -27,7 +27,7 @@ export default class Playground extends Component {
 		super(props, context);
 		const { code, settings, exampleMode } = props;
 		const { config } = context;
-		const expandCode = exampleMode === ExampleMode.expand;
+		const expandCode = exampleMode === ExampleModes.expand;
 		const activeTab = settings.showcode !== undefined ? settings.showcode : expandCode;
 
 		this.state = {
@@ -67,11 +67,11 @@ export default class Playground extends Component {
 		const { code, activeTab } = this.state;
 		const { evalInContext, index, name, settings, exampleMode } = this.props;
 		const { displayMode } = this.context;
-		const isSampleHide = exampleMode === ExampleMode.hide;
-		const hideEditor = settings.noeditor || isSampleHide;
+		const isExampleHidden = exampleMode === ExampleModes.hide;
+		const isEditorHidden = settings.noeditor || isExampleHidden;
 		const preview = <Preview code={code} evalInContext={evalInContext} />;
 
-		return hideEditor ? (
+		return isEditorHidden ? (
 			<Para>{preview}</Para>
 		) : (
 			<PlaygroundRenderer

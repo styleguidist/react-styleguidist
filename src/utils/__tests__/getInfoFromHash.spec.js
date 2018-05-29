@@ -5,7 +5,7 @@ describe('getInfoFromHash', () => {
 		const result = getInfoFromHash('#!/Button');
 		expect(result).toEqual({
 			isolate: true,
-			tokens: ['Button'],
+			hashArray: ['Button'],
 			targetName: 'Button',
 			targetIndex: undefined,
 		});
@@ -20,7 +20,7 @@ describe('getInfoFromHash', () => {
 		const result = getInfoFromHash('#!/Api%20%E7%BB%84%E4%BB%B6');
 		expect(result).toEqual({
 			isolate: true,
-			tokens: ['Api 组件'],
+			hashArray: ['Api 组件'],
 			targetName: 'Api 组件',
 			targetIndex: undefined,
 		});

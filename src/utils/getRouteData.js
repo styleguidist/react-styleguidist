@@ -23,7 +23,7 @@ export default function getRouteData(sections, hash, pagePerSection) {
 	const infoFromHash = getInfoFromHash(hash, pagePerSection);
 
 	// Name of the filtered component/section to show isolated (/#!/Button → Button)
-	let { targetName, tokens } = infoFromHash;
+	let { targetName, hashArray } = infoFromHash;
 
 	const {
 		// Index of the fenced block example of the filtered component isolate (/#!/Button/1 → 1)
@@ -34,22 +34,29 @@ export default function getRouteData(sections, hash, pagePerSection) {
 	let displayMode = isolate ? DisplayModes.example : DisplayModes.all;
 
 	if (pagePerSection && !targetName && sections[0]) {
+		/** For default takes the first section when pagePerSection enabled */
 		targetName = sections[0].name;
-		tokens = [targetName];
+		hashArray = [targetName];
 	}
 
 	if (targetName) {
 		let filteredSections;
+
 		if (pagePerSection) {
-			tokens.forEach((tokenName, index) => {
-				filteredSections = filterComponentsInSectionsByExactName(sections, tokenName, isolate);
+			// Try to filter each section for depth of each hash ["Documentation", "Files", "Button"]
+			// When sectionDepth is major of 0, their children should be filtered
+			hashArray.forEach((hashName, index) => {
+				// Filter the requested component
+				filteredSections = filterComponentsInSectionsByExactName(sections, hashName, isolate);
 				if (filteredSections.length) {
 					sections = filteredSections;
 				} else {
-					let section = findSection(sections, tokenName);
+					let section = findSection(sections, hashName);
 					if (section) {
-						const filterChildren = section.sectionDepth !== 0 && !tokens[index + 1];
-						if (filterChildren) {
+						const isLastHashName = !hashArray[index + 1];
+						const shouldFilterTheirChildren = section.sectionDepth > 0 && isLastHashName;
+
+						if (shouldFilterTheirChildren) {
 							section = {
 								...section,
 								sections: [],
@@ -65,7 +72,8 @@ export default function getRouteData(sections, hash, pagePerSection) {
 			if (!sections.length) {
 				displayMode = DisplayModes.notFound;
 			}
-			targetName = tokens[tokens.length - 1];
+			// The targetName takes the last of hashArray
+			targetName = hashArray[hashArray.length - 1];
 		} else {
 			// Filter the requested component if required
 			filteredSections = filterComponentsInSectionsByExactName(sections, targetName, true);

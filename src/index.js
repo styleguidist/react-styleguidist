@@ -3,6 +3,7 @@ import './polyfills';
 import './styles';
 import ReactDOM from 'react-dom';
 import renderStyleguide from './utils/renderStyleguide';
+import { getParameterByName, hasInHash } from './utils/handleHash';
 
 // Examples code revision to rerender only code examples (not the whole page) when code changes
 // eslint-disable-next-line no-unused-vars
@@ -11,18 +12,20 @@ let codeRevision = 0;
 /** Scrolls to origin when current window location hash points to an isolated view. */
 const scrollToOrigin = () => {
 	const hash = window.location.hash;
-	if (hash.indexOf('#!/') === 0 || hash.indexOf('#/') === 0) {
+	if (hasInHash(hash, '#/') || hasInHash(hash, '#!/')) {
 		const element = document.scrollingElement || document.documentElement; // cross-browsers
+		/** Extracts the id param of hash */
+		const idHashParam = getParameterByName(hash, 'id');
 		let scrollTop = 0;
 
-		if (hash.indexOf('?id=') > -1) {
-			const regex = new RegExp('[\\?&]id=([^&#]*)');
-			const results = regex.exec(hash);
-			const idElement = document.getElementById(results[1]);
+		if (idHashParam) {
+			// Searches the node with the same id
+			const idElement = document.getElementById(idHashParam);
 			if (idElement && idElement.offsetTop) {
 				scrollTop = idElement.offsetTop;
 			}
 		}
+		/** Scroll to node or page top */
 		element.scrollTop = scrollTop;
 	}
 };
