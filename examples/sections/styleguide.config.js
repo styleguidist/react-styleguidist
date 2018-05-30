@@ -35,6 +35,10 @@ module.exports = {
 					],
 				},
 				{
+					name: 'Toolbar',
+					components: () => ['./src/components/Toolbar/Button.js'],
+				},
+				{
 					name: 'Fields',
 					components: () => [
 						'./src/components/Label/Label.js',

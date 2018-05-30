@@ -1,0 +1,15 @@
+.toolbar-button {
+	padding: .5em 1.5em;
+	color: #666;
+	background-color: #fff;
+	border: 2px dashed currentColor;
+	border-radius: .3em;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.toolbar-button[disabled] {
+	opacity: 0.5;
+	cursor: not-allowed;
+}

@@ -1,13 +1,15 @@
 Basic button:
 
 ```jsx
-<Button>Push Me</Button>
+const Button = require('./Button').default
+;<Button>Push Me</Button>
 ```
 
 Big pink button:
 
 ```jsx
-<Button size="large" color="deeppink">
+const Button = require('./Button').default
+;<Button size="large" color="deeppink">
   Lick Me
 </Button>
 ```
@@ -17,12 +19,14 @@ And you _can_ **use** `any` [Markdown](http://daringfireball.net/projects/markdo
 Fenced code blocks with `js`, `jsx` or `javascript` languages are rendered as an interactive playgrounds:
 
 ```jsx
-<Button>Push Me</Button>
+const Button = require('./Button').default
+;<Button>Push Me</Button>
 ```
 
 You can disable an editor by passing a `noeditor` modifier (` ```js noeditor `):
 
 ```jsx noeditor
+const Button = require('./Button').default;
 <Button>Push Me</Button>
 ```
 
