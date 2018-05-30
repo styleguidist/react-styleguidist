@@ -14,6 +14,7 @@ export default class Playground extends Component {
 		evalInContext: PropTypes.func.isRequired,
 		index: PropTypes.number.isRequired,
 		name: PropTypes.string.isRequired,
+		slug: PropTypes.string.isRequired,
 		settings: PropTypes.object,
 	};
 
@@ -63,7 +64,7 @@ export default class Playground extends Component {
 
 	render() {
 		const { code, activeTab } = this.state;
-		const { evalInContext, index, name, settings } = this.props;
+		const { evalInContext, index, name, slug, settings } = this.props;
 		const { displayMode } = this.context;
 		const preview = <Preview code={code} evalInContext={evalInContext} />;
 		if (settings.noeditor) {
@@ -92,7 +93,7 @@ export default class Playground extends Component {
 				toolbar={
 					<Slot
 						name="exampleToolbar"
-						props={{ name, isolated: displayMode === DisplayModes.example, example: index }}
+						props={{ name, slug, isolated: displayMode === DisplayModes.example, example: index }}
 					/>
 				}
 			/>

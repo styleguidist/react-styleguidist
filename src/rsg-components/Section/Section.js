@@ -9,7 +9,7 @@ import { DisplayModes } from '../../consts';
 export default function Section({ section, depth }, { displayMode }) {
 	const { name, slug, filepath, content, components, sections, description } = section;
 
-	const contentJsx = content && <Examples examples={content} name={name} />;
+	const contentJsx = content && <Examples examples={content} name={name} slug={slug} />;
 	const componentsJsx = components && <Components components={components} depth={depth + 1} />;
 	const sectionsJsx = sections && <Sections sections={sections} depth={depth + 1} />;
 

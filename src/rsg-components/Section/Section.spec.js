@@ -141,7 +141,7 @@ it('render should render section', () => {
 			classes={{}}
 			name={section.name}
 			slug={section.slug}
-			content={<Examples name={section.name} examples={section.content} />}
+			content={<Examples name={section.name} slug={section.slug} examples={section.content} />}
 			components={<Components components={[]} depth={3} />}
 			sections={<Sections sections={[]} depth={3} />}
 			depth={3}

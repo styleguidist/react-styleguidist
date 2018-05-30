@@ -12,6 +12,7 @@ const newCode = '<button>Not OK</button>';
 const props = {
 	index: 0,
 	name: 'name',
+	slug: 'slug',
 	settings: {},
 	evalInContext,
 	code,

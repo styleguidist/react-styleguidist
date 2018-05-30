@@ -34,6 +34,7 @@ exports[`render should render section 1`] = `
             ]
           }
           name="Foo"
+          slug="foo"
         />,
         "depth": 3,
         "name": "Foo",
@@ -66,6 +67,7 @@ exports[`render should render section 1`] = `
       ]
     }
     name="Foo"
+    slug="foo"
   />
   <Sections
     depth={3}
@@ -159,6 +161,7 @@ exports[`should render section renderer 1`] = `
         ]
       }
       name="Foo"
+      slug="foo"
     />
   }
   depth={3}

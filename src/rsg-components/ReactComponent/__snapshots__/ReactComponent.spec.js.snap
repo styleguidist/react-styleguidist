@@ -28,6 +28,7 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
         ]
       }
       name="Foo"
+      slug="foo"
     />
   }
   heading={

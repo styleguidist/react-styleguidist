@@ -12,6 +12,7 @@ exports[`should render examples 1`] = `
     index={0}
     key="1/0"
     name="button"
+    slug="button"
   />
   <Markdown
     key="1"

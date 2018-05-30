@@ -75,7 +75,7 @@ export default class ReactComponent extends Component {
 				}
 				examples={
 					examples.length > 0 ? (
-						<Examples examples={examples} name={name} />
+						<Examples examples={examples} name={name} slug={slug} />
 					) : (
 						<ExamplePlaceholder name={name} />
 					)

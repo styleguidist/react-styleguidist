@@ -90,6 +90,7 @@ exports[`should render component renderer 1`] = `
           "example": 0,
           "isolated": false,
           "name": "name",
+          "slug": "slug",
         }
       }
     />

@@ -4,7 +4,7 @@ import Playground from 'rsg-components/Playground';
 import Markdown from 'rsg-components/Markdown';
 import ExamplesRenderer from 'rsg-components/Examples/ExamplesRenderer';
 
-export default function Examples({ examples, name }, { codeRevision }) {
+export default function Examples({ examples, name, slug }, { codeRevision }) {
 	return (
 		<ExamplesRenderer>
 			{examples.map((example, index) => {
@@ -16,6 +16,7 @@ export default function Examples({ examples, name }, { codeRevision }) {
 								evalInContext={example.evalInContext}
 								key={`${codeRevision}/${index}`}
 								name={name}
+								slug={slug}
 								index={index}
 								settings={example.settings}
 							/>
@@ -32,6 +33,7 @@ export default function Examples({ examples, name }, { codeRevision }) {
 Examples.propTypes = {
 	examples: PropTypes.array.isRequired,
 	name: PropTypes.string.isRequired,
+	slug: PropTypes.string.isRequired,
 };
 Examples.contextTypes = {
 	codeRevision: PropTypes.number.isRequired,
