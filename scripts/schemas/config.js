@@ -199,7 +199,7 @@ module.exports = {
 	},
 	serverPort: {
 		type: 'number',
-		default: process.env.NODE_PORT || 6060,
+		default: process.env.NODE_PORT ? parseInt(process.env.NODE_PORT) : 6060,
 	},
 	showCode: {
 		type: 'boolean',
