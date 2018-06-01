@@ -6,6 +6,3 @@ import 'es6-object-assign/auto';
 
 // Promise to support webpack 2 require.ensure() in IE11
 import 'es6-promise/auto';
-
-// Array.find in IE11
-import 'ie-array-find-polyfill';

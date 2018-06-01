@@ -1,3 +1,5 @@
+import find from 'lodash/find';
+
 /**
  * Recursively finds a section with a given name (exact match)
  *
@@ -6,7 +8,7 @@
  * @return {object}
  */
 export default function findSection(sections, name) {
-	const found = sections.find(section => section.name === name);
+	const found = find(sections, { name });
 	if (found) {
 		return found;
 	}
