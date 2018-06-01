@@ -11,7 +11,8 @@ export default function findSection(sections, name) {
 		return found;
 	}
 
-	for (const section of sections) {
+	for (let i = 0; i < sections.length; i++) {
+		const section = sections[i];
 		if (!section.sections || section.sections.length === 0) {
 			continue;
 		}
