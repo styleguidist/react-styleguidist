@@ -16,7 +16,7 @@ const examples = [
 ];
 
 it('should render examples', () => {
-	const actual = shallow(<Examples examples={examples} name="button" />, {
+	const actual = shallow(<Examples examples={examples} name="button" exampleMode="collapse" />, {
 		context: {
 			codeRevision: 1,
 			displayMode: DisplayModes.example,
@@ -34,7 +34,7 @@ it('should not render a example with unknown type', () => {
 		},
 	];
 
-	const actual = mount(<Examples examples={faultyExample} name="button" />, {
+	const actual = mount(<Examples examples={faultyExample} name="button" exampleMode="collapse" />, {
 		context: {
 			codeRevision: 1,
 		},

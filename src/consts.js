@@ -11,3 +11,15 @@ export const DisplayModes = Object.freeze({
 	example: 'example',
 	// TODO: error (404)
 });
+
+export const ExampleMode = Object.freeze({
+	hide: 'hide',
+	collapse: 'collapse',
+	expand: 'expand',
+});
+
+export const UsageMode = Object.freeze({
+	hide: 'hide',
+	collapse: 'collapse',
+	expand: 'expand',
+});

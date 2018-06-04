@@ -65,7 +65,6 @@ exports[`should render component renderer 1`] = `
   OK
 </button>
 ,
-          "evalInContext": [Function],
           "onChange": [Function],
         }
       }

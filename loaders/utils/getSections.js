@@ -51,6 +51,8 @@ function processSection(section, config) {
 
 	return {
 		name: section.name,
+		exampleMode: section.exampleMode || config.exampleMode,
+		usageMode: section.usageMode || config.usageMode,
 		description: section.description,
 		slug: slugger.slug(section.name),
 		sections: getSections(section.sections || [], config),
