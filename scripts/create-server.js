@@ -13,7 +13,7 @@ module.exports = function createServer(config, env) {
 			hot: true,
 			quiet: true,
 			watchOptions: {
-				ignored: /node_modules/,
+				ignored: config.ignoreNodeModules || /node_modules/,
 			},
 			watchContentBase: config.assetsDir !== undefined,
 			stats: webpackConfig.stats || {},
