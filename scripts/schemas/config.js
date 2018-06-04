@@ -97,6 +97,10 @@ module.exports = {
 			'**/*.d.ts',
 		],
 	},
+	ignoreNodeModules: {
+		type: ['string', 'regexp'],
+		default: /node_modules/,
+	},
 	highlightTheme: {
 		type: 'string',
 		default: 'base16-light',

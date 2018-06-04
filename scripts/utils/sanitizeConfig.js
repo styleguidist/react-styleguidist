@@ -4,6 +4,7 @@ const isDirectory = require('is-directory');
 const castArray = require('lodash/castArray');
 const isBoolean = require('lodash/isBoolean');
 const isFunction = require('lodash/isFunction');
+const isRegexp = require('lodash/isRegExp');
 const isPlainObject = require('lodash/isPlainObject');
 const isString = require('lodash/isString');
 const isFinite = require('lodash/isFinite');
@@ -19,6 +20,7 @@ const StyleguidistError = require('./error');
 const typeCheckers = {
 	number: isFinite,
 	string: isString,
+	regexp: isRegexp,
 	boolean: isBoolean,
 	array: Array.isArray,
 	function: isFunction,
