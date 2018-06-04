@@ -282,13 +282,54 @@ Type: `Boolean`, default: `false`
 
 Render one section or component per page, starting with the first.
 
-If set to `true`, the sidebar will be visible on each page, except for the examples.
+If set to `true`, each first level section will be single pages.
 
 The value may be differ on each environment.
 
 ```javascript
 module.exports = {
   pagePerSection: process.env.NODE_ENV !== 'production'
+}
+```
+
+You can set the number of subpages of each section by adding`sectionDepth` in each first level section.
+
+```javascript
+module.exports = {
+  pagePerSection: true,
+  sections: [
+    {
+      name: 'Documentation',
+      sections: [
+        {
+          name: 'Files',
+          sections: [
+            {
+              name: 'First File'
+            },
+            {
+              name: 'Second File'
+            }
+          ]
+        }
+      ],
+      sectionDepth: 2 // It will show Documentation, Files and First file as single pages
+    },
+    {
+      name: 'Components',
+      sections: [
+        {
+          name: 'Buttons',
+          sections: [
+            {
+              name: 'WrapperButton'
+            }
+          ]
+        }
+      ]
+			sectionDepth: 1, // It will show Components and Buttons as single pages
+    }
+  ]
 }
 ```
 

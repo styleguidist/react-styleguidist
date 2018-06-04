@@ -109,6 +109,7 @@ Each section consists of (all fields are optional):
 * `components` — a glob pattern string, an array of component paths or a function returning a list of components. The same rules apply as for the root `components` option.
 * `sections` — array of subsections (can be nested).
 * `description` — A small description of this section.
+* `sectionDepth` — Number of subsections with single pages, only available with [pagePerSection](Configuration.md#pagepersection) is enabled.
 * `exampleMode` — Initial state of the code example tab, uses [exampleMode](Configuration.md#examplemode).
 * `usageMode` — Initial state of the props and methods tab, uses [usageMode](Configuration.md#usagemode).
 * `ignore` — string/array of globs that should not be included in the section.
