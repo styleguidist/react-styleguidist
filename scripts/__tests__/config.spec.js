@@ -228,3 +228,22 @@ it('should throw when old template as a string option passed', () => {
 		});
 	expect(fn).toThrow('format has been changed');
 });
+
+it('should accept schema', () => {
+	const result = getConfig(
+		path.join(__dirname, '../../test/apps/basic/styleguide.config.js'),
+		null,
+		'./schemas/config.js'
+	);
+	expect(result).toMatchObject({ title: 'React Style Guide Example' });
+});
+
+it('should throw if schema does not exist', () => {
+	const fn = () =>
+		getConfig(
+			path.join(__dirname, '../../test/apps/basic/styleguide.config.js'),
+			null,
+			'../schemas/config.js'
+		);
+	expect(fn).toThrowError("Cannot find module '../schemas/config.js' from 'config.js'");
+});

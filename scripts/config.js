@@ -5,7 +5,6 @@ const isString = require('lodash/isString');
 const isPlainObject = require('lodash/isPlainObject');
 const StyleguidistError = require('./utils/error');
 const sanitizeConfig = require('./utils/sanitizeConfig');
-const schema = require('./schemas/config');
 
 const CONFIG_FILENAME = 'styleguide.config.js';
 
@@ -14,9 +13,10 @@ const CONFIG_FILENAME = 'styleguide.config.js';
  *
  * @param {object|string} [config] All config options or config file name or nothing.
  * @param {function} [update] Change config object before running validation on it.
+ * @param {string} [schemaPath] Change schema config object use for config validation.
  * @returns {object}
  */
-function getConfig(config, update) {
+function getConfig(config, update, schemaPath = './schemas/config') {
 	let configFilepath;
 	if (isString(config)) {
 		// Load config from a given file
@@ -40,7 +40,7 @@ function getConfig(config, update) {
 	}
 
 	const configDir = configFilepath ? path.dirname(configFilepath) : process.cwd();
-
+	const schema = require(schemaPath);
 	try {
 		return sanitizeConfig(config, schema, configDir);
 	} catch (exception) {

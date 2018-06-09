@@ -46,7 +46,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || env;
 // Load style guide config
 let config;
 try {
-	config = getConfig(argv.config, updateConfig);
+	config = getConfig(argv.config, updateConfig, argv.schema);
 } catch (err) {
 	if (err instanceof StyleguidistError) {
 		const link = consts.DOCS_CONFIG + (err.anchor ? `#${err.anchor.toLowerCase()}` : '');
@@ -177,6 +177,7 @@ function commandHelp() {
 			chalk.underline('Options'),
 			'',
 			'    ' + chalk.yellow('--config') + '        Config file path',
+			'    ' + chalk.yellow('--schema') + '        Schema Config file path',
 			'    ' + chalk.yellow('--verbose') + '       Print debug information',
 		].join('\n')
 	);
