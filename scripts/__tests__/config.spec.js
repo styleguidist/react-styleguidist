@@ -239,11 +239,15 @@ it('should accept schema', () => {
 });
 
 it('should throw if schema does not exist', () => {
-	const fn = () =>
+	try {
 		getConfig(
 			path.join(__dirname, '../../test/apps/basic/styleguide.config.js'),
 			null,
 			'../schemas/config.js'
 		);
-	expect(fn).toThrowError("Cannot find module '../schemas/config.js' from 'config.js'");
+		// Fail test if above expression doesn't throw anything.
+		expect(true).toBe(false);
+	} catch (e) {
+		expect(e.message).toContain('Styleguidist schema config not found');
+	}
 });

@@ -7,6 +7,7 @@ const StyleguidistError = require('./utils/error');
 const sanitizeConfig = require('./utils/sanitizeConfig');
 
 const CONFIG_FILENAME = 'styleguide.config.js';
+const SCHEMA_FILEPATH = './schemas/config.js';
 
 /**
  * Read, parse and validate config file or passed config.
@@ -16,7 +17,13 @@ const CONFIG_FILENAME = 'styleguide.config.js';
  * @param {string} [schemaPath] Change schema config object use for config validation.
  * @returns {object}
  */
-function getConfig(config, update, schemaPath = './schemas/config') {
+function getConfig(config, update, schemaPath = SCHEMA_FILEPATH) {
+	schemaPath = schemaPath === SCHEMA_FILEPATH ? schemaPath : path.join(process.cwd(), schemaPath);
+	if (schemaPath !== SCHEMA_FILEPATH && !fs.existsSync(schemaPath)) {
+		throw new StyleguidistError('Styleguidist schema config not found: ' + schemaPath + '.');
+	}
+	const schema = require(schemaPath);
+
 	let configFilepath;
 	if (isString(config)) {
 		// Load config from a given file
@@ -40,7 +47,6 @@ function getConfig(config, update, schemaPath = './schemas/config') {
 	}
 
 	const configDir = configFilepath ? path.dirname(configFilepath) : process.cwd();
-	const schema = require(schemaPath);
 	try {
 		return sanitizeConfig(config, schema, configDir);
 	} catch (exception) {
