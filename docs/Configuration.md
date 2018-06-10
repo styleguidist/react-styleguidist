@@ -535,7 +535,7 @@ Function that modifies props, methods, and metadata after parsing a source file.
 
 ```javascript
 module.exports = {
-  updateDocs(docs) {
+  updateDocs(docs, file) {
     if (docs.doclets.version) {
       const versionFilePath = path.resolve(
         path.dirname(file),
