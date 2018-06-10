@@ -228,3 +228,26 @@ it('should throw when old template as a string option passed', () => {
 		});
 	expect(fn).toThrow('format has been changed');
 });
+
+it('should accept schema', () => {
+	const result = getConfig(
+		path.join(__dirname, '../../test/apps/basic/styleguide.config.js'),
+		null,
+		'./schemas/config.js'
+	);
+	expect(result).toMatchObject({ title: 'React Style Guide Example' });
+});
+
+it('should throw if schema does not exist', () => {
+	try {
+		getConfig(
+			path.join(__dirname, '../../test/apps/basic/styleguide.config.js'),
+			null,
+			'../schemas/config.js'
+		);
+		// Fail test if above expression doesn't throw anything.
+		expect(true).toBe(false);
+	} catch (e) {
+		expect(e.message).toContain('Styleguidist schema config not found');
+	}
+});

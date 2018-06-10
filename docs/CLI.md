@@ -9,4 +9,5 @@ These commands are supposed to be placed in `package.json` `scripts` (see [Getti
 CLI Options:
 
 * `--config <file>`: Specify path to a config file.
+* `--schema <file>`: Specify path to a schema config file.
 * `--verbose`: Print debug information.

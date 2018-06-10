@@ -5,18 +5,25 @@ const isString = require('lodash/isString');
 const isPlainObject = require('lodash/isPlainObject');
 const StyleguidistError = require('./utils/error');
 const sanitizeConfig = require('./utils/sanitizeConfig');
-const schema = require('./schemas/config');
 
 const CONFIG_FILENAME = 'styleguide.config.js';
+const SCHEMA_FILEPATH = './schemas/config.js';
 
 /**
  * Read, parse and validate config file or passed config.
  *
  * @param {object|string} [config] All config options or config file name or nothing.
  * @param {function} [update] Change config object before running validation on it.
+ * @param {string} [schemaPath] Change schema config object use for config validation.
  * @returns {object}
  */
-function getConfig(config, update) {
+function getConfig(config, update, schemaPath = SCHEMA_FILEPATH) {
+	schemaPath = schemaPath === SCHEMA_FILEPATH ? schemaPath : path.join(process.cwd(), schemaPath);
+	if (schemaPath !== SCHEMA_FILEPATH && !fs.existsSync(schemaPath)) {
+		throw new StyleguidistError('Styleguidist schema config not found: ' + schemaPath + '.');
+	}
+	const schema = require(schemaPath);
+
 	let configFilepath;
 	if (isString(config)) {
 		// Load config from a given file
@@ -40,7 +47,6 @@ function getConfig(config, update) {
 	}
 
 	const configDir = configFilepath ? path.dirname(configFilepath) : process.cwd();
-
 	try {
 		return sanitizeConfig(config, schema, configDir);
 	} catch (exception) {
