@@ -282,7 +282,7 @@ Type: `Boolean`, default: `false`
 
 Render one section or component per page, starting with the first.
 
-If set to `true`, each first level section will be single pages.
+If set to `true`, each section will be single page.
 
 The value may be differ on each environment.
 
@@ -292,7 +292,7 @@ module.exports = {
 }
 ```
 
-You can set the number of subpages of each section by adding`sectionDepth` in each first level section.
+If you want to isolate section's children as single pages, you can set up it adding `sectionDepth` in each section. Where `sectionDepth` it is the number of depth of routes that it will have each section.
 
 ```javascript
 module.exports = {
@@ -313,7 +313,7 @@ module.exports = {
           ]
         }
       ],
-      sectionDepth: 2 // It will show Documentation, Files and First file as single pages
+      sectionDepth: 2 // It will show "Documentation" and "Files" as single pages, filtering his children.
     },
     {
       name: 'Components',
@@ -327,11 +327,27 @@ module.exports = {
           ]
         }
       ]
-			sectionDepth: 1, // It will show Components and Buttons as single pages
+			sectionDepth: 1, // It will show "Components" as single page, filtering his children.
+    },
+    {
+      name: 'Examples',
+      sections: [
+        {
+          name: 'Case 1',
+          sections: [
+            {
+              name: 'Buttons'
+            }
+          ]
+        }
+      ]
+			sectionDepth: 0, // There is not sub-routes, "Examples" will be show all his children on page.
     }
   ]
 }
 ```
+
+For default `sectionDepth`
 
 #### `printBuildInstructions`
 

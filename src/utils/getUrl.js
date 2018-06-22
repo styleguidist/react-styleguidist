@@ -18,7 +18,11 @@ export default function getUrl(
 	let url = pathname;
 
 	if (takeHash) {
-		url += hash.replace(/\?id=[^]*/, '');
+		if (hash.indexOf('?') > -1) {
+			url += hash.substring(0, hash.indexOf('?'));
+		} else {
+			url += hash;
+		}
 	}
 
 	if (nochrome) {

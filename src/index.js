@@ -9,24 +9,24 @@ import { getParameterByName, hasInHash } from './utils/handleHash';
 // eslint-disable-next-line no-unused-vars
 let codeRevision = 0;
 
-/** Scrolls to origin when current window location hash points to an isolated view. */
+// Scrolls to origin when current window location hash points to an isolated view.
 const scrollToOrigin = () => {
 	const hash = window.location.hash;
 	if (hasInHash(hash, '#/') || hasInHash(hash, '#!/')) {
-		const element = document.scrollingElement || document.documentElement; // cross-browsers
-		/** Extracts the id param of hash */
+		// Extracts the id param of hash
 		const idHashParam = getParameterByName(hash, 'id');
+
+		// For default scroll scrollTop is the page top
 		let scrollTop = 0;
 
 		if (idHashParam) {
-			// Searches the node with the same id
+			// Searches the node with the same id and takes his offsetTop
 			const idElement = document.getElementById(idHashParam);
 			if (idElement && idElement.offsetTop) {
 				scrollTop = idElement.offsetTop;
 			}
 		}
-		/** Scroll to node or page top */
-		element.scrollTop = scrollTop;
+		window.scrollTo(0, scrollTop);
 	}
 };
 

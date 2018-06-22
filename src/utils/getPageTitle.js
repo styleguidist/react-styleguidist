@@ -14,7 +14,7 @@ import { DisplayModes } from '../consts';
  */
 export default function getPageTitle(sections, baseTitle, displayMode) {
 	if (displayMode === DisplayModes.notFound) {
-		return 'Error 404 - Page not found';
+		return 'Page not found';
 	}
 	if (sections.length) {
 		if (

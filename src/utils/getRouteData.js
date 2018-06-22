@@ -34,7 +34,7 @@ export default function getRouteData(sections, hash, pagePerSection) {
 	let displayMode = isolate ? DisplayModes.example : DisplayModes.all;
 
 	if (pagePerSection && !targetName && sections[0]) {
-		/** For default takes the first section when pagePerSection enabled */
+		// For default takes the first section when pagePerSection enabled
 		targetName = sections[0].name;
 		hashArray = [targetName];
 	}
@@ -43,20 +43,31 @@ export default function getRouteData(sections, hash, pagePerSection) {
 		let filteredSections;
 
 		if (pagePerSection) {
-			// Try to filter each section for depth of each hash ["Documentation", "Files", "Button"]
-			// When sectionDepth is major of 0, their children should be filtered
+			// hashArray could be an array as ["Documentation", "Files", "Button"]
+			// each hashArray's element represent each section name with the same deep
+			// so it should be filter each section to trying to find each one of array on the same deep
 			hashArray.forEach((hashName, index) => {
-				// Filter the requested component
-				filteredSections = filterComponentsInSectionsByExactName(sections, hashName, isolate);
+				// Filter the requested component if required but only on the first depth
+				// so in the next time of iteration, it will be trying to filter only on the second depth and so on
+				filteredSections = filterComponentsInSectionsByExactName(sections, hashName, false);
+
+				// If filteredSections exists, its because is an array of an component
+				// else it is an array of sections and depending his sectionDepth
+				// his children could be filtered or not
 				if (filteredSections.length) {
 					sections = filteredSections;
 				} else {
 					let section = findSection(sections, hashName);
 					if (section) {
+						// Only if hashName is the last of hashArray his children should be filtered
+						// because else there are possibilities to keep on filtering to try find the next section
 						const isLastHashName = !hashArray[index + 1];
+
+						// When sectionDepth is bigger than 0, their children should be filtered
 						const shouldFilterTheirChildren = section.sectionDepth > 0 && isLastHashName;
 
 						if (shouldFilterTheirChildren) {
+							// Filter his sections and components
 							section = {
 								...section,
 								sections: [],

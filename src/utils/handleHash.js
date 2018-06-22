@@ -1,10 +1,12 @@
+import escapeRegExp from 'lodash/escapeRegExp';
+
+// We’re using this file to handle the hash to develop the routes, there are two types of hash '#/' and '#!/'
+// However, it is a temporal solution because is necessary using a library third-party that it is his focus
+// You can find more information here:
+// https://github.com/styleguidist/react-styleguidist/pull/993
 const defaultPrependHash = '#/';
 const separator = '/';
 const hashValRegexp = /(.*)\?/;
-
-function escapeRegExp(str) {
-	return String(str || '').replace(/\W/g, '\\$&');
-}
 
 function trimHash(hash, prependHash) {
 	if (!hash) {

@@ -25,4 +25,14 @@ describe('getInfoFromHash', () => {
 			targetIndex: undefined,
 		});
 	});
+
+	it('hashArray should return an array of each deep and isolate should return false when the url starts with #/', () => {
+		const result = getInfoFromHash('#/Documentation/Files/Buttons');
+		expect(result).toEqual({
+			isolate: false,
+			hashArray: ['Documentation', 'Files', 'Buttons'],
+			targetName: 'Documentation',
+			targetIndex: undefined,
+		});
+	});
 });
