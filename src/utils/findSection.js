@@ -9,16 +9,21 @@ import find from 'lodash/find';
  */
 export default function findSection(sections, name) {
 	// We're using Lodash because IE11 doesn't support Array.find.
-	let found = find(sections, { name });
+	const found = find(sections, { name });
 	if (found) {
 		return found;
 	}
 
-	sections.forEach(section => {
-		if (section.sections && section.sections.length && !found) {
-			found = findSection(section.sections, name) || found;
+	for (let i = 0; i < sections.length; i++) {
+		const section = sections[i];
+		if (!section.sections || section.sections.length === 0) {
+			continue;
 		}
-	});
+		const found = findSection(section.sections, name);
+		if (found) {
+			return found;
+		}
+	}
 
-	return found;
+	return undefined;
 }
