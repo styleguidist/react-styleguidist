@@ -1,5 +1,4 @@
 import webpack, { validate } from 'webpack';
-import getWebpackVersion from '../utils/getWebpackVersion';
 import makeWebpackConfig from '../make-webpack-config';
 
 const theme = 'hl-theme';
@@ -16,7 +15,6 @@ const getClasses = (plugins, name) => plugins.filter(x => x.constructor.name ===
 const getClassNames = plugins => plugins.map(x => x.constructor.name);
 
 const process$env$nodeEnv = process.env.NODE_ENV;
-const isWebpack4 = getWebpackVersion() >= 4;
 
 afterEach(() => {
 	process.env.NODE_ENV = process$env$nodeEnv;
@@ -32,14 +30,10 @@ it('should return a development config', () => {
 	const plugins = getClassNames(config.plugins);
 	expect(plugins).toContain('HotModuleReplacementPlugin');
 
-	if (isWebpack4) {
-		expect(config).toMatchObject({
-			mode: env,
-		});
-		expect(config).not.toHaveProperty('optimization');
-	} else {
-		expect(plugins).not.toContain('UglifyJsPlugin');
-	}
+	expect(config).toMatchObject({
+		mode: env,
+	});
+	expect(config).not.toHaveProperty('optimization');
 });
 
 it('should return a production config', () => {
@@ -59,14 +53,10 @@ it('should return a production config', () => {
 		},
 	});
 
-	if (isWebpack4) {
-		expect(config).toMatchObject({
-			mode: env,
-		});
-		expect(getClasses(config.optimization.minimizer, 'UglifyJsPlugin')).toHaveLength(1);
-	} else {
-		expect(plugins).toContain('UglifyJsPlugin');
-	}
+	expect(config).toMatchObject({
+		mode: env,
+	});
+	expect(getClasses(config.optimization.minimizer, 'UglifyJsPlugin')).toHaveLength(1);
 });
 
 it('should set aliases', () => {
