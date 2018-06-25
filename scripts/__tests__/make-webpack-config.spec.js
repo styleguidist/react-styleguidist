@@ -1,5 +1,11 @@
 import webpack, { validate } from 'webpack';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import makeWebpackConfig from '../make-webpack-config';
+
+jest.mock('copy-webpack-plugin', () => {
+	const RealCopyWebpackPluginModule = require.requireActual('copy-webpack-plugin');
+	return jest.fn(RealCopyWebpackPluginModule);
+});
 
 const theme = 'hl-theme';
 const styleguideConfig = {
@@ -15,6 +21,10 @@ const getClasses = (plugins, name) => plugins.filter(x => x.constructor.name ===
 const getClassNames = plugins => plugins.map(x => x.constructor.name);
 
 const process$env$nodeEnv = process.env.NODE_ENV;
+
+beforeEach(() => {
+	CopyWebpackPlugin.mockClear();
+});
 
 afterEach(() => {
 	process.env.NODE_ENV = process$env$nodeEnv;
@@ -90,6 +100,16 @@ it('should use editorConfig theme over highlightTheme', () => {
 it('should enable verbose mode in CleanWebpackPlugin', () => {
 	const result = makeWebpackConfig({ ...styleguideConfig, verbose: true }, 'production');
 	expect(getClasses(result.plugins, 'CleanWebpackPlugin')).toMatchSnapshot();
+});
+
+it('should set from with assetsDir in CopyWebpackPlugin', () => {
+	makeWebpackConfig({ ...styleguideConfig, assetsDir: '/assets/' }, 'production');
+	expect(CopyWebpackPlugin).toHaveBeenCalledWith([{ from: '/assets/' }]); //([
+});
+
+it('should add CopyWebpackPlugin to plugins in production', () => {
+	makeWebpackConfig({ ...styleguideConfig }, 'production');
+	expect(CopyWebpackPlugin).toHaveBeenCalledWith([]);
 });
 
 it('should merge user webpack config', () => {
