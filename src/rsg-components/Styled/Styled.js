@@ -9,13 +9,13 @@ export default styles => WrappedComponent => {
 		static contextTypes = {
 			config: PropTypes.object,
 		};
-
-		componentWillMount() {
+		constructor(props, context) {
+			super(props, context);
 			this.sheet = createStyleSheet(styles, this.context.config || {}, componentName);
 			this.sheet.update(this.props).attach();
 		}
 
-		componentWillReceiveProps(nextProps) {
+		componentDidUpdate(nextProps) {
 			this.sheet.update(nextProps);
 		}
 

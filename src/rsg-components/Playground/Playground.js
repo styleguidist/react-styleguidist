@@ -30,6 +30,7 @@ export default class Playground extends Component {
 
 		this.state = {
 			code,
+			prevCode: code,
 			activeTab: showCode ? EXAMPLE_TAB_CODE_EDITOR : undefined,
 		};
 
@@ -37,11 +38,16 @@ export default class Playground extends Component {
 		this.handleChange = debounce(this.handleChange.bind(this), config.previewDelay);
 	}
 
-	componentWillReceiveProps(nextProps) {
+	static getDerivedStateFromProps(nextProps, prevState) {
 		const { code } = nextProps;
-		this.setState({
-			code,
-		});
+		if (prevState.prevCode !== code) {
+			return {
+				...prevState,
+				prevCode: code,
+				code,
+			};
+		}
+		return null;
 	}
 
 	componentWillUnmount() {
