@@ -11,7 +11,7 @@ export default styles => WrappedComponent => {
 		};
 		constructor(props, context) {
 			super(props, context);
-			this.sheet = createStyleSheet(styles, this.context.config || {}, componentName);
+			this.sheet = createStyleSheet(styles, context.config || {}, componentName);
 			this.sheet.update(props).attach();
 		}
 
