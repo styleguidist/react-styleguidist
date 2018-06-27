@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 import Preview from 'rsg-components/Preview';
@@ -8,7 +9,7 @@ import PlaygroundRenderer from 'rsg-components/Playground/PlaygroundRenderer';
 import { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
 import { DisplayModes } from '../../consts';
 
-export default class Playground extends Component {
+class Playground extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
@@ -42,7 +43,6 @@ export default class Playground extends Component {
 		const { code } = nextProps;
 		if (prevState.prevCode !== code) {
 			return {
-				...prevState,
 				prevCode: code,
 				code,
 			};
@@ -105,3 +105,5 @@ export default class Playground extends Component {
 		);
 	}
 }
+
+export default polyfill(Playground);
