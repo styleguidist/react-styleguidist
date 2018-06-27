@@ -292,7 +292,9 @@ module.exports = {
 }
 ```
 
-If you want to isolate section's children as single pages, you can set up it adding `sectionDepth` in each section. Where `sectionDepth` it is the number of depth of routes that it will have each section.
+If you want to isolate section's children as single pages (sub-routes), you can add `sectionDepth` in each section, which it is the number sub-routes for depth that it will have.
+
+For example:
 
 ```javascript
 module.exports = {
@@ -346,8 +348,6 @@ module.exports = {
   ]
 }
 ```
-
-For default `sectionDepth`
 
 #### `printBuildInstructions`
 

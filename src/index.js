@@ -20,7 +20,8 @@ const scrollToOrigin = () => {
 		let scrollTop = 0;
 
 		if (idHashParam) {
-			// Searches the node with the same id and takes his offsetTop
+			// Searches the node with the same id, takes his offsetTop
+			// And with offsetTop, tries to scroll to node
 			const idElement = document.getElementById(idHashParam);
 			if (idElement && idElement.offsetTop) {
 				scrollTop = idElement.offsetTop;
