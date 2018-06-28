@@ -3,6 +3,18 @@ const glob = require('glob');
 const isFunction = require('lodash/isFunction');
 const isString = require('lodash/isString');
 
+function getFilesMatchingGlobs(components, rootDir, ignore) {
+	return components
+		.map(listItem => {
+			if (glob.hasMagic(listItem)) {
+				return glob.sync(path.resolve(rootDir, listItem), { ignore });
+			}
+			// Wrap path in an array so reduce always gets an array of arrays
+			return [listItem];
+		})
+		.reduce((accumulator, current) => accumulator.concat(current), []);
+}
+
 /**
  * Return absolute paths of components that should be rendered in the style guide.
  *
@@ -18,9 +30,9 @@ module.exports = function getComponentFiles(components, rootDir, ignore) {
 
 	let componentFiles;
 	if (isFunction(components)) {
-		componentFiles = components();
+		componentFiles = getFilesMatchingGlobs(components(), rootDir, ignore);
 	} else if (Array.isArray(components)) {
-		componentFiles = components;
+		componentFiles = getFilesMatchingGlobs(components, rootDir, ignore);
 	} else if (isString(components)) {
 		componentFiles = glob.sync(path.resolve(rootDir, components), { ignore });
 	} else {
