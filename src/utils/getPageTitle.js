@@ -13,7 +13,7 @@ import { DisplayModes } from '../consts';
  * @return {string}
  */
 export default function getPageTitle(sections, baseTitle, displayMode) {
-	if (displayMode === DisplayModes.component || displayMode === DisplayModes.example) {
+  if (displayMode === DisplayModes.component || displayMode === DisplayModes.example) {
 		const name = get(sections[0], 'components.0.name', sections[0].name);
 		return `${name} — ${baseTitle}`;
 	} else if (displayMode === DisplayModes.section) {

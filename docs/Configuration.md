@@ -7,6 +7,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 <!-- toc -->
 
 * [`assetsDir`](#assetsdir)
+* [`codeSamples`](#codesamples)
 * [`compilerConfig`](#compilerconfig)
 * [`components`](#components)
 * [`context`](#context)
@@ -25,14 +26,13 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`printServerInstructions`](#printserverinstructions)
 * [`previewDelay`](#previewdelay)
 * [`propsParser`](#propsparser)
+* [`propsMethods`](#propsmethods)
 * [`require`](#require)
 * [`resolver`](#resolver)
 * [`ribbon`](#ribbon)
 * [`sections`](#sections)
 * [`serverHost`](#serverhost)
 * [`serverPort`](#serverport)
-* [`showCode`](#showcode)
-* [`showUsage`](#showusage)
 * [`showSidebar`](#showsidebar)
 * [`skipComponentsWithoutExample`](#skipcomponentswithoutexample)
 * [`sortProps`](#sortprops)
@@ -54,6 +54,16 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 Type: `String`, optional
 
 Your application static assets folder, will be accessible as `/` in the style guide dev server.
+
+#### `codeSamples`
+
+Type: `String`, default: `collapse`
+
+Allows to config documentation initially of example code tab
+
+* when is `collapse`: collapses the tab by default.
+* when is `hide`: hide the tab and it can´t be toggled in the UI.
+* when is `expand`: expand the tab by default.
 
 #### `compilerConfig`
 
@@ -335,6 +345,16 @@ module.exports = {
 }
 ```
 
+#### `propsMethods`
+
+Type: `String`, default: `collapse`
+
+Allows to config documentation initially of props and methods tab
+
+* when is `collapse`: collapses the tab by default.
+* when is `hide`: hide the tab and it can´t be toggled in the UI.
+* when is `expand`: expand the tab by default.
+
 #### `require`
 
 Type: `String[]`, optional
@@ -418,18 +438,6 @@ Dev server host name.
 Type: `Number`, default: `process.env.NODE_ENV` or `6060`
 
 Dev server port.
-
-#### `showCode`
-
-Type: `Boolean`, default: `false`
-
-Show or hide example code initially. It can be toggled in the UI by clicking the Code button after each example.
-
-#### `showUsage`
-
-Type: `Boolean`, default: `false`
-
-Show or hide props and methods documentation initially. It can be toggled in the UI by clicking the Props & methods button after each component description.
 
 #### `showSidebar`
 
@@ -664,7 +672,7 @@ module.exports = {
 
 > **Note:** `entry`, `externals`, `output`, `watch`, and `stats` options will be ignored. For production builds, `devtool` will also be ignored.
 
-> **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `MiniHtmlWebpackPlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
+> **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
 
 > **Note:** Run style guide in verbose mode to see the actual webpack config used by Styleguidist: `npx styleguidist server --verbose`.
 

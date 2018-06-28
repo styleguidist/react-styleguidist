@@ -3,6 +3,7 @@
 exports[`renderer should render components list layout 1`] = `
 <div>
   <ReactComponent
+    codeSamples="collapse"
     component={
       Object {
         "filepath": "components/foo.js",
@@ -15,8 +16,10 @@ exports[`renderer should render components list layout 1`] = `
     }
     depth={3}
     key="0"
+    propsMethods="collapse"
   />
   <ReactComponent
+    codeSamples="collapse"
     component={
       Object {
         "filepath": "components/bar.js",
@@ -29,6 +32,7 @@ exports[`renderer should render components list layout 1`] = `
     }
     depth={3}
     key="1"
+    propsMethods="collapse"
   />
 </div>
 `;
@@ -36,6 +40,7 @@ exports[`renderer should render components list layout 1`] = `
 exports[`should render components list 1`] = `
 <ComponentsRenderer>
   <ReactComponent
+    codeSamples="collapse"
     component={
       Object {
         "filepath": "components/foo.js",
@@ -48,8 +53,10 @@ exports[`should render components list 1`] = `
     }
     depth={3}
     key="components/foo.js"
+    propsMethods="collapse"
   />
   <ReactComponent
+    codeSamples="collapse"
     component={
       Object {
         "filepath": "components/bar.js",
@@ -62,6 +69,7 @@ exports[`should render components list 1`] = `
     }
     depth={3}
     key="components/bar.js"
+    propsMethods="collapse"
   />
 </ComponentsRenderer>
 `;

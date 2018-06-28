@@ -10,6 +10,7 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
   docs={<JsDoc />}
   examples={
     <Examples
+      codeSamples="collapse"
       examples={
         Array [
           Object {

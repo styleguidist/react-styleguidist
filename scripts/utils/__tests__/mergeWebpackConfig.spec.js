@@ -2,7 +2,6 @@ import mergeWebpackConfig from '../mergeWebpackConfig';
 
 class UglifyJsPlugin {}
 class MyPlugin {}
-class MiniHtmlWebpackPlugin {}
 
 it('should merge two objects', () => {
 	const result = mergeWebpackConfig({ a: 0, b: 0 }, { b: 1 });
@@ -27,18 +26,15 @@ it('should ignore certain sections', () => {
 });
 
 it('should ignore certain Webpack plugins', () => {
-	const baseInstance = new UglifyJsPlugin();
-	const userInstance = new UglifyJsPlugin();
 	const result = mergeWebpackConfig(
 		{
-			plugins: [baseInstance],
+			plugins: [new UglifyJsPlugin()],
 		},
 		{
-			plugins: [userInstance, new MyPlugin(), new MiniHtmlWebpackPlugin()],
+			plugins: [new UglifyJsPlugin(), new MyPlugin()],
 		}
 	);
 	expect(result.plugins).toHaveLength(2);
-	expect(result.plugins[0]).toBe(baseInstance);
 	expect(result.plugins[0].constructor.name).toBe('UglifyJsPlugin');
 	expect(result.plugins[1].constructor.name).toBe('MyPlugin');
 });
