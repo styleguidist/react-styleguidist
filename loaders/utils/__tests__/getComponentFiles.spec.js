@@ -29,7 +29,7 @@ it('getComponentFiles() should accept components as an array of file names', () 
 	expect(deabs(result)).toEqual(['~/one.js', '~/two.js']);
 });
 
-it('getComponentFiles() should accept components as a function that returns absolute paths', () => {
+it('getComponentFiles() should accept components as an array of absolute paths', () => {
 	const absolutize = files => files.map(file => path.join(configDir, file));
 	const result = getComponentFiles(absolutize(components), configDir);
 	expect(deabs(result)).toEqual(['~/one.js', '~/two.js']);
