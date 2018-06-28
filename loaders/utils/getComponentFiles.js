@@ -6,7 +6,7 @@ const isString = require('lodash/isString');
 /**
  * Return absolute paths of components that should be rendered in the style guide.
  *
- * @param {string|Function} components Function or glob pattern.
+ * @param {string|Function|Array} components Function, Array or glob pattern.
  * @param {string} rootDir
  * @param {Array} [ignore] Glob patterns to ignore.
  * @returns {Array}
