@@ -3,8 +3,8 @@ const glob = require('glob');
 const isFunction = require('lodash/isFunction');
 const isString = require('lodash/isString');
 
-function getFilesMatchingGlobs(components, rootDir, ignore) {
-	return components
+const getFilesMatchingGlobs = (components, rootDir, ignore) =>
+	components
 		.map(listItem => {
 			if (glob.hasMagic(listItem)) {
 				return glob.sync(path.resolve(rootDir, listItem), { ignore });
@@ -13,7 +13,6 @@ function getFilesMatchingGlobs(components, rootDir, ignore) {
 			return [listItem];
 		})
 		.reduce((accumulator, current) => accumulator.concat(current), []);
-}
 
 /**
  * Return absolute paths of components that should be rendered in the style guide.
