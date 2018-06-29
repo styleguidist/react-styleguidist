@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 import Preview from 'rsg-components/Preview';
@@ -8,7 +9,7 @@ import PlaygroundRenderer from 'rsg-components/Playground/PlaygroundRenderer';
 import { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
 import { DisplayModes } from '../../consts';
 
-export default class Playground extends Component {
+class Playground extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
@@ -30,6 +31,7 @@ export default class Playground extends Component {
 
 		this.state = {
 			code,
+			prevCode: code,
 			activeTab: showCode ? EXAMPLE_TAB_CODE_EDITOR : undefined,
 		};
 
@@ -37,11 +39,15 @@ export default class Playground extends Component {
 		this.handleChange = debounce(this.handleChange.bind(this), config.previewDelay);
 	}
 
-	componentWillReceiveProps(nextProps) {
+	static getDerivedStateFromProps(nextProps, prevState) {
 		const { code } = nextProps;
-		this.setState({
-			code,
-		});
+		if (prevState.prevCode !== code) {
+			return {
+				prevCode: code,
+				code,
+			};
+		}
+		return null;
 	}
 
 	componentWillUnmount() {
@@ -99,3 +105,5 @@ export default class Playground extends Component {
 		);
 	}
 }
+
+export default polyfill(Playground);
