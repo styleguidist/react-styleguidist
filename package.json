@@ -96,7 +96,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.2",
-    "babel-jest": "^22.4.3",
+    "babel-jest": "^23.2.0",
     "babel-loader": "^7.1.4",
     "babel-plugin-syntax-dynamic-import": "~6.18.0",
     "babel-plugin-system-import-transformer": "^3.1.0",
@@ -119,7 +119,7 @@
     "eslint-plugin-react": "^7.10.0",
     "file-loader": "^1.1.11",
     "husky": "^0.14.3",
-    "jest": "^22.4.3",
+    "jest": "^23.2.0",
     "jest-serializer-html": "^5.0.0",
     "keymirror": "^0.1.1",
     "lint-staged": "^7.1.3",
