@@ -1593,7 +1593,9 @@ exports[`props columns should render union type with body in tooltip 1`] = `
     >
       <div>
         <Styled(Para)>
-          <span />
+          <span>
+            "bar" | number
+          </span>
         </Styled(Para)>
         <JsDoc />
       </div>

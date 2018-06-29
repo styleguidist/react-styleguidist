@@ -177,7 +177,6 @@ function renderDescription(prop) {
 
 function renderExtra(prop) {
 	const type = getType(prop);
-
 	if (!type) {
 		return null;
 	}
@@ -204,11 +203,15 @@ function renderExtra(prop) {
 }
 
 function renderUnion(prop) {
-	if (!Array.isArray(getType(prop).value)) {
-		return <span>{getType(prop).value}</span>;
+	const type = getType(prop);
+	if (!Array.isArray(type.value)) {
+		if (type.raw) {
+			return <span>{type.raw}</span>;
+		}
+		return <span>{type.value}</span>;
 	}
 
-	const values = getType(prop).value.map((value, index) => (
+	const values = type.value.map((value, index) => (
 		<Type key={`${value.name}-${index}`}>{renderType(value)}</Type>
 	));
 	return (
