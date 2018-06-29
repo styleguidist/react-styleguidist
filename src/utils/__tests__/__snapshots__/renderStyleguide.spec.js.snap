@@ -31,7 +31,6 @@ exports[`renderStyleguide should render StyleGuide component 1`] = `
           },
         ]
       }
-      useIsolatedLinks={undefined}
     />
   }
 >
