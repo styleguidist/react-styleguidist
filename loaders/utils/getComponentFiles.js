@@ -6,6 +6,7 @@ const isString = require('lodash/isString');
 const getFilesMatchingGlobs = (components, rootDir, ignore) =>
 	components
 		.map(listItem => {
+			// Check if the string looks like a glob pattern by using hasMagic
 			if (glob.hasMagic(listItem)) {
 				return glob.sync(path.resolve(rootDir, listItem), { ignore });
 			}
