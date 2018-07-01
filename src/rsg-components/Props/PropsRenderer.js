@@ -41,6 +41,8 @@ function renderFlowType(type) {
 	const { name, raw, value } = type;
 
 	switch (name) {
+		case 'enum':
+			return name;
 		case 'literal':
 			return value;
 		case 'signature':
@@ -205,9 +207,6 @@ function renderExtra(prop) {
 function renderUnion(prop) {
 	const type = getType(prop);
 	if (!Array.isArray(type.value)) {
-		if (type.raw) {
-			return <span>{type.raw}</span>;
-		}
 		return <span>{type.value}</span>;
 	}
 
