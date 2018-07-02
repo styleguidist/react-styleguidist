@@ -7,7 +7,7 @@ import Markdown from 'rsg-components/Markdown';
 import Slot from 'rsg-components/Slot';
 import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponentRenderer';
 import { DOCS_TAB_USAGE } from '../slots';
-import { DisplayModes } from '../../consts';
+import { DisplayModes, UsageModes } from '../../consts';
 
 const ExamplePlaceholder =
 	process.env.STYLEGUIDIST_ENV !== 'production'
@@ -18,6 +18,8 @@ export default class ReactComponent extends Component {
 	static propTypes = {
 		component: PropTypes.object.isRequired,
 		depth: PropTypes.number.isRequired,
+		exampleMode: PropTypes.string.isRequired,
+		usageMode: PropTypes.string.isRequired,
 	};
 	static contextTypes = {
 		config: PropTypes.object.isRequired,
@@ -26,12 +28,12 @@ export default class ReactComponent extends Component {
 
 	constructor(props, context) {
 		super(props, context);
-		const { showUsage } = context.config;
+		const { usageMode } = props;
 
 		this.handleTabChange = this.handleTabChange.bind(this);
 
 		this.state = {
-			activeTab: showUsage ? DOCS_TAB_USAGE : undefined,
+			activeTab: usageMode === UsageModes.expand ? DOCS_TAB_USAGE : undefined,
 		};
 	}
 
@@ -43,13 +45,14 @@ export default class ReactComponent extends Component {
 
 	render() {
 		const { activeTab } = this.state;
-		const { displayMode } = this.context;
-		const { component, depth } = this.props;
+		const { displayMode, config: { pagePerSection } } = this.context;
+		const { component, depth, usageMode, exampleMode } = this.props;
 		const { name, slug, filepath, pathLine } = component;
 		const { description, examples = [], tags = {} } = component.props;
 		if (!name) {
 			return null;
 		}
+		const showUsage = usageMode !== UsageModes.hide;
 
 		return (
 			<ReactComponentRenderer
@@ -62,6 +65,7 @@ export default class ReactComponent extends Component {
 				heading={
 					<SectionHeading
 						id={slug}
+						pagePerSection={pagePerSection}
 						deprecated={!!tags.deprecated}
 						slotName="componentToolbar"
 						slotProps={{
@@ -75,17 +79,19 @@ export default class ReactComponent extends Component {
 				}
 				examples={
 					examples.length > 0 ? (
-						<Examples examples={examples} name={name} />
+						<Examples examples={examples} name={name} exampleMode={exampleMode} />
 					) : (
 						<ExamplePlaceholder name={name} />
 					)
 				}
 				tabButtons={
-					<Slot
-						name="docsTabButtons"
-						active={activeTab}
-						props={{ ...component, onClick: this.handleTabChange }}
-					/>
+					showUsage && (
+						<Slot
+							name="docsTabButtons"
+							active={activeTab}
+							props={{ ...component, onClick: this.handleTabChange }}
+						/>
+					)
 				}
 				tabBody={<Slot name="docsTabs" active={activeTab} onlyActive props={component} />}
 			/>

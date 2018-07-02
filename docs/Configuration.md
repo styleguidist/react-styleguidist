@@ -15,6 +15,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`dangerouslyUpdateWebpackConfig`](#dangerouslyupdatewebpackconfig)
 * [`defaultExample`](#defaultexample)
 * [`editorConfig`](#editorconfig)
+* [`exampleMode`](#examplemode)
 * [`getComponentPathLine`](#getcomponentpathline)
 * [`getExampleFilename`](#getexamplefilename)
 * [`handlers`](#handlers)
@@ -31,8 +32,6 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`sections`](#sections)
 * [`serverHost`](#serverhost)
 * [`serverPort`](#serverport)
-* [`showCode`](#showcode)
-* [`showUsage`](#showusage)
 * [`showSidebar`](#showsidebar)
 * [`skipComponentsWithoutExample`](#skipcomponentswithoutexample)
 * [`sortProps`](#sortprops)
@@ -44,6 +43,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 * [`title`](#title)
 * [`updateDocs`](#updatedocs)
 * [`updateExample`](#updateexample)
+* [`usageMode`](#usagemode)
 * [`verbose`](#verbose)
 * [`webpackConfig`](#webpackconfig)
 
@@ -197,6 +197,16 @@ module.exports = {
 }
 ```
 
+#### `exampleMode`
+
+Type: `String`, default: `collapse`
+
+Defines the initial state of the example code tab:
+
+* `collapse`: collapses the tab by default.
+* `hide`: hide the tab and it can´t be toggled in the UI.
+* `expand`: expand the tab by default.
+
 #### `handlers`
 
 Type: `Function`, optional, default: [[react-docgen-displayname-handler](https://github.com/nerdlabs/react-docgen-displayname-handler)]
@@ -272,13 +282,70 @@ Type: `Boolean`, default: `false`
 
 Render one section or component per page, starting with the first.
 
-If set to `true`, the sidebar will be visible on each page, except for the examples.
+If set to `true`, each section will be single page.
 
 The value may be differ on each environment.
 
 ```javascript
 module.exports = {
   pagePerSection: process.env.NODE_ENV !== 'production'
+}
+```
+
+If you want to isolate section's children as single pages (sub-routes), you can add `sectionDepth` in each section, which it is the number sub-routes for depth that it will have.
+
+For example:
+
+```javascript
+module.exports = {
+  pagePerSection: true,
+  sections: [
+    {
+      name: 'Documentation',
+      sections: [
+        {
+          name: 'Files',
+          sections: [
+            {
+              name: 'First File'
+            },
+            {
+              name: 'Second File'
+            }
+          ]
+        }
+      ],
+      sectionDepth: 2 // It will show "Documentation" and "Files" as single pages, filtering his children.
+    },
+    {
+      name: 'Components',
+      sections: [
+        {
+          name: 'Buttons',
+          sections: [
+            {
+              name: 'WrapperButton'
+            }
+          ]
+        }
+      ]
+			sectionDepth: 1, // It will show "Components" as single page, filtering his children.
+    },
+    {
+      name: 'Examples',
+      sections: [
+        {
+          name: 'Case 1',
+          sections: [
+            {
+              name: 'Buttons'
+            }
+          ]
+        }
+      ]
+			sectionDepth: 0, // There is not sub-routes, "Examples" will be show all his children on page.
+    }
+  ]
 }
 ```
 
@@ -418,18 +485,6 @@ Dev server host name.
 Type: `Number`, default: `process.env.NODE_ENV` or `6060`
 
 Dev server port.
-
-#### `showCode`
-
-Type: `Boolean`, default: `false`
-
-Show or hide example code initially. It can be toggled in the UI by clicking the Code button after each example.
-
-#### `showUsage`
-
-Type: `Boolean`, default: `false`
-
-Show or hide props and methods documentation initially. It can be toggled in the UI by clicking the Props & methods button after each component description.
 
 #### `showSidebar`
 
@@ -589,6 +644,16 @@ module.exports = {
   }
 }
 ```
+
+#### `usageMode`
+
+Type: `String`, default: `collapse`
+
+Defines the initial state of the props and methods tab:
+
+* `collapse`: collapses the tab by default.
+* `hide`: hide the tab and it can´t be toggled in the UI.
+* `expand`: expand the tab by default.
 
 Use it like this in your Markdown files:
 
