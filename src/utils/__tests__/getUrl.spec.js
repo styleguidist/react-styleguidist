@@ -4,7 +4,6 @@ describe('getUrl', () => {
 	const loc = {
 		origin: 'http://example.com',
 		pathname: '/styleguide/',
-		hash: '#/Components',
 	};
 	const name = 'FooBar';
 	const slug = 'foobar';
@@ -62,20 +61,5 @@ describe('getUrl', () => {
 	it('should return an absolute nochrome URL', () => {
 		const result = getUrl({ name, slug, nochrome: true, absolute: true }, loc);
 		expect(result).toBe('http://example.com/styleguide/?nochrome#!/FooBar');
-	});
-
-	it('should return a route path', () => {
-		const result = getUrl({ name, slug, hashPath: ['Documentation'] }, loc);
-		expect(result).toBe('/styleguide/#/Documentation/FooBar');
-	});
-
-	it('should return a route path with a param id=foobar', () => {
-		const result = getUrl({ name, slug, hashPath: ['Documentation'], id: true }, loc);
-		expect(result).toBe('/styleguide/#/Documentation?id=foobar');
-	});
-
-	it('should return a param id=foobar', () => {
-		const result = getUrl({ name, slug, takeHash: true, id: true }, loc);
-		expect(result).toBe('/styleguide/#/Components?id=foobar');
 	});
 });

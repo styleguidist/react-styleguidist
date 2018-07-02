@@ -3,17 +3,11 @@ import PropTypes from 'prop-types';
 import ReactComponent from 'rsg-components/ReactComponent';
 import ComponentsRenderer from 'rsg-components/Components/ComponentsRenderer';
 
-export default function Components({ components, depth, exampleMode, usageMode }) {
+export default function Components({ components, depth }) {
 	return (
 		<ComponentsRenderer>
 			{components.map(component => (
-				<ReactComponent
-					key={component.filepath}
-					component={component}
-					exampleMode={exampleMode}
-					usageMode={usageMode}
-					depth={depth}
-				/>
+				<ReactComponent key={component.filepath} component={component} depth={depth} />
 			))}
 		</ComponentsRenderer>
 	);
@@ -22,6 +16,4 @@ export default function Components({ components, depth, exampleMode, usageMode }
 Components.propTypes = {
 	components: PropTypes.array.isRequired,
 	depth: PropTypes.number.isRequired,
-	exampleMode: PropTypes.string.isRequired,
-	usageMode: PropTypes.string.isRequired,
 };

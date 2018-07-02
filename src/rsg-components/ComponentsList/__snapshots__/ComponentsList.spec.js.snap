@@ -43,46 +43,6 @@ exports[`should render sections with nested components 1`] = `
 </ul>
 `;
 
-exports[`should set a parameter on link when useHashId is activated 1`] = `
-<Styled(ComponentsList)
-  classes={Object {}}
-  items={
-    Array [
-      Object {
-        "href": "blank#/Components?id=button",
-        "name": "Button",
-        "slug": "button",
-      },
-      Object {
-        "href": "blank#/Components?id=input",
-        "name": "Input",
-        "slug": "input",
-      },
-    ]
-  }
-/>
-`;
-
-exports[`should set a sub route on link when useHashId is deactivated 1`] = `
-<Styled(ComponentsList)
-  classes={Object {}}
-  items={
-    Array [
-      Object {
-        "href": "blank#/Components/Button",
-        "name": "Button",
-        "slug": "button",
-      },
-      Object {
-        "href": "blank#/Components/Input",
-        "name": "Input",
-        "slug": "input",
-      },
-    ]
-  }
-/>
-`;
-
 exports[`should set the correct href for items 1`] = `
 <Styled(ComponentsList)
   classes={Object {}}
@@ -95,6 +55,26 @@ exports[`should set the correct href for items 1`] = `
       },
       Object {
         "href": "blank#input",
+        "name": "Input",
+        "slug": "input",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`should set the correct href for items when isolated links should be used 1`] = `
+<Styled(ComponentsList)
+  classes={Object {}}
+  items={
+    Array [
+      Object {
+        "href": "blank#!/Button",
+        "name": "Button",
+        "slug": "button",
+      },
+      Object {
+        "href": "blank#!/Input",
         "name": "Input",
         "slug": "input",
       },

@@ -18,7 +18,7 @@ it('should set the correct href for items', () => {
 	expect(actual).toMatchSnapshot();
 });
 
-it('should set a parameter on link when useHashId is activated', () => {
+it('should set the correct href for items when isolated links should be used', () => {
 	const components = [
 		{
 			name: 'Button',
@@ -30,39 +30,7 @@ it('should set a parameter on link when useHashId is activated', () => {
 		},
 	];
 
-	const actual = shallow(
-		<ComponentsList
-			items={components}
-			classes={{}}
-			useRouterLinks
-			hashPath={['Components']}
-			useHashId
-		/>
-	);
-	expect(actual).toMatchSnapshot();
-});
-
-it('should set a sub route on link when useHashId is deactivated', () => {
-	const components = [
-		{
-			name: 'Button',
-			slug: 'button',
-		},
-		{
-			name: 'Input',
-			slug: 'input',
-		},
-	];
-
-	const actual = shallow(
-		<ComponentsList
-			items={components}
-			classes={{}}
-			useRouterLinks
-			hashPath={['Components']}
-			useHashId={false}
-		/>
-	);
+	const actual = shallow(<ComponentsList items={components} classes={{}} useIsolatedLinks />);
 	expect(actual).toMatchSnapshot();
 });
 

@@ -5,27 +5,17 @@ import filterComponentsByExactName from './filterComponentsByExactName';
  *
  * @param {object} sections
  * @param {string} name
- * @param {boolean} recursive
  * @return {Array}
  */
-export default function filterComponentsInSectionsByExactName(sections, name, recursive) {
-	const filteredSections = [];
+export default function filterComponentsInSectionsByExactName(sections, name) {
+	const components = [];
 	sections.forEach(section => {
 		if (section.components) {
-			const filteredComponents = filterComponentsByExactName(section.components, name);
-			if (filteredComponents.length) {
-				filteredSections.push({
-					exampleMode: section.exampleMode,
-					usageMode: section.usageMode,
-					components: filteredComponents,
-				});
-			}
+			components.push(...filterComponentsByExactName(section.components, name));
 		}
-		if (section.sections && recursive) {
-			filteredSections.push(
-				...filterComponentsInSectionsByExactName(section.sections, name, recursive)
-			);
+		if (section.sections) {
+			components.push(...filterComponentsInSectionsByExactName(section.sections, name));
 		}
 	});
-	return filteredSections;
+	return components;
 }

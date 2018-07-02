@@ -6,7 +6,6 @@ const sections = deepfreeze([
 	{
 		sections: [
 			{
-				name: 'Components',
 				components: [
 					{
 						name: 'Button',
@@ -25,35 +24,12 @@ const sections = deepfreeze([
 					},
 				],
 				sections: [],
-				exampleMode: 'collapse',
-				usageMode: 'collapse',
-				sectionDepth: 0,
 			},
 			{
 				name: 'Section',
 				content: ['example 0', 'example 1'],
 				components: [],
 				sections: [],
-				exampleMode: 'collapse',
-				usageMode: 'collapse',
-				sectionDepth: 0,
-			},
-			{
-				name: 'Buttons',
-				components: [
-					{
-						name: 'Label',
-						module: 1,
-					},
-					{
-						name: 'RandomButton',
-						module: 2,
-					},
-				],
-				sections: [],
-				exampleMode: 'collapse',
-				usageMode: 'collapse',
-				sectionDepth: 2,
 			},
 		],
 	},
@@ -86,27 +62,12 @@ describe('getRouteData', () => {
 	});
 
 	it('should return first section if pagePerSection and hash is empty', () => {
+		const result = getRouteData(sections, '', true);
+		expect(result).toMatchSnapshot();
+	});
+
+	it('should return first component if pagePerSection and hash is empty', () => {
 		const result = getRouteData(sections[0].sections, '', true);
-		expect(result).toMatchSnapshot();
-	});
-
-	it('should return one section if pagePerSection and hash is #/Section', () => {
-		const result = getRouteData(sections, '#/Section', true);
-		expect(result).toMatchSnapshot();
-	});
-
-	it('should return one section without components if pagePerSection and hash is #/Buttons', () => {
-		const result = getRouteData(sections, '#/Buttons', true);
-		expect(result).toMatchSnapshot();
-	});
-
-	it('should return one component if pagePerSection and hash is #/Buttons/Label', () => {
-		const result = getRouteData(sections, '#/Buttons/Label', true);
-		expect(result).toMatchSnapshot();
-	});
-
-	it('should return not found if pagePerSection and hash is #/Buttons/Label/Not', () => {
-		const result = getRouteData(sections, '#/Buttons/Label/Not', true);
 		expect(result).toMatchSnapshot();
 	});
 });

@@ -6,18 +6,14 @@ module.exports = {
 	sections: [
 		{
 			name: 'Documentation',
-			content: 'docs/Documentation.md',
 			sections: [
 				{
 					name: 'Files',
-					content: 'docs/Files.md',
-					components: () => ['./src/components/WrappedButton/WrappedButton.js'],
 					sections: [
 						{
 							name: 'First File',
 							content: 'docs/One.md',
 							description: 'This is the first section description',
-							components: () => ['./src/components/Label/Label.js'],
 						},
 						{
 							name: 'Second File',
@@ -26,32 +22,26 @@ module.exports = {
 					],
 				},
 			],
-			sectionDepth: 2,
 		},
 		{
 			name: 'Components',
-			content: 'docs/Components.md',
 			sections: [
 				{
 					name: 'Buttons',
-					components: () => ['./src/components/Button/Button.js'],
-					exampleMode: 'expand', // 'hide' | 'collapse' | 'expand'
-					usageMode: 'hide', // 'hide' | 'collapse' | 'expand'
+					components: () => [
+						'./src/components/Button/Button.js',
+						'./src/components/RandomButton/RandomButton.js',
+						'./src/components/WrappedButton/WrappedButton.js',
+					],
 				},
 				{
 					name: 'Fields',
-					components: () => ['./src/components/Placeholder/Placeholder.js'],
-					exampleMode: 'expand', // 'hide' | 'collapse' | 'expand'
-					usageMode: 'expand', // 'hide' | 'collapse' | 'expand'
-				},
-				{
-					name: 'Others',
-					components: () => ['./src/components/RandomButton/RandomButton.js'],
-					exampleMode: 'collapse', // 'hide' | 'collapse' | 'expand'
-					usageMode: 'collapse', // 'hide' | 'collapse' | 'expand'
+					components: () => [
+						'./src/components/Label/Label.js',
+						'./src/components/Placeholder/Placeholder.js',
+					],
 				},
 			],
-			sectionDepth: 0,
 		},
 	],
 	require: [path.join(__dirname, 'src/styles.css')],

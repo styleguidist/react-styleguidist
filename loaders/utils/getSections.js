@@ -15,11 +15,10 @@ const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
  *
  * @param {Array} sections
  * @param {object} config
- * @param {number} parentDepth
  * @returns {Array}
  */
-function getSections(sections, config, parentDepth) {
-	return sections.map(section => processSection(section, config, parentDepth));
+function getSections(sections, config) {
+	return sections.map(section => processSection(section, config));
 }
 
 const getSectionComponents = (section, config) => {
@@ -35,10 +34,9 @@ const getSectionComponents = (section, config) => {
  * Return an object for a given section with all components and subsections.
  * @param {object} section
  * @param {object} config
- * @param {number} parentDepth
  * @returns {object}
  */
-function processSection(section, config, parentDepth) {
+function processSection(section, config) {
 	const contentRelativePath = section.content;
 
 	// Try to load section content file
@@ -51,22 +49,11 @@ function processSection(section, config, parentDepth) {
 		content = requireIt(`!!${examplesLoader}!${contentAbsolutePath}`);
 	}
 
-	let sectionDepth;
-
-	if (parentDepth === undefined) {
-		sectionDepth = section.sectionDepth !== undefined ? section.sectionDepth : 0;
-	} else {
-		sectionDepth = parentDepth === 0 ? 0 : parentDepth - 1;
-	}
-
 	return {
 		name: section.name,
-		exampleMode: section.exampleMode || config.exampleMode,
-		usageMode: section.usageMode || config.usageMode,
-		sectionDepth,
 		description: section.description,
 		slug: slugger.slug(section.name),
-		sections: getSections(section.sections || [], config, sectionDepth),
+		sections: getSections(section.sections || [], config),
 		filepath: contentRelativePath,
 		components: getSectionComponents(section, config),
 		content,

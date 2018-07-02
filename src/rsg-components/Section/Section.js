@@ -6,36 +6,16 @@ import Sections from 'rsg-components/Sections';
 import SectionRenderer from 'rsg-components/Section/SectionRenderer';
 import { DisplayModes } from '../../consts';
 
-export default function Section({ section, depth }, { displayMode, config: { pagePerSection } }) {
-	const {
-		name,
-		slug,
-		filepath,
-		content,
-		components,
-		sections,
-		description,
-		exampleMode,
-		usageMode,
-	} = section;
+export default function Section({ section, depth }, { displayMode }) {
+	const { name, slug, filepath, content, components, sections, description } = section;
 
-	const contentJsx = content && (
-		<Examples examples={content} name={name} exampleMode={exampleMode} />
-	);
-	const componentsJsx = components && (
-		<Components
-			usageMode={usageMode}
-			exampleMode={exampleMode}
-			components={components}
-			depth={depth + 1}
-		/>
-	);
+	const contentJsx = content && <Examples examples={content} name={name} />;
+	const componentsJsx = components && <Components components={components} depth={depth + 1} />;
 	const sectionsJsx = sections && <Sections sections={sections} depth={depth + 1} />;
 
 	return (
 		<SectionRenderer
 			description={description}
-			pagePerSection={pagePerSection}
 			name={name}
 			slug={slug}
 			filepath={filepath}
@@ -55,5 +35,4 @@ Section.propTypes = {
 
 Section.contextTypes = {
 	displayMode: PropTypes.string,
-	config: PropTypes.object.isRequired,
 };

@@ -7,7 +7,7 @@ import Para from 'rsg-components/Para';
 import Slot from 'rsg-components/Slot';
 import PlaygroundRenderer from 'rsg-components/Playground/PlaygroundRenderer';
 import { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
-import { DisplayModes, ExampleModes } from '../../consts';
+import { DisplayModes } from '../../consts';
 
 class Playground extends Component {
 	static propTypes = {
@@ -15,7 +15,6 @@ class Playground extends Component {
 		evalInContext: PropTypes.func.isRequired,
 		index: PropTypes.number.isRequired,
 		name: PropTypes.string.isRequired,
-		exampleMode: PropTypes.string.isRequired,
 		settings: PropTypes.object,
 	};
 
@@ -26,24 +25,18 @@ class Playground extends Component {
 
 	constructor(props, context) {
 		super(props, context);
-		const { code, settings, exampleMode } = props;
+		const { code, settings } = props;
 		const { config } = context;
-		const expandCode = exampleMode === ExampleModes.expand;
-		const activeTab = settings.showcode !== undefined ? settings.showcode : expandCode;
+		const showCode = settings.showcode !== undefined ? settings.showcode : config.showCode;
 
 		this.state = {
 			code,
 			prevCode: code,
-			activeTab: activeTab ? EXAMPLE_TAB_CODE_EDITOR : undefined,
+			activeTab: showCode ? EXAMPLE_TAB_CODE_EDITOR : undefined,
 		};
 
 		this.handleTabChange = this.handleTabChange.bind(this);
 		this.handleChange = debounce(this.handleChange.bind(this), config.previewDelay);
-	}
-
-	componentWillUnmount() {
-		// Clear pending changes
-		this.handleChange.cancel();
 	}
 
 	static getDerivedStateFromProps(nextProps, prevState) {
@@ -55,6 +48,11 @@ class Playground extends Component {
 			};
 		}
 		return null;
+	}
+
+	componentWillUnmount() {
+		// Clear pending changes
+		this.handleChange.cancel();
 	}
 
 	handleChange(code) {
@@ -71,15 +69,13 @@ class Playground extends Component {
 
 	render() {
 		const { code, activeTab } = this.state;
-		const { evalInContext, index, name, settings, exampleMode } = this.props;
+		const { evalInContext, index, name, settings } = this.props;
 		const { displayMode } = this.context;
-		const isExampleHidden = exampleMode === ExampleModes.hide;
-		const isEditorHidden = settings.noeditor || isExampleHidden;
 		const preview = <Preview code={code} evalInContext={evalInContext} />;
-
-		return isEditorHidden ? (
-			<Para>{preview}</Para>
-		) : (
+		if (settings.noeditor) {
+			return <Para>{preview}</Para>;
+		}
+		return (
 			<PlaygroundRenderer
 				name={name}
 				preview={preview}
@@ -96,7 +92,7 @@ class Playground extends Component {
 						name="exampleTabs"
 						active={activeTab}
 						onlyActive
-						props={{ code, onChange: this.handleChange }}
+						props={{ code, onChange: this.handleChange, evalInContext }}
 					/>
 				}
 				toolbar={

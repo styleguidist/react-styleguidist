@@ -3,7 +3,6 @@ import renderStyleguide from '../renderStyleguide';
 const styleguide = {
 	config: {
 		title: 'My Style Guide',
-		pagePerSection: false,
 	},
 	sections: [
 		{

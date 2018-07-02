@@ -13,19 +13,11 @@ import { DisplayModes } from '../consts';
  * @return {string}
  */
 export default function getPageTitle(sections, baseTitle, displayMode) {
-	if (displayMode === DisplayModes.notFound) {
-		return 'Page not found';
-	}
-	if (sections.length) {
-		if (
-			displayMode === DisplayModes.component ||
-			(displayMode === DisplayModes.example && sections[0].components)
-		) {
-			const name = get(sections[0], 'components.0.name', sections[0].name);
-			return `${name} — ${baseTitle}`;
-		} else if (displayMode === DisplayModes.section || displayMode === DisplayModes.example) {
-			return `${sections[0].name} — ${baseTitle}`;
-		}
+	if (displayMode === DisplayModes.component || displayMode === DisplayModes.example) {
+		const name = get(sections[0], 'components.0.name', sections[0].name);
+		return `${name} — ${baseTitle}`;
+	} else if (displayMode === DisplayModes.section) {
+		return `${sections[0].name} — ${baseTitle}`;
 	}
 	return baseTitle;
 }

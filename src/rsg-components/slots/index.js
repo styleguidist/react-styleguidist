@@ -7,8 +7,8 @@ import UsageTabButton from './UsageTabButton';
 export const EXAMPLE_TAB_CODE_EDITOR = 'rsg-code-editor';
 export const DOCS_TAB_USAGE = 'rsg-usage';
 
-export default () => {
-	const toolbar = [IsolateButton];
+export default ({ pagePerSection }) => {
+	const toolbar = pagePerSection ? [] : [IsolateButton];
 
 	return {
 		sectionToolbar: toolbar,

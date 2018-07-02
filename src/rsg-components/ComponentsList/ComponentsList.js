@@ -3,15 +3,14 @@ import ComponentsListRenderer from 'rsg-components/ComponentsList/ComponentsList
 import PropTypes from 'prop-types';
 import getUrl from '../../utils/getUrl';
 
-function ComponentsList({ classes, items, useRouterLinks = false, useHashId, hashPath }) {
+function ComponentsList({ classes, items, useIsolatedLinks = false }) {
 	const mappedItems = items.map(item => ({
 		...item,
 		href: getUrl({
 			name: item.name,
 			slug: item.slug,
-			anchor: !useRouterLinks,
-			hashPath: useRouterLinks ? hashPath : false,
-			id: useRouterLinks ? useHashId : false,
+			anchor: !useIsolatedLinks,
+			isolated: useIsolatedLinks,
 		}),
 	}));
 	return <ComponentsListRenderer classes={classes} items={mappedItems} />;
@@ -20,9 +19,7 @@ function ComponentsList({ classes, items, useRouterLinks = false, useHashId, has
 ComponentsList.propTypes = {
 	items: PropTypes.array.isRequired,
 	classes: PropTypes.object,
-	hashPath: PropTypes.array,
-	useRouterLinks: PropTypes.bool,
-	useHashId: PropTypes.bool,
+	useIsolatedLinks: PropTypes.bool,
 };
 
 export default ComponentsList;

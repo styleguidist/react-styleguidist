@@ -2,13 +2,6 @@ import path from 'path';
 import getSections, { processSection } from '../getSections';
 
 const configDir = path.resolve(__dirname, '../../../test');
-const config = {
-	configDir,
-	exampleMode: 'collapse',
-	usageMode: 'collapse',
-	getExampleFilename: a => a,
-	getComponentPathLine: a => a,
-};
 const sections = [
 	{
 		name: 'Readme',
@@ -24,59 +17,11 @@ const sections = [
 		ignore: '**/components/Annotation/*',
 	},
 ];
-const sectionsWithDepth = [
-	{
-		name: 'Documentation',
-		sections: [
-			{
-				name: 'Files',
-				sections: [
-					{
-						name: 'First File',
-					},
-				],
-			},
-		],
-		sectionDepth: 2,
-	},
-	{
-		name: 'Components',
-		sections: [
-			{
-				name: 'Buttons',
-			},
-		],
-		sectionDepth: 0,
-	},
-];
-const sectionsWithBadDepth = [
-	{
-		name: 'Documentation',
-		sections: [
-			{
-				name: 'Files',
-				sections: [
-					{
-						name: 'First File',
-					},
-				],
-				sectionDepth: 2,
-			},
-		],
-	},
-];
-
-function filterSectionDepth(section) {
-	if (section.sections && section.sections.length) {
-		return {
-			sectionDepth: section.sectionDepth,
-			sections: section.sections.map(filterSectionDepth),
-		};
-	}
-	return {
-		sectionDepth: section.sectionDepth,
-	};
-}
+const config = {
+	configDir,
+	getExampleFilename: a => a,
+	getComponentPathLine: a => a,
+};
 
 it('processSection() should return an object for section with content', () => {
 	const result = processSection(sections[0], config);
@@ -106,52 +51,4 @@ it('getSections() should return an array', () => {
 	const result = getSections(sections, config);
 
 	expect(result).toMatchSnapshot();
-});
-
-it('getSections() should return an array of sectionsWithDepth with sectionDepth decreasing', () => {
-	const result = getSections(sectionsWithDepth, config);
-
-	expect(result.map(filterSectionDepth)).toEqual([
-		{
-			sectionDepth: 2,
-			sections: [
-				{
-					sectionDepth: 1,
-					sections: [
-						{
-							sectionDepth: 0,
-						},
-					],
-				},
-			],
-		},
-		{
-			sectionDepth: 0,
-			sections: [
-				{
-					sectionDepth: 0,
-				},
-			],
-		},
-	]);
-});
-
-it('getSections() should return an array of sectionsWithBadDepth taking the sectionDepth of the first depth of the sections', () => {
-	const result = getSections(sectionsWithBadDepth, config);
-
-	expect(result.map(filterSectionDepth)).toEqual([
-		{
-			sectionDepth: 0,
-			sections: [
-				{
-					sectionDepth: 0,
-					sections: [
-						{
-							sectionDepth: 0,
-						},
-					],
-				},
-			],
-		},
-	]);
 });
