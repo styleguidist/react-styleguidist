@@ -78,4 +78,15 @@ describe('getUrl', () => {
 		const result = getUrl({ name, slug, takeHash: true, id: true }, loc);
 		expect(result).toBe('/styleguide/#/Components?id=foobar');
 	});
+
+	it('should return to param id = foobar even if the hash has parameters', () => {
+		const result = getUrl(
+			{ name, slug, takeHash: true, id: true },
+			{
+				...loc,
+				hash: '#/Components?foo=foobar',
+			}
+		);
+		expect(result).toBe('/styleguide/#/Components?id=foobar');
+	});
 });
