@@ -9,6 +9,7 @@ exports[`should render examples 1`] = `
 </button>
 
     evalInContext={[Function]}
+    exampleMode="collapse"
     index={0}
     key="1/0"
     name="button"

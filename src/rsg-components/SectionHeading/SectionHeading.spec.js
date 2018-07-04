@@ -55,4 +55,25 @@ describe('SectionHeading', () => {
 				.prop('level')
 		).toEqual(6);
 	});
+
+	it('should the href have a parameter id=section', () => {
+		const actual = shallow(
+			<SectionHeading
+				id="section"
+				pagePerSection
+				slotName="slot"
+				slotProps={{ foo: 1, bar: 'baz' }}
+				depth={2}
+			>
+				A Section
+			</SectionHeading>
+		);
+
+		expect(
+			actual
+				.dive()
+				.find('SectionHeadingRenderer')
+				.prop('href')
+		).toEqual('blank?id=section');
+	});
 });

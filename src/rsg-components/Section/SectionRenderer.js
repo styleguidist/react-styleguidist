@@ -11,12 +11,28 @@ const styles = ({ space }) => ({
 });
 
 export function SectionRenderer(allProps) {
-	const { classes, name, slug, content, components, sections, depth, description } = allProps;
+	const {
+		classes,
+		name,
+		slug,
+		content,
+		components,
+		sections,
+		depth,
+		description,
+		pagePerSection,
+	} = allProps;
 
 	return (
 		<section className={classes.root}>
 			{name && (
-				<SectionHeading depth={depth} id={slug} slotName="sectionToolbar" slotProps={allProps}>
+				<SectionHeading
+					depth={depth}
+					id={slug}
+					slotName="sectionToolbar"
+					pagePerSection={pagePerSection}
+					slotProps={allProps}
+				>
 					{name}
 				</SectionHeading>
 			)}
@@ -39,6 +55,7 @@ SectionRenderer.propTypes = {
 	sections: PropTypes.node,
 	isolated: PropTypes.bool,
 	depth: PropTypes.number.isRequired,
+	pagePerSection: PropTypes.bool,
 };
 
 export default Styled(styles)(SectionRenderer);

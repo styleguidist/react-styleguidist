@@ -99,6 +99,7 @@ exports[`should render components list 1`] = `
           },
         ]
       }
+      useRouterLinks={false}
     />
   }
 >

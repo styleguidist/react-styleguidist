@@ -60,6 +60,13 @@ module.exports = {
 		process: val =>
 			val === true ? path.resolve(__dirname, '../templates/DefaultExample.md') : val,
 	},
+	exampleMode: {
+		type: 'string',
+		process: (value, config) => {
+			return config.showCode === undefined ? value : config.showCode ? 'expand' : 'collapse';
+		},
+		default: 'collapse',
+	},
 	getComponentPathLine: {
 		type: 'function',
 		default: componentPath => componentPath,
@@ -199,15 +206,17 @@ module.exports = {
 	},
 	serverPort: {
 		type: 'number',
-		default: process.env.NODE_PORT ? parseInt(process.env.NODE_PORT) : 6060,
+		default: 6060,
 	},
 	showCode: {
 		type: 'boolean',
 		default: false,
+		deprecated: 'Use exampleMode option instead',
 	},
 	showUsage: {
 		type: 'boolean',
 		default: false,
+		deprecated: 'Use usageMode option instead',
 	},
 	showSidebar: {
 		type: 'boolean',
@@ -291,6 +300,13 @@ module.exports = {
 	updateWebpackConfig: {
 		type: 'function',
 		removed: `Use "webpackConfig" option instead:\n${consts.DOCS_WEBPACK}`,
+	},
+	usageMode: {
+		type: 'string',
+		process: (value, config) => {
+			return config.showUsage === undefined ? value : config.showUsage ? 'expand' : 'collapse';
+		},
+		default: 'collapse',
 	},
 	verbose: {
 		type: 'boolean',
