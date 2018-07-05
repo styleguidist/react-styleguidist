@@ -9,10 +9,12 @@ const IsolateButton = ({ name, example, isolated }) =>
 	isolated ? (
 		<ToolbarButton href={getUrl({ anchor: true, slug: '/' })} title="Show all components">
 			<MdFullscreenExit />
+			<span hidden>Show all components</span>
 		</ToolbarButton>
 	) : (
 		<ToolbarButton href={getUrl({ name, example, isolated: true })} title="Open isolated">
 			<MdFullscreen />
+			<span hidden>Open isolated</span>
 		</ToolbarButton>
 	);
 

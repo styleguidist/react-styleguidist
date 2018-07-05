@@ -12,6 +12,11 @@ exports[`renderer should a path line 1`] = `
     title="Copy to clipboard"
   >
     <MdContentCopy />
+    <span
+      hidden={true}
+    >
+      Copy to clipboard
+    </span>
   </Styled(ToolbarButton)>
 </div>
 `;

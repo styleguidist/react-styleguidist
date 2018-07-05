@@ -138,6 +138,7 @@
     "pretest": "npm run lint",
     "test": "npm run test:jest",
     "posttest": "npm run format",
+    "snapshot": "jest --updateSnapshot",
     "test:jest": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",

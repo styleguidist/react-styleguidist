@@ -6,6 +6,11 @@ exports[`should renderer a link home in isolated mode 1`] = `
   title="Show all components"
 >
   <MdFullscreenExit />
+  <span
+    hidden={true}
+  >
+    Show all components
+  </span>
 </Styled(ToolbarButton)>
 `;
 
@@ -15,6 +20,11 @@ exports[`should renderer a link to example isolated mode 1`] = `
   title="Open isolated"
 >
   <MdFullscreen />
+  <span
+    hidden={true}
+  >
+    Open isolated
+  </span>
 </Styled(ToolbarButton)>
 `;
 
@@ -24,5 +34,10 @@ exports[`should renderer a link to isolated mode 1`] = `
   title="Open isolated"
 >
   <MdFullscreen />
+  <span
+    hidden={true}
+  >
+    Open isolated
+  </span>
 </Styled(ToolbarButton)>
 `;

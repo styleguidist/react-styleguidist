@@ -27,6 +27,7 @@ export function PathlineRenderer({ classes, children }) {
 				title="Copy to clipboard"
 			>
 				<MdContentCopy />
+				<span hidden>Copy to clipboard</span>
 			</ToolbarButton>
 		</div>
 	);
