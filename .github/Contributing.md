@@ -39,7 +39,7 @@ npm run test:watch
 To update Jest snapshots:
 
 ```bash
-npm run test:jest -- -u
+npx jest -u
 ```
 
 **Don’t forget to add tests and update documentation for your changes.**
