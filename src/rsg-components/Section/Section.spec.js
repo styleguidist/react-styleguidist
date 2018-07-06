@@ -10,12 +10,17 @@ import { DisplayModes } from '../../consts';
 const options = {
 	context: {
 		displayMode: DisplayModes.all,
+		config: {
+			pagePerSection: false,
+		},
 	},
 };
 
 const section = {
 	name: 'Foo',
 	slug: 'foo',
+	exampleMode: 'collapse',
+	usageMode: 'collapse',
 	description: 'This is a description',
 	content: [
 		{
@@ -44,6 +49,8 @@ it('should render components list', () => {
 			section={{
 				name: 'Components',
 				slug: 'components',
+				usageMode: 'collapse',
+				exampleMode: 'collapse',
 				components: [],
 			}}
 			depth={3}
@@ -60,6 +67,8 @@ it('should not render components list if not defined', () => {
 			section={{
 				name: 'No components',
 				slug: 'no-components',
+				usageMode: 'collapse',
+				exampleMode: 'collapse',
 			}}
 			depth={3}
 		/>,
@@ -75,6 +84,8 @@ it('should render sections if defined', () => {
 			section={{
 				name: 'Nested sections',
 				slug: 'nested-sections',
+				usageMode: 'collapse',
+				exampleMode: 'collapse',
 				sections: [],
 			}}
 			depth={3}
@@ -91,6 +102,8 @@ it('should not render sections if not defined', () => {
 			section={{
 				name: 'No sections',
 				slug: 'no-sections',
+				usageMode: 'collapse',
+				exampleMode: 'collapse',
 			}}
 			depth={3}
 		/>,
@@ -106,6 +119,8 @@ test('should not render section in isolation mode by default', () => {
 			section={{
 				name: 'A',
 				slug: 'a',
+				usageMode: 'collapse',
+				exampleMode: 'collapse',
 			}}
 			depth={3}
 		/>,
@@ -121,6 +136,8 @@ test('should render section in isolation mode', () => {
 			section={{
 				name: 'A',
 				slug: 'a',
+				usageMode: 'collapse',
+				exampleMode: 'collapse',
 			}}
 			depth={3}
 		/>,
@@ -141,8 +158,21 @@ it('render should render section', () => {
 			classes={{}}
 			name={section.name}
 			slug={section.slug}
-			content={<Examples name={section.name} examples={section.content} />}
-			components={<Components components={[]} depth={3} />}
+			content={
+				<Examples
+					name={section.name}
+					examples={section.content}
+					exampleMode={section.exampleMode}
+				/>
+			}
+			components={
+				<Components
+					components={[]}
+					depth={3}
+					usageMode={section.usageMode}
+					exampleMode={section.exampleMode}
+				/>
+			}
 			sections={<Sections sections={[]} depth={3} />}
 			depth={3}
 		/>,

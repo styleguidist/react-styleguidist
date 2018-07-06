@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render not found message 1`] = `
+<div>
+  <Markdown
+    text="
+# Page not found
+The link you followed may be broken, or the page may have been removed.
+"
+  />
+</div>
+`;

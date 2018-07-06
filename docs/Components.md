@@ -109,6 +109,9 @@ Each section consists of (all fields are optional):
 * `components` — a glob pattern string, an array of component paths or a function returning a list of components. The same rules apply as for the root `components` option.
 * `sections` — array of subsections (can be nested).
 * `description` — A small description of this section.
+* `sectionDepth` — Number of subsections with single pages, only available with [pagePerSection](Configuration.md#pagepersection) is enabled.
+* `exampleMode` — Initial state of the code example tab, uses [exampleMode](Configuration.md#examplemode).
+* `usageMode` — Initial state of the props and methods tab, uses [usageMode](Configuration.md#usagemode).
 * `ignore` — string/array of globs that should not be included in the section.
 
 Configuring a style guide with textual documentation section and a list of components would look like:
@@ -137,7 +140,9 @@ module.exports = {
     {
       name: 'UI Components',
       content: 'docs/ui.md',
-      components: 'lib/components/ui/*.js'
+      components: 'lib/components/ui/*.js',
+      exampleMode: 'expand', // 'hide' | 'collapse' | 'expand'
+      usageMode: 'expand' // 'hide' | 'collapse' | 'expand'
     }
   ]
 }
