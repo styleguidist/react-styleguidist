@@ -106,7 +106,7 @@ Each section consists of (all fields are optional):
 
 * `name` — section title.
 * `content` — location of a Markdown file containing the overview content.
-* `components` — a glob pattern string, an array of component paths or a function returning a list of components. The same rules apply as for the root `components` option.
+* `components` — a glob pattern string, an array of component paths or glob pattern strings, or a function returning a list of components or glob pattern strings. The same rules apply as for the root `components` option.
 * `sections` — array of subsections (can be nested).
 * `description` — A small description of this section.
 * `sectionDepth` — Number of subsections with single pages, only available with [pagePerSection](Configuration.md#pagepersection) is enabled.
