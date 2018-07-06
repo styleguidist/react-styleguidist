@@ -4,8 +4,17 @@ import Slot from 'rsg-components/Slot';
 import SectionHeadingRenderer from 'rsg-components/SectionHeading/SectionHeadingRenderer';
 import getUrl from '../../utils/getUrl';
 
-export default function SectionHeading({ slotName, slotProps, children, id, ...rest }) {
-	const href = getUrl({ slug: id, anchor: true });
+export default function SectionHeading({
+	slotName,
+	slotProps,
+	children,
+	id,
+	pagePerSection,
+	...rest
+}) {
+	const href = pagePerSection
+		? getUrl({ slug: id, id: rest.depth !== 1, takeHash: true })
+		: getUrl({ slug: id, anchor: true });
 	return (
 		<SectionHeadingRenderer
 			toolbar={<Slot name={slotName} props={slotProps} />}
@@ -25,4 +34,5 @@ SectionHeading.propTypes = {
 	slotProps: PropTypes.object.isRequired,
 	depth: PropTypes.number.isRequired,
 	deprecated: PropTypes.bool,
+	pagePerSection: PropTypes.bool,
 };

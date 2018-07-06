@@ -36,6 +36,7 @@ it('should render components list', () => {
 		<StyleGuide
 			codeRevision={1}
 			config={config}
+			pagePerSection={false}
 			sections={sections}
 			allSections={sections}
 			slots={{}}
@@ -126,7 +127,7 @@ describe('sidebar rendering', () => {
 				sections={sections}
 				allSections={sections}
 				slots={{}}
-				displayMode={DisplayModes.component}
+				displayMode={DisplayModes.all}
 				pagePerSection
 			/>
 		);

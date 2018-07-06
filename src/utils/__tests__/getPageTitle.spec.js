@@ -20,9 +20,31 @@ describe('getPageTitle', () => {
 		expect(result).toMatch(name);
 	});
 
+	it('should return section name for example isolation mode of a example content', () => {
+		const sectionName = 'Section';
+		const result = getPageTitle(
+			[{ name: sectionName, content: [], components: [] }],
+			baseTitle,
+			'example'
+		);
+		expect(result).toMatch(sectionName);
+	});
+
+	it('should return section name for example isolation mode, if no components are passed', () => {
+		const name = 'Section';
+		const result = getPageTitle([{ name }], baseTitle, 'example');
+		expect(result).toMatch(name);
+	});
+
 	it('should return section name for section isolation mode', () => {
 		const name = 'Section';
 		const result = getPageTitle([{ name }], baseTitle, 'section');
 		expect(result).toMatch(name);
+	});
+
+	it('should return Error 404 for notFound isolation mode', () => {
+		const name = 'Section';
+		const result = getPageTitle([{ name }], baseTitle, 'notFound');
+		expect(result).toMatch('Page not found');
 	});
 });

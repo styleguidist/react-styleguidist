@@ -3,8 +3,14 @@ import Slot from './Slot';
 
 /* eslint-disable react/prop-types */
 
-const Button = ({ onClick }) => <button onClick={onClick}>1</button>;
-const Button2 = () => <button>2</button>;
+const Button = ({ name, onClick, children }) => (
+	<button name={name} onClick={onClick}>
+		{children}
+	</button>
+);
+
+const Button2 = props => <Button {...props}>2</Button>;
+
 const fillsWithIds = [
 	{
 		id: 'one',
@@ -74,12 +80,9 @@ it('should pass slot ID to onClick handler', () => {
 		},
 	});
 
-	actual
-		.find('button')
-		.first()
-		.simulate('click');
+	actual.find('button[name="two"]').simulate('click');
 
-	expect(onClick).toBeCalledWith('one', expect.any(Object));
+	expect(onClick).toBeCalledWith('two', expect.any(Object));
 });
 
 it('should return null if all slots render null', () => {

@@ -40,8 +40,10 @@ const styles = ({ color, space }) => ({
 		},
 	},
 	isDeprecated: {
-		textDecoration: 'line-through',
 		color: color.light,
+		'&, &:hover': {
+			textDecoration: 'line-through',
+		},
 	},
 });
 

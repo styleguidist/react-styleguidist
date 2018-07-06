@@ -60,7 +60,6 @@ export function ComponentsListRenderer({ classes, items }) {
 ComponentsListRenderer.propTypes = {
 	items: PropTypes.array.isRequired,
 	classes: PropTypes.object.isRequired,
-	useIsolatedLinks: PropTypes.bool,
 };
 
 export default Styled(styles)(ComponentsListRenderer);

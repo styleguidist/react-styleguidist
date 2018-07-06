@@ -12,6 +12,7 @@ export default function Slot({ name, active, onlyActive, className, props = {} }
 	const rendered = fills.map((Fill, index) => {
 		// { id: 'pizza', render: ({ foo }) => <div>{foo}</div> }
 		const { id, render } = Fill;
+		let fillProps = props;
 		if (id && render) {
 			// Render only specified fill
 			if (onlyActive && id !== active) {
@@ -19,7 +20,7 @@ export default function Slot({ name, active, onlyActive, className, props = {} }
 			}
 
 			const { onClick } = props;
-			props = {
+			fillProps = {
 				...props,
 				name: id,
 				// Set active prop to active fill
@@ -32,7 +33,7 @@ export default function Slot({ name, active, onlyActive, className, props = {} }
 			Fill = render;
 		}
 
-		return <Fill key={index} {...props} />;
+		return <Fill key={index} {...fillProps} />;
 	});
 
 	const filtered = rendered.filter(Boolean);
