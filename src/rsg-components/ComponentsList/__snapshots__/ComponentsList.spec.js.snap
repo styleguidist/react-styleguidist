@@ -74,7 +74,6 @@ exports[`should set a sub route on link when useHashId is deactivated 1`] = `
         "href": "blank#/Components/Button",
         "name": "Button",
         "slug": "button",
-        "visibleName": "Button",
       },
       Object {
         "href": "blank#/Components/Input",
@@ -95,6 +94,7 @@ exports[`should set the correct href for items 1`] = `
         "href": "blank#button",
         "name": "Button",
         "slug": "button",
+        "visibleName": "Button",
       },
       Object {
         "href": "blank#input",
