@@ -7,6 +7,7 @@ const ora = require('ora');
 const stringify = require('q-i').stringify;
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const webpackDevServerUtils = require('react-dev-utils/WebpackDevServerUtils');
+const openBrowser = require('react-dev-utils/openBrowser');
 const logger = require('glogg')('rsg');
 const getConfig = require('../scripts/config');
 const setupLogger = require('../scripts/logger');
@@ -124,10 +125,20 @@ function commandServer() {
 			console.error(err);
 		} else {
 			const isHttps = compiler.options.devServer && compiler.options.devServer.https;
+			const urls = webpackDevServerUtils.prepareUrls(
+				isHttps ? 'https' : 'http',
+				config.serverHost,
+				config.serverPort
+			);
+
 			if (config.printServerInstructions) {
 				config.printServerInstructions(config, { isHttps });
 			} else {
-				printServerInstructions(config, { isHttps });
+				printServerInstructions(urls);
+			}
+
+			if (argv.open) {
+				openBrowser(urls.localUrlForBrowser);
 			}
 		}
 	}).compiler;
@@ -177,21 +188,16 @@ function commandHelp() {
 			chalk.underline('Options'),
 			'',
 			'    ' + chalk.yellow('--config') + '        Config file path',
+			'    ' + chalk.yellow('--open') + '          Open Styleguidist in the default browser',
 			'    ' + chalk.yellow('--verbose') + '       Print debug information',
 		].join('\n')
 	);
 }
 
 /**
- * @param {object} config
- * @param {options} options
+ * @param {object} urls
  */
-function printServerInstructions(config, options) {
-	const urls = webpackDevServerUtils.prepareUrls(
-		options.isHttps ? 'https' : 'http',
-		config.serverHost,
-		config.serverPort
-	);
+function printServerInstructions(urls) {
 	console.log(`You can now view your style guide in the browser:`);
 	console.log();
 	console.log(`  ${chalk.bold('Local:')}            ${urls.localUrlForTerminal}`);
