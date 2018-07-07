@@ -32,5 +32,5 @@ See how to [document your components](Documenting.md)
 
 ## Have questions?
 
-* [Read the cookbook](Cookbook.md)
-* [Join our Gitter chat](https://gitter.im/styleguidist/styleguidist)
+- [Read the cookbook](Cookbook.md)
+- [Join our Gitter chat](https://gitter.im/styleguidist/styleguidist)

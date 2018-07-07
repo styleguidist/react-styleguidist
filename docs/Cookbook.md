@@ -4,31 +4,31 @@
 
 <!-- toc -->
 
-* [How to use `ref`s in examples?](#how-to-use-refs-in-examples)
-* [How to exclude some components from style guide?](#how-to-exclude-some-components-from-style-guide)
-* [How to hide some components in style guide but make them available in examples?](#how-to-hide-some-components-in-style-guide-but-make-them-available-in-examples)
-* [How to render React components that aren’t part of the style guide?](#how-to-render-react-components-that-arent-part-of-the-style-guide)
-* [How to dynamically load other components in an example?](#how-to-dynamically-load-other-components-in-an-example)
-* [How to display the source code of any file?](#how-to-display-the-source-code-of-any-file)
-* [How to set global styles for user components?](#how-to-set-global-styles-for-user-components)
-* [How to add custom JavaScript and CSS or polyfills?](#how-to-add-custom-javascript-and-css-or-polyfills)
-* [How to use React Styleguidist with Preact?](#how-to-use-react-styleguidist-with-preact)
-* [How to change styles of a style guide?](#how-to-change-styles-of-a-style-guide)
-* [How to change the layout of a style guide?](#how-to-change-the-layout-of-a-style-guide)
-* [How to change style guide dev server logs output?](#how-to-change-style-guide-dev-server-logs-output)
-* [How to debug my components and examples?](#how-to-debug-my-components-and-examples)
-* [How to debug the exceptions thrown from my components?](#how-to-debug-the-exceptions-thrown-from-my-components)
-* [How to use production or development build of React?](#how-to-use-production-or-development-build-of-react)
-* [Why does the style guide list one of my prop types as `unknown`?](#why-does-the-style-guide-list-one-of-my-prop-types-as-unknown)
-* [Why object references don’t work in example component state?](#why-object-references-dont-work-in-example-component-state)
-* [How to use Vagrant with Styleguidist?](#how-to-use-vagrant-with-styleguidist)
-* [How to add a favicon?](#how-to-add-a-favicon)
-* [How to add external JavaScript and CSS files?](#how-to-add-external-javascript-and-css-files)
-* [How to add fonts from Google Fonts?](#how-to-add-fonts-from-google-fonts)
-* [How to reuse project’s webpack config?](#how-to-reuse-projects-webpack-config)
-* [How to use React Styleguidist with Redux, Relay or Styled Components?](#how-to-use-react-styleguidist-with-redux-relay-or-styled-components)
-* [What’s the difference between Styleguidist and Storybook?](#whats-the-difference-between-styleguidist-and-storybook)
-* [Are there any other projects like this?](#are-there-any-other-projects-like-this)
+- [How to use `ref`s in examples?](#how-to-use-refs-in-examples)
+- [How to exclude some components from style guide?](#how-to-exclude-some-components-from-style-guide)
+- [How to hide some components in style guide but make them available in examples?](#how-to-hide-some-components-in-style-guide-but-make-them-available-in-examples)
+- [How to render React components that aren’t part of the style guide?](#how-to-render-react-components-that-arent-part-of-the-style-guide)
+- [How to dynamically load other components in an example?](#how-to-dynamically-load-other-components-in-an-example)
+- [How to display the source code of any file?](#how-to-display-the-source-code-of-any-file)
+- [How to set global styles for user components?](#how-to-set-global-styles-for-user-components)
+- [How to add custom JavaScript and CSS or polyfills?](#how-to-add-custom-javascript-and-css-or-polyfills)
+- [How to use React Styleguidist with Preact?](#how-to-use-react-styleguidist-with-preact)
+- [How to change styles of a style guide?](#how-to-change-styles-of-a-style-guide)
+- [How to change the layout of a style guide?](#how-to-change-the-layout-of-a-style-guide)
+- [How to change style guide dev server logs output?](#how-to-change-style-guide-dev-server-logs-output)
+- [How to debug my components and examples?](#how-to-debug-my-components-and-examples)
+- [How to debug the exceptions thrown from my components?](#how-to-debug-the-exceptions-thrown-from-my-components)
+- [How to use production or development build of React?](#how-to-use-production-or-development-build-of-react)
+- [Why does the style guide list one of my prop types as `unknown`?](#why-does-the-style-guide-list-one-of-my-prop-types-as-unknown)
+- [Why object references don’t work in example component state?](#why-object-references-dont-work-in-example-component-state)
+- [How to use Vagrant with Styleguidist?](#how-to-use-vagrant-with-styleguidist)
+- [How to add a favicon?](#how-to-add-a-favicon)
+- [How to add external JavaScript and CSS files?](#how-to-add-external-javascript-and-css-files)
+- [How to add fonts from Google Fonts?](#how-to-add-fonts-from-google-fonts)
+- [How to reuse project’s webpack config?](#how-to-reuse-projects-webpack-config)
+- [How to use React Styleguidist with Redux, Relay or Styled Components?](#how-to-use-react-styleguidist-with-redux-relay-or-styled-components)
+- [What’s the difference between Styleguidist and Storybook?](#whats-the-difference-between-styleguidist-and-storybook)
+- [Are there any other projects like this?](#are-there-any-other-projects-like-this)
 
 <!-- tocstop -->
 
@@ -582,13 +582,13 @@ Another important distinction is that Storybook shows only one variation of one 
 
 ## Are there any other projects like this?
 
-* [Atellier](https://github.com/scup/atellier), a React components emulator.
-* [Carte Blanche](https://github.com/carteb/carte-blanche), an isolated development space with integrated fuzz testing for your components.
-* [Catalog](https://github.com/interactivethings/catalog), create living style guides using Markdown or React.
-* [Cosmos](https://github.com/react-cosmos/react-cosmos), a tool for designing truly encapsulated React components.
-* [React BlueKit](http://bluekit.blueberry.io/), render React components with editable source and live preview.
-* [React Cards](https://github.com/steos/reactcards), devcards for React.
-* [React Styleguide Generator](https://github.com/pocotan001/react-styleguide-generator), a React style guide generator.
-* [React Storybook](https://storybooks.js.org/), isolate your React UI Component development from the main app.
-* [React-demo](https://github.com/rpominov/react-demo), a component for creating demos of other components with props editor.
-* [SourceJS](https://github.com/sourcejs/Source), a platform to unify all your frontend documentation. It has a [Styleguidist plugin](https://github.com/sourcejs/sourcejs-react-styleguidist).
+- [Atellier](https://github.com/scup/atellier), a React components emulator.
+- [Carte Blanche](https://github.com/carteb/carte-blanche), an isolated development space with integrated fuzz testing for your components.
+- [Catalog](https://github.com/interactivethings/catalog), create living style guides using Markdown or React.
+- [Cosmos](https://github.com/react-cosmos/react-cosmos), a tool for designing truly encapsulated React components.
+- [React BlueKit](http://bluekit.blueberry.io/), render React components with editable source and live preview.
+- [React Cards](https://github.com/steos/reactcards), devcards for React.
+- [React Styleguide Generator](https://github.com/pocotan001/react-styleguide-generator), a React style guide generator.
+- [React Storybook](https://storybooks.js.org/), isolate your React UI Component development from the main app.
+- [React-demo](https://github.com/rpominov/react-demo), a component for creating demos of other components with props editor.
+- [SourceJS](https://github.com/sourcejs/Source), a platform to unify all your frontend documentation. It has a [Styleguidist plugin](https://github.com/sourcejs/sourcejs-react-styleguidist).

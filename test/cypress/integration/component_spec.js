@@ -6,13 +6,11 @@ describe('Single component', () => {
 
 	describe('props and methods section', () => {
 		beforeEach(() => {
-			cy
-				.get('button')
+			cy.get('button')
 				.contains('Props & methods')
 				.as('propsBtn');
 
-			cy
-				.get('@propsBtn')
+			cy.get('@propsBtn')
 				.closest('[class^=rsg--tabs]')
 				.as('container');
 		});
@@ -22,16 +20,14 @@ describe('Single component', () => {
 		});
 
 		it('does not show table initially', () => {
-			cy
-				.get('@container')
+			cy.get('@container')
 				.find('table')
 				.should('not.exist');
 		});
 
 		it('shows the table on button click', () => {
 			cy.get('@propsBtn').click();
-			cy
-				.get('@container')
+			cy.get('@container')
 				.find('table')
 				.should('contain', 'Prop name');
 		});
@@ -39,8 +35,7 @@ describe('Single component', () => {
 
 	describe('preview section', () => {
 		beforeEach(() => {
-			cy
-				.get('[class^=rsg--preview]')
+			cy.get('[class^=rsg--preview]')
 				.as('preview')
 				.closest('[class^=rsg--root]')
 				.as('container')
@@ -50,8 +45,7 @@ describe('Single component', () => {
 		});
 
 		it('renders component preview', () => {
-			cy
-				.get('@preview')
+			cy.get('@preview')
 				.find('button', { timeout: 10000 })
 				.contains('Push Me')
 				.should('exist');
@@ -62,24 +56,21 @@ describe('Single component', () => {
 		});
 
 		it('does not show code initially', () => {
-			cy
-				.get('@container')
+			cy.get('@container')
 				.find('.CodeMirror')
 				.should('not.exist');
 		});
 
 		it('shows code on click', () => {
 			cy.get('@viewCodeBtn').click();
-			cy
-				.get('@container')
+			cy.get('@container')
 				.find('.CodeMirror')
 				.should('exist');
 		});
 
 		it('changes the render after code change', () => {
 			const codeToDelete = '</Button>';
-			cy
-				.get('@container')
+			cy.get('@container')
 				.find('.CodeMirror textarea')
 				// CodeMirror actually listens to keystrokes on an empty textarea
 				// to update the div with the code, so we have to hack our way
@@ -92,8 +83,7 @@ describe('Single component', () => {
 			// Wait for CodeMirror to update
 			cy.wait(500);
 
-			cy
-				.get('@preview')
+			cy.get('@preview')
 				.find('button')
 				.contains('Push Me Harder')
 				.should('exist');

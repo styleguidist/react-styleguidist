@@ -8,6 +8,6 @@ These commands are supposed to be placed in `package.json` `scripts` (see [Getti
 
 CLI Options:
 
-* `--config <file>`: Specify path to a config file.
-* `--open`: Open Styleguidist in the default browser.
-* `--verbose`: Print debug information.
+- `--config <file>`: Specify path to a config file.
+- `--open`: Open Styleguidist in the default browser.
+- `--verbose`: Print debug information.

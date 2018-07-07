@@ -8,14 +8,14 @@ Styleguidist generates documentation for your components based on the comments i
 
 <!-- toc -->
 
-* [Code comments and propTypes](#code-comments-and-proptypes)
-* [Usage examples and Readme files](#usage-examples-and-readme-files)
-* [External examples using doclet tags](#external-examples-using-doclet-tags)
-* [Public methods](#public-methods)
-* [Ignoring props](#ignoring-props)
-* [Using JSDoc tags](#using-jsdoc-tags)
-* [Writing code examples](#writing-code-examples)
-* [Limitations](#limitations)
+- [Code comments and propTypes](#code-comments-and-proptypes)
+- [Usage examples and Readme files](#usage-examples-and-readme-files)
+- [External examples using doclet tags](#external-examples-using-doclet-tags)
+- [Public methods](#public-methods)
+- [Ignoring props](#ignoring-props)
+- [Using JSDoc tags](#using-jsdoc-tags)
+- [Writing code examples](#writing-code-examples)
+- [Limitations](#limitations)
 
 <!-- tocstop -->
 
@@ -147,15 +147,15 @@ MyComponent.propTypes = {
 
 You can use the following [JSDoc](http://usejsdoc.org/) tags when documenting components, props and methods:
 
-* [@deprecated](http://usejsdoc.org/tags-deprecated.html)
-* [@see, @link](http://usejsdoc.org/tags-see.html)
-* [@author](http://usejsdoc.org/tags-author.html)
-* [@since](http://usejsdoc.org/tags-since.html)
-* [@version](http://usejsdoc.org/tags-version.html)
+- [@deprecated](http://usejsdoc.org/tags-deprecated.html)
+- [@see, @link](http://usejsdoc.org/tags-see.html)
+- [@author](http://usejsdoc.org/tags-author.html)
+- [@since](http://usejsdoc.org/tags-since.html)
+- [@version](http://usejsdoc.org/tags-version.html)
 
 When documenting props you can also use:
 
-* [@param, @arg, @argument](http://usejsdoc.org/tags-param.html)
+- [@param, @arg, @argument](http://usejsdoc.org/tags-param.html)
 
 All tags can render Markdown.
 

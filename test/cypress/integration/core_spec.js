@@ -10,8 +10,7 @@ describe('Styleguidist core', () => {
 	});
 
 	it('shows single component in isolated mode', () => {
-		cy
-			.get('[title="Open isolated"]')
+		cy.get('[title="Open isolated"]')
 			.first()
 			.click();
 		cy.get('[id$=container]').should('have.length', 1);

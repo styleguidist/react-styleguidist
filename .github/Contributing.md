@@ -6,11 +6,11 @@ If you want to contribute but don’t know what to do, take a look at these two 
 
 ## Prerequisites
 
-* If it’s your first pull request, watch [this amazing course](http://makeapullrequest.com/) by [Kent C. Dodds](https://twitter.com/kentcdodds).
-* Install [EditorConfig](http://editorconfig.org/) plugin for your code editor to make sure it uses correct settings.
-* Fork the repository and clone your fork.
-* Install dependencies: `npm install`.
-* Read the [developer guide](https://react-styleguidist.js.org/docs/development.html).
+- If it’s your first pull request, watch [this amazing course](http://makeapullrequest.com/) by [Kent C. Dodds](https://twitter.com/kentcdodds).
+- Install [EditorConfig](http://editorconfig.org/) plugin for your code editor to make sure it uses correct settings.
+- Fork the repository and clone your fork.
+- Install dependencies: `npm install`.
+- Read the [developer guide](https://react-styleguidist.js.org/docs/development.html).
 
 ## Development workflow
 
@@ -48,11 +48,11 @@ npx jest -u
 
 ## Other notes
 
-* If you have commit access to repository and want to make big change or not sure about something, make a new branch and open pull request.
-* We’re using [Prettier](https://github.com/prettier/prettier) to format JavaScript, so don’t worry much about code formatting.
-* Don’t commit generated files, like minified JavaScript.
-* Don’t change version number and change log.
-* If you're updating examples other then `examples/basic`, you'll need to modify your watch and start commands:
+- If you have commit access to repository and want to make big change or not sure about something, make a new branch and open pull request.
+- We’re using [Prettier](https://github.com/prettier/prettier) to format JavaScript, so don’t worry much about code formatting.
+- Don’t commit generated files, like minified JavaScript.
+- Don’t change version number and change log.
+- If you're updating examples other then `examples/basic`, you'll need to modify your watch and start commands:
 
 ```bash
 npm run compile:watch & npm run start:customised # if making changes to examples/customised
@@ -69,4 +69,4 @@ node bin/styleguidist.js server --config examples/path/to/example/styleguide.con
 
 ## Need help?
 
-* Join our [Gitter](https://gitter.im/styleguidist/styleguidist) or [Spectrum](https://spectrum.chat/styleguidist) chats and ask everything you need.
+- Join our [Gitter](https://gitter.im/styleguidist/styleguidist) or [Spectrum](https://spectrum.chat/styleguidist) chats and ask everything you need.
