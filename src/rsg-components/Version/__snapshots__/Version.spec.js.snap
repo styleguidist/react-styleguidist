@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render version 1`] = `
+<h2
+  class="rsg--version-0"
+>
+  1.2.3-a
+</h2>
+`;

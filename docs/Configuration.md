@@ -45,6 +45,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 - [`updateExample`](#updateexample)
 - [`usageMode`](#usagemode)
 - [`verbose`](#verbose)
+- [`version`](#version)
 - [`webpackConfig`](#webpackconfig)
 
 <!-- tocstop -->
@@ -679,6 +680,12 @@ Defines the initial state of the props and methods tab:
 Type: `Boolean`, default: `false`
 
 Print debug information. Same as `--verbose` command line switch.
+
+#### `version`
+
+Type: `String`, optional
+
+Style guide version, displayed under the title in the sidebar.
 
 #### `webpackConfig`
 

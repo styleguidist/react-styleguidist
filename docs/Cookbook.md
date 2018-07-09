@@ -311,6 +311,7 @@ module.exports = {
 import React from 'react'
 const StyleGuideRenderer = ({
   title,
+  version,
   homepageUrl,
   components,
   toc,
@@ -318,6 +319,7 @@ const StyleGuideRenderer = ({
 }) => (
   <div className="root">
     <h1>{title}</h1>
+    {version && <h2>{version}</h2>}
     <main className="wrapper">
       <div className="content">
         {components}

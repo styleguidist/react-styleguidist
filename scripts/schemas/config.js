@@ -312,6 +312,9 @@ module.exports = {
 		type: 'boolean',
 		default: false,
 	},
+	version: {
+		type: 'string',
+	},
 	webpackConfig: {
 		type: ['object', 'function'],
 		process: val => {

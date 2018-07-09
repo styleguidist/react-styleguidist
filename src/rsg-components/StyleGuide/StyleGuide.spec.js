@@ -28,6 +28,7 @@ const sections = [
 ];
 const config = {
 	title: 'Hello',
+	version: '1.0.0',
 	showSidebar: true,
 };
 
@@ -136,11 +137,12 @@ describe('sidebar rendering', () => {
 	});
 });
 
-it('renderer should render logo, table of contents, ribbon and passed children', () => {
+it('renderer should render logo, version, table of contents, ribbon and passed children', () => {
 	const actual = shallow(
 		<StyleGuideRenderer
 			classes={{}}
 			title={config.title}
+			version={config.version}
 			toc={<TableOfContents sections={sections} />}
 			homepageUrl="http://react-styleguidist.js.org/"
 			hasSidebar
