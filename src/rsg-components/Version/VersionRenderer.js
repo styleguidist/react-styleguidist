@@ -4,7 +4,7 @@ import Styled from 'rsg-components/Styled';
 
 const styles = ({ color, fontFamily, fontSize }) => ({
 	version: {
-		color: color.lightest,
+		color: color.light,
 		margin: [[5, 0, 0, 0]],
 		fontFamily: fontFamily.base,
 		fontSize: fontSize.base,
@@ -13,7 +13,11 @@ const styles = ({ color, fontFamily, fontSize }) => ({
 });
 
 export function VersionRenderer({ classes, children }) {
-	return <h2 className={classes.version}>{children}</h2>;
+	return (
+		<p aria-label="version" className={classes.version}>
+			{children}
+		</p>
+	);
 }
 
 VersionRenderer.propTypes = {
