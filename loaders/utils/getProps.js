@@ -53,6 +53,7 @@ module.exports = function getProps(doc, filepath) {
 	// Parse the docblock of the remaining methods with doctrine to retrieve the JsDoc tags
 	doc.methods = doc.methods.map(method => {
 		const tags = getDoctrineTags(doctrine.parse(method.docblock, { sloppy: true, unwrap: true }));
+		// Merge react-docgen information about arguments and return value with inforamtion from jsdoc
 		const params =
 			method.params &&
 			method.params.map(param =>

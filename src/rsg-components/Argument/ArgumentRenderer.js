@@ -13,7 +13,7 @@ export const styles = ({ space }) => ({
 });
 
 export function ArgumentRenderer({ classes, name, type, description, returns, block, ...props }) {
-	const isOptional = type && type.type && type.type === 'OptionalType';
+	const isOptional = type && type.type === 'OptionalType';
 	const defaultValue = props.default;
 	if (isOptional) {
 		type = type.expression;
@@ -29,7 +29,9 @@ export function ArgumentRenderer({ classes, name, type, description, returns, bl
 			)}
 			{type && (
 				<Type>
-					{type.name + (isOptional ? '?' : '') + (defaultValue ? `=${defaultValue}` : '')}
+					{type.name}
+					{isOptional && '?'}
+					{!!defaultValue && `=${defaultValue}`}
 				</Type>
 			)}
 			{type && description && ` — `}

@@ -59,7 +59,8 @@ exports[`should render default value of argument 1`] = `
   separator=" "
 >
   <Styled(Type)>
-    String=bar
+    String
+    =bar
   </Styled(Type)>
    — 
   <Markdown
@@ -75,7 +76,9 @@ exports[`should render default value of optional argument 1`] = `
   separator=" "
 >
   <Styled(Type)>
-    Boolean?=true
+    Boolean
+    ?
+    =true
   </Styled(Type)>
    — 
   <Markdown
@@ -90,7 +93,8 @@ exports[`should render optional argument 1`] = `
   separator=" "
 >
   <Styled(Type)>
-    Array?
+    Array
+    ?
   </Styled(Type)>
    — 
   <Markdown
