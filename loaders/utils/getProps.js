@@ -52,9 +52,14 @@ module.exports = function getProps(doc, filepath) {
 
 	// Parse the docblock of the remaining methods with doctrine to retrieve the JsDoc tags
 	doc.methods = doc.methods.map(method => {
-		return Object.assign(method, {
-			tags: getDoctrineTags(doctrine.parse(method.docblock)),
-		});
+		const tags = getDoctrineTags(doctrine.parse(method.docblock, { sloppy: true, unwrap: true }));
+		const params =
+			method.params &&
+			method.params.map(param =>
+				Object.assign(param, tags.param.find(tagParam => tagParam.name === param.name))
+			);
+		const returns = method.returns || (tags.returns && tags.returns[0]);
+		return Object.assign(method, returns && { returns }, params && { params }, { tags });
 	});
 
 	if (doc.description) {
