@@ -127,6 +127,10 @@ module.exports = {
 	logger: {
 		type: 'object',
 	},
+	mountPointId: {
+		type: 'string',
+		default: 'rsg-root',
+	},
 	pagePerSection: {
 		type: 'boolean',
 		default: false,

@@ -18,7 +18,7 @@ const scrollToOrigin = () => {
 const render = () => {
 	// eslint-disable-next-line import/no-unresolved
 	const styleguide = require('!!../loaders/styleguide-loader!./index.js');
-	let containerId = 'rsg-root';
+	let containerId = styleguide.config.mountPointId;
 
 	if (document.getElementById('app')) {
 		// eslint-disable-next-line no-console
