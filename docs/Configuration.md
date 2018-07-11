@@ -6,47 +6,47 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 
 <!-- toc -->
 
-- [`assetsDir`](#assetsdir)
-- [`compilerConfig`](#compilerconfig)
-- [`components`](#components)
-- [`context`](#context)
-- [`contextDependencies`](#contextdependencies)
-- [`configureServer`](#configureserver)
-- [`dangerouslyUpdateWebpackConfig`](#dangerouslyupdatewebpackconfig)
-- [`defaultExample`](#defaultexample)
-- [`editorConfig`](#editorconfig)
-- [`getComponentPathLine`](#getcomponentpathline)
-- [`getExampleFilename`](#getexamplefilename)
-- [`handlers`](#handlers)
-- [`ignore`](#ignore)
-- [`logger`](#logger)
-- [`mountPointId`](#mountPointId)
-- [`pagePerSection`](#pagepersection)
-- [`printBuildInstructions`](#printbuildinstructions)
-- [`printServerInstructions`](#printserverinstructions)
-- [`previewDelay`](#previewdelay)
-- [`propsParser`](#propsparser)
-- [`require`](#require)
-- [`resolver`](#resolver)
-- [`ribbon`](#ribbon)
-- [`sections`](#sections)
-- [`serverHost`](#serverhost)
-- [`serverPort`](#serverport)
-- [`showCode`](#showcode)
-- [`showUsage`](#showusage)
-- [`showSidebar`](#showsidebar)
-- [`skipComponentsWithoutExample`](#skipcomponentswithoutexample)
-- [`sortProps`](#sortprops)
-- [`styleguideComponents`](#styleguidecomponents)
-- [`styleguideDir`](#styleguidedir)
-- [`styles`](#styles)
-- [`template`](#template)
-- [`theme`](#theme)
-- [`title`](#title)
-- [`updateDocs`](#updatedocs)
-- [`updateExample`](#updateexample)
-- [`verbose`](#verbose)
-- [`webpackConfig`](#webpackconfig)
+* [`assetsDir`](#assetsdir)
+* [`compilerConfig`](#compilerconfig)
+* [`components`](#components)
+* [`context`](#context)
+* [`contextDependencies`](#contextdependencies)
+* [`configureServer`](#configureserver)
+* [`dangerouslyUpdateWebpackConfig`](#dangerouslyupdatewebpackconfig)
+* [`defaultExample`](#defaultexample)
+* [`editorConfig`](#editorconfig)
+* [`getComponentPathLine`](#getcomponentpathline)
+* [`getExampleFilename`](#getexamplefilename)
+* [`handlers`](#handlers)
+* [`ignore`](#ignore)
+* [`logger`](#logger)
+* [`mountPointId`](#mountPointId)
+* [`pagePerSection`](#pagepersection)
+* [`printBuildInstructions`](#printbuildinstructions)
+* [`printServerInstructions`](#printserverinstructions)
+* [`previewDelay`](#previewdelay)
+* [`propsParser`](#propsparser)
+* [`require`](#require)
+* [`resolver`](#resolver)
+* [`ribbon`](#ribbon)
+* [`sections`](#sections)
+* [`serverHost`](#serverhost)
+* [`serverPort`](#serverport)
+* [`showCode`](#showcode)
+* [`showUsage`](#showusage)
+* [`showSidebar`](#showsidebar)
+* [`skipComponentsWithoutExample`](#skipcomponentswithoutexample)
+* [`sortProps`](#sortprops)
+* [`styleguideComponents`](#styleguidecomponents)
+* [`styleguideDir`](#styleguidedir)
+* [`styles`](#styles)
+* [`template`](#template)
+* [`theme`](#theme)
+* [`title`](#title)
+* [`updateDocs`](#updatedocs)
+* [`updateExample`](#updateexample)
+* [`verbose`](#verbose)
+* [`webpackConfig`](#webpackconfig)
 
 <!-- tocstop -->
 
@@ -66,9 +66,9 @@ Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the
 
 Type: `String`, `Function` or `Array`, default: `src/components/**/*.{js,jsx,ts,tsx}`
 
-- when `String`: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules.
-- when `Function`: a function that returns an array of module paths.
-- when `Array`: an array of module paths.
+* when `String`: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules.
+* when `Function`: a function that returns an array of module paths.
+* when `Array`: an array of module paths.
 
 All paths are relative to config folder.
 
