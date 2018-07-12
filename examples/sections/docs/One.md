@@ -18,8 +18,8 @@ Text attributes: _italic_, **bold**, `monospace`.
 
 Bullet list:
 
-- coffee
-- croissant
+* coffee
+* croissant
 
 Numbered list:
 
@@ -28,17 +28,17 @@ Numbered list:
 
 Nested list:
 
-- coffee
-- food
+* coffee
+* food
   1.  croissant
   1.  pizza
-- dog
+* dog
 
 List with checkboxes:
 
-- [x] Coffee
-- [x] Croissant
-- [ ] Pizza
+* [x] Coffee
+* [x] Croissant
+* [ ] Pizza
 
 Table:
 

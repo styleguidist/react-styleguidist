@@ -6,46 +6,47 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 
 <!-- toc -->
 
-- [`assetsDir`](#assetsdir)
-- [`compilerConfig`](#compilerconfig)
-- [`components`](#components)
-- [`context`](#context)
-- [`contextDependencies`](#contextdependencies)
-- [`configureServer`](#configureserver)
-- [`dangerouslyUpdateWebpackConfig`](#dangerouslyupdatewebpackconfig)
-- [`defaultExample`](#defaultexample)
-- [`editorConfig`](#editorconfig)
-- [`exampleMode`](#examplemode)
-- [`getComponentPathLine`](#getcomponentpathline)
-- [`getExampleFilename`](#getexamplefilename)
-- [`handlers`](#handlers)
-- [`ignore`](#ignore)
-- [`logger`](#logger)
-- [`pagePerSection`](#pagepersection)
-- [`printBuildInstructions`](#printbuildinstructions)
-- [`printServerInstructions`](#printserverinstructions)
-- [`previewDelay`](#previewdelay)
-- [`propsParser`](#propsparser)
-- [`require`](#require)
-- [`resolver`](#resolver)
-- [`ribbon`](#ribbon)
-- [`sections`](#sections)
-- [`serverHost`](#serverhost)
-- [`serverPort`](#serverport)
-- [`showSidebar`](#showsidebar)
-- [`skipComponentsWithoutExample`](#skipcomponentswithoutexample)
-- [`sortProps`](#sortprops)
-- [`styleguideComponents`](#styleguidecomponents)
-- [`styleguideDir`](#styleguidedir)
-- [`styles`](#styles)
-- [`template`](#template)
-- [`theme`](#theme)
-- [`title`](#title)
-- [`updateDocs`](#updatedocs)
-- [`updateExample`](#updateexample)
-- [`usageMode`](#usagemode)
-- [`verbose`](#verbose)
-- [`webpackConfig`](#webpackconfig)
+* [`assetsDir`](#assetsdir)
+* [`compilerConfig`](#compilerconfig)
+* [`components`](#components)
+* [`context`](#context)
+* [`contextDependencies`](#contextdependencies)
+* [`configureServer`](#configureserver)
+* [`dangerouslyUpdateWebpackConfig`](#dangerouslyupdatewebpackconfig)
+* [`defaultExample`](#defaultexample)
+* [`editorConfig`](#editorconfig)
+* [`exampleMode`](#examplemode)
+* [`getComponentPathLine`](#getcomponentpathline)
+* [`getExampleFilename`](#getexamplefilename)
+* [`handlers`](#handlers)
+* [`ignore`](#ignore)
+* [`logger`](#logger)
+* [`mountPointId`](#mountPointId)
+* [`pagePerSection`](#pagepersection)
+* [`printBuildInstructions`](#printbuildinstructions)
+* [`printServerInstructions`](#printserverinstructions)
+* [`previewDelay`](#previewdelay)
+* [`propsParser`](#propsparser)
+* [`require`](#require)
+* [`resolver`](#resolver)
+* [`ribbon`](#ribbon)
+* [`sections`](#sections)
+* [`serverHost`](#serverhost)
+* [`serverPort`](#serverport)
+* [`showSidebar`](#showsidebar)
+* [`skipComponentsWithoutExample`](#skipcomponentswithoutexample)
+* [`sortProps`](#sortprops)
+* [`styleguideComponents`](#styleguidecomponents)
+* [`styleguideDir`](#styleguidedir)
+* [`styles`](#styles)
+* [`template`](#template)
+* [`theme`](#theme)
+* [`title`](#title)
+* [`updateDocs`](#updatedocs)
+* [`updateExample`](#updateexample)
+* [`usageMode`](#usagemode)
+* [`verbose`](#verbose)
+* [`webpackConfig`](#webpackconfig)
 
 <!-- tocstop -->
 
@@ -65,9 +66,9 @@ Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the
 
 Type: `String`, `Function` or `Array`, default: `src/components/**/*.{js,jsx,ts,tsx}`
 
-- when `String`: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules.
-- when `Function`: a function that returns an array of module paths.
-- when `Array`: an array of module paths.
+* when `String`: a [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that matches all your component modules.
+* when `Function`: a function that returns an array of module paths.
+* when `Array`: an array of module paths.
 
 All paths are relative to config folder.
 
@@ -203,9 +204,9 @@ Type: `String`, default: `collapse`
 
 Defines the initial state of the example code tab:
 
-- `collapse`: collapses the tab by default.
-- `hide`: hide the tab and it can´t be toggled in the UI.
-- `expand`: expand the tab by default.
+* `collapse`: collapses the tab by default.
+* `hide`: hide the tab and it can´t be toggled in the UI.
+* `expand`: expand the tab by default.
 
 #### `handlers`
 
@@ -275,6 +276,12 @@ module.exports = {
   }
 }
 ```
+
+#### `mountPointId`
+
+Type: `string`, defaults: `rsg-root`
+
+The id of the DOM element that React-Styleguidist mounts.
 
 #### `pagePerSection`
 
@@ -670,9 +677,9 @@ Type: `String`, default: `collapse`
 
 Defines the initial state of the props and methods tab:
 
-- `collapse`: collapses the tab by default.
-- `hide`: hide the tab and it can´t be toggled in the UI.
-- `expand`: expand the tab by default.
+* `collapse`: collapses the tab by default.
+* `hide`: hide the tab and it can´t be toggled in the UI.
+* `expand`: expand the tab by default.
 
 #### `verbose`
 
