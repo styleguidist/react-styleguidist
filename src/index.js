@@ -5,8 +5,6 @@ import ReactDOM from 'react-dom';
 import renderStyleguide from './utils/renderStyleguide';
 import { getParameterByName, hasInHash } from './utils/handleHash';
 
-const CONTAINER_ID = 'rsg-root';
-
 // Examples code revision to rerender only code examples (not the whole page) when code changes
 // eslint-disable-next-line no-unused-vars
 let codeRevision = 0;
@@ -38,7 +36,7 @@ const render = () => {
 	const styleguide = require('!!../loaders/styleguide-loader!./index.js');
 	ReactDOM.render(
 		renderStyleguide(styleguide, codeRevision),
-		document.getElementById(CONTAINER_ID)
+		document.getElementById(styleguide.config.mountPointId)
 	);
 };
 

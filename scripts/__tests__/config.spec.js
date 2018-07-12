@@ -228,3 +228,8 @@ it('should throw when old template as a string option passed', () => {
 		});
 	expect(fn).toThrow('format has been changed');
 });
+
+it('mountPointId should have default value', () => {
+	const result = getConfig();
+	expect(result.mountPointId).toEqual('rsg-root');
+});
