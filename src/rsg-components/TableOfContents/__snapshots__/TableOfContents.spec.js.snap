@@ -22,6 +22,7 @@ exports[`should filter list when search field contains a query 1`] = `
   searchTerm=""
 >
   <ComponentsList
+    hashPath={Array []}
     items={
       Array [
         Object {
@@ -50,7 +51,8 @@ exports[`should filter list when search field contains a query 1`] = `
         },
       ]
     }
-    useIsolatedLinks={false}
+    useHashId={false}
+    useRouterLinks={false}
   />
 </Styled(TableOfContents)>
 `;
@@ -61,6 +63,7 @@ exports[`should filter list when search field contains a query 2`] = `
   searchTerm="but"
 >
   <ComponentsList
+    hashPath={Array []}
     items={
       Array [
         Object {
@@ -73,7 +76,8 @@ exports[`should filter list when search field contains a query 2`] = `
         },
       ]
     }
-    useIsolatedLinks={false}
+    useHashId={false}
+    useRouterLinks={false}
   />
 </Styled(TableOfContents)>
 `;
@@ -84,6 +88,7 @@ exports[`should filter section names 1`] = `
   searchTerm=""
 >
   <ComponentsList
+    hashPath={Array []}
     items={
       Array [
         Object {
@@ -102,6 +107,11 @@ exports[`should filter section names 1`] = `
             },
           ],
           "content": <ComponentsList
+            hashPath={
+              Array [
+                "Buttons",
+              ]
+            }
             items={
               Array [
                 Object {
@@ -112,7 +122,8 @@ exports[`should filter section names 1`] = `
                 },
               ]
             }
-            useIsolatedLinks={false}
+            useHashId={true}
+            useRouterLinks={false}
           />,
           "heading": true,
           "name": "Buttons",
@@ -131,6 +142,11 @@ exports[`should filter section names 1`] = `
             },
           ],
           "content": <ComponentsList
+            hashPath={
+              Array [
+                "Forms",
+              ]
+            }
             items={
               Array [
                 Object {
@@ -147,7 +163,8 @@ exports[`should filter section names 1`] = `
                 },
               ]
             }
-            useIsolatedLinks={false}
+            useHashId={true}
+            useRouterLinks={false}
           />,
           "heading": true,
           "name": "Forms",
@@ -156,7 +173,8 @@ exports[`should filter section names 1`] = `
         },
       ]
     }
-    useIsolatedLinks={false}
+    useHashId={false}
+    useRouterLinks={false}
   />
 </Styled(TableOfContents)>
 `;
@@ -167,6 +185,7 @@ exports[`should filter section names 2`] = `
   searchTerm="frm"
 >
   <ComponentsList
+    hashPath={Array []}
     items={
       Array [
         Object {
@@ -179,7 +198,8 @@ exports[`should filter section names 2`] = `
         },
       ]
     }
-    useIsolatedLinks={false}
+    useHashId={false}
+    useRouterLinks={false}
   />
 </Styled(TableOfContents)>
 `;
@@ -190,6 +210,7 @@ exports[`should render a renderer 1`] = `
   searchTerm=""
 >
   <ComponentsList
+    hashPath={Array []}
     items={
       Array [
         Object {
@@ -218,7 +239,8 @@ exports[`should render a renderer 1`] = `
         },
       ]
     }
-    useIsolatedLinks={false}
+    useHashId={false}
+    useRouterLinks={false}
   />
 </Styled(TableOfContents)>
 `;
@@ -229,6 +251,7 @@ exports[`should render renderer with sections with nested components 1`] = `
   searchTerm=""
 >
   <ComponentsList
+    hashPath={Array []}
     items={
       Array [
         Object {
@@ -247,6 +270,11 @@ exports[`should render renderer with sections with nested components 1`] = `
             },
           ],
           "content": <ComponentsList
+            hashPath={
+              Array [
+                "Buttons",
+              ]
+            }
             items={
               Array [
                 Object {
@@ -257,7 +285,8 @@ exports[`should render renderer with sections with nested components 1`] = `
                 },
               ]
             }
-            useIsolatedLinks={false}
+            useHashId={true}
+            useRouterLinks={false}
           />,
           "heading": true,
           "name": "Buttons",
@@ -276,6 +305,11 @@ exports[`should render renderer with sections with nested components 1`] = `
             },
           ],
           "content": <ComponentsList
+            hashPath={
+              Array [
+                "Forms",
+              ]
+            }
             items={
               Array [
                 Object {
@@ -292,7 +326,8 @@ exports[`should render renderer with sections with nested components 1`] = `
                 },
               ]
             }
-            useIsolatedLinks={false}
+            useHashId={true}
+            useRouterLinks={false}
           />,
           "heading": true,
           "name": "Forms",
@@ -301,7 +336,8 @@ exports[`should render renderer with sections with nested components 1`] = `
         },
       ]
     }
-    useIsolatedLinks={false}
+    useHashId={false}
+    useRouterLinks={false}
   />
 </Styled(TableOfContents)>
 `;

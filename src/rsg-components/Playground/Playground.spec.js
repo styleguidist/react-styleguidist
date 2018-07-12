@@ -13,13 +13,13 @@ const props = {
 	index: 0,
 	name: 'name',
 	settings: {},
+	exampleMode: 'collapse',
 	evalInContext,
 	code,
 };
 const options = {
 	context: {
 		config: {
-			showCode: false,
 			highlightTheme: 'base16-light',
 		},
 		codeRevision: 0,
@@ -95,13 +95,12 @@ it('should open a code editor by default if showcode=true option passed in examp
 	expect(actual.text()).toMatch('Loading');
 });
 
-it('should open a code editor by default if showCode=true option specified in style guide config', () => {
-	const actual = mount(<Playground {...props} />, {
+it('should open a code editor by default if exampleMode="expand" option specified in style guide config', () => {
+	const actual = mount(<Playground {...props} exampleMode="expand" />, {
 		context: {
 			...options.context,
 			config: {
 				...options.context.config,
-				showCode: true,
 			},
 		},
 		childContextTypes: options.childContextTypes,
@@ -110,16 +109,18 @@ it('should open a code editor by default if showCode=true option specified in st
 });
 
 it('showcode option in example settings should overwrite style guide config option', () => {
-	const actual = mount(<Playground {...props} settings={{ showcode: false }} />, {
-		context: {
-			...options.context,
-			config: {
-				...options.context.config,
-				showCode: true,
+	const actual = mount(
+		<Playground {...props} exampleMode="expand" settings={{ showcode: false }} />,
+		{
+			context: {
+				...options.context,
+				config: {
+					...options.context.config,
+				},
 			},
-		},
-		childContextTypes: options.childContextTypes,
-	});
+			childContextTypes: options.childContextTypes,
+		}
+	);
 	expect(actual.text()).not.toMatch('Loading');
 });
 

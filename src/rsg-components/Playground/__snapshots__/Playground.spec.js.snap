@@ -55,7 +55,6 @@ exports[`should render component renderer 1`] = `
   previewProps={Object {}}
   tabBody={
     <Slot
-      active={undefined}
       name="exampleTabs"
       onlyActive={true}
       props={
@@ -65,7 +64,6 @@ exports[`should render component renderer 1`] = `
   OK
 </button>
 ,
-          "evalInContext": [Function],
           "onChange": [Function],
         }
       }
@@ -73,7 +71,6 @@ exports[`should render component renderer 1`] = `
   }
   tabButtons={
     <Slot
-      active={undefined}
       name="exampleTabButtons"
       props={
         Object {

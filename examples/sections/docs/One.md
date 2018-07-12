@@ -54,19 +54,15 @@ A [link](http://example.com).
 
 ```js static
 function eatFood(food) {
-    if (!food.length) {
-        return ['No food'];
-    }
+  if (!food.length) {
+    return ['No food']
+  }
 
-    return food.map(dish => `No ${dish.toLowerCase()}`);
+  return food.map(dish => `No ${dish.toLowerCase()}`)
 }
 
-const food = [
-  'Pizza',
-  'Buger',
-  'Coffee',
-];
-console.log(eatFood(food));
+const food = ['Pizza', 'Buger', 'Coffee']
+console.log(eatFood(food))
 ```
 
 Some more text here.
