@@ -27,7 +27,7 @@ module.exports = function(config, env) {
 	const htmlPluginOptions = {
 		context: Object.assign({}, templateContext, {
 			title: config.title,
-			container: config.mountPointId,
+			container: config.mountPointId || 'rsg-root',
 			trimWhitespace: true,
 		}),
 		template,
