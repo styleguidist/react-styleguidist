@@ -96,6 +96,7 @@ export default class StyleGuide extends Component {
 		return (
 			<StyleGuideRenderer
 				title={config.title}
+				version={config.version}
 				homepageUrl={HOMEPAGE}
 				toc={<TableOfContents sections={allSections} useRouterLinks={pagePerSection} />}
 				hasSidebar={hasSidebar(displayMode, config.showSidebar)}
