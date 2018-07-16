@@ -205,10 +205,3 @@ it('should pass specified mountPointId to HTML plugin', () => {
 		'foo-bar'
 	);
 });
-
-it('should pass default mountPointId to HTML plugin', () => {
-	const result = makeWebpackConfig(styleguideConfig, 'development');
-	expect(getClasses(result.plugins, 'MiniHtmlWebpackPlugin')[0].options.context.container).toEqual(
-		'rsg-root'
-	);
-});
