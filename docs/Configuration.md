@@ -281,7 +281,7 @@ module.exports = {
 
 Type: `string`, defaults: `rsg-root`
 
-The id of the DOM element that React-Styleguidist mounts.
+The ID of the DOM element that React-Styleguidist mounts.
 
 #### `pagePerSection`
 
