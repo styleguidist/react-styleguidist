@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Styled from 'rsg-components/Styled';
 import debounce from 'lodash/debounce';
 import { UnControlled as CodeMirror } from 'react-codemirror2';
 import 'codemirror/mode/jsx/jsx';
@@ -13,11 +14,38 @@ require('!!../../../loaders/style-loader!../../../loaders/css-loader!rsg-codemir
 
 const UPDATE_DELAY = 10;
 
-export default class Editor extends Component {
+const styles = ({ fontFamily, space, fontSize }) => ({
+	root: {
+		'& .CodeMirror': {
+			isolate: false,
+			fontFamily: fontFamily.monospace,
+			height: 'auto',
+			padding: [[space[1], space[2]]],
+			fontSize: fontSize.small,
+		},
+		'& .CodeMirror pre': {
+			isolate: false,
+			padding: 0,
+		},
+		'& .CodeMirror-scroll': {
+			isolate: false,
+			height: 'auto',
+			overflowY: 'hidden',
+			overflowX: 'auto',
+		},
+		'& .cm-error': {
+			isolate: false,
+			background: 'none',
+		},
+	},
+});
+
+export class Editor extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
 		onChange: PropTypes.func,
 		editorConfig: PropTypes.object,
+		classes: PropTypes.object.isRequired,
 	};
 	static contextTypes = {
 		config: PropTypes.object.isRequired,
@@ -47,9 +75,10 @@ export default class Editor extends Component {
 	}
 
 	render() {
-		const { code } = this.props;
+		const { code, classes } = this.props;
 		return (
 			<CodeMirror
+				className={classes.root}
 				value={code}
 				onChange={this.handleChange}
 				options={this.getEditorConfig(this.props)}
@@ -57,3 +86,5 @@ export default class Editor extends Component {
 		);
 	}
 }
+
+export default Styled(styles)(Editor);

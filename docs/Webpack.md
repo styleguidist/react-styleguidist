@@ -10,12 +10,12 @@ _Webpack is required to run Styleguidist but your project doesn’t have to use 
 
 <!-- toc -->
 
-* [Reusing your project’s webpack config](#reusing-your-projects-webpack-config)
-* [Custom webpack config](#custom-webpack-config)
-* [Create React App](#create-react-app)
-* [Create React App, TypeScript](#create-react-app-typescript)
-* [Non-webpack projects](#non-webpack-projects)
-* [When nothing else works](#when-nothing-else-works)
+- [Reusing your project’s webpack config](#reusing-your-projects-webpack-config)
+- [Custom webpack config](#custom-webpack-config)
+- [Create React App](#create-react-app)
+- [Create React App, TypeScript](#create-react-app-typescript)
+- [Non-webpack projects](#non-webpack-projects)
+- [When nothing else works](#when-nothing-else-works)
 
 <!-- tocstop -->
 
@@ -91,9 +91,9 @@ module.exports = {
 
 If you're using [Create React App](https://github.com/facebookincubator/create-react-app) and Typescript, you need to:
 
-* Install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript)
-* Create a `styleguide.config.js`, see [this guide](Configuration.md)
-* Add a `components`, `webpackConfig` and `propsParser` section to your `styleguide.config.js`:
+- Install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript)
+- Create a `styleguide.config.js`, see [this guide](Configuration.md)
+- Add a `components`, `webpackConfig` and `propsParser` section to your `styleguide.config.js`:
 
 ```javascript
 module.exports = {

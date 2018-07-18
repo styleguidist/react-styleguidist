@@ -15,7 +15,20 @@ export function unquote(string) {
  * @returns {object}
  */
 export function getType(prop) {
-	return prop.flowType || prop.type;
+	if (prop.flowType) {
+		if (
+			prop.flowType.name === 'union' &&
+			prop.flowType.elements.every(elem => elem.name === 'literal')
+		) {
+			return {
+				...prop.flowType,
+				name: 'enum',
+				value: prop.flowType.elements,
+			};
+		}
+		return prop.flowType;
+	}
+	return prop.type;
 }
 
 /**

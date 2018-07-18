@@ -18,8 +18,8 @@ Text attributes: _italic_, **bold**, `monospace`.
 
 Bullet list:
 
-* coffee
-* croissant
+- coffee
+- croissant
 
 Numbered list:
 
@@ -28,17 +28,17 @@ Numbered list:
 
 Nested list:
 
-* coffee
-* food
+- coffee
+- food
   1.  croissant
   1.  pizza
-* dog
+- dog
 
 List with checkboxes:
 
-* [x] Coffee
-* [x] Croissant
-* [ ] Pizza
+- [x] Coffee
+- [x] Croissant
+- [ ] Pizza
 
 Table:
 
@@ -54,19 +54,15 @@ A [link](http://example.com).
 
 ```js static
 function eatFood(food) {
-    if (!food.length) {
-        return ['No food'];
-    }
+  if (!food.length) {
+    return ['No food']
+  }
 
-    return food.map(dish => `No ${dish.toLowerCase()}`);
+  return food.map(dish => `No ${dish.toLowerCase()}`)
 }
 
-const food = [
-  'Pizza',
-  'Buger',
-  'Coffee',
-];
-console.log(eatFood(food));
+const food = ['Pizza', 'Buger', 'Coffee']
+console.log(eatFood(food))
 ```
 
 Some more text here.

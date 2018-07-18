@@ -5,6 +5,8 @@ import ReactDOM from 'react-dom';
 import renderStyleguide from './utils/renderStyleguide';
 import { getParameterByName, hasInHash } from './utils/handleHash';
 
+const CONTAINER_ID = 'rsg-root';
+
 // Examples code revision to rerender only code examples (not the whole page) when code changes
 // eslint-disable-next-line no-unused-vars
 let codeRevision = 0;
@@ -34,17 +36,10 @@ const scrollToOrigin = () => {
 const render = () => {
 	// eslint-disable-next-line import/no-unresolved
 	const styleguide = require('!!../loaders/styleguide-loader!./index.js');
-	let containerId = 'rsg-root';
-
-	if (document.getElementById('app')) {
-		// eslint-disable-next-line no-console
-		console.warn(
-			"The use of 'app' element id in the template is deprecated. Please, update your template file to use 'rsg-root' as the container id."
-		);
-		containerId = 'app';
-	}
-
-	ReactDOM.render(renderStyleguide(styleguide, codeRevision), document.getElementById(containerId));
+	ReactDOM.render(
+		renderStyleguide(styleguide, codeRevision),
+		document.getElementById(CONTAINER_ID)
+	);
 };
 
 window.addEventListener('hashchange', render);

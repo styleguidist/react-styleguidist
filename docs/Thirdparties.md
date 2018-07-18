@@ -4,14 +4,14 @@
 
 <!-- toc -->
 
-* [How Styleguidist works](#how-styleguidist-works)
-* [Using Styleguidist with other libraries](#using-styleguidist-with-other-libraries)
-  * [Redux](#redux)
-  * [Relay](#relay)
-  * [Styled Components](#styled-components)
-  * [Fela](#fela)
-  * [CSS Modules with react-css-modules](#css-modules-with-react-css-modules)
-  * [Styletron](#styletron)
+- [How Styleguidist works](#how-styleguidist-works)
+- [Using Styleguidist with other libraries](#using-styleguidist-with-other-libraries)
+  - [Redux](#redux)
+  - [Relay](#relay)
+  - [Styled Components](#styled-components)
+  - [Fela](#fela)
+  - [CSS Modules with react-css-modules](#css-modules-with-react-css-modules)
+  - [Styletron](#styletron)
 
 <!-- tocstop -->
 

@@ -4,6 +4,6 @@ Aute fugiat nulla eu cillum dolore proident eu nisi sint minim veniam. Sunt veli
 
 List of files:
 
-* [First File](#/Documentation/Files/First%20File)
-* [Second File](#/Documentation/Files/Second%20File)
-* [WrappedButton](#/Documentation/Files/WrappedButton)
+- [First File](#/Documentation/Files/First%20File)
+- [Second File](#/Documentation/Files/Second%20File)
+- [WrappedButton](#/Documentation/Files/WrappedButton)

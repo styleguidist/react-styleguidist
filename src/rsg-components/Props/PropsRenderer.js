@@ -41,6 +41,8 @@ function renderFlowType(type) {
 	const { name, raw, value } = type;
 
 	switch (name) {
+		case 'enum':
+			return name;
 		case 'literal':
 			return value;
 		case 'signature':
@@ -177,7 +179,6 @@ function renderDescription(prop) {
 
 function renderExtra(prop) {
 	const type = getType(prop);
-
 	if (!type) {
 		return null;
 	}
@@ -204,11 +205,12 @@ function renderExtra(prop) {
 }
 
 function renderUnion(prop) {
-	if (!Array.isArray(getType(prop).value)) {
-		return <span>{getType(prop).value}</span>;
+	const type = getType(prop);
+	if (!Array.isArray(type.value)) {
+		return <span>{type.value}</span>;
 	}
 
-	const values = getType(prop).value.map((value, index) => (
+	const values = type.value.map((value, index) => (
 		<Type key={`${value.name}-${index}`}>{renderType(value)}</Type>
 	));
 	return (
