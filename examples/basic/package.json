@@ -24,9 +24,9 @@
     "dog-names": "^1.0.2",
     "lodash": "^4.17.5",
     "prop-types": "^15.6.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-styleguidist": "^6.5.0"
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-styleguidist": "^7.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -37,8 +37,8 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
     "file-loader": "^1.1.11",
-    "style-loader": "^0.20.3",
+    "style-loader": "^0.21.0",
     "url-loader": "^0.6.2",
-    "webpack": "^3.8.1"
+    "webpack": "^4.16.1"
   }
 }
