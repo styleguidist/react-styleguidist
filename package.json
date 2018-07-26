@@ -80,6 +80,7 @@
     "react-group": "^1.0.6",
     "react-icons": "^2.2.7",
     "react-lifecycles-compat": "^3.0.4",
+    "recast": "^0.13.0",
     "remark": "^9.0.0",
     "style-loader": "^0.21.0",
     "to-ast": "^1.0.0",
