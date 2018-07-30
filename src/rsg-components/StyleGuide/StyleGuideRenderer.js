@@ -9,6 +9,7 @@ import Version from 'rsg-components/Version';
 
 const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth }) => ({
 	root: {
+		minHeight: '100vh',
 		backgroundColor: color.baseBackground,
 	},
 	hasSidebar: {
