@@ -6,7 +6,6 @@ const DEFAULT_COMPONENTS_PATTERN = `src/@(components|Components)/**/*.{${EXTENSI
 
 const path = require('path');
 const startCase = require('lodash/startCase');
-const chalk = require('chalk');
 const reactDocgen = require('react-docgen');
 const createDisplayNameHandler = require('react-docgen-displayname-handler')
 	.createDisplayNameHandler;
@@ -15,7 +14,6 @@ const logger = require('glogg')('rsg');
 const findUserWebpackConfig = require('../utils/findUserWebpackConfig');
 const getUserPackageJson = require('../utils/getUserPackageJson');
 const fileExistsCaseInsensitive = require('../utils/findFileCaseInsensitive');
-const StyleguidistError = require('../utils/error');
 const consts = require('../consts');
 
 module.exports = {
@@ -248,19 +246,8 @@ module.exports = {
 		},
 	},
 	template: {
-		type: ['object', 'function'],
+		type: ['string', 'object', 'function'],
 		default: {},
-		process: val => {
-			if (typeof val === 'string') {
-				throw new StyleguidistError(
-					`${chalk.bold(
-						'template'
-					)} config option format has been changed, you need to update your config.`,
-					'template'
-				);
-			}
-			return val;
-		},
 	},
 	theme: {
 		type: 'object',
@@ -314,6 +301,14 @@ module.exports = {
 	},
 	version: {
 		type: 'string',
+	},
+	htmlPlugin: {
+		type: 'string',
+		default: 'mini',
+	},
+	htmlPluginOptions: {
+		type: 'object',
+		default: {},
 	},
 	webpackConfig: {
 		type: ['object', 'function'],

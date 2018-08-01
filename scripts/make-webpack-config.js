@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const MiniHtmlWebpackPlugin = require('mini-html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniHtmlWebpackTemplate = require('@vxna/mini-html-webpack-template');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -17,21 +18,44 @@ const RENDERER_REGEXP = /Renderer$/;
 const isWebpack4 = getWebpackVersion() >= 4;
 const sourceDir = path.resolve(__dirname, '../lib');
 
+function getMiniHtmlWebpackPluginConfig(config) {
+	const template = isFunction(config.template) ? config.template : MiniHtmlWebpackTemplate;
+	const templateContext = isFunction(config.template) ? {} : config.template;
+	return Object.assign(
+		{
+			context: Object.assign({}, templateContext, {
+				title: config.title,
+				container: 'rsg-root',
+				trimWhitespace: true,
+			}),
+			template,
+		},
+		config.htmlPluginOptions
+	);
+}
+
+function getHtmlWebpackPluginConfig(config) {
+	return Object.assign(
+		{
+			title: config.title,
+			template: config.template,
+			inject: true,
+		},
+		config.htmlPluginOptions
+	);
+}
+
 module.exports = function(config, env) {
 	process.env.NODE_ENV = process.env.NODE_ENV || env;
 
 	const isProd = env === 'production';
 
-	const template = isFunction(config.template) ? config.template : MiniHtmlWebpackTemplate;
-	const templateContext = isFunction(config.template) ? {} : config.template;
-	const htmlPluginOptions = {
-		context: Object.assign({}, templateContext, {
-			title: config.title,
-			container: 'rsg-root',
-			trimWhitespace: true,
-		}),
-		template,
-	};
+	const HtmlPlugin = config.htmlPlugin === 'full' ? HtmlWebpackPlugin : MiniHtmlWebpackPlugin;
+
+	const htmlPluginOptions =
+		config.htmlPlugin === 'full'
+			? getHtmlWebpackPluginConfig(config)
+			: getMiniHtmlWebpackPluginConfig(config);
 
 	let webpackConfig = {
 		entry: config.require.concat([path.resolve(sourceDir, 'index')]),
@@ -48,7 +72,7 @@ module.exports = function(config, env) {
 		},
 		plugins: [
 			new StyleguidistOptionsPlugin(config),
-			new MiniHtmlWebpackPlugin(htmlPluginOptions),
+			new HtmlPlugin(htmlPluginOptions),
 			new webpack.DefinePlugin({
 				'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
 				'process.env.STYLEGUIDIST_ENV': JSON.stringify(env),
