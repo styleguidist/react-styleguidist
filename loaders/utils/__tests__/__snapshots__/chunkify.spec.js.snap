@@ -47,7 +47,7 @@ Array [
   },
   Object {
     "content": "\`\`\`jsx
-&lt;h2&gt;This is Highlighted!<span class=\\"xml\\"><span class=\\"hljs-tag\\">&lt;/<span class=\\"hljs-name\\">h2</span>&gt;</span></span>
+<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;</span>h2</span><span class=\\"token punctuation\\">></span></span><span class=\\"token plain-text\\">This is Highlighted!</span><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;/</span>h2</span><span class=\\"token punctuation\\">></span></span>
 \`\`\`",
     "type": "markdown",
   },
@@ -109,13 +109,13 @@ This code example should be rendered as a playground:",
     "content": "This should be just highlighted:
 
 \`\`\`jsx
-&lt;h4&gt;Hello Markdown!<span class=\\"xml\\"><span class=\\"hljs-tag\\">&lt;/<span class=\\"hljs-name\\">h4</span>&gt;</span></span>
+<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;</span>h4</span><span class=\\"token punctuation\\">></span></span><span class=\\"token plain-text\\">Hello Markdown!</span><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;/</span>h4</span><span class=\\"token punctuation\\">></span></span>
 \`\`\`
 
 This should be highlighted too:
 
 \`\`\`html
-<span class=\\"hljs-tag\\">&lt;<span class=\\"hljs-name\\">h5</span>&gt;</span>Hello Markdown!<span class=\\"hljs-tag\\">&lt;/<span class=\\"hljs-name\\">h5</span>&gt;</span>
+<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;</span>h5</span><span class=\\"token punctuation\\">></span></span>Hello Markdown!<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;/</span>h5</span><span class=\\"token punctuation\\">></span></span>
 \`\`\`",
     "type": "markdown",
   },

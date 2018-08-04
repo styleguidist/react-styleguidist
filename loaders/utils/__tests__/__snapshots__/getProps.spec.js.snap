@@ -4,19 +4,9 @@ exports[`should highlight code in description (fenced code block) 1`] = `
 Object {
   "description": "The only true button.
 
-    <span class=\\"hljs-selector-tag\\">alert</span>(<span class=\\"hljs-string\\">'Hello world'</span>);
-",
-  "doclets": Object {},
-  "methods": Array [],
-  "tags": Object {},
-}
-`;
-
-exports[`should highlight code in description (regular code block) 1`] = `
-Object {
-  "description": "The only true button.
-
-    <span class=\\"hljs-selector-tag\\">alert</span>(<span class=\\"hljs-string\\">'Hello world'</span>);
+\`\`\`js
+<span class=\\"token function\\">alert</span><span class=\\"token punctuation\\">(</span><span class=\\"token string\\">'Hello world'</span><span class=\\"token punctuation\\">)</span><span class=\\"token punctuation\\">;</span>
+\`\`\`
 ",
   "doclets": Object {},
   "methods": Array [],

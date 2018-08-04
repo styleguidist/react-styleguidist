@@ -10,7 +10,7 @@ import 'codemirror/mode/jsx/jsx';
 // eslint-disable-next-line import/no-unresolved
 require('!!../../../loaders/style-loader!../../../loaders/css-loader!codemirror/lib/codemirror.css');
 // eslint-disable-next-line import/no-unresolved
-require('!!../../../loaders/style-loader!../../../loaders/css-loader!rsg-codemirror-theme.css');
+require('!!../../../loaders/style-loader!../../../loaders/css-loader!rsg-prism-theme.css');
 
 const UPDATE_DELAY = 10;
 

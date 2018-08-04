@@ -13,18 +13,17 @@ const slugger = require('./utils/slugger');
 
 // Config options that should be passed to the client
 const CLIENT_CONFIG_OPTIONS = [
-	'title',
-	'version',
-	'showCode',
-	'showUsage',
-	'showSidebar',
-	'previewDelay',
-	'theme',
-	'styles',
 	'compilerConfig',
 	'editorConfig',
-	'ribbon',
+	'highlightTheme',
 	'pagePerSection',
+	'previewDelay',
+	'ribbon',
+	'showSidebar',
+	'styles',
+	'theme',
+	'title',
+	'version',
 ];
 
 module.exports = function() {};

@@ -95,6 +95,34 @@ module.exports = {
 		default: componentPath =>
 			reactDocgen.defaultHandlers.concat(createDisplayNameHandler(componentPath)),
 	},
+	highlightTheme: {
+		type: 'string',
+		default: 'default',
+		process: value => {
+			value = value || 'default';
+
+			// Read list of available Prism themes
+			const components = require('prismjs/components.json');
+			const themes = [
+				'default',
+				...Object.keys(components.themes)
+					.filter(x => x !== 'meta' && x !== 'default')
+					.map(x => x.replace(/^prism-/, '')),
+			];
+
+			if (!themes.includes(value)) {
+				throw new StyleguidistError(
+					`Highlight theme “${value}”, specified in highlightTheme config option, not found. Available themes are: ${themes.join(
+						', '
+					)}.`,
+					'highlightTheme'
+				);
+			}
+
+			// Normalize theme name
+			return value === 'default' ? 'prism' : `prism-${value}`;
+		},
+	},
 	ignore: {
 		type: 'array',
 		default: [
@@ -104,14 +132,9 @@ module.exports = {
 			'**/*.d.ts',
 		],
 	},
-	highlightTheme: {
-		type: 'string',
-		default: 'base16-light',
-		deprecated: 'Use the theme property in the editorConfig option instead',
-	},
 	editorConfig: {
 		type: 'object',
-		process: (value, config) => {
+		process: value => {
 			const defaults = {
 				theme: 'base16-light',
 				mode: 'jsx',
@@ -121,14 +144,7 @@ module.exports = {
 				viewportMargin: Infinity,
 				lineNumbers: false,
 			};
-			return Object.assign(
-				{},
-				defaults,
-				config.highlightTheme && {
-					theme: config.highlightTheme,
-				},
-				value
-			);
+			return Object.assign({}, defaults, value);
 		},
 	},
 	logger: {

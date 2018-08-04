@@ -111,24 +111,12 @@ The only true button.
 	expect(result).toMatchSnapshot();
 });
 
-it('should highlight code in description (regular code block)', () => {
-	const result = getProps({
-		description: `
-The only true button.
-
-    alert('Hello world');
-`,
-	});
-
-	expect(result).toMatchSnapshot();
-});
-
 it('should highlight code in description (fenced code block)', () => {
 	const result = getProps({
 		description: `
 The only true button.
 
-\`\`\`
+\`\`\`js
 alert('Hello world');
 \`\`\`
 `,
