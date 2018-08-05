@@ -6,7 +6,6 @@ import { PlaygroundRenderer, styles } from './PlaygroundRenderer';
 
 const evalInContext = a =>
 	new Function('require', 'const React = require("react");' + a).bind(null, require); // eslint-disable-line no-new-func
-const reactCodeMirrorSelector = '.react-codemirror2';
 const code = '<button>OK</button>';
 const newCode = '<button>Not OK</button>';
 const props = {
@@ -74,15 +73,15 @@ it('should update code with debounce', done => {
 it('should open a code editor', done => {
 	const actual = mount(<Playground {...props} />, options);
 
-	expect(actual.find(reactCodeMirrorSelector)).toHaveLength(0);
+	expect(actual.find('textarea')).toHaveLength(0);
 
 	actual.find(`button[name="${EXAMPLE_TAB_CODE_EDITOR}"]`).simulate('click');
 
-	setTimeout(() => {
-		actual.update();
-		expect(actual.find(reactCodeMirrorSelector)).toHaveLength(1);
-		done();
-	}, 1);
+	// setTimeout(() => {
+	actual.update();
+	expect(actual.find('textarea')).toHaveLength(1);
+	done();
+	// }, 1);
 });
 
 it('should not render a code editor if noeditor option passed in example settings', () => {
@@ -92,7 +91,7 @@ it('should not render a code editor if noeditor option passed in example setting
 
 it('should open a code editor by default if showcode=true option passed in example settings', () => {
 	const actual = mount(<Playground {...props} settings={{ showcode: true }} />, options);
-	expect(actual.text()).toMatch('Loading');
+	expect(actual.find('textarea')).toHaveLength(1);
 });
 
 it('should open a code editor by default if exampleMode="expand" option specified in style guide config', () => {
@@ -105,7 +104,7 @@ it('should open a code editor by default if exampleMode="expand" option specifie
 		},
 		childContextTypes: options.childContextTypes,
 	});
-	expect(actual.text()).toMatch('Loading');
+	expect(actual.find('textarea')).toHaveLength(1);
 });
 
 it('showcode option in example settings should overwrite style guide config option', () => {
@@ -121,7 +120,7 @@ it('showcode option in example settings should overwrite style guide config opti
 			childContextTypes: options.childContextTypes,
 		}
 	);
-	expect(actual.text()).not.toMatch('Loading');
+	expect(actual.find('textarea')).toHaveLength(0);
 });
 
 it('renderer should render preview', () => {

@@ -133,18 +133,14 @@ module.exports = {
 		],
 	},
 	editorConfig: {
-		type: 'object',
 		process: value => {
-			const defaults = {
-				theme: 'base16-light',
-				mode: 'jsx',
-				lineWrapping: true,
-				smartIndent: false,
-				matchBrackets: true,
-				viewportMargin: Infinity,
-				lineNumbers: false,
-			};
-			return Object.assign({}, defaults, value);
+			if (value) {
+				throw new StyleguidistError(
+					`${chalk.bold(
+						'editorConfig'
+					)} config option was removed. Use “highlightTheme” option to change syntax highlighting.`
+				);
+			}
 		},
 	},
 	logger: {

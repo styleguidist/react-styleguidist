@@ -1,41 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
-import debounce from 'lodash/debounce';
-import { UnControlled as CodeMirror } from 'react-codemirror2';
-import 'codemirror/mode/jsx/jsx';
+import { polyfill } from 'react-lifecycles-compat';
+import SimpleEditor from 'react-simple-code-editor';
+import Prism from 'prismjs/components/prism-core';
+import 'prismjs/components/prism-clike';
+import 'prismjs/components/prism-markup';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-jsx';
+import { space } from '../../styles/theme';
+
+const highlight = code => Prism.highlight(code, Prism.languages.jsx, 'jsx');
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
 // That way we could avoid clashes between our loaders and user loaders.
 // eslint-disable-next-line import/no-unresolved
-require('!!../../../loaders/style-loader!../../../loaders/css-loader!codemirror/lib/codemirror.css');
-// eslint-disable-next-line import/no-unresolved
 require('!!../../../loaders/style-loader!../../../loaders/css-loader!rsg-prism-theme.css');
 
-const UPDATE_DELAY = 10;
-
-const styles = ({ fontFamily, space, fontSize }) => ({
+const styles = ({ fontFamily, fontSize, color }) => ({
 	root: {
-		'& .CodeMirror': {
-			isolate: false,
-			fontFamily: fontFamily.monospace,
-			height: 'auto',
-			padding: [[space[1], space[2]]],
-			fontSize: fontSize.small,
-		},
-		'& .CodeMirror pre': {
-			isolate: false,
-			padding: 0,
-		},
-		'& .CodeMirror-scroll': {
-			isolate: false,
-			height: 'auto',
-			overflowY: 'hidden',
-			overflowX: 'auto',
-		},
-		'& .cm-error': {
-			isolate: false,
-			background: 'none',
+		fontFamily: fontFamily.monospace,
+		fontSize: fontSize.small,
+		background: color.codeBackground,
+		'& textarea:focus': {
+			// TODO: Make focus outline
+			outline: 0,
 		},
 	},
 });
@@ -43,48 +32,45 @@ const styles = ({ fontFamily, space, fontSize }) => ({
 export class Editor extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
-		onChange: PropTypes.func,
-		editorConfig: PropTypes.object,
+		onChange: PropTypes.func.isRequired,
 		classes: PropTypes.object.isRequired,
 	};
-	static contextTypes = {
-		config: PropTypes.object.isRequired,
+
+	state = { code: this.props.code, prevCode: this.props.code };
+
+	static getDerivedStateFromProps(nextProps, prevState) {
+		const { code } = nextProps;
+		if (prevState.prevCode !== code) {
+			return {
+				prevCode: code,
+				code,
+			};
+		}
+		return null;
+	}
+
+	shouldComponentUpdate(nextProps, nextState) {
+		return nextState.code !== this.state.code;
+	}
+
+	handleChange = code => {
+		this.setState({ code });
+		this.props.onChange(code);
 	};
 
-	constructor() {
-		super();
-		this.handleChange = debounce(this.handleChange.bind(this), UPDATE_DELAY);
-	}
-
-	shouldComponentUpdate(nextProps) {
-		return !!(this.getEditorConfig(nextProps).readOnly && nextProps.code !== this.props.code);
-	}
-
-	getEditorConfig(props) {
-		return {
-			...this.context.config.editorConfig,
-			...props.editorConfig,
-		};
-	}
-
-	handleChange(editor, metadata, newCode) {
-		const { onChange } = this.props;
-		if (onChange) {
-			onChange(newCode);
-		}
-	}
-
 	render() {
-		const { code, classes } = this.props;
 		return (
-			<CodeMirror
-				className={classes.root}
-				value={code}
-				onChange={this.handleChange}
-				options={this.getEditorConfig(this.props)}
+			<SimpleEditor
+				className={this.props.classes.root}
+				value={this.state.code}
+				onValueChange={this.handleChange}
+				highlight={highlight}
+				// Padding should be passed via a prop (not CSS) for a proper
+				// cursor position calculation
+				padding={space[2]}
 			/>
 		);
 	}
 }
 
-export default Styled(styles)(Editor);
+export default Styled(styles)(polyfill(Editor));

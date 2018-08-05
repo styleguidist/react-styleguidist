@@ -14,7 +14,6 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 - [`configureServer`](#configureserver)
 - [`dangerouslyUpdateWebpackConfig`](#dangerouslyupdatewebpackconfig)
 - [`defaultExample`](#defaultexample)
-- [`editorConfig`](#editorconfig)
 - [`exampleMode`](#examplemode)
 - [`getComponentPathLine`](#getcomponentpathline)
 - [`getExampleFilename`](#getexamplefilename)
@@ -175,12 +174,6 @@ module.exports = {
   }
 }
 ```
-
-#### `editorConfig`
-
-Type: `Object`, default: [scripts/schemas/config.js](https://github.com/styleguidist/react-styleguidist/tree/master/scripts/schemas/config.js#L101)
-
-Source code editor options, see [CodeMirror docs](https://codemirror.net/doc/manual.html#config) for all available options.
 
 #### `getExampleFilename`
 

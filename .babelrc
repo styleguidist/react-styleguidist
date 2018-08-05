@@ -13,14 +13,12 @@
 	],
 	"plugins": [
 		"transform-class-properties",
-		"transform-object-rest-spread",
-		"syntax-dynamic-import"
+		"transform-object-rest-spread"
 	],
 	"env": {
 		"test": {
 			"presets": ["env", "react"],
 			"plugins": [
-				"system-import-transformer",
 				"transform-class-properties",
 				"transform-object-rest-spread"
 			]

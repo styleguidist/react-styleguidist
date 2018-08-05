@@ -2,11 +2,9 @@ import webpack, { validate } from 'webpack';
 import getWebpackVersion from '../utils/getWebpackVersion';
 import makeWebpackConfig from '../make-webpack-config';
 
-const theme = 'hl-theme';
 const styleguideConfig = {
 	styleguideDir: __dirname,
 	require: [],
-	editorConfig: {},
 	highlightTheme: 'default',
 	title: 'Style Guide',
 };
@@ -79,21 +77,6 @@ it('should prepend requires as webpack entries', () => {
 		'development'
 	);
 	expect(result.entry).toMatchSnapshot();
-});
-
-it.skip('editorConfig theme should change alias', () => {
-	const highlightTheme = 'solarized';
-	const result = makeWebpackConfig(
-		{ ...styleguideConfig, editorConfig: { theme: highlightTheme } },
-		'development'
-	);
-	expect(result.resolve.alias['rsg-codemirror-theme.css']).toMatch(highlightTheme);
-});
-
-it.skip('should use editorConfig theme over highlightTheme', () => {
-	const highlightTheme = 'solarized';
-	const result = makeWebpackConfig({ ...styleguideConfig, highlightTheme }, 'development');
-	expect(result.resolve.alias['rsg-codemirror-theme.css']).toMatch(theme);
 });
 
 it('should enable verbose mode in CleanWebpackPlugin', () => {
