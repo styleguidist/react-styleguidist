@@ -95,34 +95,6 @@ module.exports = {
 		default: componentPath =>
 			reactDocgen.defaultHandlers.concat(createDisplayNameHandler(componentPath)),
 	},
-	highlightTheme: {
-		type: 'string',
-		default: 'default',
-		process: value => {
-			value = value || 'default';
-
-			// Read list of available Prism themes
-			const components = require('prismjs/components.json');
-			const themes = [
-				'default',
-				...Object.keys(components.themes)
-					.filter(x => x !== 'meta' && x !== 'default')
-					.map(x => x.replace(/^prism-/, '')),
-			];
-
-			if (!themes.includes(value)) {
-				throw new StyleguidistError(
-					`Highlight theme “${value}”, specified in highlightTheme config option, not found. Available themes are: ${themes.join(
-						', '
-					)}.`,
-					'highlightTheme'
-				);
-			}
-
-			// Normalize theme name
-			return value === 'default' ? 'prism' : `prism-${value}`;
-		},
-	},
 	ignore: {
 		type: 'array',
 		default: [
@@ -138,7 +110,7 @@ module.exports = {
 				throw new StyleguidistError(
 					`${chalk.bold(
 						'editorConfig'
-					)} config option was removed. Use “highlightTheme” option to change syntax highlighting.`
+					)} config option was removed. Use “theme” option to change syntax highlighting.`
 				);
 			}
 		},

@@ -5,7 +5,6 @@ import makeWebpackConfig from '../make-webpack-config';
 const styleguideConfig = {
 	styleguideDir: __dirname,
 	require: [],
-	highlightTheme: 'default',
 	title: 'Style Guide',
 };
 

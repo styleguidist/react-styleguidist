@@ -42,9 +42,7 @@ module.exports = function(config, env) {
 		},
 		resolve: {
 			extensions: ['.js', '.jsx', '.json'],
-			alias: {
-				'rsg-prism-theme.css': `prismjs/themes/${config.highlightTheme}.css`,
-			},
+			alias: {},
 		},
 		plugins: [
 			new StyleguidistOptionsPlugin(config),

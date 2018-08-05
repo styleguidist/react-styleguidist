@@ -20,7 +20,6 @@ exports[`should merge user webpack config 1`] = `
 Object {
   "foo": "bar",
   "rsg-components": "~/lib/rsg-components",
-  "rsg-prism-theme.css": "prismjs/themes/default.css",
 }
 `;
 
@@ -52,6 +51,5 @@ Array [
 exports[`should set aliases 1`] = `
 Object {
   "rsg-components": "~/lib/rsg-components",
-  "rsg-prism-theme.css": "prismjs/themes/default.css",
 }
 `;

@@ -9,13 +9,9 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-jsx';
 import { space } from '../../styles/theme';
+import prismTheme from '../../styles/prismTheme';
 
 const highlight = code => Prism.highlight(code, Prism.languages.jsx, 'jsx');
-
-// We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
-// That way we could avoid clashes between our loaders and user loaders.
-// eslint-disable-next-line import/no-unresolved
-require('!!../../../loaders/style-loader!../../../loaders/css-loader!rsg-prism-theme.css');
 
 const styles = ({ fontFamily, fontSize, color }) => ({
 	root: {
@@ -26,6 +22,7 @@ const styles = ({ fontFamily, fontSize, color }) => ({
 			// TODO: Make focus outline
 			outline: 0,
 		},
+		...prismTheme({ color }),
 	},
 });
 

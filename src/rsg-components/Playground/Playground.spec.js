@@ -19,7 +19,7 @@ const props = {
 const options = {
 	context: {
 		config: {
-			highlightTheme: 'base16-light',
+			previewDelay: 0,
 		},
 		codeRevision: 0,
 		slots: slots({}),

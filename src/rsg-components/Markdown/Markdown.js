@@ -12,11 +12,6 @@ import Checkbox from 'rsg-components/Markdown/Checkbox';
 import Hr from 'rsg-components/Markdown/Hr';
 import { Table, TableHead, TableBody, TableRow, TableCell } from 'rsg-components/Markdown/Table';
 
-// We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
-// That way we could avoid clashes between our loaders and user loaders.
-// eslint-disable-next-line import/no-unresolved
-require('!!../../../loaders/style-loader!../../../loaders/css-loader!rsg-prism-theme.css');
-
 export const baseOverrides = {
 	a: {
 		component: Link,
