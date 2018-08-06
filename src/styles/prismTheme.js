@@ -3,12 +3,15 @@ const prismTheme = ({ color }) => ({
 & .token.prolog,
 & .token.doctype,
 & .token.cdata`]: {
+		isolate: false,
 		color: color.codeComment,
 	},
 	[`& .token.punctuation`]: {
+		isolate: false,
 		color: color.codePunctuation,
 	},
 	[`& .namespace`]: {
+		isolate: false,
 		opacity: 0.7,
 	},
 	[`& .token.property,
@@ -17,9 +20,11 @@ const prismTheme = ({ color }) => ({
 & .token.number,
 & .token.constant,
 & .token.symbol`]: {
+		isolate: false,
 		color: color.codeProperty,
 	},
 	[`& .token.deleted`]: {
+		isolate: false,
 		color: color.codeDeleted,
 	},
 	[`& .token.selector,
@@ -27,9 +32,11 @@ const prismTheme = ({ color }) => ({
 & .token.string,
 & .token.char,
 & .token.builtin`]: {
+		isolate: false,
 		color: color.codeString,
 	},
 	[`& .token.inserted`]: {
+		isolate: false,
 		color: color.codeInserted,
 	},
 	[`& .token.operator,
@@ -37,30 +44,37 @@ const prismTheme = ({ color }) => ({
 & .token.url,
 & .language-css .token.string,
 & .style .token.string`]: {
+		isolate: false,
 		color: color.codeOperator,
 	},
 	[`& .token.atrule,
 & .token.attr-value,
 & .token.keyword`]: {
+		isolate: false,
 		color: color.codeKeyword,
 	},
 	[`& .token.function,
 & .token.class-name`]: {
+		isolate: false,
 		color: color.codeFunction,
 	},
 	[`& .token.regex,
 & .token.important,
 & .token.variable`]: {
+		isolate: false,
 		color: color.codeVariable,
 	},
 	[`& .token.important,
 & .token.bold`]: {
+		isolate: false,
 		fontWeight: 'bold',
 	},
 	[`& .token.italic`]: {
+		isolate: false,
 		fontStyle: 'italic',
 	},
 	[`& .token.entity`]: {
+		isolate: false,
 		cursor: 'help',
 	},
 });
