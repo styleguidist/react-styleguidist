@@ -28,6 +28,8 @@ styleguidist({
 		warn: message => console.warn(`Warning: ${message}`),
 	},
 	serverPort: 8082,
+	// Do not require delays in integration tests
+	previewDelay: 0,
 }).server((err, config) => {
 	if (err) {
 		console.log(err);
