@@ -15,6 +15,7 @@ export const color = {
 	lightest: '#ccc',
 	link: '#0875b5',
 	linkHover: '#e90',
+	focus: 'rgba(8, 117, 181, 0.25)',
 	border: '#e8e8e8',
 	name: '#690',
 	type: '#905',

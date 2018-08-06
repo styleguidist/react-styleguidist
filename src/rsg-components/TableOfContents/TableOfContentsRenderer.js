@@ -19,10 +19,11 @@ const styles = ({ space, color, fontFamily, fontSize, borderRadius }) => ({
 		fontSize: fontSize.base,
 		border: [[1, color.border, 'solid']],
 		borderRadius,
-		transition: 'border-color ease-in-out .15s',
+		transition: 'all ease-in-out .1s',
 		'&:focus': {
 			isolate: false,
-			borderColor: color.linkHover,
+			borderColor: color.link,
+			boxShadow: [[0, 0, 0, 2, color.focus]],
 			outline: 0,
 		},
 		'&::placeholder': {

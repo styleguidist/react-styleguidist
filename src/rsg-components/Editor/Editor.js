@@ -18,13 +18,19 @@ const styles = ({ fontFamily, fontSize, color, borderRadius }) => ({
 		fontFamily: fontFamily.monospace,
 		fontSize: fontSize.small,
 		background: color.codeBackground,
-		border: [[1, color.border, 'solid']],
 		borderRadius,
+		'& textarea': {
+			isolate: false,
+			transition: 'all ease-in-out .1s',
+			// important to override inline styles in react-simple-code-editor
+			border: `1px ${color.border} solid !important`,
+			borderRadius,
+		},
 		'& textarea:focus': {
 			isolate: false,
 			outline: 0,
-			boxShadow: [[0, 0, 0, 1, color.linkHover]],
-			borderRadius,
+			borderColor: `${color.link} !important`,
+			boxShadow: [[0, 0, 0, 2, color.focus]],
 		},
 		...prismTheme({ color }),
 	},
