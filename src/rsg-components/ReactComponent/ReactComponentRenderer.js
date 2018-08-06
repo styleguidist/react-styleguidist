@@ -14,7 +14,7 @@ const styles = ({ color, fontSize, space }) => ({
 		marginBottom: space[3],
 	},
 	tabButtons: {
-		marginBottom: space[2],
+		marginBottom: space[1],
 	},
 	docs: {
 		color: color.base,

@@ -22,7 +22,7 @@ const styles = ({ space, color, fontFamily, fontSize, borderRadius }) => ({
 		transition: 'border-color ease-in-out .15s',
 		'&:focus': {
 			isolate: false,
-			borderColor: color.link,
+			borderColor: color.linkHover,
 			outline: 0,
 		},
 		'&::placeholder': {

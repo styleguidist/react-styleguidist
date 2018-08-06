@@ -15,7 +15,7 @@ const styles = ({ space, color, fontSize, fontFamily, borderRadius }) => ({
 		hyphens: 'none',
 		backgroundColor: color.codeBackground,
 		padding: [[space[1], space[2]]],
-		border: [[1, color.border, 'solid']],
+		border: [[1, color.codeBackground, 'solid']],
 		borderRadius,
 		marginTop: 0,
 		marginBottom: space[2],

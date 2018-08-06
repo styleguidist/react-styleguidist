@@ -13,14 +13,18 @@ import prismTheme from '../../styles/prismTheme';
 
 const highlight = code => Prism.highlight(code, Prism.languages.jsx, 'jsx');
 
-const styles = ({ fontFamily, fontSize, color }) => ({
+const styles = ({ fontFamily, fontSize, color, borderRadius }) => ({
 	root: {
 		fontFamily: fontFamily.monospace,
 		fontSize: fontSize.small,
 		background: color.codeBackground,
+		border: [[1, color.border, 'solid']],
+		borderRadius,
 		'& textarea:focus': {
-			// TODO: Make focus outline
+			isolate: false,
 			outline: 0,
+			boxShadow: [[0, 0, 0, 1, color.linkHover]],
+			borderRadius,
 		},
 		...prismTheme({ color }),
 	},

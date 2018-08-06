@@ -18,6 +18,7 @@ export const styles = ({ space, color, borderRadius }) => ({
 	controls: {
 		display: 'flex',
 		alignItems: 'center',
+		marginBottom: space[1],
 	},
 	toolbar: {
 		marginLeft: 'auto',
