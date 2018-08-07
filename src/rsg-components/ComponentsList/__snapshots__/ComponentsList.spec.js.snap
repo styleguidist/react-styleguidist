@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should ignore items without name 1`] = `
+exports[`should ignore items without visibleName 1`] = `
 <ul>
   <li
     className=""
@@ -52,11 +52,13 @@ exports[`should set a parameter on link when useHashId is activated 1`] = `
         "href": "blank#/Components?id=button",
         "name": "Button",
         "slug": "button",
+        "visibleName": "Button",
       },
       Object {
         "href": "blank#/Components?id=input",
         "name": "Input",
         "slug": "input",
+        "visibleName": "Input",
       },
     ]
   }
@@ -92,11 +94,13 @@ exports[`should set the correct href for items 1`] = `
         "href": "blank#button",
         "name": "Button",
         "slug": "button",
+        "visibleName": "Button",
       },
       Object {
         "href": "blank#input",
         "name": "Input",
         "slug": "input",
+        "visibleName": "Input",
       },
     ]
   }

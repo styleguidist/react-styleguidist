@@ -5,10 +5,12 @@ import { ComponentsListRenderer } from './ComponentsListRenderer';
 it('should set the correct href for items', () => {
 	const components = [
 		{
+			visibleName: 'Button',
 			name: 'Button',
 			slug: 'button',
 		},
 		{
+			visibleName: 'Input',
 			name: 'Input',
 			slug: 'input',
 		},
@@ -21,10 +23,12 @@ it('should set the correct href for items', () => {
 it('should set a parameter on link when useHashId is activated', () => {
 	const components = [
 		{
+			visibleName: 'Button',
 			name: 'Button',
 			slug: 'button',
 		},
 		{
+			visibleName: 'Input',
 			name: 'Input',
 			slug: 'input',
 		},
@@ -69,12 +73,12 @@ it('should set a sub route on link when useHashId is deactivated', () => {
 it('should render sections with nested components', () => {
 	const components = [
 		{
-			name: 'Button',
+			visibleName: 'Button',
 			slug: 'button',
 			href: '#button',
 		},
 		{
-			name: 'Input',
+			visibleName: 'Input',
 			slug: 'input',
 			href: '#input',
 		},
@@ -90,10 +94,10 @@ it('should return null when the list is empty', () => {
 	expect(actual.getElement()).toBe(null);
 });
 
-it('should ignore items without name', () => {
+it('should ignore items without visibleName', () => {
 	const components = [
 		{
-			name: 'Button',
+			visibleName: 'Button',
 			slug: 'button',
 			href: '#button',
 		},

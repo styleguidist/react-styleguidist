@@ -106,5 +106,16 @@ module.exports = function getProps(doc, filepath) {
 		doc.displayName = getNameFromFilePath(filepath);
 	}
 
+	if (doc.doclets && doc.doclets.visibleName) {
+		doc.visibleName = doc.doclets.visibleName;
+
+		// custom tag is added both to doclets and tags
+		// removing from both locations
+		delete doc.doclets.visibleName;
+		if (doc.tags) {
+			delete doc.tags.visibleName;
+		}
+	}
+
 	return doc;
 };

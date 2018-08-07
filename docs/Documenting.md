@@ -13,6 +13,7 @@ Styleguidist generates documentation for your components based on the comments i
 - [External examples using doclet tags](#external-examples-using-doclet-tags)
 - [Public methods](#public-methods)
 - [Ignoring props](#ignoring-props)
+- [Defining custom component names](#defining-custom-component-names)
 - [Using JSDoc tags](#using-jsdoc-tags)
 - [Writing code examples](#writing-code-examples)
 - [Limitations](#limitations)
@@ -142,6 +143,21 @@ MyComponent.propTypes = {
   hiddenProp: React.PropTypes.string
 }
 ```
+
+## Defining custom component names
+
+Use @visibleName JSDoc tag to define component names that are used in the Styleguidist UI:
+
+```javascript
+/**
+ * The only true button.
+ *
+ * @visibleName The Best Button Ever 🐙
+ */
+class Button extends React.Component {
+```
+
+Now the component will be displayed with a custom 'The Bust Button Ever🐙' name and this will not change the name of the component that is used in the JSX.
 
 ## Using JSDoc tags
 
