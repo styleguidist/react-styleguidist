@@ -20,6 +20,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 - [`handlers`](#handlers)
 - [`ignore`](#ignore)
 - [`logger`](#logger)
+- [`mountPointId`](#mountPointId)
 - [`pagePerSection`](#pagepersection)
 - [`printBuildInstructions`](#printbuildinstructions)
 - [`printServerInstructions`](#printserverinstructions)
@@ -269,6 +270,12 @@ module.exports = {
   }
 }
 ```
+
+#### `mountPointId`
+
+Type: `string`, defaults: `rsg-root`
+
+The ID of the DOM element that React-Styleguidist mounts.
 
 #### `pagePerSection`
 

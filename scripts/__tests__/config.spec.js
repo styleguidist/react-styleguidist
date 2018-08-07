@@ -219,3 +219,8 @@ it('should throw when editorConfig option passed', () => {
 		});
 	expect(fn).toThrow('config option was removed');
 });
+
+it('mountPointId should have default value', () => {
+	const result = getConfig();
+	expect(result.mountPointId).toEqual('rsg-root');
+});
