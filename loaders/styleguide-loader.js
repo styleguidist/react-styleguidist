@@ -25,6 +25,7 @@ const CLIENT_CONFIG_OPTIONS = [
 	'editorConfig',
 	'ribbon',
 	'pagePerSection',
+	'mountPointId',
 ];
 
 module.exports = function() {};
