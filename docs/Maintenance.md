@@ -70,6 +70,13 @@ We’re using [milestones](https://github.com/styleguidist/react-styleguidist/mi
 
 Here’s a [good example of a change log](https://github.com/styleguidist/react-styleguidist/releases/tag/v7.1.0). Check out [Keep a Changelog](https://keepachangelog.com/) for more details on good change logs.
 
+### What should be in a change log
+
+* Information about pull request authors:<br>
+    `(#1040 by @rafaesc)`
+* Open Collective link at the very top:<br>
+    `👋 **[Support Styleguidist](https://opencollective.com/styleguidist) on Open Collective** 👋`
+
 ### Preparing a change log
 
 1.  Generate a change log draft using [tamia-changelog](https://github.com/tamiadev/tamia-changelog): `npx tamia-changelog`
