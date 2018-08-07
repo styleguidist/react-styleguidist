@@ -149,3 +149,20 @@ it('should guess a displayName for components that react-docgen was not able to 
 	);
 	expect(result).toHaveProperty('displayName', 'YourComponent');
 });
+
+describe('with @visibleName tag present in the description', () => {
+	const result = getProps({
+		description: 'bar\n@visibleName foo',
+	});
+	it('should set visibleName property on the docs object', () => {
+		expect(result).toHaveProperty('visibleName', 'foo');
+	});
+
+	it('should delete visibleName from doclets on the docs object', () => {
+		expect(result.doclets).not.toHaveProperty('visibleName');
+	});
+
+	it('should delete visibleName from tags on the docs object', () => {
+		expect(result.tags).not.toHaveProperty('visibleName');
+	});
+});
