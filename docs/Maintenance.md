@@ -68,7 +68,7 @@ We’re using [milestones](https://github.com/styleguidist/react-styleguidist/mi
 - Change log should explain how to migrate to a new versions if there are breaking changes.
 - Commit log **is not** a change log.
 
-Check out [Keep a Changelog](https://keepachangelog.com/) for more details on good change logs.
+Here’s a [good example of a change log](https://github.com/styleguidist/react-styleguidist/releases/tag/v7.1.0). Check out [Keep a Changelog](https://keepachangelog.com/) for more details on good change logs.
 
 ### Preparing a change log
 
