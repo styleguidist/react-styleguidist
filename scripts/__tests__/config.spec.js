@@ -211,3 +211,11 @@ it('should throw when old template as a string option passed', () => {
 		});
 	expect(fn).toThrow('format has been changed');
 });
+
+it('should throw when editorConfig option passed', () => {
+	const fn = () =>
+		getConfig({
+			editorConfig: { theme: 'foo' },
+		});
+	expect(fn).toThrow('config option was removed');
+});

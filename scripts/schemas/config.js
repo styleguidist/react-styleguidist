@@ -88,7 +88,6 @@ module.exports = {
 
 			return false;
 		},
-		example: componentPath => componentPath.replace(/\.jsx?$/, '.examples.md'),
 	},
 	handlers: {
 		type: 'function',
