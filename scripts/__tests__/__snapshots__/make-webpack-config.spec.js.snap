@@ -19,7 +19,6 @@ Array [
 exports[`should merge user webpack config 1`] = `
 Object {
   "foo": "bar",
-  "rsg-codemirror-theme.css": "codemirror/theme/hl-theme.css",
   "rsg-components": "~/lib/rsg-components",
 }
 `;
@@ -51,7 +50,6 @@ Array [
 
 exports[`should set aliases 1`] = `
 Object {
-  "rsg-codemirror-theme.css": "codemirror/theme/hl-theme.css",
   "rsg-components": "~/lib/rsg-components",
 }
 `;

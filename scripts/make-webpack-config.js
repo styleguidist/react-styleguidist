@@ -42,9 +42,7 @@ module.exports = function(config, env) {
 		},
 		resolve: {
 			extensions: ['.js', '.jsx', '.json'],
-			alias: {
-				'rsg-codemirror-theme.css': `codemirror/theme/${config.editorConfig.theme}.${'css'}`,
-			},
+			alias: {},
 		},
 		plugins: [
 			new StyleguidistOptionsPlugin(config),

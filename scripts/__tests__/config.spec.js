@@ -204,27 +204,18 @@ it('should allow no webpack config', () => {
 	expect(fn).not.toThrow();
 });
 
-it('editorConfig option should have default values', () => {
-	const result = getConfig();
-	expect(result.editorConfig).toHaveProperty('mode', 'jsx');
-	expect(result.editorConfig).toHaveProperty('theme', 'base16-light');
-});
-
-it('should merge default editorConfig with options provided by the user', () => {
-	const result = getConfig({
-		editorConfig: {
-			mode: 'js',
-		},
-	});
-
-	expect(result.editorConfig).toHaveProperty('mode', 'js');
-	expect(result.editorConfig).toHaveProperty('theme', 'base16-light');
-});
-
 it('should throw when old template as a string option passed', () => {
 	const fn = () =>
 		getConfig({
 			template: 'pizza',
 		});
 	expect(fn).toThrow('format has been changed');
+});
+
+it('should throw when editorConfig option passed', () => {
+	const fn = () =>
+		getConfig({
+			editorConfig: { theme: 'foo' },
+		});
+	expect(fn).toThrow('config option was removed');
 });

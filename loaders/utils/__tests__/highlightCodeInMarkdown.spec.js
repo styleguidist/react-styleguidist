@@ -1,10 +1,10 @@
 import highlightCodeInMarkdown from '../highlightCodeInMarkdown';
 
-it('should highlight code', () => {
+it('should highlight code with specified language', () => {
 	const text = `
-The only \`true\` button.
+The only true button.
 
-\`\`\`
+\`\`\`html
 <p>Hello React</p>
 \`\`\`
 `;
@@ -12,11 +12,11 @@ The only \`true\` button.
 	expect(actual).toMatchSnapshot();
 });
 
-it('should highlight code with specified language', () => {
+it('should not highlight code without language', () => {
 	const text = `
-The only true button.
+The only \`true\` button.
 
-\`\`\`html
+\`\`\`
 <p>Hello React</p>
 \`\`\`
 `;

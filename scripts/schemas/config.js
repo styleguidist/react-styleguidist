@@ -88,7 +88,6 @@ module.exports = {
 
 			return false;
 		},
-		example: componentPath => componentPath.replace(/\.jsx?$/, '.examples.md'),
 	},
 	handlers: {
 		type: 'function',
@@ -104,31 +103,15 @@ module.exports = {
 			'**/*.d.ts',
 		],
 	},
-	highlightTheme: {
-		type: 'string',
-		default: 'base16-light',
-		deprecated: 'Use the theme property in the editorConfig option instead',
-	},
 	editorConfig: {
-		type: 'object',
-		process: (value, config) => {
-			const defaults = {
-				theme: 'base16-light',
-				mode: 'jsx',
-				lineWrapping: true,
-				smartIndent: false,
-				matchBrackets: true,
-				viewportMargin: Infinity,
-				lineNumbers: false,
-			};
-			return Object.assign(
-				{},
-				defaults,
-				config.highlightTheme && {
-					theme: config.highlightTheme,
-				},
-				value
-			);
+		process: value => {
+			if (value) {
+				throw new StyleguidistError(
+					`${chalk.bold(
+						'editorConfig'
+					)} config option was removed. Use “theme” option to change syntax highlighting.`
+				);
+			}
 		},
 	},
 	logger: {

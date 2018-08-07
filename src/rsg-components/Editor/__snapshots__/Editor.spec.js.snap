@@ -1,25 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Editor should renderer and editor 1`] = `
-<UnControlled
-  onChange={[Function]}
-  options={
-    Object {
-      "lineWrapping": true,
-      "mode": "text/html",
-      "readOnly": true,
-    }
-  }
+<Editor
+  highlight={[Function]}
+  ignoreTabKey={false}
+  insertSpaces={true}
+  onValueChange={[Function]}
+  padding={16}
+  tabSize={2}
   value=
 <button>
   MyAwesomeCode
 </button>
 
 />
-`;
-
-exports[`EditorLoaderRenderer should renderer should render loader 1`] = `
-<div>
-  Loading…
-</div>
 `;
