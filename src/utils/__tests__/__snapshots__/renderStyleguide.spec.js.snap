@@ -30,6 +30,7 @@ exports[`renderStyleguide should render StyleGuide component 1`] = `
               },
             ],
             "sections": Array [],
+            "visibleName": undefined,
           },
         ]
       }
@@ -63,6 +64,7 @@ exports[`renderStyleguide should render StyleGuide component 1`] = `
             },
           ],
           "sections": Array [],
+          "visibleName": undefined,
         },
       ]
     }
