@@ -104,10 +104,10 @@ Require these components in your examples:
 
 Although examples don’t have direct access to webpack’s `require.context` feature, you _can_ use it in a separate helper file which you require in your example code. If you wanted to create an example to load and show all your icon components, you could do this:
 
-```jsx
+```js
 // load-icons.js
 const iconsContext = require.context('./icons/', true, /js$/)
-const icons = Object.keys(iconsContext).reduce((icons, file) => {
+const icons = iconsContext.keys().reduce((icons, file) => {
   const Icon = iconsContext(file).default
   const label = file.slice(2, -3) // strip './' and '.js'
   icons[label] = Icon
@@ -115,8 +115,11 @@ const icons = Object.keys(iconsContext).reduce((icons, file) => {
 }, {})
 
 export default icons
+```
 
+````jsx
 // IconGallery.md
+```jsx noeditor
 const icons = require('./load-icons').default
 
 const iconElements = Object.keys(icons).map(iconName => {
@@ -129,6 +132,7 @@ const iconElements = Object.keys(icons).map(iconName => {
 })
 ;<div>{iconElements}</div>
 ```
+````
 
 ## How to display the source code of any file?
 
