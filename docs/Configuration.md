@@ -160,7 +160,7 @@ When writing your own default example file, `__COMPONENT__` will be replaced by 
 
 #### `getComponentPathLine`
 
-Type: `Function`, default: component file name
+Type: `Function`, default: component filename
 
 Function that returns a component path line (displayed under the component name).
 
@@ -282,17 +282,17 @@ module.exports = {
 
 Type: `string`, defaults: `rsg-root`
 
-The ID of the DOM element that React-Styleguidist mounts.
+The ID of a DOM element where Styleguidist mounts.
 
 #### `pagePerSection`
 
 Type: `Boolean`, default: `false`
 
-Render one section or component per page, starting with the first.
+Render one section or component per page.
 
-If set to `true`, each section will be single page.
+If `true`, each section will be a single page.
 
-The value may be differ on each environment.
+The value may depends on a current environment:
 
 ```javascript
 module.exports = {
@@ -300,7 +300,7 @@ module.exports = {
 }
 ```
 
-If you want to isolate section's children as single pages (sub-routes), you can add `sectionDepth` in each section, which it is the number sub-routes for depth that it will have.
+To isolate section’s children as single pages (subroutes), add `sectionDepth` into each section with the number of subroutes (depth) to render as single pages.
 
 For example:
 
@@ -323,7 +323,8 @@ module.exports = {
           ]
         }
       ],
-      sectionDepth: 2 // It will show "Documentation" and "Files" as single pages, filtering his children.
+      // Will show "Documentation" and "Files" as single pages, filtering its children
+      sectionDepth: 2
     },
     {
       name: 'Components',
@@ -337,7 +338,8 @@ module.exports = {
           ]
         }
       ]
-      sectionDepth: 1, // It will show "Components" as single page, filtering his children.
+      // Will show "Components" as single page, filtering its children
+      sectionDepth: 1,
     },
     {
       name: 'Examples',
@@ -351,7 +353,8 @@ module.exports = {
           ]
         }
       ]
-      sectionDepth: 0, // There is not sub-routes, "Examples" will be show all his children on page.
+      // There is no subroutes, "Examples" will show all its children on a page
+      sectionDepth: 0,
     }
   ]
 }
@@ -463,16 +466,20 @@ module.exports = {
 
 Type: `Object`, optional
 
-Shows 'Fork Me' ribbon in the top-right corner. If `ribbon` key is present, then it's required to add `url` property; `text` property is optional. If you want to change styling of the ribbon, please, refer to the [theme section](#theme).
+Show “Fork Me” ribbon in the top right corner.
 
 ```javascript
 module.exports = {
   ribbon: {
+    // Link to open on the ribbon click (required)
     url: 'http://example.com/',
+    // Text to show on the ribbon (optional)
     text: 'Fork me on GitHub'
   }
 }
 ```
+
+Use [theme](#theme) config option to change ribbon style.
 
 #### `sections`
 
@@ -486,7 +493,7 @@ See examples of [sections configuration](Components.md#sections).
 
 Type: `String`, default: `0.0.0.0`
 
-Dev server host name.
+Dev server hostname.
 
 #### `serverPort`
 
@@ -510,7 +517,7 @@ Ignore components that don’t have an example file (as determined by [getExampl
 
 Type: `Object`, optional
 
-Override React components used to render the style guide.
+Override React components used to render the style guide:
 
 ```javascript
 module.exports = {
@@ -526,9 +533,9 @@ module.exports = {
 
 See an example of [customized style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/customised).
 
-If you want to wrap, rather than replace a component, make sure to import the default implementation using the full path to `react-styleguidist`. See an example of [wrapping a Styleguidist component](https://github.com/styleguidist/react-styleguidist/tree/master/examples/customised/styleguide/components/Sections.js).
+To wrap, rather than replace a component, make sure to import the default implementation using the full path to `react-styleguidist`. See an example of [wrapping a Styleguidist component](https://github.com/styleguidist/react-styleguidist/blob/master/examples/customised/styleguide/components/Sections.js).
 
-**Note**: these components are not guaranteed to be safe from breaking changes in react-styleguidist updates.
+**Note**: these components are not guaranteed to be safe from breaking changes in React Styleguidist updates.
 
 #### `styleguideDir`
 

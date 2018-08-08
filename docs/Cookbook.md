@@ -19,7 +19,6 @@
 - [How to debug my components and examples?](#how-to-debug-my-components-and-examples)
 - [How to debug the exceptions thrown from my components?](#how-to-debug-the-exceptions-thrown-from-my-components)
 - [How to use production or development build of React?](#how-to-use-production-or-development-build-of-react)
-- [Why does the style guide list one of my prop types as `unknown`?](#why-does-the-style-guide-list-one-of-my-prop-types-as-unknown)
 - [Why object references don’t work in example component state?](#why-object-references-dont-work-in-example-component-state)
 - [How to use Vagrant with Styleguidist?](#how-to-use-vagrant-with-styleguidist)
 - [How to add a favicon?](#how-to-add-a-favicon)
@@ -54,7 +53,7 @@ let textarea
 
 ## How to exclude some components from style guide?
 
-Styleguidist will ignore tests (`__tests__` folder and file names containing `.test.js` or `.spec.js`) by default.
+Styleguidist will ignore tests (`__tests__` folder and filenames containing `.test.js` or `.spec.js`) by default.
 
 Use [ignore](Configuration.md#ignore) option to customize this behavior:
 
@@ -77,7 +76,7 @@ const Button = require('../common/Button')
 ;<Button>Push Me Tender</Button>
 ```
 
-Or, if you want to make these components available for all examples:
+Or, to make these components available for all examples:
 
 ```jsx
 // styleguide.config.js
@@ -103,7 +102,7 @@ Require these components in your examples:
 
 ## How to dynamically load other components in an example?
 
-Although examples don’t have direct access to webpack’s `require.context` feature, you _can_ use it in a separate helper file which you require in your example code. If you wanted to create an example to load and show all of your icon components, you could do this:
+Although examples don’t have direct access to webpack’s `require.context` feature, you _can_ use it in a separate helper file which you require in your example code. If you wanted to create an example to load and show all your icon components, you could do this:
 
 ```jsx
 // load-icons.js
@@ -374,7 +373,7 @@ module.exports = {
 
 ## How to use production or development build of React?
 
-In some cases, you might need to use development build of React instead of the default [production one](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build). For example, this might be needed if you use React Native and make references to a React Native component's PropTypes in your code. As React removes all PropTypes in its production build, your code will fail. By default, React Styleguidist uses the development build for the dev server, and the production one for static builds.
+In some cases, you might need to use development build of React instead of the default [production one](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build). For example, this might be needed if you use React Native and make references to a React Native component’s PropTypes in your code. As React removes all PropTypes in its production build, your code will fail. By default, Styleguidist uses the development build for the dev server, and the production one for static builds.
 
 ```js
 import React from 'react'
@@ -383,14 +382,12 @@ import { TextInput } from 'react-native'
 const CustomInput = ({ value }) => <TextInput value={value} />
 
 CustomInput.propTypes = {
-  // will fail in a static build
+  // Will fail in a static build
   value: TextInput.value.isRequired
 }
 ```
 
-If you use code similar to this, you might encounter errors such as `Cannot read property 'isRequired' of undefined`.
-
-To avoid this, you need to tell React Styleguidist to use React’s development build. To do this, simply set the `NODE_ENV` variable to `development` in your npm script.
+If you use code like the example above, you might see a `Cannot read property 'isRequired' of undefined` error. To avoid it, you need to tell Styleguidist to use React’s development build. To do this, set the `NODE_ENV` variable to `development` in your npm script.
 
 ```json
 {
@@ -400,29 +397,11 @@ To avoid this, you need to tell React Styleguidist to use React’s development 
 }
 ```
 
-The script above uses [cross-env](https://github.com/kentcdodds/cross-env) to make sure the environment variable is properly set on all platforms. Run `npm i -D cross-env` to add it.
-
-## Why does the style guide list one of my prop types as `unknown`?
-
-This occurs when you are assigning props via `getDefaultProps` that are not listed within the components `propTypes`.
-
-For example, the color prop here is assigned via `getDefaultProps` but missing from the `propTypes`, therefore the style guide is unable to display the correct prop type.
-
-```javascript
-Button.propTypes = {
-  children: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(['small', 'normal', 'large'])
-}
-
-Button.defaultProps = {
-  color: '#333',
-  size: 'normal'
-}
-```
+**Note:** The script above uses [cross-env](https://github.com/kentcdodds/cross-env) to make sure the environment variable is properly set on all platforms. Run `npm i -D cross-env` to add it.
 
 ## Why object references don’t work in example component state?
 
-Object references will not work as expected in examples state due to how the examples code is evaluated:
+Object references may not work as expected in examples state:
 
 ```jsx
 const items = [{ id: 0 }, { id: 1 }]
@@ -530,11 +509,11 @@ See [working with third-party libraries](Thirdparties.md).
 
 ## How to change the names of components displayed in Styleguidist UI?
 
-You might want to change your components' names to be displayed differently, for example, for stylistic purposes or to give them a more descriptive names in your styleguide.
+You might want to change your components’ names to be displayed differently, for example, for stylistic purposes or to give them a more descriptive names in your style guide.
 
 This can be done by adding [@visibleName](Documenting.md#defining-custom-component-names) tag to your component documentation.
 
-In case you want to change components' names in bulk, for example, based on their current name, you can use [updateDocs](Configuration.md#updatedocs) config option:
+In case you want to change components’ names in bulk, for example, based on their current name, you can use [updateDocs](Configuration.md#updatedocs) config option:
 
 ```javascript
 module.exports = {
@@ -607,7 +586,7 @@ Another important distinction is that Storybook shows only one variation of one 
 - [Atellier](https://github.com/scup/atellier), a React components emulator.
 - [Carte Blanche](https://github.com/carteb/carte-blanche), an isolated development space with integrated fuzz testing for your components.
 - [Catalog](https://github.com/interactivethings/catalog), create living style guides using Markdown or React.
-- [Cosmos](https://github.com/react-cosmos/react-cosmos), a tool for designing truly encapsulated React components.
+- [Cosmos](https://github.com/react-cosmos/react-cosmos), a tool for designing encapsulated React components.
 - [React BlueKit](http://bluekit.blueberry.io/), render React components with editable source and live preview.
 - [React Cards](https://github.com/steos/reactcards), devcards for React.
 - [React Styleguide Generator](https://github.com/pocotan001/react-styleguide-generator), a React style guide generator.
