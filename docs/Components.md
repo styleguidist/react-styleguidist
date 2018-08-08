@@ -57,7 +57,7 @@ In each of the following cases, the global identifier will be `Component`.
 | /whatever.js        | `export default function Component() { ... }`                                                                                          | displayName                |
 | /whatever.js        | `export default function SomeName() { ... }`<br>`SomeName.displayName = 'Component';`                                                  | displayName                |
 | /whatever.js        | `export default function Component() { ... }`<br>`Component.displayName = dynamicNamer();`                                             | displayName at declaration |
-| /component.js       | `const name = 'SomeName';`<br>`const componentMap = {`<br>`[name]: function() { ... }`<br>`};`<br>`export default componentMap[name];` | File name                  |
+| /component.js       | `const name = 'SomeName';`<br>`const componentMap = {`<br>`[name]: function() { ... }`<br>`};`<br>`export default componentMap[name];` | Filename                   |
 | /component/index.js | `const name = 'SomeName';`<br>`const componentMap = {`<br>`[name]: function() { ... }`<br>`};`<br>`export default componentMap[name];` | Folder name                |
 
 ### Default vs named exports
@@ -96,7 +96,7 @@ export function Component() { ... }
 // will be exposed globally as Component
 ```
 
-If you export several React components as named exports from a single module, Styleguidist is likely to behave unreliably. If it cannot understand which named export to expose, you may not be able to access that export.
+**Warning:** If you export several React components as named exports from a single module, Styleguidist is likely to behave unreliably. If it cannot understand which named export to expose, you may not be able to access that export.
 
 ## Sections
 

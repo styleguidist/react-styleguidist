@@ -31,7 +31,7 @@ module.exports = {
 }
 ```
 
-Or if you want to merge it with other options:
+Or, merge it with other options:
 
 ```javascript
 module.exports = {
@@ -85,23 +85,22 @@ module.exports = {
 
 ## Create React App
 
-[Create React App](https://github.com/facebookincubator/create-react-app) is supported out of the box, you don’t even need to create a style guide config if your components could be found using a default pattern: all files with `.js` or `.jsx` extensions inside `src/components` or `src/Components` folders.
+[Create React App](https://github.com/facebook/create-react-app) is supported out of the box, you don’t even need to create a style guide config if your components could be found using a default pattern: all files with `.js` or `.jsx` extensions inside `src/components` or `src/Components` folders.
 
-## Create React App, TypeScript
+## Create React App with TypeScript
 
-If you're using [Create React App](https://github.com/facebookincubator/create-react-app) and Typescript, you need to:
+If you’re using [Create React App](https://github.com/facebook/create-react-app) and TypeScript:
 
-- Install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript)
-- Create a `styleguide.config.js`, see [this guide](Configuration.md)
-- Add a `components`, `webpackConfig` and `propsParser` section to your `styleguide.config.js`:
+1.  Install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript).
+2.  Create a `styleguide.config.js`, see [configuration](Configuration.md) reference.
+3.  Update your `styleguide.config.js`:
 
-```javascript
-module.exports = {
-  components: 'src/components/**/*.{ts,tsx}',
-  propsParser: require('react-docgen-typescript').parse,
-  webpackConfig: require('react-scripts-ts/config/webpack.config.dev.js')
-}
-```
+    ```javascript
+    module.exports = {
+      propsParser: require('react-docgen-typescript').parse,
+      webpackConfig: require('react-scripts-ts/config/webpack.config.dev')
+    }
+    ```
 
 ## Non-webpack projects
 
