@@ -49,13 +49,13 @@ exports[`should set a parameter on link when useHashId is activated 1`] = `
   items={
     Array [
       Object {
-        "href": "blank#/Components?id=button",
+        "href": "/#/Components?id=button",
         "name": "Button",
         "slug": "button",
         "visibleName": "Button",
       },
       Object {
-        "href": "blank#/Components?id=input",
+        "href": "/#/Components?id=input",
         "name": "Input",
         "slug": "input",
         "visibleName": "Input",
@@ -71,12 +71,12 @@ exports[`should set a sub route on link when useHashId is deactivated 1`] = `
   items={
     Array [
       Object {
-        "href": "blank#/Components/Button",
+        "href": "/#/Components/Button",
         "name": "Button",
         "slug": "button",
       },
       Object {
-        "href": "blank#/Components/Input",
+        "href": "/#/Components/Input",
         "name": "Input",
         "slug": "input",
       },
@@ -91,13 +91,13 @@ exports[`should set the correct href for items 1`] = `
   items={
     Array [
       Object {
-        "href": "blank#button",
+        "href": "/#button",
         "name": "Button",
         "slug": "button",
         "visibleName": "Button",
       },
       Object {
-        "href": "blank#input",
+        "href": "/#input",
         "name": "Input",
         "slug": "input",
         "visibleName": "Input",

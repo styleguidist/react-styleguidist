@@ -117,11 +117,11 @@ const icons = iconsContext.keys().reduce((icons, file) => {
 export default icons
 ```
 
-````jsx
+````markdown
 // IconGallery.md
+
 ```jsx noeditor
 const icons = require('./load-icons').default
-
 const iconElements = Object.keys(icons).map(iconName => {
   const Icon = icons[iconName]
   return (
@@ -130,7 +130,7 @@ const iconElements = Object.keys(icons).map(iconName => {
     </span>
   )
 })
-;<div>{iconElements}</div>
+<div>{iconElements}</div>
 ```
 ````
 

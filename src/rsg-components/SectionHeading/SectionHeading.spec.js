@@ -74,6 +74,6 @@ describe('SectionHeading', () => {
 				.dive()
 				.find('SectionHeadingRenderer')
 				.prop('href')
-		).toEqual('blank?id=section');
+		).toEqual('/?id=section');
 	});
 });

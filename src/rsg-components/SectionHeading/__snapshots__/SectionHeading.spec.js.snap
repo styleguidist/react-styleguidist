@@ -3,7 +3,7 @@
 exports[`SectionHeading should forward slot properties to the toolbar 1`] = `
 <Styled(SectionHeading)
   depth={2}
-  href="blank#section"
+  href="/#section"
   id="section"
   toolbar={
     <Slot

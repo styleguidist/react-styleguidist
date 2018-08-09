@@ -40,11 +40,14 @@ it('should accept config as an object', () => {
 });
 
 it('should throw if config has errors', () => {
-	const fn = () =>
+	expect.assertions(1);
+	try {
 		getConfig({
 			components: 42,
 		});
-	expect(fn).toThrowError('should be string, function, or array');
+	} catch (err) {
+		expect(err.extra).toMatch('should be string, function, or array');
+	}
 });
 
 it('should change the config using the update callback', () => {
@@ -142,11 +145,14 @@ it('should absolutize defaultExample if it is a string', () => {
 });
 
 it('should throw if defaultExample does not exist', () => {
-	const fn = () =>
+	expect.assertions(1);
+	try {
 		getConfig({
 			defaultExample: 'pizza',
 		});
-	expect(fn).toThrowError('does not exist');
+	} catch (err) {
+		expect(err.extra).toMatch('does not exist');
+	}
 });
 
 it('should use components option as the first sections if there’s no sections option', () => {
@@ -205,19 +211,25 @@ it('should allow no webpack config', () => {
 });
 
 it('should throw when old template as a string option passed', () => {
-	const fn = () =>
+	expect.assertions(1);
+	try {
 		getConfig({
 			template: 'pizza',
 		});
-	expect(fn).toThrow('format has been changed');
+	} catch (err) {
+		expect(err.extra).toMatch('format has been changed');
+	}
 });
 
 it('should throw when editorConfig option passed', () => {
-	const fn = () =>
+	expect.assertions(1);
+	try {
 		getConfig({
 			editorConfig: { theme: 'foo' },
 		});
-	expect(fn).toThrow('config option was removed');
+	} catch (err) {
+		expect(err.extra).toMatch('config option was removed');
+	}
 });
 
 it('mountPointId should have default value', () => {
