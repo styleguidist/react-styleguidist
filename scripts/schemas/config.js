@@ -107,7 +107,7 @@ module.exports = {
 		process: value => {
 			if (value) {
 				throw new StyleguidistError(
-					`${chalk.bold(
+					`${kleur.bold(
 						'editorConfig'
 					)} config option was removed. Use “theme” option to change syntax highlighting.`
 				);
