@@ -25,16 +25,6 @@ Baz method with foo param
           "type": null,
         },
       ],
-      "returns": Array [
-        Object {
-          "description": "test",
-          "title": "returns",
-          "type": Object {
-            "name": "string",
-            "type": "NameExpression",
-          },
-        },
-      ],
     },
   },
 ]
@@ -48,6 +38,8 @@ Foo method with baz param
 
 @public
 @param {string} [baz=bar]
+@arg {string} foo param described with @arg tag
+@argument {string} test param described with @argument tag
 @returns {string} test
 ",
     "params": Array [
@@ -64,6 +56,24 @@ Foo method with baz param
           "type": "OptionalType",
         },
       },
+      Object {
+        "description": "param described with @arg tag",
+        "name": "foo",
+        "title": "arg",
+        "type": Object {
+          "name": "string",
+          "type": "NameExpression",
+        },
+      },
+      Object {
+        "description": "param described with @argument tag",
+        "name": "test",
+        "title": "argument",
+        "type": Object {
+          "name": "string",
+          "type": "NameExpression",
+        },
+      },
     ],
     "returns": Object {
       "description": "test",
@@ -74,36 +84,11 @@ Foo method with baz param
       },
     },
     "tags": Object {
-      "param": Array [
-        Object {
-          "default": "bar",
-          "description": null,
-          "name": "baz",
-          "title": "param",
-          "type": Object {
-            "expression": Object {
-              "name": "string",
-              "type": "NameExpression",
-            },
-            "type": "OptionalType",
-          },
-        },
-      ],
       "public": Array [
         Object {
           "description": null,
           "title": "public",
           "type": null,
-        },
-      ],
-      "returns": Array [
-        Object {
-          "description": "test",
-          "title": "returns",
-          "type": Object {
-            "name": "string",
-            "type": "NameExpression",
-          },
         },
       ],
     },

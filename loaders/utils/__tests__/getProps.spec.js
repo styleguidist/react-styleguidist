@@ -94,11 +94,19 @@ Foo method with baz param
 
 @public
 @param {string} [baz=bar]
+@arg {string} foo param described with @arg tag
+@argument {string} test param described with @argument tag
 @returns {string} test
 `,
 					params: [
 						{
 							name: 'baz',
+						},
+						{
+							name: 'foo',
+						},
+						{
+							name: 'test',
 						},
 					],
 				},
