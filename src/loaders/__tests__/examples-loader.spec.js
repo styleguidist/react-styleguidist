@@ -99,6 +99,24 @@ Two:
 	expect(result).toMatch(`'react': require('react')`);
 });
 
+it('should work with multiple JSX element on the root level', () => {
+	const exampleMarkdown = `
+    const _ = require('lodash');
+	<X/>
+	<Y/>
+`;
+	const result = examplesLoader.call(
+		{
+			_styleguidist: {},
+		},
+		exampleMarkdown
+	);
+
+	expect(result).toBeTruthy();
+	expect(() => new Function(result)).not.toThrowError(SyntaxError); // eslint-disable-line no-new-func
+	expect(result).toMatch(`'lodash': require('lodash')`);
+});
+
 it('should prepend example code with React require()', () => {
 	const exampleMarkdown = `<X/>`;
 	const result = examplesLoader.call(

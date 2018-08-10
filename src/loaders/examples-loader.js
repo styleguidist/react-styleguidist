@@ -38,7 +38,7 @@ function examplesLoader(source) {
 	// because webpack changes its name to something like __webpack__require__().
 	const allCodeExamples = filter(examples, { type: 'code' });
 	const requiresFromExamples = allCodeExamples.reduce((requires, example) => {
-		return requires.concat(getRequires(example.content, { verbose: config.verbose }));
+		return requires.concat(getRequires(example.content));
 	}, []);
 
 	// React + context requires + example requires
