@@ -173,9 +173,6 @@
     "modulePaths": [
       "./src"
     ],
-    "moduleNameMapper": {
-      "^.+\\.css$": "<rootDir>/test/empty.js"
-    },
     "testPathIgnorePatterns": [
       "<rootDir>/lib/",
       "<rootDir>/examples/",
