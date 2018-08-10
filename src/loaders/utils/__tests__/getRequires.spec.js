@@ -1,71 +1,24 @@
-import getRequires, {
-	REQUIRE_ANYTHING_BASE,
-	REQUIRE_ANYTHING_REGEX,
-	SIMPLE_STRING_REGEX,
-} from '../getRequires';
+import getRequires from '../getRequires';
 
-/* eslint-disable quotes */
-
-// REQUIRE_ANYTHING_REGEX
-
-const regex = new RegExp(REQUIRE_ANYTHING_BASE);
-
-it('should match require invocations', () => {
-	expect(`require("foo")`).toMatch(regex);
-	expect(`require ( "foo" )`).toMatch(regex);
-	expect(`require('foo')`).toMatch(regex);
-	expect(`require(foo)`).toMatch(regex);
-	expect(`require("f" + "o" + "o")`).toMatch(regex);
-	expect(`require("f" + ("o" + "o"))`).toMatch(regex);
-	expect(`function f() { require("foo"); }`).toMatch(regex);
+test('find calls to require() in code', () => {
+	expect(getRequires(`require('foo')`)).toEqual(['foo']);
+	expect(getRequires(`require('./foo')`)).toEqual(['./foo']);
+	expect(getRequires(`require('foo');require('bar')`)).toEqual(['foo', 'bar']);
 });
 
-it('should not match other occurrences of require', () => {
-	expect(`"required field"`).not.toMatch(regex);
-	expect(`var f = require;`).not.toMatch(regex);
-	expect(`require.call(module, "foo")`).not.toMatch(regex);
+test('find import statements in code', () => {
+	expect(getRequires(`import A from 'pizza';`)).toEqual(['pizza']);
+	expect(getRequires(`import A from './pizza';`)).toEqual(['./pizza']);
+	expect(getRequires(`import { A as X, B } from 'lunch';`)).toEqual(['lunch']);
+	expect(getRequires(`import A, { B as X, C } from 'lunch';`)).toEqual(['lunch']);
+	expect(getRequires(`import A from 'foo';import B from 'bar';`)).toEqual(['foo', 'bar']);
 });
 
-it('should match many requires in the same line correctly', () => {
-	const replaced = `require('foo');require('bar')`.replace(REQUIRE_ANYTHING_REGEX, 'x');
-	expect(replaced).toBe('x;x');
+test('ignore dynamic requires', () => {
+	expect(getRequires(`require('foo' + 'bar')`)).toEqual([]);
 });
 
-// SIMPLE_STRING_REGEX
-
-it('should match simple strings and nothing else', () => {
-	const regex = SIMPLE_STRING_REGEX;
-
-	expect(`"foo"`).toMatch(regex);
-	expect(`'foo'`).toMatch(regex);
-	expect(`"fo'o"`).toMatch(regex);
-	expect(`'fo"o'`).toMatch(regex);
-	expect(`'.,:;!§$&/()=@^12345'`).toMatch(regex);
-
-	expect(`foo`).not.toMatch(regex);
-	expect(`'foo"`).not.toMatch(regex);
-	expect(`"foo'`).not.toMatch(regex);
-
-	// These 2 are actually valid in JS, but don't work with this regex.
-	// But you shouldn't be using these in your requires anyway.
-	expect(`"fo\\"o"`).not.toMatch(regex);
-	expect(`'fo\\'o'`).not.toMatch(regex);
-
-	expect(`"foo" + "bar"`).not.toMatch(regex);
-});
-
-// getRequires
-
-it('should find calls to require in code', () => {
-	expect(getRequires(`require('foo')`)).toEqual({
-		foo: 'foo',
-	});
-	expect(getRequires(`require('./foo')`)).toEqual({
-		'./foo': './foo',
-	});
-	expect(getRequires(`require('foo');require('bar')`)).toEqual({
-		foo: 'foo',
-		bar: 'bar',
-	});
-	expect(() => getRequires(`require('foo' + 'bar')`)).toThrowError(Error);
+test('work with JSX', () => {
+	expect(getRequires(`const A = require('pizza');<Button/>`)).toEqual(['pizza']);
+	expect(getRequires(`import A from 'pizza';<Button>foo</Button>`)).toEqual(['pizza']);
 });
