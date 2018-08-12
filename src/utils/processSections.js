@@ -9,6 +9,7 @@ import processComponents from './processComponents';
 export default function processSections(sections) {
 	return sections.map(section => ({
 		...section,
+		visibleName: section.name,
 		components: processComponents(section.components || []),
 		sections: processSections(section.sections || []),
 	}));

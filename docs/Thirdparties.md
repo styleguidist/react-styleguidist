@@ -8,7 +8,8 @@
 - [Using Styleguidist with other libraries](#using-styleguidist-with-other-libraries)
   - [Redux](#redux)
   - [Relay](#relay)
-  - [Styled Components](#styled-components)
+  - [Styled-components](#styled-components)
+  - [Emotion](#emotion)
   - [Fela](#fela)
   - [CSS Modules with react-css-modules](#css-modules-with-react-css-modules)
   - [Styletron](#styletron)
@@ -39,7 +40,7 @@ export function Button({ color, size, children }) {
 export default CSSModules(Button, styles)
 ```
 
-Each example is rendered in an independent React root. You can control React context by defining a custom `Wrapper` component like this:
+Each example is rendered in an independent React root. You can control React context by defining a custom Wrapper component like this:
 
 ```javascript
 // styleguide.config.js
@@ -132,7 +133,7 @@ import Relay from 'real-react-relay'
 // Copy contents from https://gist.github.com/mikberg/07b4006e22aacf31ffe6
 ```
 
-**Second, provide sample data to your React components** to be able to message actual results from your GraphQL backend:
+**Second, provide sample data to your React components** to send actual results from your GraphQL backend:
 
 ```js
 // styleguide.config.js
@@ -160,9 +161,9 @@ module.exports = {
 
 _Based on @mikberg’s [blog post](https://medium.com/@mikaelberg/writing-simple-unit-tests-with-relay-707f19e90129)._
 
-### Styled Components
+### Styled-components
 
-The recommended way of using [Styled Components](https://www.styled-components.com/) is by using a special `@component` JSDoc annotation:
+The recommended way of using [styled-components](https://www.styled-components.com/) is by using a special `@component` JSDoc annotation:
 
 ```jsx
 import React from 'react'
@@ -178,11 +179,22 @@ const SalmonButton = styled.button`
 export default SalmonButton
 ```
 
-#### Adding Styled Components `ThemeProvider`
+**Warning:** object notation isn’t supported yet, use string literals instead:
 
-If your styled-components require a theme to render properly, you'll want to add a ThemeProvider Wrapper component to the docs.
+```diff
+- const Button = styled.button({
+-  color: 'tomato'
+- })
++ const Button = styled.button`
++  color: tomato;
++ `
+```
 
-First, you'll need to create your Wrapper component. For this example we'll put it in the `styleguide/` directory, but you can add it anywhere you want.
+#### Adding styled-components `ThemeProvider`
+
+If your styled-components require a theme to render properly, add a `ThemeProvider` to your style guide.
+
+First, create your `Wrapper` component. For this example we’ll put it in the `styleguide/` directory, but you can add it anywhere you want.
 
 ```jsx
 // styleguide/ThemeWrapper.js
@@ -202,7 +214,7 @@ export default class ThemeWrapper extends Component {
 }
 ```
 
-Next, you'll need to add ThemeWrapper to your `styleguide.config.js`.
+Next, add `ThemeWrapper` to your `styleguide.config.js`.
 
 ```javascript
 const path = require('path');
@@ -215,7 +227,11 @@ module.exports = {
 }
 ```
 
-This will automatically apply your theme to your styled-components. When you fire up the styleguide, `npx styleguidist server`, you should see your components render as expected.
+This will automatically apply your theme to your styled-components. When you fire up the style guide, `npx styleguidist server`, you should see your components render as expected.
+
+### Emotion
+
+The usage is similar to [styled-components](#styled-components).
 
 ### Fela
 
@@ -251,7 +267,7 @@ const { StyletronProvider } = require('styletron-react')
 </StyletronProvider>
 ```
 
-To use Styletron in every component, which is similar to [Redux](#redux), redefine the Wrapper component:
+To use Styletron in every component redefine the Wrapper component:
 
 ```javascript
 // styleguide.config.js

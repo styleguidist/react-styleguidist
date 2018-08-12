@@ -12,6 +12,7 @@
   - [Minor and major releases](#minor-and-major-releases)
 - [Change logs](#change-logs)
   - [What is a good change log](#what-is-a-good-change-log)
+  - [What should be in a change log](#what-should-be-in-a-change-log)
   - [Preparing a change log](#preparing-a-change-log)
 
 <!-- tocstop -->
@@ -68,7 +69,12 @@ We’re using [milestones](https://github.com/styleguidist/react-styleguidist/mi
 - Change log should explain how to migrate to a new versions if there are breaking changes.
 - Commit log **is not** a change log.
 
-Check out [Keep a Changelog](https://keepachangelog.com/) for more details on good change logs.
+Here’s a [good example of a change log](https://github.com/styleguidist/react-styleguidist/releases/tag/v7.1.0). Check out [Keep a Changelog](https://keepachangelog.com/) for more details on good change logs.
+
+### What should be in a change log
+
+- Information about pull request authors:<br> `(#1040 by @rafaesc)`
+- Open Collective link at the very top:<br> `👋 **[Support Styleguidist](https://opencollective.com/styleguidist) on Open Collective** 👋`
 
 ### Preparing a change log
 

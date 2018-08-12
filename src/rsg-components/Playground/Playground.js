@@ -96,7 +96,8 @@ class Playground extends Component {
 						name="exampleTabs"
 						active={activeTab}
 						onlyActive
-						props={{ code, onChange: this.handleChange }}
+						// evalInContext passed through to support custom slots that eval code
+						props={{ code, onChange: this.handleChange, evalInContext }}
 					/>
 				}
 				toolbar={

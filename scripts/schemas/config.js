@@ -6,7 +6,7 @@ const DEFAULT_COMPONENTS_PATTERN = `src/@(components|Components)/**/*.{${EXTENSI
 
 const path = require('path');
 const startCase = require('lodash/startCase');
-const chalk = require('chalk');
+const kleur = require('kleur');
 const reactDocgen = require('react-docgen');
 const createDisplayNameHandler = require('react-docgen-displayname-handler')
 	.createDisplayNameHandler;
@@ -134,6 +134,10 @@ module.exports = {
 	logger: {
 		type: 'object',
 	},
+	mountPointId: {
+		type: 'string',
+		default: 'rsg-root',
+	},
 	pagePerSection: {
 		type: 'boolean',
 		default: false,
@@ -253,7 +257,7 @@ module.exports = {
 		process: val => {
 			if (typeof val === 'string') {
 				throw new StyleguidistError(
-					`${chalk.bold(
+					`${kleur.bold(
 						'template'
 					)} config option format has been changed, you need to update your config.`,
 					'template'
@@ -311,6 +315,9 @@ module.exports = {
 	verbose: {
 		type: 'boolean',
 		default: false,
+	},
+	version: {
+		type: 'string',
 	},
 	webpackConfig: {
 		type: ['object', 'function'],
