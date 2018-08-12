@@ -17,6 +17,7 @@ exports[`renderStyleguide should render StyleGuide component 1`] = `
                   "displayName": "Button",
                   "examples": Array [],
                 },
+                "visibleName": "Button",
               },
               Object {
                 "module": "ImageModule",
@@ -25,13 +26,15 @@ exports[`renderStyleguide should render StyleGuide component 1`] = `
                   "displayName": "Image",
                   "examples": Array [],
                 },
+                "visibleName": "Image",
               },
             ],
             "sections": Array [],
+            "visibleName": undefined,
           },
         ]
       }
-      useIsolatedLinks={undefined}
+      useRouterLinks={false}
     />
   }
 >
@@ -48,6 +51,7 @@ exports[`renderStyleguide should render StyleGuide component 1`] = `
                 "displayName": "Button",
                 "examples": Array [],
               },
+              "visibleName": "Button",
             },
             Object {
               "module": "ImageModule",
@@ -56,9 +60,11 @@ exports[`renderStyleguide should render StyleGuide component 1`] = `
                 "displayName": "Image",
                 "examples": Array [],
               },
+              "visibleName": "Image",
             },
           ],
           "sections": Array [],
+          "visibleName": undefined,
         },
       ]
     }

@@ -5,6 +5,7 @@ import getComponentFiles from '../getComponentFiles';
 const configDir = path.resolve(__dirname, '../../../test');
 const components = ['one.js', 'two.js'];
 const glob = 'components/**/[A-Z]*.js';
+const globArray = ['components/Annotation/[A-Z]*.js', 'components/Button/[A-Z]*.js'];
 
 const deabs = x => deabsDeep(x, { root: configDir });
 
@@ -24,15 +25,31 @@ it('getComponentFiles() should accept components as a function that returns abso
 	expect(deabs(result)).toEqual(['~/one.js', '~/two.js']);
 });
 
+it('getComponentFiles() should accept components as a function that returns globs', () => {
+	const result = getComponentFiles(() => globArray, configDir);
+	expect(deabs(result)).toEqual([
+		'~/components/Annotation/Annotation.js',
+		'~/components/Button/Button.js',
+	]);
+});
+
 it('getComponentFiles() should accept components as an array of file names', () => {
 	const result = getComponentFiles(components, configDir);
 	expect(deabs(result)).toEqual(['~/one.js', '~/two.js']);
 });
 
-it('getComponentFiles() should accept components as a function that returns absolute paths', () => {
+it('getComponentFiles() should accept components as an array of absolute paths', () => {
 	const absolutize = files => files.map(file => path.join(configDir, file));
 	const result = getComponentFiles(absolutize(components), configDir);
 	expect(deabs(result)).toEqual(['~/one.js', '~/two.js']);
+});
+
+it('getComponentFiles() should accept components as an array of globs', () => {
+	const result = getComponentFiles(globArray, configDir);
+	expect(deabs(result)).toEqual([
+		'~/components/Annotation/Annotation.js',
+		'~/components/Button/Button.js',
+	]);
 });
 
 it('getComponentFiles() should accept components as a glob', () => {
@@ -46,13 +63,23 @@ it('getComponentFiles() should accept components as a glob', () => {
 	]);
 });
 
-it('getComponentFiles() should ignore specified patterns', () => {
+it('getComponentFiles() should ignore specified patterns for globs', () => {
 	const result = getComponentFiles(glob, configDir, ['**/*Button*']);
 	expect(deabs(result)).toEqual([
 		'~/components/Annotation/Annotation.js',
 		'~/components/Placeholder/Placeholder.js',
 		'~/components/Price/Price.js',
 	]);
+});
+
+it('getComponentFiles() should ignore specified patterns for globs in arrays', () => {
+	const result = getComponentFiles(globArray, configDir, ['**/*Button*']);
+	expect(deabs(result)).toEqual(['~/components/Annotation/Annotation.js']);
+});
+
+it('getComponentFiles() should ignore specified patterns for globs from functions', () => {
+	const result = getComponentFiles(() => globArray, configDir, ['**/*Button*']);
+	expect(deabs(result)).toEqual(['~/components/Annotation/Annotation.js']);
 });
 
 it('getComponentFiles() should throw if components is not a function, array or a string', () => {

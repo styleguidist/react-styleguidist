@@ -21,7 +21,7 @@ const unsemicolon = s => s.replace(/;\s*$/, '');
 export default function splitExampleCode(code) {
 	let ast;
 	try {
-		ast = acorn.parse(code);
+		ast = acorn.parse(code, { ecmaVersion: 2019 });
 	} catch (err) {
 		return { head: '', example: code };
 	}

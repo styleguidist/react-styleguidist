@@ -24,9 +24,11 @@ const styles = ({ color, fontFamily, fontSize }) => ({
 	},
 	heading5: {
 		fontSize: fontSize.h5,
+		fontWeight: 'bold',
 	},
 	heading6: {
 		fontSize: fontSize.h6,
+		fontStyle: 'italic',
 	},
 });
 

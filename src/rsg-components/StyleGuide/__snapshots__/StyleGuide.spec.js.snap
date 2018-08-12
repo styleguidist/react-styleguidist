@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renderer should render logo, table of contents, ribbon and passed children 1`] = `
+exports[`renderer should render logo, version, table of contents, ribbon and passed children 1`] = `
 <div
   className=""
 >
@@ -19,6 +19,9 @@ exports[`renderer should render logo, table of contents, ribbon and passed child
       <Styled(Logo)>
         Hello
       </Styled(Logo)>
+      <Styled(Version)>
+        1.0.0
+      </Styled(Version)>
     </div>
     <TableOfContents
       sections={
@@ -99,9 +102,10 @@ exports[`should render components list 1`] = `
           },
         ]
       }
-      useIsolatedLinks={undefined}
+      useRouterLinks={false}
     />
   }
+  version="1.0.0"
 >
   <Sections
     depth={1}

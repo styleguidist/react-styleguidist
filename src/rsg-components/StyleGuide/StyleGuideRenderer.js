@@ -5,9 +5,11 @@ import Markdown from 'rsg-components/Markdown';
 import Styled from 'rsg-components/Styled';
 import cx from 'classnames';
 import Ribbon from 'rsg-components/Ribbon';
+import Version from 'rsg-components/Version';
 
 const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth }) => ({
 	root: {
+		minHeight: '100vh',
 		backgroundColor: color.baseBackground,
 	},
 	hasSidebar: {
@@ -55,7 +57,15 @@ const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth
 	},
 });
 
-export function StyleGuideRenderer({ classes, title, homepageUrl, children, toc, hasSidebar }) {
+export function StyleGuideRenderer({
+	classes,
+	title,
+	version,
+	homepageUrl,
+	children,
+	toc,
+	hasSidebar,
+}) {
 	return (
 		<div className={cx(classes.root, hasSidebar && classes.hasSidebar)}>
 			<main className={classes.content}>
@@ -68,6 +78,7 @@ export function StyleGuideRenderer({ classes, title, homepageUrl, children, toc,
 				<div className={classes.sidebar}>
 					<div className={classes.logo}>
 						<Logo>{title}</Logo>
+						{version && <Version>{version}</Version>}
 					</div>
 					{toc}
 				</div>
@@ -80,6 +91,7 @@ export function StyleGuideRenderer({ classes, title, homepageUrl, children, toc,
 StyleGuideRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	title: PropTypes.string.isRequired,
+	version: PropTypes.string,
 	homepageUrl: PropTypes.string.isRequired,
 	children: PropTypes.node.isRequired,
 	toc: PropTypes.node.isRequired,

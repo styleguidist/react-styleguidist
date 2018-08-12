@@ -10,6 +10,7 @@ const evalInContext = a =>
 		require
 	);
 const code = '<button>OK</button>';
+const newCode = '<button>Cancel</button>';
 const options = {
 	context: {
 		config: {
@@ -58,12 +59,36 @@ it('should wrap code in Fragment when it starts with <', () => {
 });
 
 it('should render component renderer', () => {
+	console.error = jest.fn();
+
 	const actual = shallow(<Preview code={code} evalInContext={evalInContext} />, {
 		...options,
 		disableLifecycleMethods: true,
 	});
 
 	expect(actual).toMatchSnapshot();
+});
+
+it('should update', () => {
+	const actual = mount(<Preview code={code} evalInContext={evalInContext} />, options);
+
+	actual.setProps({ code: newCode });
+
+	expect(actual.html()).toMatchSnapshot();
+});
+
+it('should handle no code', () => {
+	const actual = mount(<Preview code="" evalInContext={evalInContext} />, options);
+
+	expect(actual.html()).toMatchSnapshot();
+});
+
+it('should handle errors', () => {
+	console.error = jest.fn();
+	const actual = shallow(<Preview code={'<invalid code'} evalInContext={evalInContext} />, options);
+
+	expect(actual).toMatchSnapshot();
+	expect(console.error).toHaveBeenCalledTimes(1);
 });
 
 it('should not clear console on initial mount', () => {
@@ -78,36 +103,4 @@ it('should clear console on second mount', () => {
 		context: { ...options.context, codeRevision: 1 },
 	});
 	expect(console.clear).toHaveBeenCalledTimes(1);
-});
-
-it('should set initialState before the first render', () => {
-	const code = `
-initialState = {count:1};
-<span>{state.count}</span>
-	`;
-	const actual = mount(<Preview code={code} evalInContext={evalInContext} />, options);
-	expect(actual.html()).toMatchSnapshot();
-});
-
-it('should update state on setState', done => {
-	const code = `
-initialState = {count:1};
-setTimeout(() => state.count === 1 && setState({count:2}));
-<button>{state.count}</button>
-	`;
-	const actual = mount(<Preview code={code} evalInContext={evalInContext} />, options);
-
-	actual
-		.instance()
-		.mountNode.querySelector('button')
-		.click();
-
-	setTimeout(() => {
-		try {
-			expect(actual.html()).toMatchSnapshot();
-			done();
-		} catch (err) {
-			done.fail(err);
-		}
-	});
 });

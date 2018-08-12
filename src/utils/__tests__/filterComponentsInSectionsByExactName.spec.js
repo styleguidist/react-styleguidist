@@ -22,7 +22,7 @@ const sections = deepfreeze([
 
 describe('filterComponentsInSectionsByExactName', () => {
 	it('should return components at any level with exact name', () => {
-		const result = filterComponentsInSectionsByExactName(sections, 'Image');
-		expect(result.map(x => x.name)).toEqual(['Image']);
+		const result = filterComponentsInSectionsByExactName(sections, 'Image', true);
+		expect(result[0].components.map(x => x.name)).toEqual(['Image']);
 	});
 });

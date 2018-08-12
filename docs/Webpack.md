@@ -10,12 +10,12 @@ _Webpack is required to run Styleguidist but your project doesn’t have to use 
 
 <!-- toc -->
 
-* [Reusing your project’s webpack config](#reusing-your-projects-webpack-config)
-* [Custom webpack config](#custom-webpack-config)
-* [Create React App](#create-react-app)
-* [Create React App, TypeScript](#create-react-app-typescript)
-* [Non-webpack projects](#non-webpack-projects)
-* [When nothing else works](#when-nothing-else-works)
+- [Reusing your project’s webpack config](#reusing-your-projects-webpack-config)
+- [Custom webpack config](#custom-webpack-config)
+- [Create React App](#create-react-app)
+- [Create React App, TypeScript](#create-react-app-typescript)
+- [Non-webpack projects](#non-webpack-projects)
+- [When nothing else works](#when-nothing-else-works)
 
 <!-- tocstop -->
 
@@ -31,7 +31,7 @@ module.exports = {
 }
 ```
 
-Or if you want to merge it with other options:
+Or, merge it with other options:
 
 ```javascript
 module.exports = {
@@ -43,7 +43,7 @@ module.exports = {
 
 > **Note:** `entry`, `externals`, `output`, `watch`, and `stats` options will be ignored. For production builds, `devtool` will also be ignored.
 
-> **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
+> **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `MiniHtmlWebpackPlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
 
 > **Note:** If your loaders don’t work with Styleguidist try to make `include` and `exclude` absolute paths.
 
@@ -81,27 +81,26 @@ module.exports = {
 
 > **Note:** `entry`, `externals`, `output`, `watch`, and `stats` options will be ignored. For production builds, `devtool` will also be ignored.
 
-> **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
+> **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `MiniHtmlWebpackPlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
 
 ## Create React App
 
-[Create React App](https://github.com/facebookincubator/create-react-app) is supported out of the box, you don’t even need to create a style guide config if your components could be found using a default pattern: all files with `.js` or `.jsx` extensions inside `src/components` or `src/Components` folders.
+[Create React App](https://github.com/facebook/create-react-app) is supported out of the box, you don’t even need to create a style guide config if your components could be found using a default pattern: all files with `.js` or `.jsx` extensions inside `src/components` or `src/Components` folders.
 
-## Create React App, TypeScript
+## Create React App with TypeScript
 
-If you're using [Create React App](https://github.com/facebookincubator/create-react-app) and Typescript, you need to:
+If you’re using [Create React App](https://github.com/facebook/create-react-app) and TypeScript:
 
-* Install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript)
-* Create a `styleguide.config.js`, see [this guide](Configuration.md)
-* Add a `components`, `webpackConfig` and `propsParser` section to your `styleguide.config.js`:
+1.  Install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript).
+2.  Create a `styleguide.config.js`, see [configuration](Configuration.md) reference.
+3.  Update your `styleguide.config.js`:
 
-```javascript
-module.exports = {
-  components: 'src/components/**/*.{ts,tsx}',
-  propsParser: require('react-docgen-typescript').parse,
-  webpackConfig: require('react-scripts-ts/config/webpack.config.dev.js')
-}
-```
+    ```javascript
+    module.exports = {
+      propsParser: require('react-docgen-typescript').parse,
+      webpackConfig: require('react-scripts-ts/config/webpack.config.dev')
+    }
+    ```
 
 ## Non-webpack projects
 

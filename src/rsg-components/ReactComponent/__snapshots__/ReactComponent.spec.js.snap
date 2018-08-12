@@ -10,6 +10,7 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
   docs={<JsDoc />}
   examples={
     <Examples
+      exampleMode="collapse"
       examples={
         Array [
           Object {
@@ -35,6 +36,7 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
       deprecated={false}
       depth={3}
       id="foo"
+      pagePerSection={false}
       slotName="componentToolbar"
       slotProps={
         Object {
@@ -82,6 +84,7 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
             ],
           },
           "slug": "foo",
+          "visibleName": "Foo",
         }
       }
     >
@@ -93,7 +96,6 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
   slug="foo"
   tabBody={
     <Slot
-      active={undefined}
       name="docsTabs"
       onlyActive={true}
       props={
@@ -141,13 +143,13 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
             ],
           },
           "slug": "foo",
+          "visibleName": "Foo",
         }
       }
     />
   }
   tabButtons={
     <Slot
-      active={undefined}
       name="docsTabButtons"
       props={
         Object {
@@ -195,6 +197,7 @@ exports[`ReactComponent should pass rendered description, usage, examples, etc. 
             ],
           },
           "slug": "foo",
+          "visibleName": "Foo",
         }
       }
     />

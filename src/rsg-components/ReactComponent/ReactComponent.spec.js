@@ -4,10 +4,14 @@ import ReactComponent from './ReactComponent';
 import { ReactComponentRenderer } from './ReactComponentRenderer';
 import { DisplayModes } from '../../consts';
 
+const exampleMode = 'collapse';
+const usageMode = 'collapse';
+
 const options = {
 	context: {
 		config: {
 			showUsage: false,
+			pagePerSection: false,
 		},
 		displayMode: DisplayModes.all,
 		slots,
@@ -17,6 +21,7 @@ const options = {
 
 const component = {
 	name: 'Foo',
+	visibleName: 'Foo',
 	slug: 'foo',
 	pathLine: 'foo/bar.js',
 	props: {
@@ -28,6 +33,7 @@ const component = {
 };
 const componentWithEverything = {
 	name: 'Foo',
+	visibleName: 'Foo',
 	slug: 'foo',
 	pathLine: 'foo/bar.js',
 	props: {
@@ -65,7 +71,15 @@ const componentWithEverything = {
 
 describe('ReactComponent', () => {
 	it('should render an example placeholder', () => {
-		const actual = shallow(<ReactComponent component={component} depth={3} />, options);
+		const actual = shallow(
+			<ReactComponent
+				component={component}
+				depth={3}
+				exampleMode={exampleMode}
+				usageMode={usageMode}
+			/>,
+			options
+		);
 
 		const props = actual.prop('examples').props;
 		expect(props.name).toBeTruthy();
@@ -74,7 +88,12 @@ describe('ReactComponent', () => {
 
 	it('should render examples', () => {
 		const actual = shallow(
-			<ReactComponent component={componentWithEverything} depth={3} />,
+			<ReactComponent
+				component={componentWithEverything}
+				depth={3}
+				exampleMode={exampleMode}
+				usageMode={usageMode}
+			/>,
 			options
 		);
 
@@ -85,7 +104,12 @@ describe('ReactComponent', () => {
 
 	it('should pass rendered description, usage, examples, etc. to the renderer', () => {
 		const actual = shallow(
-			<ReactComponent component={componentWithEverything} depth={3} />,
+			<ReactComponent
+				component={componentWithEverything}
+				depth={3}
+				exampleMode={exampleMode}
+				usageMode={usageMode}
+			/>,
 			options
 		);
 
@@ -94,7 +118,12 @@ describe('ReactComponent', () => {
 
 	it('should render usage closed by default when showUsage config options is false', () => {
 		const actual = shallow(
-			<ReactComponent component={componentWithEverything} depth={3} />,
+			<ReactComponent
+				component={componentWithEverything}
+				depth={3}
+				exampleMode={exampleMode}
+				usageMode={usageMode}
+			/>,
 			options
 		);
 
@@ -103,14 +132,20 @@ describe('ReactComponent', () => {
 	});
 
 	it('should render usage opened by default when showUsage config options is true', () => {
-		const actual = shallow(<ReactComponent component={componentWithEverything} depth={3} />, {
-			...options,
-			context: {
-				config: {
-					showUsage: true,
+		const actual = shallow(
+			<ReactComponent
+				component={componentWithEverything}
+				depth={3}
+				exampleMode={exampleMode}
+				usageMode="expand"
+			/>,
+			{
+				...options,
+				context: {
+					config: {},
 				},
-			},
-		});
+			}
+		);
 
 		expect(actual.prop('tabButtons').props.active).toBe(DOCS_TAB_USAGE);
 		expect(actual.prop('tabBody').props.active).toBe(DOCS_TAB_USAGE);
@@ -118,7 +153,12 @@ describe('ReactComponent', () => {
 
 	it('should return null when component has no name', () => {
 		const actual = shallow(
-			<ReactComponent component={{ slug: 'foo', props: {} }} depth={3} />,
+			<ReactComponent
+				component={{ slug: 'foo', props: {} }}
+				depth={3}
+				exampleMode={exampleMode}
+				usageMode={usageMode}
+			/>,
 			options
 		);
 
@@ -126,30 +166,62 @@ describe('ReactComponent', () => {
 	});
 
 	test('should not render component in isolation mode by default', () => {
-		const actual = shallow(<ReactComponent component={component} depth={3} />, options);
+		const actual = shallow(
+			<ReactComponent
+				component={component}
+				depth={3}
+				exampleMode={exampleMode}
+				usageMode={usageMode}
+			/>,
+			options
+		);
 
 		expect(actual.prop('heading').props.slotProps.isolated).toBeFalsy();
 	});
 
 	test('should render component in isolation mode', () => {
-		const actual = shallow(<ReactComponent component={component} depth={3} />, {
-			context: {
-				...options.context,
-				displayMode: DisplayModes.component,
-			},
-		});
+		const actual = shallow(
+			<ReactComponent
+				component={component}
+				depth={3}
+				exampleMode={exampleMode}
+				usageMode={usageMode}
+			/>,
+			{
+				context: {
+					...options.context,
+					displayMode: DisplayModes.component,
+				},
+			}
+		);
 
 		expect(actual.prop('heading').props.slotProps.isolated).toBeTruthy();
 	});
 
 	it('should pass depth to heading', () => {
-		const actual = shallow(<ReactComponent component={component} depth={3} />, options);
+		const actual = shallow(
+			<ReactComponent
+				component={component}
+				depth={3}
+				exampleMode={exampleMode}
+				usageMode={usageMode}
+			/>,
+			options
+		);
 
 		expect(actual.prop('heading').props.depth).toBe(3);
 	});
 
 	it('should not render heading as deprecated by default', () => {
-		const actual = shallow(<ReactComponent component={component} depth={3} />, options);
+		const actual = shallow(
+			<ReactComponent
+				component={component}
+				depth={3}
+				exampleMode={exampleMode}
+				usageMode={usageMode}
+			/>,
+			options
+		);
 
 		expect(actual.prop('heading').props.deprecated).toBeFalsy();
 	});
@@ -171,6 +243,8 @@ describe('ReactComponent', () => {
 					},
 				}}
 				depth={3}
+				exampleMode={exampleMode}
+				usageMode={usageMode}
 			/>,
 			options
 		);

@@ -8,11 +8,14 @@ Array [
       "require": "!!~/loaders/examples-loader.js!~/test/components/Button/Readme.md",
     },
     "description": undefined,
+    "exampleMode": "collapse",
     "filepath": "components/Button/Readme.md",
     "href": undefined,
     "name": "Readme",
+    "sectionDepth": 0,
     "sections": Array [],
     "slug": "readme-1",
+    "usageMode": "collapse",
   },
   Object {
     "components": Array [
@@ -86,11 +89,14 @@ Array [
     ],
     "content": undefined,
     "description": undefined,
+    "exampleMode": "collapse",
     "filepath": undefined,
     "href": undefined,
     "name": "Components",
+    "sectionDepth": 0,
     "sections": Array [],
     "slug": "components-1",
+    "usageMode": "collapse",
   },
   Object {
     "components": Array [
@@ -151,11 +157,14 @@ Array [
     ],
     "content": undefined,
     "description": undefined,
+    "exampleMode": "collapse",
     "filepath": undefined,
     "href": undefined,
     "name": "Ignore",
+    "sectionDepth": 0,
     "sections": Array [],
     "slug": "ignore-1",
+    "usageMode": "collapse",
   },
 ]
 `;
@@ -233,11 +242,14 @@ Object {
   ],
   "content": undefined,
   "description": undefined,
+  "exampleMode": "collapse",
   "filepath": undefined,
   "href": undefined,
   "name": "Components",
+  "sectionDepth": 0,
   "sections": Array [],
   "slug": "components",
+  "usageMode": "collapse",
 }
 `;
 
@@ -248,11 +260,14 @@ Object {
     "require": "!!~/loaders/examples-loader.js!~/test/components/Button/Readme.md",
   },
   "description": undefined,
+  "exampleMode": "collapse",
   "filepath": "components/Button/Readme.md",
   "href": undefined,
   "name": "Readme",
+  "sectionDepth": 0,
   "sections": Array [],
   "slug": "readme",
+  "usageMode": "collapse",
 }
 `;
 
@@ -316,10 +331,13 @@ Object {
   ],
   "content": undefined,
   "description": undefined,
+  "exampleMode": "collapse",
   "filepath": undefined,
   "href": undefined,
   "name": "Ignore",
+  "sectionDepth": 0,
   "sections": Array [],
   "slug": "ignore",
+  "usageMode": "collapse",
 }
 `;
