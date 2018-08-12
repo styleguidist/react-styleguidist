@@ -52,21 +52,13 @@ exports[`should set a parameter on link when useHashId is activated 1`] = `
         "href": "blank#/Components?id=button",
         "name": "Button",
         "slug": "button",
-<<<<<<< HEAD
-        "target": undefined,
-=======
         "visibleName": "Button",
->>>>>>> @{-1}
       },
       Object {
         "href": "blank#/Components?id=input",
         "name": "Input",
         "slug": "input",
-<<<<<<< HEAD
-        "target": undefined,
-=======
         "visibleName": "Input",
->>>>>>> @{-1}
       },
     ]
   }
@@ -82,7 +74,6 @@ exports[`should set a sub route on link when useHashId is deactivated 1`] = `
         "href": "blank#/Components/Button",
         "name": "Button",
         "slug": "button",
-        "target": undefined,
       },
       Object {
         "href": "blank#/Components/Input",
@@ -109,11 +100,7 @@ exports[`should set the correct href for items 1`] = `
         "href": "blank#input",
         "name": "Input",
         "slug": "input",
-<<<<<<< HEAD
-        "target": undefined,
-=======
         "visibleName": "Input",
->>>>>>> @{-1}
       },
     ]
   }

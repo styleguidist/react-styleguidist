@@ -25,18 +25,13 @@ module.exports = {
 						},
 					],
 				},
-			],
-			sectionDepth: 2,
-		},
-		{
-			name: 'External documentation',
-			sections: [
 				{
-					name: 'External documentation',
-					href: 'http://example.com',
+					name: 'Online documentation',
+					href: 'https://github.com/styleguidist/react-styleguidist',
 					external: true,
 				},
 			],
+			sectionDepth: 2,
 		},
 		{
 			name: 'Components',
