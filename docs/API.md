@@ -4,8 +4,8 @@
 
 <!-- toc -->
 
-* [Initialization](#initialization)
-* [Methods](#methods)
+- [Initialization](#initialization)
+- [Methods](#methods)
 
 <!-- tocstop -->
 

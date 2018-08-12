@@ -4,11 +4,11 @@
 
 <!-- toc -->
 
-* [How it works](#how-it-works)
-* [Webpack loaders and webpack configuration](#webpack-loaders-and-webpack-configuration)
-* [React components](#react-components)
-* [Styles](#styles)
-* [Testing](#testing)
+- [How it works](#how-it-works)
+- [Webpack loaders and webpack configuration](#webpack-loaders-and-webpack-configuration)
+- [React components](#react-components)
+- [Styles](#styles)
+- [Testing](#testing)
 
 <!-- tocstop -->
 
@@ -18,9 +18,9 @@ Styleguidist isn’t an ordinary single page app and some design decisions may l
 
 The main thing is that we’re running two apps at the same time: user’s components and Styleguidist UI. They share a webpack configuration and have styles in the same scope (there’s only one scope in CSS). And we can control only one of these two apps: Styleguidist UI. That puts us under some restrictions:
 
-* Our styles should not affect user component styles.
-* User styles (especially global like Bootstrap) should not affect Styleguidist UI.
-* `body` styles (like `font-family`) should affect user components as the user expects but not Styleguidist UI.
+- Our styles should not affect user component styles.
+- User styles (especially global like Bootstrap) should not affect Styleguidist UI.
+- `body` styles (like `font-family`) should affect user components as the user expects but not Styleguidist UI.
 
 ## How it works
 
@@ -34,9 +34,9 @@ Webpack loaders (see below) generate JavaScript modules with all user components
 
 We use webpack loaders to hot reload the style guide on changes in user components, styles and Markdown documentation. We have three loaders ([loaders](https://github.com/styleguidist/react-styleguidist/tree/master/loaders) folder):
 
-* `styleguide-loader`: loads components and sections;
-* `props-loaders`: loads props documentation using react-docgen;
-* `examples-loader`: loads examples from Markdown files;
+- `styleguide-loader`: loads components and sections;
+- `props-loaders`: loads props documentation using react-docgen;
+- `examples-loader`: loads examples from Markdown files;
 
 There are two more loaders — `css-loader` and `styles-loader` but they are just one-line aliases to corresponding webpack loaders. We don’t want to rely on webpack loader resolver because its behavior can be changed by user’s webpack config (Create React App does that for example). This way we can bypass webpack resolver and use Node.js resolver instead. These loaders are used like this:
 
@@ -75,10 +75,10 @@ All Styleguidist components should be imported like this: `import Foo from 'rsg-
 
 Each component folder usually has several files:
 
-* `Foo/Foo.js` (optional for simple components);
-* `Foo/FooRenderer.js`;
-* `Foo/Foo.spec.js` — tests;
-* `Foo/index.js` — reexport of `Foo.js` or `FooRenderer.js`.
+- `Foo/Foo.js` (optional for simple components);
+- `Foo/FooRenderer.js`;
+- `Foo/Foo.spec.js` — tests;
+- `Foo/index.js` — reexport of `Foo.js` or `FooRenderer.js`.
 
 ## Styles
 
