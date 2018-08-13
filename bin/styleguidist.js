@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 
 const minimist = require('minimist');
-const chalk = require('chalk');
+const kleur = require('kleur');
 const ora = require('ora');
 const stringify = require('q-i').stringify;
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
@@ -28,7 +28,7 @@ process.on('uncaughtException', err => {
 			consts.DOCS_CONFIG
 		);
 	} else if (err instanceof StyleguidistError) {
-		console.error(chalk.bold.red(err.message));
+		console.error(kleur.bold.red(err.message));
 		logger.debug(err.stack);
 	} else {
 		console.error(err.toString());
@@ -170,26 +170,26 @@ function commandServer() {
 function commandHelp() {
 	console.log(
 		[
-			chalk.underline('Usage'),
+			kleur.underline('Usage'),
 			'',
 			'    ' +
-				chalk.bold('styleguidist') +
+				kleur.bold('styleguidist') +
 				' ' +
-				chalk.cyan('<command>') +
+				kleur.cyan('<command>') +
 				' ' +
-				chalk.yellow('[<options>]'),
+				kleur.yellow('[<options>]'),
 			'',
-			chalk.underline('Commands'),
+			kleur.underline('Commands'),
 			'',
-			'    ' + chalk.cyan('build') + '           Build style guide',
-			'    ' + chalk.cyan('server') + '          Run development server',
-			'    ' + chalk.cyan('help') + '            Display React Styleguidist help',
+			'    ' + kleur.cyan('build') + '           Build style guide',
+			'    ' + kleur.cyan('server') + '          Run development server',
+			'    ' + kleur.cyan('help') + '            Display React Styleguidist help',
 			'',
-			chalk.underline('Options'),
+			kleur.underline('Options'),
 			'',
-			'    ' + chalk.yellow('--config') + '        Config file path',
-			'    ' + chalk.yellow('--open') + '          Open Styleguidist in the default browser',
-			'    ' + chalk.yellow('--verbose') + '       Print debug information',
+			'    ' + kleur.yellow('--config') + '        Config file path',
+			'    ' + kleur.yellow('--open') + '          Open Styleguidist in the default browser',
+			'    ' + kleur.yellow('--verbose') + '       Print debug information',
 		].join('\n')
 	);
 }
@@ -200,9 +200,9 @@ function commandHelp() {
 function printServerInstructions(urls) {
 	console.log(`You can now view your style guide in the browser:`);
 	console.log();
-	console.log(`  ${chalk.bold('Local:')}            ${urls.localUrlForTerminal}`);
+	console.log(`  ${kleur.bold('Local:')}            ${urls.localUrlForTerminal}`);
 	if (urls.lanUrlForTerminal) {
-		console.log(`  ${chalk.bold('On your network:')}  ${urls.lanUrlForTerminal}`);
+		console.log(`  ${kleur.bold('On your network:')}  ${urls.lanUrlForTerminal}`);
 	}
 	console.log();
 }
@@ -211,7 +211,7 @@ function printServerInstructions(urls) {
  * @param {object} config
  */
 function printBuildInstructions(config) {
-	console.log('Style guide published to:\n' + chalk.underline(config.styleguideDir));
+	console.log('Style guide published to:\n' + kleur.underline(config.styleguideDir));
 }
 
 /**
@@ -220,7 +220,7 @@ function printBuildInstructions(config) {
  * @param {string} linkUrl
  */
 function printErrorWithLink(message, linkTitle, linkUrl) {
-	console.error(`${chalk.bold.red(message)}\n\n${linkTitle}\n${chalk.underline(linkUrl)}\n`);
+	console.error(`${kleur.bold.red(message)}\n\n${linkTitle}\n${kleur.underline(linkUrl)}\n`);
 }
 
 /**
@@ -244,11 +244,11 @@ function printErrors(header, errors, originalErrors, type) {
  */
 function printStatus(text, type) {
 	if (type === 'success') {
-		console.log(chalk.inverse.bold.green(' DONE ') + ' ' + text);
+		console.log(kleur.inverse.bold.green(' DONE ') + ' ' + text);
 	} else if (type === 'error') {
-		console.error(chalk.reset.inverse.bold.red(' FAIL ') + ' ' + chalk.reset.red(text));
+		console.error(kleur.inverse.bold.red(' FAIL ') + ' ' + kleur.red(text));
 	} else {
-		console.error(chalk.reset.inverse.bold.yellow(' WARN ') + ' ' + chalk.reset.yellow(text));
+		console.error(kleur.inverse.bold.yellow(' WARN ') + ' ' + kleur.yellow(text));
 	}
 }
 
@@ -334,5 +334,5 @@ function printNoLoaderError(errors) {
  * @param {object} object
  */
 function verbose(header, object) {
-	logger.debug(chalk.bold(header) + '\n\n' + stringify(object));
+	logger.debug(kleur.bold(header) + '\n\n' + stringify(object));
 }

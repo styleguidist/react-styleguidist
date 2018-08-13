@@ -50,7 +50,7 @@ export default class ReactComponent extends Component {
 			config: { pagePerSection },
 		} = this.context;
 		const { component, depth, usageMode, exampleMode } = this.props;
-		const { name, slug, filepath, pathLine } = component;
+		const { name, visibleName, slug, filepath, pathLine } = component;
 		const { description, examples = [], tags = {} } = component.props;
 		if (!name) {
 			return null;
@@ -77,7 +77,7 @@ export default class ReactComponent extends Component {
 						}}
 						depth={depth}
 					>
-						{name}
+						{visibleName}
 					</SectionHeading>
 				}
 				examples={
