@@ -22,6 +22,44 @@ it('should render argument without type', () => {
 	expect(actual).toMatchSnapshot();
 });
 
+it('should render optional argument', () => {
+	const actual = shallow(
+		<ArgumentRenderer
+			{...props}
+			type={{ type: 'OptionalType', expression: { name: 'Array' } }}
+			description={description}
+		/>
+	);
+
+	expect(actual).toMatchSnapshot();
+});
+
+it('should render default value of argument', () => {
+	const actual = shallow(
+		<ArgumentRenderer
+			{...props}
+			type={{ name: 'String' }}
+			default="bar"
+			description={description}
+		/>
+	);
+
+	expect(actual).toMatchSnapshot();
+});
+
+it('should render default value of optional argument', () => {
+	const actual = shallow(
+		<ArgumentRenderer
+			{...props}
+			type={{ type: 'OptionalType', expression: { name: 'Boolean' } }}
+			default="true"
+			description={description}
+		/>
+	);
+
+	expect(actual).toMatchSnapshot();
+});
+
 it('should render argument without description', () => {
 	const actual = shallow(<ArgumentRenderer {...props} name={name} type={type} />);
 

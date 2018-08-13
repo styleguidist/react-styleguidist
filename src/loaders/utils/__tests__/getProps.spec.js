@@ -62,6 +62,62 @@ it('should remove non-public methods', () => {
 	expect(result).toMatchSnapshot();
 });
 
+it('should get method info from docblock and merge it', () => {
+	const result = getProps(
+		{
+			displayName: 'Button',
+			methods: [
+				{
+					docblock: `
+Baz method with foo param
+
+@public
+@returns {string} test
+`,
+				},
+			],
+		},
+		__filename
+	);
+
+	expect(result.methods).toMatchSnapshot();
+});
+
+it('should get method params info from docblock and merge it with passed method info', () => {
+	const result = getProps(
+		{
+			displayName: 'Button',
+			methods: [
+				{
+					docblock: `
+Foo method with baz param
+
+@public
+@param {string} [baz=bar]
+@arg {string} foo param described with @arg tag
+@argument {string} test param described with @argument tag
+@returns {string} test
+`,
+					params: [
+						{
+							name: 'baz',
+						},
+						{
+							name: 'foo',
+						},
+						{
+							name: 'test',
+						},
+					],
+				},
+			],
+		},
+		__filename
+	);
+
+	expect(result.methods).toMatchSnapshot();
+});
+
 it('should return an object for props with doclets', () => {
 	const result = getProps(
 		{
