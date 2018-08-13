@@ -1,5 +1,101 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`should get method info from docblock and merge it 1`] = `
+Array [
+  Object {
+    "docblock": "
+Baz method with foo param
+
+@public
+@returns {string} test
+",
+    "returns": Object {
+      "description": "test",
+      "title": "returns",
+      "type": Object {
+        "name": "string",
+        "type": "NameExpression",
+      },
+    },
+    "tags": Object {
+      "public": Array [
+        Object {
+          "description": null,
+          "title": "public",
+          "type": null,
+        },
+      ],
+    },
+  },
+]
+`;
+
+exports[`should get method params info from docblock and merge it with passed method info 1`] = `
+Array [
+  Object {
+    "docblock": "
+Foo method with baz param
+
+@public
+@param {string} [baz=bar]
+@arg {string} foo param described with @arg tag
+@argument {string} test param described with @argument tag
+@returns {string} test
+",
+    "params": Array [
+      Object {
+        "default": "bar",
+        "description": null,
+        "name": "baz",
+        "title": "param",
+        "type": Object {
+          "expression": Object {
+            "name": "string",
+            "type": "NameExpression",
+          },
+          "type": "OptionalType",
+        },
+      },
+      Object {
+        "description": "param described with @arg tag",
+        "name": "foo",
+        "title": "arg",
+        "type": Object {
+          "name": "string",
+          "type": "NameExpression",
+        },
+      },
+      Object {
+        "description": "param described with @argument tag",
+        "name": "test",
+        "title": "argument",
+        "type": Object {
+          "name": "string",
+          "type": "NameExpression",
+        },
+      },
+    ],
+    "returns": Object {
+      "description": "test",
+      "title": "returns",
+      "type": Object {
+        "name": "string",
+        "type": "NameExpression",
+      },
+    },
+    "tags": Object {
+      "public": Array [
+        Object {
+          "description": null,
+          "title": "public",
+          "type": null,
+        },
+      ],
+    },
+  },
+]
+`;
+
 exports[`should highlight code in description (fenced code block) 1`] = `
 Object {
   "description": "The only true button.
