@@ -9,7 +9,7 @@ const styles = ({ fontFamily, fontSize, color }) => ({
 		fontSize: fontSize.small,
 		fontFamily: fontFamily.monospace,
 		color: color.error,
-		whiteSpace: 'pre',
+		whiteSpace: 'pre-wrap',
 	},
 });
 
