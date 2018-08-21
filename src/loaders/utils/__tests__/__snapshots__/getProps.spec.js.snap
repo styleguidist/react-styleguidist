@@ -1,5 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`should accept @return as a synonym of @returns 1`] = `
+Array [
+  Object {
+    "docblock": "
+Baz method with foo param
+
+@public
+@return {string} test
+",
+    "returns": Object {
+      "description": "test",
+      "title": "return",
+      "type": Object {
+        "name": "string",
+        "type": "NameExpression",
+      },
+    },
+    "tags": Object {
+      "public": Array [
+        Object {
+          "description": null,
+          "title": "public",
+          "type": null,
+        },
+      ],
+    },
+  },
+]
+`;
+
 exports[`should get method info from docblock and merge it 1`] = `
 Array [
   Object {

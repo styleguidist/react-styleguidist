@@ -13,6 +13,10 @@ const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
 
 const JS_DOC_METHOD_PARAM_TAG_SYNONYMS = ['param', 'arg', 'argument'];
 const JS_DOC_METHOD_RETURN_TAG_SYNONYMS = ['return', 'returns'];
+const JS_DOC_ALL_SYNONYMS = [
+	...JS_DOC_METHOD_PARAM_TAG_SYNONYMS,
+	...JS_DOC_METHOD_RETURN_TAG_SYNONYMS,
+];
 
 // HACK: We have to make sure that doclets is a proper object with correct prototype to
 // work around an issue in react-docgen that breaks the build if a component has JSDoc tags
@@ -36,10 +40,8 @@ const doesExternalExampleFileExist = (componentPath, exampleFile) => {
 	return doesFileExist;
 };
 
-const getMethodParamsFromTags = tags => {
-	return JS_DOC_METHOD_PARAM_TAG_SYNONYMS.map(
-		paramTagSynonym => tags[paramTagSynonym] || []
-	).reduce((params, paramTags) => [...params, ...paramTags], []);
+const getMergedTag = (tags, names) => {
+	return names.reduce((params, name) => [...params, ...(tags[name] || [])], []);
 };
 
 /**
@@ -59,29 +61,28 @@ module.exports = function getProps(doc, filepath) {
 		return doclets && doclets.public;
 	});
 
-	// Parse the docblock of the remaining methods with doctrine to retrieve the JsDoc tags
+	// Parse the docblock of the remaining methods with doctrine to retrieve
+	// the JSDoc tags
 	doc.methods = doc.methods.map(method => {
-		let tags = getDoctrineTags(doctrine.parse(method.docblock, { sloppy: true, unwrap: true }));
+		const allTags = getDoctrineTags(
+			doctrine.parse(method.docblock, { sloppy: true, unwrap: true })
+		);
 
-		// Merge with react-docgen information about arguments and return value with inforamtion from jsdoc
+		// Merge with react-docgen information about arguments and return value
+		// with information from JSDoc
+
+		const paramTags = getMergedTag(allTags, JS_DOC_METHOD_PARAM_TAG_SYNONYMS);
 		const params =
 			method.params &&
 			method.params.map(param =>
-				Object.assign(
-					param,
-					getMethodParamsFromTags(tags).find(tagParam => tagParam.name === param.name)
-				)
+				Object.assign(param, paramTags.find(tagParam => tagParam.name === param.name))
 			);
-		const returns = method.returns || (tags.returns && tags.returns[0]);
-		// Remove @param and @return and it synonyms from tags
-		tags = Object.keys(tags)
-			.filter(
-				key =>
-					[...JS_DOC_METHOD_PARAM_TAG_SYNONYMS, ...JS_DOC_METHOD_RETURN_TAG_SYNONYMS].indexOf(
-						key
-					) === -1
-			)
-			.reduce((prev, key) => ({ ...prev, [key]: tags[key] }), {});
+
+		const returnTags = getMergedTag(allTags, JS_DOC_METHOD_RETURN_TAG_SYNONYMS);
+		const returns = method.returns || returnTags[0];
+
+		// Remove tag synonyms
+		const tags = _.omit(allTags, JS_DOC_ALL_SYNONYMS);
 
 		return Object.assign(method, returns && { returns }, params && { params }, { tags });
 	});
@@ -97,6 +98,7 @@ module.exports = function getProps(doc, filepath) {
 
 		let exampleFileExists = false;
 		let exampleFile = doc.doclets.example;
+
 		// doc.doclets.example might be a boolean or undefined
 		if (typeof doc.doclets.example === 'string') {
 			exampleFile = doc.doclets.example.trim();
@@ -116,7 +118,8 @@ module.exports = function getProps(doc, filepath) {
 		Object.keys(doc.props).forEach(propName => {
 			const prop = doc.props[propName];
 			const doclets = getDocletsObject(prop.description);
-			// when a prop is listed in defaultProps but not in props the prop.description is undefined
+
+			// When a prop is listed in defaultProps but not in props the prop.description is undefined
 			const documentation = doctrine.parse(prop.description || '');
 
 			// documentation.description is the description without tags
@@ -138,8 +141,8 @@ module.exports = function getProps(doc, filepath) {
 	if (doc.doclets && doc.doclets.visibleName) {
 		doc.visibleName = doc.doclets.visibleName;
 
-		// custom tag is added both to doclets and tags
-		// removing from both locations
+		// Custom tag is added both to doclets and tags
+		// Removing from both locations
 		delete doc.doclets.visibleName;
 		if (doc.tags) {
 			delete doc.tags.visibleName;
