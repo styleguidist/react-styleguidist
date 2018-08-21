@@ -83,6 +83,27 @@ Baz method with foo param
 	expect(result.methods).toMatchSnapshot();
 });
 
+it('should accept @return as a synonym of @returns', () => {
+	const result = getProps(
+		{
+			displayName: 'Button',
+			methods: [
+				{
+					docblock: `
+Baz method with foo param
+
+@public
+@return {string} test
+`,
+				},
+			],
+		},
+		__filename
+	);
+
+	expect(result.methods).toMatchSnapshot();
+});
+
 it('should get method params info from docblock and merge it with passed method info', () => {
 	const result = getProps(
 		{
