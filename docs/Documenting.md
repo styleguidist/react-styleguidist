@@ -157,7 +157,7 @@ Use @visibleName JSDoc tag to define component names that are used in the Styleg
 class Button extends React.Component {
 ```
 
-The component will be displayed with a custom “The Bust Button Ever🐙” name and this will not change the name of the component used in code of your app or Styleguidist examples.
+The component will be displayed with a custom “The Best Button Ever 🐙” name and this will not change the name of the component used in code of your app or Styleguidist examples.
 
 ## Using JSDoc tags
 
