@@ -66,3 +66,12 @@ console.log(eatFood(food))
 ```
 
 Some more text here.
+
+## Details
+
+```js
+<details>
+  <summary>This is a tag</summary>
+  This is a details children
+</details>
+```

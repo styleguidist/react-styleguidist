@@ -45,12 +45,6 @@ module.exports = {
 					usageMode: 'expand', // 'hide' | 'collapse' | 'expand'
 				},
 				{
-					name: 'Details',
-					components: () => ['./src/components/Details/Details.js'],
-					exampleMode: 'expand', // 'hide' | 'collapse' | 'expand'
-					usageMode: 'expand', // 'hide' | 'collapse' | 'expand'
-				},
-				{
 					name: 'Others',
 					components: () => ['./src/components/RandomButton/RandomButton.js'],
 					exampleMode: 'collapse', // 'hide' | 'collapse' | 'expand'
