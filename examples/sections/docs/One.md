@@ -69,9 +69,8 @@ Some more text here.
 
 ## Details
 
-```js
-<details>
-  <summary>This is a tag</summary>
-  This is a details children
+<details tag='This is a tag'>
+ 
+Some hidden text.
+
 </details>
-```
