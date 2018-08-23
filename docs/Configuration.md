@@ -21,7 +21,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 - [`handlers`](#handlers)
 - [`ignore`](#ignore)
 - [`logger`](#logger)
-- [`mountPointId`](#mountPointId)
+- [`mountPointId`](#mountpointid)
 - [`pagePerSection`](#pagepersection)
 - [`printBuildInstructions`](#printbuildinstructions)
 - [`printServerInstructions`](#printserverinstructions)
