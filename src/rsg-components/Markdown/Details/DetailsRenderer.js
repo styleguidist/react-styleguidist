@@ -15,18 +15,16 @@ const styles = ({ space, color, fontSize, fontFamily }) => ({
 	},
 });
 
-export function DetailsRenderer({ classes, tag, children }) {
+export function DetailsRenderer({ classes }) {
 	return (
 		<details className={classes.details}>
-			<summary>{tag}</summary>
-			{children}
+			<summary>Solution</summary>
+			Some hidden text.
 		</details>
 	);
 }
 DetailsRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
-	children: PropTypes.node.isRequired,
-	tag: PropTypes.string.isRequired,
 };
 
 export default Styled(styles)(DetailsRenderer);

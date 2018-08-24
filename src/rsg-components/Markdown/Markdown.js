@@ -123,9 +123,6 @@ export const baseOverrides = {
 	},
 	details: {
 		component: Details,
-		props: {
-			tag: 'Details tag',
-		},
 	},
 };
 
