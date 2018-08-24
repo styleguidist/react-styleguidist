@@ -69,8 +69,9 @@ Some more text here.
 
 ## Details
 
-<details tag='This is a tag'>
- 
+<details>
+ <summary>Solution</summary>
+
 Some hidden text.
 
 </details>
