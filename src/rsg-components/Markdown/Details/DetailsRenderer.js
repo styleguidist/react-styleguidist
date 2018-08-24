@@ -3,15 +3,13 @@ import PropTypes from 'prop-types';
 
 import Styled from 'rsg-components/Styled';
 
-const styles = ({ space, color, fontSize, fontFamily }) => ({
+const styles = ({ space, color, fontFamily }) => ({
 	details: {
 		fontFamily: fontFamily.base,
-		whiteSpace: 'details',
-	},
-	summary: {
-		marginBottom: space[2],
-		fontSize: fontSize.small,
 		backgroundColor: color.codeBackground,
+		padding: space[2],
+		border: [[1, color.border, 'solid']],
+		lineHeight: space[0],
 	},
 });
 
