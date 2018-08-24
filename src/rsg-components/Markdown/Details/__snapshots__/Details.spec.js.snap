@@ -5,8 +5,8 @@ exports[`Markdown Details should render a Details 1`] = `
   class="rsg--details-0"
 >
   <summary>
-    This is a summary element
+    Solution
   </summary>
-  This is Details-formatted text.
+  Some hidden text.
 </details>
 `;
