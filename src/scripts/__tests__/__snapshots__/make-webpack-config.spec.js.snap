@@ -18,7 +18,6 @@ Array [
 
 exports[`should merge user webpack config 1`] = `
 Object {
-  "@scripts": "~/lib/scripts",
   "foo": "bar",
   "rsg-components": "~/lib/client/rsg-components",
 }
@@ -51,7 +50,6 @@ Array [
 
 exports[`should set aliases 1`] = `
 Object {
-  "@scripts": "~/lib/scripts",
   "rsg-components": "~/lib/client/rsg-components",
 }
 `;
