@@ -3,28 +3,28 @@
 exports[`getComponents() should return an object for components 1`] = `
 Array [
   Object {
-    "filepath": "../Foo.js",
+    "filepath": "../../Foo.js",
     "hasExamples": false,
     "metadata": Object {},
     "module": Object {
       "require": "Foo.js",
     },
-    "pathLine": "../Foo.js",
+    "pathLine": "../../Foo.js",
     "props": Object {
-      "require": "!!~/loaders/props-loader.js!Foo.js",
+      "require": "!!~/src/loaders/props-loader.js!Foo.js",
     },
     "slug": "foo",
   },
   Object {
-    "filepath": "../Bar.js",
+    "filepath": "../../Bar.js",
     "hasExamples": false,
     "metadata": Object {},
     "module": Object {
       "require": "Bar.js",
     },
-    "pathLine": "../Bar.js",
+    "pathLine": "../../Bar.js",
     "props": Object {
-      "require": "!!~/loaders/props-loader.js!Bar.js",
+      "require": "!!~/src/loaders/props-loader.js!Bar.js",
     },
     "slug": "bar",
   },

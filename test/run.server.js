@@ -1,5 +1,5 @@
 const path = require('path');
-const styleguidist = require('../scripts');
+const styleguidist = require('../lib/scripts');
 
 /* eslint-disable no-console */
 

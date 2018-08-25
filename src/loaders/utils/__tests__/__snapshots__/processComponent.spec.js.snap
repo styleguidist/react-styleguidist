@@ -2,15 +2,15 @@
 
 exports[`processComponent() should return an object for section with content 1`] = `
 Object {
-  "filepath": "../../../pizza.js",
+  "filepath": "../../../../pizza.js",
   "hasExamples": true,
   "metadata": Object {},
   "module": Object {
     "require": "pizza.js",
   },
-  "pathLine": "../../../pizza.js",
+  "pathLine": "../../../../pizza.js",
   "props": Object {
-    "require": "!!~/loaders/props-loader.js!pizza.js",
+    "require": "!!~/src/loaders/props-loader.js!pizza.js",
   },
   "slug": "pizza",
 }

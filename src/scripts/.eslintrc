@@ -2,5 +2,8 @@
 	"extends": "tamia",
 	"parserOptions": {
 		"sourceType": "script"
+	},
+	"rules": {
+		"for-direction": "off"
 	}
 }

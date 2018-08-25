@@ -15,7 +15,7 @@ const getWebpackVersion = require('./utils/getWebpackVersion');
 const RENDERER_REGEXP = /Renderer$/;
 
 const isWebpack4 = getWebpackVersion() >= 4;
-const sourceDir = path.resolve(__dirname, '../lib');
+const sourceDir = path.resolve(__dirname, '../../lib');
 
 module.exports = function(config, env) {
 	process.env.NODE_ENV = process.env.NODE_ENV || env;
@@ -34,7 +34,7 @@ module.exports = function(config, env) {
 	};
 
 	let webpackConfig = {
-		entry: config.require.concat([path.resolve(sourceDir, 'index')]),
+		entry: config.require.concat([path.resolve(sourceDir, 'client/index')]),
 		output: {
 			path: config.styleguideDir,
 			filename: 'build/[name].bundle.js',
@@ -140,7 +140,8 @@ module.exports = function(config, env) {
 
 	// Add components folder alias at the end so users can override our components to customize the style guide
 	// (their aliases should be before this one)
-	webpackConfig.resolve.alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
+	webpackConfig.resolve.alias['rsg-components'] = path.resolve(sourceDir, 'client/rsg-components');
+	webpackConfig.resolve.alias['@scripts'] = path.resolve(sourceDir, 'scripts');
 
 	if (config.dangerouslyUpdateWebpackConfig) {
 		webpackConfig = config.dangerouslyUpdateWebpackConfig(webpackConfig, env);

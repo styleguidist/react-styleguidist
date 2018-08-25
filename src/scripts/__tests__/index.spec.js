@@ -12,7 +12,7 @@ afterEach(() => {
 });
 
 it('should return API methods', () => {
-	const api = styleguidist(require('../../test/data/styleguide.config.js'));
+	const api = styleguidist(require('../../../test/data/styleguide.config.js'));
 	expect(api).toBeTruthy();
 	expect(typeof api.build).toBe('function');
 	expect(typeof api.server).toBe('function');
