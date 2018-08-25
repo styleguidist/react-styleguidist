@@ -141,7 +141,6 @@ module.exports = function(config, env) {
 	// Add components folder alias at the end so users can override our components to customize the style guide
 	// (their aliases should be before this one)
 	webpackConfig.resolve.alias['rsg-components'] = path.resolve(sourceDir, 'client/rsg-components');
-	webpackConfig.resolve.alias['@scripts'] = path.resolve(sourceDir, 'scripts');
 
 	if (config.dangerouslyUpdateWebpackConfig) {
 		webpackConfig = config.dangerouslyUpdateWebpackConfig(webpackConfig, env);

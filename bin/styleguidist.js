@@ -9,12 +9,10 @@ const webpackDevServerUtils = require('react-dev-utils/WebpackDevServerUtils');
 const openBrowser = require('react-dev-utils/openBrowser');
 const logger = require('glogg')('rsg');
 
-const paths = require('./paths');
-
-const getConfig = require(paths.getConfig);
-const setupLogger = require(paths.setupLogger);
-const consts = require(paths.consts);
-const StyleguidistError = require(paths.StyleguidistError);
+const getConfig = require('../src/scripts/config');
+const setupLogger = require('../src/scripts/logger');
+const consts = require('../src/scripts/consts');
+const StyleguidistError = require('../src/scripts/utils/error');
 
 const argv = minimist(process.argv.slice(2));
 const command = argv._[0];
@@ -40,7 +38,7 @@ process.on('uncaughtException', err => {
 });
 
 // Make sure user has webpack installed
-require(paths.ensureWebpack);
+require('../src/scripts/utils/ensureWebpack');
 
 // Set environment before loading style guide config because user’s webpack config may use it
 const env = command === 'build' ? 'production' : 'development';
@@ -94,7 +92,7 @@ function updateConfig(config) {
 function commandBuild() {
 	console.log('Building style guide...');
 
-	const build = require(paths.build);
+	const build = require('../src/scripts/build');
 	const compiler = build(config, err => {
 		if (err) {
 			console.error(err);
@@ -121,7 +119,7 @@ function commandBuild() {
 function commandServer() {
 	let spinner;
 
-	const server = require(paths.server);
+	const server = require('../src/scripts/server');
 	const compiler = server(config, err => {
 		if (err) {
 			console.error(err);
