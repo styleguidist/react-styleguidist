@@ -3,11 +3,8 @@ module.exports = {
 		[
 			'@babel/env',
 			{
-				modules: 'commonjs',
+				modules: false,
 				useBuiltIns: 'usage',
-				targets: {
-					node: '6',
-				},
 			},
 		],
 		'@babel/react',
