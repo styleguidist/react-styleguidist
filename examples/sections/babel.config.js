@@ -3,7 +3,6 @@ module.exports = {
 		[
 			'@babel/env',
 			{
-				debug: true,
 				modules: false,
 				useBuiltIns: 'usage',
 			},

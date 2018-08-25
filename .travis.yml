@@ -21,7 +21,6 @@ branches:
     - /^v\d+\.\d+\.\d+$/
 stages:
   - lint
-  - typecheck
   - test
   - integration
   - coverage
