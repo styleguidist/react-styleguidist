@@ -8,7 +8,6 @@ const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const webpackDevServerUtils = require('react-dev-utils/WebpackDevServerUtils');
 const openBrowser = require('react-dev-utils/openBrowser');
 const logger = require('glogg')('rsg');
-
 const getConfig = require('../scripts/config');
 const setupLogger = require('../scripts/logger');
 const consts = require('../scripts/consts');

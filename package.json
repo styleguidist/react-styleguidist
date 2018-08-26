@@ -17,7 +17,7 @@
   "license": "MIT",
   "main": "scripts/index.js",
   "bin": {
-    "styleguidist": "src/bin/styleguidist.js"
+    "styleguidist": "lib/bin/styleguidist.js"
   },
   "files": [
     "bin",
