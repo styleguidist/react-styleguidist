@@ -20,10 +20,7 @@
     "styleguidist": "lib/bin/styleguidist.js"
   },
   "files": [
-    "bin",
-    "lib",
-    "loaders",
-    "scripts"
+    "lib"
   ],
   "engines": {
     "node": ">=6",
@@ -141,18 +138,18 @@
     "test:jest": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "start": "node src/bin/styleguidist.js server --config examples/basic/styleguide.config.js",
-    "start:customised": "node src/bin/styleguidist.js server --config examples/customised/styleguide.config.js",
-    "start:sections": "node src/bin/styleguidist.js server --config examples/sections/styleguide.config.js",
-    "start:ui": "node src/bin/styleguidist.js server",
+    "start": "node lib/bin/styleguidist.js server --config examples/basic/styleguide.config.js",
+    "start:customised": "node lib/bin/styleguidist.js server --config examples/customised/styleguide.config.js",
+    "start:sections": "node lib/bin/styleguidist.js server --config examples/sections/styleguide.config.js",
+    "start:ui": "node lib/bin/styleguidist.js server",
     "lint": "eslint . --cache --fix",
     "flow": "flow",
     "compile": "babel --delete-dir-on-start --ignore '**/*.spec.js','**/__mocks__' -d lib/ src/",
     "compile:watch": "babel --ignore '**/*.spec.js','**/__mocks__' --watch -d lib/ src/",
     "prepublishOnly": "npm run compile",
-    "build:basic": "node src/bin/styleguidist.js build --config examples/basic/styleguide.config.js",
-    "build:customised": "node src/bin/styleguidist.js build --config examples/customised/styleguide.config.js",
-    "build:sections": "node src/bin/styleguidist.js build --config examples/sections/styleguide.config.js",
+    "build:basic": "node lib/bin/styleguidist.js build --config examples/basic/styleguide.config.js",
+    "build:customised": "node lib/bin/styleguidist.js build --config examples/customised/styleguide.config.js",
+    "build:sections": "node lib/bin/styleguidist.js build --config examples/sections/styleguide.config.js",
     "test:browser:pre": "npm i --no-save puppeteer",
     "test:browser:basic": "node test/browser.js examples/basic/styleguide/index.html",
     "test:browser:customised": "node test/browser.js examples/customised/styleguide/index.html",
@@ -181,8 +178,8 @@
       "<rootDir>/test/"
     ],
     "coveragePathIgnorePatterns": [
-      "<rootDir>/scripts/server.js",
-      "<rootDir>/scripts/build.js"
+      "<rootDir>/src/scripts/server.js",
+      "<rootDir>/src/scripts/build.js"
     ],
     "snapshotSerializers": [
       "deabsdeep/serializer",
