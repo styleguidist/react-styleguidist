@@ -20,7 +20,8 @@
     "styleguidist": "lib/bin/styleguidist.js"
   },
   "files": [
-    "lib"
+    "lib",
+    "templates"
   ],
   "engines": {
     "node": ">=6",
@@ -144,8 +145,8 @@
     "start:ui": "node lib/bin/styleguidist.js server",
     "lint": "eslint . --cache --fix",
     "flow": "flow",
-    "compile": "babel --delete-dir-on-start --ignore '**/*.spec.js','**/__mocks__' -d lib/ src/",
-    "compile:watch": "babel --ignore '**/*.spec.js','**/__mocks__' --watch -d lib/ src/",
+    "compile": "babel --delete-dir-on-start --ignore '**/*.spec.js','**/__*__' -d lib/ src/",
+    "compile:watch": "npm run compile -- --watch",
     "prepublishOnly": "npm run compile",
     "build:basic": "node lib/bin/styleguidist.js build --config examples/basic/styleguide.config.js",
     "build:customised": "node lib/bin/styleguidist.js build --config examples/customised/styleguide.config.js",
