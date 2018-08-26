@@ -2,7 +2,7 @@ import path from 'path';
 import deabsDeep from 'deabsdeep';
 import getComponentFiles from '../getComponentFiles';
 
-const configDir = path.resolve(__dirname, '../../../test');
+const configDir = path.resolve(__dirname, '../../../../test');
 const components = ['one.js', 'two.js'];
 const glob = 'components/**/[A-Z]*.js';
 const globArray = ['components/Annotation/[A-Z]*.js', 'components/Button/[A-Z]*.js'];

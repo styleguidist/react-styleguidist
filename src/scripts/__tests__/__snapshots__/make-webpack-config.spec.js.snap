@@ -6,7 +6,7 @@ Array [
     "options": Object {
       "allowExternal": false,
       "dry": false,
-      "root": "~/scripts/__tests__",
+      "root": "~/src/scripts/__tests__",
       "verbose": true,
     },
     "paths": Array [
@@ -19,7 +19,7 @@ Array [
 exports[`should merge user webpack config 1`] = `
 Object {
   "foo": "bar",
-  "rsg-components": "~/lib/rsg-components",
+  "rsg-components": "~/src/client/rsg-components",
 }
 `;
 
@@ -43,13 +43,13 @@ exports[`should prepend requires as webpack entries 1`] = `
 Array [
   "a/b.js",
   "c/d.css",
-  "~/lib/index",
+  "~/src/client/index",
   "~/node_modules/react-dev-utils/webpackHotDevClient.js",
 ]
 `;
 
 exports[`should set aliases 1`] = `
 Object {
-  "rsg-components": "~/lib/rsg-components",
+  "rsg-components": "~/src/client/rsg-components",
 }
 `;

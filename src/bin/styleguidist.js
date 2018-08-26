@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
-
 const minimist = require('minimist');
 const kleur = require('kleur');
 const ora = require('ora');

@@ -125,9 +125,9 @@ Object {
   "description": "The only true button.
 ",
   "displayName": "Button",
-  "doclets": Object {},
-  "example": Object {
-    "require": "!!~/loaders/examples-loader.js!../../../test/components/Placeholder/examples.md",
+  "doclets": Object {
+    "example": "../../../test/components/Placeholder/examples.md
+",
   },
   "methods": Array [],
   "tags": Object {

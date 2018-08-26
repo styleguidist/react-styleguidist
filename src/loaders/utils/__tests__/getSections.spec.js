@@ -1,7 +1,7 @@
 import path from 'path';
 import getSections, { processSection } from '../getSections';
 
-const configDir = path.resolve(__dirname, '../../../test');
+const configDir = path.resolve(__dirname, '../../../../test');
 const config = {
 	configDir,
 	exampleMode: 'collapse',

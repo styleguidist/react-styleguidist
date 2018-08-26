@@ -12,7 +12,7 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "moduleDirectory": ["src", "node_modules"]
+        "moduleDirectory": ["src/client", "node_modules"]
       }
     }
   },

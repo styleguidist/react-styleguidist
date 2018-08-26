@@ -17,13 +17,11 @@
   "license": "MIT",
   "main": "scripts/index.js",
   "bin": {
-    "styleguidist": "bin/styleguidist.js"
+    "styleguidist": "lib/bin/styleguidist.js"
   },
   "files": [
-    "bin",
     "lib",
-    "loaders",
-    "scripts"
+    "templates"
   ],
   "engines": {
     "node": ">=6",
@@ -92,16 +90,16 @@
     "react-dom": ">=15"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.56",
-    "@babel/core": "^7.0.0-beta.56",
-    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.56",
-    "@babel/preset-env": "^7.0.0-beta.56",
-    "@babel/preset-flow": "^7.0.0-beta.56",
-    "@babel/preset-react": "^7.0.0-beta.56",
+    "@babel/cli": "^7.0.0-rc.3",
+    "@babel/core": "^7.0.0-rc.3",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-rc.3",
+    "@babel/preset-env": "^7.0.0-rc.3",
+    "@babel/preset-flow": "^7.0.0-rc.3",
+    "@babel/preset-react": "^7.0.0-rc.3",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^8.2.5",
+    "babel-eslint": "^8.2.6",
     "babel-jest": "^23.4.2",
-    "babel-loader": "^8.0.0-beta.4",
+    "babel-loader": "^8.0.0-beta.6",
     "cheerio": "^1.0.0-rc.2",
     "css-loader": "^0.28.11",
     "deabsdeep": "^1.0.6",
@@ -131,7 +129,7 @@
     "strip-shebang": "^1.0.2",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",
-    "webpack": "^4.15.1",
+    "webpack": "^4.17.1",
     "webpack-cli": "^2.0.13"
   },
   "scripts": {
@@ -141,18 +139,18 @@
     "test:jest": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "start": "node bin/styleguidist.js server --config examples/basic/styleguide.config.js",
-    "start:customised": "node bin/styleguidist.js server --config examples/customised/styleguide.config.js",
-    "start:sections": "node bin/styleguidist.js server --config examples/sections/styleguide.config.js",
-    "start:ui": "node bin/styleguidist.js server",
+    "start": "node lib/bin/styleguidist.js server --config examples/basic/styleguide.config.js",
+    "start:customised": "node lib/bin/styleguidist.js server --config examples/customised/styleguide.config.js",
+    "start:sections": "node lib/bin/styleguidist.js server --config examples/sections/styleguide.config.js",
+    "start:ui": "node lib/bin/styleguidist.js server",
     "lint": "eslint . --cache --fix",
     "flow": "flow",
-    "compile": "babel --delete-dir-on-start --ignore '*.spec.js' -d lib/ src/",
-    "compile:watch": "babel --ignore '*.spec.js' --watch -d lib/ src/",
+    "compile": "babel --delete-dir-on-start --ignore '**/*.spec.js','**/__*__' -d lib/ src/",
+    "compile:watch": "npm run compile -- --watch",
     "prepublishOnly": "npm run compile",
-    "build:basic": "node bin/styleguidist.js build --config examples/basic/styleguide.config.js",
-    "build:customised": "node bin/styleguidist.js build --config examples/customised/styleguide.config.js",
-    "build:sections": "node bin/styleguidist.js build --config examples/sections/styleguide.config.js",
+    "build:basic": "node lib/bin/styleguidist.js build --config examples/basic/styleguide.config.js",
+    "build:customised": "node lib/bin/styleguidist.js build --config examples/customised/styleguide.config.js",
+    "build:sections": "node lib/bin/styleguidist.js build --config examples/sections/styleguide.config.js",
     "test:browser:pre": "npm i --no-save puppeteer",
     "test:browser:basic": "node test/browser.js examples/basic/styleguide/index.html",
     "test:browser:customised": "node test/browser.js examples/customised/styleguide/index.html",
@@ -173,7 +171,7 @@
       "./test/jestsetup.js"
     ],
     "modulePaths": [
-      "./src"
+      "./src/client"
     ],
     "testPathIgnorePatterns": [
       "<rootDir>/lib/",
@@ -181,8 +179,8 @@
       "<rootDir>/test/"
     ],
     "coveragePathIgnorePatterns": [
-      "<rootDir>/scripts/server.js",
-      "<rootDir>/scripts/build.js"
+      "<rootDir>/src/scripts/server.js",
+      "<rootDir>/src/scripts/build.js"
     ],
     "snapshotSerializers": [
       "deabsdeep/serializer",

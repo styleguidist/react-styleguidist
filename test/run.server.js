@@ -1,7 +1,7 @@
-const path = require('path');
-const styleguidist = require('../scripts');
+/* eslint-disable no-console, import/no-unresolved */
 
-/* eslint-disable no-console */
+const path = require('path');
+const styleguidist = require('../lib/scripts');
 
 const dir = path.resolve(__dirname, '../examples/basic/src');
 

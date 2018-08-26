@@ -6,8 +6,8 @@ import getConfig from '../../scripts/config';
 
 /* eslint-disable quotes */
 
-const file = path.resolve(__dirname, '../../test/components/Button/Button.js');
-const configDir = path.resolve(__dirname, '../../test');
+const file = path.resolve(__dirname, '../../../test/components/Button/Button.js');
+const configDir = path.resolve(__dirname, '../../../test');
 
 it('should return valid, parsable JS', () => {
 	const result = styleguideLoader.pitch.call(
@@ -32,7 +32,7 @@ it('should return correct component paths: default glob pattern', () => {
 		{
 			request: file,
 			_styleguidist: {
-				...getConfig(path.resolve(__dirname, '../../test/apps/defaults/styleguide.config.js')),
+				...getConfig(path.resolve(__dirname, '../../../test/apps/defaults/styleguide.config.js')),
 			},
 			addContextDependency: () => {},
 		},

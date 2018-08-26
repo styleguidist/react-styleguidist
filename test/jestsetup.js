@@ -3,7 +3,7 @@
 import { configure, shallow, render, mount } from 'enzyme';
 import keymirror from 'keymirror';
 import Adapter from 'enzyme-adapter-react-16';
-import * as theme from '../src/styles/theme';
+import * as theme from '../src/client/styles/theme';
 
 configure({ adapter: new Adapter() });
 

@@ -58,7 +58,7 @@ module.exports = {
 		type: ['boolean', 'existing file path'],
 		default: false,
 		process: val =>
-			val === true ? path.resolve(__dirname, '../templates/DefaultExample.md') : val,
+			val === true ? path.resolve(__dirname, '../../../templates/DefaultExample.md') : val,
 	},
 	exampleMode: {
 		type: 'string',

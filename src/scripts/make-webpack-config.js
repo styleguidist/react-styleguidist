@@ -15,7 +15,7 @@ const getWebpackVersion = require('./utils/getWebpackVersion');
 const RENDERER_REGEXP = /Renderer$/;
 
 const isWebpack4 = getWebpackVersion() >= 4;
-const sourceDir = path.resolve(__dirname, '../lib');
+const sourceDir = path.resolve(__dirname, '../client');
 
 module.exports = function(config, env) {
 	process.env.NODE_ENV = process.env.NODE_ENV || env;

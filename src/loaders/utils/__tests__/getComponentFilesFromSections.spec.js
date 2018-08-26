@@ -2,7 +2,7 @@ import path from 'path';
 import deabsDeep from 'deabsdeep';
 import getComponentFilesFromSections from '../getComponentFilesFromSections';
 
-const configDir = path.resolve(__dirname, '../../../test');
+const configDir = path.resolve(__dirname, '../../../../test');
 const sections = [
 	{
 		name: 'Readme',

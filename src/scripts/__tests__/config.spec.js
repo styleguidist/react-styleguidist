@@ -3,7 +3,7 @@ import path from 'path';
 import getConfig from '../config';
 
 const cwd = process.cwd();
-const configDir = path.resolve(__dirname, '../../test/apps/defaults');
+const configDir = path.resolve(__dirname, '../../../test/apps/defaults');
 beforeEach(() => {
 	process.chdir(configDir);
 });
@@ -17,7 +17,7 @@ it('should read a config file', () => {
 });
 
 it('should accept absolute path', () => {
-	const result = getConfig(path.join(__dirname, '../../test/apps/basic/styleguide.config.js'));
+	const result = getConfig(path.join(__dirname, '../../../test/apps/basic/styleguide.config.js'));
 	expect(result).toMatchObject({ title: 'React Style Guide Example' });
 });
 
