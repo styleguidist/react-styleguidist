@@ -34,10 +34,6 @@ jobs:
         - npm run lint
         - npx danger ci
 
-    - stage: typecheck
-      script:
-        - npm run flow
-
     - stage: integration
       script:
         # Compile JS
