@@ -1,5 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`if a custom href is provided, should use it instead of generating internal link 1`] = `
+<Styled(ComponentsList)
+  classes={Object {}}
+  items={
+    Array [
+      Object {
+        "href": "http://example.com",
+        "name": "External example",
+        "visibleName": "External example",
+      },
+      Object {
+        "href": "blank#input",
+        "name": "Input",
+        "slug": "input",
+        "visibleName": "Input",
+      },
+    ]
+  }
+/>
+`;
+
 exports[`should ignore items without visibleName 1`] = `
 <ul>
   <li

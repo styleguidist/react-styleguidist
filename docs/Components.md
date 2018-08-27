@@ -113,6 +113,8 @@ Each section consists of (all fields are optional):
 - `exampleMode` — Initial state of the code example tab, uses [exampleMode](Configuration.md#examplemode).
 - `usageMode` — Initial state of the props and methods tab, uses [usageMode](Configuration.md#usagemode).
 - `ignore` — string/array of globs that should not be included in the section.
+- `href` - an URL to navigate to instead of navigating to the section content
+- `external` - if set, the link will open in a new window
 
 Configuring a style guide with textual documentation section and a list of components would look like:
 
@@ -134,6 +136,11 @@ module.exports = {
         {
           name: 'Configuration',
           content: 'docs/configuration.md'
+        },
+        {
+          name: 'Live Demo',
+          external: true,
+          href: 'http://example.com'
         }
       ]
     },
