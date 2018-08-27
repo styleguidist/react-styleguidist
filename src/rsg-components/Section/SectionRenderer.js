@@ -11,7 +11,17 @@ const styles = ({ space }) => ({
 });
 
 export function SectionRenderer(allProps) {
-	const { classes, name, slug, content, components, depth, description, pagePerSection } = allProps;
+	const {
+		classes,
+		name,
+		slug,
+		content,
+		components,
+		sections,
+		depth,
+		description,
+		pagePerSection,
+	} = allProps;
 
 	return (
 		<section className={classes.root}>
@@ -28,6 +38,7 @@ export function SectionRenderer(allProps) {
 			)}
 			{description && <Markdown text={description} />}
 			{content}
+			{sections}
 			{components}
 		</section>
 	);
