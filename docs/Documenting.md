@@ -234,14 +234,15 @@ Code examples in Markdown use ES6+JSX syntax. All components covered by the styl
 
 > **Note:** Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the frontend, it supports [most of the ES6 features](https://buble.surge.sh/guide/#unsupported-features).
 
-You can also `require()` other modules (like mock data for unit tests):
+You can also `import` other modules (like mock data for unit tests):
 
-```jsx
-const mockData = require('./mocks')
+````jsx
+// ```jsx inside Markdown
+import mockData from './mocks'
 ;<Message content={mockData.hello} />
-```
+````
 
-> **Note:** You can only use `require()` in Markdown files. ES6 `import()` syntax isn’t supported.
+> **Note:** You can only use `import` by editing your Markdown files, not by editing the example code in the browser.
 
 Each example has its own state that you can access as `state` variable and change with `setState()` function. Default state is `{}` and can be set with `initialState`.
 
@@ -287,7 +288,7 @@ class ModalExample extends React.Component {
 ;<ModalExample />
 ```
 
-> **Note:** If you need a more complex demo it’s often a good idea to define it in a separate JavaScript file and `require` it in Markdown.
+> **Note:** If you need a more complex demo it’s often a good idea to define it in a separate JavaScript file and `import` it in Markdown.
 
 ## Limitations
 

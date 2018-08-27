@@ -69,12 +69,13 @@ module.exports = {
 
 Enable [skipComponentsWithoutExample](Configuration.md#skipcomponentswithoutexample) option and do not add example file (`Readme.md` by default) to components you want to ignore.
 
-Require these components in your examples:
+Import these components in your examples:
 
-```jsx
-const Button = require('../common/Button')
+````jsx
+// ```jsx inside Markdown
+import Button from '../common/Button'
 ;<Button>Push Me Tender</Button>
-```
+````
 
 Or, to make these components available for all examples:
 
@@ -89,16 +90,17 @@ import Button from './src/components/common/Button'
 global.Button = Button
 ```
 
-The `Button` component will be available in every example without a need to `require` it.
+The `Button` component will be available in every example without a need to `import` it.
 
 ## How to render React components that aren’t part of the style guide?
 
-Require these components in your examples:
+Import these components in your examples:
 
-    ```jsx noeditor
-    const ColorPalette = require('./components/ColorPalette').default
-    ;<ColorPalette />
-    ```
+````jsx
+// ```jsx or ```jsx noeditor inside Markdown
+import ColorPalette from './components/ColorPalette'
+;<ColorPalette />
+````
 
 ## How to dynamically load other components in an example?
 
@@ -117,11 +119,9 @@ const icons = iconsContext.keys().reduce((icons, file) => {
 export default icons
 ```
 
-````markdown
-// IconGallery.md
-
-```jsx noeditor
-const icons = require('./load-icons').default
+````jsx
+// ```jsx or ```jsx noeditor inside Markdown
+import icons from './load-icons'
 const iconElements = Object.keys(icons).map(iconName => {
   const Icon = icons[iconName]
   return (
@@ -131,7 +131,6 @@ const iconElements = Object.keys(icons).map(iconName => {
   )
 })
 <div>{iconElements}</div>
-```
 ````
 
 ## How to display the source code of any file?
@@ -277,13 +276,13 @@ For example you can replace the `Wrapper` component to wrap any example in the [
 const path = require('path')
 module.exports = {
   styleguideComponents: {
-    Wrapper: path.join(__dirname, 'lib/styleguide/Wrapper')
+    Wrapper: path.join(__dirname, 'src/styleguide/Wrapper')
   }
 }
 ```
 
 ```jsx
-// lib/styleguide/Wrapper.js
+// src/styleguide/Wrapper.js
 import React, { Component } from 'react'
 import { IntlProvider } from 'react-intl'
 export default class Wrapper extends Component {
@@ -304,14 +303,14 @@ module.exports = {
   styleguideComponents: {
     StyleGuideRenderer: path.join(
       __dirname,
-      'lib/styleguide/StyleGuideRenderer'
+      'src/styleguide/StyleGuideRenderer'
     )
   }
 }
 ```
 
 ```jsx
-// lib/styleguide/StyleGuideRenderer.js
+// src/styleguide/StyleGuideRenderer.js
 import React from 'react'
 const StyleGuideRenderer = ({
   title,

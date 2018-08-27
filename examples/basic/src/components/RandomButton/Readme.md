@@ -1,6 +1,6 @@
-You can `require` external files in your examples:
+You can `import` external files in your examples:
 
 ```jsx
-const names = require('dog-names').all
-;<RandomButton variants={names} />
+import { all } from 'dog-names'
+;<RandomButton variants={all} />
 ```

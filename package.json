@@ -80,6 +80,7 @@
     "react-simple-code-editor": "^0.4.2",
     "recast": "^0.13.0",
     "remark": "^9.0.0",
+    "rewrite-imports": "^1.3.0",
     "to-ast": "^1.0.0",
     "type-detect": "^4.0.8",
     "uglifyjs-webpack-plugin": "1.2.7",
