@@ -10,7 +10,7 @@ const styles = ({ fontFamily, fontSize, color, space }) => ({
 	},
 	stack: {
 		color: color.error,
-		whiteSpace: 'pre',
+		whiteSpace: 'pre-wrap',
 		fontFamily: fontFamily.monospace,
 	},
 	message: {

@@ -9,7 +9,7 @@ const styles = ({ space, color, fontSize, fontFamily, borderRadius }) => ({
 		fontSize: fontSize.small,
 		lineHeight: 1.5,
 		color: color.base,
-		whiteSpace: 'pre',
+		whiteSpace: 'pre-wrap',
 		wordWrap: 'normal',
 		tabSize: 2,
 		hyphens: 'none',
