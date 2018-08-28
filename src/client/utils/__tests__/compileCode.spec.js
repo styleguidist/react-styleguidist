@@ -11,7 +11,10 @@ var bar = baz.bar;"
 
 	test('transform imports to require()', () => {
 		const result = compileCode(`import foo from 'bar'`);
-		expect(result).toMatchInlineSnapshot(`"var foo = require('bar');"`);
+		expect(result).toMatchInlineSnapshot(`
+"function ri$interop(m){return m.default||m}
+var foo = ri$interop(require('bar'));"
+`);
 	});
 
 	test('wrap JSX in Fragment', () => {
