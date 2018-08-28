@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Markdown Detail should render a Detail 1`] = `
+<details
+  class="rsg--details-0"
+/>
+`;

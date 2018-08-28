@@ -67,7 +67,7 @@ console.log(eatFood(food))
 
 Some more text here.
 
-## Details
+## Detail
 
 <details>
  <summary>Solution</summary>
