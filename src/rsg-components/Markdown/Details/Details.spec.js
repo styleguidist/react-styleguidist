@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Details from './index';
+import { Details } from './index';
 
 describe('Markdown Details', () => {
 	it('should render a Details', () => {
