@@ -26,7 +26,9 @@ export function ArgumentsRenderer({ classes, args, heading }) {
 					<Heading level={5}>Arguments</Heading>
 				</div>
 			)}
-			{args.map(arg => <Argument key={arg.name} {...arg} />)}
+			{args.map(arg => (
+				<Argument key={arg.name} {...arg} />
+			))}
 		</div>
 	);
 }

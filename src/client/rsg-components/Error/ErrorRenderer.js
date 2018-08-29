@@ -38,7 +38,8 @@ export function ErrorRenderer({ classes, error, info }) {
 						href="https://github.com/styleguidist/react-styleguidist/issues"
 					>
 						please submit an issue
-					</a>.
+					</a>
+					.
 				</p>
 			</div>
 		</div>
