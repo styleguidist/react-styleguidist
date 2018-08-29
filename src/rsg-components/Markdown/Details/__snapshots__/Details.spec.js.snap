@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Markdown Details should render a Details 1`] = `
+<details
+  class="rsg--details-0"
+>
+  This is a hidden text.
+</details>
+`;
