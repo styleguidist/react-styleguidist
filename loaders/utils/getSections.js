@@ -68,8 +68,10 @@ function processSection(section, config, parentDepth) {
 		slug: slugger.slug(section.name),
 		sections: getSections(section.sections || [], config, sectionDepth),
 		filepath: contentRelativePath,
+		href: section.href,
 		components: getSectionComponents(section, config),
 		content,
+		external: section.external,
 	};
 }
 
