@@ -4,7 +4,6 @@ it('should return valid, parsable JS', () => {
 	const exampleMarkdown = `
 # header
 
-	const _ = require('lodash');
 	<div/>
 
 text
@@ -15,11 +14,7 @@ text
 `;
 	const result = examplesLoader.call(
 		{
-			_styleguidist: {
-				context: {
-					_: 'lodash',
-				},
-			},
+			_styleguidist: {},
 		},
 		exampleMarkdown
 	);
@@ -78,4 +73,60 @@ it('should pass updateExample function from config to chunkify', () => {
 		},
 		'/path/to/foo/examples/file'
 	);
+});
+
+it('should generate require map', () => {
+	const exampleMarkdown = `
+One:
+
+    const _ = require('lodash');
+	<X/>
+
+Two:
+
+	<Y/>
+`;
+	const result = examplesLoader.call(
+		{
+			_styleguidist: {},
+		},
+		exampleMarkdown
+	);
+
+	expect(result).toBeTruthy();
+	expect(() => new Function(result)).not.toThrowError(SyntaxError); // eslint-disable-line no-new-func
+	expect(result).toMatch(`'lodash': require('lodash')`);
+	expect(result).toMatch(`'react': require('react')`);
+});
+
+it('should work with multiple JSX element on the root level', () => {
+	const exampleMarkdown = `
+    const _ = require('lodash');
+	<X/>
+	<Y/>
+`;
+	const result = examplesLoader.call(
+		{
+			_styleguidist: {},
+		},
+		exampleMarkdown
+	);
+
+	expect(result).toBeTruthy();
+	expect(() => new Function(result)).not.toThrowError(SyntaxError); // eslint-disable-line no-new-func
+	expect(result).toMatch(`'lodash': require('lodash')`);
+});
+
+it('should prepend example code with React require()', () => {
+	const exampleMarkdown = `<X/>`;
+	const result = examplesLoader.call(
+		{
+			_styleguidist: {},
+		},
+		exampleMarkdown
+	);
+
+	expect(result).toBeTruthy();
+	expect(() => new Function(result)).not.toThrowError(SyntaxError); // eslint-disable-line no-new-func
+	expect(result).toMatch(`var React = require('react');`);
 });

@@ -1,7 +1,7 @@
 const path = require('path');
 const filter = require('lodash/filter');
 const map = require('lodash/map');
-const reduce = require('lodash/reduce');
+const values = require('lodash/values');
 const loaderUtils = require('loader-utils');
 const generate = require('escodegen').generate;
 const toAst = require('to-ast');
@@ -32,23 +32,24 @@ function examplesLoader(source) {
 	// Load examples
 	const examples = chunkify(source, updateExample);
 
-	// We're analysing the examples' source code to figure out the require statements. We do it manually with regexes,
-	// because webpack unfortunately doesn't expose its smart logic for rewriting requires
-	// (https://webpack.github.io/docs/context.html). Note that we can't just use require(...) directly in runtime,
-	// because webpack changes its name to __webpack__require__ or something.
-	const codeFromAllExamples = map(filter(examples, { type: 'code' }), 'content').join('\n');
-	const requiresFromExamples = getRequires(codeFromAllExamples);
-	const allRequires = Object.assign({}, requiresFromExamples, fullContext);
+	// Find all import statements and require() calls in examples to make them
+	// available in webpack context at runtime.
+	// Note that we can't just use require() directly at runtime,
+	// because webpack changes its name to something like __webpack__require__().
+	const allCodeExamples = filter(examples, { type: 'code' });
+	const requiresFromExamples = allCodeExamples.reduce((requires, example) => {
+		return requires.concat(getRequires(example.content));
+	}, []);
 
-	// “Prerequire” modules required in Markdown examples and context so they end up in a bundle and be available at runtime
-	const allRequiresCode = reduce(
-		allRequires,
-		(requires, requireRequest) => {
-			requires[requireRequest] = requireIt(requireRequest);
-			return requires;
-		},
-		{}
-	);
+	// React + context requires + example requires
+	const allRequires = requiresFromExamples.concat(values(fullContext));
+
+	// “Prerequire” modules required in Markdown examples and context so they
+	// end up in a bundle and be available at runtime
+	const allRequiresCode = allRequires.reduce((requires, requireRequest) => {
+		requires[requireRequest] = requireIt(requireRequest);
+		return requires;
+	}, {});
 
 	// Require context modules so they are available in an example
 	const requireContextCode = b.program(

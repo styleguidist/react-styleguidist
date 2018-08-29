@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { transform } from 'buble';
 import Wrapper from 'rsg-components/Wrapper';
+import compileCode from '../../utils/compileCode';
 import splitExampleCode from '../../utils/splitExampleCode';
 
-/* eslint-disable no-invalid-this, react/no-multi-comp */
-
-const FragmentTag = React.Fragment ? 'React.Fragment' : 'div';
-
-const compileCode = (code, config) => transform(code, config).code;
-const wrapCodeInFragment = code => `<${FragmentTag}>${code}</${FragmentTag}>;`;
+/* eslint-disable react/no-multi-comp */
 
 // Wrap everything in a React component to leverage the state management
 // of this component
@@ -63,20 +58,9 @@ export default class ReactExample extends Component {
 		`);
 	}
 
-	compileCode(code) {
-		try {
-			const wrappedCode = code.trim().match(/^</) ? wrapCodeInFragment(code) : code;
-			return compileCode(wrappedCode, this.props.compilerConfig);
-		} catch (err) {
-			if (this.props.onError) {
-				this.props.onError(err);
-			}
-		}
-		return false;
-	}
-
 	render() {
-		const compiledCode = this.compileCode(this.props.code);
+		const { code, compilerConfig, onError } = this.props;
+		const compiledCode = compileCode(code, compilerConfig, onError);
 		if (!compiledCode) {
 			return null;
 		}
@@ -85,7 +69,7 @@ export default class ReactExample extends Component {
 		const initialState = this.getExampleInitialState(head);
 		const exampleComponent = this.getExampleComponent(example);
 		const wrappedComponent = (
-			<Wrapper onError={this.props.onError}>
+			<Wrapper onError={onError}>
 				<StateHolder component={exampleComponent} initialState={initialState} />
 			</Wrapper>
 		);
