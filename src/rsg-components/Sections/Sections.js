@@ -6,7 +6,9 @@ import SectionsRenderer from 'rsg-components/Sections/SectionsRenderer';
 export default function Sections({ sections, depth }) {
 	return (
 		<SectionsRenderer>
-			{sections.map((section, idx) => <Section key={idx} section={section} depth={depth} />)}
+			{sections
+				.filter(section => !section.href)
+				.map((section, idx) => <Section key={idx} section={section} depth={depth} />)}
 		</SectionsRenderer>
 	);
 }
