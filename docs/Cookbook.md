@@ -119,7 +119,7 @@ export default icons
 
 ````jsx
 // IconGallery.md
-```jsx noeditor
+;```jsx noeditor
 const icons = require('./load-icons').default
 
 const iconElements = Object.keys(icons).map(iconName => {

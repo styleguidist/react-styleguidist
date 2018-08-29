@@ -4,20 +4,20 @@ import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 
 const styles = ({ space, color, fontSize, fontFamily }) => ({
-	summary: {
+	details: {
 		fontFamily: fontFamily.base,
 		fontSize: fontSize.base,
 		color: color.base,
-		marginBottom: space[1],
+		marginBottom: space[2],
 	},
 });
 
-export function DetailSummaryRenderer({ classes, children }) {
-	return <summary className={classes.summary}>{children}</summary>;
+export function DetailsRenderer({ classes, children }) {
+	return <details className={classes.details}>{children}</details>;
 }
-DetailSummaryRenderer.propTypes = {
+DetailsRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	children: PropTypes.node.isRequired,
 };
 
-export default Styled(styles)(DetailSummaryRenderer);
+export default Styled(styles)(DetailsRenderer);
