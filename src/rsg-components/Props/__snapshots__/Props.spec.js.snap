@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PropsRenderer should render a table 1`] = `
-<Styled(Table)
+<Consumer(Table)
   columns={
     Array [
       Object {
@@ -46,18 +46,18 @@ exports[`props columns should render PropTypes.arrayOf 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         colors
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         string[]
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
@@ -81,18 +81,18 @@ exports[`props columns should render PropTypes.arrayOf(PropTypes.shape) 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         foos
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         shape[]
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
@@ -101,30 +101,30 @@ exports[`props columns should render PropTypes.arrayOf(PropTypes.shape) 1`] = `
       key="3"
     >
       <div>
-        <Styled(Para)>
+        <Consumer(Para)>
           <div
             key="bar"
           >
-            <Styled(Name)>
+            <Consumer(Name)>
               bar
-            </Styled(Name)>
+            </Consumer(Name)>
             : 
-            <Styled(Type)>
+            <Consumer(Type)>
               number
-            </Styled(Type)>
+            </Consumer(Type)>
           </div>
           <div
             key="baz"
           >
-            <Styled(Name)>
+            <Consumer(Name)>
               baz
-            </Styled(Name)>
+            </Consumer(Name)>
             : 
-            <Styled(Type)>
+            <Consumer(Type)>
               any
-            </Styled(Type)>
+            </Consumer(Type)>
           </div>
-        </Styled(Para)>
+        </Consumer(Para)>
         <JsDoc />
       </div>
     </div>
@@ -140,18 +140,18 @@ exports[`props columns should render PropTypes.instanceOf 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         num
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         Number
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
@@ -175,18 +175,18 @@ exports[`props columns should render PropTypes.objectOf 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         colors
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         {string}
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
@@ -210,18 +210,18 @@ exports[`props columns should render PropTypes.objectOf(PropTypes.shape) 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         colors
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         {shape}
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
@@ -230,37 +230,37 @@ exports[`props columns should render PropTypes.objectOf(PropTypes.shape) 1`] = `
       key="3"
     >
       <div>
-        <Styled(Para)>
+        <Consumer(Para)>
           <div
             key="bar"
           >
-            <Styled(Name)>
+            <Consumer(Name)>
               bar
-            </Styled(Name)>
+            </Consumer(Name)>
             : 
-            <Styled(Type)>
+            <Consumer(Type)>
               number
-            </Styled(Type)>
+            </Consumer(Type)>
              — 
-            <Styled(Text)
+            <Consumer(Text)
               color="light"
               size="small"
             >
               Required
-            </Styled(Text)>
+            </Consumer(Text)>
           </div>
           <div
             key="baz"
           >
-            <Styled(Name)>
+            <Consumer(Name)>
               baz
-            </Styled(Name)>
+            </Consumer(Name)>
             : 
-            <Styled(Type)>
+            <Consumer(Type)>
               any
-            </Styled(Type)>
+            </Consumer(Type)>
           </div>
-        </Styled(Para)>
+        </Consumer(Para)>
         <JsDoc />
       </div>
     </div>
@@ -276,18 +276,18 @@ exports[`props columns should render PropTypes.oneOf 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         size
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         enum
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
@@ -296,7 +296,7 @@ exports[`props columns should render PropTypes.oneOf 1`] = `
       key="3"
     >
       <div>
-        <Styled(Para)>
+        <Consumer(Para)>
           <span>
             One of:
              
@@ -304,24 +304,24 @@ exports[`props columns should render PropTypes.oneOf 1`] = `
               inline={true}
               separator=", "
             >
-              <Styled(Code)
+              <Consumer(Code)
                 key="\\"small\\""
               >
                 small
-              </Styled(Code)>
-              <Styled(Code)
+              </Consumer(Code)>
+              <Consumer(Code)
                 key="\\"normal\\""
               >
                 normal
-              </Styled(Code)>
-              <Styled(Code)
+              </Consumer(Code)>
+              <Consumer(Code)
                 key="\\"large\\""
               >
                 large
-              </Styled(Code)>
+              </Consumer(Code)>
             </Group>
           </span>
-        </Styled(Para)>
+        </Consumer(Para)>
         <JsDoc />
       </div>
     </div>
@@ -337,18 +337,18 @@ exports[`props columns should render PropTypes.oneOfType 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         union
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         union
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
@@ -357,7 +357,7 @@ exports[`props columns should render PropTypes.oneOfType 1`] = `
       key="3"
     >
       <div>
-        <Styled(Para)>
+        <Consumer(Para)>
           <span>
             One of type:
              
@@ -365,19 +365,19 @@ exports[`props columns should render PropTypes.oneOfType 1`] = `
               inline={true}
               separator=", "
             >
-              <Styled(Type)
+              <Consumer(Type)
                 key="string-0"
               >
                 string
-              </Styled(Type)>
-              <Styled(Type)
+              </Consumer(Type)>
+              <Consumer(Type)
                 key="number-1"
               >
                 number
-              </Styled(Type)>
+              </Consumer(Type)>
             </Group>
           </span>
-        </Styled(Para)>
+        </Consumer(Para)>
         <JsDoc />
       </div>
     </div>
@@ -393,18 +393,18 @@ exports[`props columns should render PropTypes.shape 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         foo
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         shape
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
@@ -413,37 +413,37 @@ exports[`props columns should render PropTypes.shape 1`] = `
       key="3"
     >
       <div>
-        <Styled(Para)>
+        <Consumer(Para)>
           <div
             key="bar"
           >
-            <Styled(Name)>
+            <Consumer(Name)>
               bar
-            </Styled(Name)>
+            </Consumer(Name)>
             : 
-            <Styled(Type)>
+            <Consumer(Type)>
               number
-            </Styled(Type)>
+            </Consumer(Type)>
              — 
-            <Styled(Text)
+            <Consumer(Text)
               color="light"
               size="small"
             >
               Required
-            </Styled(Text)>
+            </Consumer(Text)>
           </div>
           <div
             key="baz"
           >
-            <Styled(Name)>
+            <Consumer(Name)>
               baz
-            </Styled(Name)>
+            </Consumer(Name)>
             : 
-            <Styled(Type)>
+            <Consumer(Type)>
               any
-            </Styled(Type)>
+            </Consumer(Type)>
           </div>
-        </Styled(Para)>
+        </Consumer(Para)>
         <JsDoc />
       </div>
     </div>
@@ -459,66 +459,66 @@ exports[`props columns should render PropTypes.shape defaultProps, falling back 
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         foo
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         shape
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
     >
-      <Styled(Text)
+      <Consumer(Text)
         color="light"
         size="small"
         title="somethingThatDoesntExist"
         underlined={true}
       >
         Shape
-      </Styled(Text)>
+      </Consumer(Text)>
     </div>
     <div
       key="3"
     >
       <div>
-        <Styled(Para)>
+        <Consumer(Para)>
           <div
             key="bar"
           >
-            <Styled(Name)>
+            <Consumer(Name)>
               bar
-            </Styled(Name)>
+            </Consumer(Name)>
             : 
-            <Styled(Type)>
+            <Consumer(Type)>
               number
-            </Styled(Type)>
+            </Consumer(Type)>
              — 
-            <Styled(Text)
+            <Consumer(Text)
               color="light"
               size="small"
             >
               Required
-            </Styled(Text)>
+            </Consumer(Text)>
           </div>
           <div
             key="baz"
           >
-            <Styled(Name)>
+            <Consumer(Name)>
               baz
-            </Styled(Name)>
+            </Consumer(Name)>
             : 
-            <Styled(Type)>
+            <Consumer(Type)>
               any
-            </Styled(Type)>
+            </Consumer(Type)>
           </div>
-        </Styled(Para)>
+        </Consumer(Para)>
         <JsDoc />
       </div>
     </div>
@@ -534,18 +534,18 @@ exports[`props columns should render PropTypes.shape with description 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         foo
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         shape
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
@@ -554,24 +554,24 @@ exports[`props columns should render PropTypes.shape with description 1`] = `
       key="3"
     >
       <div>
-        <Styled(Para)>
+        <Consumer(Para)>
           <div
             key="bar"
           >
-            <Styled(Name)>
+            <Consumer(Name)>
               bar
-            </Styled(Name)>
+            </Consumer(Name)>
             : 
-            <Styled(Type)>
+            <Consumer(Type)>
               number
-            </Styled(Type)>
+            </Consumer(Type)>
              — 
-            <Styled(Text)
+            <Consumer(Text)
               color="light"
               size="small"
             >
               Required
-            </Styled(Text)>
+            </Consumer(Text)>
              — 
             <Markdown
               inline={true}
@@ -581,20 +581,20 @@ exports[`props columns should render PropTypes.shape with description 1`] = `
           <div
             key="baz"
           >
-            <Styled(Name)>
+            <Consumer(Name)>
               baz
-            </Styled(Name)>
+            </Consumer(Name)>
             : 
-            <Styled(Type)>
+            <Consumer(Type)>
               any
-            </Styled(Type)>
+            </Consumer(Type)>
              — 
             <Markdown
               inline={true}
               text="Any"
             />
           </div>
-        </Styled(Para)>
+        </Consumer(Para)>
         <JsDoc />
       </div>
     </div>
@@ -610,23 +610,23 @@ exports[`props columns should render PropTypes.shape with formatted defaultProps
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         foo
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         shape
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
     >
-      <Styled(Text)
+      <Consumer(Text)
         color="light"
         size="small"
         title="{
@@ -645,43 +645,43 @@ exports[`props columns should render PropTypes.shape with formatted defaultProps
         underlined={true}
       >
         Shape
-      </Styled(Text)>
+      </Consumer(Text)>
     </div>
     <div
       key="3"
     >
       <div>
-        <Styled(Para)>
+        <Consumer(Para)>
           <div
             key="bar"
           >
-            <Styled(Name)>
+            <Consumer(Name)>
               bar
-            </Styled(Name)>
+            </Consumer(Name)>
             : 
-            <Styled(Type)>
+            <Consumer(Type)>
               number
-            </Styled(Type)>
+            </Consumer(Type)>
              — 
-            <Styled(Text)
+            <Consumer(Text)
               color="light"
               size="small"
             >
               Required
-            </Styled(Text)>
+            </Consumer(Text)>
           </div>
           <div
             key="baz"
           >
-            <Styled(Name)>
+            <Consumer(Name)>
               baz
-            </Styled(Name)>
+            </Consumer(Name)>
             : 
-            <Styled(Type)>
+            <Consumer(Type)>
               any
-            </Styled(Type)>
+            </Consumer(Type)>
           </div>
-        </Styled(Para)>
+        </Consumer(Para)>
         <JsDoc />
       </div>
     </div>
@@ -697,18 +697,18 @@ exports[`props columns should render PropTypes.string 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         color
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         string
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
@@ -732,25 +732,25 @@ exports[`props columns should render PropTypes.string with a default value 1`] =
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         color
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         string
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
     >
-      <Styled(Code)>
+      <Consumer(Code)>
         pink
-      </Styled(Code)>
+      </Consumer(Code)>
     </div>
     <div
       key="3"
@@ -771,28 +771,28 @@ exports[`props columns should render PropTypes.string.isRequired 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         color
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         string
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
     >
-      <Styled(Text)
+      <Consumer(Text)
         color="light"
         size="small"
       >
         Required
-      </Styled(Text)>
+      </Consumer(Text)>
     </div>
     <div
       key="3"
@@ -813,18 +813,18 @@ exports[`props columns should render arguments from JsDoc tags 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         size
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         number
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
@@ -856,7 +856,7 @@ exports[`props columns should render arguments from JsDoc tags 1`] = `
             ]
           }
         />
-        <Styled(Arguments)
+        <Consumer(Arguments)
           args={
             Array [
               Object {
@@ -887,28 +887,28 @@ exports[`props columns should render custom class type 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         foo
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         React.ReactNode
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
     >
-      <Styled(Text)
+      <Consumer(Text)
         color="light"
         size="small"
       >
         Required
-      </Styled(Text)>
+      </Consumer(Text)>
     </div>
     <div
       key="3"
@@ -929,18 +929,18 @@ exports[`props columns should render description in Markdown 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         color
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         string
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
@@ -967,34 +967,34 @@ exports[`props columns should render enum type when union of literals 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         foo
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         enum
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
     >
-      <Styled(Text)
+      <Consumer(Text)
         color="light"
         size="small"
       >
         Required
-      </Styled(Text)>
+      </Consumer(Text)>
     </div>
     <div
       key="3"
     >
       <div>
-        <Styled(Para)>
+        <Consumer(Para)>
           <span>
             One of:
              
@@ -1002,19 +1002,19 @@ exports[`props columns should render enum type when union of literals 1`] = `
               inline={true}
               separator=", "
             >
-              <Styled(Code)
+              <Consumer(Code)
                 key="\\"bar\\""
               >
                 bar
-              </Styled(Code)>
-              <Styled(Code)
+              </Consumer(Code)>
+              <Consumer(Code)
                 key="\\"baz\\""
               >
                 baz
-              </Styled(Code)>
+              </Consumer(Code)>
             </Group>
           </span>
-        </Styled(Para)>
+        </Consumer(Para)>
         <JsDoc />
       </div>
     </div>
@@ -1030,30 +1030,30 @@ exports[`props columns should render function body in tooltip 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         fn
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         func
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
     >
-      <Styled(Text)
+      <Consumer(Text)
         color="light"
         size="small"
         title="(e) => console.log(e)"
         underlined={true}
       >
         Function
-      </Styled(Text)>
+      </Consumer(Text)>
     </div>
     <div
       key="3"
@@ -1074,25 +1074,25 @@ exports[`props columns should render function defaultValue as code when null 1`]
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         fn
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         func
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
     >
-      <Styled(Code)>
+      <Consumer(Code)>
         null
-      </Styled(Code)>
+      </Consumer(Code)>
     </div>
     <div
       key="3"
@@ -1113,25 +1113,25 @@ exports[`props columns should render function defaultValue as code when undefine
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         fn
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         func
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
     >
-      <Styled(Code)>
+      <Consumer(Code)>
         undefined
-      </Styled(Code)>
+      </Consumer(Code)>
     </div>
     <div
       key="3"
@@ -1152,36 +1152,36 @@ exports[`props columns should render function type with body in tooltip 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         foo
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
-        <Styled(Text)
+      <Consumer(Type)>
+        <Consumer(Text)
           size="small"
           title="() => void"
           underlined={true}
         >
-          <Styled(Type)>
+          <Consumer(Type)>
             function
-          </Styled(Type)>
-        </Styled(Text)>
-      </Styled(Type)>
+          </Consumer(Type)>
+        </Consumer(Text)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
     >
-      <Styled(Text)
+      <Consumer(Text)
         color="light"
         size="small"
       >
         Required
-      </Styled(Text)>
+      </Consumer(Text)>
     </div>
     <div
       key="3"
@@ -1202,18 +1202,18 @@ exports[`props columns should render literal type 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         foo
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         "bar"
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
@@ -1237,18 +1237,18 @@ exports[`props columns should render name as deprecated when tag deprecated is p
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={true}
       >
         size
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         number
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
@@ -1284,36 +1284,36 @@ exports[`props columns should render object type with body in tooltip 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         foo
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
-        <Styled(Text)
+      <Consumer(Type)>
+        <Consumer(Text)
           size="small"
           title="{ bar: string }"
           underlined={true}
         >
-          <Styled(Type)>
+          <Consumer(Type)>
             object
-          </Styled(Type)>
-        </Styled(Text)>
-      </Styled(Type)>
+          </Consumer(Type)>
+        </Consumer(Text)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
     >
-      <Styled(Text)
+      <Consumer(Text)
         color="light"
         size="small"
       >
         Required
-      </Styled(Text)>
+      </Consumer(Text)>
     </div>
     <div
       key="3"
@@ -1334,18 +1334,18 @@ exports[`props columns should render optional type string 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         foo
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         string
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
@@ -1369,18 +1369,18 @@ exports[`props columns should render return from JsDoc tags 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         size
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         number
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
@@ -1405,7 +1405,7 @@ exports[`props columns should render return from JsDoc tags 1`] = `
             ]
           }
         />
-        <Styled(Argument)
+        <Consumer(Argument)
           description="Returns foo from bar"
           returns={true}
           title="Foo"
@@ -1429,18 +1429,18 @@ exports[`props columns should render return from JsDoc tags 2`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         size
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         number
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
@@ -1465,7 +1465,7 @@ exports[`props columns should render return from JsDoc tags 2`] = `
             ]
           }
         />
-        <Styled(Argument)
+        <Consumer(Argument)
           description="Returns foo from bar"
           returns={true}
           title="Foo"
@@ -1489,36 +1489,36 @@ exports[`props columns should render tuple type with body in tooltip 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         foo
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
-        <Styled(Text)
+      <Consumer(Type)>
+        <Consumer(Text)
           size="small"
           title="[\\"bar\\", number]"
           underlined={true}
         >
-          <Styled(Type)>
+          <Consumer(Type)>
             tuple
-          </Styled(Type)>
-        </Styled(Text)>
-      </Styled(Type)>
+          </Consumer(Type)>
+        </Consumer(Text)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
     >
-      <Styled(Text)
+      <Consumer(Text)
         color="light"
         size="small"
       >
         Required
-      </Styled(Text)>
+      </Consumer(Text)>
     </div>
     <div
       key="3"
@@ -1539,28 +1539,28 @@ exports[`props columns should render type string 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         foo
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         string
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
     >
-      <Styled(Text)
+      <Consumer(Text)
         color="light"
         size="small"
       >
         Required
-      </Styled(Text)>
+      </Consumer(Text)>
     </div>
     <div
       key="3"
@@ -1581,25 +1581,25 @@ exports[`props columns should render type string with a default value 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         foo
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         string
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
     >
-      <Styled(Code)>
+      <Consumer(Code)>
         bar
-      </Styled(Code)>
+      </Consumer(Code)>
     </div>
     <div
       key="3"
@@ -1620,44 +1620,44 @@ exports[`props columns should render union type with body in tooltip 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         foo
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
-        <Styled(Text)
+      <Consumer(Type)>
+        <Consumer(Text)
           size="small"
           title="\\"bar\\" | number"
           underlined={true}
         >
-          <Styled(Type)>
+          <Consumer(Type)>
             union
-          </Styled(Type)>
-        </Styled(Text)>
-      </Styled(Type)>
+          </Consumer(Type)>
+        </Consumer(Text)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
     >
-      <Styled(Text)
+      <Consumer(Text)
         color="light"
         size="small"
       >
         Required
-      </Styled(Text)>
+      </Consumer(Text)>
     </div>
     <div
       key="3"
     >
       <div>
-        <Styled(Para)>
+        <Consumer(Para)>
           <span />
-        </Styled(Para)>
+        </Consumer(Para)>
         <JsDoc />
       </div>
     </div>
@@ -1673,25 +1673,25 @@ exports[`props columns should render unknown proptype for a prop when a relevant
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         color
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Type)>
+      <Consumer(Type)>
         unknown
-      </Styled(Type)>
+      </Consumer(Type)>
     </div>
     <div
       key="2"
     >
-      <Styled(Code)>
+      <Consumer(Code)>
         pink
-      </Styled(Code)>
+      </Consumer(Code)>
     </div>
     <div
       key="3"

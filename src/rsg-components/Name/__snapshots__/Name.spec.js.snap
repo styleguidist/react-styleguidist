@@ -4,9 +4,9 @@ exports[`renderer should render argument name 1`] = `
 <span
   className="name"
 >
-  <Styled(Code)>
+  <Consumer(Code)>
     Foo
-  </Styled(Code)>
+  </Consumer(Code)>
 </span>
 `;
 
@@ -14,8 +14,8 @@ exports[`renderer should render deprecated argument name 1`] = `
 <span
   className="name isDeprecated"
 >
-  <Styled(Code)>
+  <Consumer(Code)>
     Foo
-  </Styled(Code)>
+  </Consumer(Code)>
 </span>
 `;

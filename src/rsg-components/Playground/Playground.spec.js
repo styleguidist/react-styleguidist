@@ -1,8 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Playground from './Playground';
 import slots, { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
 import { PlaygroundRenderer, styles } from './PlaygroundRenderer';
+import { Provider } from '../../provider';
 
 const evalInContext = a =>
 	new Function('require', 'const React = require("react");' + a).bind(null, require); // eslint-disable-line no-new-func
@@ -17,28 +17,30 @@ const props = {
 	evalInContext,
 	code,
 };
-const options = {
-	context: {
-		config: {
-			highlightTheme: 'base16-light',
-		},
-		codeRevision: 0,
-		slots: slots({}),
+const context = {
+	config: {
+		highlightTheme: 'base16-light',
 	},
-	childContextTypes: {
-		slots: PropTypes.object.isRequired,
-		codeRevision: PropTypes.number.isRequired,
-	},
+	codeRevision: 0,
+	slots: slots({}),
 };
 
 it('should render component renderer', () => {
-	const actual = shallow(<Playground {...props} />, options);
+	const actual = shallow(
+		<Provider {...context}>
+			<Playground {...props} />
+		</Provider>
+	);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should update code via props', () => {
-	const actual = shallow(<Playground {...props} />, options);
+	const actual = shallow(
+		<Provider {...context}>
+			<Playground {...props} />
+		</Provider>
+	);
 
 	expect(actual.state('code')).toEqual(code);
 
@@ -50,15 +52,17 @@ it('should update code via props', () => {
 });
 
 it('should update code with debounce', done => {
-	const actual = shallow(<Playground {...props} />, {
-		context: {
-			...options.context,
-			config: {
-				...options.context.config,
+	const actual = shallow(
+		<Provider
+			{...context}
+			config={{
+				...context.config,
 				previewDelay: 1,
-			},
-		},
-	});
+			}}
+		>
+			<Playground {...props} />
+		</Provider>
+	);
 
 	expect(actual.state('code')).toEqual(code);
 
@@ -72,7 +76,11 @@ it('should update code with debounce', done => {
 });
 
 it('should open a code editor', done => {
-	const actual = mount(<Playground {...props} />, options);
+	const actual = mount(
+		<Provider {...context}>
+			<Playground {...props} />
+		</Provider>
+	);
 
 	expect(actual.find(reactCodeMirrorSelector)).toHaveLength(0);
 
@@ -86,40 +94,37 @@ it('should open a code editor', done => {
 });
 
 it('should not render a code editor if noeditor option passed in example settings', () => {
-	const actual = mount(<Playground {...props} settings={{ noeditor: true }} />, options);
+	const actual = mount(
+		<Provider {...context}>
+			<Playground {...props} settings={{ noeditor: true }} />
+		</Provider>
+	);
 	expect(actual.find(`button[name="${EXAMPLE_TAB_CODE_EDITOR}"]`)).toHaveLength(0);
 });
 
 it('should open a code editor by default if showcode=true option passed in example settings', () => {
-	const actual = mount(<Playground {...props} settings={{ showcode: true }} />, options);
+	const actual = mount(
+		<Provider {...context}>
+			<Playground {...props} settings={{ showcode: true }} />
+		</Provider>
+	);
 	expect(actual.text()).toMatch('Loading');
 });
 
 it('should open a code editor by default if exampleMode="expand" option specified in style guide config', () => {
-	const actual = mount(<Playground {...props} exampleMode="expand" />, {
-		context: {
-			...options.context,
-			config: {
-				...options.context.config,
-			},
-		},
-		childContextTypes: options.childContextTypes,
-	});
+	const actual = mount(
+		<Provider {...context}>
+			<Playground {...props} exampleMode="expand" />
+		</Provider>
+	);
 	expect(actual.text()).toMatch('Loading');
 });
 
 it('showcode option in example settings should overwrite style guide config option', () => {
 	const actual = mount(
-		<Playground {...props} exampleMode="expand" settings={{ showcode: false }} />,
-		{
-			context: {
-				...options.context,
-				config: {
-					...options.context.config,
-				},
-			},
-			childContextTypes: options.childContextTypes,
-		}
+		<Provider {...context}>
+			<Playground {...props} exampleMode="expand" settings={{ showcode: false }} />
+		</Provider>
 	);
 	expect(actual.text()).not.toMatch('Loading');
 });

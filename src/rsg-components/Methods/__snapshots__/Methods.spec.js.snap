@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MethodsRenderer should render a table 1`] = `
-<Styled(Table)
+<Consumer(Table)
   columns={
     Array [
       Object {
@@ -40,16 +40,16 @@ exports[`PropsRenderer should render JsDoc tags 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         Foo()
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Arguments)
+      <Consumer(Arguments)
         args={Array []}
       />
     </div>
@@ -81,16 +81,16 @@ exports[`PropsRenderer should render deprecated JsDoc tags 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={true}
       >
         Foo()
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Arguments)
+      <Consumer(Arguments)
         args={Array []}
       />
     </div>
@@ -122,16 +122,16 @@ exports[`PropsRenderer should render parameters 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         method()
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Arguments)
+      <Consumer(Arguments)
         args={
           Array [
             Object {
@@ -168,16 +168,16 @@ exports[`PropsRenderer should render public method 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         method()
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Arguments)
+      <Consumer(Arguments)
         args={Array []}
       />
     </div>
@@ -203,16 +203,16 @@ exports[`PropsRenderer should render returns 1`] = `
     <div
       key="0"
     >
-      <Styled(Name)
+      <Consumer(Name)
         deprecated={false}
       >
         method()
-      </Styled(Name)>
+      </Consumer(Name)>
     </div>
     <div
       key="1"
     >
-      <Styled(Arguments)
+      <Consumer(Arguments)
         args={Array []}
       />
     </div>
@@ -220,7 +220,7 @@ exports[`PropsRenderer should render returns 1`] = `
       key="2"
     >
       <div>
-        <Styled(Argument)
+        <Consumer(Argument)
           block={true}
           description="Description"
           returns={true}

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 import Preview from 'rsg-components/Preview';
@@ -8,6 +7,7 @@ import Slot from 'rsg-components/Slot';
 import PlaygroundRenderer from 'rsg-components/Playground/PlaygroundRenderer';
 import { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
 import { DisplayModes, ExampleModes } from '../../consts';
+import { Consumer } from '../../provider';
 
 class Playground extends Component {
 	static propTypes = {
@@ -17,17 +17,13 @@ class Playground extends Component {
 		name: PropTypes.string.isRequired,
 		exampleMode: PropTypes.string.isRequired,
 		settings: PropTypes.object,
-	};
-
-	static contextTypes = {
 		config: PropTypes.object.isRequired,
 		displayMode: PropTypes.string,
 	};
 
 	constructor(props, context) {
 		super(props, context);
-		const { code, settings, exampleMode } = props;
-		const { config } = context;
+		const { code, settings, exampleMode, config } = props;
 		const expandCode = exampleMode === ExampleModes.expand;
 		const activeTab = settings.showcode !== undefined ? settings.showcode : expandCode;
 
@@ -71,8 +67,7 @@ class Playground extends Component {
 
 	render() {
 		const { code, activeTab } = this.state;
-		const { evalInContext, index, name, settings, exampleMode } = this.props;
-		const { displayMode } = this.context;
+		const { evalInContext, index, name, settings, exampleMode, displayMode } = this.props;
 		const isExampleHidden = exampleMode === ExampleModes.hide;
 		const isEditorHidden = settings.noeditor || isExampleHidden;
 		const preview = <Preview code={code} evalInContext={evalInContext} />;
@@ -111,4 +106,4 @@ class Playground extends Component {
 	}
 }
 
-export default polyfill(Playground);
+export default Consumer(Playground);

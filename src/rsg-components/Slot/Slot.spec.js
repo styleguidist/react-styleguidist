@@ -1,5 +1,6 @@
 import React from 'react';
 import Slot from './Slot';
+import { Provider } from '../../provider';
 
 /* eslint-disable react/prop-types */
 
@@ -23,62 +24,77 @@ const fillsWithIds = [
 ];
 
 it('should renderer slots and pass props', () => {
-	const actual = shallow(<Slot name="slot" props={{ id: 'Pizza' }} />, {
-		context: {
-			slots: {
-				slot: [Button, Button2],
-			},
+	const context = {
+		slots: {
+			slot: [Button, Button2],
 		},
-	});
+	};
+	const actual = shallow(
+		<Provider {...context}>
+			<Slot name="slot" props={{ id: 'Pizza' }} />
+		</Provider>
+	);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should renderer slots in id/render format', () => {
-	const actual = shallow(<Slot name="slot" props={{ id: 'Pizza' }} />, {
-		context: {
-			slots: {
-				slot: fillsWithIds,
-			},
+	const context = {
+		slots: {
+			slot: fillsWithIds,
 		},
-	});
+	};
+	const actual = shallow(
+		<Provider {...context}>
+			<Slot name="slot" props={{ id: 'Pizza' }} />
+		</Provider>
+	);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should pass active flag to active slot', () => {
-	const actual = shallow(<Slot name="slot" active="two" />, {
-		context: {
-			slots: {
-				slot: fillsWithIds,
-			},
+	const context = {
+		slots: {
+			slot: fillsWithIds,
 		},
-	});
+	};
+	const actual = shallow(
+		<Provider {...context}>
+			<Slot name="slot" active="two" />
+		</Provider>
+	);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should renderer only active slot if onlyActive=true', () => {
-	const actual = shallow(<Slot name="slot" active="two" onlyActive />, {
-		context: {
-			slots: {
-				slot: fillsWithIds,
-			},
+	const context = {
+		slots: {
+			slot: fillsWithIds,
 		},
-	});
+	};
+	const actual = shallow(
+		<Provider {...context}>
+			<Slot name="slot" active="two" onlyActive />
+		</Provider>
+	);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should pass slot ID to onClick handler', () => {
 	const onClick = jest.fn();
-	const actual = mount(<Slot name="slot" props={{ onClick }} />, {
-		context: {
-			slots: {
-				slot: fillsWithIds,
-			},
+	const context = {
+		slots: {
+			slot: fillsWithIds,
 		},
-	});
+	};
+	const actual = mount(
+		<Provider {...context}>
+			<Slot name="slot" props={{ onClick }} />
+		</Provider>
+	);
 
 	actual.find('button[name="two"]').simulate('click');
 
@@ -86,13 +102,16 @@ it('should pass slot ID to onClick handler', () => {
 });
 
 it('should return null if all slots render null', () => {
-	const actual = render(<Slot name="slot" props={{ id: 'Pizza' }} />, {
-		context: {
-			slots: {
-				slot: [() => null],
-			},
+	const context = {
+		slots: {
+			slot: [() => null],
 		},
-	});
+	};
+	const actual = render(
+		<Provider {...context}>
+			<Slot name="slot" props={{ id: 'Pizza' }} />
+		</Provider>
+	);
 
 	expect(actual.node).toBeFalsy();
 });

@@ -2,7 +2,9 @@
 
 exports[`Markdown inline should render text in a span 1`] = `
 
-<span class="rsg--text-11 rsg--inheritSize-12 rsg--baseColor-16">
+<span config="[object Object]"
+      class="rsg--text-11 rsg--inheritSize-12 rsg--baseColor-16"
+>
   Hello world!
 </span>
 
@@ -65,6 +67,7 @@ exports[`Markdown should render check-lists 1`] = `
 <ul class="rsg--list-21">
   <li class="rsg--li-23">
     <input type="checkbox"
+           config="[object Object]"
            readonly
            class="rsg--input-24"
     >
@@ -72,6 +75,7 @@ exports[`Markdown should render check-lists 1`] = `
   </li>
   <li class="rsg--li-23">
     <input type="checkbox"
+           config="[object Object]"
            readonly
            class="rsg--input-24"
     >
@@ -79,6 +83,7 @@ exports[`Markdown should render check-lists 1`] = `
   </li>
   <li class="rsg--li-23">
     <input type="checkbox"
+           config="[object Object]"
            checked
            readonly
            class="rsg--input-24"
@@ -105,13 +110,17 @@ exports[`Markdown should render emphasis and strong text 1`] = `
 <div>
   <p class="rsg--para-2">
     this text is
-    <strong class="rsg--text-11 rsg--inheritSize-12 rsg--baseColor-16 rsg--strong-19">
+    <strong config="[object Object]"
+            class="rsg--text-11 rsg--inheritSize-12 rsg--baseColor-16 rsg--strong-19"
+    >
       strong
     </strong>
   </p>
   <p class="rsg--para-2">
     and this is
-    <em class="rsg--text-11 rsg--inheritSize-12 rsg--baseColor-16 rsg--em-18">
+    <em config="[object Object]"
+        class="rsg--text-11 rsg--inheritSize-12 rsg--baseColor-16 rsg--em-18"
+    >
       emphasized
     </em>
   </p>
@@ -123,32 +132,44 @@ exports[`Markdown should render headings 1`] = `
 
 <div>
   <div class="rsg--spacing-3">
-    <h1 class="rsg--heading-4 rsg--heading1-5">
+    <h1 config="[object Object]"
+        class="rsg--heading-4 rsg--heading1-5"
+    >
       one
     </h1>
   </div>
   <div class="rsg--spacing-3">
-    <h2 class="rsg--heading-4 rsg--heading2-6">
+    <h2 config="[object Object]"
+        class="rsg--heading-4 rsg--heading2-6"
+    >
       two
     </h2>
   </div>
   <div class="rsg--spacing-3">
-    <h3 class="rsg--heading-4 rsg--heading3-7">
+    <h3 config="[object Object]"
+        class="rsg--heading-4 rsg--heading3-7"
+    >
       three
     </h3>
   </div>
   <div class="rsg--spacing-3">
-    <h4 class="rsg--heading-4 rsg--heading4-8">
+    <h4 config="[object Object]"
+        class="rsg--heading-4 rsg--heading4-8"
+    >
       four
     </h4>
   </div>
   <div class="rsg--spacing-3">
-    <h5 class="rsg--heading-4 rsg--heading5-9">
+    <h5 config="[object Object]"
+        class="rsg--heading-4 rsg--heading5-9"
+    >
       five
     </h5>
   </div>
   <div class="rsg--spacing-3">
-    <h6 class="rsg--heading-4 rsg--heading6-10">
+    <h6 config="[object Object]"
+        class="rsg--heading-4 rsg--heading6-10"
+    >
       six
     </h6>
   </div>
@@ -172,7 +193,8 @@ exports[`Markdown should render links 1`] = `
 
 <p class="rsg--para-2">
   a
-  <a href="http://test.com"
+  <a config="[object Object]"
+     href="http://test.com"
      class="rsg--link-0"
   >
     link

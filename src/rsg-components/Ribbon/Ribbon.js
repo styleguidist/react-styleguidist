@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RibbonRenderer from 'rsg-components/Ribbon/RibbonRenderer';
+import { Consumer } from '../../provider';
 
-export default function Ribbon(props, { config }) {
+function Ribbon({ config }) {
 	const { ribbon } = config;
 	return ribbon ? <RibbonRenderer {...ribbon} /> : null;
 }
 
-Ribbon.contextTypes = {
+Ribbon.propTypes = {
 	config: PropTypes.object,
 };
+
+export default Consumer(Ribbon);

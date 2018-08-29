@@ -1,54 +1,108 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should pass active flag to active slot 1`] = `
-<div>
-  <Button
-    active={false}
-    key="0"
-    name="one"
+<ContextProvider
+  value={
+    Object {
+      "slots": Object {
+        "slot": Array [
+          Object {
+            "id": "one",
+            "render": [Function],
+          },
+          Object {
+            "id": "two",
+            "render": [Function],
+          },
+        ],
+      },
+    }
+  }
+>
+  <Consumer(Slot)
+    active="two"
+    name="slot"
   />
-  <Button2
-    active={true}
-    key="1"
-    name="two"
-  />
-</div>
+</ContextProvider>
 `;
 
 exports[`should renderer only active slot if onlyActive=true 1`] = `
-<div>
-  <Button2
-    active={true}
-    key="1"
-    name="two"
+<ContextProvider
+  value={
+    Object {
+      "slots": Object {
+        "slot": Array [
+          Object {
+            "id": "one",
+            "render": [Function],
+          },
+          Object {
+            "id": "two",
+            "render": [Function],
+          },
+        ],
+      },
+    }
+  }
+>
+  <Consumer(Slot)
+    active="two"
+    name="slot"
+    onlyActive={true}
   />
-</div>
+</ContextProvider>
 `;
 
 exports[`should renderer slots and pass props 1`] = `
-<div>
-  <Button
-    id="Pizza"
-    key="0"
+<ContextProvider
+  value={
+    Object {
+      "slots": Object {
+        "slot": Array [
+          [Function],
+          [Function],
+        ],
+      },
+    }
+  }
+>
+  <Consumer(Slot)
+    name="slot"
+    props={
+      Object {
+        "id": "Pizza",
+      }
+    }
   />
-  <Button2
-    id="Pizza"
-    key="1"
-  />
-</div>
+</ContextProvider>
 `;
 
 exports[`should renderer slots in id/render format 1`] = `
-<div>
-  <Button
-    id="Pizza"
-    key="0"
-    name="one"
+<ContextProvider
+  value={
+    Object {
+      "slots": Object {
+        "slot": Array [
+          Object {
+            "id": "one",
+            "render": [Function],
+          },
+          Object {
+            "id": "two",
+            "render": [Function],
+          },
+        ],
+      },
+    }
+  }
+>
+  <Consumer(Slot)
+    name="slot"
+    props={
+      Object {
+        "id": "Pizza",
+      }
+    }
   />
-  <Button2
-    id="Pizza"
-    key="1"
-    name="two"
-  />
-</div>
+</ContextProvider>
 `;

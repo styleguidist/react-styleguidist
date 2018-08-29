@@ -1,208 +1,72 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ReactComponent should pass rendered description, usage, examples, etc. to the renderer 1`] = `
-<Styled(ReactComponent)
-  description={
-    <Markdown
-      text="Bar"
-    />
+<ContextProvider
+  value={
+    Object {
+      "config": Object {
+        "pagePerSection": false,
+        "showUsage": false,
+      },
+      "displayMode": "all",
+      "slots": [Function],
+    }
   }
-  docs={<JsDoc />}
-  examples={
-    <Examples
-      exampleMode="collapse"
-      examples={
-        Array [
-          Object {
-            "content": 
+>
+  <Consumer(ReactComponent)
+    component={
+      Object {
+        "metadata": Object {
+          "tags": Array [
+            "one",
+            "two",
+          ],
+        },
+        "name": "Foo",
+        "pathLine": "foo/bar.js",
+        "props": Object {
+          "description": "Bar",
+          "examples": Array [
+            Object {
+              "content": 
 <button>
   OK
 </button>
 ,
-            "evalInContext": [Function],
-            "type": "code",
-          },
-          Object {
-            "content": "Hello *world*!",
-            "type": "markdown",
-          },
-        ]
-      }
-      name="Foo"
-    />
-  }
-  heading={
-    <SectionHeading
-      deprecated={false}
-      depth={3}
-      id="foo"
-      pagePerSection={false}
-      slotName="componentToolbar"
-      slotProps={
-        Object {
-          "isolated": false,
-          "metadata": Object {
-            "tags": Array [
-              "one",
-              "two",
-            ],
-          },
-          "name": "Foo",
-          "pathLine": "foo/bar.js",
-          "props": Object {
-            "description": "Bar",
-            "examples": Array [
-              Object {
-                "content": 
-<button>
-  OK
-</button>
-,
-                "evalInContext": [Function],
-                "type": "code",
-              },
-              Object {
-                "content": "Hello *world*!",
-                "type": "markdown",
-              },
-            ],
-            "methods": Array [
-              Object {
-                "description": "Sets the counter to a particular value.",
-                "name": "set",
-                "params": Array [
-                  Object {
-                    "description": "New value for the counter.",
-                    "name": "newValue",
-                    "type": Object {
-                      "name": "Number",
-                    },
+              "evalInContext": [Function],
+              "type": "code",
+            },
+            Object {
+              "content": "Hello *world*!",
+              "type": "markdown",
+            },
+          ],
+          "methods": Array [
+            Object {
+              "description": "Sets the counter to a particular value.",
+              "name": "set",
+              "params": Array [
+                Object {
+                  "description": "New value for the counter.",
+                  "name": "newValue",
+                  "type": Object {
+                    "name": "Number",
                   },
-                ],
-                "returns": null,
-              },
-            ],
-          },
-          "slug": "foo",
-          "visibleName": "Foo",
-        }
+                },
+              ],
+              "returns": null,
+            },
+          ],
+        },
+        "slug": "foo",
+        "visibleName": "Foo",
       }
-    >
-      Foo
-    </SectionHeading>
-  }
-  name="Foo"
-  pathLine="foo/bar.js"
-  slug="foo"
-  tabBody={
-    <Slot
-      name="docsTabs"
-      onlyActive={true}
-      props={
-        Object {
-          "metadata": Object {
-            "tags": Array [
-              "one",
-              "two",
-            ],
-          },
-          "name": "Foo",
-          "pathLine": "foo/bar.js",
-          "props": Object {
-            "description": "Bar",
-            "examples": Array [
-              Object {
-                "content": 
-<button>
-  OK
-</button>
-,
-                "evalInContext": [Function],
-                "type": "code",
-              },
-              Object {
-                "content": "Hello *world*!",
-                "type": "markdown",
-              },
-            ],
-            "methods": Array [
-              Object {
-                "description": "Sets the counter to a particular value.",
-                "name": "set",
-                "params": Array [
-                  Object {
-                    "description": "New value for the counter.",
-                    "name": "newValue",
-                    "type": Object {
-                      "name": "Number",
-                    },
-                  },
-                ],
-                "returns": null,
-              },
-            ],
-          },
-          "slug": "foo",
-          "visibleName": "Foo",
-        }
-      }
-    />
-  }
-  tabButtons={
-    <Slot
-      name="docsTabButtons"
-      props={
-        Object {
-          "metadata": Object {
-            "tags": Array [
-              "one",
-              "two",
-            ],
-          },
-          "name": "Foo",
-          "onClick": [Function],
-          "pathLine": "foo/bar.js",
-          "props": Object {
-            "description": "Bar",
-            "examples": Array [
-              Object {
-                "content": 
-<button>
-  OK
-</button>
-,
-                "evalInContext": [Function],
-                "type": "code",
-              },
-              Object {
-                "content": "Hello *world*!",
-                "type": "markdown",
-              },
-            ],
-            "methods": Array [
-              Object {
-                "description": "Sets the counter to a particular value.",
-                "name": "set",
-                "params": Array [
-                  Object {
-                    "description": "New value for the counter.",
-                    "name": "newValue",
-                    "type": Object {
-                      "name": "Number",
-                    },
-                  },
-                ],
-                "returns": null,
-              },
-            ],
-          },
-          "slug": "foo",
-          "visibleName": "Foo",
-        }
-      }
-    />
-  }
-/>
+    }
+    depth={3}
+    exampleMode="collapse"
+    usageMode="collapse"
+  />
+</ContextProvider>
 `;
 
 exports[`ReactComponentRenderer should render component 1`] = `
@@ -213,9 +77,9 @@ exports[`ReactComponentRenderer should render component 1`] = `
     <div>
       heading
     </div>
-    <Styled(Pathline)>
+    <Consumer(Pathline)>
       components/test
-    </Styled(Pathline)>
+    </Consumer(Pathline)>
   </header>
 </div>
 `;
@@ -240,9 +104,9 @@ exports[`ReactComponentRenderer should render description 1`] = `
     <div>
       heading
     </div>
-    <Styled(Pathline)>
+    <Consumer(Pathline)>
       components/test
-    </Styled(Pathline)>
+    </Consumer(Pathline)>
   </header>
   <div>
     <div>
@@ -260,9 +124,9 @@ exports[`ReactComponentRenderer should render docs 1`] = `
     <div>
       heading
     </div>
-    <Styled(Pathline)>
+    <Consumer(Pathline)>
       components/test
-    </Styled(Pathline)>
+    </Consumer(Pathline)>
   </header>
   <div>
     <div>
@@ -280,9 +144,9 @@ exports[`ReactComponentRenderer should render examples 1`] = `
     <div>
       heading
     </div>
-    <Styled(Pathline)>
+    <Consumer(Pathline)>
       components/test
-    </Styled(Pathline)>
+    </Consumer(Pathline)>
   </header>
   <div
     key="1"
@@ -305,9 +169,9 @@ exports[`ReactComponentRenderer should render usage section 1`] = `
     <div>
       heading
     </div>
-    <Styled(Pathline)>
+    <Consumer(Pathline)>
       components/test
-    </Styled(Pathline)>
+    </Consumer(Pathline)>
   </header>
   <div>
     <div>

@@ -6,13 +6,12 @@ import Sections from '../Sections';
 import Section from './Section';
 import { SectionRenderer } from './SectionRenderer';
 import { DisplayModes } from '../../consts';
+import { Provider } from '../../provider';
 
-const options = {
-	context: {
-		displayMode: DisplayModes.all,
-		config: {
-			pagePerSection: false,
-		},
+const context = {
+	displayMode: DisplayModes.all,
+	config: {
+		pagePerSection: false,
 	},
 };
 
@@ -38,24 +37,29 @@ const section = {
 };
 
 it('should render section renderer', () => {
-	const actual = shallow(<Section section={section} depth={3} />, options);
+	const actual = shallow(
+		<Provider {...context}>
+			<Section section={section} depth={3} />
+		</Provider>
+	);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should render components list', () => {
 	const actual = shallow(
-		<Section
-			section={{
-				name: 'Components',
-				slug: 'components',
-				usageMode: 'collapse',
-				exampleMode: 'collapse',
-				components: [],
-			}}
-			depth={3}
-		/>,
-		options
+		<Provider {...context}>
+			<Section
+				section={{
+					name: 'Components',
+					slug: 'components',
+					usageMode: 'collapse',
+					exampleMode: 'collapse',
+					components: [],
+				}}
+				depth={3}
+			/>
+		</Provider>
 	);
 
 	expect(actual).toMatchSnapshot();
@@ -63,16 +67,17 @@ it('should render components list', () => {
 
 it('should not render components list if not defined', () => {
 	const actual = shallow(
-		<Section
-			section={{
-				name: 'No components',
-				slug: 'no-components',
-				usageMode: 'collapse',
-				exampleMode: 'collapse',
-			}}
-			depth={3}
-		/>,
-		options
+		<Provider {...context}>
+			<Section
+				section={{
+					name: 'No components',
+					slug: 'no-components',
+					usageMode: 'collapse',
+					exampleMode: 'collapse',
+				}}
+				depth={3}
+			/>
+		</Provider>
 	);
 
 	expect(actual).toMatchSnapshot();
@@ -80,17 +85,18 @@ it('should not render components list if not defined', () => {
 
 it('should render sections if defined', () => {
 	const actual = shallow(
-		<Section
-			section={{
-				name: 'Nested sections',
-				slug: 'nested-sections',
-				usageMode: 'collapse',
-				exampleMode: 'collapse',
-				sections: [],
-			}}
-			depth={3}
-		/>,
-		options
+		<Provider {...context}>
+			<Section
+				section={{
+					name: 'Nested sections',
+					slug: 'nested-sections',
+					usageMode: 'collapse',
+					exampleMode: 'collapse',
+					sections: [],
+				}}
+				depth={3}
+			/>
+		</Provider>
 	);
 
 	expect(actual).toMatchSnapshot();
@@ -98,16 +104,17 @@ it('should render sections if defined', () => {
 
 it('should not render sections if not defined', () => {
 	const actual = shallow(
-		<Section
-			section={{
-				name: 'No sections',
-				slug: 'no-sections',
-				usageMode: 'collapse',
-				exampleMode: 'collapse',
-			}}
-			depth={3}
-		/>,
-		options
+		<Provider {...context}>
+			<Section
+				section={{
+					name: 'No sections',
+					slug: 'no-sections',
+					usageMode: 'collapse',
+					exampleMode: 'collapse',
+				}}
+				depth={3}
+			/>
+		</Provider>
 	);
 
 	expect(actual).toMatchSnapshot();
@@ -115,16 +122,17 @@ it('should not render sections if not defined', () => {
 
 test('should not render section in isolation mode by default', () => {
 	const actual = shallow(
-		<Section
-			section={{
-				name: 'A',
-				slug: 'a',
-				usageMode: 'collapse',
-				exampleMode: 'collapse',
-			}}
-			depth={3}
-		/>,
-		options
+		<Provider {...context}>
+			<Section
+				section={{
+					name: 'A',
+					slug: 'a',
+					usageMode: 'collapse',
+					exampleMode: 'collapse',
+				}}
+				depth={3}
+			/>
+		</Provider>
 	);
 
 	expect(actual.prop('isolated')).toBeFalsy();
@@ -132,21 +140,17 @@ test('should not render section in isolation mode by default', () => {
 
 test('should render section in isolation mode', () => {
 	const actual = shallow(
-		<Section
-			section={{
-				name: 'A',
-				slug: 'a',
-				usageMode: 'collapse',
-				exampleMode: 'collapse',
-			}}
-			depth={3}
-		/>,
-		{
-			context: {
-				...options.context,
-				displayMode: DisplayModes.section,
-			},
-		}
+		<Provider {...context} displayMode={DisplayModes.section}>
+			<Section
+				section={{
+					name: 'A',
+					slug: 'a',
+					usageMode: 'collapse',
+					exampleMode: 'collapse',
+				}}
+				depth={3}
+			/>
+		</Provider>
 	);
 
 	expect(actual.prop('isolated')).toBeTruthy();
@@ -154,44 +158,50 @@ test('should render section in isolation mode', () => {
 
 it('render should render section', () => {
 	const actual = shallow(
-		<SectionRenderer
-			classes={{}}
-			name={section.name}
-			slug={section.slug}
-			content={
-				<Examples
-					name={section.name}
-					examples={section.content}
-					exampleMode={section.exampleMode}
-				/>
-			}
-			components={
-				<Components
-					components={[]}
-					depth={3}
-					usageMode={section.usageMode}
-					exampleMode={section.exampleMode}
-				/>
-			}
-			sections={<Sections sections={[]} depth={3} />}
-			depth={3}
-		/>,
-		options
+		<Provider {...context}>
+			<SectionRenderer
+				classes={{}}
+				name={section.name}
+				slug={section.slug}
+				content={
+					<Examples
+						name={section.name}
+						examples={section.content}
+						exampleMode={section.exampleMode}
+					/>
+				}
+				components={
+					<Components
+						components={[]}
+						depth={3}
+						usageMode={section.usageMode}
+						exampleMode={section.exampleMode}
+					/>
+				}
+				sections={<Sections sections={[]} depth={3} />}
+				depth={3}
+			/>
+		</Provider>
 	);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('render should not render title if name is not set', () => {
-	const actual = shallow(<SectionRenderer classes={{}} depth={3} />, options);
+	const actual = shallow(
+		<Provider {...context}>
+			<SectionRenderer classes={{}} depth={3} />
+		</Provider>
+	);
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('render should render title if name is set', () => {
 	const actual = shallow(
-		<SectionRenderer classes={{}} name="test" slug="test" depth={3} />,
-		options
+		<Provider {...context}>
+			<SectionRenderer classes={{}} name="test" slug="test" depth={3} />
+		</Provider>
 	);
 
 	expect(actual).toMatchSnapshot();

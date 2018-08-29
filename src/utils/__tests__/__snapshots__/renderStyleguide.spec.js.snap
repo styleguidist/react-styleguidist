@@ -1,11 +1,92 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renderStyleguide should render StyleGuide component 1`] = `
-<Styled(StyleGuide)
-  homepageUrl="https://react-styleguidist.js.org/"
-  title="My Style Guide"
-  toc={
-    <TableOfContents
+<Provider
+  codeRevision={1}
+  config={
+    Object {
+      "pagePerSection": false,
+      "title": "My Style Guide",
+    }
+  }
+  displayMode="all"
+  slots={
+    Object {
+      "componentToolbar": Array [
+        [Function],
+      ],
+      "docsTabButtons": Array [
+        Object {
+          "id": "rsg-usage",
+          "render": [Function],
+        },
+      ],
+      "docsTabs": Array [
+        Object {
+          "id": "rsg-usage",
+          "render": [Function],
+        },
+      ],
+      "exampleTabButtons": Array [
+        Object {
+          "id": "rsg-code-editor",
+          "render": [Function],
+        },
+      ],
+      "exampleTabs": Array [
+        Object {
+          "id": "rsg-code-editor",
+          "render": [Function],
+        },
+      ],
+      "exampleToolbar": Array [
+        [Function],
+      ],
+      "sectionToolbar": Array [
+        [Function],
+      ],
+    }
+  }
+>
+  <Consumer(StyleGuide)
+    homepageUrl="https://react-styleguidist.js.org/"
+    title="My Style Guide"
+    toc={
+      <TableOfContents
+        sections={
+          Array [
+            Object {
+              "components": Array [
+                Object {
+                  "module": "ButtonModule",
+                  "name": "Button",
+                  "props": Object {
+                    "displayName": "Button",
+                    "examples": Array [],
+                  },
+                  "visibleName": "Button",
+                },
+                Object {
+                  "module": "ImageModule",
+                  "name": "Image",
+                  "props": Object {
+                    "displayName": "Image",
+                    "examples": Array [],
+                  },
+                  "visibleName": "Image",
+                },
+              ],
+              "sections": Array [],
+              "visibleName": undefined,
+            },
+          ]
+        }
+        useRouterLinks={false}
+      />
+    }
+  >
+    <Sections
+      depth={1}
       sections={
         Array [
           Object {
@@ -34,40 +115,7 @@ exports[`renderStyleguide should render StyleGuide component 1`] = `
           },
         ]
       }
-      useRouterLinks={false}
     />
-  }
->
-  <Sections
-    depth={1}
-    sections={
-      Array [
-        Object {
-          "components": Array [
-            Object {
-              "module": "ButtonModule",
-              "name": "Button",
-              "props": Object {
-                "displayName": "Button",
-                "examples": Array [],
-              },
-              "visibleName": "Button",
-            },
-            Object {
-              "module": "ImageModule",
-              "name": "Image",
-              "props": Object {
-                "displayName": "Image",
-                "examples": Array [],
-              },
-              "visibleName": "Image",
-            },
-          ],
-          "sections": Array [],
-          "visibleName": undefined,
-        },
-      ]
-    }
-  />
-</Styled(StyleGuide)>
+  </Consumer(StyleGuide)>
+</Provider>
 `;

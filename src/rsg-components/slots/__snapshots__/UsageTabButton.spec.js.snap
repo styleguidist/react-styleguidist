@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should renderer a button 1`] = `
-<Styled(TabButton)
+<Consumer(TabButton)
   name="Pizza"
   onClick={[Function]}
   props={
@@ -15,5 +15,5 @@ exports[`should renderer a button 1`] = `
   }
 >
   Props & methods
-</Styled(TabButton)>
+</Consumer(TabButton)>
 `;

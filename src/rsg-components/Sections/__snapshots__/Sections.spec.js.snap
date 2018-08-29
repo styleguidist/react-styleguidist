@@ -2,7 +2,7 @@
 
 exports[`render should render component 1`] = `
 <section>
-  <Section
+  <Consumer(Section)
     depth={3}
     key="0"
     section={
@@ -23,7 +23,7 @@ exports[`render should render component 1`] = `
       }
     }
   />
-  <Section
+  <Consumer(Section)
     depth={3}
     key="1"
     section={
@@ -39,7 +39,7 @@ exports[`render should render component 1`] = `
       }
     }
   />
-  <Section
+  <Consumer(Section)
     depth={3}
     key="2"
     section={
@@ -61,74 +61,14 @@ exports[`render should render component 1`] = `
 `;
 
 exports[`render should render styled component 1`] = `
-<SectionsRenderer
-  classes={
-    Object {
-      "root": "rsg--root-0",
-    }
-  }
->
-  <Section
-    depth={3}
-    key="0"
-    section={
-      Object {
-        "components": Array [],
-        "content": Array [
-          Object {
-            "content": 
-<button>
-  OK
-</button>
-,
-            "evalInContext": [Function],
-            "type": "code",
-          },
-        ],
-        "name": "Foo",
-      }
-    }
-  />
-  <Section
-    depth={3}
-    key="1"
-    section={
-      Object {
-        "components": Array [],
-        "content": Array [
-          Object {
-            "content": "Hello *world*!",
-            "type": "markdown",
-          },
-        ],
-        "name": "Bar",
-      }
-    }
-  />
-  <Section
-    depth={3}
-    key="2"
-    section={
-      Object {
-        "sections": Array [
-          Object {
-            "content": Array [],
-            "name": "One",
-          },
-          Object {
-            "content": Array [],
-            "name": "Two",
-          },
-        ],
-      }
-    }
-  />
-</SectionsRenderer>
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;
 
 exports[`should render component renderer 1`] = `
-<Styled(Sections)>
-  <Section
+<Consumer(Sections)>
+  <Consumer(Section)
     depth={3}
     key="0"
     section={
@@ -149,7 +89,7 @@ exports[`should render component renderer 1`] = `
       }
     }
   />
-  <Section
+  <Consumer(Section)
     depth={3}
     key="1"
     section={
@@ -165,7 +105,7 @@ exports[`should render component renderer 1`] = `
       }
     }
   />
-  <Section
+  <Consumer(Section)
     depth={3}
     key="2"
     section={
@@ -183,5 +123,5 @@ exports[`should render component renderer 1`] = `
       }
     }
   />
-</Styled(Sections)>
+</Consumer(Sections)>
 `;

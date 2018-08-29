@@ -4,8 +4,8 @@ exports[`renderer should render type 1`] = `
 <span
   className="type"
 >
-  <Styled(Code)>
+  <Consumer(Code)>
     Array
-  </Styled(Code)>
+  </Consumer(Code)>
 </span>
 `;

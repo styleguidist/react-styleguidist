@@ -8,6 +8,7 @@ import Error from 'rsg-components/Error';
 import NotFound from 'rsg-components/NotFound';
 import { HOMEPAGE } from '../../../scripts/consts';
 import { DisplayModes } from '../../consts';
+import { Provider } from '../../provider';
 
 /**
  * This function will return true, if the sidebar should be visible and false otherwise.
@@ -42,13 +43,6 @@ export default class StyleGuide extends Component {
 		pagePerSection: PropTypes.bool,
 	};
 
-	static childContextTypes = {
-		codeRevision: PropTypes.number.isRequired,
-		config: PropTypes.object.isRequired,
-		slots: PropTypes.object.isRequired,
-		displayMode: PropTypes.string,
-	};
-
 	static defaultProps = {
 		displayMode: DisplayModes.all,
 	};
@@ -57,15 +51,6 @@ export default class StyleGuide extends Component {
 		error: false,
 		info: null,
 	};
-
-	getChildContext() {
-		return {
-			codeRevision: this.props.codeRevision,
-			config: this.props.config,
-			slots: this.props.slots,
-			displayMode: this.props.displayMode,
-		};
-	}
 
 	componentDidCatch(error, info) {
 		this.setState({
@@ -83,6 +68,8 @@ export default class StyleGuide extends Component {
 			displayMode,
 			allSections,
 			pagePerSection,
+			codeRevision,
+			slots,
 		} = this.props;
 
 		if (this.state.error) {
@@ -93,16 +80,24 @@ export default class StyleGuide extends Component {
 			return <Welcome patterns={patterns} />;
 		}
 
+		const propsContext = {
+			codeRevision,
+			config,
+			slots,
+			displayMode,
+		};
 		return (
-			<StyleGuideRenderer
-				title={config.title}
-				version={config.version}
-				homepageUrl={HOMEPAGE}
-				toc={<TableOfContents sections={allSections} useRouterLinks={pagePerSection} />}
-				hasSidebar={hasSidebar(displayMode, config.showSidebar)}
-			>
-				{sections.length ? <Sections sections={sections} depth={1} /> : <NotFound />}
-			</StyleGuideRenderer>
+			<Provider {...propsContext}>
+				<StyleGuideRenderer
+					title={config.title}
+					version={config.version}
+					homepageUrl={HOMEPAGE}
+					toc={<TableOfContents sections={allSections} useRouterLinks={pagePerSection} />}
+					hasSidebar={hasSidebar(displayMode, config.showSidebar)}
+				>
+					{sections.length ? <Sections sections={sections} depth={1} /> : <NotFound />}
+				</StyleGuideRenderer>
+			</Provider>
 		);
 	}
 }

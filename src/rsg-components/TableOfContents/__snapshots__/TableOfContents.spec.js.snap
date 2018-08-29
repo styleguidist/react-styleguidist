@@ -17,7 +17,7 @@ exports[`renderer should render table of contents 1`] = `
 `;
 
 exports[`should filter list when search field contains a query 1`] = `
-<Styled(TableOfContents)
+<Consumer(TableOfContents)
   onSearchTermChange={[Function]}
   searchTerm=""
 >
@@ -54,11 +54,11 @@ exports[`should filter list when search field contains a query 1`] = `
     useHashId={false}
     useRouterLinks={false}
   />
-</Styled(TableOfContents)>
+</Consumer(TableOfContents)>
 `;
 
 exports[`should filter list when search field contains a query 2`] = `
-<Styled(TableOfContents)
+<Consumer(TableOfContents)
   onSearchTermChange={[Function]}
   searchTerm="but"
 >
@@ -79,11 +79,11 @@ exports[`should filter list when search field contains a query 2`] = `
     useHashId={false}
     useRouterLinks={false}
   />
-</Styled(TableOfContents)>
+</Consumer(TableOfContents)>
 `;
 
 exports[`should filter section names 1`] = `
-<Styled(TableOfContents)
+<Consumer(TableOfContents)
   onSearchTermChange={[Function]}
   searchTerm=""
 >
@@ -176,11 +176,11 @@ exports[`should filter section names 1`] = `
     useHashId={false}
     useRouterLinks={false}
   />
-</Styled(TableOfContents)>
+</Consumer(TableOfContents)>
 `;
 
 exports[`should filter section names 2`] = `
-<Styled(TableOfContents)
+<Consumer(TableOfContents)
   onSearchTermChange={[Function]}
   searchTerm="frm"
 >
@@ -201,11 +201,11 @@ exports[`should filter section names 2`] = `
     useHashId={false}
     useRouterLinks={false}
   />
-</Styled(TableOfContents)>
+</Consumer(TableOfContents)>
 `;
 
 exports[`should render a renderer 1`] = `
-<Styled(TableOfContents)
+<Consumer(TableOfContents)
   onSearchTermChange={[Function]}
   searchTerm=""
 >
@@ -242,11 +242,11 @@ exports[`should render a renderer 1`] = `
     useHashId={false}
     useRouterLinks={false}
   />
-</Styled(TableOfContents)>
+</Consumer(TableOfContents)>
 `;
 
 exports[`should render renderer with sections with nested components 1`] = `
-<Styled(TableOfContents)
+<Consumer(TableOfContents)
   onSearchTermChange={[Function]}
   searchTerm=""
 >
@@ -339,5 +339,5 @@ exports[`should render renderer with sections with nested components 1`] = `
     useHashId={false}
     useRouterLinks={false}
   />
-</Styled(TableOfContents)>
+</Consumer(TableOfContents)>
 `;

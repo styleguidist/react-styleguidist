@@ -5,14 +5,14 @@ exports[`should render argument 1`] = `
   separator=" "
 >
   <span>
-    <Styled(Name)>
+    <Consumer(Name)>
       Foo
-    </Styled(Name)>
+    </Consumer(Name)>
     :
   </span>
-  <Styled(Type)>
+  <Consumer(Type)>
     Array
-  </Styled(Type)>
+  </Consumer(Type)>
    — 
   <Markdown
     inline={true}
@@ -26,14 +26,14 @@ exports[`should render argument without description 1`] = `
   separator=" "
 >
   <span>
-    <Styled(Name)>
+    <Consumer(Name)>
       Foo
-    </Styled(Name)>
+    </Consumer(Name)>
     :
   </span>
-  <Styled(Type)>
+  <Consumer(Type)>
     Array
-  </Styled(Type)>
+  </Consumer(Type)>
 </Group>
 `;
 
@@ -42,9 +42,9 @@ exports[`should render argument without type 1`] = `
   separator=" "
 >
   <span>
-    <Styled(Name)>
+    <Consumer(Name)>
       Foo
-    </Styled(Name)>
+    </Consumer(Name)>
   </span>
   <Markdown
     inline={true}
@@ -58,10 +58,10 @@ exports[`should render default value of argument 1`] = `
   default="bar"
   separator=" "
 >
-  <Styled(Type)>
+  <Consumer(Type)>
     String
     =bar
-  </Styled(Type)>
+  </Consumer(Type)>
    — 
   <Markdown
     inline={true}
@@ -75,11 +75,11 @@ exports[`should render default value of optional argument 1`] = `
   default="true"
   separator=" "
 >
-  <Styled(Type)>
+  <Consumer(Type)>
     Boolean
     ?
     =true
-  </Styled(Type)>
+  </Consumer(Type)>
    — 
   <Markdown
     inline={true}
@@ -92,10 +92,10 @@ exports[`should render optional argument 1`] = `
 <Group
   separator=" "
 >
-  <Styled(Type)>
+  <Consumer(Type)>
     Array
     ?
-  </Styled(Type)>
+  </Consumer(Type)>
    — 
   <Markdown
     inline={true}
@@ -109,9 +109,9 @@ exports[`should render return value 1`] = `
   separator=" "
 >
   Returns
-  <Styled(Type)>
+  <Consumer(Type)>
     Array
-  </Styled(Type)>
+  </Consumer(Type)>
    — 
   <Markdown
     inline={true}

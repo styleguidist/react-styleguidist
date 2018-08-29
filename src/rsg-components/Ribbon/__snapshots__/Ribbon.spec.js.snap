@@ -1,9 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Ribbon should render ribbon if the ribbon is present in the config 1`] = `
-<Styled(Ribbon)
-  url="foo.bar"
-/>
+<ContextProvider
+  value={
+    Object {
+      "config": Object {
+        "ribbon": Object {
+          "url": "foo.bar",
+        },
+      },
+    }
+  }
+>
+  <Consumer(Ribbon) />
+</ContextProvider>
+`;
+
+exports[`Ribbon should return null if the ribbon is not present in the config 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "config": Object {},
+    }
+  }
+>
+  <Consumer(Ribbon) />
+</ContextProvider>
 `;
 
 exports[`RibbonRenderer should render ribbon with a text 1`] = `

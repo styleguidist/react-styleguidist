@@ -5,13 +5,13 @@ exports[`renderer should a path line 1`] = `
   className="pathline"
 >
   foo/bar
-  <Styled(ToolbarButton)
+  <Consumer(ToolbarButton)
     className="copyButton"
     onClick={[Function]}
     small={true}
     title="Copy to clipboard"
   >
     <MdContentCopy />
-  </Styled(ToolbarButton)>
+  </Consumer(ToolbarButton)>
 </div>
 `;

@@ -2,8 +2,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Consumer } from '../../provider';
 
-export default function Slot({ name, active, onlyActive, className, props = {} }, { slots }) {
+function Slot({ name, active, onlyActive, className, props = {}, slots }) {
 	const fills = slots[name];
 	if (!fills) {
 		throw new Error(`Slot "${name}" not found, available slots: ${Object.keys(slots).join(', ')}`);
@@ -50,7 +51,7 @@ Slot.propTypes = {
 	onlyActive: PropTypes.bool,
 	props: PropTypes.object,
 	className: PropTypes.string,
-};
-Slot.contextTypes = {
 	slots: PropTypes.object.isRequired,
 };
+
+export default Consumer(Slot);
