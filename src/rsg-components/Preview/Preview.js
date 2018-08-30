@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import PlaygroundError from 'rsg-components/PlaygroundError';
+import { Consumer } from '../../provider';
 
 import ReactExample from '../ReactExample';
 
@@ -9,12 +10,10 @@ import ReactExample from '../ReactExample';
 
 const Fragment = React.Fragment ? React.Fragment : 'div';
 
-export default class Preview extends Component {
+class Preview extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
-	};
-	static contextTypes = {
 		config: PropTypes.object.isRequired,
 		codeRevision: PropTypes.number.isRequired,
 	};
@@ -25,7 +24,7 @@ export default class Preview extends Component {
 	componentDidMount() {
 		// Clear console after hot reload, do not clear on the first load
 		// to keep any warnings
-		if (this.context.codeRevision > 0) {
+		if (this.props.codeRevision > 0) {
 			// eslint-disable-next-line no-console
 			console.clear();
 		}
@@ -58,7 +57,7 @@ export default class Preview extends Component {
 			error: null,
 		});
 
-		const { code } = this.props;
+		const { code, evalInContext, config } = this.props;
 		if (!code) {
 			return;
 		}
@@ -66,9 +65,9 @@ export default class Preview extends Component {
 		const wrappedComponent = (
 			<ReactExample
 				code={code}
-				evalInContext={this.props.evalInContext}
+				evalInContext={evalInContext}
 				onError={this.handleError}
-				compilerConfig={this.context.config.compilerConfig}
+				compilerConfig={config.compilerConfig}
 			/>
 		);
 
@@ -102,3 +101,5 @@ export default class Preview extends Component {
 		);
 	}
 }
+
+export default Consumer(Preview);

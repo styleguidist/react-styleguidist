@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import Playground from 'rsg-components/Playground';
 import Markdown from 'rsg-components/Markdown';
 import ExamplesRenderer from 'rsg-components/Examples/ExamplesRenderer';
+import { Consumer } from '../../provider';
 
-export default function Examples({ examples, name, exampleMode }, { codeRevision }) {
+function Examples({ examples, name, exampleMode, codeRevision }) {
 	return (
 		<ExamplesRenderer>
 			{examples.map((example, index) => {
@@ -34,7 +35,7 @@ Examples.propTypes = {
 	examples: PropTypes.array.isRequired,
 	name: PropTypes.string.isRequired,
 	exampleMode: PropTypes.string.isRequired,
-};
-Examples.contextTypes = {
 	codeRevision: PropTypes.number.isRequired,
 };
+
+export default Consumer(Examples);

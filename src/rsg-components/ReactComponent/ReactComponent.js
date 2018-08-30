@@ -8,26 +8,25 @@ import Slot from 'rsg-components/Slot';
 import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponentRenderer';
 import { DOCS_TAB_USAGE } from '../slots';
 import { DisplayModes, UsageModes } from '../../consts';
+import { Consumer } from '../../provider';
 
 const ExamplePlaceholder =
 	process.env.STYLEGUIDIST_ENV !== 'production'
 		? require('rsg-components/ExamplePlaceholder').default
 		: () => <div />;
 
-export default class ReactComponent extends Component {
+class ReactComponent extends Component {
 	static propTypes = {
 		component: PropTypes.object.isRequired,
 		depth: PropTypes.number.isRequired,
 		exampleMode: PropTypes.string.isRequired,
 		usageMode: PropTypes.string.isRequired,
-	};
-	static contextTypes = {
 		config: PropTypes.object.isRequired,
 		displayMode: PropTypes.string,
 	};
 
-	constructor(props, context) {
-		super(props, context);
+	constructor(props) {
+		super(props);
 		const { usageMode } = props;
 
 		this.handleTabChange = this.handleTabChange.bind(this);
@@ -46,10 +45,13 @@ export default class ReactComponent extends Component {
 	render() {
 		const { activeTab } = this.state;
 		const {
+			component,
+			depth,
+			usageMode,
+			exampleMode,
 			displayMode,
 			config: { pagePerSection },
-		} = this.context;
-		const { component, depth, usageMode, exampleMode } = this.props;
+		} = this.props;
 		const { name, visibleName, slug, filepath, pathLine } = component;
 		const { description, examples = [], tags = {} } = component.props;
 		if (!name) {
@@ -101,3 +103,5 @@ export default class ReactComponent extends Component {
 		);
 	}
 }
+
+export default Consumer(ReactComponent);

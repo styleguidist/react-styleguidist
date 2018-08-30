@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`if a custom href is provided, should use it instead of generating internal link 1`] = `
-<Styled(ComponentsList)
+<Consumer(ComponentsList)
   classes={Object {}}
   items={
     Array [
@@ -27,12 +27,12 @@ exports[`should ignore items without visibleName 1`] = `
     className=""
     key="#button"
   >
-    <Styled(Link)
+    <Consumer(Link)
       className=""
       href="#button"
     >
       Button
-    </Styled(Link)>
+    </Consumer(Link)>
   </li>
 </ul>
 `;
@@ -43,29 +43,29 @@ exports[`should render sections with nested components 1`] = `
     className=""
     key="#button"
   >
-    <Styled(Link)
+    <Consumer(Link)
       className=""
       href="#button"
     >
       Button
-    </Styled(Link)>
+    </Consumer(Link)>
   </li>
   <li
     className=""
     key="#input"
   >
-    <Styled(Link)
+    <Consumer(Link)
       className=""
       href="#input"
     >
       Input
-    </Styled(Link)>
+    </Consumer(Link)>
   </li>
 </ul>
 `;
 
 exports[`should set a parameter on link when useHashId is activated 1`] = `
-<Styled(ComponentsList)
+<Consumer(ComponentsList)
   classes={Object {}}
   items={
     Array [
@@ -87,7 +87,7 @@ exports[`should set a parameter on link when useHashId is activated 1`] = `
 `;
 
 exports[`should set a sub route on link when useHashId is deactivated 1`] = `
-<Styled(ComponentsList)
+<Consumer(ComponentsList)
   classes={Object {}}
   items={
     Array [
@@ -107,7 +107,7 @@ exports[`should set a sub route on link when useHashId is deactivated 1`] = `
 `;
 
 exports[`should set the correct href for items 1`] = `
-<Styled(ComponentsList)
+<Consumer(ComponentsList)
   classes={Object {}}
   items={
     Array [

@@ -40,57 +40,62 @@ exports[`renderer should render preview 1`] = `
 `;
 
 exports[`should render component renderer 1`] = `
-<Styled(Playground)
-  name="name"
-  preview={
-    <Preview
-      code=
+<ContextProvider
+  value={
+    Object {
+      "codeRevision": 0,
+      "config": Object {
+        "highlightTheme": "base16-light",
+      },
+      "slots": Object {
+        "componentToolbar": Array [
+          [Function],
+        ],
+        "docsTabButtons": Array [
+          Object {
+            "id": "rsg-usage",
+            "render": [Function],
+          },
+        ],
+        "docsTabs": Array [
+          Object {
+            "id": "rsg-usage",
+            "render": [Function],
+          },
+        ],
+        "exampleTabButtons": Array [
+          Object {
+            "id": "rsg-code-editor",
+            "render": [Function],
+          },
+        ],
+        "exampleTabs": Array [
+          Object {
+            "id": "rsg-code-editor",
+            "render": [Function],
+          },
+        ],
+        "exampleToolbar": Array [
+          [Function],
+        ],
+        "sectionToolbar": Array [
+          [Function],
+        ],
+      },
+    }
+  }
+>
+  <Consumer(Playground)
+    code=
 <button>
   OK
 </button>
 
-      evalInContext={[Function]}
-    />
-  }
-  previewProps={Object {}}
-  tabBody={
-    <Slot
-      name="exampleTabs"
-      onlyActive={true}
-      props={
-        Object {
-          "code": 
-<button>
-  OK
-</button>
-,
-          "evalInContext": [Function],
-          "onChange": [Function],
-        }
-      }
-    />
-  }
-  tabButtons={
-    <Slot
-      name="exampleTabButtons"
-      props={
-        Object {
-          "onClick": [Function],
-        }
-      }
-    />
-  }
-  toolbar={
-    <Slot
-      name="exampleToolbar"
-      props={
-        Object {
-          "example": 0,
-          "isolated": false,
-          "name": "name",
-        }
-      }
-    />
-  }
-/>
+    evalInContext={[Function]}
+    exampleMode="collapse"
+    index={0}
+    name="name"
+    settings={Object {}}
+  />
+</ContextProvider>
 `;

@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SectionHeading should forward slot properties to the toolbar 1`] = `
-<Styled(SectionHeading)
+<Consumer(SectionHeading)
   depth={2}
   href="blank#section"
   id="section"
   toolbar={
-    <Slot
+    <Consumer(Slot)
       name="slot"
       props={
         Object {
@@ -18,7 +18,7 @@ exports[`SectionHeading should forward slot properties to the toolbar 1`] = `
   }
 >
   A Section
-</Styled(SectionHeading)>
+</Consumer(SectionHeading)>
 `;
 
 exports[`SectionHeading should render a deprecated section heading 1`] = `

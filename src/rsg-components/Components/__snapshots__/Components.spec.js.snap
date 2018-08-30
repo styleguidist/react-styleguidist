@@ -2,7 +2,7 @@
 
 exports[`renderer should render components list layout 1`] = `
 <div>
-  <ReactComponent
+  <Consumer(ReactComponent)
     component={
       Object {
         "filepath": "components/foo.js",
@@ -18,7 +18,7 @@ exports[`renderer should render components list layout 1`] = `
     key="0"
     usageMode="collapse"
   />
-  <ReactComponent
+  <Consumer(ReactComponent)
     component={
       Object {
         "filepath": "components/bar.js",
@@ -39,7 +39,7 @@ exports[`renderer should render components list layout 1`] = `
 
 exports[`should render components list 1`] = `
 <ComponentsRenderer>
-  <ReactComponent
+  <Consumer(ReactComponent)
     component={
       Object {
         "filepath": "components/foo.js",
@@ -55,7 +55,7 @@ exports[`should render components list 1`] = `
     key="components/foo.js"
     usageMode="collapse"
   />
-  <ReactComponent
+  <Consumer(ReactComponent)
     component={
       Object {
         "filepath": "components/bar.js",

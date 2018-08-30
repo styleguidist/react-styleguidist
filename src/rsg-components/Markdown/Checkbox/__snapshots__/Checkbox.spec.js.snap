@@ -3,6 +3,7 @@
 exports[`Markdown Checkbox should render a checkbox input 1`] = `
 <input
   class="rsg--input-0"
+  config="[object Object]"
   type="checkbox"
 />
 `;

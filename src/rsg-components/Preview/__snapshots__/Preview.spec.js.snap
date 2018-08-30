@@ -1,12 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should handle errors 1`] = `
-<React.Fragment>
-  <div />
-  <Styled(PlaygroundError)
-    message="Invariant Violation: Target container is not a DOM element."
-  />
-</React.Fragment>
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;
 
 exports[`should handle no code 1`] = `
@@ -17,16 +14,34 @@ exports[`should handle no code 1`] = `
 `;
 
 exports[`should render component renderer 1`] = `
-<React.Fragment>
-  <div />
-</React.Fragment>
+<ContextProvider
+  value={
+    Object {
+      "codeRevision": 0,
+      "config": Object {
+        "compilerConfig": Object {
+          "jsx": undefined,
+        },
+      },
+    }
+  }
+>
+  <Consumer(Preview)
+    code=
+<button>
+  OK
+</button>
+
+    evalInContext={[Function]}
+  />
+</ContextProvider>
 `;
 
 exports[`should update 1`] = `
 
 <div>
   <button>
-    Cancel
+    OK
   </button>
 </div>
 

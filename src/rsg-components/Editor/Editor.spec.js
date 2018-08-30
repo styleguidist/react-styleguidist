@@ -1,23 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { EditorLoaderRenderer } from './EditorLoaderRenderer';
 import { Editor } from './Editor';
+import { Provider } from '../../provider';
 
 const code = '<button>MyAwesomeCode</button>';
 const newCode = '<button>MyNewAwesomeCode</button>';
-const options = {
-	context: {
-		config: {
-			showCode: false,
-			highlightTheme: 'base16-light',
-			editorConfig: {
-				lineWrapping: true,
-				mode: 'js',
-			},
+const context = {
+	config: {
+		showCode: false,
+		highlightTheme: 'base16-light',
+		editorConfig: {
+			lineWrapping: true,
+			mode: 'js',
 		},
-	},
-	childContextTypes: {
-		config: PropTypes.object.isRequired,
 	},
 };
 
@@ -32,8 +27,9 @@ describe('EditorLoaderRenderer', () => {
 describe('Editor', () => {
 	it('should renderer and editor', () => {
 		const actual = shallow(
-			<Editor classes={{}} code={code} editorConfig={{ readOnly: true, mode: 'text/html' }} />,
-			options
+			<Provider {...context}>
+				<Editor classes={{}} code={code} editorConfig={{ readOnly: true, mode: 'text/html' }} />,
+			</Provider>
 		);
 
 		expect(actual).toMatchSnapshot();
@@ -41,7 +37,11 @@ describe('Editor', () => {
 
 	it('should update code with debounce', done => {
 		const onChange = jest.fn();
-		const actual = mount(<Editor classes={{}} code={code} onChange={onChange} />, options);
+		const actual = mount(
+			<Provider {...context}>
+				<Editor classes={{}} code={code} onChange={onChange} />
+			</Provider>
+		);
 
 		expect(actual.text()).toMatch(code);
 
@@ -59,7 +59,11 @@ describe('Editor', () => {
 	});
 
 	it('should not update if not read only', () => {
-		const actual = shallow(<Editor classes={{}} code={code} />, options);
+		const actual = shallow(
+			<Provider {...context}>
+				<Editor classes={{}} code={code} />
+			</Provider>
+		);
 
 		const shouldUpdate = actual.instance().shouldComponentUpdate({ code: newCode });
 		expect(shouldUpdate).toBe(false);
@@ -67,8 +71,9 @@ describe('Editor', () => {
 
 	it('should update if read only and code has changed', () => {
 		const actual = shallow(
-			<Editor classes={{}} code={code} editorConfig={{ readOnly: true }} />,
-			options
+			<Provider {...context}>
+				<Editor classes={{}} code={code} editorConfig={{ readOnly: true }} />
+			</Provider>
 		);
 
 		const shouldUpdate = actual

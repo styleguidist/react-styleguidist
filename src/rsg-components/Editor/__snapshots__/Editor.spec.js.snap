@@ -1,21 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Editor should renderer and editor 1`] = `
-<UnControlled
-  onChange={[Function]}
-  options={
+<ContextProvider
+  value={
     Object {
-      "lineWrapping": true,
-      "mode": "text/html",
-      "readOnly": true,
+      "config": Object {
+        "editorConfig": Object {
+          "lineWrapping": true,
+          "mode": "js",
+        },
+        "highlightTheme": "base16-light",
+        "showCode": false,
+      },
     }
   }
-  value=
+>
+  <Editor
+    classes={Object {}}
+    code=
 <button>
   MyAwesomeCode
 </button>
 
-/>
+    editorConfig={
+      Object {
+        "mode": "text/html",
+        "readOnly": true,
+      }
+    }
+  />
+  ,
+</ContextProvider>
 `;
 
 exports[`EditorLoaderRenderer should renderer should render loader 1`] = `

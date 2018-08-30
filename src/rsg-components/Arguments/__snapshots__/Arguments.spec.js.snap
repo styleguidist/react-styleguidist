@@ -4,7 +4,7 @@ exports[`renderer should render arguments 1`] = `
 <div
   className="root"
 >
-  <Styled(Argument)
+  <Consumer(Argument)
     description="Converts foo to bar"
     key="Foo"
     name="Foo"
@@ -14,7 +14,7 @@ exports[`renderer should render arguments 1`] = `
       }
     }
   />
-  <Styled(Argument)
+  <Consumer(Argument)
     key="Foo"
     name="Foo"
   />
@@ -28,13 +28,13 @@ exports[`renderer should render heading 1`] = `
   <div
     className="headingWrapper"
   >
-    <Styled(Heading)
+    <Consumer(Heading)
       level={5}
     >
       Arguments
-    </Styled(Heading)>
+    </Consumer(Heading)>
   </div>
-  <Styled(Argument)
+  <Consumer(Argument)
     key="Foo"
     name="Foo"
   />

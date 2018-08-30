@@ -4,6 +4,7 @@ import Styled from 'rsg-components/Styled';
 import debounce from 'lodash/debounce';
 import { UnControlled as CodeMirror } from 'react-codemirror2';
 import 'codemirror/mode/jsx/jsx';
+import { Consumer } from '../../provider';
 
 // We’re explicitly specifying Webpack loaders here so we could skip specifying them in Webpack configuration.
 // That way we could avoid clashes between our loaders and user loaders.
@@ -46,8 +47,6 @@ export class Editor extends Component {
 		onChange: PropTypes.func,
 		editorConfig: PropTypes.object,
 		classes: PropTypes.object.isRequired,
-	};
-	static contextTypes = {
 		config: PropTypes.object.isRequired,
 	};
 
@@ -62,7 +61,7 @@ export class Editor extends Component {
 
 	getEditorConfig(props) {
 		return {
-			...this.context.config.editorConfig,
+			...props.config.editorConfig,
 			...props.editorConfig,
 		};
 	}
@@ -87,4 +86,4 @@ export class Editor extends Component {
 	}
 }
 
-export default Styled(styles)(Editor);
+export default Consumer(Styled(styles)(Editor));

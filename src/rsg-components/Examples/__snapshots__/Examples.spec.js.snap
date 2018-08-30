@@ -1,22 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render examples 1`] = `
-<Styled(Examples)>
-  <Playground
-    code=
+<ContextProvider
+  value={
+    Object {
+      "codeRevision": 1,
+      "displayMode": "example",
+    }
+  }
+>
+  <Consumer(Examples)
+    exampleMode="collapse"
+    examples={
+      Array [
+        Object {
+          "content": 
 <button>
   OK
 </button>
-
-    evalInContext={[Function]}
-    exampleMode="collapse"
-    index={0}
-    key="1/0"
+,
+          "evalInContext": [Function],
+          "type": "code",
+        },
+        Object {
+          "content": "Hello *world*!",
+          "type": "markdown",
+        },
+      ]
+    }
     name="button"
   />
-  <Markdown
-    key="1"
-    text="Hello *world*!"
-  />
-</Styled(Examples)>
+</ContextProvider>
 `;

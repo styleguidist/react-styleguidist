@@ -1,6 +1,7 @@
 import React from 'react';
 import Ribbon from './Ribbon';
 import { RibbonRenderer, styles } from './RibbonRenderer';
+import { Provider } from '../../provider';
 
 const props = {
 	classes: classes(styles),
@@ -8,14 +9,25 @@ const props = {
 
 describe('Ribbon', () => {
 	it('should render ribbon if the ribbon is present in the config', () => {
-		const actual = shallow(<Ribbon />, { context: { config: { ribbon: { url: 'foo.bar' } } } });
+		const context = { config: { ribbon: { url: 'foo.bar' } } };
+		const actual = shallow(
+			<Provider {...context}>
+				<Ribbon />
+			</Provider>
+		);
 
 		expect(actual).toMatchSnapshot();
 	});
 
 	it('should return null if the ribbon is not present in the config', () => {
-		const actual = shallow(<Ribbon />, { context: { config: {} } });
+		const context = { config: {} };
+		const actual = shallow(
+			<Provider {...context}>
+				<Ribbon />
+			</Provider>
+		);
 
+		expect(actual).toMatchSnapshot();
 		expect(actual.type()).toBeNull();
 	});
 });

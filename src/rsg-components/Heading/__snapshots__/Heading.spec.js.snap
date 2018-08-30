@@ -2,7 +2,9 @@
 
 exports[`Heading should render a heading 1`] = `
 
-<h2 class="rsg--heading-0 rsg--heading2-2">
+<h2 config="[object Object]"
+    class="rsg--heading-0 rsg--heading2-2"
+>
   The heading
 </h2>
 
