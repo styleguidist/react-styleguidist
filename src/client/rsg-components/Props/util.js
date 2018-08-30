@@ -5,7 +5,7 @@
  * @returns {string}
  */
 export function unquote(string) {
-	return string.replace(/^['"]|['"]$/g, '');
+	return string && string.replace(/^['"]|['"]$/g, '');
 }
 
 /**
@@ -38,5 +38,5 @@ export function getType(prop) {
  * @returns {string}
  */
 export function showSpaces(string) {
-	return string.replace(/^\s|\s$/g, '␣');
+	return string && string.replace(/^\s|\s$/g, '␣');
 }
