@@ -3,7 +3,6 @@ import slots from 'rsg-components/slots';
 import StyleGuide from 'rsg-components/StyleGuide';
 import getPageTitle from './getPageTitle';
 import getRouteData from './getRouteData';
-import globalizeComponents from './globalizeComponents';
 import processSections from './processSections';
 
 /**
@@ -22,10 +21,6 @@ export default function renderStyleguide(
 	hist = window.history
 ) {
 	const allSections = processSections(styleguide.sections);
-
-	// Globalize all components, not just ones we see on the screen, to make
-	// all components accessible to all examples
-	globalizeComponents(allSections);
 
 	const { title, pagePerSection } = styleguide.config;
 	const { sections, displayMode } = getRouteData(allSections, loc.hash, pagePerSection);

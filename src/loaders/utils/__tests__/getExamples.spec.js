@@ -1,28 +1,26 @@
+import deabsDeep from 'deabsdeep';
 import getExamples from '../getExamples';
 
-it('getExamples() should return require with examples-loader is component ha example file', () => {
-	const examplesFile = __filename;
-	const result = getExamples(examplesFile);
+const file = '../pizza.js';
+const displayName = 'Pizza';
+const examplesFile = './Pizza.md';
+const defaultExample = './Default.md';
 
-	expect(result.require.includes(examplesFile)).toBe(true);
-	expect(result.require.includes('componentName=')).toBe(false);
+test('require an example file if component has example file', () => {
+	const result = getExamples(file, displayName, examplesFile);
+	expect(deabsDeep(result).require).toMatchInlineSnapshot(
+		`"!!~/src/loaders/examples-loader.js?displayName=Pizza&file=.%2F..%2Fpizza.js&shouldShowDefaultExample=false!./Pizza.md"`
+	);
 });
 
-it('getExamples() should return require with examples-loader is component has examples', () => {
-	const examplesFile = 'foo';
-	const fallbackName = 'Baz';
-	const defaultExample = 'foo.js';
-	const result = getExamples(examplesFile, fallbackName, defaultExample);
-
-	expect(result.require.includes(__filename)).toBe(false);
-	expect(result.require.includes(fallbackName)).toBe(true);
-	expect(result.require.includes(defaultExample)).toBe(true);
-	expect(result.require.includes('componentName=')).toBe(true);
+test('require default example has no example file', () => {
+	const result = getExamples(file, displayName, false, defaultExample);
+	expect(deabsDeep(result).require).toMatchInlineSnapshot(
+		`"!!~/src/loaders/examples-loader.js?displayName=Pizza&file=.%2F..%2Fpizza.js&shouldShowDefaultExample=true!./Default.md"`
+	);
 });
 
-it('getExamples() should return an empty array if component has no example file', () => {
-	const examplesFile = 'foo';
-	const result = getExamples(examplesFile);
-
-	expect(result).toEqual([]);
+test('return null if component has no example file or default example', () => {
+	const result = getExamples(file, displayName);
+	expect(result).toEqual(null);
 });

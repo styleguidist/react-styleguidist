@@ -1,4 +1,5 @@
 ```js
+import Button from '../Button'
 let ref
 ;<div>
   <CounterButton ref={r => (ref = r)} />

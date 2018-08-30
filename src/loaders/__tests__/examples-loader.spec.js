@@ -1,4 +1,15 @@
+import qs from 'querystringify';
 import examplesLoader from '../examples-loader';
+
+/* eslint-disable no-new-func */
+
+const query = {
+	file: '../foo.js',
+	displayName: 'FooComponent',
+	shouldShowDefaultExample: false,
+};
+
+const getQuery = (options = {}) => `?${qs.stringify({ ...query, ...options })}`;
 
 it('should return valid, parsable JS', () => {
 	const exampleMarkdown = `
@@ -14,18 +25,17 @@ text
 `;
 	const result = examplesLoader.call(
 		{
+			query: getQuery(),
 			_styleguidist: {},
 		},
 		exampleMarkdown
 	);
 
 	expect(result).toBeTruthy();
-	expect(() => new Function(result)).not.toThrowError(SyntaxError); // eslint-disable-line no-new-func
+	expect(() => new Function(result)).not.toThrowError(SyntaxError);
 });
 
-// componentName query option
-
-it('should replace all occurrences of __COMPONENT__ with provided query.componentName', () => {
+it('should replace all occurrences of __COMPONENT__ with provided query.displayName', () => {
 	const exampleMarkdown = `
 <div>
 	<__COMPONENT__>
@@ -38,14 +48,34 @@ it('should replace all occurrences of __COMPONENT__ with provided query.componen
 
 	const result = examplesLoader.call(
 		{
-			query: '?componentName=FooComponent',
+			query: getQuery({ shouldShowDefaultExample: true }),
 			_styleguidist: {},
 		},
 		exampleMarkdown
 	);
 	expect(result).not.toMatch(/__COMPONENT__/);
-	expect(result).toMatch(/FooComponent/);
-	expect(result.match(/FooComponent/g).length).toBe(4);
+	expect(result.match(/<div>(.*?)<\/div>/)[0]).toMatchInlineSnapshot(`
+
+<div>
+  \\n\\t
+  <FooComponent>
+    \\n\\t\\t
+    <span>
+      text
+    </span>
+    \\n\\t\\t
+    <span>
+      Name of component: FooComponent
+    </span>
+    \\n\\t
+  </FooComponent>
+  \\n\\t
+  <FooComponent>
+  </FooComponent>
+  \\n
+</div>
+
+`);
 });
 
 it('should pass updateExample function from config to chunkify', () => {
@@ -57,7 +87,7 @@ it('should pass updateExample function from config to chunkify', () => {
 	const updateExample = jest.fn(props => props);
 	examplesLoader.call(
 		{
-			query: '?componentName=FooComponent',
+			query: getQuery(),
 			resourcePath: '/path/to/foo/examples/file',
 			_styleguidist: {
 				updateExample,
@@ -75,7 +105,7 @@ it('should pass updateExample function from config to chunkify', () => {
 	);
 });
 
-it('should generate require map', () => {
+it('should generate require map when require() is used', () => {
 	const exampleMarkdown = `
 One:
 
@@ -88,13 +118,35 @@ Two:
 `;
 	const result = examplesLoader.call(
 		{
+			query: getQuery(),
 			_styleguidist: {},
 		},
 		exampleMarkdown
 	);
 
 	expect(result).toBeTruthy();
-	expect(() => new Function(result)).not.toThrowError(SyntaxError); // eslint-disable-line no-new-func
+	expect(() => new Function(result)).not.toThrowError(SyntaxError);
+	expect(result).toMatch(`'lodash': require('lodash')`);
+	expect(result).toMatch(`'react': require('react')`);
+});
+
+it('should generate require map when import is used', () => {
+	const exampleMarkdown = `
+One:
+
+    import _ from 'lodash';
+	<X/>
+`;
+	const result = examplesLoader.call(
+		{
+			query: getQuery(),
+			_styleguidist: {},
+		},
+		exampleMarkdown
+	);
+
+	expect(result).toBeTruthy();
+	expect(() => new Function(result)).not.toThrowError(SyntaxError);
 	expect(result).toMatch(`'lodash': require('lodash')`);
 	expect(result).toMatch(`'react': require('react')`);
 });
@@ -107,13 +159,14 @@ it('should work with multiple JSX element on the root level', () => {
 `;
 	const result = examplesLoader.call(
 		{
+			query: getQuery(),
 			_styleguidist: {},
 		},
 		exampleMarkdown
 	);
 
 	expect(result).toBeTruthy();
-	expect(() => new Function(result)).not.toThrowError(SyntaxError); // eslint-disable-line no-new-func
+	expect(() => new Function(result)).not.toThrowError(SyntaxError);
 	expect(result).toMatch(`'lodash': require('lodash')`);
 });
 
@@ -121,12 +174,66 @@ it('should prepend example code with React require()', () => {
 	const exampleMarkdown = `<X/>`;
 	const result = examplesLoader.call(
 		{
+			query: getQuery(),
 			_styleguidist: {},
 		},
 		exampleMarkdown
 	);
 
 	expect(result).toBeTruthy();
-	expect(() => new Function(result)).not.toThrowError(SyntaxError); // eslint-disable-line no-new-func
+	expect(() => new Function(result)).not.toThrowError(SyntaxError);
 	expect(result).toMatch(`var React = require('react');`);
+});
+
+it('should prepend example code with component require()', () => {
+	const exampleMarkdown = `<X/>`;
+	const result = examplesLoader.call(
+		{
+			query: getQuery(),
+			_styleguidist: {},
+		},
+		exampleMarkdown
+	);
+
+	expect(result).toBeTruthy();
+	expect(() => new Function(result)).not.toThrowError(SyntaxError);
+	expect(result).toMatch(`var FooComponent = require('../foo.js');`);
+});
+
+it('should allow explicit import of React and component module', () => {
+	const exampleMarkdown = `
+    import React from 'react';
+    import FooComponent from '../foo.js';
+    <FooComponent/>`;
+	const result = examplesLoader.call(
+		{
+			query: getQuery(),
+			_styleguidist: {},
+		},
+		exampleMarkdown
+	);
+
+	expect(result).toBeTruthy();
+	expect(() => new Function(result)).not.toThrowError(SyntaxError);
+	expect(result).toMatch(`var React = require('react');`);
+	expect(result).toMatch(`var FooComponent = require('../foo.js');`);
+});
+
+it('should works for any Markdown file, without a current component', () => {
+	const exampleMarkdown = `
+    import React from 'react';
+    import FooComponent from '../foo.js';
+    <FooComponent/>`;
+	const result = examplesLoader.call(
+		{
+			query: '',
+			_styleguidist: {},
+		},
+		exampleMarkdown
+	);
+
+	expect(result).toBeTruthy();
+	expect(() => new Function(result)).not.toThrowError(SyntaxError);
+	expect(result).toMatch(`var React = require('react');`);
+	expect(result).not.toMatch('undefined');
 });

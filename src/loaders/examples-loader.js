@@ -13,16 +13,16 @@ const requireIt = require('./utils/requireIt');
 
 const absolutize = filepath => path.resolve(__dirname, filepath);
 
-function examplesLoader(source) {
-	const query = loaderUtils.getOptions(this) || {};
-	const config = this._styleguidist;
+const REQUIRE_IN_RUNTIME_PATH = absolutize('utils/client/requireInRuntime');
+const EVAL_IN_CONTEXT_PATH = absolutize('utils/client/evalInContext');
 
-	// Append React to context modules, since it’s required for JSX
-	const fullContext = Object.assign({ React: 'react' }, config.context);
+function examplesLoader(source) {
+	const config = this._styleguidist;
+	const { file, displayName, shouldShowDefaultExample } = loaderUtils.getOptions(this) || {};
 
 	// Replace placeholders (__COMPONENT__) with the passed-in component name
-	if (query.componentName) {
-		source = expandDefaultComponent(source, query.componentName);
+	if (shouldShowDefaultExample) {
+		source = expandDefaultComponent(source, displayName);
 	}
 
 	const updateExample = config.updateExample
@@ -41,18 +41,36 @@ function examplesLoader(source) {
 		return requires.concat(getRequires(example.content));
 	}, []);
 
-	// React + context requires + example requires
-	const allRequires = requiresFromExamples.concat(values(fullContext));
+	// Auto imported modules.
+	// We don't need to do anything here to support explicit imports: they will
+	// work because both imports (generated below and by rewrite-imports) will
+	// be eventually transpiled to `var x = require('x')`, so we'll just have two
+	// of them in the same scope, which is fine in non-strict mode
+	const fullContext = {
+		// Modules, provied by the user
+		...config.context,
+		// Append React, because it’s required for JSX
+		React: 'react',
+		// Append the current component module to make it accessible in examples
+		// without an explicit import
+		// TODO: Do not leak absolute path
+		...(displayName ? { [displayName]: file } : {}),
+	};
+
+	// All required or imported modules, either explicitly in examples code
+	// or implicitly (React, current component and context config option)
+	const allModules = [...requiresFromExamples, ...values(fullContext)];
 
 	// “Prerequire” modules required in Markdown examples and context so they
 	// end up in a bundle and be available at runtime
-	const allRequiresCode = allRequires.reduce((requires, requireRequest) => {
+	const allModulesCode = allModules.reduce((requires, requireRequest) => {
 		requires[requireRequest] = requireIt(requireRequest);
 		return requires;
 	}, {});
 
 	// Require context modules so they are available in an example
 	const requireContextCode = b.program(
+		// var name = require(path)
 		map(fullContext, (requireRequest, name) =>
 			b.variableDeclaration('var', [
 				b.variableDeclarator(b.identifier(name), requireIt(requireRequest).toAST()),
@@ -73,10 +91,10 @@ if (module.hot) {
 	module.hot.accept([])
 }
 
-var requireMap = ${generate(toAst(allRequiresCode))};
-var requireInRuntimeBase = require(${JSON.stringify(absolutize('utils/client/requireInRuntime'))});
+var requireMap = ${generate(toAst(allModulesCode))};
+var requireInRuntimeBase = require(${JSON.stringify(REQUIRE_IN_RUNTIME_PATH)}).default;
 var requireInRuntime = requireInRuntimeBase.bind(null, requireMap);
-var evalInContextBase = require(${JSON.stringify(absolutize('utils/client/evalInContext'))});
+var evalInContextBase = require(${JSON.stringify(absolutize(EVAL_IN_CONTEXT_PATH))}).default;
 var evalInContext = evalInContextBase.bind(null, ${JSON.stringify(
 		generate(requireContextCode)
 	)}, requireInRuntime);
