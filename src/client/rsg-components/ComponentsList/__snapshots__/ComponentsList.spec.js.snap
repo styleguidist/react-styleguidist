@@ -11,7 +11,7 @@ exports[`if a custom href is provided, should use it instead of generating inter
         "visibleName": "External example",
       },
       Object {
-        "href": "blank#input",
+        "href": "/#input",
         "name": "Input",
         "slug": "input",
         "visibleName": "Input",
