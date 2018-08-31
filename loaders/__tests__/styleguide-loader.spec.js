@@ -6,8 +6,8 @@ import getConfig from '../../scripts/config';
 
 /* eslint-disable quotes */
 
-const file = path.resolve(__dirname, '../../test/components/Button/Button.js');
-const configDir = path.resolve(__dirname, '../../test');
+const file = require.resolve('@test/components/Button/Button.js');
+const configDir = require.resolve('@test');
 
 it('should return valid, parsable JS', () => {
 	const result = styleguideLoader.pitch.call(
