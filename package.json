@@ -176,7 +176,8 @@
       "./src"
     ],
     "moduleNameMapper": {
-      "^.+\\.css$": "<rootDir>/test/empty.js"
+      "^.+\\.css$": "<rootDir>/test/empty.js",
+      "^@test/(.+)$": "<rootDir>/test/$1"
     },
     "testPathIgnorePatterns": [
       "<rootDir>/lib/",
