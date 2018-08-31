@@ -1,53 +1,53 @@
 {
-	"parser": "babel-eslint",
-	"extends": "tamia/react",
-	"env": {
-		"browser": true,
-		"node": true
-	},
-	"plugins": ["compat", "import", "jsx-a11y"],
-	"settings": {
-		"import/resolver": {
-			"node": {
-				"moduleDirectory": ["src", "node_modules"]
-			}
-		}
-	},
-	"rules": {
-		"no-invalid-this": 0,
-		"jsx-a11y/rule-name": 2,
-		"compat/compat": "error",
-		"import/no-unresolved": [
-			"error",
-			{
-				"commonjs": true,
-				"caseSensitive": true
-			}
-		],
-		"import/export": "error",
-		"import/no-named-as-default-member": "error",
-		"import/no-mutable-exports": "error",
-		"import/no-amd": "error",
-		"import/first": ["error", "absolute-first"],
-		"import/no-duplicates": "error",
-		"import/extensions": [
-			"error",
-			"always",
-			{
-				"js": "never"
-			}
-		],
-		"import/no-extraneous-dependencies": "error",
-		"import/newline-after-import": "error",
-		"import/prefer-default-export": "error",
-		"import/no-named-default": "error"
-	},
-	"globals": {
-		"System": false,
-		"classes": false,
-		"shallow": false,
-		"render": false,
-		"mount": false,
-		"cy": false
-	}
+  "parser": "babel-eslint",
+  "extends": "tamia/react",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "plugins": ["compat", "import", "jsx-a11y"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["src", "node_modules"]
+      }
+    }
+  },
+  "rules": {
+    "no-invalid-this": 0,
+    "jsx-a11y/rule-name": 2,
+    "compat/compat": "error",
+    "import/no-unresolved": [
+      "error",
+      {
+        "commonjs": true,
+        "caseSensitive": true
+      }
+    ],
+    "import/export": "error",
+    "import/no-named-as-default-member": "error",
+    "import/no-mutable-exports": "error",
+    "import/no-amd": "error",
+    "import/first": ["error", "absolute-first"],
+    "import/no-duplicates": "error",
+    "import/extensions": [
+      "error",
+      "always",
+      {
+        "js": "never"
+      }
+    ],
+    "import/no-extraneous-dependencies": "error",
+    "import/newline-after-import": "error",
+    "import/prefer-default-export": "error",
+    "import/no-named-default": "error"
+  },
+  "globals": {
+    "System": false,
+    "classes": false,
+    "shallow": false,
+    "render": false,
+    "mount": false,
+    "cy": false
+  }
 }
