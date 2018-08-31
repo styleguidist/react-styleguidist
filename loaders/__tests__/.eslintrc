@@ -1,3 +1,10 @@
 {
-	"extends": "tamia/react"
+	"extends": "tamia/react",
+	"settings": {
+		"import/resolver": {
+			"alias": [
+				["_test", "../../test"]
+			]
+		}
+	}
 }

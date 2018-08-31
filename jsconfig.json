@@ -7,7 +7,7 @@
     "jsx": "react",
     "baseUrl": "./src",
     "paths": {
-      "@test/*": ["../test/*"]
+      "_test/*": ["../test/*"]
     }
   },
   "exclude": [
