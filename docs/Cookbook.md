@@ -119,6 +119,7 @@ export default icons
 
 ````markdown
 // IconGallery.md
+
 ```jsx noeditor
 const icons = require('./load-icons').default
 
