@@ -32,7 +32,7 @@ it('should return correct component paths: default glob pattern', () => {
 		{
 			request: file,
 			_styleguidist: {
-				...getConfig(path.resolve(__dirname, '../../test/apps/defaults/styleguide.config.js')),
+				...getConfig(path.join(TEST_FOLDER_PATH, 'apps/defaults/styleguide.config.js')),
 			},
 			addContextDependency: () => {},
 		},
