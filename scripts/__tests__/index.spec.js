@@ -1,3 +1,4 @@
+import path from 'path';
 import last from 'lodash/last';
 import styleguidist from '../index';
 
@@ -12,7 +13,7 @@ afterEach(() => {
 });
 
 it('should return API methods', () => {
-	const api = styleguidist(require('../../test/data/styleguide.config.js'));
+	const api = styleguidist(require(path.join(TEST_FOLDER_PATH, 'data/styleguide.config.js')));
 	expect(api).toBeTruthy();
 	expect(typeof api.build).toBe('function');
 	expect(typeof api.server).toBe('function');
