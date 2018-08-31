@@ -9,6 +9,11 @@ const styles = ({ space, color, fontSize, fontFamily }) => ({
 		fontSize: fontSize.base,
 		color: color.base,
 		cursor: 'pointer',
+		'&:focus': {
+			isolate: false,
+			outline: [[1, 'dotted', color.linkHover]],
+			outlineOffset: 2,
+		},
 	},
 });
 
