@@ -5,10 +5,7 @@
       "esnext"
     ],
     "jsx": "react",
-    "baseUrl": "./src",
-    "paths": {
-      "_test/*": ["../test/*"]
-    }
+    "baseUrl": "./src"
   },
   "exclude": [
     "node_modules"
