@@ -12,6 +12,8 @@ global.shallow = shallow;
 global.render = render;
 global.mount = mount;
 
+global.TEST_FOLDER_PATH = __dirname;
+
 // Get class names from styles function
 global.classes = styles => keymirror(styles(theme));
 
