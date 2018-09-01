@@ -8,7 +8,7 @@ Big pink button:
 
 ```jsx
 <Button size="large" color="deeppink">
-  Lick Me
+  Click Me
 </Button>
 ```
 
