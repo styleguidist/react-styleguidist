@@ -6,8 +6,13 @@ import getConfig from '../../scripts/config';
 
 /* eslint-disable quotes */
 
+<<<<<<< HEAD:src/loaders/__tests__/styleguide-loader.spec.js
+const file = path.resolve(__dirname, '../../../test/components/Button/Button.js');
+const configDir = path.resolve(__dirname, '../../../test');
+=======
 const configDir = TEST_FOLDER_PATH;
 const file = path.join(TEST_FOLDER_PATH, 'components/Button/Button.js');
+>>>>>>> bb86d1e... Refactor: Add alias for test folder:loaders/__tests__/styleguide-loader.spec.js
 
 it('should return valid, parsable JS', () => {
 	const result = styleguideLoader.pitch.call(
@@ -32,7 +37,11 @@ it('should return correct component paths: default glob pattern', () => {
 		{
 			request: file,
 			_styleguidist: {
+<<<<<<< HEAD:src/loaders/__tests__/styleguide-loader.spec.js
+				...getConfig(path.resolve(__dirname, '../../../test/apps/defaults/styleguide.config.js')),
+=======
 				...getConfig(path.join(TEST_FOLDER_PATH, 'apps/defaults/styleguide.config.js')),
+>>>>>>> bb86d1e... Refactor: Add alias for test folder:loaders/__tests__/styleguide-loader.spec.js
 			},
 			addContextDependency: () => {},
 		},

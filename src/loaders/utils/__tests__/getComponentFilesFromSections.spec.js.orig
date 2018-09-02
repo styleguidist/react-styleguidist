@@ -1,7 +1,11 @@
 import deabsDeep from 'deabsdeep';
 import getComponentFilesFromSections from '../getComponentFilesFromSections';
 
+<<<<<<< HEAD:src/loaders/utils/__tests__/getComponentFilesFromSections.spec.js
+const configDir = path.resolve(__dirname, '../../../../test');
+=======
 const configDir = TEST_FOLDER_PATH;
+>>>>>>> bb86d1e... Refactor: Add alias for test folder:loaders/utils/__tests__/getComponentFilesFromSections.spec.js
 const sections = [
 	{
 		name: 'Readme',

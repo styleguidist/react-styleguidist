@@ -1,6 +1,10 @@
 import getSections, { processSection } from '../getSections';
 
+<<<<<<< HEAD:src/loaders/utils/__tests__/getSections.spec.js
+const configDir = path.resolve(__dirname, '../../../../test');
+=======
 const configDir = TEST_FOLDER_PATH;
+>>>>>>> bb86d1e... Refactor: Add alias for test folder:loaders/utils/__tests__/getSections.spec.js
 const config = {
 	configDir,
 	exampleMode: 'collapse',

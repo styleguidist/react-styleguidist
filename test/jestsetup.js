@@ -12,6 +12,9 @@ global.shallow = shallow;
 global.render = render;
 global.mount = mount;
 
+// Setup alias for test folder to avoid resolving it multiple times
+global.TEST_FOLDER_PATH = __dirname;
+
 // Get class names from styles function
 global.classes = styles => keymirror(styles(theme));
 

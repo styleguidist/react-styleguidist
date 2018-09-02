@@ -3,7 +3,11 @@ import path from 'path';
 import getConfig from '../config';
 
 const cwd = process.cwd();
+<<<<<<< HEAD:src/scripts/__tests__/config.spec.js
+const configDir = path.resolve(__dirname, '../../../test/apps/defaults');
+=======
 const configDir = path.join(TEST_FOLDER_PATH, 'apps/defaults');
+>>>>>>> bb86d1e... Refactor: Add alias for test folder:scripts/__tests__/config.spec.js
 beforeEach(() => {
 	process.chdir(configDir);
 });
@@ -17,7 +21,11 @@ it('should read a config file', () => {
 });
 
 it('should accept absolute path', () => {
+<<<<<<< HEAD:src/scripts/__tests__/config.spec.js
+	const result = getConfig(path.join(__dirname, '../../../test/apps/basic/styleguide.config.js'));
+=======
 	const result = getConfig(path.join(TEST_FOLDER_PATH, 'apps/basic/styleguide.config.js'));
+>>>>>>> bb86d1e... Refactor: Add alias for test folder:scripts/__tests__/config.spec.js
 	expect(result).toMatchObject({ title: 'React Style Guide Example' });
 });
 

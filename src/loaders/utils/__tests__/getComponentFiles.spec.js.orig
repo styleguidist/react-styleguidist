@@ -2,7 +2,11 @@ import path from 'path';
 import deabsDeep from 'deabsdeep';
 import getComponentFiles from '../getComponentFiles';
 
+<<<<<<< HEAD:src/loaders/utils/__tests__/getComponentFiles.spec.js
+const configDir = path.resolve(__dirname, '../../../../test');
+=======
 const configDir = TEST_FOLDER_PATH;
+>>>>>>> bb86d1e... Refactor: Add alias for test folder:loaders/utils/__tests__/getComponentFiles.spec.js
 const components = ['one.js', 'two.js'];
 const glob = 'components/**/[A-Z]*.js';
 const globArray = ['components/Annotation/[A-Z]*.js', 'components/Button/[A-Z]*.js'];

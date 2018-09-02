@@ -13,7 +13,11 @@ afterEach(() => {
 });
 
 it('should return API methods', () => {
+<<<<<<< HEAD:src/scripts/__tests__/index.spec.js
+	const api = styleguidist(require('../../../test/data/styleguide.config.js'));
+=======
 	const api = styleguidist(require(path.join(TEST_FOLDER_PATH, 'data/styleguide.config.js')));
+>>>>>>> bb86d1e... Refactor: Add alias for test folder:scripts/__tests__/index.spec.js
 	expect(api).toBeTruthy();
 	expect(typeof api.build).toBe('function');
 	expect(typeof api.server).toBe('function');
