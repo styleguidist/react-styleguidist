@@ -4,7 +4,7 @@ import rewriteImports from 'rewrite-imports';
 
 const compile = (code: string, config: {}): string => transform(code, config).code;
 
-const startsWithJsx = (code: string): boolean => code.trim().match(/^</);
+const startsWithJsx = (code: string): boolean => !!code.trim().match(/^</);
 
 const wrapCodeInFragment = (code: string): string => `<React.Fragment>${code}</React.Fragment>;`;
 

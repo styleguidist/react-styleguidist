@@ -117,7 +117,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-react": "^7.11.1",
     "file-loader": "^1.1.11",
-    "flow-bin": "^0.79.1",
+    "flow-bin": "^0.80.0",
     "husky": "^0.14.3",
     "jest": "^23.5.0",
     "jest-serializer-html": "^5.0.0",

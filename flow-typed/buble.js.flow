@@ -1,0 +1,4 @@
+declare module 'buble' {
+	declare type BubleConfig = {};
+	declare function transform(code: string, config?: BubleConfig): { code: string };
+}

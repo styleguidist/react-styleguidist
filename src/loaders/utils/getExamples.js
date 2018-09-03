@@ -1,7 +1,7 @@
 // @flow
-const path = require('path');
-const qs = require('querystringify');
-const requireIt = require('./requireIt');
+import path from 'path';
+import qs from 'querystringify';
+import requireIt from './requireIt';
 
 const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
 
@@ -13,7 +13,7 @@ module.exports = function getExamples(
 	displayName: string,
 	examplesFile: string,
 	defaultExample: string
-): {} {
+): {} | null {
 	const examplesFileToLoad = examplesFile || defaultExample;
 	if (!examplesFileToLoad) {
 		return null;
