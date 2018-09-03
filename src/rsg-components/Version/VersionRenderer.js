@@ -4,7 +4,7 @@ import Styled from 'rsg-components/Styled';
 
 const styles = ({ color, fontFamily, fontSize }) => ({
 	version: {
-		color: color.light,
+		color: color.error,
 		margin: [[5, 0, 0, 0]],
 		fontFamily: fontFamily.base,
 		fontSize: fontSize.base,
