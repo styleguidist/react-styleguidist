@@ -44,7 +44,7 @@ Fenced blocks with other languages are rendered as highlighted code:
 <h1>Hello world</h1>
 ```
 
-Current component (like `Button` in this example) is always accessible by its name in the example code. If you want to use other component, you need to explicitly import them:
+Current component (like `Button` in this example) is always accessible by its name in the example code. If you want to use other components, you need to explicitly import them:
 
 ```jsx
 import Placeholder from '../Placeholder'
