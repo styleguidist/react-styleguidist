@@ -158,7 +158,7 @@ it('should attach examples from Markdown file', () => {
 
 	expect(() => new vm.Script(result)).not.toThrow();
 	expect(result).toMatch(
-		/require\('!!.*?\/loaders\/examples-loader\.js!test\/components\/Button\/Readme.md'\)/
+		/require\('!!.*?\/loaders\/examples-loader\.js\?displayName=Button&file=\.%2FButton\.js&shouldShowDefaultExample=false!test\/components\/Button\/Readme\.md'\)/
 	);
 });
 

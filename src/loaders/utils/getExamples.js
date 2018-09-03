@@ -1,25 +1,30 @@
-const fs = require('fs');
+// @flow
 const path = require('path');
+const qs = require('querystringify');
 const requireIt = require('./requireIt');
 
 const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
 
 /**
  * Get require statement for examples file if it exists, or for default examples if it was defined.
- *
- * @param {string} examplesFile
- * @param {string} displayName
- * @param {string} defaultExample
- * @returns {object|Array}
  */
-module.exports = function getExamples(examplesFile, displayName, defaultExample) {
-	if (examplesFile && fs.existsSync(examplesFile)) {
-		return requireIt(`!!${examplesLoader}!${examplesFile}`);
+module.exports = function getExamples(
+	file: string,
+	displayName: string,
+	examplesFile: string,
+	defaultExample: string
+): {} {
+	const examplesFileToLoad = examplesFile || defaultExample;
+	if (!examplesFileToLoad) {
+		return null;
 	}
 
-	if (defaultExample) {
-		return requireIt(`!!${examplesLoader}?componentName=${displayName}!${defaultExample}`);
-	}
+	const relativePath = `./${path.relative(path.dirname(examplesFileToLoad), file)}`;
 
-	return [];
+	const query = {
+		displayName,
+		file: relativePath,
+		shouldShowDefaultExample: !examplesFile && !!defaultExample,
+	};
+	return requireIt(`!!${examplesLoader}?${qs.stringify(query)}!${examplesFileToLoad}`);
 };

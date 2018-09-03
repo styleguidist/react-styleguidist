@@ -5,8 +5,6 @@ import PlaygroundError from 'rsg-components/PlaygroundError';
 
 import ReactExample from '../ReactExample';
 
-/* eslint-disable no-invalid-this */
-
 const Fragment = React.Fragment ? React.Fragment : 'div';
 
 export default class Preview extends Component {

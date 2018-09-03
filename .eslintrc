@@ -17,7 +17,7 @@
     }
   },
   "rules": {
-    "no-invalid-this": 0,
+    "valid-jsdoc": 0,
     "compat/compat": "error",
     "import/no-unresolved": ["error", {
       "commonjs": true,

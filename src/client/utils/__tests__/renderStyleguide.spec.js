@@ -48,18 +48,6 @@ describe('renderStyleguide', () => {
 		expect(result).toMatchSnapshot();
 	});
 
-	it('should globalize all components', () => {
-		renderStyleguide(styleguide, codeRevision, location, doc, history);
-		expect(global.Button).toBe('ButtonModule');
-		expect(global.Image).toBe('ImageModule');
-	});
-
-	it('should globalize all components in isolated mode', () => {
-		renderStyleguide(styleguide, codeRevision, { hash: '#!/Button' }, doc, history);
-		expect(global.Button).toBe('ButtonModule');
-		expect(global.Image).toBe('ImageModule');
-	});
-
 	it('should change document title', () => {
 		const title = jest.fn();
 		const location = { hash: '' };

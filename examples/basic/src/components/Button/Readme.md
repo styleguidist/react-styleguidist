@@ -44,6 +44,22 @@ Fenced blocks with other languages are rendered as highlighted code:
 <h1>Hello world</h1>
 ```
 
+Current component (like `Button` in this example) is always accessible by its name in the example code. If you want to use other components, you need to explicitly import them:
+
+```jsx
+import Placeholder from '../Placeholder'
+<Button><Placeholder /></Button>
+```
+
+Or you can explicitly import everything:
+
+```jsx
+import React from 'react'
+import Button from '../Button'
+import Placeholder from '../Placeholder'
+<Button><Placeholder /></Button>
+```
+
 Each example has its own state that you can access at the `state` variable and change with the `setState` function. Default state is `{}`:
 
 ```jsx

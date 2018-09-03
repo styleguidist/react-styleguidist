@@ -68,7 +68,7 @@ module.exports = function(source) {
 
 	// Examples from Markdown file
 	const examplesFile = config.getExampleFilename(file);
-	docs.examples = getExamples(examplesFile, docs.displayName, config.defaultExample);
+	docs.examples = getExamples(file, docs.displayName, examplesFile, config.defaultExample);
 
 	if (config.updateDocs) {
 		docs = config.updateDocs(docs, file);

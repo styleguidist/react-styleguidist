@@ -1,6 +1,3 @@
-// WARNING: This function’s source is returned by a loader without transpilation.
-// Do not use any unsupported by IE11+ features.
-
 /**
  * Eval example code in a custom context:
  * - `require()` that allows you to require modules from Markdown examples (won’t work dinamically becasue we need
@@ -15,9 +12,11 @@
  * @param {string} code
  * @return {Function}
  */
-module.exports = function evalInContext(header, require, code) {
-	var func = new Function('require', 'state', 'setState', header + code); // eslint-disable-line no-new-func
+export default function evalInContext(header, require, code) {
+	// eslint-disable-next-line no-new-func
+	const func = new Function('require', 'state', 'setState', header + code);
 
-	// Bind the `require` function, other context arguments will be passed from the frontend
+	// Bind the `require` function, other context arguments will be passed from
+	// the frontend
 	return func.bind(null, require);
-};
+}
