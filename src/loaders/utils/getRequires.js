@@ -1,7 +1,7 @@
 // @flow
 import * as acorn from 'acorn';
-import { simple, base } from 'acorn/dist/walk';
 import acornJsx from 'acorn-jsx/inject';
+import walkes from 'walkes';
 import type { AcornNode } from 'acorn';
 
 const ACORN_OPTIONS = {
@@ -10,27 +10,6 @@ const ACORN_OPTIONS = {
 	plugins: {
 		jsx: true,
 	},
-};
-
-// Noop walkers for JSX, otherwise Acorn will throw on them
-// Real implementation: https://github.com/RReverser/acorn-jsx/pull/87
-const jsxBase = {
-	...base,
-	JSXAttribute() {},
-	JSXClosingElement() {},
-	JSXClosingFragment() {},
-	JSXElement() {},
-	JSXEmptyExpression() {},
-	JSXExpressionContainer() {},
-	JSXFragment() {},
-	JSXIdentifier() {},
-	JSXMemberExpression() {},
-	JSXNamespacedName() {},
-	JSXOpeningElement() {},
-	JSXOpeningFragment() {},
-	JSXSpreadAttribute() {},
-	JSXSpreadChild() {},
-	JSXText() {},
 };
 
 const { parse } = acornJsx(acorn);
@@ -58,29 +37,25 @@ export default function getRequires(code: string): string[] {
 	}
 
 	const imports = [];
-	simple(
-		ast,
-		{
-			// import foo from 'foo'
-			// import 'foo'
-			ImportDeclaration(node) {
-				if (node.source) {
-					imports.push(node.source.value);
-				}
-			},
-			// require('foo')
-			CallExpression(node) {
-				if (
-					node.callee &&
-					node.callee.name === 'require' &&
-					node.arguments &&
-					node.arguments[0].value
-				) {
-					imports.push(node.arguments[0].value);
-				}
-			},
+	walkes(ast, {
+		// import foo from 'foo'
+		// import 'foo'
+		ImportDeclaration(node) {
+			if (node.source) {
+				imports.push(node.source.value);
+			}
 		},
-		jsxBase
-	);
+		// require('foo')
+		CallExpression(node) {
+			if (
+				node.callee &&
+				node.callee.name === 'require' &&
+				node.arguments &&
+				node.arguments[0].value
+			) {
+				imports.push(node.arguments[0].value);
+			}
+		},
+	});
 	return imports;
 }
