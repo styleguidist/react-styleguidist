@@ -8,7 +8,7 @@ const toAst = require('to-ast');
 const b = require('ast-types').builders;
 const chunkify = require('./utils/chunkify');
 const expandDefaultComponent = require('./utils/expandDefaultComponent');
-const getRequires = require('./utils/getRequires');
+const getRequires = require('./utils/getRequires').default;
 const requireIt = require('./utils/requireIt');
 
 const absolutize = filepath => path.resolve(__dirname, filepath);

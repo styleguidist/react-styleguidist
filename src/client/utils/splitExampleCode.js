@@ -7,7 +7,7 @@ const unsemicolon = s => s.replace(/;\s*$/, '');
 /**
  * Take source code and returns:
  * 1. Code before the last top-level expression.
- * 2. Code with the last top-level expression wrappen in a return statement
+ * 2. Code with the last top-level expression wrapped in a return statement
  *    (kind of an implicit return).
  *
  * Example:
@@ -21,7 +21,10 @@ const unsemicolon = s => s.replace(/;\s*$/, '');
 export default function splitExampleCode(code) {
 	let ast;
 	try {
-		ast = acorn.parse(code, { ecmaVersion: 2019 });
+		ast = acorn.parse(code, {
+			ecmaVersion: 2019,
+			sourceType: 'module',
+		});
 	} catch (err) {
 		return { head: '', example: code };
 	}

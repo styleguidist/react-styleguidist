@@ -153,7 +153,6 @@ One:
 
 it('should work with multiple JSX element on the root level', () => {
 	const exampleMarkdown = `
-    const _ = require('lodash');
 	<X/>
 	<Y/>
 `;
@@ -167,7 +166,6 @@ it('should work with multiple JSX element on the root level', () => {
 
 	expect(result).toBeTruthy();
 	expect(() => new Function(result)).not.toThrowError(SyntaxError);
-	expect(result).toMatch(`'lodash': require('lodash')`);
 });
 
 it('should prepend example code with React require()', () => {
