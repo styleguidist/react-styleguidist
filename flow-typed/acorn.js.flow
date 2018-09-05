@@ -7,6 +7,8 @@ declare module 'acorn' {
 		value: string,
 		callee: AcornNode,
 		source: AcornNode,
+		expression: AcornNode,
+		body: AcornNode[],
 		arguments: AcornNode[],
 	};
 
@@ -23,16 +25,4 @@ declare module 'acorn' {
 	}
 
 	declare export default typeof Acorn;
-}
-
-declare module 'acorn/dist/walk' {
-	import type { AcornNode } from 'acorn';
-
-	declare function simple(
-		node: AcornNode,
-		visitors: { [key: string]: (node: AcornNode) => void },
-		base: {}
-	): void;
-
-	declare class base {}
 }

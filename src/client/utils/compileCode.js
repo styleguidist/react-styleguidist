@@ -1,8 +1,9 @@
 // @flow
 import { transform } from 'buble';
-import rewriteImports from 'rewrite-imports';
+import type { BubleOptions } from 'buble';
+import transpileImports from './transpileImports';
 
-const compile = (code: string, config: {}): string => transform(code, config).code;
+const compile = (code: string, config: BubleOptions): string => transform(code, config).code;
 
 const startsWithJsx = (code: string): boolean => !!code.trim().match(/^</);
 
@@ -15,13 +16,13 @@ const wrapCodeInFragment = (code: string): string => `<React.Fragment>${code}</R
  */
 export default function compileCode(
 	code: string,
-	compilerConfig: {},
+	compilerConfig: BubleOptions,
 	onError: (err: Error) => void
 ): string {
 	try {
 		const wrappedCode = startsWithJsx(code) ? wrapCodeInFragment(code) : code;
-		const importsCompiledCode = rewriteImports(wrappedCode);
-		return compile(importsCompiledCode, compilerConfig);
+		const compiledCode = compile(wrappedCode, compilerConfig);
+		return transpileImports(compiledCode);
 	} catch (err) {
 		if (onError) {
 			onError(err);
