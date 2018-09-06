@@ -13,16 +13,12 @@ declare module 'acorn' {
 	};
 
 	declare type AcornConfig = {
-		ecmaVersion: number,
-		sourceType: 'script' | 'module',
-		plugins: {
+		ecmaVersion?: number,
+		sourceType?: 'script' | 'module',
+		plugins?: {
 			[key: string]: boolean,
 		},
 	};
 
-	declare class Acorn {
-		parse: (code: string, config?: AcornConfig) => AcornNode;
-	}
-
-	declare export default typeof Acorn;
+	declare function parse(code: string, config?: AcornConfig): AcornNode;
 }

@@ -28,5 +28,6 @@ export default function evalInContext(
 
 	// Bind the `require` function, other context arguments will be passed from
 	// the frontend
+	// $FlowFixMe
 	return func.bind(null, require);
 }
