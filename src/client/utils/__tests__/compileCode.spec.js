@@ -17,6 +17,22 @@ var bar = baz.bar;"
 		expect(result).toMatchInlineSnapshot(`"const foo = require('bar');"`);
 	});
 
+	test('transform imports to require() in front of JSX', () => {
+		const result = compileCode(
+			`
+import foo from 'bar';
+import Button from 'button';
+<Button />`,
+			compilerConfig
+		);
+		expect(result).toMatchInlineSnapshot(`
+"
+const foo = require('bar');
+const Button = require('button');
+React.createElement( Button, null )"
+`);
+	});
+
 	test('wrap JSX in Fragment', () => {
 		const result = compileCode(
 			`<div>

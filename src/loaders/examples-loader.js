@@ -70,9 +70,9 @@ function examplesLoader(source) {
 
 	// Require context modules so they are available in an example
 	const requireContextCode = b.program(
-		// var name = require(path)
+		// const name = require(path)
 		map(fullContext, (requireRequest, name) =>
-			b.variableDeclaration('var', [
+			b.variableDeclaration('const', [
 				b.variableDeclarator(b.identifier(name), requireIt(requireRequest).toAST()),
 			])
 		)
