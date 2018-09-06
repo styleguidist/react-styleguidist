@@ -3,14 +3,7 @@ import * as acorn from 'acorn';
 import acornJsx from 'acorn-jsx/inject';
 import walkes from 'walkes';
 import type { AcornNode } from 'acorn';
-
-const ACORN_OPTIONS = {
-	ecmaVersion: 2019,
-	sourceType: 'module',
-	plugins: {
-		jsx: true,
-	},
-};
+import { ACORN_OPTIONS } from '../../client/consts';
 
 const { parse } = acornJsx(acorn);
 
@@ -21,7 +14,12 @@ const { parse } = acornJsx(acorn);
 // 2. All other errors - we'll deal with them on the frontend
 const getAst = (code: string): ?AcornNode => {
 	try {
-		return parse(code, ACORN_OPTIONS);
+		return parse(code, {
+			...ACORN_OPTIONS,
+			plugins: {
+				jsx: true,
+			},
+		});
 	} catch (err) {
 		return undefined;
 	}

@@ -1,5 +1,7 @@
+// @flow
 import * as acorn from 'acorn';
 import find from 'lodash/find';
+import { ACORN_OPTIONS } from '../consts';
 
 // Strip semicolon (;) at the end
 const unsemicolon = s => s.replace(/;\s*$/, '');
@@ -14,17 +16,11 @@ const unsemicolon = s => s.replace(/;\s*$/, '');
  * var a = 1; React.createElement('i', null, a); // =>
  * 1. var a = 1
  * 2. var a = 1; return (React.createElement('i', null, a));
- *
- * @param {string} code
- * @returns {object}
  */
-export default function splitExampleCode(code) {
+export default function splitExampleCode(code: string): {| head: string, example: string |} {
 	let ast;
 	try {
-		ast = acorn.parse(code, {
-			ecmaVersion: 2019,
-			sourceType: 'module',
-		});
+		ast = acorn.parse(code, ACORN_OPTIONS);
 	} catch (err) {
 		return { head: '', example: code };
 	}

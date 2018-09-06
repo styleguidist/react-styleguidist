@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export */
+// @flow
 
 export const DisplayModes = Object.freeze({
 	// Show all sections and components (default)
@@ -24,3 +24,8 @@ export const UsageModes = Object.freeze({
 	collapse: 'collapse',
 	expand: 'expand',
 });
+
+export const ACORN_OPTIONS = {
+	ecmaVersion: 2019,
+	sourceType: 'module',
+};

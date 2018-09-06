@@ -2,13 +2,9 @@ import * as acorn from 'acorn';
 import walkes from 'walkes';
 import rewriteImports from 'rewrite-imports';
 import type { AcornNode } from 'acorn';
+import { ACORN_OPTIONS } from '../consts';
 
 const hasImports = (code: string): boolean => !!code.match(/import[\S\s]+?['"]([^'"]+)['"];?/m);
-
-const ACORN_OPTIONS = {
-	ecmaVersion: 2019,
-	sourceType: 'module',
-};
 
 // Ignore errors, they should be caught by Buble
 const getAst = (code: string): AcornNode => {
@@ -20,9 +16,10 @@ const getAst = (code: string): AcornNode => {
 };
 
 /**
-
+ * Replace ECMAScript imports with require() calls
  */
 export default function transpileImports(code: string): string {
+	// Don't do anything when the code has nothing that looks like an import
 	if (!hasImports(code)) {
 		return code;
 	}
