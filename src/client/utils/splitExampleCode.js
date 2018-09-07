@@ -1,7 +1,7 @@
 // @flow
 import * as acorn from 'acorn';
 import find from 'lodash/find';
-import { ACORN_OPTIONS } from '../../consts';
+import { ACORN_OPTIONS } from '../../share/consts';
 
 // Strip semicolon (;) at the end
 const unsemicolon = s => s.replace(/;\s*$/, '');

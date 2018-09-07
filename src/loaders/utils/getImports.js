@@ -3,7 +3,7 @@ import * as acorn from 'acorn';
 import acornJsx from 'acorn-jsx/inject';
 import walkes from 'walkes';
 import type { AcornNode } from 'acorn';
-import { ACORN_OPTIONS } from '../../consts';
+import { ACORN_OPTIONS } from '../../share/consts';
 
 const { parse } = acornJsx(acorn);
 

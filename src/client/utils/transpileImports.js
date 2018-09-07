@@ -2,7 +2,7 @@ import * as acorn from 'acorn';
 import walkes from 'walkes';
 import rewriteImports from 'rewrite-imports';
 import type { AcornNode } from 'acorn';
-import { ACORN_OPTIONS } from '../../consts';
+import { ACORN_OPTIONS } from '../../share/consts';
 
 const hasImports = (code: string): boolean => !!code.match(/import[\S\s]+?['"]([^'"]+)['"];?/m);
 
