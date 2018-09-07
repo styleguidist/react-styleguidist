@@ -1,35 +1,20 @@
 // @flow
-import * as acorn from 'acorn';
 import acornJsx from 'acorn-jsx/inject';
 import walkes from 'walkes';
-import type { AcornNode } from 'acorn';
-import { ACORN_OPTIONS } from '../../share/consts';
-
-const { parse } = acornJsx(acorn);
-
-// Parse example source code, but ignore errors:
-// 1. Adjacent JSX elements must be wrapped in an enclosing tag (<X/><Y/>) -
-//    imports/requires are not allowed in this case, and we'll wrap the code
-//    in React.Fragment on the frontend
-// 2. All other errors - we'll deal with them on the frontend
-const getAst = (code: string): ?AcornNode => {
-	try {
-		return parse(code, {
-			...ACORN_OPTIONS,
-			plugins: {
-				jsx: true,
-			},
-		});
-	} catch (err) {
-		return undefined;
-	}
-};
+import getAst from '../../share/getAst';
 
 /**
  * Returns a list of all strings used in import statements or require() calls
  */
 export default function getImports(code: string): string[] {
-	const ast = getAst(code);
+	// Parse example source code, but ignore errors:
+	// 1. Adjacent JSX elements must be wrapped in an enclosing tag (<X/><Y/>) -
+	//    imports/requires are not allowed in this case, and we'll wrap the code
+	//    in React.Fragment on the frontend
+	// 2. All other errors - we'll deal with them on the frontend
+	const ast = getAst(code, {
+		jsx: acornJsx,
+	});
 	if (!ast) {
 		return [];
 	}

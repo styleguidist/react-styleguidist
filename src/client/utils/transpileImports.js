@@ -1,19 +1,8 @@
-import * as acorn from 'acorn';
 import walkes from 'walkes';
 import rewriteImports from 'rewrite-imports';
-import type { AcornNode } from 'acorn';
-import { ACORN_OPTIONS } from '../../share/consts';
+import getAst from '../../share/getAst';
 
 const hasImports = (code: string): boolean => !!code.match(/import[\S\s]+?['"]([^'"]+)['"];?/m);
-
-// Ignore errors, they should be caught by Buble
-const getAst = (code: string): AcornNode => {
-	try {
-		return acorn.parse(code, ACORN_OPTIONS);
-	} catch (err) {
-		return undefined;
-	}
-};
 
 /**
  * Replace ECMAScript imports with require() calls
@@ -24,6 +13,7 @@ export default function transpileImports(code: string): string {
 		return code;
 	}
 
+	// Ignore errors, they should be caught by Buble
 	const ast = getAst(code);
 	if (!ast) {
 		return code;
