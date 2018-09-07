@@ -1,27 +1,27 @@
-import getRequires from '../getRequires';
+import getImports from '../getImports';
 
 test('find calls to require() in code', () => {
-	expect(getRequires(`require('foo')`)).toEqual(['foo']);
-	expect(getRequires(`require('./foo')`)).toEqual(['./foo']);
-	expect(getRequires(`require('foo');require('bar')`)).toEqual(['foo', 'bar']);
+	expect(getImports(`require('foo')`)).toEqual(['foo']);
+	expect(getImports(`require('./foo')`)).toEqual(['./foo']);
+	expect(getImports(`require('foo');require('bar')`)).toEqual(['foo', 'bar']);
 });
 
 test('find import statements in code', () => {
-	expect(getRequires(`import A from 'pizza';`)).toEqual(['pizza']);
-	expect(getRequires(`import A from './pizza';`)).toEqual(['./pizza']);
-	expect(getRequires(`import { A as X, B } from 'lunch';`)).toEqual(['lunch']);
-	expect(getRequires(`import A, { B as X, C } from 'lunch';`)).toEqual(['lunch']);
-	expect(getRequires(`import A from 'foo';import B from 'bar';`)).toEqual(['foo', 'bar']);
+	expect(getImports(`import A from 'pizza';`)).toEqual(['pizza']);
+	expect(getImports(`import A from './pizza';`)).toEqual(['./pizza']);
+	expect(getImports(`import { A as X, B } from 'lunch';`)).toEqual(['lunch']);
+	expect(getImports(`import A, { B as X, C } from 'lunch';`)).toEqual(['lunch']);
+	expect(getImports(`import A from 'foo';import B from 'bar';`)).toEqual(['foo', 'bar']);
 });
 
 test('work with JSX', () => {
-	expect(getRequires(`const A = require('pizza');<Button/>`)).toEqual(['pizza']);
-	expect(getRequires(`import A from 'pizza';<Button>foo</Button>`)).toEqual(['pizza']);
+	expect(getImports(`const A = require('pizza');<Button/>`)).toEqual(['pizza']);
+	expect(getImports(`import A from 'pizza';<Button>foo</Button>`)).toEqual(['pizza']);
 });
 
 test('allow comments', () => {
 	expect(
-		getRequires(`
+		getImports(`
 /**
  * Some important comment
  */
@@ -37,12 +37,12 @@ import E from 'snake'
 });
 
 test('ignore dynamic requires', () => {
-	expect(getRequires(`require('foo' + 'bar')`)).toEqual([]);
+	expect(getImports(`require('foo' + 'bar')`)).toEqual([]);
 });
 
 test('ignore imports in comments', () => {
 	expect(
-		getRequires(`
+		getImports(`
 import A from 'pizza'
 // import one from 'one';
 /** import two from 'two' */
@@ -57,7 +57,7 @@ import five from 'five';
 
 test('ignore imports in strings', () => {
 	expect(
-		getRequires(`
+		getImports(`
 import A from 'pizza'
 const foo = "import foo from 'foo'"
 const bar = 'import bar from "bar"'
@@ -68,7 +68,7 @@ const baz = \`import baz from 'baz'\`
 
 test('ignore imports in JSX', () => {
 	expect(
-		getRequires(`
+		getImports(`
 import A from 'pizza';
 <p>import foo from 'foo'</p>
 `)
@@ -76,9 +76,9 @@ import A from 'pizza';
 });
 
 test('ignore multiple root JSX elements', () => {
-	expect(getRequires(`<A /><B />`)).toEqual([]);
+	expect(getImports(`<A /><B />`)).toEqual([]);
 });
 
 test('ignore syntax errors', () => {
-	expect(getRequires(`*`)).toEqual([]);
+	expect(getImports(`*`)).toEqual([]);
 });

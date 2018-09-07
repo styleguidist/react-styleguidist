@@ -28,7 +28,7 @@ const getAst = (code: string): ?AcornNode => {
 /**
  * Returns a list of all strings used in import statements or require() calls
  */
-export default function getRequires(code: string): string[] {
+export default function getImports(code: string): string[] {
 	const ast = getAst(code);
 	if (!ast) {
 		return [];
