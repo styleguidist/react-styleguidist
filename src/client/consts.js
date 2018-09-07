@@ -24,8 +24,3 @@ export const UsageModes = Object.freeze({
 	collapse: 'collapse',
 	expand: 'expand',
 });
-
-export const ACORN_OPTIONS = {
-	ecmaVersion: 2019,
-	sourceType: 'module',
-};
