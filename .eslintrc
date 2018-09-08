@@ -12,7 +12,7 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "moduleDirectory": ["src/client", "node_modules"]
+        "moduleDirectory": ["packages/react-styleguidist/src/client", "node_modules"]
       }
     }
   },
