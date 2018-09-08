@@ -1,7 +1,7 @@
 /* eslint-disable no-console, import/no-unresolved */
 
 const path = require('path');
-const styleguidist = require('../lib/scripts');
+const styleguidist = require('../packages/react-styleguidist/lib/scripts');
 
 const dir = path.resolve(__dirname, '../examples/basic/src');
 
