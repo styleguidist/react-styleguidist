@@ -81,7 +81,7 @@
     "start:ui": "node packages/react-styleguidist/lib/bin/styleguidist.js server",
     "lint": "eslint . --cache --fix",
     "flow": "flow",
-    "compile": "babel --delete-dir-on-start --ignore '**/*.spec.js','**/__*__' -d packages/react-styleguidist/lib/ packages/react-styleguidist/src/",
+    "compile": "babel --delete-dir-on-start --ignore '**/*.spec.js','**/__tests__','**/__mocks__' -d packages/react-styleguidist/lib/ packages/react-styleguidist/src/",
     "compile:watch": "npm run compile -- --watch",
     "prepublishOnly": "npm run compile",
     "build:basic": "node packages/react-styleguidist/lib/bin/styleguidist.js build --config examples/basic/styleguide.config.js",
