@@ -1,0 +1,8 @@
+{
+    "lerna": "2.7.1",
+    "loglevel": "info",
+    "packages": [
+      "packages/*"
+    ],
+    "version": "8.0.0"
+  }
