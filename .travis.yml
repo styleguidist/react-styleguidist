@@ -12,7 +12,7 @@ install:
   - npm ci
 before_script:
   # Install Webpack version
-  - if [[ -n "$WEBPACK_VERSION" ]]; then cd packages/react-styleguidist; npm install --no-save webpack@$WEBPACK_VERSION; fi
+  - if [[ -n "$WEBPACK_VERSION" ]]; then cd packages/react-styleguidist; npm install --no-save webpack@$WEBPACK_VERSION; cd ../..; fi
 script:
   # Run tests without coverage since it's 2x faster
   - npm run test:jest -- --runInBand
