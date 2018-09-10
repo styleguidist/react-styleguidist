@@ -1,6 +1,6 @@
 // @flow
 import find from 'lodash/find';
-import getAst from '../../share/getAst';
+import getAst from './getAst';
 
 // Strip semicolon (;) at the end
 const unsemicolon = s => s.replace(/;\s*$/, '');

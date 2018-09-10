@@ -2,7 +2,11 @@
 import forEach from 'lodash/forEach';
 import * as acorn from 'acorn';
 import type { AcornNode } from 'acorn';
-import { ACORN_OPTIONS } from './consts';
+
+export const ACORN_OPTIONS = {
+	ecmaVersion: 2019,
+	sourceType: 'module',
+};
 
 /**
  * Parse source code with Acorn and return AST, returns undefined in case of errors

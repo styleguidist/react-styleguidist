@@ -1,7 +1,7 @@
 // @flow
 import acornJsx from 'acorn-jsx/inject';
 import walkes from 'walkes';
-import getAst from '../../share/getAst';
+import getAst from './getAst';
 
 /**
  * Returns a list of all strings used in import statements or require() calls

@@ -1,6 +1,7 @@
+// @flow
 import walkes from 'walkes';
 import rewriteImports from 'rewrite-imports';
-import getAst from '../../share/getAst';
+import getAst from './getAst';
 
 const hasImports = (code: string): boolean => !!code.match(/import[\S\s]+?['"]([^'"]+)['"];?/m);
 
