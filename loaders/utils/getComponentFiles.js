@@ -1,5 +1,5 @@
 const path = require('path');
-const glob = require('glob');
+const glob = require('fast-glob');
 const isFunction = require('lodash/isFunction');
 const isString = require('lodash/isString');
 
@@ -19,7 +19,7 @@ const getComponentGlobs = components => {
 const getFilesMatchingGlobs = (components, rootDir, ignore) =>
 	components
 		.map(listItem =>
-			glob.sync(path.resolve(rootDir, listItem), {
+			glob.sync(listItem, {
 				cwd: rootDir,
 				ignore,
 			})
