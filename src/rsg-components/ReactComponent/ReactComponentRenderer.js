@@ -16,6 +16,11 @@ const styles = ({ color, fontSize, space }) => ({
 	tabButtons: {
 		marginBottom: space[2],
 	},
+	tabBody: {
+		overflowX: 'auto',
+		maxWidth: '100%',
+		WebkitOverflowScrolling: 'touch',
+	},
 	docs: {
 		color: color.base,
 		fontSize: fontSize.text,
@@ -48,7 +53,7 @@ export function ReactComponentRenderer({
 			{tabButtons && (
 				<div className={classes.tabs}>
 					<div className={classes.tabButtons}>{tabButtons}</div>
-					{tabBody}
+					<div className={classes.tabBody}>{tabBody}</div>
 				</div>
 			)}
 			{examples}
