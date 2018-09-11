@@ -18,21 +18,12 @@ const getComponentGlobs = components => {
 
 const getFilesMatchingGlobs = (components, rootDir, ignore) =>
 	components
-		.map(listItem => {
-			// Check if the string looks like a glob pattern by using hasMagic
-			if (glob.hasMagic(listItem)) {
-				return glob.sync(listItem, {
-					cwd: rootDir,
-					ignore,
-					// in order to avoid detecting each component twice on windows
-					// when matching 2 cases of the same word, like {Src,src}
-					// we remove case-sensitivity on windows
-					nocase: process.platform === 'win32',
-				});
-			}
-			// Wrap path in an array so reduce always gets an array of arrays
-			return [listItem];
-		})
+		.map(listItem =>
+			glob.sync(path.resolve(rootDir, listItem), {
+				cwd: rootDir,
+				ignore,
+			})
+		)
 		.reduce((accumulator, current) => accumulator.concat(current), []);
 
 /**
