@@ -19,16 +19,13 @@ const getComponentGlobs = components => {
 const getFilesMatchingGlobs = (components, rootDir, ignore) => {
 	ignore = ignore || [];
 	return components
-		.map(listItem => {
-			const compFiles = glob.sync(listItem, {
+		.map(listItem =>
+			glob.sync(listItem, {
 				cwd: rootDir,
 				ignore,
-			});
-			return compFiles;
-		})
-		.reduce((accumulator, current) => {
-			return accumulator.concat(current);
-		}, []);
+			})
+		)
+		.reduce((accumulator, current) => accumulator.concat(current), []);
 };
 
 /**
