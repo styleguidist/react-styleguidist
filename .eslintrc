@@ -18,6 +18,7 @@
   },
   "rules": {
     "valid-jsdoc": 0,
+    "no-duplicate-imports": 0,
     "compat/compat": "error",
     "import/no-unresolved": ["error", {
       "commonjs": true,

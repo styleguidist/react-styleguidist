@@ -48,7 +48,9 @@ Current component (like `Button` in this example) is always accessible by its n
 
 ```jsx
 import Placeholder from '../Placeholder'
-<Button><Placeholder /></Button>
+;<Button>
+  <Placeholder />
+</Button>
 ```
 
 Or you can explicitly import everything:
@@ -57,7 +59,9 @@ Or you can explicitly import everything:
 import React from 'react'
 import Button from '../Button'
 import Placeholder from '../Placeholder'
-<Button><Placeholder /></Button>
+;<Button>
+  <Placeholder />
+</Button>
 ```
 
 Each example has its own state that you can access at the `state` variable and change with the `setState` function. Default state is `{}`:

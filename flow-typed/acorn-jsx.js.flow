@@ -1,0 +1,4 @@
+declare module 'acorn-jsx/inject' {
+	declare function injectAcornJsx<T>(acorn: T): T;
+	declare export default typeof injectAcornJsx;
+}

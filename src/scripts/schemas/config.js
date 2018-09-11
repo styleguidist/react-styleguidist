@@ -26,7 +26,16 @@ module.exports = {
 	compilerConfig: {
 		type: 'object',
 		default: {
+			// Don't include an Object.assign ponyfill, we have our own
 			objectAssign: 'Object.assign',
+			// Transpile only features needed for IE11
+			target: { ie: 11 },
+			transforms: {
+				// Don't throw on ESM imports, we transpile them ourselves
+				modules: false,
+				// Enable tagged template literals for styled-components
+				dangerousTaggedTemplateString: true,
+			},
 		},
 	},
 	// `components` is a shortcut for { sections: [{ components }] },

@@ -1,5 +1,6 @@
-import * as acorn from 'acorn';
+// @flow
 import find from 'lodash/find';
+import getAst from './getAst';
 
 // Strip semicolon (;) at the end
 const unsemicolon = s => s.replace(/;\s*$/, '');
@@ -7,22 +8,17 @@ const unsemicolon = s => s.replace(/;\s*$/, '');
 /**
  * Take source code and returns:
  * 1. Code before the last top-level expression.
- * 2. Code with the last top-level expression wrappen in a return statement
+ * 2. Code with the last top-level expression wrapped in a return statement
  *    (kind of an implicit return).
  *
  * Example:
  * var a = 1; React.createElement('i', null, a); // =>
  * 1. var a = 1
  * 2. var a = 1; return (React.createElement('i', null, a));
- *
- * @param {string} code
- * @returns {object}
  */
-export default function splitExampleCode(code) {
-	let ast;
-	try {
-		ast = acorn.parse(code, { ecmaVersion: 2019 });
-	} catch (err) {
+export default function splitExampleCode(code: string): {| head: string, example: string |} {
+	const ast = getAst(code);
+	if (!ast) {
 		return { head: '', example: code };
 	}
 

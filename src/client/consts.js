@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export */
+// @flow
 
 export const DisplayModes = Object.freeze({
 	// Show all sections and components (default)

@@ -1,0 +1,10 @@
+declare module 'walkes' {
+	import type { AcornNode } from 'acorn';
+
+	declare function walkes(
+		node: AcornNode,
+		visitors: { [key: string]: (node: AcornNode) => void }
+	): void;
+
+	declare export default typeof walkes;
+}

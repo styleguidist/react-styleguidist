@@ -8,7 +8,7 @@ const toAst = require('to-ast');
 const b = require('ast-types').builders;
 const chunkify = require('./utils/chunkify');
 const expandDefaultComponent = require('./utils/expandDefaultComponent');
-const getRequires = require('./utils/getRequires');
+const getImports = require('./utils/getImports').default;
 const requireIt = require('./utils/requireIt');
 
 const absolutize = filepath => path.resolve(__dirname, filepath);
@@ -38,7 +38,7 @@ function examplesLoader(source) {
 	// because webpack changes its name to something like __webpack__require__().
 	const allCodeExamples = filter(examples, { type: 'code' });
 	const requiresFromExamples = allCodeExamples.reduce((requires, example) => {
-		return requires.concat(getRequires(example.content));
+		return requires.concat(getImports(example.content));
 	}, []);
 
 	// Auto imported modules.
@@ -70,9 +70,9 @@ function examplesLoader(source) {
 
 	// Require context modules so they are available in an example
 	const requireContextCode = b.program(
-		// var name = require(path)
+		// const name = require(path)
 		map(fullContext, (requireRequest, name) =>
-			b.variableDeclaration('var', [
+			b.variableDeclaration('const', [
 				b.variableDeclarator(b.identifier(name), requireIt(requireRequest).toAST()),
 			])
 		)

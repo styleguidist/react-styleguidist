@@ -3,3 +3,4 @@ examples/*/styleguide/*
 lib/*
 coverage/*
 travis_phantomjs/*
+flow-typed/*
