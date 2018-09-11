@@ -16,15 +16,20 @@ const getComponentGlobs = components => {
 	);
 };
 
-const getFilesMatchingGlobs = (components, rootDir, ignore) =>
-	components
-		.map(listItem =>
-			glob.sync(listItem, {
+const getFilesMatchingGlobs = (components, rootDir, ignore) => {
+	ignore = ignore || [];
+	return components
+		.map(listItem => {
+			const compFiles = glob.sync(listItem, {
 				cwd: rootDir,
 				ignore,
-			})
-		)
-		.reduce((accumulator, current) => accumulator.concat(current), []);
+			});
+			return compFiles;
+		})
+		.reduce((accumulator, current) => {
+			return accumulator.concat(current);
+		}, []);
+};
 
 /**
  * Return absolute paths of components that should be rendered in the style guide.
