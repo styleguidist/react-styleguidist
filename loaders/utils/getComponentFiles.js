@@ -1,5 +1,5 @@
 const path = require('path');
-const glob = require('fast-glob');
+const glob = require('glob');
 const isFunction = require('lodash/isFunction');
 const isString = require('lodash/isString');
 
