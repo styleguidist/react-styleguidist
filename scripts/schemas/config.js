@@ -3,7 +3,7 @@
 
 const EXTENSIONS = 'js,jsx,ts,tsx';
 const DEFAULT_COMPONENTS_PATTERN =
-	// on windows, the case insensitivity makes each component appear twice
+	// HACK: on windows, the case insensitivity makes each component appear twice
 	// to avoid this issue, the case management is removed on win32
 	// it virtually changes nothing
 	process.platform === 'win32'
