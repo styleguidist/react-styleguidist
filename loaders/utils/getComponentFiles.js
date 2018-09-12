@@ -1,4 +1,3 @@
-const path = require('path');
 const glob = require('glob');
 const isFunction = require('lodash/isFunction');
 const isString = require('lodash/isString');
@@ -23,6 +22,7 @@ const getFilesMatchingGlobs = (components, rootDir, ignore) => {
 			glob.sync(listItem, {
 				cwd: rootDir,
 				ignore,
+				absolute: true,
 			})
 		)
 		.reduce((accumulator, current) => accumulator.concat(current), []);
@@ -47,8 +47,5 @@ module.exports = function getComponentFiles(components, rootDir, ignore) {
 	// Resolve list of components from globs
 	const componentFiles = getFilesMatchingGlobs(componentGlobs, rootDir, ignore);
 
-	// Make paths absolute
-	const componentFilesAbsolute = componentFiles.map(file => path.resolve(rootDir, file));
-
-	return componentFilesAbsolute;
+	return componentFiles;
 };
