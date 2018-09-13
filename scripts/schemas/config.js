@@ -6,9 +6,8 @@ const DEFAULT_COMPONENTS_PATTERN =
 	// HACK: on windows, the case insensitivity makes each component appear twice
 	// to avoid this issue, the case management is removed on win32
 	// it virtually changes nothing
-	/* istanbul ignore next */
 	process.platform === 'win32'
-		? `src/components/**/*.{${EXTENSIONS}}`
+		? /* istanbul ignore next: no windows on our test plan */ `src/components/**/*.{${EXTENSIONS}}`
 		: `src/@(components|Components)/**/*.{${EXTENSIONS}}`;
 
 const path = require('path');
