@@ -1,13 +1,14 @@
 {
   "parser": "babel-eslint",
-  "extends": "tamia/react",
+  "extends": ["tamia/react", "plugin:jsx-a11y/recommended"],
   "env": {
     "browser": true,
     "node": true
   },
   "plugins": [
     "compat",
-    "import"
+    "import",
+    "jsx-a11y"
   ],
   "settings": {
     "import/resolver": {

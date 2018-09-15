@@ -116,6 +116,7 @@
     "eslint-config-tamia": "^6.0.2",
     "eslint-plugin-compat": "^2.5.1",
     "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
     "file-loader": "^1.1.11",
     "flow-bin": "^0.80.0",
