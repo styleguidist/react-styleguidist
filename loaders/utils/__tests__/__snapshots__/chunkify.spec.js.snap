@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`should even parse examples with customized extensions 1`] = `
+Array [
+  Object {
+    "content": "Pass props to CodeRenderer",
+    "type": "markdown",
+  },
+  Object {
+    "content": 
+<AppButton>
+  Example in frame and Without editor
+</AppButton>
+,
+    "settings": Object {},
+    "type": "code",
+  },
+]
+`;
+
 exports[`should parse examples settings correctly 1`] = `
 Array [
   Object {

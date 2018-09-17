@@ -127,3 +127,15 @@ it('should call updateExample function for example', () => {
 	const actual = chunkify(markdown, updateExample);
 	expect(actual).toEqual(expected);
 });
+
+it('should even parse examples with customized extensions', () => {
+	const markdown = `
+Pass props to CodeRenderer
+
+\`\`\`vue
+<AppButton>Example in frame and Without editor</AppButton>
+\`\`\`
+`;
+	const actual = chunkify(markdown, undefined, ['vue']);
+	expect(actual).toMatchSnapshot();
+});
