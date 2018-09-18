@@ -14,8 +14,7 @@ const CODE_PLACEHOLDER = '<%{#code#}%>';
  * @param {Array<string>} playgroundLangs
  * @returns {Array}
  */
-module.exports = function chunkify(markdown, updateExample, playgroundLangs) {
-	playgroundLangs = playgroundLangs || PLAYGROUND_LANGS;
+module.exports = function chunkify(markdown, updateExample, playgroundLangs = PLAYGROUND_LANGS) {
 	const codeChunks = [];
 
 	/*
