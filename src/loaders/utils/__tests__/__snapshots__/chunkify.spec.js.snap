@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`should even parse examples with custom extensions 1`] = `
+Array [
+  Object {
+    "content": "Custom extensions",
+    "type": "markdown",
+  },
+  Object {
+    "content": 
+<AppButton>
+  Example in vue
+</AppButton>
+,
+    "settings": Object {},
+    "type": "code",
+  },
+]
+`;
+
 exports[`should parse examples settings correctly 1`] = `
 Array [
   Object {
@@ -48,6 +66,30 @@ Array [
   Object {
     "content": "\`\`\`jsx
 <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;</span>h2</span><span class=\\"token punctuation\\">></span></span><span class=\\"token plain-text\\">This is Highlighted!</span><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;/</span>h2</span><span class=\\"token punctuation\\">></span></span>
+\`\`\`",
+    "type": "markdown",
+  },
+]
+`;
+
+exports[`should parse undefined custom extensions without throwing 1`] = `
+Array [
+  Object {
+    "content": "Undefined extensions (default)",
+    "type": "markdown",
+  },
+  Object {
+    "content": 
+<AppButton>
+  Example in jsx with undefined extensions
+</AppButton>
+,
+    "settings": Object {},
+    "type": "code",
+  },
+  Object {
+    "content": "\`\`\`pizza
+<AppButton>Example in pizza with undefined extensions (test double)</AppButton>
 \`\`\`",
     "type": "markdown",
   },
