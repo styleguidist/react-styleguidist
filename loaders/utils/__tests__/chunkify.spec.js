@@ -149,7 +149,7 @@ Undefined extensions (default)
 \`\`\`
 
 \`\`\`pizza
-<AppButton>Example in pizza with undefined extensions</AppButton>
+<AppButton>Example in pizza with undefined extensions (test double)</AppButton>
 \`\`\`
 `;
 	const actual = chunkify(markdown, undefined, undefined);
