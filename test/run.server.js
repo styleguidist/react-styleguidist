@@ -23,6 +23,9 @@ styleguidist({
 			],
 		},
 	},
+	moduleAliases: {
+		'rsg-example': path.resolve(__dirname, 'src'),
+	},
 	logger: {
 		info: console.log,
 		warn: message => console.warn(`Warning: ${message}`),
