@@ -128,6 +128,13 @@ module.exports = function(config, env) {
 		webpackConfig = mergeWebpackConfig(webpackConfig, config.webpackConfig, env);
 	}
 
+	// Custom aliases
+	if (config.moduleAliases) {
+		webpackConfig = merge(webpackConfig, {
+			resolve: { alias: config.moduleAliases },
+		});
+	}
+
 	// Custom style guide components
 	if (config.styleguideComponents) {
 		forEach(config.styleguideComponents, (filepath, name) => {

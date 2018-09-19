@@ -53,3 +53,17 @@ Object {
   "rsg-components": "~/src/client/rsg-components",
 }
 `;
+
+exports[`should set aliases from moduleAliases option 1`] = `
+Object {
+  "foo": "bar",
+  "rsg-components": "~/src/client/rsg-components",
+}
+`;
+
+exports[`should set aliases from styleguideComponents option 1`] = `
+Object {
+  "rsg-components": "~/src/client/rsg-components",
+  "rsg-components/foo": "bar",
+}
+`;

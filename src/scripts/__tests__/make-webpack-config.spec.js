@@ -70,6 +70,32 @@ it('should set aliases', () => {
 	expect(result.resolve.alias).toMatchSnapshot();
 });
 
+it('should set aliases from moduleAliases option', () => {
+	const result = makeWebpackConfig(
+		{
+			...styleguideConfig,
+			moduleAliases: {
+				foo: 'bar',
+			},
+		},
+		'development'
+	);
+	expect(result.resolve.alias).toMatchSnapshot();
+});
+
+it('should set aliases from styleguideComponents option', () => {
+	const result = makeWebpackConfig(
+		{
+			...styleguideConfig,
+			styleguideComponents: {
+				foo: 'bar',
+			},
+		},
+		'development'
+	);
+	expect(result.resolve.alias).toMatchSnapshot();
+});
+
 it('should prepend requires as webpack entries', () => {
 	const result = makeWebpackConfig(
 		{ ...styleguideConfig, require: ['a/b.js', 'c/d.css'] },
