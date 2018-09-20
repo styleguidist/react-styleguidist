@@ -24,7 +24,7 @@ styleguidist({
 		},
 	},
 	moduleAliases: {
-		'rsg-example': path.resolve(__dirname, 'src'),
+		'rsg-example': dir,
 	},
 	logger: {
 		info: console.log,
