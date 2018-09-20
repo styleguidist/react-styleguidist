@@ -251,6 +251,17 @@ import mockData from './mocks'
 ;<Message content={mockData.hello} />
 ````
 
+Or you can explicitly import all your example dependencies, to make examples easier to copy into your app code:
+
+````jsx static
+// ```jsx inside Markdown
+import React from 'react'
+import Button from 'rsg-example/components/Button'
+import Placeholder from 'rsg-example/components/Placeholder'
+````
+
+> **Note:** `rsg-example` module is an alias defined by the [moduleAliases](Configuration.md#modulealiases) config option.
+
 > **Note:** You can only use `import` by editing your Markdown files, not by editing the example code in the browser.
 
 Each example has its own state that you can access as `state` variable and change with `setState()` function. Default state is `{}` and can be set with `initialState`.

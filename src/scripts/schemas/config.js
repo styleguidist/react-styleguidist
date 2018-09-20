@@ -126,6 +126,9 @@ module.exports = {
 	logger: {
 		type: 'object',
 	},
+	moduleAliases: {
+		type: 'object',
+	},
 	mountPointId: {
 		type: 'string',
 		default: 'rsg-root',

@@ -271,9 +271,33 @@ module.exports = {
 }
 ```
 
+#### `moduleAliases`
+
+Type: `object`, optional
+
+Define aliases for modules, that you can import in your examples, to make example code more realistic and copypastable:
+
+```javascript
+const path = require('path')
+module.exports = {
+  moduleAliases: {
+    'rsg-example': path.resolve(__dirname, 'src')
+  }
+}
+```
+
+````jsx static
+// ```jsx inside Markdown
+import React from 'react'
+import Button from 'rsg-example/components/Button'
+import Placeholder from 'rsg-example/components/Placeholder'
+````
+
+Check out the [webpack resolve.alias documentation](https://webpack.js.org/configuration/resolve/#resolve-alias) for available syntax.
+
 #### `mountPointId`
 
-Type: `string`, defaults: `rsg-root`
+Type: `string`, default: `rsg-root`
 
 The ID of a DOM element where Styleguidist mounts.
 
