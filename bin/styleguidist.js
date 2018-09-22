@@ -107,13 +107,21 @@ function commandBuild() {
 	verbose('Webpack config:', compiler.options);
 
 	// Custom error reporting
-	compiler.plugin('done', function(stats) {
+	function customErrorBuild(stats) {
 		const messages = formatWebpackMessages(stats.toJson({}, true));
 		const hasErrors = printAllErrorsAndWarnings(messages, stats.compilation);
 		if (hasErrors) {
 			process.exit(1);
 		}
-	});
+	}
+
+	if (compiler.hooks) {
+		// webpack 4
+		compiler.hooks.done.tap('rsgCustomErrorServer', customErrorBuild);
+	} else {
+		// webpack 3
+		compiler.plugin('done', customErrorBuild);
+	}
 }
 
 function commandServer() {
@@ -146,13 +154,13 @@ function commandServer() {
 	verbose('Webpack config:', compiler.options);
 
 	// Show message when webpack is recompiling the bundle
-	compiler.plugin('invalid', function() {
+	function invalidServer() {
 		console.log();
 		spinner = ora('Compiling...').start();
-	});
+	}
 
 	// Custom error reporting
-	compiler.plugin('done', function(stats) {
+	function customErrorServer(stats) {
 		if (spinner) {
 			spinner.stop();
 		}
@@ -164,7 +172,17 @@ function commandServer() {
 		}
 
 		printAllErrorsAndWarnings(messages, stats.compilation);
-	});
+	}
+
+	if (compiler.hooks) {
+		// webpack 4
+		compiler.hooks.invalid.tap('rsgInvalidServer', invalidServer);
+		compiler.hooks.done.tap('rsgCustomErrorServer', customErrorServer);
+	} else {
+		// webpack 3
+		compiler.plugin('invalid', invalidServer);
+		compiler.plugin('done', customErrorServer);
+	}
 }
 
 function commandHelp() {
