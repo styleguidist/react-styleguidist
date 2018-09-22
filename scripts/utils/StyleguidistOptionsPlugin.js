@@ -11,12 +11,19 @@ class StyleguidistOptionsPlugin {
 	}
 
 	plugin(compilation) {
-		compilation.plugin('normal-module-loader', (context, module) => {
+		const pluginFunc = (context, module) => {
 			if (!module.resource) {
 				return;
 			}
 			context._styleguidist = this.options;
-		});
+		};
+		if (compilation.hooks) {
+			// Webpack 4
+			compilation.hooks.normalModuleLoader.tap('StyleguidistOptionsPlugin', pluginFunc);
+		} else {
+			// Webpack 3
+			compilation.plugin('normal-module-loader', pluginFunc);
+		}
 	}
 
 	apply(compiler) {
