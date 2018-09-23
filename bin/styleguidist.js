@@ -117,7 +117,7 @@ function commandBuild() {
 
 	if (compiler.hooks) {
 		// webpack 4
-		compiler.hooks.done.tap('rsgCustomErrorServer', customErrorBuild);
+		compiler.hooks.done.tap('rsgCustomErrorBuild', customErrorBuild);
 	} else {
 		// webpack 3
 		compiler.plugin('done', customErrorBuild);
