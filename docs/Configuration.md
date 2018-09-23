@@ -647,8 +647,12 @@ module.exports = {
   updateExample(props, exampleFilePath) {
     const { settings, lang } = props
     if (typeof settings.file === 'string') {
-      const filepath = path.resolve(exampleFilePath, settings.file)
+      const exampleFileDir = path.dirname(exampleFilePath);
+      const filepath = path.resolve(exampleFileDir, settings.file)
       delete settings.file
+      if (lang === 'javascript' || lang === 'js' || lang === 'jsx') {
+        settings.static = true
+      }
       return {
         content: fs.readFileSync(filepath, 'utf8'),
         settings,
@@ -659,25 +663,12 @@ module.exports = {
   }
 }
 ```
+Please, note: ```settings.static = true```([read more](Documenting.md#usage-examples-and-readme-files)) is used to stop React components to be interpreted. Otherwise, if React component uses ```import``` an error will be thrown, because ```import``` in markdown is not supported yet.
 
 Use it like this in your Markdown files:
 
     ```js { "file": "./some/file.js" }
     ```
-
-You can also use this function to dynamically update some of your fenced code blocks that you do not want to be interpreted as React components by using the [static modifier](Documenting.md#usage-examples-and-readme-files).
-
-```javascript
-module.exports = {
-  updateExample(props) {
-    const { settings, lang } = props
-    if (lang === 'javascript' || lang === 'js' || lang === 'jsx') {
-      settings.static = true
-    }
-    return props
-  }
-}
-```
 
 #### `usageMode`
 
