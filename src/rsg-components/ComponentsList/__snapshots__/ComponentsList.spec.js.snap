@@ -8,11 +8,13 @@ exports[`if a custom href is provided, should use it instead of generating inter
       Object {
         "href": "http://example.com",
         "name": "External example",
+        "openInNewTab": true,
         "visibleName": "External example",
       },
       Object {
         "href": "blank#input",
         "name": "Input",
+        "openInNewTab": false,
         "slug": "input",
         "visibleName": "Input",
       },
@@ -24,7 +26,7 @@ exports[`if a custom href is provided, should use it instead of generating inter
 exports[`should ignore items without visibleName 1`] = `
 <ul>
   <li
-    className=""
+    className="undefined"
     key="#button"
   >
     <Styled(Link)
@@ -40,7 +42,7 @@ exports[`should ignore items without visibleName 1`] = `
 exports[`should render sections with nested components 1`] = `
 <ul>
   <li
-    className=""
+    className="undefined"
     key="#button"
   >
     <Styled(Link)
@@ -51,7 +53,7 @@ exports[`should render sections with nested components 1`] = `
     </Styled(Link)>
   </li>
   <li
-    className=""
+    className="undefined"
     key="#input"
   >
     <Styled(Link)
@@ -72,12 +74,14 @@ exports[`should set a parameter on link when useHashId is activated 1`] = `
       Object {
         "href": "blank#/Components?id=button",
         "name": "Button",
+        "openInNewTab": false,
         "slug": "button",
         "visibleName": "Button",
       },
       Object {
         "href": "blank#/Components?id=input",
         "name": "Input",
+        "openInNewTab": false,
         "slug": "input",
         "visibleName": "Input",
       },
@@ -94,11 +98,13 @@ exports[`should set a sub route on link when useHashId is deactivated 1`] = `
       Object {
         "href": "blank#/Components/Button",
         "name": "Button",
+        "openInNewTab": false,
         "slug": "button",
       },
       Object {
         "href": "blank#/Components/Input",
         "name": "Input",
+        "openInNewTab": false,
         "slug": "input",
       },
     ]
@@ -114,12 +120,14 @@ exports[`should set the correct href for items 1`] = `
       Object {
         "href": "blank#button",
         "name": "Button",
+        "openInNewTab": false,
         "slug": "button",
         "visibleName": "Button",
       },
       Object {
         "href": "blank#input",
         "name": "Input",
+        "openInNewTab": false,
         "slug": "input",
         "visibleName": "Input",
       },
