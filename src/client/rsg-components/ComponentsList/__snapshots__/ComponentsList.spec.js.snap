@@ -3,7 +3,7 @@
 exports[`should ignore items without visibleName 1`] = `
 <ul>
   <li
-    className=""
+    className="undefined"
     key="#button"
   >
     <Styled(Link)
@@ -19,7 +19,7 @@ exports[`should ignore items without visibleName 1`] = `
 exports[`should render sections with nested components 1`] = `
 <ul>
   <li
-    className=""
+    className="undefined"
     key="#button"
   >
     <Styled(Link)
@@ -30,7 +30,7 @@ exports[`should render sections with nested components 1`] = `
     </Styled(Link)>
   </li>
   <li
-    className=""
+    className="undefined"
     key="#input"
   >
     <Styled(Link)
@@ -51,12 +51,14 @@ exports[`should set a parameter on link when useHashId is activated 1`] = `
       Object {
         "href": "/#/Components?id=button",
         "name": "Button",
+        "openInNewTab": false,
         "slug": "button",
         "visibleName": "Button",
       },
       Object {
         "href": "/#/Components?id=input",
         "name": "Input",
+        "openInNewTab": false,
         "slug": "input",
         "visibleName": "Input",
       },
@@ -73,11 +75,13 @@ exports[`should set a sub route on link when useHashId is deactivated 1`] = `
       Object {
         "href": "/#/Components/Button",
         "name": "Button",
+        "openInNewTab": false,
         "slug": "button",
       },
       Object {
         "href": "/#/Components/Input",
         "name": "Input",
+        "openInNewTab": false,
         "slug": "input",
       },
     ]
@@ -93,12 +97,14 @@ exports[`should set the correct href for items 1`] = `
       Object {
         "href": "/#button",
         "name": "Button",
+        "openInNewTab": false,
         "slug": "button",
         "visibleName": "Button",
       },
       Object {
         "href": "/#input",
         "name": "Input",
+        "openInNewTab": false,
         "slug": "input",
         "visibleName": "Input",
       },

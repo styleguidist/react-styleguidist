@@ -42,9 +42,11 @@ export function ComponentsListRenderer({ classes, items }) {
 
 	return (
 		<ul className={classes.list}>
-			{items.map(({ heading, visibleName, href, content }) => (
+			{items.map(({ heading, visibleName, href, content, openInNewTab }) => (
 				<li
-					className={cx(classes.item, (!content || !content.props.items.length) && classes.isChild)}
+					className={cx(classes.item, {
+						[classes.isChild]: (!content || !content.props.items.length) && !openInNewTab,
+					})}
 					key={href}
 				>
 					<Link className={cx(heading && classes.heading)} href={href}>
