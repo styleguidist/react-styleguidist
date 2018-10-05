@@ -9,10 +9,12 @@ const styles = ({ space }) => ({
 	},
 });
 
-function MarkdownHeadingRenderer({ classes, level, children }) {
+function MarkdownHeadingRenderer({ classes, level, children, id }) {
 	return (
 		<div className={classes.spacing}>
-			<Heading level={level}>{children}</Heading>
+			<Heading level={level} id={id}>
+				{children}
+			</Heading>
 		</div>
 	);
 }
@@ -21,6 +23,7 @@ MarkdownHeadingRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]).isRequired,
 	children: PropTypes.node,
+	id: PropTypes.string,
 };
 
 export default Styled(styles)(MarkdownHeadingRenderer);

@@ -119,36 +119,48 @@ exports[`Markdown should render emphasis and strong text 1`] = `
 
 `;
 
-exports[`Markdown should render headings 1`] = `
+exports[`Markdown should render headings with generated ids 1`] = `
 
 <div>
   <div class="rsg--spacing-3">
-    <h1 class="rsg--heading-4 rsg--heading1-5">
+    <h1 id="one"
+        class="rsg--heading-4 rsg--heading1-5"
+    >
       one
     </h1>
   </div>
   <div class="rsg--spacing-3">
-    <h2 class="rsg--heading-4 rsg--heading2-6">
+    <h2 id="two"
+        class="rsg--heading-4 rsg--heading2-6"
+    >
       two
     </h2>
   </div>
   <div class="rsg--spacing-3">
-    <h3 class="rsg--heading-4 rsg--heading3-7">
+    <h3 id="three"
+        class="rsg--heading-4 rsg--heading3-7"
+    >
       three
     </h3>
   </div>
   <div class="rsg--spacing-3">
-    <h4 class="rsg--heading-4 rsg--heading4-8">
+    <h4 id="four"
+        class="rsg--heading-4 rsg--heading4-8"
+    >
       four
     </h4>
   </div>
   <div class="rsg--spacing-3">
-    <h5 class="rsg--heading-4 rsg--heading5-9">
+    <h5 id="five"
+        class="rsg--heading-4 rsg--heading5-9"
+    >
       five
     </h5>
   </div>
   <div class="rsg--spacing-3">
-    <h6 class="rsg--heading-4 rsg--heading6-10">
+    <h6 id="six"
+        class="rsg--heading-4 rsg--heading6-10"
+    >
       six
     </h6>
   </div>

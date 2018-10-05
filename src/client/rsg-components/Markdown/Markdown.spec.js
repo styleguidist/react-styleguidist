@@ -23,7 +23,7 @@ describe('Markdown', () => {
 		expectSnapshotToMatch('a [link](http://test.com)');
 	});
 
-	it('should render headings', () => {
+	it('should render headings with generated ids', () => {
 		expectSnapshotToMatch(`
 # one
 ## two
