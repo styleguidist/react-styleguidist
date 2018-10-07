@@ -50,15 +50,15 @@ exports[`should set a parameter on link when useHashId is activated 1`] = `
     Array [
       Object {
         "href": "/#/Components?id=button",
+        "isExternal": false,
         "name": "Button",
-        "openInNewTab": false,
         "slug": "button",
         "visibleName": "Button",
       },
       Object {
         "href": "/#/Components?id=input",
+        "isExternal": false,
         "name": "Input",
-        "openInNewTab": false,
         "slug": "input",
         "visibleName": "Input",
       },
@@ -74,14 +74,14 @@ exports[`should set a sub route on link when useHashId is deactivated 1`] = `
     Array [
       Object {
         "href": "/#/Components/Button",
+        "isExternal": false,
         "name": "Button",
-        "openInNewTab": false,
         "slug": "button",
       },
       Object {
         "href": "/#/Components/Input",
+        "isExternal": false,
         "name": "Input",
-        "openInNewTab": false,
         "slug": "input",
       },
     ]
@@ -96,15 +96,15 @@ exports[`should set the correct href for items 1`] = `
     Array [
       Object {
         "href": "/#button",
+        "isExternal": false,
         "name": "Button",
-        "openInNewTab": false,
         "slug": "button",
         "visibleName": "Button",
       },
       Object {
         "href": "/#input",
+        "isExternal": false,
         "name": "Input",
-        "openInNewTab": false,
         "slug": "input",
         "visibleName": "Input",
       },
