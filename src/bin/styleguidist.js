@@ -106,7 +106,7 @@ function commandBuild() {
 	verbose('Webpack config:', compiler.options);
 
 	// Custom error reporting
-	compiler.plugin('done', function(stats) {
+	compiler.hooks.done.tap('rsgCustomErrorBuild', function(stats) {
 		const messages = formatWebpackMessages(stats.toJson({}, true));
 		const hasErrors = printAllErrorsAndWarnings(messages, stats.compilation);
 		if (hasErrors) {
@@ -145,13 +145,13 @@ function commandServer() {
 	verbose('Webpack config:', compiler.options);
 
 	// Show message when webpack is recompiling the bundle
-	compiler.plugin('invalid', function() {
+	compiler.hooks.invalid.tap('rsgInvalidServer', function() {
 		console.log();
 		spinner = ora('Compiling...').start();
 	});
 
 	// Custom error reporting
-	compiler.plugin('done', function(stats) {
+	compiler.hooks.done.tap('rsgCustomErrorServer', function(stats) {
 		if (spinner) {
 			spinner.stop();
 		}
