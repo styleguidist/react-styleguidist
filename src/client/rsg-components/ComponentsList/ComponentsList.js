@@ -6,7 +6,7 @@ import getUrl from '../../utils/getUrl';
 function ComponentsList({ classes, items, useRouterLinks = false, useHashId, hashPath }) {
 	const mappedItems = items.map(item => ({
 		...item,
-		openInNewTab: !!item.href,
+		isExternal: !!item.href,
 		href: getUrl({
 			name: item.name,
 			slug: item.slug,

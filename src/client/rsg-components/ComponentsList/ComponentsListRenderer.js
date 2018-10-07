@@ -4,6 +4,12 @@ import cx from 'classnames';
 import Link from 'rsg-components/Link';
 import Styled from 'rsg-components/Styled';
 
+const getListClassName = (classes, content, isExternal) => {
+	return cx(classes.item, {
+		[classes.isChild]: (!content || !content.props.items.length) && !isExternal,
+	});
+};
+
 const styles = ({ color, fontFamily, fontSize, space, mq }) => ({
 	list: {
 		margin: 0,
@@ -42,13 +48,8 @@ export function ComponentsListRenderer({ classes, items }) {
 
 	return (
 		<ul className={classes.list}>
-			{items.map(({ heading, visibleName, href, content, openInNewTab }) => (
-				<li
-					className={cx(classes.item, {
-						[classes.isChild]: (!content || !content.props.items.length) && !openInNewTab,
-					})}
-					key={href}
-				>
+			{items.map(({ heading, visibleName, href, content, isExternal }) => (
+				<li className={getListClassName(classes, content, isExternal)} key={href}>
 					<Link className={cx(heading && classes.heading)} href={href}>
 						{visibleName}
 					</Link>
