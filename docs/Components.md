@@ -115,6 +115,7 @@ Each section consists of (all fields are optional):
 - `ignore` — string/array of globs that should not be included in the section.
 - `href` - an URL to navigate to instead of navigating to the section content
 - `external` - if set, the link will open in a new window
+- `pathLine` - if the section is associated with a particular source file, this can be passed to display a copy-able filepath
 
 Configuring a style guide with textual documentation section and a list of components would look like:
 
