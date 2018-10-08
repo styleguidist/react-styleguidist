@@ -17,6 +17,7 @@ export default function Section({ section, depth }, { displayMode, config: { pag
 		description,
 		exampleMode,
 		usageMode,
+		pathLine,
 	} = section;
 
 	const contentJsx = content && (
@@ -44,6 +45,7 @@ export default function Section({ section, depth }, { displayMode, config: { pag
 			sections={sectionsJsx}
 			isolated={displayMode !== DisplayModes.all}
 			depth={depth}
+			pathLine={pathLine}
 		/>
 	);
 }

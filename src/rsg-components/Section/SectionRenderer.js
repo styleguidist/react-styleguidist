@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 import SectionHeading from 'rsg-components/SectionHeading';
 import Markdown from 'rsg-components/Markdown';
+import Pathline from 'rsg-components/Pathline';
 
 const styles = ({ space }) => ({
 	root: {
 		marginBottom: space[4],
+	},
+	pathLineContainer: {
+		marginBottom: space[3],
 	},
 });
 
@@ -21,6 +25,7 @@ export function SectionRenderer(allProps) {
 		depth,
 		description,
 		pagePerSection,
+		pathLine,
 	} = allProps;
 
 	return (
@@ -35,6 +40,11 @@ export function SectionRenderer(allProps) {
 				>
 					{name}
 				</SectionHeading>
+			)}
+			{pathLine && (
+				<div className={classes.pathLineContainer}>
+					<Pathline>{pathLine}</Pathline>
+				</div>
 			)}
 			{description && <Markdown text={description} />}
 			{content}
@@ -56,6 +66,7 @@ SectionRenderer.propTypes = {
 	isolated: PropTypes.bool,
 	depth: PropTypes.number.isRequired,
 	pagePerSection: PropTypes.bool,
+	pathLine: PropTypes.string,
 };
 
 export default Styled(styles)(SectionRenderer);

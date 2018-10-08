@@ -72,6 +72,7 @@ function processSection(section, config, parentDepth) {
 		components: getSectionComponents(section, config),
 		content,
 		external: section.external,
+		pathLine: section.pathLine,
 	};
 }
 
