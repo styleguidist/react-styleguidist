@@ -19,7 +19,7 @@ const styles = ({ color, fontSize, space }) => ({
 	tabBody: {
 		overflowX: 'auto',
 		maxWidth: '100%',
-		'-webkit-overflow-scrolling': 'touch',
+		WebkitOverflowScrolling: 'touch',
 	},
 	docs: {
 		color: color.base,

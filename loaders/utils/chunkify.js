@@ -11,9 +11,10 @@ const CODE_PLACEHOLDER = '<%{#code#}%>';
  *
  * @param {string} markdown
  * @param {Function} updateExample
+ * @param {Array<string>} playgroundLangs
  * @returns {Array}
  */
-module.exports = function chunkify(markdown, updateExample) {
+module.exports = function chunkify(markdown, updateExample, playgroundLangs = PLAYGROUND_LANGS) {
 	const codeChunks = [];
 
 	/*
@@ -34,7 +35,7 @@ module.exports = function chunkify(markdown, updateExample) {
 
 				const lang = example.lang;
 				node.lang = lang;
-				if (!lang || (PLAYGROUND_LANGS.indexOf(lang) !== -1 && !example.settings.static)) {
+				if (!lang || (playgroundLangs.indexOf(lang) !== -1 && !example.settings.static)) {
 					codeChunks.push({
 						type: 'code',
 						content: example.content,

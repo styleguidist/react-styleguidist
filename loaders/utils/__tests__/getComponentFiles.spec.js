@@ -3,7 +3,8 @@ import deabsDeep from 'deabsdeep';
 import getComponentFiles from '../getComponentFiles';
 
 const configDir = path.resolve(__dirname, '../../../test');
-const components = ['one.js', 'two.js'];
+const components = ['components/Annotation/Annotation.js', 'components/Button/Button.js'];
+const processedComponents = components.map(c => `~/${c}`);
 const glob = 'components/**/[A-Z]*.js';
 const globArray = ['components/Annotation/[A-Z]*.js', 'components/Button/[A-Z]*.js'];
 
@@ -16,13 +17,13 @@ it('getComponentFiles() should return an empty array if components is null', () 
 
 it('getComponentFiles() should accept components as a function that returns file names', () => {
 	const result = getComponentFiles(() => components, configDir);
-	expect(deabs(result)).toEqual(['~/one.js', '~/two.js']);
+	expect(deabs(result)).toEqual(processedComponents);
 });
 
 it('getComponentFiles() should accept components as a function that returns absolute paths', () => {
 	const absolutize = files => files.map(file => path.join(configDir, file));
 	const result = getComponentFiles(() => absolutize(components), configDir);
-	expect(deabs(result)).toEqual(['~/one.js', '~/two.js']);
+	expect(deabs(result)).toEqual(processedComponents);
 });
 
 it('getComponentFiles() should accept components as a function that returns globs', () => {
@@ -35,13 +36,13 @@ it('getComponentFiles() should accept components as a function that returns glob
 
 it('getComponentFiles() should accept components as an array of file names', () => {
 	const result = getComponentFiles(components, configDir);
-	expect(deabs(result)).toEqual(['~/one.js', '~/two.js']);
+	expect(deabs(result)).toEqual(processedComponents);
 });
 
 it('getComponentFiles() should accept components as an array of absolute paths', () => {
 	const absolutize = files => files.map(file => path.join(configDir, file));
 	const result = getComponentFiles(absolutize(components), configDir);
-	expect(deabs(result)).toEqual(['~/one.js', '~/two.js']);
+	expect(deabs(result)).toEqual(processedComponents);
 });
 
 it('getComponentFiles() should accept components as an array of globs', () => {

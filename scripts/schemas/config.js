@@ -2,7 +2,13 @@
 // in loaders/styleguide-loader.js
 
 const EXTENSIONS = 'js,jsx,ts,tsx';
-const DEFAULT_COMPONENTS_PATTERN = `src/@(components|Components)/**/*.{${EXTENSIONS}}`;
+const DEFAULT_COMPONENTS_PATTERN =
+	// HACK: on windows, the case insensitivity makes each component appear twice
+	// to avoid this issue, the case management is removed on win32
+	// it virtually changes nothing
+	process.platform === 'win32'
+		? /* istanbul ignore next: no windows on our test plan */ `src/components/**/*.{${EXTENSIONS}}`
+		: `src/@(components|Components)/**/*.{${EXTENSIONS}}`;
 
 const path = require('path');
 const startCase = require('lodash/startCase');

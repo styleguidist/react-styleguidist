@@ -127,3 +127,31 @@ it('should call updateExample function for example', () => {
 	const actual = chunkify(markdown, updateExample);
 	expect(actual).toEqual(expected);
 });
+
+it('should even parse examples with custom extensions', () => {
+	const markdown = `
+Custom extensions
+
+\`\`\`vue
+<AppButton>Example in vue</AppButton>
+\`\`\`
+`;
+	const actual = chunkify(markdown, undefined, ['vue']);
+	expect(actual).toMatchSnapshot();
+});
+
+it('should parse undefined custom extensions without throwing', () => {
+	const markdown = `
+Undefined extensions (default)
+
+\`\`\`jsx
+<AppButton>Example in jsx with undefined extensions</AppButton>
+\`\`\`
+
+\`\`\`pizza
+<AppButton>Example in pizza with undefined extensions (test double)</AppButton>
+\`\`\`
+`;
+	const actual = chunkify(markdown, undefined, undefined);
+	expect(actual).toMatchSnapshot();
+});
