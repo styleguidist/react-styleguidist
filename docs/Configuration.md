@@ -52,7 +52,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 
 #### `assetsDir`
 
-Type: `String`, optional
+Type: `String` or `Array`, optional
 
 Your application static assets folder, will be accessible as `/` in the style guide dev server.
 

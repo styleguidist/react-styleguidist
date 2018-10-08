@@ -26,7 +26,7 @@ const consts = require('../consts');
 
 module.exports = {
 	assetsDir: {
-		type: 'existing directory path',
+		type: ['array', 'existing directory path'],
 		example: 'assets',
 	},
 	compilerConfig: {
