@@ -10,7 +10,7 @@ export const styles = ({ space, fontFamily, fontSize, color }) => ({
 		fontFamily: fontFamily.monospace,
 		fontSize: fontSize.small,
 		color: color.light,
-		wordBreak: 'break-all'
+		wordBreak: 'break-all',
 	},
 	copyButton: {
 		marginLeft: space[0],
