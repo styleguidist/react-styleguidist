@@ -33,8 +33,9 @@ const getDoctrineTags = documentation => {
 const doesExternalExampleFileExist = (componentPath, exampleFile) => {
 	const exampleFilepath = path.resolve(path.dirname(componentPath), exampleFile);
 	const doesFileExist = fs.existsSync(exampleFilepath);
+	const mightBeCode = /\n/.test(exampleFilepath);
 
-	if (!doesFileExist) {
+	if (!doesFileExist && !mightBeCode) {
 		logger.warn(`An example file ${exampleFile} defined in ${componentPath} component not found.`);
 	}
 	return doesFileExist;
@@ -101,12 +102,15 @@ module.exports = function getProps(doc, filepath) {
 
 		// doc.doclets.example might be a boolean or undefined
 		if (typeof doc.doclets.example === 'string') {
-			exampleFile = doc.doclets.example.trim();
-			exampleFileExists = doesExternalExampleFileExist(filepath, exampleFile);
-		}
-
-		if (exampleFileExists) {
-			doc.example = requireIt(`!!${examplesLoader}!${exampleFile}`);
+			exampleText = doc.doclets.example.trim();
+			exampleFileExists = doesExternalExampleFileExist(filepath, exampleText);
+		
+			if (exampleFileExists) {
+				doc.example = requireIt(`!!${examplesLoader}!${exampleText}`);
+			} else {
+				const examplesLoaderFn = require(examplesLoader);
+				doc.example = examplesLoaderFn(exampleText);
+			}
 			delete doc.doclets.example;
 		}
 	} else {

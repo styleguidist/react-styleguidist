@@ -5,6 +5,12 @@ import './Button.css';
 
 /**
  * The only true button.
+ *
+ * @example
+ * Inline Example:
+ * ```jsx
+ * <Button>I Dare you!</Button>
+ * ```
  */
 export default function Button({ color, size, onClick, disabled, children }) {
 	const styles = {
