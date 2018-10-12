@@ -10,7 +10,7 @@ const getProps = require('./utils/getProps');
 const defaultSortProps = require('./utils/sortProps');
 const consts = require('../scripts/consts');
 
-const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
+const examplesLoader = path.resolve(__dirname, './examples-loader.js');
 
 const ERROR_MISSING_DEFINITION = 'No suitable component definition found.';
 
