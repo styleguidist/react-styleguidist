@@ -98,18 +98,16 @@ module.exports = function getProps(doc, filepath) {
 		doc.description = highlightCodeInMarkdown(removeDoclets(doc.description));
 
 		let exampleFileExists = false;
-		let exampleFile = doc.doclets.example;
 
 		// doc.doclets.example might be a boolean or undefined
 		if (typeof doc.doclets.example === 'string') {
-			exampleText = doc.doclets.example.trim();
+			const exampleText = doc.doclets.example.trim();
 			exampleFileExists = doesExternalExampleFileExist(filepath, exampleText);
-		
+
 			if (exampleFileExists) {
 				doc.example = requireIt(`!!${examplesLoader}!${exampleText}`);
 			} else {
-				const examplesLoaderFn = require(examplesLoader);
-				doc.example = examplesLoaderFn(exampleText);
+				doc.example = exampleText;
 			}
 			delete doc.doclets.example;
 		}

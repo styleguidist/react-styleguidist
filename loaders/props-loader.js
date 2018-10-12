@@ -5,9 +5,12 @@ const generate = require('escodegen').generate;
 const toAst = require('to-ast');
 const logger = require('glogg')('rsg');
 const getExamples = require('./utils/getExamples');
+const inlineLoader = require('./utils/inlineLoader.js');
 const getProps = require('./utils/getProps');
 const defaultSortProps = require('./utils/sortProps');
 const consts = require('../scripts/consts');
+
+const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
 
 const ERROR_MISSING_DEFINITION = 'No suitable component definition found.';
 
@@ -74,11 +77,21 @@ module.exports = function(source) {
 		docs = config.updateDocs(docs, file);
 	}
 
+	// Inline @example doclets
+	let inlineExampleBlock = '';
+	if (docs.example && typeof docs.example === 'string') {
+		const inlineLoaded = inlineLoader(this, examplesLoader, docs.example);
+		inlineExampleBlock = `docs.example = ${inlineLoaded}`;
+	}
+
 	return `
 if (module.hot) {
 	module.hot.accept([])
 }
 
-module.exports = ${generate(toAst(docs))}
+const docs = ${generate(toAst(docs))};
+${inlineExampleBlock};
+
+module.exports = docs;
 	`;
 };
