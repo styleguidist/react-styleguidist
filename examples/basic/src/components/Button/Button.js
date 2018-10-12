@@ -16,6 +16,8 @@ import './Button.css';
  * <Button>Pretty please.</Button>
  * ```
  *
+ * @example ./doc.md
+ *
  * @param {String} test
  */
 export default function Button({ color, size, onClick, disabled, children }) {

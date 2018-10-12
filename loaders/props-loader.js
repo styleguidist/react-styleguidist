@@ -73,16 +73,19 @@ module.exports = function(source) {
 	let inlineExampleBlock = '';
 	if (docs.examples && docs.examples.length) {
 		docs.examples.forEach(example => {
+			let appendAst;
 			if (typeof example === 'string') {
-				const inlineLoaded = inlineLoader(this, examplesLoader, example);
-				inlineExampleBlock += `docs.examples.push(...${inlineLoaded});\n`;
+				appendAst = inlineLoader(this, examplesLoader, example);
+			} else {
+				appendAst = generate(toAst(example));
 			}
+			inlineExampleBlock += `docs.examples = docs.examples.concat(${appendAst});\n`;
 		});
 	}
 
 	// Examples from Markdown file
 	const examplesFile = config.getExampleFilename(file);
-	docs.examples = getExamples(examplesFile, docs.displayName, config.defaultExample) || [];
+	docs.examples = getExamples(examplesFile, docs.displayName, config.defaultExample);
 
 	if (config.updateDocs) {
 		docs = config.updateDocs(docs, file);

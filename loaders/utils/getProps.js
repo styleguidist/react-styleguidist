@@ -105,7 +105,11 @@ module.exports = function getProps(doc, filepath) {
 				const hasCodeBlock = /```/.test(example);
 
 				if (exampleFileExists) {
-					doc.examples.push(requireIt(`!!${examplesLoader}!${example}`));
+					let exampleFile = example;
+					if (typeof exampleFile === 'string') {
+						exampleFile = exampleFile.trim();
+					}
+					doc.examples.push(requireIt(`!!${examplesLoader}!${exampleFile}`));
 				} else if (hasCodeBlock) {
 					doc.examples.push(example);
 				} else {
