@@ -441,7 +441,7 @@ devServer: {
 
 Two options:
 
-1.  Put a `favicon.ico` file into the root folder or your site.
+1.  Put a `favicon.ico` file into the root folder of your site.
 
 2.  Use [template](Configuration.md#template) option:
 
