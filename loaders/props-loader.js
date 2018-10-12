@@ -69,19 +69,23 @@ module.exports = function(source) {
 		docs.props = sortProps(propsAsArray);
 	}
 
+	// Process inline @example doclets
+	let inlineExampleBlock = '';
+	if (docs.examples && docs.examples.length) {
+		docs.examples.forEach(example => {
+			if (typeof example === 'string') {
+				const inlineLoaded = inlineLoader(this, examplesLoader, example);
+				inlineExampleBlock += `docs.examples.push(...${inlineLoaded});\n`;
+			}
+		});
+	}
+
 	// Examples from Markdown file
 	const examplesFile = config.getExampleFilename(file);
-	docs.examples = getExamples(examplesFile, docs.displayName, config.defaultExample);
+	docs.examples = getExamples(examplesFile, docs.displayName, config.defaultExample) || [];
 
 	if (config.updateDocs) {
 		docs = config.updateDocs(docs, file);
-	}
-
-	// Inline @example doclets
-	let inlineExampleBlock = '';
-	if (docs.example && typeof docs.example === 'string') {
-		const inlineLoaded = inlineLoader(this, examplesLoader, docs.example);
-		inlineExampleBlock = `docs.example = ${inlineLoaded}`;
 	}
 
 	return `

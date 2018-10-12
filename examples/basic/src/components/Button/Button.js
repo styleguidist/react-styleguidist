@@ -6,10 +6,17 @@ import './Button.css';
 /**
  * The only true button.
  *
- * @example Inline Example:
+ * @example Inline Example 1:
  * ```jsx
  * <Button>I Dare you</Button>
  * ```
+ *
+ * @example Inline Example 2:
+ * ```jsx
+ * <Button>Pretty please.</Button>
+ * ```
+ *
+ * @param {String} test
  */
 export default function Button({ color, size, onClick, disabled, children }) {
 	const styles = {

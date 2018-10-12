@@ -33,11 +33,7 @@ const getDoctrineTags = documentation => {
 const doesExternalExampleFileExist = (componentPath, exampleFile) => {
 	const exampleFilepath = path.resolve(path.dirname(componentPath), exampleFile);
 	const doesFileExist = fs.existsSync(exampleFilepath);
-	const mightBeCode = /\n/.test(exampleFilepath);
 
-	if (!doesFileExist && !mightBeCode) {
-		logger.warn(`An example file ${exampleFile} defined in ${componentPath} component not found.`);
-	}
 	return doesFileExist;
 };
 
@@ -97,20 +93,27 @@ module.exports = function getProps(doc, filepath) {
 
 		doc.description = highlightCodeInMarkdown(removeDoclets(doc.description));
 
-		let exampleFileExists = false;
+		// Process inline examples
+		if (doc.doclets.example && doc.tags.example && doc.tags.example.length) {
+			doc.examples = doc.examples || [];
+			const examples = doc.tags.example
+				.map(tag => tag.description.trim())
+				.filter(example => example !== '');
 
-		// doc.doclets.example might be a boolean or undefined
-		if (typeof doc.doclets.example === 'string') {
-			const exampleText = doc.doclets.example.trim();
-			exampleFileExists = doesExternalExampleFileExist(filepath, exampleText);
+			examples.forEach(example => {
+				const exampleFileExists = doesExternalExampleFileExist(filepath, example);
+				const hasCodeBlock = /```/.test(example);
 
-			if (exampleFileExists) {
-				doc.example = requireIt(`!!${examplesLoader}!${exampleText}`);
-			} else {
-				doc.example = exampleText;
-			}
-			delete doc.doclets.example;
+				if (exampleFileExists) {
+					doc.examples.push(requireIt(`!!${examplesLoader}!${example}`));
+				} else if (hasCodeBlock) {
+					doc.examples.push(example);
+				} else {
+					logger.warn(`An example file ${example} defined in ${filepath} component not found.`);
+				}
+			});
 		}
+		delete doc.doclets.example;
 	} else {
 		doc.doclets = {};
 	}
