@@ -65,7 +65,7 @@
     "markdown-to-jsx": "^6.7.4",
     "mini-html-webpack-plugin": "^0.2.3",
     "minimist": "^1.2.0",
-    "ora": "^2.1.0",
+    "ora": "^3.0.0",
     "prismjs": "^1.15.0",
     "prop-types": "^15.6.2",
     "q-i": "^2.0.1",
