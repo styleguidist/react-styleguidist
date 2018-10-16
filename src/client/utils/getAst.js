@@ -1,6 +1,5 @@
 // @flow
-import * as acorn from 'acorn';
-import type { AcornNode } from 'acorn';
+import { Parser, type AcornNode } from 'acorn';
 
 export const ACORN_OPTIONS = {
 	ecmaVersion: 2019,
@@ -12,7 +11,7 @@ export const ACORN_OPTIONS = {
  */
 export default function getAst(code: string): ?AcornNode {
 	try {
-		return acorn.parse(code, {
+		return Parser.parse(code, {
 			...ACORN_OPTIONS,
 		});
 	} catch (err) {

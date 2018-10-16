@@ -1,5 +1,5 @@
 // @flow
-import acornJsx from 'acorn-jsx/inject';
+import acornJsx from 'acorn-jsx';
 import walkes from 'walkes';
 import getAst from './getAst';
 
@@ -12,9 +12,7 @@ export default function getImports(code: string): string[] {
 	//    imports/requires are not allowed in this case, and we'll wrap the code
 	//    in React.Fragment on the frontend
 	// 2. All other errors - we'll deal with them on the frontend
-	const ast = getAst(code, {
-		jsx: acornJsx,
-	});
+	const ast = getAst(code, [acornJsx()]);
 	if (!ast) {
 		return [];
 	}
