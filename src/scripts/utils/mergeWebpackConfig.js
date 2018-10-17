@@ -16,7 +16,7 @@ const IGNORE_PLUGINS = [
 	'HtmlWebpackPlugin',
 	'OccurrenceOrderPlugin',
 	'DedupePlugin',
-	'UglifyJsPlugin',
+	'TerserPlugin',
 	'HotModuleReplacementPlugin',
 ];
 

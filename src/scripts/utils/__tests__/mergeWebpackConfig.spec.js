@@ -1,6 +1,6 @@
 import mergeWebpackConfig from '../mergeWebpackConfig';
 
-class UglifyJsPlugin {}
+class TerserPlugin {}
 class MyPlugin {}
 class MiniHtmlWebpackPlugin {}
 
@@ -27,8 +27,8 @@ it('should ignore certain sections', () => {
 });
 
 it('should ignore certain Webpack plugins', () => {
-	const baseInstance = new UglifyJsPlugin();
-	const userInstance = new UglifyJsPlugin();
+	const baseInstance = new TerserPlugin();
+	const userInstance = new TerserPlugin();
 	const result = mergeWebpackConfig(
 		{
 			plugins: [baseInstance],
@@ -39,7 +39,7 @@ it('should ignore certain Webpack plugins', () => {
 	);
 	expect(result.plugins).toHaveLength(2);
 	expect(result.plugins[0]).toBe(baseInstance);
-	expect(result.plugins[0].constructor.name).toBe('UglifyJsPlugin');
+	expect(result.plugins[0].constructor.name).toBe('TerserPlugin');
 	expect(result.plugins[1].constructor.name).toBe('MyPlugin');
 });
 

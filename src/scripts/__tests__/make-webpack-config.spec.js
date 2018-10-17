@@ -34,7 +34,7 @@ it('should return a development config', () => {
 		});
 		expect(config).not.toHaveProperty('optimization');
 	} else {
-		expect(plugins).not.toContain('UglifyJsPlugin');
+		expect(plugins).not.toContain('TerserPlugin');
 	}
 });
 
@@ -59,9 +59,9 @@ it('should return a production config', () => {
 		expect(config).toMatchObject({
 			mode: env,
 		});
-		expect(getClasses(config.optimization.minimizer, 'UglifyJsPlugin')).toHaveLength(1);
+		expect(getClasses(config.optimization.minimizer, 'TerserPlugin')).toHaveLength(1);
 	} else {
-		expect(plugins).toContain('UglifyJsPlugin');
+		expect(plugins).toContain('TerserPlugin');
 	}
 });
 
