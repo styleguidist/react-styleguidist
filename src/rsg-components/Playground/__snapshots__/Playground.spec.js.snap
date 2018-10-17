@@ -50,6 +50,7 @@ exports[`should render component renderer 1`] = `
 </button>
 
       evalInContext={[Function]}
+      name="name"
     />
   }
   previewProps={Object {}}

@@ -13,6 +13,7 @@ export default class Preview extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
+		name: PropTypes.string,
 	};
 	static contextTypes = {
 		config: PropTypes.object.isRequired,
@@ -69,6 +70,7 @@ export default class Preview extends Component {
 				evalInContext={this.props.evalInContext}
 				onError={this.handleError}
 				compilerConfig={this.context.config.compilerConfig}
+				name={this.props.name}
 			/>
 		);
 

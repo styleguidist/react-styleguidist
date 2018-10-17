@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { transform } from 'buble';
 import Wrapper from 'rsg-components/Wrapper';
+import get from 'lodash/get';
 import splitExampleCode from '../../utils/splitExampleCode';
 
 /* eslint-disable no-invalid-this, react/no-multi-comp */
@@ -33,6 +34,7 @@ export default class ReactExample extends Component {
 		evalInContext: PropTypes.func.isRequired,
 		onError: PropTypes.func.isRequired,
 		compilerConfig: PropTypes.object,
+		name: PropTypes.string,
 	};
 	static contextTypes = {};
 
@@ -46,21 +48,53 @@ export default class ReactExample extends Component {
 			return {};
 		}
 
-		return this.props.evalInContext(`
+		return this.props.evalInContext(
+			this.wrapCodeWithComponentNamespace(`
 			var state = {}, initialState = {};
 			try {
 				${compiledCode};
 			} catch (err) {}
 			return initialState;
-		`)();
+		`)
+		)();
 	}
 
 	// Run example code and return the last top-level expression
 	getExampleComponent(compiledCode) {
-		return this.props.evalInContext(`
+		return this.props.evalInContext(
+			this.wrapCodeWithComponentNamespace(`
 			var initialState = {};
 			${compiledCode}
-		`);
+		`)
+		);
+	}
+
+	wrapCodeWithComponentNamespace(code) {
+		return this.wrapCodeWithNamespace(
+			'RsgUserComponents',
+			this.wrapCodeWithNamespace(`RsgUserComponents.${this.props.name}`, code)
+		);
+	}
+
+	wrapCodeWithNamespace(namespace, code) {
+		if (!namespace) {
+			return code;
+		}
+
+		const obj = get(window, namespace);
+		if (!obj) {
+			return code;
+		}
+
+		const expandedNamespace = Object.keys(obj)
+			.filter(item => /^[$A-Z_][0-9A-Z_$]*$/i.test(item))
+			.map(item => `var ${item} = ${namespace}.${item};`)
+			.join('\n');
+		return `${expandedNamespace}
+			{
+				${code}
+			}
+		`;
 	}
 
 	compileCode(code) {
