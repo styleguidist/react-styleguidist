@@ -9,38 +9,18 @@ describe('getComponent', () => {
 		});
 	});
 
-	describe('if it is a CommonJS module and exports a function', () => {
-		it('should return the module', () => {
-			const testCases = [() => {}, function() {}, class Class {}];
-			testCases.forEach(testCase => {
-				const actual = getComponent(testCase);
-				expect(actual).toBe(testCase);
-			});
-		});
-	});
-
-	describe('if there is only one named export in the module', () => {
-		it('should return that', () => {
-			const module = { oneNamedExport: 'isLonely' };
-			const actual = getComponent(module);
-			expect(actual).toBe(module.oneNamedExport);
-		});
-	});
-
-	describe('if there is a named export whose name matches the name argument', () => {
-		it('should return that', () => {
-			const name = 'Component';
-			const module = { [name]: 'isNamed', OtherComponent: 'isAlsoNamed' };
-			const actual = getComponent(module, name);
-			expect(actual).toBe(module[name]);
-		});
-	});
-
-	describe('if there is more than one named export and no matching name', () => {
+	describe('if there is more than one named export but no default', () => {
 		it('should fall back on returning the module as a whole', () => {
-			const name = 'Component';
 			const module = { RandomName: 'isNamed', confusingExport: 123 };
-			const actual = getComponent(module, name);
+			const actual = getComponent(module);
+			expect(actual).toBe(module);
+		});
+	});
+
+	describe('if there is one export but no default', () => {
+		it('should fall back on returning the module as a whole', () => {
+			const module = { confusingExport: 123 };
+			const actual = getComponent(module);
 			expect(actual).toBe(module);
 		});
 	});

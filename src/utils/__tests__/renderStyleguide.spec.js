@@ -38,8 +38,7 @@ const history = {
 };
 
 afterEach(() => {
-	delete global.Button;
-	delete global.Image;
+	delete global.RsgUserComponents;
 });
 
 describe('renderStyleguide', () => {
@@ -50,14 +49,14 @@ describe('renderStyleguide', () => {
 
 	it('should globalize all components', () => {
 		renderStyleguide(styleguide, codeRevision, location, doc, history);
-		expect(global.Button).toBe('ButtonModule');
-		expect(global.Image).toBe('ImageModule');
+		expect(global.RsgUserComponents.Button).toBe('ButtonModule');
+		expect(global.RsgUserComponents.Image).toBe('ImageModule');
 	});
 
 	it('should globalize all components in isolated mode', () => {
 		renderStyleguide(styleguide, codeRevision, { hash: '#!/Button' }, doc, history);
-		expect(global.Button).toBe('ButtonModule');
-		expect(global.Image).toBe('ImageModule');
+		expect(global.RsgUserComponents.Button).toBe('ButtonModule');
+		expect(global.RsgUserComponents.Image).toBe('ImageModule');
 	});
 
 	it('should change document title', () => {

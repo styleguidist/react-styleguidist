@@ -1,13 +1,15 @@
 import globalizeComponents from '../globalizeComponents';
 
+beforeEach(() => {
+	global.RsgUserComponents = {};
+});
+
 afterEach(() => {
-	delete global.Foo;
-	delete global.Bar;
+	delete global.RsgUserComponents;
 });
 
 describe('globalizeComponents', () => {
 	it('should set all components’ modules as a global variables', () => {
-		const globalsCount = Object.keys(global).length;
 		globalizeComponents([
 			{
 				components: [
@@ -30,8 +32,8 @@ describe('globalizeComponents', () => {
 				],
 			},
 		]);
-		expect(Object.keys(global).length).toBe(globalsCount + 2);
-		expect(global.Foo).toBe(13);
-		expect(global.Bar).toBe(14);
+		expect(Object.keys(global.RsgUserComponents).length).toBe(2);
+		expect(global.RsgUserComponents.Foo).toBe(13);
+		expect(global.RsgUserComponents.Bar).toBe(14);
 	});
 });

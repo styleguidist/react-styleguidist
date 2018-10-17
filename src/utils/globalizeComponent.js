@@ -10,5 +10,6 @@ export default function globalizeComponent(component) {
 		return;
 	}
 
-	global[component.name] = getComponent(component.module, component.name);
+	const globalComponents = global.RsgUserComponents || (global.RsgUserComponents = {});
+	globalComponents[component.name] = getComponent(component.module);
 }
