@@ -109,15 +109,19 @@ module.exports = function getProps(doc, filepath) {
 					if (typeof exampleFile === 'string') {
 						exampleFile = exampleFile.trim();
 					}
-					doc.examples.push(requireIt(`!!${examplesLoader}!${exampleFile}`));
+					const src = requireIt(`!!${examplesLoader}!${exampleFile}`);
+
+					//doc.examples.push(src);
+					doc.example = src;
+					delete doc.doclets.example;
 				} else if (hasCodeBlock) {
 					doc.examples.push(example);
+					delete doc.doclets.example;
 				} else {
 					logger.warn(`An example file ${example} defined in ${filepath} component not found.`);
 				}
 			});
 		}
-		delete doc.doclets.example;
 	} else {
 		doc.doclets = {};
 	}

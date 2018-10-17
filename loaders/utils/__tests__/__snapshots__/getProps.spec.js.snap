@@ -265,6 +265,7 @@ Object {
   "example": Object {
     "require": "!!~/loaders/examples-loader.js!../../../test/components/Placeholder/examples.md",
   },
+  "examples": Array [],
   "methods": Array [],
   "tags": Object {
     "example": Array [
@@ -286,6 +287,7 @@ Object {
     "example": "example.md
 ",
   },
+  "examples": Array [],
   "methods": Array [],
   "tags": Object {
     "example": Array [
