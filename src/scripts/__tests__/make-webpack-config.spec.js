@@ -1,6 +1,11 @@
 import webpack, { validate } from 'webpack';
-import getWebpackVersion from '../utils/getWebpackVersion';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import makeWebpackConfig from '../make-webpack-config';
+
+jest.mock('copy-webpack-plugin', () => {
+	const RealCopyWebpackPluginModule = require.requireActual('copy-webpack-plugin');
+	return jest.fn(RealCopyWebpackPluginModule);
+});
 
 const styleguideConfig = {
 	styleguideDir: __dirname,
@@ -12,7 +17,10 @@ const getClasses = (plugins, name) => plugins.filter(x => x.constructor.name ===
 const getClassNames = plugins => plugins.map(x => x.constructor.name);
 
 const process$env$nodeEnv = process.env.NODE_ENV;
-const isWebpack4 = getWebpackVersion() >= 4;
+
+beforeEach(() => {
+	CopyWebpackPlugin.mockClear();
+});
 
 afterEach(() => {
 	process.env.NODE_ENV = process$env$nodeEnv;
@@ -28,14 +36,10 @@ it('should return a development config', () => {
 	const plugins = getClassNames(config.plugins);
 	expect(plugins).toContain('HotModuleReplacementPlugin');
 
-	if (isWebpack4) {
-		expect(config).toMatchObject({
-			mode: env,
-		});
-		expect(config).not.toHaveProperty('optimization');
-	} else {
-		expect(plugins).not.toContain('UglifyJsPlugin');
-	}
+	expect(config).toMatchObject({
+		mode: env,
+	});
+	expect(config).not.toHaveProperty('optimization');
 });
 
 it('should return a production config', () => {
@@ -55,14 +59,10 @@ it('should return a production config', () => {
 		},
 	});
 
-	if (isWebpack4) {
-		expect(config).toMatchObject({
-			mode: env,
-		});
-		expect(getClasses(config.optimization.minimizer, 'UglifyJsPlugin')).toHaveLength(1);
-	} else {
-		expect(plugins).toContain('UglifyJsPlugin');
-	}
+	expect(config).toMatchObject({
+		mode: env,
+	});
+	expect(getClasses(config.optimization.minimizer, 'UglifyJsPlugin')).toHaveLength(1);
 });
 
 it('should set aliases', () => {
@@ -107,6 +107,16 @@ it('should prepend requires as webpack entries', () => {
 it('should enable verbose mode in CleanWebpackPlugin', () => {
 	const result = makeWebpackConfig({ ...styleguideConfig, verbose: true }, 'production');
 	expect(getClasses(result.plugins, 'CleanWebpackPlugin')).toMatchSnapshot();
+});
+
+it('should set from with assetsDir in CopyWebpackPlugin', () => {
+	makeWebpackConfig({ ...styleguideConfig, assetsDir: '/assets/' }, 'production');
+	expect(CopyWebpackPlugin).toHaveBeenCalledWith([{ from: '/assets/' }]); //([
+});
+
+it('should add CopyWebpackPlugin to plugins in production', () => {
+	makeWebpackConfig({ ...styleguideConfig }, 'production');
+	expect(CopyWebpackPlugin).toHaveBeenCalledWith([]);
 });
 
 it('should merge user webpack config', () => {
