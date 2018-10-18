@@ -66,7 +66,7 @@ it('should return a production config', () => {
 	expect(config).toMatchObject({
 		mode: env,
 	});
-	expect(getClasses(config.optimization.minimizer, 'UglifyJsPlugin')).toHaveLength(1);
+	expect(getClasses(config.optimization.minimizer, 'TerserPlugin')).toHaveLength(1);
 });
 
 it('should set aliases', () => {

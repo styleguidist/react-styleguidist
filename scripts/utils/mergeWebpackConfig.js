@@ -17,6 +17,7 @@ const IGNORE_PLUGINS = [
 	'OccurrenceOrderPlugin',
 	'DedupePlugin',
 	'UglifyJsPlugin',
+	'TerserPlugin',
 	'HotModuleReplacementPlugin',
 ];
 
