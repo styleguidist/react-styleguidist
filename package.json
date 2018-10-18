@@ -94,8 +94,7 @@
   },
   "peerDependencies": {
     "react": ">=15",
-    "react-dom": ">=15",
-    "webpack": ">=4"
+    "react-dom": ">=15"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
