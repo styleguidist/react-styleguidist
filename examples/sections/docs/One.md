@@ -66,3 +66,12 @@ console.log(eatFood(food))
 ```
 
 Some more text here.
+
+## Details
+
+<details>
+ <summary>Solution</summary>
+
+Some hidden text.
+
+</details>

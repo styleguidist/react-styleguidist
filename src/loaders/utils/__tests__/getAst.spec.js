@@ -1,4 +1,4 @@
-import acornJsx from 'acorn-jsx/inject';
+import acornJsx from 'acorn-jsx';
 import getAst from '../getAst';
 
 describe('getAst', () => {
@@ -8,9 +8,7 @@ describe('getAst', () => {
 	});
 
 	test('accept Acorn plugins', () => {
-		const result = getAst(`<X />`, {
-			jsx: acornJsx,
-		});
+		const result = getAst(`<X />`, [acornJsx()]);
 		expect(result).toMatchSnapshot();
 	});
 });

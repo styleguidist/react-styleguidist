@@ -1,19 +1,32 @@
-const path = require('path');
 const glob = require('glob');
 const isFunction = require('lodash/isFunction');
 const isString = require('lodash/isString');
 
-const getFilesMatchingGlobs = (components, rootDir, ignore) =>
-	components
-		.map(listItem => {
-			// Check if the string looks like a glob pattern by using hasMagic
-			if (glob.hasMagic(listItem)) {
-				return glob.sync(path.resolve(rootDir, listItem), { ignore });
-			}
-			// Wrap path in an array so reduce always gets an array of arrays
-			return [listItem];
-		})
+const getComponentGlobs = components => {
+	if (isFunction(components)) {
+		return components();
+	} else if (Array.isArray(components)) {
+		return components;
+	} else if (isString(components)) {
+		return [components];
+	}
+	throw new Error(
+		`Styleguidist: components should be string, function or array, received ${typeof components}.`
+	);
+};
+
+const getFilesMatchingGlobs = (components, rootDir, ignore) => {
+	ignore = ignore || [];
+	return components
+		.map(listItem =>
+			glob.sync(listItem, {
+				cwd: rootDir,
+				ignore,
+				absolute: true,
+			})
+		)
 		.reduce((accumulator, current) => accumulator.concat(current), []);
+};
 
 /**
  * Return absolute paths of components that should be rendered in the style guide.
@@ -28,21 +41,11 @@ module.exports = function getComponentFiles(components, rootDir, ignore) {
 		return [];
 	}
 
-	let componentFiles;
-	if (isFunction(components)) {
-		componentFiles = getFilesMatchingGlobs(components(), rootDir, ignore);
-	} else if (Array.isArray(components)) {
-		componentFiles = getFilesMatchingGlobs(components, rootDir, ignore);
-	} else if (isString(components)) {
-		componentFiles = glob.sync(path.resolve(rootDir, components), { ignore });
-	} else {
-		throw new Error(
-			`Styleguidist: components should be string, function or array, received ${typeof components}.`
-		);
-	}
+	// Normalize components option into an Array
+	const componentGlobs = getComponentGlobs(components);
 
-	// Make paths absolute
-	componentFiles = componentFiles.map(file => path.resolve(rootDir, file));
+	// Resolve list of components from globs
+	const componentFiles = getFilesMatchingGlobs(componentGlobs, rootDir, ignore);
 
 	return componentFiles;
 };

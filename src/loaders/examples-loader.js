@@ -18,7 +18,8 @@ const EVAL_IN_CONTEXT_PATH = absolutize('utils/client/evalInContext');
 
 function examplesLoader(source) {
 	const config = this._styleguidist;
-	const { file, displayName, shouldShowDefaultExample } = loaderUtils.getOptions(this) || {};
+	const { file, displayName, shouldShowDefaultExample, customLangs } =
+		loaderUtils.getOptions(this) || {};
 
 	// Replace placeholders (__COMPONENT__) with the passed-in component name
 	if (shouldShowDefaultExample) {
@@ -30,7 +31,7 @@ function examplesLoader(source) {
 		: undefined;
 
 	// Load examples
-	const examples = chunkify(source, updateExample);
+	const examples = chunkify(source, updateExample, customLangs);
 
 	// Find all import statements and require() calls in examples to make them
 	// available in webpack context at runtime.

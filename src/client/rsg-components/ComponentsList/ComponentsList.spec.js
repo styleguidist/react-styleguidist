@@ -20,6 +20,24 @@ it('should set the correct href for items', () => {
 	expect(actual).toMatchSnapshot();
 });
 
+it('if a custom href is provided, should use it instead of generating internal link', () => {
+	const components = [
+		{
+			visibleName: 'External example',
+			name: 'External example',
+			href: 'http://example.com',
+		},
+		{
+			visibleName: 'Input',
+			name: 'Input',
+			slug: 'input',
+		},
+	];
+
+	const actual = shallow(<ComponentsList items={components} classes={{}} />);
+	expect(actual).toMatchSnapshot();
+});
+
 it('should set a parameter on link when useHashId is activated', () => {
 	const components = [
 		{

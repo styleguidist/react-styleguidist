@@ -16,10 +16,10 @@ export default class CounterButton extends Component {
 	 *
 	 * @public
 	 * @version 1.0.5
-	 * @param {Number} newValue New value for the counter
+	 * @param {Number} [newValue=0] New value for the counter
 	 * @returns {string} Test
 	 */
-	set(newValue) {
+	set(newValue = 0) {
 		this.setState({
 			value: parseInt(newValue, 10),
 		});

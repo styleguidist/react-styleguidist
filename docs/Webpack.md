@@ -13,7 +13,7 @@ _Webpack is required to run Styleguidist but your project doesn’t have to use 
 - [Reusing your project’s webpack config](#reusing-your-projects-webpack-config)
 - [Custom webpack config](#custom-webpack-config)
 - [Create React App](#create-react-app)
-- [Create React App, TypeScript](#create-react-app-typescript)
+- [Create React App with TypeScript](#create-react-app-with-typescript)
 - [Non-webpack projects](#non-webpack-projects)
 - [When nothing else works](#when-nothing-else-works)
 

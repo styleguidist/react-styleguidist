@@ -49,7 +49,7 @@ export default function getRouteData(sections, hash, pagePerSection) {
 			hashArray.forEach((hashName, index) => {
 				// Filter the requested component if required but only on the first depth
 				// so in the next time of iteration, it will be trying to filter only on the second depth and so on
-				filteredSections = filterComponentsInSectionsByExactName(sections, hashName, false);
+				filteredSections = filterComponentsInSectionsByExactName(sections, hashName, isolate);
 
 				// If filteredSections exists, its because is an array of an component
 				// else it is an array of sections and depending his sectionDepth

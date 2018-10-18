@@ -4,7 +4,7 @@ Basic button:
 
 Big pink button:
 
-    <Button size="large" color="deeppink">Lick Me</Button>
+    <Button size="large" color="deeppink">Click Me</Button>
 
 And you _can_ **use** `any` [Markdown](http://daringfireball.net/projects/markdown/) here.
 

@@ -20,7 +20,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 - [`handlers`](#handlers)
 - [`ignore`](#ignore)
 - [`logger`](#logger)
-- [`mountPointId`](#mountPointId)
+- [`mountPointId`](#mountpointid)
 - [`pagePerSection`](#pagepersection)
 - [`printBuildInstructions`](#printbuildinstructions)
 - [`printServerInstructions`](#printserverinstructions)
@@ -52,7 +52,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 
 #### `assetsDir`
 
-Type: `String`, optional
+Type: `String` or `Array`, optional
 
 Your application static assets folder, will be accessible as `/` in the style guide dev server.
 
@@ -514,7 +514,7 @@ Dev server hostname.
 
 #### `serverPort`
 
-Type: `Number`, default: `process.env.NODE_ENV` or `6060`
+Type: `Number`, default: `6060`
 
 Dev server port.
 

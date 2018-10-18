@@ -13,6 +13,11 @@ export const styles = ({ space }) => ({
 });
 
 export function ArgumentRenderer({ classes, name, type, description, returns, block, ...props }) {
+	const isOptional = type && type.type === 'OptionalType';
+	const defaultValue = props.default;
+	if (isOptional) {
+		type = type.expression;
+	}
 	return (
 		<Group className={block && classes.block} {...props}>
 			{returns && 'Returns'}
@@ -22,7 +27,13 @@ export function ArgumentRenderer({ classes, name, type, description, returns, bl
 					{type && ':'}
 				</span>
 			)}
-			{type && <Type>{type.name}</Type>}
+			{type && (
+				<Type>
+					{type.name}
+					{isOptional && '?'}
+					{!!defaultValue && `=${defaultValue}`}
+				</Type>
+			)}
 			{type && description && ` — `}
 			{description && <Markdown text={`${description}`} inline />}
 		</Group>
@@ -33,6 +44,7 @@ ArgumentRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	name: PropTypes.string,
 	type: PropTypes.object,
+	default: PropTypes.string,
 	description: PropTypes.string,
 	returns: PropTypes.bool,
 	block: PropTypes.bool,
