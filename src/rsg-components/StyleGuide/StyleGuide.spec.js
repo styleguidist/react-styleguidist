@@ -28,6 +28,7 @@ const sections = [
 ];
 const config = {
 	title: 'Hello',
+	version: '1.0.0',
 	showSidebar: true,
 };
 
@@ -36,6 +37,7 @@ it('should render components list', () => {
 		<StyleGuide
 			codeRevision={1}
 			config={config}
+			pagePerSection={false}
 			sections={sections}
 			allSections={sections}
 			slots={{}}
@@ -126,7 +128,7 @@ describe('sidebar rendering', () => {
 				sections={sections}
 				allSections={sections}
 				slots={{}}
-				displayMode={DisplayModes.component}
+				displayMode={DisplayModes.all}
 				pagePerSection
 			/>
 		);
@@ -135,11 +137,12 @@ describe('sidebar rendering', () => {
 	});
 });
 
-it('renderer should render logo, table of contents, ribbon and passed children', () => {
+it('renderer should render logo, version, table of contents, ribbon and passed children', () => {
 	const actual = shallow(
 		<StyleGuideRenderer
 			classes={{}}
 			title={config.title}
+			version={config.version}
 			toc={<TableOfContents sections={sections} />}
 			homepageUrl="http://react-styleguidist.js.org/"
 			hasSidebar

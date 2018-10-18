@@ -6,6 +6,8 @@ const styles = {
 		isolate: false,
 		margin: 0,
 		padding: 0,
+		minWidth: 0,
+		maxWidth: '100%',
 		border: 0,
 	},
 };

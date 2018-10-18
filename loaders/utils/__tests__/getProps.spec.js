@@ -62,6 +62,83 @@ it('should remove non-public methods', () => {
 	expect(result).toMatchSnapshot();
 });
 
+it('should get method info from docblock and merge it', () => {
+	const result = getProps(
+		{
+			displayName: 'Button',
+			methods: [
+				{
+					docblock: `
+Baz method with foo param
+
+@public
+@returns {string} test
+`,
+				},
+			],
+		},
+		__filename
+	);
+
+	expect(result.methods).toMatchSnapshot();
+});
+
+it('should accept @return as a synonym of @returns', () => {
+	const result = getProps(
+		{
+			displayName: 'Button',
+			methods: [
+				{
+					docblock: `
+Baz method with foo param
+
+@public
+@return {string} test
+`,
+				},
+			],
+		},
+		__filename
+	);
+
+	expect(result.methods).toMatchSnapshot();
+});
+
+it('should get method params info from docblock and merge it with passed method info', () => {
+	const result = getProps(
+		{
+			displayName: 'Button',
+			methods: [
+				{
+					docblock: `
+Foo method with baz param
+
+@public
+@param {string} [baz=bar]
+@arg {string} foo param described with @arg tag
+@argument {string} test param described with @argument tag
+@returns {string} test
+`,
+					params: [
+						{
+							name: 'baz',
+						},
+						{
+							name: 'foo',
+						},
+						{
+							name: 'test',
+						},
+					],
+				},
+			],
+		},
+		__filename
+	);
+
+	expect(result.methods).toMatchSnapshot();
+});
+
 it('should return an object for props with doclets', () => {
 	const result = getProps(
 		{
@@ -160,4 +237,21 @@ it('should guess a displayName for components that react-docgen was not able to 
 		path.join('an', 'absolute', 'path', 'to', 'YourComponent.js')
 	);
 	expect(result).toHaveProperty('displayName', 'YourComponent');
+});
+
+describe('with @visibleName tag present in the description', () => {
+	const result = getProps({
+		description: 'bar\n@visibleName foo',
+	});
+	it('should set visibleName property on the docs object', () => {
+		expect(result).toHaveProperty('visibleName', 'foo');
+	});
+
+	it('should delete visibleName from doclets on the docs object', () => {
+		expect(result.doclets).not.toHaveProperty('visibleName');
+	});
+
+	it('should delete visibleName from tags on the docs object', () => {
+		expect(result.tags).not.toHaveProperty('visibleName');
+	});
 });

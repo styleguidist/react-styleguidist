@@ -1,3 +1,3 @@
 That big pink button again:
 
-    <Button size="large" color="deeppink">Lick Me</Button>
+    <Button size="large" color="deeppink">Click Me</Button>

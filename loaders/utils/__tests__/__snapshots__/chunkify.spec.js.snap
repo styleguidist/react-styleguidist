@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`should even parse examples with custom extensions 1`] = `
+Array [
+  Object {
+    "content": "Custom extensions",
+    "type": "markdown",
+  },
+  Object {
+    "content": 
+<AppButton>
+  Example in vue
+</AppButton>
+,
+    "settings": Object {},
+    "type": "code",
+  },
+]
+`;
+
 exports[`should parse examples settings correctly 1`] = `
 Array [
   Object {
@@ -48,6 +66,30 @@ Array [
   Object {
     "content": "\`\`\`jsx
 &lt;h2&gt;This is Highlighted!<span class=\\"xml\\"><span class=\\"hljs-tag\\">&lt;/<span class=\\"hljs-name\\">h2</span>&gt;</span></span>
+\`\`\`",
+    "type": "markdown",
+  },
+]
+`;
+
+exports[`should parse undefined custom extensions without throwing 1`] = `
+Array [
+  Object {
+    "content": "Undefined extensions (default)",
+    "type": "markdown",
+  },
+  Object {
+    "content": 
+<AppButton>
+  Example in jsx with undefined extensions
+</AppButton>
+,
+    "settings": Object {},
+    "type": "code",
+  },
+  Object {
+    "content": "\`\`\`pizza
+Unknown language: \\"pizza\\"
 \`\`\`",
     "type": "markdown",
   },

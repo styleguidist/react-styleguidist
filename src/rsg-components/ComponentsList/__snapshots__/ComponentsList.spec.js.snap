@@ -1,6 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should ignore items without name 1`] = `
+exports[`if a custom href is provided, should use it instead of generating internal link 1`] = `
+<Styled(ComponentsList)
+  classes={Object {}}
+  items={
+    Array [
+      Object {
+        "href": "http://example.com",
+        "name": "External example",
+        "visibleName": "External example",
+      },
+      Object {
+        "href": "blank#input",
+        "name": "Input",
+        "slug": "input",
+        "visibleName": "Input",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`should ignore items without visibleName 1`] = `
 <ul>
   <li
     className=""
@@ -43,6 +64,48 @@ exports[`should render sections with nested components 1`] = `
 </ul>
 `;
 
+exports[`should set a parameter on link when useHashId is activated 1`] = `
+<Styled(ComponentsList)
+  classes={Object {}}
+  items={
+    Array [
+      Object {
+        "href": "blank#/Components?id=button",
+        "name": "Button",
+        "slug": "button",
+        "visibleName": "Button",
+      },
+      Object {
+        "href": "blank#/Components?id=input",
+        "name": "Input",
+        "slug": "input",
+        "visibleName": "Input",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`should set a sub route on link when useHashId is deactivated 1`] = `
+<Styled(ComponentsList)
+  classes={Object {}}
+  items={
+    Array [
+      Object {
+        "href": "blank#/Components/Button",
+        "name": "Button",
+        "slug": "button",
+      },
+      Object {
+        "href": "blank#/Components/Input",
+        "name": "Input",
+        "slug": "input",
+      },
+    ]
+  }
+/>
+`;
+
 exports[`should set the correct href for items 1`] = `
 <Styled(ComponentsList)
   classes={Object {}}
@@ -52,31 +115,13 @@ exports[`should set the correct href for items 1`] = `
         "href": "blank#button",
         "name": "Button",
         "slug": "button",
+        "visibleName": "Button",
       },
       Object {
         "href": "blank#input",
         "name": "Input",
         "slug": "input",
-      },
-    ]
-  }
-/>
-`;
-
-exports[`should set the correct href for items when isolated links should be used 1`] = `
-<Styled(ComponentsList)
-  classes={Object {}}
-  items={
-    Array [
-      Object {
-        "href": "blank#!/Button",
-        "name": "Button",
-        "slug": "button",
-      },
-      Object {
-        "href": "blank#!/Input",
-        "name": "Input",
-        "slug": "input",
+        "visibleName": "Input",
       },
     ]
   }

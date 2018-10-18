@@ -4,10 +4,10 @@
 
 <!-- toc -->
 
-* [Finding components](#finding-components)
-* [Loading and exposing components](#loading-and-exposing-components)
-* [Sections](#sections)
-* [Limitations](#limitations)
+- [Finding components](#finding-components)
+- [Loading and exposing components](#loading-and-exposing-components)
+- [Sections](#sections)
+- [Limitations](#limitations)
 
 <!-- tocstop -->
 
@@ -17,14 +17,14 @@ By default Styleguidist will search components using this [glob pattern](https:/
 
 It will pick up files like:
 
-* `src/components/Button.js`,
-* `src/components/Button/Button.js`,
-* `src/components/Button/index.js`.
+- `src/components/Button.js`,
+- `src/components/Button/Button.js`,
+- `src/components/Button/index.js`.
 
 But will ignore tests:
 
-* `__tests__` folder,
-* files containing `.test.js` or `.spec.js` (or same for `.jsx`, `.ts` and `.tsx`).
+- `__tests__` folder,
+- files containing `.test.js` or `.spec.js` (or same for `.jsx`, `.ts` and `.tsx`).
 
 If it doesn’t work for you, create a `styleguide.config.js` file in your project’s root folder and configure the patterns to fit your project structure.
 
@@ -57,7 +57,7 @@ In each of the following cases, the global identifier will be `Component`.
 | /whatever.js        | `export default function Component() { ... }`                                                                                          | displayName                |
 | /whatever.js        | `export default function SomeName() { ... }`<br>`SomeName.displayName = 'Component';`                                                  | displayName                |
 | /whatever.js        | `export default function Component() { ... }`<br>`Component.displayName = dynamicNamer();`                                             | displayName at declaration |
-| /component.js       | `const name = 'SomeName';`<br>`const componentMap = {`<br>`[name]: function() { ... }`<br>`};`<br>`export default componentMap[name];` | File name                  |
+| /component.js       | `const name = 'SomeName';`<br>`const componentMap = {`<br>`[name]: function() { ... }`<br>`};`<br>`export default componentMap[name];` | Filename                   |
 | /component/index.js | `const name = 'SomeName';`<br>`const componentMap = {`<br>`[name]: function() { ... }`<br>`};`<br>`export default componentMap[name];` | Folder name                |
 
 ### Default vs named exports
@@ -96,7 +96,7 @@ export function Component() { ... }
 // will be exposed globally as Component
 ```
 
-If you export several React components as named exports from a single module, Styleguidist is likely to behave unreliably. If it cannot understand which named export to expose, you may not be able to access that export.
+**Warning:** If you export several React components as named exports from a single module, Styleguidist is likely to behave unreliably. If it cannot understand which named export to expose, you may not be able to access that export.
 
 ## Sections
 
@@ -104,12 +104,17 @@ Group components into sections or add extra Markdown documents to your style gui
 
 Each section consists of (all fields are optional):
 
-* `name` — section title.
-* `content` — location of a Markdown file containing the overview content.
-* `components` — a glob pattern string, an array of component paths or a function returning a list of components. The same rules apply as for the root `components` option.
-* `sections` — array of subsections (can be nested).
-* `description` — A small description of this section.
-* `ignore` — string/array of globs that should not be included in the section.
+- `name` — section title.
+- `content` — location of a Markdown file containing the overview content.
+- `components` — a glob pattern string, an array of component paths or glob pattern strings, or a function returning a list of components or glob pattern strings. The same rules apply as for the root `components` option.
+- `sections` — array of subsections (can be nested).
+- `description` — A small description of this section.
+- `sectionDepth` — Number of subsections with single pages, only available with [pagePerSection](Configuration.md#pagepersection) is enabled.
+- `exampleMode` — Initial state of the code example tab, uses [exampleMode](Configuration.md#examplemode).
+- `usageMode` — Initial state of the props and methods tab, uses [usageMode](Configuration.md#usagemode).
+- `ignore` — string/array of globs that should not be included in the section.
+- `href` - an URL to navigate to instead of navigating to the section content
+- `external` - if set, the link will open in a new window
 
 Configuring a style guide with textual documentation section and a list of components would look like:
 
@@ -131,13 +136,20 @@ module.exports = {
         {
           name: 'Configuration',
           content: 'docs/configuration.md'
+        },
+        {
+          name: 'Live Demo',
+          external: true,
+          href: 'http://example.com'
         }
       ]
     },
     {
       name: 'UI Components',
       content: 'docs/ui.md',
-      components: 'lib/components/ui/*.js'
+      components: 'lib/components/ui/*.js',
+      exampleMode: 'expand', // 'hide' | 'collapse' | 'expand'
+      usageMode: 'expand' // 'hide' | 'collapse' | 'expand'
     }
   ]
 }

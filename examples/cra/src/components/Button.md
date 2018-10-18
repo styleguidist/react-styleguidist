@@ -8,7 +8,7 @@ Big pink button:
 
 ```jsx
 <Button size="large" color="deeppink">
-  Lick Me
+  Click Me
 </Button>
 ```
 
@@ -29,7 +29,7 @@ You can disable an editor by passing a `noeditor` modifier (` ```js noeditor `):
 To render an example as highlighted source code add a `static` modifier (` ```js static `):
 
 ```js static
-import React from 'react';
+import React from 'react'
 ```
 
 Fenced blocks with other languages are rendered as highlighted code:

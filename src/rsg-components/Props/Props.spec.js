@@ -365,6 +365,12 @@ describe('props columns', () => {
 		expect(actual).toMatchSnapshot();
 	});
 
+	it('should render enum type when union of literals', () => {
+		const actual = renderFlow(['foo: "bar" | "baz"']);
+
+		expect(actual).toMatchSnapshot();
+	});
+
 	it('should render tuple type with body in tooltip', () => {
 		const actual = renderFlow(['foo: ["bar", number]']);
 

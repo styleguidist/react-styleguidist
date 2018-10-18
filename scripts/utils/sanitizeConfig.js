@@ -9,7 +9,7 @@ const isString = require('lodash/isString');
 const isFinite = require('lodash/isFinite');
 const map = require('lodash/map');
 const listify = require('listify');
-const chalk = require('chalk');
+const kleur = require('kleur');
 const leven = require('leven');
 const stringify = require('q-i').stringify;
 const typeDetect = require('type-detect');
@@ -57,9 +57,9 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 			}, null);
 
 			throw new StyleguidistError(
-				`Unknown config option ${chalk.bold(key)} was found, the value is:\n` +
+				`Unknown config option ${kleur.bold(key)} was found, the value is:\n` +
 					stringify(value) +
-					(suggestion ? `\n\nDid you mean ${chalk.bold(suggestion)}?` : '')
+					(suggestion ? `\n\nDid you mean ${kleur.bold(suggestion)}?` : '')
 			);
 		}
 	});
@@ -83,13 +83,13 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 			if (isRequired) {
 				const message = isString(isRequired)
 					? isRequired
-					: `${chalk.bold(key)} config option is required.`;
+					: `${kleur.bold(key)} config option is required.`;
 				throw new StyleguidistError(message, key);
 			}
 		} else if (props.deprecated) {
 			logger.warn(`${key} config option is deprecated. ${props.deprecated}`);
 		} else if (props.removed) {
-			throw new StyleguidistError(`${chalk.bold(key)} config option was removed. ${props.removed}`);
+			throw new StyleguidistError(`${kleur.bold(key)} config option was removed. ${props.removed}`);
 		}
 
 		if (value !== undefined && props.type) {
@@ -98,7 +98,7 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 			// Check type
 			const hasRightType = types.some(type => {
 				if (!typeCheckers[type]) {
-					throw Error(`Wrong type ${chalk.bold(type)} specified for ${chalk.bold(key)} in schema.`);
+					throw Error(`Wrong type ${kleur.bold(type)} specified for ${kleur.bold(key)} in schema.`);
 				}
 				return typeCheckers[type](value);
 			});
@@ -109,7 +109,7 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 					example[key] = exampleValue;
 				}
 				throw new StyleguidistError(
-					`${chalk.bold(key)} config option should be ${typesList(types)}, received ${typeDetect(
+					`${kleur.bold(key)} config option should be ${typesList(types)}, received ${typeDetect(
 						value
 					)}.\n` +
 						(exampleValue
@@ -130,13 +130,13 @@ ${stringify(example)}`
 				if (shouldExist(types)) {
 					if (shouldBeFile(types) && !fs.existsSync(value)) {
 						throw new StyleguidistError(
-							`A file specified in ${chalk.bold(key)} config option does not exist:\n${value}`,
+							`A file specified in ${kleur.bold(key)} config option does not exist:\n${value}`,
 							key
 						);
 					}
 					if (shouldBeDirectory(types) && !isDirectory.sync(value)) {
 						throw new StyleguidistError(
-							`A directory specified in ${chalk.bold(key)} config option does not exist:\n${value}`,
+							`A directory specified in ${kleur.bold(key)} config option does not exist:\n${value}`,
 							key
 						);
 					}

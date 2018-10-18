@@ -2,11 +2,17 @@
 // in loaders/styleguide-loader.js
 
 const EXTENSIONS = 'js,jsx,ts,tsx';
-const DEFAULT_COMPONENTS_PATTERN = `src/@(components|Components)/**/*.{${EXTENSIONS}}`;
+const DEFAULT_COMPONENTS_PATTERN =
+	// HACK: on windows, the case insensitivity makes each component appear twice
+	// to avoid this issue, the case management is removed on win32
+	// it virtually changes nothing
+	process.platform === 'win32'
+		? /* istanbul ignore next: no windows on our test plan */ `src/components/**/*.{${EXTENSIONS}}`
+		: `src/@(components|Components)/**/*.{${EXTENSIONS}}`;
 
 const path = require('path');
 const startCase = require('lodash/startCase');
-const chalk = require('chalk');
+const kleur = require('kleur');
 const reactDocgen = require('react-docgen');
 const createDisplayNameHandler = require('react-docgen-displayname-handler')
 	.createDisplayNameHandler;
@@ -20,7 +26,7 @@ const consts = require('../consts');
 
 module.exports = {
 	assetsDir: {
-		type: 'existing directory path',
+		type: ['array', 'existing directory path'],
 		example: 'assets',
 	},
 	compilerConfig: {
@@ -59,6 +65,13 @@ module.exports = {
 		default: false,
 		process: val =>
 			val === true ? path.resolve(__dirname, '../templates/DefaultExample.md') : val,
+	},
+	exampleMode: {
+		type: 'string',
+		process: (value, config) => {
+			return config.showCode === undefined ? value : config.showCode ? 'expand' : 'collapse';
+		},
+		default: 'collapse',
 	},
 	getComponentPathLine: {
 		type: 'function',
@@ -126,6 +139,10 @@ module.exports = {
 	},
 	logger: {
 		type: 'object',
+	},
+	mountPointId: {
+		type: 'string',
+		default: 'rsg-root',
 	},
 	pagePerSection: {
 		type: 'boolean',
@@ -199,15 +216,17 @@ module.exports = {
 	},
 	serverPort: {
 		type: 'number',
-		default: process.env.NODE_PORT ? parseInt(process.env.NODE_PORT) : 6060,
+		default: 6060,
 	},
 	showCode: {
 		type: 'boolean',
 		default: false,
+		deprecated: 'Use exampleMode option instead',
 	},
 	showUsage: {
 		type: 'boolean',
 		default: false,
+		deprecated: 'Use usageMode option instead',
 	},
 	showSidebar: {
 		type: 'boolean',
@@ -244,7 +263,7 @@ module.exports = {
 		process: val => {
 			if (typeof val === 'string') {
 				throw new StyleguidistError(
-					`${chalk.bold(
+					`${kleur.bold(
 						'template'
 					)} config option format has been changed, you need to update your config.`,
 					'template'
@@ -292,9 +311,19 @@ module.exports = {
 		type: 'function',
 		removed: `Use "webpackConfig" option instead:\n${consts.DOCS_WEBPACK}`,
 	},
+	usageMode: {
+		type: 'string',
+		process: (value, config) => {
+			return config.showUsage === undefined ? value : config.showUsage ? 'expand' : 'collapse';
+		},
+		default: 'collapse',
+	},
 	verbose: {
 		type: 'boolean',
 		default: false,
+	},
+	version: {
+		type: 'string',
 	},
 	webpackConfig: {
 		type: ['object', 'function'],

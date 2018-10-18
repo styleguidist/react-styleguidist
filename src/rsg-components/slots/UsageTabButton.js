@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TabButton from 'rsg-components/TabButton';
+import isEmpty from 'lodash/isEmpty';
 
 const UsageTabButton = props => {
 	const component = props.props;
-	const showButton = component.props || (component.methods && component.methods.length > 0);
+	const showButton = !isEmpty(component.props) || !isEmpty(component.methods);
 	return showButton ? <TabButton {...props}>Props & methods</TabButton> : null;
 };
 

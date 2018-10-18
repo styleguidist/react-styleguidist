@@ -959,6 +959,69 @@ exports[`props columns should render description in Markdown 1`] = `
 </ul>
 `;
 
+exports[`props columns should render enum type when union of literals 1`] = `
+<ul>
+  <li
+    key="0"
+  >
+    <div
+      key="0"
+    >
+      <Styled(Name)
+        deprecated={false}
+      >
+        foo
+      </Styled(Name)>
+    </div>
+    <div
+      key="1"
+    >
+      <Styled(Type)>
+        enum
+      </Styled(Type)>
+    </div>
+    <div
+      key="2"
+    >
+      <Styled(Text)
+        color="light"
+        size="small"
+      >
+        Required
+      </Styled(Text)>
+    </div>
+    <div
+      key="3"
+    >
+      <div>
+        <Styled(Para)>
+          <span>
+            One of:
+             
+            <Group
+              inline={true}
+              separator=", "
+            >
+              <Styled(Code)
+                key="\\"bar\\""
+              >
+                bar
+              </Styled(Code)>
+              <Styled(Code)
+                key="\\"baz\\""
+              >
+                baz
+              </Styled(Code)>
+            </Group>
+          </span>
+        </Styled(Para)>
+        <JsDoc />
+      </div>
+    </div>
+  </li>
+</ul>
+`;
+
 exports[`props columns should render function body in tooltip 1`] = `
 <ul>
   <li

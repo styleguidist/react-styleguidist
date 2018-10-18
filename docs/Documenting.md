@@ -8,14 +8,15 @@ Styleguidist generates documentation for your components based on the comments i
 
 <!-- toc -->
 
-* [Code comments and propTypes](#code-comments-and-proptypes)
-* [Usage examples and Readme files](#usage-examples-and-readme-files)
-* [External examples using doclet tags](#external-examples-using-doclet-tags)
-* [Public methods](#public-methods)
-* [Ignoring props](#ignoring-props)
-* [Using JSDoc tags](#using-jsdoc-tags)
-* [Writing code examples](#writing-code-examples)
-* [Limitations](#limitations)
+- [Code comments and propTypes](#code-comments-and-proptypes)
+- [Usage examples and Readme files](#usage-examples-and-readme-files)
+- [External examples using doclet tags](#external-examples-using-doclet-tags)
+- [Public methods](#public-methods)
+- [Ignoring props](#ignoring-props)
+- [Defining custom component names](#defining-custom-component-names)
+- [Using JSDoc tags](#using-jsdoc-tags)
+- [Writing code examples](#writing-code-examples)
+- [Limitations](#limitations)
 
 <!-- tocstop -->
 
@@ -91,7 +92,7 @@ Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the co
 
 > **Note:** You can configure examples file name with the [getExampleFilename](Configuration.md#getexamplefilename) option.
 
-> **Note:** If you need to display some JavaScript code in your documentation that you don't want rendered as an interactive playground you can use the `static` modifier with a language tag (e.g. `js static`).
+> **Note:** If you need to display some JavaScript code in your documentation that you don’t want rendered as an interactive playground you can use the `static` modifier with a language tag (e.g. `js static`).
 
 ## External examples using doclet tags
 
@@ -143,19 +144,34 @@ MyComponent.propTypes = {
 }
 ```
 
+## Defining custom component names
+
+Use @visibleName JSDoc tag to define component names that are used in the Styleguidist UI:
+
+```javascript
+/**
+ * The only true button.
+ *
+ * @visibleName The Best Button Ever 🐙
+ */
+class Button extends React.Component {
+```
+
+The component will be displayed with a custom “The Best Button Ever 🐙” name and this will not change the name of the component used in code of your app or Styleguidist examples.
+
 ## Using JSDoc tags
 
 You can use the following [JSDoc](http://usejsdoc.org/) tags when documenting components, props and methods:
 
-* [@deprecated](http://usejsdoc.org/tags-deprecated.html)
-* [@see, @link](http://usejsdoc.org/tags-see.html)
-* [@author](http://usejsdoc.org/tags-author.html)
-* [@since](http://usejsdoc.org/tags-since.html)
-* [@version](http://usejsdoc.org/tags-version.html)
+- [@deprecated](http://usejsdoc.org/tags-deprecated.html)
+- [@see, @link](http://usejsdoc.org/tags-see.html)
+- [@author](http://usejsdoc.org/tags-author.html)
+- [@since](http://usejsdoc.org/tags-since.html)
+- [@version](http://usejsdoc.org/tags-version.html)
 
 When documenting props you can also use:
 
-* [@param, @arg, @argument](http://usejsdoc.org/tags-param.html)
+- [@param, @arg, @argument](http://usejsdoc.org/tags-param.html)
 
 All tags can render Markdown.
 
@@ -218,7 +234,7 @@ Code examples in Markdown use ES6+JSX syntax. All components covered by the styl
 
 > **Note:** Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the frontend, it supports [most of the ES6 features](https://buble.surge.sh/guide/#unsupported-features).
 
-You can also `require()` other modules (e.g. mock data that you use in your unit tests):
+You can also `require()` other modules (like mock data for unit tests):
 
 ```jsx
 const mockData = require('./mocks')
