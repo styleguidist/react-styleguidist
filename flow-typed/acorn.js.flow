@@ -15,10 +15,10 @@ declare module 'acorn' {
 	declare type AcornConfig = {
 		ecmaVersion?: number,
 		sourceType?: 'script' | 'module',
-		plugins?: {
-			[key: string]: boolean,
-		},
 	};
 
-	declare function parse(code: string, config?: AcornConfig): AcornNode;
+	declare class Parser<T> {
+		static parse(code: string, config?: AcornConfig): AcornNode;
+		static extend(...plugins: Function[]): T;
+	}
 }
