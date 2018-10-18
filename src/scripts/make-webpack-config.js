@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const MiniHtmlWebpackPlugin = require('mini-html-webpack-plugin');
 const MiniHtmlWebpackTemplate = require('@vxna/mini-html-webpack-template');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -57,17 +57,17 @@ module.exports = function(config, env) {
 	};
 
 	if (isProd) {
-		const uglifier = new UglifyJSPlugin({
+		const minimizer = new TerserPlugin({
 			parallel: true,
 			cache: true,
-			uglifyOptions: {
+			terserOptions: {
 				ie8: false,
 				ecma: 5,
 				compress: {
 					keep_fnames: true,
 					warnings: false,
 					/*
-					 * Disable reduce_funcs to keep UglifyJS from inlining
+					 * Disable reduce_funcs to keep Terser from inlining
 					 * Preact's VNode. If enabled, the 'new VNode()' is replaced
 					 * with a anonymous 'function(){}', which is problematic for
 					 * preact-compat, since it extends the VNode prototype to
@@ -101,7 +101,7 @@ module.exports = function(config, env) {
 				),
 			],
 			optimization: {
-				minimizer: [uglifier],
+				minimizer: [minimizer],
 			},
 		});
 	} else {

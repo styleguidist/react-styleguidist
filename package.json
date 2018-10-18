@@ -86,6 +86,7 @@
     "uglifyjs-webpack-plugin": "1.2.7",
     "unist-util-visit": "^1.4.0",
     "walkes": "^0.2.1",
+    "terser-webpack-plugin": "^1.1.0",
     "webpack-dev-server": "^2.11.3",
     "webpack-merge": "^4.1.4"
   },
