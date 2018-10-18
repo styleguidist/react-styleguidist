@@ -10,11 +10,9 @@ const forEach = require('lodash/forEach');
 const isFunction = require('lodash/isFunction');
 const mergeWebpackConfig = require('./utils/mergeWebpackConfig');
 const StyleguidistOptionsPlugin = require('./utils/StyleguidistOptionsPlugin');
-const getWebpackVersion = require('./utils/getWebpackVersion');
 
 const RENDERER_REGEXP = /Renderer$/;
 
-const isWebpack4 = getWebpackVersion() >= 4;
 const sourceDir = path.resolve(__dirname, '../lib');
 
 module.exports = function(config, env) {
@@ -35,6 +33,7 @@ module.exports = function(config, env) {
 
 	let webpackConfig = {
 		entry: config.require.concat([path.resolve(sourceDir, 'index')]),
+		mode: env,
 		output: {
 			path: config.styleguideDir,
 			filename: 'build/[name].bundle.js',
@@ -59,34 +58,7 @@ module.exports = function(config, env) {
 		},
 	};
 
-	/* istanbul ignore if */
-	if (isWebpack4) {
-		webpackConfig.mode = env;
-	}
-
 	if (isProd) {
-		webpackConfig = merge(webpackConfig, {
-			output: {
-				filename: 'build/bundle.[chunkhash:8].js',
-				chunkFilename: 'build/[name].[chunkhash:8].js',
-			},
-			plugins: [
-				new CleanWebpackPlugin(['build'], {
-					root: config.styleguideDir,
-					verbose: config.verbose === true,
-				}),
-				new CopyWebpackPlugin(
-					config.assetsDir
-						? [
-								{
-									from: config.assetsDir,
-								},
-						  ]
-						: []
-				),
-			],
-		});
-
 		const uglifier = new UglifyJSPlugin({
 			parallel: true,
 			cache: true,
@@ -110,15 +82,30 @@ module.exports = function(config, env) {
 				},
 			},
 		});
-
-		/* istanbul ignore if */
-		if (isWebpack4) {
-			webpackConfig.optimization = {
+		webpackConfig = merge(webpackConfig, {
+			output: {
+				filename: 'build/bundle.[chunkhash:8].js',
+				chunkFilename: 'build/[name].[chunkhash:8].js',
+			},
+			plugins: [
+				new CleanWebpackPlugin(['build'], {
+					root: config.styleguideDir,
+					verbose: config.verbose === true,
+				}),
+				new CopyWebpackPlugin(
+					config.assetsDir
+						? [
+								{
+									from: config.assetsDir,
+								},
+						  ]
+						: []
+				),
+			],
+			optimization: {
 				minimizer: [uglifier],
-			};
-		} else {
-			webpackConfig.plugins.unshift(uglifier);
-		}
+			},
+		});
 	} else {
 		webpackConfig = merge(webpackConfig, {
 			entry: [require.resolve('react-dev-utils/webpackHotDevClient')],
