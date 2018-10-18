@@ -130,7 +130,7 @@ exports[`should highlight code in description (fenced code block) 1`] = `
 Object {
   "description": "The only true button.
 
-    <span class=\\"hljs-selector-tag\\">alert</span>(<span class=\\"hljs-string\\">'Hello world'</span>);
+    <span class=\\"hljs-function\\"><span class=\\"hljs-title\\">alert</span>(<span class=\\"hljs-string\\">'Hello world'</span>);</span>
 ",
   "doclets": Object {},
   "methods": Array [],
@@ -142,7 +142,7 @@ exports[`should highlight code in description (regular code block) 1`] = `
 Object {
   "description": "The only true button.
 
-    <span class=\\"hljs-selector-tag\\">alert</span>(<span class=\\"hljs-string\\">'Hello world'</span>);
+    <span class=\\"hljs-function\\"><span class=\\"hljs-title\\">alert</span>(<span class=\\"hljs-string\\">'Hello world'</span>);</span>
 ",
   "doclets": Object {},
   "methods": Array [],

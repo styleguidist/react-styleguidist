@@ -2,7 +2,7 @@
 
 exports[`should renderer a link home in isolated mode 1`] = `
 <Styled(ToolbarButton)
-  href="blank#/"
+  href="/#/"
   title="Show all components"
 >
   <MdFullscreenExit />
@@ -11,7 +11,7 @@ exports[`should renderer a link home in isolated mode 1`] = `
 
 exports[`should renderer a link to example isolated mode 1`] = `
 <Styled(ToolbarButton)
-  href="blank#!/Pizza/3"
+  href="/#!/Pizza/3"
   title="Open isolated"
 >
   <MdFullscreen />
@@ -20,7 +20,7 @@ exports[`should renderer a link to example isolated mode 1`] = `
 
 exports[`should renderer a link to isolated mode 1`] = `
 <Styled(ToolbarButton)
-  href="blank#!/Pizza"
+  href="/#!/Pizza"
   title="Open isolated"
 >
   <MdFullscreen />

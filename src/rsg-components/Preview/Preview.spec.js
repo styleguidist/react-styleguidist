@@ -30,10 +30,11 @@ afterEach(() => {
 
 it('should unmount Wrapper component', () => {
 	const actual = mount(<Preview code={code} evalInContext={evalInContext} />, options);
+	const node = actual.instance().mountNode;
 
-	expect(actual.html()).toMatch('<button');
+	expect(node.innerHTML).toMatch('<button');
 	actual.unmount();
-	expect(actual.html()).toBe(null);
+	expect(node.innerHTML).toBe('');
 });
 
 it('should not not fail when Wrapper wasn’t mounted', () => {
