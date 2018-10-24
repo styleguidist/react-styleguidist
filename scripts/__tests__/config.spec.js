@@ -81,6 +81,15 @@ it('default getExampleFilename should return Component.md path if it exists', ()
 	);
 });
 
+it('default getExampleFilename should return Component.md path if it exists with index.js', () => {
+	process.chdir('../..');
+	const result = getConfig();
+	result.components = './components/**/*.js';
+	expect(result.getExampleFilename(path.resolve('components/Label/index.js'))).toEqual(
+		path.resolve('components/Label/Label.md')
+	);
+});
+
 it('default getExampleFilename should return false if no examples file found', () => {
 	process.chdir('../..');
 	const result = getConfig();
