@@ -116,6 +116,19 @@ Array [
         "slug": "button-3",
       },
       Object {
+        "filepath": "components/Label/index.js",
+        "hasExamples": true,
+        "metadata": Object {},
+        "module": Object {
+          "require": "~/test/components/Label/index.js",
+        },
+        "pathLine": "components/Label/index.js",
+        "props": Object {
+          "require": "!!~/loaders/props-loader.js!~/test/components/Label/index.js",
+        },
+        "slug": "label-1",
+      },
+      Object {
         "filepath": "components/Placeholder/Placeholder.js",
         "hasExamples": true,
         "metadata": Object {
@@ -291,6 +304,19 @@ Object {
         "require": "!!~/loaders/props-loader.js!~/test/components/Button/Button.js",
       },
       "slug": "button-1",
+    },
+    Object {
+      "filepath": "components/Label/index.js",
+      "hasExamples": true,
+      "metadata": Object {},
+      "module": Object {
+        "require": "~/test/components/Label/index.js",
+      },
+      "pathLine": "components/Label/index.js",
+      "props": Object {
+        "require": "!!~/loaders/props-loader.js!~/test/components/Label/index.js",
+      },
+      "slug": "label",
     },
     Object {
       "filepath": "components/Placeholder/Placeholder.js",
