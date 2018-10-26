@@ -91,16 +91,17 @@ module.exports = {
 		default: componentPath => {
 			const files = [
 				path.join(path.dirname(componentPath), 'Readme.md'),
+				// ComponentName.md
 				componentPath.replace(path.extname(componentPath), '.md'),
+				// FolderName.md when component definition file is index.js
+				path.join(path.dirname(componentPath), path.basename(path.dirname(componentPath)) + '.md'),
 			];
-
 			for (const file of files) {
 				const existingFile = fileExistsCaseInsensitive(file);
 				if (existingFile) {
 					return existingFile;
 				}
 			}
-
 			return false;
 		},
 	},
