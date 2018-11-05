@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import PlaygroundError from 'rsg-components/PlaygroundError';
-
-import ReactExample from '../ReactExample';
+import ReactExample from 'rsg-components/ReactExample';
 
 const Fragment = React.Fragment ? React.Fragment : 'div';
 
