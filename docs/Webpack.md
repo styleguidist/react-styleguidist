@@ -110,6 +110,18 @@ If your project doesn’t use webpack you still need loaders for your files. You
 npm install --save-dev webpack-blocks
 ```
 
+Make sure you add the babel react preset by running
+```bash
+npm install --save-dev @babel/preset-react
+```
+
+Add a .babelrc file in the root of your project and add the preset to it
+```js
+{
+  "presets": ["@babel/react"]
+}
+```
+
 Then add a `webpackConfig` section to your `styleguide.config.js`:
 
 ```javascript
