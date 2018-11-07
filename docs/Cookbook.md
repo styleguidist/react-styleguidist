@@ -15,6 +15,7 @@
 - [How to use React Styleguidist with Preact?](#how-to-use-react-styleguidist-with-preact)
 - [How to change styles of a style guide?](#how-to-change-styles-of-a-style-guide)
 - [How to change the layout of a style guide?](#how-to-change-the-layout-of-a-style-guide)
+- [How to change syntax highlighting colors?](#how-to-change-syntax-highlighting-colors)
 - [How to change style guide dev server logs output?](#how-to-change-style-guide-dev-server-logs-output)
 - [How to debug my components and examples?](#how-to-debug-my-components-and-examples)
 - [How to debug the exceptions thrown from my components?](#how-to-debug-the-exceptions-thrown-from-my-components)
@@ -246,7 +247,9 @@ module.exports = {
   },
   styles: {
     Logo: {
+      // We're changing the LogoRenderer component
       logo: {
+        // We're changing the rsg--logo-XX class name inside the component
         animation: 'blink ease-in-out 300ms infinite'
       },
       '@keyframes blink': {
@@ -261,7 +264,7 @@ module.exports = {
 
 > **Note:** Styles use [JSS](https://github.com/cssinjs/jss/blob/master/docs/json-api.md) with these plugins: [jss-isolate](https://github.com/cssinjs/jss-isolate), [jss-nested](https://github.com/cssinjs/jss-nested), [jss-camel-case](https://github.com/cssinjs/jss-camel-case), [jss-default-unit](https://github.com/cssinjs/jss-default-unit), [jss-compose](https://github.com/cssinjs/jss-compose) and [jss-global](https://github.com/cssinjs/jss-global).
 
-> **Note:** Use [React Developer Tools](https://github.com/facebook/react-devtools) to find component and style names. For example a component `<LogoRenderer><h1 className="logo-524678444">…` corresponds to an example above.
+> **Note:** Use [React Developer Tools](https://github.com/facebook/react-devtools) to find component and style names. For example a component `<LogoRenderer><h1 className="rsg--logo-53">` corresponds to an example above.
 
 ## How to change the layout of a style guide?
 
@@ -339,6 +342,30 @@ const StyleGuideRenderer = ({
 ```
 
 We have [an example style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/customised) with custom components.
+
+## How to change syntax highlighting colors?
+
+Styleguidist uses [Prism](https://prismjs.com/) for code highlighting in static examples and inside the editor. You can change the colors using the [theme](Configuration.md#theme) config option:
+
+```javascript
+// styleguide.config.js
+module.exports = {
+  theme: {
+    color: {
+      codeComment: '#6d6d6d',
+      codePunctuation: '#999',
+      codeProperty: '#905',
+      codeDeleted: '#905',
+      codeString: '#690',
+      codeInserted: '#690',
+      codeOperator: '#9a6e3a',
+      codeKeyword: '#1673b1',
+      codeFunction: '#DD4A68',
+      codeVariable: '#e90'
+    }
+  }
+}
+```
 
 ## How to change style guide dev server logs output?
 
