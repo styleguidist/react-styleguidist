@@ -15,6 +15,10 @@
       "node": {
         "moduleDirectory": ["src/client", "node_modules"]
       }
+    },
+    "react": {
+      "version": "16.3",
+      "flowVersion": "0.83"
     }
   },
   "rules": {

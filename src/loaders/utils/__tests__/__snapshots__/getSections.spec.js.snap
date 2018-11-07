@@ -124,7 +124,7 @@ Array [
         },
         "pathLine": "components/Label/index.js",
         "props": Object {
-          "require": "!!~/loaders/props-loader.js!~/test/components/Label/index.js",
+          "require": "!!~/src/loaders/props-loader.js!~/test/components/Label/index.js",
         },
         "slug": "label-1",
       },
@@ -314,7 +314,7 @@ Object {
       },
       "pathLine": "components/Label/index.js",
       "props": Object {
-        "require": "!!~/loaders/props-loader.js!~/test/components/Label/index.js",
+        "require": "!!~/src/loaders/props-loader.js!~/test/components/Label/index.js",
       },
       "slug": "label",
     },
