@@ -74,6 +74,11 @@ module.exports = {
 				},
 			],
 		},
+		// How to analyze what's in the bundle:
+		// 1. Comment `hints: 'error'` line below
+		// 2. Uncomment a line with `stats.json` in src/scripts/build.js
+		// 3. npm run build:sections
+		// 4. npx webpack-bundle-analyzer stats.json
 		performance:
 			env === 'development'
 				? false
