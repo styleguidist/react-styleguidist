@@ -110,7 +110,20 @@ If your project doesn’t use webpack you still need loaders for your files. You
 npm install --save-dev webpack-blocks
 ```
 
-Make sure you add the babel react preset by running
+Then add a `webpackConfig` section to your `styleguide.config.js`:
+
+```javascript
+const { createConfig, babel, postcss } = require('webpack-blocks')
+module.exports = {
+  webpackConfig: createConfig([babel(), postcss()])
+}
+```
+
+> **Note:** If you want to use features not supported by browsers on default (such as jsx) you still need to configure babel / webpack.
+> **Note:** `.babelrc` and `postcss.config.js` files will be taken into account if you have them.
+
+### Example babel configuration
+Add the babel react preset by running
 ```bash
 npm install --save-dev @babel/preset-react
 ```
@@ -121,17 +134,6 @@ Add a .babelrc file in the root of your project and add the preset to it
   "presets": ["@babel/react"]
 }
 ```
-
-Then add a `webpackConfig` section to your `styleguide.config.js`:
-
-```javascript
-const { createConfig, babel, postcss } = require('webpack-blocks')
-module.exports = {
-  webpackConfig: createConfig([babel(), postcss()])
-}
-```
-
-> **Note:** `.babelrc` and `postcss.config.js` files will be taken into account if you have them.
 
 ## When nothing else works
 
