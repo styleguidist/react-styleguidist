@@ -122,16 +122,18 @@ Then, create a webpack config, `webpack.config.js`:
 
 ```js
 module.exports = {
-		module: {
-			loaders: [
-				{
-					test: /\.jsx?$/,
-					exclude: /node_modules/,
-					loader: 'babel-loader',
-				},
-			],
-		},
-	},
+  webpackConfig: {
+    module: {
+      rules: [
+        {
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader'
+        }
+      ]
+    }
+  }
+}
 ```
 
 If you don’t have Babel in your project, you need to install it with two presets — [env](https://babeljs.io/docs/en/babel-preset-env) and [react](https://babeljs.io/docs/en/babel-preset-react):
