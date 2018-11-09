@@ -60,7 +60,7 @@ module.exports = {
   webpackConfig: {
     module: {
       rules: [
-        // Babel loader, will use your project’s .babelrc
+        // Babel loader, will use your project’s babel.config.js
         {
           test: /\.jsx?$/,
           exclude: /node_modules/,
@@ -91,35 +91,84 @@ module.exports = {
 
 If you’re using [Create React App](https://github.com/facebook/create-react-app) and TypeScript:
 
-1.  Install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript).
-2.  Create a `styleguide.config.js`, see [configuration](Configuration.md) reference.
-3.  Update your `styleguide.config.js`:
+1. Install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript).
+2. Create a `styleguide.config.js`, see [configuration](Configuration.md) reference.
+3. Update your `styleguide.config.js`:
 
-    ```javascript
-    module.exports = {
-      propsParser: require('react-docgen-typescript').parse,
-      webpackConfig: require('react-scripts-ts/config/webpack.config.dev')
-    }
-    ```
+   ```javascript
+   module.exports = {
+     propsParser: require('react-docgen-typescript').parse,
+     webpackConfig: require('react-scripts-ts/config/webpack.config.dev')
+   }
+   ```
 
 ## Non-webpack projects
 
-If your project doesn’t use webpack you still need loaders for your files. You can use [webpack-blocks](https://github.com/andywer/webpack-blocks).
+To use features, not supported by browsers, like JSX, you’ll need to compile your code with Babel or another tool.
+
+Let’s configure Styleguidist with Babel.
+
+> **Note:** Babel is not required for Styleguidist or React, but likely you’ll want to use it to run your code.
+
+First, install the Babel webpack loader:
 
 ```bash
-npm install --save-dev webpack-blocks
+npm install --save-dev babel-loader
 ```
 
-Then add a `webpackConfig` section to your `styleguide.config.js`:
+> **Note:** If your project doesn’t use webpack you still need add webpack loaders for your files, otherwise Styleguidist won’t be able to load your code.
 
-```javascript
-const { createConfig, babel, postcss } = require('webpack-blocks')
+Then, create a webpack config, `webpack.config.js`:
+
+```js
 module.exports = {
-  webpackConfig: createConfig([babel(), postcss()])
+		module: {
+			loaders: [
+				{
+					test: /\.jsx?$/,
+					exclude: /node_modules/,
+					loader: 'babel-loader',
+				},
+			],
+		},
+	},
+```
+
+If you don’t have Babel in your project, you need to install it with two presets — [env](https://babeljs.io/docs/en/babel-preset-env) and [react](https://babeljs.io/docs/en/babel-preset-react):
+
+```bash
+npm install --save-dev @babel/core @babel/preset-env @babel/preset-react
+```
+
+And create a config file in your project’s root folder, `babel.config.js`:
+
+```js
+module.exports = {
+  presets: [
+    [
+      '@babel/env',
+      {
+        modules: false,
+        useBuiltIns: 'usage'
+      }
+    ],
+    '@babel/react'
+  ]
 }
 ```
 
-> **Note:** `.babelrc` and `postcss.config.js` files will be taken into account if you have them.
+We also recommend to add a [browserslist](https://github.com/browserslist/browserslist) config to your `package.json` file like this:
+
+```diff
++  "browserslist": [
++    ">1%",
++    "last 1 version",
++    "Firefox ESR",
++    "not dead"
++  ]
+```
+
+This will tell Babel (and some other tools) which browsers you support, so it won’t apply unnecessary transformations, making code smaller and faster.
 
 ## When nothing else works
 
