@@ -91,20 +91,20 @@ module.exports = {
 
 If you’re using [Create React App](https://github.com/facebook/create-react-app) and TypeScript:
 
-1.  Install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript).
-2.  Create a `styleguide.config.js`, see [configuration](Configuration.md) reference.
-3.  Update your `styleguide.config.js`:
+1. Install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript).
+2. Create a `styleguide.config.js`, see [configuration](Configuration.md) reference.
+3. Update your `styleguide.config.js`:
 
-    ```javascript
-    module.exports = {
-      propsParser: require('react-docgen-typescript').parse,
-      webpackConfig: require('react-scripts-ts/config/webpack.config.dev')
-    }
-    ```
+   ```javascript
+   module.exports = {
+     propsParser: require('react-docgen-typescript').parse,
+     webpackConfig: require('react-scripts-ts/config/webpack.config.dev')
+   }
+   ```
 
 ## Non-webpack projects
 
-If you want to use features, not supported by browsers, like JSX, you’ll need to compile your code with Babel or another tool.
+To use features, not supported by browsers, like JSX, you’ll need to compile your code with Babel or another tool.
 
 Let’s configure Styleguidist with Babel.
 
