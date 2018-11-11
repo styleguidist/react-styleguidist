@@ -95,12 +95,12 @@ If you’re using [Create React App](https://github.com/facebook/create-react-ap
 2.  Create a `styleguide.config.js`, see [configuration](Configuration.md) reference.
 3.  Update your `styleguide.config.js`:
 
-    ```javascript
-    module.exports = {
-      propsParser: require('react-docgen-typescript').parse,
-      webpackConfig: require('react-scripts-ts/config/webpack.config.dev')
-    }
-    ```
+```javascript
+module.exports = {
+  propsParser: require('react-docgen-typescript').parse,
+  webpackConfig: require('react-scripts/config/webpack.config')
+}
+```
 
 ## Non-webpack projects
 
