@@ -14,7 +14,6 @@ const styles = ({ color, fontFamily, fontSize, space, mq }) => ({
 		color: color.base,
 		display: 'block',
 		margin: [[space[1], 0, space[1], 0]],
-		padding: [[space[0], 0, space[0], space[0]]],
 		fontFamily: fontFamily.base,
 		fontSize: fontSize.base,
 		listStyle: 'none',
@@ -34,7 +33,7 @@ const styles = ({ color, fontFamily, fontSize, space, mq }) => ({
 		fontWeight: 'bold',
 	},
 	isSelected: {
-		backgroundColor: color.lightest,
+		fontWeight: 'bold',
 	},
 });
 
@@ -45,12 +44,11 @@ export function ComponentsListRenderer({ classes, items }) {
 		return null;
 	}
 
+	const windowHash = window.location.pathname + getHash(window.location.hash);
 	return (
 		<ul className={classes.list}>
 			{items.map(({ heading, visibleName, href, content, external }) => {
-				const windowHash = window.location.pathname + getHash(window.location.hash);
 				const isItemSelected = hasInHash(windowHash, href);
-
 				return (
 					<li
 						className={cx(
