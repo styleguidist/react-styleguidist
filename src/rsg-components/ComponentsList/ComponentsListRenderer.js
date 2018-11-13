@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Link from 'rsg-components/Link';
 import Styled from 'rsg-components/Styled';
+import { hasInHash, getHash } from '../../utils/handleHash';
 
 const styles = ({ color, fontFamily, fontSize, space, mq }) => ({
 	list: {
@@ -31,6 +32,9 @@ const styles = ({ color, fontFamily, fontSize, space, mq }) => ({
 		fontFamily: fontFamily.base,
 		fontWeight: 'bold',
 	},
+	isSelected: {
+		fontWeight: 'bold',
+	},
 });
 
 export function ComponentsListRenderer({ classes, items }) {
@@ -40,23 +44,31 @@ export function ComponentsListRenderer({ classes, items }) {
 		return null;
 	}
 
+	const windowHash = window.location.pathname + getHash(window.location.hash);
 	return (
 		<ul className={classes.list}>
-			{items.map(({ heading, visibleName, href, content, external }) => (
-				<li
-					className={cx(classes.item, (!content || !content.props.items.length) && classes.isChild)}
-					key={href}
-				>
-					<Link
-						className={cx(heading && classes.heading)}
-						href={href}
-						target={external ? '_blank' : undefined}
+			{items.map(({ heading, visibleName, href, content, external }) => {
+				const isItemSelected = hasInHash(windowHash, href);
+				return (
+					<li
+						className={cx(
+							classes.item,
+							(!content || !content.props.items.length) && classes.isChild,
+							isItemSelected && classes.isSelected
+						)}
+						key={href}
 					>
-						{visibleName}
-					</Link>
-					{content}
-				</li>
-			))}
+						<Link
+							className={cx(heading && classes.heading)}
+							href={href}
+							target={external ? '_blank' : undefined}
+						>
+							{visibleName}
+						</Link>
+						{content}
+					</li>
+				);
+			})}
 		</ul>
 	);
 }
