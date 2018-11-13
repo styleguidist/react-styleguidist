@@ -354,7 +354,7 @@ module.exports = {
             }
           ]
         }
-      ]
+      ],
       // Will show "Components" as single page, filtering its children
       sectionDepth: 1,
     },
@@ -369,7 +369,7 @@ module.exports = {
             }
           ]
         }
-      ]
+      ],
       // There is no subroutes, "Examples" will show all its children on a page
       sectionDepth: 0,
     }
