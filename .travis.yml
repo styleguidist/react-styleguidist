@@ -23,9 +23,10 @@ stages:
   - test
   - integration
   - coverage
-  - release
+  - name: release
+    if: type != pull_request AND branch = master
   - name: documentation
-    if: branch = master
+    if: type != pull_request AND branch = master
 jobs:
   include:
     - stage: lint
@@ -63,10 +64,10 @@ jobs:
       script:
         - npm install --no-save semantic-release-tamia
         - >-
-          npx semantic-release
-          --analyze-commits semantic-release-tamia/analyzeCommits
-          --verify-release semantic-release-tamia/verifyRelease
-          --generate-notes semantic-release-tamia/generateNotes
+          npx semantic-release --analyze-commits semantic-release-tamia/analyzeCommits --verify-release semantic-release-tamia/verifyRelease --generate-notes semantic-release-tamia/generateNotes
+          
+          
+          
 
     - stage: documentation
       script:
