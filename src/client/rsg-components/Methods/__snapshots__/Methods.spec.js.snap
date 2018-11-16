@@ -137,7 +137,7 @@ exports[`PropsRenderer should render parameters 1`] = `
             Object {
               "description": "Description",
               "name": "value",
-              "optional": undefined,
+              "optional": false,
               "type": Object {
                 "name": "Number",
               },
