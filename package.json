@@ -74,7 +74,7 @@
     "q-i": "^2.0.1",
     "react-codemirror2": "^5.1.0",
     "react-dev-utils": "^6.0.5",
-    "react-docgen": "3.0.0-beta12",
+    "react-docgen": "3.0.0-rc.2",
     "react-docgen-annotation-resolver": "^1.0.0",
     "react-docgen-displayname-handler": "^2.1.0",
     "react-group": "^1.0.6",
