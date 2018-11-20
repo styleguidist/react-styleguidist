@@ -1,6 +1,3 @@
 {
-	"extends": "tamia",
-	"parserOptions": {
-		"sourceType": "script"
-	}
+	"extends": "tamia"
 }

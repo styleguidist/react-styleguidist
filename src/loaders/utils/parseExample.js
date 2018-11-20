@@ -1,29 +1,34 @@
-const consts = require('../../scripts/consts');
-const lowercaseKeys = require('lowercase-keys');
+// @flow
+import lowercaseKeys from 'lowercase-keys';
+import { DOCS_DOCUMENTING } from '../../scripts/consts';
 
-const splitLangAndModifiers = header => {
-	const m = (header || '').match(/(\w*)(?: (.*))?/);
-	return { lang: m[1], modifiers: m[2] };
+type Example = {
+	content: string,
+	lang: ?string,
+	settings: {},
 };
 
-const hasStringModifiers = modifiers => modifiers.match(/^[ \w]+$/);
+type Error = {
+	error: string,
+};
+
+type UpdateExampleFn = (example: Example) => Example;
+
+const hasStringModifiers = (modifiers: string): boolean => !!modifiers.match(/^[ \w]+$/);
 
 /**
  * Split fenced code block header to lang and modifiers, parse modifiers, lowercase modifier keys, etc.
- *
- * @param {string} content
- * @param {string} header
- * @param {function} updateExample
- * @returns {object}
  */
-module.exports = function parseExample(content, header, updateExample) {
-	const split = splitLangAndModifiers(header);
-	const modifiers = split.modifiers;
-
-	let example = {
-		lang: split.lang,
-		settings: {},
+export default function parseExample(
+	content: string,
+	lang: ?string,
+	modifiers: ?string,
+	updateExample: UpdateExampleFn = x => x
+): Example | Error {
+	const example = {
 		content,
+		lang,
+		settings: {},
 	};
 
 	if (modifiers) {
@@ -37,19 +42,15 @@ module.exports = function parseExample(content, header, updateExample) {
 				example.settings = JSON.parse(modifiers);
 			} catch (err) {
 				return {
-					error: `Cannot parse modifiers for "${header}". Use space-separated strings or JSON:\n\n${
-						consts.DOCS_DOCUMENTING
-					}`,
+					error: `Cannot parse modifiers for "${modifiers}". Use space-separated strings or JSON:\n\n${DOCS_DOCUMENTING}`,
 				};
 			}
 		}
 	}
 
-	if (updateExample) {
-		example = updateExample(example);
-	}
-
-	example.settings = lowercaseKeys(example.settings);
-
-	return example;
-};
+	const updatedExample = updateExample(example);
+	return {
+		...updatedExample,
+		settings: lowercaseKeys(updatedExample.settings),
+	};
+}

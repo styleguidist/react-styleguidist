@@ -1,7 +1,7 @@
-const remark = require('remark');
-const visit = require('unist-util-visit');
-const highlightCode = require('./highlightCode');
-const parseExample = require('./parseExample');
+import remark from 'remark';
+import visit from 'unist-util-visit';
+import highlightCode from './highlightCode';
+import parseExample from './parseExample';
 
 const PLAYGROUND_LANGS = ['javascript', 'js', 'jsx'];
 const CODE_PLACEHOLDER = '<%{#code#}%>';
@@ -14,7 +14,7 @@ const CODE_PLACEHOLDER = '<%{#code#}%>';
  * @param {Array<string>} playgroundLangs
  * @returns {Array}
  */
-module.exports = function chunkify(markdown, updateExample, playgroundLangs = PLAYGROUND_LANGS) {
+export default function chunkify(markdown, updateExample, playgroundLangs = PLAYGROUND_LANGS) {
 	const codeChunks = [];
 
 	/*
@@ -25,7 +25,7 @@ module.exports = function chunkify(markdown, updateExample, playgroundLangs = PL
 	function processCode() {
 		return ast => {
 			visit(ast, 'code', node => {
-				const example = parseExample(node.value, node.lang, updateExample);
+				const example = parseExample(node.value, node.lang, node.meta, updateExample);
 
 				if (example.error) {
 					node.lang = undefined;
@@ -44,6 +44,7 @@ module.exports = function chunkify(markdown, updateExample, playgroundLangs = PL
 					node.type = 'html';
 					node.value = CODE_PLACEHOLDER;
 				} else {
+					node.meta = null;
 					node.value = highlightCode(example.content, lang);
 				}
 			});
@@ -72,4 +73,4 @@ module.exports = function chunkify(markdown, updateExample, playgroundLangs = PL
 	});
 
 	return chunks;
-};
+}

@@ -18,7 +18,8 @@ class StateHolder extends Component {
 	setStateBinded = this.setState.bind(this);
 
 	render() {
-		return this.props.component(this.state, this.setStateBinded);
+		// Return null when component doesn't render anything to avoid an error
+		return this.props.component(this.state, this.setStateBinded) || null;
 	}
 }
 

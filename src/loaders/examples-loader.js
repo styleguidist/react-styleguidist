@@ -1,22 +1,22 @@
-const path = require('path');
-const filter = require('lodash/filter');
-const map = require('lodash/map');
-const values = require('lodash/values');
-const loaderUtils = require('loader-utils');
-const generate = require('escodegen').generate;
-const toAst = require('to-ast');
-const b = require('ast-types').builders;
-const chunkify = require('./utils/chunkify');
-const expandDefaultComponent = require('./utils/expandDefaultComponent');
-const getImports = require('./utils/getImports').default;
-const requireIt = require('./utils/requireIt');
+import path from 'path';
+import filter from 'lodash/filter';
+import map from 'lodash/map';
+import values from 'lodash/values';
+import loaderUtils from 'loader-utils';
+import { generate } from 'escodegen';
+import toAst from 'to-ast';
+import { builders as b } from 'ast-types';
+import chunkify from './utils/chunkify';
+import expandDefaultComponent from './utils/expandDefaultComponent';
+import getImports from './utils/getImports';
+import requireIt from './utils/requireIt';
 
 const absolutize = filepath => path.resolve(__dirname, filepath);
 
 const REQUIRE_IN_RUNTIME_PATH = absolutize('utils/client/requireInRuntime');
 const EVAL_IN_CONTEXT_PATH = absolutize('utils/client/evalInContext');
 
-function examplesLoader(source) {
+export default function examplesLoader(source) {
 	const config = this._styleguidist;
 	const { file, displayName, shouldShowDefaultExample, customLangs } =
 		loaderUtils.getOptions(this) || {};
@@ -103,5 +103,3 @@ var evalInContext = evalInContextBase.bind(null, ${JSON.stringify(
 module.exports = ${generate(toAst(examplesWithEval))}
 	`;
 }
-
-module.exports = examplesLoader;

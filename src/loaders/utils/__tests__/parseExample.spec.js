@@ -3,7 +3,7 @@ import parseExample from '../parseExample';
 const content = '<h1>Hello Markdown!</h1>';
 
 it('should parse modifiers as JSON', () => {
-	const actual = parseExample(content, 'js { "showcode": true }', a => a);
+	const actual = parseExample(content, 'js', '{ "showcode": true }');
 	expect(actual).toEqual({
 		lang: 'js',
 		settings: { showcode: true },
@@ -12,7 +12,7 @@ it('should parse modifiers as JSON', () => {
 });
 
 it('should lowercase JSON keys', () => {
-	const actual = parseExample(content, 'js { "showCode": true }', a => a);
+	const actual = parseExample(content, 'js', '{ "showCode": true }');
 	expect(actual).toEqual({
 		lang: 'js',
 		settings: { showcode: true },
@@ -21,7 +21,7 @@ it('should lowercase JSON keys', () => {
 });
 
 it('should parse modifiers as a space-separated string', () => {
-	const actual = parseExample(content, 'jsx showcode static', a => a);
+	const actual = parseExample(content, 'jsx', 'showcode static');
 	expect(actual).toEqual({
 		lang: 'jsx',
 		settings: { showcode: true, static: true },
@@ -30,7 +30,7 @@ it('should parse modifiers as a space-separated string', () => {
 });
 
 it('should lowercase modifiers', () => {
-	const actual = parseExample(content, 'jsx showCode Static', a => a);
+	const actual = parseExample(content, 'jsx', 'showCode Static');
 	expect(actual).toEqual({
 		lang: 'jsx',
 		settings: { showcode: true, static: true },
@@ -39,7 +39,7 @@ it('should lowercase modifiers', () => {
 });
 
 it('should return settings as an empty object', () => {
-	const actual = parseExample(content, 'js', a => a);
+	const actual = parseExample(content, 'js');
 	expect(actual).toEqual({
 		lang: 'js',
 		settings: {},
@@ -49,14 +49,14 @@ it('should return settings as an empty object', () => {
 it('should accept language as null', () => {
 	const actual = parseExample(content, null);
 	expect(actual).toEqual({
-		lang: '',
+		lang: null,
 		settings: {},
 		content,
 	});
 });
 
 it('should apply an update function', () => {
-	const actual = parseExample(content, 'js coffee', a => ({ ...a, lang: 'pizza' }));
+	const actual = parseExample(content, 'js', 'coffee', a => ({ ...a, lang: 'pizza' }));
 	expect(actual).toEqual({
 		lang: 'pizza',
 		settings: { coffee: true },
@@ -65,7 +65,7 @@ it('should apply an update function', () => {
 });
 
 it('should return an error when JSON is invalid', () => {
-	const actual = parseExample(content, 'js { nope }', a => a);
+	const actual = parseExample(content, 'js', '{ nope }');
 	expect(actual).toEqual({
 		error: expect.stringMatching('Cannot parse modifiers'),
 	});
