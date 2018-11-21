@@ -6,6 +6,12 @@ import ReactExample from 'rsg-components/ReactExample';
 
 const Fragment = React.Fragment ? React.Fragment : 'div';
 
+const improveErrorMessage = message =>
+	message.replace(
+		'Check the render method of `StateHolder`.',
+		'Check the code of your example in a Markdown file or in the editor below.'
+	);
+
 export default class Preview extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
@@ -83,7 +89,7 @@ export default class Preview extends Component {
 		this.unmountPreview();
 
 		this.setState({
-			error: err.toString(),
+			error: improveErrorMessage(err.toString()),
 		});
 
 		console.error(err); // eslint-disable-line no-console
