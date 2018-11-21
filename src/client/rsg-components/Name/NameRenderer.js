@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Code from 'rsg-components/Code';
 import Styled from 'rsg-components/Styled';
 import cx from 'classnames';
 
-export const styles = ({ fontSize, color }) => ({
+export const styles = ({ fontFamily, fontSize, color }) => ({
 	name: {
+		fontFamily: fontFamily.monospace,
 		fontSize: fontSize.small,
 		color: color.name,
 	},
@@ -19,11 +19,7 @@ export function NameRenderer({ classes, children, deprecated }) {
 	const classNames = cx(classes.name, {
 		[classes.isDeprecated]: deprecated,
 	});
-	return (
-		<span className={classNames}>
-			<Code>{children}</Code>
-		</span>
-	);
+	return <code className={classNames}>{children}</code>;
 }
 
 NameRenderer.propTypes = {

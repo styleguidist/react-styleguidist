@@ -1,21 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Code from 'rsg-components/Code';
 import Styled from 'rsg-components/Styled';
 
-export const styles = ({ fontSize, color }) => ({
+export const styles = ({ fontFamily, fontSize, color }) => ({
 	type: {
+		fontFamily: fontFamily.monospace,
 		fontSize: fontSize.small,
 		color: color.type,
 	},
 });
 
 export function TypeRenderer({ classes, children }) {
-	return (
-		<span className={classes.type}>
-			<Code>{children}</Code>
-		</span>
-	);
+	return <span className={classes.type}>{children}</span>;
 }
 
 TypeRenderer.propTypes = {
