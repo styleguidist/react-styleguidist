@@ -19,7 +19,7 @@ export function NameRenderer({ classes, children, deprecated }) {
 	const classNames = cx(classes.name, {
 		[classes.isDeprecated]: deprecated,
 	});
-	return <span className={classNames}>{children}</span>;
+	return <code className={classNames}>{children}</code>;
 }
 
 NameRenderer.propTypes = {
