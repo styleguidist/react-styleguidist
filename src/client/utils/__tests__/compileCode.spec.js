@@ -75,7 +75,7 @@ React.createElement( 'div', null,
 		);
 		expect(result).toMatchInlineSnapshot(`
 "var templateObject = Object.freeze([\\"\\\\n\\\\tcolor: tomato;\\\\n\\"]);
-var Button = styled.button(templateObject);
+const Button = styled.button(templateObject);
 React.createElement( Button, null )
 "
 `);
