@@ -14,6 +14,7 @@ require('prismjs/components/prism-tsx');
 require('prismjs/components/prism-graphql');
 require('prismjs/components/prism-json');
 require('prismjs/components/prism-bash');
+require('prismjs/components/prism-diff');
 
 const IGNORED_LANGUAGES = ['extend', 'insertBefore', 'DFS'];
 const getLanguages = () => Object.keys(Prism.languages).filter(x => !IGNORED_LANGUAGES.includes(x));
