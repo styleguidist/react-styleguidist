@@ -331,7 +331,7 @@ const StyleGuideRenderer = ({
         {components}
         <footer className="footer">
           <Markdown
-            text={`Generated with [React Styleguidist](${homepageUrl})`}
+            text={`Created with [React Styleguidist](${homepageUrl})`}
           />
         </footer>
       </div>
