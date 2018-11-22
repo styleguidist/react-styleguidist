@@ -1,6 +1,27 @@
 import transpileImports from '../transpileImports';
 
 describe('transpileImports', () => {
+	test('transpile default imports', () => {
+		const result = transpileImports(`import B from 'cat'`);
+		expect(result).toMatchInlineSnapshot(`"const B = require('cat');"`);
+	});
+
+	test('transpile named imports', () => {
+		const result = transpileImports(`import {B} from 'cat'`);
+		expect(result).toMatchInlineSnapshot(`
+"const cat$0 = require('cat');
+const B = cat$0.B;"
+`);
+	});
+
+	test('transpile mixed imports', () => {
+		const result = transpileImports(`import A, {B} from 'cat'`);
+		expect(result).toMatchInlineSnapshot(`
+"const A = require('cat');
+const B = A.B;"
+`);
+	});
+
 	test('transpile multiple import statements', () => {
 		const result = transpileImports(`/**
 * Some important comment

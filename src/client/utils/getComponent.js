@@ -1,13 +1,13 @@
+// @flow
+
+type Module = { [name: string]: any } | (() => any);
+
 /**
  * Given a component module and a name,
  * return the appropriate export.
  * See /docs/Components.md
- *
- * @param  {object} module
- * @param  {string} name
- * @return {function|object}
  */
-export default function getComponent(module, name) {
+export default function getComponent(module: Module, name: string): Module {
 	//
 	// If the module defines a default export, return that
 	// e.g.
@@ -31,7 +31,6 @@ export default function getComponent(module, name) {
 	if (!module.__esModule && typeof module === 'function') {
 		return module;
 	}
-	const moduleKeys = Object.keys(module);
 
 	// If the module exports just one named export, return that
 	// e.g.
@@ -40,8 +39,9 @@ export default function getComponent(module, name) {
 	// export function Component() { ... }
 	// ```
 	//
-	if (moduleKeys.length === 1) {
-		return module[moduleKeys[0]];
+	const namedExports = Object.keys(module);
+	if (namedExports.length === 1) {
+		return module[namedExports[0]];
 	}
 
 	// If the module exports a named export with the same name as the
