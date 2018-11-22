@@ -304,21 +304,21 @@ exports[`props columns should render PropTypes.oneOf 1`] = `
               inline={true}
               separator=", "
             >
-              <Styled(Code)
+              <code
                 key="\\"small\\""
               >
                 small
-              </Styled(Code)>
-              <Styled(Code)
+              </code>
+              <code
                 key="\\"normal\\""
               >
                 normal
-              </Styled(Code)>
-              <Styled(Code)
+              </code>
+              <code
                 key="\\"large\\""
               >
                 large
-              </Styled(Code)>
+              </code>
             </Group>
           </span>
         </Styled(Para)>
@@ -748,9 +748,9 @@ exports[`props columns should render PropTypes.string with a default value 1`] =
     <div
       key="2"
     >
-      <Styled(Code)>
+      <code>
         pink
-      </Styled(Code)>
+      </code>
     </div>
     <div
       key="3"
@@ -1002,16 +1002,16 @@ exports[`props columns should render enum type when union of literals 1`] = `
               inline={true}
               separator=", "
             >
-              <Styled(Code)
+              <code
                 key="\\"bar\\""
               >
                 bar
-              </Styled(Code)>
-              <Styled(Code)
+              </code>
+              <code
                 key="\\"baz\\""
               >
                 baz
-              </Styled(Code)>
+              </code>
             </Group>
           </span>
         </Styled(Para)>
@@ -1090,9 +1090,9 @@ exports[`props columns should render function defaultValue as code when null 1`]
     <div
       key="2"
     >
-      <Styled(Code)>
+      <code>
         null
-      </Styled(Code)>
+      </code>
     </div>
     <div
       key="3"
@@ -1129,9 +1129,9 @@ exports[`props columns should render function defaultValue as code when undefine
     <div
       key="2"
     >
-      <Styled(Code)>
+      <code>
         undefined
-      </Styled(Code)>
+      </code>
     </div>
     <div
       key="3"
@@ -1597,9 +1597,9 @@ exports[`props columns should render type string with a default value 1`] = `
     <div
       key="2"
     >
-      <Styled(Code)>
+      <code>
         bar
-      </Styled(Code)>
+      </code>
     </div>
     <div
       key="3"
@@ -1689,9 +1689,9 @@ exports[`props columns should render unknown proptype for a prop when a relevant
     <div
       key="2"
     >
-      <Styled(Code)>
+      <code>
         pink
-      </Styled(Code)>
+      </code>
     </div>
     <div
       key="3"

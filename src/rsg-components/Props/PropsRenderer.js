@@ -4,7 +4,6 @@ import Group from 'react-group';
 import objectToString from 'javascript-stringify';
 import Arguments from 'rsg-components/Arguments';
 import Argument from 'rsg-components/Argument';
-import Code from 'rsg-components/Code';
 import JsDoc from 'rsg-components/JsDoc';
 import Markdown from 'rsg-components/Markdown';
 import Name from 'rsg-components/Name';
@@ -69,7 +68,7 @@ function renderEnum(prop) {
 	}
 
 	const values = getType(prop).value.map(({ value }) => (
-		<Code key={value}>{showSpaces(unquote(value))}</Code>
+		<code key={value}>{showSpaces(unquote(value))}</code>
 	));
 	return (
 		<span>
@@ -112,7 +111,7 @@ function renderDefault(prop) {
 			const propName = prop.type ? prop.type.name : prop.flowType.type;
 
 			if (defaultValueBlacklist.indexOf(prop.defaultValue.value) > -1) {
-				return <Code>{showSpaces(unquote(prop.defaultValue.value))}</Code>;
+				return <code>{showSpaces(unquote(prop.defaultValue.value))}</code>;
 			} else if (propName === 'func' || propName === 'function') {
 				return (
 					<Text
@@ -149,7 +148,7 @@ function renderDefault(prop) {
 			}
 		}
 
-		return <Code>{showSpaces(unquote(prop.defaultValue.value))}</Code>;
+		return <code>{showSpaces(unquote(prop.defaultValue.value))}</code>;
 	} else if (prop.required) {
 		return (
 			<Text size="small" color="light">
