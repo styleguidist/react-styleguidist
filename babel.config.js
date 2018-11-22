@@ -3,6 +3,7 @@ module.exports = {
 		[
 			'@babel/env',
 			{
+				loose: true,
 				modules: false,
 				useBuiltIns: 'usage',
 			},
@@ -14,14 +15,16 @@ module.exports = {
 	overrides: [
 		{
 			include: ['src/bin', 'src/loaders', 'src/scripts', 'src/share'],
+			exclude: ['src/loaders/utils/client'],
 			presets: [
 				[
 					'@babel/env',
 					{
+						loose: true,
 						modules: 'commonjs',
 						useBuiltIns: 'usage',
 						targets: {
-							node: '6',
+							node: '6.4',
 						},
 					},
 				],

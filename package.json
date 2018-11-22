@@ -24,8 +24,7 @@
     "templates"
   ],
   "engines": {
-    "node": ">=6",
-    "npm": ">=3"
+    "node": ">=6.4"
   },
   "dependencies": {
     "@vxna/mini-html-webpack-template": "^0.1.7",
@@ -202,6 +201,14 @@
     "generator",
     "component",
     "components"
+  ],
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Opera versions",
+    "last 2 Firefox versions",
+    "last 2 Edge versions",
+    "last 1 Safari version",
+    "IE >= 11"
   ],
   "lint-staged": {
     "*.js": [
