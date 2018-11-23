@@ -2,6 +2,7 @@ import path from 'path';
 import filter from 'lodash/filter';
 import map from 'lodash/map';
 import values from 'lodash/values';
+import flatten from 'lodash/flatten';
 import loaderUtils from 'loader-utils';
 import { generate } from 'escodegen';
 import toAst from 'to-ast';
@@ -71,10 +72,19 @@ export default function examplesLoader(source) {
 
 	// Require context modules so they are available in an example
 	const requireContextCode = b.program(
-		// const name = require(path)
-		map(fullContext, (requireRequest, name) =>
-			b.variableDeclaration('const', [
-				b.variableDeclarator(b.identifier(name), requireIt(requireRequest).toAST()),
+		flatten(
+			map(fullContext, (requireRequest, name) => [
+				// const name$0 = require(path);
+				b.variableDeclaration('const', [
+					b.variableDeclarator(b.identifier(`${name}$0`), requireIt(requireRequest).toAST()),
+				]),
+				// const name = name$0.default || name$0;
+				b.variableDeclaration('const', [
+					b.variableDeclarator(
+						b.identifier(name),
+						b.logicalExpression('||', b.identifier(`${name}$0.default`), b.identifier(`${name}$0`))
+					),
+				]),
 			])
 		)
 	);

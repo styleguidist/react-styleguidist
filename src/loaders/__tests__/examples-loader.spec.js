@@ -180,7 +180,9 @@ it('should prepend example code with React require()', () => {
 
 	expect(result).toBeTruthy();
 	expect(() => new Function(result)).not.toThrowError(SyntaxError);
-	expect(result).toMatch(`const React = require('react');`);
+	expect(result).toMatch(
+		`const React$0 = require('react');\\nconst React = React$0.default || React$0;`
+	);
 });
 
 it('should prepend example code with component require()', () => {
@@ -195,7 +197,9 @@ it('should prepend example code with component require()', () => {
 
 	expect(result).toBeTruthy();
 	expect(() => new Function(result)).not.toThrowError(SyntaxError);
-	expect(result).toMatch(`const FooComponent = require('../foo.js');`);
+	expect(result).toMatch(
+		`const FooComponent$0 = require('../foo.js');\\nconst FooComponent = FooComponent$0.default || FooComponent$0;`
+	);
 });
 
 it('should allow explicit import of React and component module', () => {
@@ -213,8 +217,12 @@ it('should allow explicit import of React and component module', () => {
 
 	expect(result).toBeTruthy();
 	expect(() => new Function(result)).not.toThrowError(SyntaxError);
-	expect(result).toMatch(`const React = require('react');`);
-	expect(result).toMatch(`const FooComponent = require('../foo.js');`);
+	expect(result).toMatch(
+		`const React$0 = require('react');\\nconst React = React$0.default || React$0;`
+	);
+	expect(result).toMatch(
+		`const FooComponent$0 = require('../foo.js');\\nconst FooComponent = FooComponent$0.default || FooComponent$0;`
+	);
 });
 
 it('should works for any Markdown file, without a current component', () => {
@@ -232,6 +240,8 @@ it('should works for any Markdown file, without a current component', () => {
 
 	expect(result).toBeTruthy();
 	expect(() => new Function(result)).not.toThrowError(SyntaxError);
-	expect(result).toMatch(`const React = require('react');`);
+	expect(result).toMatch(
+		`const React$0 = require('react');\\nconst React = React$0.default || React$0;`
+	);
 	expect(result).not.toMatch('undefined');
 });

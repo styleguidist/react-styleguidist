@@ -15,19 +15,22 @@ function alias(key) {
 
 function generate(keys, dep, base, fn) {
 	const tmp =
-		base ||
 		dep
 			.split('/')
 			.pop()
 			.replace(/\W/g, '_') +
-			'$' +
-			num++; // uniqueness
-	const name = base || alias(tmp).name;
+		'$' +
+		num++; // uniqueness
+	const name = alias(tmp).name;
 
 	dep = `${fn}('${dep}')`;
 
 	let obj;
 	let out = `const ${name} = ${dep};`;
+
+	if (base) {
+		out += `\nconst ${base} = ${tmp}.default || ${tmp};`;
+	}
 
 	keys.forEach(key => {
 		obj = alias(key);
