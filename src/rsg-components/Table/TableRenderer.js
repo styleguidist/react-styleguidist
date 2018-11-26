@@ -7,6 +7,7 @@ export const styles = ({ space, color, fontFamily, fontSize }) => ({
 		width: '100%',
 		borderCollapse: 'collapse',
 		marginBottom: space[4],
+		tableLayout: "fixed"
 	},
 	tableHead: {
 		borderBottom: [[1, color.border, 'solid']],
