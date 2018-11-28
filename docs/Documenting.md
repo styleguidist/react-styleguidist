@@ -146,7 +146,7 @@ MyComponent.propTypes = {
 
 ## Defining custom component names
 
-Use @visibleName JSDoc tag to define component names that are used in the Styleguidist UI:
+Use `@visibleName` JSDoc tag to define component names that are used in the Styleguidist UI:
 
 ```javascript
 /**
@@ -221,31 +221,53 @@ class Button extends React.Component {
 
 ## Writing code examples
 
-Code examples in Markdown use ES6+JSX syntax. All components covered by the style guide can be used in all examples:
+Code examples in Markdown use ES6+JSX syntax. You can use the current component without explicitly importing it:
 
-```jsx
-<Panel>
+````jsx
+// ```jsx inside Button/Readme.md or Button.md
+<Button>Push Me</Button>
+````
+
+> **Note:** Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the frontend, it supports [most of the ES6 features](https://buble.surge.sh/guide/#unsupported-features).
+
+To use other components, you need to explicitly `import` them:
+
+````jsx
+// ```jsx inside Panel/Readme.md or Panel.md
+import Button from '../Button'
+;<Panel>
   <p>
     Using the Button component in the example of the Panel component:
   </p>
   <Button>Push Me</Button>
 </Panel>
-```
+````
 
-> **Note:** Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the frontend, it supports [most of the ES6 features](https://buble.surge.sh/guide/#unsupported-features).
+You can also `import` other modules, like mock data:
 
-You can also `require()` other modules (like mock data for unit tests):
-
-```jsx
-const mockData = require('./mocks')
+````jsx
+// ```jsx inside Markdown
+import mockData from './mocks'
 ;<Message content={mockData.hello} />
-```
+````
 
-> **Note:** You can only use `require()` in Markdown files. ES6 `import()` syntax isn’t supported.
+Or you can explicitly import all your example dependencies, to make examples easier to copy into your app code:
+
+````jsx static
+// ```jsx inside Markdown
+import React from 'react'
+import Button from 'rsg-example/components/Button'
+import Placeholder from 'rsg-example/components/Placeholder'
+````
+
+> **Note:** `rsg-example` module is an alias defined by the [moduleAliases](Configuration.md#modulealiases) config option.
+
+> **Note:** You can only use `import` by editing your Markdown files, not by editing the example code in the browser.
 
 Each example has its own state that you can access as `state` variable and change with `setState()` function. Default state is `{}` and can be set with `initialState`.
 
-```jsx
+````jsx
+// ```jsx inside Markdown
 initialState = { isOpen: false }
 ;<div>
   <button onClick={() => setState({ isOpen: true })}>Open</button>
@@ -254,11 +276,12 @@ initialState = { isOpen: false }
     <button onClick={() => setState({ isOpen: false })}>Close</button>
   </Modal>
 </div>
-```
+````
 
 `initialState`, `state` and `setState()` helpers are good to show components in different states, but to let users copy-paste your example code without modifications into their React app you may want to use `React.Component` instead. We can rewrite the example above like this:
 
-```jsx
+````jsx
+// ```jsx inside Markdown
 class ModalExample extends React.Component {
   constructor() {
     super()
@@ -285,9 +308,9 @@ class ModalExample extends React.Component {
   }
 }
 ;<ModalExample />
-```
+````
 
-> **Note:** If you need a more complex demo it’s often a good idea to define it in a separate JavaScript file and `require` it in Markdown.
+> **Note:** If you need a more complex demo it’s often a good idea to define it in a separate JavaScript file and `import` it in Markdown.
 
 ## Limitations
 

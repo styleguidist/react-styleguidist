@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render logo, version, table of contents, ribbon and passed children 1`] = `
+<div
+  className=""
+>
+  <main>
+    <h1>
+      Content
+    </h1>
+    <footer>
+      <Markdown
+        text="Created with [React Styleguidist](http://react-styleguidist.js.org/)"
+      />
+    </footer>
+  </main>
+  <div>
+    <div>
+      <Styled(Logo)>
+        Hello
+      </Styled(Logo)>
+      <Styled(Version)>
+        1.0.0
+      </Styled(Version)>
+    </div>
+    <TableOfContents
+      sections={
+        Array [
+          Object {
+            "components": Array [
+              Object {
+                "filepath": "components/foo.js",
+                "name": "Foo",
+                "pathLine": "components/foo.js",
+                "props": Object {
+                  "description": "Foo foo",
+                },
+              },
+              Object {
+                "filepath": "components/bar.js",
+                "name": "Bar",
+                "pathLine": "components/bar.js",
+                "props": Object {
+                  "description": "Bar bar",
+                },
+              },
+            ],
+          },
+        ]
+      }
+    />
+  </div>
+  <Ribbon />
+</div>
+`;
+
+exports[`should render an error when componentDidCatch() is triggered 1`] = `
+<Styled(Error)
+  error={
+    Object {
+      "toString": [Function],
+    }
+  }
+  info={
+    Object {
+      "componentStack": Object {
+        "toString": [Function],
+      },
+    }
+  }
+/>
+`;
+
+exports[`should render components list 1`] = `
+<Styled(StyleGuide)
+  hasSidebar={true}
+  homepageUrl="https://react-styleguidist.js.org/"
+  title="Hello"
+  toc={
+    <TableOfContents
+      sections={
+        Array [
+          Object {
+            "components": Array [
+              Object {
+                "filepath": "components/foo.js",
+                "name": "Foo",
+                "pathLine": "components/foo.js",
+                "props": Object {
+                  "description": "Foo foo",
+                },
+              },
+              Object {
+                "filepath": "components/bar.js",
+                "name": "Bar",
+                "pathLine": "components/bar.js",
+                "props": Object {
+                  "description": "Bar bar",
+                },
+              },
+            ],
+          },
+        ]
+      }
+      useRouterLinks={false}
+    />
+  }
+  version="1.0.0"
+>
+  <Sections
+    depth={1}
+    sections={
+      Array [
+        Object {
+          "components": Array [
+            Object {
+              "filepath": "components/foo.js",
+              "name": "Foo",
+              "pathLine": "components/foo.js",
+              "props": Object {
+                "description": "Foo foo",
+              },
+            },
+            Object {
+              "filepath": "components/bar.js",
+              "name": "Bar",
+              "pathLine": "components/bar.js",
+              "props": Object {
+                "description": "Bar bar",
+              },
+            },
+          ],
+        },
+      ]
+    }
+  />
+</Styled(StyleGuide)>
+`;
+
+exports[`should render welcome screen 1`] = `<Styled(Welcome) />`;

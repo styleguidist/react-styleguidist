@@ -15,6 +15,7 @@
 - [How to use React Styleguidist with Preact?](#how-to-use-react-styleguidist-with-preact)
 - [How to change styles of a style guide?](#how-to-change-styles-of-a-style-guide)
 - [How to change the layout of a style guide?](#how-to-change-the-layout-of-a-style-guide)
+- [How to change syntax highlighting colors?](#how-to-change-syntax-highlighting-colors)
 - [How to change style guide dev server logs output?](#how-to-change-style-guide-dev-server-logs-output)
 - [How to debug my components and examples?](#how-to-debug-my-components-and-examples)
 - [How to debug the exceptions thrown from my components?](#how-to-debug-the-exceptions-thrown-from-my-components)
@@ -69,12 +70,13 @@ module.exports = {
 
 Enable [skipComponentsWithoutExample](Configuration.md#skipcomponentswithoutexample) option and do not add example file (`Readme.md` by default) to components you want to ignore.
 
-Require these components in your examples:
+Import these components in your examples:
 
-```jsx
-const Button = require('../common/Button')
+````jsx
+// ```jsx inside Markdown
+import Button from '../common/Button'
 ;<Button>Push Me Tender</Button>
-```
+````
 
 Or, to make these components available for all examples:
 
@@ -89,16 +91,17 @@ import Button from './src/components/common/Button'
 global.Button = Button
 ```
 
-The `Button` component will be available in every example without a need to `require` it.
+The `Button` component will be available in every example without a need to `import` it.
 
 ## How to render React components that aren’t part of the style guide?
 
-Require these components in your examples:
+Import these components in your examples:
 
-    ```jsx noeditor
-    const ColorPalette = require('./components/ColorPalette').default
-    ;<ColorPalette />
-    ```
+````jsx
+// ```jsx or ```jsx noeditor inside Markdown
+import ColorPalette from './components/ColorPalette'
+;<ColorPalette />
+````
 
 ## How to dynamically load other components in an example?
 
@@ -117,12 +120,9 @@ const icons = iconsContext.keys().reduce((icons, file) => {
 export default icons
 ```
 
-````markdown
-// IconGallery.md
-
-```jsx noeditor
-const icons = require('./load-icons').default
-
+````jsx
+// ```jsx or ```jsx noeditor inside Markdown
+import icons from './load-icons'
 const iconElements = Object.keys(icons).map(iconName => {
   const Icon = icons[iconName]
   return (
@@ -132,7 +132,6 @@ const iconElements = Object.keys(icons).map(iconName => {
   )
 })
 <div>{iconElements}</div>
-```
 ````
 
 ## How to display the source code of any file?
@@ -248,7 +247,9 @@ module.exports = {
   },
   styles: {
     Logo: {
+      // We're changing the LogoRenderer component
       logo: {
+        // We're changing the rsg--logo-XX class name inside the component
         animation: 'blink ease-in-out 300ms infinite'
       },
       '@keyframes blink': {
@@ -263,7 +264,7 @@ module.exports = {
 
 > **Note:** Styles use [JSS](https://github.com/cssinjs/jss/blob/master/docs/json-api.md) with these plugins: [jss-isolate](https://github.com/cssinjs/jss-isolate), [jss-nested](https://github.com/cssinjs/jss-nested), [jss-camel-case](https://github.com/cssinjs/jss-camel-case), [jss-default-unit](https://github.com/cssinjs/jss-default-unit), [jss-compose](https://github.com/cssinjs/jss-compose) and [jss-global](https://github.com/cssinjs/jss-global).
 
-> **Note:** Use [React Developer Tools](https://github.com/facebook/react-devtools) to find component and style names. For example a component `<LogoRenderer><h1 className="logo-524678444">…` corresponds to an example above.
+> **Note:** Use [React Developer Tools](https://github.com/facebook/react-devtools) to find component and style names. For example a component `<LogoRenderer><h1 className="rsg--logo-53">` corresponds to an example above.
 
 ## How to change the layout of a style guide?
 
@@ -278,13 +279,13 @@ For example you can replace the `Wrapper` component to wrap any example in the [
 const path = require('path')
 module.exports = {
   styleguideComponents: {
-    Wrapper: path.join(__dirname, 'lib/styleguide/Wrapper')
+    Wrapper: path.join(__dirname, 'src/styleguide/Wrapper')
   }
 }
 ```
 
 ```jsx
-// lib/styleguide/Wrapper.js
+// src/styleguide/Wrapper.js
 import React, { Component } from 'react'
 import { IntlProvider } from 'react-intl'
 export default class Wrapper extends Component {
@@ -305,14 +306,14 @@ module.exports = {
   styleguideComponents: {
     StyleGuideRenderer: path.join(
       __dirname,
-      'lib/styleguide/StyleGuideRenderer'
+      'src/styleguide/StyleGuideRenderer'
     )
   }
 }
 ```
 
 ```jsx
-// lib/styleguide/StyleGuideRenderer.js
+// src/styleguide/StyleGuideRenderer.js
 import React from 'react'
 const StyleGuideRenderer = ({
   title,
@@ -330,7 +331,7 @@ const StyleGuideRenderer = ({
         {components}
         <footer className="footer">
           <Markdown
-            text={`Generated with [React Styleguidist](${homepageUrl})`}
+            text={`Created with [React Styleguidist](${homepageUrl})`}
           />
         </footer>
       </div>
@@ -341,6 +342,30 @@ const StyleGuideRenderer = ({
 ```
 
 We have [an example style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/customised) with custom components.
+
+## How to change syntax highlighting colors?
+
+Styleguidist uses [Prism](https://prismjs.com/) for code highlighting in static examples and inside the editor. You can change the colors using the [theme](Configuration.md#theme) config option:
+
+```javascript
+// styleguide.config.js
+module.exports = {
+  theme: {
+    color: {
+      codeComment: '#6d6d6d',
+      codePunctuation: '#999',
+      codeProperty: '#905',
+      codeDeleted: '#905',
+      codeString: '#690',
+      codeInserted: '#690',
+      codeOperator: '#9a6e3a',
+      codeKeyword: '#1673b1',
+      codeFunction: '#DD4A68',
+      codeVariable: '#e90'
+    }
+  }
+}
+```
 
 ## How to change style guide dev server logs output?
 

@@ -1,0 +1,35 @@
+declare module 'buble' {
+	declare type BubleOptions = {
+		target?: {},
+		transforms?: {
+			arrow?: boolean,
+			classes?: boolean,
+			collections?: boolean,
+			computedProperty?: boolean,
+			conciseMethodProperty?: boolean,
+			constLoop?: boolean,
+			dangerousForOf?: boolean,
+			dangerousTaggedTemplateString?: boolean,
+			defaultParameter?: boolean,
+			destructuring?: boolean,
+			exponentiation?: boolean,
+			forOf?: boolean,
+			generator?: boolean,
+			letConst?: boolean,
+			modules?: boolean,
+			numericLiteral?: boolean,
+			parameterDestructuring?: boolean,
+			reservedProperties?: boolean,
+			spreadRest?: boolean,
+			stickyRegExp?: boolean,
+			templateString?: boolean,
+			unicodeRegExp?: boolean,
+		},
+		file?: string,
+		source?: string,
+		jsx?: string,
+		objectAssign?: string,
+		namedFunctionExpressions?: boolean,
+	};
+	declare function transform(code: string, config?: BubleOptions): { code: string };
+}

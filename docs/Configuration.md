@@ -14,7 +14,6 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 - [`configureServer`](#configureserver)
 - [`dangerouslyUpdateWebpackConfig`](#dangerouslyupdatewebpackconfig)
 - [`defaultExample`](#defaultexample)
-- [`editorConfig`](#editorconfig)
 - [`exampleMode`](#examplemode)
 - [`getComponentPathLine`](#getcomponentpathline)
 - [`getExampleFilename`](#getexamplefilename)
@@ -154,7 +153,7 @@ module.exports = {
 
 Type: `Boolean` or `String`, default: `false`
 
-For components that do not have an example, a default one can be used. When set to `true`, the [DefaultExample.md](https://github.com/styleguidist/react-styleguidist/blob/master/scripts/templates/DefaultExample.md) is used, or you can provide the path to your own example Markdown file.
+For components that do not have an example, a default one can be used. When set to `true`, the [DefaultExample.md](https://github.com/styleguidist/react-styleguidist/blob/master/templates/DefaultExample.md) is used, or you can provide the path to your own example Markdown file.
 
 When writing your own default example file, `__COMPONENT__` will be replaced by the actual component name at compile time.
 
@@ -176,12 +175,6 @@ module.exports = {
   }
 }
 ```
-
-#### `editorConfig`
-
-Type: `Object`, default: [scripts/schemas/config.js](https://github.com/styleguidist/react-styleguidist/tree/master/scripts/schemas/config.js#L101)
-
-Source code editor options, see [CodeMirror docs](https://codemirror.net/doc/manual.html#config) for all available options.
 
 #### `getExampleFilename`
 
@@ -278,9 +271,33 @@ module.exports = {
 }
 ```
 
+#### `moduleAliases`
+
+Type: `object`, optional
+
+Define aliases for modules, that you can import in your examples, to make example code more realistic and copypastable:
+
+```javascript
+const path = require('path')
+module.exports = {
+  moduleAliases: {
+    'rsg-example': path.resolve(__dirname, 'src')
+  }
+}
+```
+
+````jsx static
+// ```jsx inside Markdown
+import React from 'react'
+import Button from 'rsg-example/components/Button'
+import Placeholder from 'rsg-example/components/Placeholder'
+````
+
+Check out the [webpack resolve.alias documentation](https://webpack.js.org/configuration/resolve/#resolve-alias) for available syntax.
+
 #### `mountPointId`
 
-Type: `string`, defaults: `rsg-root`
+Type: `string`, default: `rsg-root`
 
 The ID of a DOM element where Styleguidist mounts.
 
@@ -339,7 +356,7 @@ module.exports = {
         }
       ],
       // Will show "Components" as single page, filtering its children
-      sectionDepth: 1,
+      sectionDepth: 1
     },
     {
       name: 'Examples',
@@ -354,7 +371,7 @@ module.exports = {
         }
       ],
       // There is no subroutes, "Examples" will show all its children on a page
-      sectionDepth: 0,
+      sectionDepth: 0
     }
   ]
 }
@@ -576,6 +593,12 @@ Type: `object`, optional
 Customize style guide UI fonts, colors, etc.
 
 See example in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide).
+
+> **Note:** See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/styles/theme.js).
+
+> **Note:** Styles use [JSS](https://github.com/cssinjs/jss/blob/master/docs/json-api.md) with these plugins: [jss-isolate](https://github.com/cssinjs/jss-isolate), [jss-nested](https://github.com/cssinjs/jss-nested), [jss-camel-case](https://github.com/cssinjs/jss-camel-case), [jss-default-unit](https://github.com/cssinjs/jss-default-unit), [jss-compose](https://github.com/cssinjs/jss-compose) and [jss-global](https://github.com/cssinjs/jss-global).
+
+> **Note:** Use [React Developer Tools](https://github.com/facebook/react-devtools) to find component and style names. For example a component `<LogoRenderer><h1 className="rsg--logo-53">` corresponds to an example above.
 
 #### `title`
 

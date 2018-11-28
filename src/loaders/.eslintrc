@@ -1,0 +1,7 @@
+{
+	"extends": "tamia",
+	"rules": {
+		"valid-jsdoc": 0,
+    "no-duplicate-imports": 0
+	}
+}

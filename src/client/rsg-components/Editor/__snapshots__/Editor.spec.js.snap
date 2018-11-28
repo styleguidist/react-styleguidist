@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Editor should renderer and editor 1`] = `
+<Editor
+  highlight={[Function]}
+  ignoreTabKey={false}
+  insertSpaces={true}
+  onValueChange={[Function]}
+  padding={16}
+  tabSize={2}
+  value=
+<button>
+  MyAwesomeCode
+</button>
+
+/>
+`;

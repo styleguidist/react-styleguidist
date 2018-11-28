@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should enable verbose mode in CleanWebpackPlugin 1`] = `
+Array [
+  CleanWebpackPlugin {
+    "options": Object {
+      "allowExternal": false,
+      "dry": false,
+      "root": "~/src/scripts/__tests__",
+      "verbose": true,
+    },
+    "paths": Array [
+      "build",
+    ],
+  },
+]
+`;
+
+exports[`should merge user webpack config 1`] = `
+Object {
+  "foo": "bar",
+  "rsg-components": "~/src/client/rsg-components",
+}
+`;
+
+exports[`should not owerwrite user DefinePlugin 1`] = `
+Array [
+  DefinePlugin {
+    "definitions": Object {
+      "process.env.NODE_ENV": "\\"test\\"",
+      "process.env.STYLEGUIDIST_ENV": "\\"development\\"",
+    },
+  },
+  DefinePlugin {
+    "definitions": Object {
+      "process.env.PIZZA": "\\"salami\\"",
+    },
+  },
+]
+`;
+
+exports[`should prepend requires as webpack entries 1`] = `
+Array [
+  "a/b.js",
+  "c/d.css",
+  "~/src/client/index",
+  "~/node_modules/react-dev-utils/webpackHotDevClient.js",
+]
+`;
+
+exports[`should set aliases 1`] = `
+Object {
+  "rsg-components": "~/src/client/rsg-components",
+}
+`;
+
+exports[`should set aliases from moduleAliases option 1`] = `
+Object {
+  "foo": "bar",
+  "rsg-components": "~/src/client/rsg-components",
+}
+`;
+
+exports[`should set aliases from styleguideComponents option 1`] = `
+Object {
+  "rsg-components": "~/src/client/rsg-components",
+  "rsg-components/foo": "bar",
+}
+`;

@@ -1,1 +1,3 @@
 examples/*/styleguide/
+lib/
+flow-typed/npm/

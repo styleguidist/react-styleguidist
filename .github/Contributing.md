@@ -46,6 +46,32 @@ npx jest -u
 
 **Please update npm lock file (`package-lock.json`) if you add or update dependencies.**
 
+## Integration tests (Cypress)
+
+First install dependencies:
+
+```bash
+npm run test:cypress:pre
+```
+
+Then start Styleguidist server:
+
+```bash
+npm run compile:watch & npm run test:cypress:startServer
+```
+
+And, finally, in a separate terminal run tests:
+
+```bash
+npm run test:cypress:run
+```
+
+Or open Cypress UI:
+
+```bash
+npm run test:cypress:open
+```
+
 ## Other notes
 
 - If you have commit access to repository and want to make big change or not sure about something, make a new branch and open pull request.

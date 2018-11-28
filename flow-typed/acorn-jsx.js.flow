@@ -1,0 +1,4 @@
+declare module 'acorn-jsx' {
+	declare function acornJsx(): any;
+	declare export default typeof acornJsx;
+}

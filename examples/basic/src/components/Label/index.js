@@ -13,6 +13,7 @@ export default function Label({ color, background, children }) {
 		fontFamily: 'arial',
 	};
 
+	// eslint-disable-next-line jsx-a11y/label-has-for
 	return <label style={styles}>{children}</label>;
 }
 Label.propTypes = {

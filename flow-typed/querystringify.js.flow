@@ -1,0 +1,5 @@
+declare module 'querystringify' {
+	declare type Params = { [key: string]: any };
+	declare function parse(query: string): Params;
+	declare function stringify(obj: Params): string;
+}

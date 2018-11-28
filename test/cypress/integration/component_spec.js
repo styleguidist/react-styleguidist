@@ -57,31 +57,22 @@ describe('Single component', () => {
 
 		it('does not show code initially', () => {
 			cy.get('@container')
-				.find('.CodeMirror')
+				.find('textarea')
 				.should('not.exist');
 		});
 
 		it('shows code on click', () => {
 			cy.get('@viewCodeBtn').click();
 			cy.get('@container')
-				.find('.CodeMirror')
+				.find('textarea')
 				.should('exist');
 		});
 
 		it('changes the render after code change', () => {
-			const codeToDelete = '</Button>';
+			const codeToSkip = '</Button>';
 			cy.get('@container')
-				.find('.CodeMirror textarea')
-				// CodeMirror actually listens to keystrokes on an empty textarea
-				// to update the div with the code, so we have to hack our way
-				// around it with a bunch of backspacing, since there's no way
-				// to place the cursor
-				.type(`${'{backspace}'.repeat(codeToDelete.length)} Harder${codeToDelete}`, {
-					force: true,
-				});
-
-			// Wait for CodeMirror to update
-			cy.wait(500);
+				.find('textarea')
+				.type(`${'{leftarrow}'.repeat(codeToSkip.length)} Harder`);
 
 			cy.get('@preview')
 				.find('button')

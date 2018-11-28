@@ -57,6 +57,6 @@ export default class Placeholder extends Component {
 
 	render() {
 		const { width, height } = this.props;
-		return <img src={this.getImageUrl()} width={width} height={height} />;
+		return <img src={this.getImageUrl()} width={width} height={height} alt="" />;
 	}
 }

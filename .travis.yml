@@ -21,6 +21,7 @@ branches:
 stages:
   - lint
   - test
+  - typecheck
   - integration
   - coverage
   - name: release
@@ -33,6 +34,10 @@ jobs:
       script:
         - npm run lint
         - npx danger ci
+
+    - stage: typecheck
+      script:
+        - npm run flow check
 
     - stage: integration
       script:
