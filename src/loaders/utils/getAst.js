@@ -1,5 +1,8 @@
 // @flow
 import { Parser, type AcornNode } from 'acorn';
+import Logger from 'glogg';
+
+const logger = Logger('rsg');
 
 export const ACORN_OPTIONS = {
 	ecmaVersion: 2019,
@@ -15,6 +18,7 @@ export default function getAst(code: string, plugins?: Function[] = []): ?AcornN
 	try {
 		return parser.parse(code, ACORN_OPTIONS);
 	} catch (err) {
+		logger.debug(`Acorn cannot parse example code: ${err.message}\n\nCode:\n${code}`);
 		return undefined;
 	}
 }
