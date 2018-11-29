@@ -12,7 +12,7 @@ const DEFAULT_COMPONENTS_PATTERN =
 
 const path = require('path');
 const startCase = require('lodash/startCase');
-const kleur = require('kleur');
+const ansiColors = require('ansi-colors');
 const reactDocgen = require('react-docgen');
 const createDisplayNameHandler = require('react-docgen-displayname-handler')
 	.createDisplayNameHandler;
@@ -123,7 +123,7 @@ module.exports = {
 		process: value => {
 			if (value) {
 				throw new StyleguidistError(
-					`${kleur.bold(
+					`${ansiColors.bold(
 						'editorConfig'
 					)} config option was removed. Use “theme” option to change syntax highlighting.`
 				);
@@ -259,7 +259,7 @@ module.exports = {
 		process: val => {
 			if (typeof val === 'string') {
 				throw new StyleguidistError(
-					`${kleur.bold(
+					`${ansiColors.bold(
 						'template'
 					)} config option format has been changed, you need to update your config.`,
 					'template'

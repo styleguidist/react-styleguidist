@@ -1,14 +1,14 @@
 /* eslint-disable no-console */
 
 const _ = require('lodash/fp');
-const kleur = require('kleur');
+const ansiColors = require('ansi-colors');
 const logger = require('glogg')('rsg');
 
 const format = message => message.trim() + '\n';
 
 const printers = {
 	info: message => console.log(format(message)),
-	warn: message => console.warn(kleur.yellow(`Warning: ${format(message)}`)),
+	warn: message => console.warn(ansiColors.yellow(`Warning: ${format(message)}`)),
 	debug: message => console.log(format(message)),
 };
 

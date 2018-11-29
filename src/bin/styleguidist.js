@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
 const minimist = require('minimist');
-const kleur = require('kleur');
+const ansiColors = require('ansi-colors');
 const ora = require('ora');
 const stringify = require('q-i').stringify;
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
@@ -27,7 +27,7 @@ process.on('uncaughtException', err => {
 			consts.DOCS_CONFIG
 		);
 	} else if (err instanceof StyleguidistError) {
-		console.error(kleur.bold.red(err.message));
+		console.error(ansiColors.bold.red(err.message));
 		logger.debug(err.stack);
 	} else {
 		console.error(err.toString());
@@ -169,26 +169,26 @@ function commandServer() {
 function commandHelp() {
 	console.log(
 		[
-			kleur.underline('Usage'),
+			ansiColors.underline('Usage'),
 			'',
 			'    ' +
-				kleur.bold('styleguidist') +
+				ansiColors.bold('styleguidist') +
 				' ' +
-				kleur.cyan('<command>') +
+				ansiColors.cyan('<command>') +
 				' ' +
-				kleur.yellow('[<options>]'),
+				ansiColors.yellow('[<options>]'),
 			'',
-			kleur.underline('Commands'),
+			ansiColors.underline('Commands'),
 			'',
-			'    ' + kleur.cyan('build') + '           Build style guide',
-			'    ' + kleur.cyan('server') + '          Run development server',
-			'    ' + kleur.cyan('help') + '            Display React Styleguidist help',
+			'    ' + ansiColors.cyan('build') + '           Build style guide',
+			'    ' + ansiColors.cyan('server') + '          Run development server',
+			'    ' + ansiColors.cyan('help') + '            Display React Styleguidist help',
 			'',
-			kleur.underline('Options'),
+			ansiColors.underline('Options'),
 			'',
-			'    ' + kleur.yellow('--config') + '        Config file path',
-			'    ' + kleur.yellow('--open') + '          Open Styleguidist in the default browser',
-			'    ' + kleur.yellow('--verbose') + '       Print debug information',
+			'    ' + ansiColors.yellow('--config') + '        Config file path',
+			'    ' + ansiColors.yellow('--open') + '          Open Styleguidist in the default browser',
+			'    ' + ansiColors.yellow('--verbose') + '       Print debug information',
 		].join('\n')
 	);
 }
@@ -199,9 +199,9 @@ function commandHelp() {
 function printServerInstructions(urls) {
 	console.log(`You can now view your style guide in the browser:`);
 	console.log();
-	console.log(`  ${kleur.bold('Local:')}            ${urls.localUrlForTerminal}`);
+	console.log(`  ${ansiColors.bold('Local:')}            ${urls.localUrlForTerminal}`);
 	if (urls.lanUrlForTerminal) {
-		console.log(`  ${kleur.bold('On your network:')}  ${urls.lanUrlForTerminal}`);
+		console.log(`  ${ansiColors.bold('On your network:')}  ${urls.lanUrlForTerminal}`);
 	}
 	console.log();
 }
@@ -210,7 +210,7 @@ function printServerInstructions(urls) {
  * @param {object} config
  */
 function printBuildInstructions(config) {
-	console.log('Style guide published to:\n' + kleur.underline(config.styleguideDir));
+	console.log('Style guide published to:\n' + ansiColors.underline(config.styleguideDir));
 }
 
 /**
@@ -219,7 +219,9 @@ function printBuildInstructions(config) {
  * @param {string} linkUrl
  */
 function printErrorWithLink(message, linkTitle, linkUrl) {
-	console.error(`${kleur.bold.red(message)}\n\n${linkTitle}\n${kleur.underline(linkUrl)}\n`);
+	console.error(
+		`${ansiColors.bold.red(message)}\n\n${linkTitle}\n${ansiColors.underline(linkUrl)}\n`
+	);
 }
 
 /**
@@ -243,11 +245,11 @@ function printErrors(header, errors, originalErrors, type) {
  */
 function printStatus(text, type) {
 	if (type === 'success') {
-		console.log(kleur.inverse.bold.green(' DONE ') + ' ' + text);
+		console.log(ansiColors.inverse.bold.green(' DONE ') + ' ' + text);
 	} else if (type === 'error') {
-		console.error(kleur.inverse.bold.red(' FAIL ') + ' ' + kleur.red(text));
+		console.error(ansiColors.inverse.bold.red(' FAIL ') + ' ' + ansiColors.red(text));
 	} else {
-		console.error(kleur.inverse.bold.yellow(' WARN ') + ' ' + kleur.yellow(text));
+		console.error(ansiColors.inverse.bold.yellow(' WARN ') + ' ' + ansiColors.yellow(text));
 	}
 }
 
@@ -333,5 +335,5 @@ function printNoLoaderError(errors) {
  * @param {object} object
  */
 function verbose(header, object) {
-	logger.debug(kleur.bold(header) + '\n\n' + stringify(object));
+	logger.debug(ansiColors.bold(header) + '\n\n' + stringify(object));
 }
