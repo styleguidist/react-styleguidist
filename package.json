@@ -29,7 +29,7 @@
   "dependencies": {
     "@vxna/mini-html-webpack-template": "^0.1.7",
     "acorn": "^6.0.4",
-    "acorn-jsx": "^5.0.0",
+    "acorn-jsx": "^5.0.1",
     "ast-types": "^0.11.6",
     "buble": "0.19.4",
     "classnames": "^2.2.6",
@@ -61,7 +61,7 @@
     "loader-utils": "^1.1.0",
     "lodash": "^4.17.11",
     "lowercase-keys": "^1.0.1",
-    "markdown-to-jsx": "^6.8.4",
+    "markdown-to-jsx": "^6.9.0",
     "mini-html-webpack-plugin": "^0.2.3",
     "minimist": "^1.2.0",
     "ora": "^3.0.0",

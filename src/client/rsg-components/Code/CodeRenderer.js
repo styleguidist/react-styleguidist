@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
 import Styled from 'rsg-components/Styled';
 
 const styles = ({ fontFamily }) => ({
@@ -13,18 +12,11 @@ const styles = ({ fontFamily }) => ({
 	},
 });
 
-export function CodeRenderer({ classes, className, children }) {
-	const classNames = cx(className, classes.code);
-
-	const isHighlighted = className && className.indexOf('lang-') !== -1;
-	if (isHighlighted) {
-		return <code className={classNames} dangerouslySetInnerHTML={{ __html: children }} />;
-	}
-	return <code className={classNames}>{children}</code>;
+export function CodeRenderer({ classes, children }) {
+	return <code className={classes.code}>{children}</code>;
 }
 CodeRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
-	className: PropTypes.string,
 	children: PropTypes.node.isRequired,
 };
 

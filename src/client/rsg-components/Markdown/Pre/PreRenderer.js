@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 import Styled from 'rsg-components/Styled';
 import prismTheme from '../../../styles/prismTheme';
 
 const styles = ({ space, color, fontSize, fontFamily, borderRadius }) => ({
 	pre: {
-		fontFamily: fontFamily.base,
+		fontFamily: fontFamily.monospace,
 		fontSize: fontSize.small,
 		lineHeight: 1.5,
 		color: color.base,
@@ -23,11 +24,19 @@ const styles = ({ space, color, fontSize, fontFamily, borderRadius }) => ({
 	},
 });
 
-export function PreRenderer({ classes, children }) {
-	return <pre className={classes.pre}>{children}</pre>;
+export function PreRenderer({ classes, className, children }) {
+	const classNames = cx(className, classes.pre);
+
+	const isHighlighted = className && className.indexOf('lang-') !== -1;
+	if (isHighlighted) {
+		return <pre className={classNames} dangerouslySetInnerHTML={{ __html: children }} />;
+	}
+	return <pre className={classNames}>{children}</pre>;
 }
+
 PreRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
+	className: PropTypes.string,
 	children: PropTypes.node.isRequired,
 };
 

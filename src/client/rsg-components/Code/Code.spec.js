@@ -8,15 +8,4 @@ describe('Code blocks', () => {
 
 		expect(actual).toMatchSnapshot();
 	});
-
-	it('should render code to be highlighted', () => {
-		const code = '<button>OK</button>';
-		const actual = render(
-			<CodeRenderer classes={{}} className="lang-html">
-				{code}
-			</CodeRenderer>
-		);
-
-		expect(actual).toMatchSnapshot();
-	});
 });

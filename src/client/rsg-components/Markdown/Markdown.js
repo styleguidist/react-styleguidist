@@ -1,3 +1,4 @@
+import React, { isValidElement } from 'react';
 import PropTypes from 'prop-types';
 import { compiler } from 'markdown-to-jsx';
 import Link from 'rsg-components/Link';
@@ -87,7 +88,13 @@ export const baseOverrides = {
 		component: Code,
 	},
 	pre: {
-		component: Pre,
+		component: props => {
+			if (isValidElement(props.children)) {
+				// Avoid rendering <Code> inside <Pre>
+				return <Pre {...props.children.props} />;
+			}
+			return <Pre {...props} />;
+		},
 	},
 	input: {
 		component: Checkbox,

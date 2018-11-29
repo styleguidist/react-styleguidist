@@ -91,11 +91,9 @@ exports[`Markdown should render check-lists 1`] = `
 
 exports[`Markdown should render code blocks without escaping 1`] = `
 
-<pre class="rsg--pre-26">
-  <code class="lang-html rsg--code-27">
-    <foo>
-    </foo>
-  </code>
+<pre class="lang-html rsg--pre-26">
+  <foo>
+  </foo>
 </pre>
 
 `;
@@ -252,10 +250,8 @@ exports[`Markdown should render paragraphs 1`] = `
 exports[`Markdown should render pre-formatted text 1`] = `
 
 <pre class="rsg--pre-26">
-  <code class="rsg--code-27">
-    this is preformatted
+  this is preformatted
 so is this
-  </code>
 </pre>
 
 `;
