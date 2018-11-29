@@ -4,8 +4,6 @@ import ReactDOM from 'react-dom';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import ReactExample from 'rsg-components/ReactExample';
 
-const Fragment = React.Fragment ? React.Fragment : 'div';
-
 const improveErrorMessage = message =>
 	message.replace(
 		'Check the render method of `StateHolder`.',
@@ -98,10 +96,10 @@ export default class Preview extends Component {
 	render() {
 		const { error } = this.state;
 		return (
-			<Fragment>
+			<>
 				<div ref={ref => (this.mountNode = ref)} />
 				{error && <PlaygroundError message={error} />}
-			</Fragment>
+			</>
 		);
 	}
 }
