@@ -103,7 +103,7 @@ export function ExamplePlaceholderRenderer({ classes }) {
 }
 ```
 
-Check available theme variables in [src/styles/theme.js](https://github.com/styleguidist/react-styleguidist/blob/master/src/styles/theme.js).
+Check available theme variables in [src/client/styles/theme.js](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.js).
 
 Because of isolation and theming you need to explicitly declare `fontFamily`, `fontSize` and `color`. Add `isolate: false` to your hover styles, otherwise you’ll have to repeat base non-hover styles.
 
