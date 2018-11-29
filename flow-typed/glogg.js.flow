@@ -1,0 +1,12 @@
+declare module 'glogg' {
+	declare function Logger(
+		namespace: string
+	): {
+		on: (event: string, callback: () => void) => void,
+		debug(message: any): void,
+		info(message: any): void,
+		warn(message: any): void,
+		error(message: any): void,
+	};
+	declare export default typeof Logger;
+}
