@@ -26,7 +26,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-styleguidist": "9.0.0-beta1"
+    "react-styleguidist": "9.0.0-beta3"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",
