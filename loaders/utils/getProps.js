@@ -8,6 +8,7 @@ const getNameFromFilePath = require('./getNameFromFilePath');
 const doctrine = require('doctrine');
 const _ = require('lodash');
 const logger = require('glogg')('rsg');
+const parseExample = require('./parseExample');
 
 const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
 
@@ -102,7 +103,7 @@ module.exports = function getProps(doc, filepath) {
 
 			examples.forEach(example => {
 				const exampleFileExists = doesExternalExampleFileExist(filepath, example);
-				const hasCodeBlock = /```/.test(example);
+				const mayHaveCodeBlock = /```/.test(example);
 
 				if (exampleFileExists) {
 					let exampleFile = example;
@@ -114,9 +115,21 @@ module.exports = function getProps(doc, filepath) {
 					//doc.examples.push(src);
 					doc.example = src;
 					delete doc.doclets.example;
-				} else if (hasCodeBlock) {
-					doc.examples.push(example);
-					delete doc.doclets.example;
+				} else if (mayHaveCodeBlock) {
+					const lines = example.match(/[^\r\n]+/g);
+					const header = lines[1].trim().replace(/^```/, '');
+					lines.splice(0, 2);
+					const content = lines.join('\n');
+					const parsedExample = parseExample(content, header);
+
+					if (parsedExample.settings.render) {
+						doc.examples.push(example);
+						delete doc.doclets.example;
+					} else {
+						logger.warn(
+							`An inline example defined in ${filepath} is missing the required \`render\` modifier.`
+						);
+					}
 				} else {
 					logger.warn(`An example file ${example} defined in ${filepath} component not found.`);
 				}
