@@ -168,22 +168,24 @@ Object {
 
 exports[`should not return inline example when inline code without a render modifier is provided 1`] = `
 Object {
-  "description": "    		The only true button.
-    		@example Inline Example:
-    		\`\`\`jsx
-    		&lt;Button&gt;I Dare you&lt;/Button&gt;
-    		\`\`\`
+  "description": "The only true button.
 ",
   "displayName": "Button",
-  "doclets": Object {},
+  "doclets": Object {
+    "example": "Inline Example:
+\`\`\`jsx
+<Button>I Dare you</Button>
+\`\`\`",
+  },
+  "examples": Array [],
   "methods": Array [],
   "tags": Object {
     "example": Array [
       Object {
         "description": "Inline Example:
-			\`\`\`jsx
-			<Button>I Dare you</Button>
-			\`\`\`",
+\`\`\`jsx
+<Button>I Dare you</Button>
+\`\`\`",
         "title": "example",
       },
     ],
@@ -283,22 +285,24 @@ Object {
 
 exports[`should return inline example when inline code with a render modifier is provided 1`] = `
 Object {
-  "description": "    		The only true button.
-    		@example Inline Example:
-    		\`\`\`jsx render
-    		&lt;Button&gt;I Dare you&lt;/Button&gt;
-    		\`\`\`
+  "description": "The only true button.
 ",
   "displayName": "Button",
   "doclets": Object {},
+  "examples": Array [
+    "Inline Example:
+\`\`\`jsx render
+<Button>I Dare you</Button>
+\`\`\`",
+  ],
   "methods": Array [],
   "tags": Object {
     "example": Array [
       Object {
         "description": "Inline Example:
-			\`\`\`jsx render
-			<Button>I Dare you</Button>
-			\`\`\`",
+\`\`\`jsx render
+<Button>I Dare you</Button>
+\`\`\`",
         "title": "example",
       },
     ],

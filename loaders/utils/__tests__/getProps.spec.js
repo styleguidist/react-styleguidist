@@ -193,11 +193,11 @@ it('should return inline example when inline code with a render modifier is prov
 		{
 			displayName: 'Button',
 			description: `
-			The only true button.
-			@example Inline Example:
-			\`\`\`jsx render
-			<Button>I Dare you</Button>
-			\`\`\``,
+The only true button.
+@example Inline Example:
+\`\`\`jsx render
+<Button>I Dare you</Button>
+\`\`\``,
 		},
 		__filename
 	);
@@ -210,11 +210,11 @@ it('should not return inline example when inline code without a render modifier 
 		{
 			displayName: 'Button',
 			description: `
-			The only true button.
-			@example Inline Example:
-			\`\`\`jsx
-			<Button>I Dare you</Button>
-			\`\`\``,
+The only true button.
+@example Inline Example:
+\`\`\`jsx
+<Button>I Dare you</Button>
+\`\`\``,
 		},
 		__filename
 	);
