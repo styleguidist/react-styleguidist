@@ -11,6 +11,7 @@ Styleguidist generates documentation for your components based on the comments i
 - [Code comments and propTypes](#code-comments-and-proptypes)
 - [Usage examples and Readme files](#usage-examples-and-readme-files)
 - [External examples using doclet tags](#external-examples-using-doclet-tags)
+- [Inline examples using doclet tags](#inline-examples-using-doclet-tags)
 - [Public methods](#public-methods)
 - [Ignoring props](#ignoring-props)
 - [Defining custom component names](#defining-custom-component-names)
@@ -112,6 +113,30 @@ export default class Button extends React.Component {
 ```
 
 > **Note:** You’ll need a regular example file (like `Readme.md`) too when [skipComponentsWithoutExample](Configuration.md#skipcomponentswithoutexample) is `true`.
+
+## Inline examples using doclet tags
+
+Inline examples can also be associated with components by using the `@example` doclet syntax. Instead of providing a path to a file, provide a description of the example followed by a fenced code block.
+
+The following component will have the inline example added to its documentation:
+
+````javascript
+/**
+ * Component is described here.
+ *
+ * @example Example 1
+ * ```jsx render
+ * <Button prop="value">
+ *   <span>Button Text</span>
+ * </Button>
+ * ```
+ */
+export default class Button extends React.Component {
+  // ...
+}
+````
+
+> **Note:** The `render` modifier is required for the example to be rendered. That is, if `jsx` had been specified as the language for the fenced code block, rather than `jsx render`, the example would not be rendered (and a warning would be logged to the console).
 
 ## Public methods
 
