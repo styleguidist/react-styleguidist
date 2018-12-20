@@ -7,11 +7,16 @@ import './Button.css';
  * The only true button.
  *
  * @example Inline Example 1:
- * ```jsx
+ * ```jsx render
  * <Button>I Dare you</Button>
  * ```
  *
  * @example Inline Example 2:
+ * ```jsx render
+ * <Button>Pretty please.</Button>
+ * ```
+ *
+ * @example Invalid Example 2:
  * ```jsx
  * <Button>Pretty please.</Button>
  * ```

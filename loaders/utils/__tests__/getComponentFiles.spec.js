@@ -58,6 +58,7 @@ it('getComponentFiles() should accept components as a glob', () => {
 	expect(deabs(result)).toEqual([
 		'~/components/Annotation/Annotation.js',
 		'~/components/Button/Button.js',
+		'~/components/ButtonInline/ButtonInline.js',
 		'~/components/Placeholder/Placeholder.js',
 		'~/components/Price/Price.js',
 		'~/components/RandomButton/RandomButton.js',

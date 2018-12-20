@@ -162,6 +162,44 @@ it('should attach examples from Markdown file', () => {
 	);
 });
 
+it('should attach inline examples', () => {
+	const file = './test/components/ButtonInline/ButtonInline.js';
+	const result = propsLoader.call(
+		{
+			request: file,
+			_styleguidist,
+		},
+		readFileSync(file, 'utf8')
+	);
+	expect(result).toBeTruthy();
+
+	expect(() => new vm.Script(result)).not.toThrow();
+	// Result spits out JS text which exports an array with two objects, one
+	// with "type" markdown and the other other with "type" code. We want to
+	// verify this.
+	expect(result).toMatch(/'type':\s'markdown'[\S\s]+'type':\s'code'/);
+});
+
+it('should attach doclet examples with inline examples', () => {
+	const file = './test/components/ButtonInline/ButtonInline.js';
+	const result = propsLoader.call(
+		{
+			request: file,
+			_styleguidist,
+		},
+		readFileSync(file, 'utf8')
+	);
+	expect(result).toBeTruthy();
+
+	expect(() => new vm.Script(result)).not.toThrow();
+	// Result spits out JS text which exports an array with two objects, one
+	// with "type" markdown and the other other with "type" code. We want to
+	// verify this.
+	expect(result).toMatch(/'type':\s'markdown'[\S\s]+'type':\s'code'/);
+	// Also verify that we are still requiring an example file normally
+	expect(result).toMatch(/require\('!!.*?\/loaders\/examples-loader\.js!\.\/button.example.md'\)/);
+});
+
 it('should warn if no componets are exported', () => {
 	const warn = jest.fn();
 	logger.once('warn', warn);

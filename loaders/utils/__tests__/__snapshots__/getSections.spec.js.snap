@@ -47,6 +47,19 @@ Array [
         "slug": "button-2",
       },
       Object {
+        "filepath": "components/ButtonInline/ButtonInline.js",
+        "hasExamples": true,
+        "metadata": Object {},
+        "module": Object {
+          "require": "~/test/components/ButtonInline/ButtonInline.js",
+        },
+        "pathLine": "components/ButtonInline/ButtonInline.js",
+        "props": Object {
+          "require": "!!~/loaders/props-loader.js!~/test/components/ButtonInline/ButtonInline.js",
+        },
+        "slug": "buttoninline-2",
+      },
+      Object {
         "filepath": "components/Placeholder/Placeholder.js",
         "hasExamples": true,
         "metadata": Object {
@@ -114,6 +127,19 @@ Array [
           "require": "!!~/loaders/props-loader.js!~/test/components/Button/Button.js",
         },
         "slug": "button-3",
+      },
+      Object {
+        "filepath": "components/ButtonInline/ButtonInline.js",
+        "hasExamples": true,
+        "metadata": Object {},
+        "module": Object {
+          "require": "~/test/components/ButtonInline/ButtonInline.js",
+        },
+        "pathLine": "components/ButtonInline/ButtonInline.js",
+        "props": Object {
+          "require": "!!~/loaders/props-loader.js!~/test/components/ButtonInline/ButtonInline.js",
+        },
+        "slug": "buttoninline-3",
       },
       Object {
         "filepath": "components/Placeholder/Placeholder.js",
@@ -200,6 +226,19 @@ Object {
         "require": "!!~/loaders/props-loader.js!~/test/components/Button/Button.js",
       },
       "slug": "button",
+    },
+    Object {
+      "filepath": "components/ButtonInline/ButtonInline.js",
+      "hasExamples": true,
+      "metadata": Object {},
+      "module": Object {
+        "require": "~/test/components/ButtonInline/ButtonInline.js",
+      },
+      "pathLine": "components/ButtonInline/ButtonInline.js",
+      "props": Object {
+        "require": "!!~/loaders/props-loader.js!~/test/components/ButtonInline/ButtonInline.js",
+      },
+      "slug": "buttoninline",
     },
     Object {
       "filepath": "components/Placeholder/Placeholder.js",
@@ -291,6 +330,19 @@ Object {
         "require": "!!~/loaders/props-loader.js!~/test/components/Button/Button.js",
       },
       "slug": "button-1",
+    },
+    Object {
+      "filepath": "components/ButtonInline/ButtonInline.js",
+      "hasExamples": true,
+      "metadata": Object {},
+      "module": Object {
+        "require": "~/test/components/ButtonInline/ButtonInline.js",
+      },
+      "pathLine": "components/ButtonInline/ButtonInline.js",
+      "props": Object {
+        "require": "!!~/loaders/props-loader.js!~/test/components/ButtonInline/ButtonInline.js",
+      },
+      "slug": "buttoninline-1",
     },
     Object {
       "filepath": "components/Placeholder/Placeholder.js",

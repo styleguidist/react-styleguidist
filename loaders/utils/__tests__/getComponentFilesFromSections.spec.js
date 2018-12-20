@@ -29,6 +29,7 @@ it('getComponentFilesFromSections() should return a list of files', () => {
 	const result = getComponentFilesFromSections(sections, configDir);
 	expect(deabs(result)).toEqual([
 		'~/components/Button/Button.js',
+		'~/components/ButtonInline/ButtonInline.js',
 		'~/components/Placeholder/Placeholder.js',
 		'~/components/Price/Price.js',
 	]);

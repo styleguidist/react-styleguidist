@@ -76,8 +76,6 @@ module.exports = function(source) {
 			let appendAst;
 			if (typeof example === 'string') {
 				appendAst = inlineLoader(this, examplesLoader, example);
-			} else {
-				appendAst = generate(toAst(example));
 			}
 			inlineExampleBlock += `docs.examples = docs.examples.concat(${appendAst});\n`;
 		});
