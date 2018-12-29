@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Link from 'rsg-components/Link';
 import Styled from 'rsg-components/Styled';
-import { hasInHash, getHash } from '../../utils/handleHash';
+import { getHash } from '../../utils/handleHash';
 
 const styles = ({ color, fontFamily, fontSize, space, mq }) => ({
 	list: {
@@ -48,7 +48,7 @@ export function ComponentsListRenderer({ classes, items }) {
 	return (
 		<ul className={classes.list}>
 			{items.map(({ heading, visibleName, href, content, external }) => {
-				const isItemSelected = hasInHash(windowHash, href);
+				const isItemSelected = windowHash === href;
 				return (
 					<li
 						className={cx(
