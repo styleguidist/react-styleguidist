@@ -34,7 +34,7 @@ module.exports = function findUserWebpackConfig(resolve) {
 					return absoluteConfigFile;
 				}
 			}
-	    	}
+		}
 	}
 
 	return false;
