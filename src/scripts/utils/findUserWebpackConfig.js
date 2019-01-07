@@ -23,18 +23,18 @@ module.exports = function findUserWebpackConfig(resolve) {
 		// Create React App <= 2.1.1
 		return resolve(CREATE_REACT_APP_WEBPACK_CONFIG_DEV);
 	} catch (err) {
-    try {
-      // Create React App > 2.1.1
-      return resolve(CREATE_REACT_APP_WEBPACK_CONFIG);
-    } catch (err) {
-      // Check in the root folder
-      for (const configFile of USER_WEBPACK_CONFIG_NAMES) {
-        const absoluteConfigFile = absolutize(configFile);
-        if (fs.existsSync(absoluteConfigFile)) {
-          return absoluteConfigFile;
-        }
-      }
-    }
+		try {
+			// Create React App > 2.1.1
+			return resolve(CREATE_REACT_APP_WEBPACK_CONFIG);
+		} catch (err) {
+			// Check in the root folder
+			for (const configFile of USER_WEBPACK_CONFIG_NAMES) {
+				const absoluteConfigFile = absolutize(configFile);
+				if (fs.existsSync(absoluteConfigFile)) {
+					return absoluteConfigFile;
+				}
+			}
+	    	}
 	}
 
 	return false;
