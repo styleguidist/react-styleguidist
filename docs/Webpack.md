@@ -69,7 +69,7 @@ module.exports = {
         // Other loaders that are needed for your components
         {
           test: /\.css$/,
-          loader: 'style-loader!css-loader?modules'
+          use: ['style-loader', 'css-loader']
         }
       ]
     }
