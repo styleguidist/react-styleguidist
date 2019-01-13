@@ -64,7 +64,7 @@
     "lowercase-keys": "^1.0.1",
     "markdown-to-jsx": "^6.9.0",
     "mini-html-webpack-plugin": "^0.2.3",
-    "minimist": "^1.2.0",
+    "mri": "^1.1.4",
     "ora": "^3.0.0",
     "prismjs": "^1.15.0",
     "prop-types": "^15.6.2",

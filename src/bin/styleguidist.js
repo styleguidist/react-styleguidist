@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
-const minimist = require('minimist');
+const mri = require('mri');
 const kleur = require('kleur');
 const ora = require('ora');
 const stringify = require('q-i').stringify;
@@ -13,7 +13,7 @@ const setupLogger = require('../scripts/logger');
 const consts = require('../scripts/consts');
 const StyleguidistError = require('../scripts/utils/error');
 
-const argv = minimist(process.argv.slice(2));
+const argv = mri(process.argv.slice(2));
 const command = argv._[0];
 
 // Do not show nasty stack traces for Styleguidist errors
