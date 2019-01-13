@@ -91,15 +91,16 @@ module.exports = {
 
 If you’re using [Create React App](https://github.com/facebook/create-react-app) and TypeScript:
 
-1. Install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript).
-2. Create a `styleguide.config.js`, see [configuration](Configuration.md) reference.
-3. Update your `styleguide.config.js`:
+  1. Install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript).
+  2. Create a `styleguide.config.js`, see [configuration](Configuration.md) reference.
+  3. Update your `styleguide.config.js`:
 
-   ```javascript
-   module.exports = {
-     propsParser: require('react-docgen-typescript').parse
-   }
-   ```
+```javascript
+module.exports = {
+  propsParser: require('react-docgen-typescript').parse,
+  webpackConfig: require('react-scripts/config/webpack.config.js')
+};
+```
 
 ## Non-webpack projects
 
