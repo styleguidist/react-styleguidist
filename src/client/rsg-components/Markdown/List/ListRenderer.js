@@ -1,6 +1,6 @@
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
+import cx from 'clsx';
 import Styled from 'rsg-components/Styled';
 
 const styles = ({ space, color, fontFamily }) => ({

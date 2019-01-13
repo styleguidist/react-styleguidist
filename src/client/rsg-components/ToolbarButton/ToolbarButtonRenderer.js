@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
-import cx from 'classnames';
+import cx from 'clsx';
 
 export const styles = ({ space, color }) => ({
 	button: {
