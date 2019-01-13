@@ -27,7 +27,11 @@ process.on('uncaughtException', err => {
 			consts.DOCS_CONFIG
 		);
 	} else if (err instanceof StyleguidistError) {
-		console.error(kleur.bold.red(err.message));
+		console.error(
+			kleur()
+				.bold()
+				.red(err.message)
+		);
 		logger.debug(err.stack);
 	} else {
 		console.error(err.toString());
@@ -219,7 +223,11 @@ function printBuildInstructions(config) {
  * @param {string} linkUrl
  */
 function printErrorWithLink(message, linkTitle, linkUrl) {
-	console.error(`${kleur.bold.red(message)}\n\n${linkTitle}\n${kleur.underline(linkUrl)}\n`);
+	console.error(
+		`${kleur()
+			.bold()
+			.red(message)}\n\n${linkTitle}\n${kleur.underline(linkUrl)}\n`
+	);
 }
 
 /**
@@ -243,11 +251,32 @@ function printErrors(header, errors, originalErrors, type) {
  */
 function printStatus(text, type) {
 	if (type === 'success') {
-		console.log(kleur.inverse.bold.green(' DONE ') + ' ' + text);
+		console.log(
+			kleur
+				.inverse()
+				.bold()
+				.green(' DONE ') +
+				' ' +
+				text
+		);
 	} else if (type === 'error') {
-		console.error(kleur.inverse.bold.red(' FAIL ') + ' ' + kleur.red(text));
+		console.error(
+			kleur
+				.inverse()
+				.bold()
+				.red(' FAIL ') +
+				' ' +
+				kleur.red(text)
+		);
 	} else {
-		console.error(kleur.inverse.bold.yellow(' WARN ') + ' ' + kleur.yellow(text));
+		console.error(
+			kleur
+				.inverse()
+				.bold()
+				.yellow(' WARN ') +
+				' ' +
+				kleur.yellow(text)
+		);
 	}
 }
 
