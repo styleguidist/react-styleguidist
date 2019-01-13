@@ -1,4 +1,4 @@
-import qs from 'querystringify';
+import { encode } from 'qss';
 import examplesLoader from '../examples-loader';
 
 /* eslint-disable no-new-func */
@@ -9,7 +9,7 @@ const query = {
 	shouldShowDefaultExample: false,
 };
 
-const getQuery = (options = {}) => `?${qs.stringify({ ...query, ...options })}`;
+const getQuery = (options = {}) => encode({ ...query, ...options }, '?');
 
 it('should return valid, parsable JS', () => {
 	const exampleMarkdown = `

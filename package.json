@@ -69,7 +69,7 @@
     "prismjs": "^1.15.0",
     "prop-types": "^15.6.2",
     "q-i": "^2.0.1",
-    "querystringify": "^2.1.0",
+    "qss": "^2.0.0",
     "react-dev-utils": "^6.1.1",
     "react-docgen": "3.0.0-rc.2",
     "react-docgen-annotation-resolver": "^1.0.0",
