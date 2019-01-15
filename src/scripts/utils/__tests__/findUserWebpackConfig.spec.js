@@ -16,7 +16,7 @@ it('should return path to Create React App Webpack config (react-scripts > 2.1.1
 		}
 		return a;
 	});
-	expect(result).toMatch(/^react-scripts\/config\/webpack\.config/);
+	expect(result).toMatch(/^react-scripts\/config\/webpack\.config\.js/);
 });
 
 it('should return an absolute path to user Webpack config located in project root folder', () => {
