@@ -5,7 +5,7 @@ afterEach(() => process.chdir(cwd));
 
 it('should return path to Create React App Webpack old config (react-scripts <= 2.1.1)', () => {
 	const result = findUserWebpackConfig(a => a);
-	expect(result).toMatch(/^react-scripts\/config\/webpack\.config\.dev/);
+	expect(result).toMatchInlineSnapshot(`"react-scripts/config/webpack.config.dev"`);
 });
 
 it('should return path to Create React App Webpack config (react-scripts > 2.1.1)', () => {
@@ -16,7 +16,7 @@ it('should return path to Create React App Webpack config (react-scripts > 2.1.1
 		}
 		return a;
 	});
-	expect(result).toMatch(/^react-scripts\/config\/webpack\.config\.js/);
+	expect(result).toMatchInlineSnapshot(`"react-scripts/config/webpack.config"`);
 });
 
 it('should return an absolute path to user Webpack config located in project root folder', () => {
