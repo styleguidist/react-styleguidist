@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
+import cx from 'clsx';
 import Link from 'rsg-components/Link';
 import Styled from 'rsg-components/Styled';
 import { getHash } from '../../utils/handleHash';

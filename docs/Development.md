@@ -76,7 +76,7 @@ Each component folder usually has several files:
 
 For styles we use [JSS](http://cssinjs.org/), it allows users to customize their style guide and allows us to ensure styles isolations (thanks to [jss-isolate](http://cssinjs.org/jss-isolate/)). No user styles should affect Styleguidist UI and no Styleguidist styles should affect user components.
 
-Use [classnames](https://github.com/JedWatson/classnames) to merge several class names or for conditional class names, import it as `cx` (`import cx from 'classnames'`).
+Use [clsx](https://github.com/lukeed/clsx) to merge several class names or for conditional class names, import it as `cx` (`import cx from 'clsx'`).
 
 We use `Styled` higher-order component to allow theming (see [theme](Configuration.md#theme) and [style](Configuration.md#style) style guide config options). Use it like this:
 
