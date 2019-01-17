@@ -1,7 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const CREATE_REACT_APP_WEBPACK_CONFIG = 'react-scripts/config/webpack.config.dev';
+// react-scripts <= 2.1.1
+const CREATE_REACT_APP_WEBPACK_CONFIG_OLD = 'react-scripts/config/webpack.config.dev';
+// react-scripts > 2.1.1
+const CREATE_REACT_APP_WEBPACK_CONFIG = 'react-scripts/config/webpack.config';
 const USER_WEBPACK_CONFIG_NAMES = ['webpack.config.js', 'webpackfile.js'];
 
 const absolutize = filePath => path.resolve(process.cwd(), filePath);
@@ -17,14 +20,19 @@ const absolutize = filePath => path.resolve(process.cwd(), filePath);
 module.exports = function findUserWebpackConfig(resolve) {
 	resolve = resolve || require.resolve;
 	try {
-		// Create React App
-		return resolve(CREATE_REACT_APP_WEBPACK_CONFIG);
+		// Create React App <= 2.1.1
+		return resolve(CREATE_REACT_APP_WEBPACK_CONFIG_OLD);
 	} catch (err) {
-		// Check in the root folder
-		for (const configFile of USER_WEBPACK_CONFIG_NAMES) {
-			const absoluteConfigFile = absolutize(configFile);
-			if (fs.existsSync(absoluteConfigFile)) {
-				return absoluteConfigFile;
+		try {
+			// Create React App > 2.1.1
+			return resolve(CREATE_REACT_APP_WEBPACK_CONFIG);
+		} catch (err) {
+			// Check in the root folder
+			for (const configFile of USER_WEBPACK_CONFIG_NAMES) {
+				const absoluteConfigFile = absolutize(configFile);
+				if (fs.existsSync(absoluteConfigFile)) {
+					return absoluteConfigFile;
+				}
 			}
 		}
 	}
