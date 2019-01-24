@@ -97,7 +97,8 @@ If you’re using [Create React App](https://github.com/facebook/create-react-ap
 
    ```javascript
    module.exports = {
-     propsParser: require('react-docgen-typescript').parse
+       propsParser: require('react-docgen-typescript').parse,
+       webpackConfig: require('react-scripts/config/webpack.config.js')
    }
    ```
 
