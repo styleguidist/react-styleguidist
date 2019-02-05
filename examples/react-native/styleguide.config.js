@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 
 module.exports = {
-	require: ['babel-polyfill'],
+	require: ['@babel/polyfill'],
 	components: 'src/**/[A-Z]*.js',
 	webpackConfig: {
 		resolve: {
@@ -14,9 +14,14 @@ module.exports = {
 				{
 					test: /\.js$/,
 					loader: 'babel-loader',
+					exclude: [/node_modules/],
 					options: {
-						plugins: ['react-native-web'],
-						presets: ['react-native'],
+						plugins: [
+							'@babel/proposal-class-properties',
+							'@babel/proposal-object-rest-spread',
+							'react-native-web',
+						],
+						presets: ['@babel/preset-env', 'module:metro-react-native-babel-preset'],
 						babelrc: false,
 					},
 				},
