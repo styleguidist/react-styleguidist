@@ -74,7 +74,7 @@
     "react-docgen": "3.0.0-rc.2",
     "react-docgen-annotation-resolver": "^1.0.0",
     "react-docgen-displayname-handler": "^2.1.1",
-    "react-group": "^2.0.0",
+    "react-group": "^3.0.0",
     "react-icons": "^2.2.7",
     "react-lifecycles-compat": "^3.0.4",
     "react-simple-code-editor": "^0.8.0",
