@@ -18,28 +18,32 @@ export function ArgumentRenderer({ classes, name, type, description, returns, bl
 	if (isOptional) {
 		type = type.expression;
 	}
-	return (
-		<div className={block && classes.block}>
-			<Group>
-				{returns && 'Returns'}
-				{name && (
-					<span>
-						<Name>{name}</Name>
-						{type && ':'}
-					</span>
-				)}
-				{type && (
-					<Type>
-						{type.name}
-						{isOptional && '?'}
-						{!!defaultValue && `=${defaultValue}`}
-					</Type>
-				)}
-				{type && description && ` — `}
-				{description && <Markdown text={`${description}`} inline />}
-			</Group>
-		</div>
+	const content = (
+		<Group>
+			{returns && 'Returns'}
+			{name && (
+				<span>
+					<Name>{name}</Name>
+					{type && ':'}
+				</span>
+			)}
+			{type && (
+				<Type>
+					{type.name}
+					{isOptional && '?'}
+					{!!defaultValue && `=${defaultValue}`}
+				</Type>
+			)}
+			{type && description && `—`}
+			{description && <Markdown text={`${description}`} inline />}
+		</Group>
 	);
+
+	if (block) {
+		return <div className={classes.block}>{content}</div>;
+	}
+
+	return content;
 }
 
 ArgumentRenderer.propTypes = {
