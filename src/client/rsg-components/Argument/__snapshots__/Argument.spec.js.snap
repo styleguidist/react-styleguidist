@@ -121,7 +121,7 @@ exports[`should render return value 1`] = `
   <Group
     separator=" "
   >
-    Returns 
+    Returns
     <Styled(Type)>
       Array
     </Styled(Type)>
