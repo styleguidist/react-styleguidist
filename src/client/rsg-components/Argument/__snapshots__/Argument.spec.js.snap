@@ -62,7 +62,6 @@ exports[`should render argument without type 1`] = `
 exports[`should render default value of argument 1`] = `
 <div>
   <Group
-    default="bar"
     separator=" "
   >
     <Styled(Type)>
@@ -81,7 +80,6 @@ exports[`should render default value of argument 1`] = `
 exports[`should render default value of optional argument 1`] = `
 <div>
   <Group
-    default="true"
     separator=" "
   >
     <Styled(Type)>

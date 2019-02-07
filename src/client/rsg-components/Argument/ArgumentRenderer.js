@@ -20,7 +20,7 @@ export function ArgumentRenderer({ classes, name, type, description, returns, bl
 	}
 	return (
 		<div className={block && classes.block}>
-			<Group {...props}>
+			<Group>
 				{returns && 'Returns'}
 				{name && (
 					<span>
