@@ -19,24 +19,26 @@ export function ArgumentRenderer({ classes, name, type, description, returns, bl
 		type = type.expression;
 	}
 	return (
-		<Group className={block && classes.block} {...props}>
-			{returns && 'Returns'}
-			{name && (
-				<span>
-					<Name>{name}</Name>
-					{type && ':'}
-				</span>
-			)}
-			{type && (
-				<Type>
-					{type.name}
-					{isOptional && '?'}
-					{!!defaultValue && `=${defaultValue}`}
-				</Type>
-			)}
-			{type && description && ` — `}
-			{description && <Markdown text={`${description}`} inline />}
-		</Group>
+		<div className={block && classes.block}>
+			<Group {...props}>
+				{returns && 'Returns '}
+				{name && (
+					<span>
+						<Name>{name}</Name>
+						{type && ':'}
+					</span>
+				)}
+				{type && (
+					<Type>
+						{type.name}
+						{isOptional && '?'}
+						{!!defaultValue && `=${defaultValue}`}
+					</Type>
+				)}
+				{type && description && ` — `}
+				{description && <Markdown text={`${description}`} inline />}
+			</Group>
+		</div>
 	);
 }
 
