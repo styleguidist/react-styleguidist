@@ -298,10 +298,8 @@ exports[`props columns should render PropTypes.oneOf 1`] = `
       <div>
         <Styled(Para)>
           <span>
-            One of:
-             
+            One of: 
             <Group
-              inline={true}
               separator=", "
             >
               <Styled(Code)
@@ -359,10 +357,8 @@ exports[`props columns should render PropTypes.oneOfType 1`] = `
       <div>
         <Styled(Para)>
           <span>
-            One of type:
-             
+            One of type: 
             <Group
-              inline={true}
               separator=", "
             >
               <Styled(Type)
@@ -996,10 +992,8 @@ exports[`props columns should render enum type when union of literals 1`] = `
       <div>
         <Styled(Para)>
           <span>
-            One of:
-             
+            One of: 
             <Group
-              inline={true}
               separator=", "
             >
               <Styled(Code)
