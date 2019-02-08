@@ -13,7 +13,7 @@ exports[`should render argument 1`] = `
   <Styled(Type)>
     Array
   </Styled(Type)>
-   — 
+  —
   <Markdown
     inline={true}
     text="Converts foo to bar"
@@ -55,14 +55,13 @@ exports[`should render argument without type 1`] = `
 
 exports[`should render default value of argument 1`] = `
 <Group
-  default="bar"
   separator=" "
 >
   <Styled(Type)>
     String
     =bar
   </Styled(Type)>
-   — 
+  —
   <Markdown
     inline={true}
     text="Converts foo to bar"
@@ -72,7 +71,6 @@ exports[`should render default value of argument 1`] = `
 
 exports[`should render default value of optional argument 1`] = `
 <Group
-  default="true"
   separator=" "
 >
   <Styled(Type)>
@@ -80,7 +78,7 @@ exports[`should render default value of optional argument 1`] = `
     ?
     =true
   </Styled(Type)>
-   — 
+  —
   <Markdown
     inline={true}
     text="Converts foo to bar"
@@ -96,7 +94,7 @@ exports[`should render optional argument 1`] = `
     Array
     ?
   </Styled(Type)>
-   — 
+  —
   <Markdown
     inline={true}
     text="Converts foo to bar"
@@ -112,7 +110,7 @@ exports[`should render return value 1`] = `
   <Styled(Type)>
     Array
   </Styled(Type)>
-   — 
+  —
   <Markdown
     inline={true}
     text="Converts foo to bar"
@@ -121,8 +119,11 @@ exports[`should render return value 1`] = `
 `;
 
 exports[`should render with block styles 1`] = `
-<Group
+<div
   className="block"
-  separator=" "
-/>
+>
+  <Group
+    separator=" "
+  />
+</div>
 `;

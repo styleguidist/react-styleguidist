@@ -73,10 +73,7 @@ function renderEnum(prop) {
 	));
 	return (
 		<span>
-			One of:{' '}
-			<Group separator=", " inline>
-				{values}
-			</Group>
+			One of: <Group separator=", ">{values}</Group>
 		</span>
 	);
 }
@@ -215,10 +212,7 @@ function renderUnion(prop) {
 	));
 	return (
 		<span>
-			One of type:{' '}
-			<Group separator=", " inline>
-				{values}
-			</Group>
+			One of type: <Group separator=", ">{values}</Group>
 		</span>
 	);
 }
