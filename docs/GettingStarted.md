@@ -23,8 +23,8 @@ npm install --save-dev react-styleguidist
 
 ## 3. Start your style guide
 
-- Run **`npx styleguidist server`** to start a style guide dev server.
-- Run **`npx styleguidist build`** to build a production HTML version.
+- Run **`npx react-styleguidist server`** to start a style guide dev server.
+- Run **`npx react-styleguidist build`** to build a production HTML version.
 
 **Note:** We recommend [adding these commands to your `package.json`](CLI.md).
 
