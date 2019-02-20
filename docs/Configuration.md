@@ -286,7 +286,7 @@ module.exports = {
 }
 ```
 
-````jsx static
+````jsx
 // ```jsx inside Markdown
 import React from 'react'
 import Button from 'rsg-example/components/Button'
