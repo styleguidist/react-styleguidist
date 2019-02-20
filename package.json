@@ -161,7 +161,6 @@
     "test:browser:sections": "node test/browser.js examples/sections/styleguide/index.html",
     "precommit": "lint-staged",
     "format": "prettier --write '**/*.{js,md,css}'",
-    "postinstall": "node -e \"console.log('\\u001b[32mLove Styleguidist? Support us on the Open Collective:\\u001b[22m\\u001b[39m\\n > \\u001b[96m\\u001b[1mhttps://opencollective.com/styleguidist\\u001b[0m\\n')\" || exit 0",
     "test:cypress:pre": "npm i --no-save cypress@3.0.2 wait-on",
     "test:cypress:open": "cypress open",
     "test:cypress:run": "cypress run",
