@@ -7,12 +7,23 @@ import Para from 'rsg-components/Para';
 import MarkdownHeading from 'rsg-components/Markdown/MarkdownHeading';
 import List from 'rsg-components/Markdown/List';
 import Blockquote from 'rsg-components/Markdown/Blockquote';
-import Pre from 'rsg-components/Markdown/Pre';
+import PreBase from 'rsg-components/Markdown/Pre';
 import Code from 'rsg-components/Code';
 import Checkbox from 'rsg-components/Markdown/Checkbox';
 import Hr from 'rsg-components/Markdown/Hr';
 import { Details, DetailsSummary } from 'rsg-components/Markdown/Details';
 import { Table, TableHead, TableBody, TableRow, TableCell } from 'rsg-components/Markdown/Table';
+
+const Pre = props => {
+	if (isValidElement(props.children)) {
+		// Avoid rendering <Code> inside <Pre>
+		return <PreBase {...props.children.props} />;
+	}
+	return <PreBase {...props} />;
+};
+Pre.propTypes = {
+	children: PropTypes.node,
+};
 
 export const baseOverrides = {
 	a: {
@@ -88,13 +99,7 @@ export const baseOverrides = {
 		component: Code,
 	},
 	pre: {
-		component: props => {
-			if (isValidElement(props.children)) {
-				// Avoid rendering <Code> inside <Pre>
-				return <Pre {...props.children.props} />;
-			}
-			return <Pre {...props} />;
-		},
+		component: Pre,
 	},
 	input: {
 		component: Checkbox,
