@@ -119,6 +119,8 @@ Each section consists of (all fields are optional):
 Configuring a style guide with textual documentation section and a list of components would look like:
 
 ```javascript
+// styleguide.config.js
+
 module.exports = {
   sections: [
     {
