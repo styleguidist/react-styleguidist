@@ -29,6 +29,31 @@ Button.propTypes = {
 	disabled: PropTypes.bool,
 	/** Gets called when the user clicks on the button */
 	onClick: PropTypes.func,
+
+	/** TO_BE_REMOVED: Nothing to do with button only for testing purpose */
+	tree: PropTypes.shape({
+		rootId: PropTypes.string.isRequired,
+		items: PropTypes.objectOf(
+			PropTypes.shape({
+				id: PropTypes.string.isRequired,
+				parentId: PropTypes.string,
+				children: PropTypes.arrayOf(PropTypes.string).isRequired,
+				hasChildren: PropTypes.bool.isRequired,
+				hasParent: PropTypes.bool.isRequired,
+				isChecked: PropTypes.bool.isRequired,
+				isExpanded: PropTypes.bool.isRequired,
+				isChildrenLoading: PropTypes.bool.isRequired,
+				type: PropTypes.string.isRequired,
+				data: PropTypes.shape({
+					title: PropTypes.string.isRequired,
+				}).isRequired,
+				defaults: PropTypes.shape({
+					isChecked: PropTypes.bool,
+					isExpanded: PropTypes.bool,
+				}),
+			})
+		).isRequired,
+	}),
 };
 Button.defaultProps = {
 	color: '#333',

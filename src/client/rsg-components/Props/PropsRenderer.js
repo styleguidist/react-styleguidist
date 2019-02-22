@@ -78,14 +78,19 @@ function renderEnum(prop) {
 	);
 }
 
-function renderShape(props) {
-	const rows = [];
+function renderShape(props, level = 0) {
+	let rows = [];
 	for (const name in props) {
 		const prop = props[name];
 		const defaultValue = renderDefault(prop);
 		const description = prop.description;
 		rows.push(
-			<div key={name}>
+			<div
+				key={name}
+				style={{
+					paddingLeft: 30 * level + 'px',
+				}}
+			>
 				<Name>{name}</Name>
 				{': '}
 				<Type>{renderType(prop)}</Type>
@@ -95,6 +100,7 @@ function renderShape(props) {
 				{description && <Markdown text={description} inline />}
 			</div>
 		);
+		rows = [...rows, renderExtra({ type: prop }, level + 1)];
 	}
 	return rows;
 }
@@ -174,7 +180,7 @@ function renderDescription(prop) {
 	);
 }
 
-function renderExtra(prop) {
+function renderExtra(prop, level = 0) {
 	const type = getType(prop);
 	if (!type) {
 		return null;
@@ -185,15 +191,15 @@ function renderExtra(prop) {
 		case 'union':
 			return renderUnion(prop);
 		case 'shape':
-			return renderShape(prop.type.value);
+			return renderShape(prop.type.value, level);
 		case 'arrayOf':
 			if (type.value.name === 'shape') {
-				return renderShape(prop.type.value.value);
+				return renderShape(prop.type.value.value, level);
 			}
 			return null;
 		case 'objectOf':
 			if (type.value.name === 'shape') {
-				return renderShape(prop.type.value.value);
+				return renderShape(prop.type.value.value, level);
 			}
 			return null;
 		default:
