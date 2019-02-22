@@ -27,11 +27,7 @@ process.on('uncaughtException', err => {
 			consts.DOCS_CONFIG
 		);
 	} else if (err instanceof StyleguidistError) {
-		console.error(
-			kleur()
-				.bold()
-				.red(err.message)
-		);
+		console.error(kleur.bold().red(err.message));
 		logger.debug(err.stack);
 	} else {
 		console.error(err.toString());
@@ -223,11 +219,7 @@ function printBuildInstructions(config) {
  * @param {string} linkUrl
  */
 function printErrorWithLink(message, linkTitle, linkUrl) {
-	console.error(
-		`${kleur()
-			.bold()
-			.red(message)}\n\n${linkTitle}\n${kleur.underline(linkUrl)}\n`
-	);
+	console.error(`${kleur.bold().red(message)}\n\n${linkTitle}\n${kleur.underline(linkUrl)}\n`);
 }
 
 /**
