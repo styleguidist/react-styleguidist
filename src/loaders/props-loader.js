@@ -21,7 +21,7 @@ module.exports = function(source) {
 	}
 
 	const defaultParser = (filePath, source, resolver, handlers) =>
-		reactDocs.parse(source, resolver, handlers);
+		reactDocs.parse(source, resolver, handlers, { filename: filePath });
 	const propsParser = config.propsParser || defaultParser;
 
 	let docs = {};

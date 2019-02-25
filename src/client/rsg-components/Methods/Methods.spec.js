@@ -19,14 +19,19 @@ export default function ColumnsRenderer({ methods }) {
 }
 
 function render(methods) {
-	const parsed = parse(`
+	const parsed = parse(
+		`
 		import { Component } from 'react';
 		export default class Cmpnt extends Component {
 			${methods.join('\n')}
 			render() {
 			}
 		}
-	`);
+	`,
+		undefined,
+		undefined,
+		{ filename: '' }
+	);
 	return shallow(<ColumnsRenderer methods={parsed.methods} />);
 }
 

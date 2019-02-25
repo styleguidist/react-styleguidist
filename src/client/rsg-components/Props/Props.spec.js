@@ -22,7 +22,8 @@ export default function ColumnsRenderer({ props }) {
 }
 
 function render(propTypes, defaultProps = []) {
-	const props = parse(`
+	const props = parse(
+		`
 		import { Component } from 'react';
 		import PropTypes from 'prop-types';
 		export default class Cmpnt extends Component {
@@ -35,12 +36,17 @@ function render(propTypes, defaultProps = []) {
 			render() {
 			}
 		}
-	`);
+	`,
+		undefined,
+		undefined,
+		{ filename: '' }
+	);
 	return shallow(<ColumnsRenderer props={propsToArray(props.props)} />);
 }
 
 function renderFlow(propsType, defaultProps = []) {
-	const props = parse(`
+	const props = parse(
+		`
 	  // @flow
 		import * as React from 'react';
 		type Props = {
@@ -53,7 +59,11 @@ function renderFlow(propsType, defaultProps = []) {
 			render() {
 			}
 		}
-	`);
+	`,
+		undefined,
+		undefined,
+		{ filename: '' }
+	);
 	return shallow(<ColumnsRenderer props={propsToArray(props.props)} />);
 }
 
