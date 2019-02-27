@@ -46,8 +46,7 @@ function getConfig(config, update) {
 	} catch (exception) {
 		if (exception instanceof StyleguidistError) {
 			throw new StyleguidistError(
-				'Something is wrong with your style guide config',
-				exception.message,
+				exception.toString() || 'Something is wrong with your style guide config',
 				exception.extra
 			);
 		} else {
