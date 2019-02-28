@@ -57,6 +57,34 @@ const E = snake$0.default || snake$0;
 `);
 	});
 
+	test('transpile multiline named imports without trailing comma', () => {
+		const result = transpileImports(`import {
+  B,
+  C
+} from 'cat'
+`);
+		expect(result).toMatchInlineSnapshot(`
+"const cat$0 = require('cat');
+const B = cat$0.B;
+const C = cat$0.C;
+"
+`);
+	});
+
+	test('transpile multiline named imports with trailing comma', () => {
+		const result = transpileImports(`import {
+  B,
+  C,
+} from 'cat'
+`);
+		expect(result).toMatchInlineSnapshot(`
+"const cat$0 = require('cat');
+const B = cat$0.B;
+const C = cat$0.C;
+"
+`);
+	});
+
 	test('return code if there are no imports', () => {
 		const code = `<Button />`;
 		const result = transpileImports(code);
