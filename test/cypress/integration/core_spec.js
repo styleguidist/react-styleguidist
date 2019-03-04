@@ -27,4 +27,8 @@ describe('Styleguidist core', () => {
 
 		cy.get('[id$=container]').should('have.length.above', 1);
 	});
+
+	it('returns to showing the sidebar after exiting isolated mode', () => {
+		cy.get('[class^=rsg--sidebar]').should('exist');
+	});
 });
