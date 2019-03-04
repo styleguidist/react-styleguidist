@@ -1,5 +1,5 @@
 describe('Styleguidist core', () => {
-	beforeEach(() => cy.visit('/'));
+	before(() => cy.visit('/'));
 
 	it('loads the page', () => {
 		cy.title().should('include', 'React Styleguidist');
@@ -17,10 +17,6 @@ describe('Styleguidist core', () => {
 	});
 
 	it('hides the sidebar in isolated mode', () => {
-		cy.get('a[aria-label="Open isolated"]')
-			.first()
-			.click();
-
 		cy.get('[class^=rsg--sidebar]').should('not.exist');
 	});
 });
