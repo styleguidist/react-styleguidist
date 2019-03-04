@@ -1,7 +1,7 @@
 describe('Single component', () => {
 	before(() => {
 		// Open simple button component in isolation
-		cy.visit('/#!/Button/1');
+		cy.visit('/#!/Button');
 	});
 
 	describe('props and methods section', () => {
