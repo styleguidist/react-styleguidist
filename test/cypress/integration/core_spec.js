@@ -15,4 +15,12 @@ describe('Styleguidist core', () => {
 			.click();
 		cy.get('[id$=container]').should('have.length', 1);
 	});
+
+	it('hides the sidebar in isolated mode', () => {
+		cy.get('a[aria-label="Open isolated"]')
+			.first()
+			.click();
+
+		cy.get('[class^=rsg--sidebar]').should('not.exist');
+	});
 });
