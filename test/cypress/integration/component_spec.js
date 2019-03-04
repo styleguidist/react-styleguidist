@@ -103,5 +103,10 @@ describe('Single component', () => {
 				.find('[class^=rsg--root]')
 				.should('have.length.above', 1);
 		});
+
+		// TODO: this test currently fails due to a bug (returns to normal mode rather than isolated component mode)
+		// it('returns to isolated component mode, rather than normal mode', () => {
+		// 	cy.get('[id$=container]').should('have.length', 1);
+		// });
 	});
 });
