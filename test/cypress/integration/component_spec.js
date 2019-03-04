@@ -80,4 +80,21 @@ describe('Single component', () => {
 				.should('exist');
 		});
 	});
+
+	describe('isolated mode', () => {
+		beforeEach(() => {
+			cy.get('[class^=rsg--root] article')
+				.as('componentExamples')
+				.find('a[aria-label="Open isolated"]')
+				.first()
+				.as('isolatedExampleBtn');
+		});
+
+		it('shows only one example in isolated example mode', () => {
+			cy.get('@isolatedExampleBtn').click();
+			cy.get('@componentExamples')
+				.find('[class^=rsg--root]')
+				.should('have.length', 1);
+		});
+	});
 });
