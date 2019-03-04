@@ -49,12 +49,8 @@ try {
 	config = getConfig(argv.config, updateConfig);
 } catch (err) {
 	if (err instanceof StyleguidistError) {
-		const link = consts.DOCS_CONFIG + (err.anchor ? `#${err.anchor.toLowerCase()}` : '');
-		printErrorWithLink(
-			err.message,
-			`${err.extra}\n\nLearn how to configure your style guide:`,
-			link
-		);
+		const link = consts.DOCS_CONFIG + (err.extra ? `#${err.extra.toLowerCase()}` : '');
+		printErrorWithLink(err.message, `Learn how to configure your style guide:`, link);
 		process.exit(1);
 	} else {
 		throw err;

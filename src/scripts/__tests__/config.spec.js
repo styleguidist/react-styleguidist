@@ -46,7 +46,7 @@ it('should throw if config has errors', () => {
 			components: 42,
 		});
 	} catch (err) {
-		expect(err.extra).toMatch('should be string, function, or array');
+		expect(err.message).toMatch('should be string, function, or array');
 	}
 });
 
@@ -160,7 +160,7 @@ it('should throw if defaultExample does not exist', () => {
 			defaultExample: 'pizza',
 		});
 	} catch (err) {
-		expect(err.extra).toMatch('does not exist');
+		expect(err.message).toMatch('does not exist');
 	}
 });
 
@@ -226,7 +226,7 @@ it('should throw when old template as a string option passed', () => {
 			template: 'pizza',
 		});
 	} catch (err) {
-		expect(err.extra).toMatch('format has been changed');
+		expect(err.message).toMatch('format has been changed');
 	}
 });
 
@@ -237,7 +237,7 @@ it('should throw when editorConfig option passed', () => {
 			editorConfig: { theme: 'foo' },
 		});
 	} catch (err) {
-		expect(err.extra).toMatch('config option was removed');
+		expect(err.message).toMatch('config option was removed');
 	}
 });
 

@@ -59,7 +59,8 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 			throw new StyleguidistError(
 				`Unknown config option ${kleur.bold(key)} was found, the value is:\n` +
 					stringify(value) +
-					(suggestion ? `\n\nDid you mean ${kleur.bold(suggestion)}?` : '')
+					(suggestion ? `\n\nDid you mean ${kleur.bold(suggestion)}?` : ''),
+				suggestion
 			);
 		}
 	});
@@ -98,7 +99,9 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 			// Check type
 			const hasRightType = types.some(type => {
 				if (!typeCheckers[type]) {
-					throw Error(`Wrong type ${kleur.bold(type)} specified for ${kleur.bold(key)} in schema.`);
+					throw new StyleguidistError(
+						`Wrong type ${kleur.bold(type)} specified for ${kleur.bold(key)} in schema.`
+					);
 				}
 				return typeCheckers[type](value);
 			});
@@ -108,17 +111,17 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 				if (exampleValue) {
 					example[key] = exampleValue;
 				}
-				throw new StyleguidistError(
-					`${kleur.bold(key)} config option should be ${typesList(types)}, received ${typeDetect(
-						value
-					)}.\n` +
-						(exampleValue
-							? `
+				const exampleText = exampleValue
+					? `
 Example:
 
 ${stringify(example)}`
-							: '',
-						key)
+					: '';
+				throw new StyleguidistError(
+					`${kleur.bold(key)} config option should be ${typesList(types)}, received ${typeDetect(
+						value
+					)}.\n${exampleText}`,
+					key
 				);
 			}
 
