@@ -81,7 +81,7 @@ describe('Single component', () => {
 		});
 	});
 
-	describe('isolated mode', () => {
+	describe('isolated example mode', () => {
 		beforeEach(() => {
 			cy.get('[class^=rsg--root] article')
 				.as('componentExamples')
@@ -90,14 +90,14 @@ describe('Single component', () => {
 				.as('isolatedExampleBtn');
 		});
 
-		it('shows only one example in isolated example mode', () => {
+		it('shows only one example', () => {
 			cy.get('@isolatedExampleBtn').click();
 			cy.get('@componentExamples')
 				.find('[class^=rsg--root]')
 				.should('have.length', 1);
 		});
 
-		it('shows all examples again after exiting isolated example mode', () => {
+		it('shows all examples again after exiting', () => {
 			cy.get('@isolatedExampleBtn').click();
 			cy.get('@componentExamples')
 				.find('[class^=rsg--root]')
