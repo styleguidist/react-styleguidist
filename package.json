@@ -33,7 +33,7 @@
     "ast-types": "^0.12.2",
     "buble": "0.19.4",
     "clean-webpack-plugin": "^1.0.1",
-    "clipboard-copy": "^2.0.1",
+    "clipboard-copy": "^3.0.0",
     "clsx": "^1.0.3",
     "common-dir": "^2.0.2",
     "copy-webpack-plugin": "^4.6.0",
