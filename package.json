@@ -15,7 +15,7 @@
     "url": "https://github.com/styleguidist/react-styleguidist/issues"
   },
   "license": "MIT",
-  "main": "scripts/index.js",
+  "main": "lib/scripts/index.js",
   "bin": {
     "styleguidist": "lib/bin/styleguidist.js"
   },
