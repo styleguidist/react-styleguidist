@@ -14,10 +14,16 @@ If you want to contribute but don’t know what to do, take a look at these two 
 
 ## Development workflow
 
-Run Babel in watch mode and start example style guide:
+Run Babel in watch mode:
 
 ```bash
-npm run compile:watch & npm start
+npm run compile:watch
+```
+
+Then open a new terminal and start an example style guide:
+
+```bash
+npm start
 ```
 
 Open [localhost:6060](http://localhost:6060) in a browser.
@@ -54,13 +60,19 @@ First install dependencies:
 npm run test:cypress:pre
 ```
 
-Then start Styleguidist server:
+Then run Babel in watch mode:
 
 ```bash
-npm run compile:watch & npm run test:cypress:startServer
+npm run compile:watch
 ```
 
-And, finally, in a separate terminal run tests:
+Then open a new terminal and start Styleguidist server:
+
+```bash
+npm run test:cypress:startServer
+```
+
+And, finally, in another separate terminal run tests:
 
 ```bash
 npm run test:cypress:run
@@ -78,11 +90,11 @@ npm run test:cypress:open
 - We’re using [Prettier](https://github.com/prettier/prettier) to format JavaScript, so don’t worry much about code formatting.
 - Don’t commit generated files, like minified JavaScript.
 - Don’t change version number and change log.
-- If you're updating examples other then `examples/basic`, you'll need to modify your watch and start commands:
+- If you're updating examples other then `examples/basic`, you'll need to modify your start commands:
 
 ```bash
-npm run compile:watch & npm run start:customised # if making changes to examples/customised
-npm run compile:watch & npm run start:sections # if making changes to examples/sections
+npm run start:customised # if making changes to examples/customised
+npm run start:sections # if making changes to examples/sections
 ```
 
 See the `scripts` section of the top level [package.json](https://github.com/styleguidist/react-styleguidist/blob/master/package.json#L135)
