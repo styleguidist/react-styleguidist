@@ -7,13 +7,18 @@ const styles = () => ({
 	root: {},
 });
 
-export function ExamplesRenderer({ classes, children }) {
-	return <article className={classes.root}>{children}</article>;
+export function ExamplesRenderer({ classes, children, name }) {
+	return (
+		<article className={classes.root} id={name + '-examples'}>
+			{children}
+		</article>
+	);
 }
 
 ExamplesRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	children: PropTypes.node,
+	name: PropTypes.string.isRequired,
 };
 
 export default Styled(styles)(ExamplesRenderer);

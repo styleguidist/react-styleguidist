@@ -6,7 +6,7 @@ import ExamplesRenderer from 'rsg-components/Examples/ExamplesRenderer';
 
 export default function Examples({ examples, name, exampleMode }, { codeRevision }) {
 	return (
-		<ExamplesRenderer>
+		<ExamplesRenderer name={name}>
 			{examples.map((example, index) => {
 				switch (example.type) {
 					case 'code':
