@@ -39,7 +39,7 @@ export function ReactComponentRenderer({
 	tabBody,
 }) {
 	return (
-		<div className={classes.root} id={name + '-container'}>
+		<div className={classes.root} data-testid={name + '-container'}>
 			<header className={classes.header}>
 				{heading}
 				{pathLine && <Pathline>{pathLine}</Pathline>}

@@ -7,7 +7,7 @@ const styles = () => ({
 	root: {},
 });
 
-export function ExamplesRenderer({ classes, children, name }) {
+export function ExamplesRenderer({ classes, name, children }) {
 	return (
 		<article className={classes.root} data-testid={name + '-examples'}>
 			{children}
@@ -17,8 +17,8 @@ export function ExamplesRenderer({ classes, children, name }) {
 
 ExamplesRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
-	children: PropTypes.node,
 	name: PropTypes.string.isRequired,
+	children: PropTypes.node,
 };
 
 export default Styled(styles)(ExamplesRenderer);
