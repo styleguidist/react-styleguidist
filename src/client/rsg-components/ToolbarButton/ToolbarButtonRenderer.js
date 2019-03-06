@@ -46,6 +46,7 @@ export function ToolbarButtonRenderer({
 	href,
 	title,
 	small,
+	dataTestID,
 	children,
 }) {
 	const classNames = cx(classes.button, className, {
@@ -54,7 +55,13 @@ export function ToolbarButtonRenderer({
 
 	if (href !== undefined) {
 		return (
-			<a href={href} title={title} className={classNames} aria-label={title}>
+			<a
+				href={href}
+				title={title}
+				className={classNames}
+				aria-label={title}
+				data-testid={dataTestID}
+			>
 				{children}
 			</a>
 		);
@@ -74,6 +81,7 @@ ToolbarButtonRenderer.propTypes = {
 	onClick: PropTypes.func,
 	title: PropTypes.string,
 	small: PropTypes.bool,
+	dataTestID: PropTypes.string,
 	children: PropTypes.node,
 };
 

@@ -85,7 +85,7 @@ describe('Single component', () => {
 
 			// Toggle into isolated example mode
 			cy.get('@componentExamples')
-				.find('a[aria-label="Open isolated"], a[aria-label="Show all components"]')
+				.find('[data-testid$="-isolate-button"]')
 				.first()
 				.click();
 
@@ -96,7 +96,7 @@ describe('Single component', () => {
 
 			// Toggle out of isolated example mode
 			cy.get('@componentExamples')
-				.find('a[aria-label="Open isolated"], a[aria-label="Show all components"]')
+				.find('[data-testid$="-isolate-button"]')
 				.click();
 
 			// Check the other examples are showing again

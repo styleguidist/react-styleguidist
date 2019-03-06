@@ -10,13 +10,13 @@ describe('Styleguidist core', () => {
 	});
 
 	it('toggles isolated component mode correctly', () => {
-		cy.get('a[aria-label="Open isolated"]')
+		cy.get('[data-testid$="-isolate-button"]')
 			.first()
 			.click();
 		cy.get('[id$=container]').should('have.length', 1);
 		cy.get('[class^=rsg--sidebar]').should('not.exist');
 
-		cy.get('a[aria-label="Show all components"]')
+		cy.get('[data-testid$="-isolate-button"]')
 			.first()
 			.click();
 
