@@ -37,7 +37,8 @@ export function PlaygroundRenderer({
 }) {
 	const { className, ...props } = previewProps;
 	return (
-		<div className={classes.root}>
+		// TODO: make the testid below unique eg. ${name}-example-${exampleIndex}
+		<div className={classes.root} data-testid={`${name}-example`}>
 			<div className={cx(classes.preview, className)} {...props} data-preview={name}>
 				{preview}
 			</div>

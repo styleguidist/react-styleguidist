@@ -3,6 +3,7 @@
 exports[`renderer should render preview 1`] = `
 <div
   className="root"
+  data-testid="name-example"
 >
   <div
     className="preview pizza"
