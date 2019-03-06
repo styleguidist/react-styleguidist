@@ -1,4 +1,5 @@
 const glob = require('glob');
+const path = require('path');
 const isFunction = require('lodash/isFunction');
 const isString = require('lodash/isString');
 
@@ -46,6 +47,9 @@ module.exports = function getComponentFiles(components, rootDir, ignore) {
 
 	// Resolve list of components from globs
 	const componentFiles = getFilesMatchingGlobs(componentGlobs, rootDir, ignore);
+	
+	// Get absolute component file paths with correct slash separator format
+	const resolvedComponentFiles = componentFiles.map(file => path.resolve(file));
 
-	return componentFiles;
+	return resolvedComponentFiles;
 };
