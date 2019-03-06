@@ -9,7 +9,7 @@ const styles = () => ({
 
 export function ExamplesRenderer({ classes, children, name }) {
 	return (
-		<article className={classes.root} id={name + '-examples'}>
+		<article className={classes.root} data-testid={name + '-examples'}>
 			{children}
 		</article>
 	);

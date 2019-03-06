@@ -83,7 +83,7 @@ describe('Single component', () => {
 
 	describe('isolated example mode', () => {
 		beforeEach(() => {
-			cy.get('[id$=-examples]')
+			cy.get('[data-testid$=-examples]')
 				.as('componentExamples')
 				.find('a[aria-label="Open isolated"], a[aria-label="Show all components"]')
 				.first()
