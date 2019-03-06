@@ -9,28 +9,18 @@ describe('Styleguidist core', () => {
 		cy.get('[id$=container]').should('have.length.above', 1);
 	});
 
-	describe('isolated component mode', () => {
-		it('shows single component', () => {
-			cy.get('a[aria-label="Open isolated"]')
-				.first()
-				.click();
-			cy.get('[id$=container]').should('have.length', 1);
-		});
+	it('toggles isolated component mode correctly', () => {
+		cy.get('a[aria-label="Open isolated"]')
+			.first()
+			.click();
+		cy.get('[id$=container]').should('have.length', 1);
+		cy.get('[class^=rsg--sidebar]').should('not.exist');
 
-		it('hides the sidebar', () => {
-			cy.get('[class^=rsg--sidebar]').should('not.exist');
-		});
+		cy.get('a[aria-label="Show all components"]')
+			.first()
+			.click();
 
-		it('returns to showing multiple components after exiting', () => {
-			cy.get('a[aria-label="Show all components"]')
-				.first()
-				.click();
-
-			cy.get('[id$=container]').should('have.length.above', 1);
-		});
-
-		it('returns to showing the sidebar after exiting', () => {
-			cy.get('[class^=rsg--sidebar]').should('exist');
-		});
+		cy.get('[id$=container]').should('have.length.above', 1);
+		cy.get('[class^=rsg--sidebar]').should('exist');
 	});
 });

@@ -79,34 +79,34 @@ describe('Single component', () => {
 				.contains('Push Me Harder')
 				.should('exist');
 		});
-	});
 
-	describe('isolated example mode', () => {
-		beforeEach(() => {
-			cy.get('[data-testid$=-examples]')
-				.as('componentExamples')
+		it('toggles isolated example mode correctly', () => {
+			cy.get('[data-testid$="-examples"]').as('componentExamples');
+
+			// Toggle into isolated example mode
+			cy.get('@componentExamples')
 				.find('a[aria-label="Open isolated"], a[aria-label="Show all components"]')
 				.first()
-				.as('isolatedExampleBtn');
-		});
+				.click();
 
-		it('shows only one example', () => {
-			cy.get('@isolatedExampleBtn').click();
+			// Check that there is only one example showing
 			cy.get('@componentExamples')
 				.find('[class^=rsg--root]')
 				.should('have.length', 1);
-		});
 
-		it('shows all examples again after exiting', () => {
-			cy.get('@isolatedExampleBtn').click();
+			// Toggle out of isolated example mode
+			cy.get('@componentExamples')
+				.find('a[aria-label="Open isolated"], a[aria-label="Show all components"]')
+				.click();
+
+			// Check the other examples are showing again
 			cy.get('@componentExamples')
 				.find('[class^=rsg--root]')
 				.should('have.length.above', 1);
-		});
 
-		// TODO: this test currently fails due to a bug (returns to normal mode rather than isolated component mode)
-		// it('returns to isolated component mode, rather than normal mode', () => {
-		// 	cy.get('[id$=container]').should('have.length', 1);
-		// });
+			// Check that we've returned to isolated component mode instead of normal mode
+			// TODO: this is currently bugged (returns to normal mode rather than isolated component mode)
+			//cy.get('[id$=container]').should('have.length', 1);
+		});
 	});
 });
