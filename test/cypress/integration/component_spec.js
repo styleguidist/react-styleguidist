@@ -89,7 +89,7 @@ describe('Single component', () => {
 				.first()
 				.click();
 
-			// Check that there is only one example showing
+			// Assert that there is only one example showing
 			cy.get('@componentExamples')
 				.find('[class^=rsg--root]')
 				.should('have.length', 1);
@@ -99,7 +99,7 @@ describe('Single component', () => {
 				.find('[data-testid$="-isolate-button"]')
 				.click();
 
-			// Check the other examples are showing again
+			// Assert the other examples are showing again
 			cy.get('@componentExamples')
 				.find('[class^=rsg--root]')
 				.should('have.length.above', 1);

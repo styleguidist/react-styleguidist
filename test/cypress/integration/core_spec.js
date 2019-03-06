@@ -10,17 +10,28 @@ describe('Styleguidist core', () => {
 	});
 
 	it('toggles isolated component mode correctly', () => {
+		cy.get('[data-testid=sidebar]').as('sidebar');
+
+		// Toggle into isolated mode
 		cy.get('[data-testid$="-isolate-button"]')
 			.first()
 			.click();
+
+		// Assert there's only one component showing
 		cy.get('[id$=container]').should('have.length', 1);
-		cy.get('[class^=rsg--sidebar]').should('not.exist');
 
+		// Assert the sidebar is no longer showing
+		cy.get('@sidebar').should('not.exist');
+
+		// Toogle out of isolated mode
 		cy.get('[data-testid$="-isolate-button"]')
 			.first()
 			.click();
 
+		// Assert that more than one component is now showing
 		cy.get('[id$=container]').should('have.length.above', 1);
-		cy.get('[class^=rsg--sidebar]').should('exist');
+
+		// Asser that the sidebar is now showing again
+		cy.get('@sidebar').should('exist');
 	});
 });

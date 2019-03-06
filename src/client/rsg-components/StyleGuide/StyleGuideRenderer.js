@@ -75,7 +75,7 @@ export function StyleGuideRenderer({
 				</footer>
 			</main>
 			{hasSidebar && (
-				<div className={classes.sidebar}>
+				<div className={classes.sidebar} data-testid="sidebar">
 					<header className={classes.logo}>
 						<Logo>{title}</Logo>
 						{version && <Version>{version}</Version>}
