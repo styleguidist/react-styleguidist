@@ -1,14 +1,16 @@
-const path = require('path');
-const fs = require('fs');
-const reactDocs = require('react-docgen');
-const highlightCodeInMarkdown = require('./highlightCodeInMarkdown');
-const removeDoclets = require('./removeDoclets');
-const requireIt = require('./requireIt');
-const getNameFromFilePath = require('./getNameFromFilePath');
-const doctrine = require('doctrine');
-const _ = require('lodash');
-const logger = require('glogg')('rsg');
-const parseExample = require('./parseExample');
+import path from 'path';
+import fs from 'fs';
+import * as reactDocs from 'react-docgen';
+import * as doctrine from 'doctrine';
+import _ from 'lodash';
+import Logger from 'glogg';
+import highlightCodeInMarkdown from './highlightCodeInMarkdown';
+import removeDoclets from './removeDoclets';
+import requireIt from './requireIt';
+import getNameFromFilePath from './getNameFromFilePath';
+import parseExample from './parseExample';
+
+const logger = Logger('rsg');
 
 const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
 

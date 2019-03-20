@@ -278,13 +278,13 @@ Object {
   "description": "The only true button.
 ",
   "displayName": "Button",
-  "doclets": Object {},
-  "examples": Array [
-    "Inline Example:
+  "doclets": Object {
+    "example": "Inline Example:
 \`\`\`jsx render
 <Button>I Dare you</Button>
 \`\`\`",
-  ],
+  },
+  "examples": Array [],
   "methods": Array [],
   "tags": Object {
     "example": Array [
