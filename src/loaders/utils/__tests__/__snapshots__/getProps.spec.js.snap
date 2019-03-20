@@ -1,0 +1,345 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should accept @return as a synonym of @returns 1`] = `
+Array [
+  Object {
+    "docblock": "
+Baz method with foo param
+
+@public
+@return {string} test
+",
+    "returns": Object {
+      "description": "test",
+      "title": "return",
+      "type": Object {
+        "name": "string",
+        "type": "NameExpression",
+      },
+    },
+    "tags": Object {
+      "public": Array [
+        Object {
+          "description": null,
+          "title": "public",
+          "type": null,
+        },
+      ],
+    },
+  },
+]
+`;
+
+exports[`should get method info from docblock and merge it 1`] = `
+Array [
+  Object {
+    "docblock": "
+Baz method with foo param
+
+@public
+@returns {string} test
+",
+    "returns": Object {
+      "description": "test",
+      "title": "returns",
+      "type": Object {
+        "name": "string",
+        "type": "NameExpression",
+      },
+    },
+    "tags": Object {
+      "public": Array [
+        Object {
+          "description": null,
+          "title": "public",
+          "type": null,
+        },
+      ],
+    },
+  },
+]
+`;
+
+exports[`should get method params info from docblock and merge it with passed method info 1`] = `
+Array [
+  Object {
+    "docblock": "
+Foo method with baz param
+
+@public
+@param {string} [baz=bar]
+@arg {string} foo param described with @arg tag
+@argument {string} test param described with @argument tag
+@returns {string} test
+",
+    "params": Array [
+      Object {
+        "default": "bar",
+        "description": null,
+        "name": "baz",
+        "title": "param",
+        "type": Object {
+          "expression": Object {
+            "name": "string",
+            "type": "NameExpression",
+          },
+          "type": "OptionalType",
+        },
+      },
+      Object {
+        "description": "param described with @arg tag",
+        "name": "foo",
+        "title": "arg",
+        "type": Object {
+          "name": "string",
+          "type": "NameExpression",
+        },
+      },
+      Object {
+        "description": "param described with @argument tag",
+        "name": "test",
+        "title": "argument",
+        "type": Object {
+          "name": "string",
+          "type": "NameExpression",
+        },
+      },
+    ],
+    "returns": Object {
+      "description": "test",
+      "title": "returns",
+      "type": Object {
+        "name": "string",
+        "type": "NameExpression",
+      },
+    },
+    "tags": Object {
+      "public": Array [
+        Object {
+          "description": null,
+          "title": "public",
+          "type": null,
+        },
+      ],
+    },
+  },
+]
+`;
+
+exports[`should highlight code in description (fenced code block) 1`] = `
+Object {
+  "description": "The only true button.
+
+\`\`\`js
+<span class=\\"token function\\">alert</span><span class=\\"token punctuation\\">(</span><span class=\\"token string\\">'Hello world'</span><span class=\\"token punctuation\\">)</span><span class=\\"token punctuation\\">;</span>
+\`\`\`
+",
+  "doclets": Object {},
+  "methods": Array [],
+  "tags": Object {},
+}
+`;
+
+exports[`should not crash when using doctrine to parse a default prop that isn't in the props list 1`] = `
+Object {
+  "description": "The only true button.
+",
+  "doclets": Object {},
+  "methods": Array [],
+  "props": Object {
+    "crash": Object {
+      "description": "",
+      "tags": Object {},
+    },
+  },
+  "tags": Object {},
+}
+`;
+
+exports[`should not return inline example when inline code without a render modifier is provided 1`] = `
+Object {
+  "description": "The only true button.
+",
+  "displayName": "Button",
+  "doclets": Object {
+    "example": "Inline Example:
+\`\`\`jsx
+<Button>I Dare you</Button>
+\`\`\`",
+  },
+  "examples": Array [],
+  "methods": Array [],
+  "tags": Object {
+    "example": Array [
+      Object {
+        "description": "Inline Example:
+\`\`\`jsx
+<Button>I Dare you</Button>
+\`\`\`",
+        "title": "example",
+      },
+    ],
+  },
+}
+`;
+
+exports[`should remove non-public methods 1`] = `
+Object {
+  "displayName": "Button",
+  "doclets": Object {},
+  "methods": Array [
+    Object {
+      "docblock": "Public method.
+@public",
+      "tags": Object {
+        "public": Array [
+          Object {
+            "description": null,
+            "title": "public",
+          },
+        ],
+      },
+    },
+  ],
+}
+`;
+
+exports[`should return an object for props 1`] = `
+Object {
+  "description": "The only true button.
+",
+  "displayName": "Button",
+  "doclets": Object {},
+  "methods": Array [],
+  "props": Object {
+    "children": Object {
+      "description": "Button label.",
+      "required": true,
+      "tags": Object {},
+      "type": Object {},
+    },
+    "color": Object {
+      "description": "",
+      "required": false,
+      "tags": Object {},
+      "type": Object {},
+    },
+  },
+  "tags": Object {},
+}
+`;
+
+exports[`should return an object for props with doclets 1`] = `
+Object {
+  "description": "The only true button.
+",
+  "displayName": "Button",
+  "doclets": Object {
+    "bar": "Bar
+",
+    "foo": "Foo",
+  },
+  "methods": Array [],
+  "tags": Object {
+    "bar": Array [
+      Object {
+        "description": "Bar",
+        "title": "bar",
+      },
+    ],
+    "foo": Array [
+      Object {
+        "description": "Foo",
+        "title": "foo",
+      },
+    ],
+  },
+}
+`;
+
+exports[`should return an object for props without description 1`] = `
+Object {
+  "displayName": "Button",
+  "doclets": Object {},
+  "methods": Array [],
+  "props": Object {
+    "children": Object {
+      "description": "Button label.",
+      "required": true,
+      "tags": Object {},
+      "type": Object {},
+    },
+  },
+}
+`;
+
+exports[`should return inline example when inline code with a render modifier is provided 1`] = `
+Object {
+  "description": "The only true button.
+",
+  "displayName": "Button",
+  "doclets": Object {},
+  "examples": Array [
+    "Inline Example:
+\`\`\`jsx render
+<Button>I Dare you</Button>
+\`\`\`",
+  ],
+  "methods": Array [],
+  "tags": Object {
+    "example": Array [
+      Object {
+        "description": "Inline Example:
+\`\`\`jsx render
+<Button>I Dare you</Button>
+\`\`\`",
+        "title": "example",
+      },
+    ],
+  },
+}
+`;
+
+exports[`should return require statement for @example doclet 1`] = `
+Object {
+  "description": "The only true button.
+",
+  "displayName": "Button",
+  "doclets": Object {
+    "example": "../../../test/components/Placeholder/examples.md
+",
+  },
+  "examples": Array [],
+  "methods": Array [],
+  "tags": Object {
+    "example": Array [
+      Object {
+        "description": "../../../test/components/Placeholder/examples.md",
+        "title": "example",
+      },
+    ],
+  },
+}
+`;
+
+exports[`should return require statement for @example doclet only when the file exists 1`] = `
+Object {
+  "description": "The only true button.
+",
+  "displayName": "Button",
+  "doclets": Object {
+    "example": "example.md
+",
+  },
+  "examples": Array [],
+  "methods": Array [],
+  "tags": Object {
+    "example": Array [
+      Object {
+        "description": "example.md",
+        "title": "example",
+      },
+    ],
+  },
+}
+`;

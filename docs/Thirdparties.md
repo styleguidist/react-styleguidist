@@ -58,11 +58,12 @@ Please see our [examples](https://github.com/styleguidist/react-styleguidist/tre
 
 ### Redux
 
-To use Redux store with one component, require it from your example:
+To use Redux store with one component, import it from your Markdown example:
 
-```jsx
-const { Provider } = require('react-redux')
-const configureStore = require('../utils/configureStore').default
+````jsx
+// ```jsx inside Markdown
+import { Provider } from 'react-redux'
+import configureStore from '../utils/configureStore'
 const initialState = {
   app: {
     name: 'Pizza Delivery'
@@ -72,25 +73,25 @@ const store = configureStore({ initialState })
 ;<Provider store={store}>
   <App greeting="Choose your pizza!" />
 </Provider>
-```
+````
 
-To use Redux store in every component redefine the `Wrapper` component:
+To use Redux store in every component, redefine the `Wrapper` component:
 
 ```javascript
 // styleguide.config.js
 const path = require('path')
 module.exports = {
   styleguideComponents: {
-    Wrapper: path.join(__dirname, 'lib/styleguide/Wrapper')
+    Wrapper: path.join(__dirname, 'src/styleguide/Wrapper')
   }
 }
 ```
 
 ```jsx
-// lib/styleguide/Wrapper.js
+// src/styleguide/Wrapper.js
 import React, { Component } from 'react'
-const { Provider } = require('react-redux')
-const configureStore = require('../utils/configureStore').default
+import { Provider } from 'react-redux'
+import configureStore from '../utils/configureStore'
 const initialState = {
   app: {
     name: 'Pizza Delivery'
@@ -138,7 +139,6 @@ import Relay from 'real-react-relay'
 ```js
 // styleguide.config.js
 module.exports = {
-  // ...
   context: {
     sample: path.join(__dirname, 'src/styleguide/sample_data')
   }
@@ -154,10 +154,10 @@ module.exports = {
 }
 ```
 
-```jsx
-// src/MyComponent/Readme.md
+````jsx
+// ```jsx inside Markdown
 <MyComponent object={sample.object} />
-```
+````
 
 _Based on @mikberg’s [blog post](https://medium.com/@mikaelberg/writing-simple-unit-tests-with-relay-707f19e90129)._
 
@@ -198,7 +198,6 @@ First, create your `Wrapper` component. For this example we’ll put it in the `
 
 ```jsx
 // styleguide/ThemeWrapper.js
-
 import React, { Component } from 'react'
 import { ThemeProvider } from 'styled-components'
 import theme from 'where/your/theme/lives'
@@ -217,13 +216,12 @@ export default class ThemeWrapper extends Component {
 Next, add `ThemeWrapper` to your `styleguide.config.js`.
 
 ```javascript
-const path = require('path');
-
+// styleguide.config.js
+const path = require('path')
 module.exports = {
-  ...
   styleguideComponents: {
-    Wrapper: path.join(__dirname, 'styleguide/ThemeWrapper'),
-  },
+    Wrapper: path.join(__dirname, 'styleguide/ThemeWrapper')
+  }
 }
 ```
 
@@ -259,13 +257,14 @@ This approach will also work with [react-css-themr](https://github.com/javivelas
 
 To use Styletron store with one component, require it from your example:
 
-```jsx
-const Styletron = require('styletron-client')
-const { StyletronProvider } = require('styletron-react')
+````jsx
+// ```jsx inside Markdown
+import Styletron from 'styletron-client'
+import { StyletronProvider } from 'styletron-react'
 ;<StyletronProvider styletron={new Styletron()}>
   <App greeting="Choose your pizza!" />
 </StyletronProvider>
-```
+````
 
 To use Styletron in every component redefine the Wrapper component:
 
@@ -274,18 +273,16 @@ To use Styletron in every component redefine the Wrapper component:
 const path = require('path')
 module.exports = {
   styleguideComponents: {
-    Wrapper: path.join(__dirname, 'lib/styleguide/Wrapper')
+    Wrapper: path.join(__dirname, 'src/styleguide/Wrapper')
   }
 }
 ```
 
 ```jsx
-// lib/styleguide/Wrapper.js
+// src/styleguide/Wrapper.js
 import React, { Component } from 'react'
-
 import Styletron from 'styletron-client'
 import { StyletronProvider } from 'styletron-react'
-
 export default class Wrapper extends Component {
   render() {
     return (

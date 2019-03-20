@@ -1,7 +1,7 @@
-const path = require('path');
-const styleguidist = require('../scripts');
+/* eslint-disable no-console, import/no-unresolved */
 
-/* eslint-disable no-console */
+const path = require('path');
+const styleguidist = require('../lib/scripts');
 
 const dir = path.resolve(__dirname, '../examples/basic/src');
 
@@ -23,11 +23,16 @@ styleguidist({
 			],
 		},
 	},
+	moduleAliases: {
+		'rsg-example': dir,
+	},
 	logger: {
 		info: console.log,
 		warn: message => console.warn(`Warning: ${message}`),
 	},
 	serverPort: 8082,
+	// Do not require delays in integration tests
+	previewDelay: 0,
 }).server((err, config) => {
 	if (err) {
 		console.log(err);

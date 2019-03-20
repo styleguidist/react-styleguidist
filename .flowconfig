@@ -1,0 +1,17 @@
+[ignore]
+.*/node_modules/.*
+<PROJECT_ROOT>/lib/.*
+<PROJECT_ROOT>/test/.*
+<PROJECT_ROOT>/examples/.*
+
+[libs]
+
+[lints]
+
+[options]
+# https://github.com/facebook/flow/issues/3143
+sharedmemory.hash_table_pow=21
+
+module.name_mapper='^rsg-components/\(.*\)$' -> '<PROJECT_ROOT>/src/rsg-components/\1'
+
+[strict]

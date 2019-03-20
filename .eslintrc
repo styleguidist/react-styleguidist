@@ -1,22 +1,29 @@
 {
   "parser": "babel-eslint",
-  "extends": "tamia/react",
+  "extends": ["tamia/react", "plugin:jsx-a11y/recommended"],
   "env": {
     "browser": true,
     "node": true
   },
   "plugins": [
     "compat",
-    "import"
+    "import",
+    "jsx-a11y"
   ],
   "settings": {
     "import/resolver": {
       "node": {
-        "moduleDirectory": ["src", "node_modules"]
+        "moduleDirectory": ["src/client", "node_modules"]
       }
+    },
+    "react": {
+      "version": "16.3",
+      "flowVersion": "0.83"
     }
   },
   "rules": {
+    "valid-jsdoc": 0,
+    "no-duplicate-imports": 0,
     "compat/compat": "error",
     "import/no-unresolved": ["error", {
       "commonjs": true,

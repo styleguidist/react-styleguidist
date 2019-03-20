@@ -44,6 +44,28 @@ Fenced blocks with other languages are rendered as highlighted code:
 <h1>Hello world</h1>
 ```
 
+Current component (like `Button` in this example) is always accessible by its name in the example code. If you want to use other components, you need to explicitly import them:
+
+```jsx
+import Placeholder from '../Placeholder'
+;<Button>
+  <Placeholder />
+</Button>
+```
+
+Or you can explicitly import everything, to make examples easier to copy into your app code:
+
+```jsx
+import React from 'react'
+import Button from 'rsg-example/components/Button'
+import Placeholder from 'rsg-example/components/Placeholder'
+;<Button>
+  <Placeholder />
+</Button>
+```
+
+_Note: `rsg-example` module is an alias defined by the [moduleAliases](https://react-styleguidist.js.org/docs/configuration.html#modulealiases) config option._
+
 Each example has its own state that you can access at the `state` variable and change with the `setState` function. Default state is `{}`:
 
 ```jsx

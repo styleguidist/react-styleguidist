@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getAst return AST 1`] = `
+Node {
+  "body": Array [
+    Node {
+      "end": 2,
+      "expression": Node {
+        "end": 2,
+        "raw": "42",
+        "start": 0,
+        "type": "Literal",
+        "value": 42,
+      },
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 2,
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;

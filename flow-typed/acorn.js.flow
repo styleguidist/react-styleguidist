@@ -1,0 +1,24 @@
+declare module 'acorn' {
+	declare export type AcornNode = {
+		type: string,
+		start: number,
+		end: number,
+		name: string,
+		value: string,
+		callee: AcornNode,
+		source: AcornNode,
+		expression: AcornNode,
+		body: AcornNode[],
+		arguments: AcornNode[],
+	};
+
+	declare type AcornConfig = {
+		ecmaVersion?: number,
+		sourceType?: 'script' | 'module',
+	};
+
+	declare class Parser<T> {
+		static parse(code: string, config?: AcornConfig): AcornNode;
+		static extend(...plugins: Function[]): T;
+	}
+}

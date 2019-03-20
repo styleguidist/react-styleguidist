@@ -92,7 +92,7 @@ export function StyleGuideRenderer({ classes, title, homepageUrl, children }) {
 			<main className={classes.content}>
 				{children}
 				<footer className={classes.footer}>
-					<Markdown text={`Generated with [React Styleguidist](${homepageUrl}) ❤️`} />
+					<Markdown text={`Created with [React Styleguidist](${homepageUrl}) ❤️`} />
 				</footer>
 			</main>
 		</div>

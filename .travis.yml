@@ -3,36 +3,41 @@ node_js:
   - 9
   - 8
   - 6
-env:
-  - WEBPACK_VERSION= # Current, from package.json
-  - WEBPACK_VERSION=3
-install:
+
+before_install:
   # Use npm 5.7.x since it has introduced `npm ci`
   - if [[ `npm -v` != 5.7* ]]; then npm install -g npm@'>=5.7.1'; fi
-  - npm ci
-before_script:
-  # Install Webpack version
-  - if [[ -n "$WEBPACK_VERSION" ]]; then npm install --no-save webpack@$WEBPACK_VERSION; fi
+
 script:
   # Run tests without coverage since it's 2x faster
   - npm run test:jest -- --runInBand
+
+# Trigger a push build on master branches only + PRs build on every branches
+# Avoid double build on PRs (See https://github.com/travis-ci/travis-ci/issues/1147)
 branches:
-  except:
-    - /^v\d+\.\d+\.\d+$/
+  only:
+    - master
+
 stages:
   - lint
   - test
+  - typecheck
   - integration
   - coverage
-  - release
+  - name: release
+    if: type != pull_request AND branch = master
   - name: documentation
-    if: branch = master
+    if: type != pull_request AND branch = master
 jobs:
   include:
     - stage: lint
       script:
         - npm run lint
         - npx danger ci
+
+    - stage: typecheck
+      script:
+        - npm run flow check
 
     - stage: integration
       script:
@@ -64,10 +69,16 @@ jobs:
       script:
         - npm install --no-save semantic-release-tamia
         - >-
-          npx semantic-release
-          --analyze-commits semantic-release-tamia/analyzeCommits
-          --verify-release semantic-release-tamia/verifyRelease
-          --generate-notes semantic-release-tamia/generateNotes
+          npx semantic-release --analyze-commits semantic-release-tamia/analyzeCommits --verify-release semantic-release-tamia/verifyRelease --generate-notes semantic-release-tamia/generateNotes
+          
+          
+          
+          
+          
+          
+          
+          
+          
 
     - stage: documentation
       script:

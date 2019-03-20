@@ -1,0 +1,4 @@
+declare module 'rewrite-imports' {
+	declare function rewriteImports(code: string): string;
+	declare export default typeof rewriteImports;
+}

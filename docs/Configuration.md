@@ -14,13 +14,13 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 - [`configureServer`](#configureserver)
 - [`dangerouslyUpdateWebpackConfig`](#dangerouslyupdatewebpackconfig)
 - [`defaultExample`](#defaultexample)
-- [`editorConfig`](#editorconfig)
 - [`exampleMode`](#examplemode)
 - [`getComponentPathLine`](#getcomponentpathline)
 - [`getExampleFilename`](#getexamplefilename)
 - [`handlers`](#handlers)
 - [`ignore`](#ignore)
 - [`logger`](#logger)
+- [`moduleAliases`](#modulealiases)
 - [`mountPointId`](#mountpointid)
 - [`pagePerSection`](#pagepersection)
 - [`printBuildInstructions`](#printbuildinstructions)
@@ -154,9 +154,19 @@ module.exports = {
 
 Type: `Boolean` or `String`, default: `false`
 
-For components that do not have an example, a default one can be used. When set to `true`, the [DefaultExample.md](https://github.com/styleguidist/react-styleguidist/blob/master/scripts/templates/DefaultExample.md) is used, or you can provide the path to your own example Markdown file.
+For components that do not have an example, a default one can be used. When set to `true`, the [DefaultExample.md](https://github.com/styleguidist/react-styleguidist/blob/master/templates/DefaultExample.md) is used, or you can provide the path to your own example Markdown file.
 
 When writing your own default example file, `__COMPONENT__` will be replaced by the actual component name at compile time.
+
+#### `exampleMode`
+
+Type: `String`, default: `collapse`
+
+Defines the initial state of the example code tab:
+
+- `collapse`: collapses the tab by default.
+- `hide`: hide the tab and it can´t be toggled in the UI.
+- `expand`: expand the tab by default.
 
 #### `getComponentPathLine`
 
@@ -177,12 +187,6 @@ module.exports = {
 }
 ```
 
-#### `editorConfig`
-
-Type: `Object`, default: [scripts/schemas/config.js](https://github.com/styleguidist/react-styleguidist/tree/master/scripts/schemas/config.js#L101)
-
-Source code editor options, see [CodeMirror docs](https://codemirror.net/doc/manual.html#config) for all available options.
-
 #### `getExampleFilename`
 
 Type: `Function`, default: finds `Readme.md` or `ComponentName.md` in the component folder
@@ -198,16 +202,6 @@ module.exports = {
   }
 }
 ```
-
-#### `exampleMode`
-
-Type: `String`, default: `collapse`
-
-Defines the initial state of the example code tab:
-
-- `collapse`: collapses the tab by default.
-- `hide`: hide the tab and it can´t be toggled in the UI.
-- `expand`: expand the tab by default.
 
 #### `handlers`
 
@@ -278,9 +272,33 @@ module.exports = {
 }
 ```
 
+#### `moduleAliases`
+
+Type: `object`, optional
+
+Define aliases for modules, that you can import in your examples, to make example code more realistic and copypastable:
+
+```javascript
+const path = require('path')
+module.exports = {
+  moduleAliases: {
+    'rsg-example': path.resolve(__dirname, 'src')
+  }
+}
+```
+
+````jsx
+// ```jsx inside Markdown
+import React from 'react'
+import Button from 'rsg-example/components/Button'
+import Placeholder from 'rsg-example/components/Placeholder'
+````
+
+Check out the [webpack resolve.alias documentation](https://webpack.js.org/configuration/resolve/#resolve-alias) for available syntax.
+
 #### `mountPointId`
 
-Type: `string`, defaults: `rsg-root`
+Type: `string`, default: `rsg-root`
 
 The ID of a DOM element where Styleguidist mounts.
 
@@ -337,9 +355,9 @@ module.exports = {
             }
           ]
         }
-      ]
+      ],
       // Will show "Components" as single page, filtering its children
-      sectionDepth: 1,
+      sectionDepth: 1
     },
     {
       name: 'Examples',
@@ -352,9 +370,9 @@ module.exports = {
             }
           ]
         }
-      ]
+      ],
       // There is no subroutes, "Examples" will show all its children on a page
-      sectionDepth: 0,
+      sectionDepth: 0
     }
   ]
 }
@@ -513,6 +531,20 @@ Type: `Boolean`, default: `false`
 
 Ignore components that don’t have an example file (as determined by [getExampleFilename](#getexamplefilename)). These components won’t be accessible from other examples unless you [manually `require` them](Cookbook.md#how-to-hide-some-components-in-style-guide-but-make-them-available-in-examples).
 
+#### `sortProps`
+
+Type: `Function`, optional
+
+Function that sorts component props. By default props are sorted such that required props come first, optional props come second. Props in both groups are sorted by their property names.
+
+To disable sorting, use the identity function:
+
+```javascript
+module.exports = {
+  sortProps: props => props
+}
+```
+
 #### `styleguideComponents`
 
 Type: `Object`, optional
@@ -533,7 +565,7 @@ module.exports = {
 
 See an example of [customized style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/customised).
 
-To wrap, rather than replace a component, make sure to import the default implementation using the full path to `react-styleguidist`. See an example of [wrapping a Styleguidist component](https://github.com/styleguidist/react-styleguidist/blob/master/examples/customised/styleguide/components/Sections.js).
+To wrap, rather than replace a component, make sure to import the default implementation using the full path to `react-styleguidist`. See an example of [wrapping a Styleguidist component](https://github.com/styleguidist/react-styleguidist/blob/master/examples/customised/styleguide/components/SectionsRenderer.js).
 
 **Note**: these components are not guaranteed to be safe from breaking changes in React Styleguidist updates.
 
@@ -577,25 +609,17 @@ Customize style guide UI fonts, colors, etc.
 
 See example in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide).
 
+> **Note:** See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.js).
+
+> **Note:** Styles use [JSS](https://github.com/cssinjs/jss/blob/master/docs/json-api.md) with these plugins: [jss-isolate](https://github.com/cssinjs/jss-isolate), [jss-nested](https://github.com/cssinjs/jss-nested), [jss-camel-case](https://github.com/cssinjs/jss-camel-case), [jss-default-unit](https://github.com/cssinjs/jss-default-unit), [jss-compose](https://github.com/cssinjs/jss-compose) and [jss-global](https://github.com/cssinjs/jss-global).
+
+> **Note:** Use [React Developer Tools](https://github.com/facebook/react-devtools) to find component and style names. For example a component `<LogoRenderer><h1 className="rsg--logo-53">` corresponds to an example above.
+
 #### `title`
 
 Type: `String`, default: `<app name from package.json> Style Guide`
 
 Style guide title.
-
-#### `sortProps`
-
-Type: `Function`, optional
-
-Function that sorts component props. By default props are sorted such that required props come first, optional props come second. Props in both groups are sorted by their property names.
-
-To disable sorting, use the identity function:
-
-```javascript
-module.exports = {
-  sortProps: props => props
-}
-```
 
 #### `updateDocs`
 
@@ -750,7 +774,7 @@ module.exports = {
 
 > **Note:** `entry`, `externals`, `output`, `watch`, and `stats` options will be ignored. For production builds, `devtool` will also be ignored.
 
-> **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `MiniHtmlWebpackPlugin`, `UglifyJsPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
+> **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `MiniHtmlWebpackPlugin`, `UglifyJsPlugin`, `TerserPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
 
 > **Note:** Run style guide in verbose mode to see the actual webpack config used by Styleguidist: `npx styleguidist server --verbose`.
 
