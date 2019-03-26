@@ -6,6 +6,7 @@ module.exports = {
 				loose: true,
 				modules: false,
 				useBuiltIns: 'usage',
+				corejs: 3,
 			},
 		],
 		'@babel/react',
@@ -23,6 +24,7 @@ module.exports = {
 						loose: true,
 						modules: 'commonjs',
 						useBuiltIns: 'usage',
+						corejs: 3,
 						targets: {
 							node: '6.4',
 						},

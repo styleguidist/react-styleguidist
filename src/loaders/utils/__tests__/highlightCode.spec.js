@@ -17,7 +17,7 @@ it('should warn when language not found', () => {
 	const actual = highlightCode(code, 'pizza');
 	expect(actual).toBe(code);
 	expect(warn).toBeCalledWith(
-		'Syntax highlighting for “pizza” isn’t supported. Supported languages are: clike, markup, xml, html, mathml, svg, markdown, css, scss, javascript, js, flow, typescript, ts, jsx, tsx, graphql, json, jsonp, bash, shell, diff.'
+		'Syntax highlighting for “pizza” isn’t supported. Supported languages are: clike, markup, xml, html, mathml, svg, markdown, md, css, scss, javascript, js, flow, typescript, ts, jsx, tsx, graphql, json, bash, shell, diff.'
 	);
 });
 
