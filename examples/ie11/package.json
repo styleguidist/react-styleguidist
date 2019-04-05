@@ -1,0 +1,40 @@
+{
+  "name": "react-styleguidist-example-ie11np",
+  "description": "React styleguidist ie11 example",
+  "version": "1.0.0",
+  "private": true,
+  "homepage": "https://github.com/styleguidist/react-styleguidist",
+  "author": {
+    "name": "Artem Sapegin",
+    "url": "http://sapegin.me/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/styleguidist/react-styleguidist.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=4"
+  },
+  "dependencies": {
+    "core-js": "3.0.0",
+    "css-loader": "2.1.1",
+    "prop-types": "15.7.2",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "react-styleguidist": "9.0.5",
+    "style-loader": "0.23.1",
+    "webpack": "4.29.6"
+  },
+  "scripts": {
+    "build": "webpack",
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build"
+  },
+  "devDependencies": {
+    "@babel/core": "7.4.3",
+    "@babel/preset-env": "7.4.3",
+    "@babel/preset-react": "7.0.0",
+    "babel-loader": "8.0.5"
+  }
+}
