@@ -45,5 +45,8 @@ const merge = mergeBase({
 module.exports = function mergeWebpackConfig(baseConfig, userConfig, env) {
 	const userConfigObject = isFunction(userConfig) ? userConfig(env) : userConfig;
 	const safeUserConfig = omit(userConfigObject, IGNORE_SECTIONS.concat(IGNORE_SECTIONS_ENV[env]));
+	if (userConfigObject && userConfigObject.output && userConfigObject.output.globalObject) {
+		baseConfig.output.globalObject = userConfigObject.output.globalObject;
+	}
 	return merge(baseConfig, safeUserConfig);
 };
