@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+/** @jsx h */
+
+import { h, Component } from 'preact';
 import PropTypes from 'prop-types';
 
 /**

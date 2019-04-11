@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+/** @jsx h */
+
+import { h, Component } from 'preact';
 
 /**
  * Button that counts how many times it was pressed and exposes a `@public` method to reset itself.

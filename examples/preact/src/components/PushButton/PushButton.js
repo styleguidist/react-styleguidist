@@ -1,4 +1,6 @@
-import React from 'react';
+/** @jsx h */
+
+import { h } from 'preact';
 import PropTypes from 'prop-types';
 
 import './PushButton.css';

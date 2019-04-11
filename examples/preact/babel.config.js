@@ -5,7 +5,6 @@ module.exports = {
 			{
 				debug: true,
 				modules: false,
-				useBuiltIns: 'usage',
 			},
 		],
 		'@babel/react',
