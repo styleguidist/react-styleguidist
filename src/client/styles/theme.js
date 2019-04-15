@@ -26,6 +26,7 @@ export const color = {
 	ribbonBackground: '#e90',
 	ribbonText: '#fff',
 	// Based on default Prism theme
+	codeBase: '#333',
 	codeComment: '#6d6d6d',
 	codePunctuation: '#999',
 	codeProperty: '#905',

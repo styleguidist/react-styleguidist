@@ -1,4 +1,7 @@
 const prismTheme = ({ color }) => ({
+	'&': {
+		color: color.codeBase,
+	},
 	[`& .token.comment,
 & .token.prolog,
 & .token.doctype,
