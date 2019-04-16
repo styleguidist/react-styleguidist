@@ -51,6 +51,7 @@ module.exports = function(config, env) {
 				'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
 				'process.env.STYLEGUIDIST_ENV': JSON.stringify(env),
 			}),
+			new webpack.ProgressPlugin(),
 		],
 		performance: {
 			hints: false,
