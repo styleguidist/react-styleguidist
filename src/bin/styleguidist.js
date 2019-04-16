@@ -131,7 +131,7 @@ function commandServer() {
 	verbose('Webpack config:', compiler.options);
 
 	// Print server message
-	compiler.hooks.done.tap('printServeMessage', () => {
+	compiler.hooks.done.tap('printServerMessage', () => {
 		if (config.printServerInstructions) {
 			config.printServerInstructions(config, { isHttps });
 		} else {
