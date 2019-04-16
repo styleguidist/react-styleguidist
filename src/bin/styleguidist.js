@@ -118,27 +118,33 @@ function commandServer() {
 	const compiler = server(config, err => {
 		if (err) {
 			console.error(err);
-		} else {
-			const isHttps = compiler.options.devServer && compiler.options.devServer.https;
-			const urls = webpackDevServerUtils.prepareUrls(
-				isHttps ? 'https' : 'http',
-				config.serverHost,
-				config.serverPort
-			);
-
-			if (config.printServerInstructions) {
-				config.printServerInstructions(config, { isHttps });
-			} else {
-				printServerInstructions(urls);
-			}
-
-			if (argv.open) {
-				openBrowser(urls.localUrlForBrowser);
-			}
 		}
 	}).compiler;
 
+	const isHttps = compiler.options.devServer && compiler.options.devServer.https;
+	const urls = webpackDevServerUtils.prepareUrls(
+		isHttps ? 'https' : 'http',
+		config.serverHost,
+		config.serverPort
+	);
+
 	verbose('Webpack config:', compiler.options);
+
+	// Print server message
+	compiler.hooks.done.tap('printServeMessage', () => {
+		if (config.printServerInstructions) {
+			config.printServerInstructions(config, { isHttps });
+		} else {
+			printServerInstructions(urls);
+		}
+	});
+
+	// Open browser
+	compiler.hooks.done.tap('openBrowser', () => {
+		if (argv.open) {
+			openBrowser(urls.localUrlForBrowser);
+		}
+	});
 
 	// Show message when webpack is recompiling the bundle
 	compiler.hooks.invalid.tap('rsgInvalidServer', function() {
