@@ -17,24 +17,26 @@
     "node": ">=4"
   },
   "dependencies": {
+    "add": "^2.0.6",
+    "core-js": "^3.0.1",
     "dog-names": "^1.0.2",
     "lodash": "^4.17.11",
-    "prop-types": "^15.6.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.3",
-    "@babel/plugin-proposal-class-properties": "^7.3.3",
-    "@babel/preset-env": "^7.3.1",
-    "@babel/preset-react": "^7.0.0-beta.56",
-    "babel-loader": "^8.0.0-beta.4",
-    "css-loader": "^0.28.11",
-    "file-loader": "^1.1.11",
-    "react-styleguidist": "^6.5.0",
-    "style-loader": "^0.20.3",
-    "url-loader": "^0.6.2",
-    "webpack": "^3.8.1"
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "file-loader": "^3.0.1",
+    "react-styleguidist": "^9.0.8",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.30.0"
   },
   "scripts": {
     "styleguide": "styleguidist server",
