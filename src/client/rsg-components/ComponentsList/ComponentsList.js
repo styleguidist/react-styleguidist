@@ -6,6 +6,7 @@ import getUrl from '../../utils/getUrl';
 function ComponentsList({ classes, items, useRouterLinks = false, useHashId, hashPath }) {
 	const mappedItems = items.map(item => ({
 		...item,
+		shouldOpenInNewTab: !!item.href,
 		href: item.href
 			? item.href
 			: getUrl({
