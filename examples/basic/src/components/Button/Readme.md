@@ -93,3 +93,10 @@ initialState = { count: 42 }
   {state.count}
 </Button>
 ```
+
+You can also use hooks in the examples, like the `useState` hook, as shown below:
+
+```jsx
+const [count, setCount] = React.useState(42)
+;<Button onClick={() => setCount(count + 1)}>{count}</Button>
+```

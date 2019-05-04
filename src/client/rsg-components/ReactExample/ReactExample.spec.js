@@ -63,3 +63,24 @@ setTimeout(() => state.count === 1 && setState({count:2}));
 		}
 	});
 });
+
+it('should set initial state with hooks', () => {
+	const code = `
+const [count, setCount] = React.useState(0);
+<button>{count}</button>
+	`;
+	const actual = mount(<ReactExample code={code} evalInContext={evalInContext} onError={noop} />);
+
+	expect(actual.find('button').text()).toEqual('0');
+});
+
+it('should update state with hooks', () => {
+	const code = `
+const [count, setCount] = React.useState(0);
+<button onClick={() => setCount(count+1)}>{count}</button>
+	`;
+	const actual = mount(<ReactExample code={code} evalInContext={evalInContext} onError={noop} />);
+	actual.find('button').simulate('click');
+
+	expect(actual.find('button').text()).toEqual('1');
+});
