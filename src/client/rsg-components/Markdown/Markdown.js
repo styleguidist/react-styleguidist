@@ -1,6 +1,7 @@
 import React, { isValidElement } from 'react';
 import PropTypes from 'prop-types';
 import { compiler } from 'markdown-to-jsx';
+import stripHtmlComments from 'strip-html-comments';
 import Link from 'rsg-components/Link';
 import Text from 'rsg-components/Text';
 import Para from 'rsg-components/Para';
@@ -145,7 +146,7 @@ export const inlineOverrides = {
 
 function Markdown({ text, inline }) {
 	const overrides = inline ? inlineOverrides : baseOverrides;
-	return compiler(text, { overrides, forceBlock: true });
+	return compiler(stripHtmlComments(text), { overrides, forceBlock: true });
 }
 
 Markdown.propTypes = {

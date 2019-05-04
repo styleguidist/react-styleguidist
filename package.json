@@ -81,6 +81,7 @@
     "recast": "^0.17.4",
     "remark": "^10.0.1",
     "rewrite-imports": "1.2.0",
+    "strip-html-comments": "^1.0.0",
     "terser-webpack-plugin": "^1.2.3",
     "to-ast": "^1.0.0",
     "type-detect": "^4.0.8",
