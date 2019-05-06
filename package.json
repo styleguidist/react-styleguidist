@@ -24,7 +24,7 @@
     "templates"
   ],
   "engines": {
-    "node": ">=6.4"
+    "node": ">=8"
   },
   "dependencies": {
     "@vxna/mini-html-webpack-template": "^0.1.7",
