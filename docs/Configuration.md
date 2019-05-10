@@ -20,6 +20,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 - [`handlers`](#handlers)
 - [`ignore`](#ignore)
 - [`logger`](#logger)
+- [`moduleAliases`](#modulealiases)
 - [`mountPointId`](#mountpointid)
 - [`pagePerSection`](#pagepersection)
 - [`printBuildInstructions`](#printbuildinstructions)
@@ -157,6 +158,16 @@ For components that do not have an example, a default one can be used. When set 
 
 When writing your own default example file, `__COMPONENT__` will be replaced by the actual component name at compile time.
 
+#### `exampleMode`
+
+Type: `String`, default: `collapse`
+
+Defines the initial state of the example code tab:
+
+- `collapse`: collapses the tab by default.
+- `hide`: hide the tab and it can´t be toggled in the UI.
+- `expand`: expand the tab by default.
+
 #### `getComponentPathLine`
 
 Type: `Function`, default: component filename
@@ -191,16 +202,6 @@ module.exports = {
   }
 }
 ```
-
-#### `exampleMode`
-
-Type: `String`, default: `collapse`
-
-Defines the initial state of the example code tab:
-
-- `collapse`: collapses the tab by default.
-- `hide`: hide the tab and it can´t be toggled in the UI.
-- `expand`: expand the tab by default.
 
 #### `handlers`
 
@@ -286,7 +287,7 @@ module.exports = {
 }
 ```
 
-````jsx static
+````jsx
 // ```jsx inside Markdown
 import React from 'react'
 import Button from 'rsg-example/components/Button'
@@ -530,6 +531,20 @@ Type: `Boolean`, default: `false`
 
 Ignore components that don’t have an example file (as determined by [getExampleFilename](#getexamplefilename)). These components won’t be accessible from other examples unless you [manually `require` them](Cookbook.md#how-to-hide-some-components-in-style-guide-but-make-them-available-in-examples).
 
+#### `sortProps`
+
+Type: `Function`, optional
+
+Function that sorts component props. By default props are sorted such that required props come first, optional props come second. Props in both groups are sorted by their property names.
+
+To disable sorting, use the identity function:
+
+```javascript
+module.exports = {
+  sortProps: props => props
+}
+```
+
 #### `styleguideComponents`
 
 Type: `Object`, optional
@@ -550,7 +565,7 @@ module.exports = {
 
 See an example of [customized style guide](https://github.com/styleguidist/react-styleguidist/tree/master/examples/customised).
 
-To wrap, rather than replace a component, make sure to import the default implementation using the full path to `react-styleguidist`. See an example of [wrapping a Styleguidist component](https://github.com/styleguidist/react-styleguidist/blob/master/examples/customised/styleguide/components/Sections.js).
+To wrap, rather than replace a component, make sure to import the default implementation using the full path to `react-styleguidist`. See an example of [wrapping a Styleguidist component](https://github.com/styleguidist/react-styleguidist/blob/master/examples/customised/styleguide/components/SectionsRenderer.js).
 
 **Note**: these components are not guaranteed to be safe from breaking changes in React Styleguidist updates.
 
@@ -605,20 +620,6 @@ See example in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide)
 Type: `String`, default: `<app name from package.json> Style Guide`
 
 Style guide title.
-
-#### `sortProps`
-
-Type: `Function`, optional
-
-Function that sorts component props. By default props are sorted such that required props come first, optional props come second. Props in both groups are sorted by their property names.
-
-To disable sorting, use the identity function:
-
-```javascript
-module.exports = {
-  sortProps: props => props
-}
-```
 
 #### `updateDocs`
 

@@ -6,6 +6,15 @@ import splitExampleCode from '../../utils/splitExampleCode';
 
 /* eslint-disable react/no-multi-comp */
 
+// Wrap the example component with a Functional Component to support
+// hooks in examples
+function FunctionComponentWrapper(props) {
+	const { component, state, setState } = props;
+
+	// Return null when component doesn't render anything to avoid an error
+	return component(state, setState) || null;
+}
+
 // Wrap everything in a React component to leverage the state management
 // of this component
 class StateHolder extends Component {
@@ -18,8 +27,13 @@ class StateHolder extends Component {
 	setStateBinded = this.setState.bind(this);
 
 	render() {
-		// Return null when component doesn't render anything to avoid an error
-		return this.props.component(this.state, this.setStateBinded) || null;
+		return (
+			<FunctionComponentWrapper
+				component={this.props.component}
+				state={this.state}
+				setState={this.setStateBinded}
+			/>
+		);
 	}
 }
 

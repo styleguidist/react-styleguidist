@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
-const minimist = require('minimist');
+const mri = require('mri');
 const kleur = require('kleur');
 const ora = require('ora');
 const stringify = require('q-i').stringify;
@@ -13,7 +13,7 @@ const setupLogger = require('../scripts/logger');
 const consts = require('../scripts/consts');
 const StyleguidistError = require('../scripts/utils/error');
 
-const argv = minimist(process.argv.slice(2));
+const argv = mri(process.argv.slice(2));
 const command = argv._[0];
 
 // Do not show nasty stack traces for Styleguidist errors
@@ -27,7 +27,7 @@ process.on('uncaughtException', err => {
 			consts.DOCS_CONFIG
 		);
 	} else if (err instanceof StyleguidistError) {
-		console.error(kleur.bold.red(err.message));
+		console.error(kleur.bold().red(err.message));
 		logger.debug(err.stack);
 	} else {
 		console.error(err.toString());
@@ -49,12 +49,8 @@ try {
 	config = getConfig(argv.config, updateConfig);
 } catch (err) {
 	if (err instanceof StyleguidistError) {
-		const link = consts.DOCS_CONFIG + (err.anchor ? `#${err.anchor.toLowerCase()}` : '');
-		printErrorWithLink(
-			err.message,
-			`${err.extra}\n\nLearn how to configure your style guide:`,
-			link
-		);
+		const link = consts.DOCS_CONFIG + (err.extra ? `#${err.extra.toLowerCase()}` : '');
+		printErrorWithLink(err.message, `Learn how to configure your style guide:`, link);
 		process.exit(1);
 	} else {
 		throw err;
@@ -219,7 +215,7 @@ function printBuildInstructions(config) {
  * @param {string} linkUrl
  */
 function printErrorWithLink(message, linkTitle, linkUrl) {
-	console.error(`${kleur.bold.red(message)}\n\n${linkTitle}\n${kleur.underline(linkUrl)}\n`);
+	console.error(`${kleur.bold().red(message)}\n\n${linkTitle}\n${kleur.underline(linkUrl)}\n`);
 }
 
 /**
@@ -243,11 +239,32 @@ function printErrors(header, errors, originalErrors, type) {
  */
 function printStatus(text, type) {
 	if (type === 'success') {
-		console.log(kleur.inverse.bold.green(' DONE ') + ' ' + text);
+		console.log(
+			kleur
+				.inverse()
+				.bold()
+				.green(' DONE ') +
+				' ' +
+				text
+		);
 	} else if (type === 'error') {
-		console.error(kleur.inverse.bold.red(' FAIL ') + ' ' + kleur.red(text));
+		console.error(
+			kleur
+				.inverse()
+				.bold()
+				.red(' FAIL ') +
+				' ' +
+				kleur.red(text)
+		);
 	} else {
-		console.error(kleur.inverse.bold.yellow(' WARN ') + ' ' + kleur.yellow(text));
+		console.error(
+			kleur
+				.inverse()
+				.bold()
+				.yellow(' WARN ') +
+				' ' +
+				kleur.yellow(text)
+		);
 	}
 }
 

@@ -268,7 +268,7 @@ module.exports = {
 
 ## How to change the layout of a style guide?
 
-You can replace any Styleguidist React component. But in most of the cases you’ll want to replace `*Renderer` components — all HTML is rendered by these components. For example `ReactComponentRenderer`, `ComponentsListRenderer`, `PropsRenderer`, etc. — [check the source](https://github.com/styleguidist/react-styleguidist/tree/master/src/rsg-components) to see what components are available.
+You can replace any Styleguidist React component. But in most of the cases you’ll want to replace `*Renderer` components — all HTML is rendered by these components. For example `ReactComponentRenderer`, `ComponentsListRenderer`, `PropsRenderer`, etc. — [check the source](https://github.com/styleguidist/react-styleguidist/tree/master/src/client/rsg-components) to see what components are available.
 
 There’s also a special wrapper component — `Wrapper` — that wraps every example component. By default it just renders `children` as is but you can use it to provide a custom logic.
 
@@ -613,14 +613,19 @@ Another important distinction is that Storybook shows only one variation of one 
 
 ## Are there any other projects like this?
 
-- [Atellier](https://github.com/scup/atellier), a React components emulator.
-- [Carte Blanche](https://github.com/carteb/carte-blanche), an isolated development space with integrated fuzz testing for your components.
+### Active
+
 - [Catalog](https://github.com/interactivethings/catalog), create living style guides using Markdown or React.
 - [Cosmos](https://github.com/react-cosmos/react-cosmos), a tool for designing encapsulated React components.
 - [Docz](https://www.docz.site/), a tool for documenting your components with zero configuration and live preview.
-- [React BlueKit](http://bluekit.blueberry.io/), render React components with editable source and live preview.
-- [React Cards](https://github.com/steos/reactcards), devcards for React.
-- [React Styleguide Generator](https://github.com/pocotan001/react-styleguide-generator), a React style guide generator.
 - [React Storybook](https://storybooks.js.org/), isolate your React UI Component development from the main app.
-- [React-demo](https://github.com/rpominov/react-demo), a component for creating demos of other components with props editor.
-- [SourceJS](https://github.com/sourcejs/Source), a platform to unify all your frontend documentation. It has a [Styleguidist plugin](https://github.com/sourcejs/sourcejs-react-styleguidist).
+
+### Inactive
+
+- [Atellier](https://github.com/scup/atellier), a React components emulator. Last release 2016.
+- [Carte Blanche](https://github.com/carteb/carte-blanche), an isolated development space with integrated fuzz testing for your components. Last release 2016.
+- [React BlueKit](http://bluekit.blueberry.io/), render React components with editable source and live preview. Last release 2017.
+- [React Cards](https://github.com/steos/reactcards), devcards for React. Last release 2017.
+- [React Styleguide Generator](https://github.com/pocotan001/react-styleguide-generator), a React style guide generator. Last release 2017.
+- [React-demo](https://github.com/rpominov/react-demo), a component for creating demos of other components with props editor. Last release 2017.
+- [SourceJS](https://github.com/sourcejs/Source), a platform to unify all your frontend documentation. It has a [Styleguidist plugin](https://github.com/sourcejs/sourcejs-react-styleguidist). On hold.

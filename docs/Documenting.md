@@ -253,7 +253,7 @@ import mockData from './mocks'
 
 Or you can explicitly import all your example dependencies, to make examples easier to copy into your app code:
 
-````jsx static
+````jsx
 // ```jsx inside Markdown
 import React from 'react'
 import Button from 'rsg-example/components/Button'

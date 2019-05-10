@@ -1,5 +1,5 @@
 class StyleguidistError extends Error {
-	constructor(message, extra, anchor) {
+	constructor(message, extra) {
 		super(message);
 		Error.captureStackTrace(this, this.constructor);
 		Object.defineProperty(this, 'name', {
@@ -7,9 +7,6 @@ class StyleguidistError extends Error {
 		});
 		Object.defineProperty(this, 'extra', {
 			value: extra,
-		});
-		Object.defineProperty(this, 'anchor', {
-			value: anchor,
 		});
 	}
 }

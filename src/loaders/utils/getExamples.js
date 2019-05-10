@@ -1,6 +1,6 @@
 // @flow
 import path from 'path';
-import qs from 'querystringify';
+import { encode } from 'qss';
 import requireIt from './requireIt';
 
 const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
@@ -26,5 +26,5 @@ module.exports = function getExamples(
 		file: relativePath,
 		shouldShowDefaultExample: !examplesFile && !!defaultExample,
 	};
-	return requireIt(`!!${examplesLoader}?${qs.stringify(query)}!${examplesFileToLoad}`);
+	return requireIt(`!!${examplesLoader}?${encode(query)}!${examplesFileToLoad}`);
 };

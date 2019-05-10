@@ -16,7 +16,7 @@
     "node": ">=4"
   },
   "devDependencies": {
-    "react-scripts": "^2.0.5",
+    "react-scripts": "^2.1.5",
     "react-styleguidist": "^7.3.11"
   },
   "dependencies": {

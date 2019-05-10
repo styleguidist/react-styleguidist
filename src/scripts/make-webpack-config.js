@@ -38,6 +38,7 @@ module.exports = function(config, env) {
 			path: config.styleguideDir,
 			filename: 'build/[name].bundle.js',
 			chunkFilename: 'build/[name].js',
+			publicPath: '',
 		},
 		resolve: {
 			extensions: ['.js', '.jsx', '.json'],

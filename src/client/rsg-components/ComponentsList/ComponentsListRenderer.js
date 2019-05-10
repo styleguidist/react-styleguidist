@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
+import cx from 'clsx';
 import Link from 'rsg-components/Link';
 import Styled from 'rsg-components/Styled';
 import { getHash } from '../../utils/handleHash';
@@ -47,21 +47,20 @@ export function ComponentsListRenderer({ classes, items }) {
 	const windowHash = window.location.pathname + getHash(window.location.hash);
 	return (
 		<ul className={classes.list}>
-			{items.map(({ heading, visibleName, href, content, external }) => {
+			{items.map(({ heading, visibleName, href, content, shouldOpenInNewTab }) => {
 				const isItemSelected = windowHash === href;
 				return (
 					<li
-						className={cx(
-							classes.item,
-							(!content || !content.props.items.length) && classes.isChild,
-							isItemSelected && classes.isSelected
-						)}
+						className={cx(classes.item, {
+							[classes.isChild]: (!content || !content.props.items.length) && !shouldOpenInNewTab,
+							[classes.isSelected]: isItemSelected,
+						})}
 						key={href}
 					>
 						<Link
 							className={cx(heading && classes.heading)}
 							href={href}
-							target={external ? '_blank' : undefined}
+							target={shouldOpenInNewTab ? '_blank' : undefined}
 						>
 							{visibleName}
 						</Link>

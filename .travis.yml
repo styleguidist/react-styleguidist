@@ -4,9 +4,14 @@ node_js:
   - 8
   - 6
 
+addons:
+  apt:
+    packages:
+    - libgconf-2-4
+
 before_install:
-  # Use npm 5.7.x since it has introduced `npm ci`
-  - if [[ `npm -v` != 5.7* ]]; then npm install -g npm@'>=5.7.1'; fi
+  # Use npm 6.9.x since it has introduced `npm ci`
+  - if [[ `npm -v` != 6.9* ]]; then npm install -g npm@'>=6.9'; fi
 
 script:
   # Run tests without coverage since it's 2x faster
@@ -70,15 +75,6 @@ jobs:
         - npm install --no-save semantic-release-tamia
         - >-
           npx semantic-release --analyze-commits semantic-release-tamia/analyzeCommits --verify-release semantic-release-tamia/verifyRelease --generate-notes semantic-release-tamia/generateNotes
-          
-          
-          
-          
-          
-          
-          
-          
-          
 
     - stage: documentation
       script:
