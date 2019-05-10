@@ -21,12 +21,14 @@ export default class Placeholder extends Component {
 		]),
 		width: PropTypes.number,
 		height: PropTypes.number,
+		alt: PropTypes.string,
 	};
 
 	static defaultProps = {
 		type: 'animal',
 		width: 150,
 		height: 150,
+		alt: 'Photo of an animal',
 	};
 
 	getImageUrl() {
@@ -46,14 +48,14 @@ export default class Placeholder extends Component {
 	}
 
 	render() {
-		const { type, width, height } = this.props;
+		const { width, height, alt } = this.props;
 		return (
 			<img
 				className="placeholder"
 				src={this.getImageUrl()}
-				alt={type}
 				width={width}
 				height={height}
+				alt={alt}
 			/>
 		);
 	}
