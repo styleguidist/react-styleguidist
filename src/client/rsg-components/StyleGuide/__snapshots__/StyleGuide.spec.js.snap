@@ -15,14 +15,14 @@ exports[`renderer should render logo, version, table of contents, ribbon and pas
     </footer>
   </main>
   <div>
-    <div>
+    <header>
       <Styled(Logo)>
         Hello
       </Styled(Logo)>
       <Styled(Version)>
         1.0.0
       </Styled(Version)>
-    </div>
+    </header>
     <TableOfContents
       sections={
         Array [

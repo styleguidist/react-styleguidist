@@ -3,15 +3,16 @@
 exports[`renderer should render table of contents 1`] = `
 <div>
   <div>
-    <div>
-      <input
-        aria-label="Filter by name"
-        onChange={[Function]}
-        placeholder="Filter by name"
-        value="foo"
-      />
-    </div>
-    <nav />
+    <nav>
+      <div>
+        <input
+          aria-label="Filter by name"
+          onChange={[Function]}
+          placeholder="Filter by name"
+          value="foo"
+        />
+      </div>
+    </nav>
   </div>
 </div>
 `;
