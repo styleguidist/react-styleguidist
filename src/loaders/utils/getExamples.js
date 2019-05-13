@@ -1,5 +1,6 @@
 // @flow
 import path from 'path';
+import fs from 'fs';
 import { encode } from 'qss';
 import requireIt from './requireIt';
 
@@ -14,7 +15,7 @@ module.exports = function getExamples(
 	examplesFile: string,
 	defaultExample: string
 ): {} | null {
-	const examplesFileToLoad = examplesFile || defaultExample;
+	const examplesFileToLoad = (fs.existsSync(examplesFile) && examplesFile) || defaultExample;
 	if (!examplesFileToLoad) {
 		return null;
 	}

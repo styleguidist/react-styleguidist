@@ -126,6 +126,7 @@
     "jest-serializer-html": "^6.0.0",
     "keymirror": "^0.1.1",
     "lint-staged": "^8.1.5",
+    "memfs": "^2.15.2",
     "prettier": "1.16.4",
     "raf": "^3.4.1",
     "react": "^16.8.5",
