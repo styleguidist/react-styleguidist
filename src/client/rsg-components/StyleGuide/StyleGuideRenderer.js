@@ -76,10 +76,10 @@ export function StyleGuideRenderer({
 			</main>
 			{hasSidebar && (
 				<div className={classes.sidebar}>
-					<div className={classes.logo}>
+					<header className={classes.logo}>
 						<Logo>{title}</Logo>
 						{version && <Version>{version}</Version>}
-					</div>
+					</header>
 					{toc}
 				</div>
 			)}
