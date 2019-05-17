@@ -1,4 +1,5 @@
 const path = require('path');
+const isArray = require('lodash/isArray');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniHtmlWebpackPlugin = require('mini-html-webpack-plugin');
@@ -93,11 +94,9 @@ module.exports = function(config, env) {
 				}),
 				new CopyWebpackPlugin(
 					config.assetsDir
-						? [
-								{
-									from: config.assetsDir,
-								},
-						  ]
+						? isArray(config.assetsDir)
+							? config.assetsDir.map(dir => ({ from: dir }))
+							: [{ from: config.assetsDir }]
 						: []
 				),
 			],
