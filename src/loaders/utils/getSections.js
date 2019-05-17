@@ -65,7 +65,7 @@ function processSection(section, config, parentDepth) {
 		usageMode: section.usageMode || config.usageMode,
 		sectionDepth,
 		description: section.description,
-		slug: slugger.slug(section.name),
+		slug: `section-${slugger.slug(section.name)}`,
 		sections: getSections(section.sections || [], config, sectionDepth),
 		filepath: contentRelativePath,
 		href: section.href,

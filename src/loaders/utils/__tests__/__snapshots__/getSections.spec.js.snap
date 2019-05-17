@@ -15,7 +15,7 @@ Array [
     "name": "Readme",
     "sectionDepth": 0,
     "sections": Array [],
-    "slug": "readme-1",
+    "slug": "section-readme-1",
     "usageMode": "collapse",
   },
   Object {
@@ -97,7 +97,7 @@ Array [
     "name": "Components",
     "sectionDepth": 0,
     "sections": Array [],
-    "slug": "components-1",
+    "slug": "section-components-1",
     "usageMode": "collapse",
   },
   Object {
@@ -179,7 +179,7 @@ Array [
     "name": "Ignore",
     "sectionDepth": 0,
     "sections": Array [],
-    "slug": "ignore-1",
+    "slug": "section-ignore-1",
     "usageMode": "collapse",
   },
 ]
@@ -265,7 +265,7 @@ Object {
   "name": "Components",
   "sectionDepth": 0,
   "sections": Array [],
-  "slug": "components",
+  "slug": "section-components",
   "usageMode": "collapse",
 }
 `;
@@ -284,7 +284,7 @@ Object {
   "name": "Readme",
   "sectionDepth": 0,
   "sections": Array [],
-  "slug": "readme",
+  "slug": "section-readme",
   "usageMode": "collapse",
 }
 `;
@@ -369,7 +369,7 @@ Object {
   "name": "Ignore",
   "sectionDepth": 0,
   "sections": Array [],
-  "slug": "ignore",
+  "slug": "section-ignore",
   "usageMode": "collapse",
 }
 `;
