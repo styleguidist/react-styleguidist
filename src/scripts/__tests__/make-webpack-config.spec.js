@@ -114,6 +114,11 @@ it('should set from with assetsDir in CopyWebpackPlugin', () => {
 	expect(CopyWebpackPlugin).toHaveBeenCalledWith([{ from: '/assets/' }]); //([
 });
 
+it('should set array of from with assetsDir array in CopyWebpackPlugin', () => {
+	makeWebpackConfig({ ...styleguideConfig, assetsDir: ['/assets1/', '/assets2/'] }, 'production');
+	expect(CopyWebpackPlugin).toHaveBeenCalledWith([{ from: '/assets1/' }, { from: '/assets2/' }]);
+});
+
 it('should add CopyWebpackPlugin to plugins in production', () => {
 	makeWebpackConfig({ ...styleguideConfig }, 'production');
 	expect(CopyWebpackPlugin).toHaveBeenCalledWith([]);
