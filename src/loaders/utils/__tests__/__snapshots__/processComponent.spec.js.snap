@@ -15,3 +15,38 @@ Object {
   "slug": "pizza",
 }
 `;
+
+exports[`processComponent() should return an object for section with content 2`] = `
+Object {
+  "filepath": "../../../../test/components/Button/Button.js",
+  "hasExamples": true,
+  "metadata": Object {},
+  "module": Object {
+    "require": "test/components/Button/Button.js",
+  },
+  "pathLine": "../../../../test/components/Button/Button.js",
+  "props": Object {
+    "require": "!!~/src/loaders/props-loader.js!test/components/Button/Button.js",
+  },
+  "slug": "button",
+}
+`;
+
+exports[`processComponent() should return an object with for section with content and metadata in markdown 1`] = `
+Object {
+  "filepath": "../../../../test/components/Placeholder/Placeholder.js",
+  "hasExamples": false,
+  "metadata": Object {
+    "author": "author",
+    "title": "Placeholder",
+  },
+  "module": Object {
+    "require": "test/components/Placeholder/Placeholder.js",
+  },
+  "pathLine": "../../../../test/components/Placeholder/Placeholder.js",
+  "props": Object {
+    "require": "!!~/src/loaders/props-loader.js!test/components/Placeholder/Placeholder.js",
+  },
+  "slug": "placeholder",
+}
+`;

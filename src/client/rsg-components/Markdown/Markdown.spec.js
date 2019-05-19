@@ -149,6 +149,20 @@ multiline
 comment`
 		);
 	});
+
+	it('should ignore metadata', () => {
+		const markdown = `
+---
+title: Metadata Test
+---
+
+Hello World
+`;
+		const actual = mount(<Markdown text={markdown} />);
+
+		expect(actual.find('p').props().children[0]).not.toContain(`title: Metadata Test`);
+		expect(actual.find('p').props().children[0]).toContain(`Hello World`);
+	});
 });
 
 describe('Markdown inline', () => {

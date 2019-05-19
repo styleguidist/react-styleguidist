@@ -12,3 +12,15 @@ it('processComponent() should return an object for section with content', () => 
 
 	expect(result).toMatchSnapshot();
 });
+
+it('processComponent() should return an object for section with content', () => {
+	const result = processComponent('test/components/Button/Button.js', config);
+
+	expect(result).toMatchSnapshot();
+});
+
+it('processComponent() should return an object with for section with content and metadata in markdown', () => {
+	const result = processComponent('test/components/Placeholder/Placeholder.js', config);
+
+	expect(result).toMatchSnapshot();
+});

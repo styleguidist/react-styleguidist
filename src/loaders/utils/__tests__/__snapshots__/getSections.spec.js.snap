@@ -50,7 +50,8 @@ Array [
         "filepath": "components/Placeholder/Placeholder.js",
         "hasExamples": true,
         "metadata": Object {
-          "require": "~/test/components/Placeholder/Placeholder.json",
+          "author": "author",
+          "title": "Placeholder",
         },
         "module": Object {
           "require": "~/test/components/Placeholder/Placeholder.js",
@@ -132,7 +133,8 @@ Array [
         "filepath": "components/Placeholder/Placeholder.js",
         "hasExamples": true,
         "metadata": Object {
-          "require": "~/test/components/Placeholder/Placeholder.json",
+          "author": "author",
+          "title": "Placeholder",
         },
         "module": Object {
           "require": "~/test/components/Placeholder/Placeholder.js",
@@ -218,7 +220,8 @@ Object {
       "filepath": "components/Placeholder/Placeholder.js",
       "hasExamples": true,
       "metadata": Object {
-        "require": "~/test/components/Placeholder/Placeholder.json",
+        "author": "author",
+        "title": "Placeholder",
       },
       "module": Object {
         "require": "~/test/components/Placeholder/Placeholder.js",
@@ -322,7 +325,8 @@ Object {
       "filepath": "components/Placeholder/Placeholder.js",
       "hasExamples": true,
       "metadata": Object {
-        "require": "~/test/components/Placeholder/Placeholder.json",
+        "author": "author",
+        "title": "Placeholder",
       },
       "module": Object {
         "require": "~/test/components/Placeholder/Placeholder.js",

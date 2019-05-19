@@ -43,6 +43,7 @@
     "es6-promise": "^4.2.6",
     "escodegen": "^1.11.1",
     "findup": "^0.1.5",
+    "front-matter": "^3.0.2",
     "function.name-polyfill": "^1.0.6",
     "github-slugger": "^1.2.1",
     "glob": "^7.1.3",

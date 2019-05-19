@@ -144,9 +144,36 @@ export const inlineOverrides = {
 	},
 };
 
+const extractFrontMatter = (text, delim = '---') => {
+	if (!text.trimLeft().startsWith(delim)) {
+		return {
+			body: text,
+		};
+	}
+
+	const x = text.trimLeft().substr(delim.length);
+	if (x.indexOf(delim) < 0) {
+		return {
+			body: text,
+		};
+	}
+
+	const frontMatter = x.substr(0, x.indexOf(delim) + 1);
+	const body = x.substr(x.indexOf(delim) + 3);
+	return {
+		head: frontMatter,
+		body,
+	};
+};
+
+const processMarkdownText = text => {
+	const { body } = extractFrontMatter(text);
+	return stripHtmlComments(body);
+};
+
 function Markdown({ text, inline }) {
 	const overrides = inline ? inlineOverrides : baseOverrides;
-	return compiler(stripHtmlComments(text), { overrides, forceBlock: true });
+	return compiler(processMarkdownText(text), { overrides, forceBlock: true });
 }
 
 Markdown.propTypes = {

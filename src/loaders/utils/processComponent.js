@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const frontMatter = require('front-matter');
 const getNameFromFilePath = require('./getNameFromFilePath');
 const requireIt = require('./requireIt');
 const slugger = require('./slugger');
@@ -7,14 +8,33 @@ const slugger = require('./slugger');
 const propsLoader = path.resolve(__dirname, '../props-loader.js');
 
 /**
- * References the filepath of the metadata file.
+ * Loads the metadata from the markdown file of the Component.
  *
  * @param {string} filepath
  * @returns {object}
  */
-function getComponentMetadataPath(filepath) {
-	const extname = path.extname(filepath);
-	return filepath.substring(0, filepath.length - extname.length) + '.json';
+function getComponentMetadata(filepath) {
+	const componentMarkdownFilePath = filepath
+		.substring(0, filepath.length - path.extname(filepath).length)
+		.concat('.md');
+
+	const componentReadmeMarkdownFilePath = path.join(path.dirname(filepath), 'Readme.md');
+
+	let markdownFilePath;
+	if (fs.existsSync(componentMarkdownFilePath)) {
+		markdownFilePath = componentMarkdownFilePath;
+	} else if (fs.existsSync(componentReadmeMarkdownFilePath)) {
+		markdownFilePath = componentReadmeMarkdownFilePath;
+	} else {
+		return {};
+	}
+
+	const componentMarkdown = fs.readFileSync(markdownFilePath, 'utf8');
+	if (!frontMatter.test(componentMarkdown)) {
+		return {};
+	}
+	const componentMetadata = frontMatter(componentMarkdown).attributes;
+	return componentMetadata;
 }
 
 /**
@@ -28,7 +48,6 @@ module.exports = function processComponent(filepath, config) {
 	const componentPath = path.relative(config.configDir, filepath);
 	const componentName = getNameFromFilePath(filepath);
 	const examplesFile = config.getExampleFilename(filepath);
-	const componentMetadataPath = getComponentMetadataPath(filepath);
 	return {
 		filepath: componentPath,
 		slug: slugger.slug(componentName),
@@ -36,6 +55,6 @@ module.exports = function processComponent(filepath, config) {
 		module: requireIt(filepath),
 		props: requireIt(`!!${propsLoader}!${filepath}`),
 		hasExamples: examplesFile && fs.existsSync(examplesFile),
-		metadata: fs.existsSync(componentMetadataPath) ? requireIt(componentMetadataPath) : {},
+		metadata: getComponentMetadata(filepath),
 	};
 };
