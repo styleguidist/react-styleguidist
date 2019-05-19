@@ -49,7 +49,6 @@ SectionRenderer.propTypes = {
 	name: PropTypes.string,
 	description: PropTypes.string,
 	slug: PropTypes.string,
-	filepath: PropTypes.string,
 	content: PropTypes.node,
 	components: PropTypes.node,
 	sections: PropTypes.node,
