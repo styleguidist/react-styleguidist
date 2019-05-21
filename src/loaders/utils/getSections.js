@@ -29,7 +29,7 @@ function processSectionContent(section, config) {
 	if (!fs.existsSync(contentAbsolutePath)) {
 		throw new Error(`Styleguidist: Section content file not found: ${contentAbsolutePath}`);
 	}
-	const content = requireIt(`!!${examplesLoader}!${contentAbsolutePath}`);
+	return requireIt(`!!${examplesLoader}!${contentAbsolutePath}`);
 	return content;
 }
 
