@@ -30,7 +30,6 @@ function processSectionContent(section, config) {
 		throw new Error(`Styleguidist: Section content file not found: ${contentAbsolutePath}`);
 	}
 	return requireIt(`!!${examplesLoader}!${contentAbsolutePath}`);
-	return content;
 }
 
 /**
