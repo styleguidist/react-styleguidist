@@ -10,6 +10,28 @@ const slugger = require('./slugger');
 
 const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
 
+function processSectionContent(section, config) {
+	const contentRelativePath = section.content;
+
+	if (!section.content) {
+		return undefined;
+	}
+
+	if (_.isFunction(section.content)) {
+		return {
+			type: 'markdown',
+			content: section.content(),
+		};
+	}
+
+	// Try to load section content file
+	const contentAbsolutePath = path.resolve(config.configDir, contentRelativePath);
+	if (!fs.existsSync(contentAbsolutePath)) {
+		throw new Error(`Styleguidist: Section content file not found: ${contentAbsolutePath}`);
+	}
+	return requireIt(`!!${examplesLoader}!${contentAbsolutePath}`);
+}
+
 /**
  * Return object for one level of sections.
  *
@@ -39,17 +61,7 @@ const getSectionComponents = (section, config) => {
  * @returns {object}
  */
 function processSection(section, config, parentDepth) {
-	const contentRelativePath = section.content;
-
-	// Try to load section content file
-	let content;
-	if (contentRelativePath) {
-		const contentAbsolutePath = path.resolve(config.configDir, contentRelativePath);
-		if (!fs.existsSync(contentAbsolutePath)) {
-			throw new Error(`Styleguidist: Section content file not found: ${contentAbsolutePath}`);
-		}
-		content = requireIt(`!!${examplesLoader}!${contentAbsolutePath}`);
-	}
+	const content = processSectionContent(section, config);
 
 	let sectionDepth;
 
@@ -67,7 +79,6 @@ function processSection(section, config, parentDepth) {
 		description: section.description,
 		slug: `section-${slugger.slug(section.name)}`,
 		sections: getSections(section.sections || [], config, sectionDepth),
-		filepath: contentRelativePath,
 		href: section.href,
 		components: getSectionComponents(section, config),
 		content,
