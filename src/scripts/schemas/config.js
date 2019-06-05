@@ -41,7 +41,7 @@ module.exports = {
 				modules: false,
 				// Enable tagged template literals for styled-components
 				dangerousTaggedTemplateString: true,
-				// configure bublé to to make async/await work by default (no transformation)
+				// to to make async/await work by default (no transformation)
 				asyncAwait: false,
 			},
 		},

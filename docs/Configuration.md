@@ -72,7 +72,7 @@ Type: `Object`, default:
     modules: false,
     // Enable tagged template literals for styled-components
     dangerousTaggedTemplateString: true,
-    // configure bublé to pass async through without transformation and error
+    // to pass async through without transformation and error
     asyncAwait: false,
   },
 }
