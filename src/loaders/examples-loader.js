@@ -82,8 +82,11 @@ export default function examplesLoader(source) {
 				b.variableDeclaration('const', [
 					b.variableDeclarator(
 						b.identifier(name),
-						b.logicalExpression('||', b.identifier(`${name}$0.default`), b.identifier(`${name}$0`))
-					),
+						b.logicalExpression('||',
+							b.identifier(`${name}$0['${name}']`),
+							b.logicalExpression('||', b.identifier(`${name}$0.default`), b.identifier(`${name}$0`)),
+						),
+					)
 				]),
 			])
 		)
