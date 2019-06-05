@@ -72,7 +72,7 @@ Type: `Object`, default:
     modules: false,
     // Enable tagged template literals for styled-components
     dangerousTaggedTemplateString: true,
-    // to pass async through without transformation and error
+    // to make async/await work by default (no transformation)
     asyncAwait: false,
   },
 }
