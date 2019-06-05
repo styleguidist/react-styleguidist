@@ -59,7 +59,24 @@ Your application static assets folder, will be accessible as `/` in the style gu
 
 #### `compilerConfig`
 
-Type: `Object`, default: `{ objectAssign: 'Object.assign' }`
+Type: `Object`, default:
+
+```javascript
+{
+  // Don't include an Object.assign ponyfill, we have our own
+  objectAssign: 'Object.assign',
+  // Transpile only features needed for IE11
+  target: { ie: 11 },
+  transforms: {
+    // Don't throw on ESM imports, we transpile them ourselves
+    modules: false,
+    // Enable tagged template literals for styled-components
+    dangerousTaggedTemplateString: true,
+    // configure bublé to pass async through without transformation and error
+    asyncAwait: false,
+  },
+}
+```
 
 Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the frontend. This config object will be added as the second argument for `buble.transform`.
 
