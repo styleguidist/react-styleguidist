@@ -6,7 +6,7 @@ import './Button.css';
 /**
  * The only true button.
  */
-export function Button({ color, size, onClick, disabled, children }) {
+export default function Button({ color, size, onClick, disabled, children }) {
 	const styles = {
 		color,
 		fontSize: Button.sizes[size],
