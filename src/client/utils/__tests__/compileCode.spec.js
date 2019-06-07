@@ -20,6 +20,19 @@ const foo = bar$0.default || bar$0;"
 `);
 	});
 
+	test('transform async/await is not throw an error', () => {
+		const onError = jest.fn();
+		const result = compileCode(
+			`async function asyncFunction() { return await Promise.resolve(); }`,
+			compilerConfig,
+			onError
+		);
+		expect(onError).not.toHaveBeenCalled();
+		expect(result).toMatchInlineSnapshot(
+			`"async function asyncFunction() { return await Promise.resolve(); }"`
+		);
+	});
+
 	test('transform imports to require() in front of JSX', () => {
 		const result = compileCode(
 			`
