@@ -35,7 +35,7 @@ describe('Single component', () => {
 
 	describe('preview section', () => {
 		beforeEach(() => {
-			cy.get('[data-testid$="-example"]')
+			cy.get('[data-testid*="-example-"]')
 				.as('container')
 				.find('[class^=rsg--preview]')
 				.as('preview');
@@ -93,7 +93,7 @@ describe('Single component', () => {
 
 			// Assert that there is only one example showing
 			cy.get('@componentExamples')
-				.find('[data-testid$="-example"]')
+				.find('[data-testid*="-example-"]')
 				.should('have.length', 1);
 
 			// Toggle out of isolated example mode
@@ -103,7 +103,7 @@ describe('Single component', () => {
 
 			// Assert the other examples are showing again
 			cy.get('@componentExamples')
-				.find('[data-testid$="-example"]')
+				.find('[data-testid*="-example-"]')
 				.should('have.length.above', 1);
 
 			// Check that we've returned to isolated component mode instead of normal mode

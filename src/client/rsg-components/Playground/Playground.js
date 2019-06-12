@@ -82,6 +82,7 @@ class Playground extends Component {
 		) : (
 			<PlaygroundRenderer
 				name={name}
+				exampleIndex={index}
 				preview={preview}
 				previewProps={settings.props || {}}
 				tabButtons={
