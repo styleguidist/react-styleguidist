@@ -12,7 +12,7 @@ const IsolateButton = ({ name, example, isolated }) => {
 		<ToolbarButton
 			href={getUrl({ anchor: true, slug: name.toLowerCase() })}
 			title="Show all components"
-			dataTestID={testID}
+			testId={testID}
 		>
 			<MdFullscreenExit />
 		</ToolbarButton>
@@ -20,7 +20,7 @@ const IsolateButton = ({ name, example, isolated }) => {
 		<ToolbarButton
 			href={getUrl({ name, example, isolated: true })}
 			title="Open isolated"
-			dataTestID={testID}
+			testId={testID}
 		>
 			<MdFullscreen />
 		</ToolbarButton>
