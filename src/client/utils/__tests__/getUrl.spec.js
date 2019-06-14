@@ -69,6 +69,11 @@ describe('getUrl', () => {
 		expect(result).toBe('/styleguide/#/Documentation/FooBar');
 	});
 
+	it('should return a route path with encoded name if name has inappropriate symbols', () => {
+		const result = getUrl({ name: '@foo/components', slug, hashPath: ['Documentation'] }, loc);
+		expect(result).toBe('/styleguide/#/Documentation/%40foo%2Fcomponents');
+	});
+
 	it('should return a route path with a param id=foobar', () => {
 		const result = getUrl({ name, slug, hashPath: ['Documentation'], id: true }, loc);
 		expect(result).toBe('/styleguide/#/Documentation?id=foobar');
