@@ -51,7 +51,9 @@ export const getHash = (hash, prependHash) => {
  * @return {Array.<string>}
  */
 export const getHashAsArray = (hash, prependHash) => {
-	return getHash(hash, prependHash).split(separator);
+	return trimParams(trimHash(hash, prependHash))
+		.split(separator)
+		.map(decodeURIComponent);
 };
 
 /**

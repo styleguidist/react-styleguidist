@@ -29,15 +29,17 @@ export default function getUrl(
 		url += '?nochrome';
 	}
 
+	const encodedName = encodeURIComponent(name);
+
 	if (anchor) {
 		url += `#${slug}`;
 	} else if (isolated || nochrome) {
-		url += `#!/${name}`;
+		url += `#!/${encodedName}`;
 	}
 
 	if (hashPath) {
 		if (!id) {
-			hashPath = [...hashPath, name];
+			hashPath = [...hashPath, encodedName];
 		}
 		url += `#/${hashPath.join('/')}`;
 	}
