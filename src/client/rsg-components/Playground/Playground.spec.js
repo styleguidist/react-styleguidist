@@ -127,6 +127,7 @@ it('renderer should render preview', () => {
 	const actual = shallow(
 		<PlaygroundRenderer
 			classes={classes(styles)}
+			exampleIndex={0}
 			name="name"
 			preview={<div>preview</div>}
 			previewProps={{ className: 'pizza', title: 'salami' }}

@@ -5,19 +5,27 @@ import MdFullscreenExit from 'react-icons/lib/md/fullscreen-exit';
 import ToolbarButton from 'rsg-components/ToolbarButton';
 import getUrl from '../../utils/getUrl';
 
-const IsolateButton = ({ name, example, isolated }) =>
-	isolated ? (
+const IsolateButton = ({ name, example, isolated }) => {
+	const testID = example ? `${name}-${example}-isolate-button` : `${name}-isolate-button`;
+
+	return isolated ? (
 		<ToolbarButton
 			href={getUrl({ anchor: true, slug: name.toLowerCase() })}
 			title="Show all components"
+			testId={testID}
 		>
 			<MdFullscreenExit />
 		</ToolbarButton>
 	) : (
-		<ToolbarButton href={getUrl({ name, example, isolated: true })} title="Open isolated">
+		<ToolbarButton
+			href={getUrl({ name, example, isolated: true })}
+			title="Open isolated"
+			testId={testID}
+		>
 			<MdFullscreen />
 		</ToolbarButton>
 	);
+};
 
 IsolateButton.propTypes = {
 	name: PropTypes.string.isRequired,
