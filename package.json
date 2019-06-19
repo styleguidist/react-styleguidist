@@ -42,6 +42,7 @@
     "es6-object-assign": "~1.1.0",
     "es6-promise": "^4.2.6",
     "escodegen": "^1.11.1",
+    "estree-walker": "^0.6.0",
     "findup": "^0.1.5",
     "function.name-polyfill": "^1.0.6",
     "github-slugger": "^1.2.1",
@@ -86,7 +87,6 @@
     "to-ast": "^1.0.0",
     "type-detect": "^4.0.8",
     "unist-util-visit": "^1.4.0",
-    "walkes": "^0.2.1",
     "webpack-dev-server": "^3.2.1",
     "webpack-merge": "^4.2.1"
   },

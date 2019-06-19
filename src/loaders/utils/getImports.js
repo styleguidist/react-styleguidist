@@ -1,6 +1,6 @@
 // @flow
 import acornJsx from 'acorn-jsx';
-import walkes from 'walkes';
+import { walk } from 'estree-walker';
 import getAst from './getAst';
 
 /**
@@ -18,23 +18,26 @@ export default function getImports(code: string): string[] {
 	}
 
 	const imports = [];
-	walkes(ast, {
-		// import foo from 'foo'
-		// import 'foo'
-		ImportDeclaration(node) {
-			if (node.source) {
-				imports.push(node.source.value);
+	walk(ast, {
+		enter: node => {
+			// import foo from 'foo'
+			// import 'foo'
+			if (node.type === 'ImportDeclaration') {
+				if (node.source) {
+					imports.push(node.source.value);
+				}
 			}
-		},
-		// require('foo')
-		CallExpression(node) {
-			if (
-				node.callee &&
-				node.callee.name === 'require' &&
-				node.arguments &&
-				node.arguments[0].value
-			) {
-				imports.push(node.arguments[0].value);
+
+			// require('foo')
+			else if (node.type === 'CallExpression') {
+				if (
+					node.callee &&
+					node.callee.name === 'require' &&
+					node.arguments &&
+					node.arguments[0].value
+				) {
+					imports.push(node.arguments[0].value);
+				}
 			}
 		},
 	});
