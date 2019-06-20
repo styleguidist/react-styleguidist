@@ -42,7 +42,7 @@ module.exports = function(config, env) {
 			publicPath: '',
 		},
 		resolve: {
-			extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+			extensions: ['.wasm', '.mjs', '.js', '.jsx', '.ts', '.tsx', '.json'],
 			alias: {},
 		},
 		plugins: [
