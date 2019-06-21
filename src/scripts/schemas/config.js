@@ -16,8 +16,8 @@ const kleur = require('kleur');
 const reactDocgen = require('react-docgen');
 const createDisplayNameHandler = require('react-docgen-displayname-handler')
 	.createDisplayNameHandler;
-const annotationResolver = require('react-docgen-annotation-resolver').default;
 const logger = require('glogg')('rsg');
+const annotationResolver = require('../react-docgen-annotation-resolver');
 const findUserWebpackConfig = require('../utils/findUserWebpackConfig');
 const getUserPackageJson = require('../utils/getUserPackageJson');
 const fileExistsCaseInsensitive = require('../utils/findFileCaseInsensitive');

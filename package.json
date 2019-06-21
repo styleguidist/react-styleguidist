@@ -27,10 +27,11 @@
     "node": ">=6.4"
   },
   "dependencies": {
+    "@babel/parser": "^7.4.5",
     "@vxna/mini-html-webpack-template": "^0.1.7",
     "acorn": "^6.1.1",
     "acorn-jsx": "^5.0.1",
-    "ast-types": "^0.12.2",
+    "ast-types": "^0.12.4",
     "buble": "0.19.7",
     "clean-webpack-plugin": "^1.0.1",
     "clipboard-copy": "^3.0.0",
