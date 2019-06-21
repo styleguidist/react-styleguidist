@@ -1,5 +1,4 @@
 const path = require('path');
-const _ = require('lodash');
 
 module.exports = function getNameFromFilePath(filePath) {
 	let displayName = path.basename(filePath, path.extname(filePath));
@@ -7,5 +6,9 @@ module.exports = function getNameFromFilePath(filePath) {
 		displayName = path.basename(path.dirname(filePath));
 	}
 
-	return _.upperFirst(_.camelCase(displayName));
+	return displayName
+		.charAt(0)
+		.toUpperCase()
+		.concat(displayName.slice(1))
+		.replace(/-([a-z])/, (_, match) => match.toUpperCase());
 };
