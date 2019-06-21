@@ -414,12 +414,29 @@ describe('unquote', () => {
 });
 
 describe('getType', () => {
-	it('should return .type or .flowType property', () => {
+	it('should return .type property', () => {
+		const result = getType({
+			type: 'foo',
+			flowType: undefined,
+			tsType: undefined,
+		});
+		expect(result).toBe('foo');
+	});
+	it('should return .flowType property', () => {
 		const result = getType({
 			type: 'foo',
 			flowType: 'bar',
+			tsType: undefined,
 		});
 		expect(result).toBe('bar');
+	});
+	it('should return .tsType property', () => {
+		const result = getType({
+			type: 'foo',
+			flowType: undefined,
+			tsType: 'baz',
+		});
+		expect(result).toBe('baz');
 	});
 });
 

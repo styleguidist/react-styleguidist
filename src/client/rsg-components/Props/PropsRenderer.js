@@ -105,8 +105,10 @@ function renderDefault(prop) {
 	// Workaround for issue https://github.com/reactjs/react-docgen/issues/221
 	// If prop has defaultValue it can not be required
 	if (prop.defaultValue) {
-		if (prop.type || prop.flowType) {
-			const propName = prop.type ? prop.type.name : prop.flowType.type;
+		const type = getType(prop);
+		if (type) {
+			// As of react-docgen@5, all props are normalized and have `name` property
+			const propName = type.name;
 
 			if (defaultValueBlacklist.indexOf(prop.defaultValue.value) > -1) {
 				return <Code>{showSpaces(unquote(prop.defaultValue.value))}</Code>;
