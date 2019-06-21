@@ -44,6 +44,11 @@ describe('handleHash', () => {
 		expect(result).toEqual(['FooBar', 'Component']);
 	});
 
+	it('getHashAsArray should return array with an encoded component name', () => {
+		const result = getHashAsArray('#/Documentation/Files/%40foo%2Fcomponents', routeHash);
+		expect(result).toEqual(['Documentation', 'Files', '@foo/components']);
+	});
+
 	it('getHashAsArray should return array without params', () => {
 		const result = getHashAsArray('#/FooBar/Component?id=Example/Perfect', routeHash);
 		expect(result).toEqual(['FooBar', 'Component']);

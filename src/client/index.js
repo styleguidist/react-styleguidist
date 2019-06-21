@@ -3,7 +3,7 @@ import './polyfills';
 import './styles';
 import ReactDOM from 'react-dom';
 import renderStyleguide from './utils/renderStyleguide';
-import { getParameterByName, hasInHash } from './utils/handleHash';
+import { getParameterByName, hasInHash, getHash } from './utils/handleHash';
 
 // Examples code revision to rerender only code examples (not the whole page) when code changes
 // eslint-disable-next-line no-unused-vars
@@ -12,22 +12,25 @@ let codeRevision = 0;
 // Scrolls to origin when current window location hash points to an isolated view.
 const scrollToOrigin = () => {
 	const hash = window.location.hash;
+	let idHashParam;
+
 	if (hasInHash(hash, '#/') || hasInHash(hash, '#!/')) {
 		// Extracts the id param of hash
-		const idHashParam = getParameterByName(hash, 'id');
+		idHashParam = getParameterByName(hash, 'id');
+	} else {
+		idHashParam = getHash(hash, '#');
+	}
 
-		// For default scroll scrollTop is the page top
-		let scrollTop = 0;
-
+	if (hash) {
 		if (idHashParam) {
-			// Searches the node with the same id, takes his offsetTop
-			// And with offsetTop, tries to scroll to node
 			const idElement = document.getElementById(idHashParam);
-			if (idElement && idElement.offsetTop) {
-				scrollTop = idElement.offsetTop;
+
+			if (idElement) {
+				idElement.scrollIntoView(true);
 			}
+		} else {
+			window.scrollTo(0, 0);
 		}
-		window.scrollTo(0, scrollTop);
 	}
 };
 

@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render examples 1`] = `
-<Styled(Examples)>
+<Styled(Examples)
+  name="button"
+>
   <Playground
     code=
 <button>

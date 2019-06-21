@@ -1,7 +1,7 @@
 describe('Single component', () => {
 	before(() => {
 		// Open simple button component in isolation
-		cy.visit('/#!/Button/1');
+		cy.visit('/#!/Button');
 	});
 
 	describe('props and methods section', () => {
@@ -35,10 +35,12 @@ describe('Single component', () => {
 
 	describe('preview section', () => {
 		beforeEach(() => {
-			cy.get('[class^=rsg--preview]')
-				.as('preview')
-				.closest('[class^=rsg--root]')
+			cy.get('[data-testid*="-example-"]')
 				.as('container')
+				.find('[class^=rsg--preview]')
+				.as('preview');
+
+			cy.get('@container')
 				.find('button')
 				.contains('View Code')
 				.as('viewCodeBtn');
@@ -78,6 +80,35 @@ describe('Single component', () => {
 				.find('button')
 				.contains('Push Me Harder')
 				.should('exist');
+		});
+
+		it('toggles isolated example mode correctly', () => {
+			cy.get('[data-testid$="-examples"]').as('componentExamples');
+
+			// Toggle into isolated example mode
+			cy.get('@componentExamples')
+				.find('[data-testid$="-isolate-button"]')
+				.first()
+				.click();
+
+			// Assert that there is only one example showing
+			cy.get('@componentExamples')
+				.find('[data-testid*="-example-"]')
+				.should('have.length', 1);
+
+			// Toggle out of isolated example mode
+			cy.get('@componentExamples')
+				.find('[data-testid$="-isolate-button"]')
+				.click();
+
+			// Assert the other examples are showing again
+			cy.get('@componentExamples')
+				.find('[data-testid*="-example-"]')
+				.should('have.length.above', 1);
+
+			// Check that we've returned to isolated component mode instead of normal mode
+			// TODO: this is currently bugged (returns to normal mode rather than isolated component mode)
+			//cy.get('[id$=container]').should('have.length', 1);
 		});
 	});
 });

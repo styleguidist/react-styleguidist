@@ -123,6 +123,32 @@ and this is _emphasized_
 | more foo	| more bar	|
 `);
 	});
+
+	it('should ignore single line comments', () => {
+		const markdown = `Hello World
+<!-- This is a single line comment -->
+`;
+		const actual = mount(<Markdown text={markdown} />);
+
+		expect(actual.find('p').props().children[0]).not.toContain('This is a single line comment');
+	});
+
+	it('should ignore multiline comments', () => {
+		const markdown = `Hello World
+<!--
+This is a 
+multiline
+comment
+-->
+`;
+		const actual = mount(<Markdown text={markdown} />);
+
+		expect(actual.find('p').props().children[0]).not.toContain(
+			`This is a 
+multiline
+comment`
+		);
+	});
 });
 
 describe('Markdown inline', () => {

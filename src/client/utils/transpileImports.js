@@ -1,5 +1,5 @@
 // @flow
-import walkes from 'walkes';
+import { walk } from 'estree-walker';
 import rewriteImports from './rewriteImports';
 import getAst from './getAst';
 
@@ -21,11 +21,11 @@ export default function transpileImports(code: string): string {
 	}
 
 	let offset = 0;
-	walkes(ast, {
+	walk(ast, {
 		// import foo from 'foo'
 		// import 'foo'
-		ImportDeclaration(node) {
-			if (node.source) {
+		enter: node => {
+			if (node.type === 'ImportDeclaration' && node.source) {
 				const start = node.start + offset;
 				const end = node.end + offset;
 
