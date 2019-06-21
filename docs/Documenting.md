@@ -48,7 +48,7 @@ export default class Button extends React.Component {
 }
 ```
 
-> **Note:** [Flow](https://flowtype.org/) type annotations are supported too. For TypeScript install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript)
+> **Note:** [Flow](https://flowtype.org/) and [TypeScript](https://www.typescriptlang.org) type annotations are supported.
 
 > **Note:** You can change its behavior using [propsParser](Configuration.md#propsparser) and [resolver](Configuration.md#resolver) options.
 
