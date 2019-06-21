@@ -1,4 +1,4 @@
-# React Styleguidist styled-components TypeScript
+### React Styleguidist styled-components TypeScript
 
 Secondary and primary buttons:
 
