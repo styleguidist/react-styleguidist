@@ -13,7 +13,6 @@ Thumbs.db
 *.sublime-workspace
 *.log
 .eslintcache
-yarn.lock
 /cypress/
 test/cypress/screenshots/
 test/cypress/videos/
