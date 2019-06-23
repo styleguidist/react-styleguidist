@@ -92,8 +92,8 @@
     ],
     "testPathIgnorePatterns": [
       "<rootDir>/packages/react-styleguidist/lib/",
-      "<rootDir>/packages/react-styleguidist/examples/",
-      "<rootDir>/packages/react-styleguidist/test/"
+      "<rootDir>/examples/",
+      "<rootDir>/test/"
     ],
     "coveragePathIgnorePatterns": [
       "<rootDir>/packages/react-styleguidist/src/scripts/server.js",
