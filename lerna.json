@@ -1,0 +1,12 @@
+{
+    "lerna": "3.13.1",
+    "npmClient": "yarn",
+    "useWorkspaces": true,
+    "version": "9.0.0-beta2",
+    "command": {
+      "publish": {
+        "conventionalCommits": true,
+        "changelog-preset": "tamia"
+      }
+    }
+  }
