@@ -38,10 +38,11 @@ export default function getUrl(
 	}
 
 	if (hashPath) {
+		let encodedHashPath = hashPath.map(encodeURIComponent);
 		if (!id) {
-			hashPath = [...hashPath, encodedName];
+			encodedHashPath = [...encodedHashPath, encodedName];
 		}
-		url += `#/${hashPath.join('/')}`;
+		url += `#/${encodedHashPath.join('/')}`;
 	}
 
 	if (id) {
