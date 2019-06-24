@@ -31,6 +31,10 @@ it('should capitalize the display name', () => {
 	).toEqual('YourButtonTS');
 
 	expect(
+		getNameFromFilePath(path.join('an', 'absolute', 'path', 'to', 'your_button--TS', 'index.tsx'))
+	).toEqual('YourButtonTS');
+
+	expect(
 		getNameFromFilePath(path.join('an', 'absolute', 'path', 'to', 'ButtonTS', 'index.tsx'))
 	).toEqual('ButtonTS');
 });

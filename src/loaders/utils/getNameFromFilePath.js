@@ -1,4 +1,11 @@
 const path = require('path');
+const { startCase } = require('lodash');
+
+function transformDisplayName(displayName) {
+	// ex: your-buttonTS => Your Button TS => YourButtonTS
+	// ex: your_button--TS => Your Button TS => YourButtonTS
+	return startCase(displayName).replace(/\s/g, '');
+}
 
 module.exports = function getNameFromFilePath(filePath) {
 	let displayName = path.basename(filePath, path.extname(filePath));
@@ -6,9 +13,5 @@ module.exports = function getNameFromFilePath(filePath) {
 		displayName = path.basename(path.dirname(filePath));
 	}
 
-	return displayName
-		.charAt(0)
-		.toUpperCase()
-		.concat(displayName.slice(1))
-		.replace(/-([a-z])/, (_, match) => match.toUpperCase());
+	return transformDisplayName(displayName);
 };
