@@ -2,7 +2,7 @@ import path from 'path';
 import deabsDeep from 'deabsdeep';
 import getComponentFiles from '../getComponentFiles';
 
-const configDir = path.resolve(__dirname, '../../../../test');
+const configDir = path.resolve(__dirname, '../../../../../../test');
 const components = ['components/Annotation/Annotation.js', 'components/Button/Button.js'];
 const processedComponents = components.map(c => `~/${c}`);
 const glob = 'components/**/[A-Z]*.js';

@@ -5,7 +5,7 @@ Array [
   Object {
     "components": Array [],
     "content": Object {
-      "require": "!!~/src/loaders/examples-loader.js!~/test/components/Button/Readme.md",
+      "require": "!!~/packages/react-styleguidist/src/loaders/examples-loader.js!~/test/components/Button/Readme.md",
     },
     "description": undefined,
     "exampleMode": "collapse",
@@ -28,7 +28,7 @@ Array [
         },
         "pathLine": "components/Annotation/Annotation.js",
         "props": Object {
-          "require": "!!~/src/loaders/props-loader.js!~/test/components/Annotation/Annotation.js",
+          "require": "!!~/packages/react-styleguidist/src/loaders/props-loader.js!~/test/components/Annotation/Annotation.js",
         },
         "slug": "annotation-1",
       },
@@ -41,7 +41,7 @@ Array [
         },
         "pathLine": "components/Button/Button.js",
         "props": Object {
-          "require": "!!~/src/loaders/props-loader.js!~/test/components/Button/Button.js",
+          "require": "!!~/packages/react-styleguidist/src/loaders/props-loader.js!~/test/components/Button/Button.js",
         },
         "slug": "button-2",
       },
@@ -56,7 +56,7 @@ Array [
         },
         "pathLine": "components/Placeholder/Placeholder.js",
         "props": Object {
-          "require": "!!~/src/loaders/props-loader.js!~/test/components/Placeholder/Placeholder.js",
+          "require": "!!~/packages/react-styleguidist/src/loaders/props-loader.js!~/test/components/Placeholder/Placeholder.js",
         },
         "slug": "placeholder-2",
       },
@@ -69,7 +69,7 @@ Array [
         },
         "pathLine": "components/Price/Price.js",
         "props": Object {
-          "require": "!!~/src/loaders/props-loader.js!~/test/components/Price/Price.js",
+          "require": "!!~/packages/react-styleguidist/src/loaders/props-loader.js!~/test/components/Price/Price.js",
         },
         "slug": "price-2",
       },
@@ -82,7 +82,7 @@ Array [
         },
         "pathLine": "components/RandomButton/RandomButton.js",
         "props": Object {
-          "require": "!!~/src/loaders/props-loader.js!~/test/components/RandomButton/RandomButton.js",
+          "require": "!!~/packages/react-styleguidist/src/loaders/props-loader.js!~/test/components/RandomButton/RandomButton.js",
         },
         "slug": "randombutton-2",
       },
@@ -109,7 +109,7 @@ Array [
         },
         "pathLine": "components/Button/Button.js",
         "props": Object {
-          "require": "!!~/src/loaders/props-loader.js!~/test/components/Button/Button.js",
+          "require": "!!~/packages/react-styleguidist/src/loaders/props-loader.js!~/test/components/Button/Button.js",
         },
         "slug": "button-3",
       },
@@ -122,7 +122,7 @@ Array [
         },
         "pathLine": "components/Label/index.js",
         "props": Object {
-          "require": "!!~/src/loaders/props-loader.js!~/test/components/Label/index.js",
+          "require": "!!~/packages/react-styleguidist/src/loaders/props-loader.js!~/test/components/Label/index.js",
         },
         "slug": "label-1",
       },
@@ -137,7 +137,7 @@ Array [
         },
         "pathLine": "components/Placeholder/Placeholder.js",
         "props": Object {
-          "require": "!!~/src/loaders/props-loader.js!~/test/components/Placeholder/Placeholder.js",
+          "require": "!!~/packages/react-styleguidist/src/loaders/props-loader.js!~/test/components/Placeholder/Placeholder.js",
         },
         "slug": "placeholder-3",
       },
@@ -150,7 +150,7 @@ Array [
         },
         "pathLine": "components/Price/Price.js",
         "props": Object {
-          "require": "!!~/src/loaders/props-loader.js!~/test/components/Price/Price.js",
+          "require": "!!~/packages/react-styleguidist/src/loaders/props-loader.js!~/test/components/Price/Price.js",
         },
         "slug": "price-3",
       },
@@ -163,7 +163,7 @@ Array [
         },
         "pathLine": "components/RandomButton/RandomButton.js",
         "props": Object {
-          "require": "!!~/src/loaders/props-loader.js!~/test/components/RandomButton/RandomButton.js",
+          "require": "!!~/packages/react-styleguidist/src/loaders/props-loader.js!~/test/components/RandomButton/RandomButton.js",
         },
         "slug": "randombutton-3",
       },
@@ -210,7 +210,7 @@ Object {
       },
       "pathLine": "components/Annotation/Annotation.js",
       "props": Object {
-        "require": "!!~/src/loaders/props-loader.js!~/test/components/Annotation/Annotation.js",
+        "require": "!!~/packages/react-styleguidist/src/loaders/props-loader.js!~/test/components/Annotation/Annotation.js",
       },
       "slug": "annotation",
     },
@@ -223,7 +223,7 @@ Object {
       },
       "pathLine": "components/Button/Button.js",
       "props": Object {
-        "require": "!!~/src/loaders/props-loader.js!~/test/components/Button/Button.js",
+        "require": "!!~/packages/react-styleguidist/src/loaders/props-loader.js!~/test/components/Button/Button.js",
       },
       "slug": "button",
     },
@@ -238,7 +238,7 @@ Object {
       },
       "pathLine": "components/Placeholder/Placeholder.js",
       "props": Object {
-        "require": "!!~/src/loaders/props-loader.js!~/test/components/Placeholder/Placeholder.js",
+        "require": "!!~/packages/react-styleguidist/src/loaders/props-loader.js!~/test/components/Placeholder/Placeholder.js",
       },
       "slug": "placeholder",
     },
@@ -251,7 +251,7 @@ Object {
       },
       "pathLine": "components/Price/Price.js",
       "props": Object {
-        "require": "!!~/src/loaders/props-loader.js!~/test/components/Price/Price.js",
+        "require": "!!~/packages/react-styleguidist/src/loaders/props-loader.js!~/test/components/Price/Price.js",
       },
       "slug": "price",
     },
@@ -264,7 +264,7 @@ Object {
       },
       "pathLine": "components/RandomButton/RandomButton.js",
       "props": Object {
-        "require": "!!~/src/loaders/props-loader.js!~/test/components/RandomButton/RandomButton.js",
+        "require": "!!~/packages/react-styleguidist/src/loaders/props-loader.js!~/test/components/RandomButton/RandomButton.js",
       },
       "slug": "randombutton",
     },
@@ -286,7 +286,7 @@ exports[`processSection() should return an object for section with content 1`] =
 Object {
   "components": Array [],
   "content": Object {
-    "require": "!!~/src/loaders/examples-loader.js!~/test/components/Button/Readme.md",
+    "require": "!!~/packages/react-styleguidist/src/loaders/examples-loader.js!~/test/components/Button/Readme.md",
   },
   "description": undefined,
   "exampleMode": "collapse",
@@ -331,7 +331,7 @@ Object {
       },
       "pathLine": "components/Button/Button.js",
       "props": Object {
-        "require": "!!~/src/loaders/props-loader.js!~/test/components/Button/Button.js",
+        "require": "!!~/packages/react-styleguidist/src/loaders/props-loader.js!~/test/components/Button/Button.js",
       },
       "slug": "button-1",
     },
@@ -344,7 +344,7 @@ Object {
       },
       "pathLine": "components/Label/index.js",
       "props": Object {
-        "require": "!!~/src/loaders/props-loader.js!~/test/components/Label/index.js",
+        "require": "!!~/packages/react-styleguidist/src/loaders/props-loader.js!~/test/components/Label/index.js",
       },
       "slug": "label",
     },
@@ -359,7 +359,7 @@ Object {
       },
       "pathLine": "components/Placeholder/Placeholder.js",
       "props": Object {
-        "require": "!!~/src/loaders/props-loader.js!~/test/components/Placeholder/Placeholder.js",
+        "require": "!!~/packages/react-styleguidist/src/loaders/props-loader.js!~/test/components/Placeholder/Placeholder.js",
       },
       "slug": "placeholder-1",
     },
@@ -372,7 +372,7 @@ Object {
       },
       "pathLine": "components/Price/Price.js",
       "props": Object {
-        "require": "!!~/src/loaders/props-loader.js!~/test/components/Price/Price.js",
+        "require": "!!~/packages/react-styleguidist/src/loaders/props-loader.js!~/test/components/Price/Price.js",
       },
       "slug": "price-1",
     },
@@ -385,7 +385,7 @@ Object {
       },
       "pathLine": "components/RandomButton/RandomButton.js",
       "props": Object {
-        "require": "!!~/src/loaders/props-loader.js!~/test/components/RandomButton/RandomButton.js",
+        "require": "!!~/packages/react-styleguidist/src/loaders/props-loader.js!~/test/components/RandomButton/RandomButton.js",
       },
       "slug": "randombutton-1",
     },
