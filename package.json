@@ -51,9 +51,9 @@
     "webpack-cli": "^3.1.2"
   },
   "scripts": {
-    "pretest": "yarn lint",
-    "test": "yarn test:jest",
-    "posttest": "yarn format",
+    "pretest": "npm run lint",
+    "test": "npm run test:jest",
+    "posttest": "npm run format",
     "test:jest": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
@@ -63,8 +63,8 @@
     "start:ui": "node packages/react-styleguidist/lib/bin/styleguidist.js server",
     "lint": "eslint . --cache --fix",
     "flow": "flow",
-    "compile": "babel --delete-dir-on-start --ignore '*react-styleguidist/*.spec.js','*react-styleguidist/__*__/*' -d packages/react-styleguidist/lib/ packages/react-styleguidist/src/",
-    "compile:watch": "yarn compile -- --watch",
+    "compile": "lerna run compile",
+    "compile:watch": "lerna run compile:watch --parallel",
     "build:basic": "node packages/react-styleguidist/lib/bin/styleguidist.js build --config examples/basic/styleguide.config.js",
     "build:customised": "node packages/react-styleguidist/lib/bin/styleguidist.js build --config examples/customised/styleguide.config.js",
     "build:sections": "node packages/react-styleguidist/lib/bin/styleguidist.js build --config examples/sections/styleguide.config.js",
