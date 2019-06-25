@@ -27,7 +27,7 @@
       "node": ">=6.4"
     },
     "scripts":{
-      "compile": "babel --delete-dir-on-start --ignore '*react-styleguidist/*.spec.js','*react-styleguidist/__*__/*' -d lib/ src/",
+      "compile": "babel --delete-dir-on-start --ignore '**/*.spec.js','**/__*__/*' -d lib/ src/",
       "compile:watch": "npm run compile -- --watch"
     },
     "dependencies": {

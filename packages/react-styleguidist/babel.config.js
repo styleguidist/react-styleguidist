@@ -2,13 +2,8 @@ module.exports = {
 	...require('../../babel.config'),
 	overrides: [
 		{
-			include: [
-				'packages/*/src/bin',
-				'packages/*/src/loaders',
-				'packages/*/src/scripts',
-				'packages/*/src/share',
-			],
-			exclude: ['packages/*/src/loaders/utils/client'],
+			include: ['src/bin', 'src/loaders', 'src/scripts', 'src/share'],
+			exclude: ['src/loaders/utils/client'],
 			presets: [
 				[
 					'@babel/env',
