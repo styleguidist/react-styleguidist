@@ -9,13 +9,24 @@ addons:
     packages:
     - libgconf-2-4
 
+
+language: node_js
+
+# never build when commited by the bot
+if: sender != "styleguidist-bot" AND (type = pull_request OR branch = master)
+
+cache: yarn
+
 before_install:
-  # Use npm 6.9.x since it has introduced `npm ci`
-  - if [[ `npm -v` != 6.9* ]]; then npm install -g npm@'>=6.9'; fi
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.13.0
+  - export PATH="$HOME/.yarn/bin:$PATH"
+
+install:
+- yarn install
 
 script:
   # Run tests without coverage since it's 2x faster
-  - npm run test:jest -- --runInBand
+  - yarn test:jest -- --runInBand
 
 # Trigger a push build on master branches only + PRs build on every branches
 # Avoid double build on PRs (See https://github.com/travis-ci/travis-ci/issues/1147)
