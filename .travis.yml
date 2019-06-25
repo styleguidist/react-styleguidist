@@ -68,17 +68,13 @@ jobs:
     - stage: release
       script:
         - npm install --no-save semantic-release-tamia
-        - >-
-          npx semantic-release --analyze-commits semantic-release-tamia/analyzeCommits --verify-release semantic-release-tamia/verifyRelease --generate-notes semantic-release-tamia/generateNotes
-          
-          
-          
-          
-          
-          
-          
-          
-          
+        - git config --global user.name "styleguidist-bot"
+        - git config --global user.email "${BOT_EMAIL}"
+        - git remote set-url origin "https://${GH_TOKEN}@github.com/vue-styleguidist/vue-styleguidist.git" > /dev/null 2>&1
+        - git checkout master
+        - git reset --hard
+        - npm run lerna version --yes --github-release
+        - npm run lerna publish from-git --yes
 
     - stage: documentation
       script:
