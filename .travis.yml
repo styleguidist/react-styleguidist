@@ -4,7 +4,7 @@ language: node_js
 if: sender != "styleguidist-bot" AND (type = pull_request OR branch = master)
 
 node_js:
-  - 9
+  - 10
   - 8
   - 6
 
@@ -84,6 +84,7 @@ jobs:
         - npm install --no-save semantic-release-tamia
         - >-
           npx semantic-release --analyze-commits semantic-release-tamia/analyzeCommits --verify-release semantic-release-tamia/verifyRelease --generate-notes semantic-release-tamia/generateNotes
+          
           
           
 
