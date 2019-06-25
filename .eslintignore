@@ -1,6 +1,6 @@
 node_modules
 examples/*/styleguide/*
-lib/*
+packages/*/lib/*
 coverage/*
 travis_phantomjs/*
 flow-typed/*

@@ -7,7 +7,8 @@ import MethodsRenderer, { columns } from './MethodsRenderer';
 export default function ColumnsRenderer({ methods }) {
 	return (
 		<ul>
-			{methods.map((row, rowIdx) => (
+			{// eslint-disable-next-line react/prop-types
+			methods.map((row, rowIdx) => (
 				<li key={rowIdx}>
 					{columns.map(({ render }, colIdx) => (
 						<div key={colIdx}>{render(row)}</div>
