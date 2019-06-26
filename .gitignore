@@ -3,6 +3,7 @@ node_modules/
 /examples/**/styleguide/index.html
 /.publish/
 /lib
+packages/*/lib
 /coverage/
 Changelog.md
 .DS_Store
