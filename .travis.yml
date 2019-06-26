@@ -24,7 +24,7 @@ install:
 
 script:
   # Run tests without coverage since it's 2x faster
-  - yarn test:jest -- --runInBand
+  - yarn test:jest --runInBand
 
 # Trigger a push build on master branches only + PRs build on every branches
 # Avoid double build on PRs (See https://github.com/travis-ci/travis-ci/issues/1147)
@@ -46,36 +46,36 @@ jobs:
   include:
     - stage: lint
       script:
-        - npm run lint
+        - yarn lint
         - npx danger ci
 
     - stage: typecheck
       script:
-        - npm run flow check
+        - yarn flow check
 
     - stage: integration
       script:
         # Compile JS
-        - npm run compile
+        - yarn compile
         # Build all examples
-        - npm run build:basic
-        - npm run build:customised
-        - npm run build:sections
+        - yarn build:basic
+        - yarn build:customised
+        - yarn build:sections
         # Check that examples really works: no JS errors on load
-        - npm run test:browser:pre
-        - npm run test:browser:basic
-        - npm run test:browser:customised
-        - npm run test:browser:sections
+        - yarn test:browser:pre
+        - yarn test:browser:basic
+        - yarn test:browser:customised
+        - yarn test:browser:sections
         # Run integration tests with Cypress
-        - npm run test:cypress:pre
-        - npm run test:cypress:startServer &
-        - npm run test:cypress:startServer:post
-        - npm run test:cypress:run
+        - yarn test:cypress:pre
+        - yarn test:cypress:startServer &
+        - yarn test:cypress:startServer:post
+        - yarn test:cypress:run
 
     - stage: coverage
       script:
         # Run tests with coverage
-        - npm run test:coverage -- --runInBand
+        - yarn test:coverage --runInBand
         # Upload coverage report to Codecov
         - bash <(curl -s https://codecov.io/bash)
 
