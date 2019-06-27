@@ -79,7 +79,6 @@
     "test:browser:basic": "node test/browser.js examples/basic/styleguide/index.html",
     "test:browser:customised": "node test/browser.js examples/customised/styleguide/index.html",
     "test:browser:sections": "node test/browser.js examples/sections/styleguide/index.html",
-    "precommit": "lint-staged",
     "format": "prettier --write '**/*.{js,md,css}'",
     "test:cypress:pre": "yarn add -W cypress@3.0.2 wait-on",
     "test:cypress:open": "cypress open",
@@ -145,5 +144,10 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
