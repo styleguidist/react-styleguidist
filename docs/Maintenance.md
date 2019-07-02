@@ -13,7 +13,6 @@
 - [Change logs](#change-logs)
   - [What is a good change log](#what-is-a-good-change-log)
   - [What should be in a change log](#what-should-be-in-a-change-log)
-  - [Preparing a change log](#preparing-a-change-log)
 
 <!-- tocstop -->
 
@@ -30,13 +29,13 @@ Help us develop and maintain Styleguidist:
 
 ## Commit message conventions
 
-[Commit message conventions](https://github.com/tamiadev/semantic-release-tamia/blob/master/Convention.md) are based on Angular conventions.
+[Commit message conventions](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines) use Angular conventions.
 
 ## Pull requests
 
 Maintainers merge pull requests by squashing all commits and editing the commit message if necessary.
 
-Use an [appropriate commit type](https://github.com/tamiadev/semantic-release-tamia/blob/master/Convention.md#types). Be especially careful with [breaking changes](https://github.com/tamiadev/semantic-release-tamia/blob/master/Convention.md#breaking-changes).
+Use an [appropriate commit type](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#type). Be especially careful with [breaking changes](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#footer).
 
 ## Releases
 
