@@ -81,13 +81,15 @@ jobs:
 
     - stage: release
       script:
-        - npm install --no-save semantic-release-tamia
-        - >-
-          npx semantic-release --analyze-commits semantic-release-tamia/analyzeCommits --verify-release semantic-release-tamia/verifyRelease --generate-notes semantic-release-tamia/generateNotes
-          
-          
-          
-          
+        - yarn compile
+        - git config --global user.name "Styleguidist Bot"
+        - git config --global user.email "artem+styleguidist@sapegin.ru"
+        - git remote set-url origin "https://${GH_TOKEN}@github.com/styleguidist/react-styleguidist.git" > /dev/null 2>&1
+        - git checkout master
+        - git reset --hard
+        - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
+        - yarn lerna version --yes --github-release
+        - yarn lerna publish from-git --yes
 
     - stage: documentation
       script:
