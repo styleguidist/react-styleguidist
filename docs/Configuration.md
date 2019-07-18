@@ -327,7 +327,7 @@ Render one section or component per page.
 
 If `true`, each section will be a single page.
 
-The value may depends on a current environment:
+The value may depend on a current environment:
 
 ```javascript
 module.exports = {
