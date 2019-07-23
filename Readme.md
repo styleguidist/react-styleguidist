@@ -65,6 +65,7 @@ Real projects using React Styleguidist:
 - [Building React Components Library](https://skillsmatter.com/skillscasts/8140-building-react-components-library) talk by [Robert Haritonov](https://github.com/operatino)
 - [Say Cheese: Snapshots and Visual Testing](https://developers.livechatinc.com/blog/snapshots-visual-testing/)
 - [Interview with Artem Sapegin](https://survivejs.com/blog/styleguidist-interview/) about React Styleguidist.
+- [Building React Components Documents By Ydoc](https://github.com/hellosean1025/ydoc-plugin-react-styleguide) by sean.
 
 ## Change log
 
