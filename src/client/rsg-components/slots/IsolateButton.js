@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MdFullscreen from 'react-icons/lib/md/fullscreen';
-import MdFullscreenExit from 'react-icons/lib/md/fullscreen-exit';
+import { MdFullscreen, MdFullscreenExit } from 'react-icons/md';
 import ToolbarButton from 'rsg-components/ToolbarButton';
 import getUrl from '../../utils/getUrl';
 
