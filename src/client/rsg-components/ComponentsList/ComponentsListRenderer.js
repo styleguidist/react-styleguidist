@@ -37,14 +37,18 @@ const styles = ({ color, fontFamily, fontSize, space, mq }) => ({
 	},
 });
 
-export function ComponentsListRenderer({ classes, items }) {
+export function ComponentsListRenderer({ classes, items }, { config }) {
+	const { pagePerSection } = config;
 	items = items.filter(item => item.visibleName);
 
 	if (!items.length) {
 		return null;
 	}
 
-	const windowHash = window.location.pathname + getHash(window.location.hash);
+	// Match selected page for both routing conventions
+	const hash = window.location.hash;
+	const pathName = window.location.pathname;
+	const windowHash = pathName + (pagePerSection ? hash : getHash(hash));
 	return (
 		<ul className={classes.list}>
 			{items.map(({ heading, visibleName, href, content, shouldOpenInNewTab }) => {
@@ -75,6 +79,10 @@ export function ComponentsListRenderer({ classes, items }) {
 ComponentsListRenderer.propTypes = {
 	items: PropTypes.array.isRequired,
 	classes: PropTypes.object.isRequired,
+};
+
+ComponentsListRenderer.contextTypes = {
+	config: PropTypes.object.isRequired,
 };
 
 export default Styled(styles)(ComponentsListRenderer);
