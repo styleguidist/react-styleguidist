@@ -27,7 +27,6 @@ module.exports = function(config, env) {
 		context: Object.assign({}, templateContext, {
 			title: config.title,
 			container: config.mountPointId,
-			trimWhitespace: true,
 		}),
 		template,
 	};
