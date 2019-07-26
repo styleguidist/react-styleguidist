@@ -45,10 +45,9 @@ export function ComponentsListRenderer({ classes, items }, { config }) {
 		return null;
 	}
 
-	// Match selected page for both routing conventions
-	const hash = window.location.hash;
-	const pathName = window.location.pathname;
-	const windowHash = pathName + (pagePerSection ? hash : getHash(hash));
+	// Match selected component in both basic routing and pagePerSection routing.
+	const { hash, pathname } = window.location;
+	const windowHash = pathname + (pagePerSection ? hash : getHash(hash));
 	return (
 		<ul className={classes.list}>
 			{items.map(({ heading, visibleName, href, content, shouldOpenInNewTab }) => {
