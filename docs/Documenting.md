@@ -310,7 +310,7 @@ class ModalExample extends React.Component {
 ;<ModalExample />
 ````
 
-If component consumes React context, you need to have a context provider in the example or in a custom Wrapper. See [ThemeButton example](https://github.com/styleguidist/react-styleguidist/tree/master/examples/basic/src/components/ThemeButton).
+If a component consumes React Context, you need a context provider in the example or in a custom `Wrapper` component. See [ThemeButton example](https://github.com/styleguidist/react-styleguidist/tree/master/examples/sections/src/components/ThemeButton).
 
 > **Note:** If you need a more complex demo it’s often a good idea to define it in a separate JavaScript file and `import` it in Markdown.
 
