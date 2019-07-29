@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import PlaygroundError from 'rsg-components/PlaygroundError';
@@ -96,10 +96,10 @@ export default class Preview extends Component {
 	render() {
 		const { error } = this.state;
 		return (
-			<>
+			<Fragment>
 				<div ref={ref => (this.mountNode = ref)} />
 				{error && <PlaygroundError message={error} />}
-			</>
+			</Fragment>
 		);
 	}
 }
