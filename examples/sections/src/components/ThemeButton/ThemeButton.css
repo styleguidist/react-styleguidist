@@ -1,5 +1,4 @@
-.theme-button--light,
-.theme-button--dark {
+.ThemeButton {
 	padding: 0.5em 1.5em;
 	border: 1px solid currentColor;
 	border-radius: 0.3em;
@@ -10,12 +9,12 @@
 	cursor: pointer;
 }
 
-.theme-button--light {
+.ThemeButton--light {
 	color: #111133;
 	background-color: #eeeeff;
 }
 
-.theme-button--dark {
+.ThemeButton--dark {
 	color: #eeeeff;
 	background-color: #111133;
 }
