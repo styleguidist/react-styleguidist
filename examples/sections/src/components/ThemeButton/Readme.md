@@ -1,4 +1,4 @@
-An example about using react context with a component
+An example of using React Context with a component:
 
 ```jsx
 import ThemeContext from '../../ThemeContext.js'
