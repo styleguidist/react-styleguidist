@@ -22,7 +22,7 @@ const styles = ({ fontFamily, color }) => ({
 export function LogoRenderer({ classes, children }) {
 	return (
 		<h1 className={classes.logo}>
-			<img className={classes.image} src={logo} />
+			<img className={classes.image} src={logo} alt="React logo" />
 			{children}
 		</h1>
 	);

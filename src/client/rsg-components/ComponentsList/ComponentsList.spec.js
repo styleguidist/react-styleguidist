@@ -2,6 +2,12 @@ import React from 'react';
 import ComponentsList from './ComponentsList';
 import { ComponentsListRenderer } from './ComponentsListRenderer';
 
+const context = {
+	config: {
+		pagePerSection: true,
+	},
+};
+
 it('should set the correct href for items', () => {
 	const components = [
 		{
@@ -16,7 +22,7 @@ it('should set the correct href for items', () => {
 		},
 	];
 
-	const actual = shallow(<ComponentsList items={components} classes={{}} />);
+	const actual = shallow(<ComponentsList items={components} classes={{}} />, { context });
 	expect(actual).toMatchSnapshot();
 });
 
@@ -34,7 +40,7 @@ it('if a custom href is provided, should use it instead of generating internal l
 		},
 	];
 
-	const actual = shallow(<ComponentsList items={components} classes={{}} />);
+	const actual = shallow(<ComponentsList items={components} classes={{}} />, { context });
 	expect(actual).toMatchSnapshot();
 });
 
@@ -51,7 +57,6 @@ it('should set a parameter on link when useHashId is activated', () => {
 			slug: 'input',
 		},
 	];
-
 	const actual = shallow(
 		<ComponentsList
 			items={components}
@@ -59,7 +64,8 @@ it('should set a parameter on link when useHashId is activated', () => {
 			useRouterLinks
 			hashPath={['Components']}
 			useHashId
-		/>
+		/>,
+		{ context }
 	);
 	expect(actual).toMatchSnapshot();
 });
@@ -83,7 +89,8 @@ it('should set a sub route on link when useHashId is deactivated', () => {
 			useRouterLinks
 			hashPath={['Components']}
 			useHashId={false}
-		/>
+		/>,
+		{ context }
 	);
 	expect(actual).toMatchSnapshot();
 });
@@ -101,13 +108,13 @@ it('should render sections with nested components', () => {
 			href: '#input',
 		},
 	];
-	const actual = shallow(<ComponentsListRenderer items={components} classes={{}} />);
+	const actual = shallow(<ComponentsListRenderer items={components} classes={{}} />, { context });
 
 	expect(actual).toMatchSnapshot();
 });
 
 it('should return null when the list is empty', () => {
-	const actual = shallow(<ComponentsListRenderer items={[]} classes={{}} />);
+	const actual = shallow(<ComponentsListRenderer items={[]} classes={{}} />, { context });
 
 	expect(actual.getElement()).toBe(null);
 });
@@ -124,7 +131,7 @@ it('should ignore items without visibleName', () => {
 			href: '#input',
 		},
 	];
-	const actual = shallow(<ComponentsListRenderer items={components} classes={{}} />);
+	const actual = shallow(<ComponentsListRenderer items={components} classes={{}} />, { context });
 
 	expect(actual).toMatchSnapshot();
 });

@@ -29,17 +29,20 @@ export default function getUrl(
 		url += '?nochrome';
 	}
 
+	const encodedName = encodeURIComponent(name);
+
 	if (anchor) {
 		url += `#${slug}`;
 	} else if (isolated || nochrome) {
-		url += `#!/${name}`;
+		url += `#!/${encodedName}`;
 	}
 
 	if (hashPath) {
+		let encodedHashPath = hashPath.map(encodeURIComponent);
 		if (!id) {
-			hashPath = [...hashPath, name];
+			encodedHashPath = [...encodedHashPath, encodedName];
 		}
-		url += `#/${hashPath.join('/')}`;
+		url += `#/${encodedHashPath.join('/')}`;
 	}
 
 	if (id) {

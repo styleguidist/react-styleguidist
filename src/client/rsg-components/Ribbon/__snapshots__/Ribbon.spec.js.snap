@@ -7,7 +7,7 @@ exports[`Ribbon should render ribbon if the ribbon is present in the config 1`] 
 `;
 
 exports[`RibbonRenderer should render ribbon with a text 1`] = `
-<div
+<footer
   className="root"
 >
   <a
@@ -16,11 +16,11 @@ exports[`RibbonRenderer should render ribbon with a text 1`] = `
   >
     Share the repo
   </a>
-</div>
+</footer>
 `;
 
 exports[`RibbonRenderer should render ribbon with url 1`] = `
-<div
+<footer
   className="root"
 >
   <a
@@ -29,5 +29,5 @@ exports[`RibbonRenderer should render ribbon with url 1`] = `
   >
     Fork me on GitHub
   </a>
-</div>
+</footer>
 `;

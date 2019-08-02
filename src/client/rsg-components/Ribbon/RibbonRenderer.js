@@ -33,11 +33,11 @@ export const styles = ({ color, space, fontSize, fontFamily }) => ({
 
 export function RibbonRenderer({ classes, url, text }) {
 	return (
-		<div className={classes.root}>
+		<footer className={classes.root}>
 			<a href={url} className={classes.link}>
 				{text}
 			</a>
-		</div>
+		</footer>
 	);
 }
 

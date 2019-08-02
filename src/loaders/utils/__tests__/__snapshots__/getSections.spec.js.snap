@@ -10,12 +10,11 @@ Array [
     "description": undefined,
     "exampleMode": "collapse",
     "external": undefined,
-    "filepath": "components/Button/Readme.md",
     "href": undefined,
     "name": "Readme",
     "sectionDepth": 0,
     "sections": Array [],
-    "slug": "readme-1",
+    "slug": "section-readme-1",
     "usageMode": "collapse",
   },
   Object {
@@ -92,12 +91,11 @@ Array [
     "description": undefined,
     "exampleMode": "collapse",
     "external": undefined,
-    "filepath": undefined,
     "href": undefined,
     "name": "Components",
     "sectionDepth": 0,
     "sections": Array [],
-    "slug": "components-1",
+    "slug": "section-components-1",
     "usageMode": "collapse",
   },
   Object {
@@ -174,12 +172,27 @@ Array [
     "description": undefined,
     "exampleMode": "collapse",
     "external": undefined,
-    "filepath": undefined,
     "href": undefined,
     "name": "Ignore",
     "sectionDepth": 0,
     "sections": Array [],
-    "slug": "ignore-1",
+    "slug": "section-ignore-2",
+    "usageMode": "collapse",
+  },
+  Object {
+    "components": Array [],
+    "content": Object {
+      "content": "Hello World",
+      "type": "markdown",
+    },
+    "description": undefined,
+    "exampleMode": "collapse",
+    "external": undefined,
+    "href": undefined,
+    "name": "Ignore",
+    "sectionDepth": 0,
+    "sections": Array [],
+    "slug": "section-ignore-3",
     "usageMode": "collapse",
   },
 ]
@@ -260,12 +273,11 @@ Object {
   "description": undefined,
   "exampleMode": "collapse",
   "external": undefined,
-  "filepath": undefined,
   "href": undefined,
   "name": "Components",
   "sectionDepth": 0,
   "sections": Array [],
-  "slug": "components",
+  "slug": "section-components",
   "usageMode": "collapse",
 }
 `;
@@ -279,12 +291,30 @@ Object {
   "description": undefined,
   "exampleMode": "collapse",
   "external": undefined,
-  "filepath": "components/Button/Readme.md",
   "href": undefined,
   "name": "Readme",
   "sectionDepth": 0,
   "sections": Array [],
-  "slug": "readme",
+  "slug": "section-readme",
+  "usageMode": "collapse",
+}
+`;
+
+exports[`processSection() should return an object for section with content as function 1`] = `
+Object {
+  "components": Array [],
+  "content": Object {
+    "content": "Hello World",
+    "type": "markdown",
+  },
+  "description": undefined,
+  "exampleMode": "collapse",
+  "external": undefined,
+  "href": undefined,
+  "name": "Ignore",
+  "sectionDepth": 0,
+  "sections": Array [],
+  "slug": "section-ignore-1",
   "usageMode": "collapse",
 }
 `;
@@ -364,12 +394,11 @@ Object {
   "description": undefined,
   "exampleMode": "collapse",
   "external": undefined,
-  "filepath": undefined,
   "href": undefined,
   "name": "Ignore",
   "sectionDepth": 0,
   "sections": Array [],
-  "slug": "ignore",
+  "slug": "section-ignore",
   "usageMode": "collapse",
 }
 `;

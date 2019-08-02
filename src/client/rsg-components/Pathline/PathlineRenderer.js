@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
-import MdContentCopy from 'react-icons/lib/md/content-copy';
+import { MdContentCopy } from 'react-icons/md';
 import ToolbarButton from 'rsg-components/ToolbarButton';
 import Styled from 'rsg-components/Styled';
 

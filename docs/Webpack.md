@@ -97,7 +97,9 @@ If you’re using [Create React App](https://github.com/facebook/create-react-ap
 
    ```javascript
    module.exports = {
-     propsParser: require('react-docgen-typescript').parse
+     propsParser: require('react-docgen-typescript').withCustomConfig(
+       './tsconfig.json'
+     ).parse
    }
    ```
 
@@ -117,7 +119,7 @@ npm install --save-dev babel-loader
 
 > **Note:** If your project doesn’t use webpack you still need add webpack loaders for your files, otherwise Styleguidist won’t be able to load your code.
 
-Then, create a webpack config, `webpack.config.js`:
+Then, add a `webpackConfig` section to your `styleguide.config.js`
 
 ```js
 module.exports = {
@@ -132,6 +134,20 @@ module.exports = {
       ]
     }
   }
+}
+```
+
+or create a webpack config, `webpack.config.js`:
+
+```js
+module: {
+  rules: [
+    {
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      loader: 'babel-loader'
+    }
+  ]
 }
 ```
 

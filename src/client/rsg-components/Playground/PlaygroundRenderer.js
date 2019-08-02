@@ -28,6 +28,7 @@ export const styles = ({ space, color, borderRadius }) => ({
 
 export function PlaygroundRenderer({
 	classes,
+	exampleIndex,
 	name,
 	preview,
 	previewProps,
@@ -37,7 +38,7 @@ export function PlaygroundRenderer({
 }) {
 	const { className, ...props } = previewProps;
 	return (
-		<div className={classes.root}>
+		<div className={classes.root} data-testid={`${name}-example-${exampleIndex}`}>
 			<div className={cx(classes.preview, className)} {...props} data-preview={name}>
 				{preview}
 			</div>
@@ -52,6 +53,7 @@ export function PlaygroundRenderer({
 
 PlaygroundRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
+	exampleIndex: PropTypes.number.isRequired,
 	name: PropTypes.string.isRequired,
 	preview: PropTypes.node.isRequired,
 	previewProps: PropTypes.object.isRequired,
