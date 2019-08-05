@@ -41,7 +41,11 @@ export default class TableOfContents extends Component {
 		const { sections, useRouterLinks } = this.props;
 		// If there is only one section, we treat it as a root section
 		// In this case the name of the section won't be rendered and it won't get left padding
-		const firstLevel = sections.length === 1 ? sections[0].components : sections;
+		// Since a section can contain only other sections,
+		// we need to make sure not to loose the subsections.
+		// We will treat those subsecttions as the new roots.
+		const firstLevel =
+			sections.length === 1 ? sections[0].sections || sections[0].components : sections;
 		const filtered = filterSectionsByName(firstLevel, searchTerm);
 
 		return this.renderLevel(filtered, useRouterLinks);
