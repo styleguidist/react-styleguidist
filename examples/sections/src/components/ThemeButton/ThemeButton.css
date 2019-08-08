@@ -1,0 +1,20 @@
+.ThemeButton {
+	padding: 0.5em 1.5em;
+	border: 1px solid currentColor;
+	border-radius: 0.3em;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.ThemeButton--light {
+	color: #111133;
+	background-color: #eeeeff;
+}
+
+.ThemeButton--dark {
+	color: #eeeeff;
+	background-color: #111133;
+}
