@@ -1,6 +1,6 @@
 import React from 'react';
 
 /**
- * Button that counts how many times it was pressed and exposes a `@public` method to reset itself.
+ * Context that stores selected application theme: 'light' | 'dark'
  */
 export default React.createContext('light');
