@@ -21,8 +21,6 @@
     "styleguide:build": "styleguidist build"
   },
   "dependencies": {
-    "add": "^2.0.6",
-    "core-js": "^3.2.0",
     "dog-names": "^2.0.0",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
