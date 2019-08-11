@@ -12,6 +12,7 @@ import { DisplayModes, ExampleModes } from '../../consts';
 class Playground extends Component {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
+		displayCode: PropTypes.string,
 		evalInContext: PropTypes.func.isRequired,
 		index: PropTypes.number.isRequired,
 		name: PropTypes.string.isRequired,
@@ -26,7 +27,7 @@ class Playground extends Component {
 
 	constructor(props, context) {
 		super(props, context);
-		const { code, settings, exampleMode } = props;
+		const { code, displayCode, settings, exampleMode } = props;
 		const { config } = context;
 		const expandCode = exampleMode === ExampleModes.expand;
 		const activeTab = settings.showcode !== undefined ? settings.showcode : expandCode;
@@ -34,6 +35,7 @@ class Playground extends Component {
 		this.state = {
 			code,
 			prevCode: code,
+			displayCode,
 			activeTab: activeTab ? EXAMPLE_TAB_CODE_EDITOR : undefined,
 		};
 
@@ -42,11 +44,12 @@ class Playground extends Component {
 	}
 
 	static getDerivedStateFromProps(nextProps, prevState) {
-		const { code } = nextProps;
+		const { code, displayCode } = nextProps;
 		if (prevState.prevCode !== code) {
 			return {
 				prevCode: code,
 				code,
+				displayCode,
 			};
 		}
 		return null;
@@ -70,7 +73,7 @@ class Playground extends Component {
 	}
 
 	render() {
-		const { code, activeTab } = this.state;
+		const { code, displayCode, activeTab } = this.state;
 		const { evalInContext, index, name, settings, exampleMode } = this.props;
 		const { displayMode } = this.context;
 		const isExampleHidden = exampleMode === ExampleModes.hide;
@@ -98,7 +101,11 @@ class Playground extends Component {
 						active={activeTab}
 						onlyActive
 						// evalInContext passed through to support custom slots that eval code
-						props={{ code, onChange: this.handleChange, evalInContext }}
+						props={{
+							code: displayCode ? displayCode : code,
+							onChange: this.handleChange,
+							evalInContext,
+						}}
 					/>
 				}
 				toolbar={

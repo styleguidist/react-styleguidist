@@ -13,6 +13,7 @@ export default function Examples({ examples, name, exampleMode }, { codeRevision
 						return (
 							<Playground
 								code={example.content}
+								displayCode={example.settings.displaycontent}
 								evalInContext={example.evalInContext}
 								key={`${codeRevision}/${index}`}
 								name={name}
