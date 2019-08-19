@@ -46,7 +46,7 @@ export default class TableOfContents extends Component {
 		// We will treat those subsecttions as the new roots.
 		const firstLevel =
 			sections.length === 1
-				? // only use subsections if there actually is subsections
+				? // only use subsections if there actually are subsections
 				  sections[0].sections && sections[0].sections.length
 					? sections[0].sections
 					: sections[0].components
