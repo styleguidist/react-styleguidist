@@ -45,7 +45,12 @@ export default class TableOfContents extends Component {
 		// we need to make sure not to loose the subsections.
 		// We will treat those subsecttions as the new roots.
 		const firstLevel =
-			sections.length === 1 ? sections[0].sections || sections[0].components : sections;
+			sections.length === 1
+				? // only use subsections if there actually are subsections
+				  sections[0].sections && sections[0].sections.length
+					? sections[0].sections
+					: sections[0].components
+				: sections;
 		const filtered = filterSectionsByName(firstLevel, searchTerm);
 
 		return this.renderLevel(filtered, useRouterLinks);
