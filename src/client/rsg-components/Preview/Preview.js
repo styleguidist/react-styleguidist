@@ -15,10 +15,13 @@ export default class Preview extends Component {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
 	};
+
 	static contextTypes = {
 		config: PropTypes.object.isRequired,
 		codeRevision: PropTypes.number.isRequired,
+		currentTheme: PropTypes.string,
 	};
+
 	state = {
 		error: null,
 	};
@@ -34,14 +37,16 @@ export default class Preview extends Component {
 		this.executeCode();
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
-		return this.state.error !== nextState.error || this.props.code !== nextProps.code;
+	shouldComponentUpdate(nextProps, nextState, nextContext) {
+		return (
+			this.state.error !== nextState.error ||
+			this.props.code !== nextProps.code ||
+			this.context.currentTheme !== nextContext.currentTheme
+		);
 	}
 
-	componentDidUpdate(prevProps) {
-		if (this.props.code !== prevProps.code) {
-			this.executeCode();
-		}
+	componentDidUpdate() {
+		this.executeCode();
 	}
 
 	componentWillUnmount() {
@@ -70,6 +75,7 @@ export default class Preview extends Component {
 				evalInContext={this.props.evalInContext}
 				onError={this.handleError}
 				compilerConfig={this.context.config.compilerConfig}
+				currentTheme={this.context.currentTheme}
 			/>
 		);
 

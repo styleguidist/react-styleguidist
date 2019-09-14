@@ -43,6 +43,7 @@ export default class ReactExample extends Component {
 		evalInContext: PropTypes.func.isRequired,
 		onError: PropTypes.func.isRequired,
 		compilerConfig: PropTypes.object,
+		currentTheme: PropTypes.string,
 	};
 	static contextTypes = {};
 
@@ -74,7 +75,7 @@ export default class ReactExample extends Component {
 	}
 
 	render() {
-		const { code, compilerConfig, onError } = this.props;
+		const { code, compilerConfig, currentTheme, onError } = this.props;
 		const compiledCode = compileCode(code, compilerConfig, onError);
 		if (!compiledCode) {
 			return null;
@@ -84,7 +85,7 @@ export default class ReactExample extends Component {
 		const initialState = this.getExampleInitialState(head);
 		const exampleComponent = this.getExampleComponent(example);
 		const wrappedComponent = (
-			<Wrapper onError={onError}>
+			<Wrapper currentTheme={currentTheme} onError={onError}>
 				<StateHolder component={exampleComponent} initialState={initialState} />
 			</Wrapper>
 		);

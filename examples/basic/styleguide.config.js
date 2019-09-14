@@ -36,6 +36,9 @@ module.exports = {
 		},
 	],
 	defaultTheme: 'dark',
+	styleguideComponents: {
+		Wrapper: path.join(__dirname, 'styleguide/components/Wrapper'),
+	},
 	webpackConfig: {
 		module: {
 			rules: [
