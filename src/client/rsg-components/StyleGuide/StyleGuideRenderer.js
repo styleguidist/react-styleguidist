@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Logo from 'rsg-components/Logo';
+import ThemeSwitcher from 'rsg-components/ThemeSwitcher';
 import Markdown from 'rsg-components/Markdown';
 import Styled from 'rsg-components/Styled';
 import cx from 'clsx';
@@ -45,7 +46,7 @@ const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth
 			paddingBottom: space[0],
 		},
 	},
-	logo: {
+	sidebarSection: {
 		padding: space[2],
 		borderBottom: [[1, color.border, 'solid']],
 	},
@@ -65,6 +66,9 @@ export function StyleGuideRenderer({
 	children,
 	toc,
 	hasSidebar,
+	themes,
+	currentTheme,
+	onThemeSwitch,
 }) {
 	return (
 		<div className={cx(classes.root, hasSidebar && classes.hasSidebar)}>
@@ -76,10 +80,19 @@ export function StyleGuideRenderer({
 			</main>
 			{hasSidebar && (
 				<div className={classes.sidebar} data-testid="sidebar">
-					<header className={classes.logo}>
+					<header className={classes.sidebarSection}>
 						<Logo>{title}</Logo>
 						{version && <Version>{version}</Version>}
 					</header>
+					{themes && (
+						<header className={classes.sidebarSection}>
+							<ThemeSwitcher
+								themes={themes}
+								currentTheme={currentTheme}
+								onThemeSwitch={onThemeSwitch}
+							/>
+						</header>
+					)}
 					{toc}
 				</div>
 			)}
@@ -96,6 +109,9 @@ StyleGuideRenderer.propTypes = {
 	children: PropTypes.node.isRequired,
 	toc: PropTypes.node.isRequired,
 	hasSidebar: PropTypes.bool,
+	themes: PropTypes.array,
+	currentTheme: PropTypes.string,
+	onThemeSwitch: PropTypes.func.isRequired,
 };
 
 export default Styled(styles)(StyleGuideRenderer);

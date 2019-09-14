@@ -8,15 +8,33 @@ export default styles => WrappedComponent => {
 		static displayName = `Styled(${componentName})`;
 		static contextTypes = {
 			config: PropTypes.object,
+			currentTheme: PropTypes.string,
 		};
+
 		constructor(props, context) {
 			super(props, context);
-			this.sheet = createStyleSheet(styles, context.config || {}, componentName);
-			this.sheet.update(props).attach();
+
+			this.createSheet(context.currentTheme, props);
 		}
 
-		componentDidUpdate(nextProps) {
-			this.sheet.update(nextProps);
+		componentWillUpdate(nextProps, nextState, nextContext) {
+			if (this.context.currentTheme !== nextContext.currentTheme) {
+				this.createSheet(nextContext.currentTheme, nextProps);
+			} else {
+				this.sheet.update(nextProps);
+			}
+		}
+
+		createSheet(currentTheme, props) {
+			const { config } = this.context;
+
+			if (this.sheet) {
+				this.sheet.detach();
+			}
+
+			this.sheet = createStyleSheet(currentTheme, componentName, styles, config)
+				.update(props)
+				.attach();
 		}
 
 		render() {

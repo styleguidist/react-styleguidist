@@ -274,9 +274,37 @@ module.exports = {
 		type: 'object',
 		default: {},
 		example: {
-			link: 'firebrick',
-			linkHover: 'salmon',
+			color: {
+				link: 'firebrick',
+				linkHover: 'salmon',
+			},
 		},
+	},
+	themes: {
+		type: 'array',
+		example: [
+			{
+				id: 'dark',
+				styles: {
+					color: {
+						base: '#ccc',
+						baseBackground: '#000',
+					},
+				},
+			},
+			{
+				id: 'light',
+				styles: {
+					color: {
+						base: '#333',
+						baseBackground: '#fff',
+					},
+				},
+			},
+		],
+	},
+	defaultTheme: {
+		type: 'string',
 	},
 	title: {
 		type: 'string',

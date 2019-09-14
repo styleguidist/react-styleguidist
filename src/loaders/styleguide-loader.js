@@ -21,6 +21,8 @@ const CLIENT_CONFIG_OPTIONS = [
 	'showSidebar',
 	'styles',
 	'theme',
+	'themes',
+	'defaultTheme',
 	'title',
 	'version',
 ];

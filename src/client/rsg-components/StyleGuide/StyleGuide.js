@@ -47,16 +47,22 @@ export default class StyleGuide extends Component {
 		config: PropTypes.object.isRequired,
 		slots: PropTypes.object.isRequired,
 		displayMode: PropTypes.string,
+		currentTheme: PropTypes.string,
 	};
 
 	static defaultProps = {
 		displayMode: DisplayModes.all,
 	};
 
-	state = {
-		error: false,
-		info: null,
-	};
+	constructor(props, context) {
+		super(props, context);
+
+		this.state = {
+			error: false,
+			info: null,
+			currentTheme: this.getDefaultTheme(),
+		};
+	}
 
 	getChildContext() {
 		return {
@@ -64,6 +70,7 @@ export default class StyleGuide extends Component {
 			config: this.props.config,
 			slots: this.props.slots,
 			displayMode: this.props.displayMode,
+			currentTheme: this.state.currentTheme,
 		};
 	}
 
@@ -71,6 +78,24 @@ export default class StyleGuide extends Component {
 		this.setState({
 			error,
 			info,
+		});
+	}
+
+	getDefaultTheme() {
+		const {
+			config: { defaultTheme, themes },
+		} = this.props;
+
+		if (defaultTheme) {
+			return defaultTheme;
+		}
+
+		return themes && themes[0] && themes[0].id;
+	}
+
+	handleThemeSwitch(theme) {
+		this.setState({
+			currentTheme: theme,
 		});
 	}
 
@@ -84,6 +109,8 @@ export default class StyleGuide extends Component {
 			allSections,
 			pagePerSection,
 		} = this.props;
+
+		const { currentTheme } = this.state;
 
 		if (this.state.error) {
 			return <Error error={this.state.error} info={this.state.info} />;
@@ -100,6 +127,9 @@ export default class StyleGuide extends Component {
 				homepageUrl={HOMEPAGE}
 				toc={<TableOfContents sections={allSections} useRouterLinks={pagePerSection} />}
 				hasSidebar={hasSidebar(displayMode, config.showSidebar)}
+				themes={config.themes}
+				currentTheme={currentTheme}
+				onThemeSwitch={this.handleThemeSwitch.bind(this)}
 			>
 				{sections.length ? <Sections sections={sections} depth={1} /> : <NotFound />}
 			</StyleGuideRenderer>
