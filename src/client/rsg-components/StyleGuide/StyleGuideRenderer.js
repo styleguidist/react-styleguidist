@@ -85,13 +85,13 @@ export function StyleGuideRenderer({
 						{version && <Version>{version}</Version>}
 					</header>
 					{themes && (
-						<header className={classes.sidebarSection}>
+						<section className={classes.sidebarSection}>
 							<ThemeSwitcher
 								themes={themes}
 								currentTheme={currentTheme}
 								onThemeChange={onThemeChange}
 							/>
-						</header>
+						</section>
 					)}
 					{toc}
 				</div>

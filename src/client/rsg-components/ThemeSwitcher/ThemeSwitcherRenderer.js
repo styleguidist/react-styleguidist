@@ -4,7 +4,7 @@ import Styled from 'rsg-components/Styled';
 import map from 'lodash/map';
 
 const styles = ({ color, fontFamily, fontSize }) => ({
-	themeSwitcher: {
+	root: {
 		fontFamily: fontFamily.base,
 		fontSize: fontSize.base,
 		color: color.base,
@@ -18,14 +18,14 @@ export function ThemeSwitcherRenderer({ classes, themes, currentTheme, onThemeCh
 	const handleThemeChange = e => onThemeChange(e.target.value);
 
 	return (
-		<span className={classes.themeSwitcher}>
+		<label className={classes.root}>
 			Theme
 			<select value={currentTheme} onBlur={handleThemeChange} onChange={handleThemeChange}>
 				{map(themes, ({ id }) => (
 					<option key={id}>{id}</option>
 				))}
 			</select>
-		</span>
+		</label>
 	);
 }
 
