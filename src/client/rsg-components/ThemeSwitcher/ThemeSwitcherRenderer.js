@@ -14,13 +14,13 @@ const styles = ({ color, fontFamily, fontSize }) => ({
 	},
 });
 
-export function ThemeSwitcherRenderer({ classes, themes, currentTheme, onThemeSwitch }) {
-	const handleThemeSwitch = e => onThemeSwitch(e.target.value);
+export function ThemeSwitcherRenderer({ classes, themes, currentTheme, onThemeChange }) {
+	const handleThemeChange = e => onThemeChange(e.target.value);
 
 	return (
 		<span className={classes.themeSwitcher}>
 			Theme
-			<select value={currentTheme} onBlur={handleThemeSwitch} onChange={handleThemeSwitch}>
+			<select value={currentTheme} onBlur={handleThemeChange} onChange={handleThemeChange}>
 				{map(themes, ({ id }) => (
 					<option key={id}>{id}</option>
 				))}
@@ -33,7 +33,7 @@ ThemeSwitcherRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	themes: PropTypes.array.isRequired,
 	currentTheme: PropTypes.string,
-	onThemeSwitch: PropTypes.func.isRequired,
+	onThemeChange: PropTypes.func.isRequired,
 };
 
 export default Styled(styles)(ThemeSwitcherRenderer);

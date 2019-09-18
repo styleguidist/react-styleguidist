@@ -68,7 +68,7 @@ export function StyleGuideRenderer({
 	hasSidebar,
 	themes,
 	currentTheme,
-	onThemeSwitch,
+	onThemeChange,
 }) {
 	return (
 		<div className={cx(classes.root, hasSidebar && classes.hasSidebar)}>
@@ -89,7 +89,7 @@ export function StyleGuideRenderer({
 							<ThemeSwitcher
 								themes={themes}
 								currentTheme={currentTheme}
-								onThemeSwitch={onThemeSwitch}
+								onThemeChange={onThemeChange}
 							/>
 						</header>
 					)}
@@ -111,7 +111,7 @@ StyleGuideRenderer.propTypes = {
 	hasSidebar: PropTypes.bool,
 	themes: PropTypes.array,
 	currentTheme: PropTypes.string,
-	onThemeSwitch: PropTypes.func.isRequired,
+	onThemeChange: PropTypes.func.isRequired,
 };
 
 export default Styled(styles)(StyleGuideRenderer);

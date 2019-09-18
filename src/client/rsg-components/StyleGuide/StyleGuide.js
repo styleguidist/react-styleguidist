@@ -89,11 +89,11 @@ export default class StyleGuide extends Component {
 		return themes && themes[0] && themes[0].id;
 	}
 
-	handleThemeSwitch(theme) {
+	handleThemeChange = currentTheme => {
 		this.setState({
-			currentTheme: theme,
+			currentTheme,
 		});
-	}
+	};
 
 	render() {
 		const {
@@ -125,7 +125,7 @@ export default class StyleGuide extends Component {
 				hasSidebar={hasSidebar(displayMode, config.showSidebar)}
 				themes={config.themes}
 				currentTheme={currentTheme}
-				onThemeSwitch={this.handleThemeSwitch.bind(this)}
+				onThemeChange={this.handleThemeChange}
 			>
 				{sections.length ? <Sections sections={sections} depth={1} /> : <NotFound />}
 			</StyleGuideRenderer>
