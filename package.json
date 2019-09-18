@@ -148,6 +148,7 @@
     "start": "node lib/bin/styleguidist.js server --config examples/basic/styleguide.config.js",
     "start:customised": "node lib/bin/styleguidist.js server --config examples/customised/styleguide.config.js",
     "start:sections": "node lib/bin/styleguidist.js server --config examples/sections/styleguide.config.js",
+    "start:themes": "node lib/bin/styleguidist.js server --config examples/themes/styleguide.config.js",
     "start:ui": "node lib/bin/styleguidist.js server",
     "lint": "eslint . --cache --fix",
     "flow": "flow",

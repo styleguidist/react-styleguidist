@@ -3,22 +3,22 @@ import PropTypes from 'prop-types';
 
 export default class Wrapper extends Component {
 	static propTypes = {
-    children: PropTypes.node.isRequired,
+		children: PropTypes.node.isRequired,
 		onError: PropTypes.func.isRequired,
-    currentTheme: PropTypes.string,
-	};
-
-  static childContextTypes = {
 		currentTheme: PropTypes.string,
 	};
 
-  getChildContext() {
+	static childContextTypes = {
+		currentTheme: PropTypes.string,
+	};
+
+	getChildContext() {
 		return {
 			currentTheme: this.props.currentTheme,
 		};
 	}
 
-  componentDidCatch(error) {
+	componentDidCatch(error) {
 		this.props.onError(error);
 	}
 

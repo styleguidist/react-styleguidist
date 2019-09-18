@@ -11,6 +11,34 @@ module.exports = {
 		url: 'https://github.com/styleguidist/react-styleguidist',
 	},
 	version,
+	themes: [
+		{
+			id: 'dark',
+			styles: {
+				color: {
+					base: '#ccc',
+					baseBackground: '#000',
+					sidebarBackground: '#111',
+					border: '#222',
+				},
+			},
+		},
+		{
+			id: 'light',
+			styles: {
+				color: {
+					base: '#333',
+					baseBackground: '#fff',
+					sidebarBackground: '#eee',
+					border: '#ddd',
+				},
+			},
+		},
+	],
+	defaultTheme: 'dark',
+	styleguideComponents: {
+		Wrapper: path.join(__dirname, 'src/styleguide/Wrapper'),
+	},
 	webpackConfig: {
 		module: {
 			rules: [
