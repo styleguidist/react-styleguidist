@@ -54,15 +54,11 @@ export default class StyleGuide extends Component {
 		displayMode: DisplayModes.all,
 	};
 
-	constructor(props, context) {
-		super(props, context);
-
-		this.state = {
-			error: false,
-			info: null,
-			currentTheme: this.getDefaultTheme(),
-		};
-	}
+	state = {
+		error: false,
+		info: null,
+		currentTheme: this.getDefaultTheme(),
+	};
 
 	getChildContext() {
 		return {
