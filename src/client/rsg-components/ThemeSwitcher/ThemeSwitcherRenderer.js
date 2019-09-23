@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
 import map from 'lodash/map';
 
-const styles = ({ color, fontFamily, fontSize }) => ({
+export const styles = ({ color, fontFamily, fontSize }) => ({
 	root: {
 		fontFamily: fontFamily.base,
 		fontSize: fontSize.base,

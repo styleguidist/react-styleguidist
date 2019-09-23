@@ -3,6 +3,7 @@
 exports[`renderStyleguide should render StyleGuide component 1`] = `
 <Styled(StyleGuide)
   homepageUrl="https://react-styleguidist.js.org/"
+  onThemeChange={[Function]}
   title="My Style Guide"
   toc={
     <TableOfContents

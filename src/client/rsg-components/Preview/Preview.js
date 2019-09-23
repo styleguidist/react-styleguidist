@@ -45,8 +45,12 @@ export default class Preview extends Component {
 		);
 	}
 
-	componentDidUpdate() {
-		this.executeCode();
+	componentDidUpdate(prevProps, prevState) {
+		// Avoid executing the code when the error has changed - it will cause
+		// an infinite loop
+		if (this.state.error === prevState.error) {
+			this.executeCode();
+		}
 	}
 
 	componentWillUnmount() {

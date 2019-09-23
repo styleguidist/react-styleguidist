@@ -77,6 +77,7 @@ exports[`should render components list 1`] = `
 <Styled(StyleGuide)
   hasSidebar={true}
   homepageUrl="https://react-styleguidist.js.org/"
+  onThemeChange={[Function]}
   title="Hello"
   toc={
     <TableOfContents
@@ -140,3 +141,84 @@ exports[`should render components list 1`] = `
 `;
 
 exports[`should render welcome screen 1`] = `<Styled(Welcome) />`;
+
+exports[`when multiple themes are configured renderer should render theme switcher 1`] = `
+<div
+  className=""
+>
+  <main>
+    <h1>
+      Content
+    </h1>
+    <footer>
+      <Markdown
+        text="Created with [React Styleguidist](http://react-styleguidist.js.org/)"
+      />
+    </footer>
+  </main>
+  <div
+    data-testid="sidebar"
+  >
+    <header>
+      <Styled(Logo)>
+        Hello
+      </Styled(Logo)>
+      <Styled(Version)>
+        1.0.0
+      </Styled(Version)>
+    </header>
+    <section>
+      <Styled(ThemeSwitcher)
+        onThemeChange={[Function]}
+        themes={
+          Array [
+            Object {
+              "id": "dark",
+              "styles": Object {
+                "color": Object {
+                  "base": "#ccc",
+                },
+              },
+            },
+            Object {
+              "id": "light",
+              "styles": Object {
+                "color": Object {
+                  "base": "#333",
+                },
+              },
+            },
+          ]
+        }
+      />
+    </section>
+    <TableOfContents
+      sections={
+        Array [
+          Object {
+            "components": Array [
+              Object {
+                "filepath": "components/foo.js",
+                "name": "Foo",
+                "pathLine": "components/foo.js",
+                "props": Object {
+                  "description": "Foo foo",
+                },
+              },
+              Object {
+                "filepath": "components/bar.js",
+                "name": "Bar",
+                "pathLine": "components/bar.js",
+                "props": Object {
+                  "description": "Bar bar",
+                },
+              },
+            ],
+          },
+        ]
+      }
+    />
+  </div>
+  <Ribbon />
+</div>
+`;

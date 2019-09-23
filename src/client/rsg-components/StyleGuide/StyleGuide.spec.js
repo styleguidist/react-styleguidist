@@ -146,10 +146,90 @@ it('renderer should render logo, version, table of contents, ribbon and passed c
 			toc={<TableOfContents sections={sections} />}
 			homepageUrl="http://react-styleguidist.js.org/"
 			hasSidebar
+			onThemeChange={() => null}
 		>
 			<h1>Content</h1>
 		</StyleGuideRenderer>
 	);
 
 	expect(actual).toMatchSnapshot();
+});
+
+describe('when multiple themes are configured', () => {
+	const themes = [
+		{
+			id: 'dark',
+			styles: {
+				color: {
+					base: '#ccc',
+				},
+			},
+		},
+		{
+			id: 'light',
+			styles: {
+				color: {
+					base: '#333',
+				},
+			},
+		},
+	];
+
+	it('renderer should render theme switcher', () => {
+		const actual = shallow(
+			<StyleGuideRenderer
+				classes={{}}
+				title={config.title}
+				version={config.version}
+				toc={<TableOfContents sections={sections} />}
+				homepageUrl="http://react-styleguidist.js.org/"
+				hasSidebar
+				themes={themes}
+				onThemeChange={() => null}
+			>
+				<h1>Content</h1>
+			</StyleGuideRenderer>
+		);
+
+		expect(actual).toMatchSnapshot();
+	});
+
+	it('current theme should be initialized to default theme if configured', () => {
+		const config = {
+			defaultTheme: 'light',
+			themes,
+		};
+
+		const wrapper = shallow(
+			<StyleGuide
+				codeRevision={1}
+				config={config}
+				pagePerSection={false}
+				sections={sections}
+				allSections={sections}
+				slots={{}}
+			/>
+		);
+
+		expect(wrapper.state('currentTheme')).toEqual('light');
+	});
+
+	it('current theme should be initialized to first theme if default not configured', () => {
+		const config = {
+			themes,
+		};
+
+		const wrapper = shallow(
+			<StyleGuide
+				codeRevision={1}
+				config={config}
+				pagePerSection={false}
+				sections={sections}
+				allSections={sections}
+				slots={{}}
+			/>
+		);
+
+		expect(wrapper.state('currentTheme')).toEqual('dark');
+	});
 });

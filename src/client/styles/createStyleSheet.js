@@ -11,7 +11,7 @@ const getTheme = (currentTheme, config) => {
 };
 
 export default memoize(
-	(currentTheme, componentName, styles, config) => {
+	(currentTheme, componentName, styles, config = {}) => {
 		const mergedTheme = merge({}, theme, getTheme(currentTheme, config));
 		const mergedStyles = merge({}, styles(mergedTheme), get(config.styles, componentName));
 		return jss.createStyleSheet(mergedStyles, { meta: componentName, link: true });
