@@ -27,7 +27,7 @@
     "node": ">=6.4"
   },
   "dependencies": {
-    "@vxna/mini-html-webpack-template": "^0.1.7",
+    "@vxna/mini-html-webpack-template": "^1.0.0",
     "acorn": "^6.1.1",
     "acorn-jsx": "^5.0.1",
     "ast-types": "^0.12.2",
