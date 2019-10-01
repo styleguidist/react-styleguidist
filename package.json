@@ -64,7 +64,7 @@
     "lodash": "^4.17.11",
     "lowercase-keys": "^1.0.1",
     "markdown-to-jsx": "^6.9.3",
-    "mini-html-webpack-plugin": "^0.2.3",
+    "mini-html-webpack-plugin": "^2.0.0",
     "mri": "^1.1.4",
     "ora": "^3.2.0",
     "prismjs": "^1.16.0",
