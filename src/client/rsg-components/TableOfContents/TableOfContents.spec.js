@@ -119,3 +119,63 @@ it('should call a callback when input value changed', () => {
 
 	expect(onSearchTermChange).toBeCalledWith(newSearchTerm);
 });
+
+it('should render content of subsections of a section that has no components', () => {
+	const actual = shallow(
+		<TableOfContents
+			sections={[{ sections: [{ contents: 'intro.md' }, { contents: 'chapter.md' }] }]}
+		/>
+	);
+
+	expect(actual.find('ComponentsList').prop('items')).toMatchInlineSnapshot(`
+Array [
+  Object {
+    "components": Array [],
+    "content": false,
+    "contents": "intro.md",
+    "heading": false,
+    "sections": Array [],
+  },
+  Object {
+    "components": Array [],
+    "content": false,
+    "contents": "chapter.md",
+    "heading": false,
+    "sections": Array [],
+  },
+]
+`);
+});
+
+it('should render components of a single top section as root', () => {
+	const actual = shallow(<TableOfContents sections={[{ components }]} />);
+
+	expect(actual.find('ComponentsList').prop('items')).toMatchInlineSnapshot(`
+Array [
+  Object {
+    "components": Array [],
+    "content": false,
+    "heading": false,
+    "name": "Button",
+    "sections": Array [],
+    "slug": "button",
+  },
+  Object {
+    "components": Array [],
+    "content": false,
+    "heading": false,
+    "name": "Input",
+    "sections": Array [],
+    "slug": "input",
+  },
+  Object {
+    "components": Array [],
+    "content": false,
+    "heading": false,
+    "name": "Textarea",
+    "sections": Array [],
+    "slug": "textarea",
+  },
+]
+`);
+});

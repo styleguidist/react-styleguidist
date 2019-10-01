@@ -39,7 +39,10 @@ module.exports = {
 			sections: [
 				{
 					name: 'Buttons',
-					components: () => ['./src/components/Button/Button.js'],
+					components: () => [
+						'./src/components/Button/Button.js',
+						'./src/components/ThemeButton/ThemeButton.js',
+					],
 					exampleMode: 'expand', // 'hide' | 'collapse' | 'expand'
 					usageMode: 'hide', // 'hide' | 'collapse' | 'expand'
 				},
