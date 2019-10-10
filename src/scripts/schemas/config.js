@@ -135,6 +135,10 @@ module.exports = {
 	logger: {
 		type: 'object',
 	},
+	minify: {
+		type: 'boolean',
+		default: true,
+	},
 	moduleAliases: {
 		type: 'object',
 	},

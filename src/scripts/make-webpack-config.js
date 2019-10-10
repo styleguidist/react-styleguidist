@@ -96,6 +96,7 @@ module.exports = function(config, env) {
 				),
 			],
 			optimization: {
+				minimize: config.minimize === true,
 				minimizer: [minimizer],
 			},
 		});
