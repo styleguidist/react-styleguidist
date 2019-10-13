@@ -9,26 +9,26 @@
     "styleguide:build": "styleguidist build"
   },
   "dependencies": {
-    "expo": "^32.0.0",
-    "prop-types": "^15.6.2",
-    "react": "16.5.0",
+    "expo": "^35.0.0",
+    "prop-types": "^15.7.2",
+    "react": "16.10.2",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz"
   },
   "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/plugin-proposal-class-properties": "^7.3.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.3.1",
-    "@babel/polyfill": "^7.2.5",
-    "@babel/preset-env": "^7.3.1",
-    "babel-loader": "^8.0.5",
-    "babel-plugin-react-native-web": "^0.10.0",
-    "babel-preset-expo": "^5.0.0",
-    "metro-react-native-babel-preset": "^0.51.1",
-    "react-art": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-native-web": "^0.10.0",
-    "react-styleguidist": "^8.0.6",
-    "webpack": "^4.29.0"
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/polyfill": "^7.6.0",
+    "@babel/preset-env": "^7.6.3",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-react-native-web": "^0.11.7",
+    "babel-preset-expo": "^7.0.0",
+    "metro-react-native-babel-preset": "^0.56.0",
+    "react-art": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-native-web": "^0.11.7",
+    "react-styleguidist": "^9.1.16",
+    "webpack": "^4.41.1"
   },
   "private": true
 }
