@@ -7,7 +7,7 @@ How to start locally:
 ```
 git clone https://github.com/styleguidist/react-styleguidist.git
 cd react-styleguidist/examples/cra
-npm install
+npm install (or yarn install)
 npx styleguidist server
 ```
 
