@@ -135,7 +135,7 @@ module.exports = {
 	logger: {
 		type: 'object',
 	},
-	minify: {
+	minimize: {
 		type: 'boolean',
 		default: true,
 	},
