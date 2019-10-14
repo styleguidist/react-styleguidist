@@ -14,7 +14,7 @@
 
 _For basics see [How to contribute](https://github.com/styleguidist/react-styleguidist/blob/master/.github/Contributing.md)._
 
-Styleguidist isn’t an ordinary single page app and some design decisions may look confusing to an outsider. In this guide we’ll explain these decisions to un-confuse potential contributors.
+Styleguidist isn’t an ordinary single-page app and some design decisions may look confusing to an outsider. In this guide, we’ll explain these decisions to un-confuse potential contributors.
 
 The main thing is that we’re running two apps at the same time: user’s components and Styleguidist UI. They share a webpack configuration and have styles in the same scope (there’s only one scope in CSS). And we can control only one of these two apps: Styleguidist UI. That puts us under some restrictions:
 
@@ -38,9 +38,9 @@ We use webpack loaders to hot reload the style guide on changes in user componen
 - `props-loaders`: loads props documentation using react-docgen;
 - `examples-loader`: loads examples from Markdown files;
 
-Styleguidist tries to load and reuse user’s webpack config (`webpack.config.js` in project root folder). It works most of the time but has some restrictions: Styleguidist [ignores](https://github.com/styleguidist/react-styleguidist/blob/master/src/scripts/utils/mergeWebpackConfig.js) some fields and plugins because they are already included (like `webpack.HotModuleReplacementPlugin`), don’t make sense for a style guide (like `output`) or may break Styleguidist (like `entry`).
+Styleguidist tries to load and reuse the user’s webpack config (`webpack.config.js` in project root folder). It works most of the time but has some restrictions: Styleguidist [ignores](https://github.com/styleguidist/react-styleguidist/blob/master/src/scripts/utils/mergeWebpackConfig.js) some fields and plugins because they are already included (like `webpack.HotModuleReplacementPlugin`), don’t make sense for a style guide (like `output`) or may break Styleguidist (like `entry`).
 
-We’re trying to keep Styleguidist’s own [webpack config](https://github.com/styleguidist/react-styleguidist/blob/master/src/scripts/make-webpack-config.js) minimal to reduce clashes with user’s configuration.
+We’re trying to keep Styleguidist’s [webpack config](https://github.com/styleguidist/react-styleguidist/blob/master/src/scripts/make-webpack-config.js) minimal to reduce clashes with the user’s configuration.
 
 ## React components
 
@@ -74,7 +74,7 @@ Each component folder usually has several files:
 
 ## Styles
 
-For styles we use [JSS](http://cssinjs.org/), it allows users to customize their style guide and allows us to ensure styles isolations (thanks to [jss-isolate](http://cssinjs.org/jss-isolate/)). No user styles should affect Styleguidist UI and no Styleguidist styles should affect user components.
+For styles we use [JSS](http://cssinjs.org/), it allows users to customize their style guide and allows us to ensure style isolation (thanks to [jss-isolate](http://cssinjs.org/jss-isolate/)). No user styles should affect Styleguidist UI and no Styleguidist styles should affect user components.
 
 Use [clsx](https://github.com/lukeed/clsx) to merge several class names or for conditional class names, import it as `cx` (`import cx from 'clsx'`).
 

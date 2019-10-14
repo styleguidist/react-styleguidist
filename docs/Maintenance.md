@@ -50,11 +50,11 @@ Patch releases are fully automated — any commit of a `Fix` type is published a
 
 ### Minor and major releases
 
-We’re using [milestones](https://github.com/styleguidist/react-styleguidist/milestones) to group approved pull requests that should be released together. Minor and major releases require a change log (see below). Any commit of a `Feat` type will not trigger a release until you commit a change log. Semantic-release will publish a major release, if there are any commits with [breaking changes](https://github.com/tamiadev/semantic-release-tamia/blob/master/Convention.md#breaking-changes).
+We’re using [milestones](https://github.com/styleguidist/react-styleguidist/milestones) to group approved pull requests that should be released together. Minor and major releases require a change log (see below). Any commit of a `Feat` type will not trigger a release until you commit a change log. Semantic-release will publish a major release if there are any commits with [breaking changes](https://github.com/tamiadev/semantic-release-tamia/blob/master/Convention.md#breaking-changes).
 
 1.  Merge all pull request from a milestone
 2.  Resolve possible merge conflicts.
-3.  Manually check that Styleguidist is still works.
+3.  Manually check that Styleguidist still works.
 4.  Prepare and commit a change log.
 5.  Wait until semantic-release publishes the release.
 6.  Tweet the release!
@@ -66,7 +66,7 @@ We’re using [milestones](https://github.com/styleguidist/react-styleguidist/mi
 - Change logs are written for users, not developers.
 - Change log should show new features with code examples or GIFs.
 - Change log should make all breaking changes clear.
-- Change log should explain how to migrate to a new versions if there are breaking changes.
+- Change log should explain how to migrate to a new version if there are breaking changes.
 - Commit log **is not** a change log.
 
 Here’s a [good example of a change log](https://github.com/styleguidist/react-styleguidist/releases/tag/v7.1.0). Check out [Keep a Changelog](https://keepachangelog.com/) for more details on good change logs.

@@ -1,6 +1,6 @@
 # Documenting components
 
-Styleguidist generates documentation for your components based on the comments in your source code, propTypes declarations and Readme files.
+Styleguidist generates documentation for your components based on the comments in your source code, propTypes declarations, and Readme files.
 
 > **Note:** [See examples](https://github.com/styleguidist/react-styleguidist/tree/master/examples/basic/src/components) of documented components in our demo style guide.
 
@@ -56,7 +56,7 @@ export default class Button extends React.Component {
 
 ## Usage examples and Readme files
 
-Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the component’s folder and display them. Any code block with a language tag of `js`, `jsx` or `javascript` will be rendered as a React component with an interactive playground. For backwards compatibility, code blocks without a language tag are also rendered in this way. It is recommended to always use the proper language tag for new documentation.
+Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the component’s folder and display them. Any code block with a language tag of `js`, `jsx`, or `javascript` will be rendered as a React component with an interactive playground. For backwards compatibility, code blocks without a language tag are also rendered in this way. It is recommended to always use the proper language tag for new documentation.
 
     React component example:
 
@@ -92,7 +92,7 @@ Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the co
 
 > **Note:** You can configure examples file name with the [getExampleFilename](Configuration.md#getexamplefilename) option.
 
-> **Note:** If you need to display some JavaScript code in your documentation that you don’t want rendered as an interactive playground you can use the `static` modifier with a language tag (e.g. `js static`).
+> **Note:** If you need to display some JavaScript code in your documentation that you don’t want to be rendered as an interactive playground you can use the `static` modifier with a language tag (e.g. `js static`).
 
 ## External examples using doclet tags
 
@@ -131,7 +131,7 @@ insertAtCursor(text) {
 
 ## Ignoring props
 
-By default, all props your components have are considered to be public and are published. In some rare cases you might want to remove a prop from the documentation while keeping it in the code. To do so, mark the prop with JSDoc [`@ignore`](http://usejsdoc.org/tags-ignore.html) tag to remove it from the docs:
+By default, all props your components have are considered to be public and are published. In some rare cases, you might want to remove a prop from the documentation while keeping it in the code. To do so, mark the prop with JSDoc [`@ignore`](http://usejsdoc.org/tags-ignore.html) tag to remove it from the docs:
 
 ```javascript
 MyComponent.propTypes = {
@@ -157,7 +157,7 @@ Use `@visibleName` JSDoc tag to define component names that are used in the Styl
 class Button extends React.Component {
 ```
 
-The component will be displayed with a custom “The Best Button Ever 🐙” name and this will not change the name of the component used in code of your app or Styleguidist examples.
+The component will be displayed with a custom “The Best Button Ever 🐙” name and this will not change the name of the component used in the code of your app or Styleguidist examples.
 
 ## Using JSDoc tags
 
