@@ -20,6 +20,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 - [`handlers`](#handlers)
 - [`ignore`](#ignore)
 - [`logger`](#logger)
+- [`minimize`](#minimize)
 - [`moduleAliases`](#modulealiases)
 - [`mountPointId`](#mountpointid)
 - [`pagePerSection`](#pagepersection)
@@ -288,6 +289,12 @@ module.exports = {
   }
 }
 ```
+
+#### `minimize`
+
+Type: `Boolean`, default: `true`
+
+If `false`, the production build will not be minimized.
 
 #### `moduleAliases`
 

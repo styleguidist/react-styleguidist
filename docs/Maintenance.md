@@ -78,6 +78,13 @@ Here’s a [good example of a changelog](https://github.com/styleguidist/react-s
 
 ### Preparing a changelog
 
-1.  Generate a changelog draft using [tamia-changelog](https://github.com/tamiadev/tamia-changelog): `npx tamia-changelog`
-2.  Edit `Changelog.md` file.
-3.  Commit the changelog: `npx tamia-changelog commit`.
+1. Change to the `master` branch.
+2. Generate a changelog draft using [tamia-changelog](https://github.com/tamiadev/tamia-changelog): `npx tamia-changelog`.
+3. Edit `Changelog.md` file.
+4. Commit the changelog: `npx tamia-changelog commit`.
+
+**Note:** do not commit the `Changelog.md` file, the release tool reads the changelog from the commit message. [Read how it works](https://blog.sapegin.me/all/semantic-release/).
+
+**Note:** you may create a pull request for a changelog. Make sure the actual commit in the `master` branch has a `Changelog:` tag for the release tool to see it.
+
+![Commit message with a changelog](https://user-images.githubusercontent.com/70067/66844661-f6f1e600-ef6e-11e9-9d63-dba607d3c94b.png)
