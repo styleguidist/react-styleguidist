@@ -19,7 +19,7 @@
 - [How to change style guide dev server logs output?](#how-to-change-style-guide-dev-server-logs-output)
 - [How to debug my components and examples?](#how-to-debug-my-components-and-examples)
 - [How to debug the exceptions thrown from my components?](#how-to-debug-the-exceptions-thrown-from-my-components)
-- [How to use production or development build of React?](#how-to-use-production-or-development-build-of-react)
+- [How to use the production or development build of React?](#how-to-use-the-production-or-development-build-of-react)
 - [Why object references don’t work in example component state?](#why-object-references-dont-work-in-example-component-state)
 - [How to use Vagrant with Styleguidist?](#how-to-use-vagrant-with-styleguidist)
 - [How to add a favicon?](#how-to-add-a-favicon)
@@ -68,7 +68,7 @@ module.exports = {
 
 ## How to hide some components in style guide but make them available in examples?
 
-Enable [skipComponentsWithoutExample](Configuration.md#skipcomponentswithoutexample) option and do not add example file (`Readme.md` by default) to components you want to ignore.
+Enable [skipComponentsWithoutExample](Configuration.md#skipcomponentswithoutexample) option and do not add an example file (`Readme.md` by default) to components you want to ignore.
 
 Import these components in your examples:
 
@@ -270,9 +270,9 @@ module.exports = {
 
 You can replace any Styleguidist React component. But in most of the cases you’ll want to replace `*Renderer` components — all HTML is rendered by these components. For example `ReactComponentRenderer`, `ComponentsListRenderer`, `PropsRenderer`, etc. — [check the source](https://github.com/styleguidist/react-styleguidist/tree/master/src/client/rsg-components) to see what components are available.
 
-There’s also a special wrapper component — `Wrapper` — that wraps every example component. By default it just renders `children` as is but you can use it to provide a custom logic.
+There’s also a special wrapper component — `Wrapper` — that wraps every example component. By default, it just renders `children` as is but you can use it to provide custom logic.
 
-For example you can replace the `Wrapper` component to wrap any example in the [React Intl’s](https://github.com/yahoo/react-intl) provider component. You can’t wrap the whole style guide because every example is compiled separately in a browser.
+For example, you can replace the `Wrapper` component to wrap any example in the [React Intl’s](https://github.com/yahoo/react-intl) provider component. You can’t wrap the whole style guide because every example is compiled separately in a browser.
 
 ```javascript
 // styleguide.config.js
@@ -401,9 +401,9 @@ module.exports = {
 2.  Press the ![Debugger](https://d3vv6lp55qjaqc.cloudfront.net/items/2h2q3N123N3G3R252o41/debugger.png) button in your browser’s developer tools.
 3.  Press the ![Continue](https://d3vv6lp55qjaqc.cloudfront.net/items/3b3c1P3g3O1h3q111I2l/continue.png) button and the debugger will stop execution at the next exception.
 
-## How to use production or development build of React?
+## How to use the production or development build of React?
 
-In some cases, you might need to use development build of React instead of the default [production one](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build). For example, this might be needed if you use React Native and make references to a React Native component’s PropTypes in your code. As React removes all PropTypes in its production build, your code will fail. By default, Styleguidist uses the development build for the dev server, and the production one for static builds.
+In some cases, you might need to use the development build of React instead of the default [production one](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build). For example, this might be needed if you use React Native and make references to a React Native component’s PropTypes in your code. As React removes all PropTypes in its production build, your code will fail. By default, Styleguidist uses the development build for the dev server and the production one for static builds.
 
 ```js
 import React from 'react'
@@ -452,7 +452,7 @@ initialState = {
 
 ## How to use Vagrant with Styleguidist?
 
-First read [Vagrant guide](https://webpack.js.org/guides/development-vagrant/) from the webpack documentation. Then enable polling in your webpack config:
+First, read [Vagrant guide](https://webpack.js.org/guides/development-vagrant/) from the webpack documentation. Then enable polling in your webpack config:
 
 ```js
 devServer: {
@@ -503,7 +503,7 @@ module.exports = {
 }
 ```
 
-In comparison to [require](Configuration.md#require) option, these scripts and links are run in the browser, not during webpack build process. It can be useful for side effect-causing scripts which your components, or in this case Babel output, need to function properly.
+In comparison to [require](Configuration.md#require) option, these scripts and links are run in the browser, not during webpack build process. It can be useful for side effect-causing scripts in which your components, or in this case Babel output, need to function properly.
 
 ## How to add fonts from Google Fonts?
 
@@ -539,7 +539,7 @@ See [working with third-party libraries](Thirdparties.md).
 
 ## How to change the names of components displayed in Styleguidist UI?
 
-You might want to change your components’ names to be displayed differently, for example, for stylistic purposes or to give them a more descriptive names in your style guide.
+You might want to change your components’ names to be displayed differently, for example, for stylistic purposes or to give them more descriptive names in your style guide.
 
 This can be done by adding [@visibleName](Documenting.md#defining-custom-component-names) tag to your component documentation.
 
@@ -558,7 +558,7 @@ module.exports = {
 
 ## What’s the difference between Styleguidist and Storybook?
 
-Both tools are good and mature, they have many similarities but also some distinctions that may make you choose one or the other. For me the biggest distinction is how you describe component variations.
+Both tools are good and mature, they have many similarities but also some distinctions that may make you choose one or the other. For me, the biggest distinction is how you describe component variations.
 
 With [Storybook](https://storybook.js.org/) you write _stories_ in JavaScript files:
 
