@@ -19,6 +19,7 @@ const styles = ({ color, fontFamily, fontSize, space, mq }) => ({
 		listStyle: 'none',
 		overflow: 'hidden',
 		textOverflow: 'ellipsis',
+		position: 'relative',
 	},
 	isChild: {
 		[mq.small]: {
@@ -35,11 +36,30 @@ const styles = ({ color, fontFamily, fontSize, space, mq }) => ({
 	isSelected: {
 		fontWeight: 'bold',
 	},
+	isNew: {
+		backgroundColor: color.isNew,
+	},
+	isDeprecated: {
+		backgroundColor: color.isDeprecated,
+	},
+	isExperimental: {
+		backgroundColor: color.isExperimental,
+	},
+	badge: {
+		position: 'absolute',
+		right: '5px',
+		top: '4px',
+		borderRadius: '5px',
+		width: '10px',
+		height: '10px',
+	},
 });
 
 export function ComponentsListRenderer({ classes, items }, { config }) {
 	const { pagePerSection } = config;
 	items = items.filter(item => item.visibleName);
+
+	// items should provide info about isNew, isDeprecated, isExperimental
 
 	if (!items.length) {
 		return null;
@@ -50,27 +70,45 @@ export function ComponentsListRenderer({ classes, items }, { config }) {
 	const windowHash = pathname + (pagePerSection ? hash : getHash(hash));
 	return (
 		<ul className={classes.list}>
-			{items.map(({ heading, visibleName, href, content, shouldOpenInNewTab }) => {
-				const isItemSelected = windowHash === href;
-				return (
-					<li
-						className={cx(classes.item, {
-							[classes.isChild]: (!content || !content.props.items.length) && !shouldOpenInNewTab,
-							[classes.isSelected]: isItemSelected,
-						})}
-						key={href}
-					>
-						<Link
-							className={cx(heading && classes.heading)}
-							href={href}
-							target={shouldOpenInNewTab ? '_blank' : undefined}
+			{items.map(
+				({
+					heading,
+					visibleName,
+					isNew = true,
+					isDeprecated = false,
+					isExperimental = false,
+					href,
+					content,
+					shouldOpenInNewTab,
+				}) => {
+					const isItemSelected = windowHash === href;
+					return (
+						<li
+							className={cx(classes.item, {
+								[classes.isChild]: (!content || !content.props.items.length) && !shouldOpenInNewTab,
+								[classes.isSelected]: isItemSelected,
+							})}
+							key={href}
 						>
-							{visibleName}
-						</Link>
-						{content}
-					</li>
-				);
-			})}
+							<Link
+								className={cx(heading && classes.heading)}
+								href={href}
+								target={shouldOpenInNewTab ? '_blank' : undefined}
+							>
+								{visibleName}
+							</Link>
+							{content}
+							<span
+								className={cx(classes.badge, {
+									[classes.isNew]: isNew,
+									[classes.isDeprecated]: isDeprecated,
+									[classes.isExperimental]: isExperimental,
+								})}
+							/>
+						</li>
+					);
+				}
+			)}
 		</ul>
 	);
 }
