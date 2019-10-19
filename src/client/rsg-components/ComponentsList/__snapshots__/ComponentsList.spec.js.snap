@@ -35,6 +35,9 @@ exports[`should ignore items without visibleName 1`] = `
     >
       Button
     </Styled(Link)>
+    <span
+      className=""
+    />
   </li>
 </ul>
 `;
@@ -51,6 +54,9 @@ exports[`should render sections with nested components 1`] = `
     >
       Button
     </Styled(Link)>
+    <span
+      className=""
+    />
   </li>
   <li
     className=""
@@ -62,6 +68,9 @@ exports[`should render sections with nested components 1`] = `
     >
       Input
     </Styled(Link)>
+    <span
+      className=""
+    />
   </li>
 </ul>
 `;
