@@ -61,7 +61,7 @@
     "leven": "^2.1.0",
     "listify": "^1.0.0",
     "loader-utils": "^1.2.3",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "lowercase-keys": "^1.0.1",
     "markdown-to-jsx": "^6.9.3",
     "mini-html-webpack-plugin": "^0.2.3",
