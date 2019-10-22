@@ -24,10 +24,11 @@ module.exports = function(config, env) {
 	const template = isFunction(config.template) ? config.template : MiniHtmlWebpackTemplate;
 	const templateContext = isFunction(config.template) ? {} : config.template;
 	const htmlPluginOptions = {
-		context: Object.assign({}, templateContext, {
+		context: {
+			...templateContext,
 			title: config.title,
 			container: config.mountPointId,
-		}),
+		},
 		template,
 	};
 

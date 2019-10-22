@@ -26,8 +26,10 @@ module.exports = function findUserWebpackConfig(resolve) {
 		try {
 			// Create React App > 2.1.1
 			return resolve(CREATE_REACT_APP_WEBPACK_CONFIG);
-		} catch (err) {
+		} catch (innerErr) {
 			// Check in the root folder
+			// FIXME: This looks like a bug in ESLint
+			// eslint-disable-next-line no-unused-vars
 			for (const configFile of USER_WEBPACK_CONFIG_NAMES) {
 				const absoluteConfigFile = absolutize(configFile);
 				if (fs.existsSync(absoluteConfigFile)) {

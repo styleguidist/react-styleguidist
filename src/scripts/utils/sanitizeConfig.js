@@ -48,7 +48,7 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 		if (!schema[key]) {
 			// Try to guess
 			const possibleOptions = Object.keys(schema);
-			const suggestion = possibleOptions.reduce((suggestion, option) => {
+			const suggestedOption = possibleOptions.reduce((suggestion, option) => {
 				const steps = leven(option, key);
 				if (steps < 2) {
 					return option;
@@ -59,8 +59,8 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 			throw new StyleguidistError(
 				`Unknown config option ${kleur.bold(key)} was found, the value is:\n` +
 					stringify(value) +
-					(suggestion ? `\n\nDid you mean ${kleur.bold(suggestion)}?` : ''),
-				suggestion
+					(suggestedOption ? `\n\nDid you mean ${kleur.bold(suggestedOption)}?` : ''),
+				suggestedOption
 			);
 		}
 	});

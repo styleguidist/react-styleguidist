@@ -37,14 +37,14 @@ describe('filterComponentsByName', () => {
 
 	it('should return all components if all of them match query', () => {
 		// It doesn’t happen when RegExp has global flag for some reason
-		const components = [
+		const components2 = [
 			{ name: 'Button' },
 			{ name: 'CounterButton' },
 			{ name: 'PushButton' },
 			{ name: 'RandomButtom' },
 			{ name: 'WrappedButton' },
 		];
-		const result = filterComponentsByName(components, 'bu');
-		expect(result).toEqual(components);
+		const result = filterComponentsByName(components2, 'bu');
+		expect(result).toEqual(components2);
 	});
 });

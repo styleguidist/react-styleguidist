@@ -22,9 +22,7 @@ const JS_DOC_ALL_SYNONYMS = [
 // work around an issue in react-docgen that breaks the build if a component has JSDoc tags
 // like @see in its description, see https://github.com/reactjs/react-docgen/issues/155
 // and https://github.com/styleguidist/react-styleguidist/issues/298
-const getDocletsObject = string => {
-	return Object.assign({}, reactDocs.utils.docblock.getDoclets(string));
-};
+const getDocletsObject = string => ({ ...reactDocs.utils.docblock.getDoclets(string) });
 
 const getDoctrineTags = documentation => {
 	return _.groupBy(documentation.tags, 'title');
@@ -74,9 +72,10 @@ module.exports = function getProps(doc, filepath) {
 		const paramTags = getMergedTag(allTags, JS_DOC_METHOD_PARAM_TAG_SYNONYMS);
 		const params =
 			method.params &&
-			method.params.map(param =>
-				Object.assign(param, paramTags.find(tagParam => tagParam.name === param.name))
-			);
+			method.params.map(param => ({
+				...param,
+				...paramTags.find(tagParam => tagParam.name === param.name),
+			}));
 
 		const returnTags = getMergedTag(allTags, JS_DOC_METHOD_RETURN_TAG_SYNONYMS);
 		const returns = method.returns || returnTags[0];
@@ -84,7 +83,12 @@ module.exports = function getProps(doc, filepath) {
 		// Remove tag synonyms
 		const tags = _.omit(allTags, JS_DOC_ALL_SYNONYMS);
 
-		return Object.assign(method, returns && { returns }, params && { params }, { tags });
+		return {
+			...method,
+			...(returns && { returns }),
+			...(params && { params }),
+			tags,
+		};
 	});
 
 	if (doc.description) {

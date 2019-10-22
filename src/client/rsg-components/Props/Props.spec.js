@@ -12,8 +12,8 @@ export default function ColumnsRenderer({ props }) {
 		<ul>
 			{props.map((row, rowIdx) => (
 				<li key={rowIdx}>
-					{columns.map(({ render }, colIdx) => (
-						<div key={colIdx}>{render(row)}</div>
+					{columns.map((col, colIdx) => (
+						<div key={colIdx}>{col.render(row)}</div>
 					))}
 				</li>
 			))}

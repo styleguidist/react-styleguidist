@@ -27,9 +27,6 @@ const styleguide = {
 	patterns: ['button', 'input'],
 };
 const codeRevision = 1;
-const location = {
-	hash: '',
-};
 const doc = {
 	title: () => {},
 };
@@ -44,6 +41,7 @@ afterEach(() => {
 
 describe('renderStyleguide', () => {
 	it('should render StyleGuide component', () => {
+		const location = { hash: '' };
 		const result = shallow(renderStyleguide(styleguide, codeRevision, location, doc, history));
 		expect(result).toMatchSnapshot();
 	});
@@ -70,8 +68,8 @@ describe('renderStyleguide', () => {
 
 	it('should remove #/ from the address bar', () => {
 		const location = { hash: '#/', pathname: '/pizza', search: '?foo=bar' };
-		const history = { replaceState: jest.fn() };
-		renderStyleguide(styleguide, codeRevision, location, location, history);
-		expect(history.replaceState).toBeCalledWith('', 'My Style Guide', '/pizza?foo=bar');
+		const historyWithSpy = { replaceState: jest.fn() };
+		renderStyleguide(styleguide, codeRevision, location, location, historyWithSpy);
+		expect(historyWithSpy.replaceState).toBeCalledWith('', 'My Style Guide', '/pizza?foo=bar');
 	});
 });
