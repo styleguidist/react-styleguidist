@@ -33,7 +33,7 @@ export default function getUrl(
 		url += `#${slug}`;
 	} else if (isolated || nochrome) {
 		const currentHashPath =
-			currentHash && currentHash.length > 0
+			currentHash && currentHash.length > 0 && !currentHash.includes('#!/')
 				? currentHash.replace(/^#\/?/, '').replace(/\/$/, '') + '/'
 				: '';
 		url += `#!/${currentHashPath}${encodedName}`;
