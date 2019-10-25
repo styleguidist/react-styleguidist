@@ -11,7 +11,9 @@ const displayName = 'Pizza';
 const examplesFile = './Pizza.md';
 const defaultExample = './Default.md';
 
-afterEach(vol.reset.bind(vol));
+afterEach(() => {
+	vol.reset();
+});
 
 test('require an example file if component has example file', () => {
 	vol.fromJSON({ [examplesFile]: 'pizza' });

@@ -27,17 +27,13 @@ export class ExamplePlaceholderRenderer extends Component {
 		name: PropTypes.string,
 	};
 
-	constructor() {
-		super();
-		this.handleOpen = this.handleOpen.bind(this);
-		this.state = {
-			isVisible: false,
-		};
-	}
+	state = {
+		isVisible: false,
+	};
 
-	handleOpen() {
+	handleOpen = () => {
 		this.setState({ isVisible: true });
-	}
+	};
 
 	render() {
 		const { classes, name } = this.props;
