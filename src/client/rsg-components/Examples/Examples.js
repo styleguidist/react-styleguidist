@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import Playground from 'rsg-components/Playground';
 import Markdown from 'rsg-components/Markdown';
 import ExamplesRenderer from 'rsg-components/Examples/ExamplesRenderer';
+import { useStyleGuideContext } from 'rsg-components/Context';
 
-export default function Examples({ examples, name, exampleMode }, { codeRevision }) {
+export default function Examples({ examples, name, exampleMode }) {
+	const { codeRevision } = useStyleGuideContext();
 	return (
 		<ExamplesRenderer name={name}>
 			{examples.map((example, index) => {
@@ -30,11 +32,9 @@ export default function Examples({ examples, name, exampleMode }, { codeRevision
 		</ExamplesRenderer>
 	);
 }
+
 Examples.propTypes = {
 	examples: PropTypes.array.isRequired,
 	name: PropTypes.string.isRequired,
 	exampleMode: PropTypes.string.isRequired,
-};
-Examples.contextTypes = {
-	codeRevision: PropTypes.number.isRequired,
 };

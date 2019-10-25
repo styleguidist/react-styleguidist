@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import ReactExample from 'rsg-components/ReactExample';
+import Context from 'rsg-components/Context';
 
 const improveErrorMessage = message =>
 	message.replace(
@@ -15,10 +16,8 @@ export default class Preview extends Component {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
 	};
-	static contextTypes = {
-		config: PropTypes.object.isRequired,
-		codeRevision: PropTypes.number.isRequired,
-	};
+	static contextType = Context;
+
 	state = {
 		error: null,
 	};
@@ -74,7 +73,7 @@ export default class Preview extends Component {
 		);
 
 		window.requestAnimationFrame(() => {
-			this.unmountPreview();
+			// this.unmountPreview();
 			try {
 				ReactDOM.render(wrappedComponent, this.mountNode);
 			} catch (err) {
@@ -97,7 +96,7 @@ export default class Preview extends Component {
 		const { error } = this.state;
 		return (
 			<>
-				<div ref={ref => (this.mountNode = ref)} />
+				<div data-testid="mountNode" ref={ref => (this.mountNode = ref)} />
 				{error && <PlaygroundError message={error} />}
 			</>
 		);

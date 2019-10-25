@@ -1,198 +1,122 @@
 import React from 'react';
-import noop from 'lodash/noop';
-import Examples from '../Examples';
-import Components from '../Components';
-import Sections from '../Sections';
+import { render } from '@testing-library/react';
 import Section from './Section';
-import { SectionRenderer } from './SectionRenderer';
+import Context from '../Context';
+import slots from '../slots';
 import { DisplayModes } from '../../consts';
 
-const options = {
-	context: {
-		displayMode: DisplayModes.all,
-		config: {
-			pagePerSection: false,
-		},
+const context = {
+	config: {
+		pagePerSection: false,
 	},
+	displayMode: DisplayModes.all,
+	slots: slots(),
 };
 
-const section = {
-	name: 'Foo',
-	slug: 'foo',
-	exampleMode: 'collapse',
-	usageMode: 'collapse',
-	description: 'This is a description',
-	content: [
-		{
-			type: 'code',
-			content: '<button>OK</button>',
-			evalInContext: noop,
-		},
-		{
-			type: 'markdown',
-			content: 'Hello *world*!',
-		},
-	],
-	components: [],
-	sections: [],
-};
+const Provider = props => <Context.Provider value={context} {...props} />;
 
-it('should render section renderer', () => {
-	const actual = shallow(<Section section={section} depth={3} />, options);
-
-	expect(actual).toMatchSnapshot();
+test('should render nested sections', () => {
+	const { getByTestId } = render(
+		<Provider>
+			<Section
+				section={{
+					name: 'Outer section',
+					slug: 'outer-section',
+					usageMode: 'collapse',
+					exampleMode: 'collapse',
+					sections: [
+						{
+							name: 'Nested section',
+							slug: 'nested-section',
+							usageMode: 'collapse',
+							exampleMode: 'collapse',
+						},
+					],
+				}}
+				depth={3}
+			/>
+		</Provider>
+	);
+	expect(getByTestId('section-outer-section')).toContainElement(
+		getByTestId('section-nested-section')
+	);
 });
 
-it('should render components list', () => {
-	const actual = shallow(
-		<Section
-			section={{
-				name: 'Components',
-				slug: 'components',
-				usageMode: 'collapse',
-				exampleMode: 'collapse',
-				components: [],
-			}}
-			depth={3}
-		/>,
-		options
+test('should render components inside a section', () => {
+	const { getByTestId, getByText } = render(
+		<Provider>
+			<Section
+				section={{
+					name: 'Components',
+					slug: 'components',
+					usageMode: 'collapse',
+					exampleMode: 'collapse',
+					components: [
+						{
+							name: 'Foo',
+							visibleName: 'Foo',
+							slug: 'foo',
+							pathLine: 'components/foo.js',
+							filepath: 'components/foo.js',
+							props: {
+								description: 'Foo foo',
+							},
+						},
+						{
+							name: 'Bar',
+							visibleName: 'Bar',
+							slug: 'bar',
+							pathLine: 'components/bar.js',
+							filepath: 'components/bar.js',
+							props: {
+								description: 'Bar bar',
+							},
+						},
+					],
+				}}
+				depth={3}
+			/>
+		</Provider>
 	);
-
-	expect(actual).toMatchSnapshot();
-});
-
-it('should not render components list if not defined', () => {
-	const actual = shallow(
-		<Section
-			section={{
-				name: 'No components',
-				slug: 'no-components',
-				usageMode: 'collapse',
-				exampleMode: 'collapse',
-			}}
-			depth={3}
-		/>,
-		options
-	);
-
-	expect(actual).toMatchSnapshot();
-});
-
-it('should render sections if defined', () => {
-	const actual = shallow(
-		<Section
-			section={{
-				name: 'Nested sections',
-				slug: 'nested-sections',
-				usageMode: 'collapse',
-				exampleMode: 'collapse',
-				sections: [],
-			}}
-			depth={3}
-		/>,
-		options
-	);
-
-	expect(actual).toMatchSnapshot();
-});
-
-it('should not render sections if not defined', () => {
-	const actual = shallow(
-		<Section
-			section={{
-				name: 'No sections',
-				slug: 'no-sections',
-				usageMode: 'collapse',
-				exampleMode: 'collapse',
-			}}
-			depth={3}
-		/>,
-		options
-	);
-
-	expect(actual).toMatchSnapshot();
+	expect(getByTestId('section-components')).toContainElement(getByText('components/foo.js'));
+	expect(getByTestId('section-components')).toContainElement(getByText('components/bar.js'));
 });
 
 test('should not render section in isolation mode by default', () => {
-	const actual = shallow(
-		<Section
-			section={{
-				name: 'A',
-				slug: 'a',
-				usageMode: 'collapse',
-				exampleMode: 'collapse',
-			}}
-			depth={3}
-		/>,
-		options
+	const { getByLabelText } = render(
+		<Provider>
+			<Section
+				section={{
+					name: 'A',
+					slug: 'a',
+					usageMode: 'collapse',
+					exampleMode: 'collapse',
+				}}
+				depth={3}
+			/>
+		</Provider>
 	);
-
-	expect(actual.prop('isolated')).toBeFalsy();
+	expect(getByLabelText(/open isolated/i)).toBeInTheDocument();
 });
 
 test('should render section in isolation mode', () => {
-	const actual = shallow(
-		<Section
-			section={{
-				name: 'A',
-				slug: 'a',
-				usageMode: 'collapse',
-				exampleMode: 'collapse',
-			}}
-			depth={3}
-		/>,
-		{
-			context: {
-				...options.context,
+	const { getByLabelText } = render(
+		<Provider
+			value={{
+				...context,
 				displayMode: DisplayModes.section,
-			},
-		}
+			}}
+		>
+			<Section
+				section={{
+					name: 'A',
+					slug: 'a',
+					usageMode: 'collapse',
+					exampleMode: 'collapse',
+				}}
+				depth={3}
+			/>
+		</Provider>
 	);
-
-	expect(actual.prop('isolated')).toBeTruthy();
-});
-
-it('render should render section', () => {
-	const actual = shallow(
-		<SectionRenderer
-			classes={{}}
-			name={section.name}
-			slug={section.slug}
-			content={
-				<Examples
-					name={section.name}
-					examples={section.content}
-					exampleMode={section.exampleMode}
-				/>
-			}
-			components={
-				<Components
-					components={[]}
-					depth={3}
-					usageMode={section.usageMode}
-					exampleMode={section.exampleMode}
-				/>
-			}
-			sections={<Sections sections={[]} depth={3} />}
-			depth={3}
-		/>,
-		options
-	);
-
-	expect(actual).toMatchSnapshot();
-});
-
-it('render should not render title if name is not set', () => {
-	const actual = shallow(<SectionRenderer classes={{}} depth={3} />, options);
-
-	expect(actual).toMatchSnapshot();
-});
-
-it('render should render title if name is set', () => {
-	const actual = shallow(
-		<SectionRenderer classes={{}} name="test" slug="test" depth={3} />,
-		options
-	);
-
-	expect(actual).toMatchSnapshot();
+	expect(getByLabelText(/show all components/i)).toBeInTheDocument();
 });

@@ -91,8 +91,8 @@
     "webpack-merge": "^4.2.2"
   },
   "peerDependencies": {
-    "react": ">=16.6",
-    "react-dom": ">=16.6"
+    "react": ">=16.8",
+    "react-dom": ">=16.8"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
@@ -101,6 +101,8 @@
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.6.3",
+    "@testing-library/jest-dom": "^4.1.2",
+    "@testing-library/react": "^9.3.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
@@ -114,7 +116,7 @@
     "enzyme-adapter-react-16": "^1.15.1",
     "enzyme-to-json": "^3.4.3",
     "eslint": "^6.5.1",
-    "eslint-config-tamia": "^7.1.0",
+    "eslint-config-tamia": "^7.1.1",
     "eslint-plugin-compat": "^3.3.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
@@ -174,6 +176,9 @@
     "setupFiles": [
       "./test/raf-polyfill.js",
       "./test/jestsetup.js"
+    ],
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-dom/extend-expect"
     ],
     "modulePaths": [
       "./src/client"

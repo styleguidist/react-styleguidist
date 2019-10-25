@@ -1,14 +1,19 @@
 import React from 'react';
-import TableOfContents from '../TableOfContents';
+import { render, within } from '@testing-library/react';
 import StyleGuide from './StyleGuide';
-import { StyleGuideRenderer } from './StyleGuideRenderer';
+import slots from '../slots';
 import { DisplayModes } from '../../consts';
 
 const sections = [
 	{
+		exampleMode: 'collapse',
+		usageMode: 'collapse',
+		slug: 'section',
 		components: [
 			{
 				name: 'Foo',
+				visibleName: 'Foo',
+				slug: 'foo',
 				pathLine: 'components/foo.js',
 				filepath: 'components/foo.js',
 				props: {
@@ -17,6 +22,8 @@ const sections = [
 			},
 			{
 				name: 'Bar',
+				visibleName: 'Bar',
+				slug: 'bar',
 				pathLine: 'components/bar.js',
 				filepath: 'components/bar.js',
 				props: {
@@ -27,129 +34,93 @@ const sections = [
 	},
 ];
 const config = {
-	title: 'Hello',
+	title: 'HelloStyleGuide',
 	version: '1.0.0',
 	showSidebar: true,
 };
+const defaultProps = {
+	codeRevision: 1,
+	config,
+	pagePerSection: false,
+	sections: [],
+	allSections: [],
+	slots: slots(),
+	patterns: ['components/**.js'],
+};
 
-it('should render components list', () => {
-	const actual = shallow(
+test('should render components', () => {
+	const { getByText } = render(
+		<StyleGuide {...defaultProps} sections={sections} allSections={sections} />
+	);
+	expect(getByText('components/foo.js')).toBeInTheDocument();
+	expect(getByText('components/bar.js')).toBeInTheDocument();
+});
+
+test('should render welcome screen', () => {
+	const { getByText } = render(<StyleGuide {...defaultProps} welcomeScreen />);
+	expect(getByText('Welcome to React Styleguidist!')).toBeInTheDocument();
+});
+
+test('should render a sidebar if showSidebar is not set', () => {
+	const { getByTestId } = render(
+		<StyleGuide {...defaultProps} sections={sections} allSections={sections} />
+	);
+	const sidebar = within(getByTestId('sidebar'));
+	const links = sidebar.getAllByRole('link');
+	expect(links.map(node => node.href)).toEqual(['http://localhost/#foo', 'http://localhost/#bar']);
+	expect(links.map(node => node.textContent)).toEqual(['Foo', 'Bar']);
+});
+
+test('should not render a sidebar if showSidebar is false', () => {
+	const { queryByTestId } = render(
 		<StyleGuide
-			codeRevision={1}
-			config={config}
-			pagePerSection={false}
+			{...defaultProps}
+			config={{
+				...config,
+				showSidebar: false,
+			}}
 			sections={sections}
 			allSections={sections}
-			slots={{}}
 		/>
 	);
-
-	expect(actual).toMatchSnapshot();
+	expect(queryByTestId('sidebar')).not.toBeInTheDocument();
 });
 
-it('should render welcome screen', () => {
-	const actual = shallow(
+test('should not render a sidebar in isolation mode', () => {
+	const { queryByTestId } = render(
 		<StyleGuide
-			codeRevision={1}
-			config={config}
-			sections={[]}
-			allSections={[]}
-			slots={{}}
-			welcomeScreen
+			{...defaultProps}
+			sections={sections}
+			allSections={sections}
+			displayMode={DisplayModes.component}
 		/>
 	);
-
-	expect(actual).toMatchSnapshot();
+	expect(queryByTestId('sidebar')).not.toBeInTheDocument();
 });
 
-it('should render an error when componentDidCatch() is triggered', () => {
-	const wrapper = shallow(
-		<StyleGuide codeRevision={1} config={config} sections={[]} allSections={[]} slots={{}} />
+test('should render a sidebar if pagePerSection is true', () => {
+	const { getByTestId } = render(
+		<StyleGuide
+			{...defaultProps}
+			sections={sections}
+			allSections={sections}
+			displayMode={DisplayModes.all}
+			pagePerSection
+		/>
 	);
-	wrapper
-		.instance()
-		.componentDidCatch({ toString: () => 'error' }, { componentStack: { toString: () => 'info' } });
-	wrapper.update();
-	expect(wrapper).toMatchSnapshot();
+	expect(getByTestId('sidebar')).toBeInTheDocument();
 });
 
-describe('sidebar rendering', () => {
-	it('renderer should have sidebar if showSidebar is not set', () => {
-		const wrapper = shallow(
-			<StyleGuide
-				codeRevision={1}
-				config={config}
-				sections={sections}
-				allSections={sections}
-				slots={{}}
-			/>
-		);
-
-		expect(wrapper.prop('hasSidebar')).toEqual(true);
+describe('error handling', () => {
+	const console$error = console.error;
+	beforeAll(() => {
+		console.error = jest.fn();
 	});
-
-	it('renderer should not have sidebar if showSidebar is false', () => {
-		const wrapper = shallow(
-			<StyleGuide
-				codeRevision={1}
-				config={{
-					...config,
-					showSidebar: false,
-				}}
-				sections={sections}
-				allSections={sections}
-				slots={{}}
-			/>
-		);
-
-		expect(wrapper.prop('hasSidebar')).toEqual(false);
+	afterAll(() => {
+		console.error = console$error;
 	});
-
-	it('renderer should not have sidebar in isolation mode', () => {
-		const wrapper = shallow(
-			<StyleGuide
-				codeRevision={1}
-				config={config}
-				sections={sections}
-				allSections={sections}
-				slots={{}}
-				displayMode={DisplayModes.component}
-			/>
-		);
-
-		expect(wrapper.prop('hasSidebar')).toEqual(false);
+	test('should render an error when componentDidCatch() is triggered', () => {
+		const { getByText } = render(<StyleGuide {...defaultProps} patterns={null} welcomeScreen />);
+		expect(getByText(/typeerror: cannot read property/i)).toBeInTheDocument();
 	});
-
-	it('renderer should have sidebar if pagePerSection is true', () => {
-		const wrapper = shallow(
-			<StyleGuide
-				codeRevision={1}
-				config={config}
-				sections={sections}
-				allSections={sections}
-				slots={{}}
-				displayMode={DisplayModes.all}
-				pagePerSection
-			/>
-		);
-
-		expect(wrapper.prop('hasSidebar')).toEqual(true);
-	});
-});
-
-it('renderer should render logo, version, table of contents, ribbon and passed children', () => {
-	const actual = shallow(
-		<StyleGuideRenderer
-			classes={{}}
-			title={config.title}
-			version={config.version}
-			toc={<TableOfContents sections={sections} />}
-			homepageUrl="http://react-styleguidist.js.org/"
-			hasSidebar
-		>
-			<h1>Content</h1>
-		</StyleGuideRenderer>
-	);
-
-	expect(actual).toMatchSnapshot();
 });

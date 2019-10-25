@@ -1,45 +1,58 @@
 import React from 'react';
-import noop from 'lodash/noop';
+import { render } from '@testing-library/react';
 import Examples from '../Examples';
+import Context from '../Context';
+import slots from '../slots';
 import { DisplayModes } from '../../consts';
+
+const evalInContext = a =>
+	// eslint-disable-next-line no-new-func
+	new Function('require', 'const React = require("react");' + a).bind(null, require);
 
 const examples = [
 	{
 		type: 'code',
-		content: '<button>OK</button>',
-		evalInContext: noop,
+		content: '<button>Code: OK</button>',
+		evalInContext,
 	},
 	{
 		type: 'markdown',
-		content: 'Hello *world*!',
+		content: 'Markdown: Hello *world*!',
 	},
 ];
 
-it('should render examples', () => {
-	const actual = shallow(<Examples examples={examples} name="button" exampleMode="collapse" />, {
-		context: {
-			codeRevision: 1,
-			displayMode: DisplayModes.example,
-		},
-	});
+const context = {
+	config: {
+		previewDelay: 0,
+	},
+	codeRevision: 1,
+	displayMode: DisplayModes.example,
+	slots: slots(),
+};
 
-	expect(actual).toMatchSnapshot();
+const Provider = props => <Context.Provider value={context} {...props} />;
+
+test('should render examples', () => {
+	const { getByText } = render(
+		<Provider>
+			<Examples examples={examples} name="button" exampleMode="collapse" />
+		</Provider>
+	);
+	expect(getByText(/code: ok/i)).toBeInTheDocument();
+	expect(getByText(/markdown: hello/i)).toBeInTheDocument();
 });
 
-it('should not render a example with unknown type', () => {
+test('should not render an example with unknown type', () => {
 	const faultyExample = [
 		{
 			type: 'unknown',
 			content: 'FooBar',
 		},
 	];
-
-	const actual = mount(<Examples examples={faultyExample} name="button" exampleMode="collapse" />, {
-		context: {
-			codeRevision: 1,
-		},
-	});
-	const article = actual.find('article');
-	expect(article.length).toEqual(1);
-	expect(article.text().includes('FooBar')).toEqual(false);
+	const { getByTestId } = render(
+		<Provider>
+			<Examples examples={faultyExample} name="button" exampleMode="collapse" />
+		</Provider>
+	);
+	expect(getByTestId('button-examples')).toBeEmpty();
 });

@@ -50,5 +50,13 @@
     "render": false,
     "mount": false,
     "cy": false
-  }
+  },
+  "overrides": [
+    {
+        "files": ["*.spec.js"],
+        "rules": {
+          "compat/compat": 0
+        }
+    }
+  ]
 }

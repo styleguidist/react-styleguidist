@@ -1,12 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import RibbonRenderer from 'rsg-components/Ribbon/RibbonRenderer';
+import { useStyleGuideContext } from 'rsg-components/Context';
 
-export default function Ribbon(props, { config }) {
-	const { ribbon } = config;
+export default function Ribbon() {
+	const {
+		config: { ribbon },
+	} = useStyleGuideContext();
 	return ribbon ? <RibbonRenderer {...ribbon} /> : null;
 }
-
-Ribbon.contextTypes = {
-	config: PropTypes.object,
-};
