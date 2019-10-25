@@ -13,16 +13,14 @@
  */
 export default function getUrl(
 	{ name, slug, example, anchor, isolated, nochrome, absolute, hashPath, id, takeHash } = {},
-	{ origin, pathname, hash } = window.location
+	{ origin, pathname, hash = '' } = window.location
 ) {
 	let url = pathname;
 
+	const currentHash = hash.indexOf('?') > -1 ? hash.substring(0, hash.indexOf('?')) : hash;
+
 	if (takeHash) {
-		if (hash.indexOf('?') > -1) {
-			url += hash.substring(0, hash.indexOf('?'));
-		} else {
-			url += hash;
-		}
+		url += currentHash;
 	}
 
 	if (nochrome) {
@@ -34,7 +32,11 @@ export default function getUrl(
 	if (anchor) {
 		url += `#${slug}`;
 	} else if (isolated || nochrome) {
-		url += `#!/${encodedName}`;
+		const currentHashPath =
+			currentHash && currentHash.length > 0
+				? currentHash.replace(/^#\/?/, '').replace(/\/$/, '') + '/'
+				: '';
+		url += `#!/${currentHashPath}${encodedName}`;
 	}
 
 	if (hashPath) {
