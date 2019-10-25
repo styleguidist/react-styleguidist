@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 import Preview from 'rsg-components/Preview';
@@ -112,4 +111,4 @@ class Playground extends Component {
 	}
 }
 
-export default polyfill(Playground);
+export default Playground;
