@@ -24,10 +24,10 @@
     "templates"
   ],
   "engines": {
-    "node": ">=6.4"
+    "node": ">=8.6"
   },
   "dependencies": {
-    "@vxna/mini-html-webpack-template": "^0.1.7",
+    "@vxna/mini-html-webpack-template": "^1.0.0",
     "acorn": "^6.3.0",
     "acorn-jsx": "^5.1.0",
     "ast-types": "^0.12.4",
@@ -64,7 +64,7 @@
     "lodash": "^4.17.15",
     "lowercase-keys": "^1.0.1",
     "markdown-to-jsx": "^6.10.3",
-    "mini-html-webpack-plugin": "^0.2.3",
+    "mini-html-webpack-plugin": "^2.0.0",
     "mri": "^1.1.4",
     "ora": "^3.4.0",
     "prismjs": "^1.17.1",
