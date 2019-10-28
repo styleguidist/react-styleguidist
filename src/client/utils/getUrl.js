@@ -32,11 +32,7 @@ export default function getUrl(
 	if (anchor) {
 		url += `#${slug}`;
 	} else if (isolated || nochrome) {
-		const currentHashPath =
-			currentHash && currentHash.length > 0 && !currentHash.includes('#!/')
-				? currentHash.replace(/^#\/?/, '').replace(/\/$/, '') + '/'
-				: '';
-		url += `#!/${currentHashPath}${encodedName}`;
+		url += buildIsolatedOrNoChromeFragment({ currentHash, encodedName });
 	}
 
 	if (hashPath) {
@@ -60,4 +56,22 @@ export default function getUrl(
 	}
 
 	return url;
+}
+
+/**
+ * Gets the URL fragment for an isolated or nochrome link.
+ *
+ * @param {string} $.currentHash The current hash fragment of the page
+ * @param {string} $.encodedName The URL encoded name of the component
+ * @return {string}
+ */
+function buildIsolatedOrNoChromeFragment({ currentHash, encodedName }) {
+	const stripFragment = /^#\/?/;
+	const stripTrailingSlash = /\/$/;
+	const currentHashPath =
+		// skip if we are already using `#!/`
+		currentHash && !currentHash.includes('#!/')
+			? currentHash.replace(stripFragment, '').replace(stripTrailingSlash, '') + '/'
+			: '';
+	return `#!/${currentHashPath}${encodedName}`;
 }
