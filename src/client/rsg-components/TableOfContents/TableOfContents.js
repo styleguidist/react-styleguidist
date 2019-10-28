@@ -19,12 +19,13 @@ export default class TableOfContents extends Component {
 			const sectionDepth = section.sectionDepth || 0;
 			const childHashPath =
 				sectionDepth === 0 && useHashId ? hashPath : [...hashPath, section.name];
-			return Object.assign({}, section, {
+			return {
+				...section,
 				heading: !!section.name && children.length > 0,
 				content:
 					children.length > 0 &&
 					this.renderLevel(children, useRouterLinks, childHashPath, sectionDepth === 0),
-			});
+			};
 		});
 		return (
 			<ComponentsList
@@ -43,7 +44,7 @@ export default class TableOfContents extends Component {
 		// In this case the name of the section won't be rendered and it won't get left padding
 		// Since a section can contain only other sections,
 		// we need to make sure not to loose the subsections.
-		// We will treat those subsecttions as the new roots.
+		// We will treat those subsections as the new roots.
 		const firstLevel =
 			sections.length === 1
 				? // only use subsections if there actually are subsections
@@ -57,10 +58,9 @@ export default class TableOfContents extends Component {
 	}
 
 	render() {
-		const { searchTerm } = this.state;
 		return (
 			<TableOfContentsRenderer
-				searchTerm={searchTerm}
+				searchTerm={this.state.searchTerm}
 				onSearchTermChange={searchTerm => this.setState({ searchTerm })}
 			>
 				{this.renderSections()}

@@ -40,7 +40,7 @@ export function Button({ color, size, children }) {
 export default CSSModules(Button, styles)
 ```
 
-Each example is rendered in an independent React root. You can control React context by defining a custom Wrapper component like this:
+Each example is rendered in an independent React root. You can control React Context by defining a custom Wrapper component like this:
 
 ```javascript
 // styleguide.config.js

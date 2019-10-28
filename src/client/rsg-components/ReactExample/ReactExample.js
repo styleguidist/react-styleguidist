@@ -44,7 +44,6 @@ export default class ReactExample extends Component {
 		onError: PropTypes.func.isRequired,
 		compilerConfig: PropTypes.object,
 	};
-	static contextTypes = {};
 
 	shouldComponentUpdate(nextProps) {
 		return this.props.code !== nextProps.code;

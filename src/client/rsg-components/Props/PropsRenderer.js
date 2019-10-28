@@ -79,12 +79,11 @@ function renderEnum(prop) {
 }
 
 function renderShape(props) {
-	const rows = [];
-	for (const name in props) {
+	return Object.keys(props).map(name => {
 		const prop = props[name];
 		const defaultValue = renderDefault(prop);
 		const description = prop.description;
-		rows.push(
+		return (
 			<div key={name}>
 				<Name>{name}</Name>
 				{': '}
@@ -95,8 +94,7 @@ function renderShape(props) {
 				{description && <Markdown text={description} inline />}
 			</div>
 		);
-	}
-	return rows;
+	});
 }
 
 const defaultValueBlacklist = ['null', 'undefined'];

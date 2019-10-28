@@ -17,7 +17,7 @@
       }
     },
     "react": {
-      "version": "16.3",
+      "version": "16.6",
       "flowVersion": "0.83"
     }
   },
@@ -50,5 +50,13 @@
     "render": false,
     "mount": false,
     "cy": false
-  }
+  },
+  "overrides": [
+    {
+        "files": ["*.spec.js"],
+        "rules": {
+          "compat/compat": 0
+        }
+    }
+  ]
 }

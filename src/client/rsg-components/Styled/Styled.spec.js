@@ -1,5 +1,16 @@
 import React, { Component } from 'react';
+import { render } from '@testing-library/react';
 import Styled from './Styled';
+import Context from '../Context';
+
+const context = {
+	config: {
+		theme: {},
+		styles: {},
+	},
+};
+
+const Provider = props => <Context.Provider value={context} {...props} />;
 
 /* eslint-disable react/prefer-stateless-function, react/prop-types */
 
@@ -9,26 +20,23 @@ const styles = () => ({
 	},
 });
 
-class Cmpnt extends Component {
+class TestRenderer extends Component {
 	render() {
-		return <div className={this.props.classes.foo} />;
+		return <div className={this.props.classes.foo} data-testid={this.props.testId} />;
 	}
 }
 
-it('should wrap a component and pass classes', () => {
-	const WrappedComponent = Styled(styles)(Cmpnt);
+test('should set displayName', () => {
+	const WrappedComponent = Styled(styles)(TestRenderer);
+	expect(WrappedComponent.displayName).toBe('Styled(Test)');
+});
 
-	const actual = shallow(<WrappedComponent bar="baz" />, {
-		context: {
-			config: {
-				theme: {},
-				styles: {},
-			},
-		},
-	});
-
-	expect(actual.name()).toBe('Cmpnt');
-	expect(actual.prop('bar')).toBe('baz');
-	expect(typeof actual.prop('classes')).toBe('object');
-	expect(actual.prop('classes').foo).toMatch(/^rsg--foo-\d+$/);
+test('should wrap a component and pass props and classes', () => {
+	const WrappedComponent = Styled(styles)(TestRenderer);
+	const { getByTestId } = render(
+		<Provider>
+			<WrappedComponent testId="element" />
+		</Provider>
+	);
+	expect(getByTestId('element')).toHaveAttribute('class', expect.stringMatching(/^rsg--foo-\d+$/));
 });

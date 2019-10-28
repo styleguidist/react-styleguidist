@@ -98,6 +98,8 @@ module.exports = {
 				// FolderName.md when component definition file is index.js
 				path.join(path.dirname(componentPath), path.basename(path.dirname(componentPath)) + '.md'),
 			];
+			// FIXME: This looks like a bug in ESLint
+			// eslint-disable-next-line no-unused-vars
 			for (const file of files) {
 				const existingFile = fileExistsCaseInsensitive(file);
 				if (existingFile) {

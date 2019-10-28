@@ -45,7 +45,7 @@ export default function(str, fn = 'require') {
 	num = 0;
 	return str
 		.replace(NAMED, (_, asterisk, base, req, dep) =>
-			generate(req ? req.split(',').filter(dep => dep.trim()) : [], dep, base, fn)
+			generate(req ? req.split(',').filter(d => d.trim()) : [], dep, base, fn)
 		)
 		.replace(UNNAMED, (_, dep) => `${fn}('${dep}');`);
 }

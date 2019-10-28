@@ -14,9 +14,9 @@ const setupLogger = require('./logger');
  * @returns {object} API.
  */
 module.exports = function(config) {
-	config = getConfig(config, config => {
-		setupLogger(config.logger, config.verbose, {});
-		return config;
+	config = getConfig(config, conf => {
+		setupLogger(conf.logger, conf.verbose, {});
+		return conf;
 	});
 
 	return {

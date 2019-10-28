@@ -1,12 +1,15 @@
 import React from 'react';
+import { render } from '@testing-library/react';
 import ComponentsList from './ComponentsList';
-import { ComponentsListRenderer } from './ComponentsListRenderer';
+import Context from '../Context';
 
 const context = {
 	config: {
 		pagePerSection: true,
 	},
 };
+
+const Provider = props => <Context.Provider value={context} {...props} />;
 
 it('should set the correct href for items', () => {
 	const components = [
@@ -22,8 +25,16 @@ it('should set the correct href for items', () => {
 		},
 	];
 
-	const actual = shallow(<ComponentsList items={components} classes={{}} />, { context });
-	expect(actual).toMatchSnapshot();
+	const { getAllByRole } = render(
+		<Provider>
+			<ComponentsList items={components} classes={{}} />
+		</Provider>
+	);
+
+	expect(Array.from(getAllByRole('link')).map(node => node.href)).toEqual([
+		'http://localhost/#button',
+		'http://localhost/#input',
+	]);
 });
 
 it('if a custom href is provided, should use it instead of generating internal link', () => {
@@ -31,7 +42,7 @@ it('if a custom href is provided, should use it instead of generating internal l
 		{
 			visibleName: 'External example',
 			name: 'External example',
-			href: 'http://example.com',
+			href: 'http://example.com/',
 		},
 		{
 			visibleName: 'Input',
@@ -40,11 +51,19 @@ it('if a custom href is provided, should use it instead of generating internal l
 		},
 	];
 
-	const actual = shallow(<ComponentsList items={components} classes={{}} />, { context });
-	expect(actual).toMatchSnapshot();
+	const { getAllByRole } = render(
+		<Provider>
+			<ComponentsList items={components} classes={{}} />
+		</Provider>
+	);
+
+	expect(Array.from(getAllByRole('link')).map(node => node.href)).toEqual([
+		'http://example.com/',
+		'http://localhost/#input',
+	]);
 });
 
-it('should set a parameter on link when useHashId is activated', () => {
+it('should set an id parameter on link when useHashId is activated', () => {
 	const components = [
 		{
 			visibleName: 'Button',
@@ -57,66 +76,65 @@ it('should set a parameter on link when useHashId is activated', () => {
 			slug: 'input',
 		},
 	];
-	const actual = shallow(
-		<ComponentsList
-			items={components}
-			classes={{}}
-			useRouterLinks
-			hashPath={['Components']}
-			useHashId
-		/>,
-		{ context }
+
+	const { getAllByRole } = render(
+		<Provider>
+			<ComponentsList
+				items={components}
+				classes={{}}
+				useRouterLinks
+				hashPath={['Components']}
+				useHashId
+			/>
+		</Provider>
 	);
-	expect(actual).toMatchSnapshot();
+
+	expect(Array.from(getAllByRole('link')).map(node => node.href)).toEqual([
+		'http://localhost/#/Components?id=button',
+		'http://localhost/#/Components?id=input',
+	]);
 });
 
 it('should set a sub route on link when useHashId is deactivated', () => {
 	const components = [
 		{
+			visibleName: 'Button',
 			name: 'Button',
 			slug: 'button',
 		},
 		{
+			visibleName: 'Input',
 			name: 'Input',
 			slug: 'input',
 		},
 	];
 
-	const actual = shallow(
-		<ComponentsList
-			items={components}
-			classes={{}}
-			useRouterLinks
-			hashPath={['Components']}
-			useHashId={false}
-		/>,
-		{ context }
+	const { getAllByRole } = render(
+		<Provider>
+			<ComponentsList
+				items={components}
+				classes={{}}
+				useRouterLinks
+				hashPath={['Components']}
+				useHashId={false}
+			/>
+		</Provider>
 	);
-	expect(actual).toMatchSnapshot();
+
+	expect(Array.from(getAllByRole('link')).map(node => node.href)).toEqual([
+		'http://localhost/#/Components/Button',
+		'http://localhost/#/Components/Input',
+	]);
 });
 
-it('should render sections with nested components', () => {
-	const components = [
-		{
-			visibleName: 'Button',
-			slug: 'button',
-			href: '#button',
-		},
-		{
-			visibleName: 'Input',
-			slug: 'input',
-			href: '#input',
-		},
-	];
-	const actual = shallow(<ComponentsListRenderer items={components} classes={{}} />, { context });
+it('should not render any links when the list is empty', () => {
+	const { queryAllByRole } = render(
+		<Provider>
+			<ComponentsList items={[]} classes={{}} />
+		</Provider>
+	);
 
-	expect(actual).toMatchSnapshot();
-});
-
-it('should return null when the list is empty', () => {
-	const actual = shallow(<ComponentsListRenderer items={[]} classes={{}} />, { context });
-
-	expect(actual.getElement()).toBe(null);
+	expect(queryAllByRole('link')).toHaveLength(0);
 });
 
 it('should ignore items without visibleName', () => {
@@ -131,7 +149,20 @@ it('should ignore items without visibleName', () => {
 			href: '#input',
 		},
 	];
-	const actual = shallow(<ComponentsListRenderer items={components} classes={{}} />, { context });
 
-	expect(actual).toMatchSnapshot();
+	const { getAllByRole } = render(
+		<Provider>
+			<ComponentsList
+				items={components}
+				classes={{}}
+				useRouterLinks
+				hashPath={['Components']}
+				useHashId={false}
+			/>
+		</Provider>
+	);
+
+	expect(Array.from(getAllByRole('link')).map(node => node.href)).toEqual([
+		'http://localhost/#button',
+	]);
 });

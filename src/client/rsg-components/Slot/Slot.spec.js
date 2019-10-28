@@ -1,20 +1,28 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { render, fireEvent } from '@testing-library/react';
 import Slot from './Slot';
+import Context from '../Context';
 
-/* eslint-disable react/prop-types */
+const Button = ({ active, children, ...props }) => {
+	return (
+		<button {...props} aria-current={active}>
+			{children}
+		</button>
+	);
+};
+Button.propTypes = {
+	active: PropTypes.bool,
+	children: PropTypes.node,
+};
 
-const Button = ({ name, onClick, children }) => (
-	<button name={name} onClick={onClick}>
-		{children}
-	</button>
-);
-
-const Button2 = props => <Button {...props}>2</Button>;
+const Button1 = props => <Button {...props}>Button1</Button>;
+const Button2 = props => <Button {...props}>Button2</Button>;
 
 const fillsWithIds = [
 	{
 		id: 'one',
-		render: Button,
+		render: Button1,
 	},
 	{
 		id: 'two',
@@ -22,77 +30,108 @@ const fillsWithIds = [
 	},
 ];
 
-it('should renderer slots and pass props', () => {
-	const actual = shallow(<Slot name="slot" props={{ id: 'Pizza' }} />, {
-		context: {
-			slots: {
-				slot: [Button, Button2],
-			},
-		},
-	});
+it('should render slots and pass props', () => {
+	const { getByText, getAllByRole } = render(
+		<Context.Provider
+			value={{
+				slots: {
+					slot: [Button1, Button2],
+				},
+			}}
+		>
+			<Slot name="slot" props={{ role: 'pizza' }} />
+		</Context.Provider>
+	);
 
-	expect(actual).toMatchSnapshot();
+	expect(getByText('Button1')).toBeInTheDocument();
+	expect(getByText('Button2')).toBeInTheDocument();
+	expect(getAllByRole('pizza')).toHaveLength(2);
 });
 
-it('should renderer slots in id/render format', () => {
-	const actual = shallow(<Slot name="slot" props={{ id: 'Pizza' }} />, {
-		context: {
-			slots: {
-				slot: fillsWithIds,
-			},
-		},
-	});
+it('should render slots in id/render format', () => {
+	const { getByText } = render(
+		<Context.Provider
+			value={{
+				slots: {
+					slot: fillsWithIds,
+				},
+			}}
+		>
+			<Slot name="slot" props={{ id: 'Pizza' }} />
+		</Context.Provider>
+	);
 
-	expect(actual).toMatchSnapshot();
+	expect(getByText('Button1')).toBeInTheDocument();
+	expect(getByText('Button2')).toBeInTheDocument();
 });
 
 it('should pass active flag to active slot', () => {
-	const actual = shallow(<Slot name="slot" active="two" />, {
-		context: {
-			slots: {
-				slot: fillsWithIds,
-			},
-		},
-	});
+	const { getByText } = render(
+		<Context.Provider
+			value={{
+				slots: {
+					slot: fillsWithIds,
+				},
+			}}
+		>
+			<Slot name="slot" active="two" />
+		</Context.Provider>
+	);
 
-	expect(actual).toMatchSnapshot();
+	expect(getByText('Button1')).toHaveAttribute('aria-current', 'false');
+	expect(getByText('Button2')).toHaveAttribute('aria-current', 'true');
 });
 
-it('should renderer only active slot if onlyActive=true', () => {
-	const actual = shallow(<Slot name="slot" active="two" onlyActive />, {
-		context: {
-			slots: {
-				slot: fillsWithIds,
-			},
-		},
-	});
+it('should render only active slot if onlyActive=true', () => {
+	const { queryByText } = render(
+		<Context.Provider
+			value={{
+				slots: {
+					slot: fillsWithIds,
+				},
+			}}
+		>
+			<Slot name="slot" active="two" onlyActive />
+		</Context.Provider>
+	);
 
-	expect(actual).toMatchSnapshot();
+	expect(queryByText('Button1')).not.toBeInTheDocument();
+	expect(queryByText('Button2')).toBeInTheDocument();
 });
 
 it('should pass slot ID to onClick handler', () => {
 	const onClick = jest.fn();
-	const actual = mount(<Slot name="slot" props={{ onClick }} />, {
-		context: {
-			slots: {
-				slot: fillsWithIds,
-			},
-		},
-	});
+	const { getByText } = render(
+		<Context.Provider
+			value={{
+				slots: {
+					slot: fillsWithIds,
+				},
+			}}
+		>
+			<Slot name="slot" props={{ onClick }} />
+		</Context.Provider>
+	);
 
-	actual.find('button[name="two"]').simulate('click');
+	fireEvent.click(getByText('Button2'));
 
-	expect(onClick).toBeCalledWith('two', expect.any(Object));
+	expect(onClick).toHaveBeenCalledTimes(1);
+	expect(onClick.mock.calls[0][0]).toBe('two');
 });
 
 it('should return null if all slots render null', () => {
-	const actual = render(<Slot name="slot" props={{ id: 'Pizza' }} />, {
-		context: {
-			slots: {
-				slot: [() => null],
-			},
-		},
-	});
+	const { queryByText } = render(
+		<Context.Provider
+			value={{
+				slots: {
+					slot: [() => null],
+				},
+			}}
+		>
+			<Slot name="slot" props={{ id: 'Pizza' }} />
+		</Context.Provider>
+	);
 
-	expect(actual.node).toBeFalsy();
+	expect(queryByText('Button1')).not.toBeInTheDocument();
+	expect(queryByText('Button2')).not.toBeInTheDocument();
 });

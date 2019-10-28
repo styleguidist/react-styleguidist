@@ -3,14 +3,9 @@ import React, { Component } from 'react';
 /* eslint-disable compat/compat */
 
 export default class CustomEndpoint extends Component {
-	constructor(props) {
-		super(props);
+	state = { response: 'No Server Response' };
 
-		this.state = { response: 'No Server Response' };
-		this.handleInvokeEndpoint = this.handleInvokeEndpoint.bind(this);
-	}
-
-	handleInvokeEndpoint() {
+	handleInvokeEndpoint = () => {
 		fetch('http://localhost:6060/custom', { method: 'GET' })
 			.then(responseObj => responseObj.json())
 			.then(({ response } = {}) => this.setState({ response, error: null }))
@@ -20,7 +15,7 @@ export default class CustomEndpoint extends Component {
 					error: 'Ouch, something went wrong!',
 				})
 			);
-	}
+	};
 
 	render() {
 		return (

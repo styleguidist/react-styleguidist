@@ -1,16 +1,12 @@
 import React from 'react';
+import { render, fireEvent } from '@testing-library/react';
 import { ExamplePlaceholderRenderer } from './ExamplePlaceholderRenderer';
 
-it('should render a link', () => {
-	const actual = shallow(<ExamplePlaceholderRenderer classes={{}} name="Pizza" />);
-
-	expect(actual).toMatchSnapshot();
-});
-
-it('should render an example placeholder after click', () => {
-	const actual = shallow(<ExamplePlaceholderRenderer classes={{}} name="Pizza" />);
-
-	actual.find('button').simulate('click');
-
-	expect(actual).toMatchSnapshot();
+test('should render an example placeholder after button click', () => {
+	const { getByText, queryByText } = render(
+		<ExamplePlaceholderRenderer classes={{}} name="Pizza" />
+	);
+	fireEvent.click(getByText(/add examples to this component/i));
+	expect(getByText('Pizza.md')).toBeInTheDocument();
+	expect(queryByText(/add examples to this component/i)).not.toBeInTheDocument();
 });

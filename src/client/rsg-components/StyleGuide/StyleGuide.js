@@ -6,6 +6,7 @@ import Sections from 'rsg-components/Sections';
 import Welcome from 'rsg-components/Welcome';
 import Error from 'rsg-components/Error';
 import NotFound from 'rsg-components/NotFound';
+import Context from 'rsg-components/Context';
 import { HOMEPAGE } from '../../../scripts/consts';
 import { DisplayModes } from '../../consts';
 
@@ -41,14 +42,6 @@ export default class StyleGuide extends Component {
 		allSections: PropTypes.array.isRequired,
 		pagePerSection: PropTypes.bool,
 	};
-
-	static childContextTypes = {
-		codeRevision: PropTypes.number.isRequired,
-		config: PropTypes.object.isRequired,
-		slots: PropTypes.object.isRequired,
-		displayMode: PropTypes.string,
-	};
-
 	static defaultProps = {
 		displayMode: DisplayModes.all,
 	};
@@ -58,15 +51,6 @@ export default class StyleGuide extends Component {
 		info: null,
 	};
 
-	getChildContext() {
-		return {
-			codeRevision: this.props.codeRevision,
-			config: this.props.config,
-			slots: this.props.slots,
-			displayMode: this.props.displayMode,
-		};
-	}
-
 	componentDidCatch(error, info) {
 		this.setState({
 			error,
@@ -75,6 +59,7 @@ export default class StyleGuide extends Component {
 	}
 
 	render() {
+		const { error, info } = this.state;
 		const {
 			config,
 			sections,
@@ -83,10 +68,12 @@ export default class StyleGuide extends Component {
 			displayMode,
 			allSections,
 			pagePerSection,
+			codeRevision,
+			slots,
 		} = this.props;
 
-		if (this.state.error) {
-			return <Error error={this.state.error} info={this.state.info} />;
+		if (error) {
+			return <Error error={error} info={info} />;
 		}
 
 		if (welcomeScreen) {
@@ -94,15 +81,24 @@ export default class StyleGuide extends Component {
 		}
 
 		return (
-			<StyleGuideRenderer
-				title={config.title}
-				version={config.version}
-				homepageUrl={HOMEPAGE}
-				toc={<TableOfContents sections={allSections} useRouterLinks={pagePerSection} />}
-				hasSidebar={hasSidebar(displayMode, config.showSidebar)}
+			<Context.Provider
+				value={{
+					codeRevision,
+					config,
+					slots,
+					displayMode,
+				}}
 			>
-				{sections.length ? <Sections sections={sections} depth={1} /> : <NotFound />}
-			</StyleGuideRenderer>
+				<StyleGuideRenderer
+					title={config.title}
+					version={config.version}
+					homepageUrl={HOMEPAGE}
+					toc={<TableOfContents sections={allSections} useRouterLinks={pagePerSection} />}
+					hasSidebar={hasSidebar(displayMode, config.showSidebar)}
+				>
+					{sections.length ? <Sections sections={sections} depth={1} /> : <NotFound />}
+				</StyleGuideRenderer>
+			</Context.Provider>
 		);
 	}
 }

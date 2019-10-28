@@ -20,13 +20,13 @@ export default class RandomButton extends Component {
 		};
 	}
 
-	handleClick() {
+	handleClick = () => {
 		this.setState({
 			label: sample(this.props.variants),
 		});
-	}
+	};
 
 	render() {
-		return <button onClick={this.handleClick.bind(this)}>{this.state.label}</button>;
+		return <button onClick={this.handleClick}>{this.state.label}</button>;
 	}
 }

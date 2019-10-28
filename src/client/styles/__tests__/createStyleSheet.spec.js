@@ -10,13 +10,13 @@ const customStyleBorderColor = '#ABCDEF';
 const testComponentName = 'TestComponentName';
 const testRuleName = 'testRule';
 
-const styles = theme => ({
+const styles = ({ color, borderRadius, maxWidth }) => ({
 	[testRuleName]: {
-		color: theme.color.base,
-		backgroundColor: theme.color.baseBackground,
-		borderColor: theme.color.border,
-		borderRadius: theme.borderRadius,
-		maxWidth: theme.maxWidth,
+		color: color.base,
+		backgroundColor: color.baseBackground,
+		borderColor: color.border,
+		borderRadius,
+		maxWidth,
 	},
 });
 

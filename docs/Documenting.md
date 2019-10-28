@@ -283,14 +283,10 @@ initialState = { isOpen: false }
 ````jsx
 // ```jsx inside Markdown
 class ModalExample extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      isOpen: false
-    }
-    this.toggleOpen = this.toggleOpen.bind(this)
+  state = {
+    isOpen: false
   }
-  toggleOpen() {
+  toggleOpen = () => {
     this.setState((prevState, props) => ({
       isOpen: !prevState.isOpen
     }))

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'clsx';
 import Link from 'rsg-components/Link';
 import Styled from 'rsg-components/Styled';
+import { useStyleGuideContext } from 'rsg-components/Context';
 import { getHash } from '../../utils/handleHash';
 
 const styles = ({ color, fontFamily, fontSize, space, mq }) => ({
@@ -37,11 +38,14 @@ const styles = ({ color, fontFamily, fontSize, space, mq }) => ({
 	},
 });
 
-export function ComponentsListRenderer({ classes, items }, { config }) {
-	const { pagePerSection } = config;
-	items = items.filter(item => item.visibleName);
+export function ComponentsListRenderer({ classes, items }) {
+	const {
+		config: { pagePerSection },
+	} = useStyleGuideContext();
 
-	if (!items.length) {
+	const visibleItems = items.filter(item => item.visibleName);
+
+	if (!visibleItems.length) {
 		return null;
 	}
 
@@ -50,7 +54,7 @@ export function ComponentsListRenderer({ classes, items }, { config }) {
 	const windowHash = pathname + (pagePerSection ? hash : getHash(hash));
 	return (
 		<ul className={classes.list}>
-			{items.map(({ heading, visibleName, href, content, shouldOpenInNewTab }) => {
+			{visibleItems.map(({ heading, visibleName, href, content, shouldOpenInNewTab }) => {
 				const isItemSelected = windowHash === href;
 				return (
 					<li
@@ -78,10 +82,6 @@ export function ComponentsListRenderer({ classes, items }, { config }) {
 ComponentsListRenderer.propTypes = {
 	items: PropTypes.array.isRequired,
 	classes: PropTypes.object.isRequired,
-};
-
-ComponentsListRenderer.contextTypes = {
-	config: PropTypes.object.isRequired,
 };
 
 export default Styled(styles)(ComponentsListRenderer);
