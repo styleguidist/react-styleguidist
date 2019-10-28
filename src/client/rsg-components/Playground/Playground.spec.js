@@ -123,24 +123,6 @@ it('showcode option in example settings should overwrite style guide config opti
 	expect(actual.find('textarea')).toHaveLength(0);
 });
 
-it('should not include padded class if padded option is not passed in example settings', () => {
-	const actual = mount(
-		<Playground {...props} classes={classes(styles)} settings={{ padded: false }} />,
-		options
-	);
-
-	expect(actual).toMatchSnapshot();
-});
-
-it('should include padded class if padded option is passed in example settings', () => {
-	const actual = mount(
-		<Playground {...props} classes={classes(styles)} settings={{ padded: true }} />,
-		options
-	);
-
-	expect(actual).toMatchSnapshot();
-});
-
 it('renderer should render preview', () => {
 	const actual = shallow(
 		<PlaygroundRenderer

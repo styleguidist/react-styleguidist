@@ -25,14 +25,15 @@ export const styles = ({ space, color, borderRadius }) => ({
 	},
 	tab: {}, // expose className to allow using it in 'styles' settings
 	padded: {
+		// add padding between each example element rendered
 		'& > *': {
 			isolate: false,
-			marginLeft: '-8px',
-			marginRight: '-8px',
+			marginLeft: -space[1],
+			marginRight: -space[1],
 			'& > *': {
 				isolate: false,
-				marginRight: '8px',
-				marginLeft: '8px',
+				marginRight: space[1],
+				marginLeft: space[1],
 			},
 		},
 	},
