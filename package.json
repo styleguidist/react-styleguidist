@@ -32,7 +32,7 @@
     "acorn-jsx": "^5.1.0",
     "ast-types": "~0.13.2",
     "buble": "0.19.8",
-    "clean-webpack-plugin": "^1.0.1",
+    "clean-webpack-plugin": "^3.0.0",
     "clipboard-copy": "^3.1.0",
     "clsx": "^1.0.4",
     "common-dir": "^2.0.2",

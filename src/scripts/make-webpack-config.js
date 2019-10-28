@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniHtmlWebpackPlugin = require('mini-html-webpack-plugin');
 const MiniHtmlWebpackTemplate = require('@vxna/mini-html-webpack-template');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const merge = require('webpack-merge');
 const forEach = require('lodash/forEach');
@@ -88,7 +88,7 @@ module.exports = function(config, env) {
 				chunkFilename: 'build/[name].[chunkhash:8].js',
 			},
 			plugins: [
-				new CleanWebpackPlugin(['build'], {
+				new CleanWebpackPlugin({
 					root: config.styleguideDir,
 					verbose: config.verbose === true,
 				}),
