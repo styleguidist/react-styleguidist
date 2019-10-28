@@ -70,7 +70,7 @@ Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the co
     <Button>I’m transparent!</Button>
     ```
 
-    Or add padding around each example in a block by passing a `padded` modifier:
+    Or add padding between examples in a block by passing the `padded` modifier:
 
     ```jsx padded
     <Button>Push Me</Button>
