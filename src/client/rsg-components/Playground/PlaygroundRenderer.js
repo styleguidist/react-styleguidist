@@ -54,7 +54,7 @@ export function PlaygroundRenderer({
 	const previewClasses = cx(classes.preview, className, { [classes.padded]: padded });
 	return (
 		<div className={classes.root} data-testid={`${name}-example-${exampleIndex}`}>
-			<div className={previewClasses} {...props} data-preview={name}>
+			<div className={previewClasses} {...props} data-preview={name} data-testid="preview-wrapper">
 				{preview}
 			</div>
 			<div className={classes.controls}>
