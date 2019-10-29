@@ -20,7 +20,7 @@ Fenced code blocks with `js`, `jsx` or `javascript` languages are rendered as a 
 <Button>Push Me</Button>
 ```
 
-Add padding around each example in a block by passing a `padded` modifier (` ```jsx padded `):
+Add padding between examples in a block by passing a `padded` modifier (` ```jsx padded `):
 
 ```jsx padded
 <Button>Push Me</Button>
