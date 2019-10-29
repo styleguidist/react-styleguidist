@@ -40,7 +40,13 @@ export function TabButtonRenderer({ classes, name, className, onClick, active, c
 	});
 
 	return (
-		<button type="button" name={name} className={classNames} onClick={onClick}>
+		<button
+			type="button"
+			name={name}
+			className={classNames}
+			onClick={onClick}
+			aria-pressed={active}
+		>
 			{children}
 		</button>
 	);
@@ -48,11 +54,14 @@ export function TabButtonRenderer({ classes, name, className, onClick, active, c
 
 TabButtonRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
-	name: PropTypes.string,
+	name: PropTypes.string.isRequired,
 	className: PropTypes.string,
-	onClick: PropTypes.func,
+	onClick: PropTypes.func.isRequired,
 	active: PropTypes.bool,
-	children: PropTypes.node,
+	children: PropTypes.node.isRequired,
+};
+TabButtonRenderer.defaultProps = {
+	active: false,
 };
 
 export default Styled(styles)(TabButtonRenderer);

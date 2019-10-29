@@ -57,7 +57,7 @@ try {
 	}
 }
 
-verbose('Styleguidist config:', config);
+verboseLog('Styleguidist config:', config);
 
 switch (command) {
 	case 'build':
@@ -71,17 +71,20 @@ switch (command) {
 }
 
 /**
- * @param {object} config
+ * @param {object} prevConfig
  * @return {object}
  */
-function updateConfig(config) {
+function updateConfig(prevConfig) {
 	// Set verbose mode from config option or command line switch
-	config.verbose = config.verbose || argv.verbose;
+	const verbose = prevConfig.verbose || argv.verbose;
 
 	// Setup logger *before* config validation (because validations may use logger to print warnings)
-	setupLogger(config.logger, config.verbose);
+	setupLogger(prevConfig.logger, verbose);
 
-	return config;
+	return {
+		...prevConfig,
+		verbose,
+	};
 }
 
 function commandBuild() {
@@ -99,7 +102,7 @@ function commandBuild() {
 		}
 	});
 
-	verbose('Webpack config:', compiler.options);
+	verboseLog('Webpack config:', compiler.options);
 
 	// Custom error reporting
 	compiler.hooks.done.tap('rsgCustomErrorBuild', function(stats) {
@@ -138,7 +141,7 @@ function commandServer() {
 		}
 	}).compiler;
 
-	verbose('Webpack config:', compiler.options);
+	verboseLog('Webpack config:', compiler.options);
 
 	// Show message when webpack is recompiling the bundle
 	compiler.hooks.invalid.tap('rsgInvalidServer', function() {
@@ -205,8 +208,8 @@ function printServerInstructions(urls) {
 /**
  * @param {object} config
  */
-function printBuildInstructions(config) {
-	console.log('Style guide published to:\n' + kleur.underline(config.styleguideDir));
+function printBuildInstructions({ styleguideDir }) {
+	console.log('Style guide published to:\n' + kleur.underline(styleguideDir));
 }
 
 /**
@@ -349,6 +352,6 @@ function printNoLoaderError(errors) {
  * @param {string} header
  * @param {object} object
  */
-function verbose(header, object) {
+function verboseLog(header, object) {
 	logger.debug(kleur.bold(header) + '\n\n' + stringify(object));
 }

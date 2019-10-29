@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 import Preview from 'rsg-components/Preview';
 import Para from 'rsg-components/Para';
 import Slot from 'rsg-components/Slot';
 import PlaygroundRenderer from 'rsg-components/Playground/PlaygroundRenderer';
+import Context from 'rsg-components/Context';
 import { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
 import { DisplayModes, ExampleModes } from '../../consts';
 
@@ -18,28 +18,22 @@ class Playground extends Component {
 		exampleMode: PropTypes.string.isRequired,
 		settings: PropTypes.object,
 	};
-
-	static contextTypes = {
-		config: PropTypes.object.isRequired,
-		displayMode: PropTypes.string,
+	static defaultProps = {
+		settings: {},
 	};
+	static contextType = Context;
 
-	constructor(props, context) {
-		super(props, context);
-		const { code, settings, exampleMode } = props;
-		const { config } = context;
-		const expandCode = exampleMode === ExampleModes.expand;
-		const activeTab = settings.showcode !== undefined ? settings.showcode : expandCode;
-
-		this.state = {
+	handleChange = debounce(code => {
+		this.setState({
 			code,
-			prevCode: code,
-			activeTab: activeTab ? EXAMPLE_TAB_CODE_EDITOR : undefined,
-		};
+		});
+	}, this.context.config.previewDelay);
 
-		this.handleTabChange = this.handleTabChange.bind(this);
-		this.handleChange = debounce(this.handleChange.bind(this), config.previewDelay);
-	}
+	state = {
+		code: this.props.code,
+		prevCode: this.props.code,
+		activeTab: this.getInitialActiveTab() ? EXAMPLE_TAB_CODE_EDITOR : undefined,
+	};
 
 	static getDerivedStateFromProps(nextProps, prevState) {
 		const { code } = nextProps;
@@ -57,17 +51,16 @@ class Playground extends Component {
 		this.handleChange.cancel();
 	}
 
-	handleChange(code) {
-		this.setState({
-			code,
-		});
+	getInitialActiveTab() {
+		const expandCode = this.props.exampleMode === ExampleModes.expand;
+		return this.props.settings.showcode !== undefined ? this.props.settings.showcode : expandCode;
 	}
 
-	handleTabChange(name) {
+	handleTabChange = name => {
 		this.setState(state => ({
 			activeTab: state.activeTab !== name ? name : undefined,
 		}));
-	}
+	};
 
 	render() {
 		const { code, activeTab } = this.state;
@@ -113,4 +106,4 @@ class Playground extends Component {
 	}
 }
 
-export default polyfill(Playground);
+export default Playground;

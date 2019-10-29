@@ -10,10 +10,10 @@
 - [Releases](#releases)
   - [Patch releases](#patch-releases)
   - [Minor and major releases](#minor-and-major-releases)
-- [Change logs](#change-logs)
-  - [What is a good change log](#what-is-a-good-change-log)
-  - [What should be in a change log](#what-should-be-in-a-change-log)
-  - [Preparing a change log](#preparing-a-change-log)
+- [Changelogs](#changelogs)
+  - [What is a good changelog](#what-is-a-good-changelog)
+  - [What should be in a changelog](#what-should-be-in-a-changelog)
+  - [Preparing a changelog](#preparing-a-changelog)
 
 <!-- tocstop -->
 
@@ -50,34 +50,41 @@ Patch releases are fully automated — any commit of a `Fix` type is published a
 
 ### Minor and major releases
 
-We’re using [milestones](https://github.com/styleguidist/react-styleguidist/milestones) to group approved pull requests that should be released together. Minor and major releases require a change log (see below). Any commit of a `Feat` type will not trigger a release until you commit a change log. Semantic-release will publish a major release, if there are any commits with [breaking changes](https://github.com/tamiadev/semantic-release-tamia/blob/master/Convention.md#breaking-changes).
+We’re using [milestones](https://github.com/styleguidist/react-styleguidist/milestones) to group approved pull requests that should be released together. Minor and major releases require a changelog (see below). Any commit of a `Feat` type will not trigger a release until you commit a changelog. Semantic-release will publish a major release if there are any commits with [breaking changes](https://github.com/tamiadev/semantic-release-tamia/blob/master/Convention.md#breaking-changes).
 
 1.  Merge all pull request from a milestone
 2.  Resolve possible merge conflicts.
-3.  Manually check that Styleguidist is still works.
-4.  Prepare and commit a change log.
+3.  Manually check that Styleguidist still works.
+4.  Prepare and commit a changelog.
 5.  Wait until semantic-release publishes the release.
 6.  Tweet the release!
 
-## Change logs
+## Changelogs
 
-### What is a good change log
+### What is a good changelog
 
-- Change logs are written for users, not developers.
-- Change log should show new features with code examples or GIFs.
-- Change log should make all breaking changes clear.
-- Change log should explain how to migrate to a new versions if there are breaking changes.
-- Commit log **is not** a change log.
+- Changelogs are written for users, not developers.
+- Changelog should show new features with code examples or GIFs.
+- Changelog should make all breaking changes clear.
+- Changelog should explain how to migrate to a new version if there are breaking changes.
+- Commit log **is not** a changelog.
 
-Here’s a [good example of a change log](https://github.com/styleguidist/react-styleguidist/releases/tag/v7.1.0). Check out [Keep a Changelog](https://keepachangelog.com/) for more details on good change logs.
+Here’s a [good example of a changelog](https://github.com/styleguidist/react-styleguidist/releases/tag/v7.1.0). Check out [Keep a Changelog](https://keepachangelog.com/) for more details on good changelogs.
 
-### What should be in a change log
+### What should be in a changelog
 
 - Information about pull request authors:<br> `(#1040 by @rafaesc)`
 - Open Collective link at the very top:<br> `👋 **[Support Styleguidist](https://opencollective.com/styleguidist) on Open Collective** 👋`
 
-### Preparing a change log
+### Preparing a changelog
 
-1.  Generate a change log draft using [tamia-changelog](https://github.com/tamiadev/tamia-changelog): `npx tamia-changelog`
-2.  Edit `Changelog.md` file.
-3.  Commit the change log: `npx tamia-changelog commit`.
+1. Change to the `master` branch.
+2. Generate a changelog draft using [tamia-changelog](https://github.com/tamiadev/tamia-changelog): `npx tamia-changelog`.
+3. Edit `Changelog.md` file.
+4. Commit the changelog: `npx tamia-changelog commit`.
+
+**Note:** do not commit the `Changelog.md` file, the release tool reads the changelog from the commit message. [Read how it works](https://blog.sapegin.me/all/semantic-release/).
+
+**Note:** you may create a pull request for a changelog. Make sure the actual commit in the `master` branch has a `Changelog:` tag for the release tool to see it.
+
+![Commit message with a changelog](https://user-images.githubusercontent.com/70067/66844661-f6f1e600-ef6e-11e9-9d63-dba607d3c94b.png)

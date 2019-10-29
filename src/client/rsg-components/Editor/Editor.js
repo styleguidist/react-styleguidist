@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
-import { polyfill } from 'react-lifecycles-compat';
 import SimpleEditor from 'react-simple-code-editor';
 import Prism from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
@@ -80,4 +79,4 @@ export class Editor extends Component {
 	}
 }
 
-export default Styled(styles)(polyfill(Editor));
+export default Styled(styles)(Editor);

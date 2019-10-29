@@ -1,14 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { render, fireEvent } from '@testing-library/react';
 import Playground from './Playground';
-import slots, { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
-import { PlaygroundRenderer, styles } from './PlaygroundRenderer';
+import slots from '../slots';
+import Context from '../Context';
 
 const evalInContext = a =>
-	new Function('require', 'const React = require("react");' + a).bind(null, require); // eslint-disable-line no-new-func
-const code = '<button>OK</button>';
-const newCode = '<button>Not OK</button>';
-const props = {
+	// eslint-disable-next-line no-new-func
+	new Function('require', 'const React = require("react");' + a).bind(null, require);
+const code = '<button>Code: OK</button>';
+const newCode = '<button>Code: Not OK</button>';
+const defaultProps = {
 	index: 0,
 	name: 'name',
 	settings: {},
@@ -16,127 +17,98 @@ const props = {
 	evalInContext,
 	code,
 };
-const options = {
-	context: {
-		config: {
-			previewDelay: 0,
-		},
-		codeRevision: 0,
-		slots: slots({}),
+const context = {
+	config: {
+		previewDelay: 0,
 	},
-	childContextTypes: {
-		slots: PropTypes.object.isRequired,
-		codeRevision: PropTypes.number.isRequired,
-	},
+	codeRevision: 0,
+	slots: slots({}),
 };
 
-it('should render component renderer', () => {
-	const actual = shallow(<Playground {...props} />, options);
-
-	expect(actual).toMatchSnapshot();
-});
+const Provider = props => <Context.Provider value={context} {...props} />;
 
 it('should update code via props', () => {
-	const actual = shallow(<Playground {...props} />, options);
+	const { rerender, getByText } = render(
+		<Provider>
+			<Playground {...defaultProps} />
+		</Provider>
+	);
 
-	expect(actual.state('code')).toEqual(code);
+	expect(getByText('Code: OK')).toBeInTheDocument();
 
-	actual.setProps({
-		code: newCode,
-	});
+	rerender(
+		<Provider>
+			<Playground {...defaultProps} code={newCode} />
+		</Provider>
+	);
 
-	expect(actual.state('code')).toEqual(newCode);
+	expect(getByText('Code: Not OK')).toBeInTheDocument();
 });
 
-it('should update code with debounce', done => {
-	const actual = shallow(<Playground {...props} />, {
-		context: {
-			...options.context,
-			config: {
-				...options.context.config,
-				previewDelay: 1,
-			},
-		},
-	});
+it('should open a code editor', () => {
+	const { queryByRole, getByText } = render(
+		<Provider>
+			<Playground {...defaultProps} />
+		</Provider>
+	);
 
-	expect(actual.state('code')).toEqual(code);
+	expect(queryByRole('textbox')).not.toBeInTheDocument();
 
-	actual.instance().handleChange(newCode);
+	fireEvent.click(getByText(/view code/i));
 
-	expect(actual.state('code')).toEqual(code);
-	setTimeout(() => {
-		expect(actual.state('code')).toEqual(newCode);
-		done();
-	}, 3);
-});
-
-it('should open a code editor', done => {
-	const actual = mount(<Playground {...props} />, options);
-
-	expect(actual.find('textarea')).toHaveLength(0);
-
-	actual.find(`button[name="${EXAMPLE_TAB_CODE_EDITOR}"]`).simulate('click');
-
-	// setTimeout(() => {
-	actual.update();
-	expect(actual.find('textarea')).toHaveLength(1);
-	done();
-	// }, 1);
+	expect(queryByRole('textbox')).toBeInTheDocument();
 });
 
 it('should not render a code editor if noeditor option passed in example settings', () => {
-	const actual = mount(<Playground {...props} settings={{ noeditor: true }} />, options);
-	expect(actual.find(`button[name="${EXAMPLE_TAB_CODE_EDITOR}"]`)).toHaveLength(0);
+	const { queryByText } = render(
+		<Provider>
+			<Playground {...defaultProps} settings={{ noeditor: true }} />
+		</Provider>
+	);
+
+	expect(queryByText(/view code/i)).not.toBeInTheDocument();
 });
 
 it('should open a code editor by default if showcode=true option passed in example settings', () => {
-	const actual = mount(<Playground {...props} settings={{ showcode: true }} />, options);
-	expect(actual.find('textarea')).toHaveLength(1);
+	const { queryByRole } = render(
+		<Provider>
+			<Playground {...defaultProps} settings={{ showcode: true }} />
+		</Provider>
+	);
+
+	expect(queryByRole('textbox')).toBeInTheDocument();
 });
 
 it('should open a code editor by default if exampleMode="expand" option specified in style guide config', () => {
-	const actual = mount(<Playground {...props} exampleMode="expand" />, {
-		context: {
-			...options.context,
-			config: {
-				...options.context.config,
-			},
-		},
-		childContextTypes: options.childContextTypes,
-	});
-	expect(actual.find('textarea')).toHaveLength(1);
+	const { queryByRole } = render(
+		<Provider
+			value={{
+				...context,
+				config: {
+					...context.config,
+				},
+			}}
+		>
+			<Playground {...defaultProps} exampleMode="expand" />
+		</Provider>
+	);
+
+	expect(queryByRole('textbox')).toBeInTheDocument();
 });
 
 it('showcode option in example settings should overwrite style guide config option', () => {
-	const actual = mount(
-		<Playground {...props} exampleMode="expand" settings={{ showcode: false }} />,
-		{
-			context: {
-				...options.context,
+	const { queryByRole } = render(
+		<Provider
+			value={{
+				...context,
 				config: {
-					...options.context.config,
+					...context.config,
 				},
-			},
-			childContextTypes: options.childContextTypes,
-		}
-	);
-	expect(actual.find('textarea')).toHaveLength(0);
-});
-
-it('renderer should render preview', () => {
-	const actual = shallow(
-		<PlaygroundRenderer
-			classes={classes(styles)}
-			exampleIndex={0}
-			name="name"
-			padded={false}
-			preview={<div>preview</div>}
-			previewProps={{ className: 'pizza', title: 'salami' }}
-			tabButtons={<div>tab buttons</div>}
-			tabBody={<div>tab body</div>}
-			toolbar={<div>toolbar</div>}
-		/>
+			}}
+		>
+			<Playground {...defaultProps} exampleMode="expand" settings={{ showcode: false }} />
+		</Provider>
 	);
 
-	expect(actual).toMatchSnapshot();
+	expect(queryByRole('textbox')).not.toBeInTheDocument();
 });

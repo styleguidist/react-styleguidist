@@ -1,17 +1,13 @@
 language: node_js
 node_js:
-  - 9
+  - 12
+  - 10
   - 8
-  - 6
 
 addons:
   apt:
     packages:
     - libgconf-2-4
-
-before_install:
-  # Use npm 6.9.x since it has introduced `npm ci`
-  - if [[ `npm -v` != 6.9* ]]; then npm install -g npm@'>=6.9'; fi
 
 script:
   # Run tests without coverage since it's 2x faster
@@ -78,4 +74,5 @@ jobs:
 
     - stage: documentation
       script:
+        # Trigger https://react-styleguidist.js.org build on Netlify
         - curl -X POST -d '{}' https://api.netlify.com/build_hooks/591308eba700c425fc1e8a54

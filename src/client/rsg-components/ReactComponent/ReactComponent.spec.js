@@ -1,23 +1,23 @@
 import React from 'react';
-import slots, { DOCS_TAB_USAGE } from '../slots';
+import { render } from '@testing-library/react';
 import ReactComponent from './ReactComponent';
-import { ReactComponentRenderer } from './ReactComponentRenderer';
+import slots from '../slots';
+import Context from '../Context';
 import { DisplayModes } from '../../consts';
 
-const exampleMode = 'collapse';
-const usageMode = 'collapse';
-
-const options = {
-	context: {
-		config: {
-			showUsage: false,
-			pagePerSection: false,
-		},
-		displayMode: DisplayModes.all,
-		slots,
+const context = {
+	config: {
+		pagePerSection: false,
 	},
-	metadata: {},
+	displayMode: DisplayModes.all,
+	slots: slots(),
 };
+
+const Provider = props => <Context.Provider value={context} {...props} />;
+
+const evalInContext = a =>
+	// eslint-disable-next-line no-new-func
+	new Function('require', 'const React = require("react");' + a).bind(null, require);
 
 const component = {
 	name: 'Foo',
@@ -55,12 +55,12 @@ const componentWithEverything = {
 		examples: [
 			{
 				type: 'code',
-				content: '<button>OK</button>',
-				evalInContext: () => {},
+				content: '<button>Code: OK</button>',
+				evalInContext,
 			},
 			{
 				type: 'markdown',
-				content: 'Hello *world*!',
+				content: 'Markdown: Hello *world*!',
 			},
 		],
 	},
@@ -69,165 +69,112 @@ const componentWithEverything = {
 	},
 };
 
-describe('ReactComponent', () => {
-	it('should render an example placeholder', () => {
-		const actual = shallow(
-			<ReactComponent
-				component={component}
-				depth={3}
-				exampleMode={exampleMode}
-				usageMode={usageMode}
-			/>,
-			options
-		);
+test('should render an example placeholder', () => {
+	const { getByText } = render(
+		<Provider>
+			<ReactComponent component={component} depth={3} exampleMode="collapse" usageMode="collapse" />
+		</Provider>
+	);
+	expect(getByText(/add examples to this component/i)).toBeInTheDocument();
+});
 
-		const props = actual.prop('examples').props;
-		expect(props.name).toBeTruthy();
-		expect(props.examples).toBeFalsy();
-	});
-
-	it('should render examples', () => {
-		const actual = shallow(
+test('should render examples', () => {
+	const { getByText } = render(
+		<Provider>
 			<ReactComponent
 				component={componentWithEverything}
 				depth={3}
-				exampleMode={exampleMode}
-				usageMode={usageMode}
-			/>,
-			options
-		);
+				exampleMode="collapse"
+				usageMode="collapse"
+			/>
+		</Provider>
+	);
+	expect(getByText(/code: ok/i)).toBeInTheDocument();
+	expect(getByText(/markdown: hello/i)).toBeInTheDocument();
+});
 
-		const props = actual.prop('examples').props;
-		expect(props.name).toBeTruthy();
-		expect(props.examples).toBeTruthy();
-	});
-
-	it('should pass rendered description, usage, examples, etc. to the renderer', () => {
-		const actual = shallow(
+test('should render usage closed by default when usageMode is "collapse"', () => {
+	const { getByText } = render(
+		<Provider>
 			<ReactComponent
 				component={componentWithEverything}
 				depth={3}
-				exampleMode={exampleMode}
-				usageMode={usageMode}
-			/>,
-			options
-		);
+				exampleMode="collapse"
+				usageMode="collapse"
+			/>
+		</Provider>
+	);
+	expect(getByText(/props & methods/i)).toHaveAttribute('aria-pressed', 'false');
+});
 
-		expect(actual).toMatchSnapshot();
-	});
-
-	it('should render usage closed by default when showUsage config options is false', () => {
-		const actual = shallow(
+test('should render usage opened by default when usageMode is "expand"', () => {
+	const { getByText } = render(
+		<Provider>
 			<ReactComponent
 				component={componentWithEverything}
 				depth={3}
-				exampleMode={exampleMode}
-				usageMode={usageMode}
-			/>,
-			options
-		);
-
-		expect(actual.prop('tabButtons').props.active).toBeFalsy();
-		expect(actual.prop('tabBody').props.active).toBeFalsy();
-	});
-
-	it('should render usage opened by default when showUsage config options is true', () => {
-		const actual = shallow(
-			<ReactComponent
-				component={componentWithEverything}
-				depth={3}
-				exampleMode={exampleMode}
+				exampleMode="collapse"
 				usageMode="expand"
-			/>,
-			{
-				...options,
-				context: {
-					config: {},
-				},
-			}
-		);
+			/>
+		</Provider>
+	);
+	expect(getByText(/props & methods/i)).toHaveAttribute('aria-pressed', 'true');
+});
 
-		expect(actual.prop('tabButtons').props.active).toBe(DOCS_TAB_USAGE);
-		expect(actual.prop('tabBody').props.active).toBe(DOCS_TAB_USAGE);
-	});
+test('should not render usage when usageMode is "hide"', () => {
+	const { queryByText } = render(
+		<Provider>
+			<ReactComponent
+				component={componentWithEverything}
+				depth={3}
+				exampleMode="collapse"
+				usageMode="hide"
+			/>
+		</Provider>
+	);
+	expect(queryByText(/props & methods/i)).not.toBeInTheDocument();
+});
 
-	it('should return null when component has no name', () => {
-		const actual = shallow(
+test('should not render anything when component has no name', () => {
+	const { container } = render(
+		<Provider>
 			<ReactComponent
 				component={{ slug: 'foo', props: {} }}
 				depth={3}
-				exampleMode={exampleMode}
-				usageMode={usageMode}
-			/>,
-			options
-		);
+				exampleMode="collapse"
+				usageMode="collapse"
+			/>
+		</Provider>
+	);
+	expect(container).toBeEmpty();
+});
 
-		expect(actual.getElement()).toBe(null);
-	});
+test('should not render component in isolation mode by default', () => {
+	const { getByLabelText } = render(
+		<Provider>
+			<ReactComponent component={component} depth={3} exampleMode="collapse" usageMode="collapse" />
+		</Provider>
+	);
+	expect(getByLabelText(/open isolated/i)).toBeInTheDocument();
+});
 
-	test('should not render component in isolation mode by default', () => {
-		const actual = shallow(
-			<ReactComponent
-				component={component}
-				depth={3}
-				exampleMode={exampleMode}
-				usageMode={usageMode}
-			/>,
-			options
-		);
+test('should render component in isolation mode', () => {
+	const { getByLabelText } = render(
+		<Provider
+			value={{
+				...context,
+				displayMode: DisplayModes.component,
+			}}
+		>
+			<ReactComponent component={component} depth={3} exampleMode="collapse" usageMode="collapse" />
+		</Provider>
+	);
+	expect(getByLabelText(/show all components/i)).toBeInTheDocument();
+});
 
-		expect(actual.prop('heading').props.slotProps.isolated).toBeFalsy();
-	});
-
-	test('should render component in isolation mode', () => {
-		const actual = shallow(
-			<ReactComponent
-				component={component}
-				depth={3}
-				exampleMode={exampleMode}
-				usageMode={usageMode}
-			/>,
-			{
-				context: {
-					...options.context,
-					displayMode: DisplayModes.component,
-				},
-			}
-		);
-
-		expect(actual.prop('heading').props.slotProps.isolated).toBeTruthy();
-	});
-
-	it('should pass depth to heading', () => {
-		const actual = shallow(
-			<ReactComponent
-				component={component}
-				depth={3}
-				exampleMode={exampleMode}
-				usageMode={usageMode}
-			/>,
-			options
-		);
-
-		expect(actual.prop('heading').props.depth).toBe(3);
-	});
-
-	it('should not render heading as deprecated by default', () => {
-		const actual = shallow(
-			<ReactComponent
-				component={component}
-				depth={3}
-				exampleMode={exampleMode}
-				usageMode={usageMode}
-			/>,
-			options
-		);
-
-		expect(actual.prop('heading').props.deprecated).toBeFalsy();
-	});
-
-	it('should render heading as deprecated when @deprecated is present in tags', () => {
-		const actual = shallow(
+test('should prefix description with deprecated label when @deprecated is present in tags', () => {
+	const { getByText } = render(
+		<Provider>
 			<ReactComponent
 				component={{
 					...component,
@@ -243,71 +190,10 @@ describe('ReactComponent', () => {
 					},
 				}}
 				depth={3}
-				exampleMode={exampleMode}
-				usageMode={usageMode}
-			/>,
-			options
-		);
-
-		expect(actual.prop('heading').props.deprecated).toBeTruthy();
-	});
-});
-
-describe('ReactComponentRenderer', () => {
-	const props = {
-		classes: {},
-		name: 'Test',
-		slug: 'test',
-		pathLine: 'components/test',
-		heading: <div>heading</div>,
-	};
-
-	test('should render component', () => {
-		const actual = shallow(<ReactComponentRenderer {...props} />);
-
-		expect(actual).toMatchSnapshot();
-	});
-
-	test('should render component without a pathline', () => {
-		const actual = shallow(<ReactComponentRenderer {...props} pathLine="" />);
-
-		expect(actual).toMatchSnapshot();
-	});
-
-	test('should render usage section', () => {
-		const actual = shallow(
-			<ReactComponentRenderer
-				{...props}
-				tabButtons={<div>tab buttons</div>}
-				tabBody={<div>tab body</div>}
+				exampleMode="collapse"
+				usageMode="collapse"
 			/>
-		);
-
-		expect(actual).toMatchSnapshot();
-	});
-
-	test('should render description', () => {
-		const actual = shallow(
-			<ReactComponentRenderer {...props} description={<div>description</div>} />
-		);
-
-		expect(actual).toMatchSnapshot();
-	});
-
-	test('should render docs', () => {
-		const actual = shallow(<ReactComponentRenderer {...props} docs={<div>docs</div>} />);
-
-		expect(actual).toMatchSnapshot();
-	});
-
-	test('should render examples', () => {
-		const actual = shallow(
-			<ReactComponentRenderer
-				{...props}
-				examples={[<div key={1}>example 1</div>, <div key={2}>example 2</div>]}
-			/>
-		);
-
-		expect(actual).toMatchSnapshot();
-	});
+		</Provider>
+	);
+	expect(getByText(/deprecated:/i)).toBeInTheDocument();
 });

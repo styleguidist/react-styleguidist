@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import renderStyleguide from '../renderStyleguide';
 
 const styleguide = {
@@ -5,31 +6,37 @@ const styleguide = {
 		title: 'My Style Guide',
 		pagePerSection: false,
 	},
+	welcomeScreen: false,
+	patterns: ['components/**.js'],
 	sections: [
 		{
+			exampleMode: 'collapse',
+			usageMode: 'collapse',
+			slug: 'section',
 			components: [
 				{
+					slug: 'foo',
+					pathLine: 'components/foo.js',
+					filepath: 'components/foo.js',
 					props: {
 						displayName: 'Button',
+						description: 'Foo foo',
 					},
-					module: 'ButtonModule',
 				},
 				{
+					slug: 'bar',
+					pathLine: 'components/bar.js',
+					filepath: 'components/bar.js',
 					props: {
 						displayName: 'Image',
+						description: 'Bar bar',
 					},
-					module: 'ImageModule',
 				},
 			],
 		},
 	],
-	welcomeScreen: false,
-	patterns: ['button', 'input'],
 };
 const codeRevision = 1;
-const location = {
-	hash: '',
-};
 const doc = {
 	title: () => {},
 };
@@ -37,41 +44,39 @@ const history = {
 	replaceState: () => {},
 };
 
-afterEach(() => {
-	delete global.Button;
-	delete global.Image;
+test('should render the style guide', () => {
+	const location = { hash: '' };
+	const { getByText } = render(renderStyleguide(styleguide, codeRevision, location, doc, history));
+	expect(getByText('components/foo.js')).toBeInTheDocument();
+	expect(getByText('components/bar.js')).toBeInTheDocument();
 });
 
-describe('renderStyleguide', () => {
-	it('should render StyleGuide component', () => {
-		const result = shallow(renderStyleguide(styleguide, codeRevision, location, doc, history));
-		expect(result).toMatchSnapshot();
-	});
+test('should change document title', () => {
+	const title = jest.fn();
+	const location = { hash: '' };
 
-	it('should change document title', () => {
-		const title = jest.fn();
-		const location = { hash: '' };
-		Object.defineProperty(location, 'title', {
-			set: title,
-		});
-		renderStyleguide(styleguide, codeRevision, location, location, history);
-		expect(title).toBeCalledWith('My Style Guide');
+	Object.defineProperty(location, 'title', {
+		set: title,
 	});
+	renderStyleguide(styleguide, codeRevision, location, location, history);
+	expect(title).toBeCalledWith('My Style Guide');
+});
 
-	it('should change document title in isolated mode', () => {
-		const title = jest.fn();
-		const location = { hash: '#!/Button' };
-		Object.defineProperty(location, 'title', {
-			set: title,
-		});
-		renderStyleguide(styleguide, codeRevision, location, location, history);
-		expect(title).toBeCalledWith('Button — My Style Guide');
-	});
+test('should change document title in isolated mode', () => {
+	const title = jest.fn();
+	const location = { hash: '#!/Button' };
 
-	it('should remove #/ from the address bar', () => {
-		const location = { hash: '#/', pathname: '/pizza', search: '?foo=bar' };
-		const history = { replaceState: jest.fn() };
-		renderStyleguide(styleguide, codeRevision, location, location, history);
-		expect(history.replaceState).toBeCalledWith('', 'My Style Guide', '/pizza?foo=bar');
+	Object.defineProperty(location, 'title', {
+		set: title,
 	});
+	renderStyleguide(styleguide, codeRevision, location, location, history);
+	expect(title).toBeCalledWith('Button — My Style Guide');
+});
+
+test('should remove #/ from the address bar', () => {
+	const location = { hash: '#/', pathname: '/pizza', search: '?foo=bar' };
+	const historyWithSpy = { replaceState: jest.fn() };
+
+	renderStyleguide(styleguide, codeRevision, location, location, historyWithSpy);
+	expect(historyWithSpy.replaceState).toBeCalledWith('', 'My Style Guide', '/pizza?foo=bar');
 });

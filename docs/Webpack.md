@@ -21,7 +21,7 @@ _Webpack is required to run Styleguidist but your project doesn’t have to use 
 
 ## Reusing your project’s webpack config
 
-By default Styleguidist will try to find `webpack.config.js` in your project’s root directory and use it.
+By default, Styleguidist will try to find `webpack.config.js` in your project’s root directory and use it.
 
 If your webpack config is located somewhere else, you need to load it manually:
 
@@ -60,7 +60,7 @@ module.exports = {
   webpackConfig: {
     module: {
       rules: [
-        // Babel loader, will use your project’s babel.config.js
+        // Babel loader will use your project’s babel.config.js
         {
           test: /\.jsx?$/,
           exclude: /node_modules/,
@@ -117,7 +117,7 @@ First, install the Babel webpack loader:
 npm install --save-dev babel-loader
 ```
 
-> **Note:** If your project doesn’t use webpack you still need add webpack loaders for your files, otherwise Styleguidist won’t be able to load your code.
+> **Note:** If your project doesn’t use webpack you still need to add webpack loaders for your files, otherwise Styleguidist won’t be able to load your code.
 
 Then, add a `webpackConfig` section to your `styleguide.config.js`
 
@@ -189,6 +189,6 @@ This will tell Babel (and some other tools) which browsers you support, so it wo
 
 ## When nothing else works
 
-In very rare cases, like using legacy or third-party libraries, you may need to change webpack options that Styleguidist doesn’t allow you to change via `webpackConfig` options. In this case you can use [dangerouslyUpdateWebpackConfig](Configuration.md#dangerouslyupdatewebpackconfig) option.
+In very rare cases, like using legacy or third-party libraries, you may need to change webpack options that Styleguidist doesn’t allow you to change via `webpackConfig` options. In this case, you can use [dangerouslyUpdateWebpackConfig](Configuration.md#dangerouslyupdatewebpackconfig) option.
 
 > **Warning:** You may easily break Styleguidist using this option, use it at your own risk.

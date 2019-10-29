@@ -7,9 +7,9 @@ import UsageTabButton from 'rsg-components/slots/UsageTabButton';
 export const EXAMPLE_TAB_CODE_EDITOR = 'rsg-code-editor';
 export const DOCS_TAB_USAGE = 'rsg-usage';
 
-export default () => {
-	const toolbar = [IsolateButton];
+const toolbar = [IsolateButton];
 
+export default () => {
 	return {
 		sectionToolbar: toolbar,
 		componentToolbar: toolbar,

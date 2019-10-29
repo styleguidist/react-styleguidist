@@ -1,5 +1,7 @@
 import React from 'react';
+import { render } from '@testing-library/react';
 import Preview from '../Preview';
+import Context from '../Context';
 
 /* eslint-disable no-console */
 
@@ -9,16 +11,17 @@ const evalInContext = a =>
 		null,
 		require
 	);
-const code = '<button>OK</button>';
-const newCode = '<button>Cancel</button>';
-const options = {
-	context: {
-		config: {
-			compilerConfig: {},
-		},
-		codeRevision: 0,
+const code = '<button>Code: OK</button>';
+const newCode = '<button>Code: Cancel</button>';
+
+const context = {
+	config: {
+		compilerConfig: {},
 	},
+	codeRevision: 0,
 };
+
+const Provider = props => <Context.Provider value={context} {...props} />;
 
 const console$error = console.error;
 const console$clear = console.clear;
@@ -29,79 +32,115 @@ afterEach(() => {
 });
 
 it('should unmount Wrapper component', () => {
-	const actual = mount(<Preview code={code} evalInContext={evalInContext} />, options);
-	const node = actual.instance().mountNode;
+	const { unmount, getByTestId } = render(
+		<Provider>
+			<Preview code={code} evalInContext={evalInContext} />
+		</Provider>
+	);
+
+	const node = getByTestId('mountNode');
 
 	expect(node.innerHTML).toMatch('<button');
-	actual.unmount();
+	unmount();
 	expect(node.innerHTML).toBe('');
 });
 
-it('should not not fail when Wrapper wasn’t mounted', () => {
+it('should not fail when Wrapper wasn’t mounted', () => {
 	console.error = jest.fn();
 
-	const actual = mount(<Preview code="pizza" evalInContext={evalInContext} />, options);
-	const node = actual.instance().mountNode;
+	const { unmount, getByTestId } = render(
+		<Provider>
+			<Preview code="pizza" evalInContext={evalInContext} />
+		</Provider>
+	);
 
-	expect(console.error).toHaveBeenCalled();
+	const node = getByTestId('mountNode');
+
+	expect(
+		console.error.mock.calls.find(call =>
+			call[0].toString().includes('ReferenceError: pizza is not defined')
+		)
+	).toBeTruthy();
+
 	expect(node.innerHTML).toBe('');
-	actual.unmount();
+	unmount();
 	expect(node.innerHTML).toBe('');
 });
 
 it('should wrap code in Fragment when it starts with <', () => {
 	console.error = jest.fn();
 
-	const actual = mount(<Preview code="<span /><span />" evalInContext={evalInContext} />, options);
+	const { queryAllByRole } = render(
+		<Provider>
+			<Preview code="<button /><button />" evalInContext={evalInContext} />
+		</Provider>
+	);
 
-	// If two spans weren't wrapped in a Fragment, we'd see an error in console
+	// If two buttons weren't wrapped in a Fragment, we'd see an error in console
 	expect(console.error).not.toHaveBeenCalled();
-	expect(actual.html()).toMatchSnapshot();
-});
-
-it('should render component renderer', () => {
-	console.error = jest.fn();
-
-	const actual = shallow(<Preview code={code} evalInContext={evalInContext} />, {
-		...options,
-		disableLifecycleMethods: true,
-	});
-
-	expect(actual).toMatchSnapshot();
+	expect(queryAllByRole('button')).toHaveLength(2);
 });
 
 it('should update', () => {
-	const actual = mount(<Preview code={code} evalInContext={evalInContext} />, options);
+	const { rerender, getByText } = render(
+		<Provider>
+			<Preview code={code} evalInContext={evalInContext} />
+		</Provider>
+	);
 
-	actual.setProps({ code: newCode });
+	expect(getByText('Code: OK')).toBeInTheDocument();
 
-	expect(actual.html()).toMatchSnapshot();
+	rerender(
+		<Provider>
+			<Preview code={newCode} evalInContext={evalInContext} />
+		</Provider>
+	);
+
+	expect(getByText('Code: Cancel')).toBeInTheDocument();
 });
 
 it('should handle no code', () => {
-	const actual = mount(<Preview code="" evalInContext={evalInContext} />, options);
+	console.error = jest.fn();
+	render(
+		<Provider>
+			<Preview code="" evalInContext={evalInContext} />
+		</Provider>
+	);
 
-	expect(actual.html()).toMatchSnapshot();
+	expect(console.error).not.toHaveBeenCalled();
 });
 
 it('should handle errors', () => {
 	console.error = jest.fn();
-	const actual = shallow(<Preview code={'<invalid code'} evalInContext={evalInContext} />, options);
+	render(
+		<Provider>
+			<Preview code={'<invalid code'} evalInContext={evalInContext} />
+		</Provider>
+	);
 
-	expect(actual).toMatchSnapshot();
-	expect(console.error).toHaveBeenCalledTimes(1);
+	expect(
+		console.error.mock.calls.find(call =>
+			call[0].toString().includes('SyntaxError: Unexpected token')
+		)
+	).toBeTruthy();
 });
 
 it('should not clear console on initial mount', () => {
 	console.clear = jest.fn();
-	mount(<Preview code={code} evalInContext={evalInContext} />, options);
+	mount(
+		<Provider>
+			<Preview code={code} evalInContext={evalInContext} />
+		</Provider>
+	);
 	expect(console.clear).toHaveBeenCalledTimes(0);
 });
 
 it('should clear console on second mount', () => {
 	console.clear = jest.fn();
-	mount(<Preview code={code} evalInContext={evalInContext} />, {
-		context: { ...options.context, codeRevision: 1 },
-	});
+	mount(
+		<Provider value={{ ...context, codeRevision: 1 }}>
+			<Preview code={code} evalInContext={evalInContext} />
+		</Provider>
+	);
 	expect(console.clear).toHaveBeenCalledTimes(1);
 });

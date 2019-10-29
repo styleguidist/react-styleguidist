@@ -8,7 +8,8 @@ import './ThemeButton.css';
  */
 export default class ThemeButton extends Component {
 	render() {
-		const className = this.context === 'light' ? 'ThemeButton ThemeButton--light' : 'ThemeButton ThemeButton--dark';
+		const className =
+			this.context === 'light' ? 'ThemeButton ThemeButton--light' : 'ThemeButton ThemeButton--dark';
 		return <button className={className}>{this.props.children}</button>;
 	}
 }

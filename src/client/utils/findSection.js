@@ -19,9 +19,9 @@ export default function findSection(sections, name) {
 		if (!section.sections || section.sections.length === 0) {
 			continue;
 		}
-		const found = findSection(section.sections, name);
-		if (found) {
-			return found;
+		const foundInSubsection = findSection(section.sections, name);
+		if (foundInSubsection) {
+			return foundInSubsection;
 		}
 	}
 

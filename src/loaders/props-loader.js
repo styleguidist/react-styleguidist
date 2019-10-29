@@ -20,8 +20,8 @@ module.exports = function(source) {
 		config.contextDependencies.forEach(dir => this.addContextDependency(dir));
 	}
 
-	const defaultParser = (filePath, source, resolver, handlers) =>
-		reactDocs.parse(source, resolver, handlers, { filename: filePath });
+	const defaultParser = (filePath, code, resolver, handlers) =>
+		reactDocs.parse(code, resolver, handlers, { filename: filePath });
 	const propsParser = config.propsParser || defaultParser;
 
 	let docs = {};

@@ -26,17 +26,17 @@ export default class CounterButton extends Component {
 	}
 
 	/**
-	 * Increments the counter. This method is not marked @public and is not visible in the styleguide.
+	 * Increments the counter. This method is not marked @public and is not visible in the style guide.
 	 */
-	increment() {
+	handleIncrement = () => {
 		this.setState({
 			value: this.state.value + 1,
 		});
-	}
+	};
 
 	render() {
 		return (
-			<button className="button" onClick={this.increment.bind(this)}>
+			<button className="button" onClick={this.handleIncrement}>
 				{this.state.value}
 			</button>
 		);

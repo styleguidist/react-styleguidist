@@ -24,10 +24,11 @@ module.exports = function(config, env) {
 	const template = isFunction(config.template) ? config.template : MiniHtmlWebpackTemplate;
 	const templateContext = isFunction(config.template) ? {} : config.template;
 	const htmlPluginOptions = {
-		context: Object.assign({}, templateContext, {
+		context: {
+			...templateContext,
 			title: config.title,
 			container: config.mountPointId,
-		}),
+		},
 		template,
 	};
 
@@ -96,6 +97,7 @@ module.exports = function(config, env) {
 				),
 			],
 			optimization: {
+				minimize: config.minimize === true,
 				minimizer: [minimizer],
 			},
 		});
@@ -127,8 +129,8 @@ module.exports = function(config, env) {
 		});
 	}
 
-	// Add components folder alias at the end so users can override our components to customize the style guide
-	// (their aliases should be before this one)
+	// Add components folder alias at the end, so users can override our components
+	// to customize the style guide (their aliases should be before this one)
 	webpackConfig.resolve.alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
 
 	if (config.dangerouslyUpdateWebpackConfig) {
