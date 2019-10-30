@@ -69,27 +69,26 @@ Use an appropriate commit type. Be especially careful with breaking changes. See
 
 ## Releases
 
-We’re doing automated releases with semantic-release.
+We’re doing automated releases with semantic-release. We’re using [milestones](https://github.com/styleguidist/react-styleguidist/milestones) to group approved pull requests that should be released together (most useful for major releases).
 
 ### Patch releases
 
-Any commit of a `Fix` or `Update` types is published as a _patch_ release as soon as CI passes.
+Any commit to master of a `Fix` or `Update` types is published as a _patch_ release as soon as CI passes.
 
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/1T3v1z0c3f1I1E3l0B3s/patch-commit.png)
 
 ### Minor releases
 
-Any commit of a `New` type is published as a _minor_ release as soon as CI passes.
+Any commit to master of a `New` type is published as a _minor_ release as soon as CI passes.
 
 ### Major releases
 
-We’re using [milestones](https://github.com/styleguidist/react-styleguidist/milestones) to group approved pull requests that should be released together. Any commit of a `Breaking` type is published as a _major_ release as soon as CI passes.
+Any commit to master of a `Breaking` type is published as a _major_ release as soon as CI passes.
 
-1. Merge all pull request from a milestone. If more than one pull request should be released together:
+1. Merge all pull requests from a milestone. If a milestone has more than one pull request, they should be merged and released together:
    1. Create a new branch.
-   2. Merge all pull request to this new branch.
+   2. Merge all pull requests to this new branch.
    3. Resolve possible merge conflicts.
-   4. Manually check that Styleguidist still works.
 2. Wait until semantic-release publishes the release.
 3. Edit the release notes on GitHub (see _Changelogs_ below).
 4. Tweet the release!
