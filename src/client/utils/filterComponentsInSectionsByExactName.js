@@ -15,6 +15,7 @@ export default function filterComponentsInSectionsByExactName(sections, name, re
 			const filteredComponents = filterComponentsByExactName(section.components, name);
 			if (filteredComponents.length) {
 				filteredSections.push({
+					slug: section.slug,
 					exampleMode: section.exampleMode,
 					usageMode: section.usageMode,
 					components: filteredComponents,
