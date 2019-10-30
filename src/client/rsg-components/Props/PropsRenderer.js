@@ -58,7 +58,7 @@ function renderFlowType(type) {
 function renderComplexType(name, title) {
 	return (
 		<Text size="small" underlined title={title}>
-			<Type>{name}</Type>
+			{name}
 		</Text>
 	);
 }

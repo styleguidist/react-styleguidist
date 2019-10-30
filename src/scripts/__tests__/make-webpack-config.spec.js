@@ -2,10 +2,7 @@ import webpack, { validate } from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import makeWebpackConfig from '../make-webpack-config';
 
-jest.mock('copy-webpack-plugin', () => {
-	const RealCopyWebpackPluginModule = require.requireActual('copy-webpack-plugin');
-	return jest.fn(RealCopyWebpackPluginModule);
-});
+jest.mock('copy-webpack-plugin');
 
 const styleguideConfig = {
 	styleguideDir: __dirname,
@@ -106,7 +103,7 @@ it('should prepend requires as webpack entries', () => {
 
 it('should enable verbose mode in CleanWebpackPlugin', () => {
 	const result = makeWebpackConfig({ ...styleguideConfig, verbose: true }, 'production');
-	expect(getClasses(result.plugins, 'CleanWebpackPlugin')).toMatchSnapshot();
+	expect(getClasses(result.plugins, 'CleanWebpackPlugin')[0].verbose).toBe(true);
 });
 
 it('should set from with assetsDir in CopyWebpackPlugin', () => {

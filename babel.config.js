@@ -35,7 +35,22 @@ module.exports = {
 	],
 	env: {
 		test: {
-			presets: ['@babel/env', '@babel/react', '@babel/flow'],
+			presets: [
+				[
+					'@babel/env',
+					{
+						loose: true,
+						modules: 'commonjs',
+						useBuiltIns: 'usage',
+						corejs: 3,
+						targets: {
+							node: 'current',
+						},
+					},
+				],
+				'@babel/react',
+				'@babel/flow',
+			],
 			plugins: ['@babel/plugin-proposal-class-properties'],
 		},
 	},
