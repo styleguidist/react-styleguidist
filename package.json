@@ -50,7 +50,7 @@
     "glogg": "^1.0.2",
     "is-directory": "^0.3.1",
     "javascript-stringify": "^2.0.0",
-    "jss": "^9.8.7",
+    "jss": "^10.0.0",
     "jss-camel-case": "^6.1.0",
     "jss-compose": "^5.0.0",
     "jss-default-unit": "^8.0.2",
