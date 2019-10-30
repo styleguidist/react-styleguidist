@@ -412,9 +412,7 @@ Function that allows you to override the printing of build messages to console.l
 module.exports = {
   printBuildInstructions(config) {
     console.log(
-      `Style guide published to ${
-        config.styleguideDir
-      }. Something else interesting.`
+      `Style guide published to ${config.styleguideDir}. Something else interesting.`
     )
   }
 }

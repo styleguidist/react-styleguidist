@@ -595,19 +595,19 @@ And with Styleguidist you write _examples_ in Markdown files:
 
 Another important distinction is that Storybook shows only one variation of one component at a time but Styleguidist can show all variations of all components, all variations of a single component or one variation. It’s easier to create a style guide with Styleguidist but Storybook has more tools to develop components (though we’re working on that too).
 
-| Feature              | Storybook  | Styleguidist                                                                      |
-| -------------------- | ---------- | --------------------------------------------------------------------------------- |
-| Component examples   | JavaScript | Markdown                                                                          |
-| Props docs           | Yes        | Yes                                                                               |
-| Public methods docs  | No         | Yes                                                                               |
-| Style guide¹         | No         | Yes                                                                               |
-| Customizable design  | No         | Yes                                                                               |
-| Extra documentation² | No         | Yes                                                                               |
-| Plugins              | Many       | [In development](https://github.com/styleguidist/react-styleguidist/issues/354)   |
-| React                | Yes        | Yes                                                                               |
-| Preact               | Yes        | Yes                                                                               |
-| React Native         | Yes        | [react-native-web](https://github.com/styleguidist/react-styleguidist/issues/675) |
-| Vue                  | Yes        | [Fork](https://github.com/vue-styleguidist/vue-styleguidist)                      |
+| Feature | Storybook | Styleguidist |
+| --- | --- | --- |
+| Component examples | JavaScript | Markdown |
+| Props docs | Yes | Yes |
+| Public methods docs | No | Yes |
+| Style guide¹ | No | Yes |
+| Customizable design | No | Yes |
+| Extra documentation² | No | Yes |
+| Plugins | Many | [In development](https://github.com/styleguidist/react-styleguidist/issues/354) |
+| React | Yes | Yes |
+| Preact | Yes | Yes |
+| React Native | Yes | [react-native-web](https://github.com/styleguidist/react-styleguidist/issues/675) |
+| Vue | Yes | [Fork](https://github.com/vue-styleguidist/vue-styleguidist) |
 
 ¹ All components on a single page.<br> ² Include non-component documentation.
 
