@@ -12,28 +12,22 @@ exports[`should render code 1`] = `
 `;
 
 exports[`should set initialState before the first render 1`] = `
-
 <span>
   1
 </span>
-
 `;
 
 exports[`should update state on setState 1`] = `
-
 <button>
   2
 </button>
-
 `;
 
 exports[`should wrap code in Fragment when it starts with < 1`] = `
-
 <div>
   <span>
   </span>
   <span>
   </span>
 </div>
-
 `;

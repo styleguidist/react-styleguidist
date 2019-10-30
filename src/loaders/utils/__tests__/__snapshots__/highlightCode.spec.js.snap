@@ -1,7 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should highlight code with specified language 1`] = `
-
 <span class="token tag">
   <span class="token tag">
     <span class="token punctuation">
@@ -25,5 +24,4 @@ Hello React
     >
   </span>
 </span>
-
 `;

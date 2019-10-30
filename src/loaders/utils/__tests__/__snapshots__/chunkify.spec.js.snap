@@ -7,11 +7,9 @@ Array [
     "type": "markdown",
   },
   Object {
-    "content": 
-<AppButton>
+    "content": <AppButton>
   Example in vue
-</AppButton>
-,
+</AppButton>,
     "settings": Object {},
     "type": "code",
   },
@@ -25,22 +23,18 @@ Array [
     "type": "markdown",
   },
   Object {
-    "content": 
-<h1>
+    "content": <h1>
   Hello Markdown!
-</h1>
-,
+</h1>,
     "settings": Object {
       "showcode": true,
     },
     "type": "code",
   },
   Object {
-    "content": 
-<h1>
+    "content": <h1>
   Example in frame and Without editor
-</h1>
-,
+</h1>,
     "settings": Object {
       "frame": Object {
         "width": "400px",
@@ -53,11 +47,9 @@ Array [
     "type": "markdown",
   },
   Object {
-    "content": 
-<h2>
+    "content": <h2>
   Hello Markdown!
-</h2>
-,
+</h2>,
     "settings": Object {
       "noeditor": true,
     },
@@ -79,11 +71,9 @@ Array [
     "type": "markdown",
   },
   Object {
-    "content": 
-<AppButton>
+    "content": <AppButton>
   Example in jsx with undefined extensions
-</AppButton>
-,
+</AppButton>,
     "settings": Object {},
     "type": "code",
   },
@@ -111,11 +101,9 @@ This code example should be rendered as a playground:",
     "type": "markdown",
   },
   Object {
-    "content": 
-<h1>
+    "content": <h1>
   Hello Markdown!
-</h1>
-,
+</h1>,
     "settings": Object {},
     "type": "code",
   },
@@ -124,11 +112,9 @@ This code example should be rendered as a playground:",
     "type": "markdown",
   },
   Object {
-    "content": 
-<h2>
+    "content": <h2>
   Hello Markdown!
-</h2>
-,
+</h2>,
     "settings": Object {},
     "type": "code",
   },
@@ -137,11 +123,9 @@ This code example should be rendered as a playground:",
     "type": "markdown",
   },
   Object {
-    "content": 
-<h3>
+    "content": <h3>
   Hello Markdown!
-</h3>
-,
+</h3>,
     "settings": Object {
       "noeditor": true,
     },
