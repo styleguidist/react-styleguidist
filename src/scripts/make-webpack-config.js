@@ -60,8 +60,6 @@ module.exports = function(config, env) {
 
 	if (isProd) {
 		const minimizer = new TerserPlugin({
-			parallel: true,
-			cache: true,
 			terserOptions: {
 				ie8: false,
 				ecma: 5,
