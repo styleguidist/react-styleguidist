@@ -73,17 +73,17 @@ We’re doing automated releases with semantic-release. We’re using [milestone
 
 ### Patch releases
 
-Any commit to master of a `Fix` or `Update` types is published as a _patch_ release as soon as CI passes.
+Any commit merged to master of a `Fix` or `Update` types is published as a _patch_ release as soon as CI passes.
 
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/1T3v1z0c3f1I1E3l0B3s/patch-commit.png)
 
 ### Minor releases
 
-Any commit to master of a `New` type is published as a _minor_ release as soon as CI passes.
+Any commit merged to master of a `New` type is published as a _minor_ release as soon as CI passes.
 
 ### Major releases
 
-Any commit to master of a `Breaking` type is published as a _major_ release as soon as CI passes.
+Any commit merged to master of a `Breaking` type is published as a _major_ release as soon as CI passes.
 
 1. Merge all pull requests from a milestone. If a milestone has more than one pull request, they should be merged and released together:
    1. Create a new branch.
@@ -101,7 +101,7 @@ Any commit to master of a `Breaking` type is published as a _major_ release as 
 - Changelog should show new features with code examples or GIFs.
 - Changelog should make all breaking changes clear.
 - Changelog should explain how to migrate to a new version if there are breaking changes.
-- Commit log **is not** a changelog.
+- Commit log **is not** a changelog but can be a base for it.
 
 Here’s a [good example of a changelog](https://github.com/styleguidist/react-styleguidist/releases/tag/v7.1.0). Check out [Keep a Changelog](https://keepachangelog.com/) for more details on good changelogs.
 
