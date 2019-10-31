@@ -68,6 +68,7 @@ jobs:
 
     - stage: release
       script:
+        - npm install --no-save conventional-changelog-eslint
         - npx semantic-release
 
     - stage: documentation
