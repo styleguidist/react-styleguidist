@@ -73,21 +73,21 @@ We’re doing automated releases with semantic-release. We’re using [milestone
 
 ### Patch releases
 
-Any commit merged to master of a `Fix` or `Update` types is published as a _patch_ release as soon as CI passes.
+Any commit of a `Fix` or `Update` types merged into the master branch, is published as a _patch_ release as soon as CI passes.
 
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/1T3v1z0c3f1I1E3l0B3s/patch-commit.png)
 
 ### Minor releases
 
-Any commit merged to master of a `New` type is published as a _minor_ release as soon as CI passes.
+Any commit of a `New` type merged into the master branch, is published as a _minor_ release as soon as CI passes.
 
 ### Major releases
 
-Any commit merged to master of a `Breaking` type is published as a _major_ release as soon as CI passes.
+Any commit of a `Breaking` type merged into the master branch, is published as a _major_ release as soon as CI passes.
 
 1. Merge all pull requests from a milestone. If a milestone has more than one pull request, they should be merged and released together:
    1. Create a new branch.
-   2. Merge all pull requests to this new branch.
+   2. Merge all pull requests into this new branch (you can change the target branch on the pull request page and merge it using the GitHub user interface).
    3. Resolve possible merge conflicts.
 2. Wait until semantic-release publishes the release.
 3. Edit the release notes on GitHub (see _Changelogs_ below).
