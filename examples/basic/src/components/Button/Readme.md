@@ -20,6 +20,14 @@ Fenced code blocks with `js`, `jsx` or `javascript` languages are rendered as a 
 <Button>Push Me</Button>
 ```
 
+Add padding between examples in a block by passing a `padded` modifier (` ```jsx padded `):
+
+```jsx padded
+<Button>Push Me</Button>
+<Button>Click Me</Button>
+<Button>Tap Me</Button>
+```
+
 You can add a custom props to an example wrapper (` ```js { "props": { "className": "checks" } } `):
 
 ```js { "props": { "className": "checks" } }

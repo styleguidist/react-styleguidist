@@ -112,3 +112,29 @@ it('showcode option in example settings should overwrite style guide config opti
 
 	expect(queryByRole('textbox')).not.toBeInTheDocument();
 });
+
+it('should not include padded class if padded option is not passed in example settings', () => {
+	const { getByTestId } = render(
+		<Provider>
+			<Playground {...defaultProps} settings={{ padded: false }} />
+		</Provider>
+	);
+
+	expect(getByTestId('preview-wrapper')).not.toHaveAttribute(
+		'class',
+		expect.stringContaining('rsg--padded-')
+	);
+});
+
+it('should include padded class if padded option is passed in example settings', () => {
+	const { getByTestId } = render(
+		<Provider>
+			<Playground {...defaultProps} settings={{ padded: true }} />
+		</Provider>
+	);
+
+	expect(getByTestId('preview-wrapper')).toHaveAttribute(
+		'class',
+		expect.stringContaining('rsg--padded-')
+	);
+});
