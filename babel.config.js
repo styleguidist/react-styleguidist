@@ -9,6 +9,7 @@ module.exports = {
 				corejs: 3,
 			},
 		],
+		'@babel/typescript',
 		'@babel/react',
 		'@babel/flow',
 	],
