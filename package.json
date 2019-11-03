@@ -157,7 +157,7 @@
     "start:customised": "node lib/bin/styleguidist.js server --config examples/customised/styleguide.config.js",
     "start:sections": "node lib/bin/styleguidist.js server --config examples/sections/styleguide.config.js",
     "start:ui": "node lib/bin/styleguidist.js server",
-    "lint": "eslint . --cache --fix",
+    "lint": "eslint . --ext .js,.ts,.tsx --fix",
     "flow": "flow",
     "compile": "babel --delete-dir-on-start --ignore '**/*.spec.js','**/__*__/*' --extensions '.js,.ts,.tsx' -d lib/ src/",
     "compile:watch": "npm run compile -- --watch",

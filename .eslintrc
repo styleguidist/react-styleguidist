@@ -1,11 +1,24 @@
 {
-  "parser": "babel-eslint",
-  "extends": ["tamia/react", "plugin:jsx-a11y/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module",
+    "ecmaVersion": 8
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "env": {
     "browser": true,
     "node": true
   },
   "plugins": [
+    "@typescript-eslint",
     "compat",
     "import",
     "jsx-a11y"
@@ -41,7 +54,19 @@
     "import/no-extraneous-dependencies": "error",
     "import/newline-after-import": "error",
     "import/prefer-default-export": "error",
-    "import/no-named-default": "error"
+    "import/no-named-default": "error",
+    "react/display-name": "off",
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-parameter-properties": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/ban-ts-ignore": "off",
+    "eol-last": ["error", "always"]
   },
   "globals": {
     "System": false,

@@ -1,6 +1,12 @@
 node_modules
-examples/*/styleguide/*
+examples/*
 lib/*
 coverage/*
 travis_phantomjs/*
 flow-typed/*
+src/loaders/*
+src/scripts/*
+src/client/utils/*
+test/*
+*.spec.js
+*.test.js
