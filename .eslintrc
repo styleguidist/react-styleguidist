@@ -35,6 +35,7 @@
     }
   },
   "rules": {
+    "no-mixed-spaces-and-tabs": ["warn", "smart-tabs"],
     "valid-jsdoc": 0,
     "no-duplicate-imports": 0,
     "compat/compat": "error",

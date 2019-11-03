@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Wrapper from 'rsg-components/Wrapper';
-import compileCode from '../../utils/compileCode';
-import splitExampleCode from '../../utils/splitExampleCode';
+import * as compileCode from '../../utils/compileCode';
+import * as splitExampleCode from '../../utils/splitExampleCode';
 
 /* eslint-disable react/no-multi-comp */
 
