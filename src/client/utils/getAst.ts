@@ -1,7 +1,6 @@
-// @flow
-import { Parser, type AcornNode } from 'acorn';
+import { Parser,  Node, Options } from 'acorn';
 
-export const ACORN_OPTIONS = {
+export const ACORN_OPTIONS:Options = {
 	ecmaVersion: 2019,
 	sourceType: 'module',
 };
@@ -9,7 +8,7 @@ export const ACORN_OPTIONS = {
 /**
  * Parse source code with Acorn and return AST, returns undefined in case of errors
  */
-export default function getAst(code: string): ?AcornNode {
+export default function getAst(code: string): Node | undefined {
 	try {
 		return Parser.parse(code, {
 			...ACORN_OPTIONS,

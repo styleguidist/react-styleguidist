@@ -11,6 +11,7 @@
     "noUnusedParameters": true,
     "allowSyntheticDefaultImports": true,
     "declarationDir": "types",
+    "outDir": "./lib",
     "allowJs": true,
     "lib": [
       "dom",
