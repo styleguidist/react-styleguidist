@@ -7,11 +7,13 @@
     "declaration": true,
     "strict": true,
     "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "allowSyntheticDefaultImports": true,
     "declarationDir": "types",
     // TODO: Remove 'allowJs' once all files are converted to TS.
     // This is required now, for accessing types and to do typechecking for JS files.
-    "allowJs": true,
+    "allowJs": true
   },
   // Remove the 'include' section if we want entire project to be Typescript.
   "include": [
