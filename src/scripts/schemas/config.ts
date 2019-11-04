@@ -5,15 +5,18 @@ import glogg from 'glogg';
 import path from 'path';
 import startCase from 'lodash/startCase';
 import kleur from 'kleur';
-import reactDocgen, { Handler } from 'react-docgen';
+import reactDocgen from 'react-docgen';
 import { TransformOptions } from 'buble';
 import { createDisplayNameHandler } from 'react-docgen-displayname-handler';
 import annotationResolver from 'react-docgen-annotation-resolver';
+import { NodePath } from 'ast-types/lib/node-path';
 import findUserWebpackConfig from '../utils/findUserWebpackConfig';
 import getUserPackageJson from '../utils/getUserPackageJson';
 import fileExistsCaseInsensitive from '../utils/findFileCaseInsensitive';
 import StyleguidistError from '../utils/error';
 import * as consts from '../consts';
+
+type Handler = (documentation: any, path: NodePath) => void;
 
 const EXTENSIONS = 'js,jsx,ts,tsx';
 const DEFAULT_COMPONENTS_PATTERN =

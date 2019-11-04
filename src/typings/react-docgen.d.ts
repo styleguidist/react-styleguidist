@@ -2,9 +2,9 @@ declare module 'react-docgen' {
 	import { ASTNode } from 'ast-types';
 	import { NodePath } from 'ast-types/lib/node-path';
 
-	export type Handler = (documentation: Documentation, path: NodePath) => void;
+	type Handler = (documentation: Documentation, path: NodePath) => void;
 
-	export interface Documentation {
+	interface Documentation {
 		addComposes(moduleName: string): void;
 		set(key: string, value: any): void;
 		get(key: string): any;
@@ -14,7 +14,7 @@ declare module 'react-docgen' {
 		toObject(): DocumentationObject;
 	}
 
-	export interface PropTypeDescriptor {
+	interface PropTypeDescriptor {
 		name:
 			| 'arrayOf'
 			| 'custom'
@@ -43,21 +43,21 @@ declare module 'react-docgen' {
 		required?: boolean;
 	}
 
-	export interface PropDescriptor {
+	interface PropDescriptor {
 		type?: PropTypeDescriptor;
 		required?: boolean;
 		defaultValue?: any;
 		description?: string;
 	}
 
-	export interface DocumentationObject {
+	interface DocumentationObject {
 		props?: { [propName: string]: PropDescriptor };
 		context?: { [constextName: string]: PropDescriptor };
 		childContext?: { [chilCOntextName: string]: PropDescriptor };
 		composes?: string[];
 	}
 
-	export interface Options {
+	interface Options {
 		filename: string;
 		cwd: string;
 		babelrc: string;
@@ -91,12 +91,13 @@ declare module 'react-docgen' {
 		};
 	};
 
-	export default docgen;
+	export = docgen;
 }
 
 declare module 'react-docgen-displayname-handler' {
-	import { Handler } from 'react-docgen';
+	import { NodePath } from 'ast-types/lib/node-path';
 
+	type Handler = (documentation: any, path: NodePath) => void;
 	export function createDisplayNameHandler(componentPath: string): Handler;
 }
 

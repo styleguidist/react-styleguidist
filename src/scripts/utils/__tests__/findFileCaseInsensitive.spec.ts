@@ -2,7 +2,7 @@ import path from 'path';
 import findFileCaseInsensitive, { clearCache } from '../findFileCaseInsensitive';
 
 it('should return a file path with the correct case if a file exists', () => {
-	const result = findFileCaseInsensitive(path.join(__dirname, 'Findfilecaseinsensitive.Spec.JS'));
+	const result = findFileCaseInsensitive(path.join(__dirname, 'Findfilecaseinsensitive.Spec.TS'));
 	expect(result).toMatch(__filename);
 });
 
