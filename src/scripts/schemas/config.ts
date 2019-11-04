@@ -1,6 +1,8 @@
 // If you want to access any of these options in React, don’t forget to update CLIENT_CONFIG_OPTIONS array
 // in loaders/styleguide-loader.js
 
+import { TransformOptions } from 'buble';
+
 const EXTENSIONS = 'js,jsx,ts,tsx';
 const DEFAULT_COMPONENTS_PATTERN =
 	// HACK: on windows, the case insensitivity makes each component appear twice
@@ -24,7 +26,14 @@ const fileExistsCaseInsensitive = require('../utils/findFileCaseInsensitive');
 const StyleguidistError = require('../utils/error');
 const consts = require('../consts');
 
-module.exports = {
+export interface StyleguidistConfig {
+	compilerConfig?: TransformOptions;
+	showCode?: 'expand' | 'collapse';
+	showUsage?: 'expand' | 'collapse';
+	components?: string;
+}
+
+const config = {
 	assetsDir: {
 		type: ['array', 'existing directory path'],
 		example: 'assets',
@@ -44,7 +53,7 @@ module.exports = {
 				// to make async/await work by default (no transformation)
 				asyncAwait: false,
 			},
-		},
+		} as TransformOptions,
 	},
 	// `components` is a shortcut for { sections: [{ components }] },
 	// see `sections` below
@@ -53,7 +62,7 @@ module.exports = {
 		example: 'components/**/[A-Z]*.js',
 	},
 	configDir: {
-		process: (value, config, rootDir) => rootDir,
+		process: (value: string, config: StyleguidistConfig, rootDir: string): string => rootDir,
 	},
 	context: {
 		type: 'object',
@@ -74,23 +83,23 @@ module.exports = {
 	defaultExample: {
 		type: ['boolean', 'existing file path'],
 		default: false,
-		process: val =>
+		process: (val: boolean | string): string =>
 			val === true ? path.resolve(__dirname, '../../../templates/DefaultExample.md') : val,
 	},
 	exampleMode: {
 		type: 'string',
-		process: (value, config) => {
+		process: (value: string, config: StyleguidistConfig) => {
 			return config.showCode === undefined ? value : config.showCode ? 'expand' : 'collapse';
 		},
 		default: 'collapse',
 	},
 	getComponentPathLine: {
 		type: 'function',
-		default: componentPath => componentPath,
+		default: (componentPath: string): string => componentPath,
 	},
 	getExampleFilename: {
 		type: 'function',
-		default: componentPath => {
+		default: (componentPath: string): string | boolean => {
 			const files = [
 				path.join(path.dirname(componentPath), 'Readme.md'),
 				// ComponentName.md
@@ -111,7 +120,7 @@ module.exports = {
 	},
 	handlers: {
 		type: 'function',
-		default: componentPath =>
+		default: (componentPath: string): string =>
 			reactDocgen.defaultHandlers.concat(createDisplayNameHandler(componentPath)),
 	},
 	ignore: {
@@ -124,7 +133,7 @@ module.exports = {
 		],
 	},
 	editorConfig: {
-		process: value => {
+		process: (value?: {}): void => {
 			if (value) {
 				throw new StyleguidistError(
 					`${kleur.bold(
@@ -172,7 +181,7 @@ module.exports = {
 	},
 	resolver: {
 		type: 'function',
-		default: (ast, recast) => {
+		default: (ast: any, recast: any) => {
 			const findAllExportedComponentDefinitions =
 				reactDocgen.resolver.findAllExportedComponentDefinitions;
 			const annotatedComponents = annotationResolver(ast, recast);
@@ -190,7 +199,7 @@ module.exports = {
 	sections: {
 		type: 'array',
 		default: [],
-		process: (val, config) => {
+		process: (val: Array<any>, config: StyleguidistConfig) => {
 			if (!val) {
 				// If root `components` isn't empty, make it a first section
 				// If `components` and `sections` weren’t specified, use default pattern
@@ -264,7 +273,7 @@ module.exports = {
 	template: {
 		type: ['object', 'function'],
 		default: {},
-		process: val => {
+		process: (val: any) => {
 			if (typeof val === 'string') {
 				throw new StyleguidistError(
 					`${kleur.bold(
@@ -286,7 +295,7 @@ module.exports = {
 	},
 	title: {
 		type: 'string',
-		process: val => {
+		process: (val?: string): string => {
 			if (val) {
 				return val;
 			}
@@ -300,7 +309,7 @@ module.exports = {
 	},
 	updateExample: {
 		type: 'function',
-		default: props => {
+		default: (props: { lang: string }): { lang: string } => {
 			if (props.lang === 'example') {
 				props.lang = 'js';
 				logger.warn(
@@ -317,7 +326,7 @@ module.exports = {
 	},
 	usageMode: {
 		type: 'string',
-		process: (value, config) => {
+		process: (value: string, config: StyleguidistConfig) => {
 			return config.showUsage === undefined ? value : config.showUsage ? 'expand' : 'collapse';
 		},
 		default: 'collapse',
@@ -331,7 +340,7 @@ module.exports = {
 	},
 	webpackConfig: {
 		type: ['object', 'function'],
-		process: val => {
+		process: (val?: any) => {
 			if (val) {
 				return val;
 			}
@@ -364,3 +373,5 @@ module.exports = {
 		},
 	},
 };
+
+export default config;

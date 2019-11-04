@@ -102,6 +102,7 @@
     "@babel/preset-typescript": "^7.6.0",
     "@testing-library/jest-dom": "^4.2.0",
     "@testing-library/react": "^9.3.0",
+    "@types/buble": "^0.19.2",
     "@types/estree": "^0.0.39",
     "@types/jest": "^24.0.21",
     "@types/lodash": "^4.14.144",
