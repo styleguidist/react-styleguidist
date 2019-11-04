@@ -144,7 +144,6 @@
     "react-test-renderer": "^16.11.0",
     "strip-shebang": "^1.0.2",
     "style-loader": "^1.0.0",
-    "ts-jest": "^24.1.0",
     "typescript": "^3.6.4",
     "url-loader": "^2.2.0",
     "webpack": "^4.41.2",
@@ -183,10 +182,6 @@
     "test:cypress:startServer:post": "wait-on http://localhost:8082"
   },
   "jest": {
-    "transform": {
-      "^.+\\.ts$": "ts-jest",
-      "^.+\\.js$": "babel-jest"
-    },
     "testURL": "http://localhost/",
     "setupFiles": [
       "./test/raf-polyfill.js",
@@ -238,9 +233,8 @@
     }
   },
   "lint-staged": {
-    "*.js": [
+    "*.{ts,tsx,js}": [
       "eslint --fix",
-      "prettier --write",
       "git add"
     ],
     "*.css": [
@@ -251,7 +245,7 @@
       "prettier --write",
       "git add"
     ],
-    "*.{js,md,css}": [
+    "*.{ts,tsx,js,md,css}": [
       "prettier --write",
       "git add"
     ]
