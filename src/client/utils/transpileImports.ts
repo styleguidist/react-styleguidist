@@ -24,10 +24,12 @@ export default function transpileImports(code: string): string {
 	// it i sworking here out of luck and typescript is demonstrating it 
 	// we have to go through the any part to keep the nodes with their `node.start`
 	// and `node.stop`
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any 
 	walk(ast as any, {
 		// import foo from 'foo'
 		// import 'foo'
-		enter: (node:any) => {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any 
+		enter: (node: any) => {
 			if (node.type === 'ImportDeclaration' && node.source) {
 				const start = node.start + offset;
 				const end = node.end + offset;
