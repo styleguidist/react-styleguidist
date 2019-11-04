@@ -21,7 +21,7 @@ export default function transpileImports(code: string): string {
 
 	let offset = 0;
 	// estree walkers type is incompatible with acorns output
-	// it i sworking here out of luck and typescript is demonstrating it 
+	// it is working here out of luck and typescript is demonstrating it 
 	// we have to go through the any part to keep the nodes with their `node.start`
 	// and `node.stop`
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any 
