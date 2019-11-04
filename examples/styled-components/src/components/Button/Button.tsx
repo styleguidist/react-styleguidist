@@ -8,7 +8,7 @@ interface ButtonProps {
 	/** Button variation */
 	variant: 'primary' | 'secondary',
 	fullWidth: Boolean,
-};
+}
 
 const getColor = (variant: string) => ({ primary: 'bg', secondary: 'primary' }[variant]);
 const getBgColor = (variant: string) => ({ primary: 'primary' }[variant]);
