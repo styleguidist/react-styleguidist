@@ -1,5 +1,5 @@
-export default class StyleguidistError extends Error {
-	public constructor(message: string, extra?: any) {
+class StyleguidistError extends Error {
+	constructor(message, extra) {
 		super(message);
 		Error.captureStackTrace(this, this.constructor);
 		Object.defineProperty(this, 'name', {
@@ -10,3 +10,5 @@ export default class StyleguidistError extends Error {
 		});
 	}
 }
+
+module.exports = StyleguidistError;

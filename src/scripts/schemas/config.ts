@@ -229,7 +229,7 @@ const configSchema = {
 	},
 	serverPort: {
 		type: 'number',
-		default: parseInt(process.env.NODE_PORT) || 6060,
+		default: parseInt(process.env.NODE_PORT as string) || 6060,
 	},
 	showCode: {
 		type: 'boolean',
