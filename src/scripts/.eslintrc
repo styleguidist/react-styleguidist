@@ -1,3 +1,11 @@
 {
-	"extends": "tamia"
+	"extends": "tamia",
+	"overrides": [
+		{
+			"files": ["*.ts", "*.tsx"],
+			"parser": "@typescript-eslint/parser",
+			"plugins": ["@typescript-eslint"],
+			"extends": ["tamia/typescript"]
+		}
+	]
 }

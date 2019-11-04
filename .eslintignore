@@ -8,3 +8,4 @@ lib/*
 coverage/*
 travis_phantomjs/*
 flow-typed/*
+*.d.ts

@@ -1,6 +1,6 @@
-const fs = require('fs');
-const path = require('path');
-const memoize = require('lodash/memoize');
+import fs from 'fs';
+import path from 'path';
+import memoize from 'lodash/memoize';
 
 const readdirSync = memoize(fs.readdirSync);
 
@@ -10,17 +10,17 @@ const readdirSync = memoize(fs.readdirSync);
  * @param {string} filepath
  * @return {string|undefined} File path with correct case
  */
-module.exports = function findFileCaseInsensitive(filepath) {
+export default function findFileCaseInsensitive(filepath: string): string | undefined {
 	const dir = path.dirname(filepath);
 	const fileNameLower = path.basename(filepath).toLowerCase();
 	const files = readdirSync(dir);
 	const found = files.find(file => file.toLowerCase() === fileNameLower);
 	return found && path.join(dir, found);
-};
+}
 
 /**
  * Clear cache.
  */
-module.exports.clearCache = function() {
-	readdirSync.cache.clear();
-};
+export function clearCache() {
+	(readdirSync.cache as any).clear();
+}

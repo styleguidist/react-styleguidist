@@ -1,7 +1,19 @@
 // If you want to access any of these options in React, don’t forget to update CLIENT_CONFIG_OPTIONS array
 // in loaders/styleguide-loader.js
 
+import glogg from 'glogg';
+import path from 'path';
+import startCase from 'lodash/startCase';
+import kleur from 'kleur';
+import reactDocgen, { Handler } from 'react-docgen';
 import { TransformOptions } from 'buble';
+import { createDisplayNameHandler } from 'react-docgen-displayname-handler';
+import annotationResolver from 'react-docgen-annotation-resolver';
+import findUserWebpackConfig from '../utils/findUserWebpackConfig';
+import getUserPackageJson from '../utils/getUserPackageJson';
+import fileExistsCaseInsensitive from '../utils/findFileCaseInsensitive';
+import StyleguidistError from '../utils/error';
+import * as consts from '../consts';
 
 const EXTENSIONS = 'js,jsx,ts,tsx';
 const DEFAULT_COMPONENTS_PATTERN =
@@ -12,19 +24,7 @@ const DEFAULT_COMPONENTS_PATTERN =
 		? /* istanbul ignore next: no windows on our test plan */ `src/components/**/*.{${EXTENSIONS}}`
 		: `src/@(components|Components)/**/*.{${EXTENSIONS}}`;
 
-const path = require('path');
-const startCase = require('lodash/startCase');
-const kleur = require('kleur');
-const reactDocgen = require('react-docgen');
-const createDisplayNameHandler = require('react-docgen-displayname-handler')
-	.createDisplayNameHandler;
-const annotationResolver = require('react-docgen-annotation-resolver').default;
-const logger = require('glogg')('rsg');
-const findUserWebpackConfig = require('../utils/findUserWebpackConfig');
-const getUserPackageJson = require('../utils/getUserPackageJson');
-const fileExistsCaseInsensitive = require('../utils/findFileCaseInsensitive');
-const StyleguidistError = require('../utils/error');
-const consts = require('../consts');
+const logger = glogg('rsg');
 
 export interface StyleguidistConfig {
 	compilerConfig?: TransformOptions;
@@ -33,7 +33,7 @@ export interface StyleguidistConfig {
 	components?: string;
 }
 
-const config = {
+const configSchema = {
 	assetsDir: {
 		type: ['array', 'existing directory path'],
 		example: 'assets',
@@ -83,7 +83,7 @@ const config = {
 	defaultExample: {
 		type: ['boolean', 'existing file path'],
 		default: false,
-		process: (val: boolean | string): string =>
+		process: (val: boolean | string): string | boolean =>
 			val === true ? path.resolve(__dirname, '../../../templates/DefaultExample.md') : val,
 	},
 	exampleMode: {
@@ -120,7 +120,7 @@ const config = {
 	},
 	handlers: {
 		type: 'function',
-		default: (componentPath: string): string =>
+		default: (componentPath: string): Handler[] =>
 			reactDocgen.defaultHandlers.concat(createDisplayNameHandler(componentPath)),
 	},
 	ignore: {
@@ -185,7 +185,7 @@ const config = {
 			const findAllExportedComponentDefinitions =
 				reactDocgen.resolver.findAllExportedComponentDefinitions;
 			const annotatedComponents = annotationResolver(ast, recast);
-			const exportedComponents = findAllExportedComponentDefinitions(ast, recast);
+			const exportedComponents = findAllExportedComponentDefinitions(ast);
 			return annotatedComponents.concat(exportedComponents);
 		},
 	},
@@ -199,7 +199,7 @@ const config = {
 	sections: {
 		type: 'array',
 		default: [],
-		process: (val: Array<any>, config: StyleguidistConfig) => {
+		process: (val: any[], config: StyleguidistConfig) => {
 			if (!val) {
 				// If root `components` isn't empty, make it a first section
 				// If `components` and `sections` weren’t specified, use default pattern
@@ -374,4 +374,5 @@ const config = {
 	},
 };
 
-export default config;
+// export config here
+export default configSchema;
