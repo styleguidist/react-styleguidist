@@ -9,9 +9,13 @@
     "noUnusedLocals": true,
     "allowSyntheticDefaultImports": true,
     "outDir": "./lib",
+    "allowJs": true,
     "lib": [
       "dom"
     ],
+    "paths": {
+      "rsg-components/*": ["client/rsg-components/*"]
+  }
   },
   // Remove the 'include' section if we want entire project to be Typescript.
   "include": [

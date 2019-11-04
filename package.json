@@ -151,7 +151,7 @@
   },
   "scripts": {
     "pretest": "npm run lint",
-    "tscheck": "tsc -p . --noEmit",
+    "tscheck": "tsc -p ./tsconfig.ignoreflow.json --noEmit",
     "test": "npm run test:jest",
     "posttest": "npm run format",
     "test:jest": "jest",

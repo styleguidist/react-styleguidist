@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    // avoid typechecking js files as they can contain flow typings
+    "allowJs": false
+  }
+}
