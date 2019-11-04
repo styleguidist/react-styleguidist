@@ -537,9 +537,9 @@ Dev server hostname.
 
 #### `serverPort`
 
-Type: `Number`, default: `6060`
+Type: `Number`, default: `process.env.NODE_PORT` or `6060`
 
-Dev server port.
+Dev server port. Can also be set via command line `--port=6060`.
 
 #### `showSidebar`
 

@@ -76,12 +76,16 @@ function updateConfig(prevConfig) {
 	// Set verbose mode from config option or command line switch
 	const verbose = prevConfig.verbose || argv.verbose;
 
+	// Set serverPort from from command line or config option
+	const serverPort = parseInt(argv.port) || prevConfig.serverPort;
+
 	// Setup logger *before* config validation (because validations may use logger to print warnings)
 	setupLogger(prevConfig.logger, verbose);
 
 	return {
 		...prevConfig,
 		verbose,
+		serverPort,
 	};
 }
 
@@ -184,6 +188,7 @@ function commandHelp() {
 			kleur.underline('Options'),
 			'',
 			'    ' + kleur.yellow('--config') + '        Config file path',
+			'    ' + kleur.yellow('--port') + '          Port to run development server on',
 			'    ' + kleur.yellow('--open') + '          Open Styleguidist in the default browser',
 			'    ' + kleur.yellow('--verbose') + '       Print debug information',
 		].join('\n')
