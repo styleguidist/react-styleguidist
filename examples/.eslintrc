@@ -10,11 +10,9 @@
 			"files": ["*.ts", "*.tsx"],
 			"parser": "@typescript-eslint/parser",
 			"plugins": ["@typescript-eslint"],
-			"rules": {
-				"no-unused-vars": "off",
-				"import/no-unresolved": "off",
-				"import/extensions": "off"
-			}
+			"extends": [
+				"tamia/typescript-react"
+			]
 		}
 	]
 }
