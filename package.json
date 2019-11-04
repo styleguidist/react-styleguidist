@@ -151,8 +151,7 @@
   },
   "scripts": {
     "pretest": "npm run lint",
-    "typings": "tsc -p ./tsconfig.build.json --emitDeclarationOnly",
-    "typecheck": "tsc -p . --noEmit",
+    "tscheck": "tsc -p . --noEmit",
     "test": "npm run test:jest",
     "posttest": "npm run format",
     "test:jest": "jest",

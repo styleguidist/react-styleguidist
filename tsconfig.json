@@ -4,16 +4,13 @@
     "module": "es2015",
     "baseUrl": "./src",
     "moduleResolution": "node",
-    "declaration": true,
     "strict": true,
     "esModuleInterop": true,
     "noUnusedLocals": true,
     "allowSyntheticDefaultImports": true,
-    "declarationDir": "types",
     "outDir": "./lib",
     "lib": [
-      "dom",
-      "esnext"
+      "dom"
     ],
   },
   // Remove the 'include' section if we want entire project to be Typescript.
