@@ -1,7 +1,6 @@
 import { Parser, Node, Options } from 'acorn';
 
 export interface Program extends Node {
-	type: 'program',
 	body: Node[]
 }
 
