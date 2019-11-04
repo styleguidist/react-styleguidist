@@ -38,12 +38,13 @@ jobs:
 
     - stage: typecheck
       script:
-        - npm run flow check
+        - npm run typecheck
 
     - stage: integration
       script:
         # Compile JS
         - npm run compile
+        - npm run typings
         # Build all examples
         - npm run build:basic
         - npm run build:customised
