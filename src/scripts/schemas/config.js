@@ -220,7 +220,7 @@ module.exports = {
 	},
 	serverPort: {
 		type: 'number',
-		default: 6060,
+		default: parseInt(process.env.NODE_PORT) || 6060,
 	},
 	showCode: {
 		type: 'boolean',
