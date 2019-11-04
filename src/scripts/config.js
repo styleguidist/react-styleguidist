@@ -1,3 +1,5 @@
+import schema from './schemas/config';
+
 const fs = require('fs');
 const path = require('path');
 const findup = require('findup');
@@ -5,7 +7,6 @@ const isString = require('lodash/isString');
 const isPlainObject = require('lodash/isPlainObject');
 const StyleguidistError = require('./utils/error');
 const sanitizeConfig = require('./utils/sanitizeConfig');
-const schema = require('./schemas/config');
 
 const CONFIG_FILENAME = 'styleguide.config.js';
 
