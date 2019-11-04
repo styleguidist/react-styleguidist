@@ -9,6 +9,8 @@
     "noUnusedLocals": true,
     "allowSyntheticDefaultImports": true,
     "outDir": "./lib",
+    // TODO: Remove 'allowJs' once all files are converted to TS.
+    // This is required now, for accessing types and to do typechecking for JS files.
     "allowJs": true,
     "lib": [
       "dom"
