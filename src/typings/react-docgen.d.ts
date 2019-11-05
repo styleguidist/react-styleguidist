@@ -2,7 +2,7 @@ declare module 'react-docgen' {
 	import { ASTNode } from 'ast-types';
 	import { NodePath } from 'ast-types/lib/node-path';
 
-	type Handler = (documentation: Documentation, path: NodePath) => void;
+	export type Handler = (documentation: Documentation, path: NodePath) => void;
 
 	interface Documentation {
 		addComposes(moduleName: string): void;
@@ -68,30 +68,36 @@ declare module 'react-docgen' {
 		envName: string;
 	}
 
-	const docgen: {
-		defaultHandlers: Handler[];
-		/**
-		 * Parse the components at filePath and return props, public methods, events and slots
-		 * @param filePath absolute path of the parsed file
-		 * @param opts
-		 */
-		parse(
-			source: string | Buffer,
-			resolver?: (
-				ast: ASTNode,
-				parser: { parse: (code: string) => ASTNode }
-			) => NodePath<any, any> | NodePath[],
-			handlers?: Handler[],
-			options?: Options
-		): DocumentationObject | DocumentationObject[];
-		resolver: {
-			findAllComponentDefinitions(ast: ASTNode): NodePath[];
-			findAllExportedComponentDefinitions(ast: ASTNode): NodePath[];
-			findExportedComponentDefinition(ast: ASTNode): NodePath | undefined;
-		};
-	};
+	export const defaultHandlers: Handler[];
 
-	export = docgen;
+	/**
+	 * Parse the components at filePath and return props, public methods, events and slots
+	 * @param filePath absolute path of the parsed file
+	 * @param opts
+	 */
+	export function parse(
+		source: string | Buffer,
+		resolver?: (
+			ast: ASTNode,
+			parser: { parse: (code: string) => ASTNode }
+		) => NodePath<any, any> | NodePath[],
+		handlers?: Handler[],
+		options?: Options
+	): DocumentationObject | DocumentationObject[];
+
+	export const resolver: {
+		findAllComponentDefinitions(ast: ASTNode): NodePath[];
+		findAllExportedComponentDefinitions(
+			ast: ASTNode,
+			recast: {
+				visit: (
+					path: NodePath,
+					handlers: { [handlerName: string]: () => boolean | undefined }
+				) => void;
+			}
+		): NodePath[];
+		findExportedComponentDefinition(ast: ASTNode): NodePath | undefined;
+	};
 }
 
 declare module 'react-docgen-displayname-handler' {
@@ -109,7 +115,7 @@ declare module 'react-docgen-annotation-resolver' {
 		ast: ASTNode,
 		recast: {
 			visit: (
-				node: ASTNode,
+				node: NodePath,
 				handlers: { [handlerName: string]: () => boolean | undefined }
 			) => void;
 		}

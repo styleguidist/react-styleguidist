@@ -5,23 +5,17 @@ import glogg from 'glogg';
 import path from 'path';
 import startCase from 'lodash/startCase';
 import kleur from 'kleur';
+import * as reactDocgen from 'react-docgen';
 import { TransformOptions } from 'buble';
 import { createDisplayNameHandler } from 'react-docgen-displayname-handler';
 import annotationResolver from 'react-docgen-annotation-resolver';
+import { ASTNode } from 'ast-types';
 import { NodePath } from 'ast-types/lib/node-path';
 import findUserWebpackConfig from '../utils/findUserWebpackConfig';
 import getUserPackageJson from '../utils/getUserPackageJson';
 import fileExistsCaseInsensitive from '../utils/findFileCaseInsensitive';
 import StyleguidistError from '../utils/error';
 import * as consts from '../consts';
-
-// TODO: figure out the interOp trick that
-// will import react-docgen properly
-// for now if you import it as a synthetic defulat the variable is empty
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const reactDocgen = require('react-docgen');
-
-type Handler = (documentation: any, path: NodePath) => void;
 
 const EXTENSIONS = 'js,jsx,ts,tsx';
 const DEFAULT_COMPONENTS_PATTERN =
@@ -128,7 +122,7 @@ const configSchema = {
 	},
 	handlers: {
 		type: 'function',
-		default: (componentPath: string): Handler[] =>
+		default: (componentPath: string): reactDocgen.Handler[] =>
 			reactDocgen.defaultHandlers.concat(createDisplayNameHandler(componentPath)),
 	},
 	ignore: {
@@ -189,7 +183,15 @@ const configSchema = {
 	},
 	resolver: {
 		type: 'function',
-		default: (ast: any, recast: any) => {
+		default: (
+			ast: ASTNode,
+			recast: {
+				visit: (
+					node: NodePath,
+					handlers: { [handlerName: string]: () => boolean | undefined }
+				) => void;
+			}
+		) => {
 			const findAllExportedComponentDefinitions =
 				reactDocgen.resolver.findAllExportedComponentDefinitions;
 			const annotatedComponents = annotationResolver(ast, recast);
