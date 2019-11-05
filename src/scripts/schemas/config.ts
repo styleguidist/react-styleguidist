@@ -387,5 +387,4 @@ const configSchema = {
 	},
 };
 
-// export config here
 export default configSchema;

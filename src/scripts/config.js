@@ -1,12 +1,11 @@
+import fs from 'fs';
+import path from 'path';
+import findup from 'findup';
+import isString from 'lodash/isString';
+import isPlainObject from 'lodash/isPlainObject';
 import schema from './schemas/config';
-
-const fs = require('fs');
-const path = require('path');
-const findup = require('findup');
-const isString = require('lodash/isString');
-const isPlainObject = require('lodash/isPlainObject');
-const StyleguidistError = require('./utils/error');
-const sanitizeConfig = require('./utils/sanitizeConfig');
+import StyleguidistError from './utils/error';
+import sanitizeConfig from './utils/sanitizeConfig';
 
 const CONFIG_FILENAME = 'styleguide.config.js';
 
