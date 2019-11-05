@@ -8,4 +8,9 @@ lib/*
 coverage/*
 travis_phantomjs/*
 flow-typed/*
+# When ESlint looks at imports in .d.ts files,
+# it often duplicates automatically imports
+# @example: this `import { ASTNode } from 'ast-types';`
+# becomes this `import { ASTNode, ASTNode } from 'ast-types';`
+# TODO: fix tamia about this and remove this rule
 *.d.ts
