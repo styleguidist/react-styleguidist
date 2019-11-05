@@ -153,7 +153,7 @@
     "webpack-cli": "^3.3.9"
   },
   "scripts": {
-    "pretest": "npm run lint",
+    "pretest": "npm run lint && npm run tscheck",
     "tscheck": "tsc -p . --noEmit",
     "test": "npm run test:jest",
     "posttest": "npm run format",

@@ -101,24 +101,25 @@ declare module 'react-docgen' {
 }
 
 declare module 'react-docgen-displayname-handler' {
-	import { NodePath } from 'ast-types/lib/node-path';
+	import { NodePath as DisplaNameHandlerNodePath } from 'ast-types/lib/node-path';
+	import { Documentation } from 'react-docgen';
 
-	type Handler = (documentation: any, path: NodePath) => void;
+	type Handler = (documentation: Documentation, path: DisplaNameHandlerNodePath) => void;
 	export function createDisplayNameHandler(componentPath: string): Handler;
 }
 
 declare module 'react-docgen-annotation-resolver' {
-	import { ASTNode } from 'ast-types';
-	import { NodePath } from 'ast-types/lib/node-path';
+	import { ASTNode as AnnoASTNode } from 'ast-types';
+	import { NodePath as AnnoNodePath } from 'ast-types/lib/node-path';
 
 	function annotationResolver(
-		ast: ASTNode,
+		ast: AnnoASTNode,
 		recast: {
 			visit: (
-				node: NodePath,
+				node: AnnoNodePath,
 				handlers: { [handlerName: string]: () => boolean | undefined }
 			) => void;
 		}
-	): NodePath[]; // TODO: check that ASTNode is the right type (could be NodePath)
+	): AnnoNodePath[];
 	export = annotationResolver;
 }
