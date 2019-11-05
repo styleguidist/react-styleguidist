@@ -1,3 +1,5 @@
+import { Component } from '../../typings/Component';
+
 /**
  * Do things that are hard or impossible to do in a loader: we don’t have access to component name
  * and props in the styleguide-loader because we’re using `require` to load the component module.
@@ -5,9 +7,9 @@
  * @param {Array} components
  * @return {Array}
  */
-export default function processComponents(components) {
+export default function processComponents(components: Component[]): Component[] {
 	return components.map(component => {
-		const newComponent = {
+		const newComponent: Component = {
 			...component,
 
 			// Add .name shortcuts for names instead of .props.displayName.

@@ -28,10 +28,12 @@ const DEFAULT_COMPONENTS_PATTERN =
 
 const logger = glogg('rsg');
 
+export type EXPAND_MODE = 'expand' | 'collapse';
+
 export interface StyleguidistConfig {
 	compilerConfig?: TransformOptions;
-	showCode?: 'expand' | 'collapse';
-	showUsage?: 'expand' | 'collapse';
+	showCode?: EXPAND_MODE;
+	showUsage?: EXPAND_MODE;
 	components?: string;
 }
 

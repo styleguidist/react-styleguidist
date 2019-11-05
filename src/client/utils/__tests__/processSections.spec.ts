@@ -1,4 +1,4 @@
-import deepfreeze from 'deepfreeze';
+import deepfreeze from 'deep-freeze-es6';
 import processSections from '../processSections';
 
 const sections = deepfreeze([
@@ -22,11 +22,17 @@ const sections = deepfreeze([
 describe('processSections', () => {
 	it('should recursively process all sections and components', () => {
 		const result = processSections(sections);
-		expect(result[0].sections[0].components[0].name).toBe('Button');
+		const sectionsExpected = result[0].sections || [];
+		expect(
+			sectionsExpected.length &&
+				sectionsExpected[0].components &&
+				sectionsExpected[0].components[0].name
+		).toBe('Button');
 	});
 
 	it('should set visibleName property on each section', () => {
 		const result = processSections(sections);
-		expect(result[0].sections[0].visibleName).toBe('Components');
+		const sectionsExpected = result[0].sections || [];
+		expect(sectionsExpected[0].visibleName).toBe('Components');
 	});
 });

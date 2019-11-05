@@ -1,4 +1,4 @@
-import deepfreeze from 'deepfreeze';
+import deepfreeze from 'deep-freeze-es6';
 import processComponents from '../processComponents';
 
 describe('processComponents', () => {
@@ -49,8 +49,8 @@ describe('processComponents', () => {
 			{
 				props: {
 					displayName: 'Foo',
-					examples: [1, 2],
-					example: [3, 4],
+					examples: [1, 2] as any[],
+					example: [3, 4] as any[],
 				},
 				module: 11,
 			},
