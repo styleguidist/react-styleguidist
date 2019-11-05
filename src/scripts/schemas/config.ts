@@ -16,6 +16,7 @@ import getUserPackageJson from '../utils/getUserPackageJson';
 import fileExistsCaseInsensitive from '../utils/findFileCaseInsensitive';
 import StyleguidistError from '../utils/error';
 import * as consts from '../consts';
+import { Section } from '../../typings/Section';
 
 const EXTENSIONS = 'js,jsx,ts,tsx';
 const DEFAULT_COMPONENTS_PATTERN =
@@ -211,8 +212,7 @@ const configSchema = {
 	sections: {
 		type: 'array',
 		default: [],
-		// TODO: replace this with sections once we have the type crafted
-		process: (val: any[], config: StyleguidistConfig) => {
+		process: (val: Section[], config: StyleguidistConfig) => {
 			if (!val) {
 				// If root `components` isn't empty, make it a first section
 				// If `components` and `sections` weren’t specified, use default pattern
