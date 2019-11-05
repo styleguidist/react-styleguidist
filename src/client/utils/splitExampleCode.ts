@@ -1,9 +1,8 @@
-// @flow
 import find from 'lodash/find';
 import getAst from './getAst';
 
 // Strip semicolon (;) at the end
-const unsemicolon = s => s.replace(/;\s*$/, '');
+const unsemicolon = (s: string): string => s.replace(/;\s*$/, '');
 
 /**
  * Take source code and returns:
@@ -16,7 +15,7 @@ const unsemicolon = s => s.replace(/;\s*$/, '');
  * 1. var a = 1
  * 2. var a = 1; return (React.createElement('i', null, a));
  */
-export default function splitExampleCode(code: string): {| head: string, example: string |} {
+export default function splitExampleCode(code: string): { head: string; example: string } {
 	const ast = getAst(code);
 	if (!ast) {
 		return { head: '', example: code };

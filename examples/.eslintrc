@@ -4,5 +4,15 @@
 	"rules": {
 		"valid-jsdoc": 0,
 		"react/prefer-stateless-function": 0
-	}
+	},
+	"overrides": [
+		{
+			"files": ["*.ts", "*.tsx"],
+			"parser": "@typescript-eslint/parser",
+			"plugins": ["@typescript-eslint"],
+			"extends": [
+				"tamia/typescript-react"
+			]
+		}
+	]
 }

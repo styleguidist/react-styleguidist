@@ -1,6 +1,23 @@
 // If you want to access any of these options in React, don’t forget to update CLIENT_CONFIG_OPTIONS array
 // in loaders/styleguide-loader.js
 
+import glogg from 'glogg';
+import path from 'path';
+import startCase from 'lodash/startCase';
+import kleur from 'kleur';
+import * as reactDocgen from 'react-docgen';
+import { TransformOptions } from 'buble';
+import { createDisplayNameHandler } from 'react-docgen-displayname-handler';
+import annotationResolver from 'react-docgen-annotation-resolver';
+import { ASTNode } from 'ast-types';
+import { NodePath } from 'ast-types/lib/node-path';
+import findUserWebpackConfig from '../utils/findUserWebpackConfig';
+import getUserPackageJson from '../utils/getUserPackageJson';
+import fileExistsCaseInsensitive from '../utils/findFileCaseInsensitive';
+import StyleguidistError from '../utils/error';
+import * as consts from '../consts';
+import { Section } from '../../typings/Section';
+
 const EXTENSIONS = 'js,jsx,ts,tsx';
 const DEFAULT_COMPONENTS_PATTERN =
 	// HACK: on windows, the case insensitivity makes each component appear twice
@@ -10,21 +27,18 @@ const DEFAULT_COMPONENTS_PATTERN =
 		? /* istanbul ignore next: no windows on our test plan */ `src/components/**/*.{${EXTENSIONS}}`
 		: `src/@(components|Components)/**/*.{${EXTENSIONS}}`;
 
-const path = require('path');
-const startCase = require('lodash/startCase');
-const kleur = require('kleur');
-const reactDocgen = require('react-docgen');
-const createDisplayNameHandler = require('react-docgen-displayname-handler')
-	.createDisplayNameHandler;
-const annotationResolver = require('react-docgen-annotation-resolver').default;
-const logger = require('glogg')('rsg');
-const findUserWebpackConfig = require('../utils/findUserWebpackConfig');
-const getUserPackageJson = require('../utils/getUserPackageJson');
-const fileExistsCaseInsensitive = require('../utils/findFileCaseInsensitive');
-const StyleguidistError = require('../utils/error');
-const consts = require('../consts');
+const logger = glogg('rsg');
 
-module.exports = {
+export type EXPAND_MODE = 'expand' | 'collapse';
+
+export interface StyleguidistConfig {
+	compilerConfig?: TransformOptions;
+	showCode?: EXPAND_MODE;
+	showUsage?: EXPAND_MODE;
+	components?: string;
+}
+
+const configSchema = {
 	assetsDir: {
 		type: ['array', 'existing directory path'],
 		example: 'assets',
@@ -44,7 +58,7 @@ module.exports = {
 				// to make async/await work by default (no transformation)
 				asyncAwait: false,
 			},
-		},
+		} as TransformOptions,
 	},
 	// `components` is a shortcut for { sections: [{ components }] },
 	// see `sections` below
@@ -53,7 +67,7 @@ module.exports = {
 		example: 'components/**/[A-Z]*.js',
 	},
 	configDir: {
-		process: (value, config, rootDir) => rootDir,
+		process: (value: string, config: StyleguidistConfig, rootDir: string): string => rootDir,
 	},
 	context: {
 		type: 'object',
@@ -74,23 +88,23 @@ module.exports = {
 	defaultExample: {
 		type: ['boolean', 'existing file path'],
 		default: false,
-		process: val =>
+		process: (val: boolean | string): string | boolean =>
 			val === true ? path.resolve(__dirname, '../../../templates/DefaultExample.md') : val,
 	},
 	exampleMode: {
 		type: 'string',
-		process: (value, config) => {
+		process: (value: string, config: StyleguidistConfig) => {
 			return config.showCode === undefined ? value : config.showCode ? 'expand' : 'collapse';
 		},
 		default: 'collapse',
 	},
 	getComponentPathLine: {
 		type: 'function',
-		default: componentPath => componentPath,
+		default: (componentPath: string): string => componentPath,
 	},
 	getExampleFilename: {
 		type: 'function',
-		default: componentPath => {
+		default: (componentPath: string): string | boolean => {
 			const files = [
 				path.join(path.dirname(componentPath), 'Readme.md'),
 				// ComponentName.md
@@ -111,7 +125,7 @@ module.exports = {
 	},
 	handlers: {
 		type: 'function',
-		default: componentPath =>
+		default: (componentPath: string): reactDocgen.Handler[] =>
 			reactDocgen.defaultHandlers.concat(createDisplayNameHandler(componentPath)),
 	},
 	ignore: {
@@ -124,7 +138,7 @@ module.exports = {
 		],
 	},
 	editorConfig: {
-		process: value => {
+		process: (value?: {}): void => {
 			if (value) {
 				throw new StyleguidistError(
 					`${kleur.bold(
@@ -172,7 +186,15 @@ module.exports = {
 	},
 	resolver: {
 		type: 'function',
-		default: (ast, recast) => {
+		default: (
+			ast: ASTNode,
+			recast: {
+				visit: (
+					node: NodePath,
+					handlers: { [handlerName: string]: () => boolean | undefined }
+				) => void;
+			}
+		) => {
 			const findAllExportedComponentDefinitions =
 				reactDocgen.resolver.findAllExportedComponentDefinitions;
 			const annotatedComponents = annotationResolver(ast, recast);
@@ -190,7 +212,7 @@ module.exports = {
 	sections: {
 		type: 'array',
 		default: [],
-		process: (val, config) => {
+		process: (val: Section[], config: StyleguidistConfig) => {
 			if (!val) {
 				// If root `components` isn't empty, make it a first section
 				// If `components` and `sections` weren’t specified, use default pattern
@@ -220,7 +242,7 @@ module.exports = {
 	},
 	serverPort: {
 		type: 'number',
-		default: parseInt(process.env.NODE_PORT) || 6060,
+		default: parseInt(process.env.NODE_PORT as string) || 6060,
 	},
 	showCode: {
 		type: 'boolean',
@@ -264,7 +286,7 @@ module.exports = {
 	template: {
 		type: ['object', 'function'],
 		default: {},
-		process: val => {
+		process: (val: any) => {
 			if (typeof val === 'string') {
 				throw new StyleguidistError(
 					`${kleur.bold(
@@ -286,7 +308,7 @@ module.exports = {
 	},
 	title: {
 		type: 'string',
-		process: val => {
+		process: (val?: string): string => {
 			if (val) {
 				return val;
 			}
@@ -300,7 +322,7 @@ module.exports = {
 	},
 	updateExample: {
 		type: 'function',
-		default: props => {
+		default: (props: { lang: string }): { lang: string } => {
 			if (props.lang === 'example') {
 				props.lang = 'js';
 				logger.warn(
@@ -317,7 +339,7 @@ module.exports = {
 	},
 	usageMode: {
 		type: 'string',
-		process: (value, config) => {
+		process: (value: string, config: StyleguidistConfig) => {
 			return config.showUsage === undefined ? value : config.showUsage ? 'expand' : 'collapse';
 		},
 		default: 'collapse',
@@ -331,7 +353,7 @@ module.exports = {
 	},
 	webpackConfig: {
 		type: ['object', 'function'],
-		process: val => {
+		process: (val?: any) => {
 			if (val) {
 				return val;
 			}
@@ -364,3 +386,5 @@ module.exports = {
 		},
 	},
 };
+
+export default configSchema;

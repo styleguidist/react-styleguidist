@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 // react-scripts <= 2.1.1
 const CREATE_REACT_APP_WEBPACK_CONFIG_OLD = 'react-scripts/config/webpack.config.dev';
@@ -7,7 +7,7 @@ const CREATE_REACT_APP_WEBPACK_CONFIG_OLD = 'react-scripts/config/webpack.config
 const CREATE_REACT_APP_WEBPACK_CONFIG = 'react-scripts/config/webpack.config';
 const USER_WEBPACK_CONFIG_NAMES = ['webpack.config.js', 'webpackfile.js'];
 
-const absolutize = filePath => path.resolve(process.cwd(), filePath);
+const absolutize = (filePath: string): string => path.resolve(process.cwd(), filePath);
 
 /**
  * Find user’s Webpack config and return its path.
@@ -17,7 +17,7 @@ const absolutize = filePath => path.resolve(process.cwd(), filePath);
  * @param {Function} resolve
  * @return {string|boolean}
  */
-module.exports = function findUserWebpackConfig(resolve) {
+export default function findUserWebpackConfig(resolve?: (input: string) => string) {
 	resolve = resolve || require.resolve;
 	try {
 		// Create React App <= 2.1.1
@@ -40,4 +40,4 @@ module.exports = function findUserWebpackConfig(resolve) {
 	}
 
 	return false;
-};
+}

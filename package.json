@@ -102,6 +102,10 @@
     "@babel/preset-typescript": "^7.6.0",
     "@testing-library/jest-dom": "^4.2.0",
     "@testing-library/react": "^9.3.0",
+    "@types/buble": "^0.19.2",
+    "@types/estree": "^0.0.39",
+    "@types/jest": "^24.0.21",
+    "@types/lodash": "^4.14.144",
     "@types/node": "^12.12.3",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.3",
@@ -115,7 +119,8 @@
     "cheerio": "^1.0.0-rc.3",
     "css-loader": "^3.2.0",
     "deabsdeep": "^1.0.6",
-    "deepfreeze": "^2.0.0",
+    "deep-freeze-es6": "^1.0.0",
+    "deepfreeze": "2.0.0",
     "dog-names": "^2.0.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
@@ -147,7 +152,8 @@
     "webpack-cli": "^3.3.9"
   },
   "scripts": {
-    "pretest": "npm run lint",
+    "pretest": "npm run lint && npm run tscheck",
+    "tscheck": "tsc -p . --noEmit",
     "test": "npm run test:jest",
     "posttest": "npm run format",
     "test:jest": "jest",
@@ -157,7 +163,7 @@
     "start:customised": "node lib/bin/styleguidist.js server --config examples/customised/styleguide.config.js",
     "start:sections": "node lib/bin/styleguidist.js server --config examples/sections/styleguide.config.js",
     "start:ui": "node lib/bin/styleguidist.js server",
-    "lint": "eslint . --cache --fix",
+    "lint": "eslint . --cache --fix --ext .js,.ts,.tsx",
     "flow": "flow",
     "compile": "babel --delete-dir-on-start --ignore '**/*.spec.js','**/__*__/*' --extensions '.js,.ts,.tsx' -d lib/ src/",
     "compile:watch": "npm run compile -- --watch",
@@ -228,9 +234,8 @@
     }
   },
   "lint-staged": {
-    "*.js": [
+    "*.{ts,tsx,js}": [
       "eslint --fix",
-      "prettier --write",
       "git add"
     ],
     "*.css": [
@@ -241,7 +246,7 @@
       "prettier --write",
       "git add"
     ],
-    "*.{js,md,css}": [
+    "*.{ts,tsx,js,md,css}": [
       "prettier --write",
       "git add"
     ]
