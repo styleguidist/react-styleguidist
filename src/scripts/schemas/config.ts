@@ -5,7 +5,6 @@ import glogg from 'glogg';
 import path from 'path';
 import startCase from 'lodash/startCase';
 import kleur from 'kleur';
-import reactDocgen from 'react-docgen';
 import { TransformOptions } from 'buble';
 import { createDisplayNameHandler } from 'react-docgen-displayname-handler';
 import annotationResolver from 'react-docgen-annotation-resolver';
@@ -15,6 +14,12 @@ import getUserPackageJson from '../utils/getUserPackageJson';
 import fileExistsCaseInsensitive from '../utils/findFileCaseInsensitive';
 import StyleguidistError from '../utils/error';
 import * as consts from '../consts';
+
+// TODO: figure out the interOp trick that
+// will import react-docgen properly
+// for now if you import it as a synthetic defulat the variable is empty
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const reactDocgen = require('react-docgen');
 
 type Handler = (documentation: any, path: NodePath) => void;
 
@@ -188,7 +193,7 @@ const configSchema = {
 			const findAllExportedComponentDefinitions =
 				reactDocgen.resolver.findAllExportedComponentDefinitions;
 			const annotatedComponents = annotationResolver(ast, recast);
-			const exportedComponents = findAllExportedComponentDefinitions(ast);
+			const exportedComponents = findAllExportedComponentDefinitions(ast, recast);
 			return annotatedComponents.concat(exportedComponents);
 		},
 	},
@@ -202,6 +207,7 @@ const configSchema = {
 	sections: {
 		type: 'array',
 		default: [],
+		// TODO: replace this with sections once we have the type crafted
 		process: (val: any[], config: StyleguidistConfig) => {
 			if (!val) {
 				// If root `components` isn't empty, make it a first section
