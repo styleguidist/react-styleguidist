@@ -4,6 +4,7 @@
     "module": "es2015",
     "baseUrl": "./src",
     "moduleResolution": "node",
+    "jsx": "react",
     "strict": true,
     "esModuleInterop": true,
     "noUnusedLocals": true,
