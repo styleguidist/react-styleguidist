@@ -17,7 +17,7 @@ import fileExistsCaseInsensitive from '../utils/findFileCaseInsensitive';
 import StyleguidistError from '../utils/error';
 import * as consts from '../consts';
 import { Section } from '../../typings/Section';
-import { Theme } from '../../typings/Theme';
+import { ThemeOverride } from '../../typings/Theme';
 import { Styles } from '../../typings/Styles';
 
 const EXTENSIONS = 'js,jsx,ts,tsx';
@@ -38,7 +38,7 @@ export interface ProcessedStyleguidistConfig {
 	showCode: EXPAND_MODE;
 	showUsage: EXPAND_MODE;
 	components: string;
-	theme: Theme;
+	theme: ThemeOverride;
 	// TODO: be more specific about this typing
 	styles: Styles;
 }

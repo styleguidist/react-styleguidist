@@ -2,12 +2,9 @@ import { RecursivePartial } from './RecursivePartial';
 
 /**
  * When the theme is to be used in a component,
- * it will have all it's values set.
- * In a custom config file you might only want to override the Theme parameters
- * This is the usage of the Partial
- * TODO: rename theme into ThemeOverride nd processedtheme as theme
+ * it will have all it's values set
  */
-export interface ProcessedTheme {
+export interface Theme {
 	spaceFactor: number;
 	space: number[];
 	color: {
@@ -63,4 +60,8 @@ export interface ProcessedTheme {
 	buttonTextTransform: string;
 }
 
-export type Theme = RecursivePartial<ProcessedTheme>;
+/**
+ * In a custom config file you might only want to override the Theme parameters
+ * This is the usage of the Partial
+ */
+export type ThemeOverride = RecursivePartial<Theme>;
