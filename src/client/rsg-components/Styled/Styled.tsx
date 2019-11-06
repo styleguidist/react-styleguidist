@@ -3,6 +3,8 @@ import { Styles, StyleSheet, Classes } from 'jss';
 import Context from 'rsg-components/Context';
 import createStyleSheet from '../../styles/createStyleSheet';
 
+export { Theme } from '../../../typings/Theme';
+
 export interface JssInjectedProps {
 	classes: Classes;
 }

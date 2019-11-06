@@ -1,6 +1,5 @@
 import React from 'react';
-import Styled, { JssInjectedProps } from 'rsg-components/Styled';
-import { Theme } from '../../../typings/Theme';
+import Styled, { JssInjectedProps, Theme } from 'rsg-components/Styled';
 
 const styles = ({ color, fontFamily, fontSize }: Theme) => ({
 	logo: {
