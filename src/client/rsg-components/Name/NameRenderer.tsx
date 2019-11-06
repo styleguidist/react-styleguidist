@@ -29,4 +29,4 @@ export const NameRenderer: React.FunctionComponent<NameProps> = ({
 	return <code className={classNames}>{children}</code>;
 };
 
-export default Styled(styles)(NameRenderer);
+export default Styled<NameProps>(styles)(NameRenderer);

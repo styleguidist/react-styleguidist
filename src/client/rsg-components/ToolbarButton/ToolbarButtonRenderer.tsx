@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Styled from 'rsg-components/Styled';
+import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
 import cx from 'clsx';
 
-export const styles = ({ space, color }) => ({
+export const styles = ({ space, color }: Theme) => ({
 	button: {
 		padding: 2, // Increase clickable area a bit
 		color: color.light,
@@ -39,7 +38,16 @@ export const styles = ({ space, color }) => ({
 	},
 });
 
-export function ToolbarButtonRenderer({
+interface ToolbarButtonProps extends JssInjectedProps {
+	className?: string;
+	href?: string;
+	onClick?: () => void;
+	title?: string;
+	small?: boolean;
+	testId?: string;
+}
+
+export const ToolbarButtonRenderer: React.FunctionComponent<ToolbarButtonProps> = ({
 	classes,
 	className,
 	onClick,
@@ -48,7 +56,7 @@ export function ToolbarButtonRenderer({
 	small,
 	testId,
 	children,
-}) {
+}) => {
 	const classNames = cx(classes.button, className, {
 		[classes.isSmall]: small,
 	});
@@ -66,17 +74,6 @@ export function ToolbarButtonRenderer({
 			{children}
 		</button>
 	);
-}
-
-ToolbarButtonRenderer.propTypes = {
-	classes: PropTypes.object.isRequired,
-	className: PropTypes.string,
-	href: PropTypes.string,
-	onClick: PropTypes.func,
-	title: PropTypes.string,
-	small: PropTypes.bool,
-	testId: PropTypes.string,
-	children: PropTypes.node,
 };
 
-export default Styled(styles)(ToolbarButtonRenderer);
+export default Styled<ToolbarButtonProps>(styles)(ToolbarButtonRenderer);

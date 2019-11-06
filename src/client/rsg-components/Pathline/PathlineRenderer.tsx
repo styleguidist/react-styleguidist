@@ -1,11 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import { MdContentCopy } from 'react-icons/md';
 import ToolbarButton from 'rsg-components/ToolbarButton';
-import Styled from 'rsg-components/Styled';
+import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
 
-export const styles = ({ space, fontFamily, fontSize, color }) => ({
+export const styles = ({ space, fontFamily, fontSize, color }: Theme) => ({
 	pathline: {
 		fontFamily: fontFamily.monospace,
 		fontSize: fontSize.small,
@@ -17,25 +16,23 @@ export const styles = ({ space, fontFamily, fontSize, color }) => ({
 	},
 });
 
-export function PathlineRenderer({ classes, children }) {
+export const PathlineRenderer: React.FunctionComponent<JssInjectedProps> = ({
+	classes,
+	children,
+}) => {
 	return (
 		<div className={classes.pathline}>
 			{children}
 			<ToolbarButton
 				small
 				className={classes.copyButton}
-				onClick={() => copy(children)}
+				onClick={() => children && copy(children.toString())}
 				title="Copy to clipboard"
 			>
 				<MdContentCopy />
 			</ToolbarButton>
 		</div>
 	);
-}
-
-PathlineRenderer.propTypes = {
-	classes: PropTypes.object.isRequired,
-	children: PropTypes.string,
 };
 
-export default Styled(styles)(PathlineRenderer);
+export default Styled<JssInjectedProps>(styles)(PathlineRenderer);
