@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
 import cx from 'clsx';
 
@@ -74,6 +75,17 @@ export const ToolbarButtonRenderer: React.FunctionComponent<ToolbarButtonProps> 
 			{children}
 		</button>
 	);
+};
+
+ToolbarButtonRenderer.propTypes = {
+	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
+	className: PropTypes.string,
+	href: PropTypes.string,
+	onClick: PropTypes.func,
+	title: PropTypes.string,
+	small: PropTypes.bool,
+	testId: PropTypes.string,
+	children: PropTypes.node,
 };
 
 export default Styled<ToolbarButtonProps>(styles)(ToolbarButtonRenderer);
