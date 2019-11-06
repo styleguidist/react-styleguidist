@@ -1,5 +1,3 @@
-import { RecursivePartial } from './RecursivePartial';
-
 /**
  * When the theme is to be used in a component,
  * it will have all it's values set
