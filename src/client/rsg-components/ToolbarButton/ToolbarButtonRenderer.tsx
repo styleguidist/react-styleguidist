@@ -40,6 +40,7 @@ export const styles = ({ space, color }: Theme) => ({
 });
 
 interface ToolbarButtonProps extends JssInjectedProps {
+	children: React.ReactNode;
 	className?: string;
 	href?: string;
 	onClick?: () => void;

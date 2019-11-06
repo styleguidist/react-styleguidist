@@ -1,1 +1,1 @@
-export type Styles = {[obj:string]: string}
+export type Styles = { [obj: string]: string | Styles };
