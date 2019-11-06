@@ -16,9 +16,11 @@ import getUserPackageJson from '../utils/getUserPackageJson';
 import fileExistsCaseInsensitive from '../utils/findFileCaseInsensitive';
 import StyleguidistError from '../utils/error';
 import * as consts from '../consts';
+
 import { Section } from '../../typings/Section';
-import { ThemeOverride } from '../../typings/Theme';
+import { Theme } from '../../typings/Theme';
 import { Styles } from '../../typings/Styles';
+import { RecursivePartial } from '../../typings/RecursivePartial';
 
 const EXTENSIONS = 'js,jsx,ts,tsx';
 const DEFAULT_COMPONENTS_PATTERN =
@@ -38,7 +40,7 @@ export interface ProcessedStyleguidistConfig {
 	showCode: EXPAND_MODE;
 	showUsage: EXPAND_MODE;
 	components: string;
-	theme: ThemeOverride;
+	theme: RecursivePartial<Theme>;
 	// TODO: be more specific about this typing
 	styles: Styles;
 }

@@ -59,9 +59,3 @@ export interface Theme {
 	sidebarWidth: number;
 	buttonTextTransform: string;
 }
-
-/**
- * In a custom config file you might only want to override the Theme parameters
- * This is the usage of the Partial
- */
-export type ThemeOverride = RecursivePartial<Theme>;
