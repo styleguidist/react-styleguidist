@@ -1,4 +1,4 @@
-import React, { Component, ComponentType, ComponentClass } from 'react';
+import React, { Component, ComponentType } from 'react';
 import { Styles, StyleSheet, Classes } from 'jss';
 import Context from 'rsg-components/Context';
 import createStyleSheet from '../../styles/createStyleSheet';
@@ -9,8 +9,8 @@ export interface JssInjectedProps {
 
 export default function StyleHOC<P extends JssInjectedProps>(
 	styles: Styles
-): (WrappedComponent: ComponentClass<P>) => ComponentType<Omit<P, keyof JssInjectedProps>> {
-	return (WrappedComponent: ComponentClass<P>) => {
+): (WrappedComponent: ComponentType<P>) => ComponentType<Omit<P, keyof JssInjectedProps>> {
+	return (WrappedComponent: ComponentType<P>) => {
 		const componentName = WrappedComponent.name.replace(/Renderer$/, '');
 		return class extends Component<Omit<P, keyof JssInjectedProps>> {
 			public static displayName = `Styled(${componentName})`;

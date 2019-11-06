@@ -1,8 +1,15 @@
-import { RecursivePartial } from "./RecursivePartial";
+import { RecursivePartial } from './RecursivePartial';
 
+/**
+ * When the theme is to be used in a component,
+ * it will have all it's values set.
+ * In a custom config file you might only want to override the Theme parameters
+ * This is the usage of the Partial
+ * TODO: rename theme into ThemeOverride nd processedtheme as theme
+ */
 export interface ProcessedTheme {
-	spaceFactor: number,
-	space: number[],
+	spaceFactor: number;
+	space: number[];
 	color: {
 		base: string;
 		light: string;
@@ -31,29 +38,29 @@ export interface ProcessedTheme {
 		codeKeyword: string;
 		codeFunction: string;
 		codeVariable: string;
-	},
+	};
 	fontFamily: {
-		base: string[],
-		monospace: string[]
-	},
+		base: string[];
+		monospace: string[];
+	};
 	fontSize: {
-		base: number,
-		text: number,
-		small: number,
-		h1: number,
-		h2: number,
-		h3: number,
-		h4: number,
-		h5: number,
-		h6: number,
-	},
-	mq:{
-		small: string,
-	}
-	borderRadius: number,
-	maxWidth: number,
-	sidebarWidth: number,
-	buttonTextTransform: string,
+		base: number;
+		text: number;
+		small: number;
+		h1: number;
+		h2: number;
+		h3: number;
+		h4: number;
+		h5: number;
+		h6: number;
+	};
+	mq: {
+		small: string;
+	};
+	borderRadius: number;
+	maxWidth: number;
+	sidebarWidth: number;
+	buttonTextTransform: string;
 }
 
-export type Theme = RecursivePartial<ProcessedTheme>
+export type Theme = RecursivePartial<ProcessedTheme>;
