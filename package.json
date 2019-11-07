@@ -250,5 +250,9 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/styleguidist"
   }
 }
