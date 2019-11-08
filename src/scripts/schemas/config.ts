@@ -16,7 +16,11 @@ import getUserPackageJson from '../utils/getUserPackageJson';
 import fileExistsCaseInsensitive from '../utils/findFileCaseInsensitive';
 import StyleguidistError from '../utils/error';
 import * as consts from '../consts';
+
 import { Section } from '../../typings/Section';
+import { Theme } from '../../typings/Theme';
+import { Styles } from '../../typings/Styles';
+import { RecursivePartial } from '../../typings/RecursivePartial';
 
 const EXTENSIONS = 'js,jsx,ts,tsx';
 const DEFAULT_COMPONENTS_PATTERN =
@@ -31,12 +35,17 @@ const logger = glogg('rsg');
 
 export type EXPAND_MODE = 'expand' | 'collapse';
 
-export interface StyleguidistConfig {
-	compilerConfig?: TransformOptions;
-	showCode?: EXPAND_MODE;
-	showUsage?: EXPAND_MODE;
-	components?: string;
+export interface ProcessedStyleguidistConfig {
+	compilerConfig: TransformOptions;
+	showCode: EXPAND_MODE;
+	showUsage: EXPAND_MODE;
+	components: string;
+	theme: RecursivePartial<Theme>;
+	// TODO: be more specific about this typing
+	styles: Styles;
 }
+
+export type StyleguidistConfig = Partial<ProcessedStyleguidistConfig>;
 
 const configSchema = {
 	assetsDir: {

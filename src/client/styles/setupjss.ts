@@ -9,7 +9,7 @@ import nonInheritedProps from './nonInheritedProps';
 
 const createGenerateId = () => {
 	let counter = 0;
-	return rule => `rsg--${rule.key}-${counter++}`;
+	return (rule:{key:string}) => `rsg--${rule.key}-${counter++}`;
 };
 
 const jss = create({

@@ -1,5 +1,7 @@
 import React from 'react';
+import { shallow } from 'enzyme';
 import { ToolbarButtonRenderer, styles } from './ToolbarButtonRenderer';
+import classes from '../../../../test/classes';
 
 const props = {
 	classes: classes(styles),

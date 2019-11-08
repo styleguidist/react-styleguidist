@@ -1,6 +1,8 @@
 import React from 'react';
 import copy from 'clipboard-copy';
+import { shallow, mount } from 'enzyme';
 import { PathlineRenderer, styles } from './PathlineRenderer';
+import classes from '../../../../test/classes';
 
 jest.mock('clipboard-copy');
 

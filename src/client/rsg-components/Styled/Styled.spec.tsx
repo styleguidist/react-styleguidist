@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { render } from '@testing-library/react';
-import Styled from './Styled';
+import '@testing-library/jest-dom/extend-expect';
+import Styled, { JssInjectedProps } from './Styled';
 import Context from '../Context';
 
 const context = {
@@ -10,7 +11,7 @@ const context = {
 	},
 };
 
-const Provider = props => <Context.Provider value={context} {...props} />;
+const Provider = (props: any) => <Context.Provider value={context} {...props} />;
 
 /* eslint-disable react/prefer-stateless-function, react/prop-types */
 
@@ -20,8 +21,12 @@ const styles = () => ({
 	},
 });
 
-class TestRenderer extends Component {
-	render() {
+interface MockProps extends JssInjectedProps {
+	testId?: string;
+}
+
+class TestRenderer extends Component<MockProps> {
+	public render() {
 		return <div className={this.props.classes.foo} data-testid={this.props.testId} />;
 	}
 }
@@ -32,7 +37,7 @@ test('should set displayName', () => {
 });
 
 test('should wrap a component and pass props and classes', () => {
-	const WrappedComponent = Styled(styles)(TestRenderer);
+	const WrappedComponent = Styled<MockProps>(styles)(TestRenderer);
 	const { getByTestId } = render(
 		<Provider>
 			<WrappedComponent testId="element" />

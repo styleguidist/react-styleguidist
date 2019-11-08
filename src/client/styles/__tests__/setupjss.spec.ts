@@ -35,18 +35,18 @@ describe('setupjss', () => {
 			},
 		});
 
-		const root = stylesheet.getRule('root').style;
+		const root = (stylesheet.getRule('root') as any).style;
 		expect(root).toEqual(expect.any(Object));
 		expect(root['background-color']).toBe('tomato');
 		expect(root.width).toBe('1px');
 		expect(stylesheet.classes.root).toMatch(/^rsg--root-\d+$/);
 
-		const child = stylesheet.getRule('child').style;
+		const child = (stylesheet.getRule('child') as any).style;
 		expect(child).toEqual(expect.any(Object));
 		expect(child.color).toBe('blue');
 		expect(stylesheet.classes.child).toMatch(/^rsg--child-\d+ rsg--root-\d+$/);
 
-		const hover = stylesheet.rules.map['.rsg--root-2:hover'];
+		const hover = (stylesheet as any).rules.map['.rsg--root-2:hover'];
 		expect(hover).toEqual(expect.any(Object));
 		expect(hover.style.color).toBe('snow');
 	});
@@ -62,7 +62,7 @@ describe('setupjss', () => {
 
 		expect(stylesheet.classes.root).toMatch(/^rsg--root-\d+$/);
 
-		const root = stylesheet.getRule('root').style;
+		const root = (stylesheet.getRule('root') as any).style;
 		expect(root.width).toBe('1px');
 	});
 });
