@@ -7,6 +7,7 @@ const sections = deepfreeze([
 		sections: [
 			{
 				name: 'Components',
+				slug: 'components',
 				components: [
 					{
 						name: 'Button',
@@ -31,6 +32,7 @@ const sections = deepfreeze([
 			},
 			{
 				name: 'Section',
+				slug: 'section',
 				content: ['example 0', 'example 1'],
 				components: [],
 				sections: [],
@@ -40,6 +42,7 @@ const sections = deepfreeze([
 			},
 			{
 				name: 'Buttons',
+				slug: 'buttons',
 				components: [
 					{
 						name: 'Label',

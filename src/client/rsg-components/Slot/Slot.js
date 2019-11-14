@@ -2,8 +2,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useStyleGuideContext } from 'rsg-components/Context';
 
-export default function Slot({ name, active, onlyActive, className, props = {} }, { slots }) {
+export default function Slot({ name, active, onlyActive, className, props = {} }) {
+	const { slots } = useStyleGuideContext();
 	const fills = slots[name];
 	if (!fills) {
 		throw new Error(`Slot "${name}" not found, available slots: ${Object.keys(slots).join(', ')}`);
@@ -19,14 +21,14 @@ export default function Slot({ name, active, onlyActive, className, props = {} }
 				return null;
 			}
 
+			// eslint-disable-next-line react/prop-types
 			const { onClick } = props;
 			fillProps = {
 				...props,
 				name: id,
 				// Set active prop to active fill
-				active: active && id === active,
+				active: active ? id === active : undefined,
 				// Pass fill ID to onClick event handler
-				// eslint-disable-next-line react/prop-types
 				onClick: onClick && ((...attrs) => onClick(id, ...attrs)),
 			};
 
@@ -50,7 +52,4 @@ Slot.propTypes = {
 	onlyActive: PropTypes.bool,
 	props: PropTypes.object,
 	className: PropTypes.string,
-};
-Slot.contextTypes = {
-	slots: PropTypes.object.isRequired,
 };

@@ -24,12 +24,26 @@ export const styles = ({ space, color, borderRadius }) => ({
 		marginLeft: 'auto',
 	},
 	tab: {}, // expose className to allow using it in 'styles' settings
+	padded: {
+		// add padding between each example element rendered
+		'& > *': {
+			isolate: false,
+			marginLeft: -space[1],
+			marginRight: -space[1],
+			'& > *': {
+				isolate: false,
+				marginRight: space[1],
+				marginLeft: space[1],
+			},
+		},
+	},
 });
 
 export function PlaygroundRenderer({
 	classes,
 	exampleIndex,
 	name,
+	padded,
 	preview,
 	previewProps,
 	tabButtons,
@@ -37,9 +51,10 @@ export function PlaygroundRenderer({
 	toolbar,
 }) {
 	const { className, ...props } = previewProps;
+	const previewClasses = cx(classes.preview, className, { [classes.padded]: padded });
 	return (
 		<div className={classes.root} data-testid={`${name}-example-${exampleIndex}`}>
-			<div className={cx(classes.preview, className)} {...props} data-preview={name}>
+			<div className={previewClasses} {...props} data-preview={name} data-testid="preview-wrapper">
 				{preview}
 			</div>
 			<div className={classes.controls}>
@@ -55,6 +70,7 @@ PlaygroundRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	exampleIndex: PropTypes.number.isRequired,
 	name: PropTypes.string.isRequired,
+	padded: PropTypes.bool.isRequired,
 	preview: PropTypes.node.isRequired,
 	previewProps: PropTypes.object.isRequired,
 	tabButtons: PropTypes.node.isRequired,

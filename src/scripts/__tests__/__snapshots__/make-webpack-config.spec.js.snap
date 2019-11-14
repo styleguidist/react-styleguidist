@@ -1,21 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should enable verbose mode in CleanWebpackPlugin 1`] = `
-Array [
-  CleanWebpackPlugin {
-    "options": Object {
-      "allowExternal": false,
-      "dry": false,
-      "root": "~/src/scripts/__tests__",
-      "verbose": true,
-    },
-    "paths": Array [
-      "build",
-    ],
-  },
-]
-`;
-
 exports[`should merge user webpack config 1`] = `
 Object {
   "foo": "bar",

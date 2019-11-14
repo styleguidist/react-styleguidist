@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniHtmlWebpackPlugin = require('mini-html-webpack-plugin');
 const MiniHtmlWebpackTemplate = require('@vxna/mini-html-webpack-template');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const merge = require('webpack-merge');
 const forEach = require('lodash/forEach');
@@ -24,10 +24,11 @@ module.exports = function(config, env) {
 	const template = isFunction(config.template) ? config.template : MiniHtmlWebpackTemplate;
 	const templateContext = isFunction(config.template) ? {} : config.template;
 	const htmlPluginOptions = {
-		context: Object.assign({}, templateContext, {
+		context: {
+			...templateContext,
 			title: config.title,
 			container: config.mountPointId,
-		}),
+		},
 		template,
 	};
 
@@ -59,8 +60,6 @@ module.exports = function(config, env) {
 
 	if (isProd) {
 		const minimizer = new TerserPlugin({
-			parallel: true,
-			cache: true,
 			terserOptions: {
 				ie8: false,
 				ecma: 5,
@@ -87,7 +86,7 @@ module.exports = function(config, env) {
 				chunkFilename: 'build/[name].[chunkhash:8].js',
 			},
 			plugins: [
-				new CleanWebpackPlugin(['build'], {
+				new CleanWebpackPlugin({
 					root: config.styleguideDir,
 					verbose: config.verbose === true,
 				}),
@@ -96,6 +95,7 @@ module.exports = function(config, env) {
 				),
 			],
 			optimization: {
+				minimize: config.minimize === true,
 				minimizer: [minimizer],
 			},
 		});
@@ -127,8 +127,8 @@ module.exports = function(config, env) {
 		});
 	}
 
-	// Add components folder alias at the end so users can override our components to customize the style guide
-	// (their aliases should be before this one)
+	// Add components folder alias at the end, so users can override our components
+	// to customize the style guide (their aliases should be before this one)
 	webpackConfig.resolve.alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
 
 	if (config.dangerouslyUpdateWebpackConfig) {

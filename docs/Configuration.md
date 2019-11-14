@@ -20,6 +20,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 - [`handlers`](#handlers)
 - [`ignore`](#ignore)
 - [`logger`](#logger)
+- [`minimize`](#minimize)
 - [`moduleAliases`](#modulealiases)
 - [`mountPointId`](#mountpointid)
 - [`pagePerSection`](#pagepersection)
@@ -55,7 +56,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 
 Type: `String` or `Array`, optional
 
-Your application static assets folder, will be accessible as `/` in the style guide dev server.
+Your application static assets folder will be accessible as `/` in the style guide dev server.
 
 #### `compilerConfig`
 
@@ -289,6 +290,12 @@ module.exports = {
 }
 ```
 
+#### `minimize`
+
+Type: `Boolean`, default: `true`
+
+If `false`, the production build will not be minimized.
+
 #### `moduleAliases`
 
 Type: `object`, optional
@@ -405,9 +412,7 @@ Function that allows you to override the printing of build messages to console.l
 module.exports = {
   printBuildInstructions(config) {
     console.log(
-      `Style guide published to ${
-        config.styleguideDir
-      }. Something else interesting.`
+      `Style guide published to ${config.styleguideDir}. Something else interesting.`
     )
   }
 }
@@ -432,13 +437,13 @@ module.exports = {
 
 Type: `Number`, default: 500
 
-Debounce time in milliseconds used before render the changes from the editor. While typing code the preview will not be updated.
+Debounce time in milliseconds used before rendering the changes from the editor. While typing code the preview will not be updated.
 
 #### `propsParser`
 
 Type: `Function`, optional
 
-Function that allows you to override the mechanism used to parse props from a source file. Default mechanism is using [react-docgen](https://github.com/reactjs/react-docgen) to parse props.
+Function that allows you to override the mechanism used to parse props from a source file. The default mechanism is using [react-docgen](https://github.com/reactjs/react-docgen) to parse props.
 
 ```javascript
 module.exports = {
@@ -514,7 +519,7 @@ module.exports = {
 }
 ```
 
-Use [theme](#theme) config option to change ribbon style.
+Use the [theme](#theme) config option to change ribbon style.
 
 #### `sections`
 
@@ -532,15 +537,15 @@ Dev server hostname.
 
 #### `serverPort`
 
-Type: `Number`, default: `6060`
+Type: `Number`, default: `process.env.NODE_PORT` or `6060`
 
-Dev server port.
+Dev server port. Can also be set via command line `--port=6060`.
 
 #### `showSidebar`
 
 Type: `Boolean`, default: `true`
 
-Toggle sidebar visibility. Sidebar will be hidden when opening components or examples in isolation mode even if this value is set to `true`. When set to `false`, sidebar will always be hidden.
+Toggle sidebar visibility. The sidebar will be hidden when opening components or examples in isolation mode even if this value is set to `true`. When set to `false`, the sidebar will always be hidden.
 
 #### `skipComponentsWithoutExample`
 
@@ -681,7 +686,7 @@ export default
 
 Type: `Function`, optional
 
-Function that modifies code example (Markdown fenced code block). For example you can use it to load examples from files:
+Function that modifies code example (Markdown fenced code block). For example, you can use it to load examples from files:
 
 ```javascript
 module.exports = {

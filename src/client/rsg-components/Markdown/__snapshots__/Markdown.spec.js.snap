@@ -1,32 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Markdown inline should render text in a span 1`] = `
-
 <span class="rsg--text-11 rsg--inheritSize-12 rsg--baseColor-16">
   Hello world!
 </span>
-
 `;
 
 exports[`Markdown should render a blockquote 1`] = `
-
 <blockquote class="rsg--blockquote-25">
   <p class="rsg--para-2">
     This is a blockquote.
 And this is a second line.
   </p>
 </blockquote>
-
 `;
 
-exports[`Markdown should render a horizontal rule 1`] = `
-
-<hr class="rsg--hr-28">
-
-`;
+exports[`Markdown should render a horizontal rule 1`] = `<hr class="rsg--hr-28">`;
 
 exports[`Markdown should render a table 1`] = `
-
 <table class="rsg--table-29">
   <thead class="rsg--thead-30">
     <tr>
@@ -57,11 +48,9 @@ exports[`Markdown should render a table 1`] = `
     </tr>
   </tbody>
 </table>
-
 `;
 
 exports[`Markdown should render check-lists 1`] = `
-
 <ul class="rsg--list-21">
   <li class="rsg--li-23">
     <input type="checkbox"
@@ -86,20 +75,16 @@ exports[`Markdown should render check-lists 1`] = `
     to do 3
   </li>
 </ul>
-
 `;
 
 exports[`Markdown should render code blocks without escaping 1`] = `
-
 <pre class="lang-html rsg--pre-26">
   <foo>
   </foo>
 </pre>
-
 `;
 
 exports[`Markdown should render emphasis and strong text 1`] = `
-
 <div>
   <p class="rsg--para-2">
     this text is
@@ -114,11 +99,9 @@ exports[`Markdown should render emphasis and strong text 1`] = `
     </em>
   </p>
 </div>
-
 `;
 
 exports[`Markdown should render headings with generated ids 1`] = `
-
 <div>
   <div class="rsg--spacing-3">
     <h1 id="one"
@@ -163,11 +146,9 @@ exports[`Markdown should render headings with generated ids 1`] = `
     </h6>
   </div>
 </div>
-
 `;
 
 exports[`Markdown should render inline code with escaping 1`] = `
-
 <p class="rsg--para-2">
   Foo
   <code class="rsg--code-27">
@@ -175,11 +156,9 @@ exports[`Markdown should render inline code with escaping 1`] = `
   </code>
   baz
 </p>
-
 `;
 
 exports[`Markdown should render links 1`] = `
-
 <p class="rsg--para-2">
   a
   <a href="http://test.com"
@@ -188,11 +167,9 @@ exports[`Markdown should render links 1`] = `
     link
   </a>
 </p>
-
 `;
 
 exports[`Markdown should render mixed nested lists 1`] = `
-
 <ul class="rsg--list-21">
   <li class="rsg--li-23">
     list 1
@@ -215,11 +192,9 @@ exports[`Markdown should render mixed nested lists 1`] = `
     list 3
   </li>
 </ul>
-
 `;
 
 exports[`Markdown should render ordered lists 1`] = `
-
 <ol class="rsg--list-21 rsg--ordered-22">
   <li class="rsg--li-23">
     list
@@ -231,11 +206,9 @@ exports[`Markdown should render ordered lists 1`] = `
     three
   </li>
 </ol>
-
 `;
 
 exports[`Markdown should render paragraphs 1`] = `
-
 <div>
   <p class="rsg--para-2">
     a paragraph
@@ -244,20 +217,16 @@ exports[`Markdown should render paragraphs 1`] = `
     another paragraph
   </p>
 </div>
-
 `;
 
 exports[`Markdown should render pre-formatted text 1`] = `
-
 <pre class="rsg--pre-26">
   this is preformatted
 so is this
 </pre>
-
 `;
 
 exports[`Markdown should render unordered lists 1`] = `
-
 <ul class="rsg--list-21">
   <li class="rsg--li-23">
     list
@@ -269,5 +238,4 @@ exports[`Markdown should render unordered lists 1`] = `
     three
   </li>
 </ul>
-
 `;

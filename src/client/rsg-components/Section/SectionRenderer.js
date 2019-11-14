@@ -24,7 +24,7 @@ export function SectionRenderer(allProps) {
 	} = allProps;
 
 	return (
-		<section className={classes.root}>
+		<section className={classes.root} data-testid={`section-${slug}`}>
 			{name && (
 				<SectionHeading
 					depth={depth}
@@ -48,7 +48,7 @@ SectionRenderer.propTypes = {
 	classes: PropTypes.object.isRequired,
 	name: PropTypes.string,
 	description: PropTypes.string,
-	slug: PropTypes.string,
+	slug: PropTypes.string.isRequired,
 	content: PropTypes.node,
 	components: PropTypes.node,
 	sections: PropTypes.node,

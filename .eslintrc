@@ -13,11 +13,17 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "moduleDirectory": ["src/client", "node_modules"]
+        "moduleDirectory": ["src/client", "node_modules"],
+        "extensions": [
+          ".js",
+          ".json",
+          ".tsx",
+          ".ts"
+        ]
       }
     },
     "react": {
-      "version": "16.3",
+      "version": "16.6",
       "flowVersion": "0.83"
     }
   },
@@ -36,7 +42,9 @@
     "import/first": ["error", "absolute-first"],
     "import/no-duplicates": "error",
     "import/extensions": ["error", "always", {
-      "js": "never"
+      "js": "never",
+      "tsx": "never",
+      "ts": "never"
     }],
     "import/no-extraneous-dependencies": "error",
     "import/newline-after-import": "error",
@@ -50,5 +58,21 @@
     "render": false,
     "mount": false,
     "cy": false
-  }
+  },
+  "overrides": [
+    {
+        "files": ["*.spec.js"],
+        "rules": {
+          "compat/compat": 0
+        }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint"],
+      "extends": [
+        "tamia/typescript-react"
+      ]
+    }
+  ]
 }

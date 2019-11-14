@@ -1,36 +1,46 @@
 import React from 'react';
+import { render } from '@testing-library/react';
 import Ribbon from './Ribbon';
-import { RibbonRenderer, styles } from './RibbonRenderer';
+import Context from '../Context';
 
-const props = {
-	classes: classes(styles),
-};
+const url = 'http://example.com/';
+const text = 'Share the repo';
 
-describe('Ribbon', () => {
-	it('should render ribbon if the ribbon is present in the config', () => {
-		const actual = shallow(<Ribbon />, { context: { config: { ribbon: { url: 'foo.bar' } } } });
+it('should render ribbon if the ribbon is present in the config', () => {
+	const { getByRole } = render(
+		<Context.Provider value={{ config: { ribbon: { url } } }}>
+			<Ribbon />
+		</Context.Provider>
+	);
 
-		expect(actual).toMatchSnapshot();
-	});
-
-	it('should return null if the ribbon is not present in the config', () => {
-		const actual = shallow(<Ribbon />, { context: { config: {} } });
-
-		expect(actual.type()).toBeNull();
-	});
+	expect(getByRole('link')).toHaveAttribute('href', url);
 });
-describe('RibbonRenderer', () => {
-	it('should render ribbon with url', () => {
-		const actual = shallow(<RibbonRenderer {...props} url="http://example.com" />);
 
-		expect(actual).toMatchSnapshot();
-	});
+it('should render ribbon with custom text', () => {
+	const { getByText } = render(
+		<Context.Provider
+			value={{
+				config: {
+					ribbon: {
+						url,
+						text,
+					},
+				},
+			}}
+		>
+			<Ribbon />
+		</Context.Provider>
+	);
 
-	it('should render ribbon with a text', () => {
-		const actual = shallow(
-			<RibbonRenderer {...props} url="http://example.com" text="Share the repo" />
-		);
+	expect(getByText(text)).toBeInTheDocument();
+});
 
-		expect(actual).toMatchSnapshot();
-	});
+it('should not render anything if the ribbon is not present in the config', () => {
+	const { queryByRole } = render(
+		<Context.Provider value={{ config: {} }}>
+			<Ribbon />
+		</Context.Provider>
+	);
+
+	expect(queryByRole('link')).not.toBeInTheDocument();
 });

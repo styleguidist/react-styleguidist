@@ -53,6 +53,12 @@ module.exports = {
 					usageMode: 'expand', // 'hide' | 'collapse' | 'expand'
 				},
 				{
+					name: 'Labels',
+					components: () => ['./src/components/MyLabel/Label.js'],
+					exampleMode: 'expand', // 'hide' | 'collapse' | 'expand'
+					usageMode: 'expand', // 'hide' | 'collapse' | 'expand'
+				},
+				{
 					name: 'Others',
 					components: () => ['./src/components/RandomButton/RandomButton.js'],
 					exampleMode: 'collapse', // 'hide' | 'collapse' | 'expand'

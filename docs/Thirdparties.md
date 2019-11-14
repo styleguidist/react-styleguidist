@@ -20,7 +20,7 @@
 
 Styleguidist _loads_ your components (see [Loading and exposing components](Components.md#loading-and-exposing-components) for more) but it uses [react-docgen](https://github.com/reactjs/react-docgen) to _generate documentation_ which may require changes in your code to work properly.
 
-React-docgen reads your components as static text files and looks for patterns like class or function declarations that looks like React components. It does not run any JavaScript code, so, if your component is dynamically generated, is wrapped in a higher-order component, or is split into several files, then react-docgen may not understand it.
+React-docgen reads your components as static text files and looks for patterns like class or function declarations that look like React components. It does not run any JavaScript code, so, if your component is dynamically generated, is wrapped in a higher-order component, or is split into several files, then react-docgen may not understand it.
 
 It supports components defined via `React.createClass`, ES6 classes and stateless functional components, with optional Flow and TypeScript (via [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript)) type annotations.
 
@@ -40,7 +40,7 @@ export function Button({ color, size, children }) {
 export default CSSModules(Button, styles)
 ```
 
-Each example is rendered in an independent React root. You can control React context by defining a custom Wrapper component like this:
+Each example is rendered in an independent React root. You can control React Context by defining a custom Wrapper component like this:
 
 ```javascript
 // styleguide.config.js
@@ -194,7 +194,7 @@ export default SalmonButton
 
 If your styled-components require a theme to render properly, add a `ThemeProvider` to your style guide.
 
-First, create your `Wrapper` component. For this example we’ll put it in the `styleguide/` directory, but you can add it anywhere you want.
+First, create your `Wrapper` component. For this example, we’ll put it in the `styleguide/` directory, but you can add it anywhere you want.
 
 ```jsx
 // styleguide/ThemeWrapper.js

@@ -10,11 +10,9 @@ exports[`render should render component 1`] = `
         "components": Array [],
         "content": Array [
           Object {
-            "content": 
-<button>
+            "content": <button>
   OK
-</button>
-,
+</button>,
             "evalInContext": [Function],
             "type": "code",
           },
@@ -76,11 +74,9 @@ exports[`render should render styled component 1`] = `
         "components": Array [],
         "content": Array [
           Object {
-            "content": 
-<button>
+            "content": <button>
   OK
-</button>
-,
+</button>,
             "evalInContext": [Function],
             "type": "code",
           },
@@ -136,11 +132,9 @@ exports[`should render component renderer 1`] = `
         "components": Array [],
         "content": Array [
           Object {
-            "content": 
-<button>
+            "content": <button>
   OK
-</button>
-,
+</button>,
             "evalInContext": [Function],
             "type": "code",
           },

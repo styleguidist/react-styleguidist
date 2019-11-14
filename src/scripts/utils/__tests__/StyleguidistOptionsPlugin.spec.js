@@ -13,7 +13,7 @@ it('should attach Styleguidist config when webpack 4 is used', () => {
 					callback({
 						hooks: {
 							normalModuleLoader: {
-								tap: (name, compilationCallback) => {
+								tap: (moduleName, compilationCallback) => {
 									compilationCallback(context, { resource: 'pizza' });
 								},
 							},
@@ -37,7 +37,7 @@ it('should do nothing when resource is empty', () => {
 					callback({
 						hooks: {
 							normalModuleLoader: {
-								tap: (name, compilationCallback) => {
+								tap: (moduleName, compilationCallback) => {
 									compilationCallback(context, {});
 								},
 							},

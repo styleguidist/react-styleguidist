@@ -4,9 +4,14 @@ import Examples from 'rsg-components/Examples';
 import Components from 'rsg-components/Components';
 import Sections from 'rsg-components/Sections';
 import SectionRenderer from 'rsg-components/Section/SectionRenderer';
+import { useStyleGuideContext } from 'rsg-components/Context';
 import { DisplayModes } from '../../consts';
 
-export default function Section({ section, depth }, { displayMode, config: { pagePerSection } }) {
+export default function Section({ section, depth }) {
+	const {
+		displayMode,
+		config: { pagePerSection },
+	} = useStyleGuideContext();
 	const {
 		name,
 		slug,
@@ -51,9 +56,4 @@ export default function Section({ section, depth }, { displayMode, config: { pag
 Section.propTypes = {
 	section: PropTypes.object.isRequired,
 	depth: PropTypes.number.isRequired,
-};
-
-Section.contextTypes = {
-	displayMode: PropTypes.string,
-	config: PropTypes.object.isRequired,
 };
