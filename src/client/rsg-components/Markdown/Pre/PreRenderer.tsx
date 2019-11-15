@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'clsx';
-import Styled from 'rsg-components/Styled';
+import Styled, { JssInjectedProps, Theme } from 'rsg-components/Styled';
 import prismTheme from '../../../styles/prismTheme';
 
-const styles = ({ space, color, fontSize, fontFamily, borderRadius }) => ({
+const styles = ({ space, color, fontSize, fontFamily, borderRadius }: Theme) => ({
 	pre: {
 		fontFamily: fontFamily.monospace,
 		fontSize: fontSize.small,
@@ -24,20 +24,29 @@ const styles = ({ space, color, fontSize, fontFamily, borderRadius }) => ({
 	},
 });
 
-export function PreRenderer({ classes, className, children }) {
+interface PreProps extends JssInjectedProps {
+	className?: string;
+	children: React.ReactNode;
+}
+
+export const PreRenderer: React.FunctionComponent<PreProps> = ({
+	classes,
+	className,
+	children,
+}) => {
 	const classNames = cx(className, classes.pre);
 
 	const isHighlighted = className && className.indexOf('lang-') !== -1;
-	if (isHighlighted) {
-		return <pre className={classNames} dangerouslySetInnerHTML={{ __html: children }} />;
+	if (isHighlighted && children) {
+		return <pre className={classNames} dangerouslySetInnerHTML={{ __html: children.toString() }} />;
 	}
 	return <pre className={classNames}>{children}</pre>;
-}
+};
 
 PreRenderer.propTypes = {
-	classes: PropTypes.object.isRequired,
+	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	className: PropTypes.string,
 	children: PropTypes.node.isRequired,
 };
 
-export default Styled(styles)(PreRenderer);
+export default Styled<PreProps>(styles)(PreRenderer);

@@ -27,6 +27,7 @@ export const BlockquoteRenderer: React.FunctionComponent<BlockquoteProps> = ({
 	const blockquoteClasses = cx(classes.blockquote, className);
 	return <blockquote className={blockquoteClasses}>{children}</blockquote>;
 };
+
 BlockquoteRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	className: PropTypes.string,
