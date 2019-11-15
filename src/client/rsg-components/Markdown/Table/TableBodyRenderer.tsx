@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export function TableBodyRenderer({ children }) {
+export const TableBodyRenderer: React.FunctionComponent = ({ children }) => {
 	return <tbody>{children}</tbody>;
-}
+};
 TableBodyRenderer.propTypes = {
 	children: PropTypes.node.isRequired,
 };

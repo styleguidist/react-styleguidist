@@ -1,4 +1,5 @@
 import React from 'react';
+import { render } from 'enzyme';
 
 import { Table, TableHead, TableBody, TableRow, TableCell } from './index';
 
