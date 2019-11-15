@@ -8,6 +8,7 @@ const type = { name: 'Array' };
 const description = 'Converts foo to bar';
 const props = {
 	classes: classes(styles),
+	name: 'argname',
 };
 
 it('should render argument', () => {

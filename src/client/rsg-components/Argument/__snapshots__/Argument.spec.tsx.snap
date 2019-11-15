@@ -57,6 +57,12 @@ exports[`should render default value of argument 1`] = `
 <Group
   separator=" "
 >
+  <span>
+    <Styled(Name)>
+      argname
+    </Styled(Name)>
+    :
+  </span>
   <Styled(Type)>
     String
     =bar
@@ -73,6 +79,12 @@ exports[`should render default value of optional argument 1`] = `
 <Group
   separator=" "
 >
+  <span>
+    <Styled(Name)>
+      argname
+    </Styled(Name)>
+    :
+  </span>
   <Styled(Type)>
     Boolean
     ?
@@ -90,6 +102,12 @@ exports[`should render optional argument 1`] = `
 <Group
   separator=" "
 >
+  <span>
+    <Styled(Name)>
+      argname
+    </Styled(Name)>
+    :
+  </span>
   <Styled(Type)>
     Array
     ?
@@ -107,6 +125,12 @@ exports[`should render return value 1`] = `
   separator=" "
 >
   Returns
+  <span>
+    <Styled(Name)>
+      argname
+    </Styled(Name)>
+    :
+  </span>
   <Styled(Type)>
     Array
   </Styled(Type)>
@@ -124,6 +148,12 @@ exports[`should render with block styles 1`] = `
 >
   <Group
     separator=" "
-  />
+  >
+    <span>
+      <Styled(Name)>
+        argname
+      </Styled(Name)>
+    </span>
+  </Group>
 </div>
 `;

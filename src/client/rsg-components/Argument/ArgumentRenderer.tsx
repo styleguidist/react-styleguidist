@@ -12,8 +12,8 @@ export const styles = ({ space }: Theme) => ({
 	},
 });
 
-interface ArgumentProps extends JssInjectedProps {
-	name?: string;
+export interface ArgumentProps {
+	name: string;
 	type?: any;
 	default?: string;
 	description?: string;
@@ -21,7 +21,9 @@ interface ArgumentProps extends JssInjectedProps {
 	block?: boolean;
 }
 
-export const ArgumentRenderer: React.FunctionComponent<ArgumentProps> = ({
+type ArgumentPropsWithClasses = ArgumentProps & JssInjectedProps;
+
+export const ArgumentRenderer: React.FunctionComponent<ArgumentPropsWithClasses> = ({
 	classes,
 	name,
 	type,
@@ -65,7 +67,7 @@ export const ArgumentRenderer: React.FunctionComponent<ArgumentProps> = ({
 
 ArgumentRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	name: PropTypes.string,
+	name: PropTypes.string.isRequired,
 	type: PropTypes.object,
 	default: PropTypes.string,
 	description: PropTypes.string,
@@ -73,4 +75,4 @@ ArgumentRenderer.propTypes = {
 	block: PropTypes.bool,
 };
 
-export default Styled<ArgumentProps>(styles)(ArgumentRenderer);
+export default Styled<ArgumentPropsWithClasses>(styles)(ArgumentRenderer);

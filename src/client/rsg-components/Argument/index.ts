@@ -1,1 +1,1 @@
-export { default } from 'rsg-components/Argument/ArgumentRenderer';
+export { default, ArgumentProps } from 'rsg-components/Argument/ArgumentRenderer';

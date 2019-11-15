@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Argument from 'rsg-components/Argument';
+import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
+import Argument, { ArgumentProps } from 'rsg-components/Argument';
 import Heading from 'rsg-components/Heading';
-import Styled from 'rsg-components/Styled';
 
-export const styles = ({ space }) => ({
+export const styles = ({ space }: Theme) => ({
 	root: {
 		marginBottom: space[2],
 		fontSize: 'inherit',
@@ -14,7 +14,16 @@ export const styles = ({ space }) => ({
 	},
 });
 
-export function ArgumentsRenderer({ classes, args, heading }) {
+interface ArgumentsProps extends JssInjectedProps {
+	heading?: boolean;
+	args: ArgumentProps[];
+}
+
+export const ArgumentsRenderer: React.FunctionComponent<ArgumentsProps> = ({
+	classes,
+	args,
+	heading,
+}) => {
 	if (args.length === 0) {
 		return null;
 	}
@@ -31,18 +40,18 @@ export function ArgumentsRenderer({ classes, args, heading }) {
 			))}
 		</div>
 	);
-}
+};
 
 ArgumentsRenderer.propTypes = {
-	classes: PropTypes.object.isRequired,
+	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	args: PropTypes.arrayOf(
 		PropTypes.shape({
 			name: PropTypes.string.isRequired,
 			type: PropTypes.object,
 			description: PropTypes.string,
-		})
+		}).isRequired
 	).isRequired,
 	heading: PropTypes.bool,
 };
 
-export default Styled(styles)(ArgumentsRenderer);
+export default Styled<ArgumentsProps>(styles)(ArgumentsRenderer);
