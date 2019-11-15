@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { render } from 'enzyme';
 import Blockquote from './index';
 
 describe('Markdown Blockquote', () => {
