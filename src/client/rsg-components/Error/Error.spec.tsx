@@ -1,4 +1,5 @@
 import React from 'react';
+import { shallow } from 'enzyme';
 import { ErrorRenderer } from './ErrorRenderer';
 
 it('renderer should render error message', () => {

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Styled from 'rsg-components/Styled';
+import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ fontFamily, fontSize, color, space }) => ({
+const styles = ({ fontFamily, fontSize, color, space }: Theme) => ({
 	root: {
 		margin: space[2],
 		lineHeight: 1.2,
@@ -19,7 +19,14 @@ const styles = ({ fontFamily, fontSize, color, space }) => ({
 	},
 });
 
-export function ErrorRenderer({ classes, error, info }) {
+interface ErrorProps extends JssInjectedProps {
+	error: any;
+	info: {
+		componentStack?: any;
+	};
+}
+
+export const ErrorRenderer: React.FunctionComponent<ErrorProps> = ({ classes, error, info }) => {
 	return (
 		<div className={classes.root}>
 			<pre className={classes.stack}>
@@ -44,14 +51,14 @@ export function ErrorRenderer({ classes, error, info }) {
 			</div>
 		</div>
 	);
-}
+};
 
 ErrorRenderer.propTypes = {
-	classes: PropTypes.object.isRequired,
+	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	error: PropTypes.object.isRequired,
 	info: PropTypes.shape({
 		componentStack: PropTypes.any.isRequired,
 	}).isRequired,
 };
 
-export default Styled(styles)(ErrorRenderer);
+export default Styled<ErrorProps>(styles)(ErrorRenderer);

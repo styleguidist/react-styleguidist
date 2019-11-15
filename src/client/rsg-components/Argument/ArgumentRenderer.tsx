@@ -1,18 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Styled from 'rsg-components/Styled';
+import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
 import Markdown from 'rsg-components/Markdown';
 import Name from 'rsg-components/Name';
 import Type from 'rsg-components/Type';
 import Group from 'react-group';
 
-export const styles = ({ space }) => ({
+export const styles = ({ space }: Theme) => ({
 	block: {
 		marginBottom: space[2],
 	},
 });
 
-export function ArgumentRenderer({ classes, name, type, description, returns, block, ...props }) {
+interface ArgumentProps extends JssInjectedProps {
+	name?: string;
+	type?: any;
+	default?: string;
+	description?: string;
+	returns?: boolean;
+	block?: boolean;
+}
+
+export const ArgumentRenderer: React.FunctionComponent<ArgumentProps> = ({
+	classes,
+	name,
+	type,
+	description,
+	returns,
+	block,
+	...props
+}) => {
 	const isOptional = type && type.type === 'OptionalType';
 	const defaultValue = props.default;
 	if (isOptional) {
@@ -44,10 +61,10 @@ export function ArgumentRenderer({ classes, name, type, description, returns, bl
 	}
 
 	return content;
-}
+};
 
 ArgumentRenderer.propTypes = {
-	classes: PropTypes.object.isRequired,
+	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	name: PropTypes.string,
 	type: PropTypes.object,
 	default: PropTypes.string,
@@ -56,4 +73,4 @@ ArgumentRenderer.propTypes = {
 	block: PropTypes.bool,
 };
 
-export default Styled(styles)(ArgumentRenderer);
+export default Styled<ArgumentProps>(styles)(ArgumentRenderer);

@@ -1,5 +1,7 @@
 import React from 'react';
+import { shallow } from 'enzyme';
 import { ArgumentRenderer, styles } from './ArgumentRenderer';
+import classes from '../../../../test/classes';
 
 const name = 'Foo';
 const type = { name: 'Array' };
