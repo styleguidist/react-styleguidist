@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Styled from 'rsg-components/Styled';
+import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
 import Markdown from 'rsg-components/Markdown';
 import { DOCS_DOCUMENTING } from '../../../scripts/consts';
 
-const styles = ({ fontFamily, fontSize, color }) => ({
+const styles = ({ fontFamily, fontSize, color }: Theme) => ({
 	button: {
 		padding: 0,
 		fontSize: fontSize.base,
@@ -21,21 +21,25 @@ const styles = ({ fontFamily, fontSize, color }) => ({
 	},
 });
 
-export class ExamplePlaceholderRenderer extends Component {
-	static propTypes = {
-		classes: PropTypes.object.isRequired,
+interface ExamplePlaceholderProps extends JssInjectedProps {
+	name?: string;
+}
+
+export class ExamplePlaceholderRenderer extends Component<ExamplePlaceholderProps> {
+	public static propTypes = {
+		classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 		name: PropTypes.string,
 	};
 
-	state = {
+	public state = {
 		isVisible: false,
 	};
 
-	handleOpen = () => {
+	public handleOpen = () => {
 		this.setState({ isVisible: true });
 	};
 
-	render() {
+	public render() {
 		const { classes, name } = this.props;
 		const { isVisible } = this.state;
 		if (isVisible) {
@@ -66,4 +70,4 @@ Read more in the [documenting components guide](${DOCS_DOCUMENTING}).
 	}
 }
 
-export default Styled(styles)(ExamplePlaceholderRenderer);
+export default Styled<ExamplePlaceholderProps>(styles)(ExamplePlaceholderRenderer);
