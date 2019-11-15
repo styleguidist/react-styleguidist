@@ -1,11 +1,14 @@
 {
-  "extends": "tamia",
-  "overrides": [
-    {
-      "files": ["*.ts", "*.tsx"],
-      "parser": "@typescript-eslint/parser",
-      "plugins": ["@typescript-eslint"],
-      "extends": ["tamia/typescript"]
-    }
-  ]
+	"extends": "tamia",
+	"overrides": [
+		{
+			"files": ["*.ts", "*.tsx"],
+			"parser": "@typescript-eslint/parser",
+			"plugins": ["@typescript-eslint"],
+			"extends": ["tamia/typescript"],
+			"rules": {
+				"linebreak-style": "off"
+			}
+		}
+	]
 }

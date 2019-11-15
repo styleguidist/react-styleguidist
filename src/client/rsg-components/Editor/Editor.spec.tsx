@@ -1,4 +1,5 @@
 import React from 'react';
+import { shallow, mount } from 'enzyme';
 import { Editor } from './Editor';
 
 const code = '<button>MyAwesomeCode</button>';

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Styled from 'rsg-components/Styled';
+import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
 import SimpleEditor from 'react-simple-code-editor';
-import Prism from 'prismjs/components/prism-core';
+import { highlight as prismHighlight, languages } from 'prismjs';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-javascript';
@@ -10,9 +10,9 @@ import 'prismjs/components/prism-jsx';
 import { space } from '../../styles/theme';
 import prismTheme from '../../styles/prismTheme';
 
-const highlight = code => Prism.highlight(code, Prism.languages.jsx, 'jsx');
+const highlight = (code: string) => prismHighlight(code, languages.jsx, 'jsx');
 
-const styles = ({ fontFamily, fontSize, color, borderRadius }) => ({
+const styles = ({ fontFamily, fontSize, color, borderRadius }: Theme) => ({
 	root: {
 		fontFamily: fontFamily.monospace,
 		fontSize: fontSize.small,
@@ -35,16 +35,26 @@ const styles = ({ fontFamily, fontSize, color, borderRadius }) => ({
 	},
 });
 
-export class Editor extends Component {
-	static propTypes = {
+interface EditorProps extends JssInjectedProps {
+	code: string;
+	onChange: (code: string) => void;
+}
+
+interface EditorState {
+	code: string;
+	prevCode: string;
+}
+
+export class Editor extends Component<EditorProps> {
+	public static propTypes = {
 		code: PropTypes.string.isRequired,
 		onChange: PropTypes.func.isRequired,
-		classes: PropTypes.object.isRequired,
+		classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	};
 
-	state = { code: this.props.code, prevCode: this.props.code };
+	public state = { code: this.props.code, prevCode: this.props.code };
 
-	static getDerivedStateFromProps(nextProps, prevState) {
+	public static getDerivedStateFromProps(nextProps: EditorProps, prevState: EditorState) {
 		const { code } = nextProps;
 		if (prevState.prevCode !== code) {
 			return {
@@ -55,16 +65,16 @@ export class Editor extends Component {
 		return null;
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
+	public shouldComponentUpdate(nextProps: EditorProps, nextState: EditorState) {
 		return nextState.code !== this.state.code;
 	}
 
-	handleChange = code => {
+	public handleChange = (code: string) => {
 		this.setState({ code });
 		this.props.onChange(code);
 	};
 
-	render() {
+	public render() {
 		return (
 			<SimpleEditor
 				className={this.props.classes.root}
@@ -79,4 +89,4 @@ export class Editor extends Component {
 	}
 }
 
-export default Styled(styles)(Editor);
+export default Styled<EditorProps>(styles)(Editor);
