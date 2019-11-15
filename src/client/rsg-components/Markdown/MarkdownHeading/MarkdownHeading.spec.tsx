@@ -1,5 +1,6 @@
 import React from 'react';
 import { html } from 'cheerio';
+import { render } from 'enzyme';
 import MarkdownHeading from './index';
 
 describe('Markdown Heading', () => {
