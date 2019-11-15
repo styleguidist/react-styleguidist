@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Styled from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
 const styles = () => ({
 	input: {
@@ -11,11 +11,14 @@ const styles = () => ({
 	},
 });
 
-export function CheckboxRenderer({ classes, ...rest }) {
+export const CheckboxRenderer: React.FunctionComponent<JssInjectedProps> = ({
+	classes,
+	...rest
+}) => {
 	return <input {...rest} type="checkbox" className={classes.input} />;
-}
+};
 CheckboxRenderer.propTypes = {
-	classes: PropTypes.object.isRequired,
+	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 };
 
 export default Styled(styles)(CheckboxRenderer);
