@@ -8,14 +8,14 @@ import Para from 'rsg-components/Para';
 import MarkdownHeading from 'rsg-components/Markdown/MarkdownHeading';
 import List from 'rsg-components/Markdown/List';
 import Blockquote from 'rsg-components/Markdown/Blockquote';
-import PreBase from 'rsg-components/Markdown/Pre';
+import PreBase, { PreProps } from 'rsg-components/Markdown/Pre';
 import Code from 'rsg-components/Code';
 import Checkbox from 'rsg-components/Markdown/Checkbox';
 import Hr from 'rsg-components/Markdown/Hr';
 import { Details, DetailsSummary } from 'rsg-components/Markdown/Details';
 import { Table, TableHead, TableBody, TableRow, TableCell } from 'rsg-components/Markdown/Table';
 
-const Pre = props => {
+const Pre = (props: PreProps) => {
 	if (isValidElement(props.children)) {
 		// Avoid rendering <Code> inside <Pre>
 		return <PreBase {...props.children.props} />;
@@ -144,10 +144,16 @@ export const inlineOverrides = {
 	},
 };
 
-function Markdown({ text, inline }) {
-	const overrides = inline ? inlineOverrides : baseOverrides;
-	return compiler(stripHtmlComments(text), { overrides, forceBlock: true });
+interface MarkdownProps {
+	text: string;
+	inline?: boolean;
 }
+
+export const Markdown: React.FunctionComponent<MarkdownProps> = ({ text, inline }) => {
+	// FIXME: this any is necessary as typings for overrides only accept ClassComponent
+	const overrides = (inline ? inlineOverrides : baseOverrides) as any;
+	return compiler(stripHtmlComments(text), { overrides, forceBlock: true });
+};
 
 Markdown.propTypes = {
 	text: PropTypes.string.isRequired,

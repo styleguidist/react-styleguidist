@@ -1,9 +1,10 @@
 import React from 'react';
 import { html } from 'cheerio';
+import { render, mount } from 'enzyme';
 import Markdown from './Markdown';
 
 describe('Markdown', () => {
-	const expectSnapshotToMatch = markdown => {
+	const expectSnapshotToMatch = (markdown: string) => {
 		const actual = render(<Markdown text={markdown} />);
 
 		expect(html(actual)).toMatchSnapshot();

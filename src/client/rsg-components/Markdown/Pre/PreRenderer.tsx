@@ -24,12 +24,14 @@ const styles = ({ space, color, fontSize, fontFamily, borderRadius }: Theme) => 
 	},
 });
 
-interface PreProps extends JssInjectedProps {
+export interface PreProps {
 	className?: string;
 	children: React.ReactNode;
 }
 
-export const PreRenderer: React.FunctionComponent<PreProps> = ({
+type PrePropsWithClasses = JssInjectedProps & PreProps;
+
+export const PreRenderer: React.FunctionComponent<PrePropsWithClasses> = ({
 	classes,
 	className,
 	children,
@@ -49,4 +51,4 @@ PreRenderer.propTypes = {
 	children: PropTypes.node.isRequired,
 };
 
-export default Styled<PreProps>(styles)(PreRenderer);
+export default Styled<PrePropsWithClasses>(styles)(PreRenderer);
