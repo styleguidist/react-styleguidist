@@ -28,112 +28,112 @@ Pre.propTypes = {
 
 export const baseOverrides = {
 	a: {
-		component: Link,
+		component: Link as React.SFC,
 	},
 	h1: {
-		component: MarkdownHeading,
+		component: MarkdownHeading as React.SFC,
 		props: {
 			level: 1,
 		},
 	},
 	h2: {
-		component: MarkdownHeading,
+		component: MarkdownHeading as React.SFC,
 		props: {
 			level: 2,
 		},
 	},
 	h3: {
-		component: MarkdownHeading,
+		component: MarkdownHeading as React.SFC,
 		props: {
 			level: 3,
 		},
 	},
 	h4: {
-		component: MarkdownHeading,
+		component: MarkdownHeading as React.SFC,
 		props: {
 			level: 4,
 		},
 	},
 	h5: {
-		component: MarkdownHeading,
+		component: MarkdownHeading as React.SFC,
 		props: {
 			level: 5,
 		},
 	},
 	h6: {
-		component: MarkdownHeading,
+		component: MarkdownHeading as React.SFC,
 		props: {
 			level: 6,
 		},
 	},
 	p: {
-		component: Para,
+		component: Para as React.SFC,
 		props: {
 			semantic: 'p',
 		},
 	},
 	em: {
-		component: Text,
+		component: Text as React.SFC,
 		props: {
 			semantic: 'em',
 		},
 	},
 	strong: {
-		component: Text,
+		component: Text as React.SFC,
 		props: {
 			semantic: 'strong',
 		},
 	},
 	ul: {
-		component: List,
+		component: List as React.SFC,
 	},
 	ol: {
-		component: List,
+		component: List as React.SFC,
 		props: {
 			ordered: true,
 		},
 	},
 	blockquote: {
-		component: Blockquote,
+		component: Blockquote as React.SFC,
 	},
 	code: {
-		component: Code,
+		component: Code as React.SFC,
 	},
 	pre: {
-		component: Pre,
+		component: Pre as React.SFC,
 	},
 	input: {
-		component: Checkbox,
+		component: Checkbox as React.SFC,
 	},
 	hr: {
-		component: Hr,
+		component: Hr as React.SFC,
 	},
 	table: {
-		component: Table,
+		component: Table as React.SFC,
 	},
 	thead: {
-		component: TableHead,
+		component: TableHead as React.SFC,
 	},
 	th: {
-		component: TableCell,
+		component: TableCell as React.SFC,
 		props: {
 			header: true,
 		},
 	},
 	tbody: {
-		component: TableBody,
+		component: TableBody as React.SFC,
 	},
 	tr: {
-		component: TableRow,
+		component: TableRow as React.SFC,
 	},
 	td: {
-		component: TableCell,
+		component: TableCell as React.SFC,
 	},
 	details: {
-		component: Details,
+		component: Details as React.SFC,
 	},
 	summary: {
-		component: DetailsSummary,
+		component: DetailsSummary as React.SFC,
 	},
 };
 
@@ -150,8 +150,7 @@ interface MarkdownProps {
 }
 
 export const Markdown: React.FunctionComponent<MarkdownProps> = ({ text, inline }) => {
-	// FIXME: this any is necessary as typings for overrides only accept ClassComponent
-	const overrides = (inline ? inlineOverrides : baseOverrides) as any;
+	const overrides = inline ? inlineOverrides : baseOverrides;
 	return compiler(stripHtmlComments(text), { overrides, forceBlock: true });
 };
 
