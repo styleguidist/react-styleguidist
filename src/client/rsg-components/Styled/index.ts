@@ -1,1 +1,2 @@
-export { default, JssInjectedProps, Theme } from 'rsg-components/Styled/Styled';
+export { default } from 'rsg-components/Styled/Styled';
+export * from 'rsg-components/Styled/Styled';
