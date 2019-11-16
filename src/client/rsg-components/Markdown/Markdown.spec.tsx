@@ -130,8 +130,9 @@ and this is _emphasized_
 <!-- This is a single line comment -->
 `;
 		const actual = mount(<Markdown text={markdown} />);
+		const pChildren = actual.find('p').props().children as string[];
 
-		expect(actual.find('p').props().children[0]).not.toContain('This is a single line comment');
+		expect(pChildren[0]).not.toContain('This is a single line comment');
 	});
 
 	it('should ignore multiline comments', () => {
@@ -143,8 +144,9 @@ comment
 -->
 `;
 		const actual = mount(<Markdown text={markdown} />);
+		const pChildren = actual.find('p').props().children as string[];
 
-		expect(actual.find('p').props().children[0]).not.toContain(
+		expect(pChildren[0]).not.toContain(
 			`This is a 
 multiline
 comment`
@@ -153,7 +155,7 @@ comment`
 });
 
 describe('Markdown inline', () => {
-	const expectSnapshotToMatch = markdown => {
+	const expectSnapshotToMatch = (markdown: string) => {
 		const actual = render(<Markdown text={markdown} inline />);
 
 		expect(html(actual)).toMatchSnapshot();
