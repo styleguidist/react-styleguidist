@@ -1,4 +1,5 @@
 import React from 'react';
+import { shallow } from 'enzyme';
 import Wrapper from './Wrapper';
 
 it('should render children', () => {
@@ -13,8 +14,12 @@ it('should call onError handler when React invokes error handler', () => {
 	const actual = shallow(<Wrapper onError={onError}>blah</Wrapper>);
 
 	// faux error
-	actual.instance().componentDidCatch('err');
+	const err = new Error('err');
+	const inst = actual.instance();
+	if (inst && inst.componentDidCatch) {
+		inst.componentDidCatch(err, { componentStack: '' });
+	}
 
 	expect(onError).toHaveBeenCalledTimes(1);
-	expect(onError).toHaveBeenCalledWith('err');
+	expect(onError).toHaveBeenCalledWith(err);
 });

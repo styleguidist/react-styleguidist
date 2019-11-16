@@ -1,5 +1,7 @@
 import React from 'react';
+import { shallow } from 'enzyme';
 import { ParaRenderer, styles } from './ParaRenderer';
+import classes from '../../../../test/classes';
 
 const props = {
 	classes: classes(styles),
