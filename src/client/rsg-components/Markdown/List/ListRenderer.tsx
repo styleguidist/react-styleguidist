@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, ReactHTML, HTMLAttributes } from 'react';
+import React, { cloneElement, Children } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'clsx';
 import Styled, { JssInjectedProps, Theme } from 'rsg-components/Styled';
@@ -38,13 +38,9 @@ export const ListRenderer: React.FunctionComponent<ListProps> = ({
 
 	return (
 		<Tag className={classNames}>
-			{children
-				? Array.isArray(children)
-					? children.map(li =>
-							React.isValidElement(li) ? cloneElement(li, { className: classes.li }) : li
-					  )
-					: children
-				: null}
+			{Children.map(children, li =>
+				React.isValidElement(li) ? cloneElement(li, { className: classes.li }) : li
+			)}
 		</Tag>
 	);
 };
