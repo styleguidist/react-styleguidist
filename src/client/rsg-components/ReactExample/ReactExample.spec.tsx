@@ -1,8 +1,9 @@
 import React from 'react';
+import { shallow, mount } from 'enzyme';
 import noop from 'lodash/noop';
-import ReactExample from '../ReactExample';
+import ReactExample from '.';
 
-const evalInContext = a =>
+const evalInContext = (a: string): (() => any) =>
 	// eslint-disable-next-line no-new-func
 	new Function('require', 'state', 'setState', 'const React = require("react");' + a).bind(
 		null,

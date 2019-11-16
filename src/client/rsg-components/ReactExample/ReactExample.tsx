@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { TransformOptions } from 'buble';
 import Wrapper from 'rsg-components/Wrapper';
 import compileCode from '../../utils/compileCode';
 import splitExampleCode from '../../utils/splitExampleCode';
@@ -8,25 +9,34 @@ import splitExampleCode from '../../utils/splitExampleCode';
 
 // Wrap the example component with a Functional Component to support
 // hooks in examples
-function FunctionComponentWrapper(props) {
+function FunctionComponentWrapper(props: {
+	component: (state: any, setState: (s: any) => void) => any;
+	state: any;
+	setState: (s: any) => void;
+}) {
 	const { component, state, setState } = props;
 
 	// Return null when component doesn't render anything to avoid an error
 	return component(state, setState) || null;
 }
 
+interface StateHolderProps {
+	component: (state: any, setState: (s: any) => void) => any;
+	initialState: Record<string, any>;
+}
+
 // Wrap everything in a React component to leverage the state management
 // of this component
-class StateHolder extends Component {
-	static propTypes = {
+class StateHolder extends Component<StateHolderProps> {
+	public static propTypes = {
 		component: PropTypes.func.isRequired,
 		initialState: PropTypes.object.isRequired,
 	};
 
-	state = this.props.initialState;
-	setStateBinded = this.setState.bind(this);
+	public state = this.props.initialState;
+	public setStateBinded = this.setState.bind(this);
 
-	render() {
+	public render() {
 		return (
 			<FunctionComponentWrapper
 				component={this.props.component}
@@ -37,20 +47,27 @@ class StateHolder extends Component {
 	}
 }
 
-export default class ReactExample extends Component {
-	static propTypes = {
+interface ReactExampleProps {
+	code: string;
+	evalInContext(code: string): () => any;
+	onError(err: Error): void;
+	compilerConfig?: TransformOptions;
+}
+
+export default class ReactExample extends Component<ReactExampleProps> {
+	public static propTypes = {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
 		onError: PropTypes.func.isRequired,
 		compilerConfig: PropTypes.object,
 	};
 
-	shouldComponentUpdate(nextProps) {
+	public shouldComponentUpdate(nextProps: ReactExampleProps) {
 		return this.props.code !== nextProps.code;
 	}
 
 	// Eval the code to extract the value of the initial state
-	getExampleInitialState(compiledCode) {
+	private getExampleInitialState(compiledCode: string): Record<string, any> {
 		if (compiledCode.indexOf('initialState') === -1) {
 			return {};
 		}
@@ -65,15 +82,15 @@ export default class ReactExample extends Component {
 	}
 
 	// Run example code and return the last top-level expression
-	getExampleComponent(compiledCode) {
+	private getExampleComponent(compiledCode: string): () => any {
 		return this.props.evalInContext(`
 			var initialState = {};
 			${compiledCode}
 		`);
 	}
 
-	render() {
-		const { code, compilerConfig, onError } = this.props;
+	public render() {
+		const { code, compilerConfig = {}, onError } = this.props;
 		const compiledCode = compileCode(code, compilerConfig, onError);
 		if (!compiledCode) {
 			return null;
