@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Markdown from 'rsg-components/Markdown';
-import Styled from 'rsg-components/Styled';
+import Styled, { JssInjectedProps, Theme } from 'rsg-components/Styled';
 
-const styles = ({ maxWidth }) => ({
+const styles = ({ maxWidth }: Theme) => ({
 	root: {
 		maxWidth,
 		margin: [[0, 'auto']],
 	},
 });
 
-export function NotFoundRenderer({ classes }) {
+export const NotFoundRenderer: React.FunctionComponent<JssInjectedProps> = ({ classes }) => {
 	return (
 		<div className={classes.root}>
 			<Markdown
@@ -21,10 +21,10 @@ The link you followed may be broken, or the page may have been removed.
 			/>
 		</div>
 	);
-}
+};
 
 NotFoundRenderer.propTypes = {
-	classes: PropTypes.object.isRequired,
+	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 };
 
 export default Styled(styles)(NotFoundRenderer);

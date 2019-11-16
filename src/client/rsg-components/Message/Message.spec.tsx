@@ -1,4 +1,5 @@
 import React from 'react';
+import { shallow } from 'enzyme';
 import { MessageRenderer } from './MessageRenderer';
 
 it('renderer should render message', () => {

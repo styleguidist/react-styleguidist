@@ -3,7 +3,7 @@
 exports[`renderer should render message 1`] = `
 <div>
   <Markdown
-    text="Hello *world*!"
+    text=""
   />
 </div>
 `;
