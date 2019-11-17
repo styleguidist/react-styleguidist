@@ -167,7 +167,7 @@ function renderDescription(prop) {
 			{extra && <Para>{extra}</Para>}
 			<JsDoc {...tags} />
 			{args.length > 0 && <Arguments args={args} heading />}
-			{returnDocumentation && <Argument {...returnDocumentation} returns />}
+			{returnDocumentation && <Argument {...{ ...returnDocumentation, name: '' }} returns />}
 		</div>
 	);
 }
