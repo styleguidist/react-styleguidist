@@ -1,11 +1,12 @@
 import React from 'react';
+import { mount } from 'enzyme';
 import { render } from '@testing-library/react';
-import Preview from '../Preview';
+import Preview from '.';
 import Context from '../Context';
 
 /* eslint-disable no-console */
 
-const evalInContext = a =>
+const evalInContext = (a: string) =>
 	// eslint-disable-next-line no-new-func
 	new Function('require', 'state', 'setState', 'const React = require("react");' + a).bind(
 		null,
@@ -21,7 +22,7 @@ const context = {
 	codeRevision: 0,
 };
 
-const Provider = props => <Context.Provider value={context} {...props} />;
+const Provider = (props: Record<string, any>) => <Context.Provider value={context} {...props} />;
 
 const console$error = console.error;
 const console$clear = console.clear;
@@ -46,7 +47,8 @@ it('should unmount Wrapper component', () => {
 });
 
 it('should not fail when Wrapper wasn’t mounted', () => {
-	console.error = jest.fn();
+	const consoleError = jest.fn();
+	console.error = consoleError;
 
 	const { unmount, getByTestId } = render(
 		<Provider>
@@ -57,7 +59,7 @@ it('should not fail when Wrapper wasn’t mounted', () => {
 	const node = getByTestId('mountNode');
 
 	expect(
-		console.error.mock.calls.find(call =>
+		consoleError.mock.calls.find(call =>
 			call[0].toString().includes('ReferenceError: pizza is not defined')
 		)
 	).toBeTruthy();
@@ -111,7 +113,9 @@ it('should handle no code', () => {
 });
 
 it('should handle errors', () => {
-	console.error = jest.fn();
+	const consoleError = jest.fn();
+
+	console.error = consoleError;
 	render(
 		<Provider>
 			<Preview code={'<invalid code'} evalInContext={evalInContext} />
@@ -119,7 +123,7 @@ it('should handle errors', () => {
 	);
 
 	expect(
-		console.error.mock.calls.find(call =>
+		consoleError.mock.calls.find(call =>
 			call[0].toString().includes('SyntaxError: Unexpected token')
 		)
 	).toBeTruthy();

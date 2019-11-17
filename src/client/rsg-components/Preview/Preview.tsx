@@ -5,24 +5,35 @@ import PlaygroundError from 'rsg-components/PlaygroundError';
 import ReactExample from 'rsg-components/ReactExample';
 import Context from 'rsg-components/Context';
 
-const improveErrorMessage = message =>
+const improveErrorMessage = (message: string) =>
 	message.replace(
 		'Check the render method of `StateHolder`.',
 		'Check the code of your example in a Markdown file or in the editor below.'
 	);
 
-export default class Preview extends Component {
-	static propTypes = {
+interface PreviewProps {
+	code: string;
+	evalInContext(code: string): () => any;
+}
+
+interface PreviewState {
+	error: string | null;
+}
+
+export default class Preview extends Component<PreviewProps, PreviewState> {
+	public static propTypes = {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
 	};
-	static contextType = Context;
+	public static contextType = Context;
 
-	state = {
+	private mountNode: Element | null = null;
+
+	public state: PreviewState = {
 		error: null,
 	};
 
-	componentDidMount() {
+	public componentDidMount() {
 		// Clear console after hot reload, do not clear on the first load
 		// to keep any warnings
 		if (this.context.codeRevision > 0) {
@@ -33,27 +44,27 @@ export default class Preview extends Component {
 		this.executeCode();
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
+	public shouldComponentUpdate(nextProps: PreviewProps, nextState: PreviewState) {
 		return this.state.error !== nextState.error || this.props.code !== nextProps.code;
 	}
 
-	componentDidUpdate(prevProps) {
+	public componentDidUpdate(prevProps: PreviewProps) {
 		if (this.props.code !== prevProps.code) {
 			this.executeCode();
 		}
 	}
 
-	componentWillUnmount() {
+	public componentWillUnmount() {
 		this.unmountPreview();
 	}
 
-	unmountPreview() {
+	public unmountPreview() {
 		if (this.mountNode) {
 			ReactDOM.unmountComponentAtNode(this.mountNode);
 		}
 	}
 
-	executeCode() {
+	private executeCode() {
 		this.setState({
 			error: null,
 		});
@@ -63,7 +74,7 @@ export default class Preview extends Component {
 			return;
 		}
 
-		const wrappedComponent = (
+		const wrappedComponent: React.FunctionComponentElement<any> = (
 			<ReactExample
 				code={code}
 				evalInContext={this.props.evalInContext}
@@ -82,7 +93,7 @@ export default class Preview extends Component {
 		});
 	}
 
-	handleError = err => {
+	private handleError = (err: Error) => {
 		this.unmountPreview();
 
 		this.setState({
@@ -92,7 +103,7 @@ export default class Preview extends Component {
 		console.error(err); // eslint-disable-line no-console
 	};
 
-	render() {
+	public render() {
 		const { error } = this.state;
 		return (
 			<>
