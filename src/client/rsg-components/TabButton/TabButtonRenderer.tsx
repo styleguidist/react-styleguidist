@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Styled from 'rsg-components/Styled';
+import Styled, { JssInjectedProps, Theme } from 'rsg-components/Styled';
 import cx from 'clsx';
 
-export const styles = ({ space, color, fontFamily, fontSize, buttonTextTransform }) => ({
+export const styles = ({ space, color, fontFamily, fontSize, buttonTextTransform }: Theme) => ({
 	button: {
 		padding: [[space[1], 0]],
 		fontFamily: fontFamily.base,
@@ -34,7 +34,22 @@ export const styles = ({ space, color, fontFamily, fontSize, buttonTextTransform
 	},
 });
 
-export function TabButtonRenderer({ classes, name, className, onClick, active, children }) {
+interface TabButtonProps extends JssInjectedProps {
+	className?: string;
+	name: string;
+	onClick: (e: React.MouseEvent) => void;
+	active?: boolean;
+	children: React.ReactNode;
+}
+
+export const TabButtonRenderer: React.FunctionComponent<TabButtonProps> = ({
+	classes,
+	name,
+	className,
+	onClick,
+	active,
+	children,
+}) => {
 	const classNames = cx(classes.button, className, {
 		[classes.isActive]: active,
 	});
@@ -50,10 +65,10 @@ export function TabButtonRenderer({ classes, name, className, onClick, active, c
 			{children}
 		</button>
 	);
-}
+};
 
 TabButtonRenderer.propTypes = {
-	classes: PropTypes.object.isRequired,
+	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	name: PropTypes.string.isRequired,
 	className: PropTypes.string,
 	onClick: PropTypes.func.isRequired,
@@ -64,4 +79,4 @@ TabButtonRenderer.defaultProps = {
 	active: false,
 };
 
-export default Styled(styles)(TabButtonRenderer);
+export default Styled<TabButtonProps>(styles)(TabButtonRenderer);

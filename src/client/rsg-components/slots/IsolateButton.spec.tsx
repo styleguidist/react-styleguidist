@@ -1,4 +1,5 @@
 import React from 'react';
+import { shallow } from 'enzyme';
 import IsolateButton from './IsolateButton';
 
 it('should renderer a link to isolated mode', () => {

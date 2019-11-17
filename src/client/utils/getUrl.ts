@@ -1,4 +1,41 @@
 /**
+ * Gets the URL fragment for an isolated or nochrome link.
+ *
+ * @param {string} $.currentHash The current hash fragment of the page
+ * @param {string} $.encodedName The URL encoded name of the component
+ * @return {string}
+ */
+function buildIsolatedOrNoChromeFragment({
+	currentHash,
+	encodedName,
+}: {
+	currentHash: string;
+	encodedName: string;
+}): string {
+	const stripFragment = /^#\/?/;
+	const stripTrailingSlash = /\/$/;
+	const currentHashPath =
+		// skip if we are already using `#!/`
+		currentHash && !currentHash.includes('#!/')
+			? currentHash.replace(stripFragment, '').replace(stripTrailingSlash, '') + '/'
+			: '';
+	return `#!/${currentHashPath}${encodedName}`;
+}
+
+interface GetUrlOptions {
+	name: string;
+	slug: string;
+	example: number;
+	anchor: boolean;
+	isolated: boolean;
+	nochrome: boolean;
+	absolute: boolean;
+	hashPath: string[];
+	id: boolean;
+	takeHash: boolean;
+}
+
+/**
  * Get component / section URL.
  *
  * @param {string} $.name Name
@@ -12,8 +49,27 @@
  * @return {string}
  */
 export default function getUrl(
-	{ name, slug, example, anchor, isolated, nochrome, absolute, hashPath, id, takeHash } = {},
-	{ origin, pathname, hash = '' } = window.location
+	{
+		name,
+		slug,
+		example,
+		anchor,
+		isolated,
+		nochrome,
+		absolute,
+		hashPath,
+		id,
+		takeHash,
+	}: Partial<GetUrlOptions> = {},
+	{
+		origin,
+		pathname,
+		hash = '',
+	}: {
+		origin: string;
+		pathname: string;
+		hash: string;
+	} = window.location
 ) {
 	let url = pathname;
 
@@ -27,7 +83,7 @@ export default function getUrl(
 		url += '?nochrome';
 	}
 
-	const encodedName = encodeURIComponent(name);
+	const encodedName = encodeURIComponent(name || '');
 
 	if (anchor) {
 		url += `#${slug}`;
@@ -56,22 +112,4 @@ export default function getUrl(
 	}
 
 	return url;
-}
-
-/**
- * Gets the URL fragment for an isolated or nochrome link.
- *
- * @param {string} $.currentHash The current hash fragment of the page
- * @param {string} $.encodedName The URL encoded name of the component
- * @return {string}
- */
-function buildIsolatedOrNoChromeFragment({ currentHash, encodedName }) {
-	const stripFragment = /^#\/?/;
-	const stripTrailingSlash = /\/$/;
-	const currentHashPath =
-		// skip if we are already using `#!/`
-		currentHash && !currentHash.includes('#!/')
-			? currentHash.replace(stripFragment, '').replace(stripTrailingSlash, '') + '/'
-			: '';
-	return `#!/${currentHashPath}${encodedName}`;
 }
