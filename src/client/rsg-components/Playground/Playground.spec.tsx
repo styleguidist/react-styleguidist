@@ -4,7 +4,7 @@ import Playground from './Playground';
 import slots from '../slots';
 import Context from '../Context';
 
-const evalInContext = a =>
+const evalInContext = (a: string) =>
 	// eslint-disable-next-line no-new-func
 	new Function('require', 'const React = require("react");' + a).bind(null, require);
 const code = '<button>Code: OK</button>';
@@ -22,10 +22,10 @@ const context = {
 		previewDelay: 0,
 	},
 	codeRevision: 0,
-	slots: slots({}),
+	slots: slots(),
 };
 
-const Provider = props => <Context.Provider value={context} {...props} />;
+const Provider = (props: any) => <Context.Provider value={context} {...props} />;
 
 it('should update code via props', () => {
 	const { rerender, getByText } = render(

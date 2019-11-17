@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'clsx';
-import Styled from 'rsg-components/Styled';
+import Styled, { JssInjectedProps, Theme } from 'rsg-components/Styled';
 
-export const styles = ({ space, color, borderRadius }) => ({
+export const styles = ({ space, color, borderRadius }: Theme) => ({
 	root: {
 		marginBottom: space[4],
 	},
@@ -39,7 +39,19 @@ export const styles = ({ space, color, borderRadius }) => ({
 	},
 });
 
-export function PlaygroundRenderer({
+interface PlaygroundRendererProps extends JssInjectedProps {
+	exampleIndex: number;
+	name: string;
+	padded: boolean;
+	preview: React.ReactNode;
+	// TODO: need to find a better type here too
+	previewProps: any;
+	tabButtons: React.ReactNode;
+	tabBody: React.ReactNode;
+	toolbar: React.ReactNode;
+}
+
+export const PlaygroundRenderer: React.FunctionComponent<PlaygroundRendererProps> = ({
 	classes,
 	exampleIndex,
 	name,
@@ -49,7 +61,7 @@ export function PlaygroundRenderer({
 	tabButtons,
 	tabBody,
 	toolbar,
-}) {
+}) => {
 	const { className, ...props } = previewProps;
 	const previewClasses = cx(classes.preview, className, { [classes.padded]: padded });
 	return (
@@ -64,10 +76,10 @@ export function PlaygroundRenderer({
 			<div className={classes.tab}>{tabBody}</div>
 		</div>
 	);
-}
+};
 
 PlaygroundRenderer.propTypes = {
-	classes: PropTypes.object.isRequired,
+	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	exampleIndex: PropTypes.number.isRequired,
 	name: PropTypes.string.isRequired,
 	padded: PropTypes.bool.isRequired,
@@ -78,4 +90,4 @@ PlaygroundRenderer.propTypes = {
 	toolbar: PropTypes.node.isRequired,
 };
 
-export default Styled(styles)(PlaygroundRenderer);
+export default Styled<PlaygroundRendererProps>(styles)(PlaygroundRenderer);
