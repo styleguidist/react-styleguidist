@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render a button 1`] = `
+<button
+  aria-label="Pizza button"
+  className="button"
+  onClick={[Function]}
+  title="Pizza button"
+  type="button"
+>
+  pizza
+</button>
+`;
+
+exports[`should render a link 1`] = `
+<a
+  aria-label="Pizza button"
+  className="button"
+  href="/foo"
+  title="Pizza button"
+>
+  pizza
+</a>
+`;

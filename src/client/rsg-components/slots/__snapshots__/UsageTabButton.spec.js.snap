@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should renderer a button 1`] = `
+<Styled(TabButton)
+  name="Pizza"
+  onClick={[Function]}
+  props={
+    Object {
+      "props": Array [
+        Object {
+          "name": "foo",
+        },
+      ],
+    }
+  }
+>
+  Props & methods
+</Styled(TabButton)>
+`;

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render header 1`] = `
+<h1
+  class="rsg--logo-0"
+>
+  React Styleguidist
+</h1>
+`;

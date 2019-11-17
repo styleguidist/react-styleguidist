@@ -1,0 +1,48 @@
+{
+  "name": "react-styleguidist-example-styled-components",
+  "description": "React styleguidist styled-components example",
+  "version": "1.0.0",
+  "private": true,
+  "homepage": "https://github.com/styleguidist/react-styleguidist",
+  "author": {
+    "name": "Artem Sapegin",
+    "url": "http://sapegin.me/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/styleguidist/react-styleguidist.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build"
+  },
+  "dependencies": {
+    "babel-loader": "^8.0.5",
+    "babel-plugin-styled-components": "^1.7.1",
+    "core-js": "^3.0.1",
+    "polished": "^3.2.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-styleguidist": "9.0.8",
+    "styled-components": "^4.2.0",
+    "styled-system": "^4.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/jest": "^24.0.9",
+    "@types/react": "^16.8.14",
+    "@types/react-dom": "^16.8.2",
+    "@types/styled-components": "^4.1.14",
+    "@types/styled-system": "^4.1.0",
+    "typescript": "^3.4.4",
+    "webpack": "^4.30.0"
+  }
+}

@@ -7,7 +7,8 @@ import './RandomButton.css';
 /**
  * Button that changes label on every click.
  */
-export default class RandomButton extends Component {
+// eslint-disable-next-line import/prefer-default-export
+export class RandomButton extends Component {
 	static propTypes = {
 		/**
 		 * List of possible labels.
@@ -22,15 +23,15 @@ export default class RandomButton extends Component {
 		};
 	}
 
-	handleClick() {
+	handleClick = () => {
 		this.setState({
 			label: sample(this.props.variants),
 		});
-	}
+	};
 
 	render() {
 		return (
-			<button className="random-button" onClick={this.handleClick.bind(this)}>
+			<button className="random-button" onClick={this.handleClick}>
 				{this.state.label}
 			</button>
 		);

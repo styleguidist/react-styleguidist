@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JsDoc should render Markdown 1`] = `
+<Markdown
+  text="**Deprecated:** Use *another* method
+
+[See 1](#TestLink)
+
+[See 2](#TestLink2)
+
+[Link 1](#TestLink)
+
+Authors: [Author 1](#TestLink), [Author 2](#TestLink2)
+
+Version: 2.0.0
+
+Since: 1.0.0"
+/>
+`;
+
+exports[`getMarkdown should return Markdown for all tags 1`] = `
+"**Deprecated:** Use *another* method
+
+[See 1](#TestLink)
+
+[See 2](#TestLink2)
+
+[Link 1](#TestLink)
+
+Authors: [Author 1](#TestLink), [Author 2](#TestLink2)
+
+Version: 2.0.0
+
+Since: 1.0.0"
+`;
+
+exports[`getMarkdown should return Markdown for multiple authors 1`] = `"Authors: [Author 1](#TestLink), [Author 2](#TestLink2)"`;
+
+exports[`getMarkdown should return Markdown for one author 1`] = `"Author: [Author 1](#TestLink)"`;

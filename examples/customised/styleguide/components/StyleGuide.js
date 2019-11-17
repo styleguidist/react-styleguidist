@@ -6,7 +6,7 @@ import Styled from 'rsg-components/Styled';
 
 const xsmall = '@media (max-width: 600px)';
 
-const styles = ({ font, base, light, link, baseBackground, small }) => ({
+const styles = ({ font, base, light, link, baseBackground, mq }) => ({
 	root: {
 		color: base,
 		backgroundColor: baseBackground,
@@ -17,6 +17,7 @@ const styles = ({ font, base, light, link, baseBackground, small }) => ({
 	},
 	bar: {
 		display: 'flex',
+		alignItems: 'center',
 		[xsmall]: {
 			flexDirection: 'column',
 			alignItems: 'center',
@@ -45,13 +46,13 @@ const styles = ({ font, base, light, link, baseBackground, small }) => ({
 		maxWidth: 1000,
 		padding: [[15, 30]],
 		margin: [[0, 'auto']],
-		[small]: {
+		[mq.small]: {
 			padding: 15,
 		},
 		display: 'block',
 	},
 	components: {
-		overflow: 'auto',  // To prevent the pane from growing out of the screen
+		overflow: 'auto', // To prevent the pane from growing out of the screen
 	},
 	footer: {
 		display: 'block',
@@ -61,12 +62,7 @@ const styles = ({ font, base, light, link, baseBackground, small }) => ({
 	},
 });
 
-export function StyleGuideRenderer({
-	classes,
-	title,
-	homepageUrl,
-	children,
-}) {
+export function StyleGuideRenderer({ classes, title, homepageUrl, children }) {
 	return (
 		<div className={classes.root}>
 			<header className={classes.header}>
@@ -74,9 +70,21 @@ export function StyleGuideRenderer({
 					<div className={classes.bar}>
 						<Logo>{title}</Logo>
 						<nav className={classes.nav}>
-							<a className={classes.headerLink} href="https://github.com/styleguidist/react-styleguidist/tree/master/docs">Docs</a>
-							<a className={classes.headerLink} href="https://github.com/styleguidist/react-styleguidist">GitHub</a>
-							<a className={classes.headerLink} href="https://gitter.im/styleguidist/styleguidist">Gitter</a>
+							<a
+								className={classes.headerLink}
+								href="https://github.com/styleguidist/react-styleguidist/tree/master/docs"
+							>
+								Docs
+							</a>
+							<a
+								className={classes.headerLink}
+								href="https://github.com/styleguidist/react-styleguidist"
+							>
+								GitHub
+							</a>
+							<a className={classes.headerLink} href="https://gitter.im/styleguidist/styleguidist">
+								Gitter
+							</a>
 						</nav>
 					</div>
 				</div>
@@ -84,7 +92,7 @@ export function StyleGuideRenderer({
 			<main className={classes.content}>
 				{children}
 				<footer className={classes.footer}>
-					<Markdown text={`Generated with [React Styleguidist](${homepageUrl}) ❤️`} />
+					<Markdown text={`Created with [React Styleguidist](${homepageUrl}) ❤️`} />
 				</footer>
 			</main>
 		</div>

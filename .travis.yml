@@ -1,61 +1,78 @@
 language: node_js
 node_js:
-  - 4
-  - 6
+  - 12
+  - 10
   - 8
-cache:
-  directories:
-    - node_modules
-    - travis_phantomjs
-before_install:
-  # Upgrade npm
-  - if [[ `npm -v` != 5* ]]; then npm install -g npm@latest; fi
-  # Upgrade PhantomJS
-  - |
-      export PHANTOMJS_VERSION=2.1.1
-      export PATH=$PWD/travis_phantomjs/phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin:$PATH
-      if [ $(phantomjs --version) != $PHANTOMJS_VERSION ]; then
-        rm -rf $PWD/travis_phantomjs
-        mkdir -p $PWD/travis_phantomjs
-        wget https://github.com/Medium/phantomjs/releases/download/v$PHANTOMJS_VERSION/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2
-        tar -xvf phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 -C $PWD/travis_phantomjs
-      fi
-      phantomjs -v
+
+addons:
+  apt:
+    packages:
+    - libgconf-2-4
+
 script:
-  # Run lint
-  - npm run lint
-  # Run tests and Danger.js
-  - |
-    if [[ "$TRAVIS_NODE_VERSION" == "4" ]]; then
-      NODE_ENV=test node --harmony-proxies $(npm bin)/jest --runInBand
-    else
-      if [[ "$TRAVIS_NODE_VERSION" == "8" ]]; then
-        npm run danger
-        npm run test:coverage -- --runInBand
-      else
-        npm run test:jest -- --runInBand
-      fi
-    fi
-  # Build all examples
-  - npm run build
-  - npm run build:customised
-  - npm run build:sections
-  # Check that examples really works: no JS errors on load
-  - npm run phantomjs
-  - npm run phantomjs:customised
-  - npm run phantomjs:sections
-after_success:
-  # Make release with semantic-release if needed
-  - npm run semantic-release
-  - |
-    if [[ "$TRAVIS_NODE_VERSION" == "8" ]]; then
-      # Upload coverage report to Codecov
-      bash <(curl -s https://codecov.io/bash)
-      # Update site
-      if [[ "$TRAVIS_BRANCH" == "master" ]]; then
-        curl -X POST -d '{}' https://api.netlify.com/build_hooks/591308eba700c425fc1e8a54
-      fi
-    fi
+  # Run tests without coverage since it's 2x faster
+  - npm run test:jest -- --runInBand
+
+# Trigger a push build on master branches only + PRs build on every branches
+# Avoid double build on PRs (See https://github.com/travis-ci/travis-ci/issues/1147)
 branches:
-  except:
-    - /^v\d+\.\d+\.\d+$/
+  only:
+    - master
+
+stages:
+  - lint
+  - test
+  - typecheck
+  - integration
+  - coverage
+  - name: release
+    if: type != pull_request AND branch = master
+  - name: documentation
+    if: type != pull_request AND branch = master
+jobs:
+  include:
+    - stage: lint
+      script:
+        - npm run lint
+        - npx danger ci
+
+    - stage: typecheck
+      script:
+        - npm run flow check
+        - npm run tscheck
+
+    - stage: integration
+      script:
+        # Compile JS
+        - npm run compile
+        # Build all examples
+        - npm run build:basic
+        - npm run build:customised
+        - npm run build:sections
+        # Check that examples really works: no JS errors on load
+        - npm run test:browser:pre
+        - npm run test:browser:basic
+        - npm run test:browser:customised
+        - npm run test:browser:sections
+        # Run integration tests with Cypress
+        - npm run test:cypress:pre
+        - npm run test:cypress:startServer &
+        - npm run test:cypress:startServer:post
+        - npm run test:cypress:run
+
+    - stage: coverage
+      script:
+        # Run tests with coverage
+        - npm run test:coverage -- --runInBand
+        # Upload coverage report to Codecov
+        - bash <(curl -s https://codecov.io/bash)
+
+    - stage: release
+      script:
+        - npm install --no-save conventional-changelog-eslint
+        - npx semantic-release
+
+    - stage: documentation
+      script:
+        # Trigger https://react-styleguidist.js.org build on Netlify
+        - curl -X POST -d '{}' https://api.netlify.com/build_hooks/591308eba700c425fc1e8a54

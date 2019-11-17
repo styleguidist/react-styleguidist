@@ -1,0 +1,14 @@
+const path = require('path');
+
+/**
+ * Return user’s package.json.
+ *
+ * @return {object}
+ */
+module.exports = function getUserPackageJson() {
+	try {
+		return require(path.resolve(process.cwd(), 'package.json'));
+	} catch (err) {
+		return {};
+	}
+};

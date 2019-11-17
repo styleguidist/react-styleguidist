@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Usage should render methods table 1`] = `
+<div>
+  <MethodsRenderer
+    methods={
+      Array [
+        Object {
+          "description": "Sets the counter to a particular value.",
+          "name": "set",
+          "params": Array [
+            Object {
+              "description": "New value for the counter.",
+              "name": "newValue",
+              "type": Object {
+                "name": "Number",
+              },
+            },
+          ],
+          "returns": null,
+        },
+      ]
+    }
+  />
+</div>
+`;
+
+exports[`Usage should render props table 1`] = `
+<div>
+  <PropsRenderer
+    props={
+      Array [
+        Object {
+          "description": "Button label.",
+          "name": "children",
+          "required": true,
+          "type": Object {
+            "name": "string",
+          },
+        },
+      ]
+    }
+  />
+</div>
+`;

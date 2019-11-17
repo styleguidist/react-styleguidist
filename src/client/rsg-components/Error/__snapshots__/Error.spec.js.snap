@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render error message 1`] = `
+<div>
+  <pre>
+    error
+    info
+  </pre>
+  <div>
+    <p>
+      This may be due to an error in a component you are overriding, or a bug in React Styleguidist.
+    </p>
+    <p>
+      If you believe this is a bug, 
+      <a
+        href="https://github.com/styleguidist/react-styleguidist/issues"
+        style={
+          Object {
+            "color": "inherit",
+          }
+        }
+      >
+        please submit an issue
+      </a>
+      .
+    </p>
+  </div>
+</div>
+`;

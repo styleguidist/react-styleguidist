@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render paragraph as a <div> 1`] = `
+<div
+  className="para"
+>
+  Pizza
+</div>
+`;
+
+exports[`should render paragraph as a <p> 1`] = `
+<p
+  className="para"
+>
+  Pizza
+</p>
+`;

@@ -1,0 +1,5 @@
+declare module 'qss' {
+	declare type Params = { [key: string]: any };
+	declare function decode(query: string): Params;
+	declare function encode(obj: Params, prefix?: string): string;
+}

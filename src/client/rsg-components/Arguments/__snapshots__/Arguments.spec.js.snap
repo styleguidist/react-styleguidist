@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render arguments 1`] = `
+<div
+  className="root"
+>
+  <Styled(Argument)
+    description="Converts foo to bar"
+    key="Foo"
+    name="Foo"
+    type={
+      Object {
+        "name": "Array",
+      }
+    }
+  />
+  <Styled(Argument)
+    key="Foo"
+    name="Foo"
+  />
+</div>
+`;
+
+exports[`renderer should render heading 1`] = `
+<div
+  className="root"
+>
+  <div
+    className="headingWrapper"
+  >
+    <Styled(Heading)
+      level={5}
+    >
+      Arguments
+    </Styled(Heading)>
+  </div>
+  <Styled(Argument)
+    key="Foo"
+    name="Foo"
+  />
+</div>
+`;

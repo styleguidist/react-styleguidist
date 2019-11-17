@@ -1,1 +1,1 @@
-export { default } from './Placeholder.js';
+export { default } from './Placeholder';

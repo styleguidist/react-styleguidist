@@ -1,23 +1,35 @@
 {
   "parser": "babel-eslint",
-  "extends": "tamia/react",
+  "extends": ["tamia/react", "plugin:jsx-a11y/recommended"],
   "env": {
     "browser": true,
     "node": true
   },
   "plugins": [
     "compat",
-    "es5",
-    "import"
+    "import",
+    "jsx-a11y"
   ],
   "settings": {
     "import/resolver": {
       "node": {
-        "moduleDirectory": ["src", "node_modules"]
+        "moduleDirectory": ["src/client", "node_modules"],
+        "extensions": [
+          ".js",
+          ".json",
+          ".tsx",
+          ".ts"
+        ]
       }
+    },
+    "react": {
+      "version": "16.6",
+      "flowVersion": "0.83"
     }
   },
   "rules": {
+    "valid-jsdoc": 0,
+    "no-duplicate-imports": 0,
     "compat/compat": "error",
     "import/no-unresolved": ["error", {
       "commonjs": true,
@@ -30,7 +42,9 @@
     "import/first": ["error", "absolute-first"],
     "import/no-duplicates": "error",
     "import/extensions": ["error", "always", {
-      "js": "never"
+      "js": "never",
+      "tsx": "never",
+      "ts": "never"
     }],
     "import/no-extraneous-dependencies": "error",
     "import/newline-after-import": "error",
@@ -38,9 +52,27 @@
     "import/no-named-default": "error"
   },
   "globals": {
+    "System": false,
     "classes": false,
     "shallow": false,
     "render": false,
-    "mount": false
-  }
+    "mount": false,
+    "cy": false
+  },
+  "overrides": [
+    {
+        "files": ["*.spec.js"],
+        "rules": {
+          "compat/compat": 0
+        }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint"],
+      "extends": [
+        "tamia/typescript-react"
+      ]
+    }
+  ]
 }

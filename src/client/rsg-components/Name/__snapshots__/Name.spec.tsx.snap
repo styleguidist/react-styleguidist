@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderer should render argument name 1`] = `
+<code
+  className="name"
+>
+  Foo
+</code>
+`;
+
+exports[`renderer should render deprecated argument name 1`] = `
+<code
+  className="name isDeprecated"
+>
+  Foo
+</code>
+`;

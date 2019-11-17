@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Text should render colored text 1`] = `
+<span
+  className="text inheritSize lightColor"
+>
+  Pizza
+</span>
+`;
+
+exports[`Text should render sized text 1`] = `
+<span
+  className="text smallSize baseColor"
+>
+  Pizza
+</span>
+`;
+
+exports[`Text should render text 1`] = `
+<span
+  className="text inheritSize baseColor"
+>
+  Pizza
+</span>
+`;
+
+exports[`Text should render text with a semantic tag and styles 1`] = `
+<strong
+  className="text inheritSize baseColor strong"
+>
+  Pizza
+</strong>
+`;
+
+exports[`Text should render text with a title 1`] = `
+<span
+  className="text inheritSize baseColor"
+  title="Pasta"
+>
+  Pizza
+</span>
+`;
+
+exports[`Text should render underlined text 1`] = `
+<span
+  className="text inheritSize baseColor isUnderlined"
+>
+  Pizza
+</span>
+`;

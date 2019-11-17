@@ -2,7 +2,7 @@
 
 ## 1. Install Styleguidist
 
-Install webpack if you don’t have it already and not using Create React App:
+Install webpack if you don’t have it already and aren’t using Create React App:
 
 ```bash
 npm install --save-dev webpack
@@ -16,34 +16,23 @@ npm install --save-dev react-styleguidist
 
 ## 2. Configure your style guide
 
-**If you’re using [Create React App](https://github.com/facebookincubator/create-react-app) you can skip this step.**
+**If you’re using [Create React App](https://github.com/facebook/create-react-app) you can skip this step.**
 
-[Point Styleguidist to your React components](Components.md) and [tell how to load your code](Webpack.md).
+- [Point Styleguidist to your React components](Components.md)
+- [Tell Styleguidist how to load your app’s code](Webpack.md)
 
-## 3. Add npm scripts for convenience
+## 3. Start your style guide
 
-Add these scripts to your `package.json`:
+- Run **`npx styleguidist server`** to start a style guide dev server.
+- Run **`npx styleguidist build`** to build a production HTML version.
 
-```diff
-{
-  "scripts": {
-+    "styleguide": "styleguidist server",
-+    "styleguide:build": "styleguidist build"
-  }
-}
-```
+**Note:** We recommend [adding these commands to your `package.json`](CLI.md).
 
-## 4. Start your style guide
+## 4. Start documenting your components
 
-Run **`npm run styleguide`** to start style a guide dev server.
-
-Run **`npm run styleguide:build`** to build a static version.
-
-## 5. Start documenting your components
-
-See how to [document your components](Documenting.md)
+See how to [document your components](Documenting.md).
 
 ## Have questions?
 
-* [Read the cookbook](Cookbook.md)
-* [Join our Gitter chat](https://gitter.im/styleguidist/styleguidist)
+- [Read the cookbook](Cookbook.md)
+- [Join our Gitter chat](https://gitter.im/styleguidist/styleguidist)

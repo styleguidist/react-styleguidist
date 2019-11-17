@@ -1,3 +1,3 @@
 ```jsx
-<CounterButton/>
+<CounterButton />
 ```
