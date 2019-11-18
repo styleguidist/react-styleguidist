@@ -8,7 +8,7 @@ const defaultPrependHash = '#/';
 const separator = '/';
 const hashValRegexp = /(.*)\?/;
 
-function trimHash(hash, prependHash) {
+function trimHash(hash: string, prependHash: string): string {
 	if (!hash) {
 		return '';
 	}
@@ -16,7 +16,7 @@ function trimHash(hash, prependHash) {
 	return hash.replace(regexp, '');
 }
 
-const trimParams = hash => {
+const trimParams = (hash: string): string => {
 	const result = hashValRegexp.exec(hash);
 	return (result && result[1]) || hash;
 };
@@ -28,7 +28,7 @@ const trimParams = hash => {
  * @param {string} search
  * @return {boolean}
  */
-export const hasInHash = (hash, search) => {
+export const hasInHash = (hash: string, search: string): boolean => {
 	return hash !== '' && hash.indexOf(search) > -1;
 };
 
@@ -39,7 +39,7 @@ export const hasInHash = (hash, search) => {
  * @param {string} prependHash
  * @return {string}
  */
-export const getHash = (hash, prependHash) => {
+export const getHash = (hash: string, prependHash: string) => {
 	return decodeURIComponent(trimParams(trimHash(hash, prependHash)));
 };
 
@@ -50,7 +50,7 @@ export const getHash = (hash, prependHash) => {
  * @param {string} prependHash
  * @return {Array.<string>}
  */
-export const getHashAsArray = (hash, prependHash) => {
+export const getHashAsArray = (hash: string, prependHash: string): string[] => {
 	return trimParams(trimHash(hash, prependHash))
 		.split(separator)
 		.map(decodeURIComponent);
@@ -63,7 +63,7 @@ export const getHashAsArray = (hash, prependHash) => {
  * @param {string} name
  * @return {string}
  */
-export const getParameterByName = (hash, name) => {
+export const getParameterByName = (hash: string, name: string): string | null => {
 	name = name.replace(/[[\]]/g, '\\$&');
 	const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
 	const results = regex.exec(hash);
