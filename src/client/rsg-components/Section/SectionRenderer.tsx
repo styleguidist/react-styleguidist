@@ -1,16 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Styled from 'rsg-components/Styled';
+import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
 import SectionHeading from 'rsg-components/SectionHeading';
 import Markdown from 'rsg-components/Markdown';
 
-const styles = ({ space }) => ({
+const styles = ({ space }: Theme) => ({
 	root: {
 		marginBottom: space[4],
 	},
 });
 
-export function SectionRenderer(allProps) {
+interface SectionRendererProps extends JssInjectedProps {
+	slug: string;
+	depth: number;
+	name?: string;
+	description?: string;
+	content?: React.ReactNode;
+	components?: React.ReactNode;
+	sections?: React.ReactNode;
+	isolated?: boolean;
+	pagePerSection?: boolean;
+	[prop: string]: any;
+}
+
+export const SectionRenderer: React.FunctionComponent<SectionRendererProps> = allProps => {
 	const {
 		classes,
 		name,
@@ -42,10 +55,10 @@ export function SectionRenderer(allProps) {
 			{components}
 		</section>
 	);
-}
+};
 
 SectionRenderer.propTypes = {
-	classes: PropTypes.object.isRequired,
+	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	name: PropTypes.string,
 	description: PropTypes.string,
 	slug: PropTypes.string.isRequired,
@@ -57,4 +70,4 @@ SectionRenderer.propTypes = {
 	pagePerSection: PropTypes.bool,
 };
 
-export default Styled(styles)(SectionRenderer);
+export default Styled<SectionRendererProps>(styles)(SectionRenderer);

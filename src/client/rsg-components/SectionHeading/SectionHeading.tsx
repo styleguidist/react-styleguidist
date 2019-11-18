@@ -25,6 +25,7 @@ const SectionHeading: React.FunctionComponent<SectionHeadingProps> = ({
 	const href = pagePerSection
 		? getUrl({ slug: id, id: rest.depth !== 1, takeHash: true })
 		: getUrl({ slug: id, anchor: true });
+
 	return (
 		<SectionHeadingRenderer
 			toolbar={<Slot name={slotName} props={slotProps} />}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { shallow } from 'enzyme';
 import noop from 'lodash/noop';
 import Section from '../Section';
 import Sections from './Sections';
@@ -38,7 +39,7 @@ const sections = [
 			},
 		],
 	},
-];
+] as any;
 
 it('should render component renderer', () => {
 	const actual = shallow(<Sections sections={sections} depth={3} />);
@@ -48,7 +49,7 @@ it('should render component renderer', () => {
 
 it('render should render styled component', () => {
 	const actual = shallow(
-		<StyledSectionsRenderer classes={{}}>
+		<StyledSectionsRenderer>
 			<Section key={0} section={sections[0]} depth={3} />
 			<Section key={1} section={sections[1]} depth={3} />
 			<Section key={2} section={sections[2]} depth={3} />

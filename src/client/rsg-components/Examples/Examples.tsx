@@ -4,7 +4,21 @@ import Playground from 'rsg-components/Playground';
 import Markdown from 'rsg-components/Markdown';
 import ExamplesRenderer from 'rsg-components/Examples/ExamplesRenderer';
 import { useStyleGuideContext } from 'rsg-components/Context';
-import { ExampleModel } from 'rsg-components/ReactComponent';
+
+interface ExampleModelMarkdown {
+	type: 'markdown';
+	content: string;
+	settings?: Record<string, any>;
+}
+
+interface ExampleModelCode {
+	evalInContext(a: string): () => any;
+	type: 'code';
+	content: string;
+	settings?: Record<string, any>;
+}
+
+export type ExampleModel = ExampleModelCode | ExampleModelMarkdown;
 
 interface ExamplesRenderer {
 	examples: ExampleModel[];

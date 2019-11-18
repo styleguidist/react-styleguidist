@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Section from './Section';
+import Section from 'rsg-components/Section';
 import Context from '../Context';
 import slots from '../slots';
 import { DisplayModes } from '../../consts';
@@ -11,9 +11,9 @@ const context = {
 	},
 	displayMode: DisplayModes.all,
 	slots: slots(),
-};
+} as any;
 
-const Provider = props => <Context.Provider value={context} {...props} />;
+const Provider = (props: any) => <Context.Provider value={context} {...props} />;
 
 test('should render nested sections', () => {
 	const { getByTestId } = render(

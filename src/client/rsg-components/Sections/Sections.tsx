@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Section from 'rsg-components/Section';
+import Section, { SectionViewModel } from 'rsg-components/Section';
 import SectionsRenderer from 'rsg-components/Sections/SectionsRenderer';
 
-export default function Sections({ sections, depth }) {
+const Sections: React.FunctionComponent<{
+	sections: SectionViewModel[];
+	depth: number;
+	root?: boolean;
+}> = ({ sections, depth }) => {
 	return (
 		<SectionsRenderer>
 			{sections
@@ -13,10 +17,12 @@ export default function Sections({ sections, depth }) {
 				))}
 		</SectionsRenderer>
 	);
-}
+};
 
 Sections.propTypes = {
 	sections: PropTypes.array.isRequired,
-	root: PropTypes.bool,
 	depth: PropTypes.number.isRequired,
+	root: PropTypes.bool,
 };
+
+export default Sections;

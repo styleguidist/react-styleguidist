@@ -1,13 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Examples from 'rsg-components/Examples';
+import Examples, { ExampleModel } from 'rsg-components/Examples';
 import Components from 'rsg-components/Components';
 import Sections from 'rsg-components/Sections';
 import SectionRenderer from 'rsg-components/Section/SectionRenderer';
 import { useStyleGuideContext } from 'rsg-components/Context';
+import { ComponentViewModel } from 'rsg-components/ReactComponent';
 import { DisplayModes } from '../../consts';
 
-export default function Section({ section, depth }) {
+export interface SectionViewModel {
+	name: string;
+	slug: string;
+	href?: string;
+	filepath?: string;
+	description?: 'string';
+	sections?: SectionViewModel[];
+	components?: ComponentViewModel[];
+	content?: ExampleModel[];
+	exampleMode: string;
+	usageMode: string;
+}
+
+const Section: React.FunctionComponent<{
+	section: SectionViewModel;
+	depth: number;
+}> = ({ section, depth }) => {
 	const {
 		displayMode,
 		config: { pagePerSection },
@@ -35,6 +52,7 @@ export default function Section({ section, depth }) {
 			depth={depth + 1}
 		/>
 	);
+
 	const sectionsJsx = sections && <Sections sections={sections} depth={depth + 1} />;
 
 	return (
@@ -51,9 +69,11 @@ export default function Section({ section, depth }) {
 			depth={depth}
 		/>
 	);
-}
+};
 
 Section.propTypes = {
-	section: PropTypes.object.isRequired,
+	section: PropTypes.any.isRequired,
 	depth: PropTypes.number.isRequired,
 };
+
+export default Section;

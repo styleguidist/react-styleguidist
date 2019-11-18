@@ -1,9 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Examples from '.';
+import Examples, { ExampleModel } from '.';
 import Context from '../Context';
 import slots from '../slots';
-import { ExampleModel } from '../ReactComponent';
 import { DisplayModes } from '../../consts';
 
 const evalInContext = (a: string): (() => any) =>
