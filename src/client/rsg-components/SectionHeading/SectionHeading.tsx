@@ -4,14 +4,24 @@ import Slot from 'rsg-components/Slot';
 import SectionHeadingRenderer from 'rsg-components/SectionHeading/SectionHeadingRenderer';
 import getUrl from '../../utils/getUrl';
 
-export default function SectionHeading({
+interface SectionHeadingProps {
+	children?: React.ReactNode;
+	id: string;
+	slotName: string;
+	slotProps: object;
+	depth: number;
+	deprecated?: boolean;
+	pagePerSection?: boolean;
+}
+
+const SectionHeading: React.FunctionComponent<SectionHeadingProps> = ({
 	slotName,
 	slotProps,
 	children,
 	id,
 	pagePerSection,
 	...rest
-}) {
+}) => {
 	const href = pagePerSection
 		? getUrl({ slug: id, id: rest.depth !== 1, takeHash: true })
 		: getUrl({ slug: id, anchor: true });
@@ -25,7 +35,7 @@ export default function SectionHeading({
 			{children}
 		</SectionHeadingRenderer>
 	);
-}
+};
 
 SectionHeading.propTypes = {
 	children: PropTypes.node,
@@ -36,3 +46,5 @@ SectionHeading.propTypes = {
 	deprecated: PropTypes.bool,
 	pagePerSection: PropTypes.bool,
 };
+
+export default SectionHeading;
