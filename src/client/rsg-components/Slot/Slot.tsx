@@ -2,9 +2,22 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useStyleGuideContext } from 'rsg-components/Context';
+import { useStyleGuideContext, SlotObject } from 'rsg-components/Context';
 
-export default function Slot({ name, active, onlyActive, className, props = {} }) {
+interface SlotProps {
+	name: string;
+	active?: string;
+	onlyActive?: boolean;
+	props?: {
+		onClick?: (id: string, ...attrs: any[]) => void;
+		active?: boolean;
+		name?: string;
+		[propId: string]: any;
+	};
+	className?: string;
+}
+
+export default function Slot({ name, active, onlyActive, className, props = {} }: SlotProps) {
 	const { slots } = useStyleGuideContext();
 	const fills = slots[name];
 	if (!fills) {
@@ -13,7 +26,7 @@ export default function Slot({ name, active, onlyActive, className, props = {} }
 
 	const rendered = fills.map((Fill, index) => {
 		// { id: 'pizza', render: ({ foo }) => <div>{foo}</div> }
-		const { id, render } = Fill;
+		const { id, render } = Fill as SlotObject;
 		let fillProps = props;
 		if (id && render) {
 			// Render only specified fill
@@ -31,11 +44,11 @@ export default function Slot({ name, active, onlyActive, className, props = {} }
 				// Pass fill ID to onClick event handler
 				onClick: onClick && ((...attrs) => onClick(id, ...attrs)),
 			};
-
-			Fill = render;
+			const Render = render;
+			return <Render key={index} {...fillProps} />;
 		}
-
-		return <Fill key={index} {...fillProps} />;
+		const FillAsComponent = Fill as React.FunctionComponent<any>;
+		return <FillAsComponent key={index} {...fillProps} />;
 	});
 
 	const filtered = rendered.filter(Boolean);

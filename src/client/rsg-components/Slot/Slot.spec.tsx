@@ -4,7 +4,7 @@ import { render, fireEvent } from '@testing-library/react';
 import Slot from './Slot';
 import Context from '../Context';
 
-const Button = ({ active, children, ...props }) => {
+const Button = ({ active, children, ...props }: any) => {
 	return (
 		<button {...props} aria-current={active}>
 			{children}
@@ -16,8 +16,8 @@ Button.propTypes = {
 	children: PropTypes.node,
 };
 
-const Button1 = props => <Button {...props}>Button1</Button>;
-const Button2 = props => <Button {...props}>Button2</Button>;
+const Button1 = (props: any) => <Button {...props}>Button1</Button>;
+const Button2 = (props: any) => <Button {...props}>Button2</Button>;
 
 const fillsWithIds = [
 	{
@@ -33,11 +33,13 @@ const fillsWithIds = [
 it('should render slots and pass props', () => {
 	const { getByText, getAllByRole } = render(
 		<Context.Provider
-			value={{
-				slots: {
-					slot: [Button1, Button2],
-				},
-			}}
+			value={
+				{
+					slots: {
+						slot: [Button1, Button2],
+					},
+				} as any
+			}
 		>
 			<Slot name="slot" props={{ role: 'pizza' }} />
 		</Context.Provider>
@@ -51,11 +53,13 @@ it('should render slots and pass props', () => {
 it('should render slots in id/render format', () => {
 	const { getByText } = render(
 		<Context.Provider
-			value={{
-				slots: {
-					slot: fillsWithIds,
-				},
-			}}
+			value={
+				{
+					slots: {
+						slot: fillsWithIds,
+					},
+				} as any
+			}
 		>
 			<Slot name="slot" props={{ id: 'Pizza' }} />
 		</Context.Provider>
@@ -68,11 +72,13 @@ it('should render slots in id/render format', () => {
 it('should pass active flag to active slot', () => {
 	const { getByText } = render(
 		<Context.Provider
-			value={{
-				slots: {
-					slot: fillsWithIds,
-				},
-			}}
+			value={
+				{
+					slots: {
+						slot: fillsWithIds,
+					},
+				} as any
+			}
 		>
 			<Slot name="slot" active="two" />
 		</Context.Provider>
@@ -85,11 +91,13 @@ it('should pass active flag to active slot', () => {
 it('should render only active slot if onlyActive=true', () => {
 	const { queryByText } = render(
 		<Context.Provider
-			value={{
-				slots: {
-					slot: fillsWithIds,
-				},
-			}}
+			value={
+				{
+					slots: {
+						slot: fillsWithIds,
+					},
+				} as any
+			}
 		>
 			<Slot name="slot" active="two" onlyActive />
 		</Context.Provider>
@@ -103,11 +111,13 @@ it('should pass slot ID to onClick handler', () => {
 	const onClick = jest.fn();
 	const { getByText } = render(
 		<Context.Provider
-			value={{
-				slots: {
-					slot: fillsWithIds,
-				},
-			}}
+			value={
+				{
+					slots: {
+						slot: fillsWithIds,
+					},
+				} as any
+			}
 		>
 			<Slot name="slot" props={{ onClick }} />
 		</Context.Provider>
@@ -122,11 +132,13 @@ it('should pass slot ID to onClick handler', () => {
 it('should return null if all slots render null', () => {
 	const { queryByText } = render(
 		<Context.Provider
-			value={{
-				slots: {
-					slot: [() => null],
-				},
-			}}
+			value={
+				{
+					slots: {
+						slot: [() => null],
+					},
+				} as any
+			}
 		>
 			<Slot name="slot" props={{ id: 'Pizza' }} />
 		</Context.Provider>
