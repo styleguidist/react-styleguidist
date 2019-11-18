@@ -1,15 +1,15 @@
 import { create } from 'jss';
-import global from 'jss-global';
-import isolate from 'jss-isolate';
-import nested from 'jss-nested';
-import camelCase from 'jss-camel-case';
-import defaultUnit from 'jss-default-unit';
-import compose from 'jss-compose';
+import global from 'jss-plugin-global';
+import isolate from 'jss-plugin-isolate';
+import nested from 'jss-plugin-nested';
+import camelCase from 'jss-plugin-camel-case';
+import defaultUnit from 'jss-plugin-default-unit';
+import compose from 'jss-plugin-compose';
 import nonInheritedProps from './nonInheritedProps';
 
 const createGenerateId = () => {
 	let counter = 0;
-	return (rule:{key:string}) => `rsg--${rule.key}-${counter++}`;
+	return (rule: { key: string }) => `rsg--${rule.key}-${counter++}`;
 };
 
 const jss = create({
