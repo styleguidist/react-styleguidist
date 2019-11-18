@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { PropTypeDescriptor } from 'react-docgen';
+import { PropTypeDescriptor, MethodDescriptor } from 'react-docgen';
 import Usage from './Usage';
 
 const props = [
@@ -11,7 +11,7 @@ const props = [
 		description: 'Button label.',
 	},
 ];
-const methods = [
+const methods: MethodDescriptor[] = [
 	{
 		name: 'set',
 		params: [

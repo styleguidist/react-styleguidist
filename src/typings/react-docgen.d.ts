@@ -14,7 +14,7 @@ declare module 'react-docgen' {
 		toObject(): DocumentationObject;
 	}
 
-	interface PropTypeDescriptor {
+	export interface PropTypeDescriptor {
 		name:
 			| 'arrayOf'
 			| 'custom'
@@ -33,6 +33,7 @@ declare module 'react-docgen' {
 			| 'shape'
 			| 'exact'
 			| 'union'
+			| 'instanceOf'
 			| 'elementType';
 		value?: any;
 		raw?: string;
@@ -43,15 +44,27 @@ declare module 'react-docgen' {
 		required?: boolean;
 	}
 
-	interface PropDescriptor {
+	export interface PropDescriptor {
+		name: string;
 		type?: PropTypeDescriptor;
 		required?: boolean;
 		defaultValue?: any;
 		description?: string;
+		tags?: Record<string, any[]>;
 	}
 
-	interface DocumentationObject {
+	export interface MethodDescriptor {
+		name: string;
+		description?: string;
+		returns?: { name: string; [key: string]: any } | null;
+		params?: any[];
+		modifiers?: string[];
+		tags?: Record<string, any>;
+	}
+
+	export interface DocumentationObject {
 		props?: { [propName: string]: PropDescriptor };
+		methods?: MethodDescriptor[];
 		context?: { [constextName: string]: PropDescriptor };
 		childContext?: { [chilCOntextName: string]: PropDescriptor };
 		composes?: string[];

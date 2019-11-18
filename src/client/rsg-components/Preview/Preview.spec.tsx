@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { render } from '@testing-library/react';
 import Preview from '.';
-import Context from '../Context';
+import Context, { StyleGuideContextContents } from '../Context';
 
 /* eslint-disable no-console */
 
@@ -20,7 +20,7 @@ const context = {
 		compilerConfig: {},
 	},
 	codeRevision: 0,
-};
+} as StyleGuideContextContents;
 
 const Provider = (props: Record<string, any>) => <Context.Provider value={context} {...props} />;
 

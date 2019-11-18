@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import Ribbon from './Ribbon';
 import Context from '../Context';
-import { ProcessedStyleguidistConfig } from '../../../scripts/schemas/config';
 
 const url = 'http://example.com/';
 const text = 'Share the repo';

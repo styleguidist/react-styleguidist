@@ -9,8 +9,6 @@ export function unquote(string?: string): string | undefined {
 
 export interface PropDescriptorWithFlow extends PropDescriptor {
 	flowType?: FlowTypeDescriptor;
-	name: string;
-	tags?: Record<string, any>;
 }
 
 /**

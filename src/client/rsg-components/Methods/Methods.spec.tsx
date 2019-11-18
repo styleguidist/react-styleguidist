@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { parse } from 'react-docgen';
+import { parse, MethodDescriptor } from 'react-docgen';
 import { shallow } from 'enzyme';
-import MethodsRenderer, { columns, MethodProp } from './MethodsRenderer';
+import MethodsRenderer, { columns } from './MethodsRenderer';
 
 // Test renderers with clean readable snapshot diffs
-export default function ColumnsRenderer({ methods }: { methods: MethodProp[] }) {
+export default function ColumnsRenderer({ methods }: { methods: MethodDescriptor[] }) {
 	return (
 		<ul>
 			{methods.map((row, rowIdx) => (
