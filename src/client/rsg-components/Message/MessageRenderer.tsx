@@ -16,7 +16,9 @@ interface MessageProps extends JssInjectedProps {
 export const MessageRenderer: React.FunctionComponent<MessageProps> = ({ classes, children }) => {
 	return (
 		<div className={classes.root}>
-			<Markdown text={Array.isArray(children) ? children.join('\n') : ''} />
+			<Markdown
+				text={Array.isArray(children) ? children.join('\n') : children ? children.toString() : ''}
+			/>
 		</div>
 	);
 };
