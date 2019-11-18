@@ -1,10 +1,12 @@
 import React from 'react';
+import { shallow } from 'enzyme';
+import { PropTypeDescriptor } from 'react-docgen';
 import Usage from './Usage';
 
 const props = [
 	{
 		name: 'children',
-		type: { name: 'string' },
+		type: { name: 'string' } as PropTypeDescriptor,
 		required: true,
 		description: 'Button label.',
 	},
