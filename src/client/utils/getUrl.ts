@@ -42,7 +42,7 @@ interface GetUrlOptions {
 	 * Absolute URL? (Can be combined with other flags)
 	 */
 	absolute: boolean;
-	hashPath: string[];
+	hashPath: string[] | false;
 	id: boolean;
 	takeHash: boolean;
 }

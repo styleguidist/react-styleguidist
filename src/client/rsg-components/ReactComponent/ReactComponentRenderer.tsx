@@ -31,6 +31,7 @@ interface ReactComponentRendererProps extends JssInjectedProps {
 	name: string;
 	heading: React.ReactNode;
 	filepath?: string;
+	slug?: string;
 	pathLine?: string;
 	tabButtons?: React.ReactNode;
 	tabBody?: React.ReactNode;

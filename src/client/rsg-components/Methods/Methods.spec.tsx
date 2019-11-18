@@ -35,13 +35,12 @@ function render(methods: string[]) {
 	`,
 		undefined,
 		undefined,
-		{ filename: '' } as any
+		{ filename: '' }
 	);
-	if (Array.isArray(parsed)) {
+	if (Array.isArray(parsed) || !parsed.methods) {
 		return shallow(<div />);
 	}
-	// the types of react-docgen are poor to say the least
-	return shallow(<ColumnsRenderer methods={(parsed as any).methods} />);
+	return shallow(<ColumnsRenderer methods={parsed.methods} />);
 }
 
 describe('MethodsRenderer', () => {

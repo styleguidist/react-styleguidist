@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import JsDoc, { getMarkdown, TagProps } from './JsDoc';
+import JsDoc, { getMarkdown } from './JsDoc';
 
-const tags: TagProps = {
+const tags = {
 	deprecated: [
 		{
 			title: 'description',

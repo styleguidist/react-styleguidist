@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Markdown from 'rsg-components/Markdown';
+import { TagProps, TagObject } from 'react-docgen';
 import map from 'lodash/map';
+import Markdown from 'rsg-components/Markdown';
 
 const plural = (array: any[], caption: string) => (array.length === 1 ? caption : `${caption}s`);
 const list = (array: TagObject[]) => array.map(item => item.description).join(', ');
@@ -23,20 +24,6 @@ export function getMarkdown(props: TagProps) {
 	})
 		.filter(Boolean)
 		.join('\n\n');
-}
-
-interface TagObject {
-	title: string;
-	description: string;
-}
-
-export interface TagProps {
-	deprecated?: TagObject[];
-	see?: TagObject[];
-	link?: TagObject[];
-	author?: TagObject[];
-	version?: TagObject[];
-	since?: TagObject[];
 }
 
 export default function JsDoc(props: TagProps) {

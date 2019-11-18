@@ -1,3 +1,4 @@
+/* eslint-disable compat/compat */
 import React from 'react';
 import { render } from '@testing-library/react';
 import ComponentsList from './ComponentsList';
@@ -9,7 +10,7 @@ const context = {
 	},
 };
 
-const Provider = props => <Context.Provider value={context} {...props} />;
+const Provider = (props: any) => <Context.Provider value={context} {...props} />;
 
 it('should set the correct href for items', () => {
 	const components = [
@@ -27,11 +28,11 @@ it('should set the correct href for items', () => {
 
 	const { getAllByRole } = render(
 		<Provider>
-			<ComponentsList items={components} classes={{}} />
+			<ComponentsList items={components} />
 		</Provider>
 	);
 
-	expect(Array.from(getAllByRole('link')).map(node => node.href)).toEqual([
+	expect(Array.from(getAllByRole('link')).map(node => (node as HTMLAnchorElement).href)).toEqual([
 		'http://localhost/#button',
 		'http://localhost/#input',
 	]);
@@ -53,11 +54,11 @@ it('if a custom href is provided, should use it instead of generating internal l
 
 	const { getAllByRole } = render(
 		<Provider>
-			<ComponentsList items={components} classes={{}} />
+			<ComponentsList items={components} />
 		</Provider>
 	);
 
-	expect(Array.from(getAllByRole('link')).map(node => node.href)).toEqual([
+	expect(Array.from(getAllByRole('link')).map(node => (node as HTMLAnchorElement).href)).toEqual([
 		'http://example.com/',
 		'http://localhost/#input',
 	]);
@@ -79,17 +80,11 @@ it('should set an id parameter on link when useHashId is activated', () => {
 
 	const { getAllByRole } = render(
 		<Provider>
-			<ComponentsList
-				items={components}
-				classes={{}}
-				useRouterLinks
-				hashPath={['Components']}
-				useHashId
-			/>
+			<ComponentsList items={components} useRouterLinks hashPath={['Components']} useHashId />
 		</Provider>
 	);
 
-	expect(Array.from(getAllByRole('link')).map(node => node.href)).toEqual([
+	expect(Array.from(getAllByRole('link')).map(node => (node as HTMLAnchorElement).href)).toEqual([
 		'http://localhost/#/Components?id=button',
 		'http://localhost/#/Components?id=input',
 	]);
@@ -113,7 +108,6 @@ it('should set a sub route on link when useHashId is deactivated', () => {
 		<Provider>
 			<ComponentsList
 				items={components}
-				classes={{}}
 				useRouterLinks
 				hashPath={['Components']}
 				useHashId={false}
@@ -121,7 +115,7 @@ it('should set a sub route on link when useHashId is deactivated', () => {
 		</Provider>
 	);
 
-	expect(Array.from(getAllByRole('link')).map(node => node.href)).toEqual([
+	expect(Array.from(getAllByRole('link')).map(node => (node as HTMLAnchorElement).href)).toEqual([
 		'http://localhost/#/Components/Button',
 		'http://localhost/#/Components/Input',
 	]);
@@ -130,7 +124,7 @@ it('should set a sub route on link when useHashId is deactivated', () => {
 it('should not render any links when the list is empty', () => {
 	const { queryAllByRole } = render(
 		<Provider>
-			<ComponentsList items={[]} classes={{}} />
+			<ComponentsList items={[]} />
 		</Provider>
 	);
 
@@ -154,7 +148,6 @@ it('should ignore items without visibleName', () => {
 		<Provider>
 			<ComponentsList
 				items={components}
-				classes={{}}
 				useRouterLinks
 				hashPath={['Components']}
 				useHashId={false}
@@ -162,7 +155,7 @@ it('should ignore items without visibleName', () => {
 		</Provider>
 	);
 
-	expect(Array.from(getAllByRole('link')).map(node => node.href)).toEqual([
+	expect(Array.from(getAllByRole('link')).map(node => (node as HTMLAnchorElement).href)).toEqual([
 		'http://localhost/#button',
 	]);
 });

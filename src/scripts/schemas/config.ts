@@ -40,16 +40,16 @@ export interface ProcessedStyleguidistConfig {
 	showCode: EXPAND_MODE;
 	showUsage: EXPAND_MODE;
 	components: string;
-	theme: RecursivePartial<Theme>;
-	// TODO: be more specific about this typing
+	theme: Theme;
 	styles: Styles;
+	pagePerSection: boolean;
 	ribbon?: {
 		text?: string;
 		url: string;
 	};
 }
 
-export type StyleguidistConfig = Partial<ProcessedStyleguidistConfig>;
+export type StyleguidistConfig = RecursivePartial<ProcessedStyleguidistConfig>;
 
 const configSchema = {
 	assetsDir: {

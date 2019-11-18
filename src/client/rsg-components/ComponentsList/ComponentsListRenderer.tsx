@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'clsx';
 import Link from 'rsg-components/Link';
-import Styled from 'rsg-components/Styled';
+import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
 import { useStyleGuideContext } from 'rsg-components/Context';
+import { ComponentViewModel } from 'rsg-components/ReactComponent';
 import { getHash } from '../../utils/handleHash';
 
-const styles = ({ color, fontFamily, fontSize, space, mq }) => ({
+const styles = ({ color, fontFamily, fontSize, space, mq }: Theme) => ({
 	list: {
 		margin: 0,
 		paddingLeft: space[2],
@@ -38,7 +39,14 @@ const styles = ({ color, fontFamily, fontSize, space, mq }) => ({
 	},
 });
 
-export function ComponentsListRenderer({ classes, items }) {
+interface ComponentsListRendererProps extends JssInjectedProps {
+	items: ComponentViewModel[];
+}
+
+export const ComponentsListRenderer: React.FunctionComponent<ComponentsListRendererProps> = ({
+	classes,
+	items,
+}) => {
 	const {
 		config: { pagePerSection },
 	} = useStyleGuideContext();
@@ -77,11 +85,11 @@ export function ComponentsListRenderer({ classes, items }) {
 			})}
 		</ul>
 	);
-}
-
-ComponentsListRenderer.propTypes = {
-	items: PropTypes.array.isRequired,
-	classes: PropTypes.object.isRequired,
 };
 
-export default Styled(styles)(ComponentsListRenderer);
+ComponentsListRenderer.propTypes = {
+	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
+	items: PropTypes.array.isRequired,
+};
+
+export default Styled<ComponentsListRendererProps>(styles)(ComponentsListRenderer);

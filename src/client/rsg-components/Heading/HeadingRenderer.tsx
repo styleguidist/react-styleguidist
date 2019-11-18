@@ -32,7 +32,7 @@ const styles = ({ color, fontFamily, fontSize }: Theme) => ({
 	},
 });
 
-interface HeadingProps extends JssInjectedProps {
+interface HeadingProps extends JssInjectedProps, React.HTMLAttributes<HTMLHeadingElement> {
 	children?: React.ReactNode;
 	level: number;
 }

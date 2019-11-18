@@ -50,7 +50,7 @@ function renderJs(propTypes: string[], defaultProps: string[] = []) {
 	`,
 		undefined,
 		undefined,
-		{ filename: '' } as any
+		{ filename: '' }
 	);
 	if (Array.isArray(props)) {
 		return render(<div />);
@@ -76,7 +76,7 @@ function renderFlow(propsType: string[], defaultProps: string[] = []) {
 	`,
 		undefined,
 		undefined,
-		{ filename: '' } as any
+		{ filename: '' }
 	);
 	if (Array.isArray(props)) {
 		return render(<div />);

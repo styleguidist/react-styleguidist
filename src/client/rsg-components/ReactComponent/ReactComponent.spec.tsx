@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import ReactComponent from './ReactComponent';
+import ReactComponent, { ComponentViewModel } from './ReactComponent';
 import slots from '../slots';
 import Context from '../Context';
 import { DisplayModes } from '../../consts';
@@ -31,7 +31,8 @@ const component = {
 	},
 	metadata: {},
 };
-const componentWithEverything = {
+
+const componentWithEverything: ComponentViewModel = {
 	name: 'Foo',
 	visibleName: 'Foo',
 	slug: 'foo',

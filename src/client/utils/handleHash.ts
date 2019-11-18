@@ -8,7 +8,7 @@ const defaultPrependHash = '#/';
 const separator = '/';
 const hashValRegexp = /(.*)\?/;
 
-function trimHash(hash: string, prependHash: string): string {
+function trimHash(hash: string, prependHash?: string): string {
 	if (!hash) {
 		return '';
 	}
@@ -39,7 +39,7 @@ export const hasInHash = (hash: string, search: string): boolean => {
  * @param {string} prependHash
  * @return {string}
  */
-export const getHash = (hash: string, prependHash: string) => {
+export const getHash = (hash: string, prependHash?: string) => {
 	return decodeURIComponent(trimParams(trimHash(hash, prependHash)));
 };
 
@@ -50,7 +50,7 @@ export const getHash = (hash: string, prependHash: string) => {
  * @param {string} prependHash
  * @return {Array.<string>}
  */
-export const getHashAsArray = (hash: string, prependHash: string): string[] => {
+export const getHashAsArray = (hash: string, prependHash?: string): string[] => {
 	return trimParams(trimHash(hash, prependHash))
 		.split(separator)
 		.map(decodeURIComponent);

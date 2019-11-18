@@ -1,9 +1,22 @@
 import React from 'react';
-import ComponentsListRenderer from 'rsg-components/ComponentsList/ComponentsListRenderer';
 import PropTypes from 'prop-types';
+import ComponentsListRenderer from 'rsg-components/ComponentsList/ComponentsListRenderer';
+import { ComponentViewModel } from 'rsg-components/ReactComponent';
 import getUrl from '../../utils/getUrl';
 
-function ComponentsList({ classes, items, useRouterLinks = false, useHashId, hashPath }) {
+interface ComponentsListProps {
+	items: ComponentViewModel[];
+	hashPath?: string[];
+	useRouterLinks?: boolean;
+	useHashId?: boolean;
+}
+
+const ComponentsList: React.FunctionComponent<ComponentsListProps> = ({
+	items,
+	useRouterLinks = false,
+	useHashId,
+	hashPath,
+}) => {
 	const mappedItems = items.map(item => ({
 		...item,
 		shouldOpenInNewTab: !!item.href,
@@ -17,12 +30,11 @@ function ComponentsList({ classes, items, useRouterLinks = false, useHashId, has
 					id: useRouterLinks ? useHashId : false,
 			  }),
 	}));
-	return <ComponentsListRenderer classes={classes} items={mappedItems} />;
-}
+	return <ComponentsListRenderer items={mappedItems} />;
+};
 
 ComponentsList.propTypes = {
 	items: PropTypes.array.isRequired,
-	classes: PropTypes.object,
 	hashPath: PropTypes.array,
 	useRouterLinks: PropTypes.bool,
 	useHashId: PropTypes.bool,

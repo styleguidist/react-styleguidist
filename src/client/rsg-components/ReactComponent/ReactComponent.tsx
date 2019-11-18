@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { TagProps, MethodDescriptor, PropDescriptor } from 'react-docgen';
 import Examples from 'rsg-components/Examples';
 import SectionHeading from 'rsg-components/SectionHeading';
 import JsDoc from 'rsg-components/JsDoc';
@@ -14,8 +15,35 @@ import { DisplayModes, UsageModes } from '../../consts';
 const ExamplePlaceholder =
 	process.env.STYLEGUIDIST_ENV !== 'production' ? ExamplePlaceholderDefault : () => <div />;
 
+export interface ExampleModel {
+	type: 'code' | 'markdown';
+	content: string;
+	evalInContext?(a: string): any;
+}
+export interface ComponentViewModel {
+	name?: string;
+	slug?: string;
+	href?: string;
+	heading?: boolean;
+	filepath?: string;
+	pathLine?: string;
+	visibleName?: string;
+	content?: { props: { items: ComponentViewModel[] } };
+	shouldOpenInNewTab?: boolean;
+	props?: {
+		description?: string;
+		examples?: ExampleModel[];
+		methods?: MethodDescriptor[];
+		props?: PropDescriptor[];
+		tags?: TagProps;
+	};
+	metadata?: {
+		tags?: string[];
+	};
+}
+
 interface ReactComponentProps {
-	component: object;
+	component: ComponentViewModel;
 	depth: number;
 	exampleMode: string;
 	usageMode: string;
@@ -53,7 +81,7 @@ export default class ReactComponent extends Component<ReactComponentProps, React
 		} = this.context;
 		const { component, depth, usageMode, exampleMode } = this.props;
 		const { name, visibleName, slug, filepath, pathLine } = component;
-		const { description, examples = [], tags = {} } = component.props;
+		const { description = '', examples = [], tags = {} } = component.props || {};
 		if (!name) {
 			return null;
 		}

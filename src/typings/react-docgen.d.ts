@@ -14,6 +14,33 @@ declare module 'react-docgen' {
 		toObject(): DocumentationObject;
 	}
 
+	export interface TagObject {
+		title: string;
+		description?: string;
+	}
+
+	export interface TagParamObject {
+		title: string;
+		description?: string;
+		name: string;
+		type?: any;
+		default?: string;
+	}
+
+	export interface TagProps {
+		deprecated?: TagObject[];
+		see?: TagObject[];
+		link?: TagObject[];
+		author?: TagObject[];
+		version?: TagObject[];
+		since?: TagObject[];
+		returns?: TagObject[];
+		return?: TagParamObject[];
+		arg?: TagParamObject[];
+		argument?: TagParamObject[];
+		param?: TagParamObject[];
+	}
+
 	export interface PropTypeDescriptor {
 		name:
 			| 'arrayOf'
@@ -50,7 +77,7 @@ declare module 'react-docgen' {
 		required?: boolean;
 		defaultValue?: any;
 		description?: string;
-		tags?: Record<string, any[]>;
+		tags?: TagProps;
 	}
 
 	export interface MethodDescriptor {
@@ -59,7 +86,7 @@ declare module 'react-docgen' {
 		returns?: { name: string; [key: string]: any } | null;
 		params?: any[];
 		modifiers?: string[];
-		tags?: Record<string, any>;
+		tags?: TagProps;
 	}
 
 	export interface DocumentationObject {
@@ -71,14 +98,14 @@ declare module 'react-docgen' {
 	}
 
 	interface Options {
-		filename: string;
-		cwd: string;
-		babelrc: string;
-		babelrcRoots: boolean | string | string[];
-		root: string;
-		rootMode: 'root' | 'upward' | 'upward-optional';
-		configFile: string;
-		envName: string;
+		filename?: string;
+		cwd?: string;
+		babelrc?: string;
+		babelrcRoots?: boolean | string | string[];
+		root?: string;
+		rootMode?: 'root' | 'upward' | 'upward-optional';
+		configFile?: string;
+		envName?: string;
 	}
 
 	export const defaultHandlers: Handler[];
