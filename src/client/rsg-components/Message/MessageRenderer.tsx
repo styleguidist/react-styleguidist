@@ -17,7 +17,13 @@ export const MessageRenderer: React.FunctionComponent<MessageProps> = ({ classes
 	return (
 		<div className={classes.root}>
 			<Markdown
-				text={Array.isArray(children) ? children.join('\n') : children ? children.toString() : ''}
+				text={
+					Array.isArray(children)
+						? children.join('\n')
+						: typeof children === 'string'
+						? children
+						: ''
+				}
 			/>
 		</div>
 	);
