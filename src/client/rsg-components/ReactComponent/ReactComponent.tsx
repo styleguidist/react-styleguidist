@@ -7,34 +7,45 @@ import Markdown from 'rsg-components/Markdown';
 import Slot from 'rsg-components/Slot';
 import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponentRenderer';
 import Context from 'rsg-components/Context';
+import ExamplePlaceholderDefault from 'rsg-components/ExamplePlaceholder';
 import { DOCS_TAB_USAGE } from '../slots';
 import { DisplayModes, UsageModes } from '../../consts';
 
 const ExamplePlaceholder =
-	process.env.STYLEGUIDIST_ENV !== 'production'
-		? require('rsg-components/ExamplePlaceholder').default
-		: () => <div />;
+	process.env.STYLEGUIDIST_ENV !== 'production' ? ExamplePlaceholderDefault : () => <div />;
 
-export default class ReactComponent extends Component {
-	static propTypes = {
+interface ReactComponentProps {
+	component: object;
+	depth: number;
+	exampleMode: string;
+	usageMode: string;
+}
+
+interface ReactComponentState {
+	activeTab?: string;
+}
+
+export default class ReactComponent extends Component<ReactComponentProps, ReactComponentState> {
+	public static propTypes = {
 		component: PropTypes.object.isRequired,
 		depth: PropTypes.number.isRequired,
 		exampleMode: PropTypes.string.isRequired,
 		usageMode: PropTypes.string.isRequired,
 	};
-	static contextType = Context;
 
-	state = {
+	public static contextType = Context;
+
+	public state = {
 		activeTab: this.props.usageMode === UsageModes.expand ? DOCS_TAB_USAGE : undefined,
 	};
 
-	handleTabChange = name => {
+	private handleTabChange = (name: string) => {
 		this.setState(state => ({
 			activeTab: state.activeTab !== name ? name : undefined,
 		}));
 	};
 
-	render() {
+	public render() {
 		const { activeTab } = this.state;
 		const {
 			displayMode,

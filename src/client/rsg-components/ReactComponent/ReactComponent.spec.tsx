@@ -13,9 +13,9 @@ const context = {
 	slots: slots(),
 };
 
-const Provider = props => <Context.Provider value={context} {...props} />;
+const Provider = (props: any) => <Context.Provider value={context} {...props} />;
 
-const evalInContext = a =>
+const evalInContext = (a: string) =>
 	// eslint-disable-next-line no-new-func
 	new Function('require', 'const React = require("react");' + a).bind(null, require);
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Pathline from 'rsg-components/Pathline';
-import Styled from 'rsg-components/Styled';
+import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ color, fontSize, space }) => ({
+const styles = ({ color, fontSize, space }: Theme) => ({
 	root: {
 		marginBottom: space[6],
 	},
@@ -27,7 +27,20 @@ const styles = ({ color, fontSize, space }) => ({
 	},
 });
 
-export function ReactComponentRenderer({
+interface ReactComponentRendererProps extends JssInjectedProps {
+	name: string;
+	heading: React.ReactNode;
+	filepath?: string;
+	pathLine?: string;
+	tabButtons?: React.ReactNode;
+	tabBody?: React.ReactNode;
+	description?: React.ReactNode;
+	docs?: React.ReactNode;
+	examples?: React.ReactNode;
+	isolated?: boolean;
+}
+
+export const ReactComponentRenderer: React.FunctionComponent<ReactComponentRendererProps> = ({
 	classes,
 	name,
 	heading,
@@ -37,7 +50,7 @@ export function ReactComponentRenderer({
 	examples,
 	tabButtons,
 	tabBody,
-}) {
+}) => {
 	return (
 		<div className={classes.root} data-testid={`${name}-container`}>
 			<header className={classes.header}>
@@ -59,10 +72,10 @@ export function ReactComponentRenderer({
 			{examples}
 		</div>
 	);
-}
+};
 
 ReactComponentRenderer.propTypes = {
-	classes: PropTypes.object.isRequired,
+	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	name: PropTypes.string.isRequired,
 	heading: PropTypes.node.isRequired,
 	filepath: PropTypes.string,
@@ -75,4 +88,4 @@ ReactComponentRenderer.propTypes = {
 	isolated: PropTypes.bool,
 };
 
-export default Styled(styles)(ReactComponentRenderer);
+export default Styled<ReactComponentRendererProps>(styles)(ReactComponentRenderer);
