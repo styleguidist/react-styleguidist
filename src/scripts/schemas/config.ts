@@ -33,7 +33,7 @@ const DEFAULT_COMPONENTS_PATTERN =
 
 const logger = glogg('rsg');
 
-export type EXPAND_MODE = 'expand' | 'collapse';
+export type EXPAND_MODE = 'expand' | 'collapse' | 'hide';
 
 export interface ProcessedStyleguidistConfig {
 	compilerConfig: TransformOptions;

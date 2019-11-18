@@ -5,12 +5,11 @@ import Markdown from 'rsg-components/Markdown';
 import ExamplesRenderer from 'rsg-components/Examples/ExamplesRenderer';
 import { useStyleGuideContext } from 'rsg-components/Context';
 import { ExampleModel } from 'rsg-components/ReactComponent';
-import { EXPAND_MODE } from '../../../scripts/schemas/config';
 
 interface ExamplesRenderer {
 	examples: ExampleModel[];
 	name: string;
-	exampleMode: EXPAND_MODE;
+	exampleMode: string;
 }
 
 const Examples: React.FunctionComponent<ExamplesRenderer> = ({ examples, name, exampleMode }) => {

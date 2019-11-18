@@ -15,11 +15,21 @@ import { DisplayModes, UsageModes } from '../../consts';
 const ExamplePlaceholder =
 	process.env.STYLEGUIDIST_ENV !== 'production' ? ExamplePlaceholderDefault : () => <div />;
 
-export interface ExampleModel {
-	type: 'code' | 'markdown';
+interface ExampleModelMarkdown {
+	type: 'markdown';
 	content: string;
-	evalInContext?(a: string): any;
+	settings?: Record<string, any>;
 }
+
+interface ExampleModelCode {
+	evalInContext(a: string): () => any;
+	type: 'code';
+	content: string;
+	settings?: Record<string, any>;
+}
+
+export type ExampleModel = ExampleModelCode | ExampleModelMarkdown;
+
 export interface ComponentViewModel {
 	name?: string;
 	slug?: string;
@@ -80,7 +90,7 @@ export default class ReactComponent extends Component<ReactComponentProps, React
 			config: { pagePerSection },
 		} = this.context;
 		const { component, depth, usageMode, exampleMode } = this.props;
-		const { name, visibleName, slug, filepath, pathLine } = component;
+		const { name, visibleName, slug = '-', filepath, pathLine } = component;
 		const { description = '', examples = [], tags = {} } = component.props || {};
 		if (!name) {
 			return null;

@@ -3,13 +3,14 @@ import { render } from '@testing-library/react';
 import Examples from '.';
 import Context from '../Context';
 import slots from '../slots';
+import { ExampleModel } from '../ReactComponent';
 import { DisplayModes } from '../../consts';
 
-const evalInContext = (a: string) =>
+const evalInContext = (a: string): (() => any) =>
 	// eslint-disable-next-line no-new-func
 	new Function('require', 'const React = require("react");' + a).bind(null, require);
 
-const examples = [
+const examples: ExampleModel[] = [
 	{
 		type: 'code',
 		content: '<button>Code: OK</button>',
