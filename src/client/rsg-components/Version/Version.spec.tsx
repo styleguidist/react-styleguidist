@@ -1,4 +1,5 @@
 import React from 'react';
+import { render } from 'enzyme';
 import VersionRenderer from './VersionRenderer';
 
 it('renderer should render version', () => {
