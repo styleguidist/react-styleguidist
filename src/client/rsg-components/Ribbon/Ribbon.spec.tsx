@@ -2,13 +2,14 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import Ribbon from './Ribbon';
 import Context from '../Context';
+import { ProcessedStyleguidistConfig } from '../../../scripts/schemas/config';
 
 const url = 'http://example.com/';
 const text = 'Share the repo';
 
 it('should render ribbon if the ribbon is present in the config', () => {
 	const { getByRole } = render(
-		<Context.Provider value={{ config: { ribbon: { url } } }}>
+		<Context.Provider value={{ config: { ribbon: { url } } } as any}>
 			<Ribbon />
 		</Context.Provider>
 	);
@@ -19,14 +20,16 @@ it('should render ribbon if the ribbon is present in the config', () => {
 it('should render ribbon with custom text', () => {
 	const { getByText } = render(
 		<Context.Provider
-			value={{
-				config: {
-					ribbon: {
-						url,
-						text,
+			value={
+				{
+					config: {
+						ribbon: {
+							url,
+							text,
+						},
 					},
-				},
-			}}
+				} as any
+			}
 		>
 			<Ribbon />
 		</Context.Provider>
@@ -37,7 +40,7 @@ it('should render ribbon with custom text', () => {
 
 it('should not render anything if the ribbon is not present in the config', () => {
 	const { queryByRole } = render(
-		<Context.Provider value={{ config: {} }}>
+		<Context.Provider value={{ config: {} } as any}>
 			<Ribbon />
 		</Context.Provider>
 	);

@@ -43,6 +43,10 @@ export interface ProcessedStyleguidistConfig {
 	theme: RecursivePartial<Theme>;
 	// TODO: be more specific about this typing
 	styles: Styles;
+	ribbon?: {
+		text?: string;
+		url: string;
+	};
 }
 
 export type StyleguidistConfig = Partial<ProcessedStyleguidistConfig>;

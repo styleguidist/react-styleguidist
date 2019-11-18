@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Styled from 'rsg-components/Styled';
+import Styled, { JssInjectedProps, Theme } from 'rsg-components/Styled';
 
-export const styles = ({ color, space, fontSize, fontFamily }) => ({
+export const styles = ({ color, space, fontSize, fontFamily }: Theme) => ({
 	root: {
 		position: 'fixed',
 		top: 0,
@@ -31,7 +31,12 @@ export const styles = ({ color, space, fontSize, fontFamily }) => ({
 	},
 });
 
-export function RibbonRenderer({ classes, url, text }) {
+interface RibbonProps extends JssInjectedProps {
+	url: string;
+	text?: string;
+}
+
+export const RibbonRenderer: React.FunctionComponent<RibbonProps> = ({ classes, url, text }) => {
 	return (
 		<footer className={classes.root}>
 			<a href={url} className={classes.link}>
@@ -39,16 +44,16 @@ export function RibbonRenderer({ classes, url, text }) {
 			</a>
 		</footer>
 	);
-}
+};
 
 RibbonRenderer.defaultProps = {
 	text: 'Fork me on GitHub',
 };
 
 RibbonRenderer.propTypes = {
-	classes: PropTypes.object.isRequired,
+	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	url: PropTypes.string.isRequired,
 	text: PropTypes.string,
 };
 
-export default Styled(styles)(RibbonRenderer);
+export default Styled<RibbonProps>(styles)(RibbonRenderer);
