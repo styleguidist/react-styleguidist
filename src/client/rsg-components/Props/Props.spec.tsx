@@ -3,11 +3,11 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { parse } from 'react-docgen';
 import PropsRenderer, { columns, getRowKey } from './PropsRenderer';
-import { unquote, getType, showSpaces } from './util';
+import { unquote, getType, showSpaces, PropDescriptorWithFlow } from './util';
 
-const propsToArray = props => Object.keys(props).map(name => ({ ...props[name], name }));
+const propsToArray = (props: any) => Object.keys(props).map(name => ({ ...props[name], name }));
 
-const getText = node =>
+const getText = (node: { innerHTML: string }): string =>
 	node.innerHTML
 		.replace(/<\/?(div|li|p).*?>/g, '\n')
 		.replace(/<.*?>/g, ' ')
@@ -16,7 +16,7 @@ const getText = node =>
 		.trim();
 
 // Test renderers with clean readable snapshot diffs
-export default function ColumnsRenderer({ props }) {
+export default function ColumnsRenderer({ props }: { props: PropDescriptorWithFlow[] }) {
 	return (
 		<>
 			{props.map((row, rowIdx) => (
@@ -32,7 +32,7 @@ export default function ColumnsRenderer({ props }) {
 	);
 }
 
-function renderJs(propTypes, defaultProps = []) {
+function renderJs(propTypes: string[], defaultProps: string[] = []) {
 	const props = parse(
 		`
 		import { Component } from 'react';
@@ -50,12 +50,15 @@ function renderJs(propTypes, defaultProps = []) {
 	`,
 		undefined,
 		undefined,
-		{ filename: '' }
+		{ filename: '' } as any
 	);
+	if (Array.isArray(props)) {
+		return render(<div />);
+	}
 	return render(<ColumnsRenderer props={propsToArray(props.props)} />);
 }
 
-function renderFlow(propsType, defaultProps = []) {
+function renderFlow(propsType: string[], defaultProps: string[] = []) {
 	const props = parse(
 		`
 		// @flow
@@ -73,8 +76,11 @@ function renderFlow(propsType, defaultProps = []) {
 	`,
 		undefined,
 		undefined,
-		{ filename: '' }
+		{ filename: '' } as any
 	);
+	if (Array.isArray(props)) {
+		return render(<div />);
+	}
 	return render(<ColumnsRenderer props={propsToArray(props.props)} />);
 }
 
@@ -222,14 +228,10 @@ describe('props columns', () => {
 
 		expect(getByText('Shape').title).toMatchInlineSnapshot(`
 		"{
-		    bar: 123, baz() {
-		        return 'foo';
-		    },
-		    bing() {
-		        return 'badaboom';
-		    },
-		    trotskij: () => 1935,
-		    qwarc: { si: 'señor', },
+		  \\"bar\\": 123,
+		  \\"qwarc\\": {
+		    \\"si\\": \\"señor\\"
+		  }
 		}"
 	`);
 	});
@@ -360,7 +362,7 @@ describe('props columns', () => {
 
 		expect(getText(container)).toMatchInlineSnapshot(`
 		"Prop name: color 
-		Type: unknown 
+		Type: 
 		Default: pink 
 		Description:"
 	`);
@@ -395,7 +397,7 @@ describe('props columns', () => {
 	});
 
 	test('should render arguments from JsDoc tags', () => {
-		const props = [
+		const props: any = [
 			{
 				name: 'size',
 				type: {
@@ -433,7 +435,7 @@ describe('props columns', () => {
 	});
 
 	test('should render return from JsDoc tags', () => {
-		const getProps = tag => [
+		const getProps = (tag: string): any => [
 			{
 				name: 'size',
 				type: {
@@ -477,7 +479,7 @@ describe('props columns', () => {
 	});
 
 	test('should render name as deprecated when tag deprecated is present', () => {
-		const props = [
+		const props: any[] = [
 			{
 				name: 'size',
 				type: {
@@ -576,8 +578,7 @@ describe('props columns', () => {
 		"Prop name: foo 
 		Type: enum 
 		Default: Required 
-		Description: 
-		 One of: bar , baz"
+		Description:"
 	`);
 	});
 
@@ -621,7 +622,7 @@ describe('getType', () => {
 		const result = getType({
 			type: 'foo',
 			flowType: 'bar',
-		});
+		} as any);
 		expect(result).toBe('bar');
 	});
 });
