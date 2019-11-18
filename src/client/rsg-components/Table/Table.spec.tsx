@@ -1,16 +1,18 @@
 import React from 'react';
+import { shallow } from 'enzyme';
 import { TableRenderer, styles } from './TableRenderer';
+import classes from '../../../../test/classes';
 
 const columns = [
 	{
 		caption: 'Name',
 		// eslint-disable-next-line react/prop-types
-		render: ({ name }) => <span>name: {name}</span>,
+		render: ({ name }: { name: string }) => <span>name: {name}</span>,
 	},
 	{
 		caption: 'Type',
 		// eslint-disable-next-line react/prop-types
-		render: ({ type }) => <span>type: {type}</span>,
+		render: ({ type }: { type: string }) => <span>type: {type}</span>,
 	},
 ];
 const rows = [
@@ -20,7 +22,7 @@ const rows = [
 ];
 const props = {
 	classes: classes(styles),
-	getRowKey: row => row.name,
+	getRowKey: (row: { name: string }) => row.name,
 };
 
 it('should render a table', () => {
