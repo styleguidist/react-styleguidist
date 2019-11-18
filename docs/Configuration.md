@@ -41,6 +41,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 - [`styles`](#styles)
 - [`template`](#template)
 - [`theme`](#theme)
+- [`themes`](#themes)
 - [`title`](#title)
 - [`updateDocs`](#updatedocs)
 - [`updateExample`](#updateexample)
@@ -631,6 +632,20 @@ See example in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide)
 > **Note:** Styles use [JSS](https://github.com/cssinjs/jss/blob/master/docs/json-api.md) with these plugins: [jss-isolate](https://github.com/cssinjs/jss-isolate), [jss-nested](https://github.com/cssinjs/jss-nested), [jss-camel-case](https://github.com/cssinjs/jss-camel-case), [jss-default-unit](https://github.com/cssinjs/jss-default-unit), [jss-compose](https://github.com/cssinjs/jss-compose) and [jss-global](https://github.com/cssinjs/jss-global).
 
 > **Note:** Use [React Developer Tools](https://github.com/facebook/react-devtools) to find component and style names. For example a component `<LogoRenderer><h1 className="rsg--logo-53">` corresponds to an example above.
+
+#### `themes`
+
+Type: `array`, optional
+
+Customize style guide with multiple `theme` objects.
+
+See example in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide).
+
+#### `defaultTheme`
+
+Type: `string`, optional
+
+The default theme to select, when multiple themes are configured.
 
 #### `title`
 

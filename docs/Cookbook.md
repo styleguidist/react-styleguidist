@@ -226,13 +226,15 @@ See the [Preact example style guide](https://github.com/styleguidist/react-style
 
 ## How to change styles of a style guide?
 
-There are two config options to change your style guide UI: [theme](Configuration.md#theme) and [styles](Configuration.md#styles).
+There are three config options to change your style guide UI: [theme](Configuration.md#theme), [themes](Configuration.md#themes), and [styles](Configuration.md#styles).
 
-Use [theme](Configuration.md#theme) to change fonts, colors, etc.
+Use [theme](Configuration.md#theme) to apply a single set of changes to fonts, colors, etc.
 
-Use [styles](Configuration.md#styles) to tweak the style of any particular Styleguidist component.
+Use [themes](Configuration.md#themes) to configure additional themes by id. When used, this takes precedent over `theme`.
 
-As an example:
+Use [styles](Configuration.md#styles) to tweak the style of any particular Styleguidist component. This can be used with both `theme` and `themes`.
+
+Single-theme example:
 
 ```javascript
 module.exports = {
@@ -245,6 +247,43 @@ module.exports = {
       base: '"Comic Sans MS", "Comic Sans", cursive'
     }
   },
+  styles: {
+    Logo: {
+      // We're changing the LogoRenderer component
+      logo: {
+        // We're changing the rsg--logo-XX class name inside the component
+        animation: 'blink ease-in-out 300ms infinite'
+      },
+      '@keyframes blink': {
+        to: { opacity: 0 }
+      }
+    }
+  }
+}
+```
+
+Multi-theme example:
+
+```javascript
+module.exports = {
+  themes: [
+    {
+      id: 'dark',
+      styles: {
+        color: {
+          baseBackground: 'darkslategrey'
+        }
+      }
+    },
+    {
+      id: 'light',
+      styles: {
+        color: {
+          baseBackground: 'whitesmoke'
+        }
+      }
+    }
+  ],
   styles: {
     Logo: {
       // We're changing the LogoRenderer component
