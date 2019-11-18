@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Markdown from 'rsg-components/Markdown';
-import Styled from 'rsg-components/Styled';
+import Styled, { JssInjectedProps, Theme } from 'rsg-components/Styled';
 import { DOCS_COMPONENTS } from '../../../scripts/consts';
 
-const styles = ({ space, maxWidth }) => ({
+const styles = ({ space, maxWidth }: Theme) => ({
 	root: {
 		maxWidth,
 		margin: [[0, 'auto']],
@@ -12,7 +12,11 @@ const styles = ({ space, maxWidth }) => ({
 	},
 });
 
-export function WelcomeRenderer({ classes, patterns }) {
+interface WelcomeProps extends JssInjectedProps {
+	patterns: string[];
+}
+
+export const WelcomeRenderer: React.FunctionComponent<WelcomeProps> = ({ classes, patterns }) => {
 	return (
 		<div className={classes.root}>
 			<Markdown
@@ -34,11 +38,11 @@ Read more in the [locating components guide](${DOCS_COMPONENTS}).
 			/>
 		</div>
 	);
-}
+};
 
 WelcomeRenderer.propTypes = {
-	classes: PropTypes.object.isRequired,
+	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	patterns: PropTypes.array.isRequired,
 };
 
-export default Styled(styles)(WelcomeRenderer);
+export default Styled<WelcomeProps>(styles)(WelcomeRenderer);

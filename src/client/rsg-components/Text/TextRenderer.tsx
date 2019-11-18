@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Styled from 'rsg-components/Styled';
 import cx from 'clsx';
+import Styled, { JssInjectedProps, Theme } from 'rsg-components/Styled';
 
-export const styles = ({ fontFamily, fontSize, color }) => ({
+export const styles = ({ fontFamily, fontSize, color }: Theme) => ({
 	text: {
 		fontFamily: fontFamily.base,
 	},
@@ -36,10 +36,27 @@ export const styles = ({ fontFamily, fontSize, color }) => ({
 	},
 });
 
-export function TextRenderer({ classes, semantic, size, color, underlined, children, ...props }) {
+interface TextProps extends JssInjectedProps {
+	semantic?: 'em' | 'strong';
+	size?: 'inherit' | 'small' | 'base' | 'text';
+	color?: 'base' | 'light';
+	underlined?: boolean;
+	children: React.ReactNode;
+	[intrinsicAttribute: string]: any;
+}
+
+export const TextRenderer: React.FunctionComponent<TextProps> = ({
+	classes,
+	semantic,
+	size,
+	color,
+	underlined,
+	children,
+	...props
+}) => {
 	const Tag = semantic || 'span';
 	const classNames = cx(classes.text, classes[`${size}Size`], classes[`${color}Color`], {
-		[classes[semantic]]: semantic,
+		[classes[Tag]]: !!semantic,
 		[classes.isUnderlined]: underlined,
 	});
 
@@ -48,10 +65,10 @@ export function TextRenderer({ classes, semantic, size, color, underlined, child
 			{children}
 		</Tag>
 	);
-}
+};
 
 TextRenderer.propTypes = {
-	classes: PropTypes.object.isRequired,
+	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	semantic: PropTypes.oneOf(['em', 'strong']),
 	size: PropTypes.oneOf(['inherit', 'small', 'base', 'text']),
 	color: PropTypes.oneOf(['base', 'light']),
@@ -65,4 +82,4 @@ TextRenderer.defaultProps = {
 	underlined: false,
 };
 
-export default Styled(styles)(TextRenderer);
+export default Styled<TextProps>(styles)(TextRenderer);
