@@ -69,7 +69,7 @@ export class Editor extends Component<EditorProps> {
 		return nextState.code !== this.state.code;
 	}
 
-	public handleChange = (code: string) => {
+	private handleChange = (code: string) => {
 		this.setState({ code });
 		this.props.onChange(code);
 	};
