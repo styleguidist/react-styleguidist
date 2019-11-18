@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Examples from '../Examples';
+import Examples from '.';
 import Context from '../Context';
 import slots from '../slots';
 import { DisplayModes } from '../../consts';
 
-const evalInContext = a =>
+const evalInContext = (a: string) =>
 	// eslint-disable-next-line no-new-func
 	new Function('require', 'const React = require("react");' + a).bind(null, require);
 
@@ -30,7 +30,7 @@ const context = {
 	slots: slots(),
 };
 
-const Provider = props => <Context.Provider value={context} {...props} />;
+const Provider = (props: any) => <Context.Provider value={context} {...props} />;
 
 test('should render examples', () => {
 	const { getByText } = render(
@@ -47,7 +47,7 @@ test('should not render an example with unknown type', () => {
 		{
 			type: 'unknown',
 			content: 'FooBar',
-		},
+		} as any,
 	];
 	const { getByTestId } = render(
 		<Provider>

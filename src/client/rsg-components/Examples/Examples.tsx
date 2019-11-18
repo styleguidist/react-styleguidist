@@ -4,8 +4,16 @@ import Playground from 'rsg-components/Playground';
 import Markdown from 'rsg-components/Markdown';
 import ExamplesRenderer from 'rsg-components/Examples/ExamplesRenderer';
 import { useStyleGuideContext } from 'rsg-components/Context';
+import { ExampleModel } from 'rsg-components/ReactComponent';
+import { EXPAND_MODE } from '../../../scripts/schemas/config';
 
-export default function Examples({ examples, name, exampleMode }) {
+interface ExamplesRenderer {
+	examples: ExampleModel[];
+	name: string;
+	exampleMode: EXPAND_MODE;
+}
+
+const Examples: React.FunctionComponent<ExamplesRenderer> = ({ examples, name, exampleMode }) => {
 	const { codeRevision } = useStyleGuideContext();
 	return (
 		<ExamplesRenderer name={name}>
@@ -31,10 +39,12 @@ export default function Examples({ examples, name, exampleMode }) {
 			})}
 		</ExamplesRenderer>
 	);
-}
+};
 
 Examples.propTypes = {
 	examples: PropTypes.array.isRequired,
 	name: PropTypes.string.isRequired,
 	exampleMode: PropTypes.string.isRequired,
 };
+
+export default Examples;
