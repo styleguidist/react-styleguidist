@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'clsx';
-import Styled from 'rsg-components/Styled';
+import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ color, fontFamily, fontSize }) => ({
+const styles = ({ color, fontFamily, fontSize }: Theme) => ({
 	heading: {
 		margin: 0,
 		color: color.base,
@@ -32,8 +32,18 @@ const styles = ({ color, fontFamily, fontSize }) => ({
 	},
 });
 
-function HeadingRenderer({ classes, level, children, ...props }) {
-	const Tag = `h${level}`;
+interface HeadingProps extends JssInjectedProps {
+	children?: React.ReactNode;
+	level: number;
+}
+
+const HeadingRenderer: React.FunctionComponent<HeadingProps> = ({
+	classes,
+	level,
+	children,
+	...props
+}) => {
+	const Tag = `h${level}` as ('h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6');
 	const headingClasses = cx(classes.heading, classes[`heading${level}`]);
 
 	return (
@@ -41,12 +51,12 @@ function HeadingRenderer({ classes, level, children, ...props }) {
 			{children}
 		</Tag>
 	);
-}
+};
 
 HeadingRenderer.propTypes = {
-	classes: PropTypes.object.isRequired,
+	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]).isRequired,
 	children: PropTypes.node,
 };
 
-export default Styled(styles)(HeadingRenderer);
+export default Styled<HeadingProps>(styles)(HeadingRenderer);
