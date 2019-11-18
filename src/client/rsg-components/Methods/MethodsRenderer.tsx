@@ -7,23 +7,25 @@ import Name from 'rsg-components/Name';
 import JsDoc from 'rsg-components/JsDoc';
 import Table from 'rsg-components/Table';
 
-const getRowKey = row => row.name;
+const getRowKey = (row: MethodProp): string => row.name;
 
 export const columns = [
 	{
 		caption: 'Method name',
 		// eslint-disable-next-line react/prop-types
-		render: ({ name, tags = {} }) => <Name deprecated={!!tags.deprecated}>{`${name}()`}</Name>,
+		render: ({ name, tags = {} }: MethodProp) => (
+			<Name deprecated={!!tags.deprecated}>{`${name}()`}</Name>
+		),
 	},
 	{
 		caption: 'Parameters',
 		// eslint-disable-next-line react/prop-types
-		render: ({ params = [] }) => <Arguments args={params} />,
+		render: ({ params = [] }: MethodProp) => <Arguments args={params} />,
 	},
 	{
 		caption: 'Description',
 		// eslint-disable-next-line react/prop-types
-		render: ({ description, returns, tags = {} }) => (
+		render: ({ description, returns, tags = {} }: MethodProp) => (
 			<div>
 				{description && <Markdown text={description} />}
 				{returns && <Argument block returns {...returns} />}
@@ -33,9 +35,18 @@ export const columns = [
 	},
 ];
 
-export default function MethodsRenderer({ methods }) {
-	return <Table columns={columns} rows={methods} getRowKey={getRowKey} />;
+export interface MethodProp {
+	name: string;
+	description?: string;
+	returns?: { name: string; [key: string]: any };
+	params?: any[];
+	modifiers?: string[];
+	tags?: Record<string, any>;
 }
+
+const MethodsRenderer: React.FunctionComponent<{ methods: MethodProp[] }> = ({ methods }) => (
+	<Table columns={columns} rows={methods} getRowKey={getRowKey} />
+);
 
 MethodsRenderer.propTypes = {
 	methods: PropTypes.arrayOf(
@@ -45,6 +56,8 @@ MethodsRenderer.propTypes = {
 			returns: PropTypes.object,
 			params: PropTypes.array,
 			tags: PropTypes.object,
-		})
+		}).isRequired
 	).isRequired,
 };
+
+export default MethodsRenderer;

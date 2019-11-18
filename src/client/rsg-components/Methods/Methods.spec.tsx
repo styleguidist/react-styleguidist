@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { parse } from 'react-docgen';
-import MethodsRenderer, { columns } from './MethodsRenderer';
+import { shallow } from 'enzyme';
+import MethodsRenderer, { columns, MethodProp } from './MethodsRenderer';
 
 // Test renderers with clean readable snapshot diffs
-export default function ColumnsRenderer({ methods }) {
+export default function ColumnsRenderer({ methods }: { methods: MethodProp[] }) {
 	return (
 		<ul>
 			{methods.map((row, rowIdx) => (
@@ -22,7 +23,7 @@ ColumnsRenderer.propTypes = {
 	methods: PropTypes.array,
 };
 
-function render(methods) {
+function render(methods: string[]) {
 	const parsed = parse(
 		`
 		import { Component } from 'react';
@@ -34,9 +35,13 @@ function render(methods) {
 	`,
 		undefined,
 		undefined,
-		{ filename: '' }
+		{ filename: '' } as any
 	);
-	return shallow(<ColumnsRenderer methods={parsed.methods} />);
+	if (Array.isArray(parsed)) {
+		return shallow(<div />);
+	}
+	// the types of react-docgen are poor to say the least
+	return shallow(<ColumnsRenderer methods={(parsed as any).methods} />);
 }
 
 describe('MethodsRenderer', () => {
