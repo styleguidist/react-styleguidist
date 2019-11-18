@@ -1,7 +1,8 @@
 import React from 'react';
-import JsDoc, { getMarkdown } from './JsDoc';
+import { shallow } from 'enzyme';
+import JsDoc, { getMarkdown, TagProps } from './JsDoc';
 
-const tags = {
+const tags: TagProps = {
 	deprecated: [
 		{
 			title: 'description',
@@ -55,8 +56,9 @@ describe('getMarkdown', () => {
 	});
 
 	it('should return Markdown for one author', () => {
+		const author = tags.author ? [tags.author[0]] : undefined;
 		const result = getMarkdown({
-			author: [tags.author[0]],
+			author,
 		});
 		expect(result).toMatchSnapshot();
 	});
