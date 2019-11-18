@@ -1,4 +1,4 @@
 declare module 'strip-html-comments' {
-	function getLogger(text: string): string;
-	export = getLogger;
+	function stripHtmlComments(text: string): string;
+	export = stripHtmlComments;
 }
