@@ -1,4 +1,5 @@
 import React from 'react';
+import { shallow } from 'enzyme';
 import ReactComponent from '../ReactComponent';
 import Components from './Components';
 import ComponentsRenderer from './ComponentsRenderer';

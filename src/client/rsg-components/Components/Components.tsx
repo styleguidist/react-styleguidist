@@ -3,7 +3,19 @@ import PropTypes from 'prop-types';
 import ReactComponent from 'rsg-components/ReactComponent';
 import ComponentsRenderer from 'rsg-components/Components/ComponentsRenderer';
 
-export default function Components({ components, depth, exampleMode, usageMode }) {
+interface ComponentsProps {
+	components: any[];
+	depth: number;
+	exampleMode: string;
+	usageMode: string;
+}
+
+const Components: React.FunctionComponent<ComponentsProps> = ({
+	components,
+	depth,
+	exampleMode,
+	usageMode,
+}) => {
 	return (
 		<ComponentsRenderer>
 			{components.map(component => (
@@ -17,7 +29,7 @@ export default function Components({ components, depth, exampleMode, usageMode }
 			))}
 		</ComponentsRenderer>
 	);
-}
+};
 
 Components.propTypes = {
 	components: PropTypes.array.isRequired,
@@ -25,3 +37,5 @@ Components.propTypes = {
 	exampleMode: PropTypes.string.isRequired,
 	usageMode: PropTypes.string.isRequired,
 };
+
+export default Components;
