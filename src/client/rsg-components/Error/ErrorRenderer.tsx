@@ -21,9 +21,7 @@ const styles = ({ fontFamily, fontSize, color, space }: Theme) => ({
 
 interface ErrorProps extends JssInjectedProps {
 	error: any;
-	info: {
-		componentStack?: any;
-	};
+	info: React.ErrorInfo;
 }
 
 export const ErrorRenderer: React.FunctionComponent<ErrorProps> = ({ classes, error, info }) => {
@@ -56,9 +54,7 @@ export const ErrorRenderer: React.FunctionComponent<ErrorProps> = ({ classes, er
 ErrorRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	error: PropTypes.object.isRequired,
-	info: PropTypes.shape({
-		componentStack: PropTypes.any.isRequired,
-	}).isRequired,
+	info: PropTypes.any.isRequired,
 };
 
 export default Styled<ErrorProps>(styles)(ErrorRenderer);

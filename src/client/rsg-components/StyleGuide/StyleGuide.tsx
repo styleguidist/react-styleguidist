@@ -7,6 +7,7 @@ import Welcome from 'rsg-components/Welcome';
 import Error from 'rsg-components/Error';
 import NotFound from 'rsg-components/NotFound';
 import Context from 'rsg-components/Context';
+import { SectionViewModel } from 'rsg-components/Section';
 import { HOMEPAGE } from '../../../scripts/consts';
 import { DisplayModes } from '../../consts';
 
@@ -21,17 +22,34 @@ import { DisplayModes } from '../../consts';
  * - Sidebar is hidden when showSidebar is set to false
  * - Sidebar is visible when showSidebar is set to true for non-isolated views
  *
- * @param {boolean} displayMode
+ * @param {string} displayMode
  * @param {boolean} showSidebar
  * @param {boolean} pagePerSection
  * @returns {boolean}
  */
-function hasSidebar(displayMode, showSidebar) {
+function hasSidebar(displayMode: string, showSidebar: boolean): boolean {
 	return displayMode === DisplayModes.notFound || (showSidebar && displayMode === DisplayModes.all);
 }
 
-export default class StyleGuide extends Component {
-	static propTypes = {
+interface StyleGuideProps {
+	codeRevision: number;
+	config: any;
+	slots: any;
+	sections: SectionViewModel[];
+	welcomeScreen?: boolean;
+	patterns?: string[];
+	displayMode: string;
+	allSections?: SectionViewModel[];
+	pagePerSection?: boolean;
+}
+
+interface StyleGuideState {
+	error: Error | boolean;
+	info: React.ErrorInfo | null;
+}
+
+export default class StyleGuide extends Component<StyleGuideProps, StyleGuideState> {
+	public static propTypes = {
 		codeRevision: PropTypes.number.isRequired,
 		config: PropTypes.object.isRequired,
 		slots: PropTypes.object.isRequired,
@@ -42,24 +60,24 @@ export default class StyleGuide extends Component {
 		allSections: PropTypes.array.isRequired,
 		pagePerSection: PropTypes.bool,
 	};
-	static defaultProps = {
+	public static defaultProps = {
 		displayMode: DisplayModes.all,
 	};
 
-	state = {
+	public state = {
 		error: false,
 		info: null,
 	};
 
-	componentDidCatch(error, info) {
+	public componentDidCatch(error: Error, info: React.ErrorInfo) {
 		this.setState({
 			error,
 			info,
 		});
 	}
 
-	render() {
-		const { error, info } = this.state;
+	public render() {
+		const { error, info }: StyleGuideState = this.state;
 		const {
 			config,
 			sections,
@@ -72,11 +90,11 @@ export default class StyleGuide extends Component {
 			slots,
 		} = this.props;
 
-		if (error) {
+		if (error && info) {
 			return <Error error={error} info={info} />;
 		}
 
-		if (welcomeScreen) {
+		if (welcomeScreen && patterns) {
 			return <Welcome patterns={patterns} />;
 		}
 
@@ -86,14 +104,18 @@ export default class StyleGuide extends Component {
 					codeRevision,
 					config,
 					slots,
-					displayMode,
+					displayMode: displayMode || DisplayModes.all,
 				}}
 			>
 				<StyleGuideRenderer
 					title={config.title}
 					version={config.version}
 					homepageUrl={HOMEPAGE}
-					toc={<TableOfContents sections={allSections} useRouterLinks={pagePerSection} />}
+					toc={
+						allSections ? (
+							<TableOfContents sections={allSections} useRouterLinks={pagePerSection} />
+						) : null
+					}
 					hasSidebar={hasSidebar(displayMode, config.showSidebar)}
 				>
 					{sections.length ? <Sections sections={sections} depth={1} /> : <NotFound />}

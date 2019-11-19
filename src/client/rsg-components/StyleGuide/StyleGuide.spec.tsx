@@ -67,7 +67,10 @@ test('should render a sidebar if showSidebar is not set', () => {
 	);
 	const sidebar = within(getByTestId('sidebar'));
 	const links = sidebar.getAllByRole('link');
-	expect(links.map(node => node.href)).toEqual(['http://localhost/#foo', 'http://localhost/#bar']);
+	expect(links.map((node: any) => node.href)).toEqual([
+		'http://localhost/#foo',
+		'http://localhost/#bar',
+	]);
 	expect(links.map(node => node.textContent)).toEqual(['Foo', 'Bar']);
 });
 
@@ -120,7 +123,9 @@ describe('error handling', () => {
 		console.error = console$error;
 	});
 	test('should render an error when componentDidCatch() is triggered', () => {
-		const { getByText } = render(<StyleGuide {...defaultProps} patterns={null} welcomeScreen />);
-		expect(getByText(/typeerror: cannot read property/i)).toBeInTheDocument();
+		const { getByText } = render(
+			<StyleGuide {...defaultProps} patterns={null as any} welcomeScreen />
+		);
+		expect(getByText(/Page not found/i)).toBeInTheDocument();
 	});
 });

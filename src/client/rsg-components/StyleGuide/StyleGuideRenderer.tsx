@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Logo from 'rsg-components/Logo';
 import Markdown from 'rsg-components/Markdown';
-import Styled from 'rsg-components/Styled';
+import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
 import cx from 'clsx';
 import Ribbon from 'rsg-components/Ribbon';
 import Version from 'rsg-components/Version';
 
-const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth }) => ({
+const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth }: Theme) => ({
 	root: {
 		minHeight: '100vh',
 		backgroundColor: color.baseBackground,
@@ -57,7 +57,16 @@ const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth
 	},
 });
 
-export function StyleGuideRenderer({
+interface StyleGuideRendererProps extends JssInjectedProps {
+	title: string;
+	version?: string;
+	homepageUrl: string;
+	children: React.ReactNode;
+	toc?: React.ReactNode;
+	hasSidebar?: boolean;
+}
+
+export const StyleGuideRenderer: React.FunctionComponent<StyleGuideRendererProps> = ({
 	classes,
 	title,
 	version,
@@ -65,7 +74,7 @@ export function StyleGuideRenderer({
 	children,
 	toc,
 	hasSidebar,
-}) {
+}) => {
 	return (
 		<div className={cx(classes.root, hasSidebar && classes.hasSidebar)}>
 			<main className={classes.content}>
@@ -86,10 +95,10 @@ export function StyleGuideRenderer({
 			<Ribbon />
 		</div>
 	);
-}
+};
 
 StyleGuideRenderer.propTypes = {
-	classes: PropTypes.object.isRequired,
+	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	title: PropTypes.string.isRequired,
 	version: PropTypes.string,
 	homepageUrl: PropTypes.string.isRequired,
@@ -98,4 +107,4 @@ StyleGuideRenderer.propTypes = {
 	hasSidebar: PropTypes.bool,
 };
 
-export default Styled(styles)(StyleGuideRenderer);
+export default Styled<StyleGuideRendererProps>(styles)(StyleGuideRenderer);
