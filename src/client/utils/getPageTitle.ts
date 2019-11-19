@@ -17,7 +17,7 @@ export default function getPageTitle(
 	sections: SectionViewModel[],
 	baseTitle: string,
 	displayMode: string
-) {
+): string {
 	if (displayMode === DisplayModes.notFound) {
 		return 'Page not found';
 	}

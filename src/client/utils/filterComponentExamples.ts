@@ -1,3 +1,5 @@
+import { ComponentViewModel } from '../rsg-components/ReactComponent';
+
 /**
  * Return a copy of the given component with the examples array filtered
  * to contain only the specified index:
@@ -7,12 +9,16 @@
  * @param {number} index
  * @returns {object}
  */
-export default function filterComponentExamples(component, index) {
+export default function filterComponentExamples(
+	component: ComponentViewModel,
+	index: number
+): ComponentViewModel {
 	return {
 		...component,
 		props: {
 			...component.props,
-			examples: [component.props.examples[index]],
+			examples:
+				component.props && component.props.examples ? [component.props.examples[index]] : [],
 		},
 	};
 }
