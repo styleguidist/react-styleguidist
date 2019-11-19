@@ -29,7 +29,7 @@ export const ErrorRenderer: React.FunctionComponent<ErrorProps> = ({ classes, er
 		<div className={classes.root}>
 			<pre className={classes.stack}>
 				{error.toString()}
-				{info.componentStack.toString()}
+				{info.componentStack}
 			</pre>
 			<div className={classes.message}>
 				<p>
