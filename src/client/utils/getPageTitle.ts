@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import { DisplayModes } from '../consts';
+import { SectionViewModel } from '../rsg-components/Section';
 
 /**
  * Return page title:
@@ -12,7 +13,11 @@ import { DisplayModes } from '../consts';
  * @param {string} displayMode
  * @return {string}
  */
-export default function getPageTitle(sections, baseTitle, displayMode) {
+export default function getPageTitle(
+	sections: SectionViewModel[],
+	baseTitle: string,
+	displayMode: string
+) {
 	if (displayMode === DisplayModes.notFound) {
 		return 'Page not found';
 	}
