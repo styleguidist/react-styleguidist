@@ -10,13 +10,19 @@ const themes = [
 	},
 ];
 
+const currentTheme = 'light';
+
 const props = {
 	classes: classes(styles),
 	onThemeChange: () => null,
 };
 
-it('should render a theme switcher', () => {
-	const actual = shallow(<ThemeSwitcherRenderer {...props} themes={themes} />);
+describe('ThemeSwitcher', () => {
+	it('should render current theme', () => {
+		const actual = shallow(
+			<ThemeSwitcherRenderer {...props} themes={themes} currentTheme={currentTheme} />
+		);
 
-	expect(actual).toMatchSnapshot();
+		expect(actual).toMatchSnapshot();
+	});
 });

@@ -175,25 +175,6 @@ describe('when multiple themes are configured', () => {
 		},
 	];
 
-	it('renderer should render theme switcher', () => {
-		const actual = shallow(
-			<StyleGuideRenderer
-				classes={{}}
-				title={config.title}
-				version={config.version}
-				toc={<TableOfContents sections={sections} />}
-				homepageUrl="http://react-styleguidist.js.org/"
-				hasSidebar
-				themes={themes}
-				onThemeChange={() => null}
-			>
-				<h1>Content</h1>
-			</StyleGuideRenderer>
-		);
-
-		expect(actual).toMatchSnapshot();
-	});
-
 	it('current theme should be initialized to default theme if configured', () => {
 		const config = {
 			defaultTheme: 'light',

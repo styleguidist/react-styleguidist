@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render a theme switcher 1`] = `
+exports[`ThemeSwitcher should render current theme 1`] = `
 <label
   className="root"
 >
@@ -8,6 +8,7 @@ exports[`should render a theme switcher 1`] = `
   <select
     onBlur={[Function]}
     onChange={[Function]}
+    value="light"
   >
     <option
       key="dark"
