@@ -12,8 +12,8 @@ import { DisplayModes, ExampleModes } from '../../consts';
 interface PlaygroundProps {
 	evalInContext(code: string): () => any;
 	index: number;
-	name: string;
-	exampleMode: string;
+	name?: string;
+	exampleMode?: string;
 	code: string;
 	settings: {
 		showcode?: boolean;

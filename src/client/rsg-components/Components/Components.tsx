@@ -6,8 +6,8 @@ import ComponentsRenderer from 'rsg-components/Components/ComponentsRenderer';
 interface ComponentsProps {
 	components: any[];
 	depth: number;
-	exampleMode: string;
-	usageMode: string;
+	exampleMode?: string;
+	usageMode?: string;
 }
 
 const Components: React.FunctionComponent<ComponentsProps> = ({

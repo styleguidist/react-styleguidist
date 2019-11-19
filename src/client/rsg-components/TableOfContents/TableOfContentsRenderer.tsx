@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Styled from 'rsg-components/Styled';
+import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ space, color, fontFamily, fontSize, borderRadius }) => ({
+const styles = ({ space, color, fontFamily, fontSize, borderRadius }: Theme) => ({
 	root: {
 		fontFamily: fontFamily.base,
 	},
@@ -35,7 +35,18 @@ const styles = ({ space, color, fontFamily, fontSize, borderRadius }) => ({
 	},
 });
 
-export function TableOfContentsRenderer({ classes, children, searchTerm, onSearchTermChange }) {
+interface TableOfContentsRendererProps extends JssInjectedProps {
+	children?: React.ReactNode;
+	searchTerm: string;
+	onSearchTermChange(term: string): void;
+}
+
+export const TableOfContentsRenderer: React.FunctionComponent<TableOfContentsRendererProps> = ({
+	classes,
+	children,
+	searchTerm,
+	onSearchTermChange,
+}) => {
 	return (
 		<div>
 			<div className={classes.root}>
@@ -54,13 +65,13 @@ export function TableOfContentsRenderer({ classes, children, searchTerm, onSearc
 			</div>
 		</div>
 	);
-}
+};
 
 TableOfContentsRenderer.propTypes = {
-	classes: PropTypes.object.isRequired,
+	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	children: PropTypes.node,
 	searchTerm: PropTypes.string.isRequired,
 	onSearchTermChange: PropTypes.func.isRequired,
 };
 
-export default Styled(styles)(TableOfContentsRenderer);
+export default Styled<TableOfContentsRendererProps>(styles)(TableOfContentsRenderer);

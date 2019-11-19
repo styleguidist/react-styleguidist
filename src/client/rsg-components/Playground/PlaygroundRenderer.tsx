@@ -41,7 +41,7 @@ export const styles = ({ space, color, borderRadius }: Theme) => ({
 
 interface PlaygroundRendererProps extends JssInjectedProps {
 	exampleIndex: number;
-	name: string;
+	name?: string;
 	padded: boolean;
 	preview: React.ReactNode;
 	// TODO: need to find a better type here too

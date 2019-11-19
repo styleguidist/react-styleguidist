@@ -9,7 +9,7 @@ const styles = () => ({
 
 interface ExamplesRendererProps extends JssInjectedProps {
 	children?: React.ReactNode;
-	name: string;
+	name?: string;
 }
 
 export const ExamplesRenderer: React.FunctionComponent<ExamplesRendererProps> = ({

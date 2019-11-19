@@ -22,8 +22,8 @@ export type ExampleModel = ExampleModelCode | ExampleModelMarkdown;
 
 interface ExamplesRenderer {
 	examples: ExampleModel[];
-	name: string;
-	exampleMode: string;
+	name?: string;
+	exampleMode?: string;
 }
 
 const Examples: React.FunctionComponent<ExamplesRenderer> = ({ examples, name, exampleMode }) => {

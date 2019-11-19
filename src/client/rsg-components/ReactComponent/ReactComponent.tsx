@@ -43,8 +43,8 @@ export interface ComponentViewModel {
 interface ReactComponentProps {
 	component: ComponentViewModel;
 	depth: number;
-	exampleMode: string;
-	usageMode: string;
+	exampleMode?: string;
+	usageMode?: string;
 }
 
 interface ReactComponentState {

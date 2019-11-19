@@ -9,16 +9,17 @@ import { ComponentViewModel } from 'rsg-components/ReactComponent';
 import { DisplayModes } from '../../consts';
 
 export interface SectionViewModel {
-	name: string;
-	slug: string;
+	name?: string;
+	slug?: string;
 	href?: string;
 	filepath?: string;
 	description?: 'string';
 	sections?: SectionViewModel[];
 	components?: ComponentViewModel[];
-	content?: ExampleModel[];
-	exampleMode: string;
-	usageMode: string;
+	content?: ExampleModel[] | string;
+	exampleMode?: string;
+	usageMode?: string;
+	sectionDepth?: number;
 }
 
 const Section: React.FunctionComponent<{
@@ -41,9 +42,9 @@ const Section: React.FunctionComponent<{
 		usageMode,
 	} = section;
 
-	const contentJsx = content && (
+	const contentJsx = Array.isArray(content) ? (
 		<Examples examples={content} name={name} exampleMode={exampleMode} />
-	);
+	) : null;
 	const componentsJsx = components && (
 		<Components
 			usageMode={usageMode}

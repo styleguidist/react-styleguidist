@@ -12,6 +12,9 @@ exports[`renderer should render table of contents 1`] = `
           value="foo"
         />
       </div>
+      <div>
+        foo
+      </div>
     </nav>
   </div>
 </div>
@@ -28,7 +31,7 @@ exports[`should filter list when search field contains a query 1`] = `
       Array [
         Object {
           "components": Array [],
-          "content": false,
+          "content": undefined,
           "heading": false,
           "name": "Button",
           "sections": Array [],
@@ -36,7 +39,7 @@ exports[`should filter list when search field contains a query 1`] = `
         },
         Object {
           "components": Array [],
-          "content": false,
+          "content": undefined,
           "heading": false,
           "name": "Input",
           "sections": Array [],
@@ -44,7 +47,7 @@ exports[`should filter list when search field contains a query 1`] = `
         },
         Object {
           "components": Array [],
-          "content": false,
+          "content": undefined,
           "heading": false,
           "name": "Textarea",
           "sections": Array [],
@@ -69,7 +72,7 @@ exports[`should filter list when search field contains a query 2`] = `
       Array [
         Object {
           "components": Array [],
-          "content": false,
+          "content": undefined,
           "heading": false,
           "name": "Button",
           "sections": Array [],
@@ -94,7 +97,7 @@ exports[`should filter section names 1`] = `
       Array [
         Object {
           "components": Array [],
-          "content": false,
+          "content": undefined,
           "heading": false,
           "name": "Introduction",
           "sections": Array [],
@@ -116,7 +119,7 @@ exports[`should filter section names 1`] = `
             items={
               Array [
                 Object {
-                  "content": false,
+                  "content": undefined,
                   "heading": false,
                   "name": "Button",
                   "slug": "button",
@@ -151,13 +154,13 @@ exports[`should filter section names 1`] = `
             items={
               Array [
                 Object {
-                  "content": false,
+                  "content": undefined,
                   "heading": false,
                   "name": "Input",
                   "slug": "input",
                 },
                 Object {
-                  "content": false,
+                  "content": undefined,
                   "heading": false,
                   "name": "Textarea",
                   "slug": "textarea",
@@ -191,7 +194,7 @@ exports[`should filter section names 2`] = `
       Array [
         Object {
           "components": Array [],
-          "content": false,
+          "content": undefined,
           "heading": false,
           "name": "Forms",
           "sections": Array [],
@@ -216,7 +219,7 @@ exports[`should render a renderer 1`] = `
       Array [
         Object {
           "components": Array [],
-          "content": false,
+          "content": undefined,
           "heading": false,
           "name": "Button",
           "sections": Array [],
@@ -224,7 +227,7 @@ exports[`should render a renderer 1`] = `
         },
         Object {
           "components": Array [],
-          "content": false,
+          "content": undefined,
           "heading": false,
           "name": "Input",
           "sections": Array [],
@@ -232,7 +235,7 @@ exports[`should render a renderer 1`] = `
         },
         Object {
           "components": Array [],
-          "content": false,
+          "content": undefined,
           "heading": false,
           "name": "Textarea",
           "sections": Array [],
@@ -257,7 +260,7 @@ exports[`should render renderer with sections with nested components 1`] = `
       Array [
         Object {
           "components": Array [],
-          "content": false,
+          "content": undefined,
           "heading": false,
           "name": "Introduction",
           "sections": Array [],
@@ -279,7 +282,7 @@ exports[`should render renderer with sections with nested components 1`] = `
             items={
               Array [
                 Object {
-                  "content": false,
+                  "content": undefined,
                   "heading": false,
                   "name": "Button",
                   "slug": "button",
@@ -314,13 +317,13 @@ exports[`should render renderer with sections with nested components 1`] = `
             items={
               Array [
                 Object {
-                  "content": false,
+                  "content": undefined,
                   "heading": false,
                   "name": "Input",
                   "slug": "input",
                 },
                 Object {
-                  "content": false,
+                  "content": undefined,
                   "heading": false,
                   "name": "Textarea",
                   "slug": "textarea",

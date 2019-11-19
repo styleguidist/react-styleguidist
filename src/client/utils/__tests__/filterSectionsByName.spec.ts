@@ -1,7 +1,6 @@
-import deepfreeze from 'deepfreeze';
 import filterSectionsByName from '../filterSectionsByName';
 
-const sections = deepfreeze([
+const sections = [
 	{
 		name: 'General',
 		sections: [
@@ -18,7 +17,7 @@ const sections = deepfreeze([
 			},
 		],
 	},
-]);
+];
 
 describe('filterSectionsByName', () => {
 	it('should recursively filter sections and components by name', () => {

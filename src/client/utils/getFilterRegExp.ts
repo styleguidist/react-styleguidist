@@ -4,7 +4,7 @@
  * @param {string} query
  * @return {RegExp}
  */
-export default function getFilterRegExp(query) {
+export default function getFilterRegExp(query: string): RegExp {
 	query = query
 		.replace(/[^a-z0-9]/gi, '')
 		.split('')
