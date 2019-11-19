@@ -14,7 +14,34 @@ declare module 'react-docgen' {
 		toObject(): DocumentationObject;
 	}
 
-	interface PropTypeDescriptor {
+	export interface TagObject {
+		title: string;
+		description?: string;
+	}
+
+	export interface TagParamObject {
+		title: string;
+		description?: string;
+		name: string;
+		type?: any;
+		default?: string;
+	}
+
+	export interface TagProps {
+		deprecated?: TagObject[];
+		see?: TagObject[];
+		link?: TagObject[];
+		author?: TagObject[];
+		version?: TagObject[];
+		since?: TagObject[];
+		returns?: TagObject[];
+		return?: TagParamObject[];
+		arg?: TagParamObject[];
+		argument?: TagParamObject[];
+		param?: TagParamObject[];
+	}
+
+	export interface PropTypeDescriptor {
 		name:
 			| 'arrayOf'
 			| 'custom'
@@ -33,6 +60,7 @@ declare module 'react-docgen' {
 			| 'shape'
 			| 'exact'
 			| 'union'
+			| 'instanceOf'
 			| 'elementType';
 		value?: any;
 		raw?: string;
@@ -43,29 +71,41 @@ declare module 'react-docgen' {
 		required?: boolean;
 	}
 
-	interface PropDescriptor {
+	export interface PropDescriptor {
+		name: string;
 		type?: PropTypeDescriptor;
 		required?: boolean;
 		defaultValue?: any;
 		description?: string;
+		tags?: TagProps;
 	}
 
-	interface DocumentationObject {
+	export interface MethodDescriptor {
+		name: string;
+		description?: string;
+		returns?: { name: string; [key: string]: any } | null;
+		params?: any[];
+		modifiers?: string[];
+		tags?: TagProps;
+	}
+
+	export interface DocumentationObject {
 		props?: { [propName: string]: PropDescriptor };
+		methods?: MethodDescriptor[];
 		context?: { [constextName: string]: PropDescriptor };
 		childContext?: { [chilCOntextName: string]: PropDescriptor };
 		composes?: string[];
 	}
 
 	interface Options {
-		filename: string;
-		cwd: string;
-		babelrc: string;
-		babelrcRoots: boolean | string | string[];
-		root: string;
-		rootMode: 'root' | 'upward' | 'upward-optional';
-		configFile: string;
-		envName: string;
+		filename?: string;
+		cwd?: string;
+		babelrc?: string;
+		babelrcRoots?: boolean | string | string[];
+		root?: string;
+		rootMode?: 'root' | 'upward' | 'upward-optional';
+		configFile?: string;
+		envName?: string;
 	}
 
 	export const defaultHandlers: Handler[];

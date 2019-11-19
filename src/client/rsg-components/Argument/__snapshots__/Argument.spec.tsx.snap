@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render argument 1`] = `
+<Group
+  separator=" "
+>
+  <span>
+    <Styled(Name)>
+      Foo
+    </Styled(Name)>
+    :
+  </span>
+  <Styled(Type)>
+    Array
+  </Styled(Type)>
+  —
+  <Markdown
+    inline={true}
+    text="Converts foo to bar"
+  />
+</Group>
+`;
+
+exports[`should render argument without description 1`] = `
+<Group
+  separator=" "
+>
+  <span>
+    <Styled(Name)>
+      Foo
+    </Styled(Name)>
+    :
+  </span>
+  <Styled(Type)>
+    Array
+  </Styled(Type)>
+</Group>
+`;
+
+exports[`should render argument without type 1`] = `
+<Group
+  separator=" "
+>
+  <span>
+    <Styled(Name)>
+      Foo
+    </Styled(Name)>
+  </span>
+  <Markdown
+    inline={true}
+    text="Converts foo to bar"
+  />
+</Group>
+`;
+
+exports[`should render default value of argument 1`] = `
+<Group
+  separator=" "
+>
+  <span>
+    <Styled(Name)>
+      argname
+    </Styled(Name)>
+    :
+  </span>
+  <Styled(Type)>
+    String
+    =bar
+  </Styled(Type)>
+  —
+  <Markdown
+    inline={true}
+    text="Converts foo to bar"
+  />
+</Group>
+`;
+
+exports[`should render default value of optional argument 1`] = `
+<Group
+  separator=" "
+>
+  <span>
+    <Styled(Name)>
+      argname
+    </Styled(Name)>
+    :
+  </span>
+  <Styled(Type)>
+    Boolean
+    ?
+    =true
+  </Styled(Type)>
+  —
+  <Markdown
+    inline={true}
+    text="Converts foo to bar"
+  />
+</Group>
+`;
+
+exports[`should render optional argument 1`] = `
+<Group
+  separator=" "
+>
+  <span>
+    <Styled(Name)>
+      argname
+    </Styled(Name)>
+    :
+  </span>
+  <Styled(Type)>
+    Array
+    ?
+  </Styled(Type)>
+  —
+  <Markdown
+    inline={true}
+    text="Converts foo to bar"
+  />
+</Group>
+`;
+
+exports[`should render return value 1`] = `
+<Group
+  separator=" "
+>
+  Returns
+  <span>
+    <Styled(Name)>
+      argname
+    </Styled(Name)>
+    :
+  </span>
+  <Styled(Type)>
+    Array
+  </Styled(Type)>
+  —
+  <Markdown
+    inline={true}
+    text="Converts foo to bar"
+  />
+</Group>
+`;
+
+exports[`should render with block styles 1`] = `
+<div
+  className="block"
+>
+  <Group
+    separator=" "
+  >
+    <span>
+      <Styled(Name)>
+        argname
+      </Styled(Name)>
+    </span>
+  </Group>
+</div>
+`;
