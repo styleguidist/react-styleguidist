@@ -1,4 +1,6 @@
-const prismTheme = ({ color }) => ({
+import { Theme } from '../rsg-components/Styled';
+
+const prismTheme = ({ color }: Theme) => ({
 	'&': {
 		color: color.codeBase,
 	},
