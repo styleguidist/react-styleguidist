@@ -22,6 +22,10 @@ export interface SectionViewModel {
 	sectionDepth?: number;
 }
 
+export interface ExampleSectionViewModel extends SectionViewModel {
+	content?: ExampleModel[];
+}
+
 const Section: React.FunctionComponent<{
 	section: SectionViewModel;
 	depth: number;

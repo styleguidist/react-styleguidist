@@ -1,4 +1,4 @@
-import { SectionViewModel } from '../rsg-components/Section';
+import { ExampleSectionViewModel } from '../rsg-components/Section';
 
 /**
  * Return a copy of the given section with the examples array filtered
@@ -9,9 +9,9 @@ import { SectionViewModel } from '../rsg-components/Section';
  * @returns {object}
  */
 export default function filterSectionExamples(
-	section: SectionViewModel,
+	section: ExampleSectionViewModel,
 	index: number
-): SectionViewModel {
+): ExampleSectionViewModel {
 	const content = section.content ? [section.content[index]] : [];
 	return {
 		...section,
