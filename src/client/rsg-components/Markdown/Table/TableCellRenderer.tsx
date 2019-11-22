@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ space, color, fontSize, fontFamily }: RsgTheme) => ({
+const styles = ({ space, color, fontSize, fontFamily }: Rsg.Theme) => ({
 	td: {
 		padding: [[space[0], space[2], space[0], 0]],
 		fontFamily: fontFamily.base,

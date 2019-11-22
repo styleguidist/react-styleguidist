@@ -1,7 +1,7 @@
 import React from 'react';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ color, fontFamily, fontSize }: RsgTheme) => ({
+const styles = ({ color, fontFamily, fontSize }: Rsg.Theme) => ({
 	logo: {
 		color: color.base,
 		margin: 0,

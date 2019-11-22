@@ -1,14 +1,16 @@
-interface RsgMarkdownExample {
-	type: 'markdown';
-	content: string;
-	settings?: Record<string, any>;
-}
+declare namespace Rsg {
+	interface MarkdownExample {
+		type: 'markdown';
+		content: string;
+		settings?: Record<string, any>;
+	}
 
-interface RsgCodeExample {
-	evalInContext(a: string): () => any;
-	type: 'code';
-	content: string;
-	settings?: Record<string, any>;
-}
+	interface CodeExample {
+		evalInContext(a: string): () => any;
+		type: 'code';
+		content: string;
+		settings?: Record<string, any>;
+	}
 
-type RsgExample = RsgCodeExample | RsgMarkdownExample;
+	type Example = CodeExample | MarkdownExample;
+}

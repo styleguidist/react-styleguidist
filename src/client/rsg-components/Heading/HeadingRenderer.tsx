@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'clsx';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ color, fontFamily, fontSize }: RsgTheme) => ({
+const styles = ({ color, fontFamily, fontSize }: Rsg.Theme) => ({
 	heading: {
 		margin: 0,
 		color: color.base,

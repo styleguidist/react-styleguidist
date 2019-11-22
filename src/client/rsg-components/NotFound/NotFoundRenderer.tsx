@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Markdown from 'rsg-components/Markdown';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ maxWidth }: RsgTheme) => ({
+const styles = ({ maxWidth }: Rsg.Theme) => ({
 	root: {
 		maxWidth,
 		margin: [[0, 'auto']],

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ space, color, fontFamily, fontSize, borderRadius }: RsgTheme) => ({
+const styles = ({ space, color, fontFamily, fontSize, borderRadius }: Rsg.Theme) => ({
 	root: {
 		fontFamily: fontFamily.base,
 	},

@@ -6,7 +6,7 @@ import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import { useStyleGuideContext } from 'rsg-components/Context';
 import { getHash } from '../../utils/handleHash';
 
-const styles = ({ color, fontFamily, fontSize, space, mq }: RsgTheme) => ({
+const styles = ({ color, fontFamily, fontSize, space, mq }: Rsg.Theme) => ({
 	list: {
 		margin: 0,
 		paddingLeft: space[2],

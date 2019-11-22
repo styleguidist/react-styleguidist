@@ -6,7 +6,7 @@ import Name from 'rsg-components/Name';
 import Type from 'rsg-components/Type';
 import Group from 'react-group';
 
-export const styles = ({ space }: RsgTheme) => ({
+export const styles = ({ space }: Rsg.Theme) => ({
 	block: {
 		marginBottom: space[2],
 	},

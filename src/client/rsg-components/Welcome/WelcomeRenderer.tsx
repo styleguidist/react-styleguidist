@@ -4,7 +4,7 @@ import Markdown from 'rsg-components/Markdown';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import { DOCS_COMPONENTS } from '../../../scripts/consts';
 
-const styles = ({ space, maxWidth }: RsgTheme) => ({
+const styles = ({ space, maxWidth }: Rsg.Theme) => ({
 	root: {
 		maxWidth,
 		margin: [[0, 'auto']],

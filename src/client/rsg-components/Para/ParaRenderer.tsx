@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-export const styles = ({ space, color, fontFamily }: RsgTheme) => ({
+export const styles = ({ space, color, fontFamily }: Rsg.Theme) => ({
 	para: {
 		marginTop: 0,
 		marginBottom: space[2],

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'clsx';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-export const styles = ({ fontFamily, fontSize, color }: RsgTheme) => ({
+export const styles = ({ fontFamily, fontSize, color }: Rsg.Theme) => ({
 	name: {
 		fontFamily: fontFamily.monospace,
 		fontSize: fontSize.small,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ space, color }: RsgTheme) => ({
+const styles = ({ space, color }: Rsg.Theme) => ({
 	hr: {
 		borderBottom: [[1, color.border, 'solid']],
 		marginTop: 0,

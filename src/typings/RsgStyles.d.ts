@@ -1,1 +1,3 @@
-type RsgStyles = { [obj: string]: string | RsgStyles };
+declare namespace Rsg {
+	type Styles = { [obj: string]: string | Styles };
+}

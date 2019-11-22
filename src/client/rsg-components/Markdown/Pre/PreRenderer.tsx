@@ -4,7 +4,7 @@ import cx from 'clsx';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import prismTheme from '../../../styles/prismTheme';
 
-const styles = ({ space, color, fontSize, fontFamily, borderRadius }: RsgTheme) => ({
+const styles = ({ space, color, fontSize, fontFamily, borderRadius }: Rsg.Theme) => ({
 	pre: {
 		fontFamily: fontFamily.monospace,
 		fontSize: fontSize.small,

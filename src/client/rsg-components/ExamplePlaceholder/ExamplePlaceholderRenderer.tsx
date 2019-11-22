@@ -4,7 +4,7 @@ import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import Markdown from 'rsg-components/Markdown';
 import { DOCS_DOCUMENTING } from '../../../scripts/consts';
 
-const styles = ({ fontFamily, fontSize, color }: RsgTheme) => ({
+const styles = ({ fontFamily, fontSize, color }: Rsg.Theme) => ({
 	button: {
 		padding: 0,
 		fontSize: fontSize.base,

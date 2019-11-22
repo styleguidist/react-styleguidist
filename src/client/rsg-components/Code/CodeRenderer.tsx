@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ fontFamily }: RsgTheme) => ({
+const styles = ({ fontFamily }: Rsg.Theme) => ({
 	code: {
 		fontFamily: fontFamily.monospace,
 		fontSize: 'inherit',

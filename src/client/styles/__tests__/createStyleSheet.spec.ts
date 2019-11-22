@@ -10,7 +10,7 @@ const customStyleBorderColor = '#ABCDEF';
 const testComponentName = 'TestComponentName';
 const testRuleName = 'testRule';
 
-const styles = ({ color, borderRadius, maxWidth }: RsgTheme) => ({
+const styles = ({ color, borderRadius, maxWidth }: Rsg.Theme) => ({
 	[testRuleName]: {
 		color: color.base,
 		backgroundColor: color.baseBackground,

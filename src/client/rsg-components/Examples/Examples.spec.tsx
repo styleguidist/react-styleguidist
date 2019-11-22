@@ -9,7 +9,7 @@ const evalInContext = (a: string): (() => any) =>
 	// eslint-disable-next-line no-new-func
 	new Function('require', 'const React = require("react");' + a).bind(null, require);
 
-const examples: RsgExample[] = [
+const examples: Rsg.Example[] = [
 	{
 		type: 'code',
 		content: '<button>Code: OK</button>',

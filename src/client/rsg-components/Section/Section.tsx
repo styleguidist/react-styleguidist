@@ -8,7 +8,7 @@ import { useStyleGuideContext } from 'rsg-components/Context';
 import { DisplayModes } from '../../consts';
 
 export interface ExampleSectionViewModel extends Rsg.Section {
-	content?: RsgExample[];
+	content?: Rsg.Example[];
 }
 
 const Section: React.FunctionComponent<{

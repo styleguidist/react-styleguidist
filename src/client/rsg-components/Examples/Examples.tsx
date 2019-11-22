@@ -6,7 +6,7 @@ import ExamplesRenderer from 'rsg-components/Examples/ExamplesRenderer';
 import { useStyleGuideContext } from 'rsg-components/Context';
 
 interface ExamplesRenderer {
-	examples: RsgExample[];
+	examples: Rsg.Example[];
 	name?: string;
 	exampleMode?: string;
 }

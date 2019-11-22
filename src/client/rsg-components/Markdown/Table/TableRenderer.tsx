@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ space }: RsgTheme) => ({
+const styles = ({ space }: Rsg.Theme) => ({
 	table: {
 		marginTop: 0,
 		marginBottom: space[2],

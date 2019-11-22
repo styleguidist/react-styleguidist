@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ color }: RsgTheme) => ({
+const styles = ({ color }: Rsg.Theme) => ({
 	thead: {
 		borderBottom: [[1, color.border, 'solid']],
 	},

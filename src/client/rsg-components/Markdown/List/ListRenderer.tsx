@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'clsx';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ space, color, fontFamily }: RsgTheme) => ({
+const styles = ({ space, color, fontFamily }: Rsg.Theme) => ({
 	list: {
 		marginTop: 0,
 		marginBottom: space[2],

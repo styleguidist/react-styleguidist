@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Markdown from 'rsg-components/Markdown';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ space }: RsgTheme) => ({
+const styles = ({ space }: Rsg.Theme) => ({
 	root: {
 		marginBottom: space[4],
 	},

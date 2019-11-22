@@ -4,7 +4,7 @@ import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import Argument, { ArgumentProps } from 'rsg-components/Argument';
 import Heading from 'rsg-components/Heading';
 
-export const styles = ({ space }: RsgTheme) => ({
+export const styles = ({ space }: Rsg.Theme) => ({
 	root: {
 		marginBottom: space[2],
 		fontSize: 'inherit',

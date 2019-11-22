@@ -7,7 +7,7 @@ import cx from 'clsx';
 import Ribbon from 'rsg-components/Ribbon';
 import Version from 'rsg-components/Version';
 
-const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth }: RsgTheme) => ({
+const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth }: Rsg.Theme) => ({
 	root: {
 		minHeight: '100vh',
 		backgroundColor: color.baseBackground,

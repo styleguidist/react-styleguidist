@@ -4,7 +4,7 @@ import cx from 'clsx';
 import Heading from 'rsg-components/Heading';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ color, space }: RsgTheme) => ({
+const styles = ({ color, space }: Rsg.Theme) => ({
 	wrapper: {
 		display: 'flex',
 		flexDirection: 'row',

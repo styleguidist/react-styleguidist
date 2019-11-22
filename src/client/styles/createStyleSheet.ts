@@ -4,8 +4,8 @@ import { Styles } from 'jss';
 import jss from './setupjss';
 import * as theme from './theme';
 
-export default memoize((styles, config: StyleguidistConfig, componentName) => {
-	const mergedTheme: RsgTheme = merge({}, theme, config.theme);
+export default memoize((styles, config: Rsg.StyleguidistConfig, componentName) => {
+	const mergedTheme: Rsg.Theme = merge({}, theme, config.theme);
 	const mergedStyles: Partial<Styles<string>> = merge(
 		{},
 		styles(mergedTheme),

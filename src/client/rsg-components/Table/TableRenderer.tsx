@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-export const styles = ({ space, color, fontFamily, fontSize }: RsgTheme) => ({
+export const styles = ({ space, color, fontFamily, fontSize }: Rsg.Theme) => ({
 	table: {
 		width: '100%',
 		borderCollapse: 'collapse',

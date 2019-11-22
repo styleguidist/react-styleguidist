@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import cx from 'clsx';
 
-export const styles = ({ space, color }: RsgTheme) => ({
+export const styles = ({ space, color }: Rsg.Theme) => ({
 	button: {
 		padding: 2, // Increase clickable area a bit
 		color: color.light,

@@ -12,7 +12,7 @@ import prismTheme from '../../styles/prismTheme';
 
 const highlight = (code: string) => prismHighlight(code, languages.jsx, 'jsx');
 
-const styles = ({ fontFamily, fontSize, color, borderRadius }: RsgTheme) => ({
+const styles = ({ fontFamily, fontSize, color, borderRadius }: Rsg.Theme) => ({
 	root: {
 		fontFamily: fontFamily.monospace,
 		fontSize: fontSize.small,

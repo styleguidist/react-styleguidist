@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-export const styles = ({ fontFamily, fontSize, color }: RsgTheme) => ({
+export const styles = ({ fontFamily, fontSize, color }: Rsg.Theme) => ({
 	type: {
 		fontFamily: fontFamily.monospace,
 		fontSize: fontSize.small,
