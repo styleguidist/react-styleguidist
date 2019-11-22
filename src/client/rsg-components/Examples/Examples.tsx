@@ -11,11 +11,18 @@ interface ExamplesRenderer {
 	exampleMode?: string;
 }
 
+function isTypedExample(ex: any): ex is Rsg.CodeExample | Rsg.MarkdownExample {
+	return !!ex.type;
+}
+
 const Examples: React.FunctionComponent<ExamplesRenderer> = ({ examples, name, exampleMode }) => {
 	const { codeRevision } = useStyleGuideContext();
 	return (
 		<ExamplesRenderer name={name}>
 			{examples.map((example, index) => {
+				if (!isTypedExample(example)) {
+					return null;
+				}
 				switch (example.type) {
 					case 'code':
 						return (

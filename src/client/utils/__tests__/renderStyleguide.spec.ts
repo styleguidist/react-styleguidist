@@ -1,6 +1,8 @@
 import { render } from '@testing-library/react';
 import renderStyleguide from '../renderStyleguide';
 
+const dummyLocation = { hash: '', search: '', pathname: '' };
+
 const styleguide = {
 	config: {
 		title: 'My Style Guide',
@@ -35,48 +37,39 @@ const styleguide = {
 			],
 		},
 	],
-};
+} as any;
 const codeRevision = 1;
 const doc = {
-	title: () => {},
+	title: 'test',
 };
 const history = {
 	replaceState: () => {},
 };
 
 test('should render the style guide', () => {
-	const location = { hash: '' };
-	const { getByText } = render(renderStyleguide(styleguide, codeRevision, location, doc, history));
+	const { getByText } = render(
+		renderStyleguide(styleguide, codeRevision, dummyLocation, doc, history)
+	);
 	expect(getByText('components/foo.js')).toBeInTheDocument();
 	expect(getByText('components/bar.js')).toBeInTheDocument();
 });
 
 test('should change document title', () => {
-	const title = jest.fn();
-	const location = { hash: '' };
-
-	Object.defineProperty(location, 'title', {
-		set: title,
-	});
-	renderStyleguide(styleguide, codeRevision, location, location, history);
-	expect(title).toBeCalledWith('My Style Guide');
+	renderStyleguide(styleguide, codeRevision, dummyLocation, doc, history);
+	expect(doc.title).toBe('My Style Guide');
 });
 
 test('should change document title in isolated mode', () => {
-	const title = jest.fn();
-	const location = { hash: '#!/Button' };
+	const location = { hash: '#!/Button', pathname: '', search: '' };
 
-	Object.defineProperty(location, 'title', {
-		set: title,
-	});
-	renderStyleguide(styleguide, codeRevision, location, location, history);
-	expect(title).toBeCalledWith('Button — My Style Guide');
+	renderStyleguide(styleguide, codeRevision, location, doc, history);
+	expect(doc.title).toBe('Button — My Style Guide');
 });
 
 test('should remove #/ from the address bar', () => {
 	const location = { hash: '#/', pathname: '/pizza', search: '?foo=bar' };
 	const historyWithSpy = { replaceState: jest.fn() };
 
-	renderStyleguide(styleguide, codeRevision, location, location, historyWithSpy);
+	renderStyleguide(styleguide, codeRevision, location, doc, historyWithSpy);
 	expect(historyWithSpy.replaceState).toBeCalledWith('', 'My Style Guide', '/pizza?foo=bar');
 });

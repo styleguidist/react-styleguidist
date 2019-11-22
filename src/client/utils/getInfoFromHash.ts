@@ -16,14 +16,12 @@ function filterNumbers(item: string): boolean {
  */
 export default function getInfoFromHash(
 	hash: string
-):
-	| {
-			isolate: boolean;
-			hashArray: string[];
-			targetName: string;
-			targetIndex?: number;
-	  }
-	| {} {
+): {
+	isolate?: boolean;
+	hashArray?: string[];
+	targetName?: string;
+	targetIndex?: number;
+} {
 	const shouldIsolate = hasInHash(hash, '#!/');
 	if (shouldIsolate || hasInHash(hash, '#/')) {
 		const hashArray = getHashAsArray(hash, shouldIsolate ? '#!/' : '#/');

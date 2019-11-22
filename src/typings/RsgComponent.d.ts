@@ -24,8 +24,8 @@ declare global {
 				methods?: MethodDescriptor[];
 				props?: PropDescriptor[];
 				tags?: TagProps;
-				example?: Example[];
-				examples?: Example[];
+				example?: Example[] | string[];
+				examples?: Example[] | string[];
 			};
 			metadata?: {
 				tags?: string[];

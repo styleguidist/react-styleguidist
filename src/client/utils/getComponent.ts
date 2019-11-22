@@ -1,13 +1,19 @@
-// @flow
+type Module = DefaultExport | { [name: string]: any };
 
-type Module = { [name: string]: any } | (() => any);
+interface DefaultExport {
+	default: any;
+}
+
+function isDefaultExport(module: Module): module is DefaultExport {
+	return !!module.default;
+}
 
 /**
  * Given a component module and a name,
  * return the appropriate export.
  * See /docs/Components.md
  */
-export default function getComponent(module: Module, name: string): Module {
+export default function getComponent(module: Module, name?: string): Module {
 	//
 	// If the module defines a default export, return that
 	// e.g.
@@ -16,7 +22,7 @@ export default function getComponent(module: Module, name: string): Module {
 	// export default function Component() { ... }
 	// ```
 	//
-	if (module.default) {
+	if (isDefaultExport(module)) {
 		return module.default;
 	}
 
@@ -56,5 +62,5 @@ export default function getComponent(module: Module, name: string): Module {
 	//
 	// Else return the module itself
 	//
-	return module[name] || module;
+	return (name ? module[name] : undefined) || module;
 }

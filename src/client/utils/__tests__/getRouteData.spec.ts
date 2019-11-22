@@ -1,8 +1,7 @@
-import deepfreeze from 'deepfreeze';
 import getRouteData from '../getRouteData';
 import { DisplayModes } from '../../consts';
 
-const sections = deepfreeze([
+const sections: Rsg.Section[] = [
 	{
 		sections: [
 			{
@@ -60,7 +59,7 @@ const sections = deepfreeze([
 			},
 		],
 	},
-]);
+];
 
 describe('getRouteData', () => {
 	it('should return "all" mode by default', () => {
@@ -89,7 +88,8 @@ describe('getRouteData', () => {
 	});
 
 	it('should return first section if pagePerSection and hash is empty', () => {
-		const result = getRouteData(sections[0].sections, '', true);
+		const subSection = sections[0].sections as Rsg.Section[];
+		const result = getRouteData(subSection, '', true);
 		expect(result).toMatchSnapshot();
 	});
 

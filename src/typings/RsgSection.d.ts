@@ -6,7 +6,7 @@ declare namespace Rsg {
 		components?: Component[];
 		sections?: Section[];
 		ignore?: string | string[];
-		content?: string | Rsg.Example[];
+		content?: Rsg.Example[] | string;
 		sectionDepth?: number;
 		description?: string;
 		exampleMode?: EXPAND_MODE;

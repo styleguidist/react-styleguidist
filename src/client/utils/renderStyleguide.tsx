@@ -5,6 +5,13 @@ import getPageTitle from './getPageTitle';
 import getRouteData from './getRouteData';
 import processSections from './processSections';
 
+interface StyleguideObject {
+	sections: Rsg.Section[];
+	config: Rsg.ProcessedStyleguidistConfig;
+	patterns: string[];
+	welcomeScreen?: boolean;
+}
+
 /**
  * @param {object} styleguide An object returned by styleguide-loader
  * @param {number} codeRevision
@@ -14,11 +21,11 @@ import processSections from './processSections';
  * @return {React.ReactElement}
  */
 export default function renderStyleguide(
-	styleguide,
-	codeRevision,
-	loc = window.location,
-	doc = document,
-	hist = window.history
+	styleguide: StyleguideObject,
+	codeRevision: number,
+	loc: { hash: string; pathname: string; search: string } = window.location,
+	doc: { title: string } = document,
+	hist: { replaceState: (name: string, title: string, url: string) => void } = window.history
 ) {
 	const allSections = processSections(styleguide.sections);
 

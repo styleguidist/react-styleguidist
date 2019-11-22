@@ -12,5 +12,5 @@ declare namespace Rsg {
 		settings?: Record<string, any>;
 	}
 
-	type Example = CodeExample | MarkdownExample;
+	type Example = CodeExample | MarkdownExample | string;
 }

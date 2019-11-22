@@ -9,7 +9,7 @@ export const DOCS_TAB_USAGE = 'rsg-usage';
 
 const toolbar = [IsolateButton];
 
-export default () => {
+export default (config?: Rsg.ProcessedStyleguidistConfig) => {
 	return {
 		sectionToolbar: toolbar,
 		componentToolbar: toolbar,
