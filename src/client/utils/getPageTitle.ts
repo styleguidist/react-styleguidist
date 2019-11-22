@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 import { DisplayModes } from '../consts';
-import { SectionViewModel } from '../rsg-components/Section';
+import { RsgSection } from '../../typings/RsgSection';
 
 /**
  * Return page title:
@@ -14,7 +14,7 @@ import { SectionViewModel } from '../rsg-components/Section';
  * @return {string}
  */
 export default function getPageTitle(
-	sections: SectionViewModel[],
+	sections: RsgSection[],
 	baseTitle: string,
 	displayMode: string
 ): string {

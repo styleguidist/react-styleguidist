@@ -1,4 +1,4 @@
-import { ComponentViewModel } from '../rsg-components/ReactComponent';
+import { RsgComponent } from '../../typings/RsgComponent';
 
 /**
  * Return a copy of the given component with the examples array filtered
@@ -10,9 +10,9 @@ import { ComponentViewModel } from '../rsg-components/ReactComponent';
  * @returns {object}
  */
 export default function filterComponentExamples(
-	component: ComponentViewModel,
+	component: RsgComponent,
 	index: number
-): ComponentViewModel {
+): RsgComponent {
 	return {
 		...component,
 		props: {

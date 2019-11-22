@@ -1,33 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Examples, { ExampleModel } from 'rsg-components/Examples';
+import Examples from 'rsg-components/Examples';
 import Components from 'rsg-components/Components';
 import Sections from 'rsg-components/Sections';
 import SectionRenderer from 'rsg-components/Section/SectionRenderer';
 import { useStyleGuideContext } from 'rsg-components/Context';
-import { ComponentViewModel } from 'rsg-components/ReactComponent';
 import { DisplayModes } from '../../consts';
+import { RsgSection } from '../../../typings/RsgSection';
+import { Example } from '../../../typings/Example';
 
-export interface SectionViewModel {
-	name?: string;
-	slug?: string;
-	href?: string;
-	filepath?: string;
-	description?: 'string';
-	sections?: SectionViewModel[];
-	components?: ComponentViewModel[];
-	content?: ExampleModel[] | string;
-	exampleMode?: string;
-	usageMode?: string;
-	sectionDepth?: number;
-}
-
-export interface ExampleSectionViewModel extends SectionViewModel {
-	content?: ExampleModel[];
+export interface ExampleSectionViewModel extends RsgSection {
+	content?: Example[];
 }
 
 const Section: React.FunctionComponent<{
-	section: SectionViewModel;
+	section: RsgSection;
 	depth: number;
 }> = ({ section, depth }) => {
 	const {

@@ -1,4 +1,4 @@
-import { ComponentViewModel } from '../rsg-components/ReactComponent';
+import { RsgComponent } from '../../typings/RsgComponent';
 
 /**
  * Filters list of components by component name.
@@ -8,8 +8,8 @@ import { ComponentViewModel } from '../rsg-components/ReactComponent';
  * @return {Array}
  */
 export default function filterComponentsByExactName(
-	components: ComponentViewModel[],
+	components: RsgComponent[],
 	name: string
-): ComponentViewModel[] {
+): RsgComponent[] {
 	return components.filter(component => component.name === name);
 }

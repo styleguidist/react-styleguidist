@@ -56,6 +56,6 @@ describe('processComponents', () => {
 			},
 		]);
 		const result = processComponents(components);
-		expect(result[0].props.examples).toEqual([1, 2, 3, 4]);
+		expect(result[0].props && result[0].props.examples).toEqual([1, 2, 3, 4]);
 	});
 });

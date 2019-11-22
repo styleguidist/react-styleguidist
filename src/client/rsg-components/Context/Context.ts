@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProcessedStyleguidistConfig } from '../../../scripts/schemas/config';
+import { ProcessedStyleguidistConfig } from '../../../typings/StyleguidistConfig';
 
 const StyleGuideContext = React.createContext<StyleGuideContextContents>({
 	codeRevision: 0,

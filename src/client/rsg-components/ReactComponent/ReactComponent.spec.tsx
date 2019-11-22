@@ -1,9 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import ReactComponent, { ComponentViewModel } from './ReactComponent';
+import ReactComponent from './ReactComponent';
 import slots from '../slots';
 import Context from '../Context';
 import { DisplayModes } from '../../consts';
+import { RsgComponent } from '../../../typings/RsgComponent';
 
 const context = {
 	config: {
@@ -32,7 +33,7 @@ const component = {
 	metadata: {},
 };
 
-const componentWithEverything: ComponentViewModel = {
+const componentWithEverything: RsgComponent = {
 	name: 'Foo',
 	visibleName: 'Foo',
 	slug: 'foo',

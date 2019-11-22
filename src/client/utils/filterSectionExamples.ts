@@ -10,7 +10,7 @@ import { ExampleSectionViewModel } from '../rsg-components/Section';
  */
 export default function filterSectionExamples(
 	section: ExampleSectionViewModel,
-	index: number
+	index = -1
 ): ExampleSectionViewModel {
 	const content = section.content ? [section.content[index]] : [];
 	return {

@@ -4,8 +4,8 @@ import cx from 'clsx';
 import Link from 'rsg-components/Link';
 import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
 import { useStyleGuideContext } from 'rsg-components/Context';
-import { ComponentViewModel } from 'rsg-components/ReactComponent';
 import { getHash } from '../../utils/handleHash';
+import { RsgComponent } from '../../../typings/RsgComponent';
 
 const styles = ({ color, fontFamily, fontSize, space, mq }: Theme) => ({
 	list: {
@@ -40,7 +40,7 @@ const styles = ({ color, fontFamily, fontSize, space, mq }: Theme) => ({
 });
 
 interface ComponentsListRendererProps extends JssInjectedProps {
-	items: ComponentViewModel[];
+	items: RsgComponent[];
 }
 
 export const ComponentsListRenderer: React.FunctionComponent<ComponentsListRendererProps> = ({

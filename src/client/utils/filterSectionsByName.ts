@@ -1,7 +1,7 @@
-import { SectionViewModel } from 'rsg-components/Section';
-import { ComponentViewModel } from 'rsg-components/ReactComponent';
 import getFilterRegExp from './getFilterRegExp';
 import filterComponentsByName from './filterComponentsByName';
+import { RsgComponent } from '../../typings/RsgComponent';
+import { RsgSection } from '../../typings/RsgSection';
 
 /**
  * Fuzzy filters sections by section or component name.
@@ -11,14 +11,14 @@ import filterComponentsByName from './filterComponentsByName';
  * @return {Array}
  */
 export default function filterSectionsByName(
-	sections: (SectionViewModel | ComponentViewModel)[],
+	sections: (RsgSection | RsgComponent)[],
 	query: string
-): SectionViewModel[] {
+): RsgSection[] {
 	const regExp = getFilterRegExp(query);
 
 	return sections
 		.map(sectionOrComponent => {
-			const section = sectionOrComponent as SectionViewModel;
+			const section = sectionOrComponent as RsgSection;
 			return {
 				...section,
 				sections: section.sections ? filterSectionsByName(section.sections, query) : [],

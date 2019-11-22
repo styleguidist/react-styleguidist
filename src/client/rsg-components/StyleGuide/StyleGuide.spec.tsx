@@ -3,8 +3,9 @@ import { render, within } from '@testing-library/react';
 import StyleGuide from './StyleGuide';
 import slots from '../slots';
 import { DisplayModes } from '../../consts';
+import { RsgSection } from '../../../typings/RsgSection';
 
-const sections = [
+const sections: RsgSection[] = [
 	{
 		exampleMode: 'collapse',
 		usageMode: 'collapse',
@@ -33,6 +34,7 @@ const sections = [
 		],
 	},
 ];
+
 const config = {
 	title: 'HelloStyleGuide',
 	version: '1.0.0',

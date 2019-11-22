@@ -1,4 +1,4 @@
-import { Component } from '../../typings/Component';
+import { RsgComponent } from '../../typings/RsgComponent';
 
 /**
  * Do things that are hard or impossible to do in a loader: we don’t have access to component name
@@ -7,21 +7,23 @@ import { Component } from '../../typings/Component';
  * @param {Array} components
  * @return {Array}
  */
-export default function processComponents(components: Component[]): Component[] {
+export default function processComponents(components: RsgComponent[]): RsgComponent[] {
 	return components.map(component => {
-		const newComponent: Component = {
-			...component,
+		const newComponent: RsgComponent = component.props
+			? {
+					...component,
 
-			// Add .name shortcuts for names instead of .props.displayName.
-			name: component.props.displayName,
-			visibleName: component.props.visibleName || component.props.displayName,
+					// Add .name shortcuts for names instead of .props.displayName.
+					name: component.props.displayName,
+					visibleName: component.props.visibleName || component.props.displayName,
 
-			props: {
-				...component.props,
-				// Append @example doclet to all examples
-				examples: [...(component.props.examples || []), ...(component.props.example || [])],
-			},
-		};
+					props: {
+						...component.props,
+						// Append @example doclet to all examples
+						examples: [...(component.props.examples || []), ...(component.props.example || [])],
+					},
+			  }
+			: {};
 
 		return newComponent;
 	});

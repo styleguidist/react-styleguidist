@@ -7,9 +7,9 @@ import Welcome from 'rsg-components/Welcome';
 import Error from 'rsg-components/Error';
 import NotFound from 'rsg-components/NotFound';
 import Context from 'rsg-components/Context';
-import { SectionViewModel } from 'rsg-components/Section';
 import { HOMEPAGE } from '../../../scripts/consts';
 import { DisplayModes } from '../../consts';
+import { RsgSection } from '../../../typings/RsgSection';
 
 /**
  * This function will return true, if the sidebar should be visible and false otherwise.
@@ -35,11 +35,11 @@ interface StyleGuideProps {
 	codeRevision: number;
 	config: any;
 	slots: any;
-	sections: SectionViewModel[];
+	sections: RsgSection[];
 	welcomeScreen?: boolean;
 	patterns?: string[];
 	displayMode: string;
-	allSections?: SectionViewModel[];
+	allSections?: RsgSection[];
 	pagePerSection?: boolean;
 }
 

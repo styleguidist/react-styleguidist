@@ -1,7 +1,6 @@
 import { Theme } from 'rsg-components/Styled';
 import * as theme from '../theme';
 import createStyleSheet from '../createStyleSheet';
-import { StyleguidistConfig } from '../../../scripts/schemas/config';
 
 const customThemeColor = '#123456';
 const customThemeBorderColor = '#654321';
@@ -22,7 +21,7 @@ const styles = ({ color, borderRadius, maxWidth }: Theme) => ({
 	},
 });
 
-const config: StyleguidistConfig = {
+const config = {
 	theme: {
 		color: {
 			base: customThemeColor,

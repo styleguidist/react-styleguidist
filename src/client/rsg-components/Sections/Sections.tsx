@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Section, { SectionViewModel } from 'rsg-components/Section';
+import Section from 'rsg-components/Section';
 import SectionsRenderer from 'rsg-components/Sections/SectionsRenderer';
+import { RsgSection } from '../../../typings/RsgSection';
 
 const Sections: React.FunctionComponent<{
-	sections: SectionViewModel[];
+	sections: RsgSection[];
 	depth: number;
 	root?: boolean;
 }> = ({ sections, depth }) => {

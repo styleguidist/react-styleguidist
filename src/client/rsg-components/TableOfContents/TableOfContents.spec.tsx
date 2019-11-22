@@ -1,12 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import noop from 'lodash/noop';
-import { SectionViewModel } from 'rsg-components/Section';
-import { ComponentViewModel } from 'rsg-components/ReactComponent';
 import TableOfContents from './TableOfContents';
 import { TableOfContentsRenderer } from './TableOfContentsRenderer';
 
-const components: ComponentViewModel[] = [
+const components = [
 	{
 		name: 'Button',
 		slug: 'button',
@@ -21,7 +19,7 @@ const components: ComponentViewModel[] = [
 	},
 ];
 
-const sections: SectionViewModel[] = [
+const sections = [
 	{
 		name: 'Introduction',
 		slug: 'introduction',
