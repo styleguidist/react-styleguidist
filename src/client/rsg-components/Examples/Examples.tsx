@@ -4,10 +4,9 @@ import Playground from 'rsg-components/Playground';
 import Markdown from 'rsg-components/Markdown';
 import ExamplesRenderer from 'rsg-components/Examples/ExamplesRenderer';
 import { useStyleGuideContext } from 'rsg-components/Context';
-import { Example } from '../../../typings/Example';
 
 interface ExamplesRenderer {
-	examples: Example[];
+	examples: RsgExample[];
 	name?: string;
 	exampleMode?: string;
 }

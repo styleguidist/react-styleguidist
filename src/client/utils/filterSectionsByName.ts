@@ -1,7 +1,5 @@
 import getFilterRegExp from './getFilterRegExp';
 import filterComponentsByName from './filterComponentsByName';
-import { RsgComponent } from '../../typings/RsgComponent';
-import { RsgSection } from '../../typings/RsgSection';
 
 /**
  * Fuzzy filters sections by section or component name.
@@ -11,14 +9,14 @@ import { RsgSection } from '../../typings/RsgSection';
  * @return {Array}
  */
 export default function filterSectionsByName(
-	sections: (RsgSection | RsgComponent)[],
+	sections: (Rsg.Section | Rsg.Component)[],
 	query: string
-): RsgSection[] {
+): Rsg.Section[] {
 	const regExp = getFilterRegExp(query);
 
 	return sections
 		.map(sectionOrComponent => {
-			const section = sectionOrComponent as RsgSection;
+			const section = sectionOrComponent as Rsg.Section;
 			return {
 				...section,
 				sections: section.sections ? filterSectionsByName(section.sections, query) : [],

@@ -1,5 +1,3 @@
-import { RsgComponent } from '../../typings/RsgComponent';
-
 /**
  * Filters list of components by component name.
  *
@@ -8,8 +6,8 @@ import { RsgComponent } from '../../typings/RsgComponent';
  * @return {Array}
  */
 export default function filterComponentsByExactName(
-	components: RsgComponent[],
+	components: Rsg.Component[],
 	name: string
-): RsgComponent[] {
+): Rsg.Component[] {
 	return components.filter(component => component.name === name);
 }

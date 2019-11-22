@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Styled, { JssInjectedProps, Theme } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-export const styles = ({ color, space, fontSize, fontFamily }: Theme) => ({
+export const styles = ({ color, space, fontSize, fontFamily }: RsgTheme) => ({
 	root: {
 		position: 'fixed',
 		top: 0,

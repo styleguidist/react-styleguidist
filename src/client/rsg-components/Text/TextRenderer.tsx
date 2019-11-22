@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'clsx';
-import Styled, { JssInjectedProps, Theme } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-export const styles = ({ fontFamily, fontSize, color }: Theme) => ({
+export const styles = ({ fontFamily, fontSize, color }: RsgTheme) => ({
 	text: {
 		fontFamily: fontFamily.base,
 	},

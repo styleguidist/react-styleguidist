@@ -2,7 +2,7 @@
  * When the theme is to be used in a component,
  * it will have all it's values set
  */
-export interface Theme {
+interface RsgTheme {
 	spaceFactor: number;
 	space: number[];
 	color: {

@@ -3,9 +3,8 @@ import { render, within } from '@testing-library/react';
 import StyleGuide from './StyleGuide';
 import slots from '../slots';
 import { DisplayModes } from '../../consts';
-import { RsgSection } from '../../../typings/RsgSection';
 
-const sections: RsgSection[] = [
+const sections: Rsg.Section[] = [
 	{
 		exampleMode: 'collapse',
 		usageMode: 'collapse',

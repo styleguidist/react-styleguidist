@@ -1,5 +1,3 @@
-import { RsgComponent } from '../../typings/RsgComponent';
-
 /**
  * Do things that are hard or impossible to do in a loader: we don’t have access to component name
  * and props in the styleguide-loader because we’re using `require` to load the component module.
@@ -7,9 +5,9 @@ import { RsgComponent } from '../../typings/RsgComponent';
  * @param {Array} components
  * @return {Array}
  */
-export default function processComponents(components: RsgComponent[]): RsgComponent[] {
+export default function processComponents(components: Rsg.Component[]): Rsg.Component[] {
 	return components.map(component => {
-		const newComponent: RsgComponent = component.props
+		const newComponent: Rsg.Component = component.props
 			? {
 					...component,
 

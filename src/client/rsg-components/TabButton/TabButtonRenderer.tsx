@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Styled, { JssInjectedProps, Theme } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import cx from 'clsx';
 
-export const styles = ({ space, color, fontFamily, fontSize, buttonTextTransform }: Theme) => ({
+export const styles = ({ space, color, fontFamily, fontSize, buttonTextTransform }: RsgTheme) => ({
 	button: {
 		padding: [[space[1], 0]],
 		fontFamily: fontFamily.base,

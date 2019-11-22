@@ -4,13 +4,12 @@ import Examples from '.';
 import Context from '../Context';
 import slots from '../slots';
 import { DisplayModes } from '../../consts';
-import { Example } from '../../../typings/Example';
 
 const evalInContext = (a: string): (() => any) =>
 	// eslint-disable-next-line no-new-func
 	new Function('require', 'const React = require("react");' + a).bind(null, require);
 
-const examples: Example[] = [
+const examples: RsgExample[] = [
 	{
 		type: 'code',
 		content: '<button>Code: OK</button>',

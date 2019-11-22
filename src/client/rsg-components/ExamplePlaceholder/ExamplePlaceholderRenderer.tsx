@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import Markdown from 'rsg-components/Markdown';
 import { DOCS_DOCUMENTING } from '../../../scripts/consts';
 
-const styles = ({ fontFamily, fontSize, color }: Theme) => ({
+const styles = ({ fontFamily, fontSize, color }: RsgTheme) => ({
 	button: {
 		padding: 0,
 		fontSize: fontSize.base,

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Pathline from 'rsg-components/Pathline';
-import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ color, fontSize, space }: Theme) => ({
+const styles = ({ color, fontSize, space }: RsgTheme) => ({
 	root: {
 		marginBottom: space[6],
 	},

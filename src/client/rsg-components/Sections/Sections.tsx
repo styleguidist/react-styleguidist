@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Section from 'rsg-components/Section';
 import SectionsRenderer from 'rsg-components/Sections/SectionsRenderer';
-import { RsgSection } from '../../../typings/RsgSection';
 
 const Sections: React.FunctionComponent<{
-	sections: RsgSection[];
+	sections: Rsg.Section[];
 	depth: number;
 	root?: boolean;
 }> = ({ sections, depth }) => {

@@ -17,9 +17,6 @@ import fileExistsCaseInsensitive from '../utils/findFileCaseInsensitive';
 import StyleguidistError from '../utils/error';
 import * as consts from '../consts';
 
-import { RsgSection } from '../../typings/RsgSection';
-import { StyleguidistConfig } from '../../typings/StyleguidistConfig';
-
 const EXTENSIONS = 'js,jsx,ts,tsx';
 const DEFAULT_COMPONENTS_PATTERN =
 	// HACK: on windows, the case insensitivity makes each component appear twice
@@ -205,7 +202,7 @@ const configSchema = {
 	sections: {
 		type: 'array',
 		default: [],
-		process: (val: RsgSection[], config: StyleguidistConfig) => {
+		process: (val: Rsg.Section[], config: StyleguidistConfig) => {
 			if (!val) {
 				// If root `components` isn't empty, make it a first section
 				// If `components` and `sections` weren’t specified, use default pattern

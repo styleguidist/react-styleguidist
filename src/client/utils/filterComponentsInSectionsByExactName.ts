@@ -1,5 +1,4 @@
 import filterComponentsByExactName from './filterComponentsByExactName';
-import { RsgSection } from '../../typings/RsgSection';
 
 /**
  * Recursively filters all components in all sections by component name.
@@ -10,11 +9,11 @@ import { RsgSection } from '../../typings/RsgSection';
  * @return {Array}
  */
 export default function filterComponentsInSectionsByExactName(
-	sections: RsgSection[],
+	sections: Rsg.Section[],
 	name: string,
 	recursive: boolean
-): RsgSection[] {
-	const filteredSections: RsgSection[] = [];
+): Rsg.Section[] {
+	const filteredSections: Rsg.Section[] = [];
 	sections.forEach(section => {
 		if (section.components) {
 			const filteredComponents = filterComponentsByExactName(section.components, name);

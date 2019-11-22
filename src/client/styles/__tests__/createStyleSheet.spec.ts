@@ -1,4 +1,3 @@
-import { Theme } from 'rsg-components/Styled';
 import * as theme from '../theme';
 import createStyleSheet from '../createStyleSheet';
 
@@ -11,7 +10,7 @@ const customStyleBorderColor = '#ABCDEF';
 const testComponentName = 'TestComponentName';
 const testRuleName = 'testRule';
 
-const styles = ({ color, borderRadius, maxWidth }: Theme) => ({
+const styles = ({ color, borderRadius, maxWidth }: RsgTheme) => ({
 	[testRuleName]: {
 		color: color.base,
 		backgroundColor: color.baseBackground,

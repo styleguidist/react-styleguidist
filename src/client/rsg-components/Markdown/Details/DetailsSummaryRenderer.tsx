@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Styled, { JssInjectedProps, Theme } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ space, color, fontSize, fontFamily }: Theme) => ({
+const styles = ({ space, color, fontSize, fontFamily }: RsgTheme) => ({
 	summary: {
 		marginBottom: space[1],
 		fontFamily: fontFamily.base,

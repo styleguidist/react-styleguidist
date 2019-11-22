@@ -6,15 +6,13 @@ import Sections from 'rsg-components/Sections';
 import SectionRenderer from 'rsg-components/Section/SectionRenderer';
 import { useStyleGuideContext } from 'rsg-components/Context';
 import { DisplayModes } from '../../consts';
-import { RsgSection } from '../../../typings/RsgSection';
-import { Example } from '../../../typings/Example';
 
-export interface ExampleSectionViewModel extends RsgSection {
-	content?: Example[];
+export interface ExampleSectionViewModel extends Rsg.Section {
+	content?: RsgExample[];
 }
 
 const Section: React.FunctionComponent<{
-	section: RsgSection;
+	section: Rsg.Section;
 	depth: number;
 }> = ({ section, depth }) => {
 	const {

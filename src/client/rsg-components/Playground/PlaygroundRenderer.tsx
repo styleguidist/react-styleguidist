@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'clsx';
-import Styled, { JssInjectedProps, Theme } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-export const styles = ({ space, color, borderRadius }: Theme) => ({
+export const styles = ({ space, color, borderRadius }: RsgTheme) => ({
 	root: {
 		marginBottom: space[4],
 	},

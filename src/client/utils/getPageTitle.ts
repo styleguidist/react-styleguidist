@@ -1,6 +1,5 @@
 import get from 'lodash/get';
 import { DisplayModes } from '../consts';
-import { RsgSection } from '../../typings/RsgSection';
 
 /**
  * Return page title:
@@ -14,7 +13,7 @@ import { RsgSection } from '../../typings/RsgSection';
  * @return {string}
  */
 export default function getPageTitle(
-	sections: RsgSection[],
+	sections: Rsg.Section[],
 	baseTitle: string,
 	displayMode: string
 ): string {

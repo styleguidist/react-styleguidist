@@ -1,5 +1,3 @@
-import { RsgComponent } from '../../typings/RsgComponent';
-
 /**
  * Return a copy of the given component with the examples array filtered
  * to contain only the specified index:
@@ -10,9 +8,9 @@ import { RsgComponent } from '../../typings/RsgComponent';
  * @returns {object}
  */
 export default function filterComponentExamples(
-	component: RsgComponent,
+	component: Rsg.Component,
 	index: number
-): RsgComponent {
+): Rsg.Component {
 	return {
 		...component,
 		props: {

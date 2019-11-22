@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ space, color, fontSize, fontFamily }: Theme) => ({
+const styles = ({ space, color, fontSize, fontFamily }: RsgTheme) => ({
 	td: {
 		padding: [[space[0], space[2], space[0], 0]],
 		fontFamily: fontFamily.base,

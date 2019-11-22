@@ -1,5 +1,4 @@
 import getFilterRegExp from './getFilterRegExp';
-import { RsgComponent } from '../../typings/RsgComponent';
 
 /**
  * Fuzzy filters components list by component name.
@@ -9,9 +8,9 @@ import { RsgComponent } from '../../typings/RsgComponent';
  * @return {array}
  */
 export default function filterComponentsByName(
-	components: RsgComponent[],
+	components: Rsg.Component[],
 	query: string
-): RsgComponent[] {
+): Rsg.Component[] {
 	const regExp = getFilterRegExp(query);
 	return components.filter(({ name }) => regExp.test(name as string));
 }

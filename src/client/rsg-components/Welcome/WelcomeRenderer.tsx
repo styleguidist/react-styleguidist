@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Markdown from 'rsg-components/Markdown';
-import Styled, { JssInjectedProps, Theme } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import { DOCS_COMPONENTS } from '../../../scripts/consts';
 
-const styles = ({ space, maxWidth }: Theme) => ({
+const styles = ({ space, maxWidth }: RsgTheme) => ({
 	root: {
 		maxWidth,
 		margin: [[0, 'auto']],

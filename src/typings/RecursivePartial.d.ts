@@ -6,7 +6,7 @@
  * `interface TestPartial{param?:string, paramObject?:{p1?:number, p2?:boolean}}`
  * where everything is optional
  */
-export type RecursivePartial<T> = {
+type RecursivePartial<T> = {
 	[P in keyof T]?: T[P] extends (infer U)[]
 		? RecursivePartial<U>[]
 		: T[P] extends object

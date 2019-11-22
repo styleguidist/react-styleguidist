@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import cx from 'clsx';
 
-export const styles = ({ space, color }: Theme) => ({
+export const styles = ({ space, color }: RsgTheme) => ({
 	button: {
 		padding: 2, // Increase clickable area a bit
 		color: color.light,

@@ -1,14 +1,14 @@
-export interface MarkdownExample {
+interface RsgMarkdownExample {
 	type: 'markdown';
 	content: string;
 	settings?: Record<string, any>;
 }
 
-export interface CodeExample {
+interface RsgCodeExample {
 	evalInContext(a: string): () => any;
 	type: 'code';
 	content: string;
 	settings?: Record<string, any>;
 }
 
-export type Example = CodeExample | MarkdownExample;
+type RsgExample = RsgCodeExample | RsgMarkdownExample;

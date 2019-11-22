@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import ComponentsList from 'rsg-components/ComponentsList';
 import TableOfContentsRenderer from 'rsg-components/TableOfContents/TableOfContentsRenderer';
 import filterSectionsByName from '../../utils/filterSectionsByName';
-import { RsgSection } from '../../../typings/RsgSection';
-import { RsgComponent } from '../../../typings/RsgComponent';
 
 interface TableOfContentsProps {
-	sections: RsgSection[];
+	sections: Rsg.Section[];
 	useRouterLinks?: boolean;
 }
 
@@ -21,13 +19,13 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 	};
 
 	private renderLevel(
-		sections: (RsgSection | RsgComponent)[],
+		sections: (Rsg.Section | Rsg.Component)[],
 		useRouterLinks = false,
 		hashPath: string[] = [],
 		useHashId = false
 	) {
 		const items = sections.map(sectionOrComponent => {
-			const section = sectionOrComponent as RsgSection;
+			const section = sectionOrComponent as Rsg.Section;
 			const children = [...(section.sections || []), ...(section.components || [])];
 			const sectionDepth = section.sectionDepth || 0;
 			const childHashPath =

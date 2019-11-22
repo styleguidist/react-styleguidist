@@ -10,13 +10,12 @@ import Context from 'rsg-components/Context';
 import ExamplePlaceholderDefault from 'rsg-components/ExamplePlaceholder';
 import { DOCS_TAB_USAGE } from '../slots';
 import { DisplayModes, UsageModes } from '../../consts';
-import { RsgComponent } from '../../../typings/RsgComponent';
 
 const ExamplePlaceholder =
 	process.env.STYLEGUIDIST_ENV !== 'production' ? ExamplePlaceholderDefault : () => <div />;
 
 interface ReactComponentProps {
-	component: RsgComponent;
+	component: Rsg.Component;
 	depth: number;
 	exampleMode?: string;
 	usageMode?: string;

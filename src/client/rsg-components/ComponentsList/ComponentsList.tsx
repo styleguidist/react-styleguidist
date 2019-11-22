@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ComponentsListRenderer from 'rsg-components/ComponentsList/ComponentsListRenderer';
 import getUrl from '../../utils/getUrl';
-import { RsgComponent } from '../../../typings/RsgComponent';
 
 interface ComponentsListProps {
-	items: RsgComponent[];
+	items: Rsg.Component[];
 	hashPath?: string[];
 	useRouterLinks?: boolean;
 	useHashId?: boolean;

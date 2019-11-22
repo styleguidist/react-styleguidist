@@ -4,7 +4,6 @@ import ReactComponent from './ReactComponent';
 import slots from '../slots';
 import Context from '../Context';
 import { DisplayModes } from '../../consts';
-import { RsgComponent } from '../../../typings/RsgComponent';
 
 const context = {
 	config: {
@@ -33,7 +32,7 @@ const component = {
 	metadata: {},
 };
 
-const componentWithEverything: RsgComponent = {
+const componentWithEverything: Rsg.Component = {
 	name: 'Foo',
 	visibleName: 'Foo',
 	slug: 'foo',

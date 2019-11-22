@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Styled, { JssInjectedProps, Theme } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import Heading from 'rsg-components/Heading';
 
-const styles = ({ space }: Theme) => ({
+const styles = ({ space }: RsgTheme) => ({
 	spacing: {
 		marginBottom: space[2],
 	},

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ fontFamily, fontSize, color }: Theme) => ({
+const styles = ({ fontFamily, fontSize, color }: RsgTheme) => ({
 	root: {
 		margin: 0,
 		lineHeight: 1.2,

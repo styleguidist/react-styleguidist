@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ fontFamily }: Theme) => ({
+const styles = ({ fontFamily }: RsgTheme) => ({
 	code: {
 		fontFamily: fontFamily.monospace,
 		fontSize: 'inherit',
