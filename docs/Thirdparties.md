@@ -163,7 +163,7 @@ _Based on @mikberg’s [blog post](https://medium.com/@mikaelberg/writing-simple
 
 ### Styled-components
 
-The recommended way of using [styled-components](https://www.styled-components.com/) is by using a special `@component` JSDoc annotation:
+The recommended way of using [styled-components](https://www.styled-components.com/) is by adding the `@component` JSDoc annotation:
 
 ```jsx
 import React from 'react'
@@ -225,7 +225,7 @@ module.exports = {
 }
 ```
 
-This will automatically apply your theme to your styled-components. When you fire up the style guide, `npx styleguidist server`, you should see your components render as expected.
+This will automatically apply your theme to your styled-components. When you open the style guide by running `npx styleguidist server`, you should see your components render as expected.
 
 ### Emotion
 

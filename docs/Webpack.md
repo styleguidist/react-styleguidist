@@ -191,4 +191,4 @@ This will tell Babel (and some other tools) which browsers you support, so it wo
 
 In very rare cases, like using legacy or third-party libraries, you may need to change webpack options that Styleguidist doesn’t allow you to change via `webpackConfig` options. In this case, you can use [dangerouslyUpdateWebpackConfig](Configuration.md#dangerouslyupdatewebpackconfig) option.
 
-> **Warning:** You may easily break Styleguidist using this option, use it at your own risk.
+> **Warning:** You may break Styleguidist using this option, use it at your own risk.

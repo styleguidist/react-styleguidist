@@ -67,7 +67,7 @@ All Styleguidist components should be imported like this: `import Foo from 'rsg-
 
 Each component folder usually has several files:
 
-- `Foo/Foo.js` (optional for simple components);
+- `Foo/Foo.js` (optional for basic components);
 - `Foo/FooRenderer.js`;
 - `Foo/Foo.spec.js` — tests;
 - `Foo/index.js` — reexport of `Foo.js` or `FooRenderer.js`.
