@@ -65,7 +65,7 @@ export default function getRouteData(
 					if (section) {
 						// Only if hashName is the last of hashArray his children should be filtered
 						// because else there are possibilities to keep on filtering to try find the next section
-						const isLastHashName = hashArray && hashArray[index + 1];
+						const isLastHashName = hashArray && !hashArray[index + 1];
 
 						// When sectionDepth is bigger than 0, their children should be filtered
 						const shouldFilterTheirChildren = (section.sectionDepth || 0) > 0 && isLastHashName;

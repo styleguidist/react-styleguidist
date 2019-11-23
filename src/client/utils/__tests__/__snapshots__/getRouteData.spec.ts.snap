@@ -71,8 +71,20 @@ Object {
 
 exports[`getRouteData should return one component if pagePerSection and hash is #/Buttons/Label 1`] = `
 Object {
-  "displayMode": "notFound",
-  "sections": Array [],
+  "displayMode": "all",
+  "sections": Array [
+    Object {
+      "components": Array [
+        Object {
+          "module": 1,
+          "name": "Label",
+        },
+      ],
+      "exampleMode": "collapse",
+      "slug": "buttons",
+      "usageMode": "collapse",
+    },
+  ],
 }
 `;
 
