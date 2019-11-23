@@ -5,15 +5,18 @@ const options = {
 };
 
 it('should attach Styleguidist config when webpack 4 is used', () => {
-	const context = {};
+	const context: { _styleguidist?: Rsg.StyleguidistConfig } = {};
 	const compiler = {
 		hooks: {
 			compilation: {
-				tap: (name, callback) => {
+				tap: (name: string, callback: (opt: any) => void) => {
 					callback({
 						hooks: {
 							normalModuleLoader: {
-								tap: (moduleName, compilationCallback) => {
+								tap: (
+									moduleName: string,
+									compilationCallback: (context: any, opt: any) => void
+								) => {
 									compilationCallback(context, { resource: 'pizza' });
 								},
 							},
@@ -24,20 +27,23 @@ it('should attach Styleguidist config when webpack 4 is used', () => {
 		},
 	};
 	const plugin = new StyleguidistOptionsPlugin(options);
-	plugin.apply(compiler);
+	plugin.apply(compiler as any);
 	expect(context._styleguidist).toEqual(options);
 });
 
 it('should do nothing when resource is empty', () => {
-	const context = {};
+	const context: { _styleguidist?: Rsg.StyleguidistConfig } = {};
 	const compiler = {
 		hooks: {
 			compilation: {
-				tap: (name, callback) => {
+				tap: (name: string, callback: (opt: any) => void) => {
 					callback({
 						hooks: {
 							normalModuleLoader: {
-								tap: (moduleName, compilationCallback) => {
+								tap: (
+									moduleName: string,
+									compilationCallback: (context: any, opt: any) => void
+								) => {
 									compilationCallback(context, {});
 								},
 							},
@@ -48,7 +54,7 @@ it('should do nothing when resource is empty', () => {
 		},
 	};
 	const plugin = new StyleguidistOptionsPlugin(options);
-	plugin.apply(compiler);
+	plugin.apply(compiler as any);
 
 	expect(context._styleguidist).toBeFalsy();
 });
