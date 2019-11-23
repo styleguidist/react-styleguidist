@@ -1,6 +1,7 @@
+import deepfreeze from 'deepfreeze';
 import filterComponentsInSectionsByExactName from '../filterComponentsInSectionsByExactName';
 
-const sections = [
+const sections = deepfreeze([
 	{
 		name: 'General',
 		sections: [
@@ -17,7 +18,7 @@ const sections = [
 			},
 		],
 	},
-];
+]);
 
 describe('filterComponentsInSectionsByExactName', () => {
 	it('should return components at any level with exact name', () => {

@@ -1,13 +1,14 @@
+import deepfreeze from 'deepfreeze';
 import filterComponentsByExactName from '../filterComponentsByExactName';
 
-const components = [
+const components = deepfreeze([
 	{
 		name: 'Button',
 	},
 	{
 		name: 'Image',
 	},
-];
+]);
 
 describe('filterComponentsByExactName', () => {
 	it('should return components with exact name', () => {

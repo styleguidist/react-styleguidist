@@ -1,7 +1,8 @@
+import deepfreeze from 'deepfreeze';
 import getRouteData from '../getRouteData';
 import { DisplayModes } from '../../consts';
 
-const sections: Rsg.Section[] = [
+const sections: Rsg.Section[] = deepfreeze([
 	{
 		sections: [
 			{
@@ -59,7 +60,7 @@ const sections: Rsg.Section[] = [
 			},
 		],
 	},
-];
+]);
 
 describe('getRouteData', () => {
 	it('should return "all" mode by default', () => {

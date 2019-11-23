@@ -1,6 +1,7 @@
+import deepfreeze from 'deepfreeze';
 import filterComponentsByName from '../filterComponentsByName';
 
-const components = [
+const components = deepfreeze([
 	{
 		name: 'Button',
 	},
@@ -16,7 +17,7 @@ const components = [
 	{
 		name: 'Textarea',
 	},
-];
+]);
 
 describe('filterComponentsByName', () => {
 	it('should return initial list with empty query', () => {

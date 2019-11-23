@@ -1,11 +1,12 @@
+import deepfreeze from 'deepfreeze';
 import filterComponentExamples from '../filterComponentExamples';
 
-const component = {
+const component = deepfreeze({
 	props: {
 		examples: ['a', 'b', 'c', 'd'],
 	},
 	other: 'info',
-} as any;
+});
 
 describe('filterComponentExamples', () => {
 	it('should return a shallow copy of a component with example filtered by given index', () => {
