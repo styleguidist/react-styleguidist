@@ -1,3 +1,5 @@
+import StyleguidistOptionsPlugin from './utils/StyleguidistOptionsPlugin';
+
 const path = require('path');
 const castArray = require('lodash/castArray');
 const webpack = require('webpack');
@@ -10,7 +12,6 @@ const merge = require('webpack-merge');
 const forEach = require('lodash/forEach');
 const isFunction = require('lodash/isFunction');
 const mergeWebpackConfig = require('./utils/mergeWebpackConfig');
-const StyleguidistOptionsPlugin = require('./utils/StyleguidistOptionsPlugin');
 
 const RENDERER_REGEXP = /Renderer$/;
 

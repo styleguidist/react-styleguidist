@@ -28,7 +28,19 @@ const DEFAULT_COMPONENTS_PATTERN =
 
 const logger = glogg('rsg');
 
-const configSchema = {
+export type EXPAND_MODE = 'expand' | 'collapse' | 'hide';
+
+export interface ConfigSchemaOptions {
+	process?(value: any, config: Rsg.StyleguidistConfig, rootDir: string): void;
+	default?: any;
+	required?: boolean | ((config?: Rsg.StyleguidistConfig) => string | boolean);
+	deprecated?: string;
+	removed?: string;
+	type?: string | string[];
+	example?: any;
+}
+
+const configSchema: Record<string, ConfigSchemaOptions> = {
 	assetsDir: {
 		type: ['array', 'existing directory path'],
 		example: 'assets',
@@ -102,8 +114,6 @@ const configSchema = {
 				// FolderName.md when component definition file is index.js
 				path.join(path.dirname(componentPath), path.basename(path.dirname(componentPath)) + '.md'),
 			];
-			// FIXME: This looks like a bug in ESLint
-			// eslint-disable-next-line no-unused-vars
 			for (const file of files) {
 				const existingFile = fileExistsCaseInsensitive(file);
 				if (existingFile) {

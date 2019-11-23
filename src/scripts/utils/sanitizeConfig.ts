@@ -1,22 +1,25 @@
-const fs = require('fs');
-const path = require('path');
-const isDirectory = require('is-directory');
-const castArray = require('lodash/castArray');
-const isBoolean = require('lodash/isBoolean');
-const isFunction = require('lodash/isFunction');
-const isPlainObject = require('lodash/isPlainObject');
-const isString = require('lodash/isString');
-const isFinite = require('lodash/isFinite');
-const map = require('lodash/map');
-const listify = require('listify');
-const kleur = require('kleur');
-const leven = require('leven');
-const stringify = require('q-i').stringify;
-const typeDetect = require('type-detect');
-const logger = require('glogg')('rsg');
-const StyleguidistError = require('./error');
+import fs from 'fs';
+import path from 'path';
+import * as isDirectory from 'is-directory';
+import castArray from 'lodash/castArray';
+import isBoolean from 'lodash/isBoolean';
+import isFunction from 'lodash/isFunction';
+import isPlainObject from 'lodash/isPlainObject';
+import isString from 'lodash/isString';
+import isFinite from 'lodash/isFinite';
+import map from 'lodash/map';
+import listify from 'listify';
+import kleur from 'kleur';
+import leven from 'leven';
+import typeDetect from 'type-detect';
+import loggerMaker from 'glogg';
+import { stringify } from 'q-i';
+import StyleguidistError from './error';
+import { ConfigSchemaOptions } from '../schemas/config';
 
-const typeCheckers = {
+const logger = loggerMaker('rsg');
+
+const typeCheckers: Record<string, (untypedObject: unknown) => boolean> = {
 	number: isFinite,
 	string: isString,
 	boolean: isBoolean,
@@ -29,10 +32,10 @@ const typeCheckers = {
 	'existing directory path': isString,
 };
 
-const typesList = types => listify(types, { finalWord: 'or' });
-const shouldBeFile = types => types.some(type => type.includes('file'));
-const shouldBeDirectory = types => types.some(type => type.includes('directory'));
-const shouldExist = types => types.some(type => type.includes('existing'));
+const typesList = (types: string[]) => listify(types, { finalWord: 'or' });
+const shouldBeFile = (types: string[]) => types.some(type => type.includes('file'));
+const shouldBeDirectory = (types: string[]) => types.some(type => type.includes('directory'));
+const shouldExist = (types: string[]) => types.some(type => type.includes('existing'));
 
 /**
  * Validates and normalizes config.
@@ -42,19 +45,23 @@ const shouldExist = types => types.some(type => type.includes('existing'));
  * @param {string} rootDir
  * @return {object}
  */
-module.exports = function sanitizeConfig(config, schema, rootDir) {
+export default function sanitizeConfig(
+	config: Rsg.StyleguidistConfig,
+	schema: Record<string, ConfigSchemaOptions>,
+	rootDir: string
+) {
 	// Check for unknown fields
 	map(config, (value, key) => {
 		if (!schema[key]) {
 			// Try to guess
 			const possibleOptions = Object.keys(schema);
-			const suggestedOption = possibleOptions.reduce((suggestion, option) => {
+			const suggestedOption = possibleOptions.reduce((suggestion: string, option: string) => {
 				const steps = leven(option, key);
 				if (steps < 2) {
 					return option;
 				}
 				return suggestion;
-			}, null);
+			}, '');
 
 			throw new StyleguidistError(
 				`Unknown config option ${kleur.bold(key)} was found, the value is:\n` +
@@ -66,7 +73,7 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 	});
 
 	// Check all fields
-	const safeConfig = {};
+	const safeConfig: Rsg.StyleguidistConfig = {};
 	map(schema, (props, key) => {
 		let value = config[key];
 
@@ -107,7 +114,7 @@ module.exports = function sanitizeConfig(config, schema, rootDir) {
 			});
 			if (!hasRightType) {
 				const exampleValue = props.example || props.default;
-				const example = {};
+				const example: Record<string, any> = {};
 				if (exampleValue) {
 					example[key] = exampleValue;
 				}
@@ -151,4 +158,4 @@ ${stringify(example)}`
 	});
 
 	return safeConfig;
-};
+}
