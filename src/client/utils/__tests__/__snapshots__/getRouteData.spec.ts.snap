@@ -180,16 +180,7 @@ Object {
   "displayMode": "all",
   "sections": Array [
     Object {
-      "components": Array [
-        Object {
-          "module": 1,
-          "name": "Label",
-        },
-        Object {
-          "module": 2,
-          "name": "RandomButton",
-        },
-      ],
+      "components": Array [],
       "exampleMode": "collapse",
       "name": "Buttons",
       "sectionDepth": 2,
