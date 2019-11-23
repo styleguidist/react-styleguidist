@@ -1,9 +1,11 @@
-const isFunction = require('lodash/isFunction');
-const omit = require('lodash/omit');
-const mergeBase = require('webpack-merge');
+import mergeBase from 'webpack-merge';
+import isFunction from 'lodash/isFunction';
+import omit from 'lodash/omit';
+import { Configuration } from 'webpack';
+import { Tapable } from 'tapable';
 
 const IGNORE_SECTIONS = ['entry', 'externals', 'output', 'watch', 'stats', 'styleguidist'];
-const IGNORE_SECTIONS_ENV = {
+const IGNORE_SECTIONS_ENV: Record<string, string[]> = {
 	development: [],
 	// For production builds, we'll ignore devtool settings to avoid
 	// source mapping bloat.
@@ -26,9 +28,11 @@ const merge = mergeBase({
 	customizeArray: mergeBase.unique(
 		'plugins',
 		IGNORE_PLUGINS,
-		plugin => plugin.constructor && plugin.constructor.name
+		(plugin: Tapable.Plugin) => plugin.constructor && plugin.constructor.name
 	),
 });
+
+type MetaConfig = Configuration | ((env?: string) => Configuration);
 
 /**
  * Merge two Webpack configs.
@@ -42,8 +46,12 @@ const merge = mergeBase({
  * @param {string} env
  * @return {object}
  */
-module.exports = function mergeWebpackConfig(baseConfig, userConfig, env) {
+export default function mergeWebpackConfig(
+	baseConfig: MetaConfig,
+	userConfig: MetaConfig,
+	env = 'production'
+) {
 	const userConfigObject = isFunction(userConfig) ? userConfig(env) : userConfig;
 	const safeUserConfig = omit(userConfigObject, IGNORE_SECTIONS.concat(IGNORE_SECTIONS_ENV[env]));
 	return merge(baseConfig, safeUserConfig);
-};
+}
