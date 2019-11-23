@@ -3,9 +3,9 @@
  * usage of build tools that contains webpack as their own dependency, like Create React App.
  */
 
-const getWebpackVersion = require('./getWebpackVersion');
-const StyleguidistError = require('./error');
-const consts = require('../consts');
+import getWebpackVersion from './getWebpackVersion';
+import StyleguidistError from './error';
+import * as consts from '../consts';
 
 const MIN_WEBPACK_VERSION = 4;
 const webpackVersion = getWebpackVersion();

@@ -11,7 +11,7 @@ const logger = require('glogg')('rsg');
 const getConfig = require('../scripts/config');
 const setupLogger = require('../scripts/logger');
 const consts = require('../scripts/consts');
-const StyleguidistError = require('../scripts/utils/error');
+const StyleguidistError = require('../scripts/utils/error').default;
 
 const argv = mri(process.argv.slice(2));
 const command = argv._[0];
