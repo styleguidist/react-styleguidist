@@ -7,10 +7,6 @@ import SectionRenderer from 'rsg-components/Section/SectionRenderer';
 import { useStyleGuideContext } from 'rsg-components/Context';
 import { DisplayModes } from '../../consts';
 
-export interface ExampleSectionViewModel extends Rsg.Section {
-	content?: Rsg.Example[];
-}
-
 const Section: React.FunctionComponent<{
 	section: Rsg.Section;
 	depth: number;

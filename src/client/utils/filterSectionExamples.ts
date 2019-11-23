@@ -1,5 +1,3 @@
-import { ExampleSectionViewModel } from '../rsg-components/Section';
-
 /**
  * Return a copy of the given section with the examples array filtered
  * to contain only the specified index
@@ -9,9 +7,9 @@ import { ExampleSectionViewModel } from '../rsg-components/Section';
  * @returns {object}
  */
 export default function filterSectionExamples(
-	section: ExampleSectionViewModel,
+	section: Rsg.ExampleSection,
 	index = -1
-): ExampleSectionViewModel {
+): Rsg.ExampleSection {
 	const content = section.content ? [section.content[index]] : [];
 	return {
 		...section,

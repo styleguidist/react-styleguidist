@@ -5,7 +5,6 @@ import filterSectionExamples from './filterSectionExamples';
 import findSection from './findSection';
 import getInfoFromHash from './getInfoFromHash';
 import { DisplayModes } from '../consts';
-import { ExampleSectionViewModel } from '../rsg-components/Section';
 
 /**
  * Return sections / components / examples to show on a screen according to a current route.
@@ -118,7 +117,7 @@ export default function getRouteData(
 				];
 				displayMode = DisplayModes.example;
 			} else if (sections.length === 1) {
-				sections = [filterSectionExamples(sections[0] as ExampleSectionViewModel, targetIndex)];
+				sections = [filterSectionExamples(sections[0] as Rsg.ExampleSection, targetIndex)];
 				displayMode = DisplayModes.example;
 			}
 		}

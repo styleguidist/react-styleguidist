@@ -6,7 +6,7 @@ declare namespace Rsg {
 		components?: Component[];
 		sections?: Section[];
 		ignore?: string | string[];
-		content?: Rsg.Example[] | string;
+		content?: Example[] | string;
 		sectionDepth?: number;
 		description?: string;
 		exampleMode?: EXPAND_MODE;
@@ -14,5 +14,9 @@ declare namespace Rsg {
 		filepath?: string;
 		href?: string;
 		external?: string;
+	}
+
+	interface ExampleSection extends Section {
+		content?: Example[];
 	}
 }
