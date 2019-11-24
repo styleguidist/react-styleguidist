@@ -1,11 +1,12 @@
+import webpack from 'webpack';
 // Make sure user has webpack installed
-require('./utils/ensureWebpack');
+import './utils/ensureWebpack';
 
-const build = require('./build');
-const server = require('./server');
-const makeWebpackConfig = require('./make-webpack-config');
-const getConfig = require('./config');
-const setupLogger = require('./logger');
+import makeWebpackConfig from './make-webpack-config';
+import build from './build';
+import server from './server';
+import getConfig from './config';
+import setupLogger from './logger';
 
 /**
  * Initialize Styleguide API.
@@ -13,7 +14,7 @@ const setupLogger = require('./logger');
  * @param {object} [config] Styleguidist config.
  * @returns {object} API.
  */
-module.exports = function(config) {
+export default function(config?: Rsg.StyleguidistConfig) {
 	config = getConfig(config, conf => {
 		setupLogger(conf.logger, conf.verbose, {});
 		return conf;
@@ -26,7 +27,7 @@ module.exports = function(config) {
 		 * @param {Function} callback callback(err, config, stats).
 		 * @return {Compiler} Webpack Compiler instance.
 		 */
-		build(callback) {
+		build(callback: (err: Error, config: Rsg.StyleguidistConfig, stats: webpack.Stats) => void) {
 			return build(config, (err, stats) => callback(err, config, stats));
 		},
 
@@ -37,7 +38,7 @@ module.exports = function(config) {
 		 * @return {ServerInfo.App} Webpack-Dev-Server.
 		 * @return {ServerInfo.Compiler} Webpack Compiler instance.
 		 */
-		server(callback) {
+		server(callback: (err: Error | undefined, config: Rsg.StyleguidistConfig) => void) {
 			return server(config, err => callback(err, config));
 		},
 
@@ -47,8 +48,8 @@ module.exports = function(config) {
 		 * @param {string} [env=production] 'production' or 'development'.
 		 * @return {object}
 		 */
-		makeWebpackConfig(env) {
+		makeWebpackConfig(env?: 'development' | 'production' | 'none') {
 			return makeWebpackConfig(config, env || 'production');
 		},
 	};
-};
+}

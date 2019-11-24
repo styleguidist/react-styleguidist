@@ -1,23 +1,27 @@
-import StyleguidistOptionsPlugin from './utils/StyleguidistOptionsPlugin';
+/* eslint-disable @typescript-eslint/camelcase */
+import path from 'path';
+import castArray from 'lodash/castArray';
+import webpack, { Configuration } from 'webpack';
+import TerserPlugin from 'terser-webpack-plugin';
+import MiniHtmlWebpackPlugin from 'mini-html-webpack-plugin';
+import MiniHtmlWebpackTemplate from '@vxna/mini-html-webpack-template';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import merge from 'webpack-merge';
+import forEach from 'lodash/forEach';
+import isFunction from 'lodash/isFunction';
 
-const path = require('path');
-const castArray = require('lodash/castArray');
-const webpack = require('webpack');
-const TerserPlugin = require('terser-webpack-plugin');
-const MiniHtmlWebpackPlugin = require('mini-html-webpack-plugin');
-const MiniHtmlWebpackTemplate = require('@vxna/mini-html-webpack-template');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const merge = require('webpack-merge');
-const forEach = require('lodash/forEach');
-const isFunction = require('lodash/isFunction');
-const mergeWebpackConfig = require('./utils/mergeWebpackConfig');
+import StyleguidistOptionsPlugin from './utils/StyleguidistOptionsPlugin';
+import mergeWebpackConfig from './utils/mergeWebpackConfig';
 
 const RENDERER_REGEXP = /Renderer$/;
 
 const sourceDir = path.resolve(__dirname, '../client');
 
-module.exports = function(config, env) {
+export default function(
+	config: Rsg.StyleguidistConfig,
+	env: 'development' | 'production' | 'none'
+): Configuration {
 	process.env.NODE_ENV = process.env.NODE_ENV || env;
 
 	const isProd = env === 'production';
@@ -33,7 +37,7 @@ module.exports = function(config, env) {
 		template,
 	};
 
-	let webpackConfig = {
+	let webpackConfig: Configuration = {
 		entry: config.require.concat([path.resolve(sourceDir, 'index')]),
 		mode: env,
 		output: {
@@ -90,7 +94,7 @@ module.exports = function(config, env) {
 				new CleanWebpackPlugin({
 					root: config.styleguideDir,
 					verbose: config.verbose === true,
-				}),
+				} as any),
 				new CopyWebpackPlugin(
 					config.assetsDir ? castArray(config.assetsDir).map(dir => ({ from: dir })) : []
 				),
@@ -118,23 +122,26 @@ module.exports = function(config, env) {
 		});
 	}
 
-	// Custom style guide components
-	if (config.styleguideComponents) {
-		forEach(config.styleguideComponents, (filepath, name) => {
-			const fullName = name.match(RENDERER_REGEXP)
-				? `${name.replace(RENDERER_REGEXP, '')}/${name}`
-				: name;
-			webpackConfig.resolve.alias[`rsg-components/${fullName}`] = filepath;
-		});
-	}
+	const alias = webpackConfig.resolve ? webpackConfig.resolve.alias : undefined;
+	if (alias) {
+		// Custom style guide components
+		if (config.styleguideComponents) {
+			forEach(config.styleguideComponents, (filepath, name) => {
+				const fullName = name.match(RENDERER_REGEXP)
+					? `${name.replace(RENDERER_REGEXP, '')}/${name}`
+					: name;
+				alias[`rsg-components/${fullName}`] = filepath;
+			});
+		}
 
-	// Add components folder alias at the end, so users can override our components
-	// to customize the style guide (their aliases should be before this one)
-	webpackConfig.resolve.alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
+		// Add components folder alias at the end, so users can override our components
+		// to customize the style guide (their aliases should be before this one)
+		alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
+	}
 
 	if (config.dangerouslyUpdateWebpackConfig) {
 		webpackConfig = config.dangerouslyUpdateWebpackConfig(webpackConfig, env);
 	}
 
 	return webpackConfig;
-};
+}

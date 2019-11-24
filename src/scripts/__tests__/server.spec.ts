@@ -4,8 +4,8 @@ import getConfig from '../config';
 jest.mock('../create-server', () => () => {
 	return {
 		app: {
-			listen: (port, host, cb) => cb(),
-			close: cb => cb(),
+			listen: (port: number, host: string, cb: () => void) => cb(),
+			close: (cb: () => void) => cb(),
 		},
 		compiler: {},
 	};

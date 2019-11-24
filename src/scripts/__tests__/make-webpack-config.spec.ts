@@ -1,6 +1,10 @@
-import webpack, { validate } from 'webpack';
+import webpack, { Configuration } from 'webpack';
+import { Tapable } from 'tapable';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import makeWebpackConfig from '../make-webpack-config';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { validate } = require('webpack');
 
 jest.mock('copy-webpack-plugin');
 
@@ -10,13 +14,15 @@ const styleguideConfig = {
 	title: 'Style Guide',
 };
 
-const getClasses = (plugins, name) => plugins.filter(x => x.constructor.name === name);
-const getClassNames = plugins => plugins.map(x => x.constructor.name);
+const getClasses = (plugins: Tapable.Plugin[] = [], name: string): Tapable.Plugin[] =>
+	plugins.filter(x => x.constructor.name === name);
+const getClassNames = (plugins: Tapable.Plugin[] = []): string[] =>
+	plugins.map(x => x.constructor.name);
 
 const process$env$nodeEnv = process.env.NODE_ENV;
 
 beforeEach(() => {
-	CopyWebpackPlugin.mockClear();
+	(CopyWebpackPlugin as jest.Mock).mockClear();
 });
 
 afterEach(() => {
@@ -30,7 +36,7 @@ it('should return a development config', () => {
 	const errors = validate(config);
 	expect(errors).toHaveLength(0);
 
-	const plugins = getClassNames(config.plugins);
+	const plugins = getClassNames(config.plugins || []);
 	expect(plugins).toContain('HotModuleReplacementPlugin');
 
 	expect(config).toMatchObject({
@@ -59,12 +65,14 @@ it('should return a production config', () => {
 	expect(config).toMatchObject({
 		mode: env,
 	});
-	expect(getClasses(config.optimization.minimizer, 'TerserPlugin')).toHaveLength(1);
+	expect(
+		getClasses(config.optimization && config.optimization.minimizer, 'TerserPlugin')
+	).toHaveLength(1);
 });
 
 it('should set aliases', () => {
 	const result = makeWebpackConfig(styleguideConfig, 'development');
-	expect(result.resolve.alias).toMatchSnapshot();
+	expect(result.resolve && result.resolve.alias).toMatchSnapshot();
 });
 
 it('should set aliases from moduleAliases option', () => {
@@ -77,7 +85,7 @@ it('should set aliases from moduleAliases option', () => {
 		},
 		'development'
 	);
-	expect(result.resolve.alias).toMatchSnapshot();
+	expect(result.resolve && result.resolve.alias).toMatchSnapshot();
 });
 
 it('should set aliases from styleguideComponents option', () => {
@@ -90,7 +98,7 @@ it('should set aliases from styleguideComponents option', () => {
 		},
 		'development'
 	);
-	expect(result.resolve.alias).toMatchSnapshot();
+	expect(result.resolve && result.resolve.alias).toMatchSnapshot();
 });
 
 it('should prepend requires as webpack entries', () => {
@@ -103,7 +111,7 @@ it('should prepend requires as webpack entries', () => {
 
 it('should enable verbose mode in CleanWebpackPlugin', () => {
 	const result = makeWebpackConfig({ ...styleguideConfig, verbose: true }, 'production');
-	expect(getClasses(result.plugins, 'CleanWebpackPlugin')[0].verbose).toBe(true);
+	expect((getClasses(result.plugins, 'CleanWebpackPlugin')[0] as any).verbose).toBe(true);
 });
 
 it('should set from with assetsDir in CopyWebpackPlugin', () => {
@@ -126,7 +134,7 @@ it('should merge user webpack config', () => {
 		{ ...styleguideConfig, webpackConfig: { resolve: { alias: { foo: 'bar' } } } },
 		'development'
 	);
-	expect(result.resolve.alias).toMatchSnapshot();
+	expect(result.resolve && result.resolve.alias).toMatchSnapshot();
 });
 
 it('should not owerwrite user DefinePlugin', () => {
@@ -155,14 +163,16 @@ it('should update webpack config', () => {
 	const result = makeWebpackConfig(
 		{
 			...styleguideConfig,
-			dangerouslyUpdateWebpackConfig: c => {
-				c.resolve.extensions = extensions;
+			dangerouslyUpdateWebpackConfig: (c: Configuration) => {
+				if (c.resolve) {
+					c.resolve.extensions = extensions;
+				}
 				return c;
 			},
 		},
 		'development'
 	);
-	expect(result.resolve.extensions).toEqual(extensions);
+	expect(result.resolve && result.resolve.extensions).toEqual(extensions);
 });
 
 it('should pass template context to HTML plugin', () => {
@@ -220,7 +230,7 @@ it('should pass specified mountPointId to HTML plugin', () => {
 		},
 		'development'
 	);
-	expect(getClasses(result.plugins, 'MiniHtmlWebpackPlugin')[0].options.context.container).toEqual(
-		'foo-bar'
-	);
+	expect(
+		(getClasses(result.plugins, 'MiniHtmlWebpackPlugin')[0] as any).options.context.container
+	).toEqual('foo-bar');
 });

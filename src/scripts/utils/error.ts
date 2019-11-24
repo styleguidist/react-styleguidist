@@ -1,4 +1,5 @@
 class StyleguidistError extends Error {
+	public extra: any;
 	public constructor(message: string, extra?: any) {
 		super(message);
 		Error.captureStackTrace(this, this.constructor);
