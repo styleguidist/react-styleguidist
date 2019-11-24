@@ -3,13 +3,14 @@ declare module 'webpack-merge' {
 	import { Configuration } from 'webpack';
 
 	type MetaConfig = Configuration | ((env?: string) => Configuration);
-	type mergeFunction = (config1: MetaConfig, config2: MetaConfig) => Configuration;
+	type mergeFunction = (...configs: MetaConfig[]) => Configuration;
 	type customizeArrayFuntion = () => any[];
 	interface WebpackMergeOptions {
 		customizeArray: customizeArrayFuntion;
 	}
 	const webpackMerge: {
 		(options: WebpackMergeOptions): mergeFunction;
+		(...configs: MetaConfig[]): Configuration;
 		unique(
 			key: string,
 			uniques: string[],
