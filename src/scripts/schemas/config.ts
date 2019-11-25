@@ -33,7 +33,7 @@ export type EXPAND_MODE = 'expand' | 'collapse' | 'hide';
 export type StyleguidistConfigKey = keyof Rsg.ProcessedStyleguidistConfig;
 
 export interface ConfigSchemaOptions {
-	process?(value: any, config: Rsg.StyleguidistConfig, rootDir: string): void;
+	process?(value: any, config: Rsg.StyleguidistConfig, rootDir: string): any;
 	default?: any;
 	required?: boolean | ((config?: Rsg.StyleguidistConfig) => string | boolean);
 	deprecated?: string;

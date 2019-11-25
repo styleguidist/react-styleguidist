@@ -1,6 +1,6 @@
 import StyleguidistOptionsPlugin from '../StyleguidistOptionsPlugin';
 
-const options = {
+const options: any = {
 	foo: 42,
 };
 

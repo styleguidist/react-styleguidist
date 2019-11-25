@@ -3,7 +3,7 @@ import webpack from 'webpack';
 import createServer from './create-server';
 
 export default function server(
-	config: Rsg.StyleguidistConfig,
+	config: Rsg.ProcessedStyleguidistConfig,
 	callback: (error?: Error) => void
 ): { app: WebpackDevServer; compiler: webpack.Compiler } {
 	const env = 'development';

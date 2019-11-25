@@ -21,7 +21,7 @@ it('should return non-empty required field as is', () => {
 });
 
 it('should return default value for empty non-required field', () => {
-	const result = sanitizeConfig(
+	const result = sanitizeConfig<{ food?: string }>(
 		{},
 		{
 			food: {
@@ -434,10 +434,10 @@ it('should throw when directory does not exist', () => {
 
 it('should throw for unknown options', () => {
 	const fn = () =>
-		sanitizeConfig(
+		sanitizeConfig<{ drink?: any; food?: any }>(
 			{
 				book: 'hobbit',
-			},
+			} as any,
 			{
 				drink: {},
 				food: {},
@@ -449,10 +449,10 @@ it('should throw for unknown options', () => {
 
 it('should throw for unknown options with suggestion', () => {
 	const fn = () =>
-		sanitizeConfig(
+		sanitizeConfig<{ drink?: any; food?: any }>(
 			{
 				dring: 'pizza',
-			},
+			} as any,
 			{
 				drink: {},
 				food: {},

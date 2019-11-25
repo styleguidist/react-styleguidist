@@ -8,15 +8,15 @@ import { Compiler, compilation } from 'webpack';
 // See this issue for details: https://github.com/styleguidist/react-styleguidist/issues/328
 
 export default class StyleguidistOptionsPlugin implements Tapable.Plugin {
-	private options: Rsg.StyleguidistConfig;
-	public constructor(options: Rsg.StyleguidistConfig) {
+	private options: Rsg.ProcessedStyleguidistConfig;
+	public constructor(options: Rsg.ProcessedStyleguidistConfig) {
 		this.options = options;
 		this.plugin = this.plugin.bind(this);
 	}
 
 	public plugin(compil: compilation.Compilation) {
 		const pluginFunc = (
-			context: { _styleguidist?: Rsg.StyleguidistConfig },
+			context: { _styleguidist?: Rsg.ProcessedStyleguidistConfig },
 			module: { resource?: boolean }
 		) => {
 			if (!module.resource) {

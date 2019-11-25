@@ -35,7 +35,7 @@ function findConfigFile(): string | false {
 function getConfig(
 	config?: string | Rsg.StyleguidistConfig,
 	update?: (conf: Rsg.StyleguidistConfig) => Rsg.StyleguidistConfig
-) {
+): Rsg.StyleguidistConfig | undefined {
 	let configFilepath: string | false = false;
 	if (isString(config)) {
 		// Load config from a given file
@@ -52,6 +52,10 @@ function getConfig(
 
 	if (configFilepath) {
 		config = require(configFilepath);
+	}
+
+	if (!config || isString(config)) {
+		return {};
 	}
 
 	if (update) {

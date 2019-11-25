@@ -17,7 +17,7 @@ declare global {
 			context: Record<string, any>;
 			contextDependencies: string[];
 			configureServer(server: WebpackDevServer, env: string): string;
-			dangerouslyUpdateWebpackConfig(server: Configuration, env: string): Configuration;
+			dangerouslyUpdateWebpackConfig: (server: Configuration, env: string) => Configuration;
 			defaultExample: string | boolean;
 			exampleMode: EXPAND_MODE;
 			editorConfig: {
@@ -77,7 +77,7 @@ declare global {
 			usageMode: EXPAND_MODE;
 			verbose: boolean;
 			version: string;
-			webpackConfig: Configuration | ((env: string) => Configuration);
+			webpackConfig: Configuration | ((env?: string) => Configuration);
 		}
 
 		type StyleguidistConfig = RecursivePartial<ProcessedStyleguidistConfig>;
