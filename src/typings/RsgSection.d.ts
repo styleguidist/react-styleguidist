@@ -5,18 +5,18 @@ declare namespace Rsg {
 		description?: string;
 		exampleMode?: EXPAND_MODE;
 		usageMode?: EXPAND_MODE;
-		filepath?: string;
 		href?: string;
 		external?: string;
 	}
 
 	interface Section extends BaseSection {
 		slug?: string;
-		sectionDepth?: number;
 		visibleName?: string;
+		filepath?: string;
 		components?: Component[];
 		sections?: Section[];
 		content?: Example[] | string;
+		sectionDepth?: number;
 	}
 
 	interface ConfigSection extends BaseSection {
