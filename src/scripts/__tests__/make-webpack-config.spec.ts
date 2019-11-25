@@ -12,7 +12,7 @@ const styleguideConfig = ({
 	styleguideDir: __dirname,
 	require: [],
 	title: 'Style Guide',
-} as unknown) as Rsg.ProcessedStyleguidistConfig;
+} as unknown) as Rsg.SanitizedStyleguidistConfig;
 
 const getClasses = (plugins: Tapable.Plugin[] = [], name: string): Tapable.Plugin[] =>
 	plugins.filter(x => x.constructor.name === name);

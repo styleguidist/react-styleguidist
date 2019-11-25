@@ -35,7 +35,7 @@ function findConfigFile(): string | false {
 function getConfig(
 	config?: string | Rsg.StyleguidistConfig,
 	update?: (conf: Rsg.StyleguidistConfig) => Rsg.StyleguidistConfig
-): Rsg.ProcessedStyleguidistConfig {
+): Rsg.SanitizedStyleguidistConfig {
 	let configFilepath: string | false = false;
 	if (isString(config)) {
 		// Load config from a given file

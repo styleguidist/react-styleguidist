@@ -4,7 +4,7 @@ import merge from 'webpack-merge';
 import makeWebpackConfig from './make-webpack-config';
 
 export default function createServer(
-	config: Rsg.ProcessedStyleguidistConfig,
+	config: Rsg.SanitizedStyleguidistConfig,
 	env: 'development' | 'production' | 'none'
 ): { app: WebpackDevServer; compiler: webpack.Compiler } {
 	const webpackConfig = makeWebpackConfig(config, env);

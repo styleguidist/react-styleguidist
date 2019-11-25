@@ -28,7 +28,7 @@ export default function(configArg?: Rsg.StyleguidistConfig | string) {
 		 * @return {Compiler} Webpack Compiler instance.
 		 */
 		build(
-			callback: (err: Error, config: Rsg.ProcessedStyleguidistConfig, stats: webpack.Stats) => void
+			callback: (err: Error, config: Rsg.SanitizedStyleguidistConfig, stats: webpack.Stats) => void
 		) {
 			return build(config, (err: Error, stats: webpack.Stats) => callback(err, config, stats));
 		},

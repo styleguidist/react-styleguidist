@@ -19,7 +19,7 @@ const RENDERER_REGEXP = /Renderer$/;
 const sourceDir = path.resolve(__dirname, '../client');
 
 export default function(
-	config: Rsg.ProcessedStyleguidistConfig,
+	config: Rsg.SanitizedStyleguidistConfig,
 	env: 'development' | 'production' | 'none'
 ): Configuration {
 	process.env.NODE_ENV = process.env.NODE_ENV || env;

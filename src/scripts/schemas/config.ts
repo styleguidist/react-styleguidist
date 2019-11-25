@@ -30,7 +30,7 @@ const logger = glogg('rsg');
 
 export type EXPAND_MODE = 'expand' | 'collapse' | 'hide';
 
-export type StyleguidistConfigKey = keyof Rsg.ProcessedStyleguidistConfig;
+export type StyleguidistConfigKey = keyof Rsg.SanitizedStyleguidistConfig;
 
 export interface ConfigSchemaOptions {
 	process?(value: any, config: Rsg.StyleguidistConfig, rootDir: string): any;

@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import makeWebpackConfig from './make-webpack-config';
 
 export default function build(
-	config: Rsg.ProcessedStyleguidistConfig,
+	config: Rsg.SanitizedStyleguidistConfig,
 	callback: (err: Error, stats: webpack.Stats) => void
 ) {
 	return webpack(makeWebpackConfig(config, 'production'), (err, stats) => {

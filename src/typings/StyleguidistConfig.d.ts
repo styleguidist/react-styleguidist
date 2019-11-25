@@ -9,7 +9,7 @@ declare global {
 	namespace Rsg {
 		type EXPAND_MODE = 'expand' | 'collapse' | 'hide';
 
-		interface ProcessedStyleguidistConfig {
+		interface BaseStyleguidistConfig {
 			assetsDir: string | string[];
 			compilerConfig: TransformOptions;
 			components: (() => string | string[]) | string | string[];
@@ -57,7 +57,6 @@ declare global {
 				text?: string;
 				url: string;
 			};
-			sections: Section[];
 			serverHost: string;
 			serverPort: number;
 			showCode: boolean;
@@ -80,6 +79,14 @@ declare global {
 			webpackConfig: Configuration | ((env?: string) => Configuration);
 		}
 
-		type StyleguidistConfig = RecursivePartial<ProcessedStyleguidistConfig>;
+		interface ProcessedStyleguidistConfig extends BaseStyleguidistConfig {
+			sections: Section[];
+		}
+
+		interface SanitizedStyleguidistConfig extends BaseStyleguidistConfig {
+			sections: ConfigSection[];
+		}
+
+		type StyleguidistConfig = RecursivePartial<SanitizedStyleguidistConfig>;
 	}
 }
