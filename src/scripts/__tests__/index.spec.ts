@@ -150,9 +150,6 @@ describe('build', () => {
 		};
 		const callback = jest.fn();
 		const api = styleguidist(config);
-		(build as jest.Mock).mockImplementation((conf: any, cb: (err: any, stats: any) => void) => {
-			cb(undefined, { stats: true });
-		});
 
 		api.build(callback);
 
@@ -169,9 +166,7 @@ describe('server', () => {
 		};
 		const callback = jest.fn();
 		const api = styleguidist(config);
-		(server as jest.Mock).mockImplementation((conf: any, cb: (err: any, stats: any) => void) => {
-			cb(undefined, { stats: true });
-		});
+
 		api.server(callback);
 
 		expect(callback).toBeCalled();
