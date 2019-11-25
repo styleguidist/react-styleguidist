@@ -12,6 +12,7 @@ declare namespace Rsg {
 
 	interface Section extends BaseSection {
 		slug?: string;
+		sectionDepth?: number;
 		visibleName?: string;
 		components?: Component[];
 		sections?: Section[];
