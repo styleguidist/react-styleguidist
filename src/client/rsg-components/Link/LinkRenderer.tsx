@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'clsx';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
@@ -18,7 +18,7 @@ const styles = ({ color }: Rsg.Theme) => ({
 	},
 });
 
-interface LinkProps extends JssInjectedProps {
+interface LinkProps extends JssInjectedProps, HTMLAttributes<HTMLAnchorElement> {
 	children: React.ReactNode;
 	className?: string;
 	href?: string;

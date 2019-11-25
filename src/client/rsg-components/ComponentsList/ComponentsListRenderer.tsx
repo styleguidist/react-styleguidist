@@ -40,11 +40,17 @@ const styles = ({ color, fontFamily, fontSize, space, mq }: Rsg.Theme) => ({
 
 interface ComponentsListRendererProps extends JssInjectedProps {
 	items: Rsg.Component[];
+	openSection: string;
+	searchTerm: string;
+	onHeaderClick(href?: string): void;
 }
 
 export const ComponentsListRenderer: React.FunctionComponent<ComponentsListRendererProps> = ({
 	classes,
 	items,
+	openSection,
+	searchTerm,
+	onHeaderClick,
 }) => {
 	const {
 		config: { pagePerSection },
@@ -74,11 +80,12 @@ export const ComponentsListRenderer: React.FunctionComponent<ComponentsListRende
 						<Link
 							className={cx(heading && classes.heading)}
 							href={href}
+							onClick={() => onHeaderClick(href)}
 							target={shouldOpenInNewTab ? '_blank' : undefined}
 						>
 							{visibleName}
 						</Link>
-						{content}
+						{openSection === href || searchTerm.length ? content : undefined}
 					</li>
 				);
 			})}
@@ -89,6 +96,9 @@ export const ComponentsListRenderer: React.FunctionComponent<ComponentsListRende
 ComponentsListRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	items: PropTypes.array.isRequired,
+	openSection: PropTypes.string.isRequired,
+	searchTerm: PropTypes.string.isRequired,
+	onHeaderClick: PropTypes.func.isRequired,
 };
 
 export default Styled<ComponentsListRendererProps>(styles)(ComponentsListRenderer);
