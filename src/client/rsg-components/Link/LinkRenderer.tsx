@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'clsx';
-import Styled, { JssInjectedProps, Theme } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ color }: Theme) => ({
+const styles = ({ color }: Rsg.Theme) => ({
 	link: {
 		'&, &:link, &:visited': {
 			fontSize: 'inherit',

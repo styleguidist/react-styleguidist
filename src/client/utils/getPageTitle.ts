@@ -12,7 +12,11 @@ import { DisplayModes } from '../consts';
  * @param {string} displayMode
  * @return {string}
  */
-export default function getPageTitle(sections, baseTitle, displayMode) {
+export default function getPageTitle(
+	sections: Rsg.Section[],
+	baseTitle: string,
+	displayMode: string
+): string {
 	if (displayMode === DisplayModes.notFound) {
 		return 'Page not found';
 	}

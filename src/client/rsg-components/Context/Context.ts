@@ -1,9 +1,8 @@
 import React from 'react';
-import { ProcessedStyleguidistConfig } from '../../../scripts/schemas/config';
 
 const StyleGuideContext = React.createContext<StyleGuideContextContents>({
 	codeRevision: 0,
-	config: {} as ProcessedStyleguidistConfig,
+	config: {} as Rsg.ProcessedStyleguidistConfig,
 	slots: {},
 	displayMode: 'collapse',
 });
@@ -17,7 +16,7 @@ export interface SlotObject {
 
 export interface StyleGuideContextContents {
 	codeRevision: number;
-	config: ProcessedStyleguidistConfig;
+	config: Rsg.ProcessedStyleguidistConfig;
 	slots: Record<string, (SlotObject | React.FunctionComponent<any>)[]>;
 	displayMode: string;
 }

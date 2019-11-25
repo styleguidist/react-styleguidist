@@ -7,12 +7,16 @@
  * @param {number} index
  * @returns {object}
  */
-export default function filterComponentExamples(component, index) {
+export default function filterComponentExamples(
+	component: Rsg.Component,
+	index: number
+): Rsg.Component {
 	return {
 		...component,
 		props: {
 			...component.props,
-			examples: [component.props.examples[index]],
+			examples:
+				component.props && component.props.examples ? [component.props.examples[index]] : [],
 		},
 	};
 }

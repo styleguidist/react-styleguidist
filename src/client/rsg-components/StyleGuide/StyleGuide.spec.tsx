@@ -4,7 +4,7 @@ import StyleGuide from './StyleGuide';
 import slots from '../slots';
 import { DisplayModes } from '../../consts';
 
-const sections = [
+const sections: Rsg.Section[] = [
 	{
 		exampleMode: 'collapse',
 		usageMode: 'collapse',
@@ -33,6 +33,7 @@ const sections = [
 		],
 	},
 ];
+
 const config = {
 	title: 'HelloStyleGuide',
 	version: '1.0.0',

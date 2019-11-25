@@ -17,11 +17,6 @@ import fileExistsCaseInsensitive from '../utils/findFileCaseInsensitive';
 import StyleguidistError from '../utils/error';
 import * as consts from '../consts';
 
-import { Section } from '../../typings/Section';
-import { Theme } from '../../typings/Theme';
-import { Styles } from '../../typings/Styles';
-import { RecursivePartial } from '../../typings/RecursivePartial';
-
 const EXTENSIONS = 'js,jsx,ts,tsx';
 const DEFAULT_COMPONENTS_PATTERN =
 	// HACK: on windows, the case insensitivity makes each component appear twice
@@ -32,24 +27,6 @@ const DEFAULT_COMPONENTS_PATTERN =
 		: `src/@(components|Components)/**/*.{${EXTENSIONS}}`;
 
 const logger = glogg('rsg');
-
-export type EXPAND_MODE = 'expand' | 'collapse' | 'hide';
-
-export interface ProcessedStyleguidistConfig {
-	compilerConfig: TransformOptions;
-	showCode: EXPAND_MODE;
-	showUsage: EXPAND_MODE;
-	components: string;
-	theme: Theme;
-	styles: Styles;
-	pagePerSection: boolean;
-	ribbon?: {
-		text?: string;
-		url: string;
-	};
-}
-
-export type StyleguidistConfig = RecursivePartial<ProcessedStyleguidistConfig>;
 
 const configSchema = {
 	assetsDir: {
@@ -80,7 +57,7 @@ const configSchema = {
 		example: 'components/**/[A-Z]*.js',
 	},
 	configDir: {
-		process: (value: string, config: StyleguidistConfig, rootDir: string): string => rootDir,
+		process: (value: string, config: Rsg.StyleguidistConfig, rootDir: string): string => rootDir,
 	},
 	context: {
 		type: 'object',
@@ -106,7 +83,7 @@ const configSchema = {
 	},
 	exampleMode: {
 		type: 'string',
-		process: (value: string, config: StyleguidistConfig) => {
+		process: (value: string, config: Rsg.StyleguidistConfig) => {
 			return config.showCode === undefined ? value : config.showCode ? 'expand' : 'collapse';
 		},
 		default: 'collapse',
@@ -225,7 +202,7 @@ const configSchema = {
 	sections: {
 		type: 'array',
 		default: [],
-		process: (val: Section[], config: StyleguidistConfig) => {
+		process: (val: Rsg.Section[], config: Rsg.StyleguidistConfig) => {
 			if (!val) {
 				// If root `components` isn't empty, make it a first section
 				// If `components` and `sections` weren’t specified, use default pattern
@@ -352,7 +329,7 @@ const configSchema = {
 	},
 	usageMode: {
 		type: 'string',
-		process: (value: string, config: StyleguidistConfig) => {
+		process: (value: string, config: Rsg.StyleguidistConfig) => {
 			return config.showUsage === undefined ? value : config.showUsage ? 'expand' : 'collapse';
 		},
 		default: 'collapse',

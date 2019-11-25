@@ -7,7 +7,10 @@ import getFilterRegExp from './getFilterRegExp';
  * @param {string} query
  * @return {array}
  */
-export default function filterComponentsByName(components, query) {
+export default function filterComponentsByName(
+	components: Rsg.Component[],
+	query: string
+): Rsg.Component[] {
 	const regExp = getFilterRegExp(query);
-	return components.filter(({ name }) => regExp.test(name));
+	return components.filter(({ name }) => regExp.test(name as string));
 }

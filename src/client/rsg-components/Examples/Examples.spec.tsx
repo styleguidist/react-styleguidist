@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Examples, { ExampleModel } from '.';
+import Examples from '.';
 import Context from '../Context';
 import slots from '../slots';
 import { DisplayModes } from '../../consts';
@@ -9,7 +9,7 @@ const evalInContext = (a: string): (() => any) =>
 	// eslint-disable-next-line no-new-func
 	new Function('require', 'const React = require("react");' + a).bind(null, require);
 
-const examples: ExampleModel[] = [
+const examples: Rsg.Example[] = [
 	{
 		type: 'code',
 		content: '<button>Code: OK</button>',

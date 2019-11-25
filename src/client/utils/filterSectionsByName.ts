@@ -1,5 +1,3 @@
-import { SectionViewModel } from 'rsg-components/Section';
-import { ComponentViewModel } from 'rsg-components/ReactComponent';
 import getFilterRegExp from './getFilterRegExp';
 import filterComponentsByName from './filterComponentsByName';
 
@@ -11,14 +9,14 @@ import filterComponentsByName from './filterComponentsByName';
  * @return {Array}
  */
 export default function filterSectionsByName(
-	sections: (SectionViewModel | ComponentViewModel)[],
+	sections: (Rsg.Section | Rsg.Component)[],
 	query: string
-): SectionViewModel[] {
+): Rsg.Section[] {
 	const regExp = getFilterRegExp(query);
 
 	return sections
 		.map(sectionOrComponent => {
-			const section = sectionOrComponent as SectionViewModel;
+			const section = sectionOrComponent as Rsg.Section;
 			return {
 				...section,
 				sections: section.sections ? filterSectionsByName(section.sections, query) : [],

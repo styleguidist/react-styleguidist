@@ -18,9 +18,13 @@ import { DisplayModes } from '../consts';
  * @param {boolean} pagePerSection
  * @returns {object}
  */
-export default function getRouteData(sections, hash, pagePerSection) {
+export default function getRouteData(
+	sections: Rsg.Section[],
+	hash: string,
+	pagePerSection = false
+): { sections: Rsg.Section[]; displayMode: string } {
 	// Parse URL hash to check if the components list must be filtered
-	const infoFromHash = getInfoFromHash(hash, pagePerSection);
+	const infoFromHash = getInfoFromHash(hash);
 
 	// Name of the filtered component/section to show isolated (/#!/Button → Button)
 	let { targetName, hashArray } = infoFromHash;
@@ -33,23 +37,23 @@ export default function getRouteData(sections, hash, pagePerSection) {
 
 	let displayMode = isolate ? DisplayModes.example : DisplayModes.all;
 
-	if (pagePerSection && !targetName && sections[0]) {
+	if (pagePerSection && !targetName && sections[0] && sections[0].name) {
 		// For default takes the first section when pagePerSection enabled
 		targetName = sections[0].name;
 		hashArray = [targetName];
 	}
 
 	if (targetName) {
-		let filteredSections;
+		let filteredSections: Rsg.Section[] = [];
 
-		if (pagePerSection) {
+		if (pagePerSection && hashArray) {
 			// hashArray could be an array as ["Documentation", "Files", "Button"]
 			// each hashArray's element represent each section name with the same deep
 			// so it should be filter each section to trying to find each one of array on the same deep
 			hashArray.forEach((hashName, index) => {
 				// Filter the requested component if required but only on the first depth
 				// so in the next time of iteration, it will be trying to filter only on the second depth and so on
-				filteredSections = filterComponentsInSectionsByExactName(sections, hashName, isolate);
+				filteredSections = filterComponentsInSectionsByExactName(sections, hashName, !!isolate);
 
 				// If filteredSections exists, its because is an array of an component
 				// else it is an array of sections and depending his sectionDepth
@@ -61,10 +65,10 @@ export default function getRouteData(sections, hash, pagePerSection) {
 					if (section) {
 						// Only if hashName is the last of hashArray his children should be filtered
 						// because else there are possibilities to keep on filtering to try find the next section
-						const isLastHashName = !hashArray[index + 1];
+						const isLastHashName = !hashArray || !hashArray[index + 1];
 
 						// When sectionDepth is bigger than 0, their children should be filtered
-						const shouldFilterTheirChildren = section.sectionDepth > 0 && isLastHashName;
+						const shouldFilterTheirChildren = (section.sectionDepth || 0) > 0 && isLastHashName;
 
 						if (shouldFilterTheirChildren) {
 							// Filter his sections and components
@@ -105,12 +109,15 @@ export default function getRouteData(sections, hash, pagePerSection) {
 				sections = [
 					{
 						...filteredSections[0],
-						components: [filterComponentExamples(filteredComponents[0], targetIndex)],
+						components:
+							filteredComponents && targetIndex
+								? [filterComponentExamples(filteredComponents[0], targetIndex)]
+								: [],
 					},
 				];
 				displayMode = DisplayModes.example;
 			} else if (sections.length === 1) {
-				sections = [filterSectionExamples(sections[0], targetIndex)];
+				sections = [filterSectionExamples(sections[0] as Rsg.ExampleSection, targetIndex)];
 				displayMode = DisplayModes.example;
 			}
 		}

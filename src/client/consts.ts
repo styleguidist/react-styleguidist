@@ -1,5 +1,3 @@
-// @flow
-
 export const DisplayModes = Object.freeze({
 	// Show all sections and components (default)
 	all: 'all',

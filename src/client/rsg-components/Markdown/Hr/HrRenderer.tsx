@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Styled, { JssInjectedProps, Theme } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ space, color }: Theme) => ({
+const styles = ({ space, color }: Rsg.Theme) => ({
 	hr: {
 		borderBottom: [[1, color.border, 'solid']],
 		marginTop: 0,

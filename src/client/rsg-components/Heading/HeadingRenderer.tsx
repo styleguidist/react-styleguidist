@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'clsx';
-import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ color, fontFamily, fontSize }: Theme) => ({
+const styles = ({ color, fontFamily, fontSize }: Rsg.Theme) => ({
 	heading: {
 		margin: 0,
 		color: color.base,

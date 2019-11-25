@@ -1,7 +1,5 @@
-import { Theme } from 'rsg-components/Styled';
 import * as theme from '../theme';
 import createStyleSheet from '../createStyleSheet';
-import { StyleguidistConfig } from '../../../scripts/schemas/config';
 
 const customThemeColor = '#123456';
 const customThemeBorderColor = '#654321';
@@ -12,7 +10,7 @@ const customStyleBorderColor = '#ABCDEF';
 const testComponentName = 'TestComponentName';
 const testRuleName = 'testRule';
 
-const styles = ({ color, borderRadius, maxWidth }: Theme) => ({
+const styles = ({ color, borderRadius, maxWidth }: Rsg.Theme) => ({
 	[testRuleName]: {
 		color: color.base,
 		backgroundColor: color.baseBackground,
@@ -22,7 +20,7 @@ const styles = ({ color, borderRadius, maxWidth }: Theme) => ({
 	},
 });
 
-const config: StyleguidistConfig = {
+const config = {
 	theme: {
 		color: {
 			base: customThemeColor,

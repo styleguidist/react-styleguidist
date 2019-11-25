@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import Argument, { ArgumentProps } from 'rsg-components/Argument';
 import Heading from 'rsg-components/Heading';
 
-export const styles = ({ space }: Theme) => ({
+export const styles = ({ space }: Rsg.Theme) => ({
 	root: {
 		marginBottom: space[2],
 		fontSize: 'inherit',

@@ -7,7 +7,10 @@ import find from 'lodash/find';
  * @param  {string} name
  * @return {object}
  */
-export default function findSection(sections, name) {
+export default function findSection(
+	sections: Rsg.Section[],
+	name: string
+): Rsg.Section | undefined {
 	// We're using Lodash because IE11 doesn't support Array.find.
 	const found = find(sections, { name });
 	if (found) {

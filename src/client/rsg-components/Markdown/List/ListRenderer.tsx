@@ -1,9 +1,9 @@
 import React, { cloneElement, Children } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'clsx';
-import Styled, { JssInjectedProps, Theme } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ space, color, fontFamily }: Theme) => ({
+const styles = ({ space, color, fontFamily }: Rsg.Theme) => ({
 	list: {
 		marginTop: 0,
 		marginBottom: space[2],

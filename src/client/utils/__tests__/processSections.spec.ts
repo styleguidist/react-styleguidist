@@ -1,4 +1,4 @@
-import deepfreeze from 'deep-freeze-es6';
+import deepfreeze from 'deepfreeze';
 import processSections from '../processSections';
 
 const sections = deepfreeze([

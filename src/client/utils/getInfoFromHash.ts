@@ -1,7 +1,7 @@
 import isNaN from 'lodash/isNaN';
 import { hasInHash, getHashAsArray } from './handleHash';
 
-function filterNumbers(item) {
+function filterNumbers(item: string): boolean {
 	return isNaN(parseInt(item, 10)) && item !== '';
 }
 
@@ -14,7 +14,14 @@ function filterNumbers(item) {
  * @param {string} hash
  * @returns {object}
  */
-export default function getInfoFromHash(hash) {
+export default function getInfoFromHash(
+	hash: string
+): {
+	isolate?: boolean;
+	hashArray?: string[];
+	targetName?: string;
+	targetIndex?: number;
+} {
 	const shouldIsolate = hasInHash(hash, '#!/');
 	if (shouldIsolate || hasInHash(hash, '#/')) {
 		const hashArray = getHashAsArray(hash, shouldIsolate ? '#!/' : '#/');

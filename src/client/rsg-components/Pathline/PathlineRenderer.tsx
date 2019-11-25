@@ -2,9 +2,9 @@ import React from 'react';
 import copy from 'clipboard-copy';
 import { MdContentCopy } from 'react-icons/md';
 import ToolbarButton from 'rsg-components/ToolbarButton';
-import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-export const styles = ({ space, fontFamily, fontSize, color }: Theme) => ({
+export const styles = ({ space, fontFamily, fontSize, color }: Rsg.Theme) => ({
 	pathline: {
 		fontFamily: fontFamily.monospace,
 		fontSize: fontSize.small,

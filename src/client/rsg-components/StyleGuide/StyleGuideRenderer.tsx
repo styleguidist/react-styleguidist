@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Logo from 'rsg-components/Logo';
 import Markdown from 'rsg-components/Markdown';
-import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import cx from 'clsx';
 import Ribbon from 'rsg-components/Ribbon';
 import Version from 'rsg-components/Version';
 
-const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth }: Theme) => ({
+const styles = ({ color, fontFamily, fontSize, sidebarWidth, mq, space, maxWidth }: Rsg.Theme) => ({
 	root: {
 		minHeight: '100vh',
 		backgroundColor: color.baseBackground,

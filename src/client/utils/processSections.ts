@@ -1,5 +1,4 @@
 import processComponents from './processComponents';
-import { Section } from '../../typings/Section';
 
 /**
  * Recursively process each component in all sections.
@@ -7,7 +6,7 @@ import { Section } from '../../typings/Section';
  * @param {Array} sections
  * @return {Array}
  */
-export default function processSections(sections: Section[]): Section[] {
+export default function processSections(sections: Rsg.Section[]): Rsg.Section[] {
 	return sections.map(section => ({
 		...section,
 		visibleName: section.name,

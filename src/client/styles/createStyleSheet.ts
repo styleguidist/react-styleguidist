@@ -3,11 +3,9 @@ import memoize from 'lodash/memoize';
 import { Styles } from 'jss';
 import jss from './setupjss';
 import * as theme from './theme';
-import { Theme } from '../../typings/Theme';
-import { StyleguidistConfig } from '../../scripts/schemas/config';
 
-export default memoize((styles, config: StyleguidistConfig, componentName) => {
-	const mergedTheme: Theme = merge({}, theme, config.theme);
+export default memoize((styles, config: Rsg.StyleguidistConfig, componentName) => {
+	const mergedTheme: Rsg.Theme = merge({}, theme, config.theme);
 	const mergedStyles: Partial<Styles<string>> = merge(
 		{},
 		styles(mergedTheme),

@@ -8,8 +8,12 @@ import filterComponentsByExactName from './filterComponentsByExactName';
  * @param {boolean} recursive
  * @return {Array}
  */
-export default function filterComponentsInSectionsByExactName(sections, name, recursive) {
-	const filteredSections = [];
+export default function filterComponentsInSectionsByExactName(
+	sections: Rsg.Section[],
+	name: string,
+	recursive: boolean
+): Rsg.Section[] {
+	const filteredSections: Rsg.Section[] = [];
 	sections.forEach(section => {
 		if (section.components) {
 			const filteredComponents = filterComponentsByExactName(section.components, name);

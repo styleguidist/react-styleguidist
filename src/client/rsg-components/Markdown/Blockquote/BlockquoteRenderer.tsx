@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'clsx';
-import Styled, { JssInjectedProps, Theme } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ space, color, fontSize, fontFamily }: Theme) => ({
+const styles = ({ space, color, fontSize, fontFamily }: Rsg.Theme) => ({
 	blockquote: {
 		margin: [[space[2], space[4]]],
 		padding: 0,

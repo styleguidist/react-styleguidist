@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 
-const styles = ({ color }: Theme) => ({
+const styles = ({ color }: Rsg.Theme) => ({
 	thead: {
 		borderBottom: [[1, color.border, 'solid']],
 	},

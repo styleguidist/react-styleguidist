@@ -5,25 +5,14 @@ import Markdown from 'rsg-components/Markdown';
 import ExamplesRenderer from 'rsg-components/Examples/ExamplesRenderer';
 import { useStyleGuideContext } from 'rsg-components/Context';
 
-interface ExampleModelMarkdown {
-	type: 'markdown';
-	content: string;
-	settings?: Record<string, any>;
-}
-
-interface ExampleModelCode {
-	evalInContext(a: string): () => any;
-	type: 'code';
-	content: string;
-	settings?: Record<string, any>;
-}
-
-export type ExampleModel = ExampleModelCode | ExampleModelMarkdown;
-
 interface ExamplesRenderer {
-	examples: ExampleModel[];
+	examples: Rsg.Example[];
 	name?: string;
 	exampleMode?: string;
+}
+
+function isTypedExample(ex: any): ex is Rsg.CodeExample | Rsg.MarkdownExample {
+	return !!ex.type;
 }
 
 const Examples: React.FunctionComponent<ExamplesRenderer> = ({ examples, name, exampleMode }) => {
@@ -31,6 +20,9 @@ const Examples: React.FunctionComponent<ExamplesRenderer> = ({ examples, name, e
 	return (
 		<ExamplesRenderer name={name}>
 			{examples.map((example, index) => {
+				if (!isTypedExample(example)) {
+					return null;
+				}
 				switch (example.type) {
 					case 'code':
 						return (

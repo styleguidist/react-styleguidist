@@ -8,7 +8,7 @@ const section = deepfreeze({
 
 describe('filterSectionExamples', () => {
 	it('should return a shallow copy of a section with example filtered by given index', () => {
-		const result = filterSectionExamples(section, 2);
+		const result = filterSectionExamples(section as any, 2);
 		expect(result).toEqual({
 			content: ['c'],
 			other: 'info',

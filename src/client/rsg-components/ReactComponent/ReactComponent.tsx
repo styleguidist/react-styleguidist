@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { TagProps, MethodDescriptor, PropDescriptor } from 'react-docgen';
-import Examples, { ExampleModel } from 'rsg-components/Examples';
+import Examples from 'rsg-components/Examples';
 import SectionHeading from 'rsg-components/SectionHeading';
 import JsDoc from 'rsg-components/JsDoc';
 import Markdown from 'rsg-components/Markdown';
@@ -15,33 +14,8 @@ import { DisplayModes, UsageModes } from '../../consts';
 const ExamplePlaceholder =
 	process.env.STYLEGUIDIST_ENV !== 'production' ? ExamplePlaceholderDefault : () => <div />;
 
-export interface ComponentViewModel {
-	name?: string;
-	slug?: string;
-	href?: string;
-	heading?: boolean;
-	filepath?: string;
-	pathLine?: string;
-	visibleName?: string;
-	content?: { props: { items: ComponentViewModel[] } };
-	shouldOpenInNewTab?: boolean;
-	description?: string;
-	exampleMode?: string;
-	usageMode?: string;
-	props?: {
-		description?: string;
-		examples?: ExampleModel[];
-		methods?: MethodDescriptor[];
-		props?: PropDescriptor[];
-		tags?: TagProps;
-	};
-	metadata?: {
-		tags?: string[];
-	};
-}
-
 interface ReactComponentProps {
-	component: ComponentViewModel;
+	component: Rsg.Component;
 	depth: number;
 	exampleMode?: string;
 	usageMode?: string;

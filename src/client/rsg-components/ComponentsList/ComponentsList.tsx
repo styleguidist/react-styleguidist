@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ComponentsListRenderer from 'rsg-components/ComponentsList/ComponentsListRenderer';
-import { ComponentViewModel } from 'rsg-components/ReactComponent';
 import getUrl from '../../utils/getUrl';
 
 interface ComponentsListProps {
-	items: ComponentViewModel[];
+	items: Rsg.Component[];
 	hashPath?: string[];
 	useRouterLinks?: boolean;
 	useHashId?: boolean;

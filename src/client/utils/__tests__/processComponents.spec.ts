@@ -1,4 +1,4 @@
-import deepfreeze from 'deep-freeze-es6';
+import deepfreeze from 'deepfreeze';
 import processComponents from '../processComponents';
 
 describe('processComponents', () => {
@@ -56,6 +56,6 @@ describe('processComponents', () => {
 			},
 		]);
 		const result = processComponents(components);
-		expect(result[0].props.examples).toEqual([1, 2, 3, 4]);
+		expect(result[0].props && result[0].props.examples).toEqual([1, 2, 3, 4]);
 	});
 });

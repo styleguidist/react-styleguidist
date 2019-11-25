@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Styled, { Theme, JssInjectedProps } from 'rsg-components/Styled';
+import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import SimpleEditor from 'react-simple-code-editor';
 import { highlight as prismHighlight, languages } from 'prismjs';
 import 'prismjs/components/prism-clike';
@@ -12,7 +12,7 @@ import prismTheme from '../../styles/prismTheme';
 
 const highlight = (code: string) => prismHighlight(code, languages.jsx, 'jsx');
 
-const styles = ({ fontFamily, fontSize, color, borderRadius }: Theme) => ({
+const styles = ({ fontFamily, fontSize, color, borderRadius }: Rsg.Theme) => ({
 	root: {
 		fontFamily: fontFamily.monospace,
 		fontSize: fontSize.small,

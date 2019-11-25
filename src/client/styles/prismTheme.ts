@@ -1,4 +1,4 @@
-const prismTheme = ({ color }) => ({
+const prismTheme = ({ color }: Pick<Rsg.Theme, 'color'>) => ({
 	'&': {
 		color: color.codeBase,
 	},

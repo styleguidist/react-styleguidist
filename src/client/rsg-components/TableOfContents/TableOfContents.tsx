@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ComponentsList from 'rsg-components/ComponentsList';
 import TableOfContentsRenderer from 'rsg-components/TableOfContents/TableOfContentsRenderer';
-import { SectionViewModel } from 'rsg-components/Section';
-import { ComponentViewModel } from 'rsg-components/ReactComponent';
 import filterSectionsByName from '../../utils/filterSectionsByName';
 
 interface TableOfContentsProps {
-	sections: SectionViewModel[];
+	sections: Rsg.Section[];
 	useRouterLinks?: boolean;
 }
 
@@ -21,13 +19,13 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 	};
 
 	private renderLevel(
-		sections: (SectionViewModel | ComponentViewModel)[],
+		sections: (Rsg.Section | Rsg.Component)[],
 		useRouterLinks = false,
 		hashPath: string[] = [],
 		useHashId = false
 	) {
 		const items = sections.map(sectionOrComponent => {
-			const section = sectionOrComponent as SectionViewModel;
+			const section = sectionOrComponent as Rsg.Section;
 			const children = [...(section.sections || []), ...(section.components || [])];
 			const sectionDepth = section.sectionDepth || 0;
 			const childHashPath =
