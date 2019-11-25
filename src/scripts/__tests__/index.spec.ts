@@ -150,7 +150,6 @@ describe('build', () => {
 		};
 		const callback = jest.fn();
 		const api = styleguidist(config);
-
 		api.build(callback);
 
 		expect(callback).toBeCalled();
@@ -166,7 +165,6 @@ describe('server', () => {
 		};
 		const callback = jest.fn();
 		const api = styleguidist(config);
-
 		api.server(callback);
 
 		expect(callback).toBeCalled();
