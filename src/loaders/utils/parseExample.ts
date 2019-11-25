@@ -1,39 +1,28 @@
-// @flow
 import lowercaseKeys from 'lowercase-keys';
 import { DOCS_DOCUMENTING } from '../../scripts/consts';
 
-type Example = {
-	content: string,
-	lang: ?string,
-	settings: {},
-};
-
-type Error = {
-	error: string,
-};
-
-type UpdateExampleFn = (example: Example) => Example;
-
 const hasStringModifiers = (modifiers: string): boolean => !!modifiers.match(/^[ \w]+$/);
 
+interface Error {
+	error: string;
+}
 /**
  * Split fenced code block header to lang and modifiers, parse modifiers, lowercase modifier keys, etc.
  */
 export default function parseExample(
 	content: string,
-	lang: ?string,
-	modifiers: ?string,
-	updateExample: UpdateExampleFn = x => x
-): Example | Error {
-	const example = {
+	lang?: string | null,
+	modifiers?: string,
+	updateExample: (example: Rsg.CodeExample) => Rsg.CodeExample = x => x
+): Rsg.CodeExample | Error {
+	const example: Rsg.CodeExample = {
 		content,
 		lang,
-		settings: {},
 	};
 
 	if (modifiers) {
 		if (hasStringModifiers(modifiers)) {
-			example.settings = modifiers.split(' ').reduce((obj, modifier) => {
+			example.settings = modifiers.split(' ').reduce((obj: Record<string, any>, modifier) => {
 				obj[modifier] = true;
 				return obj;
 			}, {});
@@ -51,6 +40,6 @@ export default function parseExample(
 	const updatedExample = updateExample(example);
 	return {
 		...updatedExample,
-		settings: lowercaseKeys(updatedExample.settings),
+		settings: lowercaseKeys(updatedExample.settings || {}),
 	};
 }

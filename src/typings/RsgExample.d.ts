@@ -6,11 +6,15 @@ declare namespace Rsg {
 	}
 
 	interface CodeExample {
-		evalInContext(a: string): () => any;
-		type: 'code';
 		content: string;
+		lang?: string | null;
 		settings?: Record<string, any>;
 	}
 
-	type Example = CodeExample | MarkdownExample | string;
+	interface RuntimeCodeExample extends CodeExample {
+		type: 'code';
+		evalInContext(a: string): () => any;
+	}
+
+	type Example = RuntimeCodeExample | MarkdownExample | string;
 }

@@ -11,8 +11,12 @@ interface ExamplesRenderer {
 	exampleMode?: string;
 }
 
-function isTypedExample(ex: any): ex is Rsg.CodeExample | Rsg.MarkdownExample {
+function isTypedExample(ex: any): ex is Rsg.RuntimeCodeExample | Rsg.MarkdownExample {
 	return !!ex.type;
+}
+
+function isRuntimeCodeExample(ex: any): ex is Rsg.RuntimeCodeExample {
+	return !!ex.evalInContext;
 }
 
 const Examples: React.FunctionComponent<ExamplesRenderer> = ({ examples, name, exampleMode }) => {
@@ -25,7 +29,7 @@ const Examples: React.FunctionComponent<ExamplesRenderer> = ({ examples, name, e
 				}
 				switch (example.type) {
 					case 'code':
-						return (
+						return isRuntimeCodeExample(example) ? (
 							<Playground
 								code={example.content}
 								evalInContext={example.evalInContext}
@@ -35,7 +39,7 @@ const Examples: React.FunctionComponent<ExamplesRenderer> = ({ examples, name, e
 								settings={example.settings}
 								exampleMode={exampleMode}
 							/>
-						);
+						) : null;
 					case 'markdown':
 						return <Markdown text={example.content} key={index} />;
 					default:
