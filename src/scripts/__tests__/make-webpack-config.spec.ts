@@ -8,11 +8,11 @@ const { validate } = require('webpack');
 
 jest.mock('copy-webpack-plugin');
 
-const styleguideConfig = {
+const styleguideConfig = ({
 	styleguideDir: __dirname,
 	require: [],
 	title: 'Style Guide',
-};
+} as unknown) as Rsg.ProcessedStyleguidistConfig;
 
 const getClasses = (plugins: Tapable.Plugin[] = [], name: string): Tapable.Plugin[] =>
 	plugins.filter(x => x.constructor.name === name);

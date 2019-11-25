@@ -1,3 +1,4 @@
+import { Output } from 'webpack';
 import createServer from '../create-server';
 import getConfig from '../config';
 
@@ -14,22 +15,38 @@ test('createServer should return an object containing a server instance', () => 
 	expect(result.app).toBeTruthy();
 });
 
-test('createServer should return an object containing a production Webpack compiler', () => {
+test('createServer should return an object containing a production Webpack compiler', done => {
 	process.chdir('test/apps/basic');
 	const config = getConfig();
 	const result = createServer(config, 'production');
 	expect(result).toBeTruthy();
 	expect(result.compiler).toBeTruthy();
-	expect(result.compiler.options.output.filename).toBe('build/bundle.[chunkhash:8].js');
-	expect(result.compiler.options.output.chunkFilename).toBe('build/[name].[chunkhash:8].js');
+	let output: Output;
+	if (result.compiler && result.compiler.options && result.compiler.options.output) {
+		output = result.compiler.options.output;
+	} else {
+		done.fail('no output');
+		return;
+	}
+	expect(output.filename).toBe('build/bundle.[chunkhash:8].js');
+	expect(output.chunkFilename).toBe('build/[name].[chunkhash:8].js');
+	done();
 });
 
-test('createServer should return an object containing a development Webpack compiler', () => {
+test('createServer should return an object containing a development Webpack compiler', done => {
 	process.chdir('test/apps/basic');
 	const config = getConfig();
 	const result = createServer(config, 'development');
 	expect(result).toBeTruthy();
 	expect(result.compiler).toBeTruthy();
-	expect(result.compiler.options.output.filename).toBe('build/[name].bundle.js');
-	expect(result.compiler.options.output.chunkFilename).toBe('build/[name].js');
+	let output: Output;
+	if (result.compiler && result.compiler.options && result.compiler.options.output) {
+		output = result.compiler.options.output;
+	} else {
+		done.fail('no output');
+		return;
+	}
+	expect(output.filename).toBe('build/[name].bundle.js');
+	expect(output.chunkFilename).toBe('build/[name].js');
+	done();
 });

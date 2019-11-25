@@ -14,9 +14,9 @@ import setupLogger from './logger';
  * @param {object} [config] Styleguidist config.
  * @returns {object} API.
  */
-export default function(config?: Rsg.StyleguidistConfig) {
-	config = getConfig(config, conf => {
-		setupLogger(conf.logger, conf.verbose, {});
+export default function(configArg?: Rsg.StyleguidistConfig | string) {
+	const config = getConfig(configArg, conf => {
+		setupLogger(conf.logger as Record<string, (msg: string) => void>, conf.verbose, {});
 		return conf;
 	});
 
@@ -27,8 +27,10 @@ export default function(config?: Rsg.StyleguidistConfig) {
 		 * @param {Function} callback callback(err, config, stats).
 		 * @return {Compiler} Webpack Compiler instance.
 		 */
-		build(callback: (err: Error, config: Rsg.StyleguidistConfig, stats: webpack.Stats) => void) {
-			return build(config, (err, stats) => callback(err, config, stats));
+		build(
+			callback: (err: Error, config: Rsg.ProcessedStyleguidistConfig, stats: webpack.Stats) => void
+		) {
+			return build(config, (err: Error, stats: webpack.Stats) => callback(err, config, stats));
 		},
 
 		/**

@@ -35,7 +35,7 @@ function findConfigFile(): string | false {
 function getConfig(
 	config?: string | Rsg.StyleguidistConfig,
 	update?: (conf: Rsg.StyleguidistConfig) => Rsg.StyleguidistConfig
-): Rsg.StyleguidistConfig | undefined {
+): Rsg.ProcessedStyleguidistConfig {
 	let configFilepath: string | false = false;
 	if (isString(config)) {
 		// Load config from a given file
@@ -55,7 +55,7 @@ function getConfig(
 	}
 
 	if (!config || isString(config)) {
-		return {};
+		return {} as any;
 	}
 
 	if (update) {
@@ -65,7 +65,7 @@ function getConfig(
 	const configDir = configFilepath ? path.dirname(configFilepath) : process.cwd();
 
 	try {
-		return sanitizeConfig(config, schema, configDir);
+		return sanitizeConfig(config, schema, configDir) as any;
 	} catch (exception) {
 		if (exception instanceof StyleguidistError) {
 			throw new StyleguidistError(
