@@ -15,7 +15,7 @@ import typeDetect from 'type-detect';
 import loggerMaker from 'glogg';
 import { stringify } from 'q-i';
 import StyleguidistError from './error';
-import { ConfigSchemaOptions } from '../schemas/config';
+import { ConfigSchemaOptions, StyleguidistConfigKey } from '../schemas/config';
 
 const logger = loggerMaker('rsg');
 
@@ -47,11 +47,11 @@ const shouldExist = (types: string[]) => types.some(type => type.includes('exist
  */
 export default function sanitizeConfig(
 	config: Rsg.StyleguidistConfig,
-	schema: Record<string, ConfigSchemaOptions>,
+	schema: Record<StyleguidistConfigKey, ConfigSchemaOptions>,
 	rootDir: string
 ) {
 	// Check for unknown fields
-	map(config, (value, key) => {
+	map(config, (value, key: StyleguidistConfigKey) => {
 		if (!schema[key]) {
 			// Try to guess
 			const possibleOptions = Object.keys(schema);
@@ -74,7 +74,7 @@ export default function sanitizeConfig(
 
 	// Check all fields
 	const safeConfig: Rsg.StyleguidistConfig = {};
-	map(schema, (props, key) => {
+	map(schema, (props, key: StyleguidistConfigKey) => {
 		let value = config[key];
 
 		// Custom processing

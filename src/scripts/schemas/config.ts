@@ -30,6 +30,8 @@ const logger = glogg('rsg');
 
 export type EXPAND_MODE = 'expand' | 'collapse' | 'hide';
 
+export type StyleguidistConfigKey = keyof Rsg.ProcessedStyleguidistConfig;
+
 export interface ConfigSchemaOptions {
 	process?(value: any, config: Rsg.StyleguidistConfig, rootDir: string): void;
 	default?: any;
@@ -40,7 +42,7 @@ export interface ConfigSchemaOptions {
 	example?: any;
 }
 
-const configSchema: Record<string, ConfigSchemaOptions> = {
+const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions> = {
 	assetsDir: {
 		type: ['array', 'existing directory path'],
 		example: 'assets',
