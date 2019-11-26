@@ -8,8 +8,8 @@ const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const webpackDevServerUtils = require('react-dev-utils/WebpackDevServerUtils');
 const openBrowser = require('react-dev-utils/openBrowser');
 const logger = require('glogg')('rsg');
-const getConfig = require('../scripts/config');
-const setupLogger = require('../scripts/logger');
+const getConfig = require('../scripts/config').default;
+const setupLogger = require('../scripts/logger').default;
 const consts = require('../scripts/consts');
 const StyleguidistError = require('../scripts/utils/error').default;
 
@@ -92,7 +92,7 @@ function updateConfig(prevConfig) {
 function commandBuild() {
 	console.log('Building style guide...');
 
-	const build = require('../scripts/build');
+	const build = require('../scripts/build').default;
 	const compiler = build(config, err => {
 		if (err) {
 			console.error(err);
@@ -119,7 +119,7 @@ function commandBuild() {
 function commandServer() {
 	let spinner;
 
-	const server = require('../scripts/server');
+	const server = require('../scripts/server').default;
 	const compiler = server(config, err => {
 		if (err) {
 			console.error(err);
