@@ -1,6 +1,6 @@
 const remark = require('remark');
 const visit = require('unist-util-visit');
-const highlightCode = require('./highlightCode');
+const highlightCode = require('./highlightCode').default;
 const noAutoLink = require('./noAutoLinkRemarkPlugin');
 
 function highlight() {
