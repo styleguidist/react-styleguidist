@@ -14,7 +14,7 @@ import setupLogger from './logger';
  * @param {object} [config] Styleguidist config.
  * @returns {object} API.
  */
-export default function(configArg?: Rsg.StyleguidistConfig | string) {
+module.exports = function(configArg?: Rsg.StyleguidistConfig | string) {
 	const config = getConfig(configArg, conf => {
 		setupLogger(conf.logger as Record<string, (msg: string) => void>, conf.verbose, {});
 		return conf;
@@ -54,4 +54,4 @@ export default function(configArg?: Rsg.StyleguidistConfig | string) {
 			return makeWebpackConfig(config, env || 'production');
 		},
 	};
-}
+};
