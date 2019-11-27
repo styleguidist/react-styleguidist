@@ -8,8 +8,12 @@ import getComponentFiles from './getComponentFiles';
  * @param {Array} [ignore] Glob patterns to ignore.
  * @returns {Array}
  */
-module.exports = function getComponentFilesFromSections(sections, rootDir, ignore) {
-	return sections.reduce((components, section) => {
+export default function getComponentFilesFromSections(
+	sections: Rsg.ConfigSection[],
+	rootDir?: string,
+	ignore?: string[]
+): string[] {
+	return sections.reduce((components: string[], section) => {
 		if (section.components) {
 			return components.concat(getComponentFiles(section.components, rootDir, ignore));
 		}
@@ -20,4 +24,4 @@ module.exports = function getComponentFilesFromSections(sections, rootDir, ignor
 
 		return components;
 	}, []);
-};
+}
