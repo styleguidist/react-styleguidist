@@ -1,21 +1,24 @@
 // This two functions should be in the same file because of cyclic imports
 
-const fs = require('fs');
-const path = require('path');
-const _ = require('lodash');
-const requireIt = require('./requireIt').default;
-const getComponentFiles = require('./getComponentFiles').default;
-const getComponents = require('./getComponents').default;
-const slugger = require('./slugger').default;
+import fs from 'fs';
+import path from 'path';
+import _ from 'lodash';
+import requireIt from './requireIt';
+import getComponentFiles from './getComponentFiles';
+import getComponents from './getComponents';
+import slugger from './slugger';
 
 const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
 
-function processSectionContent(section, config) {
-	const contentRelativePath = section.content;
-
+function processSectionContent(
+	section: Rsg.ConfigSection,
+	config: Rsg.SanitizedStyleguidistConfig
+): Rsg.RequireItResult | Rsg.MarkdownExample | undefined {
 	if (!section.content) {
 		return undefined;
 	}
+
+	const contentRelativePath = section.content;
 
 	if (_.isFunction(section.content)) {
 		return {
@@ -32,19 +35,10 @@ function processSectionContent(section, config) {
 	return requireIt(`!!${examplesLoader}!${contentAbsolutePath}`);
 }
 
-/**
- * Return object for one level of sections.
- *
- * @param {Array} sections
- * @param {object} config
- * @param {number} parentDepth
- * @returns {Array}
- */
-function getSections(sections, config, parentDepth) {
-	return sections.map(section => processSection(section, config, parentDepth));
-}
-
-const getSectionComponents = (section, config) => {
+const getSectionComponents = (
+	section: Rsg.ConfigSection,
+	config: Rsg.SanitizedStyleguidistConfig
+) => {
 	let ignore = config.ignore ? _.castArray(config.ignore) : [];
 	if (section.ignore) {
 		ignore = ignore.concat(_.castArray(section.ignore));
@@ -54,13 +48,34 @@ const getSectionComponents = (section, config) => {
 };
 
 /**
+ * Return object for one level of sections.
+ *
+ * @param {Array} sections
+ * @param {object} config
+ * @param {number} parentDepth
+ * @returns {Array}
+ */
+export default function getSections(
+	sections: Rsg.ConfigSection[],
+	config: Rsg.SanitizedStyleguidistConfig,
+	parentDepth?: number
+): Rsg.LoaderSection[] {
+	// eslint-disable-next-line @typescript-eslint/no-use-before-define
+	return sections.map(section => processSection(section, config, parentDepth));
+}
+
+/**
  * Return an object for a given section with all components and subsections.
  * @param {object} section
  * @param {object} config
  * @param {number} parentDepth
  * @returns {object}
  */
-function processSection(section, config, parentDepth) {
+export function processSection(
+	section: Rsg.ConfigSection,
+	config: Rsg.SanitizedStyleguidistConfig,
+	parentDepth?: number
+): Rsg.LoaderSection {
 	const content = processSectionContent(section, config);
 
 	let sectionDepth;
@@ -85,6 +100,3 @@ function processSection(section, config, parentDepth) {
 		external: section.external,
 	};
 }
-
-module.exports = getSections;
-module.exports.processSection = processSection;

@@ -4,7 +4,7 @@
  * @param {Array} sections
  * @returns {Array}
  */
-export default function getAllContentPages(sections: Rsg.LoaderSection[]): string[] {
+export default function getAllContentPages(sections: Rsg.ConfigSection[]): string[] {
 	return sections.reduce((pages: string[], section) => {
 		if (section.content) {
 			pages = pages.concat([section.content]);

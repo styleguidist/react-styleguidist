@@ -8,7 +8,7 @@ const getAllContentPages = require('./utils/getAllContentPages').default;
 const getComponentFilesFromSections = require('./utils/getComponentFilesFromSections').default;
 const getComponentPatternsFromSections = require('./utils/getComponentPatternsFromSections')
 	.default;
-const getSections = require('./utils/getSections');
+const getSections = require('./utils/getSections').default;
 const filterComponentsWithExample = require('./utils/filterComponentsWithExample').default;
 const slugger = require('./utils/slugger').default;
 

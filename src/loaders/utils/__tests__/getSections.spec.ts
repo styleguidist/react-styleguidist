@@ -6,10 +6,11 @@ const config = {
 	configDir,
 	exampleMode: 'collapse',
 	usageMode: 'collapse',
-	getExampleFilename: a => a,
-	getComponentPathLine: a => a,
-};
-const sections = [
+	getExampleFilename: (a: string) => a,
+	getComponentPathLine: (a: string) => a,
+} as Rsg.SanitizedStyleguidistConfig;
+
+const sections: Rsg.ConfigSection[] = [
 	{
 		name: 'Readme',
 		content: 'components/Button/Readme.md',
@@ -26,7 +27,7 @@ const sections = [
 	{
 		name: 'Ignore',
 		content: () => 'Hello World',
-	},
+	} as any,
 ];
 const sectionsWithDepth = [
 	{
@@ -70,7 +71,7 @@ const sectionsWithBadDepth = [
 	},
 ];
 
-function filterSectionDepth(section) {
+function filterSectionDepth(section: Rsg.LoaderSection): Rsg.ConfigSection {
 	if (section.sections && section.sections.length) {
 		return {
 			sectionDepth: section.sectionDepth,
