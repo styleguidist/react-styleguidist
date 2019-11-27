@@ -22,10 +22,11 @@ declare namespace Rsg {
 	interface ConfigSection extends BaseSection {
 		components?: string | string[];
 		sections?: ConfigSection[];
-		content?: string[] | string;
+		content?: string;
 	}
 
 	interface LoaderSection extends BaseSection {
+		content?: string;
 		components: RequireItResult[];
 		sections?: LoaderSection[];
 	}

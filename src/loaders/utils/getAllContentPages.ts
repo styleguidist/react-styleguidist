@@ -4,8 +4,8 @@
  * @param {Array} sections
  * @returns {Array}
  */
-module.exports = function getAllContentPages(sections) {
-	return sections.reduce((pages, section) => {
+export default function getAllContentPages(sections: Rsg.LoaderSection[]): string[] {
+	return sections.reduce((pages: string[], section) => {
 		if (section.content) {
 			pages = pages.concat([section.content]);
 		}
@@ -16,4 +16,4 @@ module.exports = function getAllContentPages(sections) {
 
 		return pages;
 	}, []);
-};
+}
