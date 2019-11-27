@@ -1,8 +1,8 @@
-const visit = require('unist-util-visit');
+import visit from 'unist-util-visit';
 
 // Return a Remark AST link node's link text
-const getLinkValue = node =>
-	node.children.reduce((value, child) => {
+const getLinkValue = (node: any) =>
+	node.children.reduce((value: string, child: any) => {
 		if (child.type === 'text') {
 			value += child.value;
 		}
@@ -17,8 +17,8 @@ const getLinkValue = node =>
  *
  * @return {Object}
  */
-module.exports = function noAutoLinkRemarkPlugin() {
-	return ast => {
+export default function noAutoLinkRemarkPlugin() {
+	return (ast: any) => {
 		visit(ast, 'link', node => {
 			const value = getLinkValue(node);
 
@@ -27,4 +27,4 @@ module.exports = function noAutoLinkRemarkPlugin() {
 			}
 		});
 	};
-};
+}
