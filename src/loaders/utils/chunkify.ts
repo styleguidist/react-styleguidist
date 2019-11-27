@@ -1,10 +1,14 @@
 import remark from 'remark';
 import visit from 'unist-util-visit';
 import highlightCode from './highlightCode';
-import parseExample from './parseExample';
+import parseExample, { ExampleError } from './parseExample';
 
 const PLAYGROUND_LANGS = ['javascript', 'js', 'jsx'];
 const CODE_PLACEHOLDER = '<%{#code#}%>';
+
+function isErrorExample(example: any): example is ExampleError {
+	return !!example.error;
+}
 
 /**
  * Separate Markdown and code examples that should be rendered as a playground in a style guide.
@@ -14,8 +18,12 @@ const CODE_PLACEHOLDER = '<%{#code#}%>';
  * @param {Array<string>} playgroundLangs
  * @returns {Array}
  */
-export default function chunkify(markdown, updateExample, playgroundLangs = PLAYGROUND_LANGS) {
-	const codeChunks = [];
+export default function chunkify(
+	markdown: string,
+	updateExample?: (example: Omit<Rsg.CodeExample, 'type'>) => Omit<Rsg.CodeExample, 'type'>,
+	playgroundLangs = PLAYGROUND_LANGS
+) {
+	const codeChunks: Rsg.CodeExample[] = [];
 
 	/*
 	 * - Highlight code in fenced code blocks with defined language (```html).
@@ -23,11 +31,11 @@ export default function chunkify(markdown, updateExample, playgroundLangs = PLAY
 	 * - Leave all other Markdown or HTML as is.
 	 */
 	function processCode() {
-		return ast => {
-			visit(ast, 'code', node => {
+		return (ast: any) => {
+			visit(ast, 'code', (node: any) => {
 				const example = parseExample(node.value, node.lang, node.meta, updateExample);
 
-				if (example.error) {
+				if (isErrorExample(example)) {
 					node.lang = undefined;
 					node.value = example.error;
 					return;
@@ -35,7 +43,10 @@ export default function chunkify(markdown, updateExample, playgroundLangs = PLAY
 
 				const lang = example.lang;
 				node.lang = lang;
-				if (!lang || (playgroundLangs.indexOf(lang) !== -1 && !example.settings.static)) {
+				if (
+					!lang ||
+					(playgroundLangs.indexOf(lang) !== -1 && !(example.settings && example.settings.static))
+				) {
 					codeChunks.push({
 						type: 'code',
 						content: example.content,
@@ -56,7 +67,7 @@ export default function chunkify(markdown, updateExample, playgroundLangs = PLAY
 		.processSync(markdown)
 		.toString();
 
-	const chunks = [];
+	const chunks: (Rsg.CodeExample | Rsg.MarkdownExample)[] = [];
 	const textChunks = rendered.split(CODE_PLACEHOLDER);
 	textChunks.forEach(chunk => {
 		chunk = chunk.trim();

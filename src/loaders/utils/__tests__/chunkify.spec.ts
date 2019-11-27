@@ -105,11 +105,11 @@ it('should call updateExample function for example', () => {
 			settings: {},
 		},
 	];
-	const updateExample = props => {
+	const updateExample = (props: Omit<Rsg.CodeExample, 'type'>): Omit<Rsg.CodeExample, 'type'> => {
 		const content = props.content;
 		const lang = props.lang;
 		const settings = props.settings;
-		if (typeof settings.file === 'string') {
+		if (settings && typeof settings.file === 'string') {
 			delete settings.file;
 			return {
 				content: '<h1>Hello Markdown!</h1>',

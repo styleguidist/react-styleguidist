@@ -71,7 +71,10 @@ declare global {
 			theme: Theme;
 			title: string;
 			updateDocs(doc: Component, file: string): Component;
-			updateExample(props: Example, ressourcePath: string): Example;
+			updateExample(
+				props: Omit<CodeExample, 'type'>,
+				ressourcePath: string
+			): Omit<CodeExample, 'type'>;
 			updateWebpackConfig(config: Configuration): Configuration;
 			usageMode: EXPAND_MODE;
 			verbose: boolean;
