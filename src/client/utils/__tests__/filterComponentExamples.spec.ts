@@ -1,9 +1,11 @@
 import deepfreeze from 'deepfreeze';
 import filterComponentExamples from '../filterComponentExamples';
 
+const examples: Rsg.Example[] = ['a', 'b', 'c', 'd'].map(x => ({ type: 'markdown', content: x }));
+
 const component = deepfreeze({
 	props: {
-		examples: ['a', 'b', 'c', 'd'],
+		examples,
 	},
 	other: 'info',
 });
@@ -13,7 +15,7 @@ describe('filterComponentExamples', () => {
 		const result = filterComponentExamples(component, 2);
 		expect(result).toEqual({
 			props: {
-				examples: ['c'],
+				examples: [{ type: 'markdown', content: 'c' }],
 			},
 			other: 'info',
 		});

@@ -44,7 +44,7 @@ it('should throw if config has errors', () => {
 	try {
 		getConfig({
 			components: 42,
-		});
+		} as any);
 	} catch (err) {
 		expect(err.message).toMatch('should be string, function, or array');
 	}
@@ -138,19 +138,24 @@ it('should throw if assetsDir does not exist', () => {
 	expect(fn).toThrow();
 });
 
-it('should use embedded default example template if defaultExample=true', () => {
+it('should use embedded default example template if defaultExample=true', done => {
 	const result = getConfig({
 		defaultExample: true,
 	});
 	expect(typeof result.defaultExample).toEqual('string');
-	expect(fs.existsSync(result.defaultExample)).toBeTruthy();
+	if (typeof result.defaultExample === 'string') {
+		expect(fs.existsSync(result.defaultExample)).toBeTruthy();
+	} else {
+		done.fail();
+	}
+	done();
 });
 
 it('should absolutize defaultExample if it is a string', () => {
 	const result = getConfig({
 		defaultExample: 'src/components/Button.md',
 	});
-	expect(result.defaultExample[0]).toEqual('/');
+	expect(result.defaultExample).toMatch(/^\//);
 });
 
 it('should throw if defaultExample does not exist', () => {

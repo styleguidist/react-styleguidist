@@ -1,10 +1,13 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+import { Configuration } from 'webpack';
 import last from 'lodash/last';
-import styleguidist from '../index';
+
+const styleguidist = require('../index');
 
 jest.mock('../build');
 jest.mock('../server');
 
-const getDefaultWebpackConfig = () => styleguidist().makeWebpackConfig();
+const getDefaultWebpackConfig = (): any => styleguidist().makeWebpackConfig();
 
 const cwd = process.cwd();
 afterEach(() => {
@@ -24,16 +27,16 @@ describe('makeWebpackConfig', () => {
 		const api = styleguidist();
 		const result = api.makeWebpackConfig('development');
 		expect(result).toBeTruthy();
-		expect(result.output.filename).toBe('build/[name].bundle.js');
-		expect(result.output.chunkFilename).toBe('build/[name].js');
+		expect(result.output && result.output.filename).toBe('build/[name].bundle.js');
+		expect(result.output && result.output.chunkFilename).toBe('build/[name].js');
 	});
 
 	it('should return production Webpack config', () => {
 		const api = styleguidist();
 		const result = api.makeWebpackConfig('production');
 		expect(result).toBeTruthy();
-		expect(result.output.filename).toBe('build/bundle.[chunkhash:8].js');
-		expect(result.output.chunkFilename).toBe('build/[name].[chunkhash:8].js');
+		expect(result.output && result.output.filename).toBe('build/bundle.[chunkhash:8].js');
+		expect(result.output && result.output.chunkFilename).toBe('build/[name].[chunkhash:8].js');
 	});
 
 	it('should merge webpackConfig config option', () => {
@@ -45,7 +48,7 @@ describe('makeWebpackConfig', () => {
 				},
 			},
 		});
-		const result = api.makeWebpackConfig();
+		const result = api.makeWebpackConfig() as any;
 
 		expect(result).toBeTruthy();
 		expect(result.resolve.extensions.length).toEqual(
@@ -68,16 +71,18 @@ describe('makeWebpackConfig', () => {
 		});
 		const result = api.makeWebpackConfig();
 
-		expect(result.output.filename).toEqual(defaultWebpackConfig.output.filename);
+		expect(result.output && result.output.filename).toEqual(
+			defaultWebpackConfig.output && defaultWebpackConfig.output.filename
+		);
 	});
 
 	it('should merge webpackConfig config option as a function', () => {
 		const api = styleguidist({
-			webpackConfig: env => ({
+			webpackConfig: (env: string) => ({
 				_env: env,
 			}),
 		});
-		const result = api.makeWebpackConfig();
+		const result = api.makeWebpackConfig() as any;
 
 		expect(result).toBeTruthy();
 		expect(result._env).toEqual('production');
@@ -86,12 +91,14 @@ describe('makeWebpackConfig', () => {
 	it('should apply updateWebpackConfig config option', () => {
 		const defaultWebpackConfig = getDefaultWebpackConfig();
 		const api = styleguidist({
-			dangerouslyUpdateWebpackConfig: (webpackConfig, env) => {
-				webpackConfig.resolve.extensions.push(env);
+			dangerouslyUpdateWebpackConfig: (webpackConfig: Configuration, env: string) => {
+				if (webpackConfig.resolve && webpackConfig.resolve.extensions) {
+					webpackConfig.resolve.extensions.push(env);
+				}
 				return webpackConfig;
 			},
 		});
-		const result = api.makeWebpackConfig();
+		const result = api.makeWebpackConfig() as any;
 
 		expect(result).toBeTruthy();
 		expect(result.resolve.extensions.length).toEqual(
@@ -126,7 +133,7 @@ describe('makeWebpackConfig', () => {
 				StyleGuideRenderer: 'styleguide/components/StyleGuide',
 			},
 		});
-		const result = api.makeWebpackConfig();
+		const result = api.makeWebpackConfig() as any;
 
 		expect(result.resolve.alias).toMatchObject({
 			'rsg-components/Wrapper': 'styleguide/components/Wrapper',

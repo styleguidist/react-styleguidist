@@ -1,9 +1,12 @@
-const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
-const merge = require('webpack-merge');
-const makeWebpackConfig = require('./make-webpack-config');
+import webpack, { Configuration } from 'webpack';
+import WebpackDevServer from 'webpack-dev-server';
+import merge from 'webpack-merge';
+import makeWebpackConfig from './make-webpack-config';
 
-module.exports = function createServer(config, env) {
+export default function createServer(
+	config: Rsg.SanitizedStyleguidistConfig,
+	env: 'development' | 'production' | 'none'
+): { app: WebpackDevServer; compiler: webpack.Compiler } {
 	const webpackConfig = makeWebpackConfig(config, env);
 	const webpackDevServerConfig = merge(
 		{
@@ -17,11 +20,11 @@ module.exports = function createServer(config, env) {
 			},
 			watchContentBase: config.assetsDir !== undefined,
 			stats: webpackConfig.stats || {},
-		},
-		webpackConfig.devServer,
+		} as Configuration,
+		webpackConfig.devServer as Configuration,
 		{
 			contentBase: config.assetsDir,
-		}
+		} as Configuration
 	);
 
 	const compiler = webpack(webpackConfig);
@@ -29,8 +32,8 @@ module.exports = function createServer(config, env) {
 
 	// User defined customizations
 	if (config.configureServer) {
-		config.configureServer(devServer.app, env);
+		config.configureServer((devServer as any).app, env);
 	}
 
 	return { app: devServer, compiler };
-};
+}
