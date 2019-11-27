@@ -12,8 +12,15 @@ Object {
           "props": Object {
             "displayName": "Button",
             "examples": Array [
-              "example 0",
-              "example 1",
+              Object {
+                "content": "const a = 0",
+                "evalInContext": [Function],
+                "type": "code",
+              },
+              Object {
+                "content": "# title",
+                "type": "markdown",
+              },
             ],
           },
         },
@@ -55,8 +62,15 @@ Object {
           "props": Object {
             "displayName": "Button",
             "examples": Array [
-              "example 0",
-              "example 1",
+              Object {
+                "content": "const a = 0",
+                "evalInContext": [Function],
+                "type": "code",
+              },
+              Object {
+                "content": "# title",
+                "type": "markdown",
+              },
             ],
           },
         },
@@ -100,7 +114,10 @@ Object {
           "props": Object {
             "displayName": "Button",
             "examples": Array [
-              "example 1",
+              Object {
+                "content": "# title",
+                "type": "markdown",
+              },
             ],
           },
         },
@@ -120,7 +137,10 @@ Object {
     Object {
       "components": Array [],
       "content": Array [
-        "example 1",
+        Object {
+          "content": "# title",
+          "type": "markdown",
+        },
       ],
       "exampleMode": "collapse",
       "name": "Section",
@@ -140,8 +160,15 @@ Object {
     Object {
       "components": Array [],
       "content": Array [
-        "example 0",
-        "example 1",
+        Object {
+          "content": "const a = 0",
+          "evalInContext": [Function],
+          "type": "code",
+        },
+        Object {
+          "content": "# title",
+          "type": "markdown",
+        },
       ],
       "exampleMode": "collapse",
       "name": "Section",
@@ -161,8 +188,15 @@ Object {
     Object {
       "components": Array [],
       "content": Array [
-        "example 0",
-        "example 1",
+        Object {
+          "content": "const a = 0",
+          "evalInContext": [Function],
+          "type": "code",
+        },
+        Object {
+          "content": "# title",
+          "type": "markdown",
+        },
       ],
       "exampleMode": "collapse",
       "name": "Section",

@@ -2,6 +2,17 @@ import deepfreeze from 'deepfreeze';
 import getRouteData from '../getRouteData';
 import { DisplayModes } from '../../consts';
 
+const example0: Rsg.Example = {
+	type: 'code',
+	content: 'const a = 0',
+	evalInContext: () => () => 3,
+};
+
+const example1: Rsg.Example = {
+	type: 'markdown',
+	content: '# title',
+};
+
 const sections: Rsg.Section[] = deepfreeze([
 	{
 		sections: [
@@ -13,7 +24,7 @@ const sections: Rsg.Section[] = deepfreeze([
 						name: 'Button',
 						props: {
 							displayName: 'Button',
-							examples: ['example 0', 'example 1'],
+							examples: [example0, example1],
 						},
 						module: 1,
 					},
@@ -33,7 +44,7 @@ const sections: Rsg.Section[] = deepfreeze([
 			{
 				name: 'Section',
 				slug: 'section',
-				content: ['example 0', 'example 1'],
+				content: [example0, example1],
 				components: [],
 				sections: [],
 				exampleMode: 'collapse',

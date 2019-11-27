@@ -16,5 +16,5 @@ declare namespace Rsg {
 		evalInContext(a: string): () => any;
 	}
 
-	type Example = RuntimeCodeExample | MarkdownExample | string;
+	type Example = RuntimeCodeExample | MarkdownExample;
 }
