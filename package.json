@@ -105,6 +105,7 @@
     "@types/buble": "^0.19.2",
     "@types/copy-webpack-plugin": "^5.0.0",
     "@types/enzyme": "^3.10.3",
+    "@types/escodegen": "0.0.6",
     "@types/estree": "^0.0.39",
     "@types/jest": "^24.0.21",
     "@types/keymirror": "^0.1.1",

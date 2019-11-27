@@ -1,4 +1,9 @@
-const b = require('ast-types').builders;
+import { ASTNode, builders as b } from 'ast-types';
+
+export interface RequireItObject {
+	require: string;
+	toAST(): ASTNode;
+}
 
 /**
  * Return a require() statement AST.
@@ -6,7 +11,7 @@ const b = require('ast-types').builders;
  * @param {string} filepath Module name.
  * @returns {object}
  */
-module.exports = function requireIt(filepath) {
+export default function requireIt(filepath: string): RequireItObject {
 	const obj = { require: filepath };
 	Object.defineProperty(obj, 'toAST', {
 		enumerable: false,
@@ -14,5 +19,5 @@ module.exports = function requireIt(filepath) {
 			return b.callExpression(b.identifier('require'), [b.literal(filepath)]);
 		},
 	});
-	return obj;
-};
+	return obj as RequireItObject;
+}
