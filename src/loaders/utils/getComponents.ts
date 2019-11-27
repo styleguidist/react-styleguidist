@@ -1,4 +1,4 @@
-const processComponent = require('./processComponent').default;
+import processComponent from './processComponent';
 
 /**
  * Process each component in a list.
@@ -7,6 +7,9 @@ const processComponent = require('./processComponent').default;
  * @param {object} config
  * @returns {object|null}
  */
-module.exports = function getComponents(components, config) {
+export default function getComponents(
+	components: string[],
+	config: Rsg.SanitizedStyleguidistConfig
+) {
 	return components.map(filepath => processComponent(filepath, config));
-};
+}

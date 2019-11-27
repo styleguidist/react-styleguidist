@@ -7,7 +7,7 @@ it('getComponents() should return an object for components', () => {
 		configDir: path.resolve(__dirname, '../../../test'),
 		getExampleFilename: identity,
 		getComponentPathLine: identity,
-	});
+	} as any);
 
 	expect(result).toMatchSnapshot();
 });
