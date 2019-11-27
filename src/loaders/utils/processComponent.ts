@@ -1,8 +1,8 @@
-const fs = require('fs');
-const path = require('path');
-const getNameFromFilePath = require('./getNameFromFilePath').default;
-const requireIt = require('./requireIt').default;
-const slugger = require('./slugger').default;
+import fs from 'fs';
+import path from 'path';
+import getNameFromFilePath from './getNameFromFilePath';
+import requireIt from './requireIt';
+import slugger from './slugger';
 
 const propsLoader = path.resolve(__dirname, '../props-loader.js');
 
@@ -10,9 +10,9 @@ const propsLoader = path.resolve(__dirname, '../props-loader.js');
  * References the filepath of the metadata file.
  *
  * @param {string} filepath
- * @returns {object}
+ * @returns {string}
  */
-function getComponentMetadataPath(filepath) {
+function getComponentMetadataPath(filepath: string): string {
 	const extname = path.extname(filepath);
 	return filepath.substring(0, filepath.length - extname.length) + '.json';
 }
@@ -24,7 +24,10 @@ function getComponentMetadataPath(filepath) {
  * @param {object} config
  * @returns {object}
  */
-module.exports = function processComponent(filepath, config) {
+export default function processComponent(
+	filepath: string,
+	config: Rsg.SanitizedStyleguidistConfig
+): Rsg.LoaderComponent {
 	const componentPath = path.relative(config.configDir, filepath);
 	const componentName = getNameFromFilePath(filepath);
 	const examplesFile = config.getExampleFilename(filepath);
@@ -35,7 +38,7 @@ module.exports = function processComponent(filepath, config) {
 		pathLine: config.getComponentPathLine(componentPath),
 		module: requireIt(filepath),
 		props: requireIt(`!!${propsLoader}!${filepath}`),
-		hasExamples: examplesFile && fs.existsSync(examplesFile),
+		hasExamples: examplesFile && fs.existsSync(examplesFile) ? examplesFile : false,
 		metadata: fs.existsSync(componentMetadataPath) ? requireIt(componentMetadataPath) : {},
 	};
-};
+}

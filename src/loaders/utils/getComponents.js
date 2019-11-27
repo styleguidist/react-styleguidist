@@ -1,4 +1,4 @@
-const processComponent = require('./processComponent');
+const processComponent = require('./processComponent').default;
 
 /**
  * Process each component in a list.
