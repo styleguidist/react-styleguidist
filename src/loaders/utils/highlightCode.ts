@@ -29,7 +29,7 @@ const getLanguages = () => Object.keys(Prism.languages).filter(x => !IGNORED_LAN
  * @param {string} lang
  * @returns {string}
  */
-export default function highlightCode(code: string, lang: string): string {
+export default function highlightCode(code: string, lang?: string): string {
 	if (!lang) {
 		return code;
 	}

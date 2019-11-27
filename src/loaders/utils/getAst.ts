@@ -1,10 +1,9 @@
-// @flow
-import { Parser, type AcornNode } from 'acorn';
+import { Parser, Node as AcornNode, Options } from 'acorn';
 import Logger from 'glogg';
 
 const logger = Logger('rsg');
 
-export const ACORN_OPTIONS = {
+export const ACORN_OPTIONS: Options = {
 	ecmaVersion: 2019,
 	sourceType: 'module',
 };
@@ -12,7 +11,10 @@ export const ACORN_OPTIONS = {
 /**
  * Parse source code with Acorn and return AST, returns undefined in case of errors
  */
-export default function getAst(code: string, plugins?: Function[] = []): ?AcornNode {
+export default function getAst(
+	code: string,
+	plugins: ((BaseParser: typeof Parser) => typeof Parser)[] = []
+): AcornNode | undefined {
 	const parser = Parser.extend(...plugins);
 
 	try {
