@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
 import path from 'path';
 import castArray from 'lodash/castArray';
 import webpack, { Configuration } from 'webpack';
@@ -65,6 +64,7 @@ export default function(
 
 	if (isProd) {
 		const minimizer = new TerserPlugin({
+			/* eslint-disable @typescript-eslint/camelcase */
 			terserOptions: {
 				ie8: false,
 				ecma: 5,
@@ -84,6 +84,7 @@ export default function(
 					keep_fnames: true,
 				},
 			},
+			/* eslint-enable @typescript-eslint/camelcase */
 		});
 		webpackConfig = merge(webpackConfig, {
 			output: {
