@@ -1,4 +1,4 @@
-const getComponentFiles = require('./getComponentFiles');
+import getComponentFiles from './getComponentFiles';
 
 /**
  * Return absolute paths of all components in sections.

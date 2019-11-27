@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
 const requireIt = require('./requireIt').default;
-const getComponentFiles = require('./getComponentFiles');
+const getComponentFiles = require('./getComponentFiles').default;
 const getComponents = require('./getComponents');
 const slugger = require('./slugger').default;
 

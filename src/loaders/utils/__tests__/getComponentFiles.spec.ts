@@ -8,7 +8,7 @@ const processedComponents = components.map(c => `~/${c}`);
 const glob = 'components/**/[A-Z]*.js';
 const globArray = ['components/Annotation/[A-Z]*.js', 'components/Button/[A-Z]*.js'];
 
-const deabs = x => deabsDeep(x, { root: configDir });
+const deabs = (x: string[]) => deabsDeep(x, { root: configDir });
 
 it('getComponentFiles() should return an empty array if components is null', () => {
 	const result = getComponentFiles();
@@ -21,7 +21,7 @@ it('getComponentFiles() should accept components as a function that returns file
 });
 
 it('getComponentFiles() should accept components as a function that returns absolute paths', () => {
-	const absolutize = files => files.map(file => path.join(configDir, file));
+	const absolutize = (files: string[]) => files.map(file => path.join(configDir, file));
 	const result = getComponentFiles(() => absolutize(components), configDir);
 	expect(deabs(result)).toEqual(processedComponents);
 });
@@ -40,7 +40,7 @@ it('getComponentFiles() should accept components as an array of file names', () 
 });
 
 it('getComponentFiles() should accept components as an array of absolute paths', () => {
-	const absolutize = files => files.map(file => path.join(configDir, file));
+	const absolutize = (files: string[]) => files.map(file => path.join(configDir, file));
 	const result = getComponentFiles(absolutize(components), configDir);
 	expect(deabs(result)).toEqual(processedComponents);
 });
@@ -84,6 +84,6 @@ it('getComponentFiles() should ignore specified patterns for globs from function
 });
 
 it('getComponentFiles() should throw if components is not a function, array or a string', () => {
-	const fn = () => getComponentFiles(42, configDir);
+	const fn = () => getComponentFiles(42 as any, configDir);
 	expect(fn).toThrowError('should be string, function or array');
 });

@@ -1,9 +1,9 @@
-const glob = require('glob');
-const path = require('path');
-const isFunction = require('lodash/isFunction');
-const isString = require('lodash/isString');
+import glob from 'glob';
+import path from 'path';
+import isFunction from 'lodash/isFunction';
+import isString from 'lodash/isString';
 
-const getComponentGlobs = components => {
+const getComponentGlobs = (components: string | string[] | (() => string[])): string[] => {
 	if (isFunction(components)) {
 		return components();
 	} else if (Array.isArray(components)) {
@@ -16,7 +16,7 @@ const getComponentGlobs = components => {
 	);
 };
 
-const getFilesMatchingGlobs = (components, rootDir, ignore) => {
+const getFilesMatchingGlobs = (components: string[], rootDir?: string, ignore?: string[]) => {
 	ignore = ignore || [];
 	return components
 		.map(listItem =>
@@ -37,7 +37,11 @@ const getFilesMatchingGlobs = (components, rootDir, ignore) => {
  * @param {Array} [ignore] Glob patterns to ignore.
  * @returns {Array}
  */
-module.exports = function getComponentFiles(components, rootDir, ignore) {
+export default function getComponentFiles(
+	components?: string | string[] | (() => string[]) | undefined,
+	rootDir?: string,
+	ignore?: string[]
+): string[] {
 	if (!components) {
 		return [];
 	}
@@ -52,4 +56,4 @@ module.exports = function getComponentFiles(components, rootDir, ignore) {
 	const resolvedComponentFiles = componentFiles.map(file => path.resolve(file));
 
 	return resolvedComponentFiles;
-};
+}
