@@ -1,9 +1,4 @@
-import { ASTNode, builders as b } from 'ast-types';
-
-export interface RequireItObject {
-	require: string;
-	toAST(): ASTNode;
-}
+import { builders as b, ASTNode } from 'ast-types';
 
 /**
  * Return a require() statement AST.
@@ -11,13 +6,13 @@ export interface RequireItObject {
  * @param {string} filepath Module name.
  * @returns {object}
  */
-export default function requireIt(filepath: string): RequireItObject {
+export default function requireIt(filepath: string): Rsg.RequireItResult {
 	const obj = { require: filepath };
 	Object.defineProperty(obj, 'toAST', {
 		enumerable: false,
-		value() {
+		value(): ASTNode {
 			return b.callExpression(b.identifier('require'), [b.literal(filepath)]);
 		},
 	});
-	return obj as RequireItObject;
+	return obj as Rsg.RequireItResult;
 }

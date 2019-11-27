@@ -8,6 +8,6 @@ const COMPONENT_PLACEHOLDER_REGEXP = new RegExp(COMPONENT_PLACEHOLDER, 'g');
  * @param {string} componentName Name that will be used instead of a placeholder.
  * @returns {string}
  */
-module.exports = function expandDefaultComponent(source, componentName) {
+export default function expandDefaultComponent(source: string, componentName: string): string {
 	return source.replace(COMPONENT_PLACEHOLDER_REGEXP, componentName);
-};
+}

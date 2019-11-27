@@ -25,6 +25,11 @@ declare namespace Rsg {
 		content?: string[] | string;
 	}
 
+	interface LoaderSection extends BaseSection {
+		components: RequireItResult[];
+		sections?: LoaderSection[];
+	}
+
 	interface ExampleSection extends Section {
 		content?: Example[];
 	}

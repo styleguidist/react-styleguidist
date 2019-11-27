@@ -13,5 +13,5 @@ it('expandDefaultComponent() replace placeholders with component name', () => {
 	const result = expandDefaultComponent(exampleMarkdown, 'FooComponent');
 	expect(result).not.toMatch(/__COMPONENT__/);
 	expect(result).toMatch(/FooComponent/);
-	expect(result.match(/FooComponent/g).length).toBe(4);
+	expect((result.match(/FooComponent/g) || '').length).toBe(4);
 });

@@ -5,7 +5,7 @@ import { MethodDescriptor, PropDescriptor, TagProps } from 'react-docgen';
 declare global {
 	namespace Rsg {
 		interface Component {
-			hasExamples?: boolean;
+			hasExamples?: string;
 			name?: string;
 			slug?: string;
 			href?: string;
