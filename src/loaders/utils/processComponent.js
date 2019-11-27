@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const getNameFromFilePath = require('./getNameFromFilePath');
+const getNameFromFilePath = require('./getNameFromFilePath').default;
 const requireIt = require('./requireIt');
 const slugger = require('./slugger').default;
 
