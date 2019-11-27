@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const getNameFromFilePath = require('./getNameFromFilePath');
 const requireIt = require('./requireIt');
-const slugger = require('./slugger');
+const slugger = require('./slugger').default;
 
 const propsLoader = path.resolve(__dirname, '../props-loader.js');
 

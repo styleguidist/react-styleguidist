@@ -6,7 +6,7 @@ const _ = require('lodash');
 const requireIt = require('./requireIt');
 const getComponentFiles = require('./getComponentFiles');
 const getComponents = require('./getComponents');
-const slugger = require('./slugger');
+const slugger = require('./slugger').default;
 
 const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
 

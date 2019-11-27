@@ -9,7 +9,7 @@ const getComponentFilesFromSections = require('./utils/getComponentFilesFromSect
 const getComponentPatternsFromSections = require('./utils/getComponentPatternsFromSections');
 const getSections = require('./utils/getSections');
 const filterComponentsWithExample = require('./utils/filterComponentsWithExample');
-const slugger = require('./utils/slugger');
+const slugger = require('./utils/slugger').default;
 
 // Config options that should be passed to the client
 const CLIENT_CONFIG_OPTIONS = [
