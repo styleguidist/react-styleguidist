@@ -1,10 +1,12 @@
+import { PropDescriptor, PropTypeDescriptor } from 'react-docgen';
 import sortProps from '../sortProps';
 
-function makeProp(name, required, defaultValue, type) {
-	// Default values.
-	required = required === undefined ? false : required;
-	type = type === undefined ? { name: 'string' } : type;
-
+function makeProp(
+	name: string,
+	required = false,
+	defaultValue: any = undefined,
+	type: PropTypeDescriptor = { name: 'string' }
+): PropDescriptor {
 	return {
 		name,
 		required,

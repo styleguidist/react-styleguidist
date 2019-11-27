@@ -1,4 +1,5 @@
-const sortBy = require('lodash/sortBy');
+import sortBy from 'lodash/sortBy';
+import { PropDescriptor } from 'react-docgen';
 
 /**
  * Sorts an array of properties by their 'required' property first and 'name'
@@ -7,11 +8,11 @@ const sortBy = require('lodash/sortBy');
  * @param {array} props
  * @return {array} Sorted properties
  */
-function sortProps(props) {
+function sortProps(props: PropDescriptor[]) {
 	const requiredPropNames = sortBy(props.filter(prop => prop.required), 'name');
 	const optionalPropNames = sortBy(props.filter(prop => !prop.required), 'name');
 	const sortedProps = requiredPropNames.concat(optionalPropNames);
 	return sortedProps;
 }
 
-module.exports = sortProps;
+export default sortProps;
