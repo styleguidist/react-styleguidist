@@ -11,7 +11,7 @@ import setupLogger from './logger';
 /**
  * Initialize Styleguide API.
  *
- * NOTE: here we export an es5 module to avoid breaking the API
+ * NOTE: here we export an CommonJs module to avoid breaking the API
  * TODO: in the next major version, use `export default` instead
  *
  * @param {object} [config] Styleguidist config.
