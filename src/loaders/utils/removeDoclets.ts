@@ -6,6 +6,6 @@ const DOCLET_REGEXP = /^@(\w+)(?:$|\s((?:[^](?!^@\w))*))/gim;
  * @param {string} text
  * @returns {string}
  */
-module.exports = function removeDoclets(text) {
+export default function removeDoclets(text: string) {
 	return text.replace(DOCLET_REGEXP, '');
-};
+}
