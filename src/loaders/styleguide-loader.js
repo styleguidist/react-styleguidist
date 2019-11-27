@@ -8,7 +8,7 @@ const getAllContentPages = require('./utils/getAllContentPages');
 const getComponentFilesFromSections = require('./utils/getComponentFilesFromSections');
 const getComponentPatternsFromSections = require('./utils/getComponentPatternsFromSections');
 const getSections = require('./utils/getSections');
-const filterComponentsWithExample = require('./utils/filterComponentsWithExample');
+const filterComponentsWithExample = require('./utils/filterComponentsWithExample').default;
 const slugger = require('./utils/slugger').default;
 
 // Config options that should be passed to the client

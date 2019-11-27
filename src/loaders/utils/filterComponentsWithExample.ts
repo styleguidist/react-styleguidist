@@ -4,7 +4,14 @@
  * @param {Array} sections
  * @returns {Array}
  */
-module.exports = function filterComponentsWithExample(sections) {
+interface ProcessedSections extends Rsg.Section {
+	sections: ProcessedSections[];
+	components: Rsg.Component[];
+}
+
+export default function filterComponentsWithExample(
+	sections: ProcessedSections[]
+): ProcessedSections[] {
 	return sections
 		.map(section => ({
 			...section,
@@ -14,4 +21,4 @@ module.exports = function filterComponentsWithExample(sections) {
 		.filter(
 			section => section.components.length > 0 || section.sections.length > 0 || section.content
 		);
-};
+}
