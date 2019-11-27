@@ -1,4 +1,3 @@
-// @flow
 import acornJsx from 'acorn-jsx';
 import { walk } from 'estree-walker';
 import getAst from './getAst';
@@ -17,9 +16,9 @@ export default function getImports(code: string): string[] {
 		return [];
 	}
 
-	const imports = [];
-	walk(ast, {
-		enter: node => {
+	const imports: string[] = [];
+	walk(ast as any, {
+		enter: (node: any) => {
 			// import foo from 'foo'
 			// import 'foo'
 			if (node.type === 'ImportDeclaration') {
