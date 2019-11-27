@@ -1,12 +1,15 @@
+import { isArray } from 'lodash';
+
 /**
  * Return all glob patterns from all sections.
  *
+ * NOTE: a section cannot have components & subsections
  * @param {Array} sections
  * @returns {Array}
  */
-module.exports = function getComponentPatternsFromSections(sections) {
-	return sections.reduce((patterns, section) => {
-		if (section.components) {
+export default function getComponentPatternsFromSections(sections: Rsg.ConfigSection[]): string[] {
+	return sections.reduce((patterns: string[], section) => {
+		if (isArray(section.components)) {
 			return patterns.concat(section.components);
 		}
 
@@ -16,4 +19,4 @@ module.exports = function getComponentPatternsFromSections(sections) {
 
 		return patterns;
 	}, []);
-};
+}

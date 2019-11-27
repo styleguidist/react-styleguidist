@@ -6,7 +6,8 @@ const logger = require('glogg')('rsg');
 const fileExistsCaseInsensitive = require('../scripts/utils/findFileCaseInsensitive');
 const getAllContentPages = require('./utils/getAllContentPages').default;
 const getComponentFilesFromSections = require('./utils/getComponentFilesFromSections').default;
-const getComponentPatternsFromSections = require('./utils/getComponentPatternsFromSections');
+const getComponentPatternsFromSections = require('./utils/getComponentPatternsFromSections')
+	.default;
 const getSections = require('./utils/getSections');
 const filterComponentsWithExample = require('./utils/filterComponentsWithExample').default;
 const slugger = require('./utils/slugger').default;
