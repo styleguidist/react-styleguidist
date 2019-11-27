@@ -173,7 +173,7 @@
     "start:ui": "node lib/bin/styleguidist.js server",
     "lint": "eslint . --cache --fix --ext .js,.ts,.tsx",
     "flow": "flow",
-    "compile": "babel --delete-dir-on-start --ignore '**/*.spec.js','**/__*__/*' --extensions '.js,.ts,.tsx' -d lib/ src/",
+    "compile": "babel --delete-dir-on-start --ignore **/__mocks__/*,**/__tests__/*,**/*.spec.*,**/*.d.ts --extensions '.js,.ts,.tsx' -d lib/ src/",
     "compile:watch": "npm run compile -- --watch",
     "prepublishOnly": "npm run compile",
     "build:basic": "node lib/bin/styleguidist.js build --config examples/basic/styleguide.config.js",
