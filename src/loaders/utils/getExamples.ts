@@ -1,4 +1,3 @@
-// @flow
 import path from 'path';
 import fs from 'fs';
 import { encode } from 'qss';
@@ -9,13 +8,14 @@ const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
 /**
  * Get require statement for examples file if it exists, or for default examples if it was defined.
  */
-module.exports = function getExamples(
+export default function getExamples(
 	file: string,
 	displayName: string,
-	examplesFile: string,
-	defaultExample: string
-): {} | null {
-	const examplesFileToLoad = (fs.existsSync(examplesFile) && examplesFile) || defaultExample;
+	examplesFile?: string | false,
+	defaultExample?: string
+): Rsg.RequireItResult | null {
+	const examplesFileToLoad =
+		(examplesFile && fs.existsSync(examplesFile) ? examplesFile : false) || defaultExample;
 	if (!examplesFileToLoad) {
 		return null;
 	}
@@ -28,4 +28,4 @@ module.exports = function getExamples(
 		shouldShowDefaultExample: !examplesFile && !!defaultExample,
 	};
 	return requireIt(`!!${examplesLoader}?${encode(query)}!${examplesFileToLoad}`);
-};
+}

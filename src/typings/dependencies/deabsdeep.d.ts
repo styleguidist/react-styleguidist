@@ -3,6 +3,6 @@ declare module 'deabsdeep' {
 		root?: string;
 		mask?: string;
 	}
-	function deabsdeep<T>(objectToFreze: T, opt: Options): T;
+	function deabsdeep<T>(objectToFreze: T, opt?: Options): T;
 	export = deabsdeep;
 }
