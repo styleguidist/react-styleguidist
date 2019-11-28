@@ -104,6 +104,7 @@
     "@testing-library/react": "^9.3.0",
     "@types/buble": "^0.19.2",
     "@types/copy-webpack-plugin": "^5.0.0",
+    "@types/doctrine": "0.0.3",
     "@types/enzyme": "^3.10.3",
     "@types/escodegen": "0.0.6",
     "@types/estree": "^0.0.39",

@@ -8,12 +8,18 @@ it('should return an object for props', () => {
 		methods: [],
 		props: {
 			children: {
-				type: {},
+				name: 'children',
+				type: {
+					name: 'object',
+				},
 				required: true,
 				description: 'Button label.',
 			},
 			color: {
-				type: {},
+				name: 'color',
+				type: {
+					name: 'string',
+				},
 				required: false,
 				description: '',
 			},
@@ -28,7 +34,10 @@ it('should return an object for props without description', () => {
 		displayName: 'Button',
 		props: {
 			children: {
-				type: {},
+				name: 'children',
+				type: {
+					name: 'object',
+				},
 				required: true,
 				description: 'Button label.',
 			},
@@ -54,7 +63,7 @@ it('should remove non-public methods', () => {
 				{
 					docblock: 'Private method by default.',
 				},
-			],
+			] as any,
 		},
 		__filename
 	);
@@ -75,7 +84,7 @@ Baz method with foo param
 @returns {string} test
 `,
 				},
-			],
+			] as any,
 		},
 		__filename
 	);
@@ -96,7 +105,7 @@ Baz method with foo param
 @return {string} test
 `,
 				},
-			],
+			] as any,
 		},
 		__filename
 	);
@@ -131,7 +140,7 @@ Foo method with baz param
 						},
 					],
 				},
-			],
+			] as any,
 		},
 		__filename
 	);
@@ -210,7 +219,7 @@ it("should not crash when using doctrine to parse a default prop that isn't in t
 			crash: {
 				description: undefined,
 			},
-		},
+		} as any,
 	});
 
 	expect(result).toMatchSnapshot();

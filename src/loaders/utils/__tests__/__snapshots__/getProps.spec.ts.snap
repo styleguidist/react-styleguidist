@@ -187,15 +187,21 @@ Object {
   "props": Object {
     "children": Object {
       "description": "Button label.",
+      "name": "children",
       "required": true,
       "tags": Object {},
-      "type": Object {},
+      "type": Object {
+        "name": "object",
+      },
     },
     "color": Object {
       "description": "",
+      "name": "color",
       "required": false,
       "tags": Object {},
-      "type": Object {},
+      "type": Object {
+        "name": "string",
+      },
     },
   },
   "tags": Object {},
@@ -238,9 +244,12 @@ Object {
   "props": Object {
     "children": Object {
       "description": "Button label.",
+      "name": "children",
       "required": true,
       "tags": Object {},
-      "type": Object {},
+      "type": Object {
+        "name": "object",
+      },
     },
   },
 }

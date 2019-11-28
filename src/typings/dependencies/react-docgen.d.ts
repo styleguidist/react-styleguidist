@@ -1,4 +1,5 @@
 declare module 'react-docgen' {
+	import { Tag } from 'doctrine';
 	import { ASTNode } from 'ast-types';
 	import { NodePath } from 'ast-types/lib/node-path';
 
@@ -14,31 +15,25 @@ declare module 'react-docgen' {
 		toObject(): DocumentationObject;
 	}
 
-	export interface TagObject {
-		title: string;
-		description?: string;
-	}
-
-	export interface TagParamObject {
-		title: string;
-		description?: string;
+	export interface TagParamObject extends Tag {
 		name: string;
 		type?: any;
 		default?: string;
 	}
 
 	export interface TagProps {
-		deprecated?: TagObject[];
-		see?: TagObject[];
-		link?: TagObject[];
-		author?: TagObject[];
-		version?: TagObject[];
-		since?: TagObject[];
-		returns?: TagObject[];
+		deprecated?: Tag[];
+		see?: Tag[];
+		link?: Tag[];
+		author?: Tag[];
+		version?: Tag[];
+		since?: Tag[];
+		returns?: Tag[];
 		return?: TagParamObject[];
 		arg?: TagParamObject[];
 		argument?: TagParamObject[];
 		param?: TagParamObject[];
+		[title: string]: Tag[] | undefined;
 	}
 
 	export interface PropTypeDescriptor {
@@ -83,6 +78,7 @@ declare module 'react-docgen' {
 	export interface MethodDescriptor {
 		name: string;
 		description?: string;
+		docblock?: string;
 		returns?: { name: string; [key: string]: any } | null;
 		params?: any[];
 		modifiers?: string[];
@@ -90,6 +86,9 @@ declare module 'react-docgen' {
 	}
 
 	export interface DocumentationObject {
+		displayName?: string;
+		description?: string;
+		tags?: TagProps;
 		props?: { [propName: string]: PropDescriptor };
 		methods?: MethodDescriptor[];
 		context?: { [constextName: string]: PropDescriptor };
@@ -124,6 +123,12 @@ declare module 'react-docgen' {
 		handlers?: Handler[],
 		options?: Options
 	): DocumentationObject | DocumentationObject[];
+
+	export const utils: {
+		docblock: {
+			getDoclets: (str?: string) => Record<string, any>;
+		};
+	};
 
 	export const resolver: {
 		findAllComponentDefinitions(ast: ASTNode): NodePath[];

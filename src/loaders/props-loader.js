@@ -5,7 +5,7 @@ const generate = require('escodegen').generate;
 const toAst = require('to-ast');
 const logger = require('glogg')('rsg');
 const getExamples = require('./utils/getExamples').default;
-const getProps = require('./utils/getProps');
+const getProps = require('./utils/getProps').default;
 const defaultSortProps = require('./utils/sortProps').default;
 const consts = require('../scripts/consts');
 
