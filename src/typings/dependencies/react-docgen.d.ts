@@ -1,5 +1,5 @@
 declare module 'react-docgen' {
-	import { Tag } from 'doctrine';
+	import { Tag, Type } from 'doctrine';
 	import { ASTNode } from 'ast-types';
 	import { NodePath } from 'ast-types/lib/node-path';
 
@@ -15,25 +15,29 @@ declare module 'react-docgen' {
 		toObject(): DocumentationObject;
 	}
 
-	export interface TagParamObject extends Tag {
+	export interface TagObject extends Omit<Tag, 'description'> {
+		description?: string;
+	}
+
+	export interface TagParamObject extends TagObject {
 		name: string;
-		type?: any;
+		type?: Type | null;
 		default?: string;
 	}
 
 	export interface TagProps {
-		deprecated?: Tag[];
-		see?: Tag[];
-		link?: Tag[];
-		author?: Tag[];
-		version?: Tag[];
-		since?: Tag[];
-		returns?: Tag[];
+		deprecated?: TagObject[];
+		see?: TagObject[];
+		link?: TagObject[];
+		author?: TagObject[];
+		version?: TagObject[];
+		since?: TagObject[];
+		returns?: TagParamObject[];
 		return?: TagParamObject[];
 		arg?: TagParamObject[];
 		argument?: TagParamObject[];
 		param?: TagParamObject[];
-		[title: string]: Tag[] | undefined;
+		[title: string]: TagObject[] | undefined;
 	}
 
 	export interface PropTypeDescriptor {

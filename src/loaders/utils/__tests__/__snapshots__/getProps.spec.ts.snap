@@ -134,6 +134,7 @@ Object {
 <span class=\\"token function\\">alert</span><span class=\\"token punctuation\\">(</span><span class=\\"token string\\">'Hello world'</span><span class=\\"token punctuation\\">)</span><span class=\\"token punctuation\\">;</span>
 \`\`\`
 ",
+  "displayName": "",
   "doclets": Object {},
   "methods": Array [],
   "tags": Object {},
@@ -144,6 +145,7 @@ exports[`should not crash when using doctrine to parse a default prop that isn't
 Object {
   "description": "The only true button.
 ",
+  "displayName": "",
   "doclets": Object {},
   "methods": Array [],
   "props": Object {
@@ -158,7 +160,7 @@ Object {
 
 exports[`should remove non-public methods 1`] = `
 Object {
-  "displayName": "Button",
+  "displayName": "",
   "doclets": Object {},
   "methods": Array [
     Object {
@@ -181,7 +183,7 @@ exports[`should return an object for props 1`] = `
 Object {
   "description": "The only true button.
 ",
-  "displayName": "Button",
+  "displayName": "",
   "doclets": Object {},
   "methods": Array [],
   "props": Object {
@@ -212,7 +214,7 @@ exports[`should return an object for props with doclets 1`] = `
 Object {
   "description": "The only true button.
 ",
-  "displayName": "Button",
+  "displayName": "",
   "doclets": Object {
     "bar": "Bar
 ",
@@ -238,7 +240,7 @@ Object {
 
 exports[`should return an object for props without description 1`] = `
 Object {
-  "displayName": "Button",
+  "displayName": "",
   "doclets": Object {},
   "methods": Array [],
   "props": Object {
@@ -259,7 +261,7 @@ exports[`should return require statement for @example doclet 1`] = `
 Object {
   "description": "The only true button.
 ",
-  "displayName": "Button",
+  "displayName": "",
   "doclets": Object {
     "example": "../../../test/components/Placeholder/examples.md
 ",
@@ -280,7 +282,7 @@ exports[`should return require statement for @example doclet only when the file 
 Object {
   "description": "The only true button.
 ",
-  "displayName": "Button",
+  "displayName": "",
   "doclets": Object {
     "example": "example.md
 ",

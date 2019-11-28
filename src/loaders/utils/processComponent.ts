@@ -38,7 +38,7 @@ export default function processComponent(
 		pathLine: config.getComponentPathLine(componentPath),
 		module: requireIt(filepath),
 		props: requireIt(`!!${propsLoader}!${filepath}`),
-		hasExamples: examplesFile && fs.existsSync(examplesFile) ? examplesFile : false,
+		hasExamples: !!(examplesFile && fs.existsSync(examplesFile)),
 		metadata: fs.existsSync(componentMetadataPath) ? requireIt(componentMetadataPath) : {},
 	};
 }

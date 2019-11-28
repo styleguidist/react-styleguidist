@@ -3,7 +3,7 @@
 exports[`processComponent() should return an object for section with content 1`] = `
 Object {
   "filepath": "../../../../pizza.js",
-  "hasExamples": "Readme.md",
+  "hasExamples": true,
   "metadata": Object {},
   "module": Object {
     "require": "pizza.js",

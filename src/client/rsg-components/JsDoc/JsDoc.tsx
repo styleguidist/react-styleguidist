@@ -1,25 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TagProps } from 'react-docgen';
-import { Tag } from 'doctrine';
+import { TagProps, TagObject } from 'react-docgen';
 import map from 'lodash/map';
 import Markdown from 'rsg-components/Markdown';
 
-const plural = (array: any[], caption: string) => (array.length === 1 ? caption : `${caption}s`);
-const list = (array: Tag[]) => array.map(item => item.description).join(', ');
-const paragraphs = (array: Tag[]) => array.map(item => item.description).join('\n\n');
+const plural = (array: TagObject[], caption: string) =>
+	array.length === 1 ? caption : `${caption}s`;
+const list = (array: TagObject[]) => array.map(item => item.description).join(', ');
+const paragraphs = (array: TagObject[]) => array.map(item => item.description).join('\n\n');
 
 const fields = {
-	deprecated: (value: Tag[]) => `**Deprecated:** ${value[0].description}`,
-	see: (value: Tag[]) => paragraphs(value),
-	link: (value: Tag[]) => paragraphs(value),
-	author: (value: Tag[]) => `${plural(value, 'Author')}: ${list(value)}`,
-	version: (value: Tag[]) => `Version: ${value[0].description}`,
-	since: (value: Tag[]) => `Since: ${value[0].description}`,
+	deprecated: (value: TagObject[]) => `**Deprecated:** ${value[0].description}`,
+	see: (value: TagObject[]) => paragraphs(value),
+	link: (value: TagObject[]) => paragraphs(value),
+	author: (value: TagObject[]) => `${plural(value, 'Author')}: ${list(value)}`,
+	version: (value: TagObject[]) => `Version: ${value[0].description}`,
+	since: (value: TagObject[]) => `Since: ${value[0].description}`,
 };
 
 export function getMarkdown(props: TagProps) {
-	return map(fields, (format: (value: Tag[]) => string, field: keyof TagProps) => {
+	return map(fields, (format: (value: TagObject[]) => string, field: keyof TagProps) => {
 		const tag = props[field];
 		return tag && format(tag);
 	})

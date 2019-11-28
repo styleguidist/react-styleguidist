@@ -21,7 +21,7 @@ Array [
     "components": Array [
       Object {
         "filepath": "components/Annotation/Annotation.js",
-        "hasExamples": "~/test/components/Annotation/Annotation.js",
+        "hasExamples": true,
         "metadata": Object {},
         "module": Object {
           "require": "~/test/components/Annotation/Annotation.js",
@@ -34,7 +34,7 @@ Array [
       },
       Object {
         "filepath": "components/Button/Button.js",
-        "hasExamples": "~/test/components/Button/Button.js",
+        "hasExamples": true,
         "metadata": Object {},
         "module": Object {
           "require": "~/test/components/Button/Button.js",
@@ -47,7 +47,7 @@ Array [
       },
       Object {
         "filepath": "components/Placeholder/Placeholder.js",
-        "hasExamples": "~/test/components/Placeholder/Placeholder.js",
+        "hasExamples": true,
         "metadata": Object {
           "require": "~/test/components/Placeholder/Placeholder.json",
         },
@@ -62,7 +62,7 @@ Array [
       },
       Object {
         "filepath": "components/Price/Price.js",
-        "hasExamples": "~/test/components/Price/Price.js",
+        "hasExamples": true,
         "metadata": Object {},
         "module": Object {
           "require": "~/test/components/Price/Price.js",
@@ -75,7 +75,7 @@ Array [
       },
       Object {
         "filepath": "components/RandomButton/RandomButton.js",
-        "hasExamples": "~/test/components/RandomButton/RandomButton.js",
+        "hasExamples": true,
         "metadata": Object {},
         "module": Object {
           "require": "~/test/components/RandomButton/RandomButton.js",
@@ -102,7 +102,7 @@ Array [
     "components": Array [
       Object {
         "filepath": "components/Button/Button.js",
-        "hasExamples": "~/test/components/Button/Button.js",
+        "hasExamples": true,
         "metadata": Object {},
         "module": Object {
           "require": "~/test/components/Button/Button.js",
@@ -115,7 +115,7 @@ Array [
       },
       Object {
         "filepath": "components/Label/index.js",
-        "hasExamples": "~/test/components/Label/index.js",
+        "hasExamples": true,
         "metadata": Object {},
         "module": Object {
           "require": "~/test/components/Label/index.js",
@@ -128,7 +128,7 @@ Array [
       },
       Object {
         "filepath": "components/Placeholder/Placeholder.js",
-        "hasExamples": "~/test/components/Placeholder/Placeholder.js",
+        "hasExamples": true,
         "metadata": Object {
           "require": "~/test/components/Placeholder/Placeholder.json",
         },
@@ -143,7 +143,7 @@ Array [
       },
       Object {
         "filepath": "components/Price/Price.js",
-        "hasExamples": "~/test/components/Price/Price.js",
+        "hasExamples": true,
         "metadata": Object {},
         "module": Object {
           "require": "~/test/components/Price/Price.js",
@@ -156,7 +156,7 @@ Array [
       },
       Object {
         "filepath": "components/RandomButton/RandomButton.js",
-        "hasExamples": "~/test/components/RandomButton/RandomButton.js",
+        "hasExamples": true,
         "metadata": Object {},
         "module": Object {
           "require": "~/test/components/RandomButton/RandomButton.js",
@@ -203,7 +203,7 @@ Object {
   "components": Array [
     Object {
       "filepath": "components/Annotation/Annotation.js",
-      "hasExamples": "~/test/components/Annotation/Annotation.js",
+      "hasExamples": true,
       "metadata": Object {},
       "module": Object {
         "require": "~/test/components/Annotation/Annotation.js",
@@ -216,7 +216,7 @@ Object {
     },
     Object {
       "filepath": "components/Button/Button.js",
-      "hasExamples": "~/test/components/Button/Button.js",
+      "hasExamples": true,
       "metadata": Object {},
       "module": Object {
         "require": "~/test/components/Button/Button.js",
@@ -229,7 +229,7 @@ Object {
     },
     Object {
       "filepath": "components/Placeholder/Placeholder.js",
-      "hasExamples": "~/test/components/Placeholder/Placeholder.js",
+      "hasExamples": true,
       "metadata": Object {
         "require": "~/test/components/Placeholder/Placeholder.json",
       },
@@ -244,7 +244,7 @@ Object {
     },
     Object {
       "filepath": "components/Price/Price.js",
-      "hasExamples": "~/test/components/Price/Price.js",
+      "hasExamples": true,
       "metadata": Object {},
       "module": Object {
         "require": "~/test/components/Price/Price.js",
@@ -257,7 +257,7 @@ Object {
     },
     Object {
       "filepath": "components/RandomButton/RandomButton.js",
-      "hasExamples": "~/test/components/RandomButton/RandomButton.js",
+      "hasExamples": true,
       "metadata": Object {},
       "module": Object {
         "require": "~/test/components/RandomButton/RandomButton.js",
@@ -324,7 +324,7 @@ Object {
   "components": Array [
     Object {
       "filepath": "components/Button/Button.js",
-      "hasExamples": "~/test/components/Button/Button.js",
+      "hasExamples": true,
       "metadata": Object {},
       "module": Object {
         "require": "~/test/components/Button/Button.js",
@@ -337,7 +337,7 @@ Object {
     },
     Object {
       "filepath": "components/Label/index.js",
-      "hasExamples": "~/test/components/Label/index.js",
+      "hasExamples": true,
       "metadata": Object {},
       "module": Object {
         "require": "~/test/components/Label/index.js",
@@ -350,7 +350,7 @@ Object {
     },
     Object {
       "filepath": "components/Placeholder/Placeholder.js",
-      "hasExamples": "~/test/components/Placeholder/Placeholder.js",
+      "hasExamples": true,
       "metadata": Object {
         "require": "~/test/components/Placeholder/Placeholder.json",
       },
@@ -365,7 +365,7 @@ Object {
     },
     Object {
       "filepath": "components/Price/Price.js",
-      "hasExamples": "~/test/components/Price/Price.js",
+      "hasExamples": true,
       "metadata": Object {},
       "module": Object {
         "require": "~/test/components/Price/Price.js",
@@ -378,7 +378,7 @@ Object {
     },
     Object {
       "filepath": "components/RandomButton/RandomButton.js",
-      "hasExamples": "~/test/components/RandomButton/RandomButton.js",
+      "hasExamples": true,
       "metadata": Object {},
       "module": Object {
         "require": "~/test/components/RandomButton/RandomButton.js",

@@ -1,8 +1,8 @@
 import path from 'path';
 import fs from 'fs';
-import { TagProps, TagParamObject, DocumentationObject, utils } from 'react-docgen';
+import { TagProps, TagParamObject, DocumentationObject, utils, TagObject } from 'react-docgen';
 import _ from 'lodash';
-import doctrine, { Annotation, Tag } from 'doctrine';
+import doctrine, { Annotation } from 'doctrine';
 import createLogger from 'glogg';
 import highlightCodeInMarkdown from './highlightCodeInMarkdown';
 import removeDoclets from './removeDoclets';
@@ -40,11 +40,8 @@ const doesExternalExampleFileExist = (componentPath: string, exampleFile: string
 	return doesFileExist;
 };
 
-const getMergedTag = (tags: TagProps, names: (keyof TagProps)[]): (Tag | TagParamObject)[] => {
-	return names.reduce(
-		(params: (Tag | TagParamObject)[], name) => [...params, ...(tags[name] || [])],
-		[]
-	);
+const getMergedTag = (tags: TagProps, names: (keyof TagProps)[]): TagObject[] => {
+	return names.reduce((params: TagObject[], name) => [...params, ...(tags[name] || [])], []);
 };
 
 /**
@@ -77,7 +74,10 @@ export default function getProps(doc: DocumentationObject, filepath?: string): R
 		// Merge with react-docgen information about arguments and return value
 		// with information from JSDoc
 
-		const paramTags = getMergedTag(allTags, JS_DOC_METHOD_PARAM_TAG_SYNONYMS) as TagParamObject[];
+		const paramTags = getMergedTag(
+			allTags as TagProps,
+			JS_DOC_METHOD_PARAM_TAG_SYNONYMS
+		) as TagParamObject[];
 		const params =
 			method.params &&
 			method.params.map(param => ({
@@ -89,7 +89,10 @@ export default function getProps(doc: DocumentationObject, filepath?: string): R
 			method.params = params;
 		}
 
-		const returnTags = getMergedTag(allTags, JS_DOC_METHOD_RETURN_TAG_SYNONYMS) as TagParamObject[];
+		const returnTags = getMergedTag(
+			allTags as TagProps,
+			JS_DOC_METHOD_RETURN_TAG_SYNONYMS
+		) as TagParamObject[];
 		const returns = method.returns || returnTags[0];
 
 		if (returns) {
@@ -107,7 +110,7 @@ export default function getProps(doc: DocumentationObject, filepath?: string): R
 		outDocs.doclets = getDocletsObject(doc.description);
 
 		const documentation = doctrine.parse(doc.description);
-		outDocs.tags = getDoctrineTags(documentation);
+		outDocs.tags = getDoctrineTags(documentation) as TagProps;
 
 		outDocs.description = highlightCodeInMarkdown(removeDoclets(doc.description));
 
@@ -142,7 +145,7 @@ export default function getProps(doc: DocumentationObject, filepath?: string): R
 
 			// documentation.description is the description without tags
 			prop.description = documentation.description;
-			prop.tags = getDoctrineTags(documentation);
+			prop.tags = getDoctrineTags(documentation) as TagProps;
 
 			// Remove ignored props
 			if (doclets && doclets.ignore && outDocs.props) {
