@@ -20,7 +20,7 @@ it('should return valid, parsable JS', () => {
 		{
 			request: file,
 			_styleguidist,
-		},
+		} as any,
 		readFileSync(file, 'utf8')
 	);
 	expect(result).toBeTruthy();
@@ -33,7 +33,7 @@ it('should extract doclets', () => {
 		{
 			request: file,
 			_styleguidist,
-		},
+		} as any,
 		readFileSync(file, 'utf8')
 	);
 	expect(result).toBeTruthy();
@@ -53,7 +53,7 @@ describe('property sorting', () => {
 			{
 				request: file,
 				_styleguidist,
-			},
+			} as any,
 			readFileSync(file, 'utf8')
 		);
 		expect(result).toBeTruthy();
@@ -70,8 +70,8 @@ describe('property sorting', () => {
 		const result = propsLoader.call(
 			{
 				request: file,
-				_styleguidist: { ..._styleguidist, sortProps: props => props },
-			},
+				_styleguidist: { ..._styleguidist, sortProps: (props: any) => props },
+			} as any,
 			readFileSync(file, 'utf8')
 		);
 		expect(result).toBeTruthy();
@@ -84,7 +84,7 @@ describe('property sorting', () => {
 	});
 
 	it('should be possible to write custom sort function', () => {
-		const sortFn = props => {
+		const sortFn = (props: any) => {
 			const requiredProps = sortBy(props.filter(prop => prop.required), 'name').reverse();
 			const optionalProps = sortBy(props.filter(prop => !prop.required), 'name').reverse();
 			return optionalProps.concat(requiredProps);
@@ -94,7 +94,7 @@ describe('property sorting', () => {
 			{
 				request: file,
 				_styleguidist: { ..._styleguidist, sortProps: sortFn },
-			},
+			} as any,
 			readFileSync(file, 'utf8')
 		);
 		expect(result).toBeTruthy();
@@ -113,7 +113,7 @@ it('should work with JSDoc annnotated components', () => {
 		{
 			request: file,
 			_styleguidist,
-		},
+		} as any,
 		readFileSync(file, 'utf8')
 	);
 	expect(result).toBeTruthy();
@@ -136,7 +136,7 @@ it('should not render ignored props', () => {
 		{
 			request: file,
 			_styleguidist,
-		},
+		} as any,
 		readFileSync(file, 'utf8')
 	);
 	expect(result).toBeTruthy();
@@ -151,7 +151,7 @@ it('should attach examples from Markdown file', () => {
 		{
 			request: file,
 			_styleguidist,
-		},
+		} as any,
 		readFileSync(file, 'utf8')
 	);
 	expect(result).toBeTruthy();
@@ -171,7 +171,7 @@ it('should warn if no componets are exported', () => {
 		{
 			request: file,
 			_styleguidist,
-		},
+		} as any,
 		readFileSync(file, 'utf8')
 	);
 	expect(result).toBeTruthy();
@@ -189,7 +189,7 @@ it('should warn if a file cannot be parsed', () => {
 		{
 			request: file,
 			_styleguidist,
-		},
+		} as any,
 		readFileSync(file, 'utf8')
 	);
 	expect(result).toBeTruthy();
@@ -207,7 +207,7 @@ it('should add context dependencies to webpack from contextDependencies config o
 			request: file,
 			_styleguidist: { ..._styleguidist, contextDependencies },
 			addContextDependency,
-		},
+		} as any,
 		readFileSync(file, 'utf8')
 	);
 
@@ -224,7 +224,7 @@ it('should update the returned props object after enhancing from the updateDocs 
 		{
 			request: file,
 			_styleguidist: { ..._styleguidist, updateDocs },
-		},
+		} as any,
 		readFileSync(file, 'utf8')
 	);
 
