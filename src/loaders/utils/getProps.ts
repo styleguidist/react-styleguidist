@@ -57,8 +57,8 @@ const getMergedTag = (tags: TagProps, names: (keyof TagProps)[]): (Tag | TagPara
  * @param {string} filepath
  * @returns {object}
  */
-export default function getProps(doc: DocumentationObject, filepath?: string): Rsg.PropsObject {
-	const outDocs: Rsg.PropsObject = { ...doc, methods: undefined, doclets: {} };
+export default function getProps(doc: DocumentationObject, filepath?: string): Rsg.TempPropsObject {
+	const outDocs: Rsg.TempPropsObject = { ...doc, methods: undefined, doclets: {}, displayName: '' };
 
 	// Keep only public methods
 	outDocs.methods = (doc.methods || []).filter(method => {

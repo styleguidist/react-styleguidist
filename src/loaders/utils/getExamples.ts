@@ -12,7 +12,7 @@ export default function getExamples(
 	file: string,
 	displayName: string,
 	examplesFile?: string | false,
-	defaultExample?: string
+	defaultExample?: string | false
 ): Rsg.RequireItResult | null {
 	const examplesFileToLoad =
 		(examplesFile && fs.existsSync(examplesFile) ? examplesFile : false) || defaultExample;

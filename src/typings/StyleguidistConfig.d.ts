@@ -1,5 +1,5 @@
 import WebpackDevServer from 'webpack-dev-server';
-import { Configuration } from 'webpack';
+import { Configuration, loader } from 'webpack';
 import { TransformOptions } from 'buble';
 import { Handler, DocumentationObject, PropDescriptor } from 'react-docgen';
 import { ASTNode } from 'ast-types';
@@ -8,6 +8,10 @@ import { NodePath } from 'ast-types/lib/node-path';
 declare global {
 	namespace Rsg {
 		type EXPAND_MODE = 'expand' | 'collapse' | 'hide';
+
+		interface StyleguidistLoaderContext extends loader.LoaderContext {
+			_styleguidist: SanitizedStyleguidistConfig;
+		}
 
 		interface BaseStyleguidistConfig {
 			assetsDir: string | string[];
@@ -18,7 +22,7 @@ declare global {
 			contextDependencies: string[];
 			configureServer(server: WebpackDevServer, env: string): string;
 			dangerouslyUpdateWebpackConfig: (server: Configuration, env: string) => Configuration;
-			defaultExample: string | boolean;
+			defaultExample: string | false;
 			exampleMode: EXPAND_MODE;
 			editorConfig: {
 				theme: string;
@@ -70,7 +74,7 @@ declare global {
 			template: any;
 			theme: Theme;
 			title: string;
-			updateDocs(doc: Component, file: string): Component;
+			updateDocs(doc: PropsObject, file: string): PropsObject;
 			updateExample(
 				props: Omit<CodeExample, 'type'>,
 				ressourcePath: string
