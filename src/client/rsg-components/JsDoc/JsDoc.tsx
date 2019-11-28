@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TagProps } from 'react-docgen';
+import { Tag } from 'doctrine';
 import map from 'lodash/map';
 import Markdown from 'rsg-components/Markdown';
-import { Tag } from 'doctrine';
 
 const plural = (array: any[], caption: string) => (array.length === 1 ? caption : `${caption}s`);
 const list = (array: Tag[]) => array.map(item => item.description).join(', ');
