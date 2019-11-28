@@ -22,7 +22,7 @@ declare global {
 			contextDependencies: string[];
 			configureServer(server: WebpackDevServer, env: string): string;
 			dangerouslyUpdateWebpackConfig: (server: Configuration, env: string) => Configuration;
-			defaultExample: string | false;
+			defaultExample: string | boolean;
 			exampleMode: EXPAND_MODE;
 			editorConfig: {
 				theme: string;
