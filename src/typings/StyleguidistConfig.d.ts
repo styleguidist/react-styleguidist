@@ -22,7 +22,7 @@ declare global {
 			contextDependencies: string[];
 			configureServer(server: WebpackDevServer, env: string): string;
 			dangerouslyUpdateWebpackConfig: (server: Configuration, env: string) => Configuration;
-			defaultExample: string | boolean;
+			defaultExample: string | false;
 			exampleMode: EXPAND_MODE;
 			editorConfig: {
 				theme: string;
@@ -94,6 +94,9 @@ declare global {
 			sections: ConfigSection[];
 		}
 
-		type StyleguidistConfig = RecursivePartial<SanitizedStyleguidistConfig>;
+		interface StyleguidistConfig
+			extends RecursivePartial<Omit<SanitizedStyleguidistConfig, 'defaultExample'>> {
+			defaultExmple: string | boolean;
+		}
 	}
 }
