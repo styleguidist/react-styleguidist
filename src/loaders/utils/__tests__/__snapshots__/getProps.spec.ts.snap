@@ -160,7 +160,7 @@ Object {
 
 exports[`should remove non-public methods 1`] = `
 Object {
-  "displayName": "",
+  "displayName": "Button",
   "doclets": Object {},
   "methods": Array [
     Object {
@@ -183,7 +183,7 @@ exports[`should return an object for props 1`] = `
 Object {
   "description": "The only true button.
 ",
-  "displayName": "",
+  "displayName": "Button",
   "doclets": Object {},
   "methods": Array [],
   "props": Object {
@@ -214,7 +214,7 @@ exports[`should return an object for props with doclets 1`] = `
 Object {
   "description": "The only true button.
 ",
-  "displayName": "",
+  "displayName": "Button",
   "doclets": Object {
     "bar": "Bar
 ",
@@ -240,7 +240,7 @@ Object {
 
 exports[`should return an object for props without description 1`] = `
 Object {
-  "displayName": "",
+  "displayName": "Button",
   "doclets": Object {},
   "methods": Array [],
   "props": Object {
@@ -261,7 +261,7 @@ exports[`should return require statement for @example doclet 1`] = `
 Object {
   "description": "The only true button.
 ",
-  "displayName": "",
+  "displayName": "Button",
   "doclets": Object {
     "example": "../../../test/components/Placeholder/examples.md
 ",
@@ -282,7 +282,7 @@ exports[`should return require statement for @example doclet only when the file 
 Object {
   "description": "The only true button.
 ",
-  "displayName": "",
+  "displayName": "Button",
   "doclets": Object {
     "example": "example.md
 ",
