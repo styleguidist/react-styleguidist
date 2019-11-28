@@ -48,7 +48,7 @@ const sections = [
 			},
 		],
 	},
-];
+] as any;
 
 it('should skip components without example file', () => {
 	const result = filterComponentsWithExample(sections);

@@ -29,7 +29,7 @@ declare namespace Rsg {
 		slug?: string;
 		content?: RequireItResult | MarkdownExample;
 		components: LoaderComponent[];
-		sections?: LoaderSection[];
+		sections: LoaderSection[];
 	}
 
 	interface ExampleSection extends Section {

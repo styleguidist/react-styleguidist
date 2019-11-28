@@ -4,14 +4,9 @@
  * @param {Array} sections
  * @returns {Array}
  */
-interface ProcessedSections extends Rsg.Section {
-	sections: ProcessedSections[];
-	components: Rsg.Component[];
-}
-
 export default function filterComponentsWithExample(
-	sections: ProcessedSections[]
-): ProcessedSections[] {
+	sections: Rsg.LoaderSection[]
+): Rsg.LoaderSection[] {
 	return sections
 		.map(section => ({
 			...section,
