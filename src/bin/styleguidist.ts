@@ -1,30 +1,33 @@
 #!/usr/bin/env node
-/* eslint-disable no-console */
-const mri = require('mri');
-const kleur = require('kleur');
-const ora = require('ora');
-const stringify = require('q-i').stringify;
-const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
-const webpackDevServerUtils = require('react-dev-utils/WebpackDevServerUtils');
-const openBrowser = require('react-dev-utils/openBrowser');
-const logger = require('glogg')('rsg');
-const getConfig = require('../scripts/config').default;
-const setupLogger = require('../scripts/logger').default;
-const consts = require('../scripts/consts');
-const StyleguidistError = require('../scripts/utils/error').default;
+/* eslint-disable no-console,@typescript-eslint/no-use-before-define */
 
+import mri from 'mri';
+import kleur from 'kleur';
+import ora, { Ora } from 'ora';
+import { stringify } from 'q-i';
+import { Stats, compilation as webpackCompil } from 'webpack';
+import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages';
+import webpackDevServerUtils from 'react-dev-utils/WebpackDevServerUtils';
+import openBrowser from 'react-dev-utils/openBrowser';
+import createLogger from 'glogg';
+import getConfig from '../scripts/config';
+import setupLogger from '../scripts/logger';
+import * as consts from '../scripts/consts';
+import StyleguidistError from '../scripts/utils/error';
+
+const logger = createLogger('rsg');
 const argv = mri(process.argv.slice(2));
 const command = argv._[0];
 
 // Do not show nasty stack traces for Styleguidist errors
-process.on('uncaughtException', err => {
-	if (err.code === 'EADDRINUSE') {
+process.on('uncaughtException', (err: Error) => {
+	if ((err as any).code === 'EADDRINUSE') {
 		printErrorWithLink(
 			`Another server is running at port ${config.serverPort} already. Please stop it or change the default port to continue.`,
 			'You can change the port using the `serverPort` option in your style guide config:',
 			consts.DOCS_CONFIG
 		);
-	} else if (err instanceof StyleguidistError) {
+	} else if (err instanceof StyleguidistError && err.stack) {
 		console.error(kleur.bold().red(err.message));
 		logger.debug(err.stack);
 	} else {
@@ -42,9 +45,10 @@ const env = command === 'build' ? 'production' : 'development';
 process.env.NODE_ENV = process.env.NODE_ENV || env;
 
 // Load style guide config
-let config;
+let config: Rsg.SanitizedStyleguidistConfig;
 try {
 	config = getConfig(argv.config, updateConfig);
+	verboseLog('Styleguidist config:', config);
 } catch (err) {
 	if (err instanceof StyleguidistError) {
 		const link = consts.DOCS_CONFIG + (err.extra ? `#${err.extra.toLowerCase()}` : '');
@@ -54,8 +58,6 @@ try {
 		throw err;
 	}
 }
-
-verboseLog('Styleguidist config:', config);
 
 switch (command) {
 	case 'build':
@@ -72,7 +74,7 @@ switch (command) {
  * @param {object} prevConfig
  * @return {object}
  */
-function updateConfig(prevConfig) {
+function updateConfig(prevConfig: Rsg.StyleguidistConfig) {
 	// Set verbose mode from config option or command line switch
 	const verbose = prevConfig.verbose || argv.verbose;
 
@@ -80,7 +82,7 @@ function updateConfig(prevConfig) {
 	const serverPort = parseInt(argv.port) || prevConfig.serverPort;
 
 	// Setup logger *before* config validation (because validations may use logger to print warnings)
-	setupLogger(prevConfig.logger, verbose);
+	setupLogger(prevConfig.logger as any, verbose);
 
 	return {
 		...prevConfig,
@@ -93,7 +95,7 @@ function commandBuild() {
 	console.log('Building style guide...');
 
 	const build = require('../scripts/build').default;
-	const compiler = build(config, err => {
+	const compiler = build(config, (err: Error) => {
 		if (err) {
 			console.error(err);
 			process.exit(1);
@@ -107,7 +109,7 @@ function commandBuild() {
 	verboseLog('Webpack config:', compiler.options);
 
 	// Custom error reporting
-	compiler.hooks.done.tap('rsgCustomErrorBuild', function(stats) {
+	compiler.hooks.done.tap('rsgCustomErrorBuild', function(stats: Stats) {
 		const messages = formatWebpackMessages(stats.toJson({}, true));
 		const hasErrors = printAllErrorsAndWarnings(messages, stats.compilation);
 		if (hasErrors) {
@@ -117,10 +119,10 @@ function commandBuild() {
 }
 
 function commandServer() {
-	let spinner;
+	let spinner: Ora;
 
 	const server = require('../scripts/server').default;
-	const compiler = server(config, err => {
+	const compiler = server(config, (err: Error) => {
 		if (err) {
 			console.error(err);
 		} else {
@@ -152,7 +154,7 @@ function commandServer() {
 	});
 
 	// Custom error reporting
-	compiler.hooks.done.tap('rsgCustomErrorServer', function(stats) {
+	compiler.hooks.done.tap('rsgCustomErrorServer', function(stats: Stats) {
 		if (spinner) {
 			spinner.stop();
 		}
@@ -198,7 +200,7 @@ function commandHelp() {
 /**
  * @param {object} urls
  */
-function printServerInstructions(urls) {
+function printServerInstructions(urls: webpackDevServerUtils.Urls) {
 	console.log(`You can now view your style guide in the browser:`);
 	console.log();
 	console.log(`  ${kleur.bold('Local:')}            ${urls.localUrlForTerminal}`);
@@ -211,7 +213,7 @@ function printServerInstructions(urls) {
 /**
  * @param {object} config
  */
-function printBuildInstructions({ styleguideDir }) {
+function printBuildInstructions({ styleguideDir }: Rsg.SanitizedStyleguidistConfig) {
 	console.log('Style guide published to:\n' + kleur.underline(styleguideDir));
 }
 
@@ -220,7 +222,7 @@ function printBuildInstructions({ styleguideDir }) {
  * @param {string} linkTitle
  * @param {string} linkUrl
  */
-function printErrorWithLink(message, linkTitle, linkUrl) {
+function printErrorWithLink(message: string, linkTitle: string, linkUrl: string) {
 	console.error(`${kleur.bold().red(message)}\n\n${linkTitle}\n${kleur.underline(linkUrl)}\n`);
 }
 
@@ -230,20 +232,30 @@ function printErrorWithLink(message, linkTitle, linkUrl) {
  * @param {object} originalErrors
  * @param {'success'|'error'|'warning'} type
  */
-function printErrors(header, errors, originalErrors, type) {
+function printErrors(
+	header: string,
+	errors: string[],
+	originalErrors: { message: string }[],
+	type: 'success' | 'error' | 'warning'
+) {
 	printStatus(header, type);
 	console.error();
-	const messages = argv.verbose ? originalErrors : errors;
-	messages.forEach(message => {
-		console.error(message.message || message);
-	});
+	if (argv.verbose) {
+		originalErrors.forEach(message => {
+			console.error(message.message);
+		});
+	} else {
+		errors.forEach(err => {
+			console.error(err);
+		});
+	}
 }
 
 /**
  * @param {string} text
  * @param {'success'|'error'|'warning'} type
  */
-function printStatus(text, type) {
+function printStatus(text: string, type: 'success' | 'error' | 'warning') {
 	if (type === 'success') {
 		console.log(
 			kleur
@@ -279,7 +291,10 @@ function printStatus(text, type) {
  * @param {object} compilation
  * @return {boolean}
  */
-function printAllErrorsAndWarnings(messages, compilation) {
+function printAllErrorsAndWarnings(
+	messages: { errors: string[]; warnings: string[] },
+	compilation: webpackCompil.Compilation
+) {
 	// If errors exist, only show errors
 	if (messages.errors.length) {
 		printAllErrors(messages.errors, compilation.errors);
@@ -298,7 +313,7 @@ function printAllErrorsAndWarnings(messages, compilation) {
  * @param {object} errors
  * @param {object} originalErrors
  */
-function printAllErrors(errors, originalErrors) {
+function printAllErrors(errors: string[], originalErrors: { message: string }[]) {
 	printStyleguidistError(errors);
 	printNoLoaderError(errors);
 	printErrors('Failed to compile', errors, originalErrors, 'error');
@@ -308,14 +323,14 @@ function printAllErrors(errors, originalErrors) {
  * @param {object} warnings
  * @param {object} originalWarnings
  */
-function printAllWarnings(warnings, originalWarnings) {
+function printAllWarnings(warnings: string[], originalWarnings: { message: string }[]) {
 	printErrors('Compiled with warnings', warnings, originalWarnings, 'warning');
 }
 
 /**
  * @param {object} errors
  */
-function printStyleguidistError(errors) {
+function printStyleguidistError(errors: string[]) {
 	const styleguidistError = errors.find(message =>
 		message.includes('Module build failed: Error: Styleguidist:')
 	);
@@ -324,14 +339,16 @@ function printStyleguidistError(errors) {
 	}
 
 	const m = styleguidistError.match(/Styleguidist: (.*?)\n/);
-	printErrorWithLink(m[1], 'Learn how to configure your style guide:', consts.DOCS_CONFIG);
+	if (m) {
+		printErrorWithLink(m[1], 'Learn how to configure your style guide:', consts.DOCS_CONFIG);
+	}
 	process.exit(1);
 }
 
 /**
  * @param {object} errors
  */
-function printNoLoaderError(errors) {
+function printNoLoaderError(errors: string[]) {
 	if (argv.verbose) {
 		return;
 	}
@@ -355,6 +372,6 @@ function printNoLoaderError(errors) {
  * @param {string} header
  * @param {object} object
  */
-function verboseLog(header, object) {
+function verboseLog(header: string, object: any) {
 	logger.debug(kleur.bold(header) + '\n\n' + stringify(object));
 }

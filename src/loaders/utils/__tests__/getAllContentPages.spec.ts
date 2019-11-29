@@ -1,9 +1,19 @@
 import getAllContentPages from '../getAllContentPages';
 
-const sections = [
+const readmeContent: Rsg.MarkdownExample = {
+	type: 'markdown',
+	content: '# Readme',
+};
+
+const nestedContent: Rsg.MarkdownExample = {
+	type: 'markdown',
+	content: '# Nested',
+};
+
+const sections: Rsg.LoaderSection[] = [
 	{
 		name: 'Readme',
-		content: 'Readme.md',
+		content: readmeContent,
 		components: [],
 		sections: [],
 	},
@@ -23,7 +33,7 @@ const sections = [
 			},
 			{
 				name: 'Nested 2',
-				content: 'Nested.md',
+				content: nestedContent,
 				components: [],
 				sections: [],
 			},
@@ -33,5 +43,5 @@ const sections = [
 
 it('should return all content pages', () => {
 	const result = getAllContentPages(sections);
-	expect(result).toEqual(['Readme.md', 'Nested.md']);
+	expect(result).toEqual([readmeContent, nestedContent]);
 });
