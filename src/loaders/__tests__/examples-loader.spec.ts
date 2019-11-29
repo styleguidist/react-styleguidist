@@ -27,7 +27,7 @@ text
 		{
 			query: getQuery(),
 			_styleguidist: {},
-		},
+		} as any,
 		exampleMarkdown
 	);
 
@@ -50,11 +50,12 @@ it('should replace all occurrences of __COMPONENT__ with provided query.displayN
 		{
 			query: getQuery({ shouldShowDefaultExample: true }),
 			_styleguidist: {},
-		},
+		} as any,
 		exampleMarkdown
 	);
 	expect(result).not.toMatch(/__COMPONENT__/);
-	expect(result.match(/<div>(.*?)<\/div>/)[0]).toMatchInlineSnapshot(`
+	const componentHtml = result.match(/<div>(.*?)<\/div>/);
+	expect(componentHtml && componentHtml[0]).toMatchInlineSnapshot(`
 		<div>
 		  \\n\\t
 		  <FooComponent>
@@ -90,7 +91,7 @@ it('should pass updateExample function from config to chunkify', () => {
 			_styleguidist: {
 				updateExample,
 			},
-		},
+		} as any,
 		exampleMarkdown
 	);
 	expect(updateExample).toBeCalledWith(
@@ -118,7 +119,7 @@ Two:
 		{
 			query: getQuery(),
 			_styleguidist: {},
-		},
+		} as any,
 		exampleMarkdown
 	);
 
@@ -139,7 +140,7 @@ One:
 		{
 			query: getQuery(),
 			_styleguidist: {},
-		},
+		} as any,
 		exampleMarkdown
 	);
 
@@ -158,7 +159,7 @@ it('should work with multiple JSX element on the root level', () => {
 		{
 			query: getQuery(),
 			_styleguidist: {},
-		},
+		} as any,
 		exampleMarkdown
 	);
 
@@ -172,7 +173,7 @@ it('should prepend example code with React require()', () => {
 		{
 			query: getQuery(),
 			_styleguidist: {},
-		},
+		} as any,
 		exampleMarkdown
 	);
 
@@ -189,7 +190,7 @@ it('should prepend example code with component require()', () => {
 		{
 			query: getQuery(),
 			_styleguidist: {},
-		},
+		} as any,
 		exampleMarkdown
 	);
 
@@ -209,7 +210,7 @@ it('should allow explicit import of React and component module', () => {
 		{
 			query: getQuery(),
 			_styleguidist: {},
-		},
+		} as any,
 		exampleMarkdown
 	);
 
@@ -232,7 +233,7 @@ it('should works for any Markdown file, without a current component', () => {
 		{
 			query: '',
 			_styleguidist: {},
-		},
+		} as any,
 		exampleMarkdown
 	);
 

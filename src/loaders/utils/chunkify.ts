@@ -22,7 +22,7 @@ export default function chunkify(
 	markdown: string,
 	updateExample?: (example: Omit<Rsg.CodeExample, 'type'>) => Omit<Rsg.CodeExample, 'type'>,
 	playgroundLangs = PLAYGROUND_LANGS
-) {
+): (Rsg.CodeExample | Rsg.MarkdownExample)[] {
 	const codeChunks: Rsg.CodeExample[] = [];
 
 	/*

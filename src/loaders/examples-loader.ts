@@ -12,12 +12,12 @@ import expandDefaultComponent from './utils/expandDefaultComponent';
 import getImports from './utils/getImports';
 import requireIt from './utils/requireIt';
 
-const absolutize = filepath => path.resolve(__dirname, filepath);
+const absolutize = (filepath: string) => path.resolve(__dirname, filepath);
 
 const REQUIRE_IN_RUNTIME_PATH = absolutize('utils/client/requireInRuntime');
 const EVAL_IN_CONTEXT_PATH = absolutize('utils/client/evalInContext');
 
-export default function examplesLoader(source) {
+export default function examplesLoader(this: Rsg.StyleguidistLoaderContext, source: string) {
 	const config = this._styleguidist;
 	const { file, displayName, shouldShowDefaultExample, customLangs } =
 		loaderUtils.getOptions(this) || {};
@@ -28,7 +28,7 @@ export default function examplesLoader(source) {
 	}
 
 	const updateExample = config.updateExample
-		? props => config.updateExample(props, this.resourcePath)
+		? (props: Omit<Rsg.CodeExample, 'type'>) => config.updateExample(props, this.resourcePath)
 		: undefined;
 
 	// Load examples
@@ -39,7 +39,7 @@ export default function examplesLoader(source) {
 	// Note that we can't just use require() directly at runtime,
 	// because webpack changes its name to something like __webpack__require__().
 	const allCodeExamples = filter(examples, { type: 'code' });
-	const requiresFromExamples = allCodeExamples.reduce((requires, example) => {
+	const requiresFromExamples = allCodeExamples.reduce((requires: string[], example) => {
 		return requires.concat(getImports(example.content));
 	}, []);
 
@@ -65,18 +65,21 @@ export default function examplesLoader(source) {
 
 	// “Prerequire” modules required in Markdown examples and context so they
 	// end up in a bundle and be available at runtime
-	const allModulesCode = allModules.reduce((requires, requireRequest) => {
-		requires[requireRequest] = requireIt(requireRequest);
-		return requires;
-	}, {});
+	const allModulesCode = allModules.reduce(
+		(requires: Record<string, Rsg.RequireItResult>, requireRequest) => {
+			requires[requireRequest] = requireIt(requireRequest);
+			return requires;
+		},
+		{}
+	);
 
 	// Require context modules so they are available in an example
 	const requireContextCode = b.program(
 		flatten(
-			map(fullContext, (requireRequest, name) => [
+			map(fullContext, (requireRequest: string, name) => [
 				// const name$0 = require(path);
 				b.variableDeclaration('const', [
-					b.variableDeclarator(b.identifier(`${name}$0`), requireIt(requireRequest).toAST()),
+					b.variableDeclarator(b.identifier(`${name}$0`), requireIt(requireRequest).toAST() as any),
 				]),
 				// const name = name$0[name] || name$0.default || name$0;
 				b.variableDeclaration('const', [
@@ -98,12 +101,15 @@ export default function examplesLoader(source) {
 	);
 
 	// Stringify examples object except the evalInContext function
-	const examplesWithEval = examples.map(example => {
-		if (example.type === 'code') {
-			example.evalInContext = { toAST: () => b.identifier('evalInContext') };
+	const examplesWithEval: (Rsg.RuntimeCodeExample | Rsg.MarkdownExample)[] = examples.map(
+		example => {
+			if (example.type === 'code') {
+				return { ...example, evalInContext: { toAST: () => b.identifier('evalInContext') } as any };
+			} else {
+				return example;
+			}
 		}
-		return example;
-	});
+	);
 
 	return `
 if (module.hot) {
