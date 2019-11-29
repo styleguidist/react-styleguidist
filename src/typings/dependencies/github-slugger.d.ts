@@ -1,6 +1,6 @@
 declare module 'github-slugger' {
 	class Slugger {
-		static reset(): void;
+		reset(): void;
 		slug(input: string): string;
 	}
 	export = Slugger;

@@ -41,8 +41,11 @@ declare global {
 			moduleAliases: Record<string, string>;
 			pagePerSection: boolean;
 			previewDelay: number;
-			printBuildInstructions(config: ProcessedStyleguidistConfig): void;
-			printServerInstructions(config: ProcessedStyleguidistConfig): void;
+			printBuildInstructions(config: SanitizedStyleguidistConfig): void;
+			printServerInstructions(
+				config: SanitizedStyleguidistConfig,
+				options: { isHttps: boolean }
+			): void;
 			propsParser(
 				filePath: string,
 				code: string,

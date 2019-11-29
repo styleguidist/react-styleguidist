@@ -4,8 +4,10 @@
  * @param {Array} sections
  * @returns {Array}
  */
-export default function getAllContentPages(sections: Rsg.ConfigSection[]): string[] {
-	return sections.reduce((pages: string[], section) => {
+export default function getAllContentPages(
+	sections: Rsg.LoaderSection[]
+): (Rsg.MarkdownExample | Rsg.RequireItResult)[] {
+	return sections.reduce((pages: (Rsg.MarkdownExample | Rsg.RequireItResult)[], section) => {
 		if (section.content) {
 			pages = pages.concat([section.content]);
 		}
