@@ -1,8 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { NameRenderer, styles } from './NameRenderer';
-// TODO: simplify this path
-import classes from '../../../../test/classes';
 
 const props = {
 	classes: classes(styles),

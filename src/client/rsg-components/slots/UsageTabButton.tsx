@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TabButton from 'rsg-components/TabButton';
 import isEmpty from 'lodash/isEmpty';
 
-interface UsageTabButtonProps {
+export interface UsageTabButtonProps {
 	name: string;
 	onClick: (e: React.MouseEvent) => void;
 	active?: boolean;

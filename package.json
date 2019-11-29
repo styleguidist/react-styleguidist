@@ -179,6 +179,7 @@
     "lint": "eslint . --cache --fix --ext .js,.ts,.tsx",
     "flow": "flow",
     "compile": "babel --delete-dir-on-start --ignore **/__mocks__/*,**/__tests__/*,**/*.spec.*,**/*.d.ts --extensions '.js,.ts,.tsx' -d lib/ src/",
+    "compile:types": "tsc -p . --emitDeclarationOnly",
     "compile:watch": "npm run compile -- --watch",
     "prepublishOnly": "npm run compile",
     "build:basic": "node lib/bin/styleguidist.js build --config examples/basic/styleguide.config.js",

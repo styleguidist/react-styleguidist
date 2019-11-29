@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { TableRenderer, styles } from './TableRenderer';
-import classes from '../../../../test/classes';
 
 const columns = [
 	{
