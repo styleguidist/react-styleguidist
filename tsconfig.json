@@ -10,7 +10,6 @@
 		"esModuleInterop": true,
 		"noUnusedLocals": true,
 		"allowSyntheticDefaultImports": true,
-		"rootDir": "./src",
 		"outDir": "./lib",
 		"lib": ["dom"],
 		"paths": {
