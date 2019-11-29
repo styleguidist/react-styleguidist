@@ -96,7 +96,7 @@ declare global {
 
 		interface StyleguidistConfig
 			extends RecursivePartial<Omit<SanitizedStyleguidistConfig, 'defaultExample'>> {
-			defaultExmple: string | boolean;
+			defaultExample?: string | boolean;
 		}
 	}
 }

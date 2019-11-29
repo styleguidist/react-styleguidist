@@ -43,7 +43,7 @@ module.exports = function(configArg?: Rsg.StyleguidistConfig | string) {
 		 * @return {ServerInfo.App} Webpack-Dev-Server.
 		 * @return {ServerInfo.Compiler} Webpack Compiler instance.
 		 */
-		server(callback: (err: Error | undefined, config: Rsg.StyleguidistConfig) => void) {
+		server(callback: (err: Error | undefined, config: Rsg.SanitizedStyleguidistConfig) => void) {
 			return server(config, err => callback(err, config));
 		},
 

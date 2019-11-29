@@ -1,6 +1,7 @@
 import vm from 'vm';
 import { readFileSync } from 'fs';
 import glogg from 'glogg';
+import { PropDescriptor } from 'react-docgen';
 
 import sortBy from 'lodash/sortBy';
 import config from '../../scripts/schemas/config';
@@ -85,8 +86,14 @@ describe('property sorting', () => {
 
 	it('should be possible to write custom sort function', () => {
 		const sortFn = (props: any) => {
-			const requiredProps = sortBy(props.filter(prop => prop.required), 'name').reverse();
-			const optionalProps = sortBy(props.filter(prop => !prop.required), 'name').reverse();
+			const requiredProps = sortBy(
+				props.filter((prop: PropDescriptor) => prop.required),
+				'name'
+			).reverse();
+			const optionalProps = sortBy(
+				props.filter((prop: PropDescriptor) => !prop.required),
+				'name'
+			).reverse();
 			return optionalProps.concat(requiredProps);
 		};
 		const file = './test/components/Price/Price.js';
