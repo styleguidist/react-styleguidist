@@ -180,7 +180,7 @@
     "compile": "babel --delete-dir-on-start --ignore **/__mocks__/*,**/__tests__/*,**/*.spec.*,**/*.d.ts --extensions '.js,.ts,.tsx' -d lib/ src/",
     "compile:types": "tsc -p ./tsconfig.types.json --emitDeclarationOnly",
     "compile:watch": "npm run compile -- --watch",
-    "prepublishOnly": "npm run compile && npm run compile:types",
+    "prepublishOnly": "npm run compile",
     "build:basic": "node lib/bin/styleguidist.js build --config examples/basic/styleguide.config.js",
     "build:customised": "node lib/bin/styleguidist.js build --config examples/customised/styleguide.config.js",
     "build:sections": "node lib/bin/styleguidist.js build --config examples/sections/styleguide.config.js",
