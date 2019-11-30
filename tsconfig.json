@@ -4,7 +4,6 @@
 		"module": "es2015",
 		"baseUrl": ".",
 		"moduleResolution": "node",
-		"declaration": true,
 		"jsx": "react",
 		"strict": true,
 		"esModuleInterop": true,
