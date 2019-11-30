@@ -16,7 +16,7 @@
 			"rsg-components/*": ["src/client/rsg-components/*"]
 		}
 	},
-	// Remove the 'include' section if we want entire project to be Typescript.
-	"include": ["src/**/*.ts", "src/**/*.tsx"],
+	"include": ["src"],
+
 	"exclude": ["node_modules"]
 }
