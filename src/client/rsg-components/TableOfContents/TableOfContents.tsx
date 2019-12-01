@@ -7,12 +7,14 @@ import filterSectionsByName from '../../utils/filterSectionsByName';
 interface TableOfContentsProps {
 	sections: Rsg.Section[];
 	useRouterLinks?: boolean;
+	collapsibleSections?: boolean;
 }
 
 export default class TableOfContents extends Component<TableOfContentsProps> {
 	public static propTypes = {
 		sections: PropTypes.array.isRequired,
 		useRouterLinks: PropTypes.bool,
+		collapsibleSections: PropTypes.bool,
 	};
 	public state = {
 		searchTerm: '',
@@ -47,7 +49,7 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 				hashPath={hashPath}
 				useHashId={useHashId}
 				useRouterLinks={useRouterLinks}
-				forceOpen={!!this.state.searchTerm.length}
+				forceOpen={!!this.state.searchTerm.length || !this.props.collapsibleSections}
 			/>
 		);
 	}

@@ -47,6 +47,10 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions> = {
 		type: ['array', 'existing directory path'],
 		example: 'assets',
 	},
+	collapsibleSections: {
+		type: 'boolean',
+		default: false,
+	},
 	compilerConfig: {
 		type: 'object',
 		default: {

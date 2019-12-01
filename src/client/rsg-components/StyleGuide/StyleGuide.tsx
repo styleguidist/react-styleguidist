@@ -112,7 +112,11 @@ export default class StyleGuide extends Component<StyleGuideProps, StyleGuideSta
 					homepageUrl={HOMEPAGE}
 					toc={
 						allSections ? (
-							<TableOfContents sections={allSections} useRouterLinks={pagePerSection} />
+							<TableOfContents
+								sections={allSections}
+								useRouterLinks={pagePerSection}
+								collapsibleSections={config.collapsibleSections}
+							/>
 						) : null
 					}
 					hasSidebar={hasSidebar(displayMode, config.showSidebar)}

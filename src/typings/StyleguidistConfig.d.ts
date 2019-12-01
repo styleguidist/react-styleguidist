@@ -11,6 +11,7 @@ declare global {
 
 		interface BaseStyleguidistConfig {
 			assetsDir: string | string[];
+			collapsibleSections: boolean;
 			compilerConfig: TransformOptions;
 			components: (() => string | string[]) | string | string[];
 			configDir: string;
