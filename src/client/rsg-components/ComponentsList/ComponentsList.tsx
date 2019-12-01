@@ -8,9 +8,7 @@ interface ComponentsListProps {
 	hashPath?: string[];
 	useRouterLinks?: boolean;
 	useHashId?: boolean;
-	openSection: string;
-	searchTerm: string;
-	onHeaderClick(href?: string): void;
+	forceOpen?: boolean;
 }
 
 const ComponentsList: React.FunctionComponent<ComponentsListProps> = ({
@@ -18,12 +16,11 @@ const ComponentsList: React.FunctionComponent<ComponentsListProps> = ({
 	useRouterLinks = false,
 	useHashId,
 	hashPath,
-	openSection,
-	searchTerm,
-	onHeaderClick,
+	forceOpen,
 }) => {
 	const mappedItems = items.map(item => ({
 		...item,
+		shouldOpenInNewTab: !!item.href,
 		href: item.href
 			? item.href
 			: getUrl({
@@ -34,14 +31,7 @@ const ComponentsList: React.FunctionComponent<ComponentsListProps> = ({
 					id: useRouterLinks ? useHashId : false,
 			  }),
 	}));
-	return (
-		<ComponentsListRenderer
-			items={mappedItems}
-			onHeaderClick={onHeaderClick}
-			openSection={openSection}
-			searchTerm={searchTerm}
-		/>
-	);
+	return <ComponentsListRenderer items={mappedItems} forceOpen={forceOpen} />;
 };
 
 ComponentsList.propTypes = {
@@ -49,9 +39,7 @@ ComponentsList.propTypes = {
 	hashPath: PropTypes.array,
 	useRouterLinks: PropTypes.bool,
 	useHashId: PropTypes.bool,
-	openSection: PropTypes.string.isRequired,
-	searchTerm: PropTypes.string.isRequired,
-	onHeaderClick: PropTypes.func.isRequired,
+	forceOpen: PropTypes.bool,
 };
 
 export default ComponentsList;

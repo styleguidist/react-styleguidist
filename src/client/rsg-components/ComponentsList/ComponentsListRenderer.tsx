@@ -40,17 +40,13 @@ const styles = ({ color, fontFamily, fontSize, space, mq }: Rsg.Theme) => ({
 
 interface ComponentsListRendererProps extends JssInjectedProps {
 	items: Rsg.Component[];
-	openSection: string;
-	searchTerm: string;
-	onHeaderClick(href?: string): void;
+	forceOpen?: boolean;
 }
 
 export const ComponentsListRenderer: React.FunctionComponent<ComponentsListRendererProps> = ({
 	classes,
 	items,
-	openSection,
-	searchTerm,
-	onHeaderClick,
+	forceOpen,
 }) => {
 	const {
 		config: { pagePerSection },
@@ -69,7 +65,7 @@ export const ComponentsListRenderer: React.FunctionComponent<ComponentsListRende
 		<ul className={classes.list}>
 			{visibleItems.map(({ heading, visibleName, href, content, shouldOpenInNewTab }) => {
 				const isItemSelected = windowHash === href;
-				const isSectionOpen = href && openSection.indexOf(href) === 0;
+				const isSectionOpen = href && windowHash.indexOf(href) === 0;
 				return (
 					<li
 						className={cx(classes.item, {
@@ -81,12 +77,11 @@ export const ComponentsListRenderer: React.FunctionComponent<ComponentsListRende
 						<Link
 							className={cx(heading && classes.heading)}
 							href={href}
-							onClick={() => onHeaderClick(href)}
 							target={shouldOpenInNewTab ? '_blank' : undefined}
 						>
 							{visibleName}
 						</Link>
-						{isSectionOpen || searchTerm.length ? content : undefined}
+						{isSectionOpen || forceOpen ? content : null}
 					</li>
 				);
 			})}
@@ -97,9 +92,7 @@ export const ComponentsListRenderer: React.FunctionComponent<ComponentsListRende
 ComponentsListRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	items: PropTypes.array.isRequired,
-	openSection: PropTypes.string.isRequired,
-	searchTerm: PropTypes.string.isRequired,
-	onHeaderClick: PropTypes.func.isRequired,
+	forceOpen: PropTypes.bool,
 };
 
 export default Styled<ComponentsListRendererProps>(styles)(ComponentsListRenderer);

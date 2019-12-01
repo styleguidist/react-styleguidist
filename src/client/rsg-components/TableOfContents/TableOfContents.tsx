@@ -16,8 +16,6 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 	};
 	public state = {
 		searchTerm: '',
-		// initialize section with the current one
-		openSection: `/${window.location.hash.split('?')[0]}`,
 	};
 
 	private renderLevel(
@@ -43,25 +41,18 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 						: undefined,
 			};
 		});
-
-		const { openSection, searchTerm } = this.state;
-		const onHeaderClick = (sectionHref?: string) => {
-			this.setState({ openSection: sectionHref });
-		};
 		return (
 			<ComponentsList
 				items={items}
 				hashPath={hashPath}
 				useHashId={useHashId}
 				useRouterLinks={useRouterLinks}
-				openSection={openSection}
-				onHeaderClick={onHeaderClick}
-				searchTerm={searchTerm}
+				forceOpen={!!this.state.searchTerm.length}
 			/>
 		);
 	}
 
-	public renderSections() {
+	private renderSections() {
 		const { searchTerm } = this.state;
 		const { sections, useRouterLinks } = this.props;
 		// If there is only one section, we treat it as a root section
