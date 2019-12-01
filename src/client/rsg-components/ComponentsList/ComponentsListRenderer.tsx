@@ -69,6 +69,7 @@ export const ComponentsListRenderer: React.FunctionComponent<ComponentsListRende
 		<ul className={classes.list}>
 			{visibleItems.map(({ heading, visibleName, href, content, shouldOpenInNewTab }) => {
 				const isItemSelected = windowHash === href;
+				const isSectionOpen = href && openSection.indexOf(href) === 0;
 				return (
 					<li
 						className={cx(classes.item, {
@@ -85,7 +86,7 @@ export const ComponentsListRenderer: React.FunctionComponent<ComponentsListRende
 						>
 							{visibleName}
 						</Link>
-						{openSection === href || searchTerm.length ? content : undefined}
+						{isSectionOpen || searchTerm.length ? content : undefined}
 					</li>
 				);
 			})}
