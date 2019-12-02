@@ -138,6 +138,10 @@ export default function(
 		// Add components folder alias at the end, so users can override our components
 		// to customize the style guide (their aliases should be before this one)
 		alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
+
+		if (typeof config.theme === 'string') {
+			alias['./customTheme'] = config.theme;
+		}
 	}
 
 	if (config.dangerouslyUpdateWebpackConfig) {

@@ -301,12 +301,14 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions> = {
 		},
 	},
 	theme: {
-		type: 'object',
+		type: ['object', 'existing file path'],
 		default: {},
 		example: {
 			link: 'firebrick',
 			linkHover: 'salmon',
 		},
+		process: (val: object | string, config: Rsg.StyleguidistConfig): string | object =>
+			typeof val === 'string' ? path.resolve(config.styleguideDir || '', val) : val,
 	},
 	title: {
 		type: 'string',
