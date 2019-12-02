@@ -14,6 +14,7 @@ declare global {
 			visibleName?: string;
 			content?: { props: { items: Component[] } };
 			shouldOpenInNewTab?: boolean;
+			forceOpen?: boolean;
 			description?: string;
 			exampleMode?: string;
 			usageMode?: string;

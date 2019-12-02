@@ -159,3 +159,37 @@ it('should ignore items without visibleName', () => {
 		'http://localhost/#button',
 	]);
 });
+
+it('should show content of items that are open and not what is closed', () => {
+	const components = [
+		{
+			visibleName: 'Button',
+			name: 'Button',
+			slug: 'button',
+			content: <div data-testid="content">Content for Button</div>,
+		},
+		{
+			visibleName: 'Input',
+			name: 'Input',
+			slug: 'input',
+			content: <div data-testid="content">Content for Input</div>,
+		},
+	];
+
+	window.history.pushState({}, 'Collapse', 'http://localhost/#/Components/Button');
+
+	const { getAllByTestId } = render(
+		<Provider>
+			<ComponentsList
+				items={components}
+				useRouterLinks
+				hashPath={['Components']}
+				useHashId={false}
+			/>
+		</Provider>
+	);
+
+	expect(
+		Array.from(getAllByTestId('content')).map(node => (node as HTMLDivElement).innerHTML)
+	).toEqual(['Content for Button']);
+});

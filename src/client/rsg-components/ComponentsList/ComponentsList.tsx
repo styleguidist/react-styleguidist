@@ -8,7 +8,6 @@ interface ComponentsListProps {
 	hashPath?: string[];
 	useRouterLinks?: boolean;
 	useHashId?: boolean;
-	forceOpen?: boolean;
 }
 
 const ComponentsList: React.FunctionComponent<ComponentsListProps> = ({
@@ -16,7 +15,6 @@ const ComponentsList: React.FunctionComponent<ComponentsListProps> = ({
 	useRouterLinks = false,
 	useHashId,
 	hashPath,
-	forceOpen,
 }) => {
 	const mappedItems = items.map(item => ({
 		...item,
@@ -31,7 +29,7 @@ const ComponentsList: React.FunctionComponent<ComponentsListProps> = ({
 					id: useRouterLinks ? useHashId : false,
 			  }),
 	}));
-	return <ComponentsListRenderer items={mappedItems} forceOpen={forceOpen} />;
+	return <ComponentsListRenderer items={mappedItems} />;
 };
 
 ComponentsList.propTypes = {
@@ -39,7 +37,6 @@ ComponentsList.propTypes = {
 	hashPath: PropTypes.array,
 	useRouterLinks: PropTypes.bool,
 	useHashId: PropTypes.bool,
-	forceOpen: PropTypes.bool,
 };
 
 export default ComponentsList;
