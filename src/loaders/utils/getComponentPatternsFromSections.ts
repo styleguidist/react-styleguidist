@@ -1,5 +1,3 @@
-import { isArray } from 'lodash';
-
 /**
  * Return all glob patterns from all sections.
  *
