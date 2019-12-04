@@ -139,9 +139,10 @@ export default function(
 		// to customize the style guide (their aliases should be before this one)
 		alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
 
-		if (typeof config.theme === 'string') {
-			alias['./customTheme'] = config.theme;
-		}
+		alias['@/customTheme'] = path.resolve(
+			sourceDir,
+			typeof config.theme === 'string' ? config.theme : 'style/customTheme'
+		);
 	}
 
 	if (config.dangerouslyUpdateWebpackConfig) {
