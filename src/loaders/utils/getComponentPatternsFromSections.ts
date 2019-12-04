@@ -9,7 +9,7 @@ import { isArray } from 'lodash';
  */
 export default function getComponentPatternsFromSections(sections: Rsg.ConfigSection[]): string[] {
 	return sections.reduce((patterns: string[], section) => {
-		if (isArray(section.components)) {
+		if (Array.isArray(section.components)) {
 			return patterns.concat(section.components);
 		}
 
