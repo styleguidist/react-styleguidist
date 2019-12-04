@@ -3,7 +3,7 @@ import { DOCS_DOCUMENTING } from '../../scripts/consts';
 
 const hasStringModifiers = (modifiers: string): boolean => !!modifiers.match(/^[ \w]+$/);
 
-interface Error {
+export interface ExampleError {
 	error: string;
 }
 /**
@@ -13,9 +13,9 @@ export default function parseExample(
 	content: string,
 	lang?: string | null,
 	modifiers?: string,
-	updateExample: (example: Rsg.CodeExample) => Rsg.CodeExample = x => x
-): Rsg.CodeExample | Error {
-	const example: Rsg.CodeExample = {
+	updateExample: (example: Omit<Rsg.CodeExample, 'type'>) => Omit<Rsg.CodeExample, 'type'> = x => x
+): Omit<Rsg.CodeExample, 'type'> | ExampleError {
+	const example: Omit<Rsg.CodeExample, 'type'> = {
 		content,
 		lang,
 	};

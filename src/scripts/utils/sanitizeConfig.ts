@@ -47,7 +47,7 @@ const shouldExist = (types: string[]) => types.some(type => type.includes('exist
  */
 export default function sanitizeConfig<T extends Record<string, any>>(
 	config: T,
-	schema: Record<keyof T, ConfigSchemaOptions>,
+	schema: Record<keyof T, ConfigSchemaOptions<T>>,
 	rootDir: string
 ): T {
 	// Check for unknown fields
