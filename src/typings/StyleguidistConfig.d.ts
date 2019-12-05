@@ -68,7 +68,7 @@ declare global {
 			styleguideDir: string;
 			styles: Styles | string;
 			template: any;
-			theme: Theme | string;
+			theme: RecursivePartial<Theme> | string;
 			title: string;
 			updateDocs(doc: Component, file: string): Component;
 			updateExample(props: Example, ressourcePath: string): Example;
