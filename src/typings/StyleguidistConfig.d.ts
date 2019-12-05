@@ -66,9 +66,9 @@ declare global {
 			sortProps(props: PropDescriptor[]): PropDescriptor[];
 			styleguideComponents: Record<string, string>;
 			styleguideDir: string;
-			styles: Styles;
+			styles: Styles | string;
 			template: any;
-			theme: Theme;
+			theme: Theme | string;
 			title: string;
 			updateDocs(doc: Component, file: string): Component;
 			updateExample(props: Example, ressourcePath: string): Example;

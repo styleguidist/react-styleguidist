@@ -275,7 +275,7 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions> = {
 		default: 'styleguide',
 	},
 	styles: {
-		type: 'object',
+		type: ['object', 'existing file path'],
 		default: {},
 		example: {
 			Logo: {
@@ -284,6 +284,8 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions> = {
 				},
 			},
 		},
+		process: (val: object | string, config: Rsg.StyleguidistConfig): string | object =>
+			typeof val === 'string' ? path.resolve(config.styleguideDir || '', val) : val,
 	},
 	template: {
 		type: ['object', 'function'],

@@ -16,7 +16,8 @@
 		"lib": ["dom"],
 		"paths": {
 			"rsg-components/*": ["client/rsg-components/*"],
-			"@/customTheme": ["client/styles/customTheme"]
+			"rsg-customTheme": ["client/styles/empty"],
+			"rsg-customStyles": ["client/styles/empty"]
 		}
 	},
 	// Remove the 'include' section if we want entire project to be Typescript.
