@@ -1,7 +1,7 @@
 import merge from 'lodash/merge';
 import memoize from 'lodash/memoize';
 // eslint-disable-next-line import/extensions,import/no-unresolved
-import * as customTheme from 'rsg-customTheme';
+import customTheme from 'rsg-customTheme';
 // eslint-disable-next-line import/extensions,import/no-unresolved
 import customStylesFile from 'rsg-customStyles';
 import { Styles } from 'jss';
