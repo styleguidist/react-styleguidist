@@ -45,7 +45,6 @@ const configWithStylesAsAFunction = {
 	hello: 1,
 	...config,
 	styles: (locTheme: Rsg.Theme) => {
-		console.log('locTheme', locTheme);
 		return {
 			[testComponentName]: {
 				[testRuleName]: {
