@@ -73,7 +73,7 @@ declare global {
 			sortProps(props: PropDescriptor[]): PropDescriptor[];
 			styleguideComponents: Record<string, string>;
 			styleguideDir: string;
-			styles: Styles;
+			styles: Styles | ((theme: Theme) => Styles);
 			template: any;
 			theme: Theme;
 			title: string;
