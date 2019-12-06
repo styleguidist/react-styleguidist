@@ -4,6 +4,7 @@ import { TransformOptions } from 'buble';
 import { Handler, DocumentationObject, PropDescriptor } from 'react-docgen';
 import { ASTNode } from 'ast-types';
 import { NodePath } from 'ast-types/lib/node-path';
+import { Styles } from 'jss';
 
 declare global {
 	namespace Rsg {
