@@ -4,6 +4,8 @@ exports[`should merge user webpack config 1`] = `
 Object {
   "foo": "bar",
   "rsg-components": "~/src/client/rsg-components",
+  "rsg-customStyles": "~/src/client/styles/empty",
+  "rsg-customTheme": "~/src/client/styles/empty",
 }
 `;
 
@@ -35,6 +37,8 @@ Array [
 exports[`should set aliases 1`] = `
 Object {
   "rsg-components": "~/src/client/rsg-components",
+  "rsg-customStyles": "~/src/client/styles/empty",
+  "rsg-customTheme": "~/src/client/styles/empty",
 }
 `;
 
@@ -42,6 +46,8 @@ exports[`should set aliases from moduleAliases option 1`] = `
 Object {
   "foo": "bar",
   "rsg-components": "~/src/client/rsg-components",
+  "rsg-customStyles": "~/src/client/styles/empty",
+  "rsg-customTheme": "~/src/client/styles/empty",
 }
 `;
 
@@ -49,5 +55,7 @@ exports[`should set aliases from styleguideComponents option 1`] = `
 Object {
   "rsg-components": "~/src/client/rsg-components",
   "rsg-components/foo": "bar",
+  "rsg-customStyles": "~/src/client/styles/empty",
+  "rsg-customTheme": "~/src/client/styles/empty",
 }
 `;
