@@ -10,10 +10,12 @@ const customStyleBorderColor = '#ABCDEF';
 const testComponentName = 'TestComponentName';
 const testRuleName = 'testRule';
 
-const mockCustomTheme: RecursivePartial<Rsg.Theme> = {};
+// eslint-disable-next-line no-var
+var mockCustomTheme: RecursivePartial<Rsg.Theme> = {};
 jest.mock('rsg-customTheme', () => ({ default: mockCustomTheme }));
 
-const mockCustomStyles: Rsg.Styles = {};
+// eslint-disable-next-line no-var
+var mockCustomStyles: Rsg.Styles = {};
 jest.mock('rsg-customStyles', () => ({ default: mockCustomStyles }));
 
 const styles = ({ color, borderRadius, maxWidth }: Rsg.Theme) => ({
