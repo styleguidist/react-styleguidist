@@ -15,10 +15,7 @@ export default class StyleguidistOptionsPlugin implements Tapable.Plugin {
 	}
 
 	public plugin(compil: compilation.Compilation) {
-		const pluginFunc = (
-			context: { _styleguidist?: Rsg.SanitizedStyleguidistConfig },
-			module: { resource?: boolean }
-		) => {
+		const pluginFunc = (context: Rsg.StyleguidistLoaderContext, module: { resource?: boolean }) => {
 			if (!module.resource) {
 				return;
 			}

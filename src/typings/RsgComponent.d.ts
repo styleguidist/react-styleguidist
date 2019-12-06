@@ -4,7 +4,8 @@ import { MethodDescriptor, PropDescriptor, TagProps } from 'react-docgen';
 // see https://stackoverflow.com/questions/45099605/ambient-declaration-with-an-imported-type-in-typescript
 declare global {
 	namespace Rsg {
-		interface Component {
+		interface BaseComponent {
+			hasExamples?: boolean;
 			name?: string;
 			slug?: string;
 			href?: string;
@@ -17,6 +18,9 @@ declare global {
 			description?: string;
 			exampleMode?: string;
 			usageMode?: string;
+		}
+
+		interface Component extends BaseComponent {
 			props?: {
 				displayName?: string;
 				visibleName?: string;
@@ -27,10 +31,16 @@ declare global {
 				example?: Example[];
 				examples?: Example[];
 			};
+			module?: number;
 			metadata?: {
 				tags?: string[];
 			};
-			module?: number;
+		}
+
+		interface LoaderComponent extends BaseComponent {
+			module: RequireItResult;
+			props: RequireItResult;
+			metadata: RequireItResult | {};
 		}
 	}
 }

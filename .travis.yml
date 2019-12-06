@@ -7,7 +7,7 @@ node_js:
 addons:
   apt:
     packages:
-    - libgconf-2-4
+      - libgconf-2-4
 
 script:
   # Run tests without coverage since it's 2x faster
@@ -38,7 +38,6 @@ jobs:
 
     - stage: typecheck
       script:
-        - npm run flow check
         - npm run tscheck
 
     - stage: integration

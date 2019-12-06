@@ -35,7 +35,7 @@ const styles = ({ fontFamily, fontSize, color, borderRadius }: Rsg.Theme) => ({
 	},
 });
 
-interface EditorProps extends JssInjectedProps {
+export interface EditorProps extends JssInjectedProps {
 	code: string;
 	onChange: (code: string) => void;
 }

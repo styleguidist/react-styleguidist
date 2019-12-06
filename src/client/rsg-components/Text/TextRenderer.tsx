@@ -36,7 +36,7 @@ export const styles = ({ fontFamily, fontSize, color }: Rsg.Theme) => ({
 	},
 });
 
-interface TextProps extends JssInjectedProps {
+export interface TextProps extends JssInjectedProps {
 	semantic?: 'em' | 'strong';
 	size?: 'inherit' | 'small' | 'base' | 'text';
 	color?: 'base' | 'light';

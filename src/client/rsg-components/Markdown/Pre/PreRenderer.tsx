@@ -20,6 +20,7 @@ const styles = ({ space, color, fontSize, fontFamily, borderRadius }: Rsg.Theme)
 		borderRadius,
 		marginTop: 0,
 		marginBottom: space[2],
+		overflow: 'auto',
 		...prismTheme({ color }),
 	},
 });

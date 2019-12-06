@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"target": "esnext",
 		"module": "es2015",
-		"baseUrl": "./src",
+		"baseUrl": ".",
 		"moduleResolution": "node",
 		"jsx": "react",
 		"strict": true,
@@ -10,17 +10,13 @@
 		"noUnusedLocals": true,
 		"allowSyntheticDefaultImports": true,
 		"outDir": "./lib",
-		// TODO: Remove 'allowJs' once all files are converted to TS.
-		// This is required now, for accessing types and to do typechecking for JS files.
-		"allowJs": true,
 		"lib": ["dom"],
 		"paths": {
-			"rsg-components/*": ["client/rsg-components/*"],
-			"rsg-customTheme": ["client/styles/empty"],
-			"rsg-customStyles": ["client/styles/empty"]
+			"rsg-components/*": ["src/client/rsg-components/*"],
+			"rsg-customTheme": ["src/client/styles/empty"],
+			"rsg-customStyles": ["src/client/styles/empty"]
 		}
 	},
-	// Remove the 'include' section if we want entire project to be Typescript.
-	"include": ["src/**/*.ts", "src/**/*.tsx"],
+	"include": ["src"],
 	"exclude": ["node_modules"]
 }
