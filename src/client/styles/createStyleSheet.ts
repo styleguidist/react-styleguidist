@@ -11,7 +11,7 @@ export default memoize((styles, config: Rsg.StyleguidistConfig, componentName) =
 	const mergedStyles: Partial<Styles<string>> = merge(
 		{},
 		styles(mergedTheme),
-		customStyles[componentName]
+		customStyles && customStyles[componentName]
 	);
 	return jss.createStyleSheet(mergedStyles, { meta: componentName, link: true });
 });
