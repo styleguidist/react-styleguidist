@@ -123,28 +123,33 @@ export default function(
 		});
 	}
 
-	const alias = webpackConfig.resolve ? webpackConfig.resolve.alias : undefined;
-	if (alias) {
-		// Custom style guide components
-		if (config.styleguideComponents) {
-			forEach(config.styleguideComponents, (filepath, name) => {
-				const fullName = name.match(RENDERER_REGEXP)
-					? `${name.replace(RENDERER_REGEXP, '')}/${name}`
-					: name;
-				alias[`rsg-components/${fullName}`] = filepath;
-			});
-		}
+	const alias =
+		webpackConfig.resolve && webpackConfig.resolve.alias ? webpackConfig.resolve.alias : {};
 
-		// Add components folder alias at the end, so users can override our components
-		// to customize the style guide (their aliases should be before this one)
-		alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
-
-		alias['rsg-customTheme'] =
-			typeof config.theme === 'string' ? config.theme : path.resolve(sourceDir, 'styles/empty');
-
-		alias['rsg-customStyles'] =
-			typeof config.styles === 'string' ? config.styles : path.resolve(sourceDir, 'styles/empty');
+	// Custom style guide components
+	if (config.styleguideComponents) {
+		forEach(config.styleguideComponents, (filepath, name) => {
+			const fullName = name.match(RENDERER_REGEXP)
+				? `${name.replace(RENDERER_REGEXP, '')}/${name}`
+				: name;
+			alias[`rsg-components/${fullName}`] = filepath;
+		});
 	}
+
+	// Add components folder alias at the end, so users can override our components
+	// to customize the style guide (their aliases should be before this one)
+	alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
+
+	alias['rsg-customTheme'] =
+		typeof config.theme === 'string' ? config.theme : path.resolve(sourceDir, 'styles/emptyTheme');
+
+	alias['rsg-customStyles'] =
+		typeof config.styles === 'string'
+			? config.styles
+			: path.resolve(sourceDir, 'styles/emptyStyles');
+
+	webpackConfig.resolve = webpackConfig.resolve || {};
+	webpackConfig.resolve.alias = alias;
 
 	if (config.dangerouslyUpdateWebpackConfig) {
 		webpackConfig = config.dangerouslyUpdateWebpackConfig(webpackConfig, env);
