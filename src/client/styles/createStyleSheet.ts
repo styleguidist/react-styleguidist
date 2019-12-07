@@ -1,10 +1,10 @@
 import merge from 'lodash/merge';
 import memoize from 'lodash/memoize';
+import { Styles } from 'jss';
 // eslint-disable-next-line import/extensions,import/no-unresolved
 import customTheme from 'rsg-customTheme';
 // eslint-disable-next-line import/extensions,import/no-unresolved
 import customStyles from 'rsg-customStyles';
-import { Styles } from 'jss';
 import jss from './setupjss';
 import * as theme from './theme';
 
