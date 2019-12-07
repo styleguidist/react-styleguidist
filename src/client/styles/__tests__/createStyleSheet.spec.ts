@@ -1,3 +1,4 @@
+import { Styles } from 'jss';
 import * as theme from '../theme';
 import createStyleSheet from '../createStyleSheet';
 
@@ -15,7 +16,7 @@ var mockCustomTheme: RecursivePartial<Rsg.Theme> = {};
 jest.mock('rsg-customTheme', () => ({ default: mockCustomTheme }));
 
 // eslint-disable-next-line no-var
-var mockCustomStyles: Rsg.Styles = {};
+var mockCustomStyles: Styles = {};
 jest.mock('rsg-customStyles', () => ({ default: mockCustomStyles }));
 
 const styles = ({ color, borderRadius, maxWidth }: Rsg.Theme) => ({

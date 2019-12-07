@@ -3,12 +3,10 @@ import memoize from 'lodash/memoize';
 // eslint-disable-next-line import/extensions,import/no-unresolved
 import customTheme from 'rsg-customTheme';
 // eslint-disable-next-line import/extensions,import/no-unresolved
-import customStylesFile from 'rsg-customStyles';
+import customStyles from 'rsg-customStyles';
 import { Styles } from 'jss';
 import jss from './setupjss';
 import * as theme from './theme';
-
-const customStyles = customStylesFile as Rsg.Styles;
 
 export default memoize((styles, config: Rsg.StyleguidistConfig, componentName) => {
 	const mergedTheme: Rsg.Theme = merge({}, theme, config.theme, customTheme);
