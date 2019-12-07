@@ -23,6 +23,7 @@ module.exports = {
 			},
 			Code: {
 				code: {
+					// make inline code example appear the same color as links
 					color: theme.color.link,
 					fontSize: 14,
 				},
