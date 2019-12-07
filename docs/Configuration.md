@@ -599,11 +599,28 @@ Folder for static HTML style guide generated with `styleguidist build` command.
 
 #### `styles`
 
-Type: `object`, optional
+Type: `Object` or `Function`, optional
 
 Customize styles of any Styleguidist’s component.
 
 See example in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide).
+
+> **Note:** Using a function allows access to theme variables as seens in the example below. See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.ts). The returned object remains the same as the styles.
+
+```javascript
+module.exports = {
+  styles: function(theme) {
+    return {
+      Logo: {
+        logo: {
+          // we can now change the color used in the logo item to use the theme's `link` color
+          color: theme.color.link
+        }
+      }
+    }
+  }
+}
+```
 
 #### `template`
 
@@ -690,22 +707,22 @@ Function that modifies code example (Markdown fenced code block). For example, y
 
 ```javascript
 module.exports = {
-	updateExample(props, exampleFilePath) {
-		const { settings, lang } = props
-		if (typeof settings.file === 'string') {
-			const filepath = path.resolve(
-				path.dirname(exampleFilePath),
-				settings.file
-			)
-			const { file, ...restSettings } = settings;
-			return {
-				content: fs.readFileSync(filepath, 'utf8'),
-				settings: restSettings,
-				lang,
-			}
-		}
-		return props
-	}
+  updateExample(props, exampleFilePath) {
+    const { settings, lang } = props
+    if (typeof settings.file === 'string') {
+      const filepath = path.resolve(
+        path.dirname(exampleFilePath),
+        settings.file
+      )
+      const { file, ...restSettings } = settings
+      return {
+        content: fs.readFileSync(filepath, 'utf8'),
+        settings: restSettings,
+        lang
+      }
+    }
+    return props
+  }
 }
 ```
 
