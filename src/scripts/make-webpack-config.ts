@@ -126,6 +126,9 @@ export default function(
 	const alias =
 		webpackConfig.resolve && webpackConfig.resolve.alias ? webpackConfig.resolve.alias : {};
 
+	webpackConfig.resolve = webpackConfig.resolve || {};
+	webpackConfig.resolve.alias = alias;
+
 	// Custom style guide components
 	if (config.styleguideComponents) {
 		forEach(config.styleguideComponents, (filepath, name) => {
@@ -147,9 +150,6 @@ export default function(
 		typeof config.styles === 'string'
 			? config.styles
 			: path.resolve(sourceDir, 'styles/emptyStyles');
-
-	webpackConfig.resolve = webpackConfig.resolve || {};
-	webpackConfig.resolve.alias = alias;
 
 	if (config.dangerouslyUpdateWebpackConfig) {
 		webpackConfig = config.dangerouslyUpdateWebpackConfig(webpackConfig, env);

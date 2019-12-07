@@ -234,3 +234,25 @@ it('should pass specified mountPointId to HTML plugin', () => {
 		(getClasses(result.plugins, 'MiniHtmlWebpackPlugin')[0] as any).options.context.container
 	).toEqual('foo-bar');
 });
+
+it('should use theme as an alias if it is a string', () => {
+	const result = makeWebpackConfig(
+		{
+			...styleguideConfig,
+			theme: 'path/to/theme',
+		},
+		'development'
+	);
+	expect((result.resolve as any).alias['rsg-customTheme']).toEqual('path/to/theme');
+});
+
+it('should use styles as an alias if it is a string', () => {
+	const result = makeWebpackConfig(
+		{
+			...styleguideConfig,
+			styles: 'path/to/styles',
+		},
+		'development'
+	);
+	expect((result.resolve as any).alias['rsg-customStyles']).toEqual('path/to/styles');
+});
