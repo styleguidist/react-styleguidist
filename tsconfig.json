@@ -13,8 +13,8 @@
 		"lib": ["dom"],
 		"paths": {
 			"rsg-components/*": ["src/client/rsg-components/*"],
-			"rsg-customTheme": ["src/client/styles/empty"],
-			"rsg-customStyles": ["src/client/styles/empty"]
+			"rsg-customTheme": ["src/client/styles/emptyTheme"],
+			"rsg-customStyles": ["src/client/styles/emptyStyles"]
 		}
 	},
 	"include": ["src"],

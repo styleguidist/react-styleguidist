@@ -206,8 +206,8 @@
       "./src/client"
     ],
     "moduleNameMapper":{
-      "rsg-customTheme": "<rootDir>/src/client/styles/empty",
-      "rsg-customStyles": "<rootDir>/src/client/styles/empty"
+      "rsg-customTheme": "<rootDir>/src/client/styles/emptyTheme",
+      "rsg-customStyles": "<rootDir>/src/client/styles/emptyStyles"
     },
     "testPathIgnorePatterns": [
       "<rootDir>/lib/",

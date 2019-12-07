@@ -8,8 +8,14 @@ import customStyles from 'rsg-customStyles';
 import jss from './setupjss';
 import * as theme from './theme';
 
-export default memoize((styles, config: Rsg.StyleguidistConfig, componentName) => {
-	const mergedTheme: Rsg.Theme = merge({}, theme, config.theme, customTheme);
+export default memoize((styles, config: Rsg.ProcessedStyleguidistConfig, componentName) => {
+	const mergedTheme = merge<
+		RecursivePartial<Rsg.Theme>,
+		Rsg.Theme,
+		RecursivePartial<Rsg.Theme>,
+		RecursivePartial<Rsg.Theme>
+	>({}, theme, typeof config.theme !== 'string' ? config.theme : {}, customTheme);
+
 	const mergedStyles: Partial<Styles<string>> = merge(
 		{},
 		styles(mergedTheme),
