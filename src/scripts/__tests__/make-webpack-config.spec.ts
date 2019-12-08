@@ -1,5 +1,4 @@
 import webpack, { Configuration } from 'webpack';
-import deabsdeep from 'deabsdeep';
 import { Tapable } from 'tapable';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import makeWebpackConfig from '../make-webpack-config';
