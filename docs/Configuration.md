@@ -599,9 +599,11 @@ Folder for static HTML style guide generated with `styleguidist build` command.
 
 #### `styles`
 
-Type: `object`, optional
+Type: `Object` or `String` , optional
 
-Customize styles of any Styleguidist’s component.
+Customize styles of any Styleguidist’s component or file path to a file exporting said styles.
+
+The path is relative to the cwd or absolute.
 
 See example in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide).
 
@@ -625,16 +627,20 @@ A function that returns an HTML string, see [mini-html-webpack-plugin docs](http
 
 #### `theme`
 
-Type: `object`, optional
+Type: `Object` or `String`, optional
 
 Customize style guide UI fonts, colors, etc.
+
+Contain a theme object or a file path to a file exporting such object.
+
+The path is relative to the cwd or absolute.
 
 See example in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide).
 
 > **Note:** See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.ts).
-
+>
 > **Note:** Styles use [JSS](https://github.com/cssinjs/jss/blob/master/docs/jss-syntax.md) with these plugins: [jss-plugin-isolate](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-isolate), [jss-plugin-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested), [jss-plugin-camel-case](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-camel-case), [jss-plugin-default-unit](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-default-unit), [jss-plugin-compose](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-compose) and [jss-plugin-global](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-global).
-
+>
 > **Note:** Use [React Developer Tools](https://github.com/facebook/react) to find component and style names. For example a component `<LogoRenderer><h1 className="rsg--logo-53">` corresponds to an example above.
 
 #### `title`
@@ -690,22 +696,22 @@ Function that modifies code example (Markdown fenced code block). For example, y
 
 ```javascript
 module.exports = {
-	updateExample(props, exampleFilePath) {
-		const { settings, lang } = props
-		if (typeof settings.file === 'string') {
-			const filepath = path.resolve(
-				path.dirname(exampleFilePath),
-				settings.file
-			)
-			const { file, ...restSettings } = settings;
-			return {
-				content: fs.readFileSync(filepath, 'utf8'),
-				settings: restSettings,
-				lang,
-			}
-		}
-		return props
-	}
+  updateExample(props, exampleFilePath) {
+    const { settings, lang } = props
+    if (typeof settings.file === 'string') {
+      const filepath = path.resolve(
+        path.dirname(exampleFilePath),
+        settings.file
+      )
+      const { file, ...restSettings } = settings
+      return {
+        content: fs.readFileSync(filepath, 'utf8'),
+        settings: restSettings,
+        lang
+      }
+    }
+    return props
+  }
 }
 ```
 
@@ -796,11 +802,11 @@ module.exports = {
 ```
 
 > **Warning:** This option disables config load from `webpack.config.js`, load your config [manually](Webpack.md#reusing-your-projects-webpack-config).
-
+>
 > **Note:** `entry`, `externals`, `output`, `watch`, and `stats` options will be ignored. For production builds, `devtool` will also be ignored.
-
+>
 > **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `MiniHtmlWebpackPlugin`, `UglifyJsPlugin`, `TerserPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
-
+>
 > **Note:** Run style guide in verbose mode to see the actual webpack config used by Styleguidist: `npx styleguidist server --verbose`.
 
 See [Configuring webpack](Webpack.md) for examples.

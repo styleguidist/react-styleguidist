@@ -260,10 +260,16 @@ module.exports = {
 }
 ```
 
+You can as well store those styles and theme variables like below. This has one big advantage, it avoid needing our styleguide to restart at every modification of the styles or theme.
+
+Each modification will trigger a hot module replacement and automatically update the styleguide in your browser.
+
+Check out the [themed example](https://github.com/styleguidist/react-styleguidist/tree/master/examples/themed) on the githuub repo to see an example.
+
 > **Note:** See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.ts).
-
+>
 > **Note:** Styles use [JSS](https://github.com/cssinjs/jss/blob/master/docs/jss-syntax.md) with these plugins: [jss-isolate](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-isolate), [jss-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested), [jss-camel-case](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-camel-case), [jss-default-unit](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-default-unit), [jss-compose](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-compose) and [jss-global](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-global).
-
+>
 > **Note:** Use [React Developer Tools](https://github.com/facebook/react) to find component and style names. For example a component `<LogoRenderer><h1 className="rsg--logo-53">` corresponds to an example above.
 
 ## How to change the layout of a style guide?
@@ -390,16 +396,16 @@ module.exports = {
 
 ## How to debug my components and examples?
 
-1.  Open your browser’s developer tools
-2.  Write `debugger;` statement wherever you want: in a component source, a Markdown example or even in an editor in a browser.
+1. Open your browser’s developer tools
+2. Write `debugger;` statement wherever you want: in a component source, a Markdown example or even in an editor in a browser.
 
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/3i3E3j2h3t1315141k0o/debugging.png)
 
 ## How to debug the exceptions thrown from my components?
 
-1.  Put `debugger;` statement at the beginning of your code.
-2.  Press the ![Debugger](https://d3vv6lp55qjaqc.cloudfront.net/items/2h2q3N123N3G3R252o41/debugger.png) button in your browser’s developer tools.
-3.  Press the ![Continue](https://d3vv6lp55qjaqc.cloudfront.net/items/3b3c1P3g3O1h3q111I2l/continue.png) button and the debugger will stop execution at the next exception.
+1. Put `debugger;` statement at the beginning of your code.
+2. Press the ![Debugger](https://d3vv6lp55qjaqc.cloudfront.net/items/2h2q3N123N3G3R252o41/debugger.png) button in your browser’s developer tools.
+3. Press the ![Continue](https://d3vv6lp55qjaqc.cloudfront.net/items/3b3c1P3g3O1h3q111I2l/continue.png) button and the debugger will stop execution at the next exception.
 
 ## How to use the production or development build of React?
 
@@ -466,9 +472,9 @@ devServer: {
 
 Two options:
 
-1.  Put a `favicon.ico` file into the root folder of your site.
+1. Put a `favicon.ico` file into the root folder of your site.
 
-2.  Use [template](Configuration.md#template) option:
+2. Use [template](Configuration.md#template) option:
 
 ```javascript
 module.exports = {
