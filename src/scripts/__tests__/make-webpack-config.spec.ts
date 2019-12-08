@@ -1,4 +1,5 @@
 import webpack, { Configuration } from 'webpack';
+import deabsdeep from 'deabsdeep';
 import { Tapable } from 'tapable';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import makeWebpackConfig from '../make-webpack-config';
@@ -98,7 +99,20 @@ it('should set aliases from styleguideComponents option', () => {
 		},
 		'development'
 	);
-	expect(result.resolve && result.resolve.alias).toMatchSnapshot();
+	expect((result as any).resolve.alias['rsg-components/foo']).toEqual('bar');
+});
+
+it('should replace Renderer in aliases from styleguideComponents option', () => {
+	const result = makeWebpackConfig(
+		{
+			...styleguideConfig,
+			styleguideComponents: {
+				fooRenderer: 'bar',
+			},
+		},
+		'development'
+	);
+	expect((result as any).resolve.alias['rsg-components/foo/fooRenderer']).toEqual('bar');
 });
 
 it('should prepend requires as webpack entries', () => {

@@ -1,6 +1,6 @@
 import path from 'path';
 import castArray from 'lodash/castArray';
-import webpack, { Configuration } from 'webpack';
+import webpack, { Configuration, Resolve } from 'webpack';
 import TerserPlugin from 'terser-webpack-plugin';
 import MiniHtmlWebpackPlugin from 'mini-html-webpack-plugin';
 import MiniHtmlWebpackTemplate from '@vxna/mini-html-webpack-template';
@@ -16,6 +16,10 @@ import mergeWebpackConfig from './utils/mergeWebpackConfig';
 const RENDERER_REGEXP = /Renderer$/;
 
 const sourceDir = path.resolve(__dirname, '../client');
+
+interface AliasedConfiguration extends Configuration {
+	resolve: Resolve & { alias: Record<string, string> };
+}
 
 export default function(
 	config: Rsg.SanitizedStyleguidistConfig,
@@ -36,7 +40,7 @@ export default function(
 		template,
 	};
 
-	let webpackConfig: Configuration = {
+	let webpackConfig: AliasedConfiguration = {
 		entry: config.require.concat([path.resolve(sourceDir, 'index')]),
 		mode: env,
 		output: {
@@ -86,6 +90,7 @@ export default function(
 			},
 			/* eslint-enable @typescript-eslint/camelcase */
 		});
+
 		webpackConfig = merge(webpackConfig, {
 			output: {
 				filename: 'build/bundle.[chunkhash:8].js',
@@ -104,30 +109,30 @@ export default function(
 				minimize: config.minimize === true,
 				minimizer: [minimizer],
 			},
-		});
+		}) as AliasedConfiguration;
 	} else {
 		webpackConfig = merge(webpackConfig, {
 			entry: [require.resolve('react-dev-utils/webpackHotDevClient')],
 			plugins: [new webpack.HotModuleReplacementPlugin()],
-		});
+		}) as AliasedConfiguration;
 	}
 
 	if (config.webpackConfig) {
-		webpackConfig = mergeWebpackConfig(webpackConfig, config.webpackConfig, env);
+		webpackConfig = mergeWebpackConfig(
+			webpackConfig,
+			config.webpackConfig,
+			env
+		) as AliasedConfiguration;
 	}
 
 	// Custom aliases
 	if (config.moduleAliases) {
 		webpackConfig = merge(webpackConfig, {
 			resolve: { alias: config.moduleAliases },
-		});
+		}) as AliasedConfiguration;
 	}
 
-	const alias =
-		webpackConfig.resolve && webpackConfig.resolve.alias ? webpackConfig.resolve.alias : {};
-
-	webpackConfig.resolve = webpackConfig.resolve || {};
-	webpackConfig.resolve.alias = alias;
+	const alias = webpackConfig.resolve.alias;
 
 	// Custom style guide components
 	if (config.styleguideComponents) {
