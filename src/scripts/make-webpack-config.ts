@@ -157,7 +157,10 @@ export default function(
 			: path.resolve(sourceDir, 'styles/emptyStyles');
 
 	if (config.dangerouslyUpdateWebpackConfig) {
-		webpackConfig = config.dangerouslyUpdateWebpackConfig(webpackConfig, env);
+		webpackConfig = config.dangerouslyUpdateWebpackConfig(
+			webpackConfig,
+			env
+		) as AliasedConfiguration;
 	}
 
 	return webpackConfig;
