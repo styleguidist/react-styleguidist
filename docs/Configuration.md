@@ -690,22 +690,22 @@ Function that modifies code example (Markdown fenced code block). For example, y
 
 ```javascript
 module.exports = {
-	updateExample(props, exampleFilePath) {
-		const { settings, lang } = props
-		if (typeof settings.file === 'string') {
-			const filepath = path.resolve(
-				path.dirname(exampleFilePath),
-				settings.file
-			)
-			const { file, ...restSettings } = settings;
-			return {
-				content: fs.readFileSync(filepath, 'utf8'),
-				settings: restSettings,
-				lang,
-			}
-		}
-		return props
-	}
+  updateExample(props, exampleFilePath) {
+    const { settings, lang } = props
+    if (typeof settings.file === 'string') {
+      const filepath = path.resolve(
+        path.dirname(exampleFilePath),
+        settings.file
+      )
+      const { file, ...restSettings } = settings
+      return {
+        content: fs.readFileSync(filepath, 'utf8'),
+        settings: restSettings,
+        lang
+      }
+    }
+    return props
+  }
 }
 ```
 
