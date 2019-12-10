@@ -605,7 +605,7 @@ Customize styles of any Styleguidist’s component.
 
 See example in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide).
 
-> **Note:** Using a function allows access to theme variables as seen in the example below. See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.ts). The returned object remains the same as the styles.
+> **Note:** Using a function allows access to theme variables as seen in the example below. See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.ts). The returned object folows the same format as when configured as a litteral.
 
 ```javascript
 module.exports = {
