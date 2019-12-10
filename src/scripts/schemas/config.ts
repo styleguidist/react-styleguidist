@@ -275,7 +275,7 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 		default: 'styleguide',
 	},
 	styles: {
-		type: 'object',
+		type: ['object', 'function'],
 		default: {},
 		example: {
 			Logo: {
