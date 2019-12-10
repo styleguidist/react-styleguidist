@@ -10,8 +10,8 @@ module.exports = {
 	ribbon: {
 		url: 'https://github.com/styleguidist/react-styleguidist',
 	},
-	theme: path.resolve(__dirname, './styleguide.theme.js'),
-	styles: path.resolve(__dirname, './styleguide.styles.js'),
+	theme: './styleguide.theme.js',
+	styles: './styleguide.styles.js',
 	version,
 	webpackConfig: {
 		module: {

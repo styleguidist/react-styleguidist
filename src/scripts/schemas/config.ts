@@ -284,8 +284,13 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 				},
 			},
 		},
-		process: (val: object | string, config: Rsg.StyleguidistConfig): string | object =>
-			typeof val === 'string' ? path.resolve(config.styleguideDir || '', val) : val,
+		process: (
+			val: object | string,
+			config: Rsg.StyleguidistConfig,
+			configDir: string
+		): string | object => {
+			return typeof val === 'string' ? path.resolve(configDir, val) : val;
+		},
 	},
 	template: {
 		type: ['object', 'function'],
@@ -309,8 +314,11 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 			link: 'firebrick',
 			linkHover: 'salmon',
 		},
-		process: (val: object | string, config: Rsg.StyleguidistConfig): string | object =>
-			typeof val === 'string' ? path.resolve(config.styleguideDir || '', val) : val,
+		process: (
+			val: object | string,
+			config: Rsg.StyleguidistConfig,
+			configDir: string
+		): string | object => (typeof val === 'string' ? path.resolve(configDir, val) : val),
 	},
 	title: {
 		type: 'string',
