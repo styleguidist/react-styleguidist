@@ -124,9 +124,9 @@ it('should set array of from with assetsDir array in CopyWebpackPlugin', () => {
 	expect(CopyWebpackPlugin).toHaveBeenCalledWith([{ from: '/assets1/' }, { from: '/assets2/' }]);
 });
 
-it('should add CopyWebpackPlugin to plugins in production', () => {
+it('should not be used without assetsDir in CopyWebpackPlugin', () => {
 	makeWebpackConfig({ ...styleguideConfig }, 'production');
-	expect(CopyWebpackPlugin).toHaveBeenCalledWith([]);
+	expect(CopyWebpackPlugin).not.toHaveBeenCalled();
 });
 
 it('should merge user webpack config', () => {

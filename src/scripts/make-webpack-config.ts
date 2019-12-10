@@ -86,20 +86,25 @@ export default function(
 			},
 			/* eslint-enable @typescript-eslint/camelcase */
 		});
+		const prodPlugins = [
+			new CleanWebpackPlugin({
+				root: config.styleguideDir,
+				verbose: config.verbose === true,
+			} as any),
+		];
+
+		if (config.assetsDir) {
+			prodPlugins.push(new CopyWebpackPlugin(
+				castArray(config.assetsDir).map(dir => ({ from: dir }))
+			) as any);
+		}
+
 		webpackConfig = merge(webpackConfig, {
 			output: {
 				filename: 'build/bundle.[chunkhash:8].js',
 				chunkFilename: 'build/[name].[chunkhash:8].js',
 			},
-			plugins: [
-				new CleanWebpackPlugin({
-					root: config.styleguideDir,
-					verbose: config.verbose === true,
-				} as any),
-				new CopyWebpackPlugin(
-					config.assetsDir ? castArray(config.assetsDir).map(dir => ({ from: dir })) : []
-				),
-			],
+			plugins: prodPlugins,
 			optimization: {
 				minimize: config.minimize === true,
 				minimizer: [minimizer],
