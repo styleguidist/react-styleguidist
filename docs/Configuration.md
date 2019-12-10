@@ -599,13 +599,30 @@ Folder for static HTML style guide generated with `styleguidist build` command.
 
 #### `styles`
 
-Type: `Object` or `String` , optional
+Type: `Object`, `String` or `Function`, optional
 
-Customize styles of any Styleguidist’s component or file path to a file exporting said styles.
+Customize styles of any Styleguidist’s component using an object, a funciton returning said object or a file path to a file exporting said styles.
 
-The path is relative to the cwd or absolute.
+See examples in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide).
 
-See example in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide).
+> **Note:** Using a function allows access to theme variables as seen in the example below. See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.ts). The returned object folows the same format as when configured as a litteral.
+
+```javascript
+module.exports = {
+  styles: function(theme) {
+    return {
+      Logo: {
+        logo: {
+          // we can now change the color used in the logo item to use the theme's `link` color
+          color: theme.color.link
+        }
+      }
+    }
+  }
+}
+```
+
+**NOTE** If using a file path, it has to be absolute or relative to the config file.
 
 #### `template`
 
@@ -629,13 +646,11 @@ A function that returns an HTML string, see [mini-html-webpack-plugin docs](http
 
 Type: `Object` or `String`, optional
 
-Customize style guide UI fonts, colors, etc.
+Customize style guide UI fonts, colors, etc. using a theme object or the path to a file exporting such object.
 
-Contain a theme object or a file path to a file exporting such object.
+The path is relative to the config file or absolute.
 
-The path is relative to the cwd or absolute.
-
-See example in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide).
+See examples in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide).
 
 > **Note:** See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.ts).
 >

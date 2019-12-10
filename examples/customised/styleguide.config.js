@@ -11,24 +11,24 @@ module.exports = {
 		border: '#e0d2de',
 		font: ['Helvetica', 'sans-serif'],
 	},
-	styles: {
-		Playground: {
-			preview: {
-				paddingLeft: 0,
-				paddingRight: 0,
-				borderWidth: [[0, 0, 1, 0]],
-				borderRadius: 0,
+	styles: function styles(theme) {
+		return {
+			Playground: {
+				preview: {
+					paddingLeft: 0,
+					paddingRight: 0,
+					borderWidth: [[0, 0, 1, 0]],
+					borderRadius: 0,
+				},
 			},
-		},
-		Markdown: {
-			pre: {
-				border: 0,
-				background: 'none',
+			Code: {
+				code: {
+					// make inline code example appear the same color as links
+					color: theme.color.link,
+					fontSize: 14,
+				},
 			},
-			code: {
-				fontSize: 14,
-			},
-		},
+		};
 	},
 	getComponentPathLine(componentPath) {
 		const name = path.basename(componentPath, '.js');

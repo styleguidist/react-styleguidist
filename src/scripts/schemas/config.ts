@@ -275,7 +275,7 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 		default: 'styleguide',
 	},
 	styles: {
-		type: ['object', 'existing file path'],
+		type: ['object', 'existing file path', 'function'],
 		default: {},
 		example: {
 			Logo: {

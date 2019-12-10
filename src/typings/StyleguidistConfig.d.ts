@@ -74,7 +74,7 @@ declare global {
 			sortProps(props: PropDescriptor[]): PropDescriptor[];
 			styleguideComponents: Record<string, string>;
 			styleguideDir: string;
-			styles: Styles | string;
+			styles: Styles | string | ((theme: Theme) => Styles);
 			template: any;
 			theme: RecursivePartial<Theme> | string;
 			title: string;

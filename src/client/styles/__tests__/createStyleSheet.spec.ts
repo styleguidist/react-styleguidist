@@ -24,6 +24,8 @@ const customThemeMaxWidth = 9999;
 const customStyleBorderColor = '#ABCDEF';
 const customStyleBorderColorInFile = '#FEDCBA';
 
+const customThemeLinkColor = '#CCCAAA';
+
 const testComponentName = 'TestComponentName';
 const testRuleName = 'testRule';
 
@@ -42,6 +44,7 @@ const config = ({
 		color: {
 			base: customThemeColor,
 			border: customThemeBorderColor,
+			link: customThemeLinkColor,
 		},
 		maxWidth: customThemeMaxWidth,
 	},
@@ -53,6 +56,20 @@ const config = ({
 		},
 	},
 } as any) as Rsg.ProcessedStyleguidistConfig;
+
+const configWithStylesAsAFunction = {
+	hello: 1,
+	...config,
+	styles: (locTheme: Rsg.Theme) => {
+		return {
+			[testComponentName]: {
+				[testRuleName]: {
+					borderColor: locTheme.color.link,
+				},
+			},
+		};
+	},
+};
 
 describe('createStyleSheet', () => {
 	beforeEach(() => {
@@ -110,5 +127,16 @@ describe('createStyleSheet', () => {
 		const style = (styleSheet.getRule(testRuleName) as any).style;
 
 		expect(style['border-color']).toBe(customStyleBorderColorInFile);
+	});
+
+	it('should override config theme variables with config styles as a function', () => {
+		// remove cache from memoize since we changed config
+		if (createStyleSheet && createStyleSheet.cache && createStyleSheet.cache.clear) {
+			createStyleSheet.cache.clear();
+		}
+		const styleSheet = createStyleSheet(styles, configWithStylesAsAFunction, testComponentName);
+		const style = (styleSheet.getRule(testRuleName) as any).style;
+
+		expect(style['border-color']).toBe(customThemeLinkColor);
 	});
 });
