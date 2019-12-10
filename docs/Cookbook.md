@@ -260,9 +260,19 @@ module.exports = {
 }
 ```
 
-You can as well store those styles and theme variables like below. This has one big advantage, it avoid needing our styleguide to restart at every modification of the styles or theme.
+> **Note:** See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.ts).
+>
+> **Note:** Styles use [JSS](https://github.com/cssinjs/jss/blob/master/docs/jss-syntax.md) with these plugins: [jss-isolate](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-isolate), [jss-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested), [jss-camel-case](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-camel-case), [jss-default-unit](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-default-unit), [jss-compose](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-compose) and [jss-global](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-global).
+>
+> **Note:** Use [React Developer Tools](https://github.com/facebook/react) to find component and style names. For example a component `<LogoRenderer><h1 className="rsg--logo-53">` corresponds to an example above.
 
-In styleguide.config,js use file paths instead of objects
+> **Note:** Use a function instead of an object for [styles](Configuration.md#styles) to access all theme variables in your custom styles.
+
+You can store all styles in a separate file to allow hot module replacement (HMR). Same goes for theme variables.
+
+The same example above would then translate as:
+
+In `styleguide.config,js`, objects are replaced with file paths
 
 ```javascript
 module.exports = {
@@ -272,37 +282,40 @@ module.exports = {
 }
 ```
 
-then in `styleguide/theme.js`
+then in `./styleguide/theme.js`
 
 ```javascript
 module.exports = {
   color: {
-    link: '#F50'
+    link: 'firebrick',
+    linkHover: 'salmon'
+  },
+  fontFamily: {
+    base: '"Comic Sans MS", "Comic Sans", cursive'
   }
 }
 ```
 
-and in `styleguide/styles.js`
+and in `./styleguide/styles.js`
 
 ```javascript
 module.exports = {
-  color: {
-    link: '#F50'
+  Logo: {
+    // We're changing the LogoRenderer component
+    logo: {
+      // We're changing the rsg--logo-XX class name inside the component
+      animation: 'blink ease-in-out 300ms infinite'
+    },
+    '@keyframes blink': {
+      to: { opacity: 0 }
+    }
   }
 }
 ```
 
-Each modification of `theme.js` will trigger a hot module replacement, updating the styleguide in the browser.
+Each modification of `theme.js` or `styles.js` will trigger a hot module replacement, updating the styleguide in the browser.
 
 Check out the [themed example](https://github.com/styleguidist/react-styleguidist/tree/master/examples/themed) on the github repo to learn more and try it out.
-
-> **Note:** See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.ts).
->
-> **Note:** Styles use [JSS](https://github.com/cssinjs/jss/blob/master/docs/jss-syntax.md) with these plugins: [jss-isolate](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-isolate), [jss-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested), [jss-camel-case](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-camel-case), [jss-default-unit](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-default-unit), [jss-compose](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-compose) and [jss-global](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-global).
->
-> **Note:** Use [React Developer Tools](https://github.com/facebook/react) to find component and style names. For example a component `<LogoRenderer><h1 className="rsg--logo-53">` corresponds to an example above.
-
-> **Note:** Use a function instead of an object for [styles](Configuration.md#styles) to access all theme variables in your custom styles.
 
 ```javascript
 module.exports = {
