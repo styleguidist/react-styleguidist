@@ -262,9 +262,39 @@ module.exports = {
 
 You can as well store those styles and theme variables like below. This has one big advantage, it avoid needing our styleguide to restart at every modification of the styles or theme.
 
-Each modification will trigger a hot module replacement and automatically update the styleguide in your browser.
+In styleguide.config,js use file paths instead of objects
 
-Check out the [themed example](https://github.com/styleguidist/react-styleguidist/tree/master/examples/themed) on the githuub repo to see an example.
+```javascript
+module.exports = {
+  // ...
+  styles: './styleguide/styles.js',
+  theme: './styleguide/themes.js'
+}
+```
+
+then in `styleguide/theme.js`
+
+```javascript
+module.exports = {
+  color: {
+    link: '#F50'
+  }
+}
+```
+
+and in `styleguide/styles.js`
+
+```javascript
+module.exports = {
+  color: {
+    link: '#F50'
+  }
+}
+```
+
+Each modification of `theme.js` will trigger a hot module replacement, updating the styleguide in the browser.
+
+Check out the [themed example](https://github.com/styleguidist/react-styleguidist/tree/master/examples/themed) on the github repo to learn more and try it out.
 
 > **Note:** See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.ts).
 >
@@ -272,7 +302,7 @@ Check out the [themed example](https://github.com/styleguidist/react-styleguidis
 >
 > **Note:** Use [React Developer Tools](https://github.com/facebook/react) to find component and style names. For example a component `<LogoRenderer><h1 className="rsg--logo-53">` corresponds to an example above.
 
-> **Note:** Use a function instead of an object for [styles](Configuration.md#styles) to access all heme variables in your custom styles.
+> **Note:** Use a function instead of an object for [styles](Configuration.md#styles) to access all theme variables in your custom styles.
 
 ```javascript
 module.exports = {
