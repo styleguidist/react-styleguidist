@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@vxna/mini-html-webpack-template": "^1.0.0",
-    "acorn": "~6.3.0",
+    "acorn": "~6.4.0",
     "acorn-jsx": "^5.1.0",
     "ast-types": "~0.13.2",
     "buble": "0.19.8",
