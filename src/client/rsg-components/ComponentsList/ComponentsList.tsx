@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ComponentsListRenderer from 'rsg-components/ComponentsList/ComponentsListRenderer';
+import { useStyleGuideContext } from 'rsg-components/Context';
+import { getHash } from '../../utils/handleHash';
 import getUrl from '../../utils/getUrl';
 
 interface ComponentsListProps {
@@ -16,20 +18,37 @@ const ComponentsList: React.FunctionComponent<ComponentsListProps> = ({
 	useHashId,
 	hashPath,
 }) => {
-	const mappedItems = items.map(item => ({
-		...item,
-		shouldOpenInNewTab: !!item.href,
-		href: item.href
-			? item.href
-			: getUrl({
-					name: item.name,
-					slug: item.slug,
-					anchor: !useRouterLinks,
-					hashPath: useRouterLinks ? hashPath : false,
-					id: useRouterLinks ? useHashId : false,
-			  }),
-	}));
-	return <ComponentsListRenderer items={mappedItems} />;
+	const {
+		config: { pagePerSection },
+	} = useStyleGuideContext();
+
+	// Match selected component in both basic routing and pagePerSection routing.
+	const { hash, pathname } = window.location;
+	const windowHash = pathname + (pagePerSection ? hash : getHash(hash));
+	const mappedItems = items
+		.map(item => {
+			const href = item.href
+				? item.href
+				: getUrl({
+						name: item.name,
+						slug: item.slug,
+						anchor: !useRouterLinks,
+						hashPath: useRouterLinks ? hashPath : false,
+						id: useRouterLinks ? useHashId : false,
+				  });
+
+			const open = item.forceOpen || (href && windowHash.indexOf(href) >= 0);
+			return {
+				...item,
+				shouldOpenInNewTab: !!item.href,
+				href,
+				content: open ? item.content : undefined,
+				selected: windowHash === href,
+			};
+		})
+		.filter(item => item.visibleName);
+
+	return mappedItems.length > 0 ? <ComponentsListRenderer items={mappedItems} /> : null;
 };
 
 ComponentsList.propTypes = {

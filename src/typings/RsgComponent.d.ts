@@ -12,8 +12,6 @@ declare global {
 			heading?: boolean;
 			filepath?: string;
 			pathLine?: string;
-			visibleName?: string;
-			content?: { props: { items: Component[] } };
 			shouldOpenInNewTab?: boolean;
 			forceOpen?: boolean;
 			description?: string;
@@ -33,6 +31,8 @@ declare global {
 				examples?: Example[];
 			};
 			module?: number;
+			content?: React.ReactNode;
+			visibleName?: string;
 			metadata?: {
 				tags?: string[];
 			};

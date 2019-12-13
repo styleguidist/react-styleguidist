@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import cx from 'clsx';
 import Link from 'rsg-components/Link';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
-import { useStyleGuideContext } from 'rsg-components/Context';
-import { getHash } from '../../utils/handleHash';
 
 const styles = ({ color, fontFamily, fontSize, space, mq }: Rsg.Theme) => ({
 	list: {
@@ -39,52 +37,35 @@ const styles = ({ color, fontFamily, fontSize, space, mq }: Rsg.Theme) => ({
 });
 
 interface ComponentsListRendererProps extends JssInjectedProps {
-	items: Rsg.Component[];
+	items: (Rsg.Component & { selected: boolean })[];
 }
 
 export const ComponentsListRenderer: React.FunctionComponent<ComponentsListRendererProps> = ({
 	classes,
 	items,
 }) => {
-	const {
-		config: { pagePerSection },
-	} = useStyleGuideContext();
-
-	const visibleItems = items.filter(item => item.visibleName);
-
-	if (!visibleItems.length) {
-		return null;
-	}
-
-	// Match selected component in both basic routing and pagePerSection routing.
-	const { hash, pathname } = window.location;
-	const windowHash = pathname + (pagePerSection ? hash : getHash(hash));
 	return (
 		<ul className={classes.list}>
-			{visibleItems.map(
-				({ heading, visibleName, href, content, shouldOpenInNewTab, forceOpen }) => {
-					const isItemSelected = windowHash === href;
-					const isSectionOpen = forceOpen || (href && windowHash.indexOf(href) === 0);
-					return (
-						<li
-							className={cx(classes.item, {
-								[classes.isChild]: !content && !shouldOpenInNewTab,
-								[classes.isSelected]: isItemSelected,
-							})}
-							key={href}
+			{items.map(({ heading, visibleName, href, content, shouldOpenInNewTab, selected }) => {
+				return (
+					<li
+						className={cx(classes.item, {
+							[classes.isChild]: !content && !shouldOpenInNewTab,
+							[classes.isSelected]: selected,
+						})}
+						key={href}
+					>
+						<Link
+							className={cx(heading && classes.heading)}
+							href={href}
+							target={shouldOpenInNewTab ? '_blank' : undefined}
 						>
-							<Link
-								className={cx(heading && classes.heading)}
-								href={href}
-								target={shouldOpenInNewTab ? '_blank' : undefined}
-							>
-								{visibleName}
-							</Link>
-							{isSectionOpen ? content : null}
-						</li>
-					);
-				}
-			)}
+							{visibleName}
+						</Link>
+						{content}
+					</li>
+				);
+			})}
 		</ul>
 	);
 };
