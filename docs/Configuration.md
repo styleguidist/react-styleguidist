@@ -601,7 +601,7 @@ Folder for static HTML style guide generated with `styleguidist build` command.
 
 Type: `Object`, `String` or `Function`, optional
 
-Customize styles of any Styleguidist’s component using an object, a funciton returning said object or a file path to a file exporting said styles.
+Customize styles of any Styleguidist’s component using an object, a function returning said object or a file path to a file exporting said styles.
 
 See examples in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide).
 
