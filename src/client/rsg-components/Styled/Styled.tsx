@@ -8,7 +8,7 @@ export interface JssInjectedProps {
 }
 
 export default function StyleHOC<P extends JssInjectedProps>(
-	styles: Styles
+	styles: (t: Rsg.Theme) => Styles<string>
 ): (WrappedComponent: ComponentType<P>) => ComponentType<Omit<P, keyof JssInjectedProps>> {
 	return (WrappedComponent: ComponentType<P>) => {
 		const componentName = WrappedComponent.name.replace(/Renderer$/, '');

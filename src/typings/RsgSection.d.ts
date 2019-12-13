@@ -7,6 +7,7 @@ declare namespace Rsg {
 		usageMode?: EXPAND_MODE;
 		href?: string;
 		external?: string;
+		sectionDepth?: number;
 	}
 
 	interface Section extends BaseSection {
@@ -16,13 +17,19 @@ declare namespace Rsg {
 		components?: Component[];
 		sections?: Section[];
 		content?: Example[] | string;
-		sectionDepth?: number;
 	}
 
 	interface ConfigSection extends BaseSection {
-		components?: string | string[];
+		components?: string | string[] | (() => string[]);
 		sections?: ConfigSection[];
-		content?: string[] | string;
+		content?: string;
+	}
+
+	interface LoaderSection extends BaseSection {
+		slug?: string;
+		content?: RequireItResult | MarkdownExample;
+		components: LoaderComponent[];
+		sections: LoaderSection[];
 	}
 
 	interface ExampleSection extends Section {

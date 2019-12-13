@@ -266,6 +266,23 @@ module.exports = {
 
 > **Note:** Use [React Developer Tools](https://github.com/facebook/react) to find component and style names. For example a component `<LogoRenderer><h1 className="rsg--logo-53">` corresponds to an example above.
 
+> **Note:** Use a function instead of an object for [styles](Configuration.md#styles) to access all heme variables in your custom styles.
+
+```javascript
+module.exports = {
+  styles: function(theme) {
+    return {
+      Logo: {
+        logo: {
+          // we can now change the color used in the logo item to use the theme's `link` color
+          color: theme.color.link
+        }
+      }
+    }
+  }
+}
+```
+
 ## How to change the layout of a style guide?
 
 You can replace any Styleguidist React component. But in most of the cases you’ll want to replace `*Renderer` components — all HTML is rendered by these components. For example `ReactComponentRenderer`, `ComponentsListRenderer`, `PropsRenderer`, etc. — [check the source](https://github.com/styleguidist/react-styleguidist/tree/master/src/client/rsg-components) to see what components are available.

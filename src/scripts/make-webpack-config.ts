@@ -96,15 +96,17 @@ export default function(
 					root: config.styleguideDir,
 					verbose: config.verbose === true,
 				} as any),
-				new CopyWebpackPlugin(
-					config.assetsDir ? castArray(config.assetsDir).map(dir => ({ from: dir })) : []
-				),
 			],
 			optimization: {
 				minimize: config.minimize === true,
 				minimizer: [minimizer],
 			},
 		});
+		if (config.assetsDir && webpackConfig.plugins) {
+			webpackConfig.plugins.push(
+				new CopyWebpackPlugin(castArray(config.assetsDir).map(dir => ({ from: dir })))
+			);
+		}
 	} else {
 		webpackConfig = merge(webpackConfig, {
 			entry: [require.resolve('react-dev-utils/webpackHotDevClient')],

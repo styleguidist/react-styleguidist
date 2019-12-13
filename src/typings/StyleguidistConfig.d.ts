@@ -1,13 +1,18 @@
 import WebpackDevServer from 'webpack-dev-server';
-import { Configuration } from 'webpack';
+import { Configuration, loader } from 'webpack';
 import { TransformOptions } from 'buble';
 import { Handler, DocumentationObject, PropDescriptor } from 'react-docgen';
 import { ASTNode } from 'ast-types';
 import { NodePath } from 'ast-types/lib/node-path';
+import { Styles } from 'jss';
 
 declare global {
 	namespace Rsg {
 		type EXPAND_MODE = 'expand' | 'collapse' | 'hide';
+
+		interface StyleguidistLoaderContext extends loader.LoaderContext {
+			_styleguidist: SanitizedStyleguidistConfig;
+		}
 
 		interface BaseStyleguidistConfig {
 			assetsDir: string | string[];
@@ -19,7 +24,7 @@ declare global {
 			contextDependencies: string[];
 			configureServer(server: WebpackDevServer, env: string): string;
 			dangerouslyUpdateWebpackConfig: (server: Configuration, env: string) => Configuration;
-			defaultExample: string | boolean;
+			defaultExample: string | false;
 			exampleMode: EXPAND_MODE;
 			editorConfig: {
 				theme: string;
@@ -38,8 +43,11 @@ declare global {
 			moduleAliases: Record<string, string>;
 			pagePerSection: boolean;
 			previewDelay: number;
-			printBuildInstructions(config: ProcessedStyleguidistConfig): void;
-			printServerInstructions(config: ProcessedStyleguidistConfig): void;
+			printBuildInstructions(config: SanitizedStyleguidistConfig): void;
+			printServerInstructions(
+				config: SanitizedStyleguidistConfig,
+				options: { isHttps: boolean }
+			): void;
 			propsParser(
 				filePath: string,
 				code: string,
@@ -67,12 +75,15 @@ declare global {
 			sortProps(props: PropDescriptor[]): PropDescriptor[];
 			styleguideComponents: Record<string, string>;
 			styleguideDir: string;
-			styles: Styles;
+			styles: Styles | ((theme: Theme) => Styles);
 			template: any;
 			theme: Theme;
 			title: string;
-			updateDocs(doc: Component, file: string): Component;
-			updateExample(props: Example, ressourcePath: string): Example;
+			updateDocs(doc: PropsObject, file: string): PropsObject;
+			updateExample(
+				props: Omit<CodeExample, 'type'>,
+				ressourcePath: string
+			): Omit<CodeExample, 'type'>;
 			updateWebpackConfig(config: Configuration): Configuration;
 			usageMode: EXPAND_MODE;
 			verbose: boolean;
@@ -88,6 +99,9 @@ declare global {
 			sections: ConfigSection[];
 		}
 
-		type StyleguidistConfig = RecursivePartial<SanitizedStyleguidistConfig>;
+		interface StyleguidistConfig
+			extends RecursivePartial<Omit<SanitizedStyleguidistConfig, 'defaultExample'>> {
+			defaultExample?: string | boolean;
+		}
 	}
 }

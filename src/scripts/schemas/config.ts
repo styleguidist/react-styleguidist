@@ -32,17 +32,17 @@ export type EXPAND_MODE = 'expand' | 'collapse' | 'hide';
 
 export type StyleguidistConfigKey = keyof Rsg.SanitizedStyleguidistConfig;
 
-export interface ConfigSchemaOptions {
-	process?(value: any, config: Rsg.StyleguidistConfig, rootDir: string): any;
+export interface ConfigSchemaOptions<T> {
+	process?(value: any, config: T, rootDir: string): any;
 	default?: any;
-	required?: boolean | ((config?: Rsg.StyleguidistConfig) => string | boolean);
+	required?: boolean | ((config?: T) => string | boolean);
 	deprecated?: string;
 	removed?: string;
 	type?: string | string[];
 	example?: any;
 }
 
-const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions> = {
+const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.StyleguidistConfig>> = {
 	assetsDir: {
 		type: ['array', 'existing directory path'],
 		example: 'assets',
@@ -279,7 +279,7 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions> = {
 		default: 'styleguide',
 	},
 	styles: {
-		type: 'object',
+		type: ['object', 'function'],
 		default: {},
 		example: {
 			Logo: {
