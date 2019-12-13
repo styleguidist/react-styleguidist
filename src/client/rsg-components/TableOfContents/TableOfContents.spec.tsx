@@ -142,7 +142,7 @@ it('should call a callback when input value changed', () => {
 it('should render content of subsections of a section that has no components', () => {
 	const actual = shallow(
 		<TableOfContents
-			sections={[{ sections: [{ contents: 'intro.md' }, { contents: 'chapter.md' }] }]}
+			sections={[{ sections: [{ content: 'intro.md' }, { content: 'chapter.md' }] }]}
 		/>
 	);
 
@@ -151,7 +151,6 @@ it('should render content of subsections of a section that has no components', (
 		  Object {
 		    "components": Array [],
 		    "content": undefined,
-		    "contents": "intro.md",
 		    "forceOpen": true,
 		    "heading": false,
 		    "sections": Array [],
@@ -159,7 +158,6 @@ it('should render content of subsections of a section that has no components', (
 		  Object {
 		    "components": Array [],
 		    "content": undefined,
-		    "contents": "chapter.md",
 		    "forceOpen": true,
 		    "heading": false,
 		    "sections": Array [],
@@ -170,6 +168,42 @@ it('should render content of subsections of a section that has no components', (
 
 it('should render components of a single top section as root', () => {
 	const actual = shallow(<TableOfContents sections={[{ components }]} />);
+
+	expect(actual.find('ComponentsList').prop('items')).toMatchInlineSnapshot(`
+		Array [
+		  Object {
+		    "components": Array [],
+		    "content": undefined,
+		    "forceOpen": true,
+		    "heading": false,
+		    "name": "Button",
+		    "sections": Array [],
+		    "slug": "button",
+		  },
+		  Object {
+		    "components": Array [],
+		    "content": undefined,
+		    "forceOpen": true,
+		    "heading": false,
+		    "name": "Input",
+		    "sections": Array [],
+		    "slug": "input",
+		  },
+		  Object {
+		    "components": Array [],
+		    "content": undefined,
+		    "forceOpen": true,
+		    "heading": false,
+		    "name": "Textarea",
+		    "sections": Array [],
+		    "slug": "textarea",
+		  },
+		]
+	`);
+});
+
+it('should render components with useRouterLinks', () => {
+	const actual = shallow(<TableOfContents sections={components} useRouterLinks />);
 
 	expect(actual.find('ComponentsList').prop('items')).toMatchInlineSnapshot(`
 		Array [
