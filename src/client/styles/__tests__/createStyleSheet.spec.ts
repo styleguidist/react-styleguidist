@@ -58,7 +58,6 @@ const config = ({
 } as any) as Rsg.ProcessedStyleguidistConfig;
 
 const configWithStylesAsAFunction = {
-	hello: 1,
 	...config,
 	styles: (locTheme: Rsg.Theme) => {
 		return {
