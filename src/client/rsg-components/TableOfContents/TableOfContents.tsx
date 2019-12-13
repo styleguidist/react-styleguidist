@@ -48,21 +48,26 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 			const windowHash = pathname + (useRouterLinks ? hash : getHash(hash));
 
 			// get href
-			const href = getUrl({
-				name: section.name,
-				slug: section.slug,
-				anchor: !useRouterLinks,
-				hashPath: useRouterLinks ? hashPath : false,
-				id: useRouterLinks ? useHashId : false,
-			});
+			const href = section.href
+				? section.href
+				: getUrl({
+						name: section.name,
+						slug: section.slug,
+						anchor: !useRouterLinks,
+						hashPath: useRouterLinks ? hashPath : false,
+						id: useRouterLinks ? useHashId : false,
+				  });
 
-			if (containsSelected || (href && windowHash.indexOf(href) === 0)) {
+			const selected = href && windowHash.indexOf(href) === 0;
+
+			if (containsSelected || selected) {
 				childrenContainSelected = true;
 			}
 
 			return {
 				...section,
 				heading: !!section.name && children.length > 0,
+				href,
 				content,
 				forceOpen:
 					!!this.state.searchTerm.length || !this.props.collapsibleSections || containsSelected,

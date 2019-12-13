@@ -153,6 +153,7 @@ it('should render content of subsections of a section that has no components', (
 		    "content": undefined,
 		    "forceOpen": true,
 		    "heading": false,
+		    "href": "/#undefined",
 		    "sections": Array [],
 		  },
 		  Object {
@@ -160,6 +161,7 @@ it('should render content of subsections of a section that has no components', (
 		    "content": undefined,
 		    "forceOpen": true,
 		    "heading": false,
+		    "href": "/#undefined",
 		    "sections": Array [],
 		  },
 		]
@@ -176,6 +178,7 @@ it('should render components of a single top section as root', () => {
 		    "content": undefined,
 		    "forceOpen": true,
 		    "heading": false,
+		    "href": "/#button",
 		    "name": "Button",
 		    "sections": Array [],
 		    "slug": "button",
@@ -185,6 +188,7 @@ it('should render components of a single top section as root', () => {
 		    "content": undefined,
 		    "forceOpen": true,
 		    "heading": false,
+		    "href": "/#input",
 		    "name": "Input",
 		    "sections": Array [],
 		    "slug": "input",
@@ -194,6 +198,7 @@ it('should render components of a single top section as root', () => {
 		    "content": undefined,
 		    "forceOpen": true,
 		    "heading": false,
+		    "href": "/#textarea",
 		    "name": "Textarea",
 		    "sections": Array [],
 		    "slug": "textarea",
@@ -203,7 +208,12 @@ it('should render components of a single top section as root', () => {
 });
 
 it('should render components with useRouterLinks', () => {
-	const actual = shallow(<TableOfContents sections={components} useRouterLinks />);
+	const actual = shallow(
+		<TableOfContents
+			useRouterLinks
+			sections={[{ sections: [{ content: 'intro.md' }, { content: 'chapter.md' }] }]}
+		/>
+	);
 
 	expect(actual.find('ComponentsList').prop('items')).toMatchInlineSnapshot(`
 		Array [
@@ -212,27 +222,16 @@ it('should render components with useRouterLinks', () => {
 		    "content": undefined,
 		    "forceOpen": true,
 		    "heading": false,
-		    "name": "Button",
+		    "href": "/#/",
 		    "sections": Array [],
-		    "slug": "button",
 		  },
 		  Object {
 		    "components": Array [],
 		    "content": undefined,
 		    "forceOpen": true,
 		    "heading": false,
-		    "name": "Input",
+		    "href": "/#/",
 		    "sections": Array [],
-		    "slug": "input",
-		  },
-		  Object {
-		    "components": Array [],
-		    "content": undefined,
-		    "forceOpen": true,
-		    "heading": false,
-		    "name": "Textarea",
-		    "sections": Array [],
-		    "slug": "textarea",
 		  },
 		]
 	`);
