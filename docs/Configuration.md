@@ -622,7 +622,7 @@ module.exports = {
 }
 ```
 
-**NOTE** If using a file path, it has to be absolute or relative to the config file.
+**Note:** If using a file path, it has to be absolute or relative to the config file.
 
 #### `template`
 
