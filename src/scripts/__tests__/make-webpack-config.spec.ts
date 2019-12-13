@@ -137,11 +137,6 @@ it('should set array of from with assetsDir array in CopyWebpackPlugin', () => {
 	expect(CopyWebpackPlugin).toHaveBeenCalledWith([{ from: '/assets1/' }, { from: '/assets2/' }]);
 });
 
-it('should add CopyWebpackPlugin to plugins in production', () => {
-	makeWebpackConfig({ ...styleguideConfig }, 'production');
-	expect(CopyWebpackPlugin).toHaveBeenCalledWith([]);
-});
-
 it('should merge user webpack config', () => {
 	const result = makeWebpackConfig(
 		{ ...styleguideConfig, webpackConfig: { resolve: { alias: { foo: 'bar' } } } },

@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@vxna/mini-html-webpack-template": "^1.0.0",
-    "acorn": "~6.3.0",
+    "acorn": "~6.4.0",
     "acorn-jsx": "^5.1.0",
     "ast-types": "~0.13.2",
     "buble": "0.19.8",
@@ -36,7 +36,7 @@
     "clipboard-copy": "^3.1.0",
     "clsx": "^1.0.4",
     "common-dir": "^3.0.0",
-    "copy-webpack-plugin": "^5.0.4",
+    "copy-webpack-plugin": "^5.1.0",
     "core-js": "^3.3.5",
     "doctrine": "^3.0.0",
     "es6-object-assign": "~1.1.0",
