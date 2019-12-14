@@ -207,7 +207,7 @@ it('should show content of forcedOpen items even if they are not active', () => 
 			name: 'Input',
 			slug: 'input',
 			content: <div data-testid="content">Content for Input</div>,
-			forceOpen: true,
+			open: true,
 		},
 	];
 
