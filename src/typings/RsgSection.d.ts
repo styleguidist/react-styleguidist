@@ -33,7 +33,7 @@ declare namespace Rsg {
 	}
 
 	interface ConfigSection extends BaseSection {
-		components?: string | string[] | (() => string[]);
+		components?: string | string[] | (() => string[] | string);
 		sections?: ConfigSection[];
 		content?: string;
 	}
