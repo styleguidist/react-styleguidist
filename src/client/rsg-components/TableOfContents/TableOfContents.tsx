@@ -67,7 +67,6 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 			return {
 				...section,
 				heading: !!section.name && children.length > 0,
-				href,
 				content,
 				forceOpen:
 					!!this.state.searchTerm.length || !this.props.collapsibleSections || containsSelected,

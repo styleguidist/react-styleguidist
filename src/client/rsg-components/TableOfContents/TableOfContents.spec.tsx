@@ -153,7 +153,6 @@ it('should render content of subsections of a section that has no components', (
 		    "content": undefined,
 		    "forceOpen": true,
 		    "heading": false,
-		    "href": "/#undefined",
 		    "sections": Array [],
 		  },
 		  Object {
@@ -161,7 +160,6 @@ it('should render content of subsections of a section that has no components', (
 		    "content": undefined,
 		    "forceOpen": true,
 		    "heading": false,
-		    "href": "/#undefined",
 		    "sections": Array [],
 		  },
 		]
@@ -178,7 +176,6 @@ it('should render components of a single top section as root', () => {
 		    "content": undefined,
 		    "forceOpen": true,
 		    "heading": false,
-		    "href": "/#button",
 		    "name": "Button",
 		    "sections": Array [],
 		    "slug": "button",
@@ -188,7 +185,6 @@ it('should render components of a single top section as root', () => {
 		    "content": undefined,
 		    "forceOpen": true,
 		    "heading": false,
-		    "href": "/#input",
 		    "name": "Input",
 		    "sections": Array [],
 		    "slug": "input",
@@ -198,7 +194,6 @@ it('should render components of a single top section as root', () => {
 		    "content": undefined,
 		    "forceOpen": true,
 		    "heading": false,
-		    "href": "/#textarea",
 		    "name": "Textarea",
 		    "sections": Array [],
 		    "slug": "textarea",
@@ -222,7 +217,6 @@ it('should render components with useRouterLinks', () => {
 		    "content": undefined,
 		    "forceOpen": true,
 		    "heading": false,
-		    "href": "/#/",
 		    "sections": Array [],
 		  },
 		  Object {
@@ -230,9 +224,31 @@ it('should render components with useRouterLinks', () => {
 		    "content": undefined,
 		    "forceOpen": true,
 		    "heading": false,
-		    "href": "/#/",
 		    "sections": Array [],
 		  },
 		]
 	`);
+});
+
+it('should detect sections containing current selection when collapsibleSections', () => {
+	window.history.pushState({}, 'Collapse', 'http://localhost/#Button');
+
+	const actual = shallow(
+		<TableOfContents
+			collapsibleSections
+			sections={[
+				{
+					sections: [
+						{ slug: 'Components', sections: [{ slug: 'Button' }] },
+						{ slug: 'chap', content: 'chapter.md' },
+						{ href: 'http://react-styleguidist.com' },
+					],
+				},
+			]}
+		/>
+	);
+
+	const items: Rsg.Component[] = actual.find('ComponentsList').prop('items');
+	const componentsItem = items.filter(a => a.slug === 'Components')[0];
+	expect(componentsItem.forceOpen).toBeTruthy();
 });
