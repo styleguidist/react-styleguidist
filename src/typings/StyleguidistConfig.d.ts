@@ -14,11 +14,11 @@ declare global {
 			_styleguidist: SanitizedStyleguidistConfig;
 		}
 
-		interface BaseStyleguidistConfig {
+		interface SanitizedStyleguidistConfig {
 			assetsDir: string | string[];
 			collapsibleSections: boolean;
 			compilerConfig: TransformOptions;
-			components: (() => string | string[]) | string | string[];
+			components: (() => string[]) | string | string[];
 			configDir: string;
 			context: Record<string, any>;
 			contextDependencies: string[];
@@ -66,6 +66,7 @@ declare global {
 				text?: string;
 				url: string;
 			};
+			sections: ConfigSection[];
 			serverHost: string;
 			serverPort: number;
 			showCode: boolean;
@@ -91,14 +92,11 @@ declare global {
 			webpackConfig: Configuration | ((env?: string) => Configuration);
 		}
 
-		interface ProcessedStyleguidistConfig extends BaseStyleguidistConfig {
-			sections: Section[];
-		}
-
-		interface SanitizedStyleguidistConfig extends BaseStyleguidistConfig {
-			sections: ConfigSection[];
-		}
-
+		/**
+		 * definition of the config object where everything is optional
+		 * note that teh default example can be both a string and a boolean but ends
+		 * up only being a string after sanitizing
+		 */
 		interface StyleguidistConfig
 			extends RecursivePartial<Omit<SanitizedStyleguidistConfig, 'defaultExample'>> {
 			defaultExample?: string | boolean;
