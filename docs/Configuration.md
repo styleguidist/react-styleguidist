@@ -58,6 +58,12 @@ Type: `String` or `Array`, optional
 
 Your application static assets folder will be accessible as `/` in the style guide dev server.
 
+#### `collapseSections`
+
+Type: `Boolean` default: `false`
+
+Collapse the sections created in the sidebar so that the sidebar takes less space. This can be useful in large codebases to avoid having to scroll too far.
+
 #### `compilerConfig`
 
 Type: `Object`, default:

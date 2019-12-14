@@ -16,7 +16,7 @@ declare global {
 
 		interface SanitizedStyleguidistConfig {
 			assetsDir: string | string[];
-			collapsibleSections: boolean;
+			collapseSections: boolean;
 			compilerConfig: TransformOptions;
 			components: (() => string[]) | string | string[];
 			configDir: string;

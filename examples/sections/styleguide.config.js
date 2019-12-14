@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
 	title: 'React Style Guide Example',
 	pagePerSection: true,
-	collapsibleSections: true,
+	// collapseSections: true,
 	sections: [
 		{
 			name: 'Documentation',

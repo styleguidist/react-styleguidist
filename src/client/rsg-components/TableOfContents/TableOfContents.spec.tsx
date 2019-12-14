@@ -230,12 +230,12 @@ it('should render components with useRouterLinks', () => {
 	`);
 });
 
-it('should detect sections containing current selection when collapsibleSections', () => {
+it('should detect sections containing current selection when collapseSections', () => {
 	window.history.pushState({}, 'Collapse', 'http://localhost/#Button');
 
 	const actual = shallow(
 		<TableOfContents
-			collapsibleSections
+			collapseSections
 			sections={[
 				{
 					sections: [

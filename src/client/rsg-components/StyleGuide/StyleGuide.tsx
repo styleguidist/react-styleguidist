@@ -115,7 +115,7 @@ export default class StyleGuide extends Component<StyleGuideProps, StyleGuideSta
 							<TableOfContents
 								sections={allSections}
 								useRouterLinks={pagePerSection}
-								collapsibleSections={config.collapsibleSections}
+								collapseSections={config.collapseSections}
 							/>
 						) : null
 					}
