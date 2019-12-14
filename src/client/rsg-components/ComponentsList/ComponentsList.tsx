@@ -6,7 +6,7 @@ import { getHash } from '../../utils/handleHash';
 import getUrl from '../../utils/getUrl';
 
 interface ComponentsListProps {
-	items: Rsg.Component[];
+	items: Rsg.TOCItem[];
 	hashPath?: string[];
 	useRouterLinks?: boolean;
 	useHashId?: boolean;
@@ -37,7 +37,7 @@ const ComponentsList: React.FunctionComponent<ComponentsListProps> = ({
 						id: useRouterLinks ? useHashId : false,
 				  });
 
-			const open = item.forceOpen || (href && windowHash.indexOf(href) >= 0);
+			const open = item.open || (href && windowHash.indexOf(href) >= 0);
 			return {
 				...item,
 				shouldOpenInNewTab: !!item.href,

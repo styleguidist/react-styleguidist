@@ -37,7 +37,7 @@ const styles = ({ color, fontFamily, fontSize, space, mq }: Rsg.Theme) => ({
 });
 
 interface ComponentsListRendererProps extends JssInjectedProps {
-	items: (Rsg.Component & { selected: boolean })[];
+	items: Rsg.TOCItem[];
 }
 
 export const ComponentsListRenderer: React.FunctionComponent<ComponentsListRendererProps> = ({

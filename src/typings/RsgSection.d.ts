@@ -1,22 +1,35 @@
 declare namespace Rsg {
 	interface BaseSection {
 		name?: string;
+		slug?: string;
 		ignore?: string | string[];
 		description?: string;
 		exampleMode?: EXPAND_MODE;
 		usageMode?: EXPAND_MODE;
 		href?: string;
-		external?: string;
 		sectionDepth?: number;
+		external?: boolean;
 	}
 
-	interface Section extends BaseSection {
-		slug?: string;
+	interface ProcessedSection extends BaseSection {
 		visibleName?: string;
 		filepath?: string;
+	}
+
+	interface Section extends ProcessedSection {
+		content?: Example[] | string;
 		components?: Component[];
 		sections?: Section[];
-		content?: Example[] | string;
+	}
+
+	interface TOCItem extends ProcessedSection {
+		heading?: boolean;
+		shouldOpenInNewTab?: boolean;
+		selected?: boolean;
+		open?: boolean;
+		content?: React.ReactNode;
+		components?: TOCItem[];
+		sections?: TOCItem[];
 	}
 
 	interface ConfigSection extends BaseSection {
@@ -25,7 +38,7 @@ declare namespace Rsg {
 		content?: string;
 	}
 
-	interface LoaderSection extends BaseSection {
+	interface LoaderSection extends ProcessedSection {
 		slug?: string;
 		content?: RequireItResult | MarkdownExample;
 		components: LoaderComponent[];

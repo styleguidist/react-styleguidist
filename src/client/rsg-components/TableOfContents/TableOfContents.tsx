@@ -23,14 +23,13 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 	};
 
 	private renderLevel(
-		sections: (Rsg.Section | Rsg.Component)[],
+		sections: Rsg.TOCItem[],
 		useRouterLinks = false,
 		hashPath: string[] = [],
 		useHashId = false
 	): { content: React.ReactElement; containsSelected: boolean } {
 		let childrenContainSelected = false;
-		const items = sections.map(sectionOrComponent => {
-			const section = sectionOrComponent as Rsg.Section;
+		const processedItems = sections.map(section => {
 			const children = [...(section.sections || []), ...(section.components || [])];
 			const sectionDepth = section.sectionDepth || 0;
 			const childHashPath =
@@ -68,14 +67,13 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 				...section,
 				heading: !!section.name && children.length > 0,
 				content,
-				forceOpen:
-					!!this.state.searchTerm.length || !this.props.collapsibleSections || containsSelected,
+				open: !!this.state.searchTerm.length || !this.props.collapsibleSections || containsSelected,
 			};
 		});
 		return {
 			content: (
 				<ComponentsList
-					items={items}
+					items={processedItems}
 					hashPath={hashPath}
 					useHashId={useHashId}
 					useRouterLinks={useRouterLinks}

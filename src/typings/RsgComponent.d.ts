@@ -9,17 +9,15 @@ declare global {
 			name?: string;
 			slug?: string;
 			href?: string;
-			heading?: boolean;
 			filepath?: string;
 			pathLine?: string;
-			shouldOpenInNewTab?: boolean;
-			forceOpen?: boolean;
 			description?: string;
-			exampleMode?: string;
-			usageMode?: string;
+			exampleMode?: EXPAND_MODE;
+			usageMode?: EXPAND_MODE;
 		}
 
 		interface Component extends BaseComponent {
+			visibleName?: string;
 			props?: {
 				displayName?: string;
 				visibleName?: string;
@@ -31,8 +29,6 @@ declare global {
 				examples?: Example[];
 			};
 			module?: number;
-			content?: React.ReactNode;
-			visibleName?: string;
 			metadata?: {
 				tags?: string[];
 			};

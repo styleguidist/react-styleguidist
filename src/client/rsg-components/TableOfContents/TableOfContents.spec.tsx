@@ -151,15 +151,15 @@ it('should render content of subsections of a section that has no components', (
 		  Object {
 		    "components": Array [],
 		    "content": undefined,
-		    "forceOpen": true,
 		    "heading": false,
+		    "open": true,
 		    "sections": Array [],
 		  },
 		  Object {
 		    "components": Array [],
 		    "content": undefined,
-		    "forceOpen": true,
 		    "heading": false,
+		    "open": true,
 		    "sections": Array [],
 		  },
 		]
@@ -174,27 +174,27 @@ it('should render components of a single top section as root', () => {
 		  Object {
 		    "components": Array [],
 		    "content": undefined,
-		    "forceOpen": true,
 		    "heading": false,
 		    "name": "Button",
+		    "open": true,
 		    "sections": Array [],
 		    "slug": "button",
 		  },
 		  Object {
 		    "components": Array [],
 		    "content": undefined,
-		    "forceOpen": true,
 		    "heading": false,
 		    "name": "Input",
+		    "open": true,
 		    "sections": Array [],
 		    "slug": "input",
 		  },
 		  Object {
 		    "components": Array [],
 		    "content": undefined,
-		    "forceOpen": true,
 		    "heading": false,
 		    "name": "Textarea",
+		    "open": true,
 		    "sections": Array [],
 		    "slug": "textarea",
 		  },
@@ -215,15 +215,15 @@ it('should render components with useRouterLinks', () => {
 		  Object {
 		    "components": Array [],
 		    "content": undefined,
-		    "forceOpen": true,
 		    "heading": false,
+		    "open": true,
 		    "sections": Array [],
 		  },
 		  Object {
 		    "components": Array [],
 		    "content": undefined,
-		    "forceOpen": true,
 		    "heading": false,
+		    "open": true,
 		    "sections": Array [],
 		  },
 		]
@@ -248,7 +248,7 @@ it('should detect sections containing current selection when collapsibleSections
 		/>
 	);
 
-	const items: Rsg.Component[] = actual.find('ComponentsList').prop('items');
+	const items: Rsg.TOCItem[] = actual.find('ComponentsList').prop('items');
 	const componentsItem = items.filter(a => a.slug === 'Components')[0];
-	expect(componentsItem.forceOpen).toBeTruthy();
+	expect(componentsItem.open).toBeTruthy();
 });

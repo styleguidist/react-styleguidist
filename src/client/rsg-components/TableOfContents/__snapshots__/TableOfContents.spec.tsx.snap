@@ -32,27 +32,27 @@ exports[`should filter list when search field contains a query 1`] = `
         Object {
           "components": Array [],
           "content": undefined,
-          "forceOpen": true,
           "heading": false,
           "name": "Button",
+          "open": true,
           "sections": Array [],
           "slug": "button",
         },
         Object {
           "components": Array [],
           "content": undefined,
-          "forceOpen": true,
           "heading": false,
           "name": "Input",
+          "open": true,
           "sections": Array [],
           "slug": "input",
         },
         Object {
           "components": Array [],
           "content": undefined,
-          "forceOpen": true,
           "heading": false,
           "name": "Textarea",
+          "open": true,
           "sections": Array [],
           "slug": "textarea",
         },
@@ -76,9 +76,9 @@ exports[`should filter list when search field contains a query 2`] = `
         Object {
           "components": Array [],
           "content": undefined,
-          "forceOpen": true,
           "heading": false,
           "name": "Button",
+          "open": true,
           "sections": Array [],
           "slug": "button",
         },
@@ -102,9 +102,9 @@ exports[`should filter section names 1`] = `
         Object {
           "components": Array [],
           "content": undefined,
-          "forceOpen": true,
           "heading": false,
           "name": "Introduction",
+          "open": true,
           "sections": Array [],
           "slug": "introduction",
         },
@@ -125,9 +125,9 @@ exports[`should filter section names 1`] = `
               Array [
                 Object {
                   "content": undefined,
-                  "forceOpen": true,
                   "heading": false,
                   "name": "Button",
+                  "open": true,
                   "slug": "button",
                 },
               ]
@@ -135,9 +135,9 @@ exports[`should filter section names 1`] = `
             useHashId={true}
             useRouterLinks={false}
           />,
-          "forceOpen": true,
           "heading": true,
           "name": "Buttons",
+          "open": true,
           "sections": Array [],
           "slug": "buttons",
         },
@@ -162,16 +162,16 @@ exports[`should filter section names 1`] = `
               Array [
                 Object {
                   "content": undefined,
-                  "forceOpen": true,
                   "heading": false,
                   "name": "Input",
+                  "open": true,
                   "slug": "input",
                 },
                 Object {
                   "content": undefined,
-                  "forceOpen": true,
                   "heading": false,
                   "name": "Textarea",
+                  "open": true,
                   "slug": "textarea",
                 },
               ]
@@ -179,9 +179,9 @@ exports[`should filter section names 1`] = `
             useHashId={true}
             useRouterLinks={false}
           />,
-          "forceOpen": true,
           "heading": true,
           "name": "Forms",
+          "open": true,
           "sections": Array [],
           "slug": "forms",
         },
@@ -205,9 +205,9 @@ exports[`should filter section names 2`] = `
         Object {
           "components": Array [],
           "content": undefined,
-          "forceOpen": true,
           "heading": false,
           "name": "Forms",
+          "open": true,
           "sections": Array [],
           "slug": "forms",
         },
@@ -231,27 +231,27 @@ exports[`should render a renderer 1`] = `
         Object {
           "components": Array [],
           "content": undefined,
-          "forceOpen": true,
           "heading": false,
           "name": "Button",
+          "open": true,
           "sections": Array [],
           "slug": "button",
         },
         Object {
           "components": Array [],
           "content": undefined,
-          "forceOpen": true,
           "heading": false,
           "name": "Input",
+          "open": true,
           "sections": Array [],
           "slug": "input",
         },
         Object {
           "components": Array [],
           "content": undefined,
-          "forceOpen": true,
           "heading": false,
           "name": "Textarea",
+          "open": true,
           "sections": Array [],
           "slug": "textarea",
         },
@@ -275,9 +275,9 @@ exports[`should render renderer with sections with nested components 1`] = `
         Object {
           "components": Array [],
           "content": undefined,
-          "forceOpen": true,
           "heading": false,
           "name": "Introduction",
+          "open": true,
           "sections": Array [],
           "slug": "introduction",
         },
@@ -298,9 +298,9 @@ exports[`should render renderer with sections with nested components 1`] = `
               Array [
                 Object {
                   "content": undefined,
-                  "forceOpen": true,
                   "heading": false,
                   "name": "Button",
+                  "open": true,
                   "slug": "button",
                 },
               ]
@@ -308,9 +308,9 @@ exports[`should render renderer with sections with nested components 1`] = `
             useHashId={true}
             useRouterLinks={false}
           />,
-          "forceOpen": true,
           "heading": true,
           "name": "Buttons",
+          "open": true,
           "sections": Array [],
           "slug": "buttons",
         },
@@ -335,16 +335,16 @@ exports[`should render renderer with sections with nested components 1`] = `
               Array [
                 Object {
                   "content": undefined,
-                  "forceOpen": true,
                   "heading": false,
                   "name": "Input",
+                  "open": true,
                   "slug": "input",
                 },
                 Object {
                   "content": undefined,
-                  "forceOpen": true,
                   "heading": false,
                   "name": "Textarea",
+                  "open": true,
                   "slug": "textarea",
                 },
               ]
@@ -352,9 +352,9 @@ exports[`should render renderer with sections with nested components 1`] = `
             useHashId={true}
             useRouterLinks={false}
           />,
-          "forceOpen": true,
           "heading": true,
           "name": "Forms",
+          "open": true,
           "sections": Array [],
           "slug": "forms",
         },
