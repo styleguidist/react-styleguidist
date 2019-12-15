@@ -40,7 +40,7 @@ export default function(
 		template,
 	};
 
-	let webpackConfig: AliasedConfiguration = {
+	let webpackConfig: Configuration = {
 		entry: config.require.concat([path.resolve(sourceDir, 'index')]),
 		mode: env,
 		output: {
@@ -90,7 +90,6 @@ export default function(
 			},
 			/* eslint-enable @typescript-eslint/camelcase */
 		});
-
 		webpackConfig = merge(webpackConfig, {
 			output: {
 				filename: 'build/bundle.[chunkhash:8].js',
@@ -106,8 +105,7 @@ export default function(
 				minimize: config.minimize === true,
 				minimizer: [minimizer],
 			},
-		}) as AliasedConfiguration;
-
+		});
 		if (config.assetsDir && webpackConfig.plugins) {
 			webpackConfig.plugins.push(
 				new CopyWebpackPlugin(castArray(config.assetsDir).map(dir => ({ from: dir })))
@@ -117,25 +115,20 @@ export default function(
 		webpackConfig = merge(webpackConfig, {
 			entry: [require.resolve('react-dev-utils/webpackHotDevClient')],
 			plugins: [new webpack.HotModuleReplacementPlugin()],
-		}) as AliasedConfiguration;
+		});
 	}
 
 	if (config.webpackConfig) {
-		webpackConfig = mergeWebpackConfig(
-			webpackConfig,
-			config.webpackConfig,
-			env
-		) as AliasedConfiguration;
+		webpackConfig = mergeWebpackConfig(webpackConfig, config.webpackConfig, env);
 	}
 
 	// Custom aliases
-	if (config.moduleAliases) {
-		webpackConfig = merge(webpackConfig, {
-			resolve: { alias: config.moduleAliases },
-		}) as AliasedConfiguration;
-	}
+	// NOTE: in a sanitized config, moduleAliases are always an object (never null or undefined)
+	const aliasedWebpackConfig = merge(webpackConfig, {
+		resolve: { alias: config.moduleAliases },
+	}) as AliasedConfiguration;
 
-	const alias = webpackConfig.resolve.alias;
+	const alias = aliasedWebpackConfig.resolve.alias;
 
 	// Custom style guide components
 	if (config.styleguideComponents) {
@@ -151,6 +144,7 @@ export default function(
 	// to customize the style guide (their aliases should be before this one)
 	alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
 
+	// finally alias user provided style & theme files
 	alias['rsg-customTheme'] =
 		typeof config.theme === 'string' ? config.theme : path.resolve(sourceDir, 'styles/emptyTheme');
 
@@ -159,12 +153,9 @@ export default function(
 			? config.styles
 			: path.resolve(sourceDir, 'styles/emptyStyles');
 
-	if (config.dangerouslyUpdateWebpackConfig) {
-		webpackConfig = config.dangerouslyUpdateWebpackConfig(
-			webpackConfig,
-			env
-		) as AliasedConfiguration;
-	}
+	webpackConfig = config.dangerouslyUpdateWebpackConfig
+		? config.dangerouslyUpdateWebpackConfig(aliasedWebpackConfig, env)
+		: aliasedWebpackConfig;
 
 	return webpackConfig;
 }
