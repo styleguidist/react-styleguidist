@@ -67,7 +67,8 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 				...section,
 				heading: !!section.name && children.length > 0,
 				content,
-				open: !!this.state.searchTerm.length || this.props.tocMode === 'expand' || containsSelected,
+				open:
+					!!this.state.searchTerm.length || this.props.tocMode !== 'collapse' || containsSelected,
 			};
 		});
 		return {
