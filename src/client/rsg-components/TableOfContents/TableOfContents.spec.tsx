@@ -154,6 +154,8 @@ it('should render content of subsections of a section that has no components', (
 		    "heading": false,
 		    "open": true,
 		    "sections": Array [],
+		    "selected": false,
+		    "shouldOpenInNewTab": false,
 		  },
 		  Object {
 		    "components": Array [],
@@ -161,6 +163,8 @@ it('should render content of subsections of a section that has no components', (
 		    "heading": false,
 		    "open": true,
 		    "sections": Array [],
+		    "selected": false,
+		    "shouldOpenInNewTab": false,
 		  },
 		]
 	`);
@@ -178,6 +182,8 @@ it('should render components of a single top section as root', () => {
 		    "name": "Button",
 		    "open": true,
 		    "sections": Array [],
+		    "selected": false,
+		    "shouldOpenInNewTab": false,
 		    "slug": "button",
 		  },
 		  Object {
@@ -187,6 +193,8 @@ it('should render components of a single top section as root', () => {
 		    "name": "Input",
 		    "open": true,
 		    "sections": Array [],
+		    "selected": false,
+		    "shouldOpenInNewTab": false,
 		    "slug": "input",
 		  },
 		  Object {
@@ -196,6 +204,8 @@ it('should render components of a single top section as root', () => {
 		    "name": "Textarea",
 		    "open": true,
 		    "sections": Array [],
+		    "selected": false,
+		    "shouldOpenInNewTab": false,
 		    "slug": "textarea",
 		  },
 		]
@@ -218,6 +228,8 @@ it('should render components with useRouterLinks', () => {
 		    "heading": false,
 		    "open": true,
 		    "sections": Array [],
+		    "selected": false,
+		    "shouldOpenInNewTab": false,
 		  },
 		  Object {
 		    "components": Array [],
@@ -225,6 +237,8 @@ it('should render components with useRouterLinks', () => {
 		    "heading": false,
 		    "open": true,
 		    "sections": Array [],
+		    "selected": false,
+		    "shouldOpenInNewTab": false,
 		  },
 		]
 	`);

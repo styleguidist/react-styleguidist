@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'clsx';
 import Link from 'rsg-components/Link';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
+import { useStyleGuideContext } from 'rsg-components/Context';
 
 const styles = ({ color, fontFamily, fontSize, space, mq }: Rsg.Theme) => ({
 	list: {
@@ -37,7 +38,7 @@ const styles = ({ color, fontFamily, fontSize, space, mq }: Rsg.Theme) => ({
 });
 
 interface ComponentsListRendererProps extends JssInjectedProps {
-	items: (Rsg.TOCItem & { setOpen: (newOpen: boolean) => void })[];
+	items: Rsg.TOCItem[];
 }
 
 export const ComponentsListRenderer: React.FunctionComponent<ComponentsListRendererProps> = ({
@@ -46,30 +47,46 @@ export const ComponentsListRenderer: React.FunctionComponent<ComponentsListRende
 }) => {
 	return (
 		<ul className={classes.list}>
-			{items.map(
-				({ heading, visibleName, href, content, shouldOpenInNewTab, selected, open, setOpen }) => {
-					return (
-						<li
-							className={cx(classes.item, {
-								[classes.isChild]: !content && !shouldOpenInNewTab,
-								[classes.isSelected]: selected,
-							})}
-							key={href}
-						>
-							<Link
-								className={cx(heading && classes.heading)}
-								href={href}
-								onClick={() => setOpen(!open)}
-								target={shouldOpenInNewTab ? '_blank' : undefined}
-							>
-								{visibleName}
-							</Link>
-							{open ? content : null}
-						</li>
-					);
-				}
-			)}
+			{items.map(item => (
+				<ComponentsListSectionRenderer key={item.slug} classes={classes} {...item} />
+			))}
 		</ul>
+	);
+};
+
+const ComponentsListSectionRenderer: React.FunctionComponent<Rsg.TOCItem & JssInjectedProps> = ({
+	classes,
+	heading,
+	visibleName,
+	href,
+	content,
+	shouldOpenInNewTab,
+	selected,
+	open: _open,
+}) => {
+	const {
+		config: { tocMode },
+	} = useStyleGuideContext();
+
+	const [open, setOpen] = tocMode !== 'collapse' ? [true, () => {}] : React.useState(!!_open);
+	return (
+		<li
+			className={cx(classes.item, {
+				[classes.isChild]: !content && !shouldOpenInNewTab,
+				[classes.isSelected]: selected,
+			})}
+			key={href}
+		>
+			<Link
+				className={cx(heading && classes.heading)}
+				href={href}
+				onClick={() => setOpen(!open)}
+				target={shouldOpenInNewTab ? '_blank' : undefined}
+			>
+				{visibleName}
+			</Link>
+			{open ? content : null}
+		</li>
 	);
 };
 

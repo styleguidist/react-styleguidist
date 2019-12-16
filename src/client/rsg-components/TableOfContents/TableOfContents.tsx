@@ -28,6 +28,10 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 		hashPath: string[] = [],
 		useHashId = false
 	): { content: React.ReactElement; containsSelected: boolean } {
+		// Match selected component in both basic routing and pagePerSection routing.
+		const { hash, pathname } = window.location;
+		const windowHash = pathname + (useRouterLinks ? hash : getHash(hash));
+
 		let childrenContainSelected = false;
 		const processedItems = sections.map(section => {
 			const children = [...(section.sections || []), ...(section.components || [])];
@@ -42,10 +46,6 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 					? this.renderLevel(children, useRouterLinks, childHashPath, sectionDepth === 0)
 					: { content: undefined, containsSelected: false };
 
-			// Match selected component in both basic routing and pagePerSection routing.
-			const { hash, pathname } = window.location;
-			const windowHash = pathname + (useRouterLinks ? hash : getHash(hash));
-
 			// get href
 			const href = section.href
 				? section.href
@@ -57,7 +57,7 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 						id: useRouterLinks ? useHashId : false,
 				  });
 
-			const selected = href && windowHash.indexOf(href) === 0;
+			const selected = !!(href && windowHash.indexOf(href) === 0);
 
 			if (containsSelected || selected) {
 				childrenContainSelected = true;
@@ -67,6 +67,8 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 				...section,
 				heading: !!section.name && children.length > 0,
 				content,
+				selected,
+				shouldOpenInNewTab: !!section.href,
 				open:
 					!!this.state.searchTerm.length || this.props.tocMode !== 'collapse' || containsSelected,
 			};

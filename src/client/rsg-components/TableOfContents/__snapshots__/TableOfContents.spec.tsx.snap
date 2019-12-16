@@ -36,6 +36,8 @@ exports[`should filter list when search field contains a query 1`] = `
           "name": "Button",
           "open": true,
           "sections": Array [],
+          "selected": false,
+          "shouldOpenInNewTab": false,
           "slug": "button",
         },
         Object {
@@ -45,6 +47,8 @@ exports[`should filter list when search field contains a query 1`] = `
           "name": "Input",
           "open": true,
           "sections": Array [],
+          "selected": false,
+          "shouldOpenInNewTab": false,
           "slug": "input",
         },
         Object {
@@ -54,6 +58,8 @@ exports[`should filter list when search field contains a query 1`] = `
           "name": "Textarea",
           "open": true,
           "sections": Array [],
+          "selected": false,
+          "shouldOpenInNewTab": false,
           "slug": "textarea",
         },
       ]
@@ -80,6 +86,8 @@ exports[`should filter list when search field contains a query 2`] = `
           "name": "Button",
           "open": true,
           "sections": Array [],
+          "selected": false,
+          "shouldOpenInNewTab": false,
           "slug": "button",
         },
       ]
@@ -106,6 +114,8 @@ exports[`should filter section names 1`] = `
           "name": "Introduction",
           "open": true,
           "sections": Array [],
+          "selected": false,
+          "shouldOpenInNewTab": false,
           "slug": "introduction",
         },
         Object {
@@ -128,6 +138,8 @@ exports[`should filter section names 1`] = `
                   "heading": false,
                   "name": "Button",
                   "open": true,
+                  "selected": false,
+                  "shouldOpenInNewTab": false,
                   "slug": "button",
                 },
               ]
@@ -139,6 +151,8 @@ exports[`should filter section names 1`] = `
           "name": "Buttons",
           "open": true,
           "sections": Array [],
+          "selected": false,
+          "shouldOpenInNewTab": false,
           "slug": "buttons",
         },
         Object {
@@ -165,6 +179,8 @@ exports[`should filter section names 1`] = `
                   "heading": false,
                   "name": "Input",
                   "open": true,
+                  "selected": false,
+                  "shouldOpenInNewTab": false,
                   "slug": "input",
                 },
                 Object {
@@ -172,6 +188,8 @@ exports[`should filter section names 1`] = `
                   "heading": false,
                   "name": "Textarea",
                   "open": true,
+                  "selected": false,
+                  "shouldOpenInNewTab": false,
                   "slug": "textarea",
                 },
               ]
@@ -183,6 +201,8 @@ exports[`should filter section names 1`] = `
           "name": "Forms",
           "open": true,
           "sections": Array [],
+          "selected": false,
+          "shouldOpenInNewTab": false,
           "slug": "forms",
         },
       ]
@@ -209,6 +229,8 @@ exports[`should filter section names 2`] = `
           "name": "Forms",
           "open": true,
           "sections": Array [],
+          "selected": false,
+          "shouldOpenInNewTab": false,
           "slug": "forms",
         },
       ]
@@ -235,6 +257,8 @@ exports[`should render a renderer 1`] = `
           "name": "Button",
           "open": true,
           "sections": Array [],
+          "selected": false,
+          "shouldOpenInNewTab": false,
           "slug": "button",
         },
         Object {
@@ -244,6 +268,8 @@ exports[`should render a renderer 1`] = `
           "name": "Input",
           "open": true,
           "sections": Array [],
+          "selected": false,
+          "shouldOpenInNewTab": false,
           "slug": "input",
         },
         Object {
@@ -253,6 +279,8 @@ exports[`should render a renderer 1`] = `
           "name": "Textarea",
           "open": true,
           "sections": Array [],
+          "selected": false,
+          "shouldOpenInNewTab": false,
           "slug": "textarea",
         },
       ]
@@ -279,6 +307,8 @@ exports[`should render renderer with sections with nested components 1`] = `
           "name": "Introduction",
           "open": true,
           "sections": Array [],
+          "selected": false,
+          "shouldOpenInNewTab": false,
           "slug": "introduction",
         },
         Object {
@@ -301,6 +331,8 @@ exports[`should render renderer with sections with nested components 1`] = `
                   "heading": false,
                   "name": "Button",
                   "open": true,
+                  "selected": false,
+                  "shouldOpenInNewTab": false,
                   "slug": "button",
                 },
               ]
@@ -312,6 +344,8 @@ exports[`should render renderer with sections with nested components 1`] = `
           "name": "Buttons",
           "open": true,
           "sections": Array [],
+          "selected": false,
+          "shouldOpenInNewTab": false,
           "slug": "buttons",
         },
         Object {
@@ -338,6 +372,8 @@ exports[`should render renderer with sections with nested components 1`] = `
                   "heading": false,
                   "name": "Input",
                   "open": true,
+                  "selected": false,
+                  "shouldOpenInNewTab": false,
                   "slug": "input",
                 },
                 Object {
@@ -345,6 +381,8 @@ exports[`should render renderer with sections with nested components 1`] = `
                   "heading": false,
                   "name": "Textarea",
                   "open": true,
+                  "selected": false,
+                  "shouldOpenInNewTab": false,
                   "slug": "textarea",
                 },
               ]
@@ -356,6 +394,8 @@ exports[`should render renderer with sections with nested components 1`] = `
           "name": "Forms",
           "open": true,
           "sections": Array [],
+          "selected": false,
+          "shouldOpenInNewTab": false,
           "slug": "forms",
         },
       ]
