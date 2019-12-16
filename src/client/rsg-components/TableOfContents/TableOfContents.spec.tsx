@@ -1,8 +1,10 @@
 import React from 'react';
+import { render } from '@testing-library/react';
 import { shallow } from 'enzyme';
 import noop from 'lodash/noop';
 import TableOfContents from './TableOfContents';
 import { TableOfContentsRenderer } from './TableOfContentsRenderer';
+import Context from '../Context';
 
 const components = [
 	{
@@ -212,57 +214,67 @@ it('should render components of a single top section as root', () => {
 	`);
 });
 
+/**
+ * testing this layer with no mocking makes no sense...
+ */
 it('should render components with useRouterLinks', () => {
-	const actual = shallow(
+	const { getAllByRole } = render(
 		<TableOfContents
 			useRouterLinks
-			sections={[{ sections: [{ content: 'intro.md' }, { content: 'chapter.md' }] }]}
-		/>
-	);
-
-	expect(actual.find('ComponentsList').prop('items')).toMatchInlineSnapshot(`
-		Array [
-		  Object {
-		    "components": Array [],
-		    "content": undefined,
-		    "heading": false,
-		    "open": true,
-		    "sections": Array [],
-		    "selected": false,
-		    "shouldOpenInNewTab": false,
-		  },
-		  Object {
-		    "components": Array [],
-		    "content": undefined,
-		    "heading": false,
-		    "open": true,
-		    "sections": Array [],
-		    "selected": false,
-		    "shouldOpenInNewTab": false,
-		  },
-		]
-	`);
-});
-
-it('should detect sections containing current selection when tocMode', () => {
-	window.history.pushState({}, 'Collapse', 'http://localhost/#Button');
-
-	const actual = shallow(
-		<TableOfContents
-			tocMode="collapse"
 			sections={[
 				{
 					sections: [
-						{ slug: 'Components', sections: [{ slug: 'Button' }] },
-						{ slug: 'chap', content: 'chapter.md' },
-						{ href: 'http://react-styleguidist.com' },
+						{ visibleName: '1', name: 'Components', slug: 'Components', content: 'intro.md' },
+						{ visibleName: '2', content: 'chapter.md' },
 					],
 				},
 			]}
 		/>
 	);
 
-	const items: Rsg.TOCItem[] = actual.find('ComponentsList').prop('items');
-	const componentsItem = items.filter(a => a.slug === 'Components')[0];
-	expect(componentsItem.open).toBeTruthy();
+	expect((getAllByRole('link')[0] as any).href).toMatch(/\/#\/Components$/);
+});
+
+/**
+ * testing this layer with no mocking makes no sense...
+ * This test should not exist but for good coverage policy this is necessary
+ */
+it('should detect sections containing current selection when tocMode', () => {
+	window.history.pushState({}, 'Collapse', 'http://localhost/#Button');
+
+	const context = {
+		config: {
+			tocMode: 'collapse',
+		},
+	};
+
+	const Provider = (props: any) => <Context.Provider value={context} {...props} />;
+
+	const { getAllByRole } = render(
+		<Provider>
+			<TableOfContents
+				tocMode="collapse"
+				sections={[
+					{
+						sections: [
+							{
+								visibleName: '1',
+								slug: 'Components',
+								sections: [{ visibleName: '1.1', slug: 'Button' }],
+							},
+							{
+								visibleName: '2',
+								slug: 'chap',
+								content: 'chapter.md',
+								sections: [{ visibleName: '2.1', slug: 'Chapter #1' }],
+							},
+							{ visibleName: '3', href: 'http://react-styleguidist.com' },
+						],
+					},
+				]}
+			/>
+		</Provider>
+	);
+
+	expect(getAllByRole('link').length).toBe(4);
 });
