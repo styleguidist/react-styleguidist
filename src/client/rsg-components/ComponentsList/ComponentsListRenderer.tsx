@@ -37,7 +37,7 @@ const styles = ({ color, fontFamily, fontSize, space, mq }: Rsg.Theme) => ({
 });
 
 interface ComponentsListRendererProps extends JssInjectedProps {
-	items: Rsg.TOCItem[];
+	items: (Rsg.TOCItem & { setOpen: (newOpen: boolean) => void })[];
 }
 
 export const ComponentsListRenderer: React.FunctionComponent<ComponentsListRendererProps> = ({
@@ -46,26 +46,29 @@ export const ComponentsListRenderer: React.FunctionComponent<ComponentsListRende
 }) => {
 	return (
 		<ul className={classes.list}>
-			{items.map(({ heading, visibleName, href, content, shouldOpenInNewTab, selected }) => {
-				return (
-					<li
-						className={cx(classes.item, {
-							[classes.isChild]: !content && !shouldOpenInNewTab,
-							[classes.isSelected]: selected,
-						})}
-						key={href}
-					>
-						<Link
-							className={cx(heading && classes.heading)}
-							href={href}
-							target={shouldOpenInNewTab ? '_blank' : undefined}
+			{items.map(
+				({ heading, visibleName, href, content, shouldOpenInNewTab, selected, open, setOpen }) => {
+					return (
+						<li
+							className={cx(classes.item, {
+								[classes.isChild]: !content && !shouldOpenInNewTab,
+								[classes.isSelected]: selected,
+							})}
+							key={href}
 						>
-							{visibleName}
-						</Link>
-						{content}
-					</li>
-				);
-			})}
+							<Link
+								className={cx(heading && classes.heading)}
+								href={href}
+								onClick={() => setOpen(!open)}
+								target={shouldOpenInNewTab ? '_blank' : undefined}
+							>
+								{visibleName}
+							</Link>
+							{open ? content : null}
+						</li>
+					);
+				}
+			)}
 		</ul>
 	);
 };

@@ -7,6 +7,7 @@ import Context from '../Context';
 const context = {
 	config: {
 		pagePerSection: true,
+		tocMode: 'collapse',
 	},
 };
 
@@ -176,9 +177,7 @@ it('should show content of items that are open and not what is closed', () => {
 		},
 	];
 
-	window.history.pushState({}, 'Collapse', 'http://localhost/#/Components/Button');
-
-	const { getAllByTestId } = render(
+	const { getAllByTestId, getByText } = render(
 		<Provider>
 			<ComponentsList
 				items={components}
@@ -188,6 +187,8 @@ it('should show content of items that are open and not what is closed', () => {
 			/>
 		</Provider>
 	);
+
+	getByText('Button').click();
 
 	expect(
 		Array.from(getAllByTestId('content')).map(node => (node as HTMLDivElement).innerHTML)
@@ -211,9 +212,7 @@ it('should show content of forcedOpen items even if they are not active', () => 
 		},
 	];
 
-	window.history.pushState({}, 'Collapse', 'http://localhost/#/Components/Button');
-
-	const { getAllByTestId } = render(
+	const { getAllByTestId, getByText } = render(
 		<Provider>
 			<ComponentsList
 				items={components}
@@ -223,6 +222,8 @@ it('should show content of forcedOpen items even if they are not active', () => 
 			/>
 		</Provider>
 	);
+
+	getByText('Button').click();
 
 	expect(
 		Array.from(getAllByTestId('content')).map(node => (node as HTMLDivElement).innerHTML)

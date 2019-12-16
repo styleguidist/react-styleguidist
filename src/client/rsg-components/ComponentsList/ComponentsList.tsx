@@ -19,7 +19,7 @@ const ComponentsList: React.FunctionComponent<ComponentsListProps> = ({
 	hashPath,
 }) => {
 	const {
-		config: { pagePerSection },
+		config: { pagePerSection, tocMode },
 	} = useStyleGuideContext();
 
 	// Match selected component in both basic routing and pagePerSection routing.
@@ -37,13 +37,16 @@ const ComponentsList: React.FunctionComponent<ComponentsListProps> = ({
 						id: useRouterLinks ? useHashId : false,
 				  });
 
-			const open = item.open || (href && windowHash.indexOf(href) >= 0);
+			const [open, setOpen] =
+				tocMode !== 'collapse' ? [true, () => {}] : React.useState(!!item.open);
+
 			return {
 				...item,
 				shouldOpenInNewTab: !!item.href,
 				href,
-				content: open ? item.content : undefined,
+				open,
 				selected: windowHash === href,
+				setOpen,
 			};
 		})
 		.filter(item => item.visibleName);
