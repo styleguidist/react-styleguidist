@@ -47,9 +47,9 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 		type: ['array', 'existing directory path'],
 		example: 'assets',
 	},
-	collapseSections: {
-		type: 'boolean',
-		default: false,
+	tocMode: {
+		type: 'string',
+		default: 'expand',
 	},
 	compilerConfig: {
 		type: 'object',

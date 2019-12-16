@@ -230,12 +230,12 @@ it('should render components with useRouterLinks', () => {
 	`);
 });
 
-it('should detect sections containing current selection when collapseSections', () => {
+it('should detect sections containing current selection when tocMode', () => {
 	window.history.pushState({}, 'Collapse', 'http://localhost/#Button');
 
 	const actual = shallow(
 		<TableOfContents
-			collapseSections
+			tocMode="collapse"
 			sections={[
 				{
 					sections: [

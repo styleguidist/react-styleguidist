@@ -16,7 +16,7 @@ const logger = createLogger('rsg');
 // Config options that should be passed to the client
 const CLIENT_CONFIG_OPTIONS = [
 	'compilerConfig',
-	'collapseSections',
+	'tocMode',
 	'mountPointId',
 	'pagePerSection',
 	'previewDelay',

@@ -58,11 +58,16 @@ Type: `String` or `Array`, optional
 
 Your application static assets folder will be accessible as `/` in the style guide dev server.
 
-#### `collapseSections`
+#### `tocMode`
 
-Type: `Boolean` default: `false`
+Type: `String` default: `expand`
 
-Collapse the sections created in the sidebar so that the sidebar takes less space. This can be useful in large codebases to avoid having to scroll too far.
+Defines if the table of contents sections will behave like an accordion:
+
+- `collapse`: All sections are collapsed by default
+- `expand`: Sections cannot be collapsed in the Table Of Contents
+
+Collapse the sections created in the sidebar to reduce the height of the sidebar. This can be useful in large codebases with lots of components to avoid having to scroll too far.
 
 #### `compilerConfig`
 

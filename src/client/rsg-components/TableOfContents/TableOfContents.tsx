@@ -9,14 +9,14 @@ import getUrl from '../../utils/getUrl';
 interface TableOfContentsProps {
 	sections: Rsg.Section[];
 	useRouterLinks?: boolean;
-	collapseSections?: boolean;
+	tocMode?: string;
 }
 
 export default class TableOfContents extends Component<TableOfContentsProps> {
 	public static propTypes = {
 		sections: PropTypes.array.isRequired,
 		useRouterLinks: PropTypes.bool,
-		collapseSections: PropTypes.bool,
+		tocMode: PropTypes.string,
 	};
 	public state = {
 		searchTerm: '',
@@ -67,7 +67,7 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 				...section,
 				heading: !!section.name && children.length > 0,
 				content,
-				open: !!this.state.searchTerm.length || !this.props.collapseSections || containsSelected,
+				open: !!this.state.searchTerm.length || this.props.tocMode === 'expand' || containsSelected,
 			};
 		});
 		return {
