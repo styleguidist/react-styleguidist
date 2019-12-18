@@ -17,7 +17,8 @@
     "node": ">=4"
   },
   "scripts": {
-    "styleguide": "node ../../lib/bin/styleguidist server --config ./styleguide.config.js",
+    "styleguide": "styleguidist server",
+    "styleguide:dev": "node ../../lib/bin/styleguidist server --config ./styleguide.config.js",
     "styleguide:build": "styleguidist build"
   },
   "dependencies": {
