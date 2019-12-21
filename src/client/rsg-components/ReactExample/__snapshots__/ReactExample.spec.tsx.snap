@@ -4,23 +4,8 @@ exports[`should render code 1`] = `
 <Wrapper
   onError={[Function]}
 >
-  <StateHolder
-    component={[Function]}
-    initialState={Object {}}
-  />
+  <bound anonymous />
 </Wrapper>
-`;
-
-exports[`should set initialState before the first render 1`] = `
-<span>
-  1
-</span>
-`;
-
-exports[`should update state on setState 1`] = `
-<button>
-  2
-</button>
 `;
 
 exports[`should wrap code in Fragment when it starts with < 1`] = `

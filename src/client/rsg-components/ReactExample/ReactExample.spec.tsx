@@ -5,10 +5,7 @@ import ReactExample from '.';
 
 const evalInContext = (a: string): (() => any) =>
 	// eslint-disable-next-line no-new-func
-	new Function('require', 'state', 'setState', 'const React = require("react");' + a).bind(
-		null,
-		require
-	);
+	new Function('require', 'const React = require("react");' + a).bind(null, require);
 
 it('should render code', () => {
 	const actual = shallow(
@@ -34,35 +31,6 @@ it('should handle errors', () => {
 	shallow(<ReactExample code={'<invalid code'} evalInContext={evalInContext} onError={onError} />);
 
 	expect(onError).toHaveBeenCalledTimes(1);
-});
-
-it('should set initialState before the first render', () => {
-	const code = `
-initialState = {count:1};
-<span>{state.count}</span>
-	`;
-	const actual = mount(<ReactExample code={code} evalInContext={evalInContext} onError={noop} />);
-	expect(actual.html()).toMatchSnapshot();
-});
-
-it('should update state on setState', done => {
-	const code = `
-initialState = {count:1};
-setTimeout(() => state.count === 1 && setState({count:2}));
-<button>{state.count}</button>
-	`;
-	const actual = mount(<ReactExample code={code} evalInContext={evalInContext} onError={noop} />);
-
-	actual.find('button').simulate('click');
-
-	setTimeout(() => {
-		try {
-			expect(actual.html()).toMatchSnapshot();
-			done();
-		} catch (err) {
-			done.fail(err);
-		}
-	});
 });
 
 it('should set initial state with hooks', () => {
