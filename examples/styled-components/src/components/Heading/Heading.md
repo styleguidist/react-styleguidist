@@ -1,3 +1,3 @@
-```jsx harmony
+```jsx
 <Heading value="test" />
 ```

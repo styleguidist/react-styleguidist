@@ -1,4 +1,4 @@
-# Example of React Styleguidist using styled-components(and emotion) with typescipt
+# Example of React Styleguidist using styled-components (and Emotion) with TypeScript
 
 How to start locally:
 
