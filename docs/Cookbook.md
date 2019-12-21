@@ -38,15 +38,15 @@
 Use `ref` prop as a function and assign a reference to a local variable:
 
 ```jsx
-initialState = { value: '' }
+const [value, setValue] = React.useState('')
 let textarea
 ;<div>
   <Button onClick={() => textarea.insertAtCursor('Pizza')}>
     Insert
   </Button>
   <Textarea
-    value={state.value}
-    onChange={e => setState({ value: e.target.value })}
+    value={value}
+    onChange={e => setValue(e.target.value)}
     ref={ref => (textarea = ref)}
   />
 </div>
@@ -452,18 +452,20 @@ Object references may not work as expected in examples state:
 
 ```jsx
 const items = [{ id: 0 }, { id: 1 }]
+const [
+  activeItemByReference,
+  setactiveItemByReference
+] = React.useState(items[0])
+const [
+  activeItemByPrimitive,
+  setactiveItemByPrimitive
+] = React.useState(items[0].id)
 
-initialState = {
-  activeItemByReference: items[0],
-  activeItemByPrimitive: items[0].id
-}
 ;<div>
   {/* Will render "not active" because of object reference: */}
-  {state.activeItemByReference === items[0] ? 'active' : 'not active'}
+  {activeItemByReference === items[0] ? 'active' : 'not active'}
   {/* But this will render "active" as expected: */}
-  {state.activeItemByPrimitive === items[0].id
-    ? 'active'
-    : 'not active'}
+  {activeItemByPrimitive === items[0].id ? 'active' : 'not active'}
 </div>
 ```
 

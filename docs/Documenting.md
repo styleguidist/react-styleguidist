@@ -272,44 +272,35 @@ import Placeholder from 'rsg-example/components/Placeholder'
 
 > **Note:** You can only use `import` by editing your Markdown files, not by editing the example code in the browser.
 
-Each example has its own state that you can access as `state` variable and change with `setState()` function. Default state is `{}` and can be set with `initialState`.
+Each example acts as function component and you can use React Hook `useState` to handle its own state.
 
 ````jsx
 // ```jsx inside Markdown
-initialState = { isOpen: false }
+const [isOpen, setisOpen] = React.useState(false)
 ;<div>
-  <button onClick={() => setState({ isOpen: true })}>Open</button>
-  <Modal isOpen={state.isOpen}>
+  <button onClick={() => setisOpen(true)}>Open</button>
+  <Modal isOpen={isOpen}>
     <h1>Hallo!</h1>
-    <button onClick={() => setState({ isOpen: false })}>Close</button>
+    <button onClick={() => setisOpen(false)}>Close</button>
   </Modal>
 </div>
 ````
 
-`initialState`, `state` and `setState()` helpers are good to show components in different states, but to let users copy-paste your example code without modifications into their React app you may want to use `React.Component` instead. We can rewrite the example above like this:
+To let users copy-paste your example code without modifications into their React app you may want to share full code instead. We can rewrite the example above like this:
 
 ````jsx
 // ```jsx inside Markdown
-class ModalExample extends React.Component {
-  state = {
-    isOpen: false
-  }
-  toggleOpen = () => {
-    this.setState((prevState, props) => ({
-      isOpen: !prevState.isOpen
-    }))
-  }
-  render() {
-    return (
-      <div>
-        <button onClick={this.toggleOpen}>Open</button>
-        <Modal isOpen={this.state.isOpen}>
-          <h1>Hallo!</h1>
-          <button onClick={this.toggleOpen}>Close</button>
-        </Modal>
-      </div>
-    )
-  }
+function ModalExample() {
+  const [isOpen, setisOpen] = React.useState(false)
+  return (
+    <div>
+      <button onClick={() => setisOpen(true)}>Open</button>
+      <Modal isOpen={isOpen}>
+        <h1>Hallo!</h1>
+        <button onClick={() => setisOpen(false)}>Close</button>
+      </Modal>
+    </div>
+  )
 }
 ;<ModalExample />
 ````
