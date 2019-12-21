@@ -29,7 +29,6 @@ export default class ReactExample extends Component<ReactExampleProps> {
 	// Run example code and return the last top-level expression
 	private getExampleComponent(compiledCode: string): () => any {
 		return this.props.evalInContext(`
-			var initialState = {};
 			${compiledCode}
 		`);
 	}
