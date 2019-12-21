@@ -3,10 +3,9 @@ An example of using React Context with a component:
 ```jsx
 import ThemeContext from '../../ThemeContext.js'
 
-initialState = { theme: 'light' }
-const toggleTheme = () => {
-  setState({ theme: state.theme === 'light' ? 'dark' : 'light' })
-}
+const [theme, setTheme] = React.useState('light')
+const toggleTheme = () =>
+  setTheme(theme === 'light' ? 'dark' : 'light')
 ;<>
   <div
     style={{
@@ -15,10 +14,10 @@ const toggleTheme = () => {
       padding: '16px'
     }}
   >
-    <button onClick={toggleTheme}>Theme: {state.theme}</button>
+    <button onClick={toggleTheme}>Theme: {theme}</button>
   </div>
   <div>
-    <ThemeContext.Provider value={state.theme}>
+    <ThemeContext.Provider value={theme}>
       <ThemeButton>Themable button</ThemeButton>
     </ThemeContext.Provider>
   </div>
