@@ -1,78 +1,83 @@
 {
-  "parser": "babel-eslint",
-  "extends": ["tamia/react", "plugin:jsx-a11y/recommended"],
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "plugins": [
-    "compat",
-    "import",
-    "jsx-a11y"
-  ],
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "moduleDirectory": ["src/client", "node_modules"],
-        "extensions": [
-          ".js",
-          ".json",
-          ".tsx",
-          ".ts"
-        ]
-      }
-    },
-    "react": {
-      "version": "16.6",
-      "flowVersion": "0.83"
-    }
-  },
-  "rules": {
-    "valid-jsdoc": 0,
-    "no-duplicate-imports": 0,
-    "compat/compat": "error",
-    "import/no-unresolved": ["error", {
-      "commonjs": true,
-      "caseSensitive": true
-    }],
-    "import/export": "error",
-    "import/no-named-as-default-member": "error",
-    "import/no-mutable-exports": "error",
-    "import/no-amd": "error",
-    "import/first": ["error", "absolute-first"],
-    "import/no-duplicates": "error",
-    "import/extensions": ["error", "always", {
-      "js": "never",
-      "tsx": "never",
-      "ts": "never"
-    }],
-    "import/no-extraneous-dependencies": "error",
-    "import/newline-after-import": "error",
-    "import/prefer-default-export": "error",
-    "import/no-named-default": "error"
-  },
-  "globals": {
-    "System": false,
-    "classes": false,
-    "shallow": false,
-    "render": false,
-    "mount": false,
-    "cy": false
-  },
-  "overrides": [
-    {
-        "files": ["*.spec.js"],
-        "rules": {
-          "compat/compat": 0
-        }
-    },
-    {
-      "files": ["*.ts", "*.tsx"],
-      "parser": "@typescript-eslint/parser",
-      "plugins": ["@typescript-eslint"],
-      "extends": [
-        "tamia/typescript-react"
-      ]
-    }
-  ]
+	"parser": "babel-eslint",
+	"extends": ["tamia/react", "plugin:jsx-a11y/recommended"],
+	"env": {
+		"browser": true,
+		"node": true
+	},
+	"plugins": ["compat", "import", "jsx-a11y"],
+	"settings": {
+		"import/resolver": {
+			"node": {
+				"moduleDirectory": ["src/client", "node_modules"],
+				"extensions": [".js", ".json", ".ts"]
+			}
+		},
+		"react": {
+			"version": "16.6",
+			"flowVersion": "0.83"
+		}
+	},
+	"rules": {
+		"valid-jsdoc": 0,
+		"no-duplicate-imports": 0,
+		"compat/compat": "error",
+		"import/no-unresolved": [
+			"error",
+			{
+				"commonjs": true,
+				"caseSensitive": true
+			}
+		],
+		"import/export": "error",
+		"import/no-named-as-default-member": "error",
+		"import/no-mutable-exports": "error",
+		"import/no-amd": "error",
+		"import/first": ["error", "absolute-first"],
+		"import/no-duplicates": "error",
+		"import/extensions": [
+			"error",
+			"always",
+			{
+				"js": "never",
+				"tsx": "never",
+				"ts": "never",
+				"mjs": "never"
+			}
+		],
+		"import/no-extraneous-dependencies": "error",
+		"import/newline-after-import": "error",
+		"import/prefer-default-export": "error",
+		"import/no-named-default": "error"
+	},
+	"globals": {
+		"System": false,
+		"classes": false,
+		"shallow": false,
+		"render": false,
+		"mount": false,
+		"cy": false
+	},
+	"overrides": [
+		{
+			"files": ["*.spec.js"],
+			"rules": {
+				"compat/compat": 0
+			}
+		},
+		{
+			"files": ["*.ts", "*.tsx"],
+			"parser": "@typescript-eslint/parser",
+			"parserOptions": {
+				"project": "./tsconfig.json"
+			},
+			"settings": {
+				"import/resolver": {
+					"typescript": {}
+				}
+			},
+			"plugins": ["@typescript-eslint"],
+			"extends": ["tamia/typescript-react"]
+		}
+	]
 }
