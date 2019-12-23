@@ -18,7 +18,12 @@ export default function StyleHOC<P extends JssInjectedProps>(
 			public sheet: StyleSheet;
 			public constructor(props: Omit<P, keyof JssInjectedProps>, context: any) {
 				super(props, context);
-				this.sheet = createStyleSheet(styles, context.config || {}, componentName);
+				this.sheet = createStyleSheet(
+					styles,
+					context.config || {},
+					componentName,
+					context.codeRevision
+				);
 				this.sheet.update(props).attach();
 			}
 

@@ -144,15 +144,6 @@ export default function(
 	// to customize the style guide (their aliases should be before this one)
 	alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
 
-	// finally alias user provided style & theme files
-	alias['rsg-customTheme'] =
-		typeof config.theme === 'string' ? config.theme : path.resolve(sourceDir, 'styles/emptyTheme');
-
-	alias['rsg-customStyles'] =
-		typeof config.styles === 'string'
-			? config.styles
-			: path.resolve(sourceDir, 'styles/emptyStyles');
-
 	webpackConfig = config.dangerouslyUpdateWebpackConfig
 		? config.dangerouslyUpdateWebpackConfig(aliasedWebpackConfig, env)
 		: aliasedWebpackConfig;

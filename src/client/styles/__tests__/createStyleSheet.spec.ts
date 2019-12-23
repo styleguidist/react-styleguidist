@@ -78,7 +78,7 @@ describe('createStyleSheet', () => {
 	});
 
 	it('should use theme variables', () => {
-		const styleSheet = createStyleSheet(styles, config, testComponentName);
+		const styleSheet = createStyleSheet(styles, config, testComponentName, 1);
 		const style = (styleSheet.getRule(testRuleName) as any).style;
 
 		expect(style['background-color']).toBe(theme.color.baseBackground);
@@ -86,7 +86,7 @@ describe('createStyleSheet', () => {
 	});
 
 	it('should override theme variables with config theme', () => {
-		const styleSheet = createStyleSheet(styles, config, testComponentName);
+		const styleSheet = createStyleSheet(styles, config, testComponentName, 2);
 		const style = (styleSheet.getRule(testRuleName) as any).style;
 
 		expect(style.color).toBe(customThemeColor);
@@ -98,7 +98,8 @@ describe('createStyleSheet', () => {
 		const styleSheet = createStyleSheet(
 			styles,
 			{ theme: 'path/to/theme' } as any,
-			testComponentName
+			testComponentName,
+			3
 		);
 		const style = (styleSheet.getRule(testRuleName) as any).style;
 
@@ -106,7 +107,7 @@ describe('createStyleSheet', () => {
 	});
 
 	it('should override config theme variables with config styles', () => {
-		const styleSheet = createStyleSheet(styles, config, testComponentName);
+		const styleSheet = createStyleSheet(styles, config, testComponentName, 4);
 		const style = (styleSheet.getRule(testRuleName) as any).style;
 
 		expect(style['border-color']).toBe(customStyleBorderColor);
@@ -121,7 +122,8 @@ describe('createStyleSheet', () => {
 		const styleSheet = createStyleSheet(
 			styles,
 			{ styles: 'path/to/styles' } as any,
-			testComponentName
+			testComponentName,
+			5
 		);
 		const style = (styleSheet.getRule(testRuleName) as any).style;
 
@@ -129,11 +131,7 @@ describe('createStyleSheet', () => {
 	});
 
 	it('should override config theme variables with config styles as a function', () => {
-		// remove cache from memoize since we changed config
-		if (createStyleSheet && createStyleSheet.cache && createStyleSheet.cache.clear) {
-			createStyleSheet.cache.clear();
-		}
-		const styleSheet = createStyleSheet(styles, configWithStylesAsAFunction, testComponentName);
+		const styleSheet = createStyleSheet(6, styles, configWithStylesAsAFunction, testComponentName);
 		const style = (styleSheet.getRule(testRuleName) as any).style;
 
 		expect(style['border-color']).toBe(customThemeLinkColor);

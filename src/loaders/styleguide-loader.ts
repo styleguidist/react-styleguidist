@@ -10,6 +10,7 @@ import getComponentPatternsFromSections from './utils/getComponentPatternsFromSe
 import getSections from './utils/getSections';
 import filterComponentsWithExample from './utils/filterComponentsWithExample';
 import slugger from './utils/slugger';
+import requireIt from './utils/requireIt';
 
 const logger = createLogger('rsg');
 
@@ -65,10 +66,12 @@ export function pitch(this: Rsg.StyleguidistLoaderContext) {
 
 	if (typeof config.styles === 'string') {
 		this.addDependency(config.styles);
+		config.styles = requireIt(config.styles);
 	}
 
 	if (typeof config.theme === 'string') {
 		this.addDependency(config.theme);
+		config.theme = requireIt(config.theme) as any;
 	}
 
 	const styleguide = {

@@ -12,9 +12,7 @@
 		"outDir": "./lib",
 		"lib": ["dom"],
 		"paths": {
-			"rsg-components/*": ["src/client/rsg-components/*"],
-			"rsg-customTheme": ["src/client/styles/emptyTheme"],
-			"rsg-customStyles": ["src/client/styles/emptyStyles"]
+			"rsg-components/*": ["src/client/rsg-components/*"]
 		}
 	},
 	"include": ["src"],
