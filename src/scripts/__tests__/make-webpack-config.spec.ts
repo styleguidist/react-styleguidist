@@ -98,20 +98,7 @@ it('should set aliases from styleguideComponents option', () => {
 		},
 		'development'
 	);
-	expect((result as any).resolve.alias['rsg-components/foo']).toEqual('bar');
-});
-
-it('should replace Renderer in aliases from styleguideComponents option', () => {
-	const result = makeWebpackConfig(
-		{
-			...styleguideConfig,
-			styleguideComponents: {
-				fooRenderer: 'bar',
-			},
-		},
-		'development'
-	);
-	expect((result as any).resolve.alias['rsg-components/foo/fooRenderer']).toEqual('bar');
+	expect(result.resolve && result.resolve.alias).toMatchSnapshot();
 });
 
 it('should prepend requires as webpack entries', () => {
@@ -241,26 +228,4 @@ it('should pass specified mountPointId to HTML plugin', () => {
 	expect(
 		(getClasses(result.plugins, 'MiniHtmlWebpackPlugin')[0] as any).options.context.container
 	).toEqual('foo-bar');
-});
-
-it('should use theme as an alias if it is a string', () => {
-	const result = makeWebpackConfig(
-		{
-			...styleguideConfig,
-			theme: 'path/to/theme',
-		},
-		'development'
-	);
-	expect((result.resolve as any).alias['rsg-customTheme']).toEqual('path/to/theme');
-});
-
-it('should use styles as an alias if it is a string', () => {
-	const result = makeWebpackConfig(
-		{
-			...styleguideConfig,
-			styles: 'path/to/styles',
-		},
-		'development'
-	);
-	expect((result.resolve as any).alias['rsg-customStyles']).toEqual('path/to/styles');
 });

@@ -1,20 +1,5 @@
-import { Styles } from 'jss';
 import * as theme from '../theme';
 import createStyleSheet from '../createStyleSheet';
-
-// eslint-disable-next-line no-var
-var mockCustomTheme: RecursivePartial<Rsg.Theme>;
-jest.mock('rsg-customTheme', () => {
-	mockCustomTheme = {};
-	return mockCustomTheme;
-});
-
-// eslint-disable-next-line no-var
-var mockCustomStyles: Styles;
-jest.mock('rsg-customStyles', () => {
-	mockCustomStyles = {};
-	return mockCustomStyles;
-});
 
 const customThemeColor = '#123456';
 const customThemeColorFromFile = '#111111';
@@ -73,8 +58,6 @@ const configWithStylesAsAFunction = {
 describe('createStyleSheet', () => {
 	beforeEach(() => {
 		(createStyleSheet as any).cache.clear();
-		mockCustomTheme.color = undefined;
-		mockCustomStyles[testComponentName] = undefined;
 	});
 
 	it('should use theme variables', () => {
@@ -93,19 +76,6 @@ describe('createStyleSheet', () => {
 		expect(style['max-width']).toBe(`${customThemeMaxWidth}px`);
 	});
 
-	it('should override theme variables with config theme when when config theme is a file', () => {
-		mockCustomTheme.color = { base: customThemeColorFromFile };
-		const styleSheet = createStyleSheet(
-			styles,
-			{ theme: 'path/to/theme' } as any,
-			testComponentName,
-			3
-		);
-		const style = (styleSheet.getRule(testRuleName) as any).style;
-
-		expect(style.color).toBe(customThemeColorFromFile);
-	});
-
 	it('should override config theme variables with config styles', () => {
 		const styleSheet = createStyleSheet(styles, config, testComponentName, 4);
 		const style = (styleSheet.getRule(testRuleName) as any).style;
@@ -113,25 +83,8 @@ describe('createStyleSheet', () => {
 		expect(style['border-color']).toBe(customStyleBorderColor);
 	});
 
-	it('should override normal styles with customized styles object in a file', () => {
-		mockCustomStyles[testComponentName] = {
-			[testRuleName]: {
-				borderColor: customStyleBorderColorInFile,
-			},
-		};
-		const styleSheet = createStyleSheet(
-			styles,
-			{ styles: 'path/to/styles' } as any,
-			testComponentName,
-			5
-		);
-		const style = (styleSheet.getRule(testRuleName) as any).style;
-
-		expect(style['border-color']).toBe(customStyleBorderColorInFile);
-	});
-
 	it('should override config theme variables with config styles as a function', () => {
-		const styleSheet = createStyleSheet(6, styles, configWithStylesAsAFunction, testComponentName);
+		const styleSheet = createStyleSheet(styles, configWithStylesAsAFunction, testComponentName, 6);
 		const style = (styleSheet.getRule(testRuleName) as any).style;
 
 		expect(style['border-color']).toBe(customThemeLinkColor);
