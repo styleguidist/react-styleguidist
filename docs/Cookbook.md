@@ -20,7 +20,6 @@
 - [How to debug my components and examples?](#how-to-debug-my-components-and-examples)
 - [How to debug the exceptions thrown from my components?](#how-to-debug-the-exceptions-thrown-from-my-components)
 - [How to use the production or development build of React?](#how-to-use-the-production-or-development-build-of-react)
-- [Why object references don’t work in example component state?](#why-object-references-dont-work-in-example-component-state)
 - [How to use Vagrant with Styleguidist?](#how-to-use-vagrant-with-styleguidist)
 - [How to add a favicon?](#how-to-add-a-favicon)
 - [How to add external JavaScript and CSS files?](#how-to-add-external-javascript-and-css-files)

@@ -4,9 +4,8 @@ An example of using React Context with a component:
 import ThemeContext from '../../ThemeContext.js'
 
 const [theme, setTheme] = React.useState('light')
-const toggleTheme = () => {
-  setTheme(state.theme === 'light' ? 'dark' : 'light')
-}
+const toggleTheme = () =>
+  setTheme(theme === 'light' ? 'dark' : 'light')
 ;<>
   <div
     style={{

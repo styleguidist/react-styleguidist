@@ -272,7 +272,7 @@ import Placeholder from 'rsg-example/components/Placeholder'
 
 > **Note:** You can only use `import` by editing your Markdown files, not by editing the example code in the browser.
 
-Each example acts as function component and you can use the `useState` Hook to handle its own state.
+Each example acts as a function component and you can use the `useState` Hook to handle its state.
 
 ````jsx
 // ```jsx inside Markdown
@@ -286,7 +286,7 @@ const [isOpen, setIsOpen] = React.useState(false)
 </div>
 ````
 
-If a component consumes React Context, you need a context provider in the example or in a custom `Wrapper` component. See [ThemeButton example](https://github.com/styleguidist/react-styleguidist/tree/master/examples/sections/src/components/ThemeButton).
+If a component uses React Context, you need a context provider in the example or in a custom `Wrapper` component. See [ThemeButton example](https://github.com/styleguidist/react-styleguidist/tree/master/examples/sections/src/components/ThemeButton).
 
 > **Note:** If you need a more complex demo it’s often a good idea to define it in a separate JavaScript file and `import` it in Markdown.
 
