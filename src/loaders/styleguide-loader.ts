@@ -63,6 +63,14 @@ export function pitch(this: Rsg.StyleguidistLoaderContext) {
 		this.addContextDependency(commonDir(allComponentFiles));
 	}
 
+	if (typeof config.styles === 'string') {
+		this.addDependency(config.styles);
+	}
+
+	if (typeof config.theme === 'string') {
+		this.addDependency(config.theme);
+	}
+
 	const styleguide = {
 		config: pick(config, CLIENT_CONFIG_OPTIONS),
 		welcomeScreen,
