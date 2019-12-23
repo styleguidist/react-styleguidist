@@ -272,37 +272,18 @@ import Placeholder from 'rsg-example/components/Placeholder'
 
 > **Note:** You can only use `import` by editing your Markdown files, not by editing the example code in the browser.
 
-Each example acts as function component and you can use React Hook `useState` to handle its own state.
+Each example acts as function component and you can use the `useState` Hook to handle its own state.
 
 ````jsx
 // ```jsx inside Markdown
-const [isOpen, setisOpen] = React.useState(false)
+const [isOpen, setIsOpen] = React.useState(false)
 ;<div>
-  <button onClick={() => setisOpen(true)}>Open</button>
+  <button onClick={() => setIsOpen(true)}>Open</button>
   <Modal isOpen={isOpen}>
     <h1>Hallo!</h1>
-    <button onClick={() => setisOpen(false)}>Close</button>
+    <button onClick={() => setIsOpen(false)}>Close</button>
   </Modal>
 </div>
-````
-
-To let users copy-paste your example code without modifications into their React app you may want to share full code instead. We can rewrite the example above like this:
-
-````jsx
-// ```jsx inside Markdown
-function ModalExample() {
-  const [isOpen, setisOpen] = React.useState(false)
-  return (
-    <div>
-      <button onClick={() => setisOpen(true)}>Open</button>
-      <Modal isOpen={isOpen}>
-        <h1>Hallo!</h1>
-        <button onClick={() => setisOpen(false)}>Close</button>
-      </Modal>
-    </div>
-  )
-}
-;<ModalExample />
 ````
 
 If a component consumes React Context, you need a context provider in the example or in a custom `Wrapper` component. See [ThemeButton example](https://github.com/styleguidist/react-styleguidist/tree/master/examples/sections/src/components/ThemeButton).

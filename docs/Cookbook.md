@@ -446,29 +446,6 @@ If you use code like the example above, you might see a `Cannot read property 'i
 
 **Note:** The script above uses [cross-env](https://github.com/kentcdodds/cross-env) to make sure the environment variable is properly set on all platforms. Run `npm i -D cross-env` to add it.
 
-## Why object references don’t work in example component state?
-
-Object references may not work as expected in examples state:
-
-```jsx
-const items = [{ id: 0 }, { id: 1 }]
-const [
-  activeItemByReference,
-  setactiveItemByReference
-] = React.useState(items[0])
-const [
-  activeItemByPrimitive,
-  setactiveItemByPrimitive
-] = React.useState(items[0].id)
-
-;<div>
-  {/* Will render "not active" because of object reference: */}
-  {activeItemByReference === items[0] ? 'active' : 'not active'}
-  {/* But this will render "active" as expected: */}
-  {activeItemByPrimitive === items[0].id ? 'active' : 'not active'}
-</div>
-```
-
 ## How to use Vagrant with Styleguidist?
 
 First, read [Vagrant guide](https://webpack.js.org/guides/development-vagrant/) from the webpack documentation. Then enable polling in your webpack config:
