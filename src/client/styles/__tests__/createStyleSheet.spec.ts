@@ -2,12 +2,10 @@ import * as theme from '../theme';
 import createStyleSheet from '../createStyleSheet';
 
 const customThemeColor = '#123456';
-const customThemeColorFromFile = '#111111';
 const customThemeBorderColor = '#654321';
 const customThemeMaxWidth = 9999;
 
 const customStyleBorderColor = '#ABCDEF';
-const customStyleBorderColorInFile = '#FEDCBA';
 
 const customThemeLinkColor = '#CCCAAA';
 
@@ -24,7 +22,7 @@ const styles = ({ color, borderRadius, maxWidth }: Rsg.Theme) => ({
 	},
 });
 
-const config = ({
+const config = {
 	theme: {
 		color: {
 			base: customThemeColor,
@@ -40,7 +38,7 @@ const config = ({
 			},
 		},
 	},
-} as any) as Rsg.ProcessedStyleguidistConfig;
+};
 
 const configWithStylesAsAFunction = {
 	...config,
@@ -56,10 +54,6 @@ const configWithStylesAsAFunction = {
 };
 
 describe('createStyleSheet', () => {
-	beforeEach(() => {
-		(createStyleSheet as any).cache.clear();
-	});
-
 	it('should use theme variables', () => {
 		const styleSheet = createStyleSheet(styles, config, testComponentName, 1);
 		const style = (styleSheet.getRule(testRuleName) as any).style;
