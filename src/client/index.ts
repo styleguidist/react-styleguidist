@@ -41,8 +41,8 @@ const render = () => {
 	// account for es6 exports of styles and theme
 	styleguide.config = {
 		...styleguide.config,
-		theme: (styleguide.config.theme as any).default || styleguide.theme,
-		styles: (styleguide.config.styles as any).default || styleguide.styles,
+		theme: (styleguide.config.theme as any).default || styleguide.config.theme,
+		styles: (styleguide.config.styles as any).default || styleguide.config.styles,
 	};
 
 	ReactDOM.render(
