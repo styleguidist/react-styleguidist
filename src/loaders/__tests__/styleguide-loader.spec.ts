@@ -184,5 +184,52 @@ it('should add common parent folder of all components to context dependencies', 
 		addContextDependency,
 	} as any);
 	expect(addContextDependency).toHaveBeenCalledTimes(1);
-	expect(addContextDependency).toBeCalledWith(expect.stringMatching(/test\/components\/$/));
+	expect(addContextDependency).toBeCalledWith(expect.stringMatching(/test[\\/]components[\\//]$/));
+});
+
+it('should convert styles and themes as string into requireIt objects', () => {
+	const result = styleguideLoader.pitch.call({
+		request: file,
+		_styleguidist: {
+			sections: [],
+			styles: 'path/to/styles',
+			theme: 'path/to/theme',
+		},
+		addDependency: jest.fn(),
+	} as any);
+	expect(result).toMatch(/require\('path\/to\/styles'\)/);
+	expect(result).toMatch(/require\('path\/to\/theme'\)/);
+});
+
+it('should flag both styles and theme as dependencies', () => {
+	const addDependency = jest.fn();
+	styleguideLoader.pitch.call({
+		request: file,
+		_styleguidist: {
+			sections: [],
+			styles: 'path/to/styles',
+			theme: 'path/to/theme',
+		},
+		addDependency,
+	} as any);
+	expect(addDependency).toHaveBeenCalledWith('path/to/styles');
+	expect(addDependency).toHaveBeenCalledWith('path/to/theme');
+});
+
+it.each([
+	{ hot: true, styles: {}, RE: /'hmrStyles': false/ },
+	{ hot: false, styles: 'path/to/styles', RE: /'hmrStyles': false/ },
+	{ hot: true, styles: 'path/to/styles', RE: /'hmrStyles': true/ },
+])(`should only flag hmrStyles if hot is on: %p`, ({ hot, styles, RE }) => {
+	const addDependency = jest.fn();
+	const result = styleguideLoader.pitch.call({
+		request: file,
+		_styleguidist: {
+			sections: [],
+			styles,
+		},
+		addDependency,
+		hot,
+	} as any);
+	expect(result).toMatch(RE);
 });
