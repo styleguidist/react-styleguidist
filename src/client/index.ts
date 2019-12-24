@@ -38,11 +38,11 @@ const render = () => {
 	// eslint-disable-next-line @typescript-eslint/no-var-requires, import/no-unresolved
 	const styleguide = require('!!../loaders/styleguide-loader!./index.js');
 
-	// make sure the hmrStyles do not get lost fter each hmr
+	// make sure the hmrStyles value does not get lost after each HMR
 	hmrStyles = hmrStyles || styleguide.hmrStyles;
 	styleguide.hmrStyles = hmrStyles;
 
-	// account for es6 exports of styles and theme
+	// account for es6 exports of styles and theme files
 	styleguide.config = {
 		...styleguide.config,
 		theme: (styleguide.config.theme as any).default || styleguide.config.theme,
