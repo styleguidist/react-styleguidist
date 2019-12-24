@@ -20,7 +20,6 @@
 - [How to debug my components and examples?](#how-to-debug-my-components-and-examples)
 - [How to debug the exceptions thrown from my components?](#how-to-debug-the-exceptions-thrown-from-my-components)
 - [How to use the production or development build of React?](#how-to-use-the-production-or-development-build-of-react)
-- [Why object references don’t work in example component state?](#why-object-references-dont-work-in-example-component-state)
 - [How to use Vagrant with Styleguidist?](#how-to-use-vagrant-with-styleguidist)
 - [How to add a favicon?](#how-to-add-a-favicon)
 - [How to add external JavaScript and CSS files?](#how-to-add-external-javascript-and-css-files)
@@ -38,15 +37,15 @@
 Use `ref` prop as a function and assign a reference to a local variable:
 
 ```jsx
-initialState = { value: '' }
+const [value, setValue] = React.useState('')
 let textarea
 ;<div>
   <Button onClick={() => textarea.insertAtCursor('Pizza')}>
     Insert
   </Button>
   <Textarea
-    value={state.value}
-    onChange={e => setState({ value: e.target.value })}
+    value={value}
+    onChange={e => setValue(e.target.value)}
     ref={ref => (textarea = ref)}
   />
 </div>
@@ -494,27 +493,6 @@ If you use code like the example above, you might see a `Cannot read property 'i
 ```
 
 **Note:** The script above uses [cross-env](https://github.com/kentcdodds/cross-env) to make sure the environment variable is properly set on all platforms. Run `npm i -D cross-env` to add it.
-
-## Why object references don’t work in example component state?
-
-Object references may not work as expected in examples state:
-
-```jsx
-const items = [{ id: 0 }, { id: 1 }]
-
-initialState = {
-  activeItemByReference: items[0],
-  activeItemByPrimitive: items[0].id
-}
-;<div>
-  {/* Will render "not active" because of object reference: */}
-  {state.activeItemByReference === items[0] ? 'active' : 'not active'}
-  {/* But this will render "active" as expected: */}
-  {state.activeItemByPrimitive === items[0].id
-    ? 'active'
-    : 'not active'}
-</div>
-```
 
 ## How to use Vagrant with Styleguidist?
 

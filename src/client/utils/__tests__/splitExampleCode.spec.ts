@@ -11,16 +11,6 @@ return (React.createElement('i', null, a));`,
 		});
 	});
 
-	test('initialState', () => {
-		const result = splitExampleCode(`initialState = {a: 1};
-React.createElement('i', null, state.a);`);
-		expect(result).toEqual({
-			head: 'initialState = {a: 1}',
-			example: `initialState = {a: 1};
-return (React.createElement('i', null, state.a));`,
-		});
-	});
-
 	test('JSX not only in the last expression', () => {
 		const result = splitExampleCode(`function Wrapper(ref) {
 	var children = ref.children;

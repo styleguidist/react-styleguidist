@@ -144,6 +144,8 @@ Everyone is welcome to contribute. Please take a moment to read the [contributin
 <a href="https://opencollective.com/styleguidist/backer/28/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/28/avatar.svg"></a>
 <a href="https://opencollective.com/styleguidist/backer/29/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/29/avatar.svg"></a>
 
+<a href="https://www.buymeacoffee.com/sapegin" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/lato-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
+
 ## Authors and license
 
 [Artem Sapegin](http://sapegin.me) and [contributors](https://github.com/styleguidist/react-styleguidist/graphs/contributors).
