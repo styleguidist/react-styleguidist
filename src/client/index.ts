@@ -6,8 +6,8 @@ import renderStyleguide from './utils/renderStyleguide';
 import { getParameterByName, hasInHash, getHash } from './utils/handleHash';
 
 // Examples code revision to rerender only code examples (not the whole page) when code changes
-// eslint-disable-next-line no-unused-vars
 let codeRevision = 0;
+let hmrStyles = false;
 
 // Scrolls to origin when current window location hash points to an isolated view.
 const scrollToOrigin = () => {
@@ -37,6 +37,10 @@ const scrollToOrigin = () => {
 const render = () => {
 	// eslint-disable-next-line @typescript-eslint/no-var-requires, import/no-unresolved
 	const styleguide = require('!!../loaders/styleguide-loader!./index.js');
+
+	// make sure the hmrStyles do not get lost fter each hmr
+	hmrStyles = hmrStyles || styleguide.hmrStyles;
+	styleguide.hmrStyles = hmrStyles;
 
 	// account for es6 exports of styles and theme
 	styleguide.config = {
