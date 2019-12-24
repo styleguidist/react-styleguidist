@@ -26,18 +26,19 @@ import { DisplayModes } from '../../consts';
  * @param {boolean} pagePerSection
  * @returns {boolean}
  */
-function hasSidebar(displayMode: string, showSidebar: boolean): boolean {
+function hasSidebar(displayMode: string | undefined, showSidebar: boolean): boolean {
 	return displayMode === DisplayModes.notFound || (showSidebar && displayMode === DisplayModes.all);
 }
 
-interface StyleGuideProps {
+export interface StyleGuideProps {
 	codeRevision: number;
-	config: any;
+	cssRevision: number;
+	config: Rsg.ProcessedStyleguidistConfig;
 	slots: any;
 	sections: Rsg.Section[];
 	welcomeScreen?: boolean;
 	patterns?: string[];
-	displayMode: string;
+	displayMode?: string;
 	allSections?: Rsg.Section[];
 	pagePerSection?: boolean;
 }
@@ -50,6 +51,7 @@ interface StyleGuideState {
 export default class StyleGuide extends Component<StyleGuideProps, StyleGuideState> {
 	public static propTypes = {
 		codeRevision: PropTypes.number.isRequired,
+		cssRevision: PropTypes.number.isRequired,
 		config: PropTypes.object.isRequired,
 		slots: PropTypes.object.isRequired,
 		sections: PropTypes.array.isRequired,
@@ -86,6 +88,7 @@ export default class StyleGuide extends Component<StyleGuideProps, StyleGuideSta
 			allSections,
 			pagePerSection,
 			codeRevision,
+			cssRevision,
 			slots,
 		} = this.props;
 
@@ -104,9 +107,11 @@ export default class StyleGuide extends Component<StyleGuideProps, StyleGuideSta
 					config,
 					slots,
 					displayMode: displayMode || DisplayModes.all,
+					cssRevision,
 				}}
 			>
 				<StyleGuideRenderer
+					key={cssRevision}
 					title={config.title}
 					version={config.version}
 					homepageUrl={HOMEPAGE}

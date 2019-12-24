@@ -37,6 +37,14 @@ const scrollToOrigin = () => {
 const render = () => {
 	// eslint-disable-next-line @typescript-eslint/no-var-requires, import/no-unresolved
 	const styleguide = require('!!../loaders/styleguide-loader!./index.js');
+
+	// account for es6 exports of styles and theme
+	styleguide.config = {
+		...styleguide.config,
+		theme: (styleguide.config.theme as any).default || styleguide.theme,
+		styles: (styleguide.config.styles as any).default || styleguide.styles,
+	};
+
 	ReactDOM.render(
 		renderStyleguide(styleguide, codeRevision),
 		document.getElementById(styleguide.config.mountPointId)

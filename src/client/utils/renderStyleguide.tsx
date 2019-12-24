@@ -4,6 +4,7 @@ import StyleGuide from 'rsg-components/StyleGuide';
 import getPageTitle from './getPageTitle';
 import getRouteData from './getRouteData';
 import processSections from './processSections';
+import getCssRevision from './getCssRevision';
 
 interface StyleguideObject {
 	sections: Rsg.Section[];
@@ -45,6 +46,7 @@ export default function renderStyleguide(
 	return (
 		<StyleGuide
 			codeRevision={codeRevision}
+			cssRevision={getCssRevision(styleguide.config)}
 			config={styleguide.config}
 			slots={slots(styleguide.config)}
 			welcomeScreen={styleguide.welcomeScreen}

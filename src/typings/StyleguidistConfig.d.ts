@@ -92,7 +92,12 @@ declare global {
 
 		interface ProcessedStyleguidistConfig extends BaseStyleguidistConfig {
 			sections: Section[];
+			theme: RecursivePartial<Theme>;
+			styles: ((th: Theme) => Styles) | Styles;
 		}
+
+		type ProcessedStyleguidistCSSConfig = Pick<ProcessedStyleguidistConfig, 'theme'> &
+			Pick<ProcessedStyleguidistConfig, 'styles'>;
 
 		interface SanitizedStyleguidistConfig extends BaseStyleguidistConfig {
 			sections: ConfigSection[];
