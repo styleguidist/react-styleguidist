@@ -44,7 +44,7 @@
       "js": "never",
       "tsx": "never",
       "ts": "never",
-			"mjs": "never"
+      "mjs": "never"
     }],
     "import/no-extraneous-dependencies": "error",
     "import/newline-after-import": "error",
