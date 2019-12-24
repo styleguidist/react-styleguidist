@@ -7,6 +7,7 @@ import processSections from './processSections';
 import getCssRevision from './getCssRevision';
 
 interface StyleguideObject {
+	hmrStyles: boolean;
 	sections: Rsg.Section[];
 	config: Rsg.ProcessedStyleguidistConfig;
 	patterns: string[];
@@ -46,7 +47,7 @@ export default function renderStyleguide(
 	return (
 		<StyleGuide
 			codeRevision={codeRevision}
-			cssRevision={getCssRevision(styleguide.config)}
+			cssRevision={module.hot && styleguide.hmrStyles ? getCssRevision(styleguide.config) : 0}
 			config={styleguide.config}
 			slots={slots(styleguide.config)}
 			welcomeScreen={styleguide.welcomeScreen}

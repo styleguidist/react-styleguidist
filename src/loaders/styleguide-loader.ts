@@ -64,13 +64,17 @@ export function pitch(this: Rsg.StyleguidistLoaderContext) {
 		this.addContextDependency(commonDir(allComponentFiles));
 	}
 
+	let hmrStyles = false;
+
 	if (typeof config.styles === 'string') {
 		this.addDependency(config.styles);
+		hmrStyles = this.hot;
 		config.styles = requireIt(config.styles);
 	}
 
 	if (typeof config.theme === 'string') {
 		this.addDependency(config.theme);
+		hmrStyles = this.hot;
 		config.theme = requireIt(config.theme) as any;
 	}
 
@@ -79,6 +83,7 @@ export function pitch(this: Rsg.StyleguidistLoaderContext) {
 		welcomeScreen,
 		patterns,
 		sections,
+		hmrStyles,
 	};
 
 	return `
