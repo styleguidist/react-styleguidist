@@ -1,6 +1,6 @@
 import path from 'path';
 import castArray from 'lodash/castArray';
-import webpack, { Configuration } from 'webpack';
+import webpack, { Configuration, Resolve } from 'webpack';
 import TerserPlugin from 'terser-webpack-plugin';
 import MiniHtmlWebpackPlugin from 'mini-html-webpack-plugin';
 import MiniHtmlWebpackTemplate from '@vxna/mini-html-webpack-template';
@@ -16,6 +16,10 @@ import mergeWebpackConfig from './utils/mergeWebpackConfig';
 const RENDERER_REGEXP = /Renderer$/;
 
 const sourceDir = path.resolve(__dirname, '../client');
+
+interface AliasedConfiguration extends Configuration {
+	resolve: Resolve & { alias: Record<string, string> };
+}
 
 export default function(
 	config: Rsg.SanitizedStyleguidistConfig,
@@ -119,32 +123,30 @@ export default function(
 	}
 
 	// Custom aliases
-	if (config.moduleAliases) {
-		webpackConfig = merge(webpackConfig, {
-			resolve: { alias: config.moduleAliases },
+	// NOTE: in a sanitized config, moduleAliases are always an object (never null or undefined)
+	const aliasedWebpackConfig = merge(webpackConfig, {
+		resolve: { alias: config.moduleAliases },
+	}) as AliasedConfiguration;
+
+	const alias = aliasedWebpackConfig.resolve.alias;
+
+	// Custom style guide components
+	if (config.styleguideComponents) {
+		forEach(config.styleguideComponents, (filepath, name) => {
+			const fullName = name.match(RENDERER_REGEXP)
+				? `${name.replace(RENDERER_REGEXP, '')}/${name}`
+				: name;
+			alias[`rsg-components/${fullName}`] = filepath;
 		});
 	}
 
-	const alias = webpackConfig.resolve ? webpackConfig.resolve.alias : undefined;
-	if (alias) {
-		// Custom style guide components
-		if (config.styleguideComponents) {
-			forEach(config.styleguideComponents, (filepath, name) => {
-				const fullName = name.match(RENDERER_REGEXP)
-					? `${name.replace(RENDERER_REGEXP, '')}/${name}`
-					: name;
-				alias[`rsg-components/${fullName}`] = filepath;
-			});
-		}
+	// Add components folder alias at the end, so users can override our components
+	// to customize the style guide (their aliases should be before this one)
+	alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
 
-		// Add components folder alias at the end, so users can override our components
-		// to customize the style guide (their aliases should be before this one)
-		alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
-	}
-
-	if (config.dangerouslyUpdateWebpackConfig) {
-		webpackConfig = config.dangerouslyUpdateWebpackConfig(webpackConfig, env);
-	}
+	webpackConfig = config.dangerouslyUpdateWebpackConfig
+		? config.dangerouslyUpdateWebpackConfig(aliasedWebpackConfig, env)
+		: aliasedWebpackConfig;
 
 	return webpackConfig;
 }
