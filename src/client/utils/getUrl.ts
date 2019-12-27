@@ -5,23 +5,6 @@
  * @param {string} $.encodedName The URL encoded name of the component
  * @return {string}
  */
-function buildIsolatedOrNoChromeFragment({
-	currentHash,
-	encodedName,
-}: {
-	currentHash: string;
-	encodedName: string;
-}): string {
-	const stripFragment = /^#\/?/;
-	const stripTrailingSlash = /\/$/;
-	const currentHashPath =
-		// skip if we are already using `#!/`
-		currentHash && !currentHash.includes('#!/')
-			? currentHash.replace(stripFragment, '').replace(stripTrailingSlash, '') + '/'
-			: '';
-	return `#!/${currentHashPath}${encodedName}`;
-}
-
 interface GetUrlOptions {
 	name: string;
 	slug: string;
@@ -94,7 +77,7 @@ export default function getUrl(
 	if (anchor) {
 		url += `#${slug}`;
 	} else if (isolated || nochrome) {
-		url += buildIsolatedOrNoChromeFragment({ currentHash, encodedName });
+		url += `#!/${name}`;
 	}
 
 	if (hashPath) {
