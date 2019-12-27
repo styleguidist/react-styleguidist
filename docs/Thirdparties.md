@@ -22,7 +22,7 @@ Styleguidist _loads_ your components (see [Loading and exposing components](Comp
 
 React-docgen reads your components as static text files and looks for patterns like class or function declarations that look like React components. It does not run any JavaScript code, so, if your component is dynamically generated, is wrapped in a higher-order component, or is split into several files, then react-docgen may not understand it.
 
-It supports components defined via `React.createClass`, ES6 classes and stateless functional components, with optional Flow and TypeScript (via [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript)) type annotations.
+It supports components defined via `React.createClass`, ES6 classes and function components, with optional Flow and TypeScript type annotations.
 
 In many cases you may trick Styleguidist and react-docgen by exporting both components: an enhanced component as the default export and a base component as a named export:
 

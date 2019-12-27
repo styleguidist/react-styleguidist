@@ -2,7 +2,7 @@ const path = require('path');
 const { version } = require('./package');
 
 module.exports = {
-	components: 'src/components/**/index.ts',
+	components: 'src/components/**/*.{js,tsx}',
 	styleguideComponents: {
 		Wrapper: path.join(__dirname, 'src/StyleGuideWrapper'),
 	},
@@ -10,9 +10,7 @@ module.exports = {
 	moduleAliases: {
 		'rsg-example': path.resolve(__dirname, 'src'),
 	},
-	ribbon: {
-		url: 'https://github.com/styleguidist/react-styleguidist',
-	},
+	usageMode: 'expand',
 	version,
 	webpackConfig: {
 		module: {
