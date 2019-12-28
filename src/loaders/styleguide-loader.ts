@@ -1,4 +1,6 @@
 import pick from 'lodash/pick';
+import flatten from 'lodash/flatten';
+import { namedTypes as t, builders as b } from 'ast-types';
 import commonDir from 'common-dir';
 import { generate } from 'escodegen';
 import toAst from 'to-ast';
@@ -10,7 +12,7 @@ import getComponentPatternsFromSections from './utils/getComponentPatternsFromSe
 import getSections from './utils/getSections';
 import filterComponentsWithExample from './utils/filterComponentsWithExample';
 import slugger from './utils/slugger';
-import requireIt from './utils/requireIt';
+import resolveES6 from './utils/resolveES6';
 
 const logger = createLogger('rsg');
 
@@ -27,6 +29,9 @@ const CLIENT_CONFIG_OPTIONS = [
 	'title',
 	'version',
 ];
+
+const StylesVariableName = '__rsgStyles';
+const ThemeVariableName = '__rsgTheme';
 
 export default function() {}
 export function pitch(this: Rsg.StyleguidistLoaderContext) {
@@ -64,29 +69,51 @@ export function pitch(this: Rsg.StyleguidistLoaderContext) {
 		this.addContextDependency(commonDir(allComponentFiles));
 	}
 
-	if (typeof config.styles === 'string') {
-		this.addDependency(config.styles);
-		// TODO: need to do the same as in examples-loader for managing default export
-		config.styles = requireIt(config.styles) as any;
-	}
-	if (typeof config.theme === 'string') {
-		this.addDependency(config.theme);
-		// TODO: need to do the same as in examples-loader for managing default export
-		config.theme = requireIt(config.theme) as any;
-	}
+	const configClone = { ...config };
+	const styleContext: t.VariableDeclaration[][] = [];
+
+	const setVariableValueToObjectInFile = (
+		memberName: keyof Rsg.ProcessedStyleguidistCSSConfig,
+		varName: string
+	) => {
+		const configMember = config[memberName];
+		if (typeof configMember === 'string') {
+			// first attach the file as a dependency
+			this.addDependency(configMember);
+
+			// then create a variable to contain the value of the theme/style
+			styleContext.push(resolveES6(configMember, varName));
+
+			// Finally assign the calcultaed value to the member of the clone
+			// NOTE: if you are mutating config without cloning it, it changes
+			// the value for all config untill the process is stopped.
+			// This means `config` should not be mutated during this process.
+			const variableAst = {};
+			// we trick the toAst() function here because we want to force the value in it
+			Object.defineProperty(variableAst, 'toAST', {
+				enumerable: false,
+				value(): t.ASTNode {
+					return b.identifier(varName);
+				},
+			});
+			configClone[memberName] = variableAst;
+		}
+	};
+
+	setVariableValueToObjectInFile('styles', StylesVariableName);
+	setVariableValueToObjectInFile('theme', ThemeVariableName);
 
 	const styleguide = {
-		config: pick(config, CLIENT_CONFIG_OPTIONS),
+		config: pick(configClone, CLIENT_CONFIG_OPTIONS),
 		welcomeScreen,
 		patterns,
 		sections,
 	};
 
-	return `
+	return `${generate(b.program(flatten(styleContext)))}
 if (module.hot) {
 	module.hot.accept([])
 }
-
 module.exports = ${generate(toAst(styleguide))}
 `;
 }
