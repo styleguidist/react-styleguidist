@@ -47,7 +47,9 @@ export default function renderStyleguide(
 	return (
 		<StyleGuide
 			codeRevision={codeRevision}
-			cssRevision={getCssRevision(styleguide.config)}
+			// only caclulate css revisions in dev when hot is on to avoid
+			// stringifying the styles in production
+			cssRevision={module.hot ? getCssRevision(styleguide.config) : 0}
 			config={styleguide.config}
 			slots={slots(styleguide.config)}
 			welcomeScreen={styleguide.welcomeScreen}
