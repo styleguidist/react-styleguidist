@@ -100,7 +100,7 @@ module.exports.config.styles = __rsg_styles.default || __rsg_styles`
 	}${
 		themeRequireIt
 			? `
-var __rsg_theme = ${generate(toAst(stylesRequireIt))};
+var __rsg_theme = ${generate(toAst(themeRequireIt))};
 module.exports.config.theme = __rsg_theme.default || __rsg_theme`
 			: ''
 	}
