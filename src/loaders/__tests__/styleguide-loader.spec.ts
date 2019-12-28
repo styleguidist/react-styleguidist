@@ -217,7 +217,7 @@ it('should flag both styles and theme as dependencies', () => {
 });
 
 it.each([
-	{ hot: true, styles: {}, RE: /'hmrStyles': false/ },
+	{ hot: true, styles: {}, regExp: /'hmrStyles': false/ },
 	{ hot: false, styles: 'path/to/styles', RE: /'hmrStyles': false/ },
 	{ hot: true, styles: 'path/to/styles', RE: /'hmrStyles': true/ },
 ])(`should only flag hmrStyles if hot is on: %p`, ({ hot, styles, RE }) => {
