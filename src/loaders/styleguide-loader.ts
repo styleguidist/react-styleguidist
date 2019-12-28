@@ -64,18 +64,18 @@ export function pitch(this: Rsg.StyleguidistLoaderContext) {
 		this.addContextDependency(commonDir(allComponentFiles));
 	}
 
-	let hmrStyles = false;
-
+	let stylesRequireIt: Rsg.RequireItResult | null = null;
 	if (typeof config.styles === 'string') {
 		this.addDependency(config.styles);
-		hmrStyles = this.hot;
-		config.styles = requireIt(config.styles);
+		stylesRequireIt = requireIt(config.styles);
+		delete config.styles;
 	}
 
+	let themeRequireIt: Rsg.RequireItResult | null = null;
 	if (typeof config.theme === 'string') {
 		this.addDependency(config.theme);
-		hmrStyles = this.hot;
-		config.theme = requireIt(config.theme) as any;
+		themeRequireIt = requireIt(config.theme);
+		delete config.theme;
 	}
 
 	const styleguide = {
@@ -83,7 +83,6 @@ export function pitch(this: Rsg.StyleguidistLoaderContext) {
 		welcomeScreen,
 		patterns,
 		sections,
-		hmrStyles,
 	};
 
 	return `
@@ -91,6 +90,19 @@ if (module.hot) {
 	module.hot.accept([])
 }
 
-module.exports = ${generate(toAst(styleguide))}
+module.exports = ${generate(toAst(styleguide))}${
+		// account for es6 exports of styles and theme files
+		stylesRequireIt
+			? `
+var __rsg_styles = ${generate(toAst(stylesRequireIt))};
+module.exports.config.styles = __rsg_styles.default || __rsg_styles`
+			: ''
+	}${
+		themeRequireIt
+			? `
+var __rsg_theme = ${generate(toAst(stylesRequireIt))};
+module.exports.config.theme = __rsg_theme.default || __rsg_theme`
+			: ''
+	}
 	`;
 }

@@ -47,7 +47,7 @@ export default function renderStyleguide(
 	return (
 		<StyleGuide
 			codeRevision={codeRevision}
-			cssRevision={module.hot && styleguide.hmrStyles ? getCssRevision(styleguide.config) : 0}
+			cssRevision={getCssRevision(styleguide.config)}
 			config={styleguide.config}
 			slots={slots(styleguide.config)}
 			welcomeScreen={styleguide.welcomeScreen}
