@@ -64,18 +64,15 @@ export function pitch(this: Rsg.StyleguidistLoaderContext) {
 		this.addContextDependency(commonDir(allComponentFiles));
 	}
 
-	let stylesRequireIt: Rsg.RequireItResult | null = null;
 	if (typeof config.styles === 'string') {
 		this.addDependency(config.styles);
-		stylesRequireIt = requireIt(config.styles);
-		delete config.styles;
+		// TODO: need to do the same as in examples-loader for managing default export
+		config.styles = requireIt(config.styles) as any;
 	}
-
-	let themeRequireIt: Rsg.RequireItResult | null = null;
 	if (typeof config.theme === 'string') {
 		this.addDependency(config.theme);
-		themeRequireIt = requireIt(config.theme);
-		delete config.theme;
+		// TODO: need to do the same as in examples-loader for managing default export
+		config.theme = requireIt(config.theme) as any;
 	}
 
 	const styleguide = {
@@ -90,19 +87,6 @@ if (module.hot) {
 	module.hot.accept([])
 }
 
-module.exports = ${generate(toAst(styleguide))}${
-		// account for es6 exports of styles and theme files
-		stylesRequireIt
-			? `
-var __rsg_styles = ${generate(toAst(stylesRequireIt))};
-module.exports.config.styles = __rsg_styles.default || __rsg_styles`
-			: ''
-	}${
-		themeRequireIt
-			? `
-var __rsg_theme = ${generate(toAst(themeRequireIt))};
-module.exports.config.theme = __rsg_theme.default || __rsg_theme`
-			: ''
-	}
-	`;
+module.exports = ${generate(toAst(styleguide))}
+`;
 }
