@@ -218,9 +218,9 @@ it('should flag both styles and theme as dependencies', () => {
 
 it.each([
 	{ hot: true, styles: {}, regExp: /'hmrStyles': false/ },
-	{ hot: false, styles: 'path/to/styles', RE: /'hmrStyles': false/ },
-	{ hot: true, styles: 'path/to/styles', RE: /'hmrStyles': true/ },
-])(`should only flag hmrStyles if hot is on: %p`, ({ hot, styles, RE }) => {
+	{ hot: false, styles: 'path/to/styles', regExp: /'hmrStyles': false/ },
+	{ hot: true, styles: 'path/to/styles', regExp: /'hmrStyles': true/ },
+])(`should only flag hmrStyles if hot is on: %p`, ({ hot, styles, regExp }) => {
 	const addDependency = jest.fn();
 	const result = styleguideLoader.pitch.call({
 		request: file,
@@ -231,5 +231,5 @@ it.each([
 		addDependency,
 		hot,
 	} as any);
-	expect(result).toMatch(RE);
+	expect(result).toMatch(regExp);
 });
