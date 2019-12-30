@@ -195,7 +195,7 @@ it('should show content of items that are open and not what is closed', () => {
 	).toEqual(['Content for Button']);
 });
 
-it('should show content of forcedOpen items even if they are not active', () => {
+it('should show content of initialOpen items even if they are not active', () => {
 	const components = [
 		{
 			visibleName: 'Button',
@@ -208,7 +208,7 @@ it('should show content of forcedOpen items even if they are not active', () => 
 			name: 'Input',
 			slug: 'input',
 			content: <div data-testid="content">Content for Input</div>,
-			open: true,
+			initialOpen: true,
 		},
 	];
 
