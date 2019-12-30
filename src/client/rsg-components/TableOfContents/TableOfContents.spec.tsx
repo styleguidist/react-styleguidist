@@ -154,7 +154,7 @@ it('should render content of subsections of a section that has no components', (
 		    "components": Array [],
 		    "content": undefined,
 		    "heading": false,
-		    "open": true,
+		    "initialOpen": true,
 		    "sections": Array [],
 		    "selected": false,
 		    "shouldOpenInNewTab": false,
@@ -163,7 +163,7 @@ it('should render content of subsections of a section that has no components', (
 		    "components": Array [],
 		    "content": undefined,
 		    "heading": false,
-		    "open": true,
+		    "initialOpen": true,
 		    "sections": Array [],
 		    "selected": false,
 		    "shouldOpenInNewTab": false,
@@ -181,8 +181,8 @@ it('should render components of a single top section as root', () => {
 		    "components": Array [],
 		    "content": undefined,
 		    "heading": false,
+		    "initialOpen": true,
 		    "name": "Button",
-		    "open": true,
 		    "sections": Array [],
 		    "selected": false,
 		    "shouldOpenInNewTab": false,
@@ -192,8 +192,8 @@ it('should render components of a single top section as root', () => {
 		    "components": Array [],
 		    "content": undefined,
 		    "heading": false,
+		    "initialOpen": true,
 		    "name": "Input",
-		    "open": true,
 		    "sections": Array [],
 		    "selected": false,
 		    "shouldOpenInNewTab": false,
@@ -203,8 +203,8 @@ it('should render components of a single top section as root', () => {
 		    "components": Array [],
 		    "content": undefined,
 		    "heading": false,
+		    "initialOpen": true,
 		    "name": "Textarea",
-		    "open": true,
 		    "sections": Array [],
 		    "selected": false,
 		    "shouldOpenInNewTab": false,
@@ -239,9 +239,7 @@ it('should render components with useRouterLinks', () => {
  * testing this layer with no mocking makes no sense...
  * This test should not exist but for good coverage policy this is necessary
  */
-it('should detect sections containing current selection when tocMode', () => {
-	window.history.pushState({}, 'Collapse', 'http://localhost/#Button');
-
+it('should detect sections containing current selection when tocMode is collapse', () => {
 	const context = {
 		config: {
 			tocMode: 'collapse',
@@ -250,7 +248,7 @@ it('should detect sections containing current selection when tocMode', () => {
 
 	const Provider = (props: any) => <Context.Provider value={context} {...props} />;
 
-	const { getAllByRole } = render(
+	const { getByText } = render(
 		<Provider>
 			<TableOfContents
 				tocMode="collapse"
@@ -272,9 +270,10 @@ it('should detect sections containing current selection when tocMode', () => {
 						],
 					},
 				]}
+				loc={{ pathname: '', hash: '/#Button' }}
 			/>
 		</Provider>
 	);
 
-	expect(getAllByRole('link').length).toBe(4);
+	expect(getByText('1.1')).not.toBeEmpty();
 });

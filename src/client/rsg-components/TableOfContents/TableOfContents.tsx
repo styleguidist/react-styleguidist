@@ -10,6 +10,7 @@ interface TableOfContentsProps {
 	sections: Rsg.Section[];
 	useRouterLinks?: boolean;
 	tocMode?: string;
+	loc: { hash: string; pathname: string };
 }
 
 export default class TableOfContents extends Component<TableOfContentsProps> {
@@ -17,7 +18,13 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 		sections: PropTypes.array.isRequired,
 		useRouterLinks: PropTypes.bool,
 		tocMode: PropTypes.string,
+		loc: PropTypes.object,
 	};
+
+	public static defaultProps = {
+		loc: window.location,
+	};
+
 	public state = {
 		searchTerm: '',
 	};
@@ -29,7 +36,7 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 		useHashId = false
 	): { content: React.ReactElement; containsSelected: boolean } {
 		// Match selected component in both basic routing and pagePerSection routing.
-		const { hash, pathname } = window.location;
+		const { hash, pathname } = this.props.loc;
 		const windowHash = pathname + (useRouterLinks ? hash : getHash(hash));
 
 		let childrenContainSelected = false;
