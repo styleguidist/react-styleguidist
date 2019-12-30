@@ -52,7 +52,7 @@ export default function renderStyleguide(
 			cssRevision={
 				module.hot
 					? hashSum({ theme: styleguide.config.theme, styles: styleguide.config.styles })
-					: 0
+					: '0'
 			}
 			config={styleguide.config}
 			slots={slots(styleguide.config)}

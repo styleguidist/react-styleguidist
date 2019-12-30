@@ -19,7 +19,7 @@ export default memoize(
 		config: Rsg.ProcessedStyleguidistCSSConfig,
 		componentName: string,
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		cssRevision: number
+		cssRevision: string
 	): StyleSheet<string> => {
 		const mergedTheme = merge<RecursivePartial<Rsg.Theme>, Rsg.Theme, RecursivePartial<Rsg.Theme>>(
 			{},

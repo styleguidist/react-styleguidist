@@ -55,7 +55,7 @@ const configWithStylesAsAFunction = {
 
 describe('createStyleSheet', () => {
 	it('should use theme variables', () => {
-		const styleSheet = createStyleSheet(styles, config, testComponentName, 1);
+		const styleSheet = createStyleSheet(styles, config, testComponentName, '1');
 		const style = (styleSheet.getRule(testRuleName) as any).style;
 
 		expect(style['background-color']).toBe(theme.color.baseBackground);
@@ -63,7 +63,7 @@ describe('createStyleSheet', () => {
 	});
 
 	it('should override theme variables with config theme', () => {
-		const styleSheet = createStyleSheet(styles, config, testComponentName, 2);
+		const styleSheet = createStyleSheet(styles, config, testComponentName, '2');
 		const style = (styleSheet.getRule(testRuleName) as any).style;
 
 		expect(style.color).toBe(customThemeColor);
@@ -71,14 +71,19 @@ describe('createStyleSheet', () => {
 	});
 
 	it('should override config theme variables with config styles', () => {
-		const styleSheet = createStyleSheet(styles, config, testComponentName, 4);
+		const styleSheet = createStyleSheet(styles, config, testComponentName, '3');
 		const style = (styleSheet.getRule(testRuleName) as any).style;
 
 		expect(style['border-color']).toBe(customStyleBorderColor);
 	});
 
 	it('should override config theme variables with config styles as a function', () => {
-		const styleSheet = createStyleSheet(styles, configWithStylesAsAFunction, testComponentName, 6);
+		const styleSheet = createStyleSheet(
+			styles,
+			configWithStylesAsAFunction,
+			testComponentName,
+			'4'
+		);
 		const style = (styleSheet.getRule(testRuleName) as any).style;
 
 		expect(style['border-color']).toBe(customThemeLinkColor);

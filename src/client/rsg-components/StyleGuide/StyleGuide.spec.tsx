@@ -42,7 +42,7 @@ const config = {
 
 const defaultProps: StyleGuideProps = {
 	codeRevision: 1,
-	cssRevision: 1,
+	cssRevision: '1',
 	config,
 	pagePerSection: false,
 	sections: [],

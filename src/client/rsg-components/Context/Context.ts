@@ -2,7 +2,7 @@ import React from 'react';
 
 const StyleGuideContext = React.createContext<StyleGuideContextContents>({
 	codeRevision: 0,
-	cssRevision: 0,
+	cssRevision: '0',
 	config: {} as Rsg.ProcessedStyleguidistConfig,
 	slots: {},
 	displayMode: 'collapse',
@@ -17,7 +17,7 @@ export interface SlotObject {
 
 export interface StyleGuideContextContents {
 	codeRevision: number;
-	cssRevision: number;
+	cssRevision: string;
 	config: Rsg.ProcessedStyleguidistConfig;
 	slots: Record<string, (SlotObject | React.FunctionComponent<any>)[]>;
 	displayMode: string;

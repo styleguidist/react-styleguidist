@@ -32,7 +32,7 @@ function hasSidebar(displayMode: string | undefined, showSidebar: boolean): bool
 
 export interface StyleGuideProps {
 	codeRevision: number;
-	cssRevision: number;
+	cssRevision: string;
 	config: Rsg.ProcessedStyleguidistConfig;
 	slots: any;
 	sections: Rsg.Section[];
@@ -51,7 +51,7 @@ interface StyleGuideState {
 export default class StyleGuide extends Component<StyleGuideProps, StyleGuideState> {
 	public static propTypes = {
 		codeRevision: PropTypes.number.isRequired,
-		cssRevision: PropTypes.number.isRequired,
+		cssRevision: PropTypes.string.isRequired,
 		config: PropTypes.object.isRequired,
 		slots: PropTypes.object.isRequired,
 		sections: PropTypes.array.isRequired,
