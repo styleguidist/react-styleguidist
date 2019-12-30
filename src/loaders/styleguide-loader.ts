@@ -30,8 +30,8 @@ const CLIENT_CONFIG_OPTIONS = [
 	'version',
 ];
 
-const StylesVariableName = '__rsgStyles';
-const ThemeVariableName = '__rsgTheme';
+const STYLE_VARIABLE_NAME = '__rsgStyles';
+const THEME_VARIABLE_NAME = '__rsgTheme';
 
 export default function() {}
 export function pitch(this: Rsg.StyleguidistLoaderContext) {
@@ -100,8 +100,8 @@ export function pitch(this: Rsg.StyleguidistLoaderContext) {
 		}
 	};
 
-	setVariableValueToObjectInFile('styles', StylesVariableName);
-	setVariableValueToObjectInFile('theme', ThemeVariableName);
+	setVariableValueToObjectInFile('styles', STYLE_VARIABLE_NAME);
+	setVariableValueToObjectInFile('theme', THEME_VARIABLE_NAME);
 
 	const styleguide = {
 		config: pick(configClone, CLIENT_CONFIG_OPTIONS),
