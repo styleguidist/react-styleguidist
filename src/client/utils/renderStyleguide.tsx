@@ -1,10 +1,10 @@
 import React from 'react';
+import hashSum from 'hash-sum';
 import slots from 'rsg-components/slots';
 import StyleGuide from 'rsg-components/StyleGuide';
 import getPageTitle from './getPageTitle';
 import getRouteData from './getRouteData';
 import processSections from './processSections';
-import getCssRevision from './getCssRevision';
 
 interface StyleguideObject {
 	hmrStyles: boolean;
@@ -49,7 +49,11 @@ export default function renderStyleguide(
 			codeRevision={codeRevision}
 			// only caclulate css revisions in dev when hot is on to avoid
 			// stringifying the styles in production
-			cssRevision={module.hot ? getCssRevision(styleguide.config) : 0}
+			cssRevision={
+				module.hot
+					? hashSum({ theme: styleguide.config.theme, styles: styleguide.config.styles })
+					: 0
+			}
 			config={styleguide.config}
 			slots={slots(styleguide.config)}
 			welcomeScreen={styleguide.welcomeScreen}
