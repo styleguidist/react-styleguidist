@@ -14,6 +14,7 @@ declare namespace Rsg {
 
 	interface RuntimeCodeExample extends CodeExample {
 		evalInContext(a: string): () => any;
+		compiled: string;
 	}
 
 	type Example = RuntimeCodeExample | MarkdownExample;

@@ -11,6 +11,7 @@ import chunkify from './utils/chunkify';
 import expandDefaultComponent from './utils/expandDefaultComponent';
 import getImports from './utils/getImports';
 import requireIt from './utils/requireIt';
+import compileCode from '../client/utils/compileCode';
 
 const absolutize = (filepath: string) => path.resolve(__dirname, filepath);
 
@@ -104,7 +105,14 @@ export default function examplesLoader(this: Rsg.StyleguidistLoaderContext, sour
 	const examplesWithEval: (Rsg.RuntimeCodeExample | Rsg.MarkdownExample)[] = examples.map(
 		example => {
 			if (example.type === 'code') {
-				return { ...example, evalInContext: { toAST: () => b.identifier('evalInContext') } as any };
+				// TODO: compile code here using buble (client/utils/compileCode.ts)
+				return {
+					...example,
+					compiled: compileCode(example.content, config.compilerConfig, err => {
+						throw err;
+					}),
+					evalInContext: { toAST: () => b.identifier('evalInContext') } as any,
+				};
 			} else {
 				return example;
 			}

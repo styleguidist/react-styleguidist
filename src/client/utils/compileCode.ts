@@ -2,9 +2,7 @@ import { transform, TransformOptions } from 'buble';
 import transpileImports from './transpileImports';
 
 const compile = (code: string, config: TransformOptions): string => transform(code, config).code;
-
 const startsWithJsx = (code: string): boolean => !!code.trim().match(/^</);
-
 const wrapCodeInFragment = (code: string): string => `<React.Fragment>${code}</React.Fragment>;`;
 
 /*
