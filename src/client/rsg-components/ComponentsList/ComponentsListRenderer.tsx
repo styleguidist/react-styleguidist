@@ -62,13 +62,13 @@ const ComponentsListSectionRenderer: React.FunctionComponent<Rsg.TOCItem & JssIn
 	content,
 	shouldOpenInNewTab,
 	selected,
-	open: _open,
+	initialOpen,
 }) => {
 	const {
 		config: { tocMode },
 	} = useStyleGuideContext();
 
-	const [open, setOpen] = tocMode !== 'collapse' ? [true, () => {}] : React.useState(!!_open);
+	const [open, setOpen] = tocMode !== 'collapse' ? [true, () => {}] : React.useState(!!initialOpen);
 	return (
 		<li
 			className={cx(classes.item, {

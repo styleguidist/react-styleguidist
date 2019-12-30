@@ -36,7 +36,7 @@ declare namespace Rsg {
 		heading?: boolean;
 		shouldOpenInNewTab?: boolean;
 		selected?: boolean;
-		open?: boolean;
+		initialOpen?: boolean;
 		content?: React.ReactNode;
 		components?: TOCItem[];
 		sections?: TOCItem[];
