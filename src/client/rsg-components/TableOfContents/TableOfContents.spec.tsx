@@ -225,7 +225,7 @@ it('should render components with useRouterLinks', () => {
 				{
 					sections: [
 						{ visibleName: '1', name: 'Components', slug: 'Components', content: 'intro.md' },
-						{ visibleName: '2', content: 'chapter.md' },
+						{ visibleName: '2', content: 'chapter.md', slug: 'chap' },
 					],
 				},
 			]}
