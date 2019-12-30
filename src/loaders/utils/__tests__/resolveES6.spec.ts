@@ -1,9 +1,9 @@
 import { generate } from 'escodegen';
 import { builders as b } from 'ast-types';
-import resolveES6 from '../resolveES6';
+import resolveESModule from '../resolveESModule';
 
 it('resolveES6 should return an array of AST', () => {
-	const result = resolveES6('path/to/module', 'NameOfVar');
+	const result = resolveESModule('path/to/module', 'NameOfVar');
 
 	expect(generate(b.program(result))).toMatchInlineSnapshot(`
 		"const NameOfVar$0 = require('path/to/module');

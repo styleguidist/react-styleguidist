@@ -12,7 +12,7 @@ import getComponentPatternsFromSections from './utils/getComponentPatternsFromSe
 import getSections from './utils/getSections';
 import filterComponentsWithExample from './utils/filterComponentsWithExample';
 import slugger from './utils/slugger';
-import resolveES6 from './utils/resolveES6';
+import resolveESModule from './utils/resolveESModule';
 
 const logger = createLogger('rsg');
 
@@ -82,7 +82,7 @@ export function pitch(this: Rsg.StyleguidistLoaderContext) {
 			this.addDependency(configMember);
 
 			// then create a variable to contain the value of the theme/style
-			styleContext.push(resolveES6(configMember, varName));
+			styleContext.push(resolveESModule(configMember, varName));
 
 			// Finally assign the calcultaed value to the member of the clone
 			// NOTE: if you are mutating config without cloning it, it changes
