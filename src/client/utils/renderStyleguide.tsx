@@ -31,7 +31,7 @@ export default function renderStyleguide(
 ): React.ReactElement {
 	const allSections = processSections(styleguide.sections);
 
-	const { title, pagePerSection } = styleguide.config;
+	const { title, pagePerSection, theme, styles } = styleguide.config;
 	const { sections, displayMode } = getRouteData(allSections, loc.hash, pagePerSection);
 
 	// Update page title
@@ -49,11 +49,7 @@ export default function renderStyleguide(
 			codeRevision={codeRevision}
 			// only caclulate css revisions in dev when hot is on to avoid
 			// stringifying the styles in production
-			cssRevision={
-				module.hot
-					? hashSum({ theme: styleguide.config.theme, styles: styleguide.config.styles })
-					: '0'
-			}
+			cssRevision={module.hot ? hashSum({ theme, styles }) : '0'}
 			config={styleguide.config}
 			slots={slots(styleguide.config)}
 			welcomeScreen={styleguide.welcomeScreen}
