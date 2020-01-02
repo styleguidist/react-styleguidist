@@ -4,7 +4,7 @@ import ComponentsListRenderer from 'rsg-components/ComponentsList/ComponentsList
 import getUrl from '../../utils/getUrl';
 
 interface ComponentsListProps {
-	items: Rsg.Component[];
+	items: Rsg.TOCItem[];
 	hashPath?: string[];
 	useRouterLinks?: boolean;
 	useHashId?: boolean;
@@ -16,20 +16,26 @@ const ComponentsList: React.FunctionComponent<ComponentsListProps> = ({
 	useHashId,
 	hashPath,
 }) => {
-	const mappedItems = items.map(item => ({
-		...item,
-		shouldOpenInNewTab: !!item.href,
-		href: item.href
-			? item.href
-			: getUrl({
-					name: item.name,
-					slug: item.slug,
-					anchor: !useRouterLinks,
-					hashPath: useRouterLinks ? hashPath : false,
-					id: useRouterLinks ? useHashId : false,
-			  }),
-	}));
-	return <ComponentsListRenderer items={mappedItems} />;
+	const mappedItems = items
+		.map(item => {
+			const href = item.href
+				? item.href
+				: getUrl({
+						name: item.name,
+						slug: item.slug,
+						anchor: !useRouterLinks,
+						hashPath: useRouterLinks ? hashPath : false,
+						id: useRouterLinks ? useHashId : false,
+				  });
+
+			return {
+				...item,
+				href,
+			};
+		})
+		.filter(item => item.visibleName);
+
+	return mappedItems.length > 0 ? <ComponentsListRenderer items={mappedItems} /> : null;
 };
 
 ComponentsList.propTypes = {

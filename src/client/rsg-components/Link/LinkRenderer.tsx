@@ -23,6 +23,7 @@ interface LinkProps extends JssInjectedProps {
 	className?: string;
 	href?: string;
 	target?: string;
+	onClick?: () => void;
 }
 
 export const LinkRenderer: React.FunctionComponent<LinkProps> = ({

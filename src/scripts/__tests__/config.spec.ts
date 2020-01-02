@@ -255,3 +255,31 @@ it('mountPointId should have default value', () => {
 	const result = getConfig();
 	expect(result.mountPointId).toEqual('rsg-root');
 });
+
+it('should set the exampleMode to expand if the flag showCode is on', () => {
+	const result = getConfig({
+		showCode: true,
+	});
+	expect(result.exampleMode).toBe('expand');
+});
+
+it('should set the exampleMode to collapse if the flag showCode is off', () => {
+	const result = getConfig({
+		showCode: false,
+	});
+	expect(result.exampleMode).toBe('collapse');
+});
+
+it('should set the usageMode to expand if the flag showUsage is on', () => {
+	const result = getConfig({
+		showUsage: true,
+	});
+	expect(result.usageMode).toBe('expand');
+});
+
+it('should set the usageMode to collapse if the flag showUsage is off', () => {
+	const result = getConfig({
+		showUsage: false,
+	});
+	expect(result.usageMode).toBe('collapse');
+});
