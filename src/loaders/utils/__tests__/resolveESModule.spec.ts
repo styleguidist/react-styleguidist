@@ -2,7 +2,7 @@ import { generate } from 'escodegen';
 import { builders as b } from 'ast-types';
 import resolveESModule from '../resolveESModule';
 
-it('resolveES6 should return an array of AST', () => {
+it('should return an array of AST', () => {
 	const result = resolveESModule('path/to/module', 'NameOfVar');
 
 	expect(generate(b.program(result))).toMatchInlineSnapshot(`
