@@ -16,8 +16,9 @@ declare global {
 
 		interface BaseStyleguidistConfig {
 			assetsDir: string | string[];
+			tocMode: EXPAND_MODE;
 			compilerConfig: TransformOptions;
-			components: (() => string | string[]) | string | string[];
+			components: (() => string[]) | string | string[];
 			configDir: string;
 			context: Record<string, any>;
 			contextDependencies: string[];
@@ -103,6 +104,11 @@ declare global {
 			sections: ConfigSection[];
 		}
 
+		/**
+		 * definition of the config object where everything is optional
+		 * note that teh default example can be both a string and a boolean but ends
+		 * up only being a string after sanitizing
+		 */
 		interface StyleguidistConfig
 			extends RecursivePartial<Omit<SanitizedStyleguidistConfig, 'defaultExample'>> {
 			defaultExample?: string | boolean;

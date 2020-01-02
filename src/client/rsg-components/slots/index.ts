@@ -10,7 +10,7 @@ export const DOCS_TAB_USAGE = 'rsg-usage';
 const toolbar = [IsolateButton];
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default (config?: Rsg.ProcessedStyleguidistConfig) => {
+export default (config?: Rsg.SanitizedStyleguidistConfig) => {
 	return {
 		sectionToolbar: toolbar,
 		componentToolbar: toolbar,

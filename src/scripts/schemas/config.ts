@@ -47,6 +47,10 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 		type: ['array', 'existing directory path'],
 		example: 'assets',
 	},
+	tocMode: {
+		type: 'string',
+		default: 'expand',
+	},
 	compilerConfig: {
 		type: 'object',
 		default: {
@@ -97,7 +101,7 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 	},
 	exampleMode: {
 		type: 'string',
-		process: (value: string, config: Rsg.StyleguidistConfig) => {
+		process: (value: string, config: Rsg.StyleguidistConfig): string => {
 			return config.showCode === undefined ? value : config.showCode ? 'expand' : 'collapse';
 		},
 		default: 'collapse',
@@ -214,7 +218,7 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 	sections: {
 		type: 'array',
 		default: [],
-		process: (val: Rsg.Section[], config: Rsg.StyleguidistConfig) => {
+		process: (val: Rsg.ConfigSection[], config: Rsg.StyleguidistConfig): Rsg.ConfigSection[] => {
 			if (!val) {
 				// If root `components` isn't empty, make it a first section
 				// If `components` and `sections` weren’t specified, use default pattern

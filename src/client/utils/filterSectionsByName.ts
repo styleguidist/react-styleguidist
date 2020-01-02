@@ -9,14 +9,13 @@ import filterComponentsByName from './filterComponentsByName';
  * @return {Array}
  */
 export default function filterSectionsByName(
-	sections: (Rsg.Section | Rsg.Component)[],
+	sections: Rsg.TOCItem[],
 	query: string
-): Rsg.Section[] {
+): Rsg.TOCItem[] {
 	const regExp = getFilterRegExp(query);
 
 	return sections
-		.map(sectionOrComponent => {
-			const section = sectionOrComponent as Rsg.Section;
+		.map(section => {
 			return {
 				...section,
 				sections: section.sections ? filterSectionsByName(section.sections, query) : [],
