@@ -14,11 +14,17 @@ function buildIsolatedOrNoChromeFragment({
 }): string {
 	const stripFragment = /^#\/?/;
 	const stripTrailingSlash = /\/$/;
-	const currentHashPath =
-		// skip if we are already using `#!/`
-		currentHash && !currentHash.includes('#!/')
-			? currentHash.replace(stripFragment, '').replace(stripTrailingSlash, '') + '/'
-			: '';
+	const hashUrlPattern = /^#[a-zA-Z0-9_]/;
+	let currentHashPath;
+	if (hashUrlPattern.test(currentHash)) {
+		currentHashPath = '';
+	} else {
+		currentHashPath =
+			// skip if we are already using `#!/`
+			currentHash && !currentHash.includes('#!/')
+				? currentHash.replace(stripFragment, '').replace(stripTrailingSlash, '') + '/'
+				: '';
+	}
 	return `#!/${currentHashPath}${encodedName}`;
 }
 
