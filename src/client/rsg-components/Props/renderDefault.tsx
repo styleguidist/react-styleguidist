@@ -9,7 +9,7 @@ export default function renderDefault(prop: PropDescriptorWithFlow): React.React
 	// Workaround for issue https://github.com/reactjs/react-docgen/issues/221
 	// If prop has defaultValue it can not be required
 	if (prop.defaultValue) {
-		const defaultValueString = typeof prop.defaultValue.value === 'string' ? showSpaces(unquote(prop.defaultValue.value)) : showSpaces(String(prop.defaultValue.value));
+		const defaultValueString = showSpaces(unquote(String(prop.defaultValue.value)));
 		if (prop.type || prop.flowType) {
 			const propName = prop.type ? prop.type.name : prop.flowType && prop.flowType.type;
 
