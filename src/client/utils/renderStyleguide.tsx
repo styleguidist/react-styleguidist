@@ -7,7 +7,7 @@ import processSections from './processSections';
 
 interface StyleguideObject {
 	sections: Rsg.Section[];
-	config: Rsg.ProcessedStyleguidistConfig;
+	config: Rsg.SanitizedStyleguidistConfig;
 	patterns: string[];
 	welcomeScreen?: boolean;
 }

@@ -117,7 +117,7 @@ export default function getRouteData(
 				];
 				displayMode = DisplayModes.example;
 			} else if (sections.length === 1) {
-				sections = [filterSectionExamples(sections[0] as Rsg.ExampleSection, targetIndex)];
+				sections = [filterSectionExamples(sections[0], targetIndex)];
 				displayMode = DisplayModes.example;
 			}
 		}
