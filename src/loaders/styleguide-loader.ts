@@ -85,12 +85,14 @@ export function pitch(this: Rsg.StyleguidistLoaderContext) {
 			// then create a variable to contain the value of the theme/style
 			styleContext.push(resolveESModule(configMember, varName));
 
-			// Finally assign the calcultaed value to the member of the clone
-			// NOTE: if you are mutating config without cloning it, it changes
-			// the value for all config untill the process is stopped.
-			// This means `config` should not be mutated during this process.
+			// Finally assign the calculted value to the member of the clone
+			// NOTE: if we are mutating the config object without cloning it,
+			// it changes the value for all hmr iteration
+			// until the process is stopped.
 			const variableAst = {};
-			// we trick the toAst() function here because we want to force the value in it
+
+			// Then override the `toAST()` function, because we know
+			// what the output of it should be, an identifier
 			Object.defineProperty(variableAst, 'toAST', {
 				enumerable: false,
 				value(): t.ASTNode {
