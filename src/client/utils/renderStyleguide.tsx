@@ -9,7 +9,7 @@ import processSections from './processSections';
 interface StyleguideObject {
 	hmrStyles: boolean;
 	sections: Rsg.Section[];
-	config: Rsg.SanitizedStyleguidistConfig;
+	config: Rsg.ProcessedStyleguidistConfig;
 	patterns: string[];
 	welcomeScreen?: boolean;
 }
