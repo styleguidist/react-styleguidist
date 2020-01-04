@@ -215,3 +215,28 @@ it('should flag both styles and theme as dependencies', () => {
 	expect(addDependency).toHaveBeenCalledWith('path/to/styles');
 	expect(addDependency).toHaveBeenCalledWith('path/to/theme');
 });
+
+it('should transform styles into ES module compatible imports', () => {
+	const result = styleguideLoader.pitch.call({
+		request: file,
+		_styleguidist: {
+			sections: [],
+			styles: 'path/to/styles',
+		},
+		addDependency: jest.fn(),
+	} as any);
+	expect(result).toMatchInlineSnapshot(`
+		"const __rsgStyles$0 = require('path/to/styles');
+		const __rsgStyles = __rsgStyles$0['__rsgStyles'] || (__rsgStyles$0.default || __rsgStyles$0);
+		if (module.hot) {
+			module.hot.accept([])
+		}
+		module.exports = {
+		    'config': { 'styles': __rsgStyles },
+		    'welcomeScreen': true,
+		    'patterns': [],
+		    'sections': []
+		}
+		"
+	`);
+});

@@ -73,6 +73,25 @@ export function pitch(this: Rsg.StyleguidistLoaderContext) {
 	const configClone = { ...config };
 	const styleContext: t.VariableDeclaration[][] = [];
 
+	/**
+	 * Transforms a string variable member of config
+	 * it transforms this code
+	 * ```
+	 * {
+	 *  param: 'test/path'
+	 * }
+	 * ```
+	 * into this code
+	 * ```
+	 * {
+	 *  param: require('test/path')
+	 * }
+	 * ```
+	 * but because we have to account for ES module exports,
+	 * we add an extra step and transform it into something else
+	 * @param memberName
+	 * @param varName
+	 */
 	const setVariableValueToObjectInFile = (
 		memberName: keyof Rsg.ProcessedStyleguidistCSSConfig,
 		varName: string
