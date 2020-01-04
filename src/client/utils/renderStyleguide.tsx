@@ -7,7 +7,6 @@ import getRouteData from './getRouteData';
 import processSections from './processSections';
 
 interface StyleguideObject {
-	hmrStyles: boolean;
 	sections: Rsg.Section[];
 	config: Rsg.ProcessedStyleguidistConfig;
 	patterns: string[];
