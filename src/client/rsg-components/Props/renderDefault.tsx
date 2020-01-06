@@ -9,18 +9,19 @@ export default function renderDefault(prop: PropDescriptorWithFlow): React.React
 	// Workaround for issue https://github.com/reactjs/react-docgen/issues/221
 	// If prop has defaultValue it can not be required
 	if (prop.defaultValue) {
+		const defaultValueString = showSpaces(unquote(String(prop.defaultValue.value)));
 		if (prop.type || prop.flowType) {
 			const propName = prop.type ? prop.type.name : prop.flowType && prop.flowType.type;
 
 			if (defaultValueBlacklist.indexOf(prop.defaultValue.value) > -1) {
-				return <Code>{showSpaces(unquote(prop.defaultValue.value))}</Code>;
+				return <Code>{defaultValueString}</Code>;
 			} else if (propName === 'func' || propName === 'function') {
 				return (
 					<Text
 						size="small"
 						color="light"
 						underlined
-						title={showSpaces(unquote(prop.defaultValue.value))}
+						title={defaultValueString}
 					>
 						Function
 					</Text>
@@ -50,7 +51,7 @@ export default function renderDefault(prop: PropDescriptorWithFlow): React.React
 			}
 		}
 
-		return <Code>{showSpaces(unquote(prop.defaultValue.value))}</Code>;
+		return <Code>{defaultValueString}</Code>;
 	} else if (prop.required) {
 		return (
 			<Text size="small" color="light">
