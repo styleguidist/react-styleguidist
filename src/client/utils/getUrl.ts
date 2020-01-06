@@ -1,15 +1,15 @@
 /* Returns the HashPath to be included in the isolated page view url */
 function getCurrentHashPath(stripFragment:RegExp,stripTrailingSlash:RegExp,currentHash: string):string {
 
-	/*The below pattern is used to identify the urls like..http://hostname.com/#button etc.,
-	these are generated when we click on a component in the side nav-bar.
-	This will verify whether the first character after the '#' symbol is an alphanumeric which can include "_".
+	/*This pattern matches urls like http://hostname.com/#button etc.,
+	these urls are generated when we click on a component in the side nav-bar.
+	This will verify whether the first character after the '#' symbol is an alphanumeric char or "_".
 	this pattern used to validate the components names.*/
-	const hashUrlPattern = /^#[a-zA-Z0-9_]/;
+	const hashUrlPattern = /^#[a-zA-Z0-9_]/; // Ex. matches "#button","#1button","#_button"
 
-	/* This pattern is used to identify if the url contains the "#!/" string pattern in the 'currentHash' const
+	/* This pattern matches "#!/" string pattern in the 'currentHash' const
 	this url pattern is used to show isolated page view mode in this project. */
-	const isolatedPageViewUrlPattern = /^#!\//;
+	const isolatedPageViewUrlPattern = /^#!\//; // Ex. matches "#!/button"  
 
 	if (hashUrlPattern.test(currentHash)) {
 		return '';
