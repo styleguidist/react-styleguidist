@@ -1,3 +1,24 @@
+/* Returns the HashPath to be included in the isolated page view url */
+function getCurrentHashPath(stripFragment:RegExp,stripTrailingSlash:RegExp,currentHash: string):string {
+
+	/*The below pattern is used to identify the urls like..http://hostname.com/#button etc.,
+	these are generated when we click on a component in the side nav-bar.
+	This will verify whether the first character after the '#' symbol is an alphanumeric which can include "_".
+	this pattern used to validate the components names.*/
+	const hashUrlPattern = /^#[a-zA-Z0-9_]/;
+
+	/* This pattern is used to identify if the url contains the "#!/" string pattern in the 'currentHash' const
+	this url pattern is used to show isolated page view mode in this project. */
+	const isolatedPageViewUrlPattern = /^#!\//;
+
+	if (hashUrlPattern.test(currentHash)) {
+		return '';
+	} else {
+		return (currentHash && !isolatedPageViewUrlPattern.test(currentHash)) ?
+			 currentHash.replace(stripFragment, '').replace(stripTrailingSlash, '') + '/' : '';
+	}
+}
+
 /**
  * Gets the URL fragment for an isolated or nochrome link.
  *
@@ -14,17 +35,8 @@ function buildIsolatedOrNoChromeFragment({
 }): string {
 	const stripFragment = /^#\/?/;
 	const stripTrailingSlash = /\/$/;
-	const hashUrlPattern = /^#[a-zA-Z0-9_]/;
-	let currentHashPath;
-	if (hashUrlPattern.test(currentHash)) {
-		currentHashPath = '';
-	} else {
-		currentHashPath =
-			// skip if we are already using `#!/`
-			currentHash && !currentHash.includes('#!/')
-				? currentHash.replace(stripFragment, '').replace(stripTrailingSlash, '') + '/'
-				: '';
-	}
+
+	const currentHashPath = getCurrentHashPath(stripFragment,stripTrailingSlash,currentHash);
 	return `#!/${currentHashPath}${encodedName}`;
 }
 
