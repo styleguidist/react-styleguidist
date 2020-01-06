@@ -87,10 +87,25 @@ export function pitch(this: Rsg.StyleguidistLoaderContext) {
 	 *  param: require('test/path')
 	 * }
 	 * ```
-	 * but because we have to account for ES module exports,
-	 * we add an extra step and transform it into something else
-	 * @param memberName
-	 * @param varName
+	 *
+	 * because we have to account for ES module exports,
+	 * we add an extra step and transform it into aa statement
+	 * that can import es5 `module.exports` and ES modules `export default`
+	 *
+	 * so the code will ultimtely look like this
+	 *
+	 * ```
+	 * // es5 - es modules compatibility code
+	 * var obj$0 = require('test/path')
+	 * var obj = obj$0.default || obj$0
+	 *
+	 * {
+	 *  param: obj
+	 * }
+	 * ```
+	 *
+	 * @param memberName the name of the member of the object ("param" in the examples)
+	 * @param varName the name of the variable to use ("obj" in the last example)
 	 */
 	const setVariableValueToObjectInFile = (
 		memberName: keyof Rsg.ProcessedStyleguidistCSSConfig,
