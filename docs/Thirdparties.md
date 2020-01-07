@@ -54,6 +54,20 @@ module.exports = {
 
 Please see our [examples](https://github.com/styleguidist/react-styleguidist/tree/master/examples) and refer to [react-docgen](https://github.com/reactjs/react-docgen) documentation for more information about what types of syntax are supported.
 
+But if components are written with typescript and extending third party library components (which are also written using typescript), You may use `react-docgen-typescript` module for fetching third party component prop definitions. Follow the steps to configure same.
+
+1. Install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript).
+2. Create a `styleguide.config.js`, see [configuration](Configuration.md) reference.
+3. Update your `styleguide.config.js`:
+
+   ```javascript
+   module.exports = {
+     propsParser: require('react-docgen-typescript').withCustomConfig(
+       './tsconfig.json'
+     ).parse
+   }
+   ```
+
 ## Using Styleguidist with other libraries
 
 ### Redux
