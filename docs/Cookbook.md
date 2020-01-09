@@ -27,6 +27,7 @@
 - [How to reuse project’s webpack config?](#how-to-reuse-projects-webpack-config)
 - [How to use React Styleguidist with Redux, Relay or Styled Components?](#how-to-use-react-styleguidist-with-redux-relay-or-styled-components)
 - [How to change the names of components displayed in Styleguidist UI?](#how-to-change-the-names-of-components-displayed-in-styleguidist-ui)
+- [How to re-use the types in Styleguidist?](#how-to-re-use-the-types-in-styleguidist)
 - [What’s the difference between Styleguidist and Storybook?](#whats-the-difference-between-styleguidist-and-storybook)
 - [Are there any other projects like this?](#are-there-any-other-projects-like-this)
 
@@ -548,6 +549,55 @@ module.exports = {
     }
     return docs
   }
+}
+```
+
+## How to re-use the types in Styleguidist?
+
+From version 10, styleguidist is written using typescript language.
+
+It allows the maintainers to catch type mismatch before execution and a better developer experience.
+
+It also allows users to wtite their customized styleguide components using typescript TSX and plugins to build it.
+
+There is a trick though. Since all files in `src/client/rsg-components` are aliased to `rsg-components` using webpack, you will have to add this alias to your `tsconfig.json` file
+
+Here is an example of what this file could contain:
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      // remap rsg-components/anything to its version in react-styleguidist
+      "rsg-components/*": [
+        "node_modules/react-styleguidist/lib/client/rsg-components/*"
+      ]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}
+```
+
+This way when you write the following component, TypeScript will resolve typings for client components and help you type them properly.
+
+```ts
+import Styled from 'rsg-components/Styled'
+import Heading from 'rsg-components/Heading'
+
+export default function SectionsRenderer({ children }) {
+  return (
+    <div>
+      {children.length > 0 && (
+        <div>
+          <Heading level={1}>Example Components</Heading>
+          <p>These are the greatest components</p>
+        </div>
+      )}
+      <DefaultSectionsRenderer>{children}</DefaultSectionsRenderer>
+    </div>
+  )
 }
 ```
 
