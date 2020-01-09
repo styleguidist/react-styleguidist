@@ -43,6 +43,7 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 - [`template`](#template)
 - [`theme`](#theme)
 - [`title`](#title)
+- [`tocMode`](#tocmode)
 - [`updateDocs`](#updatedocs)
 - [`updateExample`](#updateexample)
 - [`usageMode`](#usagemode)
@@ -57,17 +58,6 @@ By default, Styleguidist will look for `styleguide.config.js` file in your proje
 Type: `String` or `Array`, optional
 
 Your application static assets folder will be accessible as `/` in the style guide dev server.
-
-#### `tocMode`
-
-Type: `String` default: `expand`
-
-Defines if the table of contents sections will behave like an accordion:
-
-- `collapse`: All sections are collapsed by default
-- `expand`: Sections cannot be collapsed in the Table Of Contents
-
-Collapse the sections created in the sidebar to reduce the height of the sidebar. This can be useful in large codebases with lots of components to avoid having to scroll too far.
 
 #### `compilerConfig`
 
@@ -670,6 +660,17 @@ See example in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide)
 Type: `String`, default: `<app name from package.json> Style Guide`
 
 Style guide title.
+
+#### `tocMode`
+
+Type: `String` default: `expand`
+
+Defines if the table of contents sections will behave like an accordion:
+
+- `collapse`: All sections are collapsed by default
+- `expand`: Sections cannot be collapsed in the Table Of Contents
+
+Collapse the sections created in the sidebar to reduce the height of the sidebar. This can be useful in large codebases with lots of components to avoid having to scroll too far.
 
 #### `updateDocs`
 
