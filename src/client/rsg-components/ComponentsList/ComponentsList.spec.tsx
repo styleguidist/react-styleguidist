@@ -167,17 +167,17 @@ it('should show content of items that are open and not what is closed', () => {
 			visibleName: 'Button',
 			name: 'Button',
 			slug: 'button',
-			content: <div data-testid="content">Content for Button</div>,
+			content: <ul data-testid="content-button">Content for Button</ul>,
 		},
 		{
 			visibleName: 'Input',
 			name: 'Input',
 			slug: 'input',
-			content: <div data-testid="content">Content for Input</div>,
+			content: <ul data-testid="content-input">Content for Input</ul>,
 		},
 	];
 
-	const { getAllByTestId, getByText } = render(
+	const { getByTestId, getByText } = render(
 		<Provider>
 			<ComponentsList
 				items={components}
@@ -190,9 +190,7 @@ it('should show content of items that are open and not what is closed', () => {
 
 	getByText('Button').click();
 
-	expect(
-		Array.from(getAllByTestId('content')).map(node => (node as HTMLDivElement).innerHTML)
-	).toEqual(['Content for Button']);
+	expect(getByTestId('content-input')).not.toBeVisible();
 });
 
 it('should show content of initialOpen items even if they are not active', () => {

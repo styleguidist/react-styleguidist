@@ -33,7 +33,18 @@ const styles = ({ color, fontFamily, fontSize, space, mq }: Rsg.Theme) => ({
 		fontWeight: 'bold',
 	},
 	isSelected: {
+		isolate: false,
 		fontWeight: 'bold',
+	},
+	isClosed: {
+		'& > ul': {
+			isolate: false,
+			display: 'none',
+			[mq.small]: {
+				isolate: false,
+				display: 'block',
+			},
+		},
 	},
 });
 
@@ -74,6 +85,7 @@ const ComponentsListSectionRenderer: React.FunctionComponent<Rsg.TOCItem & JssIn
 			className={cx(classes.item, {
 				[classes.isChild]: !content && !shouldOpenInNewTab,
 				[classes.isSelected]: selected,
+				[classes.isClosed]: !open,
 			})}
 			key={href}
 		>
@@ -85,7 +97,7 @@ const ComponentsListSectionRenderer: React.FunctionComponent<Rsg.TOCItem & JssIn
 			>
 				{visibleName}
 			</Link>
-			{open ? content : null}
+			{content}
 		</li>
 	);
 };
