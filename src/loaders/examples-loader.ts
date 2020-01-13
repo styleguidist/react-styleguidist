@@ -11,6 +11,7 @@ import chunkify from './utils/chunkify';
 import expandDefaultComponent from './utils/expandDefaultComponent';
 import getImports from './utils/getImports';
 import requireIt from './utils/requireIt';
+import resolveESModule from './utils/resolveESModule';
 
 const absolutize = (filepath: string) => path.resolve(__dirname, filepath);
 
@@ -74,31 +75,7 @@ export default function examplesLoader(this: Rsg.StyleguidistLoaderContext, sour
 	);
 
 	// Require context modules so they are available in an example
-	const requireContextCode = b.program(
-		flatten(
-			map(fullContext, (requireRequest: string, name) => [
-				// const name$0 = require(path);
-				b.variableDeclaration('const', [
-					b.variableDeclarator(b.identifier(`${name}$0`), requireIt(requireRequest).toAST() as any),
-				]),
-				// const name = name$0[name] || name$0.default || name$0;
-				b.variableDeclaration('const', [
-					b.variableDeclarator(
-						b.identifier(name),
-						b.logicalExpression(
-							'||',
-							b.identifier(`${name}$0['${name}']`),
-							b.logicalExpression(
-								'||',
-								b.identifier(`${name}$0.default`),
-								b.identifier(`${name}$0`)
-							)
-						)
-					),
-				]),
-			])
-		)
-	);
+	const requireContextCode = b.program(flatten(map(fullContext, resolveESModule)));
 
 	// Stringify examples object except the evalInContext function
 	const examplesWithEval: (Rsg.RuntimeCodeExample | Rsg.MarkdownExample)[] = examples.map(

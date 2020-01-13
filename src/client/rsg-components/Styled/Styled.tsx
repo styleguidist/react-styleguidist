@@ -1,6 +1,6 @@
 import React, { Component, ComponentType } from 'react';
 import { Styles, StyleSheet, Classes } from 'jss';
-import Context from 'rsg-components/Context';
+import Context, { StyleGuideContextContents } from 'rsg-components/Context';
 import createStyleSheet from '../../styles/createStyleSheet';
 
 export interface JssInjectedProps {
@@ -15,10 +15,19 @@ export default function StyleHOC<P extends JssInjectedProps>(
 		return class extends Component<Omit<P, keyof JssInjectedProps>> {
 			public static displayName = `Styled(${componentName})`;
 			public static contextType = Context;
-			public sheet: StyleSheet;
-			public constructor(props: Omit<P, keyof JssInjectedProps>, context: any) {
+			private sheet: StyleSheet;
+			public constructor(
+				props: Omit<P, keyof JssInjectedProps>,
+				context: StyleGuideContextContents
+			) {
 				super(props, context);
-				this.sheet = createStyleSheet(styles, context.config || {}, componentName);
+				this.sheet = createStyleSheet(
+					styles,
+					// the protection here is useful for tests
+					context.config || {},
+					componentName,
+					context.cssRevision
+				);
 				this.sheet.update(props).attach();
 			}
 

@@ -265,7 +265,56 @@ module.exports = {
 
 > **Note:** Use [React Developer Tools](https://github.com/facebook/react) to find component and style names. For example a component `<LogoRenderer><h1 className="rsg--logo-53">` corresponds to an example above.
 
-> **Note:** Use a function instead of an object for [styles](Configuration.md#styles) to access all heme variables in your custom styles.
+> **Note:** Use a function instead of an object for [styles](Configuration.md#styles) to access all theme variables in your custom styles.
+
+You can store all styles in a separate file to allow hot module replacement (HMR). Same goes for theme variables.
+
+The same example above would then translate as:
+
+In `styleguide.config,js`, objects are replaced with file paths
+
+```javascript
+module.exports = {
+  // ...
+  styles: './styleguide/styles.js',
+  theme: './styleguide/themes.js'
+}
+```
+
+then in `./styleguide/theme.js`
+
+```javascript
+module.exports = {
+  color: {
+    link: 'firebrick',
+    linkHover: 'salmon'
+  },
+  fontFamily: {
+    base: '"Comic Sans MS", "Comic Sans", cursive'
+  }
+}
+```
+
+and in `./styleguide/styles.js`
+
+```javascript
+module.exports = {
+  Logo: {
+    // We're changing the LogoRenderer component
+    logo: {
+      // We're changing the rsg--logo-XX class name inside the component
+      animation: 'blink ease-in-out 300ms infinite'
+    },
+    '@keyframes blink': {
+      to: { opacity: 0 }
+    }
+  }
+}
+```
+
+Each modification of `theme.js` or `styles.js` will trigger a hot module replacement, updating the styleguide in the browser.
+
+Check out the [themed example](https://github.com/styleguidist/react-styleguidist/tree/master/examples/themed) on the github repo to learn more and try it out.
 
 ```javascript
 module.exports = {
@@ -406,16 +455,16 @@ module.exports = {
 
 ## How to debug my components and examples?
 
-1.  Open your browser’s developer tools
-2.  Write `debugger;` statement wherever you want: in a component source, a Markdown example or even in an editor in a browser.
+1. Open your browser’s developer tools
+2. Write `debugger;` statement wherever you want: in a component source, a Markdown example or even in an editor in a browser.
 
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/3i3E3j2h3t1315141k0o/debugging.png)
 
 ## How to debug the exceptions thrown from my components?
 
-1.  Put `debugger;` statement at the beginning of your code.
-2.  Press the ![Debugger](https://d3vv6lp55qjaqc.cloudfront.net/items/2h2q3N123N3G3R252o41/debugger.png) button in your browser’s developer tools.
-3.  Press the ![Continue](https://d3vv6lp55qjaqc.cloudfront.net/items/3b3c1P3g3O1h3q111I2l/continue.png) button and the debugger will stop execution at the next exception.
+1. Put `debugger;` statement at the beginning of your code.
+2. Press the ![Debugger](https://d3vv6lp55qjaqc.cloudfront.net/items/2h2q3N123N3G3R252o41/debugger.png) button in your browser’s developer tools.
+3. Press the ![Continue](https://d3vv6lp55qjaqc.cloudfront.net/items/3b3c1P3g3O1h3q111I2l/continue.png) button and the debugger will stop execution at the next exception.
 
 ## How to use the production or development build of React?
 
@@ -461,9 +510,9 @@ devServer: {
 
 Two options:
 
-1.  Put a `favicon.ico` file into the root folder of your site.
+1. Put a `favicon.ico` file into the root folder of your site.
 
-2.  Use [template](Configuration.md#template) option:
+2. Use [template](Configuration.md#template) option:
 
 ```javascript
 module.exports = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, within } from '@testing-library/react';
-import StyleGuide from './StyleGuide';
+import StyleGuide, { StyleGuideProps } from './StyleGuide';
 import slots from '../slots';
 import { DisplayModes } from '../../consts';
 
@@ -38,9 +38,11 @@ const config = {
 	title: 'HelloStyleGuide',
 	version: '1.0.0',
 	showSidebar: true,
-};
-const defaultProps = {
+} as Rsg.ProcessedStyleguidistConfig;
+
+const defaultProps: StyleGuideProps = {
 	codeRevision: 1,
+	cssRevision: '1',
 	config,
 	pagePerSection: false,
 	sections: [],
