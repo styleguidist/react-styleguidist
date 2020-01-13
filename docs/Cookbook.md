@@ -554,15 +554,14 @@ module.exports = {
 
 ## How to re-use the types in Styleguidist?
 
-From version 10, styleguidist is written using typescript language.
+From version 10, Styleguidist is written using TypeScript language.
 
 It allows the maintainers to catch type mismatch before execution and a better developer experience.
 
 It also allows users to write their customized styleguide components using typescript TSX and plugins to build it.
 
-There is a trick though. Since all files in `src/client/rsg-components` are aliased to `rsg-components` using webpack, you will have to add this alias to your `tsconfig.json` file
+There is a trick though. Since all files in `src/client/rsg-components` are aliased to `rsg-components` using webpack, you will have to add this alias to your `tsconfig.json` file:
 
-Here is an example of what this file could contain:
 
 ```json
 {
