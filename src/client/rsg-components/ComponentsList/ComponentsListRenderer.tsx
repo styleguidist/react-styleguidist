@@ -33,9 +33,7 @@ const styles = ({ color, fontFamily, fontSize, space, mq }: Rsg.Theme) => ({
 		fontWeight: 'bold',
 	},
 	isSelected: {
-		'&, &:link': {
-			fontWeight: 'bold',
-		},
+		fontWeight: 'bold',
 	},
 });
 
@@ -75,11 +73,12 @@ const ComponentsListSectionRenderer: React.FunctionComponent<Rsg.TOCItem & JssIn
 		<li
 			className={cx(classes.item, {
 				[classes.isChild]: !content && !shouldOpenInNewTab,
+				[classes.isSelected]: selected,
 			})}
 			key={href}
 		>
 			<Link
-				className={cx({ [classes.heading]: heading, [classes.isSelected]: selected })}
+				className={cx(heading && classes.heading)}
 				href={href}
 				onClick={() => setOpen(!open)}
 				target={shouldOpenInNewTab ? '_blank' : undefined}
