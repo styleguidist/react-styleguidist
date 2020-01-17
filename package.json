@@ -178,7 +178,7 @@
     "start:sections": "node lib/bin/styleguidist.js server --config examples/sections/styleguide.config.js",
     "start:ui": "node lib/bin/styleguidist.js server",
     "lint": "eslint . --cache --fix --ext .js,.ts,.tsx",
-    "compile": "babel --delete-dir-on-start --ignore **/__mocks__/*,**/__tests__/*,**/*.spec.ts,**/*.spec.tsx,**/*.spec.js,**/*.d.ts --extensions .js,.ts,.tsx -d lib/ src/",
+    "compile": "babel --delete-dir-on-start --ignore '**/__mocks__/*,**/__tests__/*,**/*.spec.ts,**/*.spec.tsx,**/*.spec.js,**/*.d.ts' --extensions '.js,.ts,.tsx' -d lib/ src/",
     "compile:types": "tsc -p ./tsconfig.types.json --emitDeclarationOnly",
     "compile:watch": "npm run compile -- --watch",
     "prepublishOnly": "npm run compile",
