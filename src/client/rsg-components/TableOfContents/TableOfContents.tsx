@@ -64,7 +64,7 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 						id: useRouterLinks ? useHashId : false,
 				  });
 
-			const selected = !!(href && windowHash.indexOf(href) === 0);
+			const selected = href === windowHash;
 
 			if (containsSelected || selected) {
 				childrenContainSelected = true;
