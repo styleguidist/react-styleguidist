@@ -54,7 +54,15 @@ module.exports = {
 
 Please see our [examples](https://github.com/styleguidist/react-styleguidist/tree/master/examples) and refer to [react-docgen](https://github.com/reactjs/react-docgen) documentation for more information about what types of syntax are supported.
 
-But if components are written with typescript and extending other components (which are also written using typescript), You may use `react-docgen-typescript` module for fetching extended component prop definitions automatically. Follow the steps to configure same.
+But while writing components using typescript and extending third party component like below example, You can still be able to fetch prop definitions of the third party component using `react-docgen-typescript`.
+
+```javascript
+import Button from 'antd/es/button'
+
+export default Button
+```
+
+In the above example, we were trying to extend a third party component to our component library. Now if we want prop definitions of third party component, `react-docgen` won't be able to fetch them. For same you can setup `react-docgen-typescript` with `styleguidist` by following below steps.
 
 1. Install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript).
 2. Create a `styleguide.config.js`, see [configuration](Configuration.md) reference.
