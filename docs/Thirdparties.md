@@ -54,6 +54,28 @@ module.exports = {
 
 Please see our [examples](https://github.com/styleguidist/react-styleguidist/tree/master/examples) and refer to [react-docgen](https://github.com/reactjs/react-docgen) documentation for more information about what types of syntax are supported.
 
+While Styleguidist supports TypeScript out of the box, thanks to `react-docgen`, this support is limited. Consider this example:
+
+```javascript
+import Button from 'antd/es/button'
+
+export default Button
+```
+
+Here we’re reexporting a third-party component from `node_modules`. Styleguidist won’t be able to render prop types of this component, unless we’re using `react-docgen-typescript`:
+
+1. Install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript).
+2. Create a `styleguide.config.js`, see [configuration](Configuration.md) reference.
+3. Update your `styleguide.config.js`:
+
+   ```javascript
+   module.exports = {
+     propsParser: require('react-docgen-typescript').withCustomConfig(
+       './tsconfig.json'
+     ).parse
+   }
+   ```
+
 ## Using Styleguidist with other libraries
 
 ### Redux
