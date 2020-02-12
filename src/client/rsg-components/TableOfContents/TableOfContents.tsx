@@ -76,8 +76,8 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 				content,
 				selected,
 				shouldOpenInNewTab: !!section.href,
-				initialOpen:
-					!!this.state.searchTerm.length || this.props.tocMode !== 'collapse' || containsSelected,
+				initialOpen: this.props.tocMode !== 'collapse' || containsSelected,
+				forcedOpen: !!this.state.searchTerm.length,
 			};
 		});
 		return {

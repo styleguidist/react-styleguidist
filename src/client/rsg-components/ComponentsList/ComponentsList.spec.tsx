@@ -229,3 +229,40 @@ it('should show content of initialOpen items even if they are not active', () =>
 		Array.from(getAllByTestId('content')).map(node => (node as HTMLDivElement).innerHTML)
 	).toEqual(['Content for Button', 'Content for Input']);
 });
+
+it('should show content of forcedOpen items even if they are initially collapsed', () => {
+	const components = [
+		{
+			visibleName: 'Button',
+			name: 'Button',
+			slug: 'button',
+			content: <div data-testid="content">Content for Button</div>,
+			initialOpen: true,
+		},
+		{
+			visibleName: 'Input',
+			name: 'Input',
+			slug: 'input',
+			content: <div data-testid="content">Content for Input</div>,
+			initialOpen: true,
+			forcedOpen: true,
+		},
+	];
+
+	const { getAllByTestId, getByText } = render(
+		<Provider>
+			<ComponentsList
+				items={components}
+				useRouterLinks
+				hashPath={['Components']}
+				useHashId={false}
+			/>
+		</Provider>
+	);
+
+	getByText('Input').click();
+
+	expect(
+		Array.from(getAllByTestId('content')).map(node => (node as HTMLDivElement).innerHTML)
+	).toEqual(['Content for Button', 'Content for Input']);
+});
