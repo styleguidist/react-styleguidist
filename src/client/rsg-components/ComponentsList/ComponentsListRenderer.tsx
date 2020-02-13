@@ -63,6 +63,7 @@ const ComponentsListSectionRenderer: React.FunctionComponent<Rsg.TOCItem & JssIn
 	shouldOpenInNewTab,
 	selected,
 	initialOpen,
+	forcedOpen,
 }) => {
 	const {
 		config: { tocMode },
@@ -85,7 +86,7 @@ const ComponentsListSectionRenderer: React.FunctionComponent<Rsg.TOCItem & JssIn
 			>
 				{visibleName}
 			</Link>
-			{open ? content : null}
+			{open || forcedOpen ? content : null}
 		</li>
 	);
 };

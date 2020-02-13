@@ -153,6 +153,7 @@ it('should render content of subsections of a section that has no components', (
 		  Object {
 		    "components": Array [],
 		    "content": undefined,
+		    "forcedOpen": false,
 		    "heading": false,
 		    "initialOpen": true,
 		    "sections": Array [],
@@ -162,6 +163,7 @@ it('should render content of subsections of a section that has no components', (
 		  Object {
 		    "components": Array [],
 		    "content": undefined,
+		    "forcedOpen": false,
 		    "heading": false,
 		    "initialOpen": true,
 		    "sections": Array [],
@@ -180,6 +182,7 @@ it('should render components of a single top section as root', () => {
 		  Object {
 		    "components": Array [],
 		    "content": undefined,
+		    "forcedOpen": false,
 		    "heading": false,
 		    "initialOpen": true,
 		    "name": "Button",
@@ -191,6 +194,7 @@ it('should render components of a single top section as root', () => {
 		  Object {
 		    "components": Array [],
 		    "content": undefined,
+		    "forcedOpen": false,
 		    "heading": false,
 		    "initialOpen": true,
 		    "name": "Input",
@@ -202,6 +206,7 @@ it('should render components of a single top section as root', () => {
 		  Object {
 		    "components": Array [],
 		    "content": undefined,
+		    "forcedOpen": false,
 		    "heading": false,
 		    "initialOpen": true,
 		    "name": "Textarea",
