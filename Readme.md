@@ -10,7 +10,7 @@
 
 React Styleguidist is a component development environment with hot reloaded dev server and a living style guide that you can share with your team. It lists component `propTypes` and shows live, editable usage examples based on Markdown files. Check out [**the demo style guide**](https://react-styleguidist.js.org/examples/basic/).
 
-![](https://d3vv6lp55qjaqc.cloudfront.net/items/271B372x102S0c052i3F/react-styleguidist7.gif)
+![React Styleguidist in action](https://user-images.githubusercontent.com/1703219/74945569-51c6ad00-543b-11ea-8351-f4d86860893a.gif)
 
 ## Usage
 
