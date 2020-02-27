@@ -45,7 +45,7 @@ This should be highlighted too:
 	expect(actual).toMatchSnapshot();
 });
 
-it('should some custom extensions render as a playground', () => {
+it('should render some extensions as a playground', () => {
 	const markdown = `
 This below extensions should be rendered as a playground:
 
