@@ -50,32 +50,69 @@ it('should render some extensions as a playground', () => {
 This below extensions should be rendered as a playground:
 
 \`\`\`javascript
-<h3>Hello playground!</h3>
+<h3>Hello javascript playground!</h3>
 \`\`\`
 
 \`\`\`js
-<h3>Hello playground!</h3>
+<h3>Hello js playground!</h3>
 \`\`\`
 
 \`\`\`jsx
-<h3>Hello playground!</h3>
+<h3>Hello jsx playground!</h3>
 \`\`\`
 
 \`\`\`typescript
-<h3>Hello playground!</h3>
+<h3>Hello typescript playground!</h3>
 \`\`\`
 
 \`\`\`ts
-<h3>Hello playground!</h3>
+<h3>Hello ts playground!</h3>
 \`\`\`
 
 \`\`\`tsx
-<h3>Hello playground!</h3>
+<h3>Hello tsx playground!</h3>
 \`\`\`
 `;
 
+	const expected = [
+		{
+			type: 'markdown',
+			content: 'This below extensions should be rendered as a playground:',
+		},
+		{
+			type: 'code',
+			content: '<h3>Hello javascript playground!</h3>',
+			settings: {},
+		},
+		{
+			type: 'code',
+			content: '<h3>Hello js playground!</h3>',
+			settings: {},
+		},
+		{
+			type: 'code',
+			content: '<h3>Hello jsx playground!</h3>',
+			settings: {},
+		},
+		{
+			type: 'code',
+			content: '<h3>Hello typescript playground!</h3>',
+			settings: {},
+		},
+		{
+			type: 'code',
+			content: '<h3>Hello ts playground!</h3>',
+			settings: {},
+		},
+		{
+			type: 'code',
+			content: '<h3>Hello tsx playground!</h3>',
+			settings: {},
+		},
+	];
+
 	const actual = chunkify(markdown);
-	expect(actual).toMatchSnapshot();
+	expect(actual).toEqual(expected);
 });
 
 it('should not add empty Markdown chunks', () => {
