@@ -3,7 +3,7 @@ import visit from 'unist-util-visit';
 import highlightCode from './highlightCode';
 import parseExample, { ExampleError } from './parseExample';
 
-const PLAYGROUND_LANGS = ['javascript', 'js', 'jsx'];
+const PLAYGROUND_LANGS = ['javascript', 'js', 'jsx', 'typescript', 'ts', 'tsx'];
 const CODE_PLACEHOLDER = '<%{#code#}%>';
 
 function isErrorExample(example: any): example is ExampleError {
