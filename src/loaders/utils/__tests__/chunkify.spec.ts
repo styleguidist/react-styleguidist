@@ -45,6 +45,39 @@ This should be highlighted too:
 	expect(actual).toMatchSnapshot();
 });
 
+it('should render some extensions as a playground', () => {
+	const markdown = `
+This below extensions should be rendered as a playground:
+
+\`\`\`javascript
+<h3>Hello javascript playground!</h3>
+\`\`\`
+
+\`\`\`js
+<h3>Hello js playground!</h3>
+\`\`\`
+
+\`\`\`jsx
+<h3>Hello jsx playground!</h3>
+\`\`\`
+
+\`\`\`typescript
+<h3>Hello typescript playground!</h3>
+\`\`\`
+
+\`\`\`ts
+<h3>Hello ts playground!</h3>
+\`\`\`
+
+\`\`\`tsx
+<h3>Hello tsx playground!</h3>
+\`\`\`
+`;
+
+	const actual = chunkify(markdown);
+	expect(actual.slice(1).every(chunk => chunk.type === 'code')).toBe(true);
+});
+
 it('should not add empty Markdown chunks', () => {
 	const markdown = `
 Foo:
@@ -78,7 +111,7 @@ Pass props to CodeRenderer
 \`\`\`js { "frame": {"width": "400px"} }
 <h1>Example in frame and Without editor</h1>
 \`\`\`
-	
+
 Pass props to PreviewRenderer
 
 \`\`\`jsx { "noEditor": true }
