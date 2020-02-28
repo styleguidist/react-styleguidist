@@ -64,7 +64,7 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 						id: useRouterLinks ? useHashId : false,
 				  });
 
-			const selected = !!(href && windowHash.indexOf(href) === 0);
+			const selected = href === windowHash;
 
 			if (containsSelected || selected) {
 				childrenContainSelected = true;
@@ -76,8 +76,8 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 				content,
 				selected,
 				shouldOpenInNewTab: !!section.href,
-				initialOpen:
-					!!this.state.searchTerm.length || this.props.tocMode !== 'collapse' || containsSelected,
+				initialOpen: this.props.tocMode !== 'collapse' || containsSelected,
+				forcedOpen: !!this.state.searchTerm.length,
 			};
 		});
 		return {

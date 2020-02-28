@@ -6,6 +6,11 @@ describe('getUrl', () => {
 		pathname: '/styleguide/',
 		hash: '#/Components',
 	};
+	const locHashedURL = {
+		origin: 'http://example.com',
+		pathname: '/styleguide/',
+		hash: '#button',
+	};
 	const name = 'FooBar';
 	const slug = 'foobar';
 
@@ -42,6 +47,11 @@ describe('getUrl', () => {
 	it('should return an isolated example URL', () => {
 		const result = getUrl({ name, slug, example: 3, isolated: true }, loc);
 		expect(result).toBe('/styleguide/#!/Components/FooBar/3');
+	});
+
+	it('should return an isolated example for a HashedURL', () => {
+		const result = getUrl({ name, slug, example: 0, isolated: true }, locHashedURL);
+		expect(result).toBe('/styleguide/#!/FooBar/0');
 	});
 
 	it('should return an isolated example=0 URL', () => {

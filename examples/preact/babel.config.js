@@ -6,6 +6,7 @@ module.exports = {
 				debug: true,
 				modules: false,
 				useBuiltIns: 'usage',
+				corejs: 3,
 			},
 		],
 		'@babel/react',

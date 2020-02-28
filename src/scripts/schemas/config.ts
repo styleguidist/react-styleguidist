@@ -279,7 +279,7 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 		default: 'styleguide',
 	},
 	styles: {
-		type: ['object', 'function'],
+		type: ['object', 'existing file path', 'function'],
 		default: {},
 		example: {
 			Logo: {
@@ -287,6 +287,13 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 					fontStyle: 'italic',
 				},
 			},
+		},
+		process: (
+			val: object | string,
+			config: Rsg.StyleguidistConfig,
+			configDir: string
+		): string | object => {
+			return typeof val === 'string' ? path.resolve(configDir, val) : val;
 		},
 	},
 	template: {
@@ -305,12 +312,17 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 		},
 	},
 	theme: {
-		type: 'object',
+		type: ['object', 'existing file path'],
 		default: {},
 		example: {
 			link: 'firebrick',
 			linkHover: 'salmon',
 		},
+		process: (
+			val: object | string,
+			config: Rsg.StyleguidistConfig,
+			configDir: string
+		): string | object => (typeof val === 'string' ? path.resolve(configDir, val) : val),
 	},
 	title: {
 		type: 'string',

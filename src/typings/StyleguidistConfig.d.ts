@@ -14,7 +14,7 @@ declare global {
 			_styleguidist: SanitizedStyleguidistConfig;
 		}
 
-		interface SanitizedStyleguidistConfig {
+		interface BaseStyleguidistConfig {
 			assetsDir: string | string[];
 			tocMode: EXPAND_MODE;
 			compilerConfig: TransformOptions;
@@ -66,7 +66,6 @@ declare global {
 				text?: string;
 				url: string;
 			};
-			sections: ConfigSection[];
 			serverHost: string;
 			serverPort: number;
 			showCode: boolean;
@@ -76,9 +75,9 @@ declare global {
 			sortProps(props: PropDescriptor[]): PropDescriptor[];
 			styleguideComponents: Record<string, string>;
 			styleguideDir: string;
-			styles: Styles | ((theme: Theme) => Styles);
+			styles: Styles | string | ((theme: Theme) => Styles);
 			template: any;
-			theme: Theme;
+			theme: RecursivePartial<Theme> | string;
 			title: string;
 			updateDocs(doc: PropsObject, file: string): PropsObject;
 			updateExample(
@@ -90,6 +89,19 @@ declare global {
 			verbose: boolean;
 			version: string;
 			webpackConfig: Configuration | ((env?: string) => Configuration);
+		}
+
+		interface ProcessedStyleguidistConfig extends BaseStyleguidistConfig {
+			sections: Section[];
+			theme: RecursivePartial<Theme>;
+			styles: ((th: Theme) => Styles) | Styles;
+		}
+
+		type ProcessedStyleguidistCSSConfig = Pick<ProcessedStyleguidistConfig, 'theme'> &
+			Pick<ProcessedStyleguidistConfig, 'styles'>;
+
+		interface SanitizedStyleguidistConfig extends BaseStyleguidistConfig {
+			sections: ConfigSection[];
 		}
 
 		/**

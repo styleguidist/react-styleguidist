@@ -24,20 +24,20 @@
     "dog-names": "^2.0.0",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-styleguidist": "^9.1.14"
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-styleguidist": "^9.1.16"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
+    "@babel/core": "^7.6.4",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
     "file-loader": "^4.2.0",
     "style-loader": "^1.0.0",
-    "url-loader": "^2.1.0",
-    "webpack": "^4.39.1"
+    "url-loader": "^2.2.0",
+    "webpack": "^4.41.1"
   }
 }
