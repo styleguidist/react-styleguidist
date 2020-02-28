@@ -7,6 +7,6 @@ it('should return an array of AST', () => {
 
 	expect(generate(b.program(result))).toMatchInlineSnapshot(`
 		"const NameOfVar$0 = require('path/to/module');
-		const NameOfVar = NameOfVar$0['NameOfVar'] || (NameOfVar$0.default || NameOfVar$0);"
+		const NameOfVar = NameOfVar$0.default || (NameOfVar$0['NameOfVar'] || NameOfVar$0);"
 	`);
 });

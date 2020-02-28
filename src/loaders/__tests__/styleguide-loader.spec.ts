@@ -227,7 +227,7 @@ it('should transform styles into ES module compatible imports', () => {
 	} as any);
 	expect(result).toMatchInlineSnapshot(`
 		"const __rsgStyles$0 = require('path/to/styles');
-		const __rsgStyles = __rsgStyles$0['__rsgStyles'] || (__rsgStyles$0.default || __rsgStyles$0);
+		const __rsgStyles = __rsgStyles$0.default || (__rsgStyles$0['__rsgStyles'] || __rsgStyles$0);
 		if (module.hot) {
 			module.hot.accept([])
 		}
