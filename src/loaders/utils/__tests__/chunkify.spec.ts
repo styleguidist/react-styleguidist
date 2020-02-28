@@ -76,10 +76,6 @@ This below extensions should be rendered as a playground:
 
 	const expected = [
 		{
-			type: 'markdown',
-			content: 'This below extensions should be rendered as a playground:',
-		},
-		{
 			type: 'code',
 			content: '<h3>Hello javascript playground!</h3>',
 			settings: {},
@@ -112,7 +108,7 @@ This below extensions should be rendered as a playground:
 	];
 
 	const actual = chunkify(markdown);
-	expect(actual).toEqual(expected);
+	expect(actual.slice(1)).toEqual(expected);
 });
 
 it('should not add empty Markdown chunks', () => {
