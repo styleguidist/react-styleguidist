@@ -91,7 +91,8 @@
   },
   "peerDependencies": {
     "react": ">=16.8",
-    "react-dom": ">=16.8"
+    "react-dom": ">=16.8",
+    "webpack": "^4.41.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
