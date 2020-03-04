@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=4"
+    "node": ">=10"
   },
   "scripts": {
     "styleguide": "styleguidist server",

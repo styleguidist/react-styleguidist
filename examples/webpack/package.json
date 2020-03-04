@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=4"
+    "node": ">=10"
   },
   "dependencies": {
     "css-loader": "^0.28.11",

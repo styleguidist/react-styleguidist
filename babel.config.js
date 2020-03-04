@@ -27,7 +27,7 @@ module.exports = {
 						useBuiltIns: 'usage',
 						corejs: 3,
 						targets: {
-							node: '8.9',
+							node: '10',
 						},
 					},
 				],
