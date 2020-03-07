@@ -5,6 +5,7 @@ examples/*/styleguide/*
 # TODO: remove this next line and fix all errors
 examples/styled-components
 lib/*
+src/typings/*
 coverage/*
 travis_phantomjs/*
 flow-typed/*
