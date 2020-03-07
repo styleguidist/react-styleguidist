@@ -37,7 +37,7 @@ jobs:
 
     - stage: typecheck
       script:
-        - npm run tscheck
+        - npm run typecheck
 
     - stage: integration
       script:

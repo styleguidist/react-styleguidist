@@ -1,4 +1,0 @@
-declare module 'lowercase-keys' {
-	declare function lowercaseKeys<T: Object>(object: T): T;
-	declare export default typeof lowercaseKeys;
-}
