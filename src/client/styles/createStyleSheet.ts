@@ -3,6 +3,7 @@ import memoize from 'lodash/memoize';
 import { Styles, StyleSheet } from 'jss';
 import jss from './setupjss';
 import * as theme from './theme';
+import { RecursivePartial } from '../../typings/RecursivePartial';
 
 /**
  * By default lodash/memoize only uses the first argument

@@ -5,6 +5,7 @@ import { Handler, DocumentationObject, PropDescriptor } from 'react-docgen';
 import { ASTNode } from 'ast-types';
 import { NodePath } from 'ast-types/lib/node-path';
 import { Styles } from 'jss';
+import { RecursivePartial } from './RecursivePartial';
 
 declare global {
 	namespace Rsg {
