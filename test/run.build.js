@@ -1,6 +1,6 @@
 /* eslint-disable no-console, import/no-unresolved */
 
-const styleguidist = require('../lib/scripts');
+const styleguidist = require('../lib/scripts').default;
 
 styleguidist(require('../examples/basic/styleguide.config.js')).build((err, config) => {
 	if (err) {
