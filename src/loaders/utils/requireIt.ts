@@ -1,4 +1,5 @@
 import { builders as b, ASTNode } from 'ast-types';
+import * as Rsg from '../../typings';
 
 /**
  * Return a require() statement AST.

@@ -1,4 +1,5 @@
 import processComponent from './processComponent';
+import * as Rsg from '../../typings';
 
 /**
  * Process each component in a list.

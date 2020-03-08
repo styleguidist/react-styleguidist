@@ -1,3 +1,5 @@
+import * as Rsg from '../../typings';
+
 /**
  * Return all glob patterns from all sections.
  *

@@ -7,6 +7,7 @@ import requireIt from './requireIt';
 import getComponentFiles from './getComponentFiles';
 import getComponents from './getComponents';
 import slugger from './slugger';
+import * as Rsg from '../../typings';
 
 const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
 

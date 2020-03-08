@@ -10,6 +10,7 @@ import getExamples from './utils/getExamples';
 import getProps from './utils/getProps';
 import defaultSortProps from './utils/sortProps';
 import * as consts from '../scripts/consts';
+import * as Rsg from '../typings';
 
 const logger = createLogger('rsg');
 

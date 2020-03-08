@@ -2,6 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import { encode } from 'qss';
 import requireIt from './requireIt';
+import * as Rsg from '../../typings';
 
 const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
 

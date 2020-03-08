@@ -1,5 +1,6 @@
 import path from 'path';
 import getSections, { processSection } from '../getSections';
+import * as Rsg from '../../../typings';
 
 const configDir = path.resolve(__dirname, '../../../../test');
 const config = {

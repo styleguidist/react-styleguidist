@@ -3,6 +3,7 @@ import path from 'path';
 import getNameFromFilePath from './getNameFromFilePath';
 import requireIt from './requireIt';
 import slugger from './slugger';
+import * as Rsg from '../../typings';
 
 const propsLoader = path.resolve(__dirname, '../props-loader.js');
 

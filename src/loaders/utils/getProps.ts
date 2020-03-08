@@ -8,6 +8,7 @@ import highlightCodeInMarkdown from './highlightCodeInMarkdown';
 import removeDoclets from './removeDoclets';
 import requireIt from './requireIt';
 import getNameFromFilePath from './getNameFromFilePath';
+import * as Rsg from '../../typings';
 
 const logger = createLogger('rsg');
 

@@ -1,3 +1,5 @@
+import * as Rsg from '../../typings';
+
 /**
  * Get all section content pages.
  *
