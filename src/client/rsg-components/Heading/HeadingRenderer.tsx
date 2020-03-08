@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'clsx';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
+import * as Rsg from '../../../typings';
 
 const styles = ({ color, fontFamily, fontSize }: Rsg.Theme) => ({
 	heading: {

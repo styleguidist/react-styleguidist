@@ -6,6 +6,7 @@ import Sections from 'rsg-components/Sections';
 import SectionRenderer from 'rsg-components/Section/SectionRenderer';
 import { useStyleGuideContext } from 'rsg-components/Context';
 import { DisplayModes } from '../../consts';
+import * as Rsg from '../../../typings';
 
 const Section: React.FunctionComponent<{
 	section: Rsg.Section;

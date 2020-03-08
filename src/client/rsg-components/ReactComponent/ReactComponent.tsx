@@ -10,6 +10,7 @@ import Context from 'rsg-components/Context';
 import ExamplePlaceholderDefault from 'rsg-components/ExamplePlaceholder';
 import { DOCS_TAB_USAGE } from '../slots';
 import { DisplayModes, UsageModes } from '../../consts';
+import * as Rsg from '../../../typings';
 
 const ExamplePlaceholder =
 	process.env.STYLEGUIDIST_ENV !== 'production' ? ExamplePlaceholderDefault : () => <div />;

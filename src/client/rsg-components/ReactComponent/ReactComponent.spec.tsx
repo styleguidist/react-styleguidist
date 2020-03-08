@@ -4,6 +4,7 @@ import ReactComponent from './ReactComponent';
 import slots from '../slots';
 import Context from '../Context';
 import { DisplayModes } from '../../consts';
+import * as Rsg from '../../../typings';
 
 const context = {
 	config: {

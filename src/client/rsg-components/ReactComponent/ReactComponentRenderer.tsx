@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Pathline from 'rsg-components/Pathline';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
+import * as Rsg from '../../../typings';
 
 const styles = ({ color, fontSize, space }: Rsg.Theme) => ({
 	root: {

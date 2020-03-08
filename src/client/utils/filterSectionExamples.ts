@@ -1,3 +1,5 @@
+import * as Rsg from '../../typings';
+
 /**
  * Return a copy of the given section with the examples array filtered
  * to contain only the specified index

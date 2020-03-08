@@ -1,5 +1,6 @@
 import * as theme from '../theme';
 import createStyleSheet from '../createStyleSheet';
+import * as Rsg from '../../../typings';
 
 const customThemeColor = '#123456';
 const customThemeBorderColor = '#654321';

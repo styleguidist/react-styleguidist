@@ -1,4 +1,5 @@
 import getFilterRegExp from './getFilterRegExp';
+import * as Rsg from '../../typings';
 
 /**
  * Fuzzy filters components list by component name.

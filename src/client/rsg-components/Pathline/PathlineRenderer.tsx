@@ -3,6 +3,7 @@ import copy from 'clipboard-copy';
 import { MdContentCopy } from 'react-icons/md';
 import ToolbarButton from 'rsg-components/ToolbarButton';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
+import * as Rsg from '../../../typings';
 
 export const styles = ({ space, fontFamily, fontSize, color }: Rsg.Theme) => ({
 	pathline: {

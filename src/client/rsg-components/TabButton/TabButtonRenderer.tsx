@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import cx from 'clsx';
+import * as Rsg from '../../../typings';
 
 export const styles = ({ space, color, fontFamily, fontSize, buttonTextTransform }: Rsg.Theme) => ({
 	button: {

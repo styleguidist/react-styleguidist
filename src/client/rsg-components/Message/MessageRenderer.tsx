@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Markdown from 'rsg-components/Markdown';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
+import * as Rsg from '../../../typings';
 
 const styles = ({ space }: Rsg.Theme) => ({
 	root: {

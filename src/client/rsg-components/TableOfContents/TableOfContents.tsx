@@ -5,6 +5,7 @@ import TableOfContentsRenderer from 'rsg-components/TableOfContents/TableOfConte
 import filterSectionsByName from '../../utils/filterSectionsByName';
 import { getHash } from '../../utils/handleHash';
 import getUrl from '../../utils/getUrl';
+import * as Rsg from '../../../typings';
 
 interface TableOfContentsProps {
 	sections: Rsg.Section[];

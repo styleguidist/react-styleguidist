@@ -1,5 +1,6 @@
 import deepfreeze from 'deepfreeze';
 import filterComponentExamples from '../filterComponentExamples';
+import * as Rsg from '../../../typings';
 
 const examples: Rsg.Example[] = ['a', 'b', 'c', 'd'].map(x => ({ type: 'markdown', content: x }));
 

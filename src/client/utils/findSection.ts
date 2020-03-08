@@ -1,4 +1,5 @@
 import find from 'lodash/find';
+import * as Rsg from '../../typings';
 
 /**
  * Recursively finds a section with a given name (exact match)

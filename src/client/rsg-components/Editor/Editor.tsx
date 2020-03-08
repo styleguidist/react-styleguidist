@@ -9,6 +9,7 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-jsx';
 import { space } from '../../styles/theme';
 import prismTheme from '../../styles/prismTheme';
+import * as Rsg from '../../../typings';
 
 const highlight = (code: string) => prismHighlight(code, languages.jsx, 'jsx');
 

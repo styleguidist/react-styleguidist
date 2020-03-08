@@ -1,3 +1,5 @@
+import * as Rsg from '../../typings';
+
 const prismTheme = ({ color }: Pick<Rsg.Theme, 'color'>) => ({
 	'&': {
 		color: color.codeBase,

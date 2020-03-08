@@ -5,6 +5,7 @@ import Markdown from 'rsg-components/Markdown';
 import Name from 'rsg-components/Name';
 import Type from 'rsg-components/Type';
 import Group from 'react-group';
+import * as Rsg from '../../../typings';
 
 export const styles = ({ space }: Rsg.Theme) => ({
 	block: {

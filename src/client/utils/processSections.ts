@@ -1,4 +1,5 @@
 import processComponents from './processComponents';
+import * as Rsg from '../../typings';
 
 /**
  * Recursively process each component in all sections.

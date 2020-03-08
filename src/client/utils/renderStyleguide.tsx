@@ -5,6 +5,7 @@ import StyleGuide from 'rsg-components/StyleGuide';
 import getPageTitle from './getPageTitle';
 import getRouteData from './getRouteData';
 import processSections from './processSections';
+import * as Rsg from '../../typings';
 
 interface StyleguideObject {
 	sections: Rsg.Section[];

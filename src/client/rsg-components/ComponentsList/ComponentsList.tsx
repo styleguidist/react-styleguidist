@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ComponentsListRenderer from 'rsg-components/ComponentsList/ComponentsListRenderer';
 import getUrl from '../../utils/getUrl';
+import * as Rsg from '../../../typings';
 
 interface ComponentsListProps {
 	items: Rsg.TOCItem[];

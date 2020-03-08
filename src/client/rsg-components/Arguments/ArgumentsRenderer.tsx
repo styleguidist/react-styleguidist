@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import Argument, { ArgumentProps } from 'rsg-components/Argument';
 import Heading from 'rsg-components/Heading';
+import * as Rsg from '../../../typings';
 
 export const styles = ({ space }: Rsg.Theme) => ({
 	root: {
