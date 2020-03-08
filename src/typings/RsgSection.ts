@@ -1,6 +1,6 @@
 import { RequireItResult } from './RsgRequireItResult';
-import { MarkdownExample } from './RsgExample';
-import { LoaderComponent, EXPAND_MODE } from './RsgComponent';
+import { MarkdownExample, Example } from './RsgExample';
+import { LoaderComponent, EXPAND_MODE, Component } from './RsgComponent';
 
 export interface BaseSection {
 	name?: string;

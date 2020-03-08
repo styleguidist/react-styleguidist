@@ -1,3 +1,4 @@
+import * as Rsg from './';
 /**
  * function used in react tests to generate
  * mocks of JSS Class names
