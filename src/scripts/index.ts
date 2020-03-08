@@ -11,13 +11,10 @@ import setupLogger from './logger';
 /**
  * Initialize Styleguide API.
  *
- * NOTE: here we export an CommonJs module to avoid breaking the API
- * TODO: in the next major version, use `export default` instead
- *
  * @param {object} [config] Styleguidist config.
  * @returns {object} API.
  */
-module.exports = function(configArg?: Rsg.StyleguidistConfig | string) {
+export default function(configArg?: Rsg.StyleguidistConfig | string) {
 	const config = getConfig(configArg, conf => {
 		setupLogger(conf.logger as Record<string, (msg: string) => void>, conf.verbose, {});
 		return conf;
@@ -57,4 +54,4 @@ module.exports = function(configArg?: Rsg.StyleguidistConfig | string) {
 			return makeWebpackConfig(config, env || 'production');
 		},
 	};
-};
+}
