@@ -7,6 +7,7 @@ import build from './build';
 import server from './server';
 import getConfig from './config';
 import setupLogger from './logger';
+import * as Rsg from '../typings';
 
 /**
  * Initialize Styleguide API.

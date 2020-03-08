@@ -2,6 +2,7 @@ import webpack, { Configuration } from 'webpack';
 import { Tapable } from 'tapable';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import makeWebpackConfig from '../make-webpack-config';
+import * as Rsg from '../../typings';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { validate } = require('webpack');

@@ -12,6 +12,7 @@ import isFunction from 'lodash/isFunction';
 
 import StyleguidistOptionsPlugin from './utils/StyleguidistOptionsPlugin';
 import mergeWebpackConfig from './utils/mergeWebpackConfig';
+import * as Rsg from '../typings';
 
 const RENDERER_REGEXP = /Renderer$/;
 

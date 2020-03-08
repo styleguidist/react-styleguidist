@@ -1,5 +1,6 @@
 import { Tapable } from 'tapable';
 import { Compiler, compilation } from 'webpack';
+import * as Rsg from '../../typings';
 
 // Webpack plugin that makes Styleguidist config available for Styleguidist webpack loaders.
 // It will be available as `this._styleguidist`.

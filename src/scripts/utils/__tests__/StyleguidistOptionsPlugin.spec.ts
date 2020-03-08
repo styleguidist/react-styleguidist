@@ -1,4 +1,5 @@
 import StyleguidistOptionsPlugin from '../StyleguidistOptionsPlugin';
+import * as Rsg from '../../../typings';
 
 const options: any = {
 	foo: 42,
