@@ -138,8 +138,8 @@ module.exports = [
   {
     // User webpack config
   },
-  require('react-styleguidist')
-    .default()
-    .makeWebpackConfig()
+  // note that this is requiring rsg in commonjs mode
+  // it does not need to access .default
+  require('react-styleguidist').makeWebpackConfig()
 ]
 ```
