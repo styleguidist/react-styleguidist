@@ -1,7 +1,7 @@
 /* eslint-disable no-console, import/no-unresolved */
 
 const path = require('path');
-const styleguidist = require('../lib/scripts').default;
+const styleguidist = require('../lib/scripts');
 
 const dir = path.resolve(__dirname, '../examples/basic/src');
 
