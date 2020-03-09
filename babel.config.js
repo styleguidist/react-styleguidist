@@ -16,7 +16,7 @@ module.exports = {
 	plugins: ['@babel/plugin-proposal-class-properties'],
 	overrides: [
 		{
-			include: ['src/bin', 'src/loaders', 'src/scripts', 'src/share'],
+			include: ['src/bin', 'src/loaders', 'src/scripts', 'src/share', 'src/typings'],
 			exclude: ['src/loaders/utils/client'],
 			presets: [
 				[
