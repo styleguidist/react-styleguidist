@@ -4,6 +4,7 @@ import Examples from '.';
 import Context from '../Context';
 import slots from '../slots';
 import { DisplayModes } from '../../consts';
+import * as Rsg from '../../../typings';
 
 const evalInContext = (a: string): (() => any) =>
 	// eslint-disable-next-line no-new-func
