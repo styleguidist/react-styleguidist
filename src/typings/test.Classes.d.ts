@@ -1,4 +1,5 @@
-import * as Rsg from './';
+import * as Rsg from './RsgTheme';
+
 /**
  * function used in react tests to generate
  * mocks of JSS Class names
