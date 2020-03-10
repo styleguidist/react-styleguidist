@@ -1,5 +1,3 @@
-// @flow
-
 /**
  * Eval example code in a custom context:
  * - `require()` that allows you to require modules from Markdown examples
@@ -28,6 +26,5 @@ export default function evalInContext(
 
 	// Bind the `require` function, other context arguments will be passed from
 	// the frontend
-	// $FlowFixMe
 	return func.bind(null, require);
 }

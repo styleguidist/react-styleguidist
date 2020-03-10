@@ -11,7 +11,6 @@ module.exports = {
 		],
 		'@babel/typescript',
 		'@babel/react',
-		'@babel/flow',
 	],
 	plugins: ['@babel/plugin-proposal-class-properties'],
 	overrides: [

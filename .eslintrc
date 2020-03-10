@@ -21,8 +21,7 @@
       }
     },
     "react": {
-      "version": "16.6",
-      "flowVersion": "0.83"
+      "version": "16.6"
     }
   },
   "rules": {
