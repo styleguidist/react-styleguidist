@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { Configuration } from 'webpack';
 import last from 'lodash/last';
-import styleguidist from '../index.esm';
+import styleguidist from '../index';
 
 jest.mock('../build');
 jest.mock('../server');
