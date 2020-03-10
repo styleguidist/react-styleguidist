@@ -16,6 +16,7 @@
   },
   "license": "MIT",
   "main": "lib/scripts/index.js",
+  "module": "lib/scripts/index.esm.js",
   "bin": {
     "styleguidist": "lib/bin/styleguidist.js"
   },
@@ -145,7 +146,6 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.16.0",
     "file-loader": "^4.2.0",
-    "flow-bin": "^0.95.1",
     "husky": "^3.0.9",
     "jest": "^24.9.0",
     "jest-serializer-html": "^7.0.0",
@@ -166,8 +166,8 @@
     "webpack-cli": "^3.3.9"
   },
   "scripts": {
-    "pretest": "npm run lint && npm run tscheck",
-    "tscheck": "tsc -p . --noEmit",
+    "pretest": "npm run lint && npm run typecheck",
+    "typecheck": "tsc -p . --noEmit",
     "test": "npm run test:jest",
     "posttest": "npm run format",
     "test:jest": "jest",

@@ -1,5 +1,3 @@
-// @flow
-
 type Module = { [name: string]: any } | (() => any);
 type RequireMap = { [filepath: string]: Module };
 
