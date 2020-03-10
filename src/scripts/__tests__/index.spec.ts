@@ -2,7 +2,7 @@
 import { Configuration } from 'webpack';
 import last from 'lodash/last';
 
-const styleguidist = require('../index');
+const styleguidist = require('../index').default;
 
 jest.mock('../build');
 jest.mock('../server');
