@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { Configuration } from 'webpack';
 import last from 'lodash/last';
-
-const styleguidist = require('../index').default;
+import styleguidist from '../index.esm';
 
 jest.mock('../build');
 jest.mock('../server');

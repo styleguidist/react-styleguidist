@@ -16,6 +16,7 @@
   },
   "license": "MIT",
   "main": "lib/scripts/index.js",
+  "module": "lib/scripts/index.esm.js",
   "bin": {
     "styleguidist": "lib/bin/styleguidist.js"
   },
