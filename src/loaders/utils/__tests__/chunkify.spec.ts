@@ -1,4 +1,5 @@
 import chunkify from '../chunkify';
+import * as Rsg from '../../../typings';
 
 /* eslint-disable max-len */
 

@@ -2,6 +2,7 @@ import React, { cloneElement, Children } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'clsx';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
+import * as Rsg from '../../../../typings';
 
 const styles = ({ space, color, fontFamily }: Rsg.Theme) => ({
 	list: {

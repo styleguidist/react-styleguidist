@@ -12,6 +12,7 @@ import expandDefaultComponent from './utils/expandDefaultComponent';
 import getImports from './utils/getImports';
 import requireIt from './utils/requireIt';
 import resolveESModule from './utils/resolveESModule';
+import * as Rsg from '../typings';
 
 const absolutize = (filepath: string) => path.resolve(__dirname, filepath);
 

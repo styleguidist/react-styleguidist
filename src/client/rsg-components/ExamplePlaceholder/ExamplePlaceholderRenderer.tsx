@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import Markdown from 'rsg-components/Markdown';
 import { DOCS_DOCUMENTING } from '../../../scripts/consts';
+import * as Rsg from '../../../typings';
 
 const styles = ({ fontFamily, fontSize, color }: Rsg.Theme) => ({
 	button: {

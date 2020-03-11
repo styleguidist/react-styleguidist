@@ -1,5 +1,6 @@
 import getFilterRegExp from './getFilterRegExp';
 import filterComponentsByName from './filterComponentsByName';
+import * as Rsg from '../../typings';
 
 /**
  * Fuzzy filters sections by section or component name.

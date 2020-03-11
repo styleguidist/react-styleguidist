@@ -3,6 +3,7 @@ import { render, within } from '@testing-library/react';
 import StyleGuide, { StyleGuideProps } from './StyleGuide';
 import slots from '../slots';
 import { DisplayModes } from '../../consts';
+import * as Rsg from '../../../typings';
 
 const sections: Rsg.Section[] = [
 	{

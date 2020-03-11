@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import Heading from 'rsg-components/Heading';
+import * as Rsg from '../../../../typings';
 
 const styles = ({ space }: Rsg.Theme) => ({
 	spacing: {

@@ -1,3 +1,5 @@
+import * as Rsg from '../../typings';
+
 /**
  * Filter out components without an example file.
  *

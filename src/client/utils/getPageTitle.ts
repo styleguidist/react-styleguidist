@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import { DisplayModes } from '../consts';
+import * as Rsg from '../../typings';
 
 /**
  * Return page title:

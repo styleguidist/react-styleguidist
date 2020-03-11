@@ -1,3 +1,5 @@
+import * as Rsg from '../../typings';
+
 /**
  * Do things that are hard or impossible to do in a loader: we don’t have access to component name
  * and props in the styleguide-loader because we’re using `require` to load the component module.

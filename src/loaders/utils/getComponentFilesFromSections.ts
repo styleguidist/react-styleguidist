@@ -1,4 +1,5 @@
 import getComponentFiles from './getComponentFiles';
+import * as Rsg from '../../typings';
 
 /**
  * Return absolute paths of all components in sections.

@@ -1,3 +1,5 @@
+import * as Rsg from '../../typings';
+
 /**
  * Filters list of components by component name.
  *

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'clsx';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import prismTheme from '../../../styles/prismTheme';
+import * as Rsg from '../../../../typings';
 
 const styles = ({ space, color, fontSize, fontFamily, borderRadius }: Rsg.Theme) => ({
 	pre: {

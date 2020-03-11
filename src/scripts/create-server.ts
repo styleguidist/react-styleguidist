@@ -2,6 +2,7 @@ import webpack, { Configuration } from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import merge from 'webpack-merge';
 import makeWebpackConfig from './make-webpack-config';
+import * as Rsg from '../typings';
 
 export default function createServer(
 	config: Rsg.SanitizedStyleguidistConfig,

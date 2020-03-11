@@ -5,6 +5,7 @@ import filterSectionExamples from './filterSectionExamples';
 import findSection from './findSection';
 import getInfoFromHash from './getInfoFromHash';
 import { DisplayModes } from '../consts';
+import * as Rsg from '../../typings';
 
 /**
  * Return sections / components / examples to show on a screen according to a current route.

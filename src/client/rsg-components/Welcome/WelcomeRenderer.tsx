@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Markdown from 'rsg-components/Markdown';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import { DOCS_COMPONENTS } from '../../../scripts/consts';
+import * as Rsg from '../../../typings';
 
 const styles = ({ space, maxWidth }: Rsg.Theme) => ({
 	root: {

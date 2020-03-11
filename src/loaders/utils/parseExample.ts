@@ -1,5 +1,6 @@
 import lowercaseKeys from 'lowercase-keys';
 import { DOCS_DOCUMENTING } from '../../scripts/consts';
+import * as Rsg from '../../typings';
 
 const hasStringModifiers = (modifiers: string): boolean => !!modifiers.match(/^[ \w]+$/);
 

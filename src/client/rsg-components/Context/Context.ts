@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Rsg from '../../../typings';
 
 const StyleGuideContext = React.createContext<StyleGuideContextContents>({
 	codeRevision: 0,

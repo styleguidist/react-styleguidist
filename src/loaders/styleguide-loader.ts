@@ -13,6 +13,7 @@ import getSections from './utils/getSections';
 import filterComponentsWithExample from './utils/filterComponentsWithExample';
 import slugger from './utils/slugger';
 import resolveESModule from './utils/resolveESModule';
+import * as Rsg from '../typings';
 
 const logger = createLogger('rsg');
 

@@ -6,6 +6,7 @@ import isPlainObject from 'lodash/isPlainObject';
 import schema from './schemas/config';
 import StyleguidistError from './utils/error';
 import sanitizeConfig from './utils/sanitizeConfig';
+import * as Rsg from '../typings';
 
 const CONFIG_FILENAME = 'styleguide.config.js';
 

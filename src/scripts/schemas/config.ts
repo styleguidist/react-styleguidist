@@ -16,6 +16,7 @@ import getUserPackageJson from '../utils/getUserPackageJson';
 import fileExistsCaseInsensitive from '../utils/findFileCaseInsensitive';
 import StyleguidistError from '../utils/error';
 import * as consts from '../consts';
+import * as Rsg from '../../typings';
 
 const EXTENSIONS = 'js,jsx,ts,tsx';
 const DEFAULT_COMPONENTS_PATTERN =
@@ -27,8 +28,6 @@ const DEFAULT_COMPONENTS_PATTERN =
 		: `src/@(components|Components)/**/*.{${EXTENSIONS}}`;
 
 const logger = glogg('rsg');
-
-export type EXPAND_MODE = 'expand' | 'collapse' | 'hide';
 
 export type StyleguidistConfigKey = keyof Rsg.SanitizedStyleguidistConfig;
 
