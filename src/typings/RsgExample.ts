@@ -15,4 +15,9 @@ export interface RuntimeCodeExample extends CodeExample {
 	evalInContext(a: string): () => any;
 }
 
-export type Example = RuntimeCodeExample | MarkdownExample;
+export interface ExampleError {
+	type: 'error';
+	content: string;
+}
+
+export type Example = RuntimeCodeExample | MarkdownExample | ExampleError;

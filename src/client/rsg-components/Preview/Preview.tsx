@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
-import PlaygroundError from 'rsg-components/PlaygroundError';
-import ReactExample from 'rsg-components/ReactExample';
 import Context from 'rsg-components/Context';
-
-const improveErrorMessage = (message: string) =>
-	message.replace(
-		'Check the render method of `StateHolder`.',
-		'Check the code of your example in a Markdown file or in the editor below.'
-	);
 
 interface PreviewProps {
 	code: string;
-	evalInContext(code: string): () => any;
+	filepath: string;
+	index: number;
 }
 
 interface PreviewState {
@@ -23,15 +15,9 @@ interface PreviewState {
 export default class Preview extends Component<PreviewProps, PreviewState> {
 	public static propTypes = {
 		code: PropTypes.string.isRequired,
-		evalInContext: PropTypes.func.isRequired,
+		filepath: PropTypes.string.isRequired,
 	};
 	public static contextType = Context;
-
-	private mountNode: Element | null = null;
-
-	public state: PreviewState = {
-		error: null,
-	};
 
 	public componentDidMount() {
 		// Clear console after hot reload, do not clear on the first load
@@ -40,76 +26,37 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 			// eslint-disable-next-line no-console
 			console.clear();
 		}
-
-		this.executeCode();
 	}
 
+	// TODO: We should never rerender iframe but send new code to it
 	public shouldComponentUpdate(nextProps: PreviewProps, nextState: PreviewState) {
 		return this.state.error !== nextState.error || this.props.code !== nextProps.code;
 	}
 
 	public componentDidUpdate(prevProps: PreviewProps) {
 		if (this.props.code !== prevProps.code) {
-			this.executeCode();
+			this.sendCode();
 		}
 	}
 
-	public componentWillUnmount() {
-		this.unmountPreview();
-	}
-
-	public unmountPreview() {
-		if (this.mountNode) {
-			ReactDOM.unmountComponentAtNode(this.mountNode);
-		}
-	}
-
-	private executeCode() {
-		this.setState({
-			error: null,
-		});
-
+	private sendCode() {
 		const { code } = this.props;
 		if (!code) {
+			// eslint-disable-next-line no-useless-return
 			return;
 		}
 
-		const wrappedComponent: React.FunctionComponentElement<any> = (
-			<ReactExample
-				code={code}
-				evalInContext={this.props.evalInContext}
-				onError={this.handleError}
-				compilerConfig={this.context.config.compilerConfig}
-			/>
-		);
-
-		window.requestAnimationFrame(() => {
-			// this.unmountPreview();
-			try {
-				ReactDOM.render(wrappedComponent, this.mountNode);
-			} catch (err) {
-				this.handleError(err);
-			}
-		});
+		// TODO: send code to iframe
 	}
 
-	private handleError = (err: Error) => {
-		this.unmountPreview();
-
-		this.setState({
-			error: improveErrorMessage(err.toString()),
-		});
-
-		console.error(err); // eslint-disable-line no-console
-	};
-
 	public render() {
-		const { error } = this.state;
+		const { filepath, index } = this.props;
+		// TODO: title
 		return (
-			<>
-				<div data-testid="mountNode" ref={ref => (this.mountNode = ref)} />
-				{error && <PlaygroundError message={error} />}
-			</>
+			<iframe
+				src={`iframe?file=${encodeURIComponent(filepath)}&exampleIndex=${index}`}
+				title={`TODO`}
+			></iframe>
 		);
 	}
 }

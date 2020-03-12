@@ -124,7 +124,8 @@ function commandServer() {
 		if (err) {
 			console.error(err);
 		} else {
-			const isHttps = compiler.options.devServer && compiler.options.devServer.https;
+			const { devServer = {} } = compiler.options;
+			const isHttps = !!devServer.https;
 			const urls = webpackDevServerUtils.prepareUrls(
 				isHttps ? 'https' : 'http',
 				config.serverHost,
@@ -141,7 +142,7 @@ function commandServer() {
 				openBrowser(urls.localUrlForBrowser);
 			}
 		}
-	}).compiler;
+	}).compiler.compilers[1];
 
 	verboseLog('Webpack config:', compiler.options);
 

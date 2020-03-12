@@ -9,10 +9,16 @@ import * as Rsg from '../../../typings';
 export interface ExamplesRenderer {
 	examples: Rsg.Example[];
 	name?: string;
+	filepath: string;
 	exampleMode?: string;
 }
 
-const Examples: React.FunctionComponent<ExamplesRenderer> = ({ examples, name, exampleMode }) => {
+const Examples: React.FunctionComponent<ExamplesRenderer> = ({
+	examples,
+	name,
+	filepath,
+	exampleMode,
+}) => {
 	const { codeRevision } = useStyleGuideContext();
 	return (
 		<ExamplesRenderer name={name}>
@@ -22,9 +28,9 @@ const Examples: React.FunctionComponent<ExamplesRenderer> = ({ examples, name, e
 						return (
 							<Playground
 								code={example.content}
-								evalInContext={example.evalInContext}
 								key={`${codeRevision}/${index}`}
 								name={name}
+								filepath={filepath}
 								index={index}
 								settings={example.settings}
 								exampleMode={exampleMode}
@@ -43,6 +49,7 @@ const Examples: React.FunctionComponent<ExamplesRenderer> = ({ examples, name, e
 Examples.propTypes = {
 	examples: PropTypes.array.isRequired,
 	name: PropTypes.string.isRequired,
+	filepath: PropTypes.string.isRequired,
 	exampleMode: PropTypes.string.isRequired,
 };
 

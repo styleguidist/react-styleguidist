@@ -85,7 +85,12 @@ export default class ReactComponent extends Component<ReactComponentProps, React
 				}
 				examples={
 					examples.length > 0 ? (
-						<Examples examples={examples} name={name} exampleMode={exampleMode} />
+						<Examples
+							examples={examples}
+							name={name}
+							filepath={filepath}
+							exampleMode={exampleMode}
+						/>
 					) : (
 						<ExamplePlaceholder name={name} />
 					)

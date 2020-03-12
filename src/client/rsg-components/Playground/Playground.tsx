@@ -10,9 +10,9 @@ import { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
 import { DisplayModes, ExampleModes } from '../../consts';
 
 interface PlaygroundProps {
-	evalInContext(code: string): () => any;
 	index: number;
 	name?: string;
+	filepath: string;
 	exampleMode?: string;
 	code: string;
 	settings: {
@@ -33,9 +33,9 @@ interface PlaygroundState {
 class Playground extends Component<PlaygroundProps, PlaygroundState> {
 	public static propTypes = {
 		code: PropTypes.string.isRequired,
-		evalInContext: PropTypes.func.isRequired,
 		index: PropTypes.number.isRequired,
 		name: PropTypes.string.isRequired,
+		filepath: PropTypes.string.isRequired,
 		exampleMode: PropTypes.string.isRequired,
 		settings: PropTypes.object,
 	};
@@ -87,11 +87,11 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 
 	public render() {
 		const { code, activeTab } = this.state;
-		const { evalInContext, index, name, settings, exampleMode } = this.props;
+		const { index, name, filepath, settings, exampleMode } = this.props;
 		const { displayMode } = this.context;
 		const isExampleHidden = exampleMode === ExampleModes.hide;
 		const isEditorHidden = settings.noeditor || isExampleHidden;
-		const preview = <Preview code={code} evalInContext={evalInContext} />;
+		const preview = <Preview code={code} filepath={filepath} index={index} />;
 
 		return isEditorHidden ? (
 			<Para>{preview}</Para>
@@ -114,8 +114,7 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 						name="exampleTabs"
 						active={activeTab}
 						onlyActive
-						// evalInContext passed through to support custom slots that eval code
-						props={{ code, onChange: this.handleChange, evalInContext }}
+						props={{ code, onChange: this.handleChange }}
 					/>
 				}
 				toolbar={

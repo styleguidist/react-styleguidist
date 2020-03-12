@@ -1,40 +1,36 @@
-import webpack, { Configuration } from 'webpack';
+import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import merge from 'webpack-merge';
-import makeWebpackConfig from './make-webpack-config';
+import getWebpackConfigs from './webpack/root.webpack.config';
 import * as Rsg from '../typings';
 
 export default function createServer(
 	config: Rsg.SanitizedStyleguidistConfig,
 	env: 'development' | 'production' | 'none'
-): { app: WebpackDevServer; compiler: webpack.Compiler } {
-	const webpackConfig = makeWebpackConfig(config, env);
-	const webpackDevServerConfig = merge(
-		{
-			noInfo: true,
-			compress: true,
-			clientLogLevel: 'none',
-			hot: true,
-			quiet: true,
-			watchOptions: {
-				ignored: /node_modules/,
-			},
-			watchContentBase: config.assetsDir !== undefined,
-			stats: webpackConfig.stats || {},
-		} as Configuration,
-		webpackConfig.devServer as Configuration,
-		{
-			contentBase: config.assetsDir,
-		} as Configuration
-	);
+) {
+	const [uiWebpackConfig, iframeWebpackConfig] = getWebpackConfigs(config, env);
 
-	const compiler = webpack(webpackConfig);
-	const devServer = new WebpackDevServer(compiler, webpackDevServerConfig);
+	const webpackDevServerConfig: WebpackDevServer.Configuration = {
+		noInfo: true,
+		compress: true,
+		clientLogLevel: 'none',
+		hot: true,
+		watchOptions: {
+			ignored: /node_modules/,
+		},
+		watchContentBase: config.assetsDir !== undefined,
+		stats: iframeWebpackConfig.stats,
+		before: app => {
+			// User defined customizations
+			if (config.configureServer) {
+				config.configureServer(app, env);
+			}
+		},
+		...iframeWebpackConfig.devServer,
+		contentBase: config.assetsDir,
+	};
 
-	// User defined customizations
-	if (config.configureServer) {
-		config.configureServer((devServer as any).app, env);
-	}
+	const compiler = webpack([uiWebpackConfig, iframeWebpackConfig]);
+	const app = new WebpackDevServer(compiler, webpackDevServerConfig);
 
-	return { app: devServer, compiler };
+	return { app, compiler };
 }

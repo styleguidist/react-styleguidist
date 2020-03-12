@@ -16,7 +16,7 @@ export interface BaseSection {
 
 export interface ProcessedSection extends BaseSection {
 	visibleName?: string;
-	filepath?: string;
+	filepath: string;
 }
 
 /**
