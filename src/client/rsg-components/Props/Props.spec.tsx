@@ -618,12 +618,27 @@ describe('unquote', () => {
 });
 
 describe('getType', () => {
-	test('should return .type or .flowType property', () => {
+	test('should return not .type but .flowType property', () => {
 		const result = getType({
 			type: 'foo',
 			flowType: 'bar',
 		} as any);
 		expect(result).toBe('bar');
+	});
+
+	test('should return not .type but .tsType property', () => {
+		const result = getType({
+			type: 'foo',
+			tsType: 'bar',
+		} as any);
+		expect(result).toBe('bar');
+	});
+
+	test('should return .type property', () => {
+		const result = getType({
+			type: 'foo',
+		} as any);
+		expect(result).toBe('foo');
 	});
 });
 

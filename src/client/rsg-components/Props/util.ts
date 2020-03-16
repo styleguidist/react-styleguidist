@@ -32,6 +32,9 @@ export function getType(prop: PropDescriptor): PropTypeDescriptor | TypeDescript
 		}
 		return prop.flowType;
 	}
+	if (prop.tsType) {
+		return prop.tsType;
+	}
 	return prop.type;
 }
 
