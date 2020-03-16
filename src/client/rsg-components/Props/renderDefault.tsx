@@ -10,8 +10,12 @@ export default function renderDefault(prop: PropDescriptor): React.ReactNode {
 	// If prop has defaultValue it can not be required
 	if (prop.defaultValue) {
 		const defaultValueString = showSpaces(unquote(String(prop.defaultValue.value)));
-		if (prop.type || prop.flowType) {
-			const propName = prop.type ? prop.type.name : prop.flowType && prop.flowType.type;
+		if (prop.type || prop.flowType || prop.tsType) {
+			const propName = prop.type
+				? prop.type.name
+				: prop.flowType
+				? prop.flowType.type
+				: prop.tsType && prop.tsType.type;
 
 			if (defaultValueBlacklist.indexOf(prop.defaultValue.value) > -1) {
 				return <Code>{defaultValueString}</Code>;
