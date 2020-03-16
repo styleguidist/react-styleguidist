@@ -1,11 +1,11 @@
 import React from 'react';
 import Text from 'rsg-components/Text';
 import Code from 'rsg-components/Code';
-import { showSpaces, unquote, PropDescriptorWithFlow } from './util';
+import { showSpaces, unquote, PropDescriptor } from './util';
 
 const defaultValueBlacklist = ['null', 'undefined'];
 
-export default function renderDefault(prop: PropDescriptorWithFlow): React.ReactNode {
+export default function renderDefault(prop: PropDescriptor): React.ReactNode {
 	// Workaround for issue https://github.com/reactjs/react-docgen/issues/221
 	// If prop has defaultValue it can not be required
 	if (prop.defaultValue) {

@@ -3,7 +3,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { parse } from 'react-docgen';
 import PropsRenderer, { columns, getRowKey } from './PropsRenderer';
-import { unquote, getType, showSpaces, PropDescriptorWithFlow } from './util';
+import { unquote, getType, showSpaces, PropDescriptor } from './util';
 
 const propsToArray = (props: any) => Object.keys(props).map(name => ({ ...props[name], name }));
 
@@ -16,7 +16,7 @@ const getText = (node: { innerHTML: string }): string =>
 		.trim();
 
 // Test renderers with clean readable snapshot diffs
-export default function ColumnsRenderer({ props }: { props: PropDescriptorWithFlow[] }) {
+export default function ColumnsRenderer({ props }: { props: PropDescriptor[] }) {
 	return (
 		<>
 			{props.map((row, rowIdx) => (

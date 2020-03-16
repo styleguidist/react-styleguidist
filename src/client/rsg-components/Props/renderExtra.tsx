@@ -5,11 +5,11 @@ import Code from 'rsg-components/Code';
 import Name from 'rsg-components/Name';
 import Markdown from 'rsg-components/Markdown';
 
-import { unquote, getType, showSpaces, PropDescriptorWithFlow } from './util';
+import { unquote, getType, showSpaces, PropDescriptor } from './util';
 import renderDefault from './renderDefault';
 import { renderType } from './renderType';
 
-function renderEnum(prop: PropDescriptorWithFlow): React.ReactNode {
+function renderEnum(prop: PropDescriptor): React.ReactNode {
 	const type = getType(prop);
 	if (!type) {
 		return undefined;
@@ -28,7 +28,7 @@ function renderEnum(prop: PropDescriptorWithFlow): React.ReactNode {
 	);
 }
 
-function renderUnion(prop: PropDescriptorWithFlow): React.ReactNode {
+function renderUnion(prop: PropDescriptor): React.ReactNode {
 	const type = getType(prop);
 	if (!type) {
 		return undefined;
@@ -47,7 +47,7 @@ function renderUnion(prop: PropDescriptorWithFlow): React.ReactNode {
 	);
 }
 
-function renderShape(props: Record<string, PropDescriptorWithFlow>) {
+function renderShape(props: Record<string, PropDescriptor>) {
 	return Object.keys(props).map(name => {
 		const prop = props[name];
 		const defaultValue = renderDefault(prop);
@@ -66,7 +66,7 @@ function renderShape(props: Record<string, PropDescriptorWithFlow>) {
 	});
 }
 
-export default function renderExtra(prop: PropDescriptorWithFlow): React.ReactNode {
+export default function renderExtra(prop: PropDescriptor): React.ReactNode {
 	const type = getType(prop);
 	if (!prop.type || !type) {
 		return null;

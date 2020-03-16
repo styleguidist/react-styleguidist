@@ -3,7 +3,7 @@ import { PropTypeDescriptor } from 'react-docgen';
 import Type from 'rsg-components/Type';
 import Text from 'rsg-components/Text';
 
-import { getType, PropDescriptorWithFlow, FlowTypeDescriptor } from './util';
+import { getType, PropDescriptor, TypeDescriptor } from './util';
 
 interface ExtendedPropTypeDescriptor extends Omit<PropTypeDescriptor, 'name'> {
 	name: string;
@@ -36,7 +36,7 @@ function renderComplexType(name: string, title: string): React.ReactNode {
 	);
 }
 
-function renderFlowType(type: FlowTypeDescriptor): React.ReactNode {
+function renderFlowType(type: TypeDescriptor): React.ReactNode {
 	if (!type) {
 		return 'unknown';
 	}
