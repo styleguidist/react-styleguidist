@@ -219,6 +219,49 @@ it('should render components of a single top section as root', () => {
 	`);
 });
 
+it('should render as the link will open in a new window only if external presents as true', () => {
+	const actual = shallow(
+		<TableOfContents
+			sections={[
+				{
+					sections: [
+						{ content: 'intro.md', href: 'http://example.com' },
+						{ content: 'chapter.md', href: 'http://example.com', external: true },
+					],
+				},
+			]}
+		/>
+	);
+
+	expect(actual.find('ComponentsList').prop('items')).toMatchInlineSnapshot(`
+		Array [
+		  Object {
+		    "components": Array [],
+		    "content": undefined,
+		    "forcedOpen": false,
+		    "heading": false,
+		    "href": "http://example.com",
+		    "initialOpen": true,
+		    "sections": Array [],
+		    "selected": false,
+		    "shouldOpenInNewTab": false,
+		  },
+		  Object {
+		    "components": Array [],
+		    "content": undefined,
+		    "external": true,
+		    "forcedOpen": false,
+		    "heading": false,
+		    "href": "http://example.com",
+		    "initialOpen": true,
+		    "sections": Array [],
+		    "selected": false,
+		    "shouldOpenInNewTab": true,
+		  },
+		]
+	`);
+});
+
 /**
  * testing this layer with no mocking makes no sense...
  */
