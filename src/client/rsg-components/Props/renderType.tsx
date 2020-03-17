@@ -36,7 +36,7 @@ function renderComplexType(name: string, title: string): React.ReactNode {
 	);
 }
 
-function renderFlowType(type: TypeDescriptor): React.ReactNode {
+function renderAdvancedType(type: TypeDescriptor): React.ReactNode {
 	if (!type) {
 		return 'unknown';
 	}
@@ -56,30 +56,13 @@ function renderFlowType(type: TypeDescriptor): React.ReactNode {
 	}
 }
 
-function renderTSType(type: TypeDescriptor): React.ReactNode {
-	if (!type) {
-		return 'unknown';
-	}
-
-	switch (type.name) {
-		case 'literal':
-			return type.value;
-
-		default:
-			return (type as any).raw || (type as any).name;
-	}
-}
-
 export default function renderTypeColumn(prop: PropDescriptor): React.ReactNode {
 	const type = getType(prop);
 	if (!type) {
 		return null;
 	}
-	if (prop.flowType) {
-		return <Type>{renderFlowType(type as any)}</Type>;
-	}
-	if (prop.tsType) {
-		return <Type>{renderTSType(type as any)}</Type>;
+	if (prop.flowType || prop.tsType) {
+		return <Type>{renderAdvancedType(type as any)}</Type>;
 	}
 	return <Type>{renderType(type)}</Type>;
 }

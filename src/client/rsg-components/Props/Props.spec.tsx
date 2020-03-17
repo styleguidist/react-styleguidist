@@ -58,11 +58,12 @@ function renderJs(propTypes: string[], defaultProps: string[] = []) {
 	return render(<ColumnsRenderer props={propsToArray(props.props)} />);
 }
 
-function renderFlow(propsType: string[], defaultProps: string[] = []) {
+function renderFlow(propsType: string[], defaultProps: string[] = [], preparations: string[] = []) {
 	const props = parse(
 		`
 		// @flow
 		import * as React from 'react';
+		${preparations.join(';')}
 		type Props = {
 			${propsType.join(',')}
 		};
@@ -91,7 +92,6 @@ function renderTypeScript(
 ) {
 	const props = parse(
 		`
-		// @TypeScript
 		import * as React from 'react';
 		${preparations.join(';')}
 		type Props = {
@@ -540,9 +540,20 @@ describe('props columns', () => {
 	`);
 	});
 
-	describe('flowType', () => {
+	describe.each([
+		[
+			'flowType',
+			renderFlow,
+			{ enum: { declaration: "type MyEnum = 'One' | 'Two'", expect: { type: 'enum' } } },
+		],
+		[
+			'TypeScript',
+			renderTypeScript,
+			{ enum: { declaration: 'enum MyEnum { One, Two }', expect: { type: 'MyEnum' } } },
+		],
+	])('%s', (_, renderFn, options) => {
 		test('should render type string', () => {
-			const { container } = renderFlow(['foo: string']);
+			const { container } = renderFn(['foo: string']);
 
 			expect(getText(container)).toMatchInlineSnapshot(`
 			"Prop name: foo 
@@ -553,7 +564,7 @@ describe('props columns', () => {
 		});
 
 		test('should render optional type string', () => {
-			const { container } = renderFlow(['foo?: string']);
+			const { container } = renderFn(['foo?: string']);
 
 			expect(getText(container)).toMatchInlineSnapshot(`
 			"Prop name: foo 
@@ -564,7 +575,7 @@ describe('props columns', () => {
 		});
 
 		test('should render type string with a default value', () => {
-			const { container } = renderFlow(['foo?: string'], ['foo: "bar"']);
+			const { container } = renderFn(['foo?: string'], ['foo: "bar"']);
 
 			expect(getText(container)).toMatchInlineSnapshot(`
 			"Prop name: foo 
@@ -574,166 +585,43 @@ describe('props columns', () => {
 		`);
 		});
 
-		test('should render literal type', () => {
-			const { container } = renderFlow(['foo?: "bar"']);
-
-			expect(getText(container)).toMatchInlineSnapshot(`
-			"Prop name: foo 
-			Type: \\"bar\\" 
-			Default: 
-			Description:"
-		`);
-		});
-
 		test('should render object type with body in tooltip', () => {
-			const { getByText } = renderFlow(['foo: { bar: string }']);
+			const { getByText } = renderFn(['foo: { bar: string }']);
 
 			expect(getByText('object').title).toMatchInlineSnapshot(`"{ bar: string }"`);
 		});
 
 		test('should render function type with body in tooltip', () => {
-			const { getByText } = renderFlow(['foo: () => void']);
+			const { getByText } = renderFn(['foo: () => void']);
 
 			expect(getByText('function').title).toMatchInlineSnapshot(`"() => void"`);
 		});
 
 		test('should render union type with body in tooltip', () => {
-			const { getByText } = renderFlow(['foo: "bar" | number']);
+			const { getByText } = renderFn(['foo: "bar" | number']);
 
 			expect(getByText('union').title).toMatchInlineSnapshot(`"\\"bar\\" | number"`);
 		});
 
-		test('should render enum type when union of literals', () => {
-			const { container } = renderFlow(['foo: "bar" | "baz"']);
+		test('should render enum type', () => {
+			const { container } = renderFn(['foo: MyEnum'], [], [options.enum.declaration]);
 
 			expect(getText(container)).toMatchInlineSnapshot(`
 			"Prop name: foo 
-			Type: enum 
+			Type: ${options.enum.expect.type} 
 			Default: Required 
 			Description:"
 		`);
 		});
 
 		test('should render tuple type with body in tooltip', () => {
-			const { getByText } = renderFlow(['foo: ["bar", number]']);
+			const { getByText } = renderFn(['foo: ["bar", number]']);
 
 			expect(getByText('tuple').title).toMatchInlineSnapshot(`"[\\"bar\\", number]"`);
 		});
 
 		test('should render custom class type', () => {
-			const { container } = renderFlow(['foo: React.ReactNode']);
-
-			expect(getText(container)).toMatchInlineSnapshot(`
-			"Prop name: foo 
-			Type: React.ReactNode 
-			Default: Required 
-			Description:"
-		`);
-		});
-	});
-
-	describe('TypeScript', () => {
-		test('should render type string', () => {
-			const { container } = renderTypeScript(['foo: string']);
-
-			expect(getText(container)).toMatchInlineSnapshot(`
-			"Prop name: foo 
-			Type: string 
-			Default: Required 
-			Description:"
-		`);
-		});
-
-		test('should render optional type string', () => {
-			const { container } = renderTypeScript(['foo?: string']);
-
-			expect(getText(container)).toMatchInlineSnapshot(`
-			"Prop name: foo 
-			Type: string 
-			Default: 
-			Description:"
-		`);
-		});
-
-		test('should render type string with a default value', () => {
-			const { container } = renderTypeScript(['foo?: string'], ['foo: "bar"']);
-
-			expect(getText(container)).toMatchInlineSnapshot(`
-			"Prop name: foo 
-			Type: string 
-			Default: bar 
-			Description:"
-		`);
-		});
-
-		test('should render literal type', () => {
-			const { container } = renderTypeScript(['foo?: "bar"']);
-
-			expect(getText(container)).toMatchInlineSnapshot(`
-			"Prop name: foo 
-			Type: \\"bar\\" 
-			Default: 
-			Description:"
-		`);
-		});
-
-		test('should render object type', () => {
-			const { container } = renderTypeScript(['foo: { bar: string }']);
-
-			expect(getText(container)).toMatchInlineSnapshot(`
-			"Prop name: foo 
-			Type: { bar: string } 
-			Default: Required 
-			Description:"
-		`);
-		});
-
-		test('should render function type', () => {
-			const { container } = renderTypeScript(['foo: () => void']);
-
-			expect(getText(container)).toMatchInlineSnapshot(`
-			"Prop name: foo 
-			Type: () =&gt; void 
-			Default: Required 
-			Description:"
-		`);
-		});
-
-		test('should render enum type', () => {
-			const { container } = renderTypeScript(['foo: Enum'], [], ['enum Enum { One, Two }']);
-
-			expect(getText(container)).toMatchInlineSnapshot(`
-			"Prop name: foo 
-			Type: Enum 
-			Default: Required 
-			Description:"
-		`);
-		});
-
-		test('should render union type', () => {
-			const { container } = renderTypeScript(['foo: "bar" | "baz"']);
-
-			expect(getText(container)).toMatchInlineSnapshot(`
-			"Prop name: foo 
-			Type: \\"bar\\" | \\"baz\\" 
-			Default: Required 
-			Description:"
-		`);
-		});
-
-		test('should render tuple type', () => {
-			const { container } = renderTypeScript(['foo: ["bar", number]']);
-
-			expect(getText(container)).toMatchInlineSnapshot(`
-			"Prop name: foo 
-			Type: [\\"bar\\", number] 
-			Default: Required 
-			Description:"
-		`);
-		});
-
-		test('should render custom class type', () => {
-			const { container } = renderTypeScript(['foo: React.ReactNode']);
+			const { container } = renderFn(['foo: React.ReactNode']);
 
 			expect(getText(container)).toMatchInlineSnapshot(`
 			"Prop name: foo 
@@ -744,7 +632,7 @@ describe('props columns', () => {
 		});
 
 		test('should render unknown when a relevant prop type is not assigned', () => {
-			const { container } = renderTypeScript([], ['color: "pink"']);
+			const { container } = renderFn([], ['color: "pink"']);
 
 			expect(getText(container)).toMatchInlineSnapshot(`
 			"Prop name: color 
