@@ -3,7 +3,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { parse } from 'react-docgen';
 import PropsRenderer, { columns, getRowKey } from './PropsRenderer';
-import { unquote, getType, showSpaces, PropDescriptorWithFlow } from './util';
+import { unquote, getType, showSpaces, PropDescriptor } from './util';
 
 const propsToArray = (props: any) => Object.keys(props).map(name => ({ ...props[name], name }));
 
@@ -16,7 +16,7 @@ const getText = (node: { innerHTML: string }): string =>
 		.trim();
 
 // Test renderers with clean readable snapshot diffs
-export default function ColumnsRenderer({ props }: { props: PropDescriptorWithFlow[] }) {
+export default function ColumnsRenderer({ props }: { props: PropDescriptor[] }) {
 	return (
 		<>
 			{props.map((row, rowIdx) => (
@@ -58,11 +58,12 @@ function renderJs(propTypes: string[], defaultProps: string[] = []) {
 	return render(<ColumnsRenderer props={propsToArray(props.props)} />);
 }
 
-function renderFlow(propsType: string[], defaultProps: string[] = []) {
+function renderFlow(propsType: string[], defaultProps: string[] = [], preparations: string[] = []) {
 	const props = parse(
 		`
 		// @flow
 		import * as React from 'react';
+		${preparations.join(';')}
 		type Props = {
 			${propsType.join(',')}
 		};
@@ -77,6 +78,36 @@ function renderFlow(propsType: string[], defaultProps: string[] = []) {
 		undefined,
 		undefined,
 		{ filename: '' }
+	);
+	if (Array.isArray(props)) {
+		return render(<div />);
+	}
+	return render(<ColumnsRenderer props={propsToArray(props.props)} />);
+}
+
+function renderTypeScript(
+	propsType: string[],
+	defaultProps: string[] = [],
+	preparations: string[] = []
+) {
+	const props = parse(
+		`
+		import * as React from 'react';
+		${preparations.join(';')}
+		type Props = {
+			${propsType.join(';')}
+		};
+		export default class Cmpnt extends React.Component<Props> {
+			static defaultProps = {
+				${defaultProps.join(',')}
+			}
+			render() {
+			}
+		}
+	`,
+		undefined,
+		undefined,
+		{ filename: 'Component.tsx' }
 	);
 	if (Array.isArray(props)) {
 		return render(<div />);
@@ -509,94 +540,107 @@ describe('props columns', () => {
 	`);
 	});
 
-	test('should render type string', () => {
-		const { container } = renderFlow(['foo: string']);
+	describe.each([
+		[
+			'flowType',
+			renderFlow,
+			{ enum: { declaration: "type MyEnum = 'One' | 'Two'", expect: { type: 'enum' } } },
+		],
+		[
+			'TypeScript',
+			renderTypeScript,
+			{ enum: { declaration: 'enum MyEnum { One, Two }', expect: { type: 'MyEnum' } } },
+		],
+	])('%s', (_, renderFn, options) => {
+		test('should render type string', () => {
+			const { container } = renderFn(['foo: string']);
 
-		expect(getText(container)).toMatchInlineSnapshot(`
-		"Prop name: foo 
-		Type: string 
-		Default: Required 
-		Description:"
-	`);
-	});
+			expect(getText(container)).toMatchInlineSnapshot(`
+			"Prop name: foo 
+			Type: string 
+			Default: Required 
+			Description:"
+		`);
+		});
 
-	test('should render optional type string', () => {
-		const { container } = renderFlow(['foo?: string']);
+		test('should render optional type string', () => {
+			const { container } = renderFn(['foo?: string']);
 
-		expect(getText(container)).toMatchInlineSnapshot(`
-		"Prop name: foo 
-		Type: string 
-		Default: 
-		Description:"
-	`);
-	});
+			expect(getText(container)).toMatchInlineSnapshot(`
+			"Prop name: foo 
+			Type: string 
+			Default: 
+			Description:"
+		`);
+		});
 
-	test('should render type string with a default value', () => {
-		const { container } = renderFlow(['foo?: string'], ['foo: "bar"']);
+		test('should render type string with a default value', () => {
+			const { container } = renderFn(['foo?: string'], ['foo: "bar"']);
 
-		expect(getText(container)).toMatchInlineSnapshot(`
-		"Prop name: foo 
-		Type: string 
-		Default: bar 
-		Description:"
-	`);
-	});
+			expect(getText(container)).toMatchInlineSnapshot(`
+			"Prop name: foo 
+			Type: string 
+			Default: bar 
+			Description:"
+		`);
+		});
 
-	test('should render literal type', () => {
-		const { container } = renderFlow(['foo?: "bar"']);
+		test('should render object type with body in tooltip', () => {
+			const { getByText } = renderFn(['foo: { bar: string }']);
 
-		expect(getText(container)).toMatchInlineSnapshot(`
-		"Prop name: foo 
-		Type: \\"bar\\" 
-		Default: 
-		Description:"
-	`);
-	});
+			expect(getByText('object').title).toMatchInlineSnapshot(`"{ bar: string }"`);
+		});
 
-	test('should render object type with body in tooltip', () => {
-		const { getByText } = renderFlow(['foo: { bar: string }']);
+		test('should render function type with body in tooltip', () => {
+			const { getByText } = renderFn(['foo: () => void']);
 
-		expect(getByText('object').title).toMatchInlineSnapshot(`"{ bar: string }"`);
-	});
+			expect(getByText('function').title).toMatchInlineSnapshot(`"() => void"`);
+		});
 
-	test('should render function type with body in tooltip', () => {
-		const { getByText } = renderFlow(['foo: () => void']);
+		test('should render union type with body in tooltip', () => {
+			const { getByText } = renderFn(['foo: "bar" | number']);
 
-		expect(getByText('function').title).toMatchInlineSnapshot(`"() => void"`);
-	});
+			expect(getByText('union').title).toMatchInlineSnapshot(`"\\"bar\\" | number"`);
+		});
 
-	test('should render union type with body in tooltip', () => {
-		const { getByText } = renderFlow(['foo: "bar" | number']);
+		test('should render enum type', () => {
+			const { container } = renderFn(['foo: MyEnum'], [], [options.enum.declaration]);
 
-		expect(getByText('union').title).toMatchInlineSnapshot(`"\\"bar\\" | number"`);
-	});
+			expect(getText(container)).toMatchInlineSnapshot(`
+			"Prop name: foo 
+			Type: ${options.enum.expect.type} 
+			Default: Required 
+			Description:"
+		`);
+		});
 
-	test('should render enum type when union of literals', () => {
-		const { container } = renderFlow(['foo: "bar" | "baz"']);
+		test('should render tuple type with body in tooltip', () => {
+			const { getByText } = renderFn(['foo: ["bar", number]']);
 
-		expect(getText(container)).toMatchInlineSnapshot(`
-		"Prop name: foo 
-		Type: enum 
-		Default: Required 
-		Description:"
-	`);
-	});
+			expect(getByText('tuple').title).toMatchInlineSnapshot(`"[\\"bar\\", number]"`);
+		});
 
-	test('should render tuple type with body in tooltip', () => {
-		const { getByText } = renderFlow(['foo: ["bar", number]']);
+		test('should render custom class type', () => {
+			const { container } = renderFn(['foo: React.ReactNode']);
 
-		expect(getByText('tuple').title).toMatchInlineSnapshot(`"[\\"bar\\", number]"`);
-	});
+			expect(getText(container)).toMatchInlineSnapshot(`
+			"Prop name: foo 
+			Type: React.ReactNode 
+			Default: Required 
+			Description:"
+		`);
+		});
 
-	test('should render custom class type', () => {
-		const { container } = renderFlow(['foo: React.ReactNode']);
+		test('should render unknown when a relevant prop type is not assigned', () => {
+			const { container } = renderFn([], ['color: "pink"']);
 
-		expect(getText(container)).toMatchInlineSnapshot(`
-		"Prop name: foo 
-		Type: React.ReactNode 
-		Default: Required 
-		Description:"
-	`);
+			expect(getText(container)).toMatchInlineSnapshot(`
+			"Prop name: color 
+			Type: 
+			Default: pink 
+			Description:"
+		`);
+		});
 	});
 });
 
@@ -618,12 +662,27 @@ describe('unquote', () => {
 });
 
 describe('getType', () => {
-	test('should return .type or .flowType property', () => {
+	test('should return not .type but .flowType property', () => {
 		const result = getType({
 			type: 'foo',
 			flowType: 'bar',
 		} as any);
 		expect(result).toBe('bar');
+	});
+
+	test('should return not .type but .tsType property', () => {
+		const result = getType({
+			type: 'foo',
+			tsType: 'bar',
+		} as any);
+		expect(result).toBe('bar');
+	});
+
+	test('should return .type property', () => {
+		const result = getType({
+			type: 'foo',
+		} as any);
+		expect(result).toBe('foo');
 	});
 });
 

@@ -3,7 +3,7 @@ import { PropTypeDescriptor } from 'react-docgen';
 import Type from 'rsg-components/Type';
 import Text from 'rsg-components/Text';
 
-import { getType, PropDescriptorWithFlow, FlowTypeDescriptor } from './util';
+import { getType, PropDescriptor, TypeDescriptor } from './util';
 
 interface ExtendedPropTypeDescriptor extends Omit<PropTypeDescriptor, 'name'> {
 	name: string;
@@ -36,7 +36,7 @@ function renderComplexType(name: string, title: string): React.ReactNode {
 	);
 }
 
-function renderFlowType(type: FlowTypeDescriptor): React.ReactNode {
+function renderAdvancedType(type: TypeDescriptor): React.ReactNode {
 	if (!type) {
 		return 'unknown';
 	}
@@ -56,13 +56,13 @@ function renderFlowType(type: FlowTypeDescriptor): React.ReactNode {
 	}
 }
 
-export default function renderTypeColumn(prop: PropDescriptorWithFlow): React.ReactNode {
+export default function renderTypeColumn(prop: PropDescriptor): React.ReactNode {
 	const type = getType(prop);
 	if (!type) {
 		return null;
 	}
-	if (prop.flowType) {
-		return <Type>{renderFlowType(type as any)}</Type>;
+	if (prop.flowType || prop.tsType) {
+		return <Type>{renderAdvancedType(type as any)}</Type>;
 	}
 	return <Type>{renderType(type)}</Type>;
 }
