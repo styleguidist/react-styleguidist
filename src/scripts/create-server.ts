@@ -1,13 +1,13 @@
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import getWebpackConfigs from './webpack/root.webpack.config';
+import getWebpackConfig from './webpack.config';
 import * as Rsg from '../typings';
 
 export default function createServer(
 	config: Rsg.SanitizedStyleguidistConfig,
 	env: 'development' | 'production' | 'none'
 ) {
-	const [uiWebpackConfig, iframeWebpackConfig] = getWebpackConfigs(config, env);
+	const webpackConfig = getWebpackConfig(config, env);
 
 	const webpackDevServerConfig: WebpackDevServer.Configuration = {
 		noInfo: true,
@@ -18,18 +18,18 @@ export default function createServer(
 			ignored: /node_modules/,
 		},
 		watchContentBase: config.assetsDir !== undefined,
-		stats: iframeWebpackConfig.stats,
+		stats: webpackConfig.stats,
 		before: app => {
 			// User defined customizations
 			if (config.configureServer) {
 				config.configureServer(app, env);
 			}
 		},
-		...iframeWebpackConfig.devServer,
+		...webpackConfig.devServer,
 		contentBase: config.assetsDir,
 	};
 
-	const compiler = webpack([uiWebpackConfig, iframeWebpackConfig]);
+	const compiler = webpack(webpackConfig);
 	const app = new WebpackDevServer(compiler, webpackDevServerConfig);
 
 	return { app, compiler };

@@ -1,7 +1,7 @@
 import webpack from 'webpack';
 // Make sure user has webpack installed
 import './utils/ensureWebpack';
-import makeWebpackConfig from './webpack/ui.webpack.config';
+import makeWebpackConfig from './webpack.config';
 import build from './build';
 import server from './server';
 import getConfig from './config';

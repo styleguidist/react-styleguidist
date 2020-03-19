@@ -9,13 +9,14 @@ import MiniHtmlWebpackTemplate from '@vxna/mini-html-webpack-template';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import merge from 'webpack-merge';
+import * as Rsg from '../typings';
 
-import StyleguidistOptionsPlugin from '../utils/StyleguidistOptionsPlugin';
-import mergeWebpackConfig from '../utils/mergeWebpackConfig';
+import StyleguidistOptionsPlugin from './utils/StyleguidistOptionsPlugin';
+import mergeWebpackConfig from './utils/mergeWebpackConfig';
 
 const RENDERER_REGEXP = /Renderer$/;
 
-const sourceDir = path.resolve(__dirname, '../../client');
+const sourceDir = path.resolve(__dirname, '../client');
 
 const getCustomAliases = (styleguideComponents: Record<string, string>) => {
 	const customAliases: Record<string, string> = {};
@@ -48,8 +49,7 @@ export default function(
 	};
 
 	let webpackConfig: Configuration = {
-		name: 'ui',
-		entry: config.require.concat([path.resolve(sourceDir, 'index')]),
+		entry: [path.resolve(sourceDir, 'index'), ...config.require],
 		mode: env,
 		output: {
 			path: config.styleguideDir,

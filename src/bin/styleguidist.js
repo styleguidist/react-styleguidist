@@ -142,7 +142,7 @@ function commandServer() {
 				openBrowser(urls.localUrlForBrowser);
 			}
 		}
-	}).compiler.compilers[1];
+	}).compiler;
 
 	verboseLog('Webpack config:', compiler.options);
 

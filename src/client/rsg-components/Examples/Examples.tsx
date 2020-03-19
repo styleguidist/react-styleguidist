@@ -28,6 +28,7 @@ const Examples: React.FunctionComponent<ExamplesRenderer> = ({
 						return (
 							<Playground
 								code={example.content}
+								evalInContext={example.evalInContext}
 								key={`${codeRevision}/${index}`}
 								name={name}
 								filepath={filepath}
