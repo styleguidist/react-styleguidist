@@ -14,6 +14,7 @@ interface PreviewProps {
 
 interface PreviewState {
 	error: string | null;
+	height: number;
 }
 
 export default class Preview extends Component<PreviewProps, PreviewState> {
@@ -26,6 +27,7 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 
 	public state: PreviewState = {
 		error: null,
+		height: 20,
 	};
 
 	private iframeRef = React.createRef<HTMLIFrameElement>();
@@ -41,9 +43,12 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 		this.executeCode();
 	}
 
-	// TODO: We should never rerender iframe but send new code to it
 	public shouldComponentUpdate(nextProps: PreviewProps, nextState: PreviewState) {
-		return this.state.error !== nextState.error || this.props.code !== nextProps.code;
+		return (
+			this.state.error !== nextState.error ||
+			this.state.height !== nextState.height ||
+			this.props.code !== nextProps.code
+		);
 	}
 
 	public componentDidUpdate(prevProps: PreviewProps) {
@@ -57,6 +62,7 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 	}
 
 	private getMountNode() {
+		// TODO: Do not render to body
 		return this.iframeRef.current?.contentWindow?.document?.body;
 	}
 
@@ -96,27 +102,67 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 			// this.unmountPreview();
 			try {
 				ReactDOM.render(wrappedComponent, node);
+				this.createMutationObserver(node);
+				this.handleResize();
 			} catch (err) {
 				this.handleError(err);
 			}
 		});
 	}
 
+	private createMutationObserver(node: HTMLElement) {
+		// TODO: Destroy after unmount
+		const observer = new MutationObserver(this.handleResize);
+		observer.observe(node, {
+			attributes: true,
+			attributeOldValue: false,
+			characterData: true,
+			characterDataOldValue: false,
+			childList: true,
+			subtree: true,
+		});
+	}
+
+	// TOOD: Debounce
+	private handleResize = () => {
+		const node = this.getMountNode();
+		if (!node) {
+			return;
+		}
+
+		this.setState(prevState => {
+			const height = node.scrollHeight;
+			if (prevState.height === height) {
+				return null;
+			}
+			return { height };
+		});
+	};
+
 	private handleError = (err: Error) => {
 		this.unmountPreview();
 
 		this.setState({
 			error: err.toString(),
+			height: 0,
 		});
 
 		console.error(err); // eslint-disable-line no-console
 	};
 
 	public render() {
-		const { error } = this.state;
+		const { height, error } = this.state;
+		// TODO: Global styles
+		// TODO: title
 		return (
 			<>
-				<iframe data-testid="mountNode" title="TODO" ref={this.iframeRef}></iframe>
+				<iframe
+					data-testid="mountNode"
+					title="TODO"
+					ref={this.iframeRef}
+					height={height}
+					frameBorder={0}
+				></iframe>
 				{error && <PlaygroundError message={error} />}
 			</>
 		);
