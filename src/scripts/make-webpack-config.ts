@@ -98,7 +98,7 @@ export default function(
 			},
 			plugins: [
 				new CleanWebpackPlugin({
-					root: config.styleguideDir,
+					cleanOnceBeforeBuildPatterns: [`${config.styleguideDir}/build/**/*`],
 					verbose: config.verbose === true,
 				} as any),
 			],
