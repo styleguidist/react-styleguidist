@@ -10,9 +10,10 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import merge from 'webpack-merge';
 import * as Rsg from '../typings';
-
 import StyleguidistOptionsPlugin from './utils/StyleguidistOptionsPlugin';
 import mergeWebpackConfig from './utils/mergeWebpackConfig';
+
+type Mode = Configuration['mode'];
 
 const RENDERER_REGEXP = /Renderer$/;
 
@@ -29,10 +30,7 @@ const getCustomAliases = (styleguideComponents: Record<string, string>) => {
 	return customAliases;
 };
 
-export default function(
-	config: Rsg.SanitizedStyleguidistConfig,
-	env: 'development' | 'production' | 'none'
-): Configuration {
+export default function(config: Rsg.SanitizedStyleguidistConfig, env: Mode): Configuration {
 	process.env.NODE_ENV = process.env.NODE_ENV || env;
 
 	const isProd = env === 'production';
@@ -72,7 +70,7 @@ export default function(
 		module: {
 			rules: [
 				{
-					// Support .mjs modules in dependencies, like sucrase
+					// Support .mjs modules in dependencies, like Sucrase
 					test: /\.mjs$/,
 					include: /node_modules/,
 					type: 'javascript/auto',

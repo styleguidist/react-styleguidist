@@ -5,6 +5,11 @@ import Context from 'rsg-components/Context';
 import ReactExample from 'rsg-components/ReactExample';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 
+// TODO: Use negative margins on the iframe and positive margin here,
+// otherwise things like focus outlines aren't visible
+const IFRAME_STYLES = `body { margin: 0 !important; padding: 0 !important }`;
+const IFRAME_CONTENT = `<!DOCTYPE html><html><head><style>${IFRAME_STYLES}</style></head><body><div id="root"></div></body></html>`;
+
 interface PreviewProps {
 	code: string;
 	filepath: string;
@@ -31,6 +36,9 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 	};
 
 	private iframeRef = React.createRef<HTMLIFrameElement>();
+
+	/** Initial iframe HTML already applied */
+	private hasInitialContents = false;
 
 	public componentDidMount() {
 		// Clear console after hot reload, do not clear on the first load
@@ -61,9 +69,12 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 		this.unmountPreview();
 	}
 
+	private getDocument() {
+		return this.iframeRef.current?.contentWindow?.document;
+	}
+
 	private getMountNode() {
-		// TODO: Do not render to body
-		return this.iframeRef.current?.contentWindow?.document?.body;
+		return this.getDocument()?.getElementById('root');
 	}
 
 	private unmountPreview() {
@@ -94,6 +105,8 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 		);
 
 		window.requestAnimationFrame(() => {
+			this.renderIframeContents();
+
 			const node = this.getMountNode();
 			if (!node) {
 				return;
@@ -149,6 +162,27 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 
 		console.error(err); // eslint-disable-line no-console
 	};
+
+	private renderIframeContents() {
+		if (this.hasInitialContents) {
+			return;
+		}
+
+		const doc = this.getDocument();
+		if (!doc) {
+			return;
+		}
+
+		doc.open('text/html', 'replace');
+		doc.write(IFRAME_CONTENT);
+		doc.close();
+
+		console.log('🦊', window.__RSG_STYLES__.cloneNode(true));
+
+		doc.head.appendChild(window.__RSG_STYLES__.cloneNode(true));
+
+		this.hasInitialContents = true;
+	}
 
 	public render() {
 		const { height, error } = this.state;

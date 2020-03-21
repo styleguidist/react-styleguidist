@@ -21,7 +21,20 @@ module.exports = {
 				},
 				{
 					test: /\.css$/,
-					loader: 'style-loader!css-loader',
+					use: [
+						{
+							loader: 'style-loader',
+							options: {
+								injectType: 'singletonStyleTag',
+								// eslint-disable-next-line object-shorthand
+								insert: function(element) {
+									console.log('🥑', element);
+									window.__RSG_STYLES__ = element;
+								},
+							},
+						},
+						'css-loader',
+					],
 				},
 			],
 		},

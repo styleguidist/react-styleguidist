@@ -4,13 +4,16 @@ import omit from 'lodash/omit';
 import { Configuration } from 'webpack';
 import { Tapable } from 'tapable';
 
-const IGNORE_SECTIONS = ['entry', 'externals', 'output', 'watch', 'stats', 'styleguidist'];
-const IGNORE_SECTIONS_ENV: Record<string, string[]> = {
-	development: [],
+type Mode = Configuration['mode'];
+
+const IGNORE_SECTIONS = ['entry', 'externals', 'output', 'watch', 'stats', 'styleguidist'] as const;
+const IGNORE_SECTIONS_ENV = {
+	development: IGNORE_SECTIONS,
 	// For production builds, we'll ignore devtool settings to avoid
 	// source mapping bloat.
-	production: ['devtool'],
-};
+	production: [...IGNORE_SECTIONS, 'devtool'],
+	none: [],
+} as const;
 
 const IGNORE_PLUGINS = [
 	'CommonsChunkPlugins',
@@ -23,6 +26,8 @@ const IGNORE_PLUGINS = [
 	'HotModuleReplacementPlugin',
 ];
 
+const IGNORE_LOADERS = ['style-loader'];
+
 const merge = mergeBase({
 	// Ignore user’s plugins to avoid duplicates and issues with our plugins
 	customizeArray: mergeBase.unique(
@@ -32,7 +37,7 @@ const merge = mergeBase({
 	),
 });
 
-type MetaConfig = Configuration | ((env?: string) => Configuration);
+type MetaConfig = Configuration | ((env: Mode) => Configuration);
 
 /**
  * Merge two Webpack configs.
@@ -40,18 +45,13 @@ type MetaConfig = Configuration | ((env?: string) => Configuration);
  * In the user config:
  * - Ignores given sections (options.ignore).
  * - Ignores plugins that shouldn’t be used twice or may cause issues.
- *
- * @param {object} baseConfig
- * @param {object|Function} userConfig
- * @param {string} env
- * @return {object}
  */
 export default function mergeWebpackConfig(
-	baseConfig: MetaConfig,
+	baseConfig: Configuration,
 	userConfig: MetaConfig,
-	env = 'production'
+	env: Mode = 'production'
 ) {
 	const userConfigObject = isFunction(userConfig) ? userConfig(env) : userConfig;
-	const safeUserConfig = omit(userConfigObject, IGNORE_SECTIONS.concat(IGNORE_SECTIONS_ENV[env]));
+	const safeUserConfig = omit(userConfigObject, IGNORE_SECTIONS_ENV[env]);
 	return merge(baseConfig, safeUserConfig);
 }
