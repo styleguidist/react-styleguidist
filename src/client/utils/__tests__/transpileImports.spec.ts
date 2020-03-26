@@ -85,6 +85,20 @@ const C = cat$0.C;
 `);
 	});
 
+	describe.each([
+		['./cat/capybara/hamster', '__cat_capybara_hamster'],
+		['../cat/capybara/hamster', '___cat_capybara_hamster'],
+		['cat/capybara/hamster', 'cat_capybara_hamster'],
+	])('transpile default imports via relative path', (modulePath, transpiled) => {
+		test(`${modulePath}`, () => {
+			const result = transpileImports(`import B from '${modulePath}'`);
+			expect(result).toMatchInlineSnapshot(`
+	"const ${transpiled}$0 = require('${modulePath}');
+	const B = ${transpiled}$0.default || ${transpiled}$0;"
+	`);
+		});
+	});
+
 	test('return code if there are no imports', () => {
 		const code = `<Button />`;
 		const result = transpileImports(code);

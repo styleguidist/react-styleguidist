@@ -4,7 +4,7 @@
 const UNNAMED = /import\s*['"]([^'"]+)['"];?/gi;
 const NAMED = /import\s*(\*\s*as)?\s*(\w*?)\s*,?\s*(?:\{([\s\S]*?)\})?\s*from\s*['"]([^'"]+)['"];?/gi;
 
-function alias(key: string): {key: string; name: string} {
+function alias(key: string): { key: string; name: string } {
 	key = key.trim();
 	const name = key.split(' as ');
 	if (name.length > 1) {
@@ -15,13 +15,7 @@ function alias(key: string): {key: string; name: string} {
 
 let num: number;
 function generate(keys: string[], dep: string, base: string, fn: string): string {
-	const tmp =
-		(dep
-			.split('/')
-			.pop() as string)
-			.replace(/\W/g, '_') +
-		'$' +
-		num++; // uniqueness
+	const tmp = dep.replace(/\W/g, '_') + '$' + num++; // uniqueness
 	const name = alias(tmp).name;
 
 	dep = `${fn}('${dep}')`;
@@ -40,7 +34,6 @@ function generate(keys: string[], dep: string, base: string, fn: string): string
 
 	return out;
 }
-
 
 export default function(str: string, fn = 'require'): string {
 	num = 0;
