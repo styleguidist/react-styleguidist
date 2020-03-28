@@ -4,16 +4,13 @@ import Type from 'rsg-components/Type';
 import Code from 'rsg-components/Code';
 import Name from 'rsg-components/Name';
 import Markdown from 'rsg-components/Markdown';
+import { PropTypeDescriptor } from 'react-docgen';
 
-import { unquote, getType, showSpaces, PropDescriptor } from './util';
+import { unquote, getType, showSpaces, PropDescriptor, TypeDescriptor } from './util';
 import renderDefault from './renderDefault';
 import { renderType } from './renderType';
 
-function renderEnum(prop: PropDescriptor): React.ReactNode {
-	const type = getType(prop);
-	if (!type) {
-		return undefined;
-	}
+function renderEnum(type: PropTypeDescriptor | TypeDescriptor): React.ReactNode {
 	if (!Array.isArray(type.value)) {
 		return <span>{type.value}</span>;
 	}
@@ -28,11 +25,7 @@ function renderEnum(prop: PropDescriptor): React.ReactNode {
 	);
 }
 
-function renderUnion(prop: PropDescriptor): React.ReactNode {
-	const type = getType(prop);
-	if (!type) {
-		return undefined;
-	}
+function renderUnion(type: PropTypeDescriptor | TypeDescriptor): React.ReactNode {
 	if (!Array.isArray(type.value)) {
 		return <span>{type.value}</span>;
 	}
@@ -68,24 +61,24 @@ function renderShape(props: Record<string, PropDescriptor>) {
 
 export default function renderExtra(prop: PropDescriptor): React.ReactNode {
 	const type = getType(prop);
-	if (!prop.type || !type) {
+	if (!type) {
 		return null;
 	}
 	switch (type.name) {
 		case 'enum':
-			return renderEnum(prop);
+			return renderEnum(type);
 		case 'union':
-			return renderUnion(prop);
+			return renderUnion(type);
 		case 'shape':
-			return renderShape(prop.type.value);
+			return prop.type && renderShape(prop.type.value);
 		case 'arrayOf':
 			if (type.value.name === 'shape') {
-				return renderShape(prop.type.value.value);
+				return prop.type && renderShape(prop.type.value.value);
 			}
 			return null;
 		case 'objectOf':
 			if (type.value.name === 'shape') {
-				return renderShape(prop.type.value.value);
+				return prop.type && renderShape(prop.type.value.value);
 			}
 			return null;
 		default:

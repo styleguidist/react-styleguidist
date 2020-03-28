@@ -605,13 +605,22 @@ describe('props columns', () => {
 
 		test('should render enum type', () => {
 			const { container } = renderFn(['foo: MyEnum'], [], [options.enum.declaration]);
-
-			expect(getText(container)).toMatchInlineSnapshot(`
-			"Prop name: foo 
-			Type: ${options.enum.expect.type} 
-			Default: Required 
-			Description:"
-		`);
+			if (options.enum.expect.type === 'enum') {
+				expect(getText(container)).toMatchInlineSnapshot(`
+					"Prop name: foo 
+					Type: ${options.enum.expect.type} 
+					Default: Required 
+					Description: 
+					 One of: One , Two"
+				`);
+			} else {
+				expect(getText(container)).toMatchInlineSnapshot(`
+					"Prop name: foo 
+					Type: ${options.enum.expect.type} 
+					Default: Required 
+					Description:"
+				`);
+			}
 		});
 
 		test('should render tuple type with body in tooltip', () => {
