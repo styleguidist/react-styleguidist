@@ -1,4 +1,4 @@
-import { PropDescriptor, PropTypeDescriptor } from 'react-docgen';
+import { PropDescriptor as BasePropDescriptor, PropTypeDescriptor } from 'react-docgen';
 
 /**
  * Remove quotes around given string.
@@ -7,8 +7,9 @@ export function unquote(string?: string): string | undefined {
 	return string && string.replace(/^['"]|['"]$/g, '');
 }
 
-export interface PropDescriptorWithFlow extends PropDescriptor {
-	flowType?: FlowTypeDescriptor;
+export interface PropDescriptor extends BasePropDescriptor {
+	flowType?: TypeDescriptor;
+	tsType?: TypeDescriptor;
 }
 
 /**
@@ -17,9 +18,7 @@ export interface PropDescriptorWithFlow extends PropDescriptor {
  * @param {object} prop
  * @returns {object}
  */
-export function getType(
-	prop: PropDescriptorWithFlow
-): PropTypeDescriptor | FlowTypeDescriptor | undefined {
+export function getType(prop: PropDescriptor): PropTypeDescriptor | TypeDescriptor | undefined {
 	if (prop.flowType) {
 		if (
 			prop.flowType.name === 'union' &&
@@ -33,6 +32,9 @@ export function getType(
 		}
 		return prop.flowType;
 	}
+	if (prop.tsType) {
+		return prop.tsType;
+	}
 	return prop.type;
 }
 
@@ -43,35 +45,35 @@ export function showSpaces(string?: string): string | undefined {
 	return string && string.replace(/^\s|\s$/g, '␣');
 }
 
-export interface FlowTypeEnumDescriptor {
+export interface TypeEnumDescriptor {
 	name: 'enum';
 	type: string;
-	value: FlowTypeDescriptor[];
+	value: TypeDescriptor[];
 }
 
-interface FlowTypeLiteralDescriptor {
+interface TypeLiteralDescriptor {
 	name: 'literal';
 	type: string;
 	value: string;
 }
 
-interface FlowTypeSignatureDescriptor {
+interface TypeSignatureDescriptor {
 	name: 'signature';
 	type: string;
 	raw: string;
 	value: string;
 }
 
-interface FlowTypeUnionDescriptor {
+interface TypeUnionDescriptor {
 	name: 'union' | 'tuple';
-	elements: FlowTypeDescriptor[];
+	elements: TypeDescriptor[];
 	type: string;
 	raw: string;
 	value?: string;
 }
 
-export type FlowTypeDescriptor =
-	| FlowTypeEnumDescriptor
-	| FlowTypeLiteralDescriptor
-	| FlowTypeSignatureDescriptor
-	| FlowTypeUnionDescriptor;
+export type TypeDescriptor =
+	| TypeEnumDescriptor
+	| TypeLiteralDescriptor
+	| TypeSignatureDescriptor
+	| TypeUnionDescriptor;

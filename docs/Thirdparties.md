@@ -10,6 +10,7 @@
   - [Relay](#relay)
   - [Styled-components](#styled-components)
   - [Emotion](#emotion)
+  - [Theme UI](#theme-ui)
   - [Fela](#fela)
   - [CSS Modules with react-css-modules](#css-modules-with-react-css-modules)
   - [Styletron](#styletron)
@@ -252,6 +253,10 @@ This will automatically apply your theme to your styled-components. When you ope
 ### Emotion
 
 The usage is similar to [styled-components](#styled-components).
+
+### Theme UI
+
+The usage is similar to [Adding styled-components `ThemeProvider`](#adding-styled-components-themeprovider).
 
 ### Fela
 

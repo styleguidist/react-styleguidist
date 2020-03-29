@@ -10,9 +10,9 @@ import Table from 'rsg-components/Table';
 import renderTypeColumn from './renderType';
 import renderExtra from './renderExtra';
 import renderDefault from './renderDefault';
-import { PropDescriptorWithFlow } from './util';
+import { PropDescriptor } from './util';
 
-function renderDescription(prop: PropDescriptorWithFlow) {
+function renderDescription(prop: PropDescriptor) {
 	const { description, tags = {} } = prop;
 	const extra = renderExtra(prop);
 	const args = [...(tags.arg || []), ...(tags.argument || []), ...(tags.param || [])];
@@ -29,7 +29,7 @@ function renderDescription(prop: PropDescriptorWithFlow) {
 	);
 }
 
-function renderName(prop: PropDescriptorWithFlow) {
+function renderName(prop: PropDescriptor) {
 	const { name, tags = {} } = prop;
 	return <Name deprecated={!!tags.deprecated}>{name}</Name>;
 }
@@ -58,7 +58,7 @@ export const columns = [
 ];
 
 interface PropsProps {
-	props: PropDescriptorWithFlow[];
+	props: PropDescriptor[];
 }
 
 const PropsRenderer: React.FunctionComponent<PropsProps> = ({ props }) => {
