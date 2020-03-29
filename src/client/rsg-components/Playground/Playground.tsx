@@ -14,7 +14,6 @@ interface PlaygroundProps {
 	evalInContext(code: string): () => any;
 	index: number;
 	name?: string;
-	filepath: string;
 	exampleMode?: string;
 	settings: {
 		showcode?: boolean;
@@ -37,7 +36,6 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 		evalInContext: PropTypes.func.isRequired,
 		index: PropTypes.number.isRequired,
 		name: PropTypes.string.isRequired,
-		filepath: PropTypes.string.isRequired,
 		exampleMode: PropTypes.string.isRequired,
 		settings: PropTypes.object,
 	};
@@ -89,12 +87,13 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 
 	public render() {
 		const { code, activeTab } = this.state;
-		const { evalInContext, index, name, filepath, settings, exampleMode } = this.props;
-		const { displayMode } = this.context;
+		const { evalInContext, index, name, settings, exampleMode } = this.props;
+		const { displayMode, codeRevision } = this.context;
 		const isExampleHidden = exampleMode === ExampleModes.hide;
 		const isEditorHidden = settings.noeditor || isExampleHidden;
+
 		const preview = (
-			<Preview code={code} evalInContext={evalInContext} filepath={filepath} index={index} />
+			<Preview code={code} codeRevision={codeRevision} evalInContext={evalInContext} />
 		);
 
 		return isEditorHidden ? (

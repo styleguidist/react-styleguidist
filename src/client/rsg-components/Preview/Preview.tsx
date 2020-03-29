@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Context from 'rsg-components/Context';
@@ -12,8 +12,7 @@ const IFRAME_CONTENT = `<!DOCTYPE html><html><head><style>${IFRAME_STYLES}</styl
 
 interface PreviewProps {
 	code: string;
-	filepath: string;
-	index: number;
+	codeRevision: number;
 	evalInContext(code: string): () => any;
 }
 
@@ -22,10 +21,10 @@ interface PreviewState {
 	height: number;
 }
 
-export default class Preview extends Component<PreviewProps, PreviewState> {
+export default class Preview extends PureComponent<PreviewProps, PreviewState> {
 	public static propTypes = {
 		code: PropTypes.string.isRequired,
-		filepath: PropTypes.string.isRequired,
+		codeRevision: PropTypes.number.isRequired,
 		evalInContext: PropTypes.func.isRequired,
 	};
 	public static contextType = Context;
@@ -35,9 +34,13 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 		height: 20,
 	};
 
+	/** Example iframe ref */
 	private iframeRef = React.createRef<HTMLIFrameElement>();
 
-	/** Initial iframe HTML already applied */
+	/** Mutation observer to track size changes inside the example iframe */
+	private observer: MutationObserver | null = null;
+
+	/** Initial iframe HTML template already applied */
 	private hasInitialContents = false;
 
 	public componentDidMount() {
@@ -45,27 +48,20 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 		// to keep any warnings
 		if (this.context.codeRevision > 0) {
 			// eslint-disable-next-line no-console
-			console.clear();
+			// console.clear();
 		}
 
 		this.executeCode();
 	}
 
-	public shouldComponentUpdate(nextProps: PreviewProps, nextState: PreviewState) {
-		return (
-			this.state.error !== nextState.error ||
-			this.state.height !== nextState.height ||
-			this.props.code !== nextProps.code
-		);
-	}
-
 	public componentDidUpdate(prevProps: PreviewProps) {
-		if (this.props.code !== prevProps.code) {
+		if (this.props.code !== prevProps.code || this.props.codeRevision !== prevProps.codeRevision) {
 			this.executeCode();
 		}
 	}
 
 	public componentWillUnmount() {
+		this.disconnectObserver();
 		this.unmountPreview();
 	}
 
@@ -83,6 +79,14 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 			return;
 		}
 		ReactDOM.unmountComponentAtNode(node);
+	}
+
+	private disconnectObserver() {
+		if (!this.observer) {
+			return;
+		}
+
+		this.observer.disconnect();
 	}
 
 	private executeCode() {
@@ -112,7 +116,7 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 				return;
 			}
 
-			// this.unmountPreview();
+			this.unmountPreview();
 			try {
 				ReactDOM.render(wrappedComponent, node);
 				this.createMutationObserver(node);
@@ -124,9 +128,9 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 	}
 
 	private createMutationObserver(node: HTMLElement) {
-		// TODO: Destroy after unmount
-		const observer = new MutationObserver(this.handleResize);
-		observer.observe(node, {
+		this.disconnectObserver();
+		this.observer = new MutationObserver(this.handleResize);
+		this.observer.observe(node, {
 			attributes: true,
 			attributeOldValue: false,
 			characterData: true,
@@ -177,9 +181,21 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 		doc.write(IFRAME_CONTENT);
 		doc.close();
 
-		console.log('🦊', window.__RSG_STYLES__.cloneNode(true));
+		console.log('🦊 write iframe');
 
-		doc.head.appendChild(window.__RSG_STYLES__.cloneNode(true));
+		// Clone app styles from the collector iframe to our new example iframe
+		const stylesCollectorIframeHead = document.querySelector<HTMLIFrameElement>(
+			'[data-rsg-iframe="collector"]'
+		)?.contentWindow?.document.head;
+		console.log('🙀', stylesCollectorIframeHead);
+		if (stylesCollectorIframeHead) {
+			const styles = stylesCollectorIframeHead.getElementsByTagName('style');
+			// eslint-disable-next-line compat/compat
+			Array.from(styles).forEach(styleElement => {
+				console.log('🐳 append', styleElement);
+				doc.head.appendChild(styleElement.cloneNode(true));
+			});
+		}
 
 		this.hasInitialContents = true;
 	}
@@ -191,6 +207,7 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 		return (
 			<>
 				<iframe
+					data-rsg-iframe="preview"
 					data-testid="mountNode"
 					title="TODO"
 					ref={this.iframeRef}

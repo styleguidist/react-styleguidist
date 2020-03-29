@@ -42,6 +42,11 @@ export default function(config: Rsg.SanitizedStyleguidistConfig, env: Mode): Con
 			...templateContext,
 			title: config.title,
 			container: config.mountPointId,
+			body: {
+				...templateContext.body,
+				// TODO: Merge with user's body.raw
+				raw: '<iframe data-rsg-iframe="collector" hidden></iframe>',
+			},
 		},
 		template,
 	};

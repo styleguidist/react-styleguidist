@@ -23,15 +23,7 @@ module.exports = {
 					test: /\.css$/,
 					use: [
 						{
-							loader: 'style-loader',
-							options: {
-								injectType: 'singletonStyleTag',
-								// eslint-disable-next-line object-shorthand
-								insert: function(element) {
-									console.log('🥑', element);
-									window.__RSG_STYLES__ = element;
-								},
-							},
+							loader: path.resolve(__dirname, '../../lib/loaders/iframe-style-loader.js'),
 						},
 						'css-loader',
 					],
