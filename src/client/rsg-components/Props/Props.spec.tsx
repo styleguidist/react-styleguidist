@@ -427,6 +427,17 @@ describe('props columns', () => {
 	`);
 	});
 
+	test('should render function signature in description', () => {
+		const { container } = renderFlow(['onSomething: (e) => console.log(e)']);
+
+		expect(getText(container)).toMatchInlineSnapshot(`
+    "Prop name: onSomething
+    Type: func
+    Description:
+     Function signature: onSomething(): void"
+    `);
+	});
+
 	test('should render arguments from JsDoc tags', () => {
 		const props: any = [
 			{

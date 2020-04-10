@@ -59,6 +59,14 @@ function renderShape(props: Record<string, PropDescriptor>) {
 	});
 }
 
+function renderFunction(type: TypeDescriptor): React.ReactNode {
+	return (
+		<span>
+			Function signature: <Code>{type.raw}</Code>
+		</span>
+	);
+}
+
 export default function renderExtra(prop: PropDescriptor): React.ReactNode {
 	const type = getType(prop);
 	if (!type) {
@@ -79,6 +87,11 @@ export default function renderExtra(prop: PropDescriptor): React.ReactNode {
 		case 'objectOf':
 			if (type.value.name === 'shape') {
 				return prop.type && renderShape(prop.type.value.value);
+			}
+			return null;
+		case 'signature':
+			if (type.type === 'function') {
+				return renderFunction(type);
 			}
 			return null;
 		default:
