@@ -26,6 +26,7 @@
 - [How to add fonts from Google Fonts?](#how-to-add-fonts-from-google-fonts)
 - [How to reuse project’s webpack config?](#how-to-reuse-projects-webpack-config)
 - [How to use React Styleguidist with Redux, Relay or Styled Components?](#how-to-use-react-styleguidist-with-redux-relay-or-styled-components)
+- [How to use React-axe to test accessibility of components?](#how-to-use-react-axe-to-test-accessibility-of-components)
 - [How to change the names of components displayed in Styleguidist UI?](#how-to-change-the-names-of-components-displayed-in-styleguidist-ui)
 - [How to re-use the types in Styleguidist?](#how-to-re-use-the-types-in-styleguidist)
 - [What’s the difference between Styleguidist and Storybook?](#whats-the-difference-between-styleguidist-and-storybook)
@@ -582,6 +583,34 @@ See in [configuring webpack](Webpack.md#reusing-your-projects-webpack-config).
 
 See [working with third-party libraries](Thirdparties.md).
 
+## How to use React-axe to test accessibility of components?
+
+1. Install [react-axe](https://github.com/dequelabs/react-axe).
+
+2. Setup React-axe to style guide DevTools console:
+
+```jsx
+// styleguide.config.js
+module.exports = {
+  require: [path.resolve(__dirname, 'styleguide/setup.js')]
+}
+
+// styleguide/setup.js
+import React from 'react'
+import ReactDOM from 'react-dom'
+var context = {
+  include: [['[data-preview]']]
+}
+if (process.env.NODE_ENV !== 'production') {
+  var axe = require('react-axe')
+  axe(React, ReactDOM, 1000, undefined, context)
+}
+```
+
+3. [Start your style guide server](https://react-styleguidist.js.org/docs/getting-started.html#3-start-your-style-guide) and open your browser’s developer tools console.
+
+If you are using Jest for testing you can also use [jest-axe](https://github.com/nickcolley/jest-axe).
+
 ## How to change the names of components displayed in Styleguidist UI?
 
 You might want to change your components’ names to be displayed differently, for example, for stylistic purposes or to give them more descriptive names in your style guide.
@@ -687,19 +716,19 @@ And with Styleguidist you write _examples_ in Markdown files:
 
 Another important distinction is that Storybook shows only one variation of one component at a time but Styleguidist can show all variations of all components, all variations of a single component or one variation. It’s easier to create a style guide with Styleguidist but Storybook has more tools to develop components (though we’re working on that too).
 
-| Feature | Storybook | Styleguidist |
-| --- | --- | --- |
-| Component examples | JavaScript | Markdown |
-| Props docs | Yes | Yes |
-| Public methods docs | No | Yes |
-| Style guide¹ | No | Yes |
-| Customizable design | No | Yes |
-| Extra documentation² | No | Yes |
-| Plugins | Many | [In development](https://github.com/styleguidist/react-styleguidist/issues/354) |
-| React | Yes | Yes |
-| Preact | Yes | Yes |
-| React Native | Yes | [react-native-web](https://github.com/styleguidist/react-styleguidist/issues/675) |
-| Vue | Yes | [Fork](https://github.com/vue-styleguidist/vue-styleguidist) |
+| Feature              | Storybook  | Styleguidist                                                                      |
+| -------------------- | ---------- | --------------------------------------------------------------------------------- |
+| Component examples   | JavaScript | Markdown                                                                          |
+| Props docs           | Yes        | Yes                                                                               |
+| Public methods docs  | No         | Yes                                                                               |
+| Style guide¹         | No         | Yes                                                                               |
+| Customizable design  | No         | Yes                                                                               |
+| Extra documentation² | No         | Yes                                                                               |
+| Plugins              | Many       | [In development](https://github.com/styleguidist/react-styleguidist/issues/354)   |
+| React                | Yes        | Yes                                                                               |
+| Preact               | Yes        | Yes                                                                               |
+| React Native         | Yes        | [react-native-web](https://github.com/styleguidist/react-styleguidist/issues/675) |
+| Vue                  | Yes        | [Fork](https://github.com/vue-styleguidist/vue-styleguidist)                      |
 
 ¹ All components on a single page.<br> ² Include non-component documentation.
 
