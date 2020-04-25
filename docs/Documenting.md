@@ -1,6 +1,6 @@
 # Documenting components
 
-Styleguidist generates documentation for your components based on the comments in your source code, propTypes declarations and Readme files.
+Styleguidist generates documentation for your components based on the comments in your source code, propTypes declarations, and Readme files.
 
 > **Note:** [See examples](https://github.com/styleguidist/react-styleguidist/tree/master/examples/basic/src/components) of documented components in our demo style guide.
 
@@ -48,7 +48,7 @@ export default class Button extends React.Component {
 }
 ```
 
-> **Note:** [Flow](https://flowtype.org/) type annotations are supported too. For TypeScript install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript)
+> **Note:** [Flow](https://flowtype.org/) and [TypeScript](https://www.typescriptlang.org) type annotations are supported.
 
 > **Note:** You can change its behavior using [propsParser](Configuration.md#propsparser) and [resolver](Configuration.md#resolver) options.
 
@@ -56,7 +56,7 @@ export default class Button extends React.Component {
 
 ## Usage examples and Readme files
 
-Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the component’s folder and display them. Any code block with a language tag of `js`, `jsx` or `javascript` will be rendered as a React component with an interactive playground. For backwards compatibility, code blocks without a language tag are also rendered in this way. It is recommended to always use the proper language tag for new documentation.
+Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the component’s folder and display them. Any code block with a language tag of `js`, `jsx`, or `javascript` will be rendered as a React component with an interactive playground. For backwards compatibility, code blocks without a language tag are also rendered in this way. It is recommended to always use the proper language tag for new documentation.
 
     React component example:
 
@@ -68,6 +68,14 @@ Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the co
 
     ```js { "props": { "className": "checks" } }
     <Button>I’m transparent!</Button>
+    ```
+
+    Or add padding between examples in a block by passing the `padded` modifier:
+
+    ```jsx padded
+    <Button>Push Me</Button>
+    <Button>Click Me</Button>
+    <Button>Tap Me</Button>
     ```
 
     Or disable an editor by passing a `noeditor` modifier:
@@ -92,7 +100,7 @@ Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the co
 
 > **Note:** You can configure examples file name with the [getExampleFilename](Configuration.md#getexamplefilename) option.
 
-> **Note:** If you need to display some JavaScript code in your documentation that you don’t want rendered as an interactive playground you can use the `static` modifier with a language tag (e.g. `js static`).
+> **Note:** If you need to display some JavaScript code in your documentation that you don’t want to be rendered as an interactive playground you can use the `static` modifier with a language tag (e.g. `js static`).
 
 ## External examples using doclet tags
 
@@ -131,7 +139,7 @@ insertAtCursor(text) {
 
 ## Ignoring props
 
-By default, all props your components have are considered to be public and are published. In some rare cases you might want to remove a prop from the documentation while keeping it in the code. To do so, mark the prop with JSDoc [`@ignore`](http://usejsdoc.org/tags-ignore.html) tag to remove it from the docs:
+By default, all props your components have are considered to be public and are published. In some rare cases, you might want to remove a prop from the documentation while keeping it in the code. To do so, mark the prop with JSDoc [`@ignore`](http://usejsdoc.org/tags-ignore.html) tag to remove it from the docs:
 
 ```javascript
 MyComponent.propTypes = {
@@ -157,7 +165,7 @@ Use `@visibleName` JSDoc tag to define component names that are used in the Styl
 class Button extends React.Component {
 ```
 
-The component will be displayed with a custom “The Best Button Ever 🐙” name and this will not change the name of the component used in code of your app or Styleguidist examples.
+The component will be displayed with a custom “The Best Button Ever 🐙” name and this will not change the name of the component used in the code of your app or Styleguidist examples.
 
 ## Using JSDoc tags
 
@@ -264,53 +272,21 @@ import Placeholder from 'rsg-example/components/Placeholder'
 
 > **Note:** You can only use `import` by editing your Markdown files, not by editing the example code in the browser.
 
-Each example has its own state that you can access as `state` variable and change with `setState()` function. Default state is `{}` and can be set with `initialState`.
+Each example acts as a function component and you can use the `useState` Hook to handle its state.
 
 ````jsx
 // ```jsx inside Markdown
-initialState = { isOpen: false }
+const [isOpen, setIsOpen] = React.useState(false)
 ;<div>
-  <button onClick={() => setState({ isOpen: true })}>Open</button>
-  <Modal isOpen={state.isOpen}>
+  <button onClick={() => setIsOpen(true)}>Open</button>
+  <Modal isOpen={isOpen}>
     <h1>Hallo!</h1>
-    <button onClick={() => setState({ isOpen: false })}>Close</button>
+    <button onClick={() => setIsOpen(false)}>Close</button>
   </Modal>
 </div>
 ````
 
-`initialState`, `state` and `setState()` helpers are good to show components in different states, but to let users copy-paste your example code without modifications into their React app you may want to use `React.Component` instead. We can rewrite the example above like this:
-
-````jsx
-// ```jsx inside Markdown
-class ModalExample extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      isOpen: false
-    }
-    this.toggleOpen = this.toggleOpen.bind(this)
-  }
-  toggleOpen() {
-    this.setState((prevState, props) => ({
-      isOpen: !prevState.isOpen
-    }))
-  }
-  render() {
-    return (
-      <div>
-        <button onClick={this.toggleOpen}>Open</button>
-        <Modal isOpen={this.state.isOpen}>
-          <h1>Hallo!</h1>
-          <button onClick={this.toggleOpen}>Close</button>
-        </Modal>
-      </div>
-    )
-  }
-}
-;<ModalExample />
-````
-
-If a component consumes React Context, you need a context provider in the example or in a custom `Wrapper` component. See [ThemeButton example](https://github.com/styleguidist/react-styleguidist/tree/master/examples/sections/src/components/ThemeButton).
+If a component uses React Context, you need a context provider in the example or in a custom `Wrapper` component. See [ThemeButton example](https://github.com/styleguidist/react-styleguidist/tree/master/examples/sections/src/components/ThemeButton).
 
 > **Note:** If you need a more complex demo it’s often a good idea to define it in a separate JavaScript file and `import` it in Markdown.
 

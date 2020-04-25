@@ -7,11 +7,12 @@
 
 ## Options
 
-| Option            | Description                              |
-| ----------------- | ---------------------------------------- |
-| `--config <file>` | Specify path to a config file            |
-| `--open`          | Open Styleguidist in the default browser |
-| `--verbose`       | Print debug information                  |
+| Option            | Description                                   |
+| ----------------- | --------------------------------------------- |
+| `--config <file>` | Specify path to a config file                 |
+| `--port <port>`   | Specify port to run the development server on |
+| `--open`          | Open Styleguidist in the default browser      |
+| `--verbose`       | Print debug information                       |
 
 ## Usage
 

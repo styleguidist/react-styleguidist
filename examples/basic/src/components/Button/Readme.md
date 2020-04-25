@@ -20,6 +20,14 @@ Fenced code blocks with `js`, `jsx` or `javascript` languages are rendered as a 
 <Button>Push Me</Button>
 ```
 
+Add padding between examples in a block by passing a `padded` modifier (` ```jsx padded `):
+
+```jsx padded
+<Button>Push Me</Button>
+<Button>Click Me</Button>
+<Button>Tap Me</Button>
+```
+
 You can add a custom props to an example wrapper (` ```js { "props": { "className": "checks" } } `):
 
 ```js { "props": { "className": "checks" } }
@@ -66,19 +74,20 @@ import Placeholder from 'rsg-example/components/Placeholder'
 
 _Note: `rsg-example` module is an alias defined by the [moduleAliases](https://react-styleguidist.js.org/docs/configuration.html#modulealiases) config option._
 
-Each example has its own state that you can access at the `state` variable and change with the `setState` function. Default state is `{}`:
+Each example's state can be accessed by React hook `useState`:
 
 ```jsx
-<div>
+const [isOpen, setisOpen] = React.useState(false)
+;<div>
   <Button
     size="small"
-    onClick={() => setState({ isOpen: true })}
+    onClick={() => setisOpen(true)}
     disabled={state.isOpen}
   >
     Show Me
   </Button>
-  {state.isOpen && (
-    <Button size="small" onClick={() => setState({ isOpen: false })}>
+  {isOpen && (
+    <Button size="small" onClick={() => setisOpen(false)}>
       Hide Me
     </Button>
   )}
@@ -86,15 +95,6 @@ Each example has its own state that you can access at the `state` variable and c
 ```
 
 You can change the default state:
-
-```jsx
-initialState = { count: 42 }
-;<Button onClick={() => setState({ count: state.count + 1 })}>
-  {state.count}
-</Button>
-```
-
-You can also use hooks in the examples, like the `useState` hook, as shown below:
 
 ```jsx
 const [count, setCount] = React.useState(42)

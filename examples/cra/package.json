@@ -13,18 +13,18 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=4"
+    "node": ">=10"
   },
   "devDependencies": {
-    "react-scripts": "^2.1.5",
-    "react-styleguidist": "^7.3.11"
+    "react-scripts": "^3.2.0",
+    "react-styleguidist": "^9.1.16"
   },
   "dependencies": {
-    "dog-names": "^1.0.2",
-    "lodash": "^4.17.5",
-    "prop-types": "^15.6.1",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "dog-names": "^2.0.0",
+    "lodash": "^4.17.15",
+    "prop-types": "^15.7.2",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
   },
   "scripts": {
     "start": "react-scripts start",

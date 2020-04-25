@@ -1,9 +1,0 @@
-declare module 'estree-walker' {
-	import type { AcornNode } from 'acorn';
-
-	declare export function walk (
-		node: AcornNode,
-		visitors: { [key: string]: (node: AcornNode) => void }
-	): void;
-	
-}

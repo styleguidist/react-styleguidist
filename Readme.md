@@ -10,7 +10,7 @@
 
 React Styleguidist is a component development environment with hot reloaded dev server and a living style guide that you can share with your team. It lists component `propTypes` and shows live, editable usage examples based on Markdown files. Check out [**the demo style guide**](https://react-styleguidist.js.org/examples/basic/).
 
-![](https://d3vv6lp55qjaqc.cloudfront.net/items/271B372x102S0c052i3F/react-styleguidist7.gif)
+![React Styleguidist in action](https://user-images.githubusercontent.com/1703219/74945569-51c6ad00-543b-11ea-8351-f4d86860893a.gif)
 
 ## Usage
 
@@ -48,9 +48,7 @@ Real projects using React Styleguidist:
 
 ## Integration with other tools
 
-- Create React App — just works, see the [Getting Started](https://react-styleguidist.js.org/docs/getting-started.html) guide!
-- Create React App + TypeScript, see [Configuring webpack](https://react-styleguidist.js.org/docs/webpack.html)
-- TypeScript, see [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript)
+- Create React App — supported out of the box, see the [Getting Started](https://react-styleguidist.js.org/docs/getting-started.html) guide
 - Vue, see [Vue Styleguidist](https://github.com/vue-styleguidist/vue-styleguidist)
 
 ## Third-party tools
@@ -143,6 +141,8 @@ Everyone is welcome to contribute. Please take a moment to read the [contributin
 <a href="https://opencollective.com/styleguidist/backer/27/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/27/avatar.svg"></a>
 <a href="https://opencollective.com/styleguidist/backer/28/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/28/avatar.svg"></a>
 <a href="https://opencollective.com/styleguidist/backer/29/website" target="_blank"><img src="https://opencollective.com/styleguidist/backer/29/avatar.svg"></a>
+
+<a href="https://www.buymeacoffee.com/sapegin" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/lato-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
 
 ## Authors and license
 

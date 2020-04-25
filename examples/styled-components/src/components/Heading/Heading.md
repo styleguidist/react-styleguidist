@@ -1,0 +1,3 @@
+```jsx
+<Heading value="test" />
+```

@@ -19,8 +19,7 @@
 - [How to change style guide dev server logs output?](#how-to-change-style-guide-dev-server-logs-output)
 - [How to debug my components and examples?](#how-to-debug-my-components-and-examples)
 - [How to debug the exceptions thrown from my components?](#how-to-debug-the-exceptions-thrown-from-my-components)
-- [How to use production or development build of React?](#how-to-use-production-or-development-build-of-react)
-- [Why object references don’t work in example component state?](#why-object-references-dont-work-in-example-component-state)
+- [How to use the production or development build of React?](#how-to-use-the-production-or-development-build-of-react)
 - [How to use Vagrant with Styleguidist?](#how-to-use-vagrant-with-styleguidist)
 - [How to add a favicon?](#how-to-add-a-favicon)
 - [How to add external JavaScript and CSS files?](#how-to-add-external-javascript-and-css-files)
@@ -28,6 +27,7 @@
 - [How to reuse project’s webpack config?](#how-to-reuse-projects-webpack-config)
 - [How to use React Styleguidist with Redux, Relay or Styled Components?](#how-to-use-react-styleguidist-with-redux-relay-or-styled-components)
 - [How to change the names of components displayed in Styleguidist UI?](#how-to-change-the-names-of-components-displayed-in-styleguidist-ui)
+- [How to re-use the types in Styleguidist?](#how-to-re-use-the-types-in-styleguidist)
 - [What’s the difference between Styleguidist and Storybook?](#whats-the-difference-between-styleguidist-and-storybook)
 - [Are there any other projects like this?](#are-there-any-other-projects-like-this)
 
@@ -38,15 +38,15 @@
 Use `ref` prop as a function and assign a reference to a local variable:
 
 ```jsx
-initialState = { value: '' }
+const [value, setValue] = React.useState('')
 let textarea
 ;<div>
   <Button onClick={() => textarea.insertAtCursor('Pizza')}>
     Insert
   </Button>
   <Textarea
-    value={state.value}
-    onChange={e => setState({ value: e.target.value })}
+    value={value}
+    onChange={e => setValue(e.target.value)}
     ref={ref => (textarea = ref)}
   />
 </div>
@@ -68,7 +68,7 @@ module.exports = {
 
 ## How to hide some components in style guide but make them available in examples?
 
-Enable [skipComponentsWithoutExample](Configuration.md#skipcomponentswithoutexample) option and do not add example file (`Readme.md` by default) to components you want to ignore.
+Enable [skipComponentsWithoutExample](Configuration.md#skipcomponentswithoutexample) option and do not add an example file (`Readme.md` by default) to components you want to ignore.
 
 Import these components in your examples:
 
@@ -260,19 +260,85 @@ module.exports = {
 }
 ```
 
-> **Note:** See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.js).
+> **Note:** See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.ts).
 
-> **Note:** Styles use [JSS](https://github.com/cssinjs/jss/blob/master/docs/json-api.md) with these plugins: [jss-isolate](https://github.com/cssinjs/jss-isolate), [jss-nested](https://github.com/cssinjs/jss-nested), [jss-camel-case](https://github.com/cssinjs/jss-camel-case), [jss-default-unit](https://github.com/cssinjs/jss-default-unit), [jss-compose](https://github.com/cssinjs/jss-compose) and [jss-global](https://github.com/cssinjs/jss-global).
+> **Note:** Styles use [JSS](https://github.com/cssinjs/jss/blob/master/docs/jss-syntax.md) with these plugins: [jss-isolate](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-isolate), [jss-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested), [jss-camel-case](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-camel-case), [jss-default-unit](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-default-unit), [jss-compose](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-compose) and [jss-global](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-global).
 
-> **Note:** Use [React Developer Tools](https://github.com/facebook/react-devtools) to find component and style names. For example a component `<LogoRenderer><h1 className="rsg--logo-53">` corresponds to an example above.
+> **Note:** Use [React Developer Tools](https://github.com/facebook/react) to find component and style names. For example a component `<LogoRenderer><h1 className="rsg--logo-53">` corresponds to an example above.
+
+> **Note:** Use a function instead of an object for [styles](Configuration.md#styles) to access all theme variables in your custom styles.
+
+You can store all styles in a separate file to allow hot module replacement (HMR). Same goes for theme variables.
+
+The same example above would then translate as:
+
+In `styleguide.config,js`, objects are replaced with file paths
+
+```javascript
+module.exports = {
+  // ...
+  styles: './styleguide/styles.js',
+  theme: './styleguide/themes.js'
+}
+```
+
+then in `./styleguide/theme.js`
+
+```javascript
+module.exports = {
+  color: {
+    link: 'firebrick',
+    linkHover: 'salmon'
+  },
+  fontFamily: {
+    base: '"Comic Sans MS", "Comic Sans", cursive'
+  }
+}
+```
+
+and in `./styleguide/styles.js`
+
+```javascript
+module.exports = {
+  Logo: {
+    // We're changing the LogoRenderer component
+    logo: {
+      // We're changing the rsg--logo-XX class name inside the component
+      animation: 'blink ease-in-out 300ms infinite'
+    },
+    '@keyframes blink': {
+      to: { opacity: 0 }
+    }
+  }
+}
+```
+
+Each modification of `theme.js` or `styles.js` will trigger a hot module replacement, updating the styleguide in the browser.
+
+Check out the [themed example](https://github.com/styleguidist/react-styleguidist/tree/master/examples/themed) on the github repo to learn more and try it out.
+
+```javascript
+module.exports = {
+  styles: function(theme) {
+    return {
+      Logo: {
+        logo: {
+          // we can now change the color used in the logo item to use the theme's `link` color
+          color: theme.color.link
+        }
+      }
+    }
+  }
+}
+```
 
 ## How to change the layout of a style guide?
 
 You can replace any Styleguidist React component. But in most of the cases you’ll want to replace `*Renderer` components — all HTML is rendered by these components. For example `ReactComponentRenderer`, `ComponentsListRenderer`, `PropsRenderer`, etc. — [check the source](https://github.com/styleguidist/react-styleguidist/tree/master/src/client/rsg-components) to see what components are available.
 
-There’s also a special wrapper component — `Wrapper` — that wraps every example component. By default it just renders `children` as is but you can use it to provide a custom logic.
+There’s also a special wrapper component — `Wrapper` — that wraps every example component. By default, it renders `children` as is but you can use it to provide custom logic.
 
-For example you can replace the `Wrapper` component to wrap any example in the [React Intl’s](https://github.com/yahoo/react-intl) provider component. You can’t wrap the whole style guide because every example is compiled separately in a browser.
+For example, you can replace the `Wrapper` component to wrap any example in the [React Intl’s](https://github.com/yahoo/react-intl) provider component. You can’t wrap the whole style guide because every example is compiled separately in a browser.
 
 ```javascript
 // styleguide.config.js
@@ -390,20 +456,20 @@ module.exports = {
 
 ## How to debug my components and examples?
 
-1.  Open your browser’s developer tools
-2.  Write `debugger;` statement wherever you want: in a component source, a Markdown example or even in an editor in a browser.
+1. Open your browser’s developer tools
+2. Write `debugger;` statement wherever you want: in a component source, a Markdown example or even in an editor in a browser.
 
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/3i3E3j2h3t1315141k0o/debugging.png)
 
 ## How to debug the exceptions thrown from my components?
 
-1.  Put `debugger;` statement at the beginning of your code.
-2.  Press the ![Debugger](https://d3vv6lp55qjaqc.cloudfront.net/items/2h2q3N123N3G3R252o41/debugger.png) button in your browser’s developer tools.
-3.  Press the ![Continue](https://d3vv6lp55qjaqc.cloudfront.net/items/3b3c1P3g3O1h3q111I2l/continue.png) button and the debugger will stop execution at the next exception.
+1. Put `debugger;` statement at the beginning of your code.
+2. Press the ![Debugger](https://d3vv6lp55qjaqc.cloudfront.net/items/2h2q3N123N3G3R252o41/debugger.png) button in your browser’s developer tools.
+3. Press the ![Continue](https://d3vv6lp55qjaqc.cloudfront.net/items/3b3c1P3g3O1h3q111I2l/continue.png) button and the debugger will stop execution at the next exception.
 
-## How to use production or development build of React?
+## How to use the production or development build of React?
 
-In some cases, you might need to use development build of React instead of the default [production one](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build). For example, this might be needed if you use React Native and make references to a React Native component’s PropTypes in your code. As React removes all PropTypes in its production build, your code will fail. By default, Styleguidist uses the development build for the dev server, and the production one for static builds.
+In some cases, you might need to use the development build of React instead of the default [production one](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build). For example, this might be needed if you use React Native and make references to a React Native component’s PropTypes in your code. As React removes all PropTypes in its production build, your code will fail. By default, Styleguidist uses the development build for the dev server and the production one for static builds.
 
 ```js
 import React from 'react'
@@ -429,30 +495,9 @@ If you use code like the example above, you might see a `Cannot read property 'i
 
 **Note:** The script above uses [cross-env](https://github.com/kentcdodds/cross-env) to make sure the environment variable is properly set on all platforms. Run `npm i -D cross-env` to add it.
 
-## Why object references don’t work in example component state?
-
-Object references may not work as expected in examples state:
-
-```jsx
-const items = [{ id: 0 }, { id: 1 }]
-
-initialState = {
-  activeItemByReference: items[0],
-  activeItemByPrimitive: items[0].id
-}
-;<div>
-  {/* Will render "not active" because of object reference: */}
-  {state.activeItemByReference === items[0] ? 'active' : 'not active'}
-  {/* But this will render "active" as expected: */}
-  {state.activeItemByPrimitive === items[0].id
-    ? 'active'
-    : 'not active'}
-</div>
-```
-
 ## How to use Vagrant with Styleguidist?
 
-First read [Vagrant guide](https://webpack.js.org/guides/development-vagrant/) from the webpack documentation. Then enable polling in your webpack config:
+First, read [Vagrant guide](https://webpack.js.org/guides/development-vagrant/) from the webpack documentation. Then enable polling in your webpack config:
 
 ```js
 devServer: {
@@ -466,9 +511,9 @@ devServer: {
 
 Two options:
 
-1.  Put a `favicon.ico` file into the root folder of your site.
+1. Put a `favicon.ico` file into the root folder of your site.
 
-2.  Use [template](Configuration.md#template) option:
+2. Use [template](Configuration.md#template) option:
 
 ```javascript
 module.exports = {
@@ -503,7 +548,7 @@ module.exports = {
 }
 ```
 
-In comparison to [require](Configuration.md#require) option, these scripts and links are run in the browser, not during webpack build process. It can be useful for side effect-causing scripts which your components, or in this case Babel output, need to function properly.
+In comparison to [require](Configuration.md#require) option, these scripts and links are run in the browser, not during webpack build process. It can be useful for side effect-causing scripts in which your components, or in this case Babel output, need to function properly.
 
 ## How to add fonts from Google Fonts?
 
@@ -539,7 +584,7 @@ See [working with third-party libraries](Thirdparties.md).
 
 ## How to change the names of components displayed in Styleguidist UI?
 
-You might want to change your components’ names to be displayed differently, for example, for stylistic purposes or to give them a more descriptive names in your style guide.
+You might want to change your components’ names to be displayed differently, for example, for stylistic purposes or to give them more descriptive names in your style guide.
 
 This can be done by adding [@visibleName](Documenting.md#defining-custom-component-names) tag to your component documentation.
 
@@ -556,9 +601,56 @@ module.exports = {
 }
 ```
 
+## How to re-use the types in Styleguidist?
+
+From version 10, Styleguidist is written using TypeScript language.
+
+It allows the maintainers to catch type mismatch before execution and gives them a better developer experience.
+
+It also allows you to write customized style guide components using TypeScript TSX instead of JavaScript JSX.
+
+**NOTE:** Since all files in `src/client/rsg-components` are aliased to `rsg-components` using webpack, you will have to add this alias to your `tsconfig.json` file:
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      // remap rsg-components/anything to its version in react-styleguidist
+      "rsg-components/*": [
+        "node_modules/react-styleguidist/lib/client/rsg-components/*"
+      ]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}
+```
+
+This way when you write the following component, TypeScript will resolve typings for client components and help you type them properly.
+
+```ts
+import Styled from 'rsg-components/Styled'
+import Heading from 'rsg-components/Heading'
+
+export default function SectionsRenderer({ children }) {
+  return (
+    <div>
+      {children.length > 0 && (
+        <div>
+          <Heading level={1}>Example Components</Heading>
+          <p>These are the greatest components</p>
+        </div>
+      )}
+      <DefaultSectionsRenderer>{children}</DefaultSectionsRenderer>
+    </div>
+  )
+}
+```
+
 ## What’s the difference between Styleguidist and Storybook?
 
-Both tools are good and mature, they have many similarities but also some distinctions that may make you choose one or the other. For me the biggest distinction is how you describe component variations.
+Both tools are good and mature, they have many similarities but also some distinctions that may make you choose one or the other. For me, the biggest distinction is how you describe component variations.
 
 With [Storybook](https://storybook.js.org/) you write _stories_ in JavaScript files:
 
@@ -595,19 +687,19 @@ And with Styleguidist you write _examples_ in Markdown files:
 
 Another important distinction is that Storybook shows only one variation of one component at a time but Styleguidist can show all variations of all components, all variations of a single component or one variation. It’s easier to create a style guide with Styleguidist but Storybook has more tools to develop components (though we’re working on that too).
 
-| Feature              | Storybook  | Styleguidist                                                                      |
-| -------------------- | ---------- | --------------------------------------------------------------------------------- |
-| Component examples   | JavaScript | Markdown                                                                          |
-| Props docs           | Yes        | Yes                                                                               |
-| Public methods docs  | No         | Yes                                                                               |
-| Style guide¹         | No         | Yes                                                                               |
-| Customizable design  | No         | Yes                                                                               |
-| Extra documentation² | No         | Yes                                                                               |
-| Plugins              | Many       | [In development](https://github.com/styleguidist/react-styleguidist/issues/354)   |
-| React                | Yes        | Yes                                                                               |
-| Preact               | Yes        | Yes                                                                               |
-| React Native         | Yes        | [react-native-web](https://github.com/styleguidist/react-styleguidist/issues/675) |
-| Vue                  | Yes        | [Fork](https://github.com/vue-styleguidist/vue-styleguidist)                      |
+| Feature | Storybook | Styleguidist |
+| --- | --- | --- |
+| Component examples | JavaScript | Markdown |
+| Props docs | Yes | Yes |
+| Public methods docs | No | Yes |
+| Style guide¹ | No | Yes |
+| Customizable design | No | Yes |
+| Extra documentation² | No | Yes |
+| Plugins | Many | [In development](https://github.com/styleguidist/react-styleguidist/issues/354) |
+| React | Yes | Yes |
+| Preact | Yes | Yes |
+| React Native | Yes | [react-native-web](https://github.com/styleguidist/react-styleguidist/issues/675) |
+| Vue | Yes | [Fork](https://github.com/vue-styleguidist/vue-styleguidist) |
 
 ¹ All components on a single page.<br> ² Include non-component documentation.
 

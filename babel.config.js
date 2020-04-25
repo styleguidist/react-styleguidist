@@ -9,13 +9,13 @@ module.exports = {
 				corejs: 3,
 			},
 		],
+		'@babel/typescript',
 		'@babel/react',
-		'@babel/flow',
 	],
 	plugins: ['@babel/plugin-proposal-class-properties'],
 	overrides: [
 		{
-			include: ['src/bin', 'src/loaders', 'src/scripts', 'src/share'],
+			include: ['src/bin', 'src/loaders', 'src/scripts', 'src/share', 'src/typings'],
 			exclude: ['src/loaders/utils/client'],
 			presets: [
 				[
@@ -26,7 +26,7 @@ module.exports = {
 						useBuiltIns: 'usage',
 						corejs: 3,
 						targets: {
-							node: '6.4',
+							node: '10',
 						},
 					},
 				],
@@ -35,7 +35,22 @@ module.exports = {
 	],
 	env: {
 		test: {
-			presets: ['@babel/env', '@babel/react', '@babel/flow'],
+			presets: [
+				[
+					'@babel/env',
+					{
+						loose: true,
+						modules: 'commonjs',
+						useBuiltIns: 'usage',
+						corejs: 3,
+						targets: {
+							node: 'current',
+						},
+					},
+				],
+				'@babel/react',
+				'@babel/flow',
+			],
 			plugins: ['@babel/plugin-proposal-class-properties'],
 		},
 	},

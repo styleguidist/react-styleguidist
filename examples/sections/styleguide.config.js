@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
 	title: 'React Style Guide Example',
 	pagePerSection: true,
+	// tocMode: 'collapse',
 	sections: [
 		{
 			name: 'Documentation',
@@ -49,6 +50,12 @@ module.exports = {
 				{
 					name: 'Fields',
 					components: () => ['./src/components/Placeholder/Placeholder.js'],
+					exampleMode: 'expand', // 'hide' | 'collapse' | 'expand'
+					usageMode: 'expand', // 'hide' | 'collapse' | 'expand'
+				},
+				{
+					name: 'Labels',
+					components: () => ['./src/components/MyLabel/Label.js'],
 					exampleMode: 'expand', // 'hide' | 'collapse' | 'expand'
 					usageMode: 'expand', // 'hide' | 'collapse' | 'expand'
 				},

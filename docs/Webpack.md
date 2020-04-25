@@ -13,7 +13,6 @@ _Webpack is required to run Styleguidist but your project doesn’t have to use 
 - [Reusing your project’s webpack config](#reusing-your-projects-webpack-config)
 - [Custom webpack config](#custom-webpack-config)
 - [Create React App](#create-react-app)
-- [Create React App with TypeScript](#create-react-app-with-typescript)
 - [Non-webpack projects](#non-webpack-projects)
 - [When nothing else works](#when-nothing-else-works)
 
@@ -21,7 +20,7 @@ _Webpack is required to run Styleguidist but your project doesn’t have to use 
 
 ## Reusing your project’s webpack config
 
-By default Styleguidist will try to find `webpack.config.js` in your project’s root directory and use it.
+By default, Styleguidist will try to find `webpack.config.js` in your project’s root directory and use it.
 
 If your webpack config is located somewhere else, you need to load it manually:
 
@@ -60,7 +59,7 @@ module.exports = {
   webpackConfig: {
     module: {
       rules: [
-        // Babel loader, will use your project’s babel.config.js
+        // Babel loader will use your project’s babel.config.js
         {
           test: /\.jsx?$/,
           exclude: /node_modules/,
@@ -87,22 +86,6 @@ module.exports = {
 
 [Create React App](https://github.com/facebook/create-react-app) is supported out of the box, you don’t even need to create a style guide config if your components could be found using a default pattern: all files with `.js` or `.jsx` extensions inside `src/components` or `src/Components` folders.
 
-## Create React App with TypeScript
-
-If you’re using [Create React App](https://github.com/facebook/create-react-app) and TypeScript:
-
-1. Install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript).
-2. Create a `styleguide.config.js`, see [configuration](Configuration.md) reference.
-3. Update your `styleguide.config.js`:
-
-   ```javascript
-   module.exports = {
-     propsParser: require('react-docgen-typescript').withCustomConfig(
-       './tsconfig.json'
-     ).parse
-   }
-   ```
-
 ## Non-webpack projects
 
 To use features, not supported by browsers, like JSX, you’ll need to compile your code with Babel or another tool.
@@ -117,7 +100,7 @@ First, install the Babel webpack loader:
 npm install --save-dev babel-loader
 ```
 
-> **Note:** If your project doesn’t use webpack you still need add webpack loaders for your files, otherwise Styleguidist won’t be able to load your code.
+> **Note:** If your project doesn’t use webpack you still need to add webpack loaders for your files, otherwise Styleguidist won’t be able to load your code.
 
 Then, add a `webpackConfig` section to your `styleguide.config.js`
 
@@ -189,6 +172,6 @@ This will tell Babel (and some other tools) which browsers you support, so it wo
 
 ## When nothing else works
 
-In very rare cases, like using legacy or third-party libraries, you may need to change webpack options that Styleguidist doesn’t allow you to change via `webpackConfig` options. In this case you can use [dangerouslyUpdateWebpackConfig](Configuration.md#dangerouslyupdatewebpackconfig) option.
+In very rare cases, like using legacy or third-party libraries, you may need to change webpack options that Styleguidist doesn’t allow you to change via `webpackConfig` options. In this case, you can use [dangerouslyUpdateWebpackConfig](Configuration.md#dangerouslyupdatewebpackconfig) option.
 
-> **Warning:** You may easily break Styleguidist using this option, use it at your own risk.
+> **Warning:** You may break Styleguidist using this option, use it at your own risk.

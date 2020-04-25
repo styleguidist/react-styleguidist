@@ -1,0 +1,43 @@
+{
+  "name": "react-styleguidist-example-themed",
+  "description": "React styleguidist themed example",
+  "version": "1.0.0",
+  "private": true,
+  "homepage": "https://github.com/styleguidist/react-styleguidist",
+  "author": {
+    "name": "Artem Sapegin",
+    "url": "http://sapegin.me/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/styleguidist/react-styleguidist.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build"
+  },
+  "dependencies": {
+    "dog-names": "^2.0.0",
+    "lodash": "^4.17.15",
+    "prop-types": "^15.7.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-styleguidist": "^10.3.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "file-loader": "^4.2.0",
+    "style-loader": "^1.0.0",
+    "url-loader": "^2.1.0",
+    "webpack": "^4.39.1"
+  }
+}

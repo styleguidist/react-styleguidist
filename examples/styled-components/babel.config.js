@@ -11,5 +11,5 @@ module.exports = {
 		['@babel/preset-react'],
 		['@babel/preset-typescript'],
 	],
-	plugins: ['@babel/plugin-proposal-class-properties', 'babel-plugin-styled-components'],
+	plugins: ['@babel/plugin-proposal-class-properties'],
 };
