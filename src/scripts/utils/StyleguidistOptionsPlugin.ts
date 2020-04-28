@@ -1,5 +1,6 @@
 import { Tapable } from 'tapable';
-import { Compiler, compilation } from 'webpack';
+// @ts-ignore
+import { Compiler, compilation, NormalModule } from 'webpack';
 import * as Rsg from '../../typings';
 
 // Webpack plugin that makes Styleguidist config available for Styleguidist webpack loaders.
@@ -22,7 +23,12 @@ export default class StyleguidistOptionsPlugin implements Tapable.Plugin {
 			}
 			context._styleguidist = this.options;
 		};
-		compil.hooks.normalModuleLoader.tap('StyleguidistOptionsPlugin', pluginFunc);
+
+		if (NormalModule && NormalModule.getCompilationHooks) {
+			NormalModule.getCompilationHooks(compil).loader.tap('StyleguidistOptionsPlugin', pluginFunc);
+		} else {
+			compil.hooks.normalModuleLoader.tap('StyleguidistOptionsPlugin', pluginFunc);
+		}
 	}
 
 	public apply(compiler: Compiler) {
