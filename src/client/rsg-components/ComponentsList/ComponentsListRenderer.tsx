@@ -35,6 +35,10 @@ const styles = ({ color, fontFamily, fontSize, space, mq }: Rsg.Theme) => ({
 	},
 	isSelected: {
 		fontWeight: 'bold',
+		'& li': {
+			isolate: false,
+			fontWeight: 'normal',
+		},
 	},
 });
 
