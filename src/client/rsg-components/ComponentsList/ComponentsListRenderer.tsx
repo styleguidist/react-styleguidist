@@ -10,6 +10,14 @@ const styles = ({ color, fontFamily, fontSize, space, mq }: Rsg.Theme) => ({
 	list: {
 		margin: 0,
 		paddingLeft: space[2],
+		'nav > & > $item': {
+			isolate: false,
+			[mq.small]: {
+				isolate: false,
+				display: 'inline-block',
+				verticalAlign: 'top',
+			},
+		},
 	},
 	item: {
 		color: color.base,
@@ -32,6 +40,12 @@ const styles = ({ color, fontFamily, fontSize, space, mq }: Rsg.Theme) => ({
 		marginTop: space[1],
 		fontFamily: fontFamily.base,
 		fontWeight: 'bold',
+	},
+	hidden: {
+		display: 'none',
+		[mq.small]: {
+			display: 'initial',
+		},
 	},
 	isSelected: {
 		fontWeight: 'bold',
@@ -91,7 +105,7 @@ const ComponentsListSectionRenderer: React.FunctionComponent<Rsg.TOCItem & JssIn
 			>
 				{visibleName}
 			</Link>
-			{open || forcedOpen ? content : null}
+			{content && <div className={open || forcedOpen ? undefined : classes.hidden}>{content}</div>}
 		</li>
 	);
 };
