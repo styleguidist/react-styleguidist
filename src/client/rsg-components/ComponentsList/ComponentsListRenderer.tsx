@@ -64,16 +64,40 @@ export const ComponentsListRenderer: React.FunctionComponent<ComponentsListRende
 	classes,
 	items,
 }) => {
+	const {
+		config: { tocMode },
+	} = useStyleGuideContext();
+
+	const [openSlug, setOpenSlug] = React.useState<string>(
+		items.find(item => item.initialOpen)?.slug || ''
+	);
+
 	return (
 		<ul className={classes.list}>
-			{items.map(item => (
-				<ComponentsListSectionRenderer key={item.slug} classes={classes} {...item} />
-			))}
+			{items.map(item => {
+				const open = item.forcedOpen || tocMode !== 'collapse' || openSlug === item.slug;
+				return (
+					<ComponentsListSectionRenderer
+						// To reinit all subsections when toggling sections,
+						// In other words for the useState hook to be reinitialized,
+						// we have to repaint it.
+						// Adding the open status to the key will force regenaration
+						// of an open section when it gets closed
+						key={item.slug + (open ? '*' : '')}
+						classes={classes}
+						{...item}
+						open={open}
+						// when the current section is already open toggle should close it
+						onToggle={() => setOpenSlug(item.slug && !open ? item.slug : '')}
+					/>
+				);
+			})}
 		</ul>
 	);
 };
 
-const ComponentsListSectionRenderer: React.FunctionComponent<Rsg.TOCItem & JssInjectedProps> = ({
+const ComponentsListSectionRenderer: React.FunctionComponent<Rsg.TOCItem &
+	JssInjectedProps & { open: boolean; onToggle: () => void }> = ({
 	classes,
 	heading,
 	visibleName,
@@ -81,31 +105,28 @@ const ComponentsListSectionRenderer: React.FunctionComponent<Rsg.TOCItem & JssIn
 	content,
 	shouldOpenInNewTab,
 	selected,
-	initialOpen,
-	forcedOpen,
+	open,
+	onToggle,
 }) => {
-	const {
-		config: { tocMode },
-	} = useStyleGuideContext();
-
-	const [open, setOpen] = tocMode !== 'collapse' ? [true, () => {}] : React.useState(!!initialOpen);
 	return (
 		<li
 			className={cx(classes.item, {
 				[classes.isChild]: !content && !shouldOpenInNewTab,
 				[classes.isSelected]: selected,
 			})}
-			key={href}
 		>
 			<Link
 				className={cx(heading && classes.heading)}
 				href={href}
-				onClick={() => setOpen(!open)}
+				onClick={onToggle}
 				target={shouldOpenInNewTab ? '_blank' : undefined}
 			>
 				{visibleName}
 			</Link>
-			{content && <div className={open || forcedOpen ? undefined : classes.hidden}>{content}</div>}
+			{// To be able to show all sections when in mobile mode,
+			// we have to render them all the time.
+			// We use hiding and showing instead of destroying.
+			content && <div className={open ? undefined : classes.hidden}>{content}</div>}
 		</li>
 	);
 };
