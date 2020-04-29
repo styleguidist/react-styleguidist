@@ -110,9 +110,10 @@ export default function getRouteData(
 				sections = [
 					{
 						...filteredSections[0],
-						components: filteredComponents
-							? [filterComponentExamples(filteredComponents[0], targetIndex as number)]
-							: [],
+						components:
+							filteredComponents && typeof targetIndex === 'number'
+								? [filterComponentExamples(filteredComponents[0], targetIndex)]
+								: [],
 					},
 				];
 				displayMode = DisplayModes.example;
