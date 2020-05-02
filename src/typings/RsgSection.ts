@@ -31,7 +31,7 @@ export interface Section extends ProcessedSection {
 
 /**
  * Item of the Table Of Contents used in
- * ComponenetsList
+ * ComponentsList
  * TableOfContent
  * filterSectionByName
  */
