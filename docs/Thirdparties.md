@@ -186,10 +186,11 @@ _Based on @mikberg’s [blog post](https://medium.com/@mikaelberg/writing-simple
 
 ### Styled-components
 
-The recommended way of using [styled-components](https://www.styled-components.com/) is by adding the `@component` JSDoc annotation:
+To show PropTypes documentation for [styled-components](https://www.styled-components.com/), you need to add the `@component` JSDoc annotation to the component export:
 
 ```jsx
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const SalmonButton = styled.button`
@@ -197,6 +198,10 @@ const SalmonButton = styled.button`
   border: 1px solid indianred;
   color: snow;
 `
+
+Button.propTypes = {
+	children: PropTypes.node,
+};
 
 /** @component */
 export default SalmonButton
@@ -213,37 +218,42 @@ export default SalmonButton
 + `
 ```
 
+**Warning:** other use case for calling the `styled` factory as a function, like styled-system, aren’t supported too:
+
+```diff
+- const Input = styled.input(
+-  css({
+- 		boxSizing: 'border-box',
+-     // ...
+- 	})
+- );
+```
+
 #### Adding styled-components `ThemeProvider`
 
 If your styled-components require a theme to render properly, add a `ThemeProvider` to your style guide.
 
-First, create your `Wrapper` component. For this example, we’ll put it in the `styleguide/` directory, but you can add it anywhere you want.
+First, create a `Provider` component:
 
 ```jsx
-// styleguide/ThemeWrapper.js
-import React, { Component } from 'react'
+// src/Provider.js
+import React from 'react'
 import { ThemeProvider } from 'styled-components'
-import theme from 'where/your/theme/lives'
+import theme from './theme'
 
-export default class ThemeWrapper extends Component {
-  render() {
-    return (
-      <ThemeProvider theme={theme}>
-        {this.props.children}
-      </ThemeProvider>
-    )
-  }
+export default function Provider({ children }) {
+	return <ThemeProvider theme={theme}>{children}</ThemeProvider>
 }
 ```
 
-Next, add `ThemeWrapper` to your `styleguide.config.js`.
+Next, add `Provider` to your `styleguide.config.js`:
 
 ```javascript
 // styleguide.config.js
 const path = require('path')
 module.exports = {
   styleguideComponents: {
-    Wrapper: path.join(__dirname, 'styleguide/ThemeWrapper')
+    Wrapper: path.join(__dirname, 'src/Provider.js')
   }
 }
 ```
