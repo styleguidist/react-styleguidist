@@ -587,7 +587,7 @@ See [working with third-party libraries](Thirdparties.md).
 
 1. Install [react-axe](https://github.com/dequelabs/react-axe).
 
-2. Setup React-axe to style guide DevTools console:
+2. Load React-axe with the style guide and run checks for each example:
 
 ```jsx
 // styleguide.config.js
