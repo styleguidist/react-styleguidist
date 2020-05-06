@@ -111,7 +111,7 @@ export default function getRouteData(
 					{
 						...filteredSections[0],
 						components:
-							filteredComponents && targetIndex
+							filteredComponents && typeof targetIndex === 'number'
 								? [filterComponentExamples(filteredComponents[0], targetIndex)]
 								: [],
 					},
