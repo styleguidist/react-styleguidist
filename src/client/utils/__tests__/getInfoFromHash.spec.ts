@@ -35,4 +35,24 @@ describe('getInfoFromHash', () => {
 			targetIndex: undefined,
 		});
 	});
+
+	it('should return a proper parsed result even though the hash starts with a number', () => {
+		const result = getInfoFromHash('#/1.Documentation');
+		expect(result).toEqual({
+			isolate: false,
+			hashArray: ['1.Documentation'],
+			targetName: '1.Documentation',
+			targetIndex: undefined,
+		});
+	});
+
+	it('should return a proper parsed result even though the hash contains a space', () => {
+		const result = getInfoFromHash('#/1. Just do it');
+		expect(result).toEqual({
+			isolate: false,
+			hashArray: ['1. Just do it'],
+			targetName: '1. Just do it',
+			targetIndex: undefined,
+		});
+	});
 });
