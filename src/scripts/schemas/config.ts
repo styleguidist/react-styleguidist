@@ -53,7 +53,7 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 	compilerConfig: {
 		type: 'object',
 		default: {
-			// Don't include an Object.assign ponyfill, we have our own
+			// Don't include an Object.assign polyfill, we have our own
 			objectAssign: 'Object.assign',
 			// Transpile only features needed for IE11
 			target: { ie: 11 },
