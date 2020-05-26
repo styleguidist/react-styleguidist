@@ -1,8 +1,7 @@
-import isNaN from 'lodash/isNaN';
 import { hasInHash, getHashAsArray } from './handleHash';
 
-function filterNumbers(item: string): boolean {
-	return isNaN(parseInt(item, 10)) && item !== '';
+function hasDigitsOnly(item: string): boolean {
+	return item.match(/^\d+$/) !== null;
 }
 
 /**
@@ -25,12 +24,12 @@ export default function getInfoFromHash(
 	const shouldIsolate = hasInHash(hash, '#!/');
 	if (shouldIsolate || hasInHash(hash, '#/')) {
 		const hashArray = getHashAsArray(hash, shouldIsolate ? '#!/' : '#/');
-		const index = parseInt(hashArray[hashArray.length - 1], 10);
+		const targetHash = hashArray[hashArray.length - 1];
 		return {
 			isolate: shouldIsolate,
-			hashArray: hashArray.filter(filterNumbers),
+			hashArray: hashArray.filter(item => !hasDigitsOnly(item)),
 			targetName: hashArray[0],
-			targetIndex: isNaN(index) ? undefined : index,
+			targetIndex: hasDigitsOnly(targetHash) ? parseInt(targetHash, 10) : undefined,
 		};
 	}
 	return {};
