@@ -36,22 +36,22 @@ describe('getInfoFromHash', () => {
 		});
 	});
 
+	it('should extract target index when the URL ends with a number', () => {
+		const result = getInfoFromHash('#/Documentation/Files/Buttons/5');
+		expect(result).toEqual({
+			isolate: false,
+			hashArray: ['Documentation', 'Files', 'Buttons'],
+			targetName: 'Documentation',
+			targetIndex: 5,
+		});
+	});
+
 	it('should return a proper parsed result even though the hash starts with a number', () => {
 		const result = getInfoFromHash('#/1.Documentation');
 		expect(result).toEqual({
 			isolate: false,
 			hashArray: ['1.Documentation'],
 			targetName: '1.Documentation',
-			targetIndex: undefined,
-		});
-	});
-
-	it('should return a proper parsed result even though the hash contains a space', () => {
-		const result = getInfoFromHash('#/1. Just do it');
-		expect(result).toEqual({
-			isolate: false,
-			hashArray: ['1. Just do it'],
-			targetName: '1. Just do it',
 			targetIndex: undefined,
 		});
 	});
