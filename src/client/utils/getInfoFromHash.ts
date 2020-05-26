@@ -1,6 +1,6 @@
 import { hasInHash, getHashAsArray } from './handleHash';
 
-function consistsOnlyNumbers(item: string): boolean {
+function hasDigitsOnly(item: string): boolean {
 	return item.match(/^\d+$/) !== null;
 }
 
@@ -27,9 +27,9 @@ export default function getInfoFromHash(
 		const targetHash = hashArray[hashArray.length - 1];
 		return {
 			isolate: shouldIsolate,
-			hashArray: hashArray.filter(item => !consistsOnlyNumbers(item)),
+			hashArray: hashArray.filter(item => !hasDigitsOnly(item)),
 			targetName: hashArray[0],
-			targetIndex: consistsOnlyNumbers(targetHash) ? parseInt(targetHash, 10) : undefined,
+			targetIndex: hasDigitsOnly(targetHash) ? parseInt(targetHash, 10) : undefined,
 		};
 	}
 	return {};
