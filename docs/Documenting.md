@@ -1,24 +1,10 @@
+<!-- Documenting components #documenting -->
+
 # Documenting components
 
 Styleguidist generates documentation for your components based on the comments in your source code, propTypes declarations, and Readme files.
 
-> **Note:** [See examples](https://github.com/styleguidist/react-styleguidist/tree/master/examples/basic/src/components) of documented components in our demo style guide.
-
-<!-- To update run: npx markdown-toc --maxdepth 2 -i docs/Documenting.md -->
-
-<!-- toc -->
-
-- [Code comments and propTypes](#code-comments-and-proptypes)
-- [Usage examples and Readme files](#usage-examples-and-readme-files)
-- [External examples using doclet tags](#external-examples-using-doclet-tags)
-- [Public methods](#public-methods)
-- [Ignoring props](#ignoring-props)
-- [Defining custom component names](#defining-custom-component-names)
-- [Using JSDoc tags](#using-jsdoc-tags)
-- [Writing code examples](#writing-code-examples)
-- [Limitations](#limitations)
-
-<!-- tocstop -->
+> **Tip:** [See examples](https://github.com/styleguidist/react-styleguidist/tree/master/examples/basic/src/components) of documented components in our demo style guide.
 
 ## Code comments and propTypes
 
@@ -48,11 +34,11 @@ export default class Button extends React.Component {
 }
 ```
 
-> **Note:** [Flow](https://flowtype.org/) and [TypeScript](https://www.typescriptlang.org) type annotations are supported.
+> **Info:** [Flow](https://flowtype.org/) and [TypeScript](https://www.typescriptlang.org) type annotations are supported.
 
-> **Note:** You can change its behavior using [propsParser](Configuration.md#propsparser) and [resolver](Configuration.md#resolver) options.
+> **Tip:** You can change its behavior using [propsParser](Configuration.md#propsparser) and [resolver](Configuration.md#resolver) options.
 
-> **Note:** Component’s `PropTypes` and documentation comments are parsed by the [react-docgen](https://github.com/reactjs/react-docgen) library. They can be modified using the [updateDocs](Configuration.md#updatedocs) function.
+> **Info:** Component’s `PropTypes` and documentation comments are parsed by the [react-docgen](https://github.com/reactjs/react-docgen) library. They can be modified using the [updateDocs](Configuration.md#updatedocs) function.
 
 ## Usage examples and Readme files
 
@@ -98,9 +84,9 @@ Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the co
 
     Any [Markdown](http://daringfireball.net/projects/markdown/) is **allowed** _here_.
 
-> **Note:** You can configure examples file name with the [getExampleFilename](Configuration.md#getexamplefilename) option.
+> **Tip:** You can configure examples file name with the [getExampleFilename](Configuration.md#getexamplefilename) option.
 
-> **Note:** If you need to display some JavaScript code in your documentation that you don’t want to be rendered as an interactive playground you can use the `static` modifier with a language tag (e.g. `js static`).
+> **Tip:** If you need to display some JavaScript code in your documentation that you don’t want to be rendered as an interactive playground you can use the `static` modifier with a language tag (e.g. `js static`).
 
 ## External examples using doclet tags
 
@@ -236,7 +222,7 @@ Code examples in Markdown use ES6+JSX syntax. You can use the current component 
 <Button>Push Me</Button>
 ````
 
-> **Note:** Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the frontend, it supports [most of the ES6 features](https://buble.surge.sh/guide/#unsupported-features).
+> **Info:** Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the frontend, it supports [most of the ES6 features](https://buble.surge.sh/guide/#unsupported-features).
 
 To use other components, you need to explicitly `import` them:
 
@@ -268,9 +254,9 @@ import Button from 'rsg-example/components/Button'
 import Placeholder from 'rsg-example/components/Placeholder'
 ````
 
-> **Note:** `rsg-example` module is an alias defined by the [moduleAliases](Configuration.md#modulealiases) config option.
+> **Info:** `rsg-example` module is an alias defined by the [moduleAliases](Configuration.md#modulealiases) config option.
 
-> **Note:** You can only use `import` by editing your Markdown files, not by editing the example code in the browser.
+> **Caution:** You can only use `import` by editing your Markdown files, not by editing the example code in the browser.
 
 Each example acts as a function component and you can use the `useState` Hook to handle its state.
 
@@ -288,7 +274,7 @@ const [isOpen, setIsOpen] = React.useState(false)
 
 If a component uses React Context, you need a context provider in the example or in a custom `Wrapper` component. See [ThemeButton example](https://github.com/styleguidist/react-styleguidist/tree/master/examples/sections/src/components/ThemeButton).
 
-> **Note:** If you need a more complex demo it’s often a good idea to define it in a separate JavaScript file and `import` it in Markdown.
+> **Tip:** If you need a more complex demo it’s often a good idea to define it in a separate JavaScript file and `import` it in Markdown.
 
 ## Limitations
 

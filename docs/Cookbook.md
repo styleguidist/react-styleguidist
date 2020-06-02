@@ -1,39 +1,5 @@
 # Cookbook
 
-<!-- To update run: npx markdown-toc --maxdepth 2 -i docs/Cookbook.md -->
-
-<!-- toc -->
-
-- [How to use `ref`s in examples?](#how-to-use-refs-in-examples)
-- [How to exclude some components from style guide?](#how-to-exclude-some-components-from-style-guide)
-- [How to hide some components in style guide but make them available in examples?](#how-to-hide-some-components-in-style-guide-but-make-them-available-in-examples)
-- [How to render React components that aren’t part of the style guide?](#how-to-render-react-components-that-arent-part-of-the-style-guide)
-- [How to dynamically load other components in an example?](#how-to-dynamically-load-other-components-in-an-example)
-- [How to display the source code of any file?](#how-to-display-the-source-code-of-any-file)
-- [How to set global styles for user components?](#how-to-set-global-styles-for-user-components)
-- [How to add custom JavaScript and CSS or polyfills?](#how-to-add-custom-javascript-and-css-or-polyfills)
-- [How to use React Styleguidist with Preact?](#how-to-use-react-styleguidist-with-preact)
-- [How to change styles of a style guide?](#how-to-change-styles-of-a-style-guide)
-- [How to change the layout of a style guide?](#how-to-change-the-layout-of-a-style-guide)
-- [How to change syntax highlighting colors?](#how-to-change-syntax-highlighting-colors)
-- [How to change style guide dev server logs output?](#how-to-change-style-guide-dev-server-logs-output)
-- [How to debug my components and examples?](#how-to-debug-my-components-and-examples)
-- [How to debug the exceptions thrown from my components?](#how-to-debug-the-exceptions-thrown-from-my-components)
-- [How to use the production or development build of React?](#how-to-use-the-production-or-development-build-of-react)
-- [How to use Vagrant with Styleguidist?](#how-to-use-vagrant-with-styleguidist)
-- [How to add a favicon?](#how-to-add-a-favicon)
-- [How to add external JavaScript and CSS files?](#how-to-add-external-javascript-and-css-files)
-- [How to add fonts from Google Fonts?](#how-to-add-fonts-from-google-fonts)
-- [How to reuse project’s webpack config?](#how-to-reuse-projects-webpack-config)
-- [How to use React Styleguidist with Redux, Relay or Styled Components?](#how-to-use-react-styleguidist-with-redux-relay-or-styled-components)
-- [How to use React-axe to test accessibility of components?](#how-to-use-react-axe-to-test-accessibility-of-components)
-- [How to change the names of components displayed in Styleguidist UI?](#how-to-change-the-names-of-components-displayed-in-styleguidist-ui)
-- [How to re-use the types in Styleguidist?](#how-to-re-use-the-types-in-styleguidist)
-- [What’s the difference between Styleguidist and Storybook?](#whats-the-difference-between-styleguidist-and-storybook)
-- [Are there any other projects like this?](#are-there-any-other-projects-like-this)
-
-<!-- tocstop -->
-
 ## How to use `ref`s in examples?
 
 Use `ref` prop as a function and assign a reference to a local variable:
@@ -65,7 +31,7 @@ module.exports = {
 }
 ```
 
-> **Note:** You should pass glob patterns, for example, use `**/components/Button.js` instead of `components/Button.js`.
+> **Caution:** You should pass glob patterns, for example, use `**/components/Button.js` instead of `components/Button.js`.
 
 ## How to hide some components in style guide but make them available in examples?
 
@@ -189,7 +155,7 @@ module.exports = {
 
 Above, we have set `font-family: 'Helvetica';` on the body.
 
-> **Note:** This does not set styles on the style guide UI, for that read [How to change styles of a style guide](#how-to-change-styles-of-a-style-guide).
+> **Tip:** This does not set styles on the style guide UI, for that read [How to change styles of a style guide](#how-to-change-styles-of-a-style-guide).
 
 ## How to add custom JavaScript and CSS or polyfills?
 
@@ -261,13 +227,13 @@ module.exports = {
 }
 ```
 
-> **Note:** See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.ts).
+> **Info:** See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.ts).
 
-> **Note:** Styles use [JSS](https://github.com/cssinjs/jss/blob/master/docs/jss-syntax.md) with these plugins: [jss-isolate](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-isolate), [jss-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested), [jss-camel-case](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-camel-case), [jss-default-unit](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-default-unit), [jss-compose](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-compose) and [jss-global](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-global).
+> **Info:** Styles use [JSS](https://github.com/cssinjs/jss/blob/master/docs/jss-syntax.md) with these plugins: [jss-isolate](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-isolate), [jss-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested), [jss-camel-case](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-camel-case), [jss-default-unit](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-default-unit), [jss-compose](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-compose) and [jss-global](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-global).
 
-> **Note:** Use [React Developer Tools](https://github.com/facebook/react) to find component and style names. For example a component `<LogoRenderer><h1 className="rsg--logo-53">` corresponds to an example above.
+> **Tip:** Use [React Developer Tools](https://github.com/facebook/react) to find component and style names. For example a component `<LogoRenderer><h1 className="rsg--logo-53">` corresponds to an example above.
 
-> **Note:** Use a function instead of an object for [styles](Configuration.md#styles) to access all theme variables in your custom styles.
+> **Tip:** Use a function instead of an object for [styles](Configuration.md#styles) to access all theme variables in your custom styles.
 
 You can store all styles in a separate file to allow hot module replacement (HMR). Same goes for theme variables.
 
@@ -696,7 +662,7 @@ storiesOf('Button', module)
   .add('large size', () => <Button size="large">Push Me</Button>)
 ```
 
-![Storybook screenshot](https://storybook.js.org/static/demo.f13d28a7.gif)
+<video controls muted playsinline alt="Storybook demo video"><source src="https://storybook.js.org/videos/storybook-hero-video-optimized.mp4" type="video/mp4" /></video>
 
 And with Styleguidist you write _examples_ in Markdown files:
 
@@ -716,19 +682,19 @@ And with Styleguidist you write _examples_ in Markdown files:
 
 Another important distinction is that Storybook shows only one variation of one component at a time but Styleguidist can show all variations of all components, all variations of a single component or one variation. It’s easier to create a style guide with Styleguidist but Storybook has more tools to develop components (though we’re working on that too).
 
-| Feature              | Storybook  | Styleguidist                                                                      |
-| -------------------- | ---------- | --------------------------------------------------------------------------------- |
-| Component examples   | JavaScript | Markdown                                                                          |
-| Props docs           | Yes        | Yes                                                                               |
-| Public methods docs  | No         | Yes                                                                               |
-| Style guide¹         | No         | Yes                                                                               |
-| Customizable design  | No         | Yes                                                                               |
-| Extra documentation² | No         | Yes                                                                               |
-| Plugins              | Many       | [In development](https://github.com/styleguidist/react-styleguidist/issues/354)   |
-| React                | Yes        | Yes                                                                               |
-| Preact               | Yes        | Yes                                                                               |
-| React Native         | Yes        | [react-native-web](https://github.com/styleguidist/react-styleguidist/issues/675) |
-| Vue                  | Yes        | [Fork](https://github.com/vue-styleguidist/vue-styleguidist)                      |
+| Feature | Storybook | Styleguidist |
+| --- | --- | --- |
+| Component examples | JavaScript | Markdown |
+| Props docs | Yes | Yes |
+| Public methods docs | No | Yes |
+| Style guide¹ | No | Yes |
+| Customizable design | No | Yes |
+| Extra documentation² | No | Yes |
+| Plugins | Many | [In development](https://github.com/styleguidist/react-styleguidist/issues/354) |
+| React | Yes | Yes |
+| Preact | Yes | Yes |
+| React Native | Yes | [react-native-web](https://github.com/styleguidist/react-styleguidist/issues/675) |
+| Vue | Yes | [Fork](https://github.com/vue-styleguidist/vue-styleguidist) |
 
 ¹ All components on a single page.<br> ² Include non-component documentation.
 

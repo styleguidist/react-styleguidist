@@ -1,4 +1,6 @@
-# Getting Started with React Styleguidist
+<!-- Getting started #getting-started -->
+
+# Getting started with React Styleguidist
 
 ## 1. Install Styleguidist
 
@@ -26,13 +28,13 @@ npm install --save-dev react-styleguidist
 - Run **`npx styleguidist server`** to start a style guide dev server.
 - Run **`npx styleguidist build`** to build a production HTML version.
 
-**Note:** We recommend [adding these commands to your `package.json`](CLI.md).
+> **Tip:** We recommend [adding these commands to your `package.json`](CLI.md#usage).
 
 ## 4. Start documenting your components
 
 See how to [document your components](Documenting.md).
 
-## Have questions?
+## Something isn’t working?
 
-- [Read the cookbook](Cookbook.md)
-- [Join our Gitter chat](https://gitter.im/styleguidist/styleguidist)
+- [Solutions for common problems and questions](Cookbook.md)
+- [Configuring Styleguidist with third-party tools](Thirdparties.md)

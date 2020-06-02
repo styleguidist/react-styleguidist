@@ -1,13 +1,6 @@
+<!-- Node.js API #api -->
+
 # Node.js API
-
-<!-- To update run: npx markdown-toc --maxdepth 2 -i docs/API.md -->
-
-<!-- toc -->
-
-- [Initialization](#initialization)
-- [Methods](#methods)
-
-<!-- tocstop -->
 
 ## Initialization
 
@@ -42,7 +35,7 @@ const styleguide = styleguidist({
 })
 ```
 
-**Note:** any output is disabled by default, you may need to define your own [logger](Configuration.md#logger).
+> **Info:** Any output is disabled by default, you may need to define your own [logger](Configuration.md#logger).
 
 Using a config file:
 

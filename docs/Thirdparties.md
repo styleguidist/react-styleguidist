@@ -1,21 +1,6 @@
+<!-- Working with third-parties #thirdparties -->
+
 # Working with third-party libraries
-
-<!-- To update run: npx markdown-toc --maxdepth 3 -i docs/Thirdparties.md -->
-
-<!-- toc -->
-
-- [How Styleguidist works](#how-styleguidist-works)
-- [Using Styleguidist with other libraries](#using-styleguidist-with-other-libraries)
-  - [Redux](#redux)
-  - [Relay](#relay)
-  - [Styled-components](#styled-components)
-  - [Emotion](#emotion)
-  - [Theme UI](#theme-ui)
-  - [Fela](#fela)
-  - [CSS Modules with react-css-modules](#css-modules-with-react-css-modules)
-  - [Styletron](#styletron)
-
-<!-- tocstop -->
 
 ## How Styleguidist works
 
@@ -200,14 +185,14 @@ const SalmonButton = styled.button`
 `
 
 Button.propTypes = {
-	children: PropTypes.node,
-};
+  children: PropTypes.node
+}
 
 /** @component */
 export default SalmonButton
 ```
 
-**Warning:** object notation isn’t supported yet, use string literals instead:
+> **Caution:** Object notation isn’t supported yet, use string literals instead:
 
 ```diff
 - const Button = styled.button({
@@ -218,7 +203,7 @@ export default SalmonButton
 + `
 ```
 
-**Warning:** other use case for calling the `styled` factory as a function, like styled-system, aren’t supported too:
+> **Caution:** Other use case for calling the `styled` factory as a function, like styled-system, aren’t supported too:
 
 ```diff
 - const Input = styled.input(
@@ -242,7 +227,7 @@ import { ThemeProvider } from 'styled-components'
 import theme from './theme'
 
 export default function Provider({ children }) {
-	return <ThemeProvider theme={theme}>{children}</ThemeProvider>
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>
 }
 ```
 

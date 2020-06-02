@@ -1,16 +1,6 @@
+<!-- Developer guide #development -->
+
 # Developer guide
-
-<!-- To update run: npx markdown-toc --maxdepth 2 -i docs/Development.md -->
-
-<!-- toc -->
-
-- [How it works](#how-it-works)
-- [Webpack loaders and webpack configuration](#webpack-loaders-and-webpack-configuration)
-- [React components](#react-components)
-- [Styles](#styles)
-- [Testing](#testing)
-
-<!-- tocstop -->
 
 _For basics see [How to contribute](https://github.com/styleguidist/react-styleguidist/blob/master/.github/Contributing.md)._
 

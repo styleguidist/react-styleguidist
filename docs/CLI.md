@@ -1,3 +1,5 @@
+<!-- CLI commands #cli -->
+
 # CLI commands and options
 
 ## Commands
@@ -34,4 +36,4 @@ npx styleguidist server
 npx styleguidist build
 ```
 
-**Note:** [npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) is a part of npm and will run locally-installed `styleguidist` package.
+> **Tip:** [npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) is a part of npm and will run locally-installed `styleguidist` package.

@@ -1,3 +1,5 @@
+<!-- Configuring webpack #webpack -->
+
 # Configuring webpack
 
 Styleguidist uses [webpack](https://webpack.js.org/) under the hood and it needs to know how to load your project’s files.
@@ -5,18 +7,6 @@ Styleguidist uses [webpack](https://webpack.js.org/) under the hood and it needs
 _Webpack is required to run Styleguidist but your project doesn’t have to use it._
 
 > **Note:** See [cookbook](Cookbook.md) for more examples.
-
-<!-- To update run: npx markdown-toc --maxdepth 2 -i docs/Webpack.md -->
-
-<!-- toc -->
-
-- [Reusing your project’s webpack config](#reusing-your-projects-webpack-config)
-- [Custom webpack config](#custom-webpack-config)
-- [Create React App](#create-react-app)
-- [Non-webpack projects](#non-webpack-projects)
-- [When nothing else works](#when-nothing-else-works)
-
-<!-- tocstop -->
 
 ## Reusing your project’s webpack config
 
@@ -40,15 +30,15 @@ module.exports = {
 }
 ```
 
-> **Note:** `entry`, `externals`, `output`, `watch`, and `stats` options will be ignored. For production builds, `devtool` will also be ignored.
+> **Caution:** `entry`, `externals`, `output`, `watch`, and `stats` options will be ignored. For production builds, `devtool` will also be ignored.
 
-> **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `MiniHtmlWebpackPlugin`, `UglifyJsPlugin`, `TerserPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
+> **Caution:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `MiniHtmlWebpackPlugin`, `UglifyJsPlugin`, `TerserPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
 
-> **Note:** If your loaders don’t work with Styleguidist try to make `include` and `exclude` absolute paths.
+> **Tip:** If your loaders don’t work with Styleguidist try to make `include` and `exclude` absolute paths.
 
 > **Note:** Babelified webpack configs (like `webpack.config.babel.js`) are not supported. We recommend to convert your config to native Node — Node 6 supports [many ES6 features](http://node.green/).
 
-> **Note:** Use [webpack-merge](https://github.com/survivejs/webpack-merge) for easier config merging.
+> **Tip:** Use [webpack-merge](https://github.com/survivejs/webpack-merge) for easier config merging.
 
 ## Custom webpack config
 
@@ -76,11 +66,11 @@ module.exports = {
 }
 ```
 
-> **Warning:** This option disables config load from `webpack.config.js`, see above how to load your config manually.
+> **Caution:** This option disables config load from `webpack.config.js`, see above how to load your config manually.
 
-> **Note:** `entry`, `externals`, `output`, `watch`, and `stats` options will be ignored. For production builds, `devtool` will also be ignored.
+> **Caution:** `entry`, `externals`, `output`, `watch`, and `stats` options will be ignored. For production builds, `devtool` will also be ignored.
 
-> **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `MiniHtmlWebpackPlugin`, `UglifyJsPlugin`, `TerserPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
+> **Caution:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `MiniHtmlWebpackPlugin`, `UglifyJsPlugin`, `TerserPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
 
 ## Create React App
 
@@ -92,7 +82,7 @@ To use features, not supported by browsers, like JSX, you’ll need to compile y
 
 Let’s configure Styleguidist with Babel.
 
-> **Note:** Babel is not required for Styleguidist or React, but likely you’ll want to use it to run your code.
+> **Info:** Babel is not required for Styleguidist or React, but likely you’ll want to use it to run your code.
 
 First, install the Babel webpack loader:
 
@@ -100,7 +90,7 @@ First, install the Babel webpack loader:
 npm install --save-dev babel-loader
 ```
 
-> **Note:** If your project doesn’t use webpack you still need to add webpack loaders for your files, otherwise Styleguidist won’t be able to load your code.
+> **Caution:** If your project doesn’t use webpack you still need to add webpack loaders for your files, otherwise Styleguidist won’t be able to load your code.
 
 Then, add a `webpackConfig` section to your `styleguide.config.js`
 
@@ -174,4 +164,4 @@ This will tell Babel (and some other tools) which browsers you support, so it wo
 
 In very rare cases, like using legacy or third-party libraries, you may need to change webpack options that Styleguidist doesn’t allow you to change via `webpackConfig` options. In this case, you can use [dangerouslyUpdateWebpackConfig](Configuration.md#dangerouslyupdatewebpackconfig) option.
 
-> **Warning:** You may break Styleguidist using this option, use it at your own risk.
+> **Danger:** You may break Styleguidist using this option, use it at your own risk.

@@ -1,21 +1,6 @@
+<!-- Maintainer guide #maintenance -->
+
 # Maintainer guide
-
-<!-- To update run: npx markdown-toc -i docs/Maintenance.md -->
-
-<!-- toc -->
-
-- [We need you!](#we-need-you)
-- [Commit message conventions](#commit-message-conventions)
-- [Pull requests](#pull-requests)
-- [Releases](#releases)
-  - [Patch releases](#patch-releases)
-  - [Minor releases](#minor-releases)
-  - [Major releases](#major-releases)
-- [Changelogs](#changelogs)
-  - [What is a good changelog](#what-is-a-good-changelog)
-  - [What should be in a changelog](#what-should-be-in-a-changelog)
-
-<!-- tocstop -->
 
 _See also [Developer guide](Development.md)._
 

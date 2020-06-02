@@ -1,15 +1,6 @@
+<!-- Locating components #components -->
+
 # Locating your components and organizing your style guide
-
-<!-- To update run: npx markdown-toc --maxdepth 2 -i docs/Components.md -->
-
-<!-- toc -->
-
-- [Finding components](#finding-components)
-- [Loading and exposing components](#loading-and-exposing-components)
-- [Sections](#sections)
-- [Limitations](#limitations)
-
-<!-- tocstop -->
 
 ## Finding components
 
@@ -36,11 +27,11 @@ module.exports = {
 }
 ```
 
-> **Note:** All paths are relative to the config folder.
+> **Info:** All paths are relative to the config folder.
 
-> **Note:** Use [ignore](Configuration.md#ignore) option to exclude some files from the style guide.
+> **Tip:** Use [ignore](Configuration.md#ignore) option to exclude some files from the style guide.
 
-> **Note:** Use [getComponentPathLine](Configuration.md#getcomponentpathline) option to change a path you see below a component name.
+> **Tip:** Use [getComponentPathLine](Configuration.md#getcomponentpathline) option to change the path you see below a component name.
 
 ## Loading and exposing components
 
@@ -96,7 +87,7 @@ export function Component() { ... }
 // will be exposed globally as Component
 ```
 
-**Warning:** If you export several React components as named exports from a single module, Styleguidist is likely to behave unreliably. If it cannot understand which named export to expose, you may not be able to access that export.
+> **Caution:** If you export several React components as named exports from a single module, Styleguidist is likely to behave unreliably. If it cannot understand which named export to expose, you may not be able to access that export.
 
 ## Sections
 

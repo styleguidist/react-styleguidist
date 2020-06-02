@@ -2,64 +2,13 @@
 
 By default, Styleguidist will look for `styleguide.config.js` file in your project’s root folder. You can change the location of the config file using `--config` [CLI](CLI.md) option.
 
-<!-- To update run: npx markdown-toc --maxdepth 4 -i docs/Configuration.md -->
-
-<!-- toc -->
-
-- [`assetsDir`](#assetsdir)
-- [`compilerConfig`](#compilerconfig)
-- [`components`](#components)
-- [`context`](#context)
-- [`contextDependencies`](#contextdependencies)
-- [`configureServer`](#configureserver)
-- [`dangerouslyUpdateWebpackConfig`](#dangerouslyupdatewebpackconfig)
-- [`defaultExample`](#defaultexample)
-- [`exampleMode`](#examplemode)
-- [`getComponentPathLine`](#getcomponentpathline)
-- [`getExampleFilename`](#getexamplefilename)
-- [`handlers`](#handlers)
-- [`ignore`](#ignore)
-- [`logger`](#logger)
-- [`minimize`](#minimize)
-- [`moduleAliases`](#modulealiases)
-- [`mountPointId`](#mountpointid)
-- [`pagePerSection`](#pagepersection)
-- [`printBuildInstructions`](#printbuildinstructions)
-- [`printServerInstructions`](#printserverinstructions)
-- [`previewDelay`](#previewdelay)
-- [`propsParser`](#propsparser)
-- [`require`](#require)
-- [`resolver`](#resolver)
-- [`ribbon`](#ribbon)
-- [`sections`](#sections)
-- [`serverHost`](#serverhost)
-- [`serverPort`](#serverport)
-- [`showSidebar`](#showsidebar)
-- [`skipComponentsWithoutExample`](#skipcomponentswithoutexample)
-- [`sortProps`](#sortprops)
-- [`styleguideComponents`](#styleguidecomponents)
-- [`styleguideDir`](#styleguidedir)
-- [`styles`](#styles)
-- [`template`](#template)
-- [`theme`](#theme)
-- [`title`](#title)
-- [`tocMode`](#tocmode)
-- [`updateDocs`](#updatedocs)
-- [`updateExample`](#updateexample)
-- [`usageMode`](#usagemode)
-- [`verbose`](#verbose)
-- [`version`](#version)
-- [`webpackConfig`](#webpackconfig)
-
-<!-- tocstop -->
-
-#### `assetsDir`
+## `assetsDir`
 
 Type: `String` or `Array`, optional
 
 Your application static assets folder will be accessible as `/` in the style guide dev server.
 
-#### `compilerConfig`
+## `compilerConfig`
 
 Type: `Object`, default:
 
@@ -82,7 +31,7 @@ Type: `Object`, default:
 
 Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the frontend. This config object will be added as the second argument for `buble.transform`.
 
-#### `components`
+## `components`
 
 Type: `String`, `Function` or `Array`, default: `src/components/**/*.{js,jsx,ts,tsx}`
 
@@ -92,9 +41,9 @@ Type: `String`, `Function` or `Array`, default: `src/components/**/*.{js,jsx,ts,
 
 All paths are relative to config folder.
 
-See examples in the [Components section](Components.md#components).
+See examples in the [Components section](Components.md).
 
-#### `context`
+## `context`
 
 Type: `Object`, optional
 
@@ -115,7 +64,7 @@ Then you can use them in any example:
 <Message>{map(users, 'name').join(', ')}</Message>
 ```
 
-#### `contextDependencies`
+## `contextDependencies`
 
 Type: `String[]`, optional
 
@@ -129,7 +78,7 @@ module.exports = {
 }
 ```
 
-#### `configureServer`
+## `configureServer`
 
 Type: `Function`, optional
 
@@ -148,11 +97,11 @@ module.exports = {
 
 Your components will be able to invoke the URL `http://localhost:6060/custom-endpoint` from their examples.
 
-#### `dangerouslyUpdateWebpackConfig`
+## `dangerouslyUpdateWebpackConfig`
 
 Type: `Function`, optional
 
-> **Warning:** You may break Styleguidist using this options, try to use [webpackConfig](#webpackconfig) option instead.
+> **Danger:** You may break Styleguidist by using this option, try to use [webpackConfig](#webpackconfig) option instead.
 
 Allows you to modify webpack config without any restrictions.
 
@@ -169,15 +118,15 @@ module.exports = {
 }
 ```
 
-#### `defaultExample`
+## `defaultExample`
 
 Type: `Boolean` or `String`, default: `false`
 
-For components that do not have an example, a default one can be used. When set to `true`, the [DefaultExample.md](https://github.com/styleguidist/react-styleguidist/blob/master/templates/DefaultExample.md) is used, or you can provide the path to your own example Markdown file.
+For components that do not have an example, a default one can be used. When set to `true`, the [DefaultExample.md](https://raw.githubusercontent.com/styleguidist/react-styleguidist/master/templates/DefaultExample.md) is used, or you can provide the path to your own example Markdown file.
 
 When writing your own default example file, `__COMPONENT__` will be replaced by the actual component name at compile time.
 
-#### `exampleMode`
+## `exampleMode`
 
 Type: `String`, default: `collapse`
 
@@ -187,7 +136,7 @@ Defines the initial state of the example code tab:
 - `hide`: hide the tab and it can´t be toggled in the UI.
 - `expand`: expand the tab by default.
 
-#### `getComponentPathLine`
+## `getComponentPathLine`
 
 Type: `Function`, default: component filename
 
@@ -206,7 +155,7 @@ module.exports = {
 }
 ```
 
-#### `getExampleFilename`
+## `getExampleFilename`
 
 Type: `Function`, default: finds `Readme.md` or `ComponentName.md` in the component folder
 
@@ -222,7 +171,7 @@ module.exports = {
 }
 ```
 
-#### `handlers`
+## `handlers`
 
 Type: `Function`, optional, default: [[react-docgen-displayname-handler](https://github.com/nerdlabs/react-docgen-displayname-handler)]
 
@@ -265,15 +214,15 @@ module.exports = {
 }
 ```
 
-#### `ignore`
+## `ignore`
 
 Type: `String[]`, default: `['**/__tests__/**', '**/*.test.{js,jsx,ts,tsx}', '**/*.spec.{js,jsx,ts,tsx}', '**/*.d.ts']`
 
 Array of [glob pattern](https://github.com/isaacs/node-glob#glob-primer) that should not be included in the style guide.
 
-> **Note:** You should pass glob patterns, for example, use `**/components/Button.js` instead of `components/Button.js`.
+> **Caution:** You should pass glob patterns, for example, use `**/components/Button.js` instead of `components/Button.js`.
 
-#### `logger`
+## `logger`
 
 Type: `Object`, by default will use `console.*` in CLI or nothing in Node.js API
 
@@ -291,13 +240,13 @@ module.exports = {
 }
 ```
 
-#### `minimize`
+## `minimize`
 
 Type: `Boolean`, default: `true`
 
 If `false`, the production build will not be minimized.
 
-#### `moduleAliases`
+## `moduleAliases`
 
 Type: `object`, optional
 
@@ -321,13 +270,13 @@ import Placeholder from 'rsg-example/components/Placeholder'
 
 Check out the [webpack resolve.alias documentation](https://webpack.js.org/configuration/resolve/#resolve-alias) for available syntax.
 
-#### `mountPointId`
+## `mountPointId`
 
 Type: `string`, default: `rsg-root`
 
 The ID of a DOM element where Styleguidist mounts.
 
-#### `pagePerSection`
+## `pagePerSection`
 
 Type: `Boolean`, default: `false`
 
@@ -403,7 +352,7 @@ module.exports = {
 }
 ```
 
-#### `printBuildInstructions`
+## `printBuildInstructions`
 
 Type: `Function`, optional
 
@@ -419,7 +368,7 @@ module.exports = {
 }
 ```
 
-#### `printServerInstructions`
+## `printServerInstructions`
 
 Type: `Function`, optional
 
@@ -434,13 +383,13 @@ module.exports = {
 }
 ```
 
-#### `previewDelay`
+## `previewDelay`
 
 Type: `Number`, default: 500
 
 Debounce time in milliseconds used before rendering the changes from the editor. While typing code the preview will not be updated.
 
-#### `propsParser`
+## `propsParser`
 
 Type: `Function`, optional
 
@@ -454,7 +403,7 @@ module.exports = {
 }
 ```
 
-#### `require`
+## `require`
 
 Type: `String[]`, optional
 
@@ -490,7 +439,7 @@ module.exports = {
 
 See [Configuring webpack](Webpack.md) for mode details.
 
-#### `resolver`
+## `resolver`
 
 Type: `Function`, optional
 
@@ -503,7 +452,7 @@ module.exports = {
 }
 ```
 
-#### `ribbon`
+## `ribbon`
 
 Type: `Object`, optional
 
@@ -522,7 +471,7 @@ module.exports = {
 
 Use the [theme](#theme) config option to change ribbon style.
 
-#### `sections`
+## `sections`
 
 Type: `Array`, optional
 
@@ -530,31 +479,31 @@ Allows components to be grouped into sections with a title and overview content.
 
 See examples of [sections configuration](Components.md#sections).
 
-#### `serverHost`
+## `serverHost`
 
 Type: `String`, default: `0.0.0.0`
 
 Dev server hostname.
 
-#### `serverPort`
+## `serverPort`
 
 Type: `Number`, default: `process.env.NODE_PORT` or `6060`
 
 Dev server port. Can also be set via command line `--port=6060`.
 
-#### `showSidebar`
+## `showSidebar`
 
 Type: `Boolean`, default: `true`
 
 Toggle sidebar visibility. The sidebar will be hidden when opening components or examples in isolation mode even if this value is set to `true`. When set to `false`, the sidebar will always be hidden.
 
-#### `skipComponentsWithoutExample`
+## `skipComponentsWithoutExample`
 
 Type: `Boolean`, default: `false`
 
 Ignore components that don’t have an example file (as determined by [getExampleFilename](#getexamplefilename)). These components won’t be accessible from other examples unless you [manually `require` them](Cookbook.md#how-to-hide-some-components-in-style-guide-but-make-them-available-in-examples).
 
-#### `sortProps`
+## `sortProps`
 
 Type: `Function`, optional
 
@@ -568,7 +517,7 @@ module.exports = {
 }
 ```
 
-#### `styleguideComponents`
+## `styleguideComponents`
 
 Type: `Object`, optional
 
@@ -592,13 +541,13 @@ To wrap, rather than replace a component, make sure to import the default implem
 
 **Note**: these components are not guaranteed to be safe from breaking changes in React Styleguidist updates.
 
-#### `styleguideDir`
+## `styleguideDir`
 
 Type: `String`, default: `styleguide`
 
 Folder for static HTML style guide generated with `styleguidist build` command.
 
-#### `styles`
+## `styles`
 
 Type: `Object`, `String` or `Function`, optional
 
@@ -606,7 +555,7 @@ Customize styles of any Styleguidist’s component using an object, a function r
 
 See examples in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide).
 
-> **Note:** Using a function allows access to theme variables as seen in the example below. See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.ts). The returned object folows the same format as when configured as a litteral.
+> **Tip:** Using a function allows access to theme variables like in the example below. See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.ts). The returned object folows the same format as when configured as a litteral.
 
 ```javascript
 module.exports = {
@@ -625,7 +574,7 @@ module.exports = {
 
 **Note:** If using a file path, it has to be absolute or relative to the config file.
 
-#### `template`
+## `template`
 
 Type: `Object` or `Function`, optional.
 
@@ -643,7 +592,7 @@ module.exports = {
 
 A function that returns an HTML string, see [mini-html-webpack-plugin docs](https://github.com/styleguidist/mini-html-webpack-plugin#custom-templates).
 
-#### `theme`
+## `theme`
 
 Type: `Object` or `String`, optional
 
@@ -653,19 +602,19 @@ The path is relative to the config file or absolute.
 
 See examples in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide).
 
-> **Note:** See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.ts).
->
-> **Note:** Styles use [JSS](https://github.com/cssinjs/jss/blob/master/docs/jss-syntax.md) with these plugins: [jss-plugin-isolate](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-isolate), [jss-plugin-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested), [jss-plugin-camel-case](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-camel-case), [jss-plugin-default-unit](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-default-unit), [jss-plugin-compose](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-compose) and [jss-plugin-global](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-global).
->
-> **Note:** Use [React Developer Tools](https://github.com/facebook/react) to find component and style names. For example a component `<LogoRenderer><h1 className="rsg--logo-53">` corresponds to an example above.
+> **Info:** See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.ts).
 
-#### `title`
+> **Info:** Styles use [JSS](https://github.com/cssinjs/jss/blob/master/docs/jss-syntax.md) with these plugins: [jss-plugin-isolate](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-isolate), [jss-plugin-nested](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-nested), [jss-plugin-camel-case](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-camel-case), [jss-plugin-default-unit](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-default-unit), [jss-plugin-compose](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-compose) and [jss-plugin-global](https://github.com/cssinjs/jss/tree/master/packages/jss-plugin-global).
+
+> **Tip:** Use [React Developer Tools](https://github.com/facebook/react) to find component and style names. For example a component `<LogoRenderer><h1 className="rsg--logo-53">` corresponds to an example above.
+
+## `title`
 
 Type: `String`, default: `<app name from package.json> Style Guide`
 
 Style guide title.
 
-#### `tocMode`
+## `tocMode`
 
 Type: `String` default: `expand`
 
@@ -676,7 +625,7 @@ Defines if the table of contents sections will behave like an accordion:
 
 Collapse the sections created in the sidebar to reduce the height of the sidebar. This can be useful in large codebases with lots of components to avoid having to scroll too far.
 
-#### `updateDocs`
+## `updateDocs`
 
 Type: `Function`, optional
 
@@ -715,7 +664,7 @@ export default class Button extends React.Component {
 export default
 ```
 
-#### `updateExample`
+## `updateExample`
 
 Type: `Function`, optional
 
@@ -761,7 +710,7 @@ module.exports = {
 }
 ```
 
-#### `usageMode`
+## `usageMode`
 
 Type: `String`, default: `collapse`
 
@@ -771,19 +720,19 @@ Defines the initial state of the props and methods tab:
 - `hide`: hide the tab and it can´t be toggled in the UI.
 - `expand`: expand the tab by default.
 
-#### `verbose`
+## `verbose`
 
 Type: `Boolean`, default: `false`
 
 Print debug information. Same as `--verbose` command line switch.
 
-#### `version`
+## `version`
 
 Type: `String`, optional
 
 Style guide version, displayed under the title in the sidebar.
 
-#### `webpackConfig`
+## `webpackConfig`
 
 Type: `Object` or `Function`, optional
 
@@ -828,12 +777,12 @@ module.exports = {
 }
 ```
 
-> **Warning:** This option disables config load from `webpack.config.js`, load your config [manually](Webpack.md#reusing-your-projects-webpack-config).
->
-> **Note:** `entry`, `externals`, `output`, `watch`, and `stats` options will be ignored. For production builds, `devtool` will also be ignored.
->
-> **Note:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `MiniHtmlWebpackPlugin`, `UglifyJsPlugin`, `TerserPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
->
-> **Note:** Run style guide in verbose mode to see the actual webpack config used by Styleguidist: `npx styleguidist server --verbose`.
+> **Caution:** This option disables config load from `webpack.config.js`, load your config [manually](Webpack.md#reusing-your-projects-webpack-config).
+
+> **Danger:** `entry`, `externals`, `output`, `watch`, and `stats` options will be ignored. For production builds, `devtool` will also be ignored.
+
+> **Danger:** `CommonsChunkPlugins`, `HtmlWebpackPlugin`, `MiniHtmlWebpackPlugin`, `UglifyJsPlugin`, `TerserPlugin`, `HotModuleReplacementPlugin` plugins will be ignored because Styleguidist already includes them or they may break Styleguidist.
+
+> **Tip:** Run style guide in verbose mode to see the actual webpack config used by Styleguidist: `npx styleguidist server --verbose`.
 
 See [Configuring webpack](Webpack.md) for examples.
