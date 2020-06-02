@@ -1,0 +1,166 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* :root {
+	--baseColor: #252525;
+	--linkColor: #0094a9;
+	--hoverColor: #00d9fc;
+	--infoColor: #bbb;
+	--infoBackground: #f5f5f5;
+	--warningColor: #ea5e5e;
+	--warningBackground: #fff5f5;
+} */
+
+/* You can override the default Infima variables here. */
+:root {
+	--color-base: #252525;
+	--color-bg: #fff;
+	--color-light: #e5e5e5;
+	--ifm-color-primary: #0094a9;
+	--ifm-color-primary-dark: #008598;
+	--ifm-color-primary-darker: #007e90;
+	--ifm-color-primary-darkest: #006876;
+	--ifm-color-primary-light: #00a3ba;
+	--ifm-color-primary-lighter: #00aac2;
+	--ifm-color-primary-lightest: #00c0dc;
+	--ifm-font-color-base: var(--color-base);
+	--ifm-heading-color: var(--color-base);
+	--ifm-button-color: var(--color-base);
+	--ifm-hero-text-color: var(--color-base);
+	--ifm-link-hover-color: var(--ifm-color-primary-lightest);
+	--ifm-heading-font-weight: normal;
+	--ifm-button-color: var(--ifm-color-primary);
+	--ifm-button-background-color: var(--color-bg);
+	--ifm-button-border-color: var(--ifm-color-primary);
+	--ifm-button-border-radius: 3px;
+	--ifm-button-font-weight: normal;
+	--ifm-button-padding-vertical: 0.5rem;
+	--ifm-link-decoration: underline;
+	--ifm-navbar-background-color: var(--ifm-color-primary);
+	--ifm-navbar-link-color: var(--color-bg);
+	--ifm-navbar-link-hover-color: var(--color-light);
+	--ifm-menu-color-background-hover: rgba(0, 0, 0, 0.15);
+	--ifm-footer-background-color: var(--ifm-color-primary-darkest);
+	--ifm-footer-color: var(--color-light);
+	--ifm-footer-title-color: var(--color-light);
+	--ifm-footer-link-color: var(--color-bg);
+	--ifm-footer-link-hover-color: var(--color-light);
+	--ifm-h1-font-size: 2.4rem;
+	--ifm-h2-font-size: 1.8rem;
+	--ifm-h3-font-size: 1.4rem;
+	--ifm-h4-font-size: 1.2rem;
+}
+
+a:focus {
+	outline: dotted 1px;
+	outline-offset: 1px;
+}
+
+video {
+	max-width: 100%;
+}
+
+.button:hover,
+.button:active,
+.button:focus {
+	color: var(--ifm-link-hover-color);
+	border-color: var(--ifm-link-hover-color);
+}
+.button:focus {
+	box-shadow: 0 0 0 2px var(--ifm-button-background-color),
+		0 0 0 4px var(--ifm-link-hover-color);
+}
+
+.docusaurus-highlight-code-line {
+	background-color: rgb(72, 77, 91);
+	display: block;
+	margin: 0 calc(-1 * var(--ifm-pre-padding));
+	padding: 0 var(--ifm-pre-padding);
+}
+
+/* Colors from https://getbootstrap.com/docs/4.5/components/alerts/ */
+.alert--secondary {
+	--ifm-alert-color: #383d41;
+	--ifm-alert-background-color: #e2e3e5;
+	--ifm-alert-border-color: #d6d8db;
+}
+.alert--info {
+	--ifm-alert-color: #0c5460;
+	--ifm-alert-background-color: #d1ecf1;
+	--ifm-alert-border-color: #bee5eb;
+}
+.alert--success {
+	--ifm-alert-color: #155724;
+	--ifm-alert-background-color: #d4edda;
+	--ifm-alert-border-color: #c3e6cb;
+}
+.alert--warning {
+	--ifm-alert-color: #856404;
+	--ifm-alert-background-color: #fff3cd;
+	--ifm-alert-border-color: #ffeeba;
+}
+.alert--danger {
+	--ifm-alert-color: #721c24;
+	--ifm-alert-background-color: #f8d7da;
+	--ifm-alert-border-color: #f5c6cb;
+}
+.alert {
+	--ifm-heading-color: var(--ifm-alert-color);
+	--ra-admonition-icon-color: var(--ifm-alert-color);
+}
+.alert h5 {
+	font-weight: bold;
+}
+.alert code {
+	padding: 0;
+	color: inherit;
+	background-color: transparent;
+}
+
+/* Fix missing empty lines in code examples */
+.token-line {
+	min-height: 1.25rem;
+}
+
+@media (max-width: 996px) {
+	.row .col.col.col + .col.col.col {
+		margin-top: 1rem;
+		order: initial;
+	}
+}
+
+.navbar__brand {
+	text-decoration: none;
+}
+.navbar__brand:hover {
+	color: var(--ifm-navbar-link-hover-color);
+}
+.navbar__toggle {
+	color: var(--ifm-navbar-link-color);
+}
+.navbar__toggle:hover {
+	color: var(--ifm-navbar-link-hover-color);
+}
+.navbar__toggle:focus {
+	outline: 1px dotted;
+}
+
+.menu__link {
+	text-decoration: none;
+}
+.navbar-sidebar .menu__link {
+	--ifm-menu-color: var(--color-bg);
+}
+
+.footer a:link,
+.footer a:visited {
+	color: var(--ifm-footer-link-color);
+}
+.footer a:hover,
+.footer a:active,
+.footer a:focus {
+	color: var(--ifm-footer-link-hover-color);
+}

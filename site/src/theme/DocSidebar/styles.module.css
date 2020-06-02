@@ -1,0 +1,45 @@
+/* Styles below are mostly copy of the default theme styles. We need to move
+   the sidebar container styles to our own container that contains both:
+	 the original sidebar (with styles on the root element removed) and CodeFund
+	 container */
+
+@media (min-width: 997px) {
+	.sidebar {
+		height: 100vh;
+		overflow-y: auto;
+		position: sticky;
+		top: 0;
+		padding-top: var(--ifm-navbar-height);
+	}
+
+	/* HACK: Remove styles from the theme sidebar container */
+	.sidebar > *:first-child {
+		height: initial;
+		overflow: initial;
+		position: initial;
+		top: initial;
+		padding-top: initial;
+	}
+
+	.sidebar::-webkit-scrollbar {
+		width: 7px;
+	}
+
+	.sidebar::-webkit-scrollbar-track {
+		background: #f1f1f1;
+		border-radius: 10px;
+	}
+
+	.sidebar::-webkit-scrollbar-thumb {
+		background: #888;
+		border-radius: 10px;
+	}
+
+	.sidebar::-webkit-scrollbar-thumb:hover {
+		background: #555;
+	}
+
+	.extra {
+		padding: 0.5rem;
+	}
+}

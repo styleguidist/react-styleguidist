@@ -1,0 +1,21 @@
+.stack.stack > * {
+	margin-bottom: 0;
+}
+.stack--xxs.stack--xxs > * + * {
+	margin-top: 0.125rem; /* 2px */
+}
+.stack--xs.stack--xs > * + * {
+	margin-top: 0.25rem; /* 4px */
+}
+.stack--s.stack--s > * + * {
+	margin-top: 0.5rem; /* 8px */
+}
+.stack--m.stack--m > * + * {
+	margin-top: 1rem; /* 16px */
+}
+.stack--l.stack--l > * + * {
+	margin-top: 2rem; /* 32px */
+}
+.stack--xl.stack--xl > * + * {
+	margin-top: 4rem; /* 32px */
+}

@@ -1,0 +1,5 @@
+@media (min-width: 997px) {
+	.col--order-2 {
+		order: 2;
+	}
+}
