@@ -84,6 +84,11 @@ module.exports = {
 			],
 			copyright: `Made with coffee in Berlin by <a href="https://sapegin.me/" target="_blank" rel="noopener noreferrer">Artem Sapegin</a> and <a href="https://github.com/styleguidist/react-styleguidist/graphs/contributors" target="_blank" rel="noopener noreferrer">amazing contributors</a>. Logo: <a href="https://okonet.ru/" target="_blank" rel="noopener noreferrer">Andrey Okonetchnikov</a> and <a href="https://iamsaravieira.com/" target="_blank" rel="noopener noreferrer">Sara Vieira</a>. Hosting: <a href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer">Netlify</a>`,
 		},
+		algolia: {
+			apiKey: '0bd0dc976499f3a333c9d26416b4fee1',
+			indexName: 'react_styleguidist',
+			algoliaOptions: {},
+		},
 	},
 	presets: [
 		[

@@ -4,21 +4,20 @@
  * work well for content-centric websites.
  */
 
-/* :root {
-	--baseColor: #252525;
-	--linkColor: #0094a9;
-	--hoverColor: #00d9fc;
-	--infoColor: #bbb;
-	--infoBackground: #f5f5f5;
-	--warningColor: #ea5e5e;
-	--warningBackground: #fff5f5;
-} */
-
 /* You can override the default Infima variables here. */
 :root {
 	--color-base: #252525;
-	--color-bg: #fff;
-	--color-light: #e5e5e5;
+	--ifm-color-gray-0: var(--ifm-color-white);
+	--ifm-color-gray-100: #f5f5f5;
+	--ifm-color-gray-200: #ebebeb;
+	--ifm-color-gray-300: #dadada;
+	--ifm-color-gray-400: #cccccc;
+	--ifm-color-gray-500: #bebebe;
+	--ifm-color-gray-600: #8d8d8d;
+	--ifm-color-gray-700: #606060;
+	--ifm-color-gray-800: #444444;
+	--ifm-color-gray-900: #1c1c1c;
+	--ifm-color-gray-1000: var(--ifm-color-black);
 	--ifm-color-primary: #0094a9;
 	--ifm-color-primary-dark: #008598;
 	--ifm-color-primary-darker: #007e90;
@@ -31,23 +30,25 @@
 	--ifm-button-color: var(--color-base);
 	--ifm-hero-text-color: var(--color-base);
 	--ifm-link-hover-color: var(--ifm-color-primary-lightest);
+	--ifm-font-family-base: 'Open Sans', Helvetica, sans-serif;
 	--ifm-heading-font-weight: normal;
 	--ifm-button-color: var(--ifm-color-primary);
-	--ifm-button-background-color: var(--color-bg);
+	--ifm-button-background-color: var(--ifm-color-white);
 	--ifm-button-border-color: var(--ifm-color-primary);
 	--ifm-button-border-radius: 3px;
 	--ifm-button-font-weight: normal;
 	--ifm-button-padding-vertical: 0.5rem;
 	--ifm-link-decoration: underline;
 	--ifm-navbar-background-color: var(--ifm-color-primary);
-	--ifm-navbar-link-color: var(--color-bg);
-	--ifm-navbar-link-hover-color: var(--color-light);
+	--ifm-navbar-link-color: var(--ifm-color-white);
+	--ifm-navbar-link-hover-color: var(--ifm-color-gray-300);
+	--ifm-navbar-search-input-background-color: var(--ifm-color-gray-100);
 	--ifm-menu-color-background-hover: rgba(0, 0, 0, 0.15);
 	--ifm-footer-background-color: var(--ifm-color-primary-darkest);
-	--ifm-footer-color: var(--color-light);
-	--ifm-footer-title-color: var(--color-light);
-	--ifm-footer-link-color: var(--color-bg);
-	--ifm-footer-link-hover-color: var(--color-light);
+	--ifm-footer-color: var(--ifm-color-gray-300);
+	--ifm-footer-title-color: var(--ifm-color-gray-300);
+	--ifm-footer-link-color: var(--ifm-color-white);
+	--ifm-footer-link-hover-color: var(--ifm-color-gray-300);
 	--ifm-h1-font-size: 2.4rem;
 	--ifm-h2-font-size: 1.8rem;
 	--ifm-h3-font-size: 1.4rem;
@@ -147,12 +148,18 @@ video {
 .navbar__toggle:focus {
 	outline: 1px dotted;
 }
+.navbar__search-input {
+	border-radius: var(--ifm-button-border-radius);
+}
+.navbar__search-input::placeholder {
+	color: var(--ifm-color-gray-600);
+}
 
 .menu__link {
 	text-decoration: none;
 }
 .navbar-sidebar .menu__link {
-	--ifm-menu-color: var(--color-bg);
+	--ifm-menu-color: var(--ifm-color-white);
 }
 
 .footer a:link,
