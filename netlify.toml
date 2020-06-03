@@ -1,3 +1,4 @@
 [build]
-publish = "site/build"
+base = "site/"
+publish = "build/"
 command = "npm run sync; npm run build"
