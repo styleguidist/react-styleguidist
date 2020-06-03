@@ -1,0 +1,3 @@
+[build]
+publish = "site/build"
+command = "npm run sync; npm run build"
