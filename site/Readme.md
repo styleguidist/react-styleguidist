@@ -1,6 +1,6 @@
 # [React Styleguidist site](https://react-styleguidist.js.org)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/fc0ecb8b-3ab1-406d-be20-ea357f4889ab/deploy-status)](https://app.netlify.com/sites/mrmjs/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2c45b383-a004-4878-a6c6-79ea2668b865/deploy-status)](https://app.netlify.com/sites/styleguidist/deploys)
 
 This site is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static site generator.
 

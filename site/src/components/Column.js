@@ -3,12 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import styles from './Column.module.css';
 
-export const Row = ({
-	children,
-	className,
-	as: Component = 'div',
-	...rest
-}) => (
+export const Row = ({ children, className, as: Component = 'div', ...rest }) => (
 	<Component className={classnames('row', className)} {...rest}>
 		{children}
 	</Component>
@@ -20,21 +15,9 @@ Row.propTypes = {
 	as: PropTypes.string,
 };
 
-export const Column = ({
-	children,
-	size,
-	order,
-	className,
-	as: Component = 'div',
-	...rest
-}) => (
+export const Column = ({ children, size, order, className, as: Component = 'div', ...rest }) => (
 	<Component
-		className={classnames(
-			'col',
-			`col--${size}`,
-			order && styles[`col--order-${order}`],
-			className
-		)}
+		className={classnames('col', `col--${size}`, order && styles[`col--order-${order}`], className)}
 		{...rest}
 	>
 		{children}

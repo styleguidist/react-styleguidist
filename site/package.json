@@ -6,13 +6,7 @@
     "start": "docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
-    "sync": "node scripts/sync.js",
-    "lint": "eslint . --cache --fix",
-    "pretest": "npm run lint:css && npm run lint",
-    "lint:css": "stylelint '**/*.css'",
-    "format": "prettier --loglevel warn --write \"**/*.{js,css,md}\"",
-    "posttest": "npm run format"
+    "sync": "node scripts/sync.js"
   },
   "dependencies": {
     "@charlietango/use-script": "^2.1.0",
@@ -26,15 +20,6 @@
     "react-dom": "^16.13.1",
     "unist-util-visit": "^2.0.2"
   },
-  "devDependencies": {
-    "eslint": "^7.1.0",
-    "eslint-config-tamia": "^7.1.2",
-    "husky": "^4.2.5",
-    "lint-staged": "^10.2.7",
-    "prettier": "^2.0.5",
-    "stylelint": "^13.5.0",
-    "stylelint-config-recommended": "^3.0.0"
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -46,15 +31,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": "eslint --cache --fix",
-    "*.css": "stylelint --fix",
-    "*.{js,css,md}": "prettier --write"
   }
 }

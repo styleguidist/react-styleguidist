@@ -8,13 +8,11 @@ const DEST_DIR = 'docs';
 
 const read = file => readFileSync(file, 'utf8');
 
-const write = (file, contents) =>
-	writeFileSync(`${DEST_DIR}/${file}.md`, contents);
+const write = (file, contents) => writeFileSync(`${DEST_DIR}/${file}.md`, contents);
 
 const getTitle = contents => contents.match(/^#\s*(.*?)$/m) || [];
 
-const getSidebarTitle = contents =>
-	contents.match(/^<!--\s*(.*?)(?:\s*#([\w-]+))?\s*-->/) || [];
+const getSidebarTitle = contents => contents.match(/^<!--\s*(.*?)(?:\s*#([\w-]+))?\s*-->/) || [];
 
 const stripTitle = contents => contents.replace(/^#.*?$/m, '');
 

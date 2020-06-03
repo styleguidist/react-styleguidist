@@ -6,8 +6,7 @@ const IGNORES = [
 	'https://github.com/styleguidist/react-styleguidist/blob/master/.github/Contributing.md',
 ];
 const REPLACEMENTS = {
-	'https://github.com/styleguidist/react-styleguidist':
-		'https://react-styleguidist.js.org/',
+	'https://github.com/styleguidist/react-styleguidist': 'https://react-styleguidist.js.org/',
 };
 
 const getDocUrl = url => url.replace(/(\w+)(?:\.md)/, (_, $1) => kebabCase($1));

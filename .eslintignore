@@ -14,3 +14,5 @@ travis_phantomjs/*
 # becomes this `import { ASTNode, ASTNode } from 'ast-types';`
 # TODO: fix tamia about this and remove this rule
 *.d.ts
+site/build/
+site/.docusaurus/

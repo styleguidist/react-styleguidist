@@ -1,15 +1,12 @@
 module.exports = {
 	title: 'React Styleguidist',
-	tagline:
-		'Isolated React component development environment with a living style guide',
+	tagline: 'Isolated React component development environment with a living style guide',
 	url: 'https://react-styleguidist.js.org/',
 	baseUrl: '/',
 	favicon: 'img/favicon.ico',
 	organizationName: 'styleguidist',
 	projectName: 'react-styleguidist',
-	stylesheets: [
-		'https://fonts.googleapis.com/css?family=Bree+Serif|Open+Sans:400,400i,700',
-	],
+	stylesheets: ['https://fonts.googleapis.com/css?family=Bree+Serif|Open+Sans:400,400i,700'],
 	themeConfig: {
 		disableDarkMode: true,
 		prism: {
@@ -45,8 +42,7 @@ module.exports = {
 					items: [
 						{
 							label: 'Changelog',
-							href:
-								'https://github.com/styleguidist/react-styleguidist/releases',
+							href: 'https://github.com/styleguidist/react-styleguidist/releases',
 						},
 						{
 							label: 'Code of conduct',

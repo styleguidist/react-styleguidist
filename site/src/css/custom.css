@@ -71,8 +71,7 @@ video {
 	border-color: var(--ifm-link-hover-color);
 }
 .button:focus {
-	box-shadow: 0 0 0 2px var(--ifm-button-background-color),
-		0 0 0 4px var(--ifm-link-hover-color);
+	box-shadow: 0 0 0 2px var(--ifm-button-background-color), 0 0 0 4px var(--ifm-link-hover-color);
 }
 
 .docusaurus-highlight-code-line {
