@@ -23,11 +23,13 @@ it('should return valid, parsable JS', () => {
 	expect(() => new vm.Script(result)).not.toThrow();
 });
 
-it('should return correct component paths: default glob pattern', () => {
+it('should return correct component paths: default glob pattern', async () => {
 	const result = styleguideLoader.pitch.call({
 		request: file,
 		_styleguidist: {
-			...getConfig(path.resolve(__dirname, '../../../test/apps/defaults/styleguide.config.js')),
+			...(await getConfig(
+				path.resolve(__dirname, '../../../test/apps/defaults/styleguide.config.js')
+			)),
 		},
 		addContextDependency: () => {},
 	} as any);

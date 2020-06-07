@@ -11,8 +11,8 @@ jest.mock('../create-server', () => () => {
 	};
 });
 
-test('server should return an object containing a server instance', () => {
-	const config = getConfig();
+test('server should return an object containing a server instance', async () => {
+	const config = await getConfig();
 	const callback = jest.fn();
 	const serverInfo = server(config, callback);
 

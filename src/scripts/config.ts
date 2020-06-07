@@ -33,10 +33,10 @@ function findConfigFile(): string | false {
  * @param {function} [update] Change config object before running validation on it.
  * @returns {object}
  */
-function getConfig(
-	config?: string | Rsg.StyleguidistConfig,
+async function getConfig(
+	config?: string | Rsg.StyleguidistConfig | Promise<Rsg.StyleguidistConfig>,
 	update?: (conf: Rsg.StyleguidistConfig) => Rsg.StyleguidistConfig
-): Rsg.SanitizedStyleguidistConfig {
+): Promise<Rsg.SanitizedStyleguidistConfig> {
 	let configFilepath: string | false = false;
 	if (isString(config)) {
 		// Load config from a given file
@@ -58,6 +58,8 @@ function getConfig(
 	if (!config || isString(config)) {
 		return {} as any;
 	}
+
+	config = await config;
 
 	if (update) {
 		config = update(config);
