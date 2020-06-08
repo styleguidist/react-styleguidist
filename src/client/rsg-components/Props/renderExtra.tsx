@@ -71,13 +71,15 @@ export default function renderExtra(prop: PropDescriptor): React.ReactNode {
 			return renderUnion(type);
 		case 'shape':
 			return prop.type && renderShape(prop.type.value);
+		case 'exact':
+			return prop.type && renderShape(prop.type.value);
 		case 'arrayOf':
-			if (type.value.name === 'shape') {
+			if (type.value.name === 'shape' || type.value.name === 'exact') {
 				return prop.type && renderShape(prop.type.value.value);
 			}
 			return null;
 		case 'objectOf':
-			if (type.value.name === 'shape') {
+			if (type.value.name === 'shape' || type.value.name === 'exact') {
 				return prop.type && renderShape(prop.type.value.value);
 			}
 			return null;
