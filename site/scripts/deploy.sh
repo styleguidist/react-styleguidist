@@ -5,16 +5,10 @@ set -e
 # Deploy to Netlify
 
 EXAMPLE_DIR="../examples/basic"
-PUBLIC_DIR="build"
+STATIC_DIR="static"
 
 echo "Node $(node -v)"
 echo "npm $(npm -v)"
-
-# Build the site
-echo
-echo "Building the site..."
-npm run sync
-npm run build
 
 # Build a basic example
 echo
@@ -27,5 +21,11 @@ cd -
 # Copy to the public folder
 echo
 echo "Copying the basic example..."
-mkdir -p "$PUBLIC_DIR/examples/basic"
-cp -R $EXAMPLE_DIR/styleguide/* "$PUBLIC_DIR/examples/basic"
+mkdir -p "$STATIC_DIR/examples/basic"
+cp -R $EXAMPLE_DIR/styleguide/* "$STATIC_DIR/examples/basic"
+
+# Build the site
+echo
+echo "Building the site..."
+npm run sync
+npm run build
