@@ -6,7 +6,8 @@
     "start": "docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
-    "sync": "node scripts/sync.js"
+    "sync": "node scripts/sync.js",
+    "deploy": "bash scripts/deploy.sh"
   },
   "dependencies": {
     "@charlietango/use-script": "^2.1.0",
