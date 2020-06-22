@@ -205,6 +205,21 @@ describe('props columns', () => {
 	`);
 	});
 
+	test('should render PropTypes.arrayOf(PropTypes.exact)', () => {
+		const { container } = renderJs([
+			'foos: PropTypes.arrayOf(PropTypes.exact({bar: PropTypes.number, baz: PropTypes.any}))',
+		]);
+
+		expect(getText(container)).toMatchInlineSnapshot(`
+		"Prop name: foos 
+		Type: exact[] 
+		Default: 
+		Description: 
+		 bar : number 
+		 baz : any"
+	`);
+	});
+
 	test('should render PropTypes.instanceOf', () => {
 		const { container } = renderJs(['num: PropTypes.instanceOf(Number)']);
 
@@ -224,6 +239,21 @@ describe('props columns', () => {
 		expect(getText(container)).toMatchInlineSnapshot(`
 		"Prop name: foo 
 		Type: shape 
+		Default: 
+		Description: 
+		 bar : number — Required 
+		 baz : any"
+	`);
+	});
+
+	test('should render PropTypes.exact', () => {
+		const { container } = renderJs([
+			'foo: PropTypes.exact({bar: PropTypes.number.isRequired, baz: PropTypes.any})',
+		]);
+
+		expect(getText(container)).toMatchInlineSnapshot(`
+		"Prop name: foo 
+		Type: exact 
 		Default: 
 		Description: 
 		 bar : number — Required 
@@ -319,6 +349,28 @@ describe('props columns', () => {
 	`);
 	});
 
+	test('should render PropTypes.exact with description', () => {
+		const { container } = renderJs([
+			`foo: PropTypes.exact({
+			/**
+			 * Number
+			 */
+			bar: PropTypes.number.isRequired,
+			/** Any */
+			baz: PropTypes.any
+		})`,
+		]);
+
+		expect(getText(container)).toMatchInlineSnapshot(`
+		"Prop name: foo 
+		Type: exact 
+		Default: 
+		Description: 
+		 bar : number — Required — Number 
+		 baz : any — Any"
+	`);
+	});
+
 	test('should render PropTypes.objectOf', () => {
 		const { container } = renderJs(['colors: PropTypes.objectOf(PropTypes.string)']);
 
@@ -343,6 +395,26 @@ describe('props columns', () => {
 		expect(getText(container)).toMatchInlineSnapshot(`
 		"Prop name: colors 
 		Type: {shape} 
+		Default: 
+		Description: 
+		 bar : number — Required 
+		 baz : any"
+	`);
+	});
+
+	test('should render PropTypes.objectOf(PropTypes.exact)', () => {
+		const { container } = renderJs([
+			`colors: PropTypes.objectOf(
+			PropTypes.exact({
+				bar: PropTypes.number.isRequired,
+				baz: PropTypes.any
+			})
+		)`,
+		]);
+
+		expect(getText(container)).toMatchInlineSnapshot(`
+		"Prop name: colors 
+		Type: {exact} 
 		Default: 
 		Description: 
 		 bar : number — Required 
