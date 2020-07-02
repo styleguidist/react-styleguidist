@@ -26,8 +26,6 @@ stages:
   - coverage
   - name: release
     if: type != pull_request AND branch = master
-  - name: documentation
-    if: type != pull_request AND branch = master
 jobs:
   include:
     - stage: lint
@@ -69,8 +67,3 @@ jobs:
       script:
         - npm install --no-save conventional-changelog-eslint
         - npx semantic-release
-
-    - stage: documentation
-      script:
-        # Trigger https://react-styleguidist.js.org build on Netlify
-        - curl -X POST -d '{}' https://api.netlify.com/build_hooks/591308eba700c425fc1e8a54
