@@ -10,11 +10,12 @@
     "deploy": "bash scripts/deploy.sh"
   },
   "dependencies": {
-    "@charlietango/use-script": "^2.1.0",
+    "@charlietango/use-script": "^2.1.1",
     "@docusaurus/core": "^2.0.0-alpha.56",
     "@docusaurus/preset-classic": "^2.0.0-alpha.56",
     "classnames": "^2.2.6",
-    "fs-extra": "^9.0.0",
+    "docusaurus-plugin-fathom": "^1.1.0",
+    "fs-extra": "^9.0.1",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "react": "^16.13.1",

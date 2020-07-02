@@ -85,6 +85,10 @@ module.exports = {
 			indexName: 'react_styleguidist',
 			algoliaOptions: {},
 		},
+		fathomAnalytics: {
+			siteId: 'JCRYK',
+			customDomain: 'https://stats.sapegin.me',
+		},
 	},
 	presets: [
 		[
@@ -100,4 +104,5 @@ module.exports = {
 			},
 		],
 	],
+	plugins: ['docusaurus-plugin-fathom'],
 };
