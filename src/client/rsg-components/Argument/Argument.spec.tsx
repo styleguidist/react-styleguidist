@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { ArgumentRenderer, styles } from './ArgumentRenderer';
 
 const name = 'Foo';
-const type = { name: 'Array' };
+const type = {type: 'NameExpression', name: 'Array'};
 const description = 'Converts foo to bar';
 const props = {
 	classes: classes(styles),
@@ -28,7 +28,7 @@ it('should render optional argument', () => {
 	const actual = shallow(
 		<ArgumentRenderer
 			{...props}
-			type={{ type: 'OptionalType', expression: { name: 'Array' } }}
+			type={{ type: 'OptionalType', expression: {type: 'NameExpression', name: 'Array'} }}
 			description={description}
 		/>
 	);
@@ -40,7 +40,7 @@ it('should render default value of argument', () => {
 	const actual = shallow(
 		<ArgumentRenderer
 			{...props}
-			type={{ name: 'String' }}
+			type={{type: 'NameExpression', name: 'String'}}
 			default="bar"
 			description={description}
 		/>
@@ -53,7 +53,7 @@ it('should render default value of optional argument', () => {
 	const actual = shallow(
 		<ArgumentRenderer
 			{...props}
-			type={{ type: 'OptionalType', expression: { name: 'Boolean' } }}
+			type={{ type: 'OptionalType', expression: {type: 'NameExpression', name: 'Boolean'} }}
 			default="true"
 			description={description}
 		/>
