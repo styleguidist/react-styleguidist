@@ -7,13 +7,6 @@ module.exports = {
 	organizationName: 'styleguidist',
 	projectName: 'react-styleguidist',
 	stylesheets: ['https://fonts.googleapis.com/css?family=Bree+Serif|Open+Sans:400,400i,700'],
-	scripts: [
-		{
-			src: 'https://gc.zgo.at/count.js',
-			async: true,
-			'data-goatcounter': 'https://react-styleguidist.goatcounter.com/count',
-		},
-	],
 	themeConfig: {
 		disableDarkMode: true,
 		prism: {
@@ -93,6 +86,7 @@ module.exports = {
 			algoliaOptions: {},
 		},
 	},
+	plugins: [require.resolve('./src/plugins/goatcounter-plugin.js')],
 	presets: [
 		[
 			'@docusaurus/preset-classic',
