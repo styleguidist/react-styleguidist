@@ -72,7 +72,7 @@ import Placeholder from 'rsg-example/components/Placeholder'
 </Button>
 ```
 
-_Note: `rsg-example` module is an alias defined by the [moduleAliases](https://react-styleguidist.js.org/docs/configuration.html#modulealiases) config option._
+_Note: `rsg-example` module is an alias defined by the [moduleAliases](https://react-styleguidist.js.org/docs/configuration#modulealiases) config option._
 
 Each example's state can be accessed by React hook `useState`:
 

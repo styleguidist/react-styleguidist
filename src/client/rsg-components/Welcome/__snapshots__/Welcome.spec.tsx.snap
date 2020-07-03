@@ -17,7 +17,7 @@ Create **styleguide.config.js** file in your project root directory like this:
       components: 'src/components/**/*.js'
     };
 
-Read more in the [locating components guide](https://react-styleguidist.js.org/docs/components.html).
+Read more in the [locating components guide](https://react-styleguidist.js.org/docs/components).
 				"
   />
 </div>

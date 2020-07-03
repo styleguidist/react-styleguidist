@@ -573,7 +573,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 ```
 
-3. [Start your style guide server](https://react-styleguidist.js.org/docs/getting-started.html#3-start-your-style-guide) and open your browser’s developer tools console.
+3. [Start your style guide server](https://react-styleguidist.js.org/docs/getting-started#3-start-your-style-guide) and open your browser’s developer tools console.
 
 If you are using Jest for testing you can also use [jest-axe](https://github.com/nickcolley/jest-axe).
 

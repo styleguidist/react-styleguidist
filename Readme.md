@@ -14,17 +14,17 @@ React Styleguidist is a component development environment with hot reloaded dev 
 
 ## Usage
 
-- **[Getting Started](https://react-styleguidist.js.org/docs/getting-started.html): install and run Styleguidist**
-- [Documenting components](https://react-styleguidist.js.org/docs/documenting.html): how to write documentation
-- [Locating components](https://react-styleguidist.js.org/docs/components.html): point Styleguidist to your React components
-- [Configuring webpack](https://react-styleguidist.js.org/docs/webpack.html): tell Styleguidist how to load your code
-- [Cookbook](https://react-styleguidist.js.org/docs/cookbook.html): how to solve common tasks with Styleguidist
+- **[Getting Started](https://react-styleguidist.js.org/docs/getting-started): install and run Styleguidist**
+- [Documenting components](https://react-styleguidist.js.org/docs/documenting): how to write documentation
+- [Locating components](https://react-styleguidist.js.org/docs/components): point Styleguidist to your React components
+- [Configuring webpack](https://react-styleguidist.js.org/docs/webpack): tell Styleguidist how to load your code
+- [Cookbook](https://react-styleguidist.js.org/docs/cookbook): how to solve common tasks with Styleguidist
 
 ## Advanced documentation
 
-- [Configuration](https://react-styleguidist.js.org/docs/configuration.html)
-- [CLI commands and options](https://react-styleguidist.js.org/docs/cli.html)
-- [Node.js API](https://react-styleguidist.js.org/docs/api.html)
+- [Configuration](https://react-styleguidist.js.org/docs/configuration)
+- [CLI commands and options](https://react-styleguidist.js.org/docs/cli)
+- [Node.js API](https://react-styleguidist.js.org/docs/api)
 
 ## Examples
 
@@ -48,7 +48,7 @@ Real projects using React Styleguidist:
 
 ## Integration with other tools
 
-- Create React App — supported out of the box, see the [Getting Started](https://react-styleguidist.js.org/docs/getting-started.html) guide
+- Create React App — supported out of the box, see the [Getting Started](https://react-styleguidist.js.org/docs/getting-started) guide
 - Vue, see [Vue Styleguidist](https://github.com/vue-styleguidist/vue-styleguidist)
 
 ## Third-party tools
@@ -70,7 +70,7 @@ The change log can be found on the [Releases page](https://github.com/styleguidi
 
 ## Contributing
 
-Everyone is welcome to contribute. Please take a moment to read the [contributing guidelines](.github/Contributing.md) and the [developer guide](https://react-styleguidist.js.org/docs/development.html).
+Everyone is welcome to contribute. Please take a moment to read the [contributing guidelines](.github/Contributing.md) and the [developer guide](https://react-styleguidist.js.org/docs/development).
 
 ## Sponsoring
 

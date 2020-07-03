@@ -6,7 +6,7 @@ Search open/closed issues before submitting since someone might have asked the s
 https://github.com/styleguidist/react-styleguidist/issues?utf8=%E2%9C%93&q=is%3Aissue
 
 Read essential documentation (all six pages):
-https://react-styleguidist.js.org/docs/getting-started.html
+https://react-styleguidist.js.org/docs/getting-started
 
 Make sure you’re using the latest versions of React Styleguidist.
 

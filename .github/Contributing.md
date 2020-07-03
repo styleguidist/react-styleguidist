@@ -10,7 +10,7 @@ If you want to contribute but don’t know what to do, take a look at these two 
 - Install [EditorConfig](http://editorconfig.org/) plugin for your code editor to make sure it uses correct settings.
 - Fork the repository and clone your fork.
 - Install dependencies: `npm install`.
-- Read the [developer guide](https://react-styleguidist.js.org/docs/development.html).
+- Read the [developer guide](https://react-styleguidist.js.org/docs/development).
 
 ## Development workflow
 
