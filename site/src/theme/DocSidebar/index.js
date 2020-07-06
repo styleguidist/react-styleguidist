@@ -4,11 +4,16 @@ import useScript from '@charlietango/use-script';
 import DocSidebarBase from '@theme-original/DocSidebar';
 import styles from './styles.module.css';
 
-const SCRIPT_URL = 'https://app.codefund.io/properties/135/funder.js';
+const SCRIPT_URL = 'https://media.ethicalads.io/media/client/ethicalads.min.js';
+const PUBLISHER_ID = 'react-styleguidist';
 
 function Extra() {
 	useScript(SCRIPT_URL);
-	return <div id="codefund" className={styles.extra}></div>;
+	return (
+		<div className={styles.extra}>
+			<div data-ea-publisher={PUBLISHER_ID} data-ea-type="image" className="bordered"></div>
+		</div>
+	);
 }
 
 function DocSidebar({ showExtra, ...props }) {
