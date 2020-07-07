@@ -39,7 +39,7 @@ export const ArgumentRenderer: React.FunctionComponent<ArgumentPropsWithClasses>
 	if (isOptional) {
 		type = type.expression;
 	}
-	const typeName = doctrine.type.stringify(type);
+	const typeName = type ? doctrine.type.stringify(type) : '';
 	const content = (
 		<Group>
 			{returns && 'Returns'}
