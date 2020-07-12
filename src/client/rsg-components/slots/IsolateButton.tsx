@@ -8,17 +8,18 @@ export interface IsolateButtonProps {
 	name: string;
 	example?: number;
 	isolated?: boolean;
+	href: string;
 }
 
-const IsolateButton = ({ name, example, isolated }: IsolateButtonProps) => {
+const IsolateButton = ({ name, example, isolated, href }: IsolateButtonProps) => {
+	if (isolated && !href) {
+		return null;
+	}
+
 	const testID = example ? `${name}-${example}-isolate-button` : `${name}-isolate-button`;
 
 	return isolated ? (
-		<ToolbarButton
-			href={getUrl({ anchor: true, slug: name.toLowerCase() })}
-			title="Show all components"
-			testId={testID}
-		>
+		<ToolbarButton href={href} title="Show all components" testId={testID}>
 			<MdFullscreenExit />
 		</ToolbarButton>
 	) : (
