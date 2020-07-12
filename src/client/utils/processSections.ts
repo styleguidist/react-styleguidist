@@ -27,9 +27,7 @@ export default function processSections(
 				hashPath: useRouterLinks ? hashPath : false,
 				id: useRouterLinks ? useHashId : false,
 			});
-		if (section.name === 'First File') {
-			console.log('section', href, hashPath);
-		}
+
 		return {
 			...section,
 			// flag the section as an external link to avoid rendering it later
