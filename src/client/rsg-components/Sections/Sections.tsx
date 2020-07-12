@@ -12,7 +12,7 @@ const Sections: React.FunctionComponent<{
 	return (
 		<SectionsRenderer>
 			{sections
-				.filter(section => !section.href)
+				.filter(section => !section.externalLink)
 				.map((section, idx) => (
 					<Section key={idx} section={section} depth={depth} />
 				))}

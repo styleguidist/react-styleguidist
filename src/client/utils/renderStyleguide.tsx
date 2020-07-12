@@ -29,7 +29,9 @@ export default function renderStyleguide(
 	doc: { title: string } = document,
 	hist: { replaceState: (name: string, title: string, url: string) => void } = window.history
 ): React.ReactElement {
-	const allSections = processSections(styleguide.sections);
+	const allSections = processSections(styleguide.sections, {
+		useRouterLinks: styleguide.config.pagePerSection,
+	});
 
 	const { title, pagePerSection, theme, styles } = styleguide.config;
 	const { sections, displayMode } = getRouteData(allSections, loc.hash, pagePerSection);

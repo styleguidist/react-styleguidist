@@ -36,6 +36,7 @@ export interface Section extends ProcessedSection {
  * filterSectionByName
  */
 export interface TOCItem extends ProcessedSection {
+	externalLink: boolean;
 	heading?: boolean;
 	shouldOpenInNewTab?: boolean;
 	selected?: boolean;
