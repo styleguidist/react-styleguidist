@@ -100,7 +100,7 @@ test('should not render section in isolation mode by default', () => {
 });
 
 test('should render section in isolation mode', () => {
-	const { getByLabelText } = render(
+	const { queryByLabelText } = render(
 		<Provider
 			value={{
 				...context,
@@ -118,5 +118,5 @@ test('should render section in isolation mode', () => {
 			/>
 		</Provider>
 	);
-	expect(getByLabelText(/show all components/i)).toBeInTheDocument();
+	expect(queryByLabelText(/open isolated/i)).toBeNull();
 });

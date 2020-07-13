@@ -9,45 +9,45 @@ import Context from '../Context';
 const components = [
 	{
 		name: 'Button',
-		slug: 'button',
+		href: '#button',
 	},
 	{
 		name: 'Input',
-		slug: 'input',
+		href: '#input',
 	},
 	{
 		name: 'Textarea',
-		slug: 'textarea',
+		href: '#textarea',
 	},
 ];
 
 const sections = [
 	{
 		name: 'Introduction',
-		slug: 'introduction',
+		href: '#introduction',
 		content: 'intro.md',
 	},
 	{
 		name: 'Buttons',
-		slug: 'buttons',
+		href: '#buttons',
 		components: [
 			{
 				name: 'Button',
-				slug: 'button',
+				href: '#button',
 			},
 		],
 	},
 	{
 		name: 'Forms',
-		slug: 'forms',
+		href: '#forms',
 		components: [
 			{
 				name: 'Input',
-				slug: 'input',
+				href: '#input',
 			},
 			{
 				name: 'Textarea',
-				slug: 'textarea',
+				href: '#textarea',
 			},
 		],
 	},
@@ -59,7 +59,7 @@ it('should render a renderer', () => {
 			sections={[
 				{
 					name: 'Input',
-					slug: 'input',
+					href: '#input',
 					components,
 				},
 			]}
@@ -82,7 +82,7 @@ it('should filter list when search field contains a query', () => {
 			sections={[
 				{
 					name: 'Input',
-					slug: 'input',
+					href: '#input',
 					components,
 				},
 			]}
@@ -184,36 +184,36 @@ it('should render components of a single top section as root', () => {
 		    "content": undefined,
 		    "forcedOpen": false,
 		    "heading": false,
+		    "href": "#button",
 		    "initialOpen": true,
 		    "name": "Button",
 		    "sections": Array [],
 		    "selected": false,
 		    "shouldOpenInNewTab": false,
-		    "slug": "button",
 		  },
 		  Object {
 		    "components": Array [],
 		    "content": undefined,
 		    "forcedOpen": false,
 		    "heading": false,
+		    "href": "#input",
 		    "initialOpen": true,
 		    "name": "Input",
 		    "sections": Array [],
 		    "selected": false,
 		    "shouldOpenInNewTab": false,
-		    "slug": "input",
 		  },
 		  Object {
 		    "components": Array [],
 		    "content": undefined,
 		    "forcedOpen": false,
 		    "heading": false,
+		    "href": "#textarea",
 		    "initialOpen": true,
 		    "name": "Textarea",
 		    "sections": Array [],
 		    "selected": false,
 		    "shouldOpenInNewTab": false,
-		    "slug": "textarea",
 		  },
 		]
 	`);
@@ -256,7 +256,7 @@ it('should render as the link will open in a new window only if external present
 		    "initialOpen": true,
 		    "sections": Array [],
 		    "selected": false,
-		    "shouldOpenInNewTab": true,
+		    "shouldOpenInNewTab": false,
 		  },
 		]
 	`);
@@ -272,8 +272,8 @@ it('should render components with useRouterLinks', () => {
 			sections={[
 				{
 					sections: [
-						{ visibleName: '1', name: 'Components', slug: 'Components', content: 'intro.md' },
-						{ visibleName: '2', content: 'chapter.md', slug: 'chap' },
+						{ visibleName: '1', name: 'Components', href: '#/Components', content: 'intro.md' },
+						{ visibleName: '2', content: 'chapter.md', href: '#/Chap' },
 					],
 				},
 			]}
@@ -305,20 +305,20 @@ it('should detect sections containing current selection when tocMode is collapse
 						sections: [
 							{
 								visibleName: '1',
-								slug: 'Components',
-								sections: [{ visibleName: '1.1', slug: 'Button' }],
+								href: '#/components',
+								sections: [{ visibleName: '1.1', href: '#/button' }],
 							},
 							{
 								visibleName: '2',
-								slug: 'chap',
+								href: '#/chap',
 								content: 'chapter.md',
-								sections: [{ visibleName: '2.1', slug: 'Chapter #1' }],
+								sections: [{ visibleName: '2.1', href: '#/chapter-1' }],
 							},
 							{ visibleName: '3', href: 'http://react-styleguidist.com' },
 						],
 					},
 				]}
-				loc={{ pathname: '', hash: '/#Button' }}
+				loc={{ pathname: '', hash: 'button' }}
 			/>
 		</Provider>
 	);

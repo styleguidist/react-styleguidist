@@ -53,7 +53,8 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 					? this.renderLevel(children, useRouterLinks, childHashPath, sectionDepth === 0)
 					: { content: undefined, containsSelected: false };
 
-			const selected = section.href === windowHash;
+			const selected =
+				(!useRouterLinks && section.href ? getHash(section.href) : section.href) === windowHash;
 
 			if (containsSelected || selected) {
 				childrenContainSelected = true;

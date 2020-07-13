@@ -26,7 +26,6 @@ exports[`should filter list when search field contains a query 1`] = `
   searchTerm=""
 >
   <ComponentsList
-    hashPath={Array []}
     items={
       Array [
         Object {
@@ -34,41 +33,39 @@ exports[`should filter list when search field contains a query 1`] = `
           "content": undefined,
           "forcedOpen": false,
           "heading": false,
+          "href": "#button",
           "initialOpen": true,
           "name": "Button",
           "sections": Array [],
           "selected": false,
           "shouldOpenInNewTab": false,
-          "slug": "button",
         },
         Object {
           "components": Array [],
           "content": undefined,
           "forcedOpen": false,
           "heading": false,
+          "href": "#input",
           "initialOpen": true,
           "name": "Input",
           "sections": Array [],
           "selected": false,
           "shouldOpenInNewTab": false,
-          "slug": "input",
         },
         Object {
           "components": Array [],
           "content": undefined,
           "forcedOpen": false,
           "heading": false,
+          "href": "#textarea",
           "initialOpen": true,
           "name": "Textarea",
           "sections": Array [],
           "selected": false,
           "shouldOpenInNewTab": false,
-          "slug": "textarea",
         },
       ]
     }
-    useHashId={false}
-    useRouterLinks={false}
   />
 </Styled(TableOfContents)>
 `;
@@ -79,7 +76,6 @@ exports[`should filter list when search field contains a query 2`] = `
   searchTerm="but"
 >
   <ComponentsList
-    hashPath={Array []}
     items={
       Array [
         Object {
@@ -87,17 +83,15 @@ exports[`should filter list when search field contains a query 2`] = `
           "content": undefined,
           "forcedOpen": true,
           "heading": false,
+          "href": "#button",
           "initialOpen": true,
           "name": "Button",
           "sections": Array [],
           "selected": false,
           "shouldOpenInNewTab": false,
-          "slug": "button",
         },
       ]
     }
-    useHashId={false}
-    useRouterLinks={false}
   />
 </Styled(TableOfContents)>
 `;
@@ -108,7 +102,6 @@ exports[`should filter section names 1`] = `
   searchTerm=""
 >
   <ComponentsList
-    hashPath={Array []}
     items={
       Array [
         Object {
@@ -116,109 +109,93 @@ exports[`should filter section names 1`] = `
           "content": undefined,
           "forcedOpen": false,
           "heading": false,
+          "href": "#introduction",
           "initialOpen": true,
           "name": "Introduction",
           "sections": Array [],
           "selected": false,
           "shouldOpenInNewTab": false,
-          "slug": "introduction",
         },
         Object {
           "components": Array [
             Object {
+              "href": "#button",
               "name": "Button",
-              "slug": "button",
             },
           ],
           "content": <ComponentsList
-            hashPath={
-              Array [
-                "Buttons",
-              ]
-            }
             items={
               Array [
                 Object {
                   "content": undefined,
                   "forcedOpen": false,
                   "heading": false,
+                  "href": "#button",
                   "initialOpen": true,
                   "name": "Button",
                   "selected": false,
                   "shouldOpenInNewTab": false,
-                  "slug": "button",
                 },
               ]
             }
-            useHashId={true}
-            useRouterLinks={false}
           />,
           "forcedOpen": false,
           "heading": true,
+          "href": "#buttons",
           "initialOpen": true,
           "name": "Buttons",
           "sections": Array [],
           "selected": false,
           "shouldOpenInNewTab": false,
-          "slug": "buttons",
         },
         Object {
           "components": Array [
             Object {
+              "href": "#input",
               "name": "Input",
-              "slug": "input",
             },
             Object {
+              "href": "#textarea",
               "name": "Textarea",
-              "slug": "textarea",
             },
           ],
           "content": <ComponentsList
-            hashPath={
-              Array [
-                "Forms",
-              ]
-            }
             items={
               Array [
                 Object {
                   "content": undefined,
                   "forcedOpen": false,
                   "heading": false,
+                  "href": "#input",
                   "initialOpen": true,
                   "name": "Input",
                   "selected": false,
                   "shouldOpenInNewTab": false,
-                  "slug": "input",
                 },
                 Object {
                   "content": undefined,
                   "forcedOpen": false,
                   "heading": false,
+                  "href": "#textarea",
                   "initialOpen": true,
                   "name": "Textarea",
                   "selected": false,
                   "shouldOpenInNewTab": false,
-                  "slug": "textarea",
                 },
               ]
             }
-            useHashId={true}
-            useRouterLinks={false}
           />,
           "forcedOpen": false,
           "heading": true,
+          "href": "#forms",
           "initialOpen": true,
           "name": "Forms",
           "sections": Array [],
           "selected": false,
           "shouldOpenInNewTab": false,
-          "slug": "forms",
         },
       ]
     }
-    useHashId={false}
-    useRouterLinks={false}
   />
 </Styled(TableOfContents)>
 `;
@@ -229,7 +206,6 @@ exports[`should filter section names 2`] = `
   searchTerm="frm"
 >
   <ComponentsList
-    hashPath={Array []}
     items={
       Array [
         Object {
@@ -237,17 +213,15 @@ exports[`should filter section names 2`] = `
           "content": undefined,
           "forcedOpen": true,
           "heading": false,
+          "href": "#forms",
           "initialOpen": true,
           "name": "Forms",
           "sections": Array [],
           "selected": false,
           "shouldOpenInNewTab": false,
-          "slug": "forms",
         },
       ]
     }
-    useHashId={false}
-    useRouterLinks={false}
   />
 </Styled(TableOfContents)>
 `;
@@ -258,7 +232,6 @@ exports[`should render a renderer 1`] = `
   searchTerm=""
 >
   <ComponentsList
-    hashPath={Array []}
     items={
       Array [
         Object {
@@ -266,41 +239,39 @@ exports[`should render a renderer 1`] = `
           "content": undefined,
           "forcedOpen": false,
           "heading": false,
+          "href": "#button",
           "initialOpen": true,
           "name": "Button",
           "sections": Array [],
           "selected": false,
           "shouldOpenInNewTab": false,
-          "slug": "button",
         },
         Object {
           "components": Array [],
           "content": undefined,
           "forcedOpen": false,
           "heading": false,
+          "href": "#input",
           "initialOpen": true,
           "name": "Input",
           "sections": Array [],
           "selected": false,
           "shouldOpenInNewTab": false,
-          "slug": "input",
         },
         Object {
           "components": Array [],
           "content": undefined,
           "forcedOpen": false,
           "heading": false,
+          "href": "#textarea",
           "initialOpen": true,
           "name": "Textarea",
           "sections": Array [],
           "selected": false,
           "shouldOpenInNewTab": false,
-          "slug": "textarea",
         },
       ]
     }
-    useHashId={false}
-    useRouterLinks={false}
   />
 </Styled(TableOfContents)>
 `;
@@ -311,7 +282,6 @@ exports[`should render renderer with sections with nested components 1`] = `
   searchTerm=""
 >
   <ComponentsList
-    hashPath={Array []}
     items={
       Array [
         Object {
@@ -319,109 +289,93 @@ exports[`should render renderer with sections with nested components 1`] = `
           "content": undefined,
           "forcedOpen": false,
           "heading": false,
+          "href": "#introduction",
           "initialOpen": true,
           "name": "Introduction",
           "sections": Array [],
           "selected": false,
           "shouldOpenInNewTab": false,
-          "slug": "introduction",
         },
         Object {
           "components": Array [
             Object {
+              "href": "#button",
               "name": "Button",
-              "slug": "button",
             },
           ],
           "content": <ComponentsList
-            hashPath={
-              Array [
-                "Buttons",
-              ]
-            }
             items={
               Array [
                 Object {
                   "content": undefined,
                   "forcedOpen": false,
                   "heading": false,
+                  "href": "#button",
                   "initialOpen": true,
                   "name": "Button",
                   "selected": false,
                   "shouldOpenInNewTab": false,
-                  "slug": "button",
                 },
               ]
             }
-            useHashId={true}
-            useRouterLinks={false}
           />,
           "forcedOpen": false,
           "heading": true,
+          "href": "#buttons",
           "initialOpen": true,
           "name": "Buttons",
           "sections": Array [],
           "selected": false,
           "shouldOpenInNewTab": false,
-          "slug": "buttons",
         },
         Object {
           "components": Array [
             Object {
+              "href": "#input",
               "name": "Input",
-              "slug": "input",
             },
             Object {
+              "href": "#textarea",
               "name": "Textarea",
-              "slug": "textarea",
             },
           ],
           "content": <ComponentsList
-            hashPath={
-              Array [
-                "Forms",
-              ]
-            }
             items={
               Array [
                 Object {
                   "content": undefined,
                   "forcedOpen": false,
                   "heading": false,
+                  "href": "#input",
                   "initialOpen": true,
                   "name": "Input",
                   "selected": false,
                   "shouldOpenInNewTab": false,
-                  "slug": "input",
                 },
                 Object {
                   "content": undefined,
                   "forcedOpen": false,
                   "heading": false,
+                  "href": "#textarea",
                   "initialOpen": true,
                   "name": "Textarea",
                   "selected": false,
                   "shouldOpenInNewTab": false,
-                  "slug": "textarea",
                 },
               ]
             }
-            useHashId={true}
-            useRouterLinks={false}
           />,
           "forcedOpen": false,
           "heading": true,
+          "href": "#forms",
           "initialOpen": true,
           "name": "Forms",
           "sections": Array [],
           "selected": false,
           "shouldOpenInNewTab": false,
-          "slug": "forms",
         },
       ]
     }
-    useHashId={false}
-    useRouterLinks={false}
   />
 </Styled(TableOfContents)>
 `;

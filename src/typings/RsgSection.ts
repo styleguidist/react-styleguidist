@@ -17,6 +17,8 @@ export interface BaseSection {
 export interface ProcessedSection extends BaseSection {
 	visibleName?: string;
 	filepath?: string;
+	externalLink?: boolean;
+	href?: string;
 }
 
 /**
@@ -36,7 +38,6 @@ export interface Section extends ProcessedSection {
  * filterSectionByName
  */
 export interface TOCItem extends ProcessedSection {
-	externalLink: boolean;
 	heading?: boolean;
 	shouldOpenInNewTab?: boolean;
 	selected?: boolean;
