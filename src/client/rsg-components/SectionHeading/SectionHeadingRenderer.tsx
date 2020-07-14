@@ -34,7 +34,7 @@ interface SectionHeadingRendererProps extends JssInjectedProps {
 	children?: React.ReactNode;
 	toolbar?: React.ReactNode;
 	id: string;
-	href: string;
+	href?: string;
 	depth: number;
 	deprecated?: boolean;
 }
@@ -70,7 +70,7 @@ SectionHeadingRenderer.propTypes = {
 	children: PropTypes.node,
 	toolbar: PropTypes.node,
 	id: PropTypes.string.isRequired,
-	href: PropTypes.string.isRequired,
+	href: PropTypes.string,
 	depth: PropTypes.number.isRequired,
 	deprecated: PropTypes.bool,
 };

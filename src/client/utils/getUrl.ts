@@ -65,7 +65,7 @@ interface GetUrlOptions {
 	 */
 	absolute: boolean;
 	hashPath: string[] | false;
-	id: boolean;
+	useSlugAsIdParam: boolean;
 	takeHash: boolean;
 }
 
@@ -86,7 +86,7 @@ export default function getUrl(
 		nochrome,
 		absolute,
 		hashPath,
-		id,
+		useSlugAsIdParam,
 		takeHash,
 	}: Partial<GetUrlOptions> = {},
 	{
@@ -121,13 +121,13 @@ export default function getUrl(
 
 	if (hashPath) {
 		let encodedHashPath = hashPath.map(encodeURIComponent);
-		if (!id) {
+		if (!useSlugAsIdParam) {
 			encodedHashPath = [...encodedHashPath, encodedName];
 		}
 		url += `#/${encodedHashPath.join('/')}`;
 	}
 
-	if (id) {
+	if (useSlugAsIdParam) {
 		url += `?id=${slug}`;
 	}
 

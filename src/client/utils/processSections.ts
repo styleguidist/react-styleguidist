@@ -25,7 +25,7 @@ export default function processSections(
 				slug: section.slug,
 				anchor: !useRouterLinks,
 				hashPath: useRouterLinks ? hashPath : false,
-				id: useRouterLinks ? useHashId : false,
+				useSlugAsIdParam: useRouterLinks ? useHashId : false,
 			});
 
 		return {

@@ -39,7 +39,7 @@ export default function processComponents(
 							slug: component.slug,
 							anchor: !useRouterLinks,
 							hashPath: useRouterLinks ? hashPath : false,
-							id: useRouterLinks ? useHashId : false,
+							useSlugAsIdParam: useRouterLinks ? useHashId : false,
 						}),
 			  }
 			: {};

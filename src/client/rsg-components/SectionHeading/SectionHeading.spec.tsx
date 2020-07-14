@@ -8,7 +8,13 @@ describe('SectionHeading', () => {
 
 	test('should forward slot properties to the toolbar', () => {
 		const actual = shallow(
-			<SectionHeading id="section" slotName="slot" slotProps={{ foo: 1, bar: 'baz' }} depth={2}>
+			<SectionHeading
+				id="section"
+				slotName="slot"
+				href="/#section"
+				slotProps={{ foo: 1, bar: 'baz' }}
+				depth={2}
+			>
 				A Section
 			</SectionHeading>
 		);
@@ -50,21 +56,5 @@ describe('SectionHeading', () => {
 		);
 
 		expect(actual.find('h6')).toHaveLength(1);
-	});
-
-	test('the href have id=section query parameter ', () => {
-		const actual = shallow(
-			<SectionHeading
-				id="section"
-				pagePerSection
-				slotName="slot"
-				slotProps={{ foo: 1, bar: 'baz' }}
-				depth={2}
-			>
-				A Section
-			</SectionHeading>
-		);
-
-		expect(actual.prop('href')).toEqual('/?id=section');
 	});
 });
