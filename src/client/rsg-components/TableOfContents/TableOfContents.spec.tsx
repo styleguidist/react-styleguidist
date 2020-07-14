@@ -53,28 +53,6 @@ const sections = [
 	},
 ];
 
-it('should render a renderer', () => {
-	const actual = shallow(
-		<TableOfContents
-			sections={[
-				{
-					name: 'Input',
-					href: '#input',
-					components,
-				},
-			]}
-		/>
-	);
-
-	expect(actual).toMatchSnapshot();
-});
-
-it('should render renderer with sections with nested components', () => {
-	const actual = shallow(<TableOfContents sections={sections} />);
-
-	expect(actual).toMatchSnapshot();
-});
-
 it('should filter list when search field contains a query', () => {
 	const searchTerm = 'but';
 	const actual = shallow(
@@ -103,17 +81,6 @@ it('should filter section names', () => {
 	expect(actual).toMatchSnapshot();
 
 	actual.setState({ searchTerm });
-
-	expect(actual).toMatchSnapshot();
-});
-
-it('renderer should render table of contents', () => {
-	const searchTerm = 'foo';
-	const actual = shallow(
-		<TableOfContentsRenderer classes={{}} searchTerm={searchTerm} onSearchTermChange={noop}>
-			<div>foo</div>
-		</TableOfContentsRenderer>
-	);
 
 	expect(actual).toMatchSnapshot();
 });
