@@ -47,7 +47,7 @@ const componentWithEverything: Rsg.Component = {
 					{
 						name: 'newValue',
 						description: 'New value for the counter.',
-						type: { name: 'Number' },
+						type: {type: 'NameExpression', name: 'Number' },
 					},
 				],
 				returns: null,

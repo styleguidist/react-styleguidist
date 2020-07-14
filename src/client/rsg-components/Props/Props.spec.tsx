@@ -513,7 +513,7 @@ describe('props columns', () => {
 						{
 							name: 'Foo',
 							description: 'Converts foo to bar',
-							type: { name: 'Array' },
+							type: {type: 'NameExpression', name: 'Array' },
 						},
 					],
 					param: [
@@ -551,7 +551,7 @@ describe('props columns', () => {
 						{
 							title: 'Foo',
 							description: 'Returns foo from bar',
-							type: { name: 'Array' },
+							type: {type: 'NameExpression', name: 'Array' },
 						},
 					],
 				},

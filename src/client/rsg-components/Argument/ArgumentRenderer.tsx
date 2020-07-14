@@ -5,6 +5,7 @@ import Markdown from 'rsg-components/Markdown';
 import Name from 'rsg-components/Name';
 import Type from 'rsg-components/Type';
 import Group from 'react-group';
+import doctrine from 'doctrine';
 import * as Rsg from '../../../typings';
 
 export const styles = ({ space }: Rsg.Theme) => ({
@@ -38,6 +39,7 @@ export const ArgumentRenderer: React.FunctionComponent<ArgumentPropsWithClasses>
 	if (isOptional) {
 		type = type.expression;
 	}
+	const typeName = type ? doctrine.type.stringify(type) : '';
 	const content = (
 		<Group>
 			{returns && 'Returns'}
@@ -49,7 +51,7 @@ export const ArgumentRenderer: React.FunctionComponent<ArgumentPropsWithClasses>
 			)}
 			{type && (
 				<Type>
-					{type.name}
+					{typeName}
 					{isOptional && '?'}
 					{!!defaultValue && `=${defaultValue}`}
 				</Type>
