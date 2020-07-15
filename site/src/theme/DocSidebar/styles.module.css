@@ -6,6 +6,7 @@
 .extra {
 	display: flex;
 	justify-content: center;
+	min-height: 12rem;
 	background-color: var(--ifm-color-white);
 }
 
