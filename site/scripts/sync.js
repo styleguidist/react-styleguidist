@@ -27,7 +27,7 @@ const htmlToXml = contents => contents.replace(/<br>/g, '<br />');
 const getEditUrl = relativePath =>
 	`https://github.com/styleguidist/react-styleguidist/edit/master/${relativePath.replace(
 		'../docs',
-		''
+		'docs'
 	)}`;
 
 const template = ({ id, title, sidebarLabel, editUrl, contents }) => `---
