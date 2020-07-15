@@ -1,7 +1,33 @@
 /* Styles below are mostly copy of the default theme styles. We need to move
    the sidebar container styles to our own container that contains both:
-	 the original sidebar (with styles on the root element removed) and CodeFund
-	 container */
+   the original sidebar (with styles on the root element removed) and EthicalAds
+   container */
+
+.extra {
+	display: flex;
+	justify-content: center;
+	background-color: var(--ifm-color-white);
+}
+
+/* HACK: Horizontal EthicalAds layout */
+@media (max-width: 996px) {
+	[class*='docSidebarContainer'] {
+		width: auto !important;
+	}
+
+	.extra [data-ea-publisher]:global(.loaded) :global(.ea-content) {
+		max-width: 100%;
+	}
+	.extra [data-ea-publisher]:global(.loaded) :global(.ea-content) > :global(.ea-text) {
+		margin-top: 0;
+		text-align: left;
+		overflow: hidden;
+	}
+	.extra [data-ea-publisher]:global(.loaded) :global(.ea-callout) {
+		max-width: 100%;
+		text-align: right;
+	}
+}
 
 @media (min-width: 997px) {
 	.sidebar {
@@ -37,9 +63,5 @@
 
 	.sidebar::-webkit-scrollbar-thumb:hover {
 		background: #555;
-	}
-
-	.extra {
-		padding: 0.5rem;
 	}
 }
