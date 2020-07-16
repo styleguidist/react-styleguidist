@@ -13,7 +13,6 @@ import getImports from './utils/getImports';
 import requireIt from './utils/requireIt';
 import resolveESModule from './utils/resolveESModule';
 import compileCode from './utils/compileCode';
-import * as Rsg from '../typings';
 
 const absolutize = (filepath: string) => path.resolve(__dirname, filepath);
 
@@ -79,29 +78,32 @@ export default function examplesLoader(this: Rsg.StyleguidistLoaderContext, sour
 	// Require context modules so they are available in an example
 	const requireContextCode = b.program(flatten(map(fullContext, resolveESModule)));
 
-	// Compile code and add evalInContext function
-	const compiledExamples: Rsg.Example[] = examples.map(example => {
-		if (example.type === 'code') {
-			try {
-				return {
-					type: 'code',
-					content: compileCode(
-						example.content,
-						require(config.compiler).transform,
-						config.compilerConfig
-					),
-					evalInContext: { toAST: () => b.identifier('evalInContext') } as any,
-				};
-			} catch (err) {
-				return {
-					type: 'error',
-					content: err.toString(),
-				};
+	// Compile code and remove content chunks we don't need in an iframe
+	// TODO: Keep only code exmples for iframe
+	const compiledExamples: (Rsg.RuntimeCodeExample | Rsg.ExampleError | null)[] = examples.map(
+		example => {
+			if (example.type === 'code') {
+				try {
+					return {
+						type: 'code',
+						content: compileCode(
+							example.content,
+							require(config.compiler).transform,
+							config.compilerConfig
+						),
+						evalInContext: { toAST: () => b.identifier('evalInContext') } as any,
+					};
+				} catch (err) {
+					return {
+						type: 'error',
+						content: err.toString(),
+					};
+				}
+			} else {
+				return null;
 			}
-		} else {
-			return example;
 		}
-	});
+	);
 
 	return `
 if (module.hot) {

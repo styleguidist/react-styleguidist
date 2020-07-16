@@ -29,7 +29,7 @@ const Section: React.FunctionComponent<{
 	} = section;
 
 	const contentJsx = Array.isArray(content) ? (
-		<Examples examples={content} name={name} exampleMode={exampleMode} />
+		<Examples examples={content} name={name} filepath={filepath} exampleMode={exampleMode} />
 	) : null;
 	const componentsJsx = components && (
 		<Components

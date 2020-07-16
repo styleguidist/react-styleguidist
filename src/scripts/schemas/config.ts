@@ -6,11 +6,11 @@ import path from 'path';
 import startCase from 'lodash/startCase';
 import kleur from 'kleur';
 import * as reactDocgen from 'react-docgen';
-import { TransformOptions } from 'buble';
 import { createDisplayNameHandler } from 'react-docgen-displayname-handler';
 import annotationResolver from 'react-docgen-annotation-resolver';
 import { ASTNode } from 'ast-types';
 import { NodePath } from 'ast-types/lib/node-path';
+import { Configuration } from 'webpack';
 import findUserWebpackConfig from '../utils/findUserWebpackConfig';
 import getUserPackageJson from '../utils/getUserPackageJson';
 import fileExistsCaseInsensitive from '../utils/findFileCaseInsensitive';
@@ -50,22 +50,33 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 		type: 'string',
 		default: 'expand',
 	},
+	compiler: {
+		// npm module name that exports `transform` function:
+		// (code: string, compilerConfig: any) => {code: string}
+		type: 'string',
+		// default: '@babel/standalone',
+		default: 'sucrase',
+		process: (value: string) => {
+			if (value) {
+				try {
+					require(value);
+				} catch (err) {
+					throw new StyleguidistError(
+						`Module ${kleur.bold(value)}, specified in the “compiler” option, not found.
+
+Try to install it: npm install --save-dev ${value}`
+					);
+				}
+			}
+			return value;
+		},
+	},
 	compilerConfig: {
 		type: 'object',
 		default: {
-			// Don't include an Object.assign ponyfill, we have our own
-			objectAssign: 'Object.assign',
-			// Transpile only features needed for IE11
-			target: { ie: 11 },
-			transforms: {
-				// Don't throw on ESM imports, we transpile them ourselves
-				modules: false,
-				// Enable tagged template literals for styled-components
-				dangerousTaggedTemplateString: true,
-				// to make async/await work by default (no transformation)
-				asyncAwait: false,
-			},
-		} as TransformOptions,
+			// presets: ['env', 'react'],
+			transforms: [/* 'typescript', */ 'jsx', 'imports' /*, 'react-hot-loader'*/],
+		},
 	},
 	// `components` is a shortcut for { sections: [{ components }] },
 	// see `sections` below
@@ -91,6 +102,7 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 	},
 	dangerouslyUpdateWebpackConfig: {
 		type: 'function',
+		default: (config: Configuration) => config,
 	},
 	defaultExample: {
 		type: ['boolean', 'existing file path'],
@@ -132,6 +144,10 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 		type: 'function',
 		default: (componentPath: string): reactDocgen.Handler[] =>
 			reactDocgen.defaultHandlers.concat(createDisplayNameHandler(componentPath)),
+	},
+	iframeTemplate: {
+		type: ['object', 'function'],
+		default: {},
 	},
 	ignore: {
 		type: 'array',
@@ -272,6 +288,7 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 	},
 	styleguideComponents: {
 		type: 'object',
+		default: {},
 	},
 	styleguideDir: {
 		type: 'directory path',
@@ -388,7 +405,7 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 					consts.DOCS_WEBPACK
 			);
 
-			return undefined;
+			return {};
 		},
 		example: {
 			module: {

@@ -10,11 +10,11 @@ import { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
 import { DisplayModes, ExampleModes } from '../../consts';
 
 interface PlaygroundProps {
+	code: string;
 	evalInContext(code: string): () => any;
 	index: number;
 	name?: string;
 	exampleMode?: string;
-	code: string;
 	settings: {
 		showcode?: boolean;
 		noeditor?: boolean;
@@ -88,10 +88,13 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 	public render() {
 		const { code, activeTab } = this.state;
 		const { evalInContext, index, name, settings, exampleMode } = this.props;
-		const { displayMode } = this.context;
+		const { displayMode, codeRevision } = this.context;
 		const isExampleHidden = exampleMode === ExampleModes.hide;
 		const isEditorHidden = settings.noeditor || isExampleHidden;
-		const preview = <Preview code={code} evalInContext={evalInContext} />;
+
+		const preview = (
+			<Preview code={code} codeRevision={codeRevision} evalInContext={evalInContext} />
+		);
 
 		return isEditorHidden ? (
 			<Para>{preview}</Para>

@@ -21,7 +21,12 @@ module.exports = {
 				},
 				{
 					test: /\.css$/,
-					loader: 'style-loader!css-loader',
+					use: [
+						{
+							loader: path.resolve(__dirname, '../../lib/loaders/iframe-style-loader.js'),
+						},
+						'css-loader',
+					],
 				},
 			],
 		},

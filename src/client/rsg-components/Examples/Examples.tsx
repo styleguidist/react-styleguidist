@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import Playground from 'rsg-components/Playground';
 import Markdown from 'rsg-components/Markdown';
 import ExamplesRenderer from 'rsg-components/Examples/ExamplesRenderer';
-import { useStyleGuideContext } from 'rsg-components/Context';
+import PlaygroundError from 'rsg-components/PlaygroundError';
 import * as Rsg from '../../../typings';
 
 export interface ExamplesRenderer {
 	examples: Rsg.Example[];
 	name?: string;
+	filepath: string;
 	exampleMode?: string;
 }
 
 const Examples: React.FunctionComponent<ExamplesRenderer> = ({ examples, name, exampleMode }) => {
-	const { codeRevision } = useStyleGuideContext();
 	return (
 		<ExamplesRenderer name={name}>
 			{examples.map((example, index) => {
@@ -21,9 +21,9 @@ const Examples: React.FunctionComponent<ExamplesRenderer> = ({ examples, name, e
 					case 'code':
 						return (
 							<Playground
+								key={index}
 								code={example.content}
 								evalInContext={example.evalInContext}
-								key={`${codeRevision}/${index}`}
 								name={name}
 								index={index}
 								settings={example.settings}
@@ -31,7 +31,9 @@ const Examples: React.FunctionComponent<ExamplesRenderer> = ({ examples, name, e
 							/>
 						);
 					case 'markdown':
-						return <Markdown text={example.content} key={index} />;
+						return <Markdown key={index} text={example.content} />;
+					case 'error':
+						return <PlaygroundError key={index} message={example.content} />;
 					default:
 						return null;
 				}
@@ -43,6 +45,7 @@ const Examples: React.FunctionComponent<ExamplesRenderer> = ({ examples, name, e
 Examples.propTypes = {
 	examples: PropTypes.array.isRequired,
 	name: PropTypes.string.isRequired,
+	filepath: PropTypes.string.isRequired,
 	exampleMode: PropTypes.string.isRequired,
 };
 

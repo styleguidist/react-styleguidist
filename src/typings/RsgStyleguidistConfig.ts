@@ -1,10 +1,9 @@
-import WebpackDevServer from 'webpack-dev-server';
 import { Configuration, loader } from 'webpack';
-import { TransformOptions } from 'buble';
 import { Handler, DocumentationObject, PropDescriptor } from 'react-docgen';
 import { ASTNode } from 'ast-types';
 import { NodePath } from 'ast-types/lib/node-path';
 import { Styles } from 'jss';
+import { Application } from 'express';
 import { RecursivePartial } from './RecursivePartial';
 import { EXPAND_MODE } from './RsgComponent';
 import { PropsObject } from './RsgPropsObject';
@@ -19,13 +18,14 @@ export interface StyleguidistLoaderContext extends loader.LoaderContext {
 interface BaseStyleguidistConfig {
 	assetsDir: string | string[];
 	tocMode: EXPAND_MODE;
-	compilerConfig: TransformOptions;
+	compiler: string;
+	compilerConfig: any;
 	components: (() => string[]) | string | string[];
 	configDir: string;
 	context: Record<string, any>;
 	contextDependencies: string[];
-	configureServer(server: WebpackDevServer, env: string): string;
-	dangerouslyUpdateWebpackConfig: (server: Configuration, env: string) => Configuration;
+	configureServer(server: Application, env: string): string;
+	dangerouslyUpdateWebpackConfig: (config: Configuration, env: string) => Configuration;
 	defaultExample: string | false;
 	exampleMode: EXPAND_MODE;
 	editorConfig: {
@@ -34,6 +34,7 @@ interface BaseStyleguidistConfig {
 	getComponentPathLine(componentPath: string): string;
 	getExampleFilename(componentPath: string): string;
 	handlers: (componentPath: string) => Handler[];
+	iframeTemplate: any; // TODO
 	ignore: string[];
 	logger: {
 		info(message: string): void;
@@ -75,7 +76,7 @@ interface BaseStyleguidistConfig {
 	styleguideComponents: Record<string, string>;
 	styleguideDir: string;
 	styles: Styles | string | ((theme: Theme) => Styles);
-	template: any;
+	template: any; // TODO
 	theme: RecursivePartial<Theme> | string;
 	title: string;
 	updateDocs(doc: PropsObject, file: string): PropsObject;
