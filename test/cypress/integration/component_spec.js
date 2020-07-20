@@ -97,9 +97,7 @@ describe('Single component', () => {
 				.should('have.length', 1);
 
 			// Toggle out of isolated example mode
-			cy.get('@componentExamples')
-				.find('[data-testid$="-isolate-button"]')
-				.click();
+			cy.get('[data-testid$="-isolate-button"]').click();
 
 			// Assert the other examples are showing again
 			cy.get('@componentExamples')
