@@ -77,8 +77,8 @@ it('should filter list when search field contains a query', () => {
 	);
 	expect(getAllByTestId('rsg-toc-link').length).toBe(3);
 	fireEvent.change(getByPlaceholderText('Filter by name'), { target: { value: searchTerm } });
-	expect(getAllByTestId('rsg-toc-link').length).toBe(1);
-	expect(getByTestId('rsg-toc-link').innerHTML).toBe('Input');
+	expect(getAllByTestId('rsg-toc-link')).toHaveLength(1);
+	expect(getByTestId('rsg-toc-link')).toHaveTextContent('Input');
 });
 
 it('should filter section names', () => {
@@ -88,8 +88,8 @@ it('should filter section names', () => {
 	);
 	expect(getAllByTestId('rsg-toc-link').length).toBe(6);
 	fireEvent.change(getByPlaceholderText('Filter by name'), { target: { value: searchTerm } });
-	expect(getAllByTestId('rsg-toc-link').length).toBe(1);
-	expect(getByTestId('rsg-toc-link').innerHTML).toBe('Forms');
+	expect(getAllByTestId('rsg-toc-link')).toHaveLength(1);
+	expect(getByTestId('rsg-toc-link')).toHaveTextContent('Forms');
 });
 
 it('should call a callback when input value changed', () => {
@@ -160,10 +160,11 @@ it('should render components of a single top section as root', () => {
 		    "heading": false,
 		    "href": "#button",
 		    "initialOpen": true,
+		    "name": "Button",
 		    "sections": Array [],
 		    "selected": false,
 		    "shouldOpenInNewTab": false,
-		    "visibleName": "TestButton",
+		    "visibleName": "Button",
 		  },
 		  Object {
 		    "components": Array [],
@@ -172,10 +173,11 @@ it('should render components of a single top section as root', () => {
 		    "heading": false,
 		    "href": "#input",
 		    "initialOpen": true,
+		    "name": "Input",
 		    "sections": Array [],
 		    "selected": false,
 		    "shouldOpenInNewTab": false,
-		    "visibleName": "TestInput",
+		    "visibleName": "Input",
 		  },
 		  Object {
 		    "components": Array [],
@@ -184,10 +186,11 @@ it('should render components of a single top section as root', () => {
 		    "heading": false,
 		    "href": "#textarea",
 		    "initialOpen": true,
+		    "name": "Textarea",
 		    "sections": Array [],
 		    "selected": false,
 		    "shouldOpenInNewTab": false,
-		    "visibleName": "TestTextarea",
+		    "visibleName": "Textarea",
 		  },
 		]
 	`);
