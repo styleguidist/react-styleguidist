@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { shallow } from 'enzyme';
 import TableOfContents from './TableOfContents';
 import { TableOfContentsRenderer } from './TableOfContentsRenderer';
@@ -7,14 +7,17 @@ import Context from '../Context';
 
 const components = [
 	{
+		visibleName: 'Button',
 		name: 'Button',
 		href: '#button',
 	},
 	{
+		visibleName: 'Input',
 		name: 'Input',
 		href: '#input',
 	},
 	{
+		visibleName: 'Textarea',
 		name: 'Textarea',
 		href: '#textarea',
 	},
@@ -22,29 +25,35 @@ const components = [
 
 const sections = [
 	{
+		visibleName: 'Introduction',
 		name: 'Introduction',
 		href: '#introduction',
 		content: 'intro.md',
 	},
 	{
+		visibleName: 'Buttons',
 		name: 'Buttons',
 		href: '#buttons',
 		components: [
 			{
+				visibleName: 'Button',
 				name: 'Button',
 				href: '#button',
 			},
 		],
 	},
 	{
+		visibleName: 'Forms',
 		name: 'Forms',
 		href: '#forms',
 		components: [
 			{
+				visibleName: 'Input',
 				name: 'Input',
 				href: '#input',
 			},
 			{
+				visibleName: 'Textarea',
 				name: 'Textarea',
 				href: '#textarea',
 			},
@@ -53,35 +62,34 @@ const sections = [
 ];
 
 it('should filter list when search field contains a query', () => {
-	const searchTerm = 'but';
-	const actual = shallow(
+	const searchTerm = 'put';
+	const { getByPlaceholderText, getAllByTestId, getByTestId } = render(
 		<TableOfContents
 			sections={[
 				{
-					name: 'Input',
+					visibleName: 'Input',
 					href: '#input',
 					components,
 				},
 			]}
+			tocMode="expand"
 		/>
 	);
-
-	expect(actual).toMatchSnapshot();
-
-	actual.setState({ searchTerm });
-
-	expect(actual).toMatchSnapshot();
+	expect(getAllByTestId('rsg-toc-link').length).toBe(3);
+	fireEvent.change(getByPlaceholderText('Filter by name'), { target: { value: searchTerm } });
+	expect(getAllByTestId('rsg-toc-link').length).toBe(1);
+	expect(getByTestId('rsg-toc-link').innerHTML).toBe('Input');
 });
 
 it('should filter section names', () => {
 	const searchTerm = 'frm';
-	const actual = shallow(<TableOfContents sections={sections} />);
-
-	expect(actual).toMatchSnapshot();
-
-	actual.setState({ searchTerm });
-
-	expect(actual).toMatchSnapshot();
+	const { getByPlaceholderText, getAllByTestId, getByTestId } = render(
+		<TableOfContents sections={sections} />
+	);
+	expect(getAllByTestId('rsg-toc-link').length).toBe(6);
+	fireEvent.change(getByPlaceholderText('Filter by name'), { target: { value: searchTerm } });
+	expect(getAllByTestId('rsg-toc-link').length).toBe(1);
+	expect(getByTestId('rsg-toc-link').innerHTML).toBe('Forms');
 });
 
 it('should call a callback when input value changed', () => {
@@ -152,10 +160,10 @@ it('should render components of a single top section as root', () => {
 		    "heading": false,
 		    "href": "#button",
 		    "initialOpen": true,
-		    "name": "Button",
 		    "sections": Array [],
 		    "selected": false,
 		    "shouldOpenInNewTab": false,
+		    "visibleName": "TestButton",
 		  },
 		  Object {
 		    "components": Array [],
@@ -164,10 +172,10 @@ it('should render components of a single top section as root', () => {
 		    "heading": false,
 		    "href": "#input",
 		    "initialOpen": true,
-		    "name": "Input",
 		    "sections": Array [],
 		    "selected": false,
 		    "shouldOpenInNewTab": false,
+		    "visibleName": "TestInput",
 		  },
 		  Object {
 		    "components": Array [],
@@ -176,10 +184,10 @@ it('should render components of a single top section as root', () => {
 		    "heading": false,
 		    "href": "#textarea",
 		    "initialOpen": true,
-		    "name": "Textarea",
 		    "sections": Array [],
 		    "selected": false,
 		    "shouldOpenInNewTab": false,
+		    "visibleName": "TestTextarea",
 		  },
 		]
 	`);
