@@ -1,4 +1,11 @@
 import * as Rsg from '../../typings';
+import getUrl from './getUrl';
+
+export interface HrefOptions {
+	hashPath?: string[];
+	useRouterLinks: boolean;
+	useHashId?: boolean;
+}
 
 /**
  * Do things that are hard or impossible to do in a loader: we don’t have access to component name
@@ -7,7 +14,10 @@ import * as Rsg from '../../typings';
  * @param {Array} components
  * @return {Array}
  */
-export default function processComponents(components: Rsg.Component[]): Rsg.Component[] {
+export default function processComponents(
+	components: Rsg.Component[],
+	{ useRouterLinks, useHashId, hashPath }: HrefOptions
+): Rsg.Component[] {
 	return components.map(component => {
 		const newComponent: Rsg.Component = component.props
 			? {
@@ -22,6 +32,15 @@ export default function processComponents(components: Rsg.Component[]): Rsg.Comp
 						// Append @example doclet to all examples
 						examples: [...(component.props.examples || []), ...(component.props.example || [])],
 					},
+					href:
+						component.href ||
+						getUrl({
+							name: component.props.displayName,
+							slug: component.slug,
+							anchor: !useRouterLinks,
+							hashPath: useRouterLinks ? hashPath : false,
+							useSlugAsIdParam: useRouterLinks ? useHashId : false,
+						}),
 			  }
 			: {};
 

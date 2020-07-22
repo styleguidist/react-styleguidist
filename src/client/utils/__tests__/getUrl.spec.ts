@@ -104,18 +104,18 @@ describe('getUrl', () => {
 	});
 
 	it('should return a route path with a param id=foobar', () => {
-		const result = getUrl({ name, slug, hashPath: ['Documentation'], id: true }, loc);
+		const result = getUrl({ name, slug, hashPath: ['Documentation'], useSlugAsIdParam: true }, loc);
 		expect(result).toBe('/styleguide/#/Documentation?id=foobar');
 	});
 
 	it('should return a param id=foobar', () => {
-		const result = getUrl({ name, slug, takeHash: true, id: true }, loc);
+		const result = getUrl({ name, slug, takeHash: true, useSlugAsIdParam: true }, loc);
 		expect(result).toBe('/styleguide/#/Components?id=foobar');
 	});
 
 	it('should return to param id = foobar even if the hash has parameters', () => {
 		const result = getUrl(
-			{ name, slug, takeHash: true, id: true },
+			{ name, slug, takeHash: true, useSlugAsIdParam: true },
 			{
 				...loc,
 				hash: '#/Components?foo=foobar',

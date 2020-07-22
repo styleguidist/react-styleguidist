@@ -1,121 +1,95 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { shallow } from 'enzyme';
-import noop from 'lodash/noop';
 import TableOfContents from './TableOfContents';
 import { TableOfContentsRenderer } from './TableOfContentsRenderer';
 import Context from '../Context';
 
 const components = [
 	{
+		visibleName: 'Button',
 		name: 'Button',
-		slug: 'button',
+		href: '#button',
 	},
 	{
+		visibleName: 'Input',
 		name: 'Input',
-		slug: 'input',
+		href: '#input',
 	},
 	{
+		visibleName: 'Textarea',
 		name: 'Textarea',
-		slug: 'textarea',
+		href: '#textarea',
 	},
 ];
 
 const sections = [
 	{
+		visibleName: 'Introduction',
 		name: 'Introduction',
-		slug: 'introduction',
+		href: '#introduction',
 		content: 'intro.md',
 	},
 	{
+		visibleName: 'Buttons',
 		name: 'Buttons',
-		slug: 'buttons',
+		href: '#buttons',
 		components: [
 			{
+				visibleName: 'Button',
 				name: 'Button',
-				slug: 'button',
+				href: '#button',
 			},
 		],
 	},
 	{
+		visibleName: 'Forms',
 		name: 'Forms',
-		slug: 'forms',
+		href: '#forms',
 		components: [
 			{
+				visibleName: 'Input',
 				name: 'Input',
-				slug: 'input',
+				href: '#input',
 			},
 			{
+				visibleName: 'Textarea',
 				name: 'Textarea',
-				slug: 'textarea',
+				href: '#textarea',
 			},
 		],
 	},
 ];
 
-it('should render a renderer', () => {
-	const actual = shallow(
-		<TableOfContents
-			sections={[
-				{
-					name: 'Input',
-					slug: 'input',
-					components,
-				},
-			]}
-		/>
-	);
-
-	expect(actual).toMatchSnapshot();
-});
-
-it('should render renderer with sections with nested components', () => {
-	const actual = shallow(<TableOfContents sections={sections} />);
-
-	expect(actual).toMatchSnapshot();
-});
-
 it('should filter list when search field contains a query', () => {
-	const searchTerm = 'but';
-	const actual = shallow(
+	const searchTerm = 'put';
+	const { getByPlaceholderText, getAllByTestId, getByTestId } = render(
 		<TableOfContents
 			sections={[
 				{
-					name: 'Input',
-					slug: 'input',
+					visibleName: 'Input',
+					href: '#input',
 					components,
 				},
 			]}
+			tocMode="expand"
 		/>
 	);
-
-	expect(actual).toMatchSnapshot();
-
-	actual.setState({ searchTerm });
-
-	expect(actual).toMatchSnapshot();
+	expect(getAllByTestId('rsg-toc-link').length).toBe(3);
+	fireEvent.change(getByPlaceholderText('Filter by name'), { target: { value: searchTerm } });
+	expect(getAllByTestId('rsg-toc-link')).toHaveLength(1);
+	expect(getByTestId('rsg-toc-link')).toHaveTextContent('Input');
 });
 
 it('should filter section names', () => {
 	const searchTerm = 'frm';
-	const actual = shallow(<TableOfContents sections={sections} />);
-
-	expect(actual).toMatchSnapshot();
-
-	actual.setState({ searchTerm });
-
-	expect(actual).toMatchSnapshot();
-});
-
-it('renderer should render table of contents', () => {
-	const searchTerm = 'foo';
-	const actual = shallow(
-		<TableOfContentsRenderer classes={{}} searchTerm={searchTerm} onSearchTermChange={noop}>
-			<div>foo</div>
-		</TableOfContentsRenderer>
+	const { getByPlaceholderText, getAllByTestId, getByTestId } = render(
+		<TableOfContents sections={sections} />
 	);
-
-	expect(actual).toMatchSnapshot();
+	expect(getAllByTestId('rsg-toc-link').length).toBe(6);
+	fireEvent.change(getByPlaceholderText('Filter by name'), { target: { value: searchTerm } });
+	expect(getAllByTestId('rsg-toc-link')).toHaveLength(1);
+	expect(getByTestId('rsg-toc-link')).toHaveTextContent('Forms');
 });
 
 it('should call a callback when input value changed', () => {
@@ -184,36 +158,39 @@ it('should render components of a single top section as root', () => {
 		    "content": undefined,
 		    "forcedOpen": false,
 		    "heading": false,
+		    "href": "#button",
 		    "initialOpen": true,
 		    "name": "Button",
 		    "sections": Array [],
 		    "selected": false,
 		    "shouldOpenInNewTab": false,
-		    "slug": "button",
+		    "visibleName": "Button",
 		  },
 		  Object {
 		    "components": Array [],
 		    "content": undefined,
 		    "forcedOpen": false,
 		    "heading": false,
+		    "href": "#input",
 		    "initialOpen": true,
 		    "name": "Input",
 		    "sections": Array [],
 		    "selected": false,
 		    "shouldOpenInNewTab": false,
-		    "slug": "input",
+		    "visibleName": "Input",
 		  },
 		  Object {
 		    "components": Array [],
 		    "content": undefined,
 		    "forcedOpen": false,
 		    "heading": false,
+		    "href": "#textarea",
 		    "initialOpen": true,
 		    "name": "Textarea",
 		    "sections": Array [],
 		    "selected": false,
 		    "shouldOpenInNewTab": false,
-		    "slug": "textarea",
+		    "visibleName": "Textarea",
 		  },
 		]
 	`);
@@ -256,7 +233,7 @@ it('should render as the link will open in a new window only if external present
 		    "initialOpen": true,
 		    "sections": Array [],
 		    "selected": false,
-		    "shouldOpenInNewTab": true,
+		    "shouldOpenInNewTab": false,
 		  },
 		]
 	`);
@@ -272,8 +249,8 @@ it('should render components with useRouterLinks', () => {
 			sections={[
 				{
 					sections: [
-						{ visibleName: '1', name: 'Components', slug: 'Components', content: 'intro.md' },
-						{ visibleName: '2', content: 'chapter.md', slug: 'chap' },
+						{ visibleName: '1', name: 'Components', href: '#/Components', content: 'intro.md' },
+						{ visibleName: '2', content: 'chapter.md', href: '#/Chap' },
 					],
 				},
 			]}
@@ -305,20 +282,20 @@ it('should detect sections containing current selection when tocMode is collapse
 						sections: [
 							{
 								visibleName: '1',
-								slug: 'Components',
-								sections: [{ visibleName: '1.1', slug: 'Button' }],
+								href: '#/components',
+								sections: [{ visibleName: '1.1', href: '#/button' }],
 							},
 							{
 								visibleName: '2',
-								slug: 'chap',
+								href: '#/chap',
 								content: 'chapter.md',
-								sections: [{ visibleName: '2.1', slug: 'Chapter #1' }],
+								sections: [{ visibleName: '2.1', href: '#/chapter-1' }],
 							},
 							{ visibleName: '3', href: 'http://react-styleguidist.com' },
 						],
 					},
 				]}
-				loc={{ pathname: '', hash: '/#Button' }}
+				loc={{ pathname: '', hash: 'button' }}
 			/>
 		</Provider>
 	);

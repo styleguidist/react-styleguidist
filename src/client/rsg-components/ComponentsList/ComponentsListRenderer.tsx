@@ -84,6 +84,7 @@ const ComponentsListSectionRenderer: React.FunctionComponent<Rsg.TOCItem & JssIn
 				href={href}
 				onClick={() => setOpen(!open)}
 				target={shouldOpenInNewTab ? '_blank' : undefined}
+				data-testid="rsg-toc-link"
 			>
 				{visibleName}
 			</Link>

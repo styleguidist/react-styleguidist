@@ -1,6 +1,8 @@
 import deepfreeze from 'deepfreeze';
 import processComponents from '../processComponents';
 
+const options = { useRouterLinks: false };
+
 describe('processComponents', () => {
 	it('should set components’ displayName to a name property', () => {
 		const components = deepfreeze([
@@ -8,11 +10,23 @@ describe('processComponents', () => {
 				props: {
 					displayName: 'Foo',
 				},
-				module: 13,
 			},
 		]);
-		const result = processComponents(components);
+		const result = processComponents(components, options);
 		expect(result[0].name).toBe('Foo');
+	});
+
+	it('should calculate href', () => {
+		const components = deepfreeze([
+			{
+				slug: 'foo',
+				props: {
+					displayName: 'Foo',
+				},
+			},
+		]);
+		const result = processComponents(components, options);
+		expect(result[0].href).toBe('/#foo');
 	});
 
 	describe('should set visibleName property on the component', () => {
@@ -23,10 +37,9 @@ describe('processComponents', () => {
 						displayName: 'Foo',
 						visibleName: 'Foo Bar',
 					},
-					module: 13,
 				},
 			]);
-			const result = processComponents(components);
+			const result = processComponents(components, options);
 			expect(result[0].visibleName).toBe('Foo Bar');
 		});
 
@@ -36,10 +49,9 @@ describe('processComponents', () => {
 					props: {
 						displayName: 'Foo',
 					},
-					module: 13,
 				},
 			]);
-			const result = processComponents(components);
+			const result = processComponents(components, options);
 			expect(result[0].visibleName).toBe('Foo');
 		});
 	});
@@ -52,10 +64,9 @@ describe('processComponents', () => {
 					examples: [1, 2] as any[],
 					example: [3, 4] as any[],
 				},
-				module: 11,
 			},
 		]);
-		const result = processComponents(components);
+		const result = processComponents(components, options);
 		expect(result[0].props && result[0].props.examples).toEqual([1, 2, 3, 4]);
 	});
 });

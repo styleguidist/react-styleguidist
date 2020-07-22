@@ -53,7 +53,7 @@ export default class ReactComponent extends Component<ReactComponentProps, React
 			config: { pagePerSection },
 		} = this.context;
 		const { component, depth, usageMode, exampleMode } = this.props;
-		const { name, visibleName, slug = '-', filepath, pathLine } = component;
+		const { name, visibleName, slug = '-', filepath, pathLine, href } = component;
 		const { description = '', examples = [], tags = {} } = component.props || {};
 		if (!name) {
 			return null;
@@ -78,6 +78,7 @@ export default class ReactComponent extends Component<ReactComponentProps, React
 							...component,
 							isolated: displayMode !== DisplayModes.all,
 						}}
+						href={href}
 						depth={depth}
 					>
 						{visibleName}

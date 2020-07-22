@@ -4,7 +4,6 @@ import ComponentsList from 'rsg-components/ComponentsList';
 import TableOfContentsRenderer from 'rsg-components/TableOfContents/TableOfContentsRenderer';
 import filterSectionsByName from '../../utils/filterSectionsByName';
 import { getHash } from '../../utils/handleHash';
-import getUrl from '../../utils/getUrl';
 import * as Rsg from '../../../typings';
 
 interface TableOfContentsProps {
@@ -54,18 +53,8 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 					? this.renderLevel(children, useRouterLinks, childHashPath, sectionDepth === 0)
 					: { content: undefined, containsSelected: false };
 
-			// get href
-			const href = section.href
-				? section.href
-				: getUrl({
-						name: section.name,
-						slug: section.slug,
-						anchor: !useRouterLinks,
-						hashPath: useRouterLinks ? hashPath : false,
-						id: useRouterLinks ? useHashId : false,
-				  });
-
-			const selected = href === windowHash;
+			const selected =
+				(!useRouterLinks && section.href ? getHash(section.href) : section.href) === windowHash;
 
 			if (containsSelected || selected) {
 				childrenContainSelected = true;
@@ -76,20 +65,13 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 				heading: !!section.name && children.length > 0,
 				content,
 				selected,
-				shouldOpenInNewTab: !!section.external && !!section.href,
+				shouldOpenInNewTab: !!section.external && !!section.externalLink,
 				initialOpen: this.props.tocMode !== 'collapse' || containsSelected,
 				forcedOpen: !!this.state.searchTerm.length,
 			};
 		});
 		return {
-			content: (
-				<ComponentsList
-					items={processedItems}
-					hashPath={hashPath}
-					useHashId={useHashId}
-					useRouterLinks={useRouterLinks}
-				/>
-			),
+			content: <ComponentsList items={processedItems} />,
 			containsSelected: childrenContainSelected,
 		};
 	}
@@ -109,9 +91,9 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 					? sections[0].sections
 					: sections[0].components
 				: sections;
-		const filtered = firstLevel ? filterSectionsByName(firstLevel, searchTerm) : firstLevel;
+		const filtered = firstLevel ? filterSectionsByName(firstLevel, searchTerm) : firstLevel || [];
 
-		return filtered ? this.renderLevel(filtered, useRouterLinks).content : null;
+		return this.renderLevel(filtered, useRouterLinks).content;
 	}
 
 	public render() {

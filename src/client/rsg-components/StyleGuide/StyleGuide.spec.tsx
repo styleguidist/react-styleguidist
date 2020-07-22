@@ -14,7 +14,7 @@ const sections: Rsg.Section[] = [
 			{
 				name: 'Foo',
 				visibleName: 'Foo',
-				slug: 'foo',
+				href: '#foo',
 				pathLine: 'components/foo.js',
 				filepath: 'components/foo.js',
 				props: {
@@ -24,7 +24,7 @@ const sections: Rsg.Section[] = [
 			{
 				name: 'Bar',
 				visibleName: 'Bar',
-				slug: 'bar',
+				href: '#bar',
 				pathLine: 'components/bar.js',
 				filepath: 'components/bar.js',
 				props: {

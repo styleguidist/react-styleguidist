@@ -24,6 +24,7 @@ const component = {
 	name: 'Foo',
 	visibleName: 'Foo',
 	slug: 'foo',
+	href: '#foo',
 	pathLine: 'foo/bar.js',
 	props: {
 		description: 'Bar',
