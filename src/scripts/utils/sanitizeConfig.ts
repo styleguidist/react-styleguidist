@@ -10,7 +10,7 @@ import isFinite from 'lodash/isFinite';
 import map from 'lodash/map';
 import listify from 'listify';
 import kleur from 'kleur';
-import leven from 'leven';
+import levenshtein from 'fastest-levenshtein';
 import typeDetect from 'type-detect';
 import loggerMaker from 'glogg';
 import { stringify } from 'q-i';
@@ -57,7 +57,7 @@ export default function sanitizeConfig<T extends Record<string, any>>(
 			// Try to guess
 			const possibleOptions = Object.keys(schema);
 			const suggestedOption = possibleOptions.reduce((suggestion: string, option: string) => {
-				const steps = leven(option, key);
+				const steps = levenshtein.distance(option, key);
 				if (steps < 2) {
 					return option;
 				}
