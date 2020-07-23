@@ -28,6 +28,7 @@
     "node": ">=10"
   },
   "dependencies": {
+    "@tippyjs/react": "4.1.0",
     "@vxna/mini-html-webpack-template": "^1.0.0",
     "acorn": "^6.4.1",
     "acorn-jsx": "^5.1.0",

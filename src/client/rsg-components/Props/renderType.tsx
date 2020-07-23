@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypeDescriptor } from 'react-docgen';
 import Type from 'rsg-components/Type';
-import Text from 'rsg-components/Text';
+import ComplexType from 'rsg-components/ComplexType';
 
 import { getType, PropDescriptor, TypeDescriptor } from './util';
 
@@ -28,31 +28,23 @@ export function renderType(type: ExtendedPropTypeDescriptor): string {
 	}
 }
 
-function renderComplexType(name: string, title: string): React.ReactNode {
-	return (
-		<Text size="small" underlined title={title}>
-			{name}
-		</Text>
-	);
-}
-
 function renderAdvancedType(type: TypeDescriptor): React.ReactNode {
 	if (!type) {
-		return 'unknown';
+		return <Type>unknown</Type>;
 	}
 
 	switch (type.name) {
 		case 'enum':
-			return type.name;
+			return <Type>{type.name}</Type>;
 		case 'literal':
-			return type.value;
+			return <Type>{type.value}</Type>;
 		case 'signature':
-			return renderComplexType(type.type, type.raw);
+			return <ComplexType name={type.type} raw={type.raw} />;
 		case 'union':
 		case 'tuple':
-			return renderComplexType(type.name, type.raw);
+			return <ComplexType name={type.name} raw={type.raw} />;
 		default:
-			return (type as any).raw || (type as any).name;
+			return <Type>{(type as any).raw || (type as any).name}</Type>;
 	}
 }
 
@@ -62,7 +54,7 @@ export default function renderTypeColumn(prop: PropDescriptor): React.ReactNode 
 		return null;
 	}
 	if (prop.flowType || prop.tsType) {
-		return <Type>{renderAdvancedType(type as any)}</Type>;
+		return renderAdvancedType(type as any);
 	}
 	return <Type>{renderType(type)}</Type>;
 }
