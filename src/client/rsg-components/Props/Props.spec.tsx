@@ -731,6 +731,17 @@ describe('props columns', () => {
 			Description:"
 		`);
 		});
+
+		test('should render literal type', () => {
+			const { container } = renderFn(['foo: 1']);
+
+			expect(getText(container)).toMatchInlineSnapshot(`
+			"Prop name: foo 
+			Type: 1 
+			Default: Required 
+			Description:"
+		`);
+		});
 	});
 });
 
