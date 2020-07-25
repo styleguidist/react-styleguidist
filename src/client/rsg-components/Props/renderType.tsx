@@ -29,10 +29,6 @@ export function renderType(type: ExtendedPropTypeDescriptor): string {
 }
 
 function renderAdvancedType(type: TypeDescriptor): React.ReactNode {
-	if (!type) {
-		return <Type>unknown</Type>;
-	}
-
 	switch (type.name) {
 		case 'enum':
 			return <Type>{type.name}</Type>;
