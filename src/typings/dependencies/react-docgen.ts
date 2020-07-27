@@ -58,7 +58,6 @@ declare module 'react-docgen' {
 			| 'objectOf'
 			| 'shape'
 			| 'exact'
-			| 'union'
 			| 'instanceOf'
 			| 'elementType';
 		value?: any;

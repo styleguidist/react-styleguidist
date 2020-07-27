@@ -28,7 +28,7 @@ export function renderType(type: ExtendedPropTypeDescriptor): string {
 	}
 }
 
-function renderAdvancedType(type: TypeDescriptor): React.ReactNode {
+function renderAdvancedType(type: PropTypeDescriptor | TypeDescriptor): React.ReactNode {
 	switch (type.name) {
 		case 'enum':
 			return <Type>{type.name}</Type>;
@@ -50,7 +50,7 @@ export default function renderTypeColumn(prop: PropDescriptor): React.ReactNode 
 		return null;
 	}
 	if (prop.flowType || prop.tsType) {
-		return renderAdvancedType(type as any);
+		return renderAdvancedType(type);
 	}
 	return <Type>{renderType(type)}</Type>;
 }
