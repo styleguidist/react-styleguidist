@@ -16,11 +16,6 @@ describe('Tooltip', () => {
 		expect(container).toContainElement(getByTestId('child'));
 	});
 
-	test('should the child component be wrapped by "role=button" element', () => {
-		const { getByTestId } = renderComponent();
-		expect(getByTestId('child').closest('span')).toHaveAttribute('role', 'button');
-	});
-
 	test('should render content in the tooltop body', () => {
 		const { container, getByRole } = renderComponent();
 		fireEvent.focus(getByRole('button'));
@@ -33,7 +28,6 @@ describe('Tooltip', () => {
 		await waitFor(() =>
 			expect(container.querySelector('[data-state="visible"]')).toBeInTheDocument()
 		);
-		expect(container.querySelector('[data-state]')).toHaveAttribute('data-state', 'visible');
 	});
 
 	test('should show the tooltip by click', async () => {
@@ -42,7 +36,6 @@ describe('Tooltip', () => {
 		await waitFor(() =>
 			expect(container.querySelector('[data-state="visible"]')).toBeInTheDocument()
 		);
-		expect(container.querySelector('[data-state]')).toHaveAttribute('data-state', 'visible');
 	});
 
 	test('should show the tooltip by mouse enter', async () => {
@@ -51,7 +44,6 @@ describe('Tooltip', () => {
 		await waitFor(() =>
 			expect(container.querySelector('[data-state="visible"]')).toBeInTheDocument()
 		);
-		expect(container.querySelector('[data-state]')).toHaveAttribute('data-state', 'visible');
 	});
 
 	describe.each([['top'], ['right'], ['left'], ['bottom']])(
