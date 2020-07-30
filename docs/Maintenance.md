@@ -2,7 +2,7 @@
 
 # Maintainer guide
 
-_See also [Developer guide](Development.md)._
+_See also [Developer guide](.Development.md)._
 
 ## We need you!
 

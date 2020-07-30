@@ -6,7 +6,7 @@ Styleguidist uses [webpack](https://webpack.js.org/) under the hood and it needs
 
 _Webpack is required to run Styleguidist but your project doesn’t have to use it._
 
-> **Note:** See [cookbook](Cookbook.md) for more examples.
+> **Note:** See [cookbook](.Cookbook.md) for more examples.
 
 ## Reusing your project’s webpack config
 
@@ -162,6 +162,6 @@ This will tell Babel (and some other tools) which browsers you support, so it wo
 
 ## When nothing else works
 
-In very rare cases, like using legacy or third-party libraries, you may need to change webpack options that Styleguidist doesn’t allow you to change via `webpackConfig` options. In this case, you can use [dangerouslyUpdateWebpackConfig](Configuration.md#dangerouslyupdatewebpackconfig) option.
+In very rare cases, like using legacy or third-party libraries, you may need to change webpack options that Styleguidist doesn’t allow you to change via `webpackConfig` options. In this case, you can use [dangerouslyUpdateWebpackConfig](.Configuration.md#dangerouslyupdatewebpackconfig) option.
 
 > **Danger:** You may break Styleguidist using this option, use it at your own risk.

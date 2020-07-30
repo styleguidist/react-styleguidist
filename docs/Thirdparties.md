@@ -4,7 +4,7 @@
 
 ## How Styleguidist works
 
-Styleguidist _loads_ your components (see [Loading and exposing components](Components.md#loading-and-exposing-components) for more) but it uses [react-docgen](https://github.com/reactjs/react-docgen) to _generate documentation_ which may require changes in your code to work properly.
+Styleguidist _loads_ your components (see [Loading and exposing components](.Components.md#loading-and-exposing-components) for more) but it uses [react-docgen](https://github.com/reactjs/react-docgen) to _generate documentation_ which may require changes in your code to work properly.
 
 React-docgen reads your components as static text files and looks for patterns like class or function declarations that look like React components. It does not run any JavaScript code, so, if your component is dynamically generated, is wrapped in a higher-order component, or is split into several files, then react-docgen may not understand it.
 
@@ -51,7 +51,7 @@ export default Button
 Here we’re reexporting a third-party component from `node_modules`. Styleguidist won’t be able to render prop types of this component, unless we’re using `react-docgen-typescript`:
 
 1. Install [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript).
-2. Create a `styleguide.config.js`, see [configuration](Configuration.md) reference.
+2. Create a `styleguide.config.js`, see [configuration](.Configuration.md) reference.
 3. Update your `styleguide.config.js`:
 
    ```javascript

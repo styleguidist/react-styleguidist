@@ -23,7 +23,7 @@ let textarea
 
 Styleguidist will ignore tests (`__tests__` folder and filenames containing `.test.js` or `.spec.js`) by default.
 
-Use [ignore](Configuration.md#ignore) option to customize this behavior:
+Use [ignore](.Configuration.md#ignore) option to customize this behavior:
 
 ```javascript
 module.exports = {
@@ -35,7 +35,7 @@ module.exports = {
 
 ## How to hide some components in style guide but make them available in examples?
 
-Enable [skipComponentsWithoutExample](Configuration.md#skipcomponentswithoutexample) option and do not add an example file (`Readme.md` by default) to components you want to ignore.
+Enable [skipComponentsWithoutExample](.Configuration.md#skipcomponentswithoutexample) option and do not add an example file (`Readme.md` by default) to components you want to ignore.
 
 Import these components in your examples:
 
@@ -103,7 +103,7 @@ const iconElements = Object.keys(icons).map(iconName => {
 
 ## How to display the source code of any file?
 
-First, code examples can receive [props and settings](Documenting.md#usage-examples-and-readme-files):
+First, code examples can receive [props and settings](.Documenting.md#usage-examples-and-readme-files):
 
     ```js { "file": "../mySourceCode.js" }
     ```
@@ -193,11 +193,11 @@ See the [Preact example style guide](https://github.com/styleguidist/react-style
 
 ## How to change styles of a style guide?
 
-There are two config options to change your style guide UI: [theme](Configuration.md#theme) and [styles](Configuration.md#styles).
+There are two config options to change your style guide UI: [theme](.Configuration.md#theme) and [styles](.Configuration.md#styles).
 
-Use [theme](Configuration.md#theme) to change fonts, colors, etc.
+Use [theme](.Configuration.md#theme) to change fonts, colors, etc.
 
-Use [styles](Configuration.md#styles) to tweak the style of any particular Styleguidist component.
+Use [styles](.Configuration.md#styles) to tweak the style of any particular Styleguidist component.
 
 As an example:
 
@@ -233,7 +233,7 @@ module.exports = {
 
 > **Tip:** Use [React Developer Tools](https://github.com/facebook/react) to find component and style names. For example a component `<LogoRenderer><h1 className="rsg--logo-53">` corresponds to an example above.
 
-> **Tip:** Use a function instead of an object for [styles](Configuration.md#styles) to access all theme variables in your custom styles.
+> **Tip:** Use a function instead of an object for [styles](.Configuration.md#styles) to access all theme variables in your custom styles.
 
 You can store all styles in a separate file to allow hot module replacement (HMR). Same goes for theme variables.
 
@@ -378,7 +378,7 @@ We have [an example style guide](https://github.com/styleguidist/react-styleguid
 
 ## How to change syntax highlighting colors?
 
-Styleguidist uses [Prism](https://prismjs.com/) for code highlighting in static examples and inside the editor. You can change the colors using the [theme](Configuration.md#theme) config option:
+Styleguidist uses [Prism](https://prismjs.com/) for code highlighting in static examples and inside the editor. You can change the colors using the [theme](.Configuration.md#theme) config option:
 
 ```javascript
 // styleguide.config.js
@@ -480,7 +480,7 @@ Two options:
 
 1. Put a `favicon.ico` file into the root folder of your site.
 
-2. Use [template](Configuration.md#template) option:
+2. Use [template](.Configuration.md#template) option:
 
 ```javascript
 module.exports = {
@@ -492,7 +492,7 @@ module.exports = {
 
 ## How to add external JavaScript and CSS files?
 
-Use [template](Configuration.md#template) option:
+Use [template](.Configuration.md#template) option:
 
 ```javascript
 module.exports = {
@@ -515,11 +515,11 @@ module.exports = {
 }
 ```
 
-In comparison to [require](Configuration.md#require) option, these scripts and links are run in the browser, not during webpack build process. It can be useful for side effect-causing scripts in which your components, or in this case Babel output, need to function properly.
+In comparison to [require](.Configuration.md#require) option, these scripts and links are run in the browser, not during webpack build process. It can be useful for side effect-causing scripts in which your components, or in this case Babel output, need to function properly.
 
 ## How to add fonts from Google Fonts?
 
-Use [template](Configuration.md#template) and [theme](Configuration.md#theme) options:
+Use [template](.Configuration.md#template) and [theme](.Configuration.md#theme) options:
 
 ```javascript
 module.exports = {
@@ -543,11 +543,11 @@ module.exports = {
 
 ## How to reuse project’s webpack config?
 
-See in [configuring webpack](Webpack.md#reusing-your-projects-webpack-config).
+See in [configuring webpack](.Webpack.md#reusing-your-projects-webpack-config).
 
 ## How to use React Styleguidist with Redux, Relay or Styled Components?
 
-See [working with third-party libraries](Thirdparties.md).
+See [working with third-party libraries](.Thirdparties.md).
 
 ## How to use React-axe to test accessibility of components?
 
@@ -581,9 +581,9 @@ If you are using Jest for testing you can also use [jest-axe](https://github.com
 
 You might want to change your components’ names to be displayed differently, for example, for stylistic purposes or to give them more descriptive names in your style guide.
 
-This can be done by adding [@visibleName](Documenting.md#defining-custom-component-names) tag to your component documentation.
+This can be done by adding [@visibleName](.Documenting.md#defining-custom-component-names) tag to your component documentation.
 
-In case you want to change components’ names in bulk, for example, based on their current name, you can use [updateDocs](Configuration.md#updatedocs) config option:
+In case you want to change components’ names in bulk, for example, based on their current name, you can use [updateDocs](.Configuration.md#updatedocs) config option:
 
 ```javascript
 module.exports = {

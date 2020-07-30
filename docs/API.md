@@ -35,7 +35,7 @@ const styleguide = styleguidist({
 })
 ```
 
-> **Info:** Any output is disabled by default, you may need to define your own [logger](Configuration.md#logger).
+> **Info:** Any output is disabled by default, you may need to define your own [logger](.Configuration.md#logger).
 
 Using a config file:
 
@@ -51,7 +51,7 @@ import styleguidist from 'react-styleguidist'
 const styleguide = styleguidist()
 ```
 
-See all available [config options](Configuration.md).
+See all available [config options](.Configuration.md).
 
 ## Methods
 

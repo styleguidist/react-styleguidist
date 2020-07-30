@@ -36,9 +36,9 @@ export default class Button extends React.Component {
 
 > **Info:** [Flow](https://flowtype.org/) and [TypeScript](https://www.typescriptlang.org) type annotations are supported.
 
-> **Tip:** You can change its behavior using [propsParser](Configuration.md#propsparser) and [resolver](Configuration.md#resolver) options.
+> **Tip:** You can change its behavior using [propsParser](.Configuration.md#propsparser) and [resolver](.Configuration.md#resolver) options.
 
-> **Info:** Component’s `PropTypes` and documentation comments are parsed by the [react-docgen](https://github.com/reactjs/react-docgen) library. They can be modified using the [updateDocs](Configuration.md#updatedocs) function.
+> **Info:** Component’s `PropTypes` and documentation comments are parsed by the [react-docgen](https://github.com/reactjs/react-docgen) library. They can be modified using the [updateDocs](.Configuration.md#updatedocs) function.
 
 ## Usage examples and Readme files
 
@@ -84,7 +84,7 @@ Styleguidist will look for any `Readme.md` or `ComponentName.md` files in the co
 
     Any [Markdown](http://daringfireball.net/projects/markdown/) is **allowed** _here_.
 
-> **Tip:** You can configure examples file name with the [getExampleFilename](Configuration.md#getexamplefilename) option.
+> **Tip:** You can configure examples file name with the [getExampleFilename](.Configuration.md#getexamplefilename) option.
 
 > **Tip:** If you need to display some JavaScript code in your documentation that you don’t want to be rendered as an interactive playground you can use the `static` modifier with a language tag (e.g. `js static`).
 
@@ -105,7 +105,7 @@ export default class Button extends React.Component {
 }
 ```
 
-> **Note:** You’ll need a regular example file (like `Readme.md`) too when [skipComponentsWithoutExample](Configuration.md#skipcomponentswithoutexample) is `true`.
+> **Note:** You’ll need a regular example file (like `Readme.md`) too when [skipComponentsWithoutExample](.Configuration.md#skipcomponentswithoutexample) is `true`.
 
 ## Public methods
 
@@ -254,7 +254,7 @@ import Button from 'rsg-example/components/Button'
 import Placeholder from 'rsg-example/components/Placeholder'
 ````
 
-> **Info:** `rsg-example` module is an alias defined by the [moduleAliases](Configuration.md#modulealiases) config option.
+> **Info:** `rsg-example` module is an alias defined by the [moduleAliases](.Configuration.md#modulealiases) config option.
 
 > **Caution:** You can only use `import` by editing your Markdown files, not by editing the example code in the browser.
 
@@ -278,4 +278,4 @@ If a component uses React Context, you need a context provider in the example or
 
 ## Limitations
 
-In some cases Styleguidist may not understand your components, [see possible solutions](Thirdparties.md).
+In some cases Styleguidist may not understand your components, [see possible solutions](.Thirdparties.md).

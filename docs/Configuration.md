@@ -1,6 +1,6 @@
 # Configuration
 
-By default, Styleguidist will look for `styleguide.config.js` file in your project’s root folder. You can change the location of the config file using `--config` [CLI](CLI.md) option.
+By default, Styleguidist will look for `styleguide.config.js` file in your project’s root folder. You can change the location of the config file using `--config` [CLI](.CLI.md) option.
 
 ## `assetsDir`
 
@@ -41,7 +41,7 @@ Type: `String`, `Function` or `Array`, default: `src/components/**/*.{js,jsx,ts,
 
 All paths are relative to config folder.
 
-See examples in the [Components section](Components.md).
+See examples in the [Components section](.Components.md).
 
 ## `context`
 
@@ -437,7 +437,7 @@ module.exports = {
 }
 ```
 
-See [Configuring webpack](Webpack.md) for mode details.
+See [Configuring webpack](.Webpack.md) for mode details.
 
 ## `resolver`
 
@@ -477,7 +477,7 @@ Type: `Array`, optional
 
 Allows components to be grouped into sections with a title and overview content. Sections can also be content only, with no associated components (for example, a textual introduction). Sections can be nested.
 
-See examples of [sections configuration](Components.md#sections).
+See examples of [sections configuration](.Components.md#sections).
 
 ## `serverHost`
 
@@ -501,7 +501,7 @@ Toggle sidebar visibility. The sidebar will be hidden when opening components or
 
 Type: `Boolean`, default: `false`
 
-Ignore components that don’t have an example file (as determined by [getExampleFilename](#getexamplefilename)). These components won’t be accessible from other examples unless you [manually `require` them](Cookbook.md#how-to-hide-some-components-in-style-guide-but-make-them-available-in-examples).
+Ignore components that don’t have an example file (as determined by [getExampleFilename](#getexamplefilename)). These components won’t be accessible from other examples unless you [manually `require` them](.Cookbook.md#how-to-hide-some-components-in-style-guide-but-make-them-available-in-examples).
 
 ## `sortProps`
 
@@ -553,7 +553,7 @@ Type: `Object`, `String` or `Function`, optional
 
 Customize styles of any Styleguidist’s component using an object, a function returning said object or a file path to a file exporting said styles.
 
-See examples in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide).
+See examples in the [cookbook](.Cookbook.md#how-to-change-styles-of-a-style-guide).
 
 > **Tip:** Using a function allows access to theme variables like in the example below. See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.ts). The returned object folows the same format as when configured as a litteral.
 
@@ -600,7 +600,7 @@ Customize style guide UI fonts, colors, etc. using a theme object or the path to
 
 The path is relative to the config file or absolute.
 
-See examples in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide).
+See examples in the [cookbook](.Cookbook.md#how-to-change-styles-of-a-style-guide).
 
 > **Info:** See available [theme variables](https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.ts).
 
@@ -696,7 +696,7 @@ Use it like this in your Markdown files:
     ```js { "file": "./some/file.js" }
     ```
 
-You can also use this function to dynamically update some of your fenced code blocks that you do not want to be interpreted as React components by using the [static modifier](Documenting.md#usage-examples-and-readme-files).
+You can also use this function to dynamically update some of your fenced code blocks that you do not want to be interpreted as React components by using the [static modifier](.Documenting.md#usage-examples-and-readme-files).
 
 ```javascript
 module.exports = {
@@ -777,7 +777,7 @@ module.exports = {
 }
 ```
 
-> **Caution:** This option disables config load from `webpack.config.js`, load your config [manually](Webpack.md#reusing-your-projects-webpack-config).
+> **Caution:** This option disables config load from `webpack.config.js`, load your config [manually](.Webpack.md#reusing-your-projects-webpack-config).
 
 > **Danger:** `entry`, `externals`, `output`, `watch`, and `stats` options will be ignored. For production builds, `devtool` will also be ignored.
 
@@ -785,4 +785,4 @@ module.exports = {
 
 > **Tip:** Run style guide in verbose mode to see the actual webpack config used by Styleguidist: `npx styleguidist server --verbose`.
 
-See [Configuring webpack](Webpack.md) for examples.
+See [Configuring webpack](.Webpack.md) for examples.
