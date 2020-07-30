@@ -8,12 +8,10 @@ import * as Rsg from '../../../typings';
 export const styles = ({ space }: Rsg.Theme) => ({
 	complexType: {
 		alignItems: 'center',
-		cursor: 'pointer',
 		display: 'inline-flex',
-		'& span': {
-			marginRight: space[0],
-			cursor: 'pointer',
-		},
+	},
+	icon: {
+		marginLeft: space[0],
 	},
 });
 
@@ -27,7 +25,7 @@ function ComplexTypeRenderer({ classes, name, raw }: ComplexTypeProps) {
 		<Tooltip placement="right" content={raw}>
 			<span className={classes.complexType}>
 				<Text>{name}</Text>
-				<MdInfoOutline />
+				<MdInfoOutline className={classes.icon} />
 			</span>
 		</Tooltip>
 	);
