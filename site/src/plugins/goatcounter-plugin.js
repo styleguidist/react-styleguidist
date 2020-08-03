@@ -7,9 +7,11 @@ module.exports = function() {
 					`<script>
 if ('history' in window) {
 	function trackView() {
-		window.goatcounter.count({
-			path: location.pathname + location.search,
-		});
+		if ('goatcounter' in window) {
+			window.goatcounter.count({
+				path: location.pathname + location.search,
+			});
+		}
 	}
 
 	// Monkey patch browser pushState
