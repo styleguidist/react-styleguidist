@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { parse } from 'react-docgen';
 import PropsRenderer, { columns, getRowKey } from './PropsRenderer';
 import { unquote, getType, showSpaces, PropDescriptor } from './util';
@@ -513,7 +513,7 @@ describe('props columns', () => {
 						{
 							name: 'Foo',
 							description: 'Converts foo to bar',
-							type: {type: 'NameExpression', name: 'Array' },
+							type: { type: 'NameExpression', name: 'Array' },
 						},
 					],
 					param: [
@@ -551,7 +551,7 @@ describe('props columns', () => {
 						{
 							title: 'Foo',
 							description: 'Returns foo from bar',
-							type: {type: 'NameExpression', name: 'Array' },
+							type: { type: 'NameExpression', name: 'Array' },
 						},
 					],
 				},
@@ -658,21 +658,27 @@ describe('props columns', () => {
 		});
 
 		test('should render object type with body in tooltip', () => {
-			const { getByText } = renderFn(['foo: { bar: string }']);
+			const { container, getByRole } = renderFn(['foo: { bar: string }']);
+			fireEvent.focus(getByRole('button'));
 
-			expect(getByText('object').title).toMatchInlineSnapshot(`"{ bar: string }"`);
+			expect(getByRole('button')).toHaveTextContent('object');
+			expect(container.querySelector('[data-tippy-root]')).toHaveTextContent('{ bar: string }');
 		});
 
 		test('should render function type with body in tooltip', () => {
-			const { getByText } = renderFn(['foo: () => void']);
+			const { container, getByRole } = renderFn(['foo: () => void']);
+			fireEvent.focus(getByRole('button'));
 
-			expect(getByText('function').title).toMatchInlineSnapshot(`"() => void"`);
+			expect(getByRole('button')).toHaveTextContent('function');
+			expect(container.querySelector('[data-tippy-root]')).toHaveTextContent('() => void');
 		});
 
 		test('should render union type with body in tooltip', () => {
-			const { getByText } = renderFn(['foo: "bar" | number']);
+			const { container, getByRole } = renderFn(['foo: "bar" | number']);
+			fireEvent.focus(getByRole('button'));
 
-			expect(getByText('union').title).toMatchInlineSnapshot(`"\\"bar\\" | number"`);
+			expect(getByRole('button')).toHaveTextContent('union');
+			expect(container.querySelector('[data-tippy-root]')).toHaveTextContent('"bar" | number');
 		});
 
 		test('should render enum type', () => {
@@ -696,9 +702,12 @@ describe('props columns', () => {
 		});
 
 		test('should render tuple type with body in tooltip', () => {
-			const { getByText } = renderFn(['foo: ["bar", number]']);
+			const { container, getByRole } = renderFn(['foo: ["bar", number]']);
 
-			expect(getByText('tuple').title).toMatchInlineSnapshot(`"[\\"bar\\", number]"`);
+			fireEvent.focus(getByRole('button'));
+
+			expect(getByRole('button')).toHaveTextContent('tuple');
+			expect(container.querySelector('[data-tippy-root]')).toHaveTextContent('["bar", number]');
 		});
 
 		test('should render custom class type', () => {
@@ -719,6 +728,17 @@ describe('props columns', () => {
 			"Prop name: color 
 			Type: 
 			Default: pink 
+			Description:"
+		`);
+		});
+
+		test('should render literal type', () => {
+			const { container } = renderFn(['foo: 1']);
+
+			expect(getText(container)).toMatchInlineSnapshot(`
+			"Prop name: foo 
+			Type: 1 
+			Default: Required 
 			Description:"
 		`);
 		});
