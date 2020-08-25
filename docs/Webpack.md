@@ -78,7 +78,7 @@ module.exports = {
 
 ## Next.js
 
-The [Next.js](https://nextjs.org/) framework abstracts away Webpack for you, but it still uses Webpack under the hood.
+The [Next.js](https://nextjs.org/) framework abstracts away webpack for you, but it still uses webpack under the hood.
 
 After configuring your webpack loaders in `styleguide.config.js` you will need to also configure Babel. First install all the required Babel dependencies:
 
