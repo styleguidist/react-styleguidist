@@ -76,6 +76,26 @@ module.exports = {
 
 [Create React App](https://github.com/facebook/create-react-app) is supported out of the box, you don’t even need to create a style guide config if your components could be found using a default pattern: all files with `.js` or `.jsx` extensions inside `src/components` or `src/Components` folders.
 
+## Next.js
+
+The [Next.js](https://nextjs.org/) framework abstracts away webpack for you, but it still uses webpack under the hood.
+
+After configuring your webpack loaders in `styleguide.config.js` you will need to also configure Babel. First install all the required Babel dependencies:
+
+```bash
+npm install --save-dev babel-loader @babel/core @babel/preset-react
+```
+
+Next, you'll want to configure Babel to use the appropriate presets, here is an example `.babelrc` file:
+
+```json
+{
+  "presets": ["@babel/preset-react"]
+}
+```
+
+That's it, notice that we don't need to install webpack as it's already included by Next.js.
+
 ## Non-webpack projects
 
 To use features, not supported by browsers, like JSX, you’ll need to compile your code with Babel or another tool.
