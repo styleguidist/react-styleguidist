@@ -82,7 +82,7 @@ const [isOpen, setisOpen] = React.useState(false)
   <Button
     size="small"
     onClick={() => setisOpen(true)}
-    disabled={state.isOpen}
+    disabled={isOpen}
   >
     Show Me
   </Button>
