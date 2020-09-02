@@ -8,20 +8,26 @@ import requireIt from './requireIt';
  * @param name the name of the resulting variable
  * @returns AST
  */
-export default (requireRequest: string, name: string) => [
-	// const name$0 = require(path);
-	b.variableDeclaration('const', [
-		b.variableDeclarator(b.identifier(`${name}$0`), requireIt(requireRequest).toAST() as any),
-	]),
-	// const name = name$0.default || name$0[name] || name$0;
-	b.variableDeclaration('const', [
-		b.variableDeclarator(
-			b.identifier(name),
-			b.logicalExpression(
-				'||',
-				b.identifier(`${name}$0.default`),
-				b.logicalExpression('||', b.identifier(`${name}$0['${name}']`), b.identifier(`${name}$0`))
-			)
-		),
-	]),
-];
+export default (requireRequest: string, name: string) => {
+	// The name could possibly contain invalid characters for a JS variable name
+	// such as "." or "-". 
+	const safeName = name ? name.replace(/\W/, '') : name;
+
+	return [
+		// const safeName$0 = require(path);
+		b.variableDeclaration('const', [
+			b.variableDeclarator(b.identifier(`${safeName}$0`), requireIt(requireRequest).toAST() as any),
+		]),
+		// const safeName = safeName$0.default || safeName$0[safeName] || safeName$0;
+		b.variableDeclaration('const', [
+			b.variableDeclarator(
+				b.identifier(safeName),
+				b.logicalExpression(
+					'||',
+					b.identifier(`${safeName}$0.default`),
+					b.logicalExpression('||', b.identifier(`${safeName}$0['${safeName}']`), b.identifier(`${safeName}$0`))
+				)
+			),
+		]),
+	]
+};
