@@ -50,7 +50,7 @@ export default function examplesLoader(this: Rsg.StyleguidistLoaderContext, sour
 	// since that is a syntax error. Instead, import it as "DialogTitle" even though
 	// that is probably not the component users want. Users would need to manually import
 	// "Dialog" to use "Dialog.Title" in their example code.
-	const safeComponentName = displayName ? displayName.replace('.') : displayName;
+	const safeComponentName = displayName ? displayName.replace('.', '') : displayName;
 
 	// Auto imported modules.
 	// We don't need to do anything here to support explicit imports: they will
