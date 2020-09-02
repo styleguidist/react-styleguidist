@@ -45,6 +45,13 @@ export default function examplesLoader(this: Rsg.StyleguidistLoaderContext, sour
 		return requires.concat(getImports(example.content));
 	}, []);
 
+	// Do not import sub-components directly.
+	// e.g. <Dialog.Title> should not try `import Dialog.Title from './DialogTitle.tsx;'`
+	// since that is a syntax error. Instead, import it as "DialogTitle" even though
+	// that is probably not the component users want. Users would need to manually import
+	// "Dialog" to use "Dialog.Title" in their example code.
+	const safeComponentName = displayName ? displayName.replace('.') : displayName;
+
 	// Auto imported modules.
 	// We don't need to do anything here to support explicit imports: they will
 	// work because both imports (generated below and by rewrite-imports) will
@@ -58,7 +65,7 @@ export default function examplesLoader(this: Rsg.StyleguidistLoaderContext, sour
 		// Append the current component module to make it accessible in examples
 		// without an explicit import
 		// TODO: Do not leak absolute path
-		...(displayName ? { [displayName]: file } : {}),
+		...(displayName ? { [safeComponentName]: file } : {}),
 	};
 
 	// All required or imported modules, either explicitly in examples code
