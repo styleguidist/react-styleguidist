@@ -9,7 +9,17 @@ const query = {
 	shouldShowDefaultExample: false,
 };
 
+const subComponentQuery = {
+	file: '../fooSub.js',
+	displayName: 'FooComponent.SubComponent',
+	shouldShowDefaultExample: false,
+};
+
+
 const getQuery = (options = {}) => encode({ ...query, ...options }, '?');
+const getSubComponentQuery = (options = {}) => encode({ ...subComponentQuery, ...options }, '?');
+
+
 
 it('should return valid, parsable JS', () => {
 	const exampleMarkdown = `
@@ -198,6 +208,23 @@ it('should prepend example code with component require()', () => {
 	expect(() => new Function(result)).not.toThrowError(SyntaxError);
 	expect(result).toMatch(
 		`const FooComponent$0 = require('../foo.js');\\nconst FooComponent = FooComponent$0.default || (FooComponent$0['FooComponent'] || FooComponent$0);`
+	);
+});
+
+it('should prepend example code with root component require() for sub components', () => {
+	const exampleMarkdown = `<X/>`;
+	const result = examplesLoader.call(
+		{
+			query: getSubComponentQuery(),
+			_styleguidist: {},
+		} as any,
+		exampleMarkdown
+	);
+
+	expect(result).toBeTruthy();
+	expect(() => new Function(result)).not.toThrowError(SyntaxError);
+	expect(result).toMatch(
+		`const FooComponentSubComponent$0 = require('../fooSub.js');\\nconst FooComponentSubComponent = FooComponentSubComponent$0.default || (FooComponentSubComponent$0['FooComponentSubComponent'] || FooComponentSubComponent$0);`
 	);
 });
 
