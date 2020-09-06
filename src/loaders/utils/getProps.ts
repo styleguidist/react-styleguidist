@@ -94,7 +94,15 @@ export default function getProps(doc: DocumentationObject, filepath?: string): R
 			allTags as TagProps,
 			JS_DOC_METHOD_RETURN_TAG_SYNONYMS
 		) as TagParamObject[];
-		const returns = (method.returns || returnTags[0]) && { ...method.returns, ...returnTags[0] };
+		const returns = method.returns
+			? {
+					...method.returns,
+					type: {
+						type: 'NameExpression',
+						...method.returns.type,
+					},
+			  }
+			: returnTags[0];
 
 		if (returns) {
 			method.returns = returns;
