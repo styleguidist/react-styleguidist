@@ -88,6 +88,7 @@ export function processSection(
 	}
 
 	return {
+		...section,
 		name: section.name,
 		exampleMode: section.exampleMode || config.exampleMode,
 		usageMode: section.usageMode || config.usageMode,

@@ -12,6 +12,7 @@ export interface BaseSection {
 	href?: string;
 	sectionDepth?: number;
 	external?: boolean;
+	expand?: boolean;
 }
 
 export interface ProcessedSection extends BaseSection {
