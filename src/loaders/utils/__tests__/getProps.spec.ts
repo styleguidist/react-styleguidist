@@ -225,6 +225,40 @@ it("should not crash when using doctrine to parse a default prop that isn't in t
 	expect(result).toMatchSnapshot();
 });
 
+it('should not crash when using doctrine to parse a return method that does not have type in it', () => {
+	const result = getProps(
+		{
+			displayName: 'Button',
+			methods: [
+				{
+					docblock: `
+Public Method
+
+@public
+@returns {Boolean} return a Boolean Value
+`,
+					returns: {
+						description: 'return a Boolean Value',
+						type: { name: 'boolean' },
+					},
+				},
+			] as any,
+		},
+		__filename
+	);
+
+	// @ts-ignore
+	expect(result.methods[0].returns).toEqual(
+		expect.objectContaining({
+			description: 'return a Boolean Value',
+			type: {
+				name: 'boolean',
+				type: 'NameExpression',
+			},
+		})
+	);
+});
+
 it('should guess a displayName for components that react-docgen was not able to recognize', () => {
 	const result = getProps(
 		{

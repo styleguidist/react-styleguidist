@@ -15,7 +15,7 @@ export const styles = ({ space }: Rsg.Theme) => ({
 });
 
 export interface ArgumentProps {
-	name: string;
+	name?: string;
 	type?: any;
 	default?: string;
 	description?: string;
@@ -70,7 +70,7 @@ export const ArgumentRenderer: React.FunctionComponent<ArgumentPropsWithClasses>
 
 ArgumentRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	name: PropTypes.string.isRequired,
+	name: PropTypes.string,
 	type: PropTypes.object,
 	default: PropTypes.string,
 	description: PropTypes.string,
