@@ -117,12 +117,16 @@ it('should enable verbose mode in CleanWebpackPlugin', () => {
 
 it('should set from with assetsDir in CopyWebpackPlugin', () => {
 	makeWebpackConfig({ ...styleguideConfig, assetsDir: '/assets/' }, 'production');
-	expect(CopyWebpackPlugin).toHaveBeenCalledWith([{ from: '/assets/' }]); //([
+	expect(CopyWebpackPlugin).toHaveBeenCalledWith({
+		patterns: [{ from: '/assets/' }],
+	});
 });
 
 it('should set array of from with assetsDir array in CopyWebpackPlugin', () => {
 	makeWebpackConfig({ ...styleguideConfig, assetsDir: ['/assets1/', '/assets2/'] }, 'production');
-	expect(CopyWebpackPlugin).toHaveBeenCalledWith([{ from: '/assets1/' }, { from: '/assets2/' }]);
+	expect(CopyWebpackPlugin).toHaveBeenCalledWith({
+		patterns: [{ from: '/assets1/' }, { from: '/assets2/' }],
+	});
 });
 
 it('should merge user webpack config', () => {
