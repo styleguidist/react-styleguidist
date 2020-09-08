@@ -89,16 +89,13 @@ export function processSection(
 
 	return {
 		...section,
-		name: section.name,
 		exampleMode: section.exampleMode || config.exampleMode,
 		usageMode: section.usageMode || config.usageMode,
 		sectionDepth,
-		description: section.description,
 		slug: `section-${slugger.slug(section.name || 'untitled')}`,
 		sections: getSections(section.sections || [], config, sectionDepth),
 		href: section.href,
 		components: getSectionComponents(section, config),
 		content,
-		external: section.external,
 	};
 }
