@@ -112,7 +112,7 @@ export default function(
 				patterns: castArray(config.assetsDir).map(dir => ({ from: dir })),
 			};
 			webpackConfig.plugins.push(
-				// since we don't have the type of copy-webpack-plugin@6.0
+				// FIXME: Since we don't have the type of copy-webpack-plugin@6.0
 				// we cast the config as any to make it work. Once the new types are
 				// released we must remove the cast.
 				new CopyWebpackPlugin(copyPatterns as any)
