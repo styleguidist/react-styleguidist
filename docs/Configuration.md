@@ -136,6 +136,12 @@ Defines the initial state of the example code tab:
 - `hide`: hide the tab and it can´t be toggled in the UI.
 - `expand`: expand the tab by default.
 
+## `expand`
+
+Type: `Boolean`, default: `false`
+
+Used within sections to determine if a section should be expanded or collapsed even when `tocMode` for all sections is set to `collapse`.
+
 ## `getComponentPathLine`
 
 Type: `Function`, default: component filename
