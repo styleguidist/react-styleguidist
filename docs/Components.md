@@ -106,6 +106,7 @@ Each section consists of (all fields are optional):
 - `ignore` — string/array of globs that should not be included in the section.
 - `href` - an URL to navigate to instead of navigating to the section content
 - `external` - if set, the link will open in a new window
+- `expand` - Determines if the section should be expanded by default even when `tocMode` is set to `collapse` in general settings
 
 Configuring a style guide with textual documentation section and a list of components would look like:
 
