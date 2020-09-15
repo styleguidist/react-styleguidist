@@ -10,6 +10,7 @@
 	outline: 1px solid var(--ifm-color-gray-200);
 }
 .link:hover img,
-.link:active img {
+.link:active img,
+.link:focus img {
 	outline: 2px solid var(--ifm-color-primary-lightest);
 }
