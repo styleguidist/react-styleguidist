@@ -95,6 +95,7 @@ module.exports = {
 			{
 				debug: false,
 				docs: {
+					includeCurrentVersion: true,
 					sidebarPath: require.resolve('./sidebars.js'),
 					remarkPlugins: require('./remark'),
 				},
