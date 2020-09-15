@@ -7,10 +7,9 @@
 
 .link img {
 	vertical-align: middle;
-	outline: 1px solid var(--color-light);
+	outline: 1px solid var(--ifm-color-gray-200);
 }
 .link:hover img,
-.link:active img,
-.link:focus img {
-	outline: 1px solid var(--ifm-color-primary-lightest);
+.link:active img {
+	outline: 2px solid var(--ifm-color-primary-lightest);
 }
