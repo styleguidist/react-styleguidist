@@ -26,6 +26,12 @@ module.exports = {
 					position: 'right',
 				},
 				{
+					to: 'learn',
+					activeBasePath: 'learn',
+					label: 'Learn',
+					position: 'right',
+				},
+				{
 					href: 'https://github.com/styleguidist/react-styleguidist',
 					label: 'GitHub',
 					position: 'right',

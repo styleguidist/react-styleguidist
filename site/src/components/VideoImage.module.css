@@ -1,0 +1,16 @@
+.container {
+	position: relative;
+}
+
+.container::after {
+	content: '';
+	position: absolute;
+	left: calc(50% - 2rem);
+	top: calc(50% - 4rem);
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 4rem 0 4rem 6.95rem;
+	border-color: transparent transparent transparent var(--ifm-color-primary-lightest);
+	filter: drop-shadow(0 0 0.75rem var(--ifm-color-gray-400));
+}
