@@ -77,5 +77,6 @@ ArgumentRenderer.propTypes = {
 	returns: PropTypes.bool,
 	block: PropTypes.bool,
 };
+ArgumentRenderer.displayName = 'ArgumentRenderer';
 
 export default Styled<ArgumentPropsWithClasses>(styles)(ArgumentRenderer);

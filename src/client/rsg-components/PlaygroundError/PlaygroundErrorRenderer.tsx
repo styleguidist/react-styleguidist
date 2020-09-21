@@ -27,5 +27,6 @@ PlaygroundErrorRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	message: PropTypes.string.isRequired,
 };
+PlaygroundErrorRenderer.displayName = 'PlaygroundErrorRenderer';
 
 export default Styled<PlaygroundErrorProps>(styles)(PlaygroundErrorRenderer);

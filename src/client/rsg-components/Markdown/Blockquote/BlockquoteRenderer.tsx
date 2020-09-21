@@ -34,5 +34,6 @@ BlockquoteRenderer.propTypes = {
 	className: PropTypes.string,
 	children: PropTypes.node.isRequired,
 };
+BlockquoteRenderer.displayName = 'BlockquoteRenderer';
 
 export default Styled<BlockquoteProps>(styles)(BlockquoteRenderer);

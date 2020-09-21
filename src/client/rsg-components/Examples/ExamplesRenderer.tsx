@@ -29,5 +29,6 @@ ExamplesRenderer.propTypes = {
 	name: PropTypes.string.isRequired,
 	children: PropTypes.node,
 };
+ExamplesRenderer.displayName = 'ExamplesRenderer';
 
 export default Styled<ExamplesRendererProps>(styles)(ExamplesRenderer);

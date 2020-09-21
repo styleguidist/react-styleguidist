@@ -74,5 +74,6 @@ TableOfContentsRenderer.propTypes = {
 	searchTerm: PropTypes.string.isRequired,
 	onSearchTermChange: PropTypes.func.isRequired,
 };
+TableOfContentsRenderer.displayName = 'TableOfContentsRenderer';
 
 export default Styled<TableOfContentsRendererProps>(styles)(TableOfContentsRenderer);

@@ -70,5 +70,6 @@ SectionRenderer.propTypes = {
 	depth: PropTypes.number.isRequired,
 	pagePerSection: PropTypes.bool,
 };
+SectionRenderer.displayName = 'SectionRenderer';
 
 export default Styled<SectionRendererProps>(styles)(SectionRenderer);

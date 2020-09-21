@@ -57,5 +57,6 @@ ErrorRenderer.propTypes = {
 	error: PropTypes.object.isRequired,
 	info: PropTypes.any.isRequired,
 };
+ErrorRenderer.displayName = 'ErrorRenderer';
 
 export default Styled<ErrorProps>(styles)(ErrorRenderer);

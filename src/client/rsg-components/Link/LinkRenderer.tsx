@@ -45,5 +45,6 @@ LinkRenderer.propTypes = {
 	className: PropTypes.string,
 	href: PropTypes.string,
 };
+LinkRenderer.displayName = 'LinkRenderer';
 
 export default Styled<LinkProps>(styles)(LinkRenderer);

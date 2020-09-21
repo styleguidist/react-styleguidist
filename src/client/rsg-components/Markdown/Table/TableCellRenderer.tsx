@@ -42,5 +42,6 @@ TableCellRenderer.propTypes = {
 TableCellRenderer.defaultProps = {
 	header: false,
 };
+TableCellRenderer.displayName = 'TableCellRenderer';
 
 export default Styled<TableCellProps>(styles)(TableCellRenderer);

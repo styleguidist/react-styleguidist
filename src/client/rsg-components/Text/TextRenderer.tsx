@@ -82,5 +82,6 @@ TextRenderer.defaultProps = {
 	color: 'base',
 	underlined: false,
 };
+TextRenderer.displayName = 'TextRenderer';
 
 export default Styled<TextProps>(styles)(TextRenderer);

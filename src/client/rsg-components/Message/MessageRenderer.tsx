@@ -34,5 +34,6 @@ MessageRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	children: PropTypes.node.isRequired,
 };
+MessageRenderer.displayName = 'MessageRenderer';
 
 export default Styled<MessageProps>(styles)(MessageRenderer);

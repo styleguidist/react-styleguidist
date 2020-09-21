@@ -47,6 +47,7 @@ interface EditorState {
 }
 
 export class Editor extends Component<EditorProps> {
+	public static displayName = 'Editor';
 	public static propTypes = {
 		code: PropTypes.string.isRequired,
 		onChange: PropTypes.func.isRequired,

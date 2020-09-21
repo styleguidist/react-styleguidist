@@ -52,5 +52,6 @@ PreRenderer.propTypes = {
 	className: PropTypes.string,
 	children: PropTypes.node.isRequired,
 };
+PreRenderer.displayName = 'PreRenderer';
 
 export default Styled<PrePropsWithClasses>(styles)(PreRenderer);

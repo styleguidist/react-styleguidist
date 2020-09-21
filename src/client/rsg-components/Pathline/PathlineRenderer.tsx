@@ -36,4 +36,6 @@ export const PathlineRenderer: React.FunctionComponent<JssInjectedProps> = ({
 	);
 };
 
+PathlineRenderer.displayName = 'PathlineRenderer';
+
 export default Styled<JssInjectedProps>(styles)(PathlineRenderer);

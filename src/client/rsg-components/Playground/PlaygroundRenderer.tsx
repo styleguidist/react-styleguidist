@@ -90,5 +90,6 @@ PlaygroundRenderer.propTypes = {
 	tabBody: PropTypes.node.isRequired,
 	toolbar: PropTypes.node.isRequired,
 };
+PlaygroundRenderer.displayName = 'PlaygroundRenderer';
 
 export default Styled<PlaygroundRendererProps>(styles)(PlaygroundRenderer);

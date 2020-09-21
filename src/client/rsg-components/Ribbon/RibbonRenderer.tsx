@@ -47,14 +47,14 @@ export const RibbonRenderer: React.FunctionComponent<RibbonProps> = ({ classes, 
 	);
 };
 
-RibbonRenderer.defaultProps = {
-	text: 'Fork me on GitHub',
-};
-
 RibbonRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	url: PropTypes.string.isRequired,
 	text: PropTypes.string,
 };
+RibbonRenderer.defaultProps = {
+	text: 'Fork me on GitHub',
+};
+RibbonRenderer.displayName = 'RibbonRenderer';
 
 export default Styled<RibbonProps>(styles)(RibbonRenderer);

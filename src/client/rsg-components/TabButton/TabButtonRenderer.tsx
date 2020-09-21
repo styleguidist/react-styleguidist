@@ -79,5 +79,6 @@ TabButtonRenderer.propTypes = {
 TabButtonRenderer.defaultProps = {
 	active: false,
 };
+TabButtonRenderer.displayName = 'TabButtonRenderer';
 
 export default Styled<TabButtonProps>(styles)(TabButtonRenderer);

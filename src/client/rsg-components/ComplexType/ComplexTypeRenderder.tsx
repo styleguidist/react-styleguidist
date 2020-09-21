@@ -31,4 +31,6 @@ function ComplexTypeRenderer({ classes, name, raw }: ComplexTypeProps) {
 	);
 }
 
+ComplexTypeRenderer.displayName = 'ComplexTypeRenderer';
+
 export default Styled<ComplexTypeProps>(styles)(ComplexTypeRenderer);

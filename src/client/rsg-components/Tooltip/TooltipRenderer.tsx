@@ -48,4 +48,6 @@ function TooltipRenderer({ classes, children, content, placement = 'top' }: Tool
 	);
 }
 
+TooltipRenderer.displayName = 'TooltipRenderer';
+
 export default Styled<TooltipProps>(styles)(TooltipRenderer);

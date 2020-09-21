@@ -107,5 +107,6 @@ StyleGuideRenderer.propTypes = {
 	toc: PropTypes.node.isRequired,
 	hasSidebar: PropTypes.bool,
 };
+StyleGuideRenderer.displayName = 'StyleGuideRenderer';
 
 export default Styled<StyleGuideRendererProps>(styles)(StyleGuideRenderer);

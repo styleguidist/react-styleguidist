@@ -24,5 +24,6 @@ CodeRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	children: PropTypes.node.isRequired,
 };
+CodeRenderer.displayName = 'CodeRenderer';
 
 export default Styled<CodeProps>(styles)(CodeRenderer);

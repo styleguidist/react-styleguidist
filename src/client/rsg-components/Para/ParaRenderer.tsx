@@ -34,5 +34,6 @@ ParaRenderer.propTypes = {
 	semantic: PropTypes.oneOf(['p']),
 	children: PropTypes.node.isRequired,
 };
+ParaRenderer.displayName = 'ParaRenderer';
 
 export default Styled<ParaProps>(styles)(ParaRenderer);

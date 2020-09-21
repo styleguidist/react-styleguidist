@@ -16,4 +16,6 @@ export const LogoRenderer: React.FunctionComponent<JssInjectedProps> = ({ classe
 	return <h1 className={classes.logo}>{children}</h1>;
 };
 
+LogoRenderer.displayName = 'LogoRenderer';
+
 export default Styled<JssInjectedProps>(styles)(LogoRenderer);

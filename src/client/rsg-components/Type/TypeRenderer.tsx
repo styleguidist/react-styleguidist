@@ -23,5 +23,6 @@ TypeRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	children: PropTypes.node.isRequired,
 };
+TypeRenderer.displayName = 'TypeRenderer';
 
 export default Styled<TypeProps>(styles)(TypeRenderer);

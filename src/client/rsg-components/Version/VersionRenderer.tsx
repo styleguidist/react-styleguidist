@@ -29,5 +29,6 @@ VersionRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	children: PropTypes.node,
 };
+VersionRenderer.displayName = 'VersionRenderer';
 
 export default Styled<VersionProps>(styles)(VersionRenderer);

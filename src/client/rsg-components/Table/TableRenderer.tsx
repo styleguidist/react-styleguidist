@@ -94,5 +94,6 @@ TableRenderer.propTypes = {
 	rows: PropTypes.arrayOf(PropTypes.object).isRequired,
 	getRowKey: PropTypes.func.isRequired,
 };
+TableRenderer.displayName = 'TableRenderer';
 
 export default Styled<TableProps>(styles)(TableRenderer);

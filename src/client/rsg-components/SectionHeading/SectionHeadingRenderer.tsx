@@ -74,5 +74,6 @@ SectionHeadingRenderer.propTypes = {
 	depth: PropTypes.number.isRequired,
 	deprecated: PropTypes.bool,
 };
+SectionHeadingRenderer.displayName = 'SectionHeadingRenderer';
 
 export default Styled<SectionHeadingRendererProps>(styles)(SectionHeadingRenderer);

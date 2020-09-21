@@ -17,5 +17,6 @@ export const HrRenderer: React.FunctionComponent<JssInjectedProps> = ({ classes 
 HrRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 };
+HrRenderer.displayName = 'HrRenderer';
 
 export default Styled<JssInjectedProps>(styles)(HrRenderer);

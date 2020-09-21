@@ -45,5 +45,6 @@ WelcomeRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	patterns: PropTypes.array.isRequired,
 };
+WelcomeRenderer.displayName = 'WelcomeRenderer';
 
 export default Styled<WelcomeProps>(styles)(WelcomeRenderer);

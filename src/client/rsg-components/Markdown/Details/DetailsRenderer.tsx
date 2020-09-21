@@ -24,5 +24,6 @@ DetailsRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	children: PropTypes.node.isRequired,
 };
+DetailsRenderer.displayName = 'DetailsRenderer';
 
 export default Styled<DetailsProps>(styles)(DetailsRenderer);

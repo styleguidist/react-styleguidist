@@ -33,5 +33,6 @@ DetailsSummaryRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	children: PropTypes.node.isRequired,
 };
+DetailsSummaryRenderer.displayName = 'DetailsSummaryRenderer';
 
 export default Styled<DetailsSummaryProps>(styles)(DetailsSummaryRenderer);

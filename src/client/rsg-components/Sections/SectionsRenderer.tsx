@@ -22,5 +22,6 @@ SectionsRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	children: PropTypes.node,
 };
+SectionsRenderer.displayName = 'SectionsRenderer';
 
 export default Styled<SectionsRendererProps>(styles)(SectionsRenderer);

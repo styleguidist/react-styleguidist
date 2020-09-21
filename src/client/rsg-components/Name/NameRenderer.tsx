@@ -37,5 +37,6 @@ NameRenderer.propTypes = {
 	children: PropTypes.node.isRequired,
 	deprecated: PropTypes.bool,
 };
+NameRenderer.displayName = 'NameRenderer';
 
 export default Styled<NameProps>(styles)(NameRenderer);

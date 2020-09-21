@@ -37,5 +37,6 @@ MarkdownHeadingRenderer.propTypes = {
 	children: PropTypes.node,
 	id: PropTypes.string,
 };
+MarkdownHeadingRenderer.displayName = 'MarkdownHeadingRenderer';
 
 export default Styled<MarkdownHeadingProps>(styles)(MarkdownHeadingRenderer);

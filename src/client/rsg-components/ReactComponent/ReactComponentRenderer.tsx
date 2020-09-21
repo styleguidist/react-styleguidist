@@ -89,5 +89,6 @@ ReactComponentRenderer.propTypes = {
 	examples: PropTypes.node,
 	isolated: PropTypes.bool,
 };
+ReactComponentRenderer.displayName = 'ReactComponentRenderer';
 
 export default Styled<ReactComponentRendererProps>(styles)(ReactComponentRenderer);

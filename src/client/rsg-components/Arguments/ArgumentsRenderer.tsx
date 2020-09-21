@@ -54,5 +54,6 @@ ArgumentsRenderer.propTypes = {
 	).isRequired,
 	heading: PropTypes.bool,
 };
+ArgumentsRenderer.displayName = 'ArgumentsRenderer';
 
 export default Styled<ArgumentsProps>(styles)(ArgumentsRenderer);

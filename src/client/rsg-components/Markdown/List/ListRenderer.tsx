@@ -53,5 +53,6 @@ ListRenderer.propTypes = {
 ListRenderer.defaultProps = {
 	ordered: false,
 };
+ListRenderer.displayName = 'ListRenderer';
 
 export default Styled<ListProps>(styles)(ListRenderer);

@@ -89,5 +89,6 @@ ToolbarButtonRenderer.propTypes = {
 	testId: PropTypes.string,
 	children: PropTypes.node,
 };
+ToolbarButtonRenderer.displayName = 'ToolbarButtonRenderer';
 
 export default Styled<ToolbarButtonProps>(styles)(ToolbarButtonRenderer);

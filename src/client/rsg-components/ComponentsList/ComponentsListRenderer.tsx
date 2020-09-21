@@ -97,5 +97,6 @@ ComponentsListRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	items: PropTypes.array.isRequired,
 };
+ComponentsListRenderer.displayName = 'ComponentsListRenderer';
 
 export default Styled<ComponentsListRendererProps>(styles)(ComponentsListRenderer);

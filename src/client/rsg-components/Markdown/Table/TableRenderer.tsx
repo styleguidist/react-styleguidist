@@ -23,5 +23,6 @@ TableRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	children: PropTypes.node.isRequired,
 };
+TableRenderer.displayName = 'TableRenderer';
 
 export default Styled<TableProps>(styles)(TableRenderer);

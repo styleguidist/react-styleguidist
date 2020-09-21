@@ -27,6 +27,7 @@ interface ExamplePlaceholderProps extends JssInjectedProps {
 }
 
 export class ExamplePlaceholderRenderer extends Component<ExamplePlaceholderProps> {
+	public static displayName = 'ExamplePlaceholderProps';
 	public static propTypes = {
 		classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 		name: PropTypes.string,
