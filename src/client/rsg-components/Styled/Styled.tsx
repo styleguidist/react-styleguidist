@@ -12,7 +12,10 @@ export default function StyleHOC<P extends JssInjectedProps>(
 	styles: (t: Rsg.Theme) => Styles<string>
 ): (WrappedComponent: ComponentType<P>) => ComponentType<Omit<P, keyof JssInjectedProps>> {
 	return (WrappedComponent: ComponentType<P>) => {
-		const componentName = WrappedComponent.name.replace(/Renderer$/, '');
+		const componentName = (WrappedComponent.displayName || WrappedComponent.name).replace(
+			/Renderer$/,
+			''
+		);
 		return class extends Component<Omit<P, keyof JssInjectedProps>> {
 			public static displayName = `Styled(${componentName})`;
 			public static contextType = Context;
