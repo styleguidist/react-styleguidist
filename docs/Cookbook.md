@@ -300,8 +300,8 @@ module.exports = {
 ```
 
 ## How to use CSS animations in your style guide?
-As seen in the `@keyframes` animation examples above, the animation property in CSS rules do
-not directly use the name of their keyframe animations because of internal keyframe scoping.
+
+As seen in the `@keyframes` animation examples above, the animation property in CSS rules do not directly use the name of their keyframe animations because of internal keyframe scoping.
 
 To use a CSS animation, you have to define its keyframe at the root of the renderer object. The use of `@keyframes` in styling above are good examples of this.
 
