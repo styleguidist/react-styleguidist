@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
+import * as Rsg from '../../../typings';
 
-const styles = () => ({
-	// Just default jss-isolate rules
-	root: {},
+const styles = ({ fontSize }: Rsg.Theme) => ({
+	article: {
+		fontSize: fontSize.text,
+	},
 });
 
 interface ExamplesRendererProps extends JssInjectedProps {
@@ -18,7 +20,7 @@ export const ExamplesRenderer: React.FunctionComponent<ExamplesRendererProps> = 
 	children,
 }) => {
 	return (
-		<article className={classes.root} data-testid={`${name}-examples`}>
+		<article className={classes.article} data-testid={`${name}-examples`}>
 			{children}
 		</article>
 	);
