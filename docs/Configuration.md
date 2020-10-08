@@ -8,28 +8,60 @@ Type: `String` or `Array`, optional
 
 Your application static assets folder will be accessible as `/` in the style guide dev server.
 
+## `compiler`
+
+Type: `String, default:`sucrase`
+
+The compiler to transpile examples’s code. Styleguidist uses [Sucrase](https://github.com/alangpierce/sucrase/) by default to run modern ECMAScript code on the frontend.
+
+Styleguidist (via Sucrase) supports these proposed JavaScript features by default:
+
+- Optional chaining: `a?.b`.
+- Nullish coalescing: `a ?? b`.
+- Class fields: `class C { x = 1; }`. This includes static fields but not the `#x` private field syntax.
+- Numeric separators: `const n = 1_234`.
+- Optional catch binding: `try { doThing(); } catch {}`.
+
+These JavaScript features will be “pass through”, so they won’t cause a compilation error but your browser must support them:
+
+- Object rest/spread.
+- Async functions, and async iterators.
+- Newer regex features.
+
+> **Info:** See [Sucrase docs](https://github.com/alangpierce/sucrase/#transforms) for more details.
+
+You can change the compiler by using this option:
+
+```javascript
+module.exports = {
+  compiler: '@babel/standalone'
+}
+```
+
+The value of the `compiler` option is the name of the compiler npm package. The module should have a named export `transform` with the signature:
+
+```
+(code: string, compilerConfig: Record<string, any>) => {code: string}
+```
+
+> **Warning:** You should change [the compilerConfig option too](#compilerconfig) to pass the options for the new compiler.
+
+> **Info:** See [the cookbook](Cookbook.md) to learn how to configure other compiler, like Babel or TypeScript.
+
 ## `compilerConfig`
 
 Type: `Object`, default:
 
 ```javascript
 {
-  // Don't include an Object.assign ponyfill, we have our own
-  objectAssign: 'Object.assign',
-  // Transpile only features needed for IE11
-  target: { ie: 11 },
-  transforms: {
-    // Don't throw on ESM imports, we transpile them ourselves
-    modules: false,
-    // Enable tagged template literals for styled-components
-    dangerousTaggedTemplateString: true,
-    // to make async/await work by default (no transformation)
-    asyncAwait: false,
-  },
+  // Compile TypeScript, JSX and ECMAScript imports
+  transforms: ['typescript', 'jsx', 'imports' /*, 'react-hot-loader'*/],
 }
 ```
 
-Styleguidist uses [Bublé](https://buble.surge.sh/guide/) to run ES6 code on the frontend. This config object will be added as the second argument for `buble.transform`.
+Styleguidist uses [Sucrase](https://github.com/alangpierce/sucrase/) by default to run modern ECMAScript code on the frontend. This config object will be added as the second argument for compiler’s `transform` function.
+
+> **Info:** See [the compiler option](#compiler) to learn how to replace the compiler.
 
 ## `components`
 

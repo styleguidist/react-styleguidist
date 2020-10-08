@@ -18,7 +18,7 @@ import * as Rsg from '../typings';
 const logger = createLogger('rsg');
 
 // Config options that should be passed to the client
-const CLIENT_CONFIG_OPTIONS = [
+const CLIENT_CONFIG_OPTIONS: (keyof Rsg.SanitizedStyleguidistConfig)[] = [
 	'compilerConfig',
 	'tocMode',
 	'mountPointId',

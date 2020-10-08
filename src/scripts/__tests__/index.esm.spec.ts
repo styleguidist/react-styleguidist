@@ -3,6 +3,8 @@ import { Configuration } from 'webpack';
 import last from 'lodash/last';
 import styleguidist from '../index.esm';
 
+type Mode = Configuration['mode'];
+
 jest.mock('../build');
 jest.mock('../server');
 
@@ -77,7 +79,7 @@ describe('makeWebpackConfig', () => {
 
 	it('should merge webpackConfig config option as a function', () => {
 		const api = styleguidist({
-			webpackConfig: (env: string) => ({
+			webpackConfig: (env: Mode) => ({
 				_env: env,
 			}),
 		});
@@ -90,9 +92,9 @@ describe('makeWebpackConfig', () => {
 	it('should apply updateWebpackConfig config option', () => {
 		const defaultWebpackConfig = getDefaultWebpackConfig();
 		const api = styleguidist({
-			dangerouslyUpdateWebpackConfig: (webpackConfig: Configuration, env: string) => {
+			dangerouslyUpdateWebpackConfig: (webpackConfig, env) => {
 				if (webpackConfig.resolve && webpackConfig.resolve.extensions) {
-					webpackConfig.resolve.extensions.push(env);
+					webpackConfig.resolve.extensions.push(env as string);
 				}
 				return webpackConfig;
 			},

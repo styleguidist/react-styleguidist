@@ -4,9 +4,8 @@ import * as Rsg from '../../typings';
 /**
  * Process each component in a list.
  *
- * @param {Array} components File names of components.
- * @param {object} config
- * @returns {object|null}
+ * @param components File names of components.
+ * @param config
  */
 export default function getComponents(
 	components: string[],

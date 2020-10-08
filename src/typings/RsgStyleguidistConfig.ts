@@ -1,16 +1,17 @@
-import WebpackDevServer from 'webpack-dev-server';
 import { Configuration, loader } from 'webpack';
-import { TransformOptions } from 'buble';
 import { Handler, DocumentationObject, PropDescriptor } from 'react-docgen';
 import { ASTNode } from 'ast-types';
 import { NodePath } from 'ast-types/lib/node-path';
 import { Styles } from 'jss';
+import { Application } from 'express';
 import { RecursivePartial } from './RecursivePartial';
 import { EXPAND_MODE } from './RsgComponent';
 import { PropsObject } from './RsgPropsObject';
 import { CodeExample } from './RsgExample';
 import { ConfigSection, Section } from './RsgSection';
 import { Theme } from './RsgTheme';
+
+type Mode = Configuration['mode'];
 
 export interface StyleguidistLoaderContext extends loader.LoaderContext {
 	_styleguidist: SanitizedStyleguidistConfig;
@@ -19,13 +20,14 @@ export interface StyleguidistLoaderContext extends loader.LoaderContext {
 interface BaseStyleguidistConfig {
 	assetsDir: string | string[];
 	tocMode: EXPAND_MODE;
-	compilerConfig: TransformOptions;
+	compiler: string;
+	compilerConfig: Record<string, any>;
 	components: (() => string[]) | string | string[];
 	configDir: string;
 	context: Record<string, any>;
 	contextDependencies: string[];
-	configureServer(server: WebpackDevServer, env: string): string;
-	dangerouslyUpdateWebpackConfig: (server: Configuration, env: string) => Configuration;
+	configureServer(server: Application, env: Mode): string;
+	dangerouslyUpdateWebpackConfig: (config: Configuration, env: Mode) => Configuration;
 	defaultExample: string | false;
 	exampleMode: EXPAND_MODE;
 	editorConfig: {
@@ -75,7 +77,7 @@ interface BaseStyleguidistConfig {
 	styleguideComponents: Record<string, string>;
 	styleguideDir: string;
 	styles: Styles | string | ((theme: Theme) => Styles);
-	template: any;
+	template: any; // TODO
 	theme: RecursivePartial<Theme> | string;
 	title: string;
 	updateDocs(doc: PropsObject, file: string): PropsObject;
@@ -84,7 +86,7 @@ interface BaseStyleguidistConfig {
 	usageMode: EXPAND_MODE;
 	verbose: boolean;
 	version: string;
-	webpackConfig: Configuration | ((env?: string) => Configuration);
+	webpackConfig: Configuration | ((env: Mode) => Configuration);
 }
 
 export interface ProcessedStyleguidistConfig extends BaseStyleguidistConfig {

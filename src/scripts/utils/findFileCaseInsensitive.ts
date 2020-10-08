@@ -4,6 +4,17 @@ import memoize from 'lodash/memoize';
 
 const readdirSync = memoize(fs.readdirSync);
 
+const getFiles = (dir: string) => {
+	try {
+		return readdirSync(dir);
+	} catch (err) {
+		if (err.code === 'ENOENT') {
+			return [];
+		}
+		throw err;
+	}
+};
+
 /**
  * Find a file in a directory, case-insensitive
  *
@@ -13,7 +24,7 @@ const readdirSync = memoize(fs.readdirSync);
 export default function findFileCaseInsensitive(filepath: string): string | undefined {
 	const dir = path.dirname(filepath);
 	const fileNameLower = path.basename(filepath).toLowerCase();
-	const files = readdirSync(dir);
+	const files = getFiles(dir);
 	const found = files.find(file => file.toLowerCase() === fileNameLower);
 	return found && path.join(dir, found);
 }
