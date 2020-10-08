@@ -28,6 +28,8 @@ These JavaScript features will be “pass through”, so they won’t cause a co
 - Async functions, and async iterators.
 - Newer regex features.
 
+Styleguidist also strips TypeScript and Flow type annotations, including TypeScript enums. It doesn’t do actual type checking but you cold use TypeScript or Flow in the examples.
+
 > **Info:** See [Sucrase docs](https://github.com/alangpierce/sucrase/#transforms) for more details.
 
 You can change the compiler by using this option:
