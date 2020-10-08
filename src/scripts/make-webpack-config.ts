@@ -1,6 +1,6 @@
 import path from 'path';
 import castArray from 'lodash/castArray';
-import webpack, { Configuration, Resolve } from 'webpack';
+import webpack, { Configuration } from 'webpack';
 import TerserPlugin from 'terser-webpack-plugin';
 import MiniHtmlWebpackPlugin from 'mini-html-webpack-plugin';
 import MiniHtmlWebpackTemplate from '@vxna/mini-html-webpack-template';

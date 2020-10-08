@@ -18,6 +18,13 @@ export default function compileCode(
 	onError?: (err: Error) => void
 ): string {
 	const wrappedCode = startsWithJsx(code) ? wrapCodeInFragment(code) : code;
-	const compiledCode = transform(wrappedCode, compilerConfig).code;
-	return insertReturnLastExpression(compiledCode);
+	try {
+		const compiledCode = transform(wrappedCode, compilerConfig).code;
+		return insertReturnLastExpression(compiledCode);
+	} catch (err) {
+		if (onError) {
+			onError(err);
+		}
+		return '';
+	}
 }
