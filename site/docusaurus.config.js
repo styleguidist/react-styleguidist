@@ -8,7 +8,9 @@ module.exports = {
 	projectName: 'react-styleguidist',
 	stylesheets: ['https://fonts.googleapis.com/css?family=Bree+Serif|Open+Sans:400,400i,700'],
 	themeConfig: {
-		disableDarkMode: true,
+		colorMode: {
+			disableSwitch: true,
+		},
 		prism: {
 			// eslint-disable-next-line import/no-unresolved, import/no-extraneous-dependencies
 			theme: require('prism-react-renderer/themes/nightOwlLight'),
@@ -16,11 +18,17 @@ module.exports = {
 		navbar: {
 			hideOnScroll: false,
 			title: 'React Styleguidist',
-			links: [
+			items: [
 				{
 					to: 'docs/getting-started',
 					activeBasePath: 'docs',
 					label: 'Docs',
+					position: 'right',
+				},
+				{
+					to: 'learn',
+					activeBasePath: 'learn',
+					label: 'Learn',
 					position: 'right',
 				},
 				{
@@ -91,7 +99,9 @@ module.exports = {
 		[
 			'@docusaurus/preset-classic',
 			{
+				debug: false,
 				docs: {
+					includeCurrentVersion: true,
 					sidebarPath: require.resolve('./sidebars.js'),
 					remarkPlugins: require('./remark'),
 				},

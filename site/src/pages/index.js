@@ -1,5 +1,5 @@
 import React from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import PropTypes from 'prop-types';
 import Link from '@docusaurus/Link';
@@ -134,7 +134,7 @@ function Home() {
 	const { siteConfig = {} } = context;
 	return (
 		<Layout title={`${siteConfig.title}: ${siteConfig.tagline}`} description={siteConfig.tagline}>
-			<header className={classnames('hero', styles.heroBanner)}>
+			<header className={clsx('hero', styles.heroBanner)}>
 				<Stack gap="l" className="container">
 					<Stack gap="m" className="container">
 						<img src={useBaseUrl('img/logo.svg')} alt="" width={300} />

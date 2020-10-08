@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import styles from './Column.module.css';
 
 export const Row = ({ children, className, as: Component = 'div', ...rest }) => (
-	<Component className={classnames('row', className)} {...rest}>
+	<Component className={clsx('row', className)} {...rest}>
 		{children}
 	</Component>
 );
@@ -17,7 +17,7 @@ Row.propTypes = {
 
 export const Column = ({ children, size, order, className, as: Component = 'div', ...rest }) => (
 	<Component
-		className={classnames('col', `col--${size}`, order && styles[`col--order-${order}`], className)}
+		className={clsx('col', `col--${size}`, order && styles[`col--order-${order}`], className)}
 		{...rest}
 	>
 		{children}

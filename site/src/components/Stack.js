@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import styles from './Stack.module.css';
 
 export const Stack = ({ children, gap, className, as: Component = 'div', ...rest }) => (
-	<Component className={classnames(styles.stack, styles[`stack--${gap}`], className)} {...rest}>
+	<Component className={clsx(styles.stack, styles[`stack--${gap}`], className)} {...rest}>
 		{children}
 	</Component>
 );

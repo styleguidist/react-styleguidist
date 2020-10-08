@@ -1,0 +1,10 @@
+.componentDrivenHero {
+	--shade-color: hsla(228, 37%, 31%, 0.8);
+
+	display: block;
+	padding: 2rem 1rem;
+	text-align: center;
+	background-image: linear-gradient(var(--shade-color), var(--shade-color)), url(/img/workshop.jpg);
+	background-position: 50% 50%;
+	background-size: cover;
+}

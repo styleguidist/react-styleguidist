@@ -123,8 +123,14 @@ export default function(config: Rsg.SanitizedStyleguidistConfig, env: Mode): Con
 			},
 		});
 		if (config.assetsDir && webpackConfig.plugins) {
+			const copyPatterns = {
+				patterns: castArray(config.assetsDir).map(dir => ({ from: dir })),
+			};
 			webpackConfig.plugins.push(
-				new CopyWebpackPlugin(castArray(config.assetsDir).map(dir => ({ from: dir })))
+				// FIXME: Since we don't have the type of copy-webpack-plugin@6.0
+				// we cast the config as any to make it work. Once the new types are
+				// released we must remove the cast.
+				new CopyWebpackPlugin(copyPatterns as any)
 			);
 		}
 	} else {

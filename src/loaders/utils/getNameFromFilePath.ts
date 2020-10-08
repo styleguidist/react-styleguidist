@@ -1,9 +1,11 @@
 import path from 'path';
 import startCase from 'lodash/startCase';
 
+/**
+ * your-buttonTS -> YourButtonTS
+ * your_button--TS -> YourButtonTS
+ */
 function transformFileNameToDisplayName(displayName: string): string {
-	// ex: your-buttonTS -> Your Button TS -> YourButtonTS
-	// ex: your_button--TS -> Your Button TS -> YourButtonTS
 	return startCase(displayName).replace(/\s/g, '');
 }
 

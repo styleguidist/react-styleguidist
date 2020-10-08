@@ -217,7 +217,7 @@ module.exports = {
       // We're changing the LogoRenderer component
       logo: {
         // We're changing the rsg--logo-XX class name inside the component
-        animation: 'blink ease-in-out 300ms infinite'
+        animation: '$blink ease-in-out 300ms infinite'
       },
       '@keyframes blink': {
         to: { opacity: 0 }
@@ -271,7 +271,7 @@ module.exports = {
     // We're changing the LogoRenderer component
     logo: {
       // We're changing the rsg--logo-XX class name inside the component
-      animation: 'blink ease-in-out 300ms infinite'
+      animation: '$blink ease-in-out 300ms infinite'
     },
     '@keyframes blink': {
       to: { opacity: 0 }
@@ -298,6 +298,12 @@ module.exports = {
   }
 }
 ```
+
+## How to use CSS animations in your style guide?
+
+As seen in the `@keyframes` animation examples above, the animation property in CSS rules do not directly use the name of their keyframe animations because of internal keyframe scoping.
+
+To use a CSS animation, you have to define its keyframe at the root of the renderer object. The use of `@keyframes` in styling above are good examples of this.
 
 ## How to change the layout of a style guide?
 

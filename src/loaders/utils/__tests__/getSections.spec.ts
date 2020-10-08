@@ -47,6 +47,7 @@ const sectionsWithDepth = [
 	},
 	{
 		name: 'Components',
+		expand: true,
 		sections: [
 			{
 				name: 'Buttons',
@@ -146,6 +147,12 @@ it('getSections() should return an array of sectionsWithDepth with sectionDepth 
 			],
 		},
 	]);
+});
+
+it('getSections() should make custom options by user available', () => {
+	const result = getSections(sectionsWithDepth, config);
+	const expandSection = result.find(section => section.name === 'Components');
+	expect(expandSection).toHaveProperty('expand');
 });
 
 it('getSections() should return an array of sectionsWithBadDepth taking the sectionDepth of the first depth of the sections', () => {

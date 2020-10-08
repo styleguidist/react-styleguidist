@@ -302,3 +302,31 @@ it('should detect sections containing current selection when tocMode is collapse
 
 	expect(getByText('1.1')).not.toBeEmpty();
 });
+
+it('should show sections with expand: true when tocMode is collapse', () => {
+	const { getByText } = render(
+		<TableOfContents
+			tocMode="collapse"
+			sections={[
+				{
+					sections: [
+						{
+							visibleName: '1',
+							expand: true,
+							href: '#/components',
+							sections: [{ visibleName: '1.1', href: '#/button' }],
+						},
+						{
+							visibleName: '2',
+							href: '#/chap',
+							content: 'chapter.md',
+							sections: [{ visibleName: '2.1', href: '#/chapter-1' }],
+						},
+						{ visibleName: '3', href: 'http://react-styleguidist.com' },
+					],
+				},
+			]}
+		/>
+	);
+	expect(getByText('1.1')).toBeVisible();
+});
