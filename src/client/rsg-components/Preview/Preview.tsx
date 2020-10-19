@@ -5,12 +5,6 @@ import PlaygroundError from 'rsg-components/PlaygroundError';
 import ReactExample from 'rsg-components/ReactExample';
 import Context from 'rsg-components/Context';
 
-const improveErrorMessage = (message: string) =>
-	message.replace(
-		'Check the render method of `StateHolder`.',
-		'Check the code of your example in a Markdown file or in the editor below.'
-	);
-
 interface PreviewProps {
 	code: string;
 	evalInContext(code: string): () => any;
@@ -97,7 +91,7 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 		this.unmountPreview();
 
 		this.setState({
-			error: improveErrorMessage(err.toString()),
+			error: err.toString(),
 		});
 
 		console.error(err); // eslint-disable-line no-console

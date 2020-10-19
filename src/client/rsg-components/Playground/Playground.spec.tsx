@@ -3,10 +3,14 @@ import { render, fireEvent } from '@testing-library/react';
 import Playground from './Playground';
 import slots from '../slots';
 import Context from '../Context';
+import config from '../../../scripts/schemas/config';
+
+const compilerConfig = config.compilerConfig.default;
 
 const evalInContext = (a: string) =>
 	// eslint-disable-next-line no-new-func
 	new Function('require', 'const React = require("react");' + a).bind(null, require);
+
 const code = '<button>Code: OK</button>';
 const newCode = '<button>Code: Not OK</button>';
 const defaultProps = {
@@ -20,6 +24,7 @@ const defaultProps = {
 const context = {
 	config: {
 		previewDelay: 0,
+		compilerConfig,
 	},
 	codeRevision: 0,
 	slots: slots(),

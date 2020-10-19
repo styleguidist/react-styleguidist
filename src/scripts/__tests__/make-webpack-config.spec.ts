@@ -4,6 +4,7 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import makeWebpackConfig from '../make-webpack-config';
 import * as Rsg from '../../typings';
 
+// HACK: For some reason validate() doesn’t exist in webpack types
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { validate } = require('webpack');
 
@@ -13,6 +14,9 @@ const styleguideConfig = ({
 	styleguideDir: __dirname,
 	require: [],
 	title: 'Style Guide',
+	compiler: 'sucrase',
+	sections: [],
+	dangerouslyUpdateWebpackConfig: (x: Configuration) => x,
 } as unknown) as Rsg.SanitizedStyleguidistConfig;
 
 const getClasses = (plugins: Tapable.Plugin[] = [], name: string): Tapable.Plugin[] =>
@@ -73,7 +77,12 @@ it('should return a production config', () => {
 
 it('should set aliases', () => {
 	const result = makeWebpackConfig(styleguideConfig, 'development');
-	expect(result.resolve && result.resolve.alias).toMatchSnapshot();
+	expect(result.resolve?.alias).toMatchInlineSnapshot(`
+		Object {
+		  "rsg-compiler": "sucrase",
+		  "rsg-components": "~/src/client/rsg-components",
+		}
+	`);
 });
 
 it('should set aliases from moduleAliases option', () => {
@@ -86,7 +95,7 @@ it('should set aliases from moduleAliases option', () => {
 		},
 		'development'
 	);
-	expect(result.resolve && result.resolve.alias).toMatchSnapshot();
+	expect(result.resolve?.alias?.foo).toBe('bar');
 });
 
 it('should set aliases from styleguideComponents option', () => {
@@ -99,7 +108,24 @@ it('should set aliases from styleguideComponents option', () => {
 		},
 		'development'
 	);
-	expect(result.resolve && result.resolve.alias).toMatchSnapshot();
+	expect(result.resolve?.alias).toMatchInlineSnapshot(`
+		Object {
+		  "rsg-compiler": "sucrase",
+		  "rsg-components": "~/src/client/rsg-components",
+		  "rsg-components/foo": "bar",
+		}
+	`);
+});
+
+it('should set aliases from compiler option', () => {
+	const result = makeWebpackConfig(
+		{
+			...styleguideConfig,
+			compiler: 'babel',
+		},
+		'development'
+	);
+	expect(result.resolve?.alias?.['rsg-compiler']).toBe('babel');
 });
 
 it('should prepend requires as webpack entries', () => {
@@ -107,7 +133,14 @@ it('should prepend requires as webpack entries', () => {
 		{ ...styleguideConfig, require: ['a/b.js', 'c/d.css'] },
 		'development'
 	);
-	expect(result.entry).toMatchSnapshot();
+	expect(result.entry).toMatchInlineSnapshot(`
+		Array [
+		  "a/b.js",
+		  "c/d.css",
+		  "~/src/client/index",
+		  "~/node_modules/react-dev-utils/webpackHotDevClient.js",
+		]
+	`);
 });
 
 it('should enable verbose mode in CleanWebpackPlugin', () => {
@@ -134,7 +167,13 @@ it('should merge user webpack config', () => {
 		{ ...styleguideConfig, webpackConfig: { resolve: { alias: { foo: 'bar' } } } },
 		'development'
 	);
-	expect(result.resolve && result.resolve.alias).toMatchSnapshot();
+	expect(result.resolve?.alias).toMatchInlineSnapshot(`
+		Object {
+		  "foo": "bar",
+		  "rsg-compiler": "sucrase",
+		  "rsg-components": "~/src/client/rsg-components",
+		}
+	`);
 });
 
 it('should not owerwrite user DefinePlugin', () => {
@@ -152,10 +191,21 @@ it('should not owerwrite user DefinePlugin', () => {
 		'development'
 	);
 
-	// Doesn’t really test that values won’t be overwritten, just that
-	// DefinePlugin is applied twice. To write a real test we’d have to run
-	// webpack
-	expect(getClasses(result.plugins, 'DefinePlugin')).toMatchSnapshot();
+	expect(getClasses(result.plugins, 'DefinePlugin')).toMatchInlineSnapshot(`
+		Array [
+		  DefinePlugin {
+		    "definitions": Object {
+		      "process.env.NODE_ENV": "\\"test\\"",
+		      "process.env.STYLEGUIDIST_ENV": "\\"development\\"",
+		    },
+		  },
+		  DefinePlugin {
+		    "definitions": Object {
+		      "process.env.PIZZA": "\\"salami\\"",
+		    },
+		  },
+		]
+	`);
 });
 
 it('should update webpack config', () => {

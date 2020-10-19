@@ -5,10 +5,14 @@ import slots from '../slots';
 import Context from '../Context';
 import { DisplayModes } from '../../consts';
 import * as Rsg from '../../../typings';
+import config from '../../../scripts/schemas/config';
+
+const compilerConfig = config.compilerConfig.default;
 
 const context = {
 	config: {
 		pagePerSection: false,
+		compilerConfig,
 	},
 	displayMode: DisplayModes.all,
 	slots: slots(),
@@ -48,7 +52,7 @@ const componentWithEverything: Rsg.Component = {
 					{
 						name: 'newValue',
 						description: 'New value for the counter.',
-						type: {type: 'NameExpression', name: 'Number' },
+						type: { type: 'NameExpression', name: 'Number' },
 					},
 				],
 				returns: null,

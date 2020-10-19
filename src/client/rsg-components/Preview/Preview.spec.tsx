@@ -3,6 +3,9 @@ import { mount } from 'enzyme';
 import { render } from '@testing-library/react';
 import Preview from '.';
 import Context, { StyleGuideContextContents } from '../Context';
+import config from '../../../scripts/schemas/config';
+
+const compilerConfig = config.compilerConfig.default;
 
 /* eslint-disable no-console */
 
@@ -17,7 +20,7 @@ const newCode = '<button>Code: Cancel</button>';
 
 const context = {
 	config: {
-		compilerConfig: {},
+		compilerConfig,
 	},
 	codeRevision: 0,
 } as StyleGuideContextContents;

@@ -4,33 +4,37 @@ import config from '../../../scripts/schemas/config';
 const compilerConfig = config.compilerConfig.default;
 
 describe('compileCode', () => {
-	test('compile ES6 to ES5', () => {
-		const result = compileCode(`const {foo, bar} = baz`, compilerConfig);
+	test('strips TypeScript type annotations', () => {
+		const result = compileCode(
+			`const x = (y: number): number => y; console.log(x(1))`,
+			compilerConfig
+		);
 		expect(result).toMatchInlineSnapshot(`
-"var foo = baz.foo;
-var bar = baz.bar;"
-`);
+		"\\"use strict\\";const x = (y) => y;
+		return (console.log(x(1)));"
+	`);
 	});
 
 	test('transform imports to require()', () => {
-		const result = compileCode(`import foo from 'bar'`, compilerConfig);
+		const result = compileCode(`import foo from 'bar'; foo()`, compilerConfig);
 		expect(result).toMatchInlineSnapshot(`
-"const bar$0 = require('bar');
-const foo = bar$0.default || bar$0;"
-`);
+		"\\"use strict\\"; function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _bar = require('bar'); var _bar2 = _interopRequireDefault(_bar);
+		return (_bar2.default.call(void 0, ));"
+	`);
 	});
 
 	test('transform async/await is not throw an error', () => {
 		const onError = jest.fn();
 		const result = compileCode(
-			`async function asyncFunction() { return await Promise.resolve(); }`,
+			`async function asyncFunction() { return await Promise.resolve(); }; asyncFunction()`,
 			compilerConfig,
 			onError
 		);
 		expect(onError).not.toHaveBeenCalled();
-		expect(result).toMatchInlineSnapshot(
-			`"async function asyncFunction() { return await Promise.resolve(); }"`
-		);
+		expect(result).toMatchInlineSnapshot(`
+		"\\"use strict\\";async function asyncFunction() { return await Promise.resolve(); };
+		return (asyncFunction());"
+	`);
 	});
 
 	test('transform imports to require() in front of JSX', () => {
@@ -42,13 +46,11 @@ import Button from 'button';
 			compilerConfig
 		);
 		expect(result).toMatchInlineSnapshot(`
-"
-const bar$0 = require('bar');
-const foo = bar$0.default || bar$0;
-const button$0 = require('button');
-const Button = button$0.default || button$0;
-React.createElement( Button, null )"
-`);
+		"\\"use strict\\";const _jsxFileName = \\"\\"; function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+		var _button = require('button'); var _button2 = _interopRequireDefault(_button);
+		return (React.createElement(_button2.default, {__self: this, __source: {fileName: _jsxFileName, lineNumber: 4}} ));"
+	`);
 	});
 
 	test('wrap JSX in Fragment', () => {
@@ -59,10 +61,11 @@ React.createElement( Button, null )"
 			compilerConfig
 		);
 		expect(result).toMatchInlineSnapshot(`
-"React.createElement( React.Fragment, null, React.createElement( 'div', null,
-  React.createElement( 'button', null, \\"Click\\" )
-) );"
-`);
+		"\\"use strict\\";const _jsxFileName = \\"\\";
+		return (React.createElement(React.Fragment, {__self: this, __source: {fileName: _jsxFileName, lineNumber: 1}}, React.createElement('div', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 1}}
+		  , React.createElement('button', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 2}}, \\"Click\\")
+		)));"
+	`);
 	});
 
 	test('don’t wrap JSX in Fragment if it’s in the middle', () => {
@@ -74,12 +77,11 @@ React.createElement( Button, null )"
 			compilerConfig
 		);
 		expect(result).toMatchInlineSnapshot(`
-"var foo = baz.foo;
-var bar = baz.bar;
-React.createElement( 'div', null,
-  React.createElement( 'button', null, \\"Click\\" )
-)"
-`);
+		"\\"use strict\\";const _jsxFileName = \\"\\";const {foo, bar} = baz;
+		return (React.createElement('div', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 2}}
+		  , React.createElement('button', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 3}}, \\"Click\\")
+		));"
+	`);
 	});
 
 	test('tagged template literals', () => {
@@ -92,19 +94,18 @@ React.createElement( 'div', null,
 			compilerConfig
 		);
 		expect(result).toMatchInlineSnapshot(`
-"var templateObject = Object.freeze([\\"\\\\n\\\\tcolor: tomato;\\\\n\\"]);
-var Button = styled.button(templateObject);
-React.createElement( Button, null )
-"
-`);
+		"\\"use strict\\";const _jsxFileName = \\"\\";const Button = styled.button\`
+			color: tomato;
+		\`;
+		return (React.createElement(Button, {__self: this, __source: {fileName: _jsxFileName, lineNumber: 4}} ));"
+	`);
 	});
 
 	test('onError callback', () => {
 		const onError = jest.fn();
 		const result = compileCode(`=`, compilerConfig, onError);
 		expect(result).toBe('');
-		expect(onError).toHaveBeenCalledWith(
-			expect.objectContaining({ message: 'Unexpected token (1:0)' })
-		);
+		expect(onError).toHaveBeenCalledTimes(1);
+		expect(onError.mock.calls[0][0].toString()).toBe('SyntaxError: Unexpected token (1:1)');
 	});
 });

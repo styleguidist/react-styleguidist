@@ -210,6 +210,9 @@
     "modulePaths": [
       "./src/client"
     ],
+    "moduleNameMapper": {
+      "rsg-compiler": "sucrase"
+    },
     "testPathIgnorePatterns": [
       "<rootDir>/lib/",
       "<rootDir>/examples/",
