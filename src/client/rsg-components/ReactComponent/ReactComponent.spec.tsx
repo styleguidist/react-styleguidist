@@ -48,7 +48,7 @@ const componentWithEverything: Rsg.Component = {
 					{
 						name: 'newValue',
 						description: 'New value for the counter.',
-						type: {type: 'NameExpression', name: 'Number' },
+						type: { type: 'NameExpression', name: 'Number' },
 					},
 				],
 				returns: null,
@@ -149,7 +149,7 @@ test('should not render anything when component has no name', () => {
 			/>
 		</Provider>
 	);
-	expect(container).toBeEmpty();
+	expect(container).toBeEmptyDOMElement();
 });
 
 test('should not render component in isolation mode by default', () => {
