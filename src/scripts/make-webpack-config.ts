@@ -22,7 +22,7 @@ interface AliasedConfiguration extends Configuration {
 	resolve: Resolve & { alias: Record<string, string> };
 }
 
-export default function(
+export default function (
 	config: Rsg.SanitizedStyleguidistConfig,
 	env: 'development' | 'production' | 'none'
 ): Configuration {
@@ -69,7 +69,6 @@ export default function(
 
 	if (isProd) {
 		const minimizer = new TerserPlugin({
-			/* eslint-disable @typescript-eslint/camelcase */
 			terserOptions: {
 				ie8: false,
 				ecma: 5,
@@ -89,7 +88,6 @@ export default function(
 					keep_fnames: true,
 				},
 			},
-			/* eslint-enable @typescript-eslint/camelcase */
 		});
 		webpackConfig = merge(webpackConfig, {
 			output: {
@@ -109,7 +107,7 @@ export default function(
 		});
 		if (config.assetsDir && webpackConfig.plugins) {
 			const copyPatterns = {
-				patterns: castArray(config.assetsDir).map(dir => ({ from: dir })),
+				patterns: castArray(config.assetsDir).map((dir) => ({ from: dir })),
 			};
 			webpackConfig.plugins.push(
 				// FIXME: Since we don't have the type of copy-webpack-plugin@6.0

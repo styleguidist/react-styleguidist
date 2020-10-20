@@ -9,6 +9,7 @@ import propsLoader from '../props-loader';
 
 const logger = glogg('rsg');
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 const _styleguidist = {
 	handlers: config.handlers.default,
 	getExampleFilename: config.getExampleFilename.default,

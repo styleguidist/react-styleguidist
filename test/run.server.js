@@ -28,7 +28,7 @@ styleguidist({
 	},
 	logger: {
 		info: console.log,
-		warn: message => console.warn(`Warning: ${message}`),
+		warn: (message) => console.warn(`Warning: ${message}`),
 	},
 	serverPort: 8082,
 	// Do not require delays in integration tests

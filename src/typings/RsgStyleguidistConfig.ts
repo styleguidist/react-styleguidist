@@ -6,7 +6,7 @@ import { ASTNode } from 'ast-types';
 import { NodePath } from 'ast-types/lib/node-path';
 import { Styles } from 'jss';
 import { RecursivePartial } from './RecursivePartial';
-import { EXPAND_MODE } from './RsgComponent';
+import { ExpandMode } from './RsgComponent';
 import { PropsObject } from './RsgPropsObject';
 import { CodeExample } from './RsgExample';
 import { ConfigSection, Section } from './RsgSection';
@@ -18,7 +18,7 @@ export interface StyleguidistLoaderContext extends loader.LoaderContext {
 
 interface BaseStyleguidistConfig {
 	assetsDir: string | string[];
-	tocMode: EXPAND_MODE;
+	tocMode: ExpandMode;
 	compilerConfig: TransformOptions;
 	components: (() => string[]) | string | string[];
 	configDir: string;
@@ -27,7 +27,7 @@ interface BaseStyleguidistConfig {
 	configureServer(server: WebpackDevServer, env: string): string;
 	dangerouslyUpdateWebpackConfig: (server: Configuration, env: string) => Configuration;
 	defaultExample: string | false;
-	exampleMode: EXPAND_MODE;
+	exampleMode: ExpandMode;
 	editorConfig: {
 		theme: string;
 	};
@@ -81,7 +81,7 @@ interface BaseStyleguidistConfig {
 	updateDocs(doc: PropsObject, file: string): PropsObject;
 	updateExample(props: Omit<CodeExample, 'type'>, ressourcePath: string): Omit<CodeExample, 'type'>;
 	updateWebpackConfig(config: Configuration): Configuration;
-	usageMode: EXPAND_MODE;
+	usageMode: ExpandMode;
 	verbose: boolean;
 	version: string;
 	webpackConfig: Configuration | ((env?: string) => Configuration);

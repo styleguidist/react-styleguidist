@@ -58,7 +58,7 @@ function eatFood(food) {
     return ['No food']
   }
 
-  return food.map(dish => `No ${dish.toLowerCase()}`)
+  return food.map((dish) => `No ${dish.toLowerCase()}`)
 }
 
 const food = ['Pizza', 'Buger', 'Coffee']

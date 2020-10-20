@@ -42,19 +42,6 @@ interface ComponentsListRendererProps extends JssInjectedProps {
 	items: Rsg.TOCItem[];
 }
 
-export const ComponentsListRenderer: React.FunctionComponent<ComponentsListRendererProps> = ({
-	classes,
-	items,
-}) => {
-	return (
-		<ul className={classes.list}>
-			{items.map(item => (
-				<ComponentsListSectionRenderer key={item.slug} classes={classes} {...item} />
-			))}
-		</ul>
-	);
-};
-
 const ComponentsListSectionRenderer: React.FunctionComponent<Rsg.TOCItem & JssInjectedProps> = ({
 	classes,
 	heading,
@@ -90,6 +77,19 @@ const ComponentsListSectionRenderer: React.FunctionComponent<Rsg.TOCItem & JssIn
 			</Link>
 			{open || forcedOpen ? content : null}
 		</li>
+	);
+};
+
+export const ComponentsListRenderer: React.FunctionComponent<ComponentsListRendererProps> = ({
+	classes,
+	items,
+}) => {
+	return (
+		<ul className={classes.list}>
+			{items.map((item) => (
+				<ComponentsListSectionRenderer key={item.slug} classes={classes} {...item} />
+			))}
+		</ul>
 	);
 };
 

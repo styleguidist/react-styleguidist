@@ -40,7 +40,7 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 		const windowHash = pathname + (useRouterLinks ? hash : getHash(hash));
 
 		let childrenContainSelected = false;
-		const processedItems = sections.map(section => {
+		const processedItems = sections.map((section) => {
 			const children = [...(section.sections || []), ...(section.components || [])];
 			const sectionDepth = section.sectionDepth || 0;
 			const childHashPath =
@@ -97,10 +97,11 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 	}
 
 	public render() {
+		const handleSearchTermChange = (searchTerm: string) => this.setState({ searchTerm });
 		return (
 			<TableOfContentsRenderer
 				searchTerm={this.state.searchTerm}
-				onSearchTermChange={searchTerm => this.setState({ searchTerm })}
+				onSearchTermChange={handleSearchTermChange}
 			>
 				{this.renderSections()}
 			</TableOfContentsRenderer>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../Button';
 
-const dummyWrapper = WrappedComponent => props => <WrappedComponent {...props} />;
+const dummyWrapper = (WrappedComponent) => (props) => <WrappedComponent {...props} />;
 
 /**
  * A button wrapped by a Decorator/Enhancer

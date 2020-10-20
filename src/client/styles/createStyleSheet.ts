@@ -41,5 +41,5 @@ export default memoize(
 		return jss.createStyleSheet(mergedStyles, { meta: componentName, link: true });
 	},
 	// calculate the cache key here
-	(_, __, componentName, cssRevision) => `${componentName}_${cssRevision}`
+	(styles, config, componentName, cssRevision) => `${componentName}_${cssRevision}`
 );

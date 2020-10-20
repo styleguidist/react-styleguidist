@@ -70,7 +70,7 @@ module.exports = {
 		},
 	],
 	require: [path.join(__dirname, 'src/styles.css')],
-	webpackConfig: env => ({
+	webpackConfig: (env) => ({
 		module: {
 			rules: [
 				{

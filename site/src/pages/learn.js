@@ -124,13 +124,13 @@ function Learn() {
 						Learn how to use React Styleguidist efficiently from its creators and the community.
 					</p>
 				</Stack>
-				{sections.map(section => (
+				{sections.map((section) => (
 					<Stack key={section.title} gap="m" as="section">
 						<h2>{section.title}</h2>
 						{section.description}
 						{section.links && (
 							<List>
-								{section.links.map(link => (
+								{section.links.map((link) => (
 									<li key={link.href}>
 										<Link href={link.href} target="_blank" rel="noopener noreferrer">
 											{link.title}
@@ -141,7 +141,7 @@ function Learn() {
 						)}
 						{section.items && (
 							<Row>
-								{section.items.map(item => (
+								{section.items.map((item) => (
 									<Column key={item.href} size={6}>
 										<ImageLink href={item.href}>
 											<Stack gap="xs">

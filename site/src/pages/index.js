@@ -94,7 +94,7 @@ function Feature({ title, subtitle, paragraphs, figure, flipped }) {
 						<b>{subtitle}</b>
 					</p>
 					<Stack gap="s">
-						{paragraphs.map(para => (
+						{paragraphs.map((para) => (
 							<p key={para}>{para}</p>
 						))}
 					</Stack>
@@ -161,7 +161,7 @@ function Home() {
 					<section className={styles.section}>
 						<h2>See it in action</h2>
 						<Row>
-							{examples.map(example => (
+							{examples.map((example) => (
 								<Column key={example.href} size={3}>
 									<ImageLink href={example.href}>
 										<Stack gap="xs">

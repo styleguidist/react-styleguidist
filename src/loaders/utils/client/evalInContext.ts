@@ -14,7 +14,7 @@ export default function evalInContext(
 	header: string,
 	require: (module: string) => any,
 	code: string
-): (state: {}, setState: any) => any {
+): (state: Record<string, unknown>, setState: any) => any {
 	// 1. Prepend code with the header
 	// 2. Wrap code in a block (`{}`) to create a new scope, so you could
 	//    explicitly import context modules in your examples)

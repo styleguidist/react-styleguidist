@@ -17,7 +17,7 @@ const argv = mri(process.argv.slice(2));
 const command = argv._[0];
 
 // Do not show nasty stack traces for Styleguidist errors
-process.on('uncaughtException', err => {
+process.on('uncaughtException', (err) => {
 	if (err.code === 'EADDRINUSE') {
 		printErrorWithLink(
 			`Another server is running at port ${config.serverPort} already. Please stop it or change the default port to continue.`,
@@ -93,7 +93,7 @@ function commandBuild() {
 	console.log('Building style guide...');
 
 	const build = require('../scripts/build').default;
-	const compiler = build(config, err => {
+	const compiler = build(config, (err) => {
 		if (err) {
 			console.error(err);
 			process.exit(1);
@@ -107,7 +107,7 @@ function commandBuild() {
 	verboseLog('Webpack config:', compiler.options);
 
 	// Custom error reporting
-	compiler.hooks.done.tap('rsgCustomErrorBuild', function(stats) {
+	compiler.hooks.done.tap('rsgCustomErrorBuild', function (stats) {
 		const messages = formatWebpackMessages(stats.toJson({}, true));
 		const hasErrors = printAllErrorsAndWarnings(messages, stats.compilation);
 		if (hasErrors) {
@@ -120,7 +120,7 @@ function commandServer() {
 	let spinner;
 
 	const server = require('../scripts/server').default;
-	const compiler = server(config, err => {
+	const compiler = server(config, (err) => {
 		if (err) {
 			console.error(err);
 		} else {
@@ -146,13 +146,13 @@ function commandServer() {
 	verboseLog('Webpack config:', compiler.options);
 
 	// Show message when webpack is recompiling the bundle
-	compiler.hooks.invalid.tap('rsgInvalidServer', function() {
+	compiler.hooks.invalid.tap('rsgInvalidServer', function () {
 		console.log();
 		spinner = ora('Compiling...').start();
 	});
 
 	// Custom error reporting
-	compiler.hooks.done.tap('rsgCustomErrorServer', function(stats) {
+	compiler.hooks.done.tap('rsgCustomErrorServer', function (stats) {
 		if (spinner) {
 			spinner.stop();
 		}
@@ -234,7 +234,7 @@ function printErrors(header, errors, originalErrors, type) {
 	printStatus(header, type);
 	console.error();
 	const messages = argv.verbose ? originalErrors : errors;
-	messages.forEach(message => {
+	messages.forEach((message) => {
 		console.error(message.message || message);
 	});
 }
@@ -245,32 +245,11 @@ function printErrors(header, errors, originalErrors, type) {
  */
 function printStatus(text, type) {
 	if (type === 'success') {
-		console.log(
-			kleur
-				.inverse()
-				.bold()
-				.green(' DONE ') +
-				' ' +
-				text
-		);
+		console.log(kleur.inverse().bold().green(' DONE ') + ' ' + text);
 	} else if (type === 'error') {
-		console.error(
-			kleur
-				.inverse()
-				.bold()
-				.red(' FAIL ') +
-				' ' +
-				kleur.red(text)
-		);
+		console.error(kleur.inverse().bold().red(' FAIL ') + ' ' + kleur.red(text));
 	} else {
-		console.error(
-			kleur
-				.inverse()
-				.bold()
-				.yellow(' WARN ') +
-				' ' +
-				kleur.yellow(text)
-		);
+		console.error(kleur.inverse().bold().yellow(' WARN ') + ' ' + kleur.yellow(text));
 	}
 }
 
@@ -316,7 +295,7 @@ function printAllWarnings(warnings, originalWarnings) {
  * @param {object} errors
  */
 function printStyleguidistError(errors) {
-	const styleguidistError = errors.find(message =>
+	const styleguidistError = errors.find((message) =>
 		message.includes('Module build failed: Error: Styleguidist:')
 	);
 	if (!styleguidistError) {
@@ -336,7 +315,7 @@ function printNoLoaderError(errors) {
 		return;
 	}
 
-	const noLoaderError = errors.find(message =>
+	const noLoaderError = errors.find((message) =>
 		message.includes('You may need an appropriate loader')
 	);
 	if (!noLoaderError) {

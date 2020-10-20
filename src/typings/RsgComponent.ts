@@ -2,7 +2,7 @@ import { MethodDescriptor, PropDescriptor, TagProps } from 'react-docgen';
 import { RequireItResult } from './RsgRequireItResult';
 import { Example } from './RsgExample';
 
-export type EXPAND_MODE = 'expand' | 'collapse' | 'hide';
+export type ExpandMode = 'expand' | 'collapse' | 'hide';
 
 export interface BaseComponent {
 	hasExamples?: boolean;
@@ -12,8 +12,8 @@ export interface BaseComponent {
 	filepath?: string;
 	pathLine?: string;
 	description?: string;
-	exampleMode?: EXPAND_MODE;
-	usageMode?: EXPAND_MODE;
+	exampleMode?: ExpandMode;
+	usageMode?: ExpandMode;
 }
 
 export interface Component extends BaseComponent {
@@ -37,5 +37,5 @@ export interface Component extends BaseComponent {
 export interface LoaderComponent extends BaseComponent {
 	module: RequireItResult;
 	props: RequireItResult;
-	metadata: RequireItResult | {};
+	metadata: RequireItResult | Record<string, unknown>;
 }

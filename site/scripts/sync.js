@@ -6,25 +6,25 @@ const { kebabCase } = require('lodash');
 
 const DEST_DIR = 'docs';
 
-const read = file => readFileSync(file, 'utf8');
+const read = (file) => readFileSync(file, 'utf8');
 
 const write = (file, contents) => writeFileSync(`${DEST_DIR}/${file}.md`, contents);
 
-const getTitle = contents => contents.match(/^#\s*(.*?)$/m) || [];
+const getTitle = (contents) => contents.match(/^#\s*(.*?)$/m) || [];
 
-const getSidebarTitle = contents => contents.match(/^<!--\s*(.*?)(?:\s*#([\w-]+))?\s*-->/) || [];
+const getSidebarTitle = (contents) => contents.match(/^<!--\s*(.*?)(?:\s*#([\w-]+))?\s*-->/) || [];
 
-const stripTitle = contents => contents.replace(/^#.*?$/m, '');
+const stripTitle = (contents) => contents.replace(/^#.*?$/m, '');
 
-const markdownToDocusaurus = contents =>
+const markdownToDocusaurus = (contents) =>
 	contents.replace(
 		/^>\s*\*\*(\w+):\*\*\s*(.*?)$/gm,
 		(_, $1, $2) => `:::${$1.toLowerCase()}\n${$2}\n:::`
 	);
 
-const htmlToXml = contents => contents.replace(/<br>/g, '<br />');
+const htmlToXml = (contents) => contents.replace(/<br>/g, '<br />');
 
-const getEditUrl = relativePath =>
+const getEditUrl = (relativePath) =>
 	`https://github.com/styleguidist/react-styleguidist/edit/master/${relativePath.replace(
 		'../docs',
 		'docs'
@@ -44,7 +44,7 @@ emptyDirSync(DEST_DIR);
 console.log('Syncing docs...');
 
 const docs = glob.sync('../docs/*.md');
-docs.forEach(filepath => {
+docs.forEach((filepath) => {
 	console.log(`👉 ${filepath}`);
 	const contents = read(filepath);
 	const [, title] = getTitle(contents);

@@ -6,13 +6,9 @@ describe('Single component', () => {
 
 	describe('props and methods section', () => {
 		beforeEach(() => {
-			cy.get('button')
-				.contains('Props & methods')
-				.as('propsBtn');
+			cy.get('button').contains('Props & methods').as('propsBtn');
 
-			cy.get('@propsBtn')
-				.closest('[class^=rsg--tabs]')
-				.as('container');
+			cy.get('@propsBtn').closest('[class^=rsg--tabs]').as('container');
 		});
 
 		it('is present', () => {
@@ -20,16 +16,12 @@ describe('Single component', () => {
 		});
 
 		it('does not show table initially', () => {
-			cy.get('@container')
-				.find('table')
-				.should('not.exist');
+			cy.get('@container').find('table').should('not.exist');
 		});
 
 		it('shows the table on button click', () => {
 			cy.get('@propsBtn').click();
-			cy.get('@container')
-				.find('table')
-				.should('contain', 'Prop name');
+			cy.get('@container').find('table').should('contain', 'Prop name');
 		});
 	});
 
@@ -40,17 +32,11 @@ describe('Single component', () => {
 				.find('[class^=rsg--preview]')
 				.as('preview');
 
-			cy.get('@container')
-				.find('button')
-				.contains('View Code')
-				.as('viewCodeBtn');
+			cy.get('@container').find('button').contains('View Code').as('viewCodeBtn');
 		});
 
 		it('renders component preview', () => {
-			cy.get('@preview')
-				.find('button', { timeout: 10000 })
-				.contains('Push Me')
-				.should('exist');
+			cy.get('@preview').find('button', { timeout: 10000 }).contains('Push Me').should('exist');
 		});
 
 		it('has view code button', () => {
@@ -58,16 +44,12 @@ describe('Single component', () => {
 		});
 
 		it('does not show code initially', () => {
-			cy.get('@container')
-				.find('textarea')
-				.should('not.exist');
+			cy.get('@container').find('textarea').should('not.exist');
 		});
 
 		it('shows code on click', () => {
 			cy.get('@viewCodeBtn').click();
-			cy.get('@container')
-				.find('textarea')
-				.should('exist');
+			cy.get('@container').find('textarea').should('exist');
 		});
 
 		it('changes the render after code change', () => {
@@ -76,25 +58,17 @@ describe('Single component', () => {
 				.find('textarea')
 				.type(`${'{leftarrow}'.repeat(codeToSkip.length)} Harder`);
 
-			cy.get('@preview')
-				.find('button')
-				.contains('Push Me Harder')
-				.should('exist');
+			cy.get('@preview').find('button').contains('Push Me Harder').should('exist');
 		});
 
 		it('toggles isolated example mode correctly', () => {
 			cy.get('[data-testid$="-examples"]').as('componentExamples');
 
 			// Toggle into isolated example mode
-			cy.get('@componentExamples')
-				.find('[data-testid$="-isolate-button"]')
-				.first()
-				.click();
+			cy.get('@componentExamples').find('[data-testid$="-isolate-button"]').first().click();
 
 			// Assert that there is only one example showing
-			cy.get('@componentExamples')
-				.find('[data-testid*="-example-"]')
-				.should('have.length', 1);
+			cy.get('@componentExamples').find('[data-testid*="-example-"]').should('have.length', 1);
 
 			// Toggle out of isolated example mode
 			cy.get('[data-testid$="-isolate-button"]').click();

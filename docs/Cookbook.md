@@ -13,8 +13,8 @@ let textarea
   </Button>
   <Textarea
     value={value}
-    onChange={e => setValue(e.target.value)}
-    ref={ref => (textarea = ref)}
+    onChange={(e) => setValue(e.target.value)}
+    ref={(ref) => (textarea = ref)}
   />
 </div>
 ```
@@ -286,7 +286,7 @@ Check out the [themed example](https://github.com/styleguidist/react-styleguidis
 
 ```javascript
 module.exports = {
-  styles: function(theme) {
+  styles: function (theme) {
     return {
       Logo: {
         logo: {

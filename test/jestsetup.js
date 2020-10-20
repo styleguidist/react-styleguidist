@@ -13,11 +13,11 @@ global.render = render;
 global.mount = mount;
 
 // Get class names from styles function
-global.classes = styles => keymirror(styles(theme));
+global.classes = (styles) => keymirror(styles(theme));
 
 jest.mock('react-scripts/config/webpack.config.dev', () => ({ cra: true }), { virtual: true });
-jest.mock('webpack-dev-server', function() {
-	return function() {
+jest.mock('webpack-dev-server', function () {
+	return function () {
 		return {
 			app: {},
 		};
