@@ -29,6 +29,8 @@ const DEFAULT_COMPONENTS_PATTERN =
 
 const logger = glogg('rsg');
 
+type NestedThemeValue = Record<string, unknown> | string;
+
 export type StyleguidistConfigKey = keyof Rsg.SanitizedStyleguidistConfig;
 
 export interface ConfigSchemaOptions<T> {
@@ -155,7 +157,7 @@ Try to install it: npm install --save-dev ${value}`
 		],
 	},
 	editorConfig: {
-		process: (value?: {}): void => {
+		process: (value?: unknown): void => {
 			if (value) {
 				throw new StyleguidistError(
 					`${kleur.bold(
@@ -300,11 +302,7 @@ Try to install it: npm install --save-dev ${value}`
 				},
 			},
 		},
-		process: (
-			val: object | string,
-			config: Rsg.StyleguidistConfig,
-			configDir: string
-		): string | object => {
+		process: (val: NestedThemeValue, config: unknown, configDir: string): NestedThemeValue => {
 			return typeof val === 'string' ? path.resolve(configDir, val) : val;
 		},
 	},
@@ -330,11 +328,8 @@ Try to install it: npm install --save-dev ${value}`
 			link: 'firebrick',
 			linkHover: 'salmon',
 		},
-		process: (
-			val: object | string,
-			config: Rsg.StyleguidistConfig,
-			configDir: string
-		): string | object => (typeof val === 'string' ? path.resolve(configDir, val) : val),
+		process: (val: NestedThemeValue, config: unknown, configDir: string): NestedThemeValue =>
+			typeof val === 'string' ? path.resolve(configDir, val) : val,
 	},
 	title: {
 		type: 'string',

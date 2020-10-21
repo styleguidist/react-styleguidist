@@ -15,6 +15,7 @@ const sections: Rsg.Section[] = [
 				name: 'Foo',
 				visibleName: 'Foo',
 				href: '#foo',
+				slug: 'foo',
 				pathLine: 'components/foo.js',
 				filepath: 'components/foo.js',
 				props: {
@@ -25,6 +26,7 @@ const sections: Rsg.Section[] = [
 				name: 'Bar',
 				visibleName: 'Bar',
 				href: '#bar',
+				slug: 'bar',
 				pathLine: 'components/bar.js',
 				filepath: 'components/bar.js',
 				props: {
@@ -75,7 +77,7 @@ test('should render a sidebar if showSidebar is not set', () => {
 		'http://localhost/#foo',
 		'http://localhost/#bar',
 	]);
-	expect(links.map(node => node.textContent)).toEqual(['Foo', 'Bar']);
+	expect(links.map((node) => node.textContent)).toEqual(['Foo', 'Bar']);
 });
 
 test('should not render a sidebar if showSidebar is false', () => {

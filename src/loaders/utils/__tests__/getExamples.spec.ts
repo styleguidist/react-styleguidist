@@ -3,6 +3,7 @@ import { vol } from 'memfs';
 import getExamples from '../getExamples';
 
 jest.mock('fs', () => {
+	// eslint-disable-next-line @typescript-eslint/no-var-requires
 	return require('memfs').fs;
 });
 

@@ -7,7 +7,7 @@ interface SectionHeadingProps {
 	children?: React.ReactNode;
 	id: string;
 	slotName: string;
-	slotProps: object;
+	slotProps: Record<string, unknown>;
 	depth: number;
 	href?: string;
 	deprecated?: boolean;
@@ -38,7 +38,7 @@ SectionHeading.propTypes = {
 	children: PropTypes.node,
 	id: PropTypes.string.isRequired,
 	slotName: PropTypes.string.isRequired,
-	slotProps: PropTypes.object.isRequired,
+	slotProps: PropTypes.any.isRequired,
 	depth: PropTypes.number.isRequired,
 	deprecated: PropTypes.bool,
 	pagePerSection: PropTypes.bool,

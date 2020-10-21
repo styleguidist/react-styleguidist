@@ -30,7 +30,7 @@ const getCustomAliases = (styleguideComponents: Record<string, string>) => {
 	return customAliases;
 };
 
-export default function(config: Rsg.SanitizedStyleguidistConfig, env: Mode): Configuration {
+export default function (config: Rsg.SanitizedStyleguidistConfig, env: Mode): Configuration {
 	process.env.NODE_ENV = process.env.NODE_ENV || env;
 
 	const isProd = env === 'production';
@@ -84,7 +84,6 @@ export default function(config: Rsg.SanitizedStyleguidistConfig, env: Mode): Con
 
 	if (isProd) {
 		const minimizer = new TerserPlugin({
-			/* eslint-disable @typescript-eslint/camelcase */
 			terserOptions: {
 				ie8: false,
 				ecma: 5,
@@ -104,7 +103,6 @@ export default function(config: Rsg.SanitizedStyleguidistConfig, env: Mode): Con
 					keep_fnames: true,
 				},
 			},
-			/* eslint-enable @typescript-eslint/camelcase */
 		});
 		webpackConfig = merge(webpackConfig, {
 			output: {
@@ -124,7 +122,7 @@ export default function(config: Rsg.SanitizedStyleguidistConfig, env: Mode): Con
 		});
 		if (config.assetsDir && webpackConfig.plugins) {
 			const copyPatterns = {
-				patterns: castArray(config.assetsDir).map(dir => ({ from: dir })),
+				patterns: castArray(config.assetsDir).map((dir) => ({ from: dir })),
 			};
 			webpackConfig.plugins.push(
 				// FIXME: Since we don't have the type of copy-webpack-plugin@6.0

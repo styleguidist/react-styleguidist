@@ -9,9 +9,9 @@
 export type RecursivePartial<T> = {
 	[P in keyof T]?: T[P] extends (infer U)[]
 		? RecursivePartial<U>[]
-		: T[P] extends Function
+		: T[P] extends (...args: unknown[]) => unknown
 		? T[P]
-		: T[P] extends object
+		: T[P] extends Record<string, unknown>
 		? RecursivePartial<T[P]>
 		: T[P];
 };

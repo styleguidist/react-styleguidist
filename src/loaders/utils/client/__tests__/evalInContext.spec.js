@@ -2,7 +2,7 @@ import evalInContext from '../evalInContext';
 
 describe('evalInContext', () => {
 	test('return a function', () => {
-		const result = evalInContext(`alert('header')`, a => a, `alert('code')`);
+		const result = evalInContext(`alert('header')`, (a) => a, `alert('code')`);
 		expect(typeof result).toBe('function');
 	});
 
@@ -10,7 +10,7 @@ describe('evalInContext', () => {
 		const fn = () =>
 			evalInContext(
 				`const react = require('react')`,
-				a => a,
+				(a) => a,
 				`const react = require('react')
 const x = 42
 `

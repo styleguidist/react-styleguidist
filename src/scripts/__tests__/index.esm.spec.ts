@@ -8,7 +8,7 @@ type Mode = Configuration['mode'];
 jest.mock('../build');
 jest.mock('../server');
 
-const getDefaultWebpackConfig = (): any => styleguidist().makeWebpackConfig();
+const getDefaultWebpackConfig = () => styleguidist().makeWebpackConfig();
 
 const cwd = process.cwd();
 afterEach(() => {
@@ -49,13 +49,13 @@ describe('makeWebpackConfig', () => {
 				},
 			},
 		});
-		const result = api.makeWebpackConfig() as any;
+		const result = api.makeWebpackConfig();
 
 		expect(result).toBeTruthy();
-		expect(result.resolve.extensions.length).toEqual(
-			defaultWebpackConfig.resolve.extensions.length + 1
+		expect(result?.resolve?.extensions).toHaveLength(
+			(defaultWebpackConfig?.resolve?.extensions?.length || 0) + 1
 		);
-		expect(last(result.resolve.extensions)).toEqual('.scss');
+		expect(last(result?.resolve?.extensions)).toEqual('.scss');
 	});
 
 	it('should merge webpackConfig but ignore output section', () => {
@@ -79,14 +79,15 @@ describe('makeWebpackConfig', () => {
 
 	it('should merge webpackConfig config option as a function', () => {
 		const api = styleguidist({
-			webpackConfig: (env: Mode) => ({
-				_env: env,
-			}),
+			webpackConfig: (env) =>
+				({
+					mode: env,
+				} as Configuration),
 		});
-		const result = api.makeWebpackConfig() as any;
+		const result = api.makeWebpackConfig();
 
 		expect(result).toBeTruthy();
-		expect(result._env).toEqual('production');
+		expect(result.mode).toEqual('production');
 	});
 
 	it('should apply updateWebpackConfig config option', () => {
@@ -99,13 +100,13 @@ describe('makeWebpackConfig', () => {
 				return webpackConfig;
 			},
 		});
-		const result = api.makeWebpackConfig() as any;
+		const result = api.makeWebpackConfig();
 
 		expect(result).toBeTruthy();
-		expect(result.resolve.extensions.length).toEqual(
-			defaultWebpackConfig.resolve.extensions.length + 1
+		expect(result?.resolve?.extensions).toHaveLength(
+			(defaultWebpackConfig?.resolve?.extensions?.length || 0) + 1
 		);
-		expect(last(result.resolve.extensions)).toEqual('production');
+		expect(last(result?.resolve?.extensions)).toEqual('production');
 	});
 
 	it('should merge Create React App Webpack config', () => {
@@ -134,9 +135,9 @@ describe('makeWebpackConfig', () => {
 				StyleGuideRenderer: 'styleguide/components/StyleGuide',
 			},
 		});
-		const result = api.makeWebpackConfig() as any;
+		const result = api.makeWebpackConfig();
 
-		expect(result.resolve.alias).toMatchObject({
+		expect(result?.resolve?.alias).toMatchObject({
 			'rsg-components/Wrapper': 'styleguide/components/Wrapper',
 			'rsg-components/StyleGuide/StyleGuideRenderer': 'styleguide/components/StyleGuide',
 		});

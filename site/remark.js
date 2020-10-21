@@ -9,15 +9,15 @@ const REPLACEMENTS = {
 	'https://github.com/styleguidist/react-styleguidist': 'https://react-styleguidist.js.org/',
 };
 
-const getDocUrl = url => url.replace(/(\w+)(?:\.md)/, (_, $1) => `/docs/${kebabCase($1)}`);
+const getDocUrl = (url) => url.replace(/(\w+)(?:\.md)/, (_, $1) => `/docs/${kebabCase($1)}`);
 
 /*
  * Fix links:
  * GettingStarted.md -> /docs/getting-started
  */
 function link() {
-	return ast =>
-		visit(ast, 'link', node => {
+	return (ast) =>
+		visit(ast, 'link', (node) => {
 			if (IGNORES.includes(node.url)) {
 				return;
 			}

@@ -10,16 +10,19 @@ const components = [
 		visibleName: 'Button',
 		name: 'Button',
 		href: '#button',
+		slug: 'button',
 	},
 	{
 		visibleName: 'Input',
 		name: 'Input',
 		href: '#input',
+		slug: 'input',
 	},
 	{
 		visibleName: 'Textarea',
 		name: 'Textarea',
 		href: '#textarea',
+		slug: 'textarea',
 	},
 ];
 
@@ -28,17 +31,20 @@ const sections = [
 		visibleName: 'Introduction',
 		name: 'Introduction',
 		href: '#introduction',
+		slug: 'introduction',
 		content: 'intro.md',
 	},
 	{
 		visibleName: 'Buttons',
 		name: 'Buttons',
 		href: '#buttons',
+		slug: 'buttons',
 		components: [
 			{
 				visibleName: 'Button',
 				name: 'Button',
 				href: '#button',
+				slug: 'button',
 			},
 		],
 	},
@@ -46,16 +52,19 @@ const sections = [
 		visibleName: 'Forms',
 		name: 'Forms',
 		href: '#forms',
+		slug: 'forms',
 		components: [
 			{
 				visibleName: 'Input',
 				name: 'Input',
 				href: '#input',
+				slug: 'input',
 			},
 			{
 				visibleName: 'Textarea',
 				name: 'Textarea',
 				href: '#textarea',
+				slug: 'textarea',
 			},
 		],
 	},
@@ -164,6 +173,7 @@ it('should render components of a single top section as root', () => {
 		    "sections": Array [],
 		    "selected": false,
 		    "shouldOpenInNewTab": false,
+		    "slug": "button",
 		    "visibleName": "Button",
 		  },
 		  Object {
@@ -177,6 +187,7 @@ it('should render components of a single top section as root', () => {
 		    "sections": Array [],
 		    "selected": false,
 		    "shouldOpenInNewTab": false,
+		    "slug": "input",
 		    "visibleName": "Input",
 		  },
 		  Object {
@@ -190,6 +201,7 @@ it('should render components of a single top section as root', () => {
 		    "sections": Array [],
 		    "selected": false,
 		    "shouldOpenInNewTab": false,
+		    "slug": "textarea",
 		    "visibleName": "Textarea",
 		  },
 		]
@@ -249,8 +261,19 @@ it('should render components with useRouterLinks', () => {
 			sections={[
 				{
 					sections: [
-						{ visibleName: '1', name: 'Components', href: '#/Components', content: 'intro.md' },
-						{ visibleName: '2', content: 'chapter.md', href: '#/Chap' },
+						{
+							visibleName: '1',
+							name: 'Components',
+							href: '#/Components',
+							slug: 'components',
+							content: 'intro.md',
+						},
+						{
+							visibleName: '2',
+							content: 'chapter.md',
+							href: '#/Chap',
+							slug: 'chap',
+						},
 					],
 				},
 			]}
@@ -283,15 +306,21 @@ it('should detect sections containing current selection when tocMode is collapse
 							{
 								visibleName: '1',
 								href: '#/components',
-								sections: [{ visibleName: '1.1', href: '#/button' }],
+								slug: 'components',
+								sections: [{ visibleName: '1.1', href: '#/button', slug: 'button' }],
 							},
 							{
 								visibleName: '2',
 								href: '#/chap',
+								slug: 'chap',
 								content: 'chapter.md',
-								sections: [{ visibleName: '2.1', href: '#/chapter-1' }],
+								sections: [{ visibleName: '2.1', href: '#/chapter-1', slug: 'chapter-1' }],
 							},
-							{ visibleName: '3', href: 'http://react-styleguidist.com' },
+							{
+								visibleName: '3',
+								href: 'http://react-styleguidist.com',
+								slug: 'react-styleguidist',
+							},
 						],
 					},
 				]}
@@ -300,7 +329,7 @@ it('should detect sections containing current selection when tocMode is collapse
 		</Provider>
 	);
 
-	expect(getByText('1.1')).not.toBeEmpty();
+	expect(getByText('1.1')).not.toBeEmptyDOMElement();
 });
 
 it('should show sections with expand: true when tocMode is collapse', () => {
@@ -314,15 +343,21 @@ it('should show sections with expand: true when tocMode is collapse', () => {
 							visibleName: '1',
 							expand: true,
 							href: '#/components',
-							sections: [{ visibleName: '1.1', href: '#/button' }],
+							slug: 'components',
+							sections: [{ visibleName: '1.1', href: '#/button', slug: 'button' }],
 						},
 						{
 							visibleName: '2',
 							href: '#/chap',
+							slug: 'chap',
 							content: 'chapter.md',
-							sections: [{ visibleName: '2.1', href: '#/chapter-1' }],
+							sections: [{ visibleName: '2.1', href: '#/chapter-1', slug: 'chapter-1' }],
 						},
-						{ visibleName: '3', href: 'http://react-styleguidist.com' },
+						{
+							visibleName: '3',
+							href: 'http://react-styleguidist.com',
+							slug: 'react-styleguidist',
+						},
 					],
 				},
 			]}

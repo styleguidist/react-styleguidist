@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { Configuration } from 'webpack';
 import getConfig from '../config';
 
 const cwd = process.cwd();
@@ -55,7 +56,7 @@ it('should change the config using the update callback', () => {
 		{
 			title: 'Style guide',
 		},
-		config => {
+		(config) => {
 			config.title = 'Pizza';
 			return config;
 		}
@@ -138,7 +139,7 @@ it('should throw if assetsDir does not exist', () => {
 	expect(fn).toThrow();
 });
 
-it('should use embedded default example template if defaultExample=true', done => {
+it('should use embedded default example template if defaultExample=true', (done) => {
 	const result = getConfig({
 		defaultExample: true,
 	});
@@ -199,7 +200,7 @@ it('should ignore components option there’s sections options', () => {
 });
 
 it('should return webpackConfig option as is', () => {
-	const webpackConfig = { foo: 42 };
+	const webpackConfig = { mode: 'development' } as Configuration;
 	const result = getConfig({
 		webpackConfig,
 	});

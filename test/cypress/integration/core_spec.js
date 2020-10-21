@@ -13,9 +13,7 @@ describe('Styleguidist core', () => {
 		cy.get('[data-testid=sidebar]').as('sidebar');
 
 		// Toggle into isolated mode
-		cy.get('[data-testid$="-isolate-button"]')
-			.first()
-			.click();
+		cy.get('[data-testid$="-isolate-button"]').first().click();
 
 		// Assert there's only one component showing
 		cy.get('[data-testid$=-container]').should('have.length', 1);
@@ -24,9 +22,7 @@ describe('Styleguidist core', () => {
 		cy.get('@sidebar').should('not.exist');
 
 		// Toogle out of isolated mode
-		cy.get('[data-testid$="-isolate-button"]')
-			.first()
-			.click();
+		cy.get('[data-testid$="-isolate-button"]').first().click();
 
 		// Assert that more than one component is now showing
 		cy.get('[data-testid$=-container]').should('have.length.above', 1);

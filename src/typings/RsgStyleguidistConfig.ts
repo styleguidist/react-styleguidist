@@ -5,7 +5,7 @@ import { NodePath } from 'ast-types/lib/node-path';
 import { Styles } from 'jss';
 import { Application } from 'express';
 import { RecursivePartial } from './RecursivePartial';
-import { EXPAND_MODE } from './RsgComponent';
+import { ExpandMode } from './RsgComponent';
 import { PropsObject } from './RsgPropsObject';
 import { CodeExample } from './RsgExample';
 import { ConfigSection, Section } from './RsgSection';
@@ -13,13 +13,18 @@ import { Theme } from './RsgTheme';
 
 type Mode = Configuration['mode'];
 
+type PropsResolver = (
+	ast: ASTNode,
+	parser: { parse: (code: string) => ASTNode }
+) => NodePath<any, any> | NodePath[];
+
 export interface StyleguidistLoaderContext extends loader.LoaderContext {
 	_styleguidist: SanitizedStyleguidistConfig;
 }
 
 interface BaseStyleguidistConfig {
 	assetsDir: string | string[];
-	tocMode: EXPAND_MODE;
+	tocMode: ExpandMode;
 	compiler: string;
 	compilerConfig: Record<string, any>;
 	components: (() => string[]) | string | string[];
@@ -29,7 +34,7 @@ interface BaseStyleguidistConfig {
 	configureServer(server: Application, env: Mode): string;
 	dangerouslyUpdateWebpackConfig: (config: Configuration, env: Mode) => Configuration;
 	defaultExample: string | false;
-	exampleMode: EXPAND_MODE;
+	exampleMode: ExpandMode;
 	editorConfig: {
 		theme: string;
 	};
@@ -52,17 +57,11 @@ interface BaseStyleguidistConfig {
 	propsParser(
 		filePath: string,
 		code: string,
-		resolver: (
-			ast: ASTNode,
-			parser: { parse: (code: string) => ASTNode }
-		) => NodePath<any, any> | NodePath[],
+		resolver: PropsResolver,
 		handlers: Handler[]
 	): DocumentationObject;
 	require: string[];
-	resolver(
-		ast: ASTNode,
-		parser: { parse: (code: string) => ASTNode }
-	): NodePath<any, any> | NodePath[];
+	resolver: PropsResolver;
 	ribbon?: {
 		text?: string;
 		url: string;
@@ -83,7 +82,7 @@ interface BaseStyleguidistConfig {
 	updateDocs(doc: PropsObject, file: string): PropsObject;
 	updateExample(props: Omit<CodeExample, 'type'>, ressourcePath: string): Omit<CodeExample, 'type'>;
 	updateWebpackConfig(config: Configuration): Configuration;
-	usageMode: EXPAND_MODE;
+	usageMode: ExpandMode;
 	verbose: boolean;
 	version: string;
 	webpackConfig: Configuration | ((env: Mode) => Configuration);

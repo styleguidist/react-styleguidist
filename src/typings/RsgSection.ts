@@ -1,14 +1,14 @@
 import { RequireItResult } from './RsgRequireItResult';
 import { MarkdownExample, Example } from './RsgExample';
-import { LoaderComponent, EXPAND_MODE, Component } from './RsgComponent';
+import { LoaderComponent, ExpandMode, Component } from './RsgComponent';
 
 export interface BaseSection {
 	name?: string;
 	slug?: string;
 	ignore?: string | string[];
 	description?: string;
-	exampleMode?: EXPAND_MODE;
-	usageMode?: EXPAND_MODE;
+	exampleMode?: ExpandMode;
+	usageMode?: ExpandMode;
 	href?: string;
 	sectionDepth?: number;
 	external?: boolean;

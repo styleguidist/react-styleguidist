@@ -76,7 +76,7 @@ This below extensions should be rendered as a playground:
 `;
 
 	const actual = chunkify(markdown);
-	expect(actual.slice(1).every(chunk => chunk.type === 'code')).toBe(true);
+	expect(actual.slice(1).every((chunk) => chunk.type === 'code')).toBe(true);
 });
 
 it('should not add empty Markdown chunks', () => {

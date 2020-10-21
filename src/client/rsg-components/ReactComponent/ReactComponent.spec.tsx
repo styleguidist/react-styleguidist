@@ -153,7 +153,7 @@ test('should not render anything when component has no name', () => {
 			/>
 		</Provider>
 	);
-	expect(container).toBeEmpty();
+	expect(container).toBeEmptyDOMElement();
 });
 
 test('should not render component in isolation mode by default', () => {

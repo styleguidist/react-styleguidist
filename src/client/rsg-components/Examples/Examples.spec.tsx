@@ -60,5 +60,5 @@ test('should not render an example with unknown type', () => {
 			<Examples examples={faultyExample} name="button" exampleMode="collapse" />
 		</Provider>
 	);
-	expect(getByTestId('button-examples')).toBeEmpty();
+	expect(getByTestId('button-examples')).toBeEmptyDOMElement();
 });

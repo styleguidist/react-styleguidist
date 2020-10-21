@@ -34,7 +34,7 @@ WrappedButton.sizes = {
 	large: '18px',
 };
 
-const Decorator = Composed =>
+const Decorator = (Composed) =>
 	class MyHOC extends Component {
 		render() {
 			return <Composed {...this.props} />;
