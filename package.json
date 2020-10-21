@@ -192,11 +192,9 @@
     "test:browser:customised": "node test/browser.js examples/customised/styleguide/index.html",
     "test:browser:sections": "node test/browser.js examples/sections/styleguide/index.html",
     "format": "prettier --write '**/*.{js,md,css}'",
-    "test:cypress:pre": "npm i --no-save cypress@3.0.2 wait-on",
-    "test:cypress:open": "cypress open",
-    "test:cypress:run": "cypress run",
-    "test:cypress:startServer": "node test/run.server.js",
-    "test:cypress:startServer:post": "wait-on http://localhost:8082"
+    "test:cypress:pre": "npm i --no-save cypress@5.2 start-server-and-test",
+    "test:cypress:run": "start-server-and-test 'node test/run.server.js' 8082 'cypress open'",
+    "test:cypress:ci": "start-server-and-test 'node test/run.server.js' 8082 'cypress run --browser chrome --headless'"
   },
   "jest": {
     "testURL": "http://localhost/",

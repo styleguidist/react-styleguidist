@@ -52,9 +52,7 @@ jobs:
         - npm run test:browser:sections
         # Run integration tests with Cypress
         - npm run test:cypress:pre
-        - npm run test:cypress:startServer &
-        - npm run test:cypress:startServer:post
-        - npm run test:cypress:run
+        - npm run test:cypress:ci
 
     - stage: coverage
       script:
