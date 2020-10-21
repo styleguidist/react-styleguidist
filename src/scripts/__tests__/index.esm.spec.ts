@@ -3,8 +3,6 @@ import { Configuration } from 'webpack';
 import last from 'lodash/last';
 import styleguidist from '../index.esm';
 
-type Mode = Configuration['mode'];
-
 jest.mock('../build');
 jest.mock('../server');
 
