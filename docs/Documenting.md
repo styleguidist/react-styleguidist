@@ -222,7 +222,7 @@ Code examples in Markdown use ES6+JSX syntax. You can use the current component 
 <Button>Push Me</Button>
 ````
 
-> **Info:** Styleguidist uses [Sucrase](https://github.com/alangpierce/sucrase/) by default to run modern ECMAScript code on the frontend. [These language features are supported](./Configuration.md#compiler).
+> **Info:** Styleguidist uses [Sucrase](https://github.com/alangpierce/sucrase/) by default to run modern ECMAScript code on the frontend. [These language features are supported](Configuration.md#compiler).
 
 To use other components, you need to explicitly `import` them:
 
