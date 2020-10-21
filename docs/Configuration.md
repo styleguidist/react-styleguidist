@@ -10,7 +10,7 @@ Your application static assets folder will be accessible as `/` in the style gui
 
 ## `compiler`
 
-Type: `String, default:`sucrase`
+Type: `String`, default: `sucrase`
 
 The compiler to transpile examples’s code. Styleguidist uses [Sucrase](https://github.com/alangpierce/sucrase/) by default to run modern ECMAScript code on the frontend.
 
@@ -42,8 +42,10 @@ module.exports = {
 
 The value of the `compiler` option is the name of the compiler npm package. The module should have a named export `transform` with the signature:
 
-```
-(code: string, compilerConfig: Record<string, any>) => {code: string}
+```typescript
+;(code: string, compilerConfig: Record<string, any>) => {
+  code: string
+}
 ```
 
 > **Warning:** You should change [the compilerConfig option too](#compilerconfig) to pass the options for the new compiler.
