@@ -84,7 +84,7 @@
     "remark": "^11.0.1",
     "strip-html-comments": "^1.0.0",
     "sucrase": "^3.15.0",
-    "terser-webpack-plugin": "^4.1.0",
+    "terser-webpack-plugin": "^4.2.3",
     "to-ast": "^1.0.0",
     "type-detect": "^4.0.8",
     "unist-util-visit": "^2.0.0",
