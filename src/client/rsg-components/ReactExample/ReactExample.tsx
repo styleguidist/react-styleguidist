@@ -8,7 +8,7 @@ interface ReactExampleProps {
 	code: string;
 	evalInContext(code: string): React.ComponentType;
 	onError(err: Error): void;
-	compilerConfig: Rsg.SanitizedStyleguidistConfig['compilerConfig'];
+	compileExample: Rsg.SanitizedStyleguidistConfig['compileExample'];
 }
 
 export default class ReactExample extends Component<ReactExampleProps> {
@@ -16,7 +16,7 @@ export default class ReactExample extends Component<ReactExampleProps> {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
 		onError: PropTypes.func.isRequired,
-		compilerConfig: PropTypes.object,
+		compileExample: PropTypes.func.isRequired,
 	};
 
 	public shouldComponentUpdate(nextProps: ReactExampleProps) {
@@ -24,9 +24,9 @@ export default class ReactExample extends Component<ReactExampleProps> {
 	}
 
 	private compileCode() {
-		const { code, compilerConfig, onError } = this.props;
+		const { code, compileExample, onError } = this.props;
 		try {
-			return compileCode(code, compilerConfig, onError);
+			return compileCode(code, compileExample, onError);
 		} catch (err) {
 			if (onError) {
 				onError(err);

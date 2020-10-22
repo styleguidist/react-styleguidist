@@ -11,6 +11,7 @@ import annotationResolver from 'react-docgen-annotation-resolver';
 import { ASTNode } from 'ast-types';
 import { NodePath } from 'ast-types/lib/node-path';
 import { Configuration } from 'webpack';
+import * as sucrase from 'sucrase';
 import findUserWebpackConfig from '../utils/findUserWebpackConfig';
 import getUserPackageJson from '../utils/getUserPackageJson';
 import fileExistsCaseInsensitive from '../utils/findFileCaseInsensitive';
@@ -52,32 +53,33 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 		type: 'string',
 		default: 'expand',
 	},
-	compiler: {
-		// npm module name that exports `transform` function:
-		// (code: string, compilerConfig: Record<string, any>) => {code: string}
+	compileExample: {
+		type: 'function',
+		default: (compiler: typeof sucrase, code: string) =>
+			compiler.transform(code, {
+				// Compile TypeScript, JSX and ECMAScript imports
+				transforms: ['typescript', 'jsx', 'imports'],
+			}).code,
+	},
+	compilerConfig: {
+		type: 'object',
+		deprecated: 'Use compilerModule and compileExample options instead',
+	},
+	compilerModule: {
 		type: 'string',
-		// default: '@babel/standalone',
 		default: 'sucrase',
 		process: (value: string) => {
 			if (value) {
 				try {
-					require(value);
+					require.resolve(value);
 				} catch (err) {
 					throw new StyleguidistError(
-						`Module ${kleur.bold(value)}, specified in the “compiler” option, not found.
+						`Module ${kleur.bold(value)}, specified in the compilerModule option, not found.
 Try to install it: npm install --save-dev ${value}`
 					);
 				}
 			}
 			return value;
-		},
-	},
-	compilerConfig: {
-		type: 'object',
-		default: {
-			// presets: ['env', 'react'],
-			// Compile TypeScript, JSX and ECMAScript imports
-			transforms: ['typescript', 'jsx', 'imports' /*, 'react-hot-loader'*/],
 		},
 	},
 	// `components` is a shortcut for { sections: [{ components }] },

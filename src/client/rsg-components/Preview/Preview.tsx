@@ -73,7 +73,7 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 				code={code}
 				evalInContext={this.props.evalInContext}
 				onError={this.handleError}
-				compilerConfig={this.context.config.compilerConfig}
+				compileExample={this.context.config.compileExample}
 			/>
 		);
 
@@ -101,7 +101,7 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 		const { error } = this.state;
 		return (
 			<>
-				<div data-testid="mountNode" ref={ref => (this.mountNode = ref)} />
+				<div data-testid="mountNode" ref={(ref) => (this.mountNode = ref)} />
 				{error && <PlaygroundError message={error} />}
 			</>
 		);

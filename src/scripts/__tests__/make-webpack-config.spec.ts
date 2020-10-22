@@ -20,9 +20,9 @@ const styleguideConfig = ({
 } as unknown) as Rsg.SanitizedStyleguidistConfig;
 
 const getClasses = (plugins: Tapable.Plugin[] = [], name: string): Tapable.Plugin[] =>
-	plugins.filter(x => x.constructor.name === name);
+	plugins.filter((x) => x.constructor.name === name);
 const getClassNames = (plugins: Tapable.Plugin[] = []): string[] =>
-	plugins.map(x => x.constructor.name);
+	plugins.map((x) => x.constructor.name);
 
 const process$env$nodeEnv = process.env.NODE_ENV;
 
@@ -117,11 +117,11 @@ it('should set aliases from styleguideComponents option', () => {
 	`);
 });
 
-it('should set aliases from compiler option', () => {
+it('should set aliases from compilerModule option', () => {
 	const result = makeWebpackConfig(
 		{
 			...styleguideConfig,
-			compiler: 'babel',
+			compilerModule: 'babel',
 		},
 		'development'
 	);

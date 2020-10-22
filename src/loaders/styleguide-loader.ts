@@ -19,7 +19,7 @@ const logger = createLogger('rsg');
 
 // Config options that should be passed to the client
 const CLIENT_CONFIG_OPTIONS: (keyof Rsg.SanitizedStyleguidistConfig)[] = [
-	'compilerConfig',
+	'compileExample',
 	'tocMode',
 	'mountPointId',
 	'pagePerSection',
@@ -35,7 +35,7 @@ const CLIENT_CONFIG_OPTIONS: (keyof Rsg.SanitizedStyleguidistConfig)[] = [
 const STYLE_VARIABLE_NAME = '__rsgStyles';
 const THEME_VARIABLE_NAME = '__rsgTheme';
 
-export default function() {}
+export default function () {}
 export function pitch(this: Rsg.StyleguidistLoaderContext) {
 	// Clear cache so it would detect new or renamed files
 	fileExistsCaseInsensitive.clearCache();

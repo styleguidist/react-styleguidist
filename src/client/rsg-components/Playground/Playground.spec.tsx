@@ -5,7 +5,7 @@ import slots from '../slots';
 import Context from '../Context';
 import config from '../../../scripts/schemas/config';
 
-const compilerConfig = config.compilerConfig.default;
+const compileExample = config.compileExample.default;
 
 const evalInContext = (a: string) =>
 	// eslint-disable-next-line no-new-func
@@ -24,7 +24,7 @@ const defaultProps = {
 const context = {
 	config: {
 		previewDelay: 0,
-		compilerConfig,
+		compileExample,
 	},
 	codeRevision: 0,
 	slots: slots(),

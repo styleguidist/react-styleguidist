@@ -3,7 +3,7 @@ import { shallow, mount } from 'enzyme';
 import config from '../../../scripts/schemas/config';
 import ReactExample from '.';
 
-const compilerConfig = config.compilerConfig.default;
+const compileExample = config.compileExample.default;
 
 // TODO: Enzyme → RTL
 
@@ -14,7 +14,7 @@ const evalInContext = (a: string) =>
 const defaultProps = {
 	evalInContext,
 	onError: () => {},
-	compilerConfig,
+	compileExample,
 };
 
 it('should render code', () => {

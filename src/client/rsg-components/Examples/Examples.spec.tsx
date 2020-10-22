@@ -7,7 +7,7 @@ import { DisplayModes } from '../../consts';
 import config from '../../../scripts/schemas/config';
 import * as Rsg from '../../../typings';
 
-const compilerConfig = config.compilerConfig.default;
+const compileExample = config.compileExample.default;
 
 const evalInContext = (a: string) =>
 	// eslint-disable-next-line no-new-func
@@ -28,7 +28,7 @@ const examples: Rsg.Example[] = [
 const context = {
 	config: {
 		previewDelay: 0,
-		compilerConfig,
+		compileExample,
 	},
 	codeRevision: 1,
 	displayMode: DisplayModes.example,

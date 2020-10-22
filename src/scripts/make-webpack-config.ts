@@ -151,7 +151,7 @@ export default function (config: Rsg.SanitizedStyleguidistConfig, env: Mode): Co
 				// Custom styleguide components
 				...getCustomAliases(config.styleguideComponents),
 				// Code compiler module
-				'rsg-compiler': config.compiler,
+				'rsg-compiler': config.compilerModule,
 				// Add components folder alias at the end, so users can override our components
 				// to customize the style guide (their aliases should be before this one)
 				'rsg-components': path.resolve(sourceDir, 'rsg-components'),

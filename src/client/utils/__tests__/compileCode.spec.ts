@@ -1,13 +1,13 @@
 import compileCode from '../compileCode';
 import config from '../../../scripts/schemas/config';
 
-const compilerConfig = config.compilerConfig.default;
+const compileExample = config.compileExample.default;
 
 describe('compileCode', () => {
 	test('strips TypeScript type annotations', () => {
 		const result = compileCode(
 			`const x = (y: number): number => y; console.log(x(1))`,
-			compilerConfig
+			compileExample
 		);
 		expect(result).toMatchInlineSnapshot(`
 		"\\"use strict\\";const x = (y) => y;
@@ -16,7 +16,7 @@ describe('compileCode', () => {
 	});
 
 	test('transform imports to require()', () => {
-		const result = compileCode(`import foo from 'bar'; foo()`, compilerConfig);
+		const result = compileCode(`import foo from 'bar'; foo()`, compileExample);
 		expect(result).toMatchInlineSnapshot(`
 		"\\"use strict\\"; function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _bar = require('bar'); var _bar2 = _interopRequireDefault(_bar);
 		return (_bar2.default.call(void 0, ));"
@@ -27,7 +27,7 @@ describe('compileCode', () => {
 		const onError = jest.fn();
 		const result = compileCode(
 			`async function asyncFunction() { return await Promise.resolve(); }; asyncFunction()`,
-			compilerConfig,
+			compileExample,
 			onError
 		);
 		expect(onError).not.toHaveBeenCalled();
@@ -43,7 +43,7 @@ describe('compileCode', () => {
 import foo from 'bar';
 import Button from 'button';
 <Button />`,
-			compilerConfig
+			compileExample
 		);
 		expect(result).toMatchInlineSnapshot(`
 		"\\"use strict\\";const _jsxFileName = \\"\\"; function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -58,7 +58,7 @@ import Button from 'button';
 			`<div>
   <button>Click</button>
 </div>`,
-			compilerConfig
+			compileExample
 		);
 		expect(result).toMatchInlineSnapshot(`
 		"\\"use strict\\";const _jsxFileName = \\"\\";
@@ -74,7 +74,7 @@ import Button from 'button';
 <div>
   <button>Click</button>
 </div>`,
-			compilerConfig
+			compileExample
 		);
 		expect(result).toMatchInlineSnapshot(`
 		"\\"use strict\\";const _jsxFileName = \\"\\";const {foo, bar} = baz;
@@ -91,7 +91,7 @@ import Button from 'button';
 \`;
 <Button />
 `,
-			compilerConfig
+			compileExample
 		);
 		expect(result).toMatchInlineSnapshot(`
 		"\\"use strict\\";const _jsxFileName = \\"\\";const Button = styled.button\`
@@ -103,7 +103,7 @@ import Button from 'button';
 
 	test('onError callback', () => {
 		const onError = jest.fn();
-		const result = compileCode(`=`, compilerConfig, onError);
+		const result = compileCode(`=`, compileExample, onError);
 		expect(result).toBe('');
 		expect(onError).toHaveBeenCalledTimes(1);
 		expect(onError.mock.calls[0][0].toString()).toBe('SyntaxError: Unexpected token (1:1)');

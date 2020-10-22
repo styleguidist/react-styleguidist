@@ -7,12 +7,12 @@ import { DisplayModes } from '../../consts';
 import * as Rsg from '../../../typings';
 import config from '../../../scripts/schemas/config';
 
-const compilerConfig = config.compilerConfig.default;
+const compileExample = config.compileExample.default;
 
 const context = {
 	config: {
 		pagePerSection: false,
-		compilerConfig,
+		compileExample,
 	},
 	displayMode: DisplayModes.all,
 	slots: slots(),

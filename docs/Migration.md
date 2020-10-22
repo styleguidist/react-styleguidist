@@ -4,17 +4,20 @@
 
 ### Remove or update `compilerConfig` config option
 
-Since Styleguidist is using [Sucrase](https://github.com/alangpierce/sucrase/) instead of [Bublé](https://buble.surge.sh/guide/) to compile examples’s code, `compilerConfig` config option must be a valid [Sucrase config](https://github.com/alangpierce/sucrase/#transforms). Likely, you could remove this option entirely.
+Since Styleguidist is using [Sucrase](https://github.com/alangpierce/sucrase/) instead of [Bublé](https://buble.surge.sh/guide/) to compile examples’s code by default and allows you to chanage the compiler, the `compilerConfig` config option has been replaced with [`compilerModule`](Configuration.md#compilermodule) and [`compileExample`](Configuration.md#compileexample) options.
 
-You could also keep using Bublé by installing `buble` as a dependency, and specifying the `compiler` option:
+Likely, you could remove the `compilerConfig` option.
+
+Otherwise, you could also keep using Bublé by installing `buble` as a dependency, and specifying the `compilerModule` option:
 
 ```javascript
 module.exports = {
-  compiler: 'buble',
-  compilerConfig: {
-    /* ... */
-  }
+  compilerModule: 'buble',
+  compileExample: (compiler, code) =>
+    compiler.transform(code, {
+      /* Bublé options */
+    }).code
 }
 ```
 
-Check docs for [`compiler`](Configuration.md#compiler) and [`compilerConfig`](Configuration.md#compilerconfig) options for more details.
+Check docs for [`compilerModule`](Configuration.md#compilermodule) and [`compileExample`](Configuration.md#compileexample) options for more details.

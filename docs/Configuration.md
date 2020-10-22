@@ -8,11 +8,25 @@ Type: `String` or `Array`, optional
 
 Your application static assets folder will be accessible as `/` in the style guide dev server.
 
-## `compiler`
+## `compileExample`
+
+Type: `Function`, default:
+
+```javascript
+;(compiler, code) =>
+  compiler.transform(code, {
+    // Compile TypeScript, JSX and ECMAScript imports
+    transforms: ['typescript', 'jsx', 'imports']
+  })
+```
+
+Where `compiler` is a module defined in the [`compilerModule`](#compilermodule) option.
+
+## `compilerModule`
 
 Type: `String`, default: `sucrase`
 
-The compiler to transpile examples’s code. Styleguidist uses [Sucrase](https://github.com/alangpierce/sucrase/) by default to run modern ECMAScript code on the frontend.
+The compiler to transpile examples’ code. Styleguidist uses [Sucrase](https://github.com/alangpierce/sucrase/) by default to run modern ECMAScript code on the frontend.
 
 Styleguidist (via Sucrase) supports these proposed JavaScript features by default:
 
@@ -32,40 +46,21 @@ Styleguidist also strips TypeScript and Flow type annotations, including TypeScr
 
 > **Info:** See [Sucrase docs](https://github.com/alangpierce/sucrase/#transforms) for more details.
 
-You can change the compiler by using this option:
+You can change the compiler by passing the name of the compiler npm package to this option:
 
 ```javascript
 module.exports = {
-  compiler: '@babel/standalone'
+  compilerModule: '@babel/standalone'
 }
 ```
 
-The value of the `compiler` option is the name of the compiler npm package. The module should have a named export `transform` with the signature:
+> **Warning:** You should change [the `compileExample` option too](#compileexample) to adjust the call, and pass the options for your new compiler.
 
-```typescript
-;(code: string, compilerConfig: Record<string, any>) => {
-  code: string
-}
-```
-
-> **Warning:** You should change [the compilerConfig option too](#compilerconfig) to pass the options for the new compiler.
-
-> **Info:** See [the cookbook](Cookbook.md) to learn how to configure other compiler, like Babel or TypeScript.
+> **Info:** See [the cookbook](Cookbook.md) to learn how to configure other compilers, like Babel or TypeScript.
 
 ## `compilerConfig`
 
-Type: `Object`, default:
-
-```javascript
-{
-  // Compile TypeScript, JSX and ECMAScript imports
-  transforms: ['typescript', 'jsx', 'imports' /*, 'react-hot-loader'*/],
-}
-```
-
-Styleguidist uses [Sucrase](https://github.com/alangpierce/sucrase/) by default to run modern ECMAScript code on the frontend. This config object will be added as the second argument for compiler’s `transform` function.
-
-> **Info:** See [the compiler option](#compiler) to learn how to replace the compiler.
+This option has been deprecated, use the [`compilerModule`](#compilermodule) and [`compileExample`](#compileexample) options instead.
 
 ## `components`
 

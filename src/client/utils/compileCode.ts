@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
-import { transform } from 'rsg-compiler';
+import * as compiler from 'rsg-compiler';
 import insertReturnLastExpression from './insertReturnLastExpression';
 import * as Rsg from '../../typings';
 
@@ -14,12 +14,12 @@ const wrapCodeInFragment = (code: string): string => `<React.Fragment>${code}</R
  */
 export default function compileCode(
 	code: string,
-	compilerConfig: Rsg.SanitizedStyleguidistConfig['compilerConfig'],
+	compileExample: Rsg.SanitizedStyleguidistConfig['compileExample'],
 	onError?: (err: Error) => void
 ): string {
 	const wrappedCode = startsWithJsx(code) ? wrapCodeInFragment(code) : code;
 	try {
-		const compiledCode = transform(wrappedCode, compilerConfig).code;
+		const compiledCode = compileExample(compiler, wrappedCode);
 		return insertReturnLastExpression(compiledCode);
 	} catch (err) {
 		if (onError) {

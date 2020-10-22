@@ -25,8 +25,10 @@ export interface StyleguidistLoaderContext extends loader.LoaderContext {
 interface BaseStyleguidistConfig {
 	assetsDir: string | string[];
 	tocMode: ExpandMode;
-	compiler: string;
+	compileExample: (compiler: unknown, code: string) => string;
+	/** @deprecated */
 	compilerConfig: Record<string, any>;
+	compilerModule: string;
 	components: (() => string[]) | string | string[];
 	configDir: string;
 	context: Record<string, any>;
@@ -68,7 +70,9 @@ interface BaseStyleguidistConfig {
 	};
 	serverHost: string;
 	serverPort: number;
+	/** @deprecated */
 	showCode: boolean;
+	/** @deprecated */
 	showUsage: boolean;
 	showSidebar: boolean;
 	skipComponentsWithoutExample: boolean;
