@@ -602,22 +602,74 @@ module.exports = {
 }
 ```
 
-## How to re-use the types in Styleguidist?
+## How to compile examples with Babel?
+
+By default, Stylegudist uses [Sucrase](https://github.com/alangpierce/sucrase/) to compiler examples’ code. To use Babel instead, you need to install [`@babel/standalone`](https://www.npmjs.com/package/@babel/standalone) as a dependency, and define [`compilerModule`](Configuration.md#compilermodule) and [`compileExample`](Configuration.md#compileexample) options:
+
+```js
+module.exports = {
+  compilerModule: '@babel/standalone',
+  compileExample: (compiler, code) =>
+    compiler.transform(code, {
+      presets: ['react', 'env']
+    }).code
+}
+```
+
+## How to compile examples with TypeScript?
+
+By default, Stylegudist uses [Sucrase](https://github.com/alangpierce/sucrase/) to compiler examples’ code. To use TypeScript instead, you need to install [`typescript`](https://www.npmjs.com/package/typescript) as a dependency, and define [`compilerModule`](Configuration.md#compilermodule) and [`compileExample`](Configuration.md#compileexample) options:
+
+```js
+module.exports = {
+  compilerModule: 'typescript',
+  compileExample: (compiler, code) => {
+    const compiledCode = compiler.transpileModule(code, {
+      compilerOptions: {
+        target: 'ES2015',
+        module: 'CommonJS',
+        jsx: 'react',
+        esModuleInterop: true
+      }
+    }).outputText
+    return `const exports = {}; ${compiledCode}`
+  }
+}
+```
+
+This works but gives a compilation warning from webpack: “Critical dependency: the request of a dependency is an expression”. We could silence it using the [`webpackConfig`](#webpackconfig) option and [`webpack-filter-warnings-plugin`](https://www.npmjs.com/package/webpack-filter-warnings-plugin):
+
+```js
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin')
+module.exports = {
+  webpackConfig: {
+    plugins: [
+      new webpack.FilterWarningsPlugin({
+        exclude: /Critical dependency: the request of a dependency is an expression/
+      })
+    ]
+  }
+}
+```
+
+**Note:** If you know a better way of using TypeScript compiler, please send a pull request.
+
+## How to reuse TypeScript types in Styleguidist?
 
 From version 10, Styleguidist is written using TypeScript language.
 
-It allows the maintainers to catch type mismatch before execution and gives them a better developer experience.
+It allows the maintainers to catch type mismatches before code execution, and gives them better developer experience.
 
 It also allows you to write customized style guide components using TypeScript TSX instead of JavaScript JSX.
 
-**NOTE:** Since all files in `src/client/rsg-components` are aliased to `rsg-components` using webpack, you will have to add this alias to your `tsconfig.json` file:
+**Note:** Since all files in `src/client/rsg-components` are aliased as `rsg-components` using webpack, you will have to add this alias to your `tsconfig.json` file:
 
 ```json
 {
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      // remap rsg-components/anything to its version in react-styleguidist
+      // Remap rsg-components/anything to its version in react-styleguidist
       "rsg-components/*": [
         "node_modules/react-styleguidist/lib/client/rsg-components/*"
       ]
