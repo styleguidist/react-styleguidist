@@ -5,7 +5,6 @@ import './dependencies/react-docgen';
 import './dependencies/webpack-merge';
 import './dependencies/common-dir';
 import './dependencies/github-slugger';
-import './dependencies/mini-html-webpack-plugin';
 import './dependencies/strip-shebang';
 import './dependencies/deabsdeep';
 import './dependencies/glogg';
