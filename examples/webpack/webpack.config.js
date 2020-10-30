@@ -15,7 +15,15 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				loader: 'style-loader!css-loader?importLoaders=1',
+				use: [
+					'style-loader',
+					{
+						loader: 'css-loader',
+						options: {
+							importLoaders: 1,
+						},
+					},
+				],
 			},
 			{
 				test: /\.svg$/,
