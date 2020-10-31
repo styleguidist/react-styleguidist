@@ -1,43 +1,44 @@
 {
-  "name": "react-styleguidist-example-webpack",
-  "description": "React styleguidist basic example",
-  "version": "1.0.0",
-  "private": true,
-  "homepage": "https://github.com/styleguidist/react-styleguidist",
-  "author": {
-    "name": "Artem Sapegin",
-    "url": "http://sapegin.me/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/styleguidist/react-styleguidist.git"
-  },
-  "license": "MIT",
-  "engines": {
-    "node": ">=10"
-  },
-  "dependencies": {
-    "css-loader": "^0.28.11",
-    "dog-names": "^1.0.2",
-    "file-loader": "^1.1.11",
-    "lodash": "^4.17.19",
-    "prop-types": "^15.6.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-styleguidist": "^6.5.3",
-    "style-loader": "^0.20.3",
-    "webpack": "^3.8.1"
-  },
-  "scripts": {
-    "build": "webpack",
-    "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.3.3",
-    "@babel/plugin-proposal-class-properties": "^7.3.3",
-    "@babel/preset-env": "^7.3.1",
-    "@babel/preset-react": "^7.0.0-beta.56",
-    "babel-loader": "^8.0.0-beta.4"
-  }
+	"name": "react-styleguidist-example-webpack",
+	"description": "React styleguidist basic example",
+	"version": "1.0.0",
+	"private": true,
+	"homepage": "https://github.com/styleguidist/react-styleguidist",
+	"author": {
+		"name": "Artem Sapegin",
+		"url": "http://sapegin.me/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/styleguidist/react-styleguidist.git"
+	},
+	"license": "MIT",
+	"engines": {
+		"node": ">=14"
+	},
+	"dependencies": {
+		"css-loader": "^5.0.0",
+		"dog-names": "^1.0.2",
+		"file-loader": "^6.2.0",
+		"lodash": "^4.17.19",
+		"prop-types": "^15.6.1",
+		"react": "^17.0.1",
+		"react-dom": "^17.0.1",
+		"react-styleguidist": "^11.1.1",
+		"style-loader": "^2.0.0",
+		"webpack": "^5.3.2"
+	},
+	"scripts": {
+		"build": "webpack",
+		"styleguide": "styleguidist server",
+		"styleguide:build": "styleguidist build"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.12.3",
+		"@babel/plugin-proposal-class-properties": "^7.12.1",
+		"@babel/preset-env": "^7.12.1",
+		"@babel/preset-react": "^7.12.1",
+		"babel-loader": "^8.1.0",
+		"core-js": "^3.6.5"
+	}
 }

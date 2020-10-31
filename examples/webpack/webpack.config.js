@@ -28,7 +28,7 @@ module.exports = {
 			{
 				test: /\.svg$/,
 				loader: 'file-loader',
-				query: {
+				options: {
 					name: 'static/media/[name].[hash:8].[ext]',
 				},
 			},
