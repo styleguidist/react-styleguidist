@@ -1,6 +1,6 @@
 import path from 'path';
 import castArray from 'lodash/castArray';
-import webpack, { Configuration } from 'webpack';
+import webpack, { Configuration, Resolve } from 'webpack';
 import TerserPlugin from 'terser-webpack-plugin';
 import { MiniHtmlWebpackPlugin } from 'mini-html-webpack-plugin';
 import MiniHtmlWebpackTemplate from '@vxna/mini-html-webpack-template';
@@ -19,10 +19,7 @@ const RENDERER_REGEXP = /Renderer$/;
 const sourceDir = path.resolve(__dirname, '../client');
 
 interface AliasedConfiguration extends Configuration {
-	// Type below was previously `Resolve & { alias: Record<string, string> }`
-	// `Resolve` is `ResolveOptions` in Webpack 5
-	// To keep compatibility with Webpack 4 we need to set this to any
-	resolve: any;
+	resolve: Resolve & { alias: Record<string, string> };
 }
 
 export default function (
@@ -78,6 +75,7 @@ export default function (
 				ecma: 5,
 				compress: {
 					keep_fnames: true,
+					warnings: false,
 					/*
 					 * Disable reduce_funcs to keep Terser from inlining
 					 * Preact's VNode. If enabled, the 'new VNode()' is replaced
