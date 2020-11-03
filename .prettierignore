@@ -1,2 +1,4 @@
 examples/*/styleguide/
 lib/
+site/build/
+site/docs/

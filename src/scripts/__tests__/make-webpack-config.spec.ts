@@ -14,10 +14,10 @@ const styleguideConfig = ({
 	styleguideDir: __dirname,
 	require: [],
 	title: 'Style Guide',
-	compiler: 'sucrase',
+	compilerModule: 'sucrase',
 	sections: [],
 	dangerouslyUpdateWebpackConfig: (x: Configuration) => x,
-} as unknown) as Rsg.SanitizedStyleguidistConfig;
+} as Partial<Rsg.SanitizedStyleguidistConfig>) as Rsg.SanitizedStyleguidistConfig;
 
 const getClasses = (plugins: Tapable.Plugin[] = [], name: string): Tapable.Plugin[] =>
 	plugins.filter((x) => x.constructor.name === name);
