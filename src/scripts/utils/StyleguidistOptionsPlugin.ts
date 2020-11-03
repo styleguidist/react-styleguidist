@@ -1,4 +1,4 @@
-import webpack, { compilation, Compiler, WebpackPluginInstance } from 'webpack';
+import webpack, { compilation, Compiler, WebpackPluginInstance, loader } from 'webpack';
 
 import * as Rsg from '../../typings';
 
@@ -15,12 +15,7 @@ export default class StyleguidistOptionsPlugin implements WebpackPluginInstance 
 		this.options = options;
 	}
 
-	/**
-	 *
-	 * @param module was `loader.LoaderContext` in webpack 4, Webpack 5 has no type.
-	 * This could be a bug: https://github.com/webpack/webpack/issues/11630
-	 */
-	private pluginFunc = (context: Rsg.StyleguidistLoaderContext, module: any) => {
+	private pluginFunc = (context: Rsg.StyleguidistLoaderContext, module: loader.LoaderContext) => {
 		if (!module.resource) {
 			return;
 		}
