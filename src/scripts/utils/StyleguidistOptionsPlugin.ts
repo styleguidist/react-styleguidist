@@ -1,4 +1,4 @@
-import webpack, { Compiler, WebpackPluginInstance } from 'webpack';
+import webpack, { compilation, Compiler, WebpackPluginInstance } from 'webpack';
 
 import * as Rsg from '../../typings';
 
@@ -42,7 +42,10 @@ export default class StyleguidistOptionsPlugin implements WebpackPluginInstance 
 			return;
 		}
 		// Webpack 4
-		compil.hooks.normalModuleLoader.tap('StyleguidistOptionsPlugin', this.pluginFunc as any);
+		(compil as compilation.Compilation).hooks.normalModuleLoader.tap(
+			'StyleguidistOptionsPlugin',
+			this.pluginFunc as any
+		);
 	};
 
 	public apply(compiler: Compiler) {
