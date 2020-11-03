@@ -14,11 +14,11 @@ if (!webpackVersion) {
 	throw new StyleguidistError(
 		'Webpack is required for Styleguidist, please add it to your project:\n\n' +
 			'    npm install --save-dev webpack\n\n' +
-			'See how to configure it for your style guide:\n' +
+			'See how to configure webpack for your style guide:\n' +
 			consts.DOCS_WEBPACK
 	);
 } else if (webpackVersion < MIN_WEBPACK_VERSION) {
 	throw new StyleguidistError(
-		`Webpack ${webpackVersion} is not supported by Styleguidist, the minimum version is ${MIN_WEBPACK_VERSION}`
+		`Webpack ${webpackVersion} is not supported by Styleguidist, the minimum supported version is ${MIN_WEBPACK_VERSION}`
 	);
 }

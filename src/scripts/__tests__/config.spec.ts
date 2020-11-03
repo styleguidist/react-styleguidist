@@ -3,8 +3,11 @@ import path from 'path';
 import { Configuration } from 'webpack';
 import getConfig from '../config';
 
+const testComponent = (name: string) => path.resolve(__dirname, '../../../test/components', name);
+
 const cwd = process.cwd();
 const configDir = path.resolve(__dirname, '../../../test/apps/defaults');
+
 beforeEach(() => {
 	process.chdir(configDir);
 });
@@ -72,16 +75,16 @@ it('should have default getExampleFilename implementation', () => {
 it('default getExampleFilename should return Readme.md path if it exists', () => {
 	process.chdir('../..');
 	const result = getConfig();
-	expect(result.getExampleFilename(path.resolve('components/Button/Button.js'))).toEqual(
-		path.resolve('components/Button/Readme.md')
+	expect(result.getExampleFilename(testComponent('Button/Button.js'))).toEqual(
+		testComponent('Button/Readme.md')
 	);
 });
 
 it('default getExampleFilename should return Component.md path if it exists', () => {
 	process.chdir('../..');
 	const result = getConfig();
-	expect(result.getExampleFilename(path.resolve('components/Placeholder/Placeholder.js'))).toEqual(
-		path.resolve('components/Placeholder/Placeholder.md')
+	expect(result.getExampleFilename(testComponent('Placeholder/Placeholder.js'))).toEqual(
+		testComponent('Placeholder/Placeholder.md')
 	);
 });
 
@@ -89,17 +92,15 @@ it('default getExampleFilename should return Component.md path if it exists with
 	process.chdir('../..');
 	const result = getConfig();
 	result.components = './components/**/*.js';
-	expect(result.getExampleFilename(path.resolve('components/Label/index.js'))).toEqual(
-		path.resolve('components/Label/Label.md')
+	expect(result.getExampleFilename(testComponent('Label/Label.js'))).toEqual(
+		testComponent('Label/Label.md')
 	);
 });
 
 it('default getExampleFilename should return false if no examples file found', () => {
 	process.chdir('../..');
 	const result = getConfig();
-	expect(
-		result.getExampleFilename(path.resolve('components/RandomButton/RandomButton.js'))
-	).toBeFalsy();
+	expect(result.getExampleFilename(testComponent('RandomButton/RandomButton.js'))).toBeFalsy();
 });
 
 it('should have default getComponentPathLine implementation', () => {

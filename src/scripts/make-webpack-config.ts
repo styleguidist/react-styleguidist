@@ -2,7 +2,7 @@ import path from 'path';
 import castArray from 'lodash/castArray';
 import webpack, { Configuration } from 'webpack';
 import TerserPlugin from 'terser-webpack-plugin';
-import MiniHtmlWebpackPlugin from 'mini-html-webpack-plugin';
+import { MiniHtmlWebpackPlugin } from 'mini-html-webpack-plugin';
 import MiniHtmlWebpackTemplate from '@vxna/mini-html-webpack-template';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
@@ -39,6 +39,7 @@ export default function (config: Rsg.SanitizedStyleguidistConfig, env: Mode): Co
 	const templateContext = isFunction(config.template) ? {} : config.template;
 	const htmlPluginOptions = {
 		context: {
+			lang: 'en',
 			...templateContext,
 			title: config.title,
 			container: config.mountPointId,
