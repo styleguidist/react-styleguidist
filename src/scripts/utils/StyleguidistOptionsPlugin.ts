@@ -28,6 +28,7 @@ export default class StyleguidistOptionsPlugin implements WebpackPluginInstance 
 	 */
 	private plugin = (compil: any) => {
 		// Webpack 5
+		/* istanbul ignore next */
 		if ('NormalModule' in webpack) {
 			// @ts-ignore
 			webpack.NormalModule.getCompilationHooks(compil).loader.tap(
