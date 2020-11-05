@@ -252,24 +252,14 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx,js}": [
+    "*.{js,ts,tsx}": [
       "eslint --fix",
       "git add"
     ],
-    "*.css": [
+    "*.{js,ts,tsx,md,css,json}": [
       "prettier --write",
       "git add"
-    ],
-    "*.md": [
-      "prettier --write",
-      "git add"
-    ],
-    "*.{ts,tsx,js,md,css}": [
-      "prettier --write",
-      "git add"
-    ],
-    "*.{js,ts,tsx}": "eslint --cache --fix",
-    "*.{js,md}": "prettier --write"
+    ]
   },
   "funding": {
     "type": "opencollective",
