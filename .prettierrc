@@ -4,13 +4,21 @@
   "trailingComma": "es5",
   "useTabs": true,
   "proseWrap": "never",
-  "overrides": [{
+  "overrides": [
+		{
     "files": "*.md",
-    "options": {
-      "printWidth": 70,
-      "useTabs": false,
-      "semi": false,
-      "trailingComma": "none"
-    }
-  }]
+			"options": {
+				"printWidth": 70,
+				"useTabs": false,
+				"semi": false,
+				"trailingComma": "none"
+			}
+		},
+		{
+    "files": "*.{json,babelrc,eslintrc,remarkrc}",
+			"options": {
+				"useTabs": false
+			}
+  	}
+	]
 }
