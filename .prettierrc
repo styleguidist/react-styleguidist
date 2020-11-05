@@ -11,7 +11,9 @@
         "printWidth": 70,
         "useTabs": false,
         "semi": false,
-        "trailingComma": "none"
+        "trailingComma": "none",
+        "arrowParens": "avoid",
+        "proseWrap": "never"
       }
     },
     {
