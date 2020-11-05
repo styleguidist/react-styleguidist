@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-// eslint-disable-next-line import/no-unresolved, import/extensions
+// eslint-disable-next-line import/extensions
 import { StyleSheet, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 

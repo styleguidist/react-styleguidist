@@ -1,4 +1,4 @@
-/* eslint-disable no-console, import/no-unresolved */
+/* eslint-disable no-console */
 
 const styleguidist = require('../lib/scripts');
 

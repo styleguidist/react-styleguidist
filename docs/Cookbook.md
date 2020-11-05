@@ -13,8 +13,8 @@ let textarea
   </Button>
   <Textarea
     value={value}
-    onChange={(e) => setValue(e.target.value)}
-    ref={(ref) => (textarea = ref)}
+    onChange={e => setValue(e.target.value)}
+    ref={ref => (textarea = ref)}
   />
 </div>
 ```

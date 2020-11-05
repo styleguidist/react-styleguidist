@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-unresolved, import/extensions
+// eslint-disable-next-line import/extensions
 import { danger, warn } from 'danger';
 
 const packageChanged = danger.git.modified_files.includes('package.json');

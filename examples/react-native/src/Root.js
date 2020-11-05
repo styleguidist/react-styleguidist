@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// eslint-disable-next-line import/no-unresolved, import/extensions
+// eslint-disable-next-line import/extensions
 import { StyleSheet, Text, ScrollView } from 'react-native';
 import SimpleCard from './SimpleCard';
 

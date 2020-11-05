@@ -12,7 +12,7 @@ module.exports = {
 			disableSwitch: true,
 		},
 		prism: {
-			// eslint-disable-next-line import/no-unresolved, import/no-extraneous-dependencies
+			// eslint-disable-next-line import/no-extraneous-dependencies
 			theme: require('prism-react-renderer/themes/nightOwlLight'),
 		},
 		navbar: {
