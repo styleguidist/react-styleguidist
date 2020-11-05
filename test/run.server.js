@@ -1,4 +1,4 @@
-/* eslint-disable no-console, import/no-unresolved */
+/* eslint-disable no-console */
 
 const path = require('path');
 const styleguidist = require('../lib/scripts');
@@ -18,7 +18,15 @@ styleguidist({
 				{
 					test: /\.css$/,
 					include: dir,
-					loader: 'style-loader!css-loader?modules',
+					use: [
+						'style-loader',
+						{
+							loader: 'css-loader',
+							options: {
+								modules: true,
+							},
+						},
+					],
 				},
 			],
 		},

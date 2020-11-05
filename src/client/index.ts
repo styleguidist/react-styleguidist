@@ -34,7 +34,7 @@ const scrollToOrigin = () => {
 };
 
 const render = () => {
-	// eslint-disable-next-line @typescript-eslint/no-var-requires, import/no-unresolved
+	// eslint-disable-next-line @typescript-eslint/no-var-requires
 	const styleguide = require('!!../loaders/styleguide-loader!./index.js');
 
 	ReactDOM.render(

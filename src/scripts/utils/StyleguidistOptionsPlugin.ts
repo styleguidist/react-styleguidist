@@ -1,4 +1,5 @@
-import { compilation, Compiler, WebpackPluginInstance, loader } from 'webpack';
+import webpack, { compilation, Compiler, WebpackPluginInstance, loader } from 'webpack';
+
 import * as Rsg from '../../typings';
 
 // Webpack plugin that makes Styleguidist config available for Styleguidist webpack loaders.
@@ -21,9 +22,26 @@ export default class StyleguidistOptionsPlugin implements WebpackPluginInstance 
 		context._styleguidist = this.options;
 	};
 
-	private plugin = (compil: compilation.Compilation) => {
-		// FIXME: Find out how to type it properly
-		compil.hooks.normalModuleLoader.tap('StyleguidistOptionsPlugin', this.pluginFunc as any);
+	/**
+	 *
+	 * @param compil webpack 4 `compilation.Compilation`, webpack 5 `Compilation`
+	 */
+	private plugin = (compil: any) => {
+		// Webpack 5
+		/* istanbul ignore next */
+		if ('NormalModule' in webpack) {
+			// @ts-ignore
+			webpack.NormalModule.getCompilationHooks(compil).loader.tap(
+				'StyleguidistOptionsPlugin',
+				this.pluginFunc as any
+			);
+			return;
+		}
+		// Webpack 4
+		(compil as compilation.Compilation).hooks.normalModuleLoader.tap(
+			'StyleguidistOptionsPlugin',
+			this.pluginFunc as any
+		);
 	};
 
 	public apply(compiler: Compiler) {
