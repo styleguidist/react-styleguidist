@@ -1,14 +1,15 @@
 import path from 'path';
 import fs from 'fs';
-import { TagProps, TagParamObject, DocumentationObject, utils, TagObject } from 'react-docgen';
+import { DocumentationObject, TagObject, TagParamObject, TagProps, utils } from 'react-docgen';
 import _ from 'lodash';
-import doctrine, { Annotation } from 'doctrine';
+import { Comment } from 'comment-parser';
 import createLogger from 'glogg';
 import highlightCodeInMarkdown from './highlightCodeInMarkdown';
 import removeDoclets from './removeDoclets';
 import requireIt from './requireIt';
 import getNameFromFilePath from './getNameFromFilePath';
 import * as Rsg from '../../typings';
+import parseComment from './parseComment';
 
 const logger = createLogger('rsg');
 
@@ -27,7 +28,7 @@ const JS_DOC_ALL_SYNONYMS: (keyof TagProps)[] = [
 // and https://github.com/styleguidist/react-styleguidist/issues/298
 const getDocletsObject = (str?: string) => ({ ...utils.docblock.getDoclets(str) });
 
-const getDoctrineTags = (documentation: Annotation) => {
+const groupTagsByTitle = (documentation: Partial<Comment>) => {
 	return _.groupBy(documentation.tags, 'title');
 };
 
@@ -59,18 +60,15 @@ export default function getProps(doc: DocumentationObject, filepath?: string): R
 	const outDocs: Rsg.TempPropsObject = { doclets: {}, displayName: '', ...doc, methods: undefined };
 
 	// Keep only public methods
-	outDocs.methods = (doc.methods || []).filter(method => {
+	outDocs.methods = (doc.methods || []).filter((method) => {
 		const doclets = method.docblock && utils.docblock.getDoclets(method.docblock);
 		return doclets && doclets.public;
 	}) as Rsg.MethodWithDocblock[];
-
 	// Parse the docblock of the remaining methods with doctrine to retrieve
 	// the JSDoc tags
 	// if a method is visible it must have a docblock
-	outDocs.methods = outDocs.methods.map(method => {
-		const allTags = getDoctrineTags(
-			doctrine.parse(method.docblock, { sloppy: true, unwrap: true })
-		);
+	outDocs.methods = outDocs.methods.map((method) => {
+		const allTags = groupTagsByTitle(parseComment(method.docblock));
 
 		// Merge with react-docgen information about arguments and return value
 		// with information from JSDoc
@@ -81,11 +79,13 @@ export default function getProps(doc: DocumentationObject, filepath?: string): R
 		) as TagParamObject[];
 		const params =
 			method.params &&
-			method.params.map(param => ({
-				...param,
-				...paramTags.find(tagParam => tagParam.name === param.name),
-			}));
-
+			method.params.map((param) => {
+				console.log({ param, paramTags });
+				return {
+					...param,
+					...paramTags.find((tagParam) => tagParam.description === param.name),
+				};
+			});
 		if (params) {
 			method.params = params;
 		}
@@ -117,9 +117,8 @@ export default function getProps(doc: DocumentationObject, filepath?: string): R
 	if (doc.description) {
 		// Read doclets from the description and remove them
 		outDocs.doclets = getDocletsObject(doc.description);
-
-		const documentation = doctrine.parse(doc.description);
-		outDocs.tags = getDoctrineTags(documentation) as TagProps;
+		const documentation = parseComment(doc.description);
+		outDocs.tags = groupTagsByTitle(documentation);
 
 		outDocs.description = highlightCodeInMarkdown(removeDoclets(doc.description));
 
@@ -142,7 +141,7 @@ export default function getProps(doc: DocumentationObject, filepath?: string): R
 
 	if (doc.props) {
 		// Read doclets of props
-		Object.keys(doc.props).forEach(propName => {
+		Object.keys(doc.props).forEach((propName) => {
 			if (!doc.props) {
 				return;
 			}
@@ -150,11 +149,11 @@ export default function getProps(doc: DocumentationObject, filepath?: string): R
 			const doclets = getDocletsObject(prop.description);
 
 			// When a prop is listed in defaultProps but not in props the prop.description is undefined
-			const documentation = doctrine.parse(prop.description || '');
+			const documentation = parseComment(prop.description || '');
 
 			// documentation.description is the description without tags
-			prop.description = documentation.description;
-			prop.tags = getDoctrineTags(documentation) as TagProps;
+			prop.description = documentation?.description || '';
+			prop.tags = documentation ? groupTagsByTitle(documentation) : {};
 
 			// Remove ignored props
 			if (doclets && doclets.ignore && outDocs.props) {
