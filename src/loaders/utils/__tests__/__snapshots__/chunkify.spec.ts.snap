@@ -91,7 +91,7 @@ Array [
   Object {
     "content": "# Header
 
-Text with _some_ **formatting** and a [link](/foo).
+Text with *some* **formatting** and a [link](/foo).
 
 <div>And some HTML.</div>
 

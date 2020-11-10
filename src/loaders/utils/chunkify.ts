@@ -63,14 +63,11 @@ export default function chunkify(
 		};
 	}
 
-	const rendered = remark()
-		.use(processCode)
-		.processSync(markdown)
-		.toString();
+	const rendered = remark().use(processCode).processSync(markdown).toString();
 
 	const chunks: (Rsg.CodeExample | Rsg.MarkdownExample)[] = [];
 	const textChunks = rendered.split(CODE_PLACEHOLDER);
-	textChunks.forEach(chunk => {
+	textChunks.forEach((chunk) => {
 		chunk = chunk.trim();
 		if (chunk) {
 			chunks.push({
