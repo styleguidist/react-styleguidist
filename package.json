@@ -82,7 +82,7 @@
     "react-icons": "^3.8.0",
     "react-simple-code-editor": "^0.10.0",
     "recast": "~0.20.3",
-    "remark": "^11.0.1",
+    "remark": "^13.0.0",
     "strip-html-comments": "^1.0.0",
     "sucrase": "^3.15.0",
     "terser-webpack-plugin": "^4.2.3",
