@@ -15,11 +15,8 @@ const subComponentQuery = {
 	shouldShowDefaultExample: false,
 };
 
-
 const getQuery = (options = {}) => encode({ ...query, ...options }, '?');
 const getSubComponentQuery = (options = {}) => encode({ ...subComponentQuery, ...options }, '?');
-
-
 
 it('should return valid, parsable JS', () => {
 	const exampleMarkdown = `

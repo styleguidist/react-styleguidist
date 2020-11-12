@@ -93,7 +93,7 @@ describe('makeWebpackConfig', () => {
 		const api = styleguidist({
 			dangerouslyUpdateWebpackConfig: (webpackConfig, env) => {
 				if (webpackConfig.resolve && webpackConfig.resolve.extensions) {
-					webpackConfig.resolve.extensions.push(env);
+					webpackConfig.resolve.extensions.push(env as string);
 				}
 				return webpackConfig;
 			},

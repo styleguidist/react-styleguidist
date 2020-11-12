@@ -14,17 +14,9 @@ const wrapCodeInFragment = (code: string): string => `<React.Fragment>${code}</R
  */
 export default function compileCode(
 	code: string,
-	compileExample: Rsg.SanitizedStyleguidistConfig['compileExample'],
-	onError?: (err: Error) => void
+	compileExample: Rsg.SanitizedStyleguidistConfig['compileExample']
 ): string {
 	const wrappedCode = startsWithJsx(code) ? wrapCodeInFragment(code) : code;
-	try {
-		const compiledCode = compileExample(compiler, wrappedCode);
-		return insertReturnLastExpression(compiledCode);
-	} catch (err) {
-		if (onError) {
-			onError(err);
-		}
-		return '';
-	}
+	const compiledCode = compileExample(compiler, wrappedCode);
+	return insertReturnLastExpression(compiledCode);
 }

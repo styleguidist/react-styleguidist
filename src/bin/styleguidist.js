@@ -124,7 +124,8 @@ function commandServer() {
 		if (err) {
 			console.error(err);
 		} else {
-			const isHttps = compiler.options.devServer && compiler.options.devServer.https;
+			const { devServer = {} } = compiler.options;
+			const isHttps = !!devServer.https;
 			const urls = webpackDevServerUtils.prepareUrls(
 				isHttps ? 'https' : 'http',
 				config.serverHost,

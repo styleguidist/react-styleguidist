@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { TransformOptions } from 'buble';
 import Wrapper from 'rsg-components/Wrapper';
 import compileCode from '../../utils/compileCode';
-import splitExampleCode from '../../utils/splitExampleCode';
-
-/* eslint-disable react/no-multi-comp */
+import * as Rsg from '../../../typings';
 
 interface ReactExampleProps {
 	code: string;
-	evalInContext(code: string): () => any;
+	evalInContext(code: string): React.ComponentType;
 	onError(err: Error): void;
-	compilerConfig?: TransformOptions;
+	compileExample: Rsg.SanitizedStyleguidistConfig['compileExample'];
 }
 
 export default class ReactExample extends Component<ReactExampleProps> {
@@ -19,29 +16,33 @@ export default class ReactExample extends Component<ReactExampleProps> {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
 		onError: PropTypes.func.isRequired,
-		compilerConfig: PropTypes.object,
+		compileExample: PropTypes.func.isRequired,
 	};
 
 	public shouldComponentUpdate(nextProps: ReactExampleProps) {
 		return this.props.code !== nextProps.code;
 	}
 
-	// Run example code and return the last top-level expression
-	private getExampleComponent(compiledCode: string): () => any {
-		return this.props.evalInContext(`
-			${compiledCode}
-		`);
+	private compileCode() {
+		const { code, compileExample, onError } = this.props;
+		try {
+			return compileCode(code, compileExample, onError);
+		} catch (err) {
+			if (onError) {
+				onError(err);
+			}
+			return '';
+		}
 	}
 
 	public render() {
-		const { code, compilerConfig = {}, onError } = this.props;
-		const compiledCode = compileCode(code, compilerConfig, onError);
+		const compiledCode = this.compileCode();
 		if (!compiledCode) {
 			return null;
 		}
 
-		const { example } = splitExampleCode(compiledCode);
-		const ExampleComponent = this.getExampleComponent(example);
+		const { onError, evalInContext } = this.props;
+		const ExampleComponent = evalInContext(compiledCode);
 		const wrappedComponent = (
 			<Wrapper onError={onError}>
 				<ExampleComponent />

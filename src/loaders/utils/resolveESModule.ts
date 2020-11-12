@@ -10,7 +10,7 @@ import requireIt from './requireIt';
  */
 export default (requireRequest: string, name: string) => {
 	// The name could possibly contain invalid characters for a JS variable name
-	// such as "." or "-". 
+	// such as "." or "-".
 	const safeName = name ? name.replace(/\W/, '') : name;
 
 	return [
@@ -25,9 +25,13 @@ export default (requireRequest: string, name: string) => {
 				b.logicalExpression(
 					'||',
 					b.identifier(`${safeName}$0.default`),
-					b.logicalExpression('||', b.identifier(`${safeName}$0['${safeName}']`), b.identifier(`${safeName}$0`))
+					b.logicalExpression(
+						'||',
+						b.identifier(`${safeName}$0['${safeName}']`),
+						b.identifier(`${safeName}$0`)
+					)
 				)
 			),
 		]),
-	]
+	];
 };

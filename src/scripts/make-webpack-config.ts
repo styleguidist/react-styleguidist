@@ -1,6 +1,6 @@
 import path from 'path';
 import castArray from 'lodash/castArray';
-import webpack, { Configuration, Resolve } from 'webpack';
+import webpack, { Configuration } from 'webpack';
 import TerserPlugin from 'terser-webpack-plugin';
 import { MiniHtmlWebpackPlugin } from 'mini-html-webpack-plugin';
 import MiniHtmlWebpackTemplate from '@vxna/mini-html-webpack-template';
@@ -9,23 +9,28 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import merge from 'webpack-merge';
 import forEach from 'lodash/forEach';
 import isFunction from 'lodash/isFunction';
-
 import StyleguidistOptionsPlugin from './utils/StyleguidistOptionsPlugin';
 import mergeWebpackConfig from './utils/mergeWebpackConfig';
 import * as Rsg from '../typings';
+
+type Mode = Configuration['mode'];
 
 const RENDERER_REGEXP = /Renderer$/;
 
 const sourceDir = path.resolve(__dirname, '../client');
 
-interface AliasedConfiguration extends Configuration {
-	resolve: Resolve & { alias: Record<string, string> };
-}
+const getCustomAliases = (styleguideComponents: Record<string, string>) => {
+	const customAliases: Record<string, string> = {};
+	forEach(styleguideComponents, (filepath, name) => {
+		const fullName = name.match(RENDERER_REGEXP)
+			? `${name.replace(RENDERER_REGEXP, '')}/${name}`
+			: name;
+		customAliases[`rsg-components/${fullName}`] = filepath;
+	});
+	return customAliases;
+};
 
-export default function (
-	config: Rsg.SanitizedStyleguidistConfig,
-	env: 'development' | 'production' | 'none'
-): Configuration {
+export default function (config: Rsg.SanitizedStyleguidistConfig, env: Mode): Configuration {
 	process.env.NODE_ENV = process.env.NODE_ENV || env;
 
 	const isProd = env === 'production';
@@ -63,6 +68,16 @@ export default function (
 				'process.env.STYLEGUIDIST_ENV': JSON.stringify(env),
 			}),
 		],
+		module: {
+			rules: [
+				{
+					// Support .mjs modules in dependencies, like Sucrase
+					test: /\.mjs$/,
+					include: /node_modules/,
+					type: 'javascript/auto',
+				},
+			],
+		},
 		performance: {
 			hints: false,
 		},
@@ -128,31 +143,24 @@ export default function (
 		webpackConfig = mergeWebpackConfig(webpackConfig, config.webpackConfig, env);
 	}
 
-	// Custom aliases
-	// NOTE: in a sanitized config, moduleAliases are always an object (never null or undefined)
-	const aliasedWebpackConfig = merge(webpackConfig, {
-		resolve: { alias: config.moduleAliases },
-	}) as AliasedConfiguration;
+	// Aliases
+	webpackConfig = merge(webpackConfig, {
+		resolve: {
+			alias: {
+				// In a sanitized config, moduleAliases is always an object (never null or undefined)
+				...config.moduleAliases,
+				// Custom styleguide components
+				...getCustomAliases(config.styleguideComponents),
+				// Code compiler module
+				'rsg-compiler': config.compilerModule,
+				// Add components folder alias at the end, so users can override our components
+				// to customize the style guide (their aliases should be before this one)
+				'rsg-components': path.resolve(sourceDir, 'rsg-components'),
+			},
+		},
+	});
 
-	const alias = aliasedWebpackConfig.resolve.alias;
-
-	// Custom style guide components
-	if (config.styleguideComponents) {
-		forEach(config.styleguideComponents, (filepath, name) => {
-			const fullName = name.match(RENDERER_REGEXP)
-				? `${name.replace(RENDERER_REGEXP, '')}/${name}`
-				: name;
-			alias[`rsg-components/${fullName}`] = filepath;
-		});
-	}
-
-	// Add components folder alias at the end, so users can override our components
-	// to customize the style guide (their aliases should be before this one)
-	alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
-
-	webpackConfig = config.dangerouslyUpdateWebpackConfig
-		? config.dangerouslyUpdateWebpackConfig(aliasedWebpackConfig, env)
-		: aliasedWebpackConfig;
+	webpackConfig = config.dangerouslyUpdateWebpackConfig(webpackConfig, env);
 
 	return webpackConfig;
 }

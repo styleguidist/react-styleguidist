@@ -5,10 +5,14 @@ import slots from '../slots';
 import Context from '../Context';
 import { DisplayModes } from '../../consts';
 import * as Rsg from '../../../typings';
+import config from '../../../scripts/schemas/config';
+
+const compileExample = config.compileExample.default;
 
 const context = {
 	config: {
 		pagePerSection: false,
+		compileExample,
 	},
 	displayMode: DisplayModes.all,
 	slots: slots(),

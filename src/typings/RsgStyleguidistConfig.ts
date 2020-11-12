@@ -1,16 +1,22 @@
-import WebpackDevServer from 'webpack-dev-server';
 import { Configuration, loader } from 'webpack';
-import { TransformOptions } from 'buble';
 import { Handler, DocumentationObject, PropDescriptor } from 'react-docgen';
 import { ASTNode } from 'ast-types';
 import { NodePath } from 'ast-types/lib/node-path';
 import { Styles } from 'jss';
+import { Application } from 'express';
 import { RecursivePartial } from './RecursivePartial';
 import { ExpandMode } from './RsgComponent';
 import { PropsObject } from './RsgPropsObject';
 import { CodeExample } from './RsgExample';
 import { ConfigSection, Section } from './RsgSection';
 import { Theme } from './RsgTheme';
+
+type Mode = Configuration['mode'];
+
+type PropsResolver = (
+	ast: ASTNode,
+	parser: { parse: (code: string) => ASTNode }
+) => NodePath<any, any> | NodePath[];
 
 export interface StyleguidistLoaderContext extends loader.LoaderContext {
 	_styleguidist: SanitizedStyleguidistConfig;
@@ -19,13 +25,16 @@ export interface StyleguidistLoaderContext extends loader.LoaderContext {
 interface BaseStyleguidistConfig {
 	assetsDir: string | string[];
 	tocMode: ExpandMode;
-	compilerConfig: TransformOptions;
+	compileExample: (compiler: unknown, code: string) => string;
+	/** @deprecated */
+	compilerConfig: Record<string, any>;
+	compilerModule: string;
 	components: (() => string[]) | string | string[];
 	configDir: string;
 	context: Record<string, any>;
 	contextDependencies: string[];
-	configureServer(server: WebpackDevServer, env: string): string;
-	dangerouslyUpdateWebpackConfig: (server: Configuration, env: string) => Configuration;
+	configureServer(server: Application, env: Mode): string;
+	dangerouslyUpdateWebpackConfig: (config: Configuration, env: Mode) => Configuration;
 	defaultExample: string | false;
 	exampleMode: ExpandMode;
 	editorConfig: {
@@ -50,24 +59,20 @@ interface BaseStyleguidistConfig {
 	propsParser(
 		filePath: string,
 		code: string,
-		resolver: (
-			ast: ASTNode,
-			parser: { parse: (code: string) => ASTNode }
-		) => NodePath<any, any> | NodePath[],
+		resolver: PropsResolver,
 		handlers: Handler[]
 	): DocumentationObject;
 	require: string[];
-	resolver(
-		ast: ASTNode,
-		parser: { parse: (code: string) => ASTNode }
-	): NodePath<any, any> | NodePath[];
+	resolver: PropsResolver;
 	ribbon?: {
 		text?: string;
 		url: string;
 	};
 	serverHost: string;
 	serverPort: number;
+	/** @deprecated */
 	showCode: boolean;
+	/** @deprecated */
 	showUsage: boolean;
 	showSidebar: boolean;
 	skipComponentsWithoutExample: boolean;
@@ -75,7 +80,7 @@ interface BaseStyleguidistConfig {
 	styleguideComponents: Record<string, string>;
 	styleguideDir: string;
 	styles: Styles | string | ((theme: Theme) => Styles);
-	template: any;
+	template: any; // TODO
 	theme: RecursivePartial<Theme> | string;
 	title: string;
 	updateDocs(doc: PropsObject, file: string): PropsObject;
@@ -84,7 +89,7 @@ interface BaseStyleguidistConfig {
 	usageMode: ExpandMode;
 	verbose: boolean;
 	version: string;
-	webpackConfig: Configuration | ((env?: string) => Configuration);
+	webpackConfig: Configuration | ((env: Mode) => Configuration);
 }
 
 export interface ProcessedStyleguidistConfig extends BaseStyleguidistConfig {

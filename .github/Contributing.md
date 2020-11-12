@@ -66,22 +66,10 @@ Then run Babel in watch mode:
 npm run compile:watch
 ```
 
-Then open a new terminal and start Styleguidist server:
-
-```bash
-npm run test:cypress:startServer
-```
-
-And, finally, in another separate terminal run tests:
+Then open a new terminal and run Cypress:
 
 ```bash
 npm run test:cypress:run
-```
-
-Or open Cypress UI:
-
-```bash
-npm run test:cypress:open
 ```
 
 ## Other notes

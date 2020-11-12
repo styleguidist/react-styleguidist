@@ -1,16 +1,24 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import noop from 'lodash/noop';
+import config from '../../../scripts/schemas/config';
 import ReactExample from '.';
 
-const evalInContext = (a: string): (() => any) =>
+const compileExample = config.compileExample.default;
+
+// TODO: Enzyme → RTL
+
+const evalInContext = (a: string) =>
 	// eslint-disable-next-line no-new-func
 	new Function('require', 'const React = require("react");' + a).bind(null, require);
 
+const defaultProps = {
+	evalInContext,
+	onError: () => {},
+	compileExample,
+};
+
 it('should render code', () => {
-	const actual = shallow(
-		<ReactExample code={'<button>OK</button>'} evalInContext={evalInContext} onError={noop} />
-	);
+	const actual = shallow(<ReactExample {...defaultProps} code={'<button>OK</button>'} />);
 
 	expect(actual).toMatchSnapshot();
 });
@@ -18,7 +26,7 @@ it('should render code', () => {
 it('should wrap code in Fragment when it starts with <', () => {
 	const actual = mount(
 		<div>
-			<ReactExample code="<span /><span />" evalInContext={evalInContext} onError={noop} />
+			<ReactExample {...defaultProps} code="<span /><span />" />
 		</div>
 	);
 
@@ -28,7 +36,7 @@ it('should wrap code in Fragment when it starts with <', () => {
 it('should handle errors', () => {
 	const onError = jest.fn();
 
-	shallow(<ReactExample code={'<invalid code'} evalInContext={evalInContext} onError={onError} />);
+	shallow(<ReactExample {...defaultProps} code={'<invalid code'} onError={onError} />);
 
 	expect(onError).toHaveBeenCalledTimes(1);
 });
@@ -38,7 +46,7 @@ it('should set initial state with hooks', () => {
 const [count, setCount] = React.useState(0);
 <button>{count}</button>
 	`;
-	const actual = mount(<ReactExample code={code} evalInContext={evalInContext} onError={noop} />);
+	const actual = mount(<ReactExample {...defaultProps} code={code} />);
 
 	expect(actual.find('button').text()).toEqual('0');
 });
@@ -48,7 +56,7 @@ it('should update state with hooks', () => {
 const [count, setCount] = React.useState(0);
 <button onClick={() => setCount(count+1)}>{count}</button>
 	`;
-	const actual = mount(<ReactExample code={code} evalInContext={evalInContext} onError={noop} />);
+	const actual = mount(<ReactExample {...defaultProps} code={code} />);
 	actual.find('button').simulate('click');
 
 	expect(actual.find('button').text()).toEqual('1');

@@ -4,9 +4,12 @@ import Examples from '.';
 import Context from '../Context';
 import slots from '../slots';
 import { DisplayModes } from '../../consts';
+import config from '../../../scripts/schemas/config';
 import * as Rsg from '../../../typings';
 
-const evalInContext = (a: string): (() => any) =>
+const compileExample = config.compileExample.default;
+
+const evalInContext = (a: string) =>
 	// eslint-disable-next-line no-new-func
 	new Function('require', 'const React = require("react");' + a).bind(null, require);
 
@@ -25,6 +28,7 @@ const examples: Rsg.Example[] = [
 const context = {
 	config: {
 		previewDelay: 0,
+		compileExample,
 	},
 	codeRevision: 1,
 	displayMode: DisplayModes.example,
@@ -44,11 +48,12 @@ test('should render examples', () => {
 });
 
 test('should not render an example with unknown type', () => {
+	// This code is wrong on purpose so we force the type
 	const faultyExample = [
-		{
+		({
 			type: 'unknown',
 			content: 'FooBar',
-		} as any,
+		} as unknown) as Rsg.Example,
 	];
 	const { getByTestId } = render(
 		<Provider>

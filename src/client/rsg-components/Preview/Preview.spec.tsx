@@ -3,6 +3,9 @@ import { mount } from 'enzyme';
 import { render } from '@testing-library/react';
 import Preview from '.';
 import Context, { StyleGuideContextContents } from '../Context';
+import config from '../../../scripts/schemas/config';
+
+const compileExample = config.compileExample.default;
 
 /* eslint-disable no-console */
 
@@ -17,7 +20,7 @@ const newCode = '<button>Code: Cancel</button>';
 
 const context = {
 	config: {
-		compilerConfig: {},
+		compileExample,
 	},
 	codeRevision: 0,
 } as StyleGuideContextContents;
@@ -59,7 +62,7 @@ it('should not fail when Wrapper wasn’t mounted', () => {
 	const node = getByTestId('mountNode');
 
 	expect(
-		consoleError.mock.calls.find(call =>
+		consoleError.mock.calls.find((call) =>
 			call[0].toString().includes('ReferenceError: pizza is not defined')
 		)
 	).toBeTruthy();
@@ -123,7 +126,7 @@ it('should handle errors', () => {
 	);
 
 	expect(
-		consoleError.mock.calls.find(call =>
+		consoleError.mock.calls.find((call) =>
 			call[0].toString().includes('SyntaxError: Unexpected token')
 		)
 	).toBeTruthy();

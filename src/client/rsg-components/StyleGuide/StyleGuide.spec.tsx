@@ -77,7 +77,7 @@ test('should render a sidebar if showSidebar is not set', () => {
 		'http://localhost/#foo',
 		'http://localhost/#bar',
 	]);
-	expect(links.map(node => node.textContent)).toEqual(['Foo', 'Bar']);
+	expect(links.map((node) => node.textContent)).toEqual(['Foo', 'Bar']);
 });
 
 test('should not render a sidebar if showSidebar is false', () => {

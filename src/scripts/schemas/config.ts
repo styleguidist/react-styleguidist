@@ -6,11 +6,12 @@ import path from 'path';
 import startCase from 'lodash/startCase';
 import kleur from 'kleur';
 import * as reactDocgen from 'react-docgen';
-import { TransformOptions } from 'buble';
 import { createDisplayNameHandler } from 'react-docgen-displayname-handler';
 import annotationResolver from 'react-docgen-annotation-resolver';
 import { ASTNode } from 'ast-types';
 import { NodePath } from 'ast-types/lib/node-path';
+import { Configuration } from 'webpack';
+import * as sucrase from 'sucrase';
 import findUserWebpackConfig from '../utils/findUserWebpackConfig';
 import getUserPackageJson from '../utils/getUserPackageJson';
 import fileExistsCaseInsensitive from '../utils/findFileCaseInsensitive';
@@ -52,22 +53,34 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 		type: 'string',
 		default: 'expand',
 	},
+	compileExample: {
+		type: 'function',
+		default: (compiler: typeof sucrase, code: string) =>
+			compiler.transform(code, {
+				// Compile TypeScript, JSX and ECMAScript imports
+				transforms: ['typescript', 'jsx', 'imports'],
+			}).code,
+	},
 	compilerConfig: {
 		type: 'object',
-		default: {
-			// Don't include an Object.assign ponyfill, we have our own
-			objectAssign: 'Object.assign',
-			// Transpile only features needed for IE11
-			target: { ie: 11 },
-			transforms: {
-				// Don't throw on ESM imports, we transpile them ourselves
-				modules: false,
-				// Enable tagged template literals for styled-components
-				dangerousTaggedTemplateString: true,
-				// to make async/await work by default (no transformation)
-				asyncAwait: false,
-			},
-		} as TransformOptions,
+		deprecated: 'Use compilerModule and compileExample options instead',
+	},
+	compilerModule: {
+		type: 'string',
+		default: 'sucrase',
+		process: (value: string) => {
+			if (value) {
+				try {
+					require.resolve(value);
+				} catch (err) {
+					throw new StyleguidistError(
+						`Module ${kleur.bold(value)}, specified in the compilerModule option, not found.
+Try to install it: npm install --save-dev ${value}`
+					);
+				}
+			}
+			return value;
+		},
 	},
 	// `components` is a shortcut for { sections: [{ components }] },
 	// see `sections` below
@@ -93,6 +106,7 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 	},
 	dangerouslyUpdateWebpackConfig: {
 		type: 'function',
+		default: (config: Configuration) => config,
 	},
 	defaultExample: {
 		type: ['boolean', 'existing file path'],
@@ -274,6 +288,7 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 	},
 	styleguideComponents: {
 		type: 'object',
+		default: {},
 	},
 	styleguideDir: {
 		type: 'directory path',
@@ -383,7 +398,7 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 					consts.DOCS_WEBPACK
 			);
 
-			return undefined;
+			return {};
 		},
 		example: {
 			module: {

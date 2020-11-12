@@ -12,7 +12,8 @@
 		"outDir": "./lib",
 		"lib": ["dom"],
 		"paths": {
-			"rsg-components/*": ["src/client/rsg-components/*"]
+			"rsg-components/*": ["src/client/rsg-components/*"],
+			"rsg-compiler": ["sucrase"]
 		}
 	},
 	"include": ["src"],
