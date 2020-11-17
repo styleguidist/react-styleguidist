@@ -23,9 +23,9 @@ export default function processSections(
 			getUrl({
 				name: section.name,
 				slug: section.slug,
-				anchor: !options.useRouterLinks,
-				hashPath: options.useRouterLinks ? hashPath : false,
-				useSlugAsIdParam: options.useRouterLinks ? useHashId : false,
+				anchor: !useRouterLinks,
+				hashPath: useRouterLinks ? hashPath : false,
+				useSlugAsIdParam: useRouterLinks ? useHashId : false,
 			});
 
 		return {
