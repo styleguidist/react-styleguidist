@@ -23,7 +23,7 @@ const sections = deepfreeze([
 const options = { useRouterLinks: false, hashPath: [] };
 
 describe('processSections', () => {
-	it('should recursively process all sections and components', () => {
+	test('should recursively process all sections and components', () => {
 		const result = processSections(sections, options);
 		const sectionsExpected = result[0].sections || [];
 		const comp = sectionsExpected.length
@@ -33,9 +33,17 @@ describe('processSections', () => {
 		expect(comp?.href).toBe('/#button');
 	});
 
-	it('should set visibleName property on each section', () => {
+	test('should set visibleName property on each section', () => {
 		const result = processSections(sections, options);
 		const sectionsExpected = result[0].sections || [];
 		expect(sectionsExpected[0].visibleName).toBe('Components');
+	});
+
+	test('should recursively process all nested sections when useRouterLinks is true has passed', () => {
+		const result = processSections([{ name: 'Component', sections: [{ name: 'Button' }] }], {
+			useRouterLinks: true,
+		});
+		expect(result?.[0].href).toBe('/#/Component');
+		expect(result?.[0].sections?.[0].href).toBe('/#/Component/Button');
 	});
 });
