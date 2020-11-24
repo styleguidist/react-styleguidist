@@ -12,9 +12,9 @@ export default function processSections(
 	sections: Rsg.Section[],
 	{ useRouterLinks, useHashId = false, hashPath = [] }: HrefOptions
 ): Rsg.Section[] {
-	return sections.map(section => {
+	return sections.map((section) => {
 		const options = {
-			useRouterLinks,
+			useRouterLinks: Boolean(useRouterLinks && section.name),
 			useHashId: section.sectionDepth === 0,
 			hashPath: [...hashPath, section.name ? section.name : '-'],
 		};

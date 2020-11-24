@@ -136,6 +136,9 @@ export default function (config: Rsg.SanitizedStyleguidistConfig, env: Mode): Co
 		webpackConfig = merge(webpackConfig, {
 			entry: [require.resolve('react-dev-utils/webpackHotDevClient')],
 			plugins: [new webpack.HotModuleReplacementPlugin()],
+			devServer: {
+				transportMode: 'ws',
+			},
 		});
 	}
 
