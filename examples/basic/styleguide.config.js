@@ -7,6 +7,9 @@ module.exports = {
 	moduleAliases: {
 		'rsg-example': path.resolve(__dirname, 'src'),
 	},
+	context: {
+		_: 'lodash',
+	},
 	ribbon: {
 		url: 'https://github.com/styleguidist/react-styleguidist',
 	},

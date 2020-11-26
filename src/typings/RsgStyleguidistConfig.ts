@@ -84,7 +84,7 @@ interface BaseStyleguidistConfig {
 	theme: RecursivePartial<Theme> | string;
 	title: string;
 	updateDocs(doc: PropsObject, file: string): PropsObject;
-	updateExample(props: Omit<CodeExample, 'type'>, ressourcePath: string): Omit<CodeExample, 'type'>;
+	updateExample(example: CodeExample, resourcePath: string): Omit<CodeExample, 'type'>;
 	updateWebpackConfig(config: Configuration): Configuration;
 	usageMode: ExpandMode;
 	verbose: boolean;

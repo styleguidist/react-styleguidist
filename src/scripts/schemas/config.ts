@@ -349,6 +349,7 @@ Try to install it: npm install --save-dev ${value}`
 	},
 	updateExample: {
 		type: 'function',
+		// TODO: We don't need this anymore
 		default: (props: { lang: string }): { lang: string } => {
 			if (props.lang === 'example') {
 				props.lang = 'js';

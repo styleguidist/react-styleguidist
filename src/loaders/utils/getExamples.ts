@@ -4,7 +4,7 @@ import { encode } from 'qss';
 import requireIt from './requireIt';
 import * as Rsg from '../../typings';
 
-const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
+const mdxLoader = path.resolve(__dirname, '../mdx-loader.js');
 
 /**
  * Get require statement for examples file if it exists, or for default examples if it was defined.
@@ -23,10 +23,11 @@ export default function getExamples(
 
 	const relativePath = `./${path.relative(path.dirname(examplesFileToLoad), file)}`;
 
+	// TODO: We may not need some or any of these
 	const query = {
 		displayName,
 		file: relativePath,
 		shouldShowDefaultExample: !examplesFile && !!defaultExample,
 	};
-	return requireIt(`!!${examplesLoader}?${encode(query)}!${examplesFileToLoad}`);
+	return requireIt(`!!${mdxLoader}?${encode(query)}!${examplesFileToLoad}`);
 }

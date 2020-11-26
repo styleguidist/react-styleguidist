@@ -1,18 +1,15 @@
-export interface MarkdownExample {
-	type: 'markdown';
-	content: string;
-	settings?: Record<string, any>;
+export interface Modifiers {
+	/** Render static highlighted code instead of a dynamic preview with a code editor */
+	static?: boolean;
+	/** Renders an example code but hides the code editor */
+	noeditor?: boolean;
+	/** Adds padding between example child elements */
+	padded?: boolean;
+	[key: string]: unknown;
 }
 
 export interface CodeExample {
-	type: 'code';
 	content: string;
-	lang?: string | null;
-	settings?: Record<string, any>;
+	lang?: string;
+	settings?: Modifiers;
 }
-
-export interface RuntimeCodeExample extends CodeExample {
-	evalInContext(a: string): () => any;
-}
-
-export type Example = RuntimeCodeExample | MarkdownExample;

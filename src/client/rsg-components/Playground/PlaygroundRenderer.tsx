@@ -42,7 +42,7 @@ export const styles = ({ space, color, borderRadius }: Rsg.Theme) => ({
 
 interface PlaygroundRendererProps extends JssInjectedProps {
 	exampleIndex: number;
-	name?: string;
+	componentName: string;
 	padded: boolean;
 	preview: React.ReactNode;
 	// TODO: need to find a better type here too
@@ -55,7 +55,7 @@ interface PlaygroundRendererProps extends JssInjectedProps {
 export const PlaygroundRenderer: React.FunctionComponent<PlaygroundRendererProps> = ({
 	classes,
 	exampleIndex,
-	name,
+	componentName,
 	padded,
 	preview,
 	previewProps,
@@ -66,8 +66,13 @@ export const PlaygroundRenderer: React.FunctionComponent<PlaygroundRendererProps
 	const { className, ...props } = previewProps;
 	const previewClasses = cx(classes.preview, className, { [classes.padded]: padded });
 	return (
-		<div className={classes.root} data-testid={`${name}-example-${exampleIndex}`}>
-			<div className={previewClasses} {...props} data-preview={name} data-testid="preview-wrapper">
+		<div className={classes.root} data-testid={`${componentName}-example-${exampleIndex}`}>
+			<div
+				className={previewClasses}
+				{...props}
+				data-preview={componentName}
+				data-testid="preview-wrapper"
+			>
 				{preview}
 			</div>
 			<div className={classes.controls}>
@@ -82,7 +87,7 @@ export const PlaygroundRenderer: React.FunctionComponent<PlaygroundRendererProps
 PlaygroundRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	exampleIndex: PropTypes.number.isRequired,
-	name: PropTypes.string.isRequired,
+	componentName: PropTypes.string.isRequired,
 	padded: PropTypes.bool.isRequired,
 	preview: PropTypes.node.isRequired,
 	previewProps: PropTypes.object.isRequired,
