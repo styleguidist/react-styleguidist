@@ -1,5 +1,6 @@
 import acornJsx from 'acorn-jsx';
 import { walk } from 'estree-walker';
+import { Node } from 'estree';
 import getAst from './getAst';
 
 /**
@@ -17,13 +18,15 @@ export default function getImports(code: string): string[] {
 	}
 
 	const imports: string[] = [];
-	walk(ast as any, {
-		enter: (node: any) => {
+	walk(ast, {
+		enter: (nodeRaw) => {
+			const node = nodeRaw as Node;
+
 			// import foo from 'foo'
 			// import 'foo'
 			if (node.type === 'ImportDeclaration') {
 				if (node.source) {
-					imports.push(node.source.value);
+					imports.push(node.source.value as string);
 				}
 			}
 
@@ -31,11 +34,12 @@ export default function getImports(code: string): string[] {
 			else if (node.type === 'CallExpression') {
 				if (
 					node.callee &&
+					node.callee.type === 'Identifier' &&
 					node.callee.name === 'require' &&
-					node.arguments &&
+					node.arguments[0]?.type === 'Literal' &&
 					node.arguments[0].value
 				) {
-					imports.push(node.arguments[0].value);
+					imports.push(node.arguments[0].value as string);
 				}
 			}
 		},

@@ -10,11 +10,12 @@ import { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
 import { DisplayModes, ExampleModes } from '../../consts';
 
 interface PlaygroundProps {
-	evalInContext(code: string): () => any;
-	index: number;
-	name?: string;
+	exampleIndex: number;
+	componentName: string;
 	exampleMode?: string;
 	code: string;
+	documentScope: Record<string, unknown>;
+	exampleScope: Record<string, unknown>;
 	settings: {
 		showcode?: boolean;
 		noeditor?: boolean;
@@ -33,9 +34,10 @@ interface PlaygroundState {
 class Playground extends Component<PlaygroundProps, PlaygroundState> {
 	public static propTypes = {
 		code: PropTypes.string.isRequired,
-		evalInContext: PropTypes.func.isRequired,
-		index: PropTypes.number.isRequired,
-		name: PropTypes.string.isRequired,
+		documentScope: PropTypes.object.isRequired,
+		exampleScope: PropTypes.object.isRequired,
+		exampleIndex: PropTypes.number.isRequired,
+		componentName: PropTypes.string.isRequired,
 		exampleMode: PropTypes.string.isRequired,
 		settings: PropTypes.object,
 	};
@@ -46,7 +48,7 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 
 	public static contextType = Context;
 
-	private handleChange = debounce(code => {
+	private handleChange = debounce((code) => {
 		this.setState({
 			code,
 		});
@@ -80,25 +82,34 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 	}
 
 	private handleTabChange = (name: string) => {
-		this.setState(state => ({
+		this.setState((state) => ({
 			activeTab: state.activeTab !== name ? name : undefined,
 		}));
 	};
 
 	public render() {
 		const { code, activeTab } = this.state;
-		const { evalInContext, index, name, settings, exampleMode } = this.props;
+		const {
+			documentScope,
+			exampleScope,
+			exampleIndex,
+			componentName,
+			settings,
+			exampleMode,
+		} = this.props;
 		const { displayMode } = this.context;
 		const isExampleHidden = exampleMode === ExampleModes.hide;
 		const isEditorHidden = settings.noeditor || isExampleHidden;
-		const preview = <Preview code={code} evalInContext={evalInContext} />;
+		const preview = (
+			<Preview code={code} documentScope={documentScope} exampleScope={exampleScope} />
+		);
 
 		return isEditorHidden ? (
 			<Para>{preview}</Para>
 		) : (
 			<PlaygroundRenderer
-				name={name}
-				exampleIndex={index}
+				componentName={componentName}
+				exampleIndex={exampleIndex}
 				padded={!!settings.padded}
 				preview={preview}
 				previewProps={settings.props || {}}
@@ -114,14 +125,17 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 						name="exampleTabs"
 						active={activeTab}
 						onlyActive
-						// evalInContext passed through to support custom slots that eval code
-						props={{ code, onChange: this.handleChange, evalInContext }}
+						props={{ code, onChange: this.handleChange }}
 					/>
 				}
 				toolbar={
 					<Slot
 						name="exampleToolbar"
-						props={{ name, isolated: displayMode === DisplayModes.example, example: index }}
+						props={{
+							name: componentName,
+							isolated: displayMode === DisplayModes.example,
+							example: exampleIndex,
+						}}
 					/>
 				}
 			/>

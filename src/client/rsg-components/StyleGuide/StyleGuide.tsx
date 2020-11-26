@@ -7,6 +7,7 @@ import Welcome from 'rsg-components/Welcome';
 import Error from 'rsg-components/Error';
 import NotFound from 'rsg-components/NotFound';
 import Context from 'rsg-components/Context';
+import MdxProvider from 'rsg-components/mdx/MdxProvider';
 import { HOMEPAGE } from '../../../scripts/consts';
 import { DisplayModes } from '../../consts';
 import * as Rsg from '../../../typings';
@@ -111,24 +112,26 @@ export default class StyleGuide extends Component<StyleGuideProps, StyleGuideSta
 					cssRevision,
 				}}
 			>
-				<StyleGuideRenderer
-					key={cssRevision}
-					title={config.title}
-					version={config.version}
-					homepageUrl={HOMEPAGE}
-					toc={
-						allSections ? (
-							<TableOfContents
-								sections={allSections}
-								useRouterLinks={pagePerSection}
-								tocMode={config.tocMode}
-							/>
-						) : null
-					}
-					hasSidebar={hasSidebar(displayMode, config.showSidebar)}
-				>
-					{sections.length ? <Sections sections={sections} depth={1} /> : <NotFound />}
-				</StyleGuideRenderer>
+				<MdxProvider>
+					<StyleGuideRenderer
+						key={cssRevision}
+						title={config.title}
+						version={config.version}
+						homepageUrl={HOMEPAGE}
+						toc={
+							allSections ? (
+								<TableOfContents
+									sections={allSections}
+									useRouterLinks={pagePerSection}
+									tocMode={config.tocMode}
+								/>
+							) : null
+						}
+						hasSidebar={hasSidebar(displayMode, config.showSidebar)}
+					>
+						{sections.length ? <Sections sections={sections} depth={1} /> : <NotFound />}
+					</StyleGuideRenderer>
+				</MdxProvider>
 			</Context.Provider>
 		);
 	}

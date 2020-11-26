@@ -28,6 +28,8 @@
     "node": ">=10"
   },
   "dependencies": {
+    "@mdx-js/mdx": "^1.6.19",
+    "@mdx-js/react": "^1.6.19",
     "@tippyjs/react": "4.1.0",
     "@vxna/mini-html-webpack-template": "^2.0.0",
     "assert": "1.5.0",
@@ -123,6 +125,7 @@
     "@types/react-dom": "^16.9.5",
     "@types/terser-webpack-plugin": "^2.2.0",
     "@types/type-detect": "^4.0.1",
+    "@types/unist": "^2.0.3",
     "@types/webpack-dev-server": "^3.11.1",
     "@types/webpack-env": "^1.14.1",
     "@typescript-eslint/eslint-plugin": "^4.4.1",
