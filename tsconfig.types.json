@@ -6,6 +6,7 @@
 	},
 	// avoid generating typings for tests and mocks
 	"exclude": [
+		"dangerfile.ts",
 		"node_modules",
 		"**/__tests__/*.ts",
 		"**/__mocks__/*.ts",

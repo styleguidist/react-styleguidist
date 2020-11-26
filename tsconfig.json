@@ -15,6 +15,7 @@
 			"rsg-components/*": ["src/client/rsg-components/*"]
 		}
 	},
-	"include": ["src"],
+  "files": ["dangerfile.ts"],
+  "include": ["src"],
 	"exclude": ["node_modules"]
 }

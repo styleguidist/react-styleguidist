@@ -134,6 +134,7 @@
     "babel-loader": "^8.1.0",
     "cheerio": "^1.0.0-rc.3",
     "css-loader": "^3.2.0",
+    "danger": "^10.5.3",
     "deabsdeep": "^1.0.6",
     "deepfreeze": "^2.0.0",
     "dog-names": "^2.0.0",
