@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  check:
+  report:
     runs-on: ubuntu-latest
 
     steps:
