@@ -10,25 +10,16 @@ on:
 
 jobs:
   check:
-    name: Check
-
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout project
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
+      - run: npm ci
+      - run: npm run test:coverage -- --runInBand
 
-      - name: install dependencies
-        run: npm ci
-
-      - name: coverage
-        run: npm run test:coverage -- --runInBand
-
-      - name: Publish result
-        uses: codecov/codecov-action@v1
+      - uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true

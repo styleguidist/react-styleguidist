@@ -10,8 +10,6 @@ on:
 
 jobs:
   build:
-    name: Build
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -21,25 +19,17 @@ jobs:
           - 12.x
 
     steps:
-      - name: Checkout project
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: install dependencies
-        run: npm ci
-
-      - name: lint
-        run: npm run lint
-
-      - name: typecheck
-        run: npm run typecheck
-
-      - name: integration
-        run: |
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: |
           # Compile JS
           npm run compile
           # Build all examples

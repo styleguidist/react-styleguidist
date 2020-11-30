@@ -10,18 +10,11 @@ on:
 
 jobs:
   check:
-    name: Check
-
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout project
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-
-      - name: Danger JS
-        uses: danger/danger-js@9.1.8
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: danger/danger-js@9.1.8
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
