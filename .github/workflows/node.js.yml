@@ -9,6 +9,43 @@ on:
       - master
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+
+  integration:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+
+      - run: npm ci
+      - run: |
+          # Compile JS
+          npm run compile
+          # Build all examples
+          npm run build:basic
+          npm run build:customised
+          npm run build:sections
+          # Check that examples really works: no JS errors on load
+          npm run test:browser:pre
+          npm run test:browser:basic
+          npm run test:browser:customised
+          npm run test:browser:sections
+          # Run integration tests with Cypress
+          npm run test:cypress:pre
+          npm run test:cypress:startServer &
+          npm run test:cypress:startServer:post
+          npm run test:cypress:run
+
   build:
     runs-on: ubuntu-latest
 
@@ -27,8 +64,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - run: npm ci
-      - run: npm run lint
-      - run: npm run typecheck
       - run: |
           # Compile JS
           npm run compile
@@ -36,13 +71,3 @@ jobs:
           npm run build:basic
           npm run build:customised
           npm run build:sections
-          # Check that examples really works: no JS errors on load
-          npm run test:browser:pre
-          npm run test:browser:basic
-          npm run test:browser:customised
-          npm run test:browser:sections
-          # Run integration tests with Cypress
-          npm run test:cypress:pre
-          npm run test:cypress:startServer &
-          npm run test:cypress:startServer:post
-          npm run test:cypress:run
