@@ -65,10 +65,3 @@ jobs:
 
       - run: npm ci
       - run: npm run test:jest -- --runInBand
-      - run: |
-          # Compile JS
-          npm run compile
-          # Build all examples
-          npm run build:basic
-          npm run build:customised
-          npm run build:sections
