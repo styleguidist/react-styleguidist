@@ -149,14 +149,6 @@ module.exports = {
 }
 ```
 
-## `defaultExample`
-
-Type: `Boolean` or `String`, default: `false`
-
-For components that do not have an example, a default one can be used. When set to `true`, the [DefaultExample.md](https://raw.githubusercontent.com/styleguidist/react-styleguidist/master/templates/DefaultExample.md) is used, or you can provide the path to your own example Markdown file.
-
-When writing your own default example file, `__COMPONENT__` will be replaced by the actual component name at compile time.
-
 ## `exampleMode`
 
 Type: `String`, default: `collapse`

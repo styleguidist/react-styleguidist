@@ -1,7 +1,6 @@
 import mdx from '@mdx-js/mdx';
 import { transform } from 'sucrase';
 import loaderUtils from 'loader-utils';
-import expandDefaultComponent from './utils/expandDefaultComponent';
 import markStaticExamples from './rehype/markStaticExamples';
 import updateExamples from './rehype/updateExamples';
 import provideDocumentScope from './rehype/provideDocumentScope';
@@ -14,34 +13,14 @@ import React from 'react';
 import { mdx } from '@mdx-js/react';
 `;
 
-// TODO: Do we really need this feature?
-const getMdxContent = ({
-	content,
-	displayName,
-	shouldShowDefaultExample,
-}: {
-	content: string;
-	displayName: string;
-	shouldShowDefaultExample: boolean;
-}) => {
-	// Replace placeholders (__COMPONENT__) with the passed-in component name
-	if (shouldShowDefaultExample) {
-		return expandDefaultComponent(content, displayName);
-	}
-
-	return content;
-};
-
 export default async function mdxLoader(this: Rsg.StyleguidistLoaderContext, content: string) {
 	const callback = this.async() || (() => '');
 	const { updateExample, context } = this._styleguidist;
-	const { file, displayName, shouldShowDefaultExample } = loaderUtils.getOptions(this) || {};
-
-	const mdxContent = getMdxContent({ content, displayName, shouldShowDefaultExample });
+	const { file } = loaderUtils.getOptions(this) || {};
 
 	let result;
 	try {
-		result = await mdx(mdxContent, {
+		result = await mdx(content, {
 			filepath: this.resourcePath,
 			rehypePlugins: [
 				markStaticExamples,

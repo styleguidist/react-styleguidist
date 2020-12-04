@@ -110,9 +110,7 @@ Try to install it: npm install --save-dev ${value}`
 	},
 	defaultExample: {
 		type: ['boolean', 'existing file path'],
-		default: false,
-		process: (val: boolean | string): string | boolean =>
-			val === true ? path.resolve(__dirname, '../../../templates/DefaultExample.md') : val,
+		deprecated: 'Default example is no longer supported',
 	},
 	exampleMode: {
 		type: 'string',

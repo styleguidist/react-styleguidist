@@ -7,16 +7,14 @@ import * as Rsg from '../../typings';
 const mdxLoader = path.resolve(__dirname, '../mdx-loader.js');
 
 /**
- * Get require statement for examples file if it exists, or for default examples if it was defined.
+ * Get require statement for examples file if it exists.
  */
 export default function getExamples(
 	file: string,
 	displayName: string,
-	examplesFile?: string | false,
-	defaultExample?: string | false
+	examplesFile?: string | false
 ): Rsg.RequireItResult | null {
-	const examplesFileToLoad =
-		(examplesFile && fs.existsSync(examplesFile) ? examplesFile : false) || defaultExample;
+	const examplesFileToLoad = examplesFile && fs.existsSync(examplesFile) ? examplesFile : false;
 	if (!examplesFileToLoad) {
 		return null;
 	}
@@ -27,7 +25,6 @@ export default function getExamples(
 	const query = {
 		displayName,
 		file: relativePath,
-		shouldShowDefaultExample: !examplesFile && !!defaultExample,
 	};
 	return requireIt(`!!${mdxLoader}?${encode(query)}!${examplesFileToLoad}`);
 }

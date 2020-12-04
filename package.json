@@ -21,8 +21,7 @@
     "styleguidist": "lib/bin/styleguidist.js"
   },
   "files": [
-    "lib",
-    "templates"
+    "lib"
   ],
   "engines": {
     "node": ">=10"
