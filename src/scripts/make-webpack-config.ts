@@ -58,7 +58,7 @@ export default function (config: Rsg.SanitizedStyleguidistConfig, env: EnvType):
 			new StyleguidistOptionsPlugin(config),
 			new MiniHtmlWebpackPlugin(htmlPluginOptions),
 			new webpack.DefinePlugin({
-				'process.env.NODE_ENV': JSON.stringify(env),
+				'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
 				'process.env.STYLEGUIDIST_ENV': JSON.stringify(env),
 			}),
 		],
