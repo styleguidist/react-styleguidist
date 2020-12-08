@@ -22,11 +22,10 @@ interface AliasedConfiguration extends Configuration {
 	resolve: Resolve & { alias: Record<string, string> };
 }
 
-export default function (
-	config: Rsg.SanitizedStyleguidistConfig,
-	env: 'development' | 'production' | 'none'
-): Configuration {
-	process.env.NODE_ENV = process.env.NODE_ENV || env;
+type EnvType = 'development' | 'production' | 'none';
+
+export default function (config: Rsg.SanitizedStyleguidistConfig, env: EnvType): Configuration {
+	env = (process.env.NODE_ENV as EnvType) || env;
 
 	const isProd = env === 'production';
 
@@ -59,7 +58,7 @@ export default function (
 			new StyleguidistOptionsPlugin(config),
 			new MiniHtmlWebpackPlugin(htmlPluginOptions),
 			new webpack.DefinePlugin({
-				'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+				'process.env.NODE_ENV': JSON.stringify(env),
 				'process.env.STYLEGUIDIST_ENV': JSON.stringify(env),
 			}),
 		],
