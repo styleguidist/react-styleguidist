@@ -36,16 +36,18 @@ const styles = ({ color, fontFamily, fontSize }: Rsg.Theme) => ({
 interface HeadingProps extends JssInjectedProps, React.HTMLAttributes<HTMLHeadingElement> {
 	children?: React.ReactNode;
 	level: number;
+	className?: string;
 }
 
 const HeadingRenderer: React.FunctionComponent<HeadingProps> = ({
 	classes,
 	level,
+	className,
 	children,
 	...props
 }) => {
-	const Tag = `h${level}` as ('h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6');
-	const headingClasses = cx(classes.heading, classes[`heading${level}`]);
+	const Tag = `h${level}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+	const headingClasses = cx(classes.heading, classes[`heading${level}`], className);
 
 	return (
 		<Tag {...props} className={headingClasses}>
@@ -57,6 +59,7 @@ const HeadingRenderer: React.FunctionComponent<HeadingProps> = ({
 HeadingRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]).isRequired,
+	className: PropTypes.string,
 	children: PropTypes.node,
 };
 
