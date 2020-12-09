@@ -51,7 +51,7 @@ import React from 'react'
 Fenced blocks with other languages are rendered as highlighted code:
 
 ```html
-<h1>Hello world</h1>
+<button size="large" color="deeppink">Click Me</button>
 ```
 
 Current component (like `Button` in this example) is always accessible by its name in the example code. If you want to use other components, you need to explicitly import them:

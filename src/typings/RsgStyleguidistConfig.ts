@@ -82,7 +82,7 @@ interface BaseStyleguidistConfig {
 	styleguideDir: string;
 	styles: Styles | string | ((theme: Theme) => Styles);
 	template: any; // TODO
-	theme: RecursivePartial<Theme> | string;
+	theme: RecursivePartial<Theme> /*| string */; // TODO
 	title: string;
 	updateDocs(doc: PropsObject, file: string): PropsObject;
 	updateExample(example: CodeExample, resourcePath: string): Omit<CodeExample, 'type'>;
