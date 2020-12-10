@@ -6,7 +6,7 @@ export const MdxTableRow: React.FunctionComponent = ({ children }) => {
 };
 
 MdxTableRow.propTypes = {
-	children: PropTypes.node.isRequired,
+	children: PropTypes.node,
 };
 
 export default MdxTableRow;

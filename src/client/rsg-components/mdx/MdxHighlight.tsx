@@ -6,12 +6,18 @@ import MdxHighlightPre from './MdxHighlightPre';
 
 type Props = {
 	children: string;
-	className: string;
+	className?: string;
 };
 
 export default function MdxHighlight({ children, className: codeClassName }: Props) {
 	const theme = useTheme();
-	const language = codeClassName.replace(/language-/, '') as Language;
+
+	if (!codeClassName) {
+		return <MdxHighlightPre>{children}</MdxHighlightPre>;
+	}
+
+	// Mdx uses `language-js` class names, markdown-to-jsx — `lang-js`
+	const language = codeClassName.replace(/lang(uage)?-/, '') as Language;
 
 	return (
 		<Highlight {...defaultProps} theme={prismTheme(theme)} code={children} language={language}>

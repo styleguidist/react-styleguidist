@@ -9,7 +9,6 @@ import './dependencies/strip-shebang';
 import './dependencies/deabsdeep';
 import './dependencies/glogg';
 import './dependencies/mini-html-webpack-template';
-import './dependencies/stripHtmlComments';
 import './dependencies/deepfreeze';
 import './dependencies/is-directory';
 import './dependencies/q-i';

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cx from 'clsx';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import * as Rsg from '../../../typings';
 
@@ -16,23 +15,16 @@ const styles = ({ space, color, fontSize, fontFamily }: Rsg.Theme) => ({
 });
 
 interface MdxBlockquote extends JssInjectedProps {
-	children: React.ReactNode;
-	className?: string;
+	children?: React.ReactNode;
 }
 
-export const MdxBlockquote: React.FunctionComponent<MdxBlockquote> = ({
-	classes,
-	className,
-	children,
-}) => {
-	const blockquoteClasses = cx(classes.blockquote, className);
-	return <blockquote className={blockquoteClasses}>{children}</blockquote>;
+export const MdxBlockquote: React.FunctionComponent<MdxBlockquote> = ({ classes, children }) => {
+	return <blockquote className={classes.blockquote}>{children}</blockquote>;
 };
 
 MdxBlockquote.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	className: PropTypes.string,
-	children: PropTypes.node.isRequired,
+	children: PropTypes.node,
 };
 
 export default Styled<MdxBlockquote>(styles)(MdxBlockquote);

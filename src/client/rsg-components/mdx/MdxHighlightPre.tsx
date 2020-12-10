@@ -24,7 +24,7 @@ const styles = ({ fontSize, fontFamily }: Rsg.Theme) => ({
 export interface PreProps {
 	className?: string;
 	style?: CSSProperties;
-	children: React.ReactNode;
+	children?: React.ReactNode;
 }
 
 type PrePropsWithClasses = JssInjectedProps & PreProps;
@@ -46,7 +46,7 @@ export const MdxHighlightPre: React.FunctionComponent<PrePropsWithClasses> = ({
 MdxHighlightPre.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	className: PropTypes.string,
-	children: PropTypes.node.isRequired,
+	children: PropTypes.node,
 };
 
 export default Styled<PrePropsWithClasses>(styles)(MdxHighlightPre);

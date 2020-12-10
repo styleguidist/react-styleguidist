@@ -3,7 +3,7 @@ import getComponent from '../../utils/getComponent';
 import MdxExampleContext from './MdxExampleContext';
 
 type Props = {
-	children: ReactNode;
+	children?: ReactNode;
 	componentName: string;
 	exampleIndex: number;
 	exampleMode?: string;

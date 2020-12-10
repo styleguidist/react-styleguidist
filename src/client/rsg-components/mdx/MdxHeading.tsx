@@ -11,8 +11,8 @@ const styles = ({ space }: Rsg.Theme) => ({
 });
 
 interface MdxHeadingProps extends JssInjectedProps {
-	children: React.ReactNode;
-	level: number;
+	children?: React.ReactNode;
+	level?: number;
 	id?: string;
 }
 
@@ -26,7 +26,7 @@ const MdxHeading: React.FunctionComponent<MdxHeadingProps> = ({ classes, level, 
 
 MdxHeading.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]).isRequired,
+	level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
 	children: PropTypes.node,
 	id: PropTypes.string,
 };

@@ -15,7 +15,7 @@ const styles = ({ space, color, borderRadius }: Rsg.Theme) => ({
 
 export interface PreProps {
 	className?: string;
-	children: React.ReactNode;
+	children?: React.ReactNode;
 }
 
 type PrePropsWithClasses = JssInjectedProps & PreProps;
@@ -35,7 +35,7 @@ export const MdxCodeStatic: React.FunctionComponent<PrePropsWithClasses> = ({
 MdxCodeStatic.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	className: PropTypes.string,
-	children: PropTypes.node.isRequired,
+	children: PropTypes.node,
 };
 
 export default Styled<PrePropsWithClasses>(styles)(MdxCodeStatic);

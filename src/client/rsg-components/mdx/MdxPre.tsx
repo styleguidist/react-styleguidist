@@ -4,7 +4,7 @@ import cx from 'clsx';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import * as Rsg from '../../../typings';
 
-const styles = ({ space, color, fontSize, fontFamily, borderRadius }: Rsg.Theme) => ({
+const styles = ({ space }: Rsg.Theme) => ({
 	preContainer: {
 		marginTop: 0,
 		marginBottom: space[2],
@@ -13,7 +13,7 @@ const styles = ({ space, color, fontSize, fontFamily, borderRadius }: Rsg.Theme)
 
 export interface PreProps {
 	className?: string;
-	children: React.ReactNode;
+	children?: React.ReactNode;
 }
 
 type PrePropsWithClasses = JssInjectedProps & PreProps;
@@ -35,7 +35,7 @@ export const MdxPre: React.FunctionComponent<PrePropsWithClasses> = ({
 MdxPre.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	className: PropTypes.string,
-	children: PropTypes.node.isRequired,
+	children: PropTypes.node,
 };
 
 export default Styled<PrePropsWithClasses>(styles)(MdxPre);

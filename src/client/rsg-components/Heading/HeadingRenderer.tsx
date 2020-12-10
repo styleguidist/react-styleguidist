@@ -35,7 +35,7 @@ const styles = ({ color, fontFamily, fontSize }: Rsg.Theme) => ({
 
 interface HeadingProps extends JssInjectedProps, React.HTMLAttributes<HTMLHeadingElement> {
 	children?: React.ReactNode;
-	level: number;
+	level?: number;
 	className?: string;
 }
 
@@ -58,9 +58,13 @@ const HeadingRenderer: React.FunctionComponent<HeadingProps> = ({
 
 HeadingRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]).isRequired,
+	level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
 	className: PropTypes.string,
 	children: PropTypes.node,
+};
+
+HeadingRenderer.defaultProps = {
+	level: 1,
 };
 
 export default Styled<HeadingProps>(styles)(HeadingRenderer);

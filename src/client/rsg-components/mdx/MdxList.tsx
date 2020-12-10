@@ -25,7 +25,7 @@ const styles = ({ space, color, fontFamily }: Rsg.Theme) => ({
 
 interface MdxListProps extends JssInjectedProps {
 	ordered?: boolean;
-	children: React.ReactNode;
+	children?: React.ReactNode;
 }
 
 export const MdxList: React.FunctionComponent<MdxListProps> = ({ classes, ordered, children }) => {
@@ -45,7 +45,7 @@ export const MdxList: React.FunctionComponent<MdxListProps> = ({ classes, ordere
 MdxList.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	ordered: PropTypes.bool,
-	children: PropTypes.node.isRequired,
+	children: PropTypes.node,
 };
 MdxList.defaultProps = {
 	ordered: false,

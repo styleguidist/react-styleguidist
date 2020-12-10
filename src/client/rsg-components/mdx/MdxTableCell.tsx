@@ -18,7 +18,7 @@ const styles = ({ space, color, fontSize, fontFamily }: Rsg.Theme) => ({
 });
 
 interface MdxTableCellProps extends JssInjectedProps {
-	children: React.ReactNode;
+	children?: React.ReactNode;
 	header?: boolean;
 }
 
@@ -37,7 +37,7 @@ export const MdxTableCell: React.FunctionComponent<MdxTableCellProps> = ({
 MdxTableCell.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	header: PropTypes.bool,
-	children: PropTypes.node.isRequired,
+	children: PropTypes.node,
 };
 MdxTableCell.defaultProps = {
 	header: false,

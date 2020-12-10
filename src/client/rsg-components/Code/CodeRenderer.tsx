@@ -14,7 +14,7 @@ const styles = ({ fontFamily }: Rsg.Theme) => ({
 });
 
 interface CodeProps extends JssInjectedProps {
-	children: React.ReactNode;
+	children?: React.ReactNode;
 }
 
 export const CodeRenderer: React.FunctionComponent<CodeProps> = ({ classes, children }) => {

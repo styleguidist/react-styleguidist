@@ -10,7 +10,7 @@ const styles = ({ color }: Rsg.Theme) => ({
 });
 
 interface MdxTableHeadProps extends JssInjectedProps {
-	children: React.ReactNode;
+	children?: React.ReactNode;
 }
 
 export const MdxTableHead: React.FunctionComponent<MdxTableHeadProps> = ({ classes, children }) => {
@@ -19,7 +19,7 @@ export const MdxTableHead: React.FunctionComponent<MdxTableHeadProps> = ({ class
 
 MdxTableHead.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	children: PropTypes.node.isRequired,
+	children: PropTypes.node,
 };
 
 export default Styled<MdxTableHeadProps>(styles)(MdxTableHead);
