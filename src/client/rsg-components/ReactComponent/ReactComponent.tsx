@@ -41,7 +41,7 @@ export default class ReactComponent extends Component<ReactComponentProps, React
 	};
 
 	private handleTabChange = (name: string) => {
-		this.setState(state => ({
+		this.setState((state) => ({
 			activeTab: state.activeTab !== name ? name : undefined,
 		}));
 	};
@@ -54,7 +54,7 @@ export default class ReactComponent extends Component<ReactComponentProps, React
 		} = this.context;
 		const { component, depth, usageMode, exampleMode } = this.props;
 		const { name, visibleName, slug = '-', filepath, pathLine, href } = component;
-		const { description = '', examples = [], tags = {} } = component.props || {};
+		const { description = '', examples, tags = {} } = component.props || {};
 		if (!name) {
 			return null;
 		}
@@ -85,7 +85,7 @@ export default class ReactComponent extends Component<ReactComponentProps, React
 					</SectionHeading>
 				}
 				examples={
-					examples.length > 0 ? (
+					examples ? (
 						<Examples examples={examples} name={name} exampleMode={exampleMode} />
 					) : (
 						<ExamplePlaceholder name={name} />

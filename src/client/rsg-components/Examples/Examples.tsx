@@ -1,39 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ExamplesRenderer from 'rsg-components/Examples/ExamplesRenderer';
-import { useStyleGuideContext } from 'rsg-components/Context';
 import * as Rsg from '../../../typings';
 
 export interface ExamplesRenderer {
-	examples: Rsg.Example[];
+	examples: Rsg.ExampleModule;
 	name?: string;
 	exampleMode?: string;
 }
 
 const Examples: React.FunctionComponent<ExamplesRenderer> = ({ examples, name, exampleMode }) => {
-	const { codeRevision } = useStyleGuideContext();
+	const ExampleComponent = examples.default;
 
-	// TODO: Do we still need a loop here?
-
+	// TODO: These props for ExampleComponent won't work
 	return (
 		<ExamplesRenderer name={name}>
-			{examples.map((example, index) => {
-				const ExampleComponent = example.default;
-				return (
-					<ExampleComponent
-						key={index}
-						componentName={name}
-						exampleIndex={index}
-						exampleMode={exampleMode}
-					/>
-				);
-			})}
+			<ExampleComponent componentName={name} exampleMode={exampleMode} />
 		</ExamplesRenderer>
 	);
 };
 
 Examples.propTypes = {
-	examples: PropTypes.array.isRequired,
+	examples: PropTypes.any.isRequired,
 	name: PropTypes.string.isRequired,
 	exampleMode: PropTypes.string.isRequired,
 };

@@ -18,7 +18,7 @@ export default function processComponents(
 	components: Rsg.Component[],
 	{ useRouterLinks, useHashId, hashPath }: HrefOptions
 ): Rsg.Component[] {
-	return components.map(component => {
+	return components.map((component) => {
 		const newComponent: Rsg.Component = component.props
 			? {
 					...component,
@@ -26,12 +26,6 @@ export default function processComponents(
 					// Add .name shortcuts for names instead of .props.displayName.
 					name: component.props.displayName,
 					visibleName: component.props.visibleName || component.props.displayName,
-
-					props: {
-						...component.props,
-						// Append @example doclet to all examples
-						examples: [...(component.props.examples || []), ...(component.props.example || [])],
-					},
 					href:
 						component.href ||
 						getUrl({

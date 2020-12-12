@@ -49,7 +49,7 @@ const getMergedTag = (tags: TagProps, names: (keyof TagProps)[]): TagObject[] =>
  * 1. Remove non-public methods.
  * 2. Extract doclets.
  * 3. Highlight code in descriptions.
- * 4. Extract @example doclet (load linked file with examples-loader).
+ * 4. Extract @example doclet (load linked file with mdx-loader).
  *
  * @param {object} doc
  * @param {string} filepath
@@ -132,13 +132,15 @@ export default function getProps(doc: DocumentationObject, filepath?: string): R
 			exampleFileExists = doesExternalExampleFileExist(filepath, exampleFile);
 		}
 
+		// Overwrite any existing `examples` with the example from the
+		// @example JSDdoc tag
 		if (exampleFileExists && filepath) {
 			const exampleFilepath = path.resolve(path.dirname(filepath), exampleFile);
 			const component = `./${path.relative(path.dirname(exampleFilepath), filepath)}`;
 			const query = {
 				component,
 			};
-			outDocs.example = requireIt(`!!${mdxLoader}?${encode(query)}!${exampleFile}`);
+			outDocs.examples = requireIt(`!!${mdxLoader}?${encode(query)}!${exampleFile}`);
 			delete outDocs.doclets.example;
 		}
 	} else {

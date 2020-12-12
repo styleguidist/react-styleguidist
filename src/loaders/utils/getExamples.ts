@@ -12,10 +12,10 @@ const mdxLoader = path.resolve(__dirname, '../mdx-loader.js');
 export default function getExamples(
 	file: string,
 	examplesFile?: string | false
-): Rsg.RequireItResult | null {
+): Rsg.RequireItResult | undefined {
 	const examplesFileToLoad = examplesFile && fs.existsSync(examplesFile) ? examplesFile : false;
 	if (!examplesFileToLoad) {
-		return null;
+		return undefined;
 	}
 
 	const component = `./${path.relative(path.dirname(examplesFileToLoad), file)}`;
