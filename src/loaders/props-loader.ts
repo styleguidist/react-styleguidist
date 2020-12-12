@@ -81,7 +81,7 @@ export default function (this: Rsg.StyleguidistLoaderContext, source: string) {
 
 	// Examples from Markdown file
 	const examplesFile = config.getExampleFilename(file);
-	finalDocs.examples = getExamples(file, finalDocs.displayName, examplesFile);
+	finalDocs.examples = getExamples(file, examplesFile);
 
 	if (config.updateDocs) {
 		finalDocs = config.updateDocs(finalDocs, file);

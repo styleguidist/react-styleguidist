@@ -9,7 +9,7 @@ import getComponents from './getComponents';
 import slugger from './slugger';
 import * as Rsg from '../../typings';
 
-const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
+const mdxLoader = path.resolve(__dirname, '../mdx-loader.js');
 
 function processSectionContent(
 	section: Rsg.ConfigSection,
@@ -33,7 +33,7 @@ function processSectionContent(
 	if (!fs.existsSync(contentAbsolutePath)) {
 		throw new Error(`Styleguidist: Section content file not found: ${contentAbsolutePath}`);
 	}
-	return requireIt(`!!${examplesLoader}!${contentAbsolutePath}`);
+	return requireIt(`!!${mdxLoader}!${contentAbsolutePath}`);
 }
 
 const getSectionComponents = (
@@ -62,7 +62,7 @@ export default function getSections(
 	parentDepth?: number
 ): Rsg.LoaderSection[] {
 	// eslint-disable-next-line @typescript-eslint/no-use-before-define
-	return sections.map(section => processSection(section, config, parentDepth));
+	return sections.map((section) => processSection(section, config, parentDepth));
 }
 
 /**

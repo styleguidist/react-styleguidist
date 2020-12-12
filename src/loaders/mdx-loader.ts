@@ -16,7 +16,7 @@ import { mdx } from '@mdx-js/react';
 export default async function mdxLoader(this: Rsg.StyleguidistLoaderContext, content: string) {
 	const callback = this.async() || (() => '');
 	const { updateExample, context } = this._styleguidist;
-	const { file } = loaderUtils.getOptions(this) || {};
+	const { component } = loaderUtils.getOptions(this) || {};
 
 	let result;
 	try {
@@ -27,7 +27,8 @@ export default async function mdxLoader(this: Rsg.StyleguidistLoaderContext, con
 				updateExamples({ updateExample, resourcePath: this.resourcePath }),
 				provideDocumentScope({ context }),
 				provideExampleScope,
-				provideCurrentComponent({ file }),
+				// Sections don't have current components
+				component && provideCurrentComponent({ component }),
 			],
 		});
 	} catch (err) {

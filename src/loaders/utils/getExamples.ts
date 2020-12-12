@@ -11,7 +11,6 @@ const mdxLoader = path.resolve(__dirname, '../mdx-loader.js');
  */
 export default function getExamples(
 	file: string,
-	displayName: string,
 	examplesFile?: string | false
 ): Rsg.RequireItResult | null {
 	const examplesFileToLoad = examplesFile && fs.existsSync(examplesFile) ? examplesFile : false;
@@ -19,12 +18,9 @@ export default function getExamples(
 		return null;
 	}
 
-	const relativePath = `./${path.relative(path.dirname(examplesFileToLoad), file)}`;
-
-	// TODO: We may not need some or any of these
+	const component = `./${path.relative(path.dirname(examplesFileToLoad), file)}`;
 	const query = {
-		displayName,
-		file: relativePath,
+		component,
 	};
 	return requireIt(`!!${mdxLoader}?${encode(query)}!${examplesFileToLoad}`);
 }

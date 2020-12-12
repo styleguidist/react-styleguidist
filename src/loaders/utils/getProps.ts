@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs';
+import { encode } from 'qss';
 import { TagProps, TagParamObject, DocumentationObject, utils, TagObject } from 'react-docgen';
 import _ from 'lodash';
 import doctrine, { Annotation } from 'doctrine';
@@ -11,7 +12,7 @@ import * as Rsg from '../../typings';
 
 const logger = createLogger('rsg');
 
-const examplesLoader = path.resolve(__dirname, '../examples-loader.js');
+const mdxLoader = path.resolve(__dirname, '../mdx-loader.js');
 
 const JS_DOC_METHOD_PARAM_TAG_SYNONYMS: (keyof TagProps)[] = ['param', 'arg', 'argument'];
 const JS_DOC_METHOD_RETURN_TAG_SYNONYMS: (keyof TagProps)[] = ['return', 'returns'];
@@ -131,8 +132,13 @@ export default function getProps(doc: DocumentationObject, filepath?: string): R
 			exampleFileExists = doesExternalExampleFileExist(filepath, exampleFile);
 		}
 
-		if (exampleFileExists) {
-			outDocs.example = requireIt(`!!${examplesLoader}!${exampleFile}`);
+		if (exampleFileExists && filepath) {
+			const exampleFilepath = path.resolve(path.dirname(filepath), exampleFile);
+			const component = `./${path.relative(path.dirname(exampleFilepath), filepath)}`;
+			const query = {
+				component,
+			};
+			outDocs.example = requireIt(`!!${mdxLoader}?${encode(query)}!${exampleFile}`);
 			delete outDocs.doclets.example;
 		}
 	} else {

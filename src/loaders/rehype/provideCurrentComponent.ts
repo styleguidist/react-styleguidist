@@ -9,13 +9,13 @@ const getLocalName = () => `__ex_component`;
  * import * as __ex_component from './Button'
  * export const __currentComponent = __ex_component
  */
-export default ({ file }: { file: string }) => () => (treeRaw: Node) => {
+export default ({ component }: { component: string }) => () => (treeRaw: Node) => {
 	const tree = treeRaw as Parent;
 
 	// Generate import
 	tree.children.push({
 		type: 'import',
-		value: `import * as ${getLocalName()} from '${file}'`,
+		value: `import * as ${getLocalName()} from '${component}'`,
 	});
 
 	// Generate export
