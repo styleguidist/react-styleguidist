@@ -3,17 +3,6 @@ import getRouteData from '../getRouteData';
 import { DisplayModes } from '../../consts';
 import * as Rsg from '../../../typings';
 
-const example0: Rsg.Example = {
-	type: 'code',
-	content: 'const a = 0',
-	evalInContext: () => () => 3,
-};
-
-const example1: Rsg.Example = {
-	type: 'markdown',
-	content: '# title',
-};
-
 const sections: Rsg.Section[] = deepfreeze([
 	{
 		sections: [
@@ -25,7 +14,11 @@ const sections: Rsg.Section[] = deepfreeze([
 						name: 'Button',
 						props: {
 							displayName: 'Button',
-							examples: [example0, example1],
+							examples: {
+								// eslint-disable-next-line @typescript-eslint/naming-convention
+								__esModule: true,
+								default: () => null,
+							},
 						},
 						module: 1,
 					},
@@ -45,7 +38,12 @@ const sections: Rsg.Section[] = deepfreeze([
 			{
 				name: 'Section',
 				slug: 'section',
-				content: [example0, example1],
+				content: [
+					{
+						content: 'alert()',
+						lang: 'js',
+					},
+				],
 				components: [],
 				sections: [],
 				exampleMode: 'collapse',

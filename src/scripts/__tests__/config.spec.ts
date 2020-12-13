@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import { Configuration } from 'webpack';
 import getConfig from '../config';

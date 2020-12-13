@@ -12,9 +12,10 @@ export interface ExampleError {
  */
 export default function parseExample(
 	content: string,
-	lang?: string | null,
+	lang?: string,
 	modifiers?: string,
-	updateExample: (example: Omit<Rsg.CodeExample, 'type'>) => Omit<Rsg.CodeExample, 'type'> = x => x
+	updateExample: (example: Omit<Rsg.CodeExample, 'type'>) => Omit<Rsg.CodeExample, 'type'> = (x) =>
+		x
 ): Omit<Rsg.CodeExample, 'type'> | ExampleError {
 	const example: Omit<Rsg.CodeExample, 'type'> = {
 		content,

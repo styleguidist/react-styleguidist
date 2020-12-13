@@ -1,14 +1,14 @@
 import getAllContentPages from '../getAllContentPages';
 import * as Rsg from '../../../typings';
 
-const readmeContent: Rsg.MarkdownExample = {
-	type: 'markdown',
-	content: '# Readme',
+const readmeContent: Rsg.RequireItResult = {
+	require: 'readme.md',
+	toAST: () => ({ type: '' }),
 };
 
-const nestedContent: Rsg.MarkdownExample = {
-	type: 'markdown',
-	content: '# Nested',
+const nestedContent: Rsg.RequireItResult = {
+	require: 'nested.md',
+	toAST: () => ({ type: '' }),
 };
 
 const sections: Rsg.LoaderSection[] = [

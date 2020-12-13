@@ -14,19 +14,12 @@ const mdxLoader = path.resolve(__dirname, '../mdx-loader.js');
 function processSectionContent(
 	section: Rsg.ConfigSection,
 	config: Rsg.SanitizedStyleguidistConfig
-): Rsg.RequireItResult | Rsg.MarkdownExample | undefined {
+): Rsg.RequireItResult | undefined {
 	if (!section.content) {
 		return undefined;
 	}
 
 	const contentRelativePath = section.content;
-
-	if (_.isFunction(section.content)) {
-		return {
-			type: 'markdown',
-			content: section.content(),
-		};
-	}
 
 	// Try to load section content file
 	const contentAbsolutePath = path.resolve(config.configDir, contentRelativePath);

@@ -1,5 +1,7 @@
 import * as Rsg from '../../typings';
 
+// TODO: Since `examples` is no longer an array, we need to find another way to filter examples
+
 /**
  * Return a copy of the given component with the examples array filtered
  * to contain only the specified index:

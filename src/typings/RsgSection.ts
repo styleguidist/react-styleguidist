@@ -1,5 +1,5 @@
 import { RequireItResult } from './RsgRequireItResult';
-import { MarkdownExample, Example } from './RsgExample';
+import { CodeExample } from './RsgExample';
 import { LoaderComponent, ExpandMode, Component } from './RsgComponent';
 
 export interface BaseSection {
@@ -23,11 +23,11 @@ export interface ProcessedSection extends BaseSection {
 }
 
 /**
- * Section used on the client in javascript
+ * Section used on the client
  * It is the output of the function `client/utils/processSection`
  */
 export interface Section extends ProcessedSection {
-	content?: Example[] | string;
+	content?: CodeExample[] | string; // TODO string?
 	components?: Component[];
 	sections?: Section[];
 }
@@ -65,7 +65,7 @@ export interface ConfigSection extends BaseSection {
  */
 export interface LoaderSection extends BaseSection {
 	slug?: string;
-	content?: RequireItResult | MarkdownExample;
+	content?: RequireItResult;
 	components: LoaderComponent[];
 	sections: LoaderSection[];
 }

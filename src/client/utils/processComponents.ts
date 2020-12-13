@@ -10,16 +10,13 @@ export interface HrefOptions {
 /**
  * Do things that are hard or impossible to do in a loader: we don’t have access to component name
  * and props in the styleguide-loader because we’re using `require` to load the component module.
- *
- * @param {Array} components
- * @return {Array}
  */
 export default function processComponents(
 	components: Rsg.Component[],
 	{ useRouterLinks, useHashId, hashPath }: HrefOptions
 ): Rsg.Component[] {
 	return components.map((component) => {
-		const newComponent: Rsg.Component = component.props
+		return component.props
 			? {
 					...component,
 
@@ -37,7 +34,5 @@ export default function processComponents(
 						}),
 			  }
 			: {};
-
-		return newComponent;
 	});
 }
