@@ -3,14 +3,14 @@ import Playground from 'rsg-components/Playground';
 import { useMdxExampleContext } from './MdxExampleContext';
 import MdxHighlight from './MdxHighlight';
 import MdxCodeStatic from './MdxCodeStatic';
+import * as Rsg from '../../../typings';
 
-type Props = {
+interface Props extends Rsg.Modifiers {
 	children: string;
 	className: string;
-	static: boolean;
-};
+}
 
-export default function MdxCode({ children, static: staticMode, ...rest }: Props) {
+export default function MdxCode({ className, children, static: staticMode, ...settings }: Props) {
 	const {
 		componentName,
 		exampleIndex,
@@ -22,12 +22,11 @@ export default function MdxCode({ children, static: staticMode, ...rest }: Props
 	if (staticMode) {
 		return (
 			<MdxCodeStatic>
-				<MdxHighlight {...rest}>{children}</MdxHighlight>
+				<MdxHighlight className={className}>{children}</MdxHighlight>
 			</MdxCodeStatic>
 		);
 	}
 
-	// TODO: Settings
 	return (
 		<Playground
 			code={String(children)}
@@ -36,6 +35,7 @@ export default function MdxCode({ children, static: staticMode, ...rest }: Props
 			exampleMode={exampleMode}
 			documentScope={documentScope}
 			exampleScope={exampleScope}
+			settings={settings}
 		/>
 	);
 }
