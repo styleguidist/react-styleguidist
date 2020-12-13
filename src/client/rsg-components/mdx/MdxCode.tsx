@@ -10,7 +10,7 @@ interface Props extends Rsg.Modifiers {
 	className: string;
 }
 
-export default function MdxCode({ className, children, static: staticMode, ...settings }: Props) {
+export default function MdxCode({ className, children, ...modifiers }: Props) {
 	const {
 		componentName,
 		exampleIndex,
@@ -19,7 +19,7 @@ export default function MdxCode({ className, children, static: staticMode, ...se
 		exampleScope,
 	} = useMdxExampleContext();
 
-	if (staticMode) {
+	if (modifiers.static) {
 		return (
 			<MdxCodeStatic>
 				<MdxHighlight className={className}>{children}</MdxHighlight>
@@ -35,7 +35,7 @@ export default function MdxCode({ className, children, static: staticMode, ...se
 			exampleMode={exampleMode}
 			documentScope={documentScope}
 			exampleScope={exampleScope}
-			settings={settings}
+			settings={modifiers}
 		/>
 	);
 }

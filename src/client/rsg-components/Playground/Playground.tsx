@@ -8,6 +8,7 @@ import PlaygroundRenderer from 'rsg-components/Playground/PlaygroundRenderer';
 import Context from 'rsg-components/Context';
 import { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
 import { DisplayModes, ExampleModes } from '../../consts';
+import * as Rsg from '../../../typings';
 
 interface PlaygroundProps {
 	exampleIndex: number;
@@ -16,13 +17,7 @@ interface PlaygroundProps {
 	code: string;
 	documentScope: Record<string, unknown>;
 	exampleScope: Record<string, unknown>;
-	settings: {
-		showcode?: boolean;
-		noeditor?: boolean;
-		padded?: boolean;
-		// TODO: better typing for this
-		props?: any;
-	};
+	settings: Rsg.Modifiers;
 }
 
 interface PlaygroundState {
@@ -39,11 +34,7 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 		exampleIndex: PropTypes.number.isRequired,
 		componentName: PropTypes.string.isRequired,
 		exampleMode: PropTypes.string.isRequired,
-		settings: PropTypes.object,
-	};
-
-	public static defaultProps = {
-		settings: {},
+		settings: PropTypes.object.isRequired,
 	};
 
 	public static contextType = Context;
@@ -77,8 +68,9 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 	}
 
 	private getInitialActiveTab(): boolean {
+		const { showcode } = this.props.settings;
 		const expandCode = this.props.exampleMode === ExampleModes.expand;
-		return this.props.settings.showcode !== undefined ? this.props.settings.showcode : expandCode;
+		return showcode !== undefined ? showcode : expandCode;
 	}
 
 	private handleTabChange = (name: string) => {
@@ -112,7 +104,7 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 				exampleIndex={exampleIndex}
 				padded={!!settings.padded}
 				preview={preview}
-				previewProps={settings.props || {}}
+				previewClassName={settings['preview-class']}
 				tabButtons={
 					<Slot
 						name="exampleTabButtons"

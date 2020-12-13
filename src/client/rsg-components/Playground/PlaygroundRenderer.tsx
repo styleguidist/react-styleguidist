@@ -45,8 +45,7 @@ interface PlaygroundRendererProps extends JssInjectedProps {
 	componentName: string;
 	padded: boolean;
 	preview: React.ReactNode;
-	// TODO: need to find a better type here too
-	previewProps: any;
+	previewClassName?: string;
 	tabButtons: React.ReactNode;
 	tabBody: React.ReactNode;
 	toolbar: React.ReactNode;
@@ -58,21 +57,15 @@ export const PlaygroundRenderer: React.FunctionComponent<PlaygroundRendererProps
 	componentName,
 	padded,
 	preview,
-	previewProps,
+	previewClassName,
 	tabButtons,
 	tabBody,
 	toolbar,
 }) => {
-	const { className, ...props } = previewProps;
-	const previewClasses = cx(classes.preview, className, { [classes.padded]: padded });
+	const previewClasses = cx(classes.preview, previewClassName, { [classes.padded]: padded });
 	return (
 		<div className={classes.root} data-testid={`${componentName}-example-${exampleIndex}`}>
-			<div
-				className={previewClasses}
-				{...props}
-				data-preview={componentName}
-				data-testid="preview-wrapper"
-			>
+			<div className={previewClasses} data-preview={componentName} data-testid="preview-wrapper">
 				{preview}
 			</div>
 			<div className={classes.controls}>
@@ -90,7 +83,7 @@ PlaygroundRenderer.propTypes = {
 	componentName: PropTypes.string.isRequired,
 	padded: PropTypes.bool.isRequired,
 	preview: PropTypes.node.isRequired,
-	previewProps: PropTypes.object.isRequired,
+	previewClassName: PropTypes.string,
 	tabButtons: PropTypes.node.isRequired,
 	tabBody: PropTypes.node.isRequired,
 	toolbar: PropTypes.node.isRequired,

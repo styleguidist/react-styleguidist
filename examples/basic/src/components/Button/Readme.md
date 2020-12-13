@@ -30,9 +30,9 @@ Add padding between examples in a block by passing a `padded` modifier (` ```jsx
 <Button>Tap Me</Button>
 ```
 
-You can add a custom props to an example wrapper (` ```js { "props": { "className": "checks" } } `):
+You can add a custom class name to an example preview wrapper (` ```js preview-class=checks `):
 
-```js { "props": { "className": "checks" } }
+```js preview-class=checks
 <Button>I’m transparent!</Button>
 ```
 
