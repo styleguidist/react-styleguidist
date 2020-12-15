@@ -22,10 +22,10 @@ interface AliasedConfiguration extends Configuration {
 	resolve: Resolve & { alias: Record<string, string> };
 }
 
-type EnvType = 'development' | 'production' | 'none';
+type Mode = Configuration['mode'];
 
-export default function (config: Rsg.SanitizedStyleguidistConfig, env: EnvType): Configuration {
-	env = (process.env.NODE_ENV as EnvType) || env;
+export default function (config: Rsg.SanitizedStyleguidistConfig, env: Mode): Configuration {
+	process.env.NODE_ENV = (process.env.NODE_ENV as Mode) || env;
 
 	const isProd = env === 'production';
 
@@ -153,7 +153,7 @@ export default function (config: Rsg.SanitizedStyleguidistConfig, env: EnvType):
 	alias['rsg-components'] = path.resolve(sourceDir, 'rsg-components');
 
 	webpackConfig = config.dangerouslyUpdateWebpackConfig
-		? config.dangerouslyUpdateWebpackConfig(aliasedWebpackConfig, env)
+		? config.dangerouslyUpdateWebpackConfig(aliasedWebpackConfig, env || '')
 		: aliasedWebpackConfig;
 
 	return webpackConfig;
