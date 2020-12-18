@@ -1,5 +1,4 @@
 import isFinite from 'lodash/isFinite';
-import filterComponentExamples from './filterComponentExamples';
 import filterComponentsInSectionsByExactName from './filterComponentsInSectionsByExactName';
 import filterSectionExamples from './filterSectionExamples';
 import findSection from './findSection';
@@ -23,7 +22,7 @@ export default function getRouteData(
 	sections: Rsg.Section[],
 	hash: string,
 	pagePerSection = false
-): { sections: Rsg.Section[]; displayMode: string } {
+): { sections: Rsg.Section[]; displayMode: string; targetIndex?: number } {
 	// Parse URL hash to check if the components list must be filtered
 	const infoFromHash = getInfoFromHash(hash);
 
@@ -111,18 +110,18 @@ export default function getRouteData(
 					{
 						...filteredSections[0],
 						components:
-							filteredComponents && typeof targetIndex === 'number'
-								? [filterComponentExamples(filteredComponents[0], targetIndex)]
-								: [],
+							// TODO ???
+							filteredComponents && typeof targetIndex === 'number' ? [filteredComponents[0]] : [],
 					},
 				];
 				displayMode = DisplayModes.example;
 			} else if (sections.length === 1) {
+				// TODO ???
 				sections = [filterSectionExamples(sections[0], targetIndex)];
 				displayMode = DisplayModes.example;
 			}
 		}
 	}
 
-	return { sections, displayMode };
+	return { sections, displayMode, targetIndex };
 }

@@ -1,5 +1,5 @@
 import { MethodDescriptor, PropDescriptor, TagProps } from 'react-docgen';
-import { ExampleModule } from './RsgExample';
+import { ExamplesModule } from './RsgExample';
 import { RequireItResult } from './RsgRequireItResult';
 
 export type ExpandMode = 'expand' | 'collapse' | 'hide';
@@ -25,7 +25,7 @@ export interface Component extends BaseComponent {
 		methods?: MethodDescriptor[];
 		props?: PropDescriptor[];
 		tags?: TagProps;
-		examples?: ExampleModule;
+		content?: ExamplesModule;
 	};
 	module?: number;
 	metadata?: {

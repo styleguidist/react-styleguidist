@@ -1,10 +1,8 @@
 import React, { createContext } from 'react';
 
-interface MdxExampleContextContents {
+interface MdxContextContents {
 	/** Name of the React component */
 	componentName: string;
-	/** Number of the example inside the Markdown/Mdx file */
-	exampleIndex: number;
 	/** How to render an editor: expanded or not */
 	exampleMode?: string;
 	/** Modules imported inside Mdx file */
@@ -13,15 +11,14 @@ interface MdxExampleContextContents {
 	exampleScope: Record<string, unknown>;
 }
 
-const MdxExampleContext = createContext<MdxExampleContextContents>({
+const MdxContext = createContext<MdxContextContents>({
 	componentName: '',
-	exampleIndex: 0,
 	documentScope: {},
 	exampleScope: {},
 });
 
-export default MdxExampleContext;
+export default MdxContext;
 
-export function useMdxExampleContext(): MdxExampleContextContents {
-	return React.useContext(MdxExampleContext);
+export function useMdxContext(): MdxContextContents {
+	return React.useContext(MdxContext);
 }

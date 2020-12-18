@@ -67,7 +67,7 @@ it('should open a code editor', () => {
 it('should not render a code editor if noeditor option passed in example settings', () => {
 	const { queryByText } = render(
 		<Provider>
-			<Playground {...defaultProps} settings={{ noeditor: true }} />
+			<Playground {...defaultProps} modifiers={{ noeditor: true }} />
 		</Provider>
 	);
 
@@ -77,7 +77,7 @@ it('should not render a code editor if noeditor option passed in example setting
 it('should open a code editor by default if showcode=true option passed in example settings', () => {
 	const { queryByRole } = render(
 		<Provider>
-			<Playground {...defaultProps} settings={{ showcode: true }} />
+			<Playground {...defaultProps} modifiers={{ showcode: true }} />
 		</Provider>
 	);
 
@@ -111,7 +111,7 @@ it('showcode option in example settings should overwrite style guide config opti
 				},
 			}}
 		>
-			<Playground {...defaultProps} exampleMode="expand" settings={{ showcode: false }} />
+			<Playground {...defaultProps} exampleMode="expand" modifiers={{ showcode: false }} />
 		</Provider>
 	);
 
@@ -121,7 +121,7 @@ it('showcode option in example settings should overwrite style guide config opti
 it('should not include padded class if padded option is not passed in example settings', () => {
 	const { getByTestId } = render(
 		<Provider>
-			<Playground {...defaultProps} settings={{ padded: false }} />
+			<Playground {...defaultProps} modifiers={{ padded: false }} />
 		</Provider>
 	);
 
@@ -134,7 +134,7 @@ it('should not include padded class if padded option is not passed in example se
 it('should include padded class if padded option is passed in example settings', () => {
 	const { getByTestId } = render(
 		<Provider>
-			<Playground {...defaultProps} settings={{ padded: true }} />
+			<Playground {...defaultProps} modifiers={{ padded: true }} />
 		</Provider>
 	);
 

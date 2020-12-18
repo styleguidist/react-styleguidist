@@ -7,6 +7,7 @@ const StyleGuideContext = React.createContext<StyleGuideContextContents>({
 	config: {} as Rsg.ProcessedStyleguidistConfig,
 	slots: {},
 	displayMode: 'collapse',
+	targetIndex: undefined,
 });
 
 export default StyleGuideContext;
@@ -22,6 +23,7 @@ export interface StyleGuideContextContents {
 	config: Rsg.ProcessedStyleguidistConfig;
 	slots: Record<string, (SlotObject | React.FunctionComponent<any>)[]>;
 	displayMode: string;
+	targetIndex?: number;
 }
 
 export function useStyleGuideContext(): StyleGuideContextContents {

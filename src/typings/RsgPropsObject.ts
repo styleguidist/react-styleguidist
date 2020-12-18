@@ -10,7 +10,7 @@ export interface TempPropsObject extends DocumentationObject {
 	visibleName?: string;
 	methods?: MethodWithDocblock[];
 	doclets: Record<string, any>;
-	examples?: RequireItResult;
+	content?: RequireItResult;
 }
 
 export interface PropsObject extends Omit<TempPropsObject, 'props'> {

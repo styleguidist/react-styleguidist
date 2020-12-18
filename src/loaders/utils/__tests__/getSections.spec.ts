@@ -11,7 +11,7 @@ const config = {
 	getComponentPathLine: (a: string) => a,
 } as Rsg.SanitizedStyleguidistConfig;
 
-const sections: Rsg.ConfigSection[] = [
+const sections: Rsg.RawSection[] = [
 	{
 		name: 'Readme',
 		content: 'components/Button/Readme.md',
@@ -73,7 +73,7 @@ const sectionsWithBadDepth = [
 	},
 ];
 
-function filterSectionDepth(section: Rsg.LoaderSection): Rsg.ConfigSection {
+function filterSectionDepth(section: Rsg.LoaderSection): Rsg.RawSection {
 	if (section.sections && section.sections.length) {
 		return {
 			sectionDepth: section.sectionDepth,
@@ -151,7 +151,7 @@ it('getSections() should return an array of sectionsWithDepth with sectionDepth 
 
 it('getSections() should make custom options by user available', () => {
 	const result = getSections(sectionsWithDepth, config);
-	const expandSection = result.find(section => section.name === 'Components');
+	const expandSection = result.find((section) => section.name === 'Components');
 	expect(expandSection).toHaveProperty('expand');
 });
 

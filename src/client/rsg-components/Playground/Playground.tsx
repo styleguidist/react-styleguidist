@@ -11,13 +11,12 @@ import { DisplayModes, ExampleModes } from '../../consts';
 import * as Rsg from '../../../typings';
 
 interface PlaygroundProps {
-	exampleIndex: number;
 	componentName: string;
 	exampleMode?: string;
 	code: string;
 	documentScope: Record<string, unknown>;
 	exampleScope: Record<string, unknown>;
-	settings: Rsg.Modifiers;
+	modifiers: Rsg.Modifiers;
 }
 
 interface PlaygroundState {
@@ -31,10 +30,9 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 		code: PropTypes.string.isRequired,
 		documentScope: PropTypes.object.isRequired,
 		exampleScope: PropTypes.object.isRequired,
-		exampleIndex: PropTypes.number.isRequired,
 		componentName: PropTypes.string.isRequired,
 		exampleMode: PropTypes.string.isRequired,
-		settings: PropTypes.object.isRequired,
+		modifiers: PropTypes.object.isRequired,
 	};
 
 	public static contextType = Context;
@@ -68,7 +66,7 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 	}
 
 	private getInitialActiveTab(): boolean {
-		const { showcode } = this.props.settings;
+		const { showcode } = this.props.modifiers;
 		const expandCode = this.props.exampleMode === ExampleModes.expand;
 		return showcode !== undefined ? showcode : expandCode;
 	}
@@ -81,17 +79,10 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 
 	public render() {
 		const { code, activeTab } = this.state;
-		const {
-			documentScope,
-			exampleScope,
-			exampleIndex,
-			componentName,
-			settings,
-			exampleMode,
-		} = this.props;
+		const { documentScope, exampleScope, componentName, modifiers, exampleMode } = this.props;
 		const { displayMode } = this.context;
 		const isExampleHidden = exampleMode === ExampleModes.hide;
-		const isEditorHidden = settings.noeditor || isExampleHidden;
+		const isEditorHidden = modifiers.noeditor || isExampleHidden;
 		const preview = (
 			<Preview code={code} documentScope={documentScope} exampleScope={exampleScope} />
 		);
@@ -101,10 +92,10 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 		) : (
 			<PlaygroundRenderer
 				componentName={componentName}
-				exampleIndex={exampleIndex}
-				padded={!!settings.padded}
+				exampleIndex={modifiers.index}
+				padded={!!modifiers.padded}
 				preview={preview}
-				previewClassName={settings['preview-class']}
+				previewClassName={modifiers['preview-class']}
 				tabButtons={
 					<Slot
 						name="exampleTabButtons"
@@ -126,7 +117,7 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 						props={{
 							name: componentName,
 							isolated: displayMode === DisplayModes.example,
-							example: exampleIndex,
+							example: modifiers.index,
 						}}
 					/>
 				}

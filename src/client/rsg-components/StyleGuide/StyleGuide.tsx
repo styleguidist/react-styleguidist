@@ -41,6 +41,7 @@ export interface StyleGuideProps {
 	welcomeScreen?: boolean;
 	patterns?: string[];
 	displayMode?: string;
+	targetIndex?: number;
 	allSections?: Rsg.Section[];
 	pagePerSection?: boolean;
 }
@@ -60,6 +61,7 @@ export default class StyleGuide extends Component<StyleGuideProps, StyleGuideSta
 		welcomeScreen: PropTypes.bool,
 		patterns: PropTypes.array,
 		displayMode: PropTypes.string,
+		targetIndex: PropTypes.number,
 		allSections: PropTypes.array.isRequired,
 		pagePerSection: PropTypes.bool,
 	};
@@ -87,6 +89,7 @@ export default class StyleGuide extends Component<StyleGuideProps, StyleGuideSta
 			welcomeScreen,
 			patterns,
 			displayMode,
+			targetIndex,
 			allSections,
 			pagePerSection,
 			codeRevision,
@@ -109,6 +112,7 @@ export default class StyleGuide extends Component<StyleGuideProps, StyleGuideSta
 					config,
 					slots,
 					displayMode: displayMode || DisplayModes.all,
+					targetIndex,
 					cssRevision,
 				}}
 			>

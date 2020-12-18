@@ -1,5 +1,5 @@
 import { RequireItResult } from './RsgRequireItResult';
-import { CodeExample } from './RsgExample';
+import { ExamplesModule } from './RsgExample';
 import { LoaderComponent, ExpandMode, Component } from './RsgComponent';
 
 export interface BaseSection {
@@ -27,7 +27,7 @@ export interface ProcessedSection extends BaseSection {
  * It is the output of the function `client/utils/processSection`
  */
 export interface Section extends ProcessedSection {
-	content?: CodeExample[] | string; // TODO string?
+	content?: ExamplesModule; // TODO CodeExample?? string???
 	components?: Component[];
 	sections?: Section[];
 }
@@ -51,11 +51,11 @@ export interface TOCItem extends ProcessedSection {
 
 /**
  * Used in the config file and at the early stages of processing
- * in `schema/config.ts` this is the type that is used
+ * in `schema/config.ts`
  */
-export interface ConfigSection extends BaseSection {
+export interface RawSection extends BaseSection {
 	components?: string | string[] | (() => string[]);
-	sections?: ConfigSection[];
+	sections?: RawSection[];
 	content?: string;
 }
 

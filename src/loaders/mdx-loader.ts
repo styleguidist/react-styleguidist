@@ -2,7 +2,9 @@ import mdx from '@mdx-js/mdx';
 import { transform } from 'sucrase';
 import loaderUtils from 'loader-utils';
 import markStaticExamples from './rehype/markStaticExamples';
+import addExampleIndicies from './rehype/addExampleIndicies';
 import updateExamples from './rehype/updateExamples';
+import exportExamples from './rehype/exportExamples';
 import provideDocumentScope from './rehype/provideDocumentScope';
 import provideExampleScope from './rehype/provideExampleScope';
 import provideCurrentComponent from './rehype/provideCurrentComponent';
@@ -24,7 +26,9 @@ export default async function mdxLoader(this: Rsg.StyleguidistLoaderContext, con
 			filepath: this.resourcePath,
 			rehypePlugins: [
 				markStaticExamples,
+				addExampleIndicies,
 				updateExamples({ updateExample, resourcePath: this.resourcePath }),
+				exportExamples,
 				provideDocumentScope({ context }),
 				provideExampleScope,
 				// Sections don't have current components
@@ -43,7 +47,7 @@ export default async function mdxLoader(this: Rsg.StyleguidistLoaderContext, con
 		jsxPragma: 'mdx',
 	}).code;
 
-	// console.log('🦜', compiledCode);
+	console.log('🦜', compiledCode);
 
 	return callback(null, compiledCode);
 }

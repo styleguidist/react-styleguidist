@@ -132,7 +132,7 @@ export default function getProps(doc: DocumentationObject, filepath?: string): R
 			exampleFileExists = doesExternalExampleFileExist(filepath, exampleFile);
 		}
 
-		// Overwrite any existing `examples` with the example from the
+		// Overwrite any existing `content` with the content from the
 		// @example JSDdoc tag
 		if (exampleFileExists && filepath) {
 			const exampleFilepath = path.resolve(path.dirname(filepath), exampleFile);
@@ -140,7 +140,7 @@ export default function getProps(doc: DocumentationObject, filepath?: string): R
 			const query = {
 				component,
 			};
-			outDocs.examples = requireIt(`!!${mdxLoader}?${encode(query)}!${exampleFile}`);
+			outDocs.content = requireIt(`!!${mdxLoader}?${encode(query)}!${exampleFile}`);
 			delete outDocs.doclets.example;
 		}
 	} else {

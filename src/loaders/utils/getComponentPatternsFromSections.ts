@@ -7,7 +7,7 @@ import * as Rsg from '../../typings';
  * @param {Array} sections
  * @returns {Array}
  */
-export default function getComponentPatternsFromSections(sections: Rsg.ConfigSection[]): string[] {
+export default function getComponentPatternsFromSections(sections: Rsg.RawSection[]): string[] {
 	return sections.reduce((patterns: string[], section) => {
 		if (Array.isArray(section.components)) {
 			return patterns.concat(section.components);

@@ -1,6 +1,10 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 import { ComponentType } from 'react';
 
 export interface Modifiers {
+	/** Example index inside the Mdx document, added automatically */
+	index: number;
 	/** Render static highlighted code instead of a dynamic preview with a code editor */
 	static?: boolean;
 	/** Renders an example code but hides the code editor */
@@ -9,6 +13,8 @@ export interface Modifiers {
 	showcode?: boolean;
 	/** Adds padding between example child elements */
 	padded?: boolean;
+	// TODO: Remove this and add a generic way to pass props using a React
+	// component in Mdx, similar to `props` JSON in the old Markdown files
 	/** Adds custom class name to an example preview wrapper */
 	'preview-class'?: string;
 }
@@ -19,8 +25,15 @@ export interface CodeExample {
 	settings?: Modifiers;
 }
 
-export interface ExampleModule {
-	// eslint-disable-next-line @typescript-eslint/naming-convention
+// Extra data added by our custom mdx-loader
+export interface MdxExtras {
+	__documentScope: Record<string, unknown>;
+	__exampleScope: Record<string, unknown>;
+	__currentComponent: unknown;
+	__examples: CodeExample[];
+}
+
+export interface ExamplesModule extends MdxExtras {
 	__esModule: true;
 	default: ComponentType;
 }
