@@ -5,24 +5,22 @@ import * as Rsg from '../../../typings';
 
 export interface ExamplesRenderer {
 	content: Rsg.ExamplesModule;
-	name?: string;
+	componentName?: string;
 	exampleMode?: string;
 }
 
-const Examples: React.FunctionComponent<ExamplesRenderer> = ({ content, name, exampleMode }) => {
+const Examples: React.FunctionComponent<ExamplesRenderer> = ({ content, componentName }) => {
 	const ExampleComponent = content.default;
-
-	// TODO: These props for ExampleComponent won't work
 	return (
-		<ExamplesRenderer name={name}>
-			<ExampleComponent componentName={name} exampleMode={exampleMode} />
+		<ExamplesRenderer componentName={componentName}>
+			<ExampleComponent componentName={componentName} />
 		</ExamplesRenderer>
 	);
 };
 
 Examples.propTypes = {
 	content: PropTypes.any.isRequired,
-	name: PropTypes.string.isRequired,
+	componentName: PropTypes.string.isRequired,
 	exampleMode: PropTypes.string.isRequired,
 };
 

@@ -7,9 +7,9 @@ import Markdown from 'rsg-components/Markdown';
 import Slot from 'rsg-components/Slot';
 import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponentRenderer';
 import { useStyleGuideContext } from 'rsg-components/Context';
+import ExamplePlaceholderDefault from 'rsg-components/ExamplePlaceholder';
 import MdxWrapper from 'rsg-components/mdx/MdxWrapper';
 import MdxCode from 'rsg-components/mdx/MdxCode';
-import ExamplePlaceholderDefault from 'rsg-components/ExamplePlaceholder';
 import { DOCS_TAB_USAGE } from '../slots';
 import { DisplayModes, UsageModes } from '../../consts';
 import * as Rsg from '../../../typings';
@@ -35,26 +35,25 @@ export default function ReactComponent(props: ReactComponentProps) {
 		config: { pagePerSection },
 	} = useStyleGuideContext();
 	const { component, depth, usageMode, exampleMode } = props;
-	const { name, visibleName, slug = '-', filepath, pathLine, href } = component;
+	const { name: componentName, visibleName, slug = '-', filepath, pathLine, href } = component;
 	const { description = '', content, tags = {} } = component.props || {};
 	const { __examples: examples = [] } = content || {};
-	if (!name) {
+
+	if (!componentName) {
 		return null;
 	}
+
 	const showUsage = usageMode !== UsageModes.hide;
 
 	const handleTabChange = (tabName: string) => {
 		setActiveTab((currentActiveTab) => (currentActiveTab !== tabName ? tabName : undefined));
 	};
 
-	console.log('☔️ a', targetIndex, examples);
-
 	function getExamples() {
-		if (targetIndex !== undefined && examples[targetIndex]) {
-			console.log('☔️ b', examples[targetIndex]);
+		if (typeof targetIndex === 'number' && examples[targetIndex]) {
 			const example = examples[targetIndex];
 			return (
-				<MdxWrapper componentName={name as string} exampleMode={exampleMode} {...content}>
+				<MdxWrapper componentName={componentName} exampleMode={exampleMode} {...content}>
 					<MdxCode className={`language-${example.lang}`} {...example.settings}>
 						{example.content}
 					</MdxCode>
@@ -63,15 +62,15 @@ export default function ReactComponent(props: ReactComponentProps) {
 		}
 
 		if (content) {
-			return <Examples content={content} name={name} exampleMode={exampleMode} />;
+			return <Examples content={content} componentName={componentName} exampleMode={exampleMode} />;
 		}
 
-		return <ExamplePlaceholder name={name} />;
+		return <ExamplePlaceholder name={componentName} />;
 	}
 
 	return (
 		<ReactComponentRenderer
-			name={name}
+			componentName={componentName}
 			slug={slug}
 			filepath={filepath}
 			pathLine={pathLine}

@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactComponent from 'rsg-components/ReactComponent';
 import ComponentsRenderer from 'rsg-components/Components/ComponentsRenderer';
+import * as Rsg from '../../../typings';
 
 interface ComponentsProps {
-	components: any[];
+	components: Rsg.Component[];
 	depth: number;
 	exampleMode?: string;
 	usageMode?: string;
@@ -18,7 +19,7 @@ const Components: React.FunctionComponent<ComponentsProps> = ({
 }) => {
 	return (
 		<ComponentsRenderer>
-			{components.map(component => (
+			{components.map((component) => (
 				<ReactComponent
 					key={component.filepath}
 					component={component}

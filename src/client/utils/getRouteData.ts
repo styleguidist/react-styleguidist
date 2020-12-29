@@ -1,6 +1,4 @@
-import isFinite from 'lodash/isFinite';
 import filterComponentsInSectionsByExactName from './filterComponentsInSectionsByExactName';
-import filterSectionExamples from './filterSectionExamples';
 import findSection from './findSection';
 import getInfoFromHash from './getInfoFromHash';
 import { DisplayModes } from '../consts';
@@ -102,26 +100,14 @@ export default function getRouteData(
 			}
 		}
 
-		// If a single component or section is filtered and a fenced block index is specified hide all other examples
-		if (isFinite(targetIndex)) {
-			if (filteredSections.length === 1) {
-				const filteredComponents = filteredSections[0].components;
-				sections = [
-					{
-						...filteredSections[0],
-						components:
-							// TODO ???
-							filteredComponents && typeof targetIndex === 'number' ? [filteredComponents[0]] : [],
-					},
-				];
-				displayMode = DisplayModes.example;
-			} else if (sections.length === 1) {
-				// TODO ???
-				sections = [filterSectionExamples(sections[0], targetIndex)];
-				displayMode = DisplayModes.example;
-			}
+		// If a single component or section is filtered and a fenced block index
+		// is specified hide all other examples
+		if (typeof targetIndex === 'number') {
+			displayMode = DisplayModes.example;
 		}
 	}
+
+	console.log('🦉 sections', sections);
 
 	return { sections, displayMode, targetIndex };
 }

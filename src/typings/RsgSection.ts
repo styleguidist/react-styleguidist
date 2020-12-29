@@ -27,7 +27,7 @@ export interface ProcessedSection extends BaseSection {
  * It is the output of the function `client/utils/processSection`
  */
 export interface Section extends ProcessedSection {
-	content?: ExamplesModule; // TODO CodeExample?? string???
+	content?: ExamplesModule;
 	components?: Component[];
 	sections?: Section[];
 }

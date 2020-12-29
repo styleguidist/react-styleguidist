@@ -40,7 +40,7 @@ const Provider = (props: any) => <Context.Provider value={context} {...props} />
 test('should render examples', () => {
 	const { getByText } = render(
 		<Provider>
-			<Examples content={examples} name="button" exampleMode="collapse" />
+			<Examples content={examples} componentName="button" exampleMode="collapse" />
 		</Provider>
 	);
 	expect(getByText(/code: ok/i)).toBeInTheDocument();
@@ -57,7 +57,7 @@ test('should not render an example with unknown type', () => {
 	];
 	const { getByTestId } = render(
 		<Provider>
-			<Examples content={faultyExample} name="button" exampleMode="collapse" />
+			<Examples content={faultyExample} componentName="button" exampleMode="collapse" />
 		</Provider>
 	);
 	expect(getByTestId('button-examples')).toBeEmptyDOMElement();

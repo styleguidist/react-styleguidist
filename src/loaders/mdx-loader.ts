@@ -47,7 +47,7 @@ export default async function mdxLoader(this: Rsg.StyleguidistLoaderContext, con
 		jsxPragma: 'mdx',
 	}).code;
 
-	console.log('🦜', compiledCode);
+	// console.log('🦜🦜🦜🦜🦜🦜🦜', this.resourcePath, compiledCode);
 
 	return callback(null, compiledCode);
 }

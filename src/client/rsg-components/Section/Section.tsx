@@ -28,9 +28,10 @@ const Section: React.FunctionComponent<{
 		usageMode,
 	} = section;
 
-	const contentJsx = Array.isArray(content) ? (
-		<Examples content={content} name={name} exampleMode={exampleMode} />
-	) : null;
+	const contentJsx = content && (
+		<Examples content={content} componentName={name} exampleMode={exampleMode} />
+	);
+
 	const componentsJsx = components && (
 		<Components
 			usageMode={usageMode}

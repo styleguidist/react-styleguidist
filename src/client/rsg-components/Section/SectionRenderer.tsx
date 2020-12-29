@@ -15,6 +15,7 @@ interface SectionRendererProps extends JssInjectedProps {
 	slug: string;
 	depth: number;
 	name?: string;
+	href?: string;
 	description?: string;
 	content?: React.ReactNode;
 	components?: React.ReactNode;
@@ -24,10 +25,11 @@ interface SectionRendererProps extends JssInjectedProps {
 	[prop: string]: any;
 }
 
-export const SectionRenderer: React.FunctionComponent<SectionRendererProps> = allProps => {
+export const SectionRenderer: React.FunctionComponent<SectionRendererProps> = (allProps) => {
 	const {
 		classes,
 		name,
+		href,
 		slug,
 		content,
 		components,
@@ -43,6 +45,7 @@ export const SectionRenderer: React.FunctionComponent<SectionRendererProps> = al
 				<SectionHeading
 					depth={depth}
 					id={slug}
+					href={href}
 					slotName="sectionToolbar"
 					pagePerSection={pagePerSection}
 					slotProps={allProps}
@@ -61,6 +64,7 @@ export const SectionRenderer: React.FunctionComponent<SectionRendererProps> = al
 SectionRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	name: PropTypes.string,
+	href: PropTypes.string,
 	description: PropTypes.string,
 	slug: PropTypes.string.isRequired,
 	content: PropTypes.node,

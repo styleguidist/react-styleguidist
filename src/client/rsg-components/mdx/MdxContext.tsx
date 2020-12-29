@@ -2,7 +2,7 @@ import React, { createContext } from 'react';
 
 interface MdxContextContents {
 	/** Name of the React component */
-	componentName: string;
+	componentName?: string;
 	/** How to render an editor: expanded or not */
 	exampleMode?: string;
 	/** Modules imported inside Mdx file */
@@ -12,7 +12,6 @@ interface MdxContextContents {
 }
 
 const MdxContext = createContext<MdxContextContents>({
-	componentName: '',
 	documentScope: {},
 	exampleScope: {},
 });

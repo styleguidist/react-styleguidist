@@ -67,7 +67,6 @@ export function processSection(
 	config: Rsg.SanitizedStyleguidistConfig,
 	parentDepth?: number
 ): Rsg.LoaderSection {
-	console.log('🍕', section);
 	const content = processSectionContent(section, config);
 
 	let sectionDepth;

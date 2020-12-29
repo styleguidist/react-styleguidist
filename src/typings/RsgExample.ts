@@ -29,11 +29,11 @@ export interface CodeExample {
 export interface MdxExtras {
 	__documentScope: Record<string, unknown>;
 	__exampleScope: Record<string, unknown>;
-	__currentComponent: unknown;
+	__currentComponent?: ComponentType;
 	__examples: CodeExample[];
 }
 
 export interface ExamplesModule extends MdxExtras {
 	__esModule: true;
-	default: ComponentType;
+	default: ComponentType<{ componentName?: string }>;
 }
