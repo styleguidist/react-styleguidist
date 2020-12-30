@@ -24,8 +24,8 @@ interface AliasedConfiguration extends Configuration {
 
 type Mode = Configuration['mode'];
 
-export default function (config: Rsg.SanitizedStyleguidistConfig, env: Mode): Configuration {
-	process.env.NODE_ENV = (process.env.NODE_ENV as Mode) || env;
+export default function (config: Rsg.SanitizedStyleguidistConfig, envRaw: Mode): Configuration {
+	const env = (process.env.NODE_ENV as Mode) || envRaw;
 
 	const isProd = env === 'production';
 
