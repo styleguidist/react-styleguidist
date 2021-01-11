@@ -50,7 +50,7 @@ export default function ReactComponent(props: ReactComponentProps) {
 	};
 
 	function getExamples() {
-		if (typeof targetIndex === 'number' && examples[targetIndex]) {
+		if (typeof targetIndex === 'number' && examples[targetIndex] && content) {
 			const example = examples[targetIndex];
 			return (
 				<MdxWrapper componentName={componentName} exampleMode={exampleMode} {...content}>

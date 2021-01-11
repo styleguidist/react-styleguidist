@@ -22,11 +22,7 @@ describe('getPageTitle', () => {
 
 	it('should return section name for example isolation mode of a example content', () => {
 		const sectionName = 'Section';
-		const result = getPageTitle(
-			[{ name: sectionName, content: [], components: [] }],
-			baseTitle,
-			'example'
-		);
+		const result = getPageTitle([{ name: sectionName, components: [] }], baseTitle, 'example');
 		expect(result).toMatch(sectionName);
 	});
 

@@ -22,7 +22,7 @@ export interface Modifiers {
 export interface CodeExample {
 	content: string;
 	lang?: string;
-	settings?: Modifiers;
+	settings: Modifiers;
 }
 
 // Extra data added by our custom mdx-loader

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 import React from 'react';
 import { render } from '@testing-library/react';
 import ReactComponent from './ReactComponent';
@@ -9,6 +11,15 @@ import config from '../../../scripts/schemas/config';
 
 const compileExample = config.compileExample.default;
 
+const module: Rsg.ExamplesModule = {
+	default: () => null,
+	__esModule: true,
+	__documentScope: {},
+	__exampleScope: {},
+	__currentComponent: () => null,
+	__examples: [],
+};
+
 const context = {
 	config: {
 		pagePerSection: false,
@@ -19,10 +30,6 @@ const context = {
 };
 
 const Provider = (props: any) => <Context.Provider value={context} {...props} />;
-
-const evalInContext = (a: string) =>
-	// eslint-disable-next-line no-new-func
-	new Function('require', 'const React = require("react");' + a).bind(null, require);
 
 const component = {
 	name: 'Foo',
@@ -59,17 +66,7 @@ const componentWithEverything: Rsg.Component = {
 				description: 'Sets the counter to a particular value.',
 			},
 		],
-		examples: [
-			{
-				type: 'code',
-				content: '<button>Code: OK</button>',
-				evalInContext,
-			},
-			{
-				type: 'markdown',
-				content: 'Markdown: Hello *world*!',
-			},
-		],
+		content: module,
 	},
 	metadata: {
 		tags: ['one', 'two'],

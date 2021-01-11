@@ -9,14 +9,14 @@ const compileExample = config.compileExample.default;
 
 /* eslint-disable no-console */
 
-const evalInContext = (a: string) =>
-	// eslint-disable-next-line no-new-func
-	new Function('require', 'state', 'setState', 'const React = require("react");' + a).bind(
-		null,
-		require
-	);
 const code = '<button>Code: OK</button>';
 const newCode = '<button>Code: Cancel</button>';
+
+const defaultProps = {
+	code,
+	documentScope: {},
+	exampleScope: {},
+};
 
 const context = {
 	config: {
@@ -38,7 +38,7 @@ afterEach(() => {
 it('should unmount Wrapper component', () => {
 	const { unmount, getByTestId } = render(
 		<Provider>
-			<Preview code={code} evalInContext={evalInContext} />
+			<Preview {...defaultProps} />
 		</Provider>
 	);
 
@@ -55,7 +55,7 @@ it('should not fail when Wrapper wasn’t mounted', () => {
 
 	const { unmount, getByTestId } = render(
 		<Provider>
-			<Preview code="pizza" evalInContext={evalInContext} />
+			<Preview {...defaultProps} code="pizza" />
 		</Provider>
 	);
 
@@ -77,7 +77,7 @@ it('should wrap code in Fragment when it starts with <', () => {
 
 	const { queryAllByRole } = render(
 		<Provider>
-			<Preview code="<button /><button />" evalInContext={evalInContext} />
+			<Preview {...defaultProps} code="<button /><button />" />
 		</Provider>
 	);
 
@@ -89,7 +89,7 @@ it('should wrap code in Fragment when it starts with <', () => {
 it('should update', () => {
 	const { rerender, getByText } = render(
 		<Provider>
-			<Preview code={code} evalInContext={evalInContext} />
+			<Preview {...defaultProps} />
 		</Provider>
 	);
 
@@ -97,7 +97,7 @@ it('should update', () => {
 
 	rerender(
 		<Provider>
-			<Preview code={newCode} evalInContext={evalInContext} />
+			<Preview {...defaultProps} code={newCode} />
 		</Provider>
 	);
 
@@ -108,7 +108,7 @@ it('should handle no code', () => {
 	console.error = jest.fn();
 	render(
 		<Provider>
-			<Preview code="" evalInContext={evalInContext} />
+			<Preview {...defaultProps} code="" />
 		</Provider>
 	);
 
@@ -121,7 +121,7 @@ it('should handle errors', () => {
 	console.error = consoleError;
 	render(
 		<Provider>
-			<Preview code={'<invalid code'} evalInContext={evalInContext} />
+			<Preview {...defaultProps} code={'<invalid code'} />
 		</Provider>
 	);
 
@@ -136,7 +136,7 @@ it('should not clear console on initial mount', () => {
 	console.clear = jest.fn();
 	mount(
 		<Provider>
-			<Preview code={code} evalInContext={evalInContext} />
+			<Preview {...defaultProps} code={code} />
 		</Provider>
 	);
 	expect(console.clear).toHaveBeenCalledTimes(0);
@@ -146,7 +146,7 @@ it('should clear console on second mount', () => {
 	console.clear = jest.fn();
 	mount(
 		<Provider value={{ ...context, codeRevision: 1 }}>
-			<Preview code={code} evalInContext={evalInContext} />
+			<Preview {...defaultProps} code={code} />
 		</Provider>
 	);
 	expect(console.clear).toHaveBeenCalledTimes(1);

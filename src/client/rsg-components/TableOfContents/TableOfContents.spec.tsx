@@ -1,9 +1,21 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { shallow } from 'enzyme';
 import TableOfContents from './TableOfContents';
 import { TableOfContentsRenderer } from './TableOfContentsRenderer';
 import Context from '../Context';
+import * as Rsg from '../../../typings';
+
+const module: Rsg.ExamplesModule = {
+	default: () => null,
+	__esModule: true,
+	__documentScope: {},
+	__exampleScope: {},
+	__currentComponent: () => null,
+	__examples: [],
+};
 
 const components = [
 	{
@@ -26,13 +38,13 @@ const components = [
 	},
 ];
 
-const sections = [
+const sections: Rsg.Section[] = [
 	{
 		visibleName: 'Introduction',
 		name: 'Introduction',
 		href: '#introduction',
 		slug: 'introduction',
-		content: 'intro.md',
+		content: module,
 	},
 	{
 		visibleName: 'Buttons',
@@ -124,136 +136,6 @@ it('should call a callback when input value changed', () => {
 	expect(onSearchTermChange).toBeCalledWith(newSearchTerm);
 });
 
-it('should render content of subsections of a section that has no components', () => {
-	const actual = shallow(
-		<TableOfContents
-			sections={[{ sections: [{ content: 'intro.md' }, { content: 'chapter.md' }] }]}
-		/>
-	);
-
-	expect(actual.find('ComponentsList').prop('items')).toMatchInlineSnapshot(`
-		Array [
-		  Object {
-		    "components": Array [],
-		    "content": undefined,
-		    "forcedOpen": false,
-		    "heading": false,
-		    "initialOpen": true,
-		    "sections": Array [],
-		    "selected": false,
-		    "shouldOpenInNewTab": false,
-		  },
-		  Object {
-		    "components": Array [],
-		    "content": undefined,
-		    "forcedOpen": false,
-		    "heading": false,
-		    "initialOpen": true,
-		    "sections": Array [],
-		    "selected": false,
-		    "shouldOpenInNewTab": false,
-		  },
-		]
-	`);
-});
-
-it('should render components of a single top section as root', () => {
-	const actual = shallow(<TableOfContents sections={[{ components }]} />);
-
-	expect(actual.find('ComponentsList').prop('items')).toMatchInlineSnapshot(`
-		Array [
-		  Object {
-		    "components": Array [],
-		    "content": undefined,
-		    "forcedOpen": false,
-		    "heading": false,
-		    "href": "#button",
-		    "initialOpen": true,
-		    "name": "Button",
-		    "sections": Array [],
-		    "selected": false,
-		    "shouldOpenInNewTab": false,
-		    "slug": "button",
-		    "visibleName": "Button",
-		  },
-		  Object {
-		    "components": Array [],
-		    "content": undefined,
-		    "forcedOpen": false,
-		    "heading": false,
-		    "href": "#input",
-		    "initialOpen": true,
-		    "name": "Input",
-		    "sections": Array [],
-		    "selected": false,
-		    "shouldOpenInNewTab": false,
-		    "slug": "input",
-		    "visibleName": "Input",
-		  },
-		  Object {
-		    "components": Array [],
-		    "content": undefined,
-		    "forcedOpen": false,
-		    "heading": false,
-		    "href": "#textarea",
-		    "initialOpen": true,
-		    "name": "Textarea",
-		    "sections": Array [],
-		    "selected": false,
-		    "shouldOpenInNewTab": false,
-		    "slug": "textarea",
-		    "visibleName": "Textarea",
-		  },
-		]
-	`);
-});
-
-it('should render as the link will open in a new window only if external presents as true', () => {
-	const actual = shallow(
-		<TableOfContents
-			sections={[
-				{
-					sections: [
-						{ content: 'intro.md', href: 'http://example.com' },
-						{ content: 'chapter.md', href: 'http://example.com', external: true },
-					],
-				},
-			]}
-		/>
-	);
-
-	expect(actual.find('ComponentsList').prop('items')).toMatchInlineSnapshot(`
-		Array [
-		  Object {
-		    "components": Array [],
-		    "content": undefined,
-		    "forcedOpen": false,
-		    "heading": false,
-		    "href": "http://example.com",
-		    "initialOpen": true,
-		    "sections": Array [],
-		    "selected": false,
-		    "shouldOpenInNewTab": false,
-		  },
-		  Object {
-		    "components": Array [],
-		    "content": undefined,
-		    "external": true,
-		    "forcedOpen": false,
-		    "heading": false,
-		    "href": "http://example.com",
-		    "initialOpen": true,
-		    "sections": Array [],
-		    "selected": false,
-		    "shouldOpenInNewTab": false,
-		  },
-		]
-	`);
-});
-
-/**
- * testing this layer with no mocking makes no sense...
- */
 it('should render components with useRouterLinks', () => {
 	const { getAllByRole } = render(
 		<TableOfContents
@@ -266,11 +148,11 @@ it('should render components with useRouterLinks', () => {
 							name: 'Components',
 							href: '#/Components',
 							slug: 'components',
-							content: 'intro.md',
+							content: module,
 						},
 						{
 							visibleName: '2',
-							content: 'chapter.md',
+							content: module,
 							href: '#/Chap',
 							slug: 'chap',
 						},
@@ -313,7 +195,7 @@ it('should detect sections containing current selection when tocMode is collapse
 								visibleName: '2',
 								href: '#/chap',
 								slug: 'chap',
-								content: 'chapter.md',
+								content: module,
 								sections: [{ visibleName: '2.1', href: '#/chapter-1', slug: 'chapter-1' }],
 							},
 							{
@@ -350,7 +232,7 @@ it('should show sections with expand: true when tocMode is collapse', () => {
 							visibleName: '2',
 							href: '#/chap',
 							slug: 'chap',
-							content: 'chapter.md',
+							content: module,
 							sections: [{ visibleName: '2.1', href: '#/chapter-1', slug: 'chapter-1' }],
 						},
 						{

@@ -55,18 +55,4 @@ describe('processComponents', () => {
 			expect(result[0].visibleName).toBe('Foo');
 		});
 	});
-
-	it('should append @example doclet to all examples', () => {
-		const components = deepfreeze([
-			{
-				props: {
-					displayName: 'Foo',
-					examples: [1, 2] as any[],
-					example: [3, 4] as any[],
-				},
-			},
-		]);
-		const result = processComponents(components, options);
-		expect(result[0].props && result[0].props.examples).toEqual([1, 2, 3, 4]);
-	});
 });

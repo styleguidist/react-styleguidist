@@ -7,14 +7,11 @@ const compileExample = config.compileExample.default;
 
 // TODO: Enzyme → RTL
 
-const evalInContext = (a: string) =>
-	// eslint-disable-next-line no-new-func
-	new Function('require', 'const React = require("react");' + a).bind(null, require);
-
 const defaultProps = {
-	evalInContext,
 	onError: () => {},
 	compileExample,
+	documentScope: {},
+	exampleScope: {},
 };
 
 it('should render code', () => {

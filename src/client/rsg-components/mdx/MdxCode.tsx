@@ -24,7 +24,7 @@ export default function MdxCode({ className, children, ...modifiers }: Props) {
 	return (
 		<Playground
 			code={String(children)}
-			componentName={componentName}
+			componentName={componentName || ''} // TODO
 			exampleMode={exampleMode}
 			documentScope={documentScope}
 			exampleScope={exampleScope}

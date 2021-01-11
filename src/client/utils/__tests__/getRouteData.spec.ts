@@ -1,7 +1,18 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 import deepfreeze from 'deepfreeze';
 import getRouteData from '../getRouteData';
 import { DisplayModes } from '../../consts';
 import * as Rsg from '../../../typings';
+
+const module: Rsg.ExamplesModule = {
+	default: () => null,
+	__esModule: true,
+	__documentScope: {},
+	__exampleScope: {},
+	__currentComponent: () => null,
+	__examples: [],
+};
 
 const sections: Rsg.Section[] = deepfreeze([
 	{
@@ -14,11 +25,7 @@ const sections: Rsg.Section[] = deepfreeze([
 						name: 'Button',
 						props: {
 							displayName: 'Button',
-							examples: {
-								// eslint-disable-next-line @typescript-eslint/naming-convention
-								__esModule: true,
-								default: () => null,
-							},
+							examples: module,
 						},
 						module: 1,
 					},
@@ -38,12 +45,7 @@ const sections: Rsg.Section[] = deepfreeze([
 			{
 				name: 'Section',
 				slug: 'section',
-				content: [
-					{
-						content: 'alert()',
-						lang: 'js',
-					},
-				],
+				content: module,
 				components: [],
 				sections: [],
 				exampleMode: 'collapse',
