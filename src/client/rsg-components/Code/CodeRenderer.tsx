@@ -13,16 +13,11 @@ const styles = ({ fontFamily }: Rsg.Theme) => ({
 	},
 });
 
-interface CodeProps extends JssInjectedProps {
-	children?: React.ReactNode;
-}
-
-export const CodeRenderer: React.FunctionComponent<CodeProps> = ({ classes, children }) => {
+export const CodeRenderer: React.FunctionComponent<JssInjectedProps> = ({ classes, children }) => {
 	return <code className={classes.code}>{children}</code>;
 };
 CodeRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	children: PropTypes.node.isRequired,
 };
 
 export default Styled<CodeProps>(styles)(CodeRenderer);

@@ -11,17 +11,12 @@ const styles = ({ space }: Rsg.Theme) => ({
 	},
 });
 
-interface MdxTableProps extends JssInjectedProps {
-	children?: React.ReactNode;
-}
-
-export const MdxTable: React.FunctionComponent<MdxTableProps> = ({ classes, children }) => {
+export const MdxTable: React.FunctionComponent<JssInjectedProps> = ({ classes, children }) => {
 	return <table className={classes.table}>{children}</table>;
 };
 
 MdxTable.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	children: PropTypes.node,
 };
 
 export default Styled<MdxTableProps>(styles)(MdxTable);
