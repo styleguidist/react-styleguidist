@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ComponentProps } from 'react';
 import PropTypes from 'prop-types';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import * as Rsg from '../../../typings';
@@ -20,4 +20,4 @@ CodeRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 };
 
-export default Styled<CodeProps>(styles)(CodeRenderer);
+export default Styled<ComponentProps<typeof CodeRenderer>>(styles)(CodeRenderer);

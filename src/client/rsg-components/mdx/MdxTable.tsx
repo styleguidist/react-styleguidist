@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ComponentProps } from 'react';
 import PropTypes from 'prop-types';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import * as Rsg from '../../../typings';
@@ -19,4 +19,4 @@ MdxTable.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 };
 
-export default Styled<MdxTableProps>(styles)(MdxTable);
+export default Styled<ComponentProps<typeof MdxTable>>(styles)(MdxTable);

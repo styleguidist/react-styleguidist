@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ComponentProps } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'clsx';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
@@ -46,4 +46,4 @@ LinkRenderer.propTypes = {
 	href: PropTypes.string,
 };
 
-export default Styled<LinkProps>(styles)(LinkRenderer);
+export default Styled<ComponentProps<typeof LinkRenderer>>(styles)(LinkRenderer);
