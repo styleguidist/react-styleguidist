@@ -23,7 +23,7 @@ const styles = ({ space, color, fontFamily }: Rsg.Theme) => ({
 	},
 });
 
-interface MdxListProps extends JssInjectedProps {
+export interface MdxListProps extends JssInjectedProps {
 	ordered?: boolean;
 	children?: React.ReactNode;
 }

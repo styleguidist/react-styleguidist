@@ -9,7 +9,7 @@ const styles = ({ color }: Rsg.Theme) => ({
 	},
 });
 
-interface MdxTableHeadProps extends JssInjectedProps {
+export interface MdxTableHeadProps extends JssInjectedProps {
 	children?: React.ReactNode;
 }
 

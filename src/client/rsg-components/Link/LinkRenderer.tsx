@@ -1,4 +1,4 @@
-import React, { ComponentProps } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'clsx';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
@@ -19,7 +19,7 @@ const styles = ({ color }: Rsg.Theme) => ({
 	},
 });
 
-interface LinkProps extends JssInjectedProps {
+export interface LinkProps extends JssInjectedProps {
 	children?: React.ReactNode;
 	className?: string;
 	href?: string;
@@ -46,4 +46,4 @@ LinkRenderer.propTypes = {
 	href: PropTypes.string,
 };
 
-export default Styled<ComponentProps<typeof LinkRenderer>>(styles)(LinkRenderer);
+export default Styled<LinkProps>(styles)(LinkRenderer);

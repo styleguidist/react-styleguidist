@@ -10,7 +10,7 @@ const styles = ({ space }: Rsg.Theme) => ({
 	},
 });
 
-interface MdxHeadingProps extends JssInjectedProps {
+export interface MdxHeadingProps extends JssInjectedProps {
 	children?: React.ReactNode;
 	level?: number;
 	id?: string;

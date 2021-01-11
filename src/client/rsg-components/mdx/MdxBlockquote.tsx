@@ -14,7 +14,7 @@ const styles = ({ space, color, fontSize, fontFamily }: Rsg.Theme) => ({
 	},
 });
 
-interface MdxBlockquote extends JssInjectedProps {
+export interface MdxBlockquote extends JssInjectedProps {
 	children?: React.ReactNode;
 }
 

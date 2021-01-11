@@ -17,7 +17,7 @@ const styles = ({ space, color, fontSize, fontFamily }: Rsg.Theme) => ({
 	},
 });
 
-interface MdxTableCellProps extends JssInjectedProps {
+export interface MdxTableCellProps extends JssInjectedProps {
 	children?: React.ReactNode;
 	header?: boolean;
 }

@@ -14,7 +14,7 @@ export const styles = ({ space, color, fontFamily, fontSize }: Rsg.Theme) => ({
 	},
 });
 
-interface ParaProps extends JssInjectedProps {
+export interface ParaProps extends JssInjectedProps {
 	semantic?: 'p';
 	children?: React.ReactNode;
 }
