@@ -16,6 +16,7 @@ export default function MdxWrapper({
 	__documentScope: documentScope,
 	__exampleScope: exampleScope,
 	__currentComponent: currentComponent,
+	__namedExamples: namedExamples,
 }: Props) {
 	const expandedDocumentScope = {
 		// Make React available to examples
@@ -36,6 +37,7 @@ export default function MdxWrapper({
 				exampleMode,
 				documentScope: expandedDocumentScope,
 				exampleScope,
+				namedExamples,
 			}}
 		>
 			{children}

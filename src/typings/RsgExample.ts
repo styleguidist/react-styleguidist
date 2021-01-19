@@ -31,6 +31,7 @@ export interface MdxExtras {
 	__exampleScope: Record<string, unknown>;
 	__currentComponent?: ComponentType;
 	__examples: CodeExample[];
+	__namedExamples: Record<string, string>;
 }
 
 export interface ExamplesModule extends MdxExtras {

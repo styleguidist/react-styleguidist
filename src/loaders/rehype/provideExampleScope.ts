@@ -32,8 +32,7 @@ const getModulePathToModuleMap = (modules: string[]) => {
 
 /**
  * 1. Import each module imported in any non-static example into the Mdx document,
- *    so they are bundled
- *    by webpack and available at runtime.
+ *    so they are bundled by webpack and available at runtime.
  * 2. Export the map of these modules that will be used in the custom `require`
  *    method during the example code execution.
  *

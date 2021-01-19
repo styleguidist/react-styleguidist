@@ -1,17 +1,19 @@
 import mdx from '@mdx-js/mdx';
 import { transform } from 'sucrase';
 import loaderUtils from 'loader-utils';
-import markStaticExamples from './rehype/markStaticExamples';
+import addReact from './rehype/addReact';
 import addExampleIndicies from './rehype/addExampleIndicies';
-import updateExamples from './rehype/updateExamples';
+import deduplicateImports from './rehype/deduplicateImports';
 import exportExamples from './rehype/exportExamples';
+import exportStories from './rehype/exportStories';
+import markStaticExamples from './rehype/markStaticExamples';
+import provideCurrentComponent from './rehype/provideCurrentComponent';
 import provideDocumentScope from './rehype/provideDocumentScope';
 import provideExampleScope from './rehype/provideExampleScope';
-import provideCurrentComponent from './rehype/provideCurrentComponent';
+import updateExamples from './rehype/updateExamples';
 import * as Rsg from '../typings';
 
 const HEADER = `
-import React from 'react';
 import { mdx } from '@mdx-js/react';
 `;
 
@@ -25,14 +27,17 @@ export default async function mdxLoader(this: Rsg.StyleguidistLoaderContext, con
 		result = await mdx(content, {
 			filepath: this.resourcePath,
 			rehypePlugins: [
+				addReact,
 				markStaticExamples,
 				addExampleIndicies,
 				updateExamples({ updateExample, resourcePath: this.resourcePath }),
 				exportExamples,
+				// Sections don't have current components
+				component && exportStories({ component, resourcePath: this.resourcePath }),
 				provideDocumentScope({ context }),
 				provideExampleScope,
-				// Sections don't have current components
 				component && provideCurrentComponent({ component }),
+				deduplicateImports,
 			],
 		});
 	} catch (err) {
@@ -47,6 +52,7 @@ export default async function mdxLoader(this: Rsg.StyleguidistLoaderContext, con
 		jsxPragma: 'mdx',
 	}).code;
 
+	// console.log('='.repeat(80));
 	// console.log('🦜🦜🦜🦜🦜🦜🦜', this.resourcePath, compiledCode);
 
 	return callback(null, compiledCode);

@@ -12,6 +12,7 @@ const module: Rsg.ExamplesModule = {
 	__exampleScope: {},
 	__currentComponent: () => null,
 	__examples: [],
+	__namedExamples: {},
 };
 
 const sections: Rsg.Section[] = deepfreeze([

@@ -1,9 +1,6 @@
-import { Parser, Node, Options } from 'acorn';
+import { Parser, Options } from 'acorn';
+import { Program } from 'estree';
 import Logger from 'glogg';
-
-interface Program extends Node {
-	body: Node[];
-}
 
 const logger = Logger('rsg');
 
@@ -22,7 +19,7 @@ export default function getAst(
 	const parser = Parser.extend(...plugins);
 
 	try {
-		return parser.parse(code, ACORN_OPTIONS) as Program;
+		return (parser.parse(code, ACORN_OPTIONS) as unknown) as Program;
 	} catch (err) {
 		logger.debug(`Acorn cannot parse code: ${err.message}\n\nCode:\n${code}`);
 		return undefined;

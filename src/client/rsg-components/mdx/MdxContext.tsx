@@ -9,11 +9,14 @@ interface MdxContextContents {
 	documentScope: Record<string, unknown>;
 	/** Modules imported inside examples */
 	exampleScope: Record<string, unknown>;
+	/** Examples, exported from CSF files */
+	namedExamples: Record<string, string>;
 }
 
 const MdxContext = createContext<MdxContextContents>({
 	documentScope: {},
 	exampleScope: {},
+	namedExamples: {},
 });
 
 export default MdxContext;
