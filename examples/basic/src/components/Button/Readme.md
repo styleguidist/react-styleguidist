@@ -1,4 +1,4 @@
-import Button from './Button';
+import Button from './Button'; import Story from 'rsg-components/mdx/public/Story'
 
 Basic button:
 
@@ -102,3 +102,7 @@ You can change the default state:
 const [count, setCount] = React.useState(42)
 ;<Button onClick={() => setCount(count + 1)}>{count}</Button>
 ```
+
+You could import examples from CSF story files:
+
+<Story id="ksjdfj-ljsdkf--basic" />

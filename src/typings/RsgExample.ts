@@ -29,6 +29,7 @@ export interface CodeExample {
 export interface MdxExtras {
 	__documentScope: Record<string, unknown>;
 	__exampleScope: Record<string, unknown>;
+	__storiesScope: Record<string, unknown>;
 	__currentComponent?: ComponentType;
 	__examples: CodeExample[];
 	__namedExamples: Record<string, string>;

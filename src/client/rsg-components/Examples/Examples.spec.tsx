@@ -16,6 +16,7 @@ const module: Rsg.ExamplesModule = {
 	__esModule: true,
 	__documentScope: {},
 	__exampleScope: {},
+	__storiesScope: {},
 	__currentComponent: () => null,
 	__examples: [],
 	__namedExamples: {},

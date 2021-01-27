@@ -15,6 +15,7 @@ export default function MdxWrapper({
 	exampleMode,
 	__documentScope: documentScope,
 	__exampleScope: exampleScope,
+	__storiesScope: storiesScope,
 	__currentComponent: currentComponent,
 	__namedExamples: namedExamples,
 }: Props) {
@@ -30,13 +31,14 @@ export default function MdxWrapper({
 			: {}),
 		...documentScope,
 	};
+	const expandedExampleScope = { ...exampleScope, ...storiesScope };
 	return (
 		<MdxContext.Provider
 			value={{
 				componentName,
 				exampleMode,
 				documentScope: expandedDocumentScope,
-				exampleScope,
+				exampleScope: expandedExampleScope,
 				namedExamples,
 			}}
 		>

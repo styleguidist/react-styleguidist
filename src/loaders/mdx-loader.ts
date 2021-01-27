@@ -3,7 +3,6 @@ import { transform } from 'sucrase';
 import loaderUtils from 'loader-utils';
 import addReact from './rehype/addReact';
 import addExampleIndicies from './rehype/addExampleIndicies';
-import deduplicateImports from './rehype/deduplicateImports';
 import exportExamples from './rehype/exportExamples';
 import exportStories from './rehype/exportStories';
 import markStaticExamples from './rehype/markStaticExamples';
@@ -37,7 +36,9 @@ export default async function mdxLoader(this: Rsg.StyleguidistLoaderContext, con
 				provideDocumentScope({ context }),
 				provideExampleScope,
 				component && provideCurrentComponent({ component }),
-				deduplicateImports,
+				// TODO: Use smart (no-duplicates) insert instead of deduplication
+				// TODO: Or better insert needed imports in front of each example
+				// deduplicateImports,
 			],
 		});
 	} catch (err) {
@@ -52,8 +53,8 @@ export default async function mdxLoader(this: Rsg.StyleguidistLoaderContext, con
 		jsxPragma: 'mdx',
 	}).code;
 
-	// console.log('='.repeat(80));
-	// console.log('🦜🦜🦜🦜🦜🦜🦜', this.resourcePath, compiledCode);
+	console.log('='.repeat(80));
+	console.log('🦜🦜🦜🦜🦜🦜🦜', this.resourcePath, compiledCode);
 
 	return callback(null, compiledCode);
 }
