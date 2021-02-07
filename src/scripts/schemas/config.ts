@@ -153,6 +153,8 @@ Try to install it: npm install --save-dev ${value}`
 			'**/__tests__/**',
 			`**/*.test.{${EXTENSIONS}}`,
 			`**/*.spec.{${EXTENSIONS}}`,
+			`**/*.stories.{${EXTENSIONS}}`,
+			`**/*.story.{${EXTENSIONS}}`,
 			'**/*.d.ts',
 		],
 	},
