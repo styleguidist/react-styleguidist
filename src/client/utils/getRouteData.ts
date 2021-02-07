@@ -107,7 +107,5 @@ export default function getRouteData(
 		}
 	}
 
-	console.log('🦉 sections', sections);
-
 	return { sections, displayMode, targetIndex };
 }

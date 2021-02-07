@@ -53,8 +53,8 @@ export default async function mdxLoader(this: Rsg.StyleguidistLoaderContext, con
 		jsxPragma: 'mdx',
 	}).code;
 
-	console.log('='.repeat(80));
-	console.log('🦜🦜🦜🦜🦜🦜🦜', this.resourcePath, compiledCode);
+	// console.log('='.repeat(80));
+	// console.log('🦜🦜🦜🦜🦜🦜🦜', this.resourcePath, compiledCode);
 
 	return callback(null, compiledCode);
 }
