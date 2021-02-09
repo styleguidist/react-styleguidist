@@ -1,6 +1,13 @@
 import transpileImports from '../transpileImports';
 
 describe('transpileImports', () => {
+	test('transpile import statement starting with number', () => {
+		const result = transpileImports(`import Component from '1-numbered-directory/component.jsx'`);
+		expect(result).toMatchInlineSnapshot(`
+"const safeVarPrefix1_numbered_directory_component_jsx$0 = require('1-numbered-directory/component.jsx');
+const safeVarPrefixComponent = safeVarPrefix1_numbered_directory_component_jsx$0.default || safeVarPrefix1_numbered_directory_component_jsx$0;"
+`);
+	});
 	test('transpile default imports', () => {
 		const result = transpileImports(`import B from 'cat'`);
 		expect(result).toMatchInlineSnapshot(`

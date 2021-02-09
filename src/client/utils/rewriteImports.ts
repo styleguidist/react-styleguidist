@@ -17,29 +17,30 @@ let num: number;
 function generate(keys: string[], dep: string, base: string, fn: string): string {
 	const tmp = dep.replace(/\W/g, '_') + '$' + num++; // uniqueness
 	const name = alias(tmp).name;
+	const safePrefix = /[0-9]/.test(name.split('')[0]) ? 'safeVarPrefix' : '';
 
 	dep = `${fn}('${dep}')`;
 
 	let obj;
-	let out = `const ${name} = ${dep};`;
+	let out = `const ${safePrefix}${name} = ${dep};`;
 
 	if (base) {
-		out += `\nconst ${base} = ${tmp}.default || ${tmp};`;
+		out += `\nconst ${safePrefix}${base} = ${safePrefix}${tmp}.default || ${safePrefix}${tmp};`;
 	}
 
-	keys.forEach(key => {
+	keys.forEach((key) => {
 		obj = alias(key);
-		out += `\nconst ${obj.name} = ${tmp}.${obj.key};`;
+		out += `\nconst ${safePrefix}${obj.name} = ${safePrefix}${tmp}.${obj.key};`;
 	});
 
 	return out;
 }
 
-export default function(str: string, fn = 'require'): string {
+export default function (str: string, fn = 'require'): string {
 	num = 0;
 	return str
 		.replace(NAMED, (_, asterisk, base, req: string | undefined, dep: string) =>
-			generate(req ? req.split(',').filter(d => d.trim()) : [], dep, base, fn)
+			generate(req ? req.split(',').filter((d) => d.trim()) : [], dep, base, fn)
 		)
 		.replace(UNNAMED, (_, dep) => `${fn}('${dep}');`);
 }
