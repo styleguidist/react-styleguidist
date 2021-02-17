@@ -1,14 +1,20 @@
 import fs from 'fs';
 import path from 'path';
+import { flatMap } from 'lodash';
 import {
+	BaseNode,
 	Program,
 	Declaration,
 	VariableDeclaration,
 	ExportNamedDeclaration,
 	ImportDeclaration,
+	VariableDeclarator,
+	ImportSpecifier,
+	ImportDefaultSpecifier,
+	ImportNamespaceSpecifier,
 } from 'estree';
 import acornJsx from 'acorn-jsx';
-import { Parent, Node } from 'unist';
+import { Parent, Node as MdxNode } from 'unist';
 import { walk } from 'estree-walker';
 import { generate } from 'escodegen';
 import toAst from 'to-ast';
@@ -17,6 +23,12 @@ import getAst from '../utils/getAst';
 import { ModuleMap } from './types';
 
 // TODO: Hot reload
+// TODO: Unindenting
+
+interface Dependency {
+	names: string[];
+	code: string;
+}
 
 const getLocalName = (index: number) => `__story_import_${index}`;
 
@@ -63,7 +75,7 @@ const getStoriesFile = (componentPath: string) => {
 const getImports = (ast: Program): string[] => {
 	const imports: string[] = [];
 	walk(ast, {
-		enter: (node) => {
+		enter: (node: BaseNode) => {
 			if (node.type === 'ImportDeclaration') {
 				const importDeclarationNode = node as ImportDeclaration;
 				if (typeof importDeclarationNode?.source?.value === 'string') {
@@ -75,21 +87,80 @@ const getImports = (ast: Program): string[] => {
 	return imports;
 };
 
-const getImportStatements = (ast: Program, code: string): string[] => {
-	const imports: string[] = [];
+const getImportDeclarationName = (
+	specifier: ImportSpecifier | ImportDefaultSpecifier | ImportNamespaceSpecifier
+): string => {
+	switch (specifier.type) {
+		case 'ImportSpecifier':
+			return specifier.local.name;
+		case 'ImportDefaultSpecifier':
+			return specifier.local.name;
+		default:
+			return '';
+	}
+};
+
+const getImportStatements = (ast: Program, code: string): Dependency[] => {
+	const imports: Dependency[] = [];
 	walk(ast, {
-		enter: (node) => {
+		enter: (node: BaseNode) => {
 			if (node.type === 'ImportDeclaration') {
 				const importDeclarationNode = node as ImportDeclaration;
 				if (importDeclarationNode.source) {
 					// @ts-expect-error: There are no types for location ;-/
 					const { start, end } = importDeclarationNode;
-					imports.push(code.substring(start, end));
+					imports.push({
+						names: importDeclarationNode.specifiers.map(getImportDeclarationName),
+						code: code.substring(start, end),
+					});
 				}
 			}
 		},
 	});
 	return imports;
+};
+
+const getVariableDeclarationNames = ({ id }: VariableDeclarator): string[] => {
+	switch (id.type) {
+		case 'Identifier':
+			return [id.name];
+		case 'ObjectPattern':
+			return id.properties
+				.map((property) => {
+					switch (property.type) {
+						case 'Property':
+							switch (property.value.type) {
+								case 'Identifier':
+									return property.value.name;
+							}
+							return '';
+						case 'RestElement':
+							switch (property.argument.type) {
+								case 'Identifier':
+									return property.argument.name;
+							}
+							return '';
+					}
+
+					return '';
+				})
+				.filter(Boolean);
+		default:
+			return [];
+	}
+};
+
+const getVariableStatements = (ast: Program, code: string): Dependency[] => {
+	const nodes = ast.body.filter((node) => node.type === 'VariableDeclaration');
+	return nodes.map((node) => {
+		const variableDeclarationNode = node as VariableDeclaration;
+		// @ts-expect-error: There are no types for location ;-/
+		const { start, end } = variableDeclarationNode;
+		return {
+			names: flatMap(variableDeclarationNode.declarations, getVariableDeclarationNames),
+			code: code.substring(start, end),
+		};
+	});
 };
 
 const getExportCode = (node: Declaration, code: string) => {
@@ -127,24 +198,42 @@ const getExportCode = (node: Declaration, code: string) => {
 	return undefined;
 };
 
-// TODO: Add only needed imports for each example
-const prependExampleWithImports = (code: string, imports: string[]) => {
-	return [imports.join('\n'), code].join('\n\n');
+// This is a very simplified approach: it will add unnecessary dependencies
+// because we only check whether the dependency local name is present in the
+// example code. However, it won't break the code by not including all the used
+// dependencies
+const prependExampleWithDependencies = (code: string, dependencies: Dependency[]) => {
+	const usedDependencies = dependencies.filter((dependency) =>
+		dependency.names.some((name) => code.match(new RegExp(`\\b${name}\\b`)))
+	);
+	return [
+		usedDependencies
+			.map((dependency) => dependency.code)
+			.filter(Boolean)
+			.join('\n'),
+		code,
+	]
+		.filter(Boolean)
+		.join('\n\n');
 };
 
 const getExports = (ast: Program, code: string) => {
 	const imports = getImportStatements(ast, code);
+	const variables = getVariableStatements(ast, code);
 
 	const exports: Record<string, string> = {};
 	walk(ast, {
-		enter: (node) => {
+		enter: (node: BaseNode) => {
 			// export const foo = ...
 			if (node.type === 'ExportNamedDeclaration') {
 				const exportNamedDeclaratioNode = node as ExportNamedDeclaration;
 				if (exportNamedDeclaratioNode.declaration) {
 					const exportCode = getExportCode(exportNamedDeclaratioNode.declaration, code);
 					if (exportCode) {
-						exports[exportCode.name] = prependExampleWithImports(exportCode.code, imports);
+						exports[exportCode.name] = prependExampleWithDependencies(exportCode.code, [
+							...imports,
+							...variables,
+						]);
 					}
 				}
 			}
@@ -154,23 +243,27 @@ const getExports = (ast: Program, code: string) => {
 };
 
 /**
- * 1. Generate export with all strories in Component Story Format (CSF)
- * 2. Generate export with all modules imported into a CSF file, so they are
- *    available in examples when we run them.
- * 3. TODO ...
+ * 1. Generate export with all modules imported into a Component Story Format
+ *    (CSF) file, so they are available in examples when we run them.
+ * 2. Generate export with all strories in a CSF files.
+ * 3. Prepend each story example with necessary imports and local variables.
  *
+ * import Button from './Button'
  * import Container from './Container'
  * export const basic = () => <Container><Button /></Container>
  *
  * ->
  *
- * import Container from './Container'
+ * import * as __story_import_0 from './Button'
  * export const __namedExamples = {
- *   basic: '<Container><Button /></Container>'
+ *   basic: 'import Button from './Button'\n\n<Container><Button /></Container>'
+ * }
+ * export const __storiesScope = {
+ *   './Button': __story_import_0
  * }
  */
 export default ({ component, resourcePath }: { component: string; resourcePath: string }) => () => (
-	treeRaw: Node
+	treeRaw: MdxNode
 ) => {
 	const tree = treeRaw as Parent;
 
@@ -204,15 +297,13 @@ export default ({ component, resourcePath }: { component: string; resourcePath: 
 		});
 	});
 
-	// Generate export for TODO ...
+	// Generate export for the mapping of imported modules
 	const modulesMap = getModulePathToModuleMap(imports);
 	const scopeExportCode = `export const __storiesScope = ${generate(toAst(modulesMap))}`;
 	tree.children.push({
 		type: 'export',
 		value: scopeExportCode,
 	});
-
-	// TODO: Add imports (with different names) so they appear in the scope
 
 	// TODO: Make hot reload of CSF file work (this doesn't help)
 	// TODO: It shouldn't generate an absolute path anyway

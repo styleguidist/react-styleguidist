@@ -105,4 +105,4 @@ const [count, setCount] = React.useState(42)
 
 You could import examples from CSF story files:
 
-<Story id="ksjdfj-ljsdkf--basic" />
+<Story id="this-part-we-actually-ignore--pink" />
