@@ -92,8 +92,8 @@ const getImportDeclarationName = (
 ): string => {
 	switch (specifier.type) {
 		case 'ImportSpecifier':
-			return specifier.local.name;
 		case 'ImportDefaultSpecifier':
+		case 'ImportNamespaceSpecifier':
 			return specifier.local.name;
 		default:
 			return '';
