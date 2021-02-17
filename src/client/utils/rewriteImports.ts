@@ -17,20 +17,19 @@ let num: number;
 function generate(keys: string[], dep: string, base: string, fn: string): string {
 	const tmp = dep.replace(/\W/g, '_') + '$' + num++; // uniqueness
 	const name = alias(tmp).name;
-	const safePrefix = /[0-9]/.test(name.split('')[0]) ? 'safeVarPrefix' : '';
 
 	dep = `${fn}('${dep}')`;
 
 	let obj;
-	let out = `const ${safePrefix}${name} = ${dep};`;
+	let out = `const _${name} = ${dep};`;
 
 	if (base) {
-		out += `\nconst ${safePrefix}${base} = ${safePrefix}${tmp}.default || ${safePrefix}${tmp};`;
+		out += `\nconst _${base} = _${tmp}.default || _${tmp};`;
 	}
 
 	keys.forEach((key) => {
 		obj = alias(key);
-		out += `\nconst ${safePrefix}${obj.name} = ${safePrefix}${tmp}.${obj.key};`;
+		out += `\nconst _${obj.name} = _${tmp}.${obj.key};`;
 	});
 
 	return out;
