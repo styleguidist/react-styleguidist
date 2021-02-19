@@ -15,6 +15,9 @@ interface PreviewState {
 	error: string | null;
 }
 
+const cleanErrorMessage = (message: string): string =>
+	message.replace('bound evalInContext(Example)(...): ', '');
+
 export default class Preview extends Component<PreviewProps, PreviewState> {
 	public static propTypes = {
 		code: PropTypes.string.isRequired,
@@ -96,7 +99,7 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 		this.unmountPreview();
 
 		this.setState({
-			error: err.toString(),
+			error: cleanErrorMessage(err.toString()),
 		});
 
 		console.error(err); // eslint-disable-line no-console
