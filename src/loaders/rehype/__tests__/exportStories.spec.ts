@@ -27,7 +27,7 @@ describe('imports', () => {
 		const result = await compile(
 			`Henlo`,
 			`
-import Container from './Container'
+import Container from './Container';
 export const basic = () => <Container><Button /></Container>
 `
 		);
@@ -35,7 +35,7 @@ export const basic = () => <Container><Button /></Container>
 		"
 		import * as __story_import_0 from './Container'
 		export const __namedExamples = {
-		  'basic': 'import Container from \\\\'./Container\\\\'\\\\n\\\\n<Container><Button /></Container>'
+		  'basic': 'import Container from \\\\'./Container\\\\';\\\\n\\\\n<Container><Button /></Container>'
 		};
 		export const __storiesScope = {
 		  './Container': __story_import_0
@@ -53,7 +53,7 @@ export const basic = () => <Container><Button /></Container>
 		const result = await compile(
 			`Henlo`,
 			`
-import { Button, Input } from './components'
+import { Button, Input } from './components';
 export const basic = () => <Container><Button /></Container>
 `
 		);
@@ -61,7 +61,7 @@ export const basic = () => <Container><Button /></Container>
 		"
 		import * as __story_import_0 from './components'
 		export const __namedExamples = {
-		  'basic': 'import { Button, Input } from \\\\'./components\\\\'\\\\n\\\\n<Container><Button /></Container>'
+		  'basic': 'import { Button, Input } from \\\\'./components\\\\';\\\\n\\\\n<Container><Button /></Container>'
 		};
 		export const __storiesScope = {
 		  './components': __story_import_0
@@ -79,7 +79,7 @@ export const basic = () => <Container><Button /></Container>
 		const result = await compile(
 			`Henlo`,
 			`
-import Input, { Button } from './components'
+import Input, { Button } from './components';
 export const basic = () => <Container><Button /></Container>
 `
 		);
@@ -87,7 +87,7 @@ export const basic = () => <Container><Button /></Container>
 		"
 		import * as __story_import_0 from './components'
 		export const __namedExamples = {
-		  'basic': 'import Input, { Button } from \\\\'./components\\\\'\\\\n\\\\n<Container><Button /></Container>'
+		  'basic': 'import Input, { Button } from \\\\'./components\\\\';\\\\n\\\\n<Container><Button /></Container>'
 		};
 		export const __storiesScope = {
 		  './components': __story_import_0
@@ -105,7 +105,7 @@ export const basic = () => <Container><Button /></Container>
 		const result = await compile(
 			`Henlo`,
 			`
-import { Input as Button } from './components'
+import { Input as Button } from './components';
 export const basic = () => <Container><Button /></Container>
 `
 		);
@@ -113,7 +113,7 @@ export const basic = () => <Container><Button /></Container>
 		"
 		import * as __story_import_0 from './components'
 		export const __namedExamples = {
-		  'basic': 'import { Input as Button } from \\\\'./components\\\\'\\\\n\\\\n<Container><Button /></Container>'
+		  'basic': 'import { Input as Button } from \\\\'./components\\\\';\\\\n\\\\n<Container><Button /></Container>'
 		};
 		export const __storiesScope = {
 		  './components': __story_import_0
@@ -131,7 +131,7 @@ export const basic = () => <Container><Button /></Container>
 		const result = await compile(
 			`Henlo`,
 			`
-import * as Buttons from './Buttons'
+import * as Buttons from './Buttons';
 export const basic = () => <Container><Buttons.Button /></Container>
 `
 		);
@@ -139,7 +139,7 @@ export const basic = () => <Container><Buttons.Button /></Container>
 		"
 		import * as __story_import_0 from './Buttons'
 		export const __namedExamples = {
-		  'basic': 'import * as Buttons from \\\\'./Buttons\\\\'\\\\n\\\\n<Container><Buttons.Button /></Container>'
+		  'basic': 'import * as Buttons from \\\\'./Buttons\\\\';\\\\n\\\\n<Container><Buttons.Button /></Container>'
 		};
 		export const __storiesScope = {
 		  './Buttons': __story_import_0
@@ -157,8 +157,8 @@ export const basic = () => <Container><Buttons.Button /></Container>
 		const result = await compile(
 			`Henlo`,
 			`
-import * as React from 'react'
-import { Coffee, Milk } from './drinks'
+import * as React from 'react';
+import { Coffee, Milk } from './drinks';
 export const basic = () => <Container><Button /></Container>
 `
 		);
@@ -172,6 +172,32 @@ export const basic = () => <Container><Button /></Container>
 		export const __storiesScope = {
 		  'react': __story_import_0,
 		  './drinks': __story_import_1
+		};
+
+		const layoutProps = {
+		  __namedExamples,
+		__storiesScope
+		};
+		"
+	`);
+	});
+
+	test('add semicolon', async () => {
+		const result = await compile(
+			`Henlo`,
+			`
+import Container from './Container'
+export const basic = () => <Container><Button /></Container>
+`
+		);
+		expect(result).toMatchInlineSnapshot(`
+		"
+		import * as __story_import_0 from './Container'
+		export const __namedExamples = {
+		  'basic': 'import Container from \\\\'./Container\\\\';\\\\n\\\\n<Container><Button /></Container>'
+		};
+		export const __storiesScope = {
+		  './Container': __story_import_0
 		};
 
 		const layoutProps = {
@@ -317,6 +343,30 @@ export const basic = () => <Container>{javascript}</Container>
 
 		export const __namedExamples = {
 		  'basic': '<Container>{javascript}</Container>'
+		};
+		export const __storiesScope = {};
+
+		const layoutProps = {
+		  __namedExamples,
+		__storiesScope
+		};
+		"
+	`);
+	});
+
+	test('add semicolon', async () => {
+		const result = await compile(
+			`Henlo`,
+			`
+const pizza = 'pizza'
+export const basic = () => <Container>{pizza}</Container>
+`
+		);
+		expect(result).toMatchInlineSnapshot(`
+		"
+
+		export const __namedExamples = {
+		  'basic': 'const pizza = \\\\'pizza\\\\';\\\\n\\\\n<Container>{pizza}</Container>'
 		};
 		export const __storiesScope = {};
 

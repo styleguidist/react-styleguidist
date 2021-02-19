@@ -32,6 +32,10 @@ interface Dependency {
 
 const getLocalName = (index: number) => `__story_import_${index}`;
 
+// Ensure that we have a semicolon (;) at the end: we must put a semicolon
+// in front of JSX (`import 'foo'; <Button/>`), otherwise it won't compile
+const ensureSemicolon = (s: string): string => s.replace(/(?:;\s*)?$/, ';');
+
 // TODO: Deduplicate?
 const getModulePathToModuleMap = (modules: string[]) => {
 	const moduleMap: ModuleMap = {};
@@ -208,7 +212,7 @@ const prependExampleWithDependencies = (code: string, dependencies: Dependency[]
 	);
 	return [
 		usedDependencies
-			.map((dependency) => dependency.code)
+			.map((dependency) => ensureSemicolon(dependency.code))
 			.filter(Boolean)
 			.join('\n'),
 		code,
