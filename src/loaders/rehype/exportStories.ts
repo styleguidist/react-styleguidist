@@ -206,9 +206,17 @@ const getExportCode = (node: Declaration, code: string) => {
 // because we only check whether the dependency local name is present in the
 // example code. However, it won't break the code by not including all the used
 // dependencies
-const prependExampleWithDependencies = (code: string, dependencies: Dependency[]) => {
-	const usedDependencies = dependencies.filter((dependency) =>
-		dependency.names.some((name) => code.match(new RegExp(`\\b${name}\\b`)))
+const prependExampleWithDependencies = (
+	code: string,
+	dependencies: Dependency[],
+	component: string
+) => {
+	const usedDependencies = dependencies.filter(
+		(dependency) =>
+			// Ignore the current component import it it's the only import
+			!(dependency.names.length === 1 && dependency.names[0] === component) &&
+			// Include imports when any of the names are present in the code
+			dependency.names.some((name) => code.match(new RegExp(`\\b${name}\\b`)))
 	);
 	return [
 		usedDependencies
@@ -221,7 +229,7 @@ const prependExampleWithDependencies = (code: string, dependencies: Dependency[]
 		.join('\n\n');
 };
 
-const getExports = (ast: Program, code: string) => {
+const getExports = (ast: Program, code: string, component: string) => {
 	const imports = getImportStatements(ast, code);
 	const variables = getVariableStatements(ast, code);
 
@@ -234,10 +242,11 @@ const getExports = (ast: Program, code: string) => {
 				if (exportNamedDeclaratioNode.declaration) {
 					const exportCode = getExportCode(exportNamedDeclaratioNode.declaration, code);
 					if (exportCode) {
-						exports[exportCode.name] = prependExampleWithDependencies(exportCode.code, [
-							...imports,
-							...variables,
-						]);
+						exports[exportCode.name] = prependExampleWithDependencies(
+							exportCode.code,
+							[...imports, ...variables],
+							component
+						);
 					}
 				}
 			}
@@ -284,7 +293,7 @@ export default ({ component, resourcePath }: { component: string; resourcePath: 
 	}
 
 	// Generate export for named examples
-	const exports = getExports(storiesAst, storiesCode);
+	const exports = getExports(storiesAst, storiesCode, component);
 	const examplesExportCode = `export const __namedExamples = ${generate(toAst(exports))}`;
 	tree.children.push({
 		type: 'export',

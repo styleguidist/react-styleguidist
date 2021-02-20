@@ -153,6 +153,64 @@ export const basic = () => <Container><Buttons.Button /></Container>
 	`);
 	});
 
+	test('skips current component', async () => {
+		const result = await compile(
+			`Henlo`,
+			`
+import Pizza from './Pizza';
+import Container from './Container';
+export const basic = () => <Container><Pizza /></Container>
+`
+		);
+		expect(result).toMatchInlineSnapshot(`
+		"
+		import * as __story_import_0 from './Pizza'
+		import * as __story_import_1 from './Container'
+		export const __namedExamples = {
+		  'basic': 'import Container from \\\\'./Container\\\\';\\\\n\\\\n<Container><Pizza /></Container>'
+		};
+		export const __storiesScope = {
+		  './Pizza': __story_import_0,
+		  './Container': __story_import_1
+		};
+
+		const layoutProps = {
+		  __namedExamples,
+		__storiesScope
+		};
+		"
+	`);
+	});
+
+	test('includes the current component when it is not the only import', async () => {
+		const result = await compile(
+			`Henlo`,
+			`
+import Pizza, { cheese } from './Pizza';
+import Container from './Container';
+export const basic = () => <Container><Pizza toppings={[cheese]} /></Container>
+`
+		);
+		expect(result).toMatchInlineSnapshot(`
+		"
+		import * as __story_import_0 from './Pizza'
+		import * as __story_import_1 from './Container'
+		export const __namedExamples = {
+		  'basic': 'import Pizza, { cheese } from \\\\'./Pizza\\\\';\\\\nimport Container from \\\\'./Container\\\\';\\\\n\\\\n<Container><Pizza toppings={[cheese]} /></Container>'
+		};
+		export const __storiesScope = {
+		  './Pizza': __story_import_0,
+		  './Container': __story_import_1
+		};
+
+		const layoutProps = {
+		  __namedExamples,
+		__storiesScope
+		};
+		"
+	`);
+	});
+
 	test('unused imports', async () => {
 		const result = await compile(
 			`Henlo`,
@@ -182,7 +240,7 @@ export const basic = () => <Container><Button /></Container>
 	`);
 	});
 
-	test('add semicolon', async () => {
+	test('adds semicolon', async () => {
 		const result = await compile(
 			`Henlo`,
 			`
@@ -354,7 +412,7 @@ export const basic = () => <Container>{javascript}</Container>
 	`);
 	});
 
-	test('add semicolon', async () => {
+	test('adds semicolon', async () => {
 		const result = await compile(
 			`Henlo`,
 			`
