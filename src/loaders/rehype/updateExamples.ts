@@ -17,17 +17,17 @@ const getCode = (node: CodeNode): string =>
  */
 export default ({
 	updateExample,
-	resourcePath,
+	mdxDocumentPath,
 }: {
 	updateExample: Rsg.SanitizedStyleguidistConfig['updateExample'];
-	resourcePath: string;
+	mdxDocumentPath: string;
 }) => () => (tree: Node) => {
 	visit<CodeNode>(tree, { type: 'element', tagName: 'code' }, (node) => {
 		const content = getCode(node);
 		const lang = getCodeLang(node);
 		const { className, metastring, ...settings } = node.properties;
 
-		const nextExample = updateExample({ content, lang, settings }, resourcePath);
+		const nextExample = updateExample({ content, lang, settings }, mdxDocumentPath);
 
 		// TODO: Update lang
 		node.children[0].value = nextExample.content.trim();

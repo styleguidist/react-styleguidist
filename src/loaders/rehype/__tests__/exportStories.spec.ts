@@ -15,7 +15,9 @@ const compile = async (mdxContent: string, storyContent: string) => {
 	vol.fromJSON({ '/Pizza/Pizza.stories.tsx': storyContent });
 	const result = await mdx(mdxContent, {
 		filepath: 'Pizza.md',
-		rehypePlugins: [exportStories({ component: 'Pizza', resourcePath: '/Pizza/Pizza.md' })],
+		rehypePlugins: [
+			exportStories({ componentPath: './index.tsx', mdxDocumentPath: '/Pizza/Readme.md' }),
+		],
 	});
 
 	// Strip repeated parts
@@ -171,6 +173,35 @@ export const basic = () => <Container><Pizza /></Container>
 		};
 		export const __storiesScope = {
 		  './Pizza': __story_import_0,
+		  './Container': __story_import_1
+		};
+
+		const layoutProps = {
+		  __namedExamples,
+		__storiesScope
+		};
+		"
+	`);
+	});
+
+	test('skips current component (named import)', async () => {
+		const result = await compile(
+			`Henlo`,
+			`
+import { Pizza } from '.';
+import Container from './Container';
+export const basic = () => <Container><Pizza /></Container>
+`
+		);
+		expect(result).toMatchInlineSnapshot(`
+		"
+		import * as __story_import_0 from '.'
+		import * as __story_import_1 from './Container'
+		export const __namedExamples = {
+		  'basic': 'import Container from \\\\'./Container\\\\';\\\\n\\\\n<Container><Pizza /></Container>'
+		};
+		export const __storiesScope = {
+		  '.': __story_import_0,
 		  './Container': __story_import_1
 		};
 

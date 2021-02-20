@@ -19,7 +19,7 @@ import { mdx } from '@mdx-js/react';
 export default async function mdxLoader(this: Rsg.StyleguidistLoaderContext, content: string) {
 	const callback = this.async() || (() => '');
 	const { updateExample, context } = this._styleguidist;
-	const { component } = loaderUtils.getOptions(this) || {};
+	const { component: componentPath } = loaderUtils.getOptions(this) || {};
 
 	let result;
 	try {
@@ -29,16 +29,13 @@ export default async function mdxLoader(this: Rsg.StyleguidistLoaderContext, con
 				addReact,
 				markStaticExamples,
 				addExampleIndicies,
-				updateExamples({ updateExample, resourcePath: this.resourcePath }),
+				updateExamples({ updateExample, mdxDocumentPath: this.resourcePath }),
 				exportExamples,
 				// Sections don't have current components
-				component && exportStories({ component, resourcePath: this.resourcePath }),
+				componentPath && exportStories({ componentPath, mdxDocumentPath: this.resourcePath }),
 				provideDocumentScope({ context }),
 				provideExampleScope,
-				component && provideCurrentComponent({ component }),
-				// TODO: Use smart (no-duplicates) insert instead of deduplication
-				// TODO: Or better insert needed imports in front of each example
-				// deduplicateImports,
+				componentPath && provideCurrentComponent({ componentPath }),
 			],
 		});
 	} catch (err) {

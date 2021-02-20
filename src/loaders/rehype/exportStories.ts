@@ -21,6 +21,7 @@ import toAst from 'to-ast';
 import { builders as b } from 'ast-types';
 import getAst from '../utils/getAst';
 import { ModuleMap } from './types';
+import getNameFromFilePath from '../utils/getNameFromFilePath';
 
 // TODO: Hot reload
 // TODO: Unindenting
@@ -209,12 +210,12 @@ const getExportCode = (node: Declaration, code: string) => {
 const prependExampleWithDependencies = (
 	code: string,
 	dependencies: Dependency[],
-	component: string
+	componentName: string
 ) => {
 	const usedDependencies = dependencies.filter(
 		(dependency) =>
 			// Ignore the current component import it it's the only import
-			!(dependency.names.length === 1 && dependency.names[0] === component) &&
+			!(dependency.names.length === 1 && dependency.names[0] === componentName) &&
 			// Include imports when any of the names are present in the code
 			dependency.names.some((name) => code.match(new RegExp(`\\b${name}\\b`)))
 	);
@@ -229,7 +230,7 @@ const prependExampleWithDependencies = (
 		.join('\n\n');
 };
 
-const getExports = (ast: Program, code: string, component: string) => {
+const getExports = (ast: Program, code: string, componentName: string) => {
 	const imports = getImportStatements(ast, code);
 	const variables = getVariableStatements(ast, code);
 
@@ -245,7 +246,7 @@ const getExports = (ast: Program, code: string, component: string) => {
 						exports[exportCode.name] = prependExampleWithDependencies(
 							exportCode.code,
 							[...imports, ...variables],
-							component
+							componentName
 						);
 					}
 				}
@@ -275,12 +276,16 @@ const getExports = (ast: Program, code: string, component: string) => {
  *   './Button': __story_import_0
  * }
  */
-export default ({ component, resourcePath }: { component: string; resourcePath: string }) => () => (
-	treeRaw: MdxNode
-) => {
+export default ({
+	componentPath,
+	mdxDocumentPath,
+}: {
+	componentPath: string;
+	mdxDocumentPath: string;
+}) => () => (treeRaw: MdxNode) => {
 	const tree = treeRaw as Parent;
 
-	const componentAbsolutePath = path.resolve(path.dirname(resourcePath), component);
+	const componentAbsolutePath = path.resolve(path.dirname(mdxDocumentPath), componentPath);
 	const storiesFile = getStoriesFile(componentAbsolutePath);
 	if (!storiesFile) {
 		return tree;
@@ -292,8 +297,10 @@ export default ({ component, resourcePath }: { component: string; resourcePath: 
 		return tree;
 	}
 
+	const componentName = getNameFromFilePath(componentAbsolutePath);
+
 	// Generate export for named examples
-	const exports = getExports(storiesAst, storiesCode, component);
+	const exports = getExports(storiesAst, storiesCode, componentName);
 	const examplesExportCode = `export const __namedExamples = ${generate(toAst(exports))}`;
 	tree.children.push({
 		type: 'export',
