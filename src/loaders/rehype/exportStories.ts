@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { flatMap } from 'lodash';
+import { flatMap, camelCase } from 'lodash';
 import {
 	BaseNode,
 	Program,
@@ -243,7 +243,7 @@ const getExports = (ast: Program, code: string, componentName: string) => {
 				if (exportNamedDeclaratioNode.declaration) {
 					const exportCode = getExportCode(exportNamedDeclaratioNode.declaration, code);
 					if (exportCode) {
-						exports[exportCode.name] = prependExampleWithDependencies(
+						exports[camelCase(exportCode.name)] = prependExampleWithDependencies(
 							exportCode.code,
 							[...imports, ...variables],
 							componentName

@@ -24,6 +24,54 @@ const compile = async (mdxContent: string, storyContent: string) => {
 	return result.split('/* @jsx mdx */')[1].split('const MDXLayout = "wrapper"')[0];
 };
 
+describe('stories', () => {
+	test('camel case names stays as camel case', async () => {
+		const result = await compile(
+			`Henlo`,
+			`
+export const camelCaseStory = () => <Container><Button /></Container>
+`
+		);
+		expect(result).toMatchInlineSnapshot(`
+		"
+
+		export const __namedExamples = {
+		  'camelCaseStory': '<Container><Button /></Container>'
+		};
+		export const __storiesScope = {};
+
+		const layoutProps = {
+		  __namedExamples,
+		__storiesScope
+		};
+		"
+	`);
+	});
+
+	test('pascal case names are converted to camel case', async () => {
+		const result = await compile(
+			`Henlo`,
+			`
+export const PascalCaseStory = () => <Container><Button /></Container>
+`
+		);
+		expect(result).toMatchInlineSnapshot(`
+		"
+
+		export const __namedExamples = {
+		  'pascalCaseStory': '<Container><Button /></Container>'
+		};
+		export const __storiesScope = {};
+
+		const layoutProps = {
+		  __namedExamples,
+		__storiesScope
+		};
+		"
+	`);
+	});
+});
+
 describe('imports', () => {
 	test('default import', async () => {
 		const result = await compile(

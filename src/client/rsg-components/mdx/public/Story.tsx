@@ -1,5 +1,5 @@
 import React from 'react';
-import { camelCase } from 'lodash';
+import camelCase from 'lodash/camelCase';
 import Para from 'rsg-components/Para';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import Playground from 'rsg-components/Playground';
@@ -12,11 +12,12 @@ interface Props extends Rsg.Modifiers {
 	id: string;
 }
 
+// TODO: Extract to its own file?
 // XXX: We're assuming that all imported stories are located in a .story.js file
 // next to the Mdx file with the same name, so we're ignoring all but the very
 // last part of the story ID, which is the name of the exported from the CSF file
 // function
-const getLocalExampleNameById = (id: string) => camelCase(id.replace(/^.*?--/, ''));
+export const getLocalExampleNameById = (id: string) => camelCase(id.replace(/^.*?--/, ''));
 
 export default function Story({ id, ...modifiers }: Props) {
 	const {
