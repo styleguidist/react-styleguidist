@@ -5,14 +5,14 @@ describe('transpileImports', () => {
 		const result = transpileImports(`import Component from '1-numbered-directory/component.jsx'`);
 		expect(result).toMatchInlineSnapshot(`
 "const _1_numbered_directory_component_jsx$0 = require('1-numbered-directory/component.jsx');
-const _Component = _1_numbered_directory_component_jsx$0.default || _1_numbered_directory_component_jsx$0;"
+const Component = _1_numbered_directory_component_jsx$0.default || _1_numbered_directory_component_jsx$0;"
 `);
 	});
 	test('transpile default imports', () => {
 		const result = transpileImports(`import B from 'cat'`);
 		expect(result).toMatchInlineSnapshot(`
 "const _cat$0 = require('cat');
-const _B = _cat$0.default || _cat$0;"
+const B = _cat$0.default || _cat$0;"
 `);
 	});
 
@@ -20,7 +20,7 @@ const _B = _cat$0.default || _cat$0;"
 		const result = transpileImports(`import {B} from 'cat'`);
 		expect(result).toMatchInlineSnapshot(`
 "const _cat$0 = require('cat');
-const _B = _cat$0.B;"
+const B = _cat$0.B;"
 `);
 	});
 
@@ -28,8 +28,8 @@ const _B = _cat$0.B;"
 		const result = transpileImports(`import A, {B} from 'cat'`);
 		expect(result).toMatchInlineSnapshot(`
 "const _cat$0 = require('cat');
-const _A = _cat$0.default || _cat$0;
-const _B = _cat$0.B;"
+const A = _cat$0.default || _cat$0;
+const B = _cat$0.B;"
 `);
 	});
 
@@ -52,14 +52,14 @@ import E from 'snake'
 require('dog');
 /* Less important comments */
 const _cat$0 = require('cat');
-const _B = _cat$0.default || _cat$0;
+const B = _cat$0.default || _cat$0;
 // Absolutely not important comment
 const _capybara$0 = require('capybara');
-const _C = _capybara$0.default || _capybara$0;
+const C = _capybara$0.default || _capybara$0;
 const _hamster$0 = require('hamster');
-const _D = _hamster$0.default || _hamster$0; // One more comment
+const D = _hamster$0.default || _hamster$0; // One more comment
 const _snake$0 = require('snake');
-const _E = _snake$0.default || _snake$0;
+const E = _snake$0.default || _snake$0;
 "
 `);
 	});
@@ -72,8 +72,8 @@ const _E = _snake$0.default || _snake$0;
 `);
 		expect(result).toMatchInlineSnapshot(`
 "const _cat$0 = require('cat');
-const _B = _cat$0.B;
-const _C = _cat$0.C;
+const B = _cat$0.B;
+const C = _cat$0.C;
 "
 `);
 	});
@@ -86,8 +86,8 @@ const _C = _cat$0.C;
 `);
 		expect(result).toMatchInlineSnapshot(`
 "const _cat$0 = require('cat');
-const _B = _cat$0.B;
-const _C = _cat$0.C;
+const B = _cat$0.B;
+const C = _cat$0.C;
 "
 `);
 	});
@@ -101,7 +101,7 @@ const _C = _cat$0.C;
 			const result = transpileImports(`import B from '${modulePath}'`);
 			expect(result).toMatchInlineSnapshot(`
 	"const _${transpiled}$0 = require('${modulePath}');
-	const _B = _${transpiled}$0.default || _${transpiled}$0;"
+	const B = _${transpiled}$0.default || _${transpiled}$0;"
 	`);
 		});
 	});

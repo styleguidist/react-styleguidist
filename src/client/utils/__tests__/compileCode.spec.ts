@@ -15,8 +15,8 @@ var bar = baz.bar;"
 	test('transform imports to require()', () => {
 		const result = compileCode(`import foo from 'bar'`, compilerConfig);
 		expect(result).toMatchInlineSnapshot(`
-"const bar$0 = require('bar');
-const foo = bar$0.default || bar$0;"
+"const _bar$0 = require('bar');
+const foo = _bar$0.default || _bar$0;"
 `);
 	});
 
@@ -43,10 +43,10 @@ import Button from 'button';
 		);
 		expect(result).toMatchInlineSnapshot(`
 "
-const bar$0 = require('bar');
-const foo = bar$0.default || bar$0;
-const button$0 = require('button');
-const Button = button$0.default || button$0;
+const _bar$0 = require('bar');
+const foo = _bar$0.default || _bar$0;
+const _button$0 = require('button');
+const Button = _button$0.default || _button$0;
 React.createElement( Button, null )"
 `);
 	});
