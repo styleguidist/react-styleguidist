@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import camelCase from 'lodash/camelCase';
 import Para from 'rsg-components/Para';
 import PlaygroundError from 'rsg-components/PlaygroundError';
@@ -10,6 +11,7 @@ import * as Rsg from '../../../../typings';
 
 interface Props extends Rsg.Modifiers {
 	id: string;
+	name?: string;
 }
 
 // TODO: Extract to its own file?
@@ -19,7 +21,7 @@ interface Props extends Rsg.Modifiers {
 // function
 export const getLocalExampleNameById = (id: string) => camelCase(id.replace(/^.*?--/, ''));
 
-export default function Story({ id, ...modifiers }: Props) {
+export default function Story({ id, name, ...modifiers }: Props) {
 	const {
 		componentName,
 		exampleMode,
@@ -28,11 +30,27 @@ export default function Story({ id, ...modifiers }: Props) {
 		namedExamples,
 	} = useMdxContext();
 
+	if (name) {
+		return (
+			<Para>
+				<PlaygroundError message={`Story: Only stories imported by ID are supported`} />
+			</Para>
+		);
+	}
+
+	if (!id) {
+		return (
+			<Para>
+				<PlaygroundError message={`Story: Imported example ID is required`} />
+			</Para>
+		);
+	}
+
 	const code = namedExamples[getLocalExampleNameById(id)];
 	if (!code) {
 		return (
 			<Para>
-				<PlaygroundError message={`Named example \`${id}\` not found in a story file`} />
+				<PlaygroundError message={`Story: Imported example \`${id}\` not found in a story file`} />
 			</Para>
 		);
 	}
@@ -56,3 +74,7 @@ export default function Story({ id, ...modifiers }: Props) {
 		/>
 	);
 }
+
+Story.propTypes = {
+	id: PropTypes.string.isRequired,
+};
