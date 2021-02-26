@@ -146,7 +146,6 @@ const getVariableDeclarationNames = ({ id }: VariableDeclarator): string[] => {
 							}
 							return '';
 					}
-
 					return '';
 				})
 				.filter(Boolean);
@@ -156,16 +155,21 @@ const getVariableDeclarationNames = ({ id }: VariableDeclarator): string[] => {
 };
 
 const getVariableStatements = (ast: Program, code: string): Dependency[] => {
-	const nodes = ast.body.filter((node) => node.type === 'VariableDeclaration');
-	return nodes.map((node) => {
-		const variableDeclarationNode = node as VariableDeclaration;
-		// @ts-expect-error: There are no types for location ;-/
-		const { start, end } = variableDeclarationNode;
-		return {
-			names: flatMap(variableDeclarationNode.declarations, getVariableDeclarationNames),
-			code: code.substring(start, end),
-		};
+	const variables: Dependency[] = [];
+	walk(ast, {
+		enter: (node: BaseNode, parent: BaseNode) => {
+			if (node.type === 'VariableDeclaration' && parent.type === 'Program') {
+				const variableDeclarationNode = node as VariableDeclaration;
+				// @ts-expect-error: There are no types for location ;-/
+				const { start, end } = variableDeclarationNode;
+				variables.push({
+					names: flatMap(variableDeclarationNode.declarations, getVariableDeclarationNames),
+					code: code.substring(start, end),
+				});
+			}
+		},
 	});
+	return variables;
 };
 
 const getExportCode = (node: Declaration, code: string) => {

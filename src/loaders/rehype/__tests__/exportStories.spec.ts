@@ -514,4 +514,28 @@ export const basic = () => <Container>{pizza}</Container>
 		"
 	`);
 	});
+
+	test('understands TypeScript', async () => {
+		const result = await compile(
+			`Henlo`,
+			`
+const nums = ['eins', 'zwei', 'polizei'] as const;
+export const basic = () => <Container>{nums.map(x => x)}</Container>
+`
+		);
+		expect(result).toMatchInlineSnapshot(`
+		"
+
+		export const __namedExamples = {
+		  'basic': 'const nums = [\\\\'eins\\\\', \\\\'zwei\\\\', \\\\'polizei\\\\'];\\\\n\\\\n<Container>{nums.map(x => x)}</Container>'
+		};
+		export const __storiesScope = {};
+
+		const layoutProps = {
+		  __namedExamples,
+		__storiesScope
+		};
+		"
+	`);
+	});
 });
