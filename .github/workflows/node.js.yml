@@ -23,7 +23,7 @@ jobs:
   integration:
     runs-on: ubuntu-latest
     container:
-      image: cypress/included:3.0.2
+      image: cypress/included:3.2.0
 
     steps:
       - uses: actions/checkout@v2
