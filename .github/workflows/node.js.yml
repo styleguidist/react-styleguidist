@@ -31,20 +31,22 @@ jobs:
       - run: |
           # Compile JS
           npm run compile
+
           # Build all examples
           npm run build:basic
           npm run build:customised
           npm run build:sections
+
           # Check that examples really works: no JS errors on load
           npm run test:browser:pre
           npm run test:browser:basic
           npm run test:browser:customised
           npm run test:browser:sections
-          # Run integration tests with Cypress
-          npm run test:cypress:pre
-          npm run test:cypress:startServer &
-          npm run test:cypress:startServer:post
-          npm run test:cypress:run
+
+      - uses: cypress-io/github-action@v2
+        with: 
+          start: node test/run.server.js
+          wait-on: http://localhost:8082
 
   build:
     runs-on: ubuntu-latest
