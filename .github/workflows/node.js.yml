@@ -22,7 +22,6 @@ jobs:
 
   integration:
     runs-on: ubuntu-latest
-    container: cypress/included:6.5.0
 
     steps:
       - uses: actions/checkout@v2
@@ -46,8 +45,10 @@ jobs:
 
       - name: Run Cypress tests
         run: |
+          npm run test:cypress:pre
           npm run test:cypress:startServer &
-          npm run test:cypress:run          
+          npm run test:cypress:startServer:post
+          npm run test:cypress:run      
 
   build:
     runs-on: ubuntu-latest
