@@ -43,6 +43,7 @@ jobs:
           npm run test:browser:customised
           npm run test:browser:sections
           # Run integration tests with Cypress
+          npm i --no-save wait-on
           npm run test:cypress:startServer &
           npm run test:cypress:startServer:post
           npm run test:cypress:run
