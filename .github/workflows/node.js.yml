@@ -22,8 +22,6 @@ jobs:
 
   integration:
     runs-on: ubuntu-latest
-    container:
-      image: cypress/included:6.6.0
 
     steps:
       - uses: actions/checkout@v2
@@ -43,11 +41,18 @@ jobs:
           npm run test:browser:customised
           npm run test:browser:sections
 
+  cypress:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Run integration tests with Cypress
         uses: cypress-io/github-action@v2
         with:
+          build: npm run compile
           start: npm run test:cypress:startServer
-          config-file: serve.json
 
   build:
     runs-on: ubuntu-latest
