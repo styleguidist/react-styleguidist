@@ -29,7 +29,8 @@ jobs:
       - uses: actions/setup-node@v1
 
       - run: npm ci
-      - run: |
+      - name: Test styleguides with puppeteer
+        run: |
           # Compile JS
           npm run compile
           # Build all examples
