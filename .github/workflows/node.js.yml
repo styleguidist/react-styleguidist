@@ -52,7 +52,7 @@ jobs:
       
       - name: Prepare styleguidist
         run: |
-          npm run ci
+          npm ci
           npm run compile
 
       - name: Run integration tests with Cypress
