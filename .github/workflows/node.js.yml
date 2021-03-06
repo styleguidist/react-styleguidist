@@ -43,6 +43,7 @@ jobs:
 
   cypress:
     runs-on: ubuntu-latest
+    container: cypress/included:6.5.0
 
     steps:
       - name: Checkout
