@@ -4,6 +4,8 @@
 		// only generate typings when using this tsconfig
 		"declaration": true
 	},
+	// ignore the dangerfile in calculation of the root folder
+	"files": [],
 	// avoid generating typings for tests and mocks
 	"exclude": [
 		"dangerfile.ts",
