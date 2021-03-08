@@ -1,28 +1,35 @@
 import transpileImports from '../transpileImports';
 
 describe('transpileImports', () => {
+	test('transpile import statement starting with number', () => {
+		const result = transpileImports(`import Component from '1-numbered-directory/component.jsx'`);
+		expect(result).toMatchInlineSnapshot(`
+"const _1_numbered_directory_component_jsx$0 = require('1-numbered-directory/component.jsx');
+const Component = _1_numbered_directory_component_jsx$0.default || _1_numbered_directory_component_jsx$0;"
+`);
+	});
 	test('transpile default imports', () => {
 		const result = transpileImports(`import B from 'cat'`);
 		expect(result).toMatchInlineSnapshot(`
-"const cat$0 = require('cat');
-const B = cat$0.default || cat$0;"
+"const _cat$0 = require('cat');
+const B = _cat$0.default || _cat$0;"
 `);
 	});
 
 	test('transpile named imports', () => {
 		const result = transpileImports(`import {B} from 'cat'`);
 		expect(result).toMatchInlineSnapshot(`
-"const cat$0 = require('cat');
-const B = cat$0.B;"
+"const _cat$0 = require('cat');
+const B = _cat$0.B;"
 `);
 	});
 
 	test('transpile mixed imports', () => {
 		const result = transpileImports(`import A, {B} from 'cat'`);
 		expect(result).toMatchInlineSnapshot(`
-"const cat$0 = require('cat');
-const A = cat$0.default || cat$0;
-const B = cat$0.B;"
+"const _cat$0 = require('cat');
+const A = _cat$0.default || _cat$0;
+const B = _cat$0.B;"
 `);
 	});
 
@@ -44,15 +51,15 @@ import E from 'snake'
 */
 require('dog');
 /* Less important comments */
-const cat$0 = require('cat');
-const B = cat$0.default || cat$0;
+const _cat$0 = require('cat');
+const B = _cat$0.default || _cat$0;
 // Absolutely not important comment
-const capybara$0 = require('capybara');
-const C = capybara$0.default || capybara$0;
-const hamster$0 = require('hamster');
-const D = hamster$0.default || hamster$0; // One more comment
-const snake$0 = require('snake');
-const E = snake$0.default || snake$0;
+const _capybara$0 = require('capybara');
+const C = _capybara$0.default || _capybara$0;
+const _hamster$0 = require('hamster');
+const D = _hamster$0.default || _hamster$0; // One more comment
+const _snake$0 = require('snake');
+const E = _snake$0.default || _snake$0;
 "
 `);
 	});
@@ -64,9 +71,9 @@ const E = snake$0.default || snake$0;
 } from 'cat'
 `);
 		expect(result).toMatchInlineSnapshot(`
-"const cat$0 = require('cat');
-const B = cat$0.B;
-const C = cat$0.C;
+"const _cat$0 = require('cat');
+const B = _cat$0.B;
+const C = _cat$0.C;
 "
 `);
 	});
@@ -78,9 +85,9 @@ const C = cat$0.C;
 } from 'cat'
 `);
 		expect(result).toMatchInlineSnapshot(`
-"const cat$0 = require('cat');
-const B = cat$0.B;
-const C = cat$0.C;
+"const _cat$0 = require('cat');
+const B = _cat$0.B;
+const C = _cat$0.C;
 "
 `);
 	});
@@ -93,8 +100,8 @@ const C = cat$0.C;
 		test(`${modulePath}`, () => {
 			const result = transpileImports(`import B from '${modulePath}'`);
 			expect(result).toMatchInlineSnapshot(`
-	"const ${transpiled}$0 = require('${modulePath}');
-	const B = ${transpiled}$0.default || ${transpiled}$0;"
+	"const _${transpiled}$0 = require('${modulePath}');
+	const B = _${transpiled}$0.default || _${transpiled}$0;"
 	`);
 		});
 	});

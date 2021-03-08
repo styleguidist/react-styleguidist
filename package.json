@@ -194,7 +194,7 @@
     "test:browser:customised": "node test/browser.js examples/customised/styleguide/index.html",
     "test:browser:sections": "node test/browser.js examples/sections/styleguide/index.html",
     "format": "prettier --loglevel warn --write \"**/*.{js,md}\"",
-    "test:cypress:pre": "npm i --no-save cypress@3.0.2 wait-on",
+    "test:cypress:pre": "npm i --no-save cypress@3.8.3 wait-on",
     "test:cypress:open": "cypress open",
     "test:cypress:run": "cypress run",
     "test:cypress:startServer": "node test/run.server.js",
