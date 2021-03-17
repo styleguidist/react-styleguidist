@@ -27,13 +27,12 @@
     "node": ">=10"
   },
   "dependencies": {
+    "@babel/parser": "^7.13.11",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
     "@tippyjs/react": "4.1.0",
     "@vxna/mini-html-webpack-template": "^2.0.0",
     "acorn": "^8.0.5",
-    "acorn-jsx": "^5.3.1",
-    "acorn-loose": "^8.0.2",
     "assert": "1.5.0",
     "ast-types": "~0.14.2",
     "clean-webpack-plugin": "^3.0.0",

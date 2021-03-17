@@ -527,7 +527,7 @@ export const basic = () => <Container>{nums.map(x => x)}</Container>
 		"
 
 		export const __namedExamples = {
-		  'basic': 'const nums = [\\\\'eins\\\\', \\\\'zwei\\\\', \\\\'polizei\\\\'];\\\\n\\\\n<Container>{nums.map(x => x)}</Container>'
+		  'basic': 'const nums = [\\\\'eins\\\\', \\\\'zwei\\\\', \\\\'polizei\\\\'] as const;\\\\n\\\\n<Container>{nums.map(x => x)}</Container>'
 		};
 		export const __storiesScope = {};
 

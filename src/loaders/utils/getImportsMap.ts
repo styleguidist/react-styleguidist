@@ -1,4 +1,3 @@
-import acornJsx from 'acorn-jsx';
 import { walk } from 'estree-walker';
 import { Node } from 'estree';
 import getAst from './getAst';
@@ -9,7 +8,7 @@ import getAst from './getAst';
 export default function getImportsMap(code: string): Record<string, string> {
 	// Parse example source code, but ignore errors:
 	// we'll deal with them on the frontend
-	const ast = getAst(code, [acornJsx()]);
+	const ast = getAst(code);
 	if (!ast) {
 		return {};
 	}

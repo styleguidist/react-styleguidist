@@ -1,4 +1,3 @@
-import './dependencies/acorn-jsx';
 import './dependencies/findup';
 import './dependencies/listify';
 import './dependencies/react-docgen';

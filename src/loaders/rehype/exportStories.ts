@@ -13,7 +13,6 @@ import {
 	ImportDefaultSpecifier,
 	ImportNamespaceSpecifier,
 } from 'estree';
-import acornJsx from 'acorn-jsx';
 import { Parent, Node as MdxNode } from 'unist';
 import { walk } from 'estree-walker';
 import { generate } from 'escodegen';
@@ -296,7 +295,7 @@ export default ({
 	}
 
 	const storiesCode = fs.readFileSync(storiesFile, 'utf8');
-	const storiesAst = getAst(storiesCode, [acornJsx()]);
+	const storiesAst = getAst(storiesCode);
 	if (!storiesAst) {
 		return tree;
 	}
