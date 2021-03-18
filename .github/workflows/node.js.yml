@@ -28,23 +28,27 @@ jobs:
       - uses: actions/setup-node@v1
 
       - run: npm ci
-      - run: |
-          # Compile JS
-          npm run compile
-          # Build all examples
+      - run: npm run compile
+
+      - name: Build all examples
+        run: |
           npm run build:basic
           npm run build:customised
           npm run build:sections
-          # Check that examples really works: no JS errors on load
+
+      - name: Check that examples really works - no JS errors on load
+        run: |
           npm run test:browser:pre
           npm run test:browser:basic
           npm run test:browser:customised
           npm run test:browser:sections
-          # Run integration tests with Cypress
+
+      - name: Run Cypress tests
+        run: |
           npm run test:cypress:pre
           npm run test:cypress:startServer &
           npm run test:cypress:startServer:post
-          npm run test:cypress:run
+          npm run test:cypress:run      
 
   build:
     runs-on: ubuntu-latest
