@@ -46,7 +46,7 @@ export default function Story({ id, name, ...modifiers }: Props) {
 		);
 	}
 
-	const code = namedExamples[getLocalExampleNameById(id)];
+	const code = namedExamples?.[getLocalExampleNameById(id)];
 	if (!code) {
 		return (
 			<Para>
