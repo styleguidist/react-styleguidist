@@ -1,6 +1,7 @@
 import path from 'path';
 import { flatMap, camelCase } from 'lodash';
 import loaderUtils from 'loader-utils';
+import { loader } from 'webpack';
 import {
 	BaseNode,
 	Program,
@@ -20,7 +21,6 @@ import toAst from 'to-ast';
 import getAst from './utils/getAst';
 import getNameFromFilePath from './utils/getNameFromFilePath';
 import { ModuleMap } from './rehype/types';
-import * as Rsg from '../typings';
 
 // TODO: Unindenting
 
@@ -249,7 +249,7 @@ const getExports = (ast: Program, code: string, componentName: string) => {
  *   './Button': __stories_import_0
  * }
  */
-export default function storiesLoader(this: Rsg.StyleguidistLoaderContext, storiesCode: string) {
+export default function storiesLoader(this: loader.LoaderContext, storiesCode: string) {
 	const callback = this.async() || (() => '');
 	const { componentPath, mdxDocumentPath } = loaderUtils.getOptions(this) || {};
 
