@@ -16,6 +16,7 @@ const styles = ({ space, fontFamily, fontSize, color, borderRadius }: Rsg.Theme)
 		background: color.codeBackground,
 		borderRadius,
 		lineHeight: 1.5,
+		tabSize: 2,
 		'& textarea': {
 			padding: 'inherit !important',
 			isolate: false,
