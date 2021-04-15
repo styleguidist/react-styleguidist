@@ -6,17 +6,17 @@ import getUrl from '../../utils/getUrl';
 
 export interface IsolateButtonProps {
 	name: string;
-	example?: number;
+	exampleIndex?: number;
 	isolated?: boolean;
 	href: string;
 }
 
-const IsolateButton = ({ name, example, isolated, href }: IsolateButtonProps) => {
+const IsolateButton = ({ name, exampleIndex, isolated, href }: IsolateButtonProps) => {
 	if (isolated && !href) {
 		return null;
 	}
 
-	const testID = example ? `${name}-${example}-isolate-button` : `${name}-isolate-button`;
+	const testID = exampleIndex ? `${name}-${exampleIndex}-isolate-button` : `${name}-isolate-button`;
 
 	return isolated ? (
 		<ToolbarButton href={href} title="Show all components" testId={testID}>
@@ -24,7 +24,7 @@ const IsolateButton = ({ name, example, isolated, href }: IsolateButtonProps) =>
 		</ToolbarButton>
 	) : (
 		<ToolbarButton
-			href={getUrl({ name, example, isolated: true })}
+			href={getUrl({ name, exampleIndex, isolated: true })}
 			title="Open isolated"
 			testId={testID}
 		>
@@ -35,7 +35,7 @@ const IsolateButton = ({ name, example, isolated, href }: IsolateButtonProps) =>
 
 IsolateButton.propTypes = {
 	name: PropTypes.string.isRequired,
-	example: PropTypes.number,
+	exampleIndex: PropTypes.number,
 	isolated: PropTypes.bool,
 };
 

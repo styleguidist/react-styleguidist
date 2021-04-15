@@ -48,9 +48,9 @@ interface GetUrlOptions {
 	name: string;
 	slug: string;
 	/**
-	 * Example index
+	 * Example index inside the Mdx document
 	 */
-	example: number;
+	exampleIndex: number;
 	anchor: boolean;
 	/**
 	 * Isolated mode
@@ -80,7 +80,7 @@ export default function getUrl(
 	{
 		name,
 		slug,
-		example,
+		exampleIndex,
 		anchor,
 		isolated,
 		nochrome,
@@ -131,8 +131,8 @@ export default function getUrl(
 		url += `?id=${slug}`;
 	}
 
-	if (example !== undefined) {
-		url += `/${example}`;
+	if (exampleIndex !== undefined) {
+		url += `/${exampleIndex}`;
 	}
 
 	if (absolute) {

@@ -117,7 +117,7 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 						props={{
 							name: componentName,
 							isolated: displayMode === DisplayModes.example,
-							example: modifiers.index,
+							exampleIndex: modifiers.index,
 						}}
 					/>
 				}
