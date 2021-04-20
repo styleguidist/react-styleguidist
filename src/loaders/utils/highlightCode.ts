@@ -1,6 +1,6 @@
 import createLogger from 'glogg';
 import * as Prism from 'prismjs';
-import loadLanguages from 'prismjs/components/';
+import loadLanguages from 'prismjs/components/index';
 
 const logger = createLogger('rsg');
 
