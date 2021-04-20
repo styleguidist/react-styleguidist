@@ -36,7 +36,7 @@ const CLIENT_CONFIG_OPTIONS = [
 const STYLE_VARIABLE_NAME = '__rsgStyles';
 const THEME_VARIABLE_NAME = '__rsgTheme';
 
-export default function () {}
+export default function() {}
 export function pitch(this: Rsg.StyleguidistLoaderContext) {
 	// Clear cache so it would detect new or renamed files
 	fileExistsCaseInsensitive.clearCache();
