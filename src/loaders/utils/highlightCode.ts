@@ -59,5 +59,5 @@ export default function highlightCode(code: string, lang?: string): string {
  * @returns {void}
  */
 export function getHighlightCodeLanguages(langs: string[] = []): void {
-	(loadLanguages as any)([...DEFAULT_LANGUAGES, ...langs]);
+	loadLanguages([...DEFAULT_LANGUAGES, ...langs]);
 }
