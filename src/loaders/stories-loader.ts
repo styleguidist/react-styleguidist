@@ -18,11 +18,12 @@ import { walk } from 'estree-walker';
 import { builders as b } from 'ast-types';
 import { generate } from 'escodegen';
 import toAst from 'to-ast';
+import stripIndent from 'strip-indent';
 import getAst from './utils/getAst';
 import getNameFromFilePath from './utils/getNameFromFilePath';
 import { ModuleMap } from './rehype/types';
 
-// TODO: Unindenting
+// TODO: Unwrap `return ()`
 
 interface Dependency {
 	names: string[];
@@ -34,6 +35,10 @@ const getLocalName = (index: number) => `__stories_import_${index}`;
 // Ensure that we have a semicolon (;) at the end: we must put a semicolon
 // in front of JSX (`import 'foo'; <Button/>`), otherwise it won't compile
 const ensureSemicolon = (s: string): string => s.replace(/(?:;\s*)?$/, ';');
+
+// Returns the indentation (actual whitespace, not a number of spaces)
+// of the first line of code example
+const getIndent = (code: string, position: number) => code.substring(0, position).match(/[ \t]*$/);
 
 // TODO: Deduplicate?
 const getModulePathToModuleMap = (modules: string[]) => {
@@ -161,9 +166,7 @@ const getExportCode = (node: Declaration, code: string) => {
 					const { start, end } = init.body;
 					return {
 						name: id.name,
-						// TODO: Unindent doesn't work because the first line is not indented,
-						// we need to add the existing whitespace before calling unindent()
-						code: /* unindent( */ code.substring(start, end) /* ) */,
+						code: stripIndent(getIndent(code, start) + code.substring(start, end)),
 					};
 				}
 			}

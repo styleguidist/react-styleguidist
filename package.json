@@ -84,11 +84,11 @@
     "react-simple-code-editor": "^0.11.0",
     "recast": "~0.20.4",
     "remark": "^13.0.0",
+    "strip-indent": "^3.0.0",
     "sucrase": "^3.17.1",
     "terser-webpack-plugin": "^4.2.3",
     "to-ast": "^1.0.0",
     "type-detect": "^4.0.8",
-    "unindent": "^2.0.0",
     "unist-util-visit": "^2.0.3",
     "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^4.2.2"

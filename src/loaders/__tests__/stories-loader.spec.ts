@@ -40,6 +40,48 @@ export const PascalCaseStory = () => <Container><Button /></Container>
 		export const __stories_storiesScope = {}"
 	`);
 	});
+
+	it('remove extra indentation, tabs', () => {
+		let result: string | Buffer | undefined = '';
+		storiesLoader.call(
+			{
+				query,
+				async: () => (_, c) => (result = c),
+			} as loader.LoaderContext,
+			`
+export const tabIndentedStory = () => (
+	<Container>
+		<Button />
+	</Container>
+);
+`
+		);
+		expect(result).toMatchInlineSnapshot(`
+		"export const __stories_namedExamples = { 'tabIndentedStory': '<Container>\\\\n\\\\t<Button />\\\\n</Container>' }
+		export const __stories_storiesScope = {}"
+	`);
+	});
+
+	it('remove extra indentation, spaces', () => {
+		let result: string | Buffer | undefined = '';
+		storiesLoader.call(
+			{
+				query,
+				async: () => (_, c) => (result = c),
+			} as loader.LoaderContext,
+			`
+export const tabIndentedStory = () => (
+  <Container>
+    <Button />
+  </Container>
+);
+`
+		);
+		expect(result).toMatchInlineSnapshot(`
+		"export const __stories_namedExamples = { 'tabIndentedStory': '<Container>\\\\n  <Button />\\\\n</Container>' }
+		export const __stories_storiesScope = {}"
+	`);
+	});
 });
 
 describe('imports', () => {
