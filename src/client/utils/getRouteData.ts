@@ -20,7 +20,7 @@ export default function getRouteData(
 	sections: Rsg.Section[],
 	hash: string,
 	pagePerSection = false
-): { sections: Rsg.Section[]; displayMode: string; targetIndex?: number } {
+): { sections: Rsg.Section[]; displayMode: string; targetIndex?: number | string } {
 	// Parse URL hash to check if the components list must be filtered
 	const infoFromHash = getInfoFromHash(hash);
 
@@ -101,8 +101,8 @@ export default function getRouteData(
 		}
 
 		// If a single component or section is filtered and a fenced block index
-		// is specified hide all other examples
-		if (typeof targetIndex === 'number') {
+		// or story name is specified hide all other examples
+		if (typeof targetIndex !== 'undefined') {
 			displayMode = DisplayModes.example;
 		}
 	}

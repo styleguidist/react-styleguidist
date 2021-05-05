@@ -37,7 +37,7 @@ export default function ReactComponent(props: ReactComponentProps) {
 	const { component, depth, usageMode, exampleMode } = props;
 	const { name: componentName, visibleName, slug = '-', filepath, pathLine, href } = component;
 	const { description = '', content, tags = {} } = component.props || {};
-	const { __examples: examples = [] } = content || {};
+	const { __examples: examples = [], __namedExamples: namedExamples = {} } = content || {};
 
 	if (!componentName) {
 		return null;
@@ -50,6 +50,7 @@ export default function ReactComponent(props: ReactComponentProps) {
 	};
 
 	function getExamples() {
+		// Isolated mode: fenced code block example
 		if (typeof targetIndex === 'number' && examples[targetIndex] && content) {
 			const example = examples[targetIndex];
 			return (
@@ -61,6 +62,19 @@ export default function ReactComponent(props: ReactComponentProps) {
 			);
 		}
 
+		// Isolated mode: named story imported from a CSF file
+		if (typeof targetIndex === 'string' && namedExamples[targetIndex] && content) {
+			const example = namedExamples[targetIndex];
+			return (
+				<MdxWrapper componentName={componentName} exampleMode={exampleMode} {...content}>
+					<MdxCode index={targetIndex} className="language-jsx">
+						{example}
+					</MdxCode>
+				</MdxWrapper>
+			);
+		}
+
+		// Static code
 		if (content) {
 			return <Examples content={content} componentName={componentName} exampleMode={exampleMode} />;
 		}

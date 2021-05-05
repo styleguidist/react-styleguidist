@@ -46,7 +46,8 @@ export default function Story({ id, name, ...modifiers }: Props) {
 		);
 	}
 
-	const code = namedExamples?.[getLocalExampleNameById(id)];
+	const key = getLocalExampleNameById(id);
+	const code = namedExamples?.[key];
 	if (!code) {
 		return (
 			<Para>
@@ -70,7 +71,7 @@ export default function Story({ id, name, ...modifiers }: Props) {
 			exampleMode={exampleMode}
 			documentScope={documentScope}
 			exampleScope={exampleScope}
-			modifiers={modifiers}
+			modifiers={{ ...modifiers, index: key }}
 		/>
 	);
 }

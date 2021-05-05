@@ -41,7 +41,7 @@ export const styles = ({ space, color, borderRadius }: Rsg.Theme) => ({
 });
 
 interface PlaygroundRendererProps extends JssInjectedProps {
-	exampleIndex: number;
+	exampleIndex: number | string;
 	componentName: string;
 	padded: boolean;
 	preview: React.ReactNode;
@@ -79,7 +79,7 @@ export const PlaygroundRenderer: React.FunctionComponent<PlaygroundRendererProps
 
 PlaygroundRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	exampleIndex: PropTypes.number.isRequired,
+	exampleIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 	componentName: PropTypes.string.isRequired,
 	padded: PropTypes.bool.isRequired,
 	preview: PropTypes.node.isRequired,

@@ -6,7 +6,7 @@ import getUrl from '../../utils/getUrl';
 
 export interface IsolateButtonProps {
 	name: string;
-	exampleIndex?: number;
+	exampleIndex?: number | string;
 	isolated?: boolean;
 	href: string;
 }
@@ -35,7 +35,7 @@ const IsolateButton = ({ name, exampleIndex, isolated, href }: IsolateButtonProp
 
 IsolateButton.propTypes = {
 	name: PropTypes.string.isRequired,
-	exampleIndex: PropTypes.number,
+	exampleIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	isolated: PropTypes.bool,
 };
 

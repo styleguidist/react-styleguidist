@@ -19,7 +19,7 @@ export default function getInfoFromHash(
 	isolate?: boolean;
 	hashArray?: string[];
 	targetName?: string;
-	targetIndex?: number;
+	targetIndex?: number | string;
 } {
 	const shouldIsolate = hasInHash(hash, '#!/');
 	if (shouldIsolate || hasInHash(hash, '#/')) {
@@ -27,9 +27,9 @@ export default function getInfoFromHash(
 		const targetHash = hashArray[hashArray.length - 1];
 		return {
 			isolate: shouldIsolate,
-			hashArray: hashArray.filter(item => !hasDigitsOnly(item)),
+			hashArray: hashArray.filter((item) => !hasDigitsOnly(item)),
 			targetName: hashArray[0],
-			targetIndex: hasDigitsOnly(targetHash) ? parseInt(targetHash, 10) : undefined,
+			targetIndex: hasDigitsOnly(targetHash) ? parseInt(targetHash, 10) : targetHash,
 		};
 	}
 	return {};

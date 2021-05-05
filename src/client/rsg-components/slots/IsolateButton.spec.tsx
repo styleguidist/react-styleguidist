@@ -9,7 +9,7 @@ it('should renderer a link to isolated mode', () => {
 });
 
 it('should renderer a link to example isolated mode', () => {
-	const actual = shallow(<IsolateButton name="Pizza" href="/#pizza" example={3} />);
+	const actual = shallow(<IsolateButton name="Pizza" href="/#pizza" exampleIndex={3} />);
 
 	expect(actual).toMatchSnapshot();
 });

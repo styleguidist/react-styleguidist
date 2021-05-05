@@ -50,7 +50,7 @@ interface GetUrlOptions {
 	/**
 	 * Example index inside the Mdx document
 	 */
-	exampleIndex: number;
+	exampleIndex: number | string;
 	anchor: boolean;
 	/**
 	 * Isolated mode

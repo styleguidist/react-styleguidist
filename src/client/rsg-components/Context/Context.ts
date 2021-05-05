@@ -23,7 +23,7 @@ export interface StyleGuideContextContents {
 	config: Rsg.ProcessedStyleguidistConfig;
 	slots: Record<string, (SlotObject | React.FunctionComponent<any>)[]>;
 	displayMode: string;
-	targetIndex?: number;
+	targetIndex?: number | string;
 }
 
 export function useStyleGuideContext(): StyleGuideContextContents {

@@ -3,8 +3,11 @@
 import { ComponentType } from 'react';
 
 export interface Modifiers {
-	/** Example index inside the Mdx document, added automatically */
-	index: number;
+	/**
+	 * Example index inside the Mdx document: either number or the name of the
+	 * exported CSF story, added automatically
+	 */
+	index: number | string;
 	/** Render static highlighted code instead of a dynamic preview with a code editor */
 	static?: boolean;
 	/** Renders an example code but hides the code editor */
