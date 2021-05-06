@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "dog-names": "^2.0.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
