@@ -12,7 +12,6 @@ export interface BaseComponent {
 	filepath?: string;
 	pathLine?: string;
 	description?: string;
-	exampleMode?: ExpandMode;
 	usageMode?: ExpandMode;
 }
 

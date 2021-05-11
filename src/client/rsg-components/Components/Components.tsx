@@ -7,7 +7,7 @@ import * as Rsg from '../../../typings';
 interface ComponentsProps {
 	components: Rsg.Component[];
 	depth: number;
-	exampleMode?: string;
+	exampleMode: string;
 	usageMode?: string;
 }
 

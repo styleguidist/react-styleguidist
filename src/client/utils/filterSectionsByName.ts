@@ -10,13 +10,13 @@ import * as Rsg from '../../typings';
  * @return {Array}
  */
 export default function filterSectionsByName(
-	sections: Rsg.TOCItem[],
+	sections: Rsg.Section[],
 	query: string
-): Rsg.TOCItem[] {
+): Rsg.Section[] {
 	const regExp = getFilterRegExp(query);
 
 	return sections
-		.map(section => {
+		.map((section) => {
 			return {
 				...section,
 				sections: section.sections ? filterSectionsByName(section.sections, query) : [],
@@ -24,7 +24,7 @@ export default function filterSectionsByName(
 			};
 		})
 		.filter(
-			section =>
+			(section) =>
 				section.components.length > 0 ||
 				section.sections.length > 0 ||
 				regExp.test(section.name || '-')

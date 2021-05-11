@@ -42,6 +42,7 @@ const components = [
 
 const sections: Rsg.Section[] = [
 	{
+		exampleMode: 'collapse',
 		visibleName: 'Introduction',
 		name: 'Introduction',
 		href: '#introduction',
@@ -49,6 +50,7 @@ const sections: Rsg.Section[] = [
 		content: module,
 	},
 	{
+		exampleMode: 'collapse',
 		visibleName: 'Buttons',
 		name: 'Buttons',
 		href: '#buttons',
@@ -63,6 +65,7 @@ const sections: Rsg.Section[] = [
 		],
 	},
 	{
+		exampleMode: 'collapse',
 		visibleName: 'Forms',
 		name: 'Forms',
 		href: '#forms',
@@ -90,6 +93,7 @@ it('should filter list when search field contains a query', () => {
 		<TableOfContents
 			sections={[
 				{
+					exampleMode: 'collapse',
 					visibleName: 'Input',
 					href: '#input',
 					components,
@@ -144,8 +148,10 @@ it('should render components with useRouterLinks', () => {
 			useRouterLinks
 			sections={[
 				{
+					exampleMode: 'collapse',
 					sections: [
 						{
+							exampleMode: 'collapse',
 							visibleName: '1',
 							name: 'Components',
 							href: '#/Components',
@@ -153,6 +159,7 @@ it('should render components with useRouterLinks', () => {
 							content: module,
 						},
 						{
+							exampleMode: 'collapse',
 							visibleName: '2',
 							content: module,
 							href: '#/Chap',
@@ -186,21 +193,39 @@ it('should detect sections containing current selection when tocMode is collapse
 				tocMode="collapse"
 				sections={[
 					{
+						exampleMode: 'collapse',
 						sections: [
 							{
+								exampleMode: 'collapse',
 								visibleName: '1',
 								href: '#/components',
 								slug: 'components',
-								sections: [{ visibleName: '1.1', href: '#/button', slug: 'button' }],
+								sections: [
+									{
+										exampleMode: 'collapse',
+										visibleName: '1.1',
+										href: '#/button',
+										slug: 'button',
+									},
+								],
 							},
 							{
+								exampleMode: 'collapse',
 								visibleName: '2',
 								href: '#/chap',
 								slug: 'chap',
 								content: module,
-								sections: [{ visibleName: '2.1', href: '#/chapter-1', slug: 'chapter-1' }],
+								sections: [
+									{
+										exampleMode: 'collapse',
+										visibleName: '2.1',
+										href: '#/chapter-1',
+										slug: 'chapter-1',
+									},
+								],
 							},
 							{
+								exampleMode: 'collapse',
 								visibleName: '3',
 								href: 'http://react-styleguidist.com',
 								slug: 'react-styleguidist',
@@ -222,22 +247,40 @@ it('should show sections with expand: true when tocMode is collapse', () => {
 			tocMode="collapse"
 			sections={[
 				{
+					exampleMode: 'collapse',
 					sections: [
 						{
+							exampleMode: 'collapse',
 							visibleName: '1',
 							expand: true,
 							href: '#/components',
 							slug: 'components',
-							sections: [{ visibleName: '1.1', href: '#/button', slug: 'button' }],
+							sections: [
+								{
+									exampleMode: 'collapse',
+									visibleName: '1.1',
+									href: '#/button',
+									slug: 'button',
+								},
+							],
 						},
 						{
+							exampleMode: 'collapse',
 							visibleName: '2',
 							href: '#/chap',
 							slug: 'chap',
 							content: module,
-							sections: [{ visibleName: '2.1', href: '#/chapter-1', slug: 'chapter-1' }],
+							sections: [
+								{
+									exampleMode: 'collapse',
+									visibleName: '2.1',
+									href: '#/chapter-1',
+									slug: 'chapter-1',
+								},
+							],
 						},
 						{
+							exampleMode: 'collapse',
 							visibleName: '3',
 							href: 'http://react-styleguidist.com',
 							slug: 'react-styleguidist',

@@ -20,7 +20,7 @@ const ExamplePlaceholder =
 interface ReactComponentProps {
 	component: Rsg.Component;
 	depth: number;
-	exampleMode?: string;
+	exampleMode: string;
 	usageMode?: string;
 }
 

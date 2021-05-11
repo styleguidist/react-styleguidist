@@ -16,6 +16,7 @@ export interface BaseSection {
 }
 
 export interface ProcessedSection extends BaseSection {
+	exampleMode: ExpandMode;
 	visibleName?: string;
 	filepath?: string;
 	externalLink?: boolean;
@@ -33,20 +34,21 @@ export interface Section extends ProcessedSection {
 }
 
 /**
- * Item of the Table Of Contents used in
- * ComponentsList
- * TableOfContent
- * filterSectionByName
+ * Item of the Table Of Contents
  */
-export interface TOCItem extends ProcessedSection {
+export interface TOCItem {
+	name?: string;
+	visibleName?: string;
+	slug?: string;
+	href?: string;
 	heading?: boolean;
 	shouldOpenInNewTab?: boolean;
 	selected?: boolean;
 	initialOpen?: boolean;
 	forcedOpen?: boolean;
 	content?: React.ReactNode;
-	components?: TOCItem[];
-	sections?: TOCItem[];
+	components?: Component[];
+	sections?: Section[];
 }
 
 /**
@@ -68,4 +70,5 @@ export interface LoaderSection extends BaseSection {
 	content?: RequireItResult;
 	components: LoaderComponent[];
 	sections: LoaderSection[];
+	exampleMode: ExpandMode;
 }

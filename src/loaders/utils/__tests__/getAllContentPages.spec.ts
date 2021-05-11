@@ -13,26 +13,31 @@ const nestedContent: Rsg.RequireItResult = {
 
 const sections: Rsg.LoaderSection[] = [
 	{
+		exampleMode: 'collapse',
 		name: 'Readme',
 		content: readmeContent,
 		components: [],
 		sections: [],
 	},
 	{
+		exampleMode: 'collapse',
 		name: 'Components',
 		components: [],
 		sections: [],
 	},
 	{
+		exampleMode: 'collapse',
 		name: 'Nesting',
 		components: [],
 		sections: [
 			{
+				exampleMode: 'collapse',
 				name: 'Nested',
 				components: [],
 				sections: [],
 			},
 			{
+				exampleMode: 'collapse',
 				name: 'Nested 2',
 				content: nestedContent,
 				components: [],

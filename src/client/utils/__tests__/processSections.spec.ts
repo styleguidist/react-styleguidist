@@ -1,10 +1,13 @@
 import deepfreeze from 'deepfreeze';
 import processSections from '../processSections';
+import * as Rsg from '../../../typings';
 
-const sections = deepfreeze([
+const sectionsRaw: Rsg.Section[] = [
 	{
+		exampleMode: 'collapse',
 		sections: [
 			{
+				exampleMode: 'collapse',
 				name: 'Components',
 				slug: 'components',
 				components: [
@@ -18,7 +21,8 @@ const sections = deepfreeze([
 			},
 		],
 	},
-]);
+];
+const sections = deepfreeze(sectionsRaw);
 
 const options = { useRouterLinks: false, hashPath: [] };
 
@@ -40,9 +44,18 @@ describe('processSections', () => {
 	});
 
 	test('should recursively process all nested sections when useRouterLinks is true has passed', () => {
-		const result = processSections([{ name: 'Component', sections: [{ name: 'Button' }] }], {
-			useRouterLinks: true,
-		});
+		const result = processSections(
+			[
+				{
+					exampleMode: 'collapse',
+					name: 'Component',
+					sections: [{ exampleMode: 'collapse', name: 'Button' }],
+				},
+			],
+			{
+				useRouterLinks: true,
+			}
+		);
 		expect(result?.[0].href).toBe('/#/Component');
 		expect(result?.[0].sections?.[0].href).toBe('/#/Component/Button');
 	});

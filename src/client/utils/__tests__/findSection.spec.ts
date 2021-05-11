@@ -1,10 +1,13 @@
 import findSection from '../findSection';
+import * as Rsg from '../../../typings';
 
-const sections = [
+const sections: Rsg.Section[] = [
 	{
+		exampleMode: 'collapse',
 		name: 'General',
 		sections: [
 			{
+				exampleMode: 'collapse',
 				name: 'Particles',
 				components: [
 					{
@@ -27,7 +30,7 @@ describe('findSection', () => {
 
 	it('should return nested sections', () => {
 		const result = findSection(sections, 'Particles');
-		expect(result).toEqual(sections[0].sections[0]);
+		expect(result).toEqual(sections?.[0].sections?.[0]);
 	});
 
 	it('should return undefined when no sections found', () => {

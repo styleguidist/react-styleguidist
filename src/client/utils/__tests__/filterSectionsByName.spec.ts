@@ -1,11 +1,14 @@
 import deepfreeze from 'deepfreeze';
 import filterSectionsByName from '../filterSectionsByName';
+import * as Rsg from '../../../typings';
 
-const sections = deepfreeze([
+const sectionsRaw: Rsg.Section[] = [
 	{
+		exampleMode: 'collapse',
 		name: 'General',
 		sections: [
 			{
+				exampleMode: 'collapse',
 				name: 'Particles',
 				components: [
 					{
@@ -18,7 +21,8 @@ const sections = deepfreeze([
 			},
 		],
 	},
-]);
+];
+const sections = deepfreeze(sectionsRaw);
 
 describe('filterSectionsByName', () => {
 	it('should recursively filter sections and components by name', () => {

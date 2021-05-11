@@ -18,6 +18,7 @@ const module: Rsg.ExamplesModule = {
 
 const sections: Rsg.Section[] = deepfreeze([
 	{
+		exampleMode: 'collapse',
 		sections: [
 			{
 				name: 'Components',

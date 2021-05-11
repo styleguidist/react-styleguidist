@@ -12,7 +12,7 @@ import * as Rsg from '../../../typings';
 
 interface PlaygroundProps {
 	componentName: string;
-	exampleMode?: string;
+	exampleMode: string;
 	code: string;
 	documentScope: Record<string, unknown>;
 	exampleScope: Record<string, unknown>;

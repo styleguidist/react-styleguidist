@@ -1,10 +1,11 @@
 import React, { createContext } from 'react';
+import { ExampleModes } from '../../consts';
 
 interface MdxContextContents {
 	/** Name of the React component */
 	componentName?: string;
 	/** How to render an editor: expanded or not */
-	exampleMode?: string;
+	exampleMode: string;
 	/** Modules imported inside Mdx file */
 	documentScope: Record<string, unknown>;
 	/** Modules imported inside examples */
@@ -14,6 +15,7 @@ interface MdxContextContents {
 }
 
 const MdxContext = createContext<MdxContextContents>({
+	exampleMode: ExampleModes.collapse,
 	documentScope: {},
 	exampleScope: {},
 	namedExamples: {},

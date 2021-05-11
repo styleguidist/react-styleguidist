@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ComponentsList from 'rsg-components/ComponentsList';
 import TableOfContentsRenderer from 'rsg-components/TableOfContents/TableOfContentsRenderer';
 import filterSectionsByName from '../../utils/filterSectionsByName';
+import filterComponentsByName from '../../utils/filterComponentsByName';
 import { getHash } from '../../utils/handleHash';
 import * as Rsg from '../../../typings';
 
@@ -30,7 +31,7 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 	};
 
 	private renderLevel(
-		sections: Rsg.TOCItem[],
+		sections: (Rsg.Section | Rsg.Component)[],
 		useRouterLinks = false,
 		hashPath: string[] = [],
 		useHashId = false
@@ -40,13 +41,16 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 		const windowHash = pathname + (useRouterLinks ? hash : getHash(hash));
 
 		let childrenContainSelected = false;
-		const processedItems = sections.map((section) => {
-			const children = [...(section.sections || []), ...(section.components || [])];
-			const sectionDepth = section.sectionDepth || 0;
+		const processedItems: Rsg.TOCItem[] = sections.map((tocItem) => {
+			const children = [
+				...('sections' in tocItem ? tocItem.sections || [] : []),
+				...('components' in tocItem ? tocItem.components || [] : []),
+			];
+			const sectionDepth = 'sectionDepth' in tocItem ? tocItem.sectionDepth || 0 : 0;
 			const childHashPath =
 				sectionDepth === 0 && useHashId
 					? hashPath
-					: [...hashPath, section.name ? section.name : '-'];
+					: [...hashPath, tocItem.name ? tocItem.name : '-'];
 
 			const { content, containsSelected } =
 				children.length > 0
@@ -54,19 +58,24 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 					: { content: undefined, containsSelected: false };
 
 			const selected =
-				(!useRouterLinks && section.href ? getHash(section.href) : section.href) === windowHash;
+				(!useRouterLinks && tocItem.href ? getHash(tocItem.href) : tocItem.href) === windowHash;
 
 			if (containsSelected || selected) {
 				childrenContainSelected = true;
 			}
 
 			return {
-				...section,
-				heading: !!section.name && children.length > 0,
+				...tocItem,
+				heading: !!tocItem.name && children.length > 0,
 				content,
 				selected,
-				shouldOpenInNewTab: !!section.external && !!section.externalLink,
-				initialOpen: this.props.tocMode !== 'collapse' || containsSelected || section.expand,
+				shouldOpenInNewTab:
+					!!('external' in tocItem && tocItem.external) &&
+					!!('externalLink' in tocItem && tocItem.externalLink),
+				initialOpen:
+					this.props.tocMode !== 'collapse' ||
+					containsSelected ||
+					('expand' in tocItem && tocItem.expand),
 				forcedOpen: !!this.state.searchTerm.length,
 			};
 		});
@@ -84,14 +93,14 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 		// Since a section can contain only other sections,
 		// we need to make sure not to loose the subsections.
 		// We will treat those subsections as the new roots.
-		const firstLevel =
+		// TODO: Extract into a function
+		const filtered =
 			sections.length === 1
 				? // only use subsections if there actually are subsections
-				  sections[0].sections && sections[0].sections.length
-					? sections[0].sections
-					: sections[0].components
-				: sections;
-		const filtered = firstLevel ? filterSectionsByName(firstLevel, searchTerm) : firstLevel || [];
+				  sections[0].sections && sections[0].sections.length > 0
+					? filterSectionsByName(sections[0].sections, searchTerm)
+					: filterComponentsByName(sections[0].components || [], searchTerm)
+				: filterSectionsByName(sections, searchTerm);
 
 		return this.renderLevel(filtered, useRouterLinks).content;
 	}

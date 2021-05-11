@@ -6,7 +6,7 @@ import * as Rsg from '../../../typings';
 interface Props extends Rsg.MdxExtras {
 	children?: ReactNode;
 	componentName?: string;
-	exampleMode?: string;
+	exampleMode: string;
 }
 
 export default function MdxWrapper({

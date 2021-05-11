@@ -3,6 +3,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import ComponentsList from './ComponentsList';
 import Context from '../Context';
+import * as Rsg from '../../../typings';
 
 const context = {
 	config: {
@@ -24,7 +25,7 @@ it('should not render any links when the list is empty', () => {
 });
 
 it('should ignore items without visibleName', () => {
-	const components = [
+	const components: Rsg.TOCItem[] = [
 		{
 			visibleName: 'Button',
 			slug: 'button',
@@ -42,13 +43,13 @@ it('should ignore items without visibleName', () => {
 		</Provider>
 	);
 
-	expect(Array.from(getAllByRole('link')).map(node => (node as HTMLAnchorElement).href)).toEqual([
+	expect(Array.from(getAllByRole('link')).map((node) => (node as HTMLAnchorElement).href)).toEqual([
 		'http://localhost/#button',
 	]);
 });
 
 it('should show content of items that are open and not what is closed', () => {
-	const components = [
+	const components: Rsg.TOCItem[] = [
 		{
 			visibleName: 'Button',
 			name: 'Button',
@@ -74,12 +75,12 @@ it('should show content of items that are open and not what is closed', () => {
 	getByText('Button').click();
 
 	expect(
-		Array.from(getAllByTestId('content')).map(node => (node as HTMLDivElement).innerHTML)
+		Array.from(getAllByTestId('content')).map((node) => (node as HTMLDivElement).innerHTML)
 	).toEqual(['Content for Button']);
 });
 
 it('should show content of initialOpen items even if they are not active', () => {
-	const components = [
+	const components: Rsg.TOCItem[] = [
 		{
 			visibleName: 'Button',
 			name: 'Button',
@@ -106,12 +107,12 @@ it('should show content of initialOpen items even if they are not active', () =>
 	getByText('Button').click();
 
 	expect(
-		Array.from(getAllByTestId('content')).map(node => (node as HTMLDivElement).innerHTML)
+		Array.from(getAllByTestId('content')).map((node) => (node as HTMLDivElement).innerHTML)
 	).toEqual(['Content for Button', 'Content for Input']);
 });
 
 it('should show content of forcedOpen items even if they are initially collapsed', () => {
-	const components = [
+	const components: Rsg.TOCItem[] = [
 		{
 			visibleName: 'Button',
 			name: 'Button',
@@ -140,6 +141,6 @@ it('should show content of forcedOpen items even if they are initially collapsed
 	getByText('Input').click();
 
 	expect(
-		Array.from(getAllByTestId('content')).map(node => (node as HTMLDivElement).innerHTML)
+		Array.from(getAllByTestId('content')).map((node) => (node as HTMLDivElement).innerHTML)
 	).toEqual(['Content for Button', 'Content for Input']);
 });
