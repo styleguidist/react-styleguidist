@@ -4,7 +4,8 @@
 
 **Isolated React component development environment with a living style guide**
 
- [![npm](https://img.shields.io/npm/v/react-styleguidist.svg)](https://www.npmjs.com/package/react-styleguidist) [![CI status](https://github.com/styleguidist/react-styleguidist/workflows/CI/badge.svg)](https://github.com/styleguidist/react-styleguidist.git/actions) [![Codecov](https://codecov.io/gh/styleguidist/react-styleguidist/branch/master/graph/badge.svg)](https://codecov.io/gh/styleguidist/react-styleguidist) [![Join the chat at https://gitter.im/styleguidist/styleguidist](https://badges.gitter.im/styleguidist/styleguidist.svg)](https://gitter.im/styleguidist/styleguidist?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Open Source Helpers](https://www.codetriage.com/styleguidist/react-styleguidist/badges/users.svg)](https://www.codetriage.com/styleguidist/react-styleguidist)
+ [![npm](https://img.shields.io/npm/v/react-styleguidist.svg)](https://www.npmjs.com/package/react-styleguidist) [![CI status](https://github.com/styleguidist/react-styleguidist/workflows/CI/badge.svg)](https://github.com/styleguidist/react-styleguidist.git/actions) [![Codecov](https://codecov.io/gh/styleguidist/react-styleguidist/branch/master/graph/badge.svg)](https://codecov.io/gh/styleguidist/react-styleguidist) [![Join the chat at https://gitter.im/styleguidist/styleguidist](https://badges.gitter.im/styleguidist/styleguidist.svg)](https://gitter.im/styleguidist/styleguidist?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+![Discord](https://img.shields.io/discord/842832186914635806?logo=discord) [![Open Source Helpers](https://www.codetriage.com/styleguidist/react-styleguidist/badges/users.svg)](https://www.codetriage.com/styleguidist/react-styleguidist)
 
 </div>
 
