@@ -21,7 +21,8 @@
     "styleguidist": "lib/bin/styleguidist.js"
   },
   "files": [
-    "lib"
+    "lib",
+    "storybook.js"
   ],
   "engines": {
     "node": ">=10"
