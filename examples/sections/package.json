@@ -19,11 +19,11 @@
   "dependencies": {
     "add": "^2.0.6",
     "core-js": "^3.2.1",
-    "dog-names": "^2.0.0",
+    "dog-names": "^1.0.2",
     "lodash": "^4.17.19",
     "prop-types": "^15.7.2",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
@@ -31,12 +31,12 @@
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
     "babel-loader": "^8.0.6",
-    "css-loader": "^3.2.0",
+    "css-loader": "^5.2.5",
     "file-loader": "^4.2.0",
-    "react-styleguidist": "^9.1.16",
+    "react-styleguidist": "^11.1.6",
     "style-loader": "^1.0.0",
     "url-loader": "^2.2.0",
-    "webpack": "^4.41.1"
+    "webpack": "^4.46.0"
   },
   "scripts": {
     "styleguide": "styleguidist server",
