@@ -26,16 +26,7 @@
     "import/no-amd": "error",
     "import/first": ["error", "absolute-first"],
     "import/no-duplicates": "error",
-    "import/extensions": [
-      "error",
-      "always",
-      {
-        "js": "never",
-        "tsx": "never",
-        "ts": "never",
-        "mjs": "never"
-      }
-    ],
+    "import/extensions": "off",
     "import/no-extraneous-dependencies": "error",
     "import/newline-after-import": "error",
     "import/prefer-default-export": "error",

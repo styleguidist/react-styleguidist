@@ -1,5 +1,5 @@
 const path = require('path');
-const { version } = require('./package');
+const { version } = require('./package.json');
 
 module.exports = {
 	components: 'src/components/**/[A-Z]*.js',
