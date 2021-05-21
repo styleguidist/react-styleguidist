@@ -48,7 +48,7 @@ jobs:
           npm run test:cypress:pre
           npm run test:cypress:startServer &
           npm run test:cypress:startServer:post
-          npm run test:cypress:run      
+          npm run test:cypress:run
 
   build:
     runs-on: ubuntu-latest
@@ -56,8 +56,8 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 10.x
-          - 12.x
+          - 14.x
+          - 16.x
 
     steps:
       - uses: actions/checkout@v2
