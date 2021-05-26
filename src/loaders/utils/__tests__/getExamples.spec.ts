@@ -19,11 +19,11 @@ test('require an example file if component has example file', () => {
 
 	const result = getExamples(file, examplesFile);
 	expect(result && deabsDeep(result).require).toMatchInlineSnapshot(
-		`"!!~/src/loaders/examples-loader.js?displayName=Pizza&file=.%2F..%2Fpizza.js!./Pizza.md"`
+		`"!!~/src/loaders/mdx-loader.js?component=.%2F..%2Fpizza.js!./Pizza.md"`
 	);
 });
 
-test('return null if component has no example file', () => {
+test('return undefined if component has no example file', () => {
 	const result = getExamples(file);
-	expect(result).toEqual(null);
+	expect(result).toBeUndefined();
 });

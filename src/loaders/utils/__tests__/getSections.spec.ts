@@ -25,10 +25,6 @@ const sections: Rsg.RawSection[] = [
 		components: 'components/**/*.js',
 		ignore: '**/components/Annotation/*',
 	},
-	{
-		name: 'Ignore',
-		content: () => 'Hello World',
-	} as any,
 ];
 const sectionsWithDepth = [
 	{
@@ -105,12 +101,6 @@ it('processSection() should return an object for section with components', () =>
 
 it('processSection() should return an object for section without ignored components', () => {
 	const result = processSection(sections[2], config);
-
-	expect(result).toMatchSnapshot();
-});
-
-it('processSection() should return an object for section with content as function', () => {
-	const result = processSection(sections[3], config);
 
 	expect(result).toMatchSnapshot();
 });
