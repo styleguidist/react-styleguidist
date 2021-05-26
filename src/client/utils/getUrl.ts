@@ -132,7 +132,7 @@ export default function getUrl(
 	}
 
 	if (exampleIndex !== undefined) {
-		url += `/${exampleIndex}`;
+		url += `//${exampleIndex}`;
 	}
 
 	if (absolute) {

@@ -46,22 +46,27 @@ describe('getUrl', () => {
 
 	it('should return an isolated example URL', () => {
 		const result = getUrl({ name, slug, exampleIndex: 3, isolated: true }, loc);
-		expect(result).toBe('/styleguide/#!/Components/FooBar/3');
+		expect(result).toBe('/styleguide/#!/Components/FooBar//3');
 	});
 
-	it('should return an isolated example for a HashedURL', () => {
+	it('should return an isolated example URL with a string index', () => {
+		const result = getUrl({ name, slug, exampleIndex: 'basic', isolated: true }, loc);
+		expect(result).toBe('/styleguide/#!/Components/FooBar//basic');
+	});
+
+	it('should return an isolated example for a hashed URL', () => {
 		const result = getUrl({ name, slug, exampleIndex: 0, isolated: true }, locHashedURL);
-		expect(result).toBe('/styleguide/#!/FooBar/0');
+		expect(result).toBe('/styleguide/#!/FooBar//0');
 	});
 
 	it('should return an isolated example=0 URL', () => {
 		const result = getUrl({ name, slug, exampleIndex: 0, isolated: true }, loc);
-		expect(result).toBe('/styleguide/#!/Components/FooBar/0');
+		expect(result).toBe('/styleguide/#!/Components/FooBar//0');
 	});
 
 	it('should return an absolute isolated example URL', () => {
 		const result = getUrl({ name, slug, exampleIndex: 3, isolated: true, absolute: true }, loc);
-		expect(result).toBe('http://example.com/styleguide/#!/Components/FooBar/3');
+		expect(result).toBe('http://example.com/styleguide/#!/Components/FooBar//3');
 	});
 
 	it('should return a nochrome URL', () => {

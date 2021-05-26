@@ -37,12 +37,22 @@ describe('getInfoFromHash', () => {
 	});
 
 	it('should extract target index when the URL ends with a number', () => {
-		const result = getInfoFromHash('#/Documentation/Files/Buttons/5');
+		const result = getInfoFromHash('#/Documentation/Files/Buttons//5');
 		expect(result).toEqual({
 			isolate: false,
 			hashArray: ['Documentation', 'Files', 'Buttons'],
 			targetName: 'Documentation',
 			targetIndex: 5,
+		});
+	});
+
+	it('should extract target index when the URL ends with a string', () => {
+		const result = getInfoFromHash('#/Documentation/Files/Buttons//basic');
+		expect(result).toEqual({
+			isolate: false,
+			hashArray: ['Documentation', 'Files', 'Buttons'],
+			targetName: 'Documentation',
+			targetIndex: 'basic',
 		});
 	});
 
