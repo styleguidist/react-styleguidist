@@ -30,10 +30,10 @@
   "dependencies": {
     "@tippyjs/react": "4.1.0",
     "@vxna/mini-html-webpack-template": "^2.0.0",
-    "assert": "1.5.0",
     "acorn": "^6.4.1",
     "acorn-jsx": "^5.1.0",
-    "ast-types": "~0.13.2",
+    "ast-types": "~0.14.2",
+    "assert": "1.5.0",
     "buble": "0.20.0",
     "clean-webpack-plugin": "^3.0.0",
     "clipboard-copy": "^3.1.0",
