@@ -9,13 +9,13 @@ const compileExample = config.compileExample.default;
 
 /* eslint-disable no-console */
 
-const code = '<button>Code: OK</button>';
-const newCode = '<button>Code: Cancel</button>';
+const code = 'import React from "react"; <button>Code: OK</button>';
+const newCode = 'import React from "react"; <button>Code: Cancel</button>';
 
 const defaultProps = {
 	code,
 	documentScope: {},
-	exampleScope: {},
+	exampleScope: { react: React },
 };
 
 const context = {
@@ -25,7 +25,9 @@ const context = {
 	codeRevision: 0,
 } as StyleGuideContextContents;
 
-const Provider = (props: Record<string, any>) => <Context.Provider value={context} {...props} />;
+const Provider = (props: Record<string, unknown>) => (
+	<Context.Provider value={context} {...props} />
+);
 
 const console$error = console.error;
 const console$clear = console.clear;
@@ -70,20 +72,6 @@ it('should not fail when Wrapper wasn’t mounted', () => {
 	expect(node.innerHTML).toBe('');
 	unmount();
 	expect(node.innerHTML).toBe('');
-});
-
-it('should wrap code in Fragment when it starts with <', () => {
-	console.error = jest.fn();
-
-	const { queryAllByRole } = render(
-		<Provider>
-			<Preview {...defaultProps} code="<button /><button />" />
-		</Provider>
-	);
-
-	// If two buttons weren't wrapped in a Fragment, we'd see an error in console
-	expect(console.error).not.toHaveBeenCalled();
-	expect(queryAllByRole('button')).toHaveLength(2);
 });
 
 it('should update', () => {

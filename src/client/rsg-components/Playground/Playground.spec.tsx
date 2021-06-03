@@ -7,8 +7,8 @@ import config from '../../../scripts/schemas/config';
 
 const compileExample = config.compileExample.default;
 
-const code = '<button>Code: OK</button>';
-const newCode = '<button>Code: Not OK</button>';
+const code = 'import React from "react"; <button>Code: OK</button>';
+const newCode = 'import React from "react"; <button>Code: Not OK</button>';
 const defaultProps = {
 	index: 0,
 	componentName: 'name',
@@ -17,7 +17,7 @@ const defaultProps = {
 	},
 	exampleMode: 'collapse',
 	documentScope: {},
-	exampleScope: {},
+	exampleScope: { react: React },
 	code,
 };
 const context = {

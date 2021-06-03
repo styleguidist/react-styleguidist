@@ -12,7 +12,11 @@ import config from '../../../scripts/schemas/config';
 const compileExample = config.compileExample.default;
 
 const module: Rsg.ExamplesModule = {
-	default: () => null,
+	default: ({ componentName, exampleMode }) => (
+		<h1>
+			{componentName}/{exampleMode}
+		</h1>
+	),
 	__esModule: true,
 	__documentScope: {},
 	__exampleScope: {},
@@ -84,7 +88,7 @@ test('should render an example placeholder', () => {
 	expect(getByText(/add examples to this component/i)).toBeInTheDocument();
 });
 
-test('should render examples', () => {
+test('should render example component', () => {
 	const { getByText } = render(
 		<Provider>
 			<ReactComponent
@@ -95,8 +99,7 @@ test('should render examples', () => {
 			/>
 		</Provider>
 	);
-	expect(getByText(/code: ok/i)).toBeInTheDocument();
-	expect(getByText(/markdown: hello/i)).toBeInTheDocument();
+	expect(getByText(/Foo\/collapse/i)).toBeInTheDocument();
 });
 
 test('should render usage closed by default when usageMode is "collapse"', () => {

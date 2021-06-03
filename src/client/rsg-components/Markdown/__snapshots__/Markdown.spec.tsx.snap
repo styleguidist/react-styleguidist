@@ -7,7 +7,7 @@ exports[`Markdown inline should render text in a span 1`] = `
 `;
 
 exports[`Markdown should render a blockquote 1`] = `
-<blockquote class="rsg--blockquote-25">
+<blockquote class="rsg--blockquote-24">
   <p class="rsg--para-2">
     This is a blockquote.
 And this is a second line.
@@ -15,34 +15,34 @@ And this is a second line.
 </blockquote>
 `;
 
-exports[`Markdown should render a horizontal rule 1`] = `<hr class="rsg--hr-28">`;
+exports[`Markdown should render a horizontal rule 1`] = `<hr class="rsg--hr-29">`;
 
 exports[`Markdown should render a table 1`] = `
-<table class="rsg--table-29">
-  <thead class="rsg--thead-30">
+<table class="rsg--table-30">
+  <thead class="rsg--thead-31">
     <tr>
-      <th class="rsg--th-32 rsg--td-31">
+      <th class="rsg--th-33 rsg--td-32">
         heading 1
       </th>
-      <th class="rsg--th-32 rsg--td-31">
+      <th class="rsg--th-33 rsg--td-32">
         heading 2
       </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td class="rsg--td-31">
+      <td class="rsg--td-32">
         foo
       </td>
-      <td class="rsg--td-31">
+      <td class="rsg--td-32">
         bar
       </td>
     </tr>
     <tr>
-      <td class="rsg--td-31">
+      <td class="rsg--td-32">
         more foo
       </td>
-      <td class="rsg--td-31">
+      <td class="rsg--td-32">
         more bar
       </td>
     </tr>
@@ -55,14 +55,12 @@ exports[`Markdown should render check-lists 1`] = `
   <li class="rsg--li-23">
     <input type="checkbox"
            readonly
-           class="rsg--input-24"
     >
     to do 1
   </li>
   <li class="rsg--li-23">
     <input type="checkbox"
            readonly
-           class="rsg--input-24"
     >
     to do 2
   </li>
@@ -70,18 +68,55 @@ exports[`Markdown should render check-lists 1`] = `
     <input type="checkbox"
            checked
            readonly
-           class="rsg--input-24"
     >
     to do 3
   </li>
 </ul>
 `;
 
-exports[`Markdown should render code blocks without escaping 1`] = `
-<pre class="lang-html rsg--pre-26">
-  <foo>
-  </foo>
-</pre>
+exports[`Markdown should render code blocks with highlighting 1`] = `
+<div class="rsg--preContainer-25">
+  <div class="rsg--container-26">
+    <pre class="prism-code language-html rsg--highlightPre-27"
+         style="color:#333;background-color:transparent"
+    >
+      <div class="token-line"
+           style="color:#333"
+      >
+        <span class="token tag punctuation"
+              style="color:#999"
+        >
+          &lt;
+        </span>
+        <span class="token tag"
+              style="color:#905"
+        >
+          foo
+        </span>
+        <span class="token tag punctuation"
+              style="color:#999"
+        >
+          &gt;
+        </span>
+        <span class="token tag punctuation"
+              style="color:#999"
+        >
+          &lt;/
+        </span>
+        <span class="token tag"
+              style="color:#905"
+        >
+          foo
+        </span>
+        <span class="token tag punctuation"
+              style="color:#999"
+        >
+          &gt;
+        </span>
+      </div>
+    </pre>
+  </div>
+</div>
 `;
 
 exports[`Markdown should render emphasis and strong text 1`] = `
@@ -103,55 +138,43 @@ exports[`Markdown should render emphasis and strong text 1`] = `
 
 exports[`Markdown should render headings with generated ids 1`] = `
 <div>
-  <div class="rsg--spacing-3">
-    <h1 id="one"
-        class="rsg--heading-4 rsg--heading1-5"
-    >
-      one
-    </h1>
-  </div>
-  <div class="rsg--spacing-3">
-    <h2 id="two"
-        class="rsg--heading-4 rsg--heading2-6"
-    >
-      two
-    </h2>
-  </div>
-  <div class="rsg--spacing-3">
-    <h3 id="three"
-        class="rsg--heading-4 rsg--heading3-7"
-    >
-      three
-    </h3>
-  </div>
-  <div class="rsg--spacing-3">
-    <h4 id="four"
-        class="rsg--heading-4 rsg--heading4-8"
-    >
-      four
-    </h4>
-  </div>
-  <div class="rsg--spacing-3">
-    <h5 id="five"
-        class="rsg--heading-4 rsg--heading5-9"
-    >
-      five
-    </h5>
-  </div>
-  <div class="rsg--spacing-3">
-    <h6 id="six"
-        class="rsg--heading-4 rsg--heading6-10"
-    >
-      six
-    </h6>
-  </div>
+  <h1 id="one"
+      class="rsg--heading-4 rsg--heading1-5 rsg--spacing-3"
+  >
+    one
+  </h1>
+  <h2 id="two"
+      class="rsg--heading-4 rsg--heading2-6 rsg--spacing-3"
+  >
+    two
+  </h2>
+  <h3 id="three"
+      class="rsg--heading-4 rsg--heading3-7 rsg--spacing-3"
+  >
+    three
+  </h3>
+  <h4 id="four"
+      class="rsg--heading-4 rsg--heading4-8 rsg--spacing-3"
+  >
+    four
+  </h4>
+  <h5 id="five"
+      class="rsg--heading-4 rsg--heading5-9 rsg--spacing-3"
+  >
+    five
+  </h5>
+  <h6 id="six"
+      class="rsg--heading-4 rsg--heading6-10 rsg--spacing-3"
+  >
+    six
+  </h6>
 </div>
 `;
 
 exports[`Markdown should render inline code with escaping 1`] = `
 <p class="rsg--para-2">
   Foo
-  <code class="rsg--code-27">
+  <code class="rsg--code-28">
     &lt;bar&gt;
   </code>
   baz
@@ -220,10 +243,14 @@ exports[`Markdown should render paragraphs 1`] = `
 `;
 
 exports[`Markdown should render pre-formatted text 1`] = `
-<pre class="rsg--pre-26">
-  this is preformatted
+<div class="rsg--preContainer-25">
+  <div class="rsg--container-26">
+    <pre class="rsg--highlightPre-27">
+      this is preformatted
 so is this
-</pre>
+    </pre>
+  </div>
+</div>
 `;
 
 exports[`Markdown should render unordered lists 1`] = `

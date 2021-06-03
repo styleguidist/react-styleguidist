@@ -79,6 +79,7 @@ and this is _emphasized_
 	});
 
 	it('should render check-lists', () => {
+		// TODO: fix <input> styles
 		expectSnapshotToMatch(`
 * [ ] to do 1
 * [ ] to do 2
@@ -100,7 +101,7 @@ and this is _emphasized_
 `);
 	});
 
-	it('should render code blocks without escaping', () => {
+	it('should render code blocks with highlighting', () => {
 		expectSnapshotToMatch(`
 \`\`\`html
 <foo></foo>
@@ -138,7 +139,7 @@ and this is _emphasized_
 	it('should ignore multiline comments', () => {
 		const markdown = `Hello World
 <!--
-This is a 
+This is a
 multiline
 comment
 -->
@@ -147,7 +148,7 @@ comment
 		const pChildren = actual.find('p').props().children as string[];
 
 		expect(pChildren[0]).not.toContain(
-			`This is a 
+			`This is a
 multiline
 comment`
 		);

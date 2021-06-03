@@ -12,7 +12,7 @@ exports[`should renderer a link home in isolated mode 1`] = `
 
 exports[`should renderer a link to example isolated mode 1`] = `
 <Styled(ToolbarButton)
-  href="/#!/Pizza/3"
+  href="/#!/Pizza//3"
   testId="Pizza-3-isolate-button"
   title="Open isolated"
 >
