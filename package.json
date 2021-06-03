@@ -25,7 +25,7 @@
     "storybook.js"
   ],
   "engines": {
-    "node": ">=10"
+    "node": ">=14"
   },
   "dependencies": {
     "@babel/parser": "^7.13.11",
@@ -127,14 +127,15 @@
     "@types/unist": "^2.0.3",
     "@types/webpack-dev-server": "^3.11.1",
     "@types/webpack-env": "^1.16.0",
-    "@typescript-eslint/eslint-plugin": "^4.15.2",
-    "@typescript-eslint/parser": "^4.15.2",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "@typescript-eslint/parser": "^4.4.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
     "cheerio": "^1.0.0-rc.5",
     "css-loader": "^3.6.0",
+    "danger": "^10.5.3",
     "deabsdeep": "^1.0.6",
     "deepfreeze": "^2.0.0",
     "dog-names": "^2.0.0",
@@ -195,9 +196,11 @@
     "test:browser:customised": "node test/browser.js examples/customised/styleguide/index.html",
     "test:browser:sections": "node test/browser.js examples/sections/styleguide/index.html",
     "format": "prettier --loglevel warn --write \"**/*.{js,md,css}\"",
-    "test:cypress:pre": "npm i --no-save cypress@5.2 start-server-and-test",
-    "test:cypress:run": "start-server-and-test 'node test/run.server.js' 8082 'cypress open'",
-    "test:cypress:ci": "start-server-and-test 'node test/run.server.js' 8082 'cypress run --browser chrome --headless'"
+    "test:cypress:pre": "npm i --no-save cypress@6.5.0 wait-on",
+    "test:cypress:open": "cypress open",
+    "test:cypress:run": "cypress run",
+    "test:cypress:startServer": "node test/run.server.js",
+    "test:cypress:startServer:post": "wait-on http://localhost:8082"
   },
   "jest": {
     "testURL": "http://localhost/",
