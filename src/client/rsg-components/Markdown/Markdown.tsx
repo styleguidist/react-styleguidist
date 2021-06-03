@@ -37,7 +37,7 @@ Pre.propTypes = {
 	children: PropTypes.node,
 };
 
-export const baseOverrides = {
+export const overrides = {
 	a: {
 		component: Link,
 	},
@@ -139,21 +139,18 @@ export const baseOverrides = {
 	},
 } as const;
 
-export const inlineOverrides = {
-	...baseOverrides,
-	p: {
-		component: Text,
-	},
-} as const;
-
 interface MarkdownProps {
 	text: string;
 	inline?: boolean;
 }
 
 export const Markdown: React.FunctionComponent<MarkdownProps> = ({ text, inline }) => {
-	const overrides = inline ? inlineOverrides : baseOverrides;
-	return compiler(text, { overrides, forceBlock: true });
+	return compiler(text, {
+		overrides,
+		forceBlock: !inline,
+		forceWrapper: inline,
+		wrapper: inline ? 'span' : 'div',
+	});
 };
 
 Markdown.propTypes = {
