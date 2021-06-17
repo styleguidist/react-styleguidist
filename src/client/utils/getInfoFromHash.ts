@@ -23,7 +23,7 @@ export default function getInfoFromHash(
 			isolate: shouldIsolate,
 			hashArray,
 			targetName: hashArray[0],
-			targetIndex: parseInt(targetHash, 10) || targetHash,
+			targetIndex: parseInt(targetHash, 10) ?? targetHash,
 		};
 	}
 	return {};
