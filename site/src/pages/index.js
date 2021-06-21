@@ -73,9 +73,9 @@ const examples = [
 		image: 'https://elementz.style/showcase.PNG'
 	},
 	{
-		title: 'Everydayhero Constructicon',
-		href: 'https://everydayhero.github.io/constructicon/',
-		image: '/img/example3.png',
+		title: 'Dialog components',
+		href: 'https://dialogs.github.io/dialog-web-components/',
+		image: '/img/example2.png',
 	},
 	{
 		title: 'Re-bulma',
