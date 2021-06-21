@@ -68,6 +68,11 @@ const examples = [
 		image: '/img/example1.png',
 	},
 	{
+		title: 'Elementz UI',
+		href: 'https://elementz.style',
+		image: 'https://i.imgur.com/JruKLG1.png'
+	},
+	{
 		title: 'Dialog components',
 		href: 'https://dialogs.github.io/dialog-web-components/',
 		image: '/img/example2.png',
