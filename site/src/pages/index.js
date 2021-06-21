@@ -70,12 +70,7 @@ const examples = [
 	{
 		title: 'Elementz UI',
 		href: 'https://elementz.style',
-		image: 'https://i.imgur.com/JruKLG1.png'
-	},
-	{
-		title: 'Dialog components',
-		href: 'https://dialogs.github.io/dialog-web-components/',
-		image: '/img/example2.png',
+		image: 'https://elementz.style/showcase.PNG'
 	},
 	{
 		title: 'Everydayhero Constructicon',
