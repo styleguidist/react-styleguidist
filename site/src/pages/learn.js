@@ -34,7 +34,7 @@ const sections = [
 					Learn how to create resilient component libraries using React Styleguidist from its
 					maintainers at{' '}
 					<Link
-						href="https://component-driven.io/offerings"
+						href="https://component-driven.dev/offerings"
 						target="_blank"
 						rel="noopener noreferrer"
 					>
@@ -43,7 +43,7 @@ const sections = [
 					.
 				</p>
 				<Link
-					href="https://component-driven.io/offerings"
+					href="https://component-driven.dev/offerings"
 					target="_blank"
 					rel="noopener noreferrer"
 					className={styles.componentDrivenHero}
