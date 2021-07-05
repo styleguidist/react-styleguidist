@@ -68,14 +68,14 @@ const examples = [
 		image: '/img/example1.png',
 	},
 	{
-		title: 'Elementz UI',
-		href: 'https://elementz.style',
-		image: 'https://elementz.style/showcase_small.png' //https://elementz.style/showcase_white.png
-	},
-	{
 		title: 'Dialog components',
 		href: 'https://dialogs.github.io/dialog-web-components/',
 		image: '/img/example2.png',
+	},
+	{
+		title: 'Elementz',
+		href: 'https://elementz.style',
+		image: 'https://elementz.style/showcase_white.png'
 	},
 	{
 		title: 'Re-bulma',
