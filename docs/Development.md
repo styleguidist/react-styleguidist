@@ -30,7 +30,7 @@ We use webpack loaders to hot reload the style guide on changes in user componen
 
 Styleguidist tries to load and reuse the user’s webpack config (`webpack.config.js` in project root folder). It works most of the time but has some restrictions: Styleguidist [ignores](https://github.com/styleguidist/react-styleguidist/blob/master/src/scripts/utils/mergeWebpackConfig.js) some fields and plugins because they are already included (like `webpack.HotModuleReplacementPlugin`), don’t make sense for a style guide (like `output`) or may break Styleguidist (like `entry`).
 
-We’re trying to keep Styleguidist’s [webpack config](https://github.com/styleguidist/react-styleguidist/blob/master/src/scripts/make-webpack-config.js) minimal to reduce clashes with the user’s configuration.
+We’re trying to keep Styleguidist’s [webpack config](https://github.com/styleguidist/react-styleguidist/blob/master/src/scripts/make-webpack-config.ts) minimal to reduce clashes with the user’s configuration.
 
 ## React components
 
