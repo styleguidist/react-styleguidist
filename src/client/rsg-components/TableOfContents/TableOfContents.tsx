@@ -5,11 +5,12 @@ import TableOfContentsRenderer from 'rsg-components/TableOfContents/TableOfConte
 import filterSectionsByName from '../../utils/filterSectionsByName';
 import filterComponentsByName from '../../utils/filterComponentsByName';
 import { getHash } from '../../utils/handleHash';
+import { getSectionUrl } from '../../utils/getUrl';
 import * as Rsg from '../../../typings';
 
 interface TableOfContentsProps {
 	sections: Rsg.Section[];
-	useRouterLinks?: boolean;
+	pagePerSection?: boolean;
 	tocMode?: string;
 	loc: { hash: string; pathname: string };
 }
@@ -17,7 +18,7 @@ interface TableOfContentsProps {
 export default class TableOfContents extends Component<TableOfContentsProps> {
 	public static propTypes = {
 		sections: PropTypes.array.isRequired,
-		useRouterLinks: PropTypes.bool,
+		pagePerSection: PropTypes.bool,
 		tocMode: PropTypes.string,
 		loc: PropTypes.object,
 	};
@@ -31,34 +32,37 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 	};
 
 	private renderLevel(
-		sections: (Rsg.Section | Rsg.Component)[],
-		useRouterLinks = false,
+		allSectionsAndComponents: (Rsg.Section | Rsg.Component)[],
+		pagePerSection = false,
 		hashPath: string[] = [],
+		// TODO: WTF is this?!
 		useHashId = false
 	): { content: React.ReactElement; containsSelected: boolean } {
+		// TODO: Highlight the first section/component by default with pagePerSection
+
 		// Match selected component in both basic routing and pagePerSection routing.
 		const { hash, pathname } = this.props.loc;
-		const windowHash = pathname + (useRouterLinks ? hash : getHash(hash));
+		const windowHash = pathname + (pagePerSection ? hash : getHash(hash));
 
 		let childrenContainSelected = false;
-		const processedItems: Rsg.TOCItem[] = sections.map((tocItem) => {
-			const children = [
-				...('sections' in tocItem ? tocItem.sections || [] : []),
-				...('components' in tocItem ? tocItem.components || [] : []),
-			];
+		const processedItems: Rsg.TOCItem[] = allSectionsAndComponents.map((tocItem) => {
+			const components = 'components' in tocItem ? tocItem.components : [];
+			const sections = 'sections' in tocItem ? tocItem.sections : [];
+			const children = [...components, ...sections];
 			const sectionDepth = 'sectionDepth' in tocItem ? tocItem.sectionDepth || 0 : 0;
 			const childHashPath =
 				sectionDepth === 0 && useHashId
 					? hashPath
-					: [...hashPath, tocItem.name ? tocItem.name : '-'];
+					: // TODO: Not sure we need the variant with the `-`
+					  [...hashPath, tocItem.name ? tocItem.name : '-'];
 
 			const { content, containsSelected } =
 				children.length > 0
-					? this.renderLevel(children, useRouterLinks, childHashPath, sectionDepth === 0)
+					? this.renderLevel(children, pagePerSection, childHashPath, sectionDepth === 0)
 					: { content: undefined, containsSelected: false };
 
 			const selected =
-				(!useRouterLinks && tocItem.href ? getHash(tocItem.href) : tocItem.href) === windowHash;
+				(!pagePerSection && tocItem.href ? getHash(tocItem.href) : tocItem.href) === windowHash;
 
 			if (containsSelected || selected) {
 				childrenContainSelected = true;
@@ -66,17 +70,26 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 
 			return {
 				...tocItem,
-				heading: !!tocItem.name && children.length > 0,
+				components,
+				sections,
 				content,
 				selected,
+				href:
+					tocItem.href ||
+					getSectionUrl({ pagePerSection, slug: tocItem.slug, hashPath: tocItem.hashPath }),
+				// TODO: Rename to hasHeading
+				heading: !!tocItem.name && children.length > 0,
 				shouldOpenInNewTab:
 					!!('external' in tocItem && tocItem.external) &&
 					!!('externalLink' in tocItem && tocItem.externalLink),
+				// TODO: Rename to isInitiallyOpen
 				initialOpen:
 					this.props.tocMode !== 'collapse' ||
 					containsSelected ||
-					('expand' in tocItem && tocItem.expand),
-				forcedOpen: !!this.state.searchTerm.length,
+					('expand' in tocItem && tocItem.expand) ||
+					false,
+				// TODO: Rename to isForcedToOpen (?)
+				forcedOpen: this.state.searchTerm.length > 0,
 			};
 		});
 		return {
@@ -87,7 +100,7 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 
 	private renderSections() {
 		const { searchTerm } = this.state;
-		const { sections, useRouterLinks } = this.props;
+		const { sections, pagePerSection } = this.props;
 		// If there is only one section, we treat it as a root section
 		// In this case the name of the section won't be rendered and it won't get left padding
 		// Since a section can contain only other sections,
@@ -97,12 +110,12 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 		const filtered =
 			sections.length === 1
 				? // only use subsections if there actually are subsections
-				  sections[0].sections && sections[0].sections.length > 0
+				  sections[0].sections.length > 0
 					? filterSectionsByName(sections[0].sections, searchTerm)
-					: filterComponentsByName(sections[0].components || [], searchTerm)
+					: filterComponentsByName(sections[0].components, searchTerm)
 				: filterSectionsByName(sections, searchTerm);
 
-		return this.renderLevel(filtered, useRouterLinks).content;
+		return this.renderLevel(filtered, pagePerSection).content;
 	}
 
 	public render() {

@@ -10,7 +10,7 @@ import * as Rsg from '../../typings';
  * @returns {Array}
  */
 export default function getComponentFilesFromSections(
-	sections: Rsg.RawSection[],
+	sections: Rsg.ConfigSection[],
 	rootDir?: string,
 	ignore?: string[]
 ): string[] {

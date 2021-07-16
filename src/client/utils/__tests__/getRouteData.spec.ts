@@ -2,7 +2,6 @@
 
 import deepfreeze from 'deepfreeze';
 import getRouteData from '../getRouteData';
-import { DisplayModes } from '../../consts';
 import * as Rsg from '../../../typings';
 
 const module: Rsg.ExamplesModule = {
@@ -18,26 +17,40 @@ const module: Rsg.ExamplesModule = {
 
 const sections: Rsg.Section[] = deepfreeze([
 	{
+		name: '',
+		visibleName: '',
+		slug: '',
+		hashPath: [],
 		exampleMode: 'collapse',
+		components: [],
 		sections: [
 			{
 				name: 'Components',
+				visibleName: 'Components',
 				slug: 'components',
+				hashPath: ['Components'],
 				components: [
 					{
 						name: 'Button',
-						props: {
-							displayName: 'Button',
-							examples: module,
-						},
-						module: 1,
+						visibleName: 'Button',
+						slug: 'button',
+						hashPath: ['Components', 'Button'],
+						metadata: {},
+						filepath: 'button.tsx',
+						pathLine: '',
+						hasExamples: false,
+						props: { displayName: 'Button' },
 					},
 					{
 						name: 'Image',
-						props: {
-							displayName: 'Image',
-						},
-						module: 2,
+						visibleName: 'Image',
+						slug: 'image',
+						hashPath: ['Components', 'Image'],
+						metadata: {},
+						filepath: 'image.tsx',
+						pathLine: '',
+						hasExamples: false,
+						props: { displayName: 'Image' },
 					},
 				],
 				sections: [],
@@ -47,7 +60,9 @@ const sections: Rsg.Section[] = deepfreeze([
 			},
 			{
 				name: 'Section',
+				visibleName: 'Section',
 				slug: 'section',
+				hashPath: ['Section'],
 				content: module,
 				components: [],
 				sections: [],
@@ -57,15 +72,31 @@ const sections: Rsg.Section[] = deepfreeze([
 			},
 			{
 				name: 'Buttons',
+				visibleName: 'Buttons',
 				slug: 'buttons',
+				hashPath: ['Buttons'],
 				components: [
 					{
 						name: 'Label',
-						module: 1,
+						visibleName: 'Label',
+						slug: 'label',
+						hashPath: ['Buttons', 'Label'],
+						metadata: {},
+						props: { displayName: 'Label' },
+						filepath: 'label.tsx',
+						pathLine: '',
+						hasExamples: false,
 					},
 					{
 						name: 'RandomButton',
-						module: 2,
+						visibleName: 'RandomButton',
+						slug: 'randombutton',
+						hashPath: ['Buttons', 'RandomButton'],
+						metadata: {},
+						props: { displayName: 'RandomButton' },
+						filepath: 'randombutton.tsx',
+						pathLine: '',
+						hasExamples: false,
 					},
 				],
 				sections: [],
@@ -78,17 +109,40 @@ const sections: Rsg.Section[] = deepfreeze([
 ]);
 
 describe('getRouteData', () => {
-	it('should return "all" mode by default', () => {
-		const result = getRouteData([], '');
-		expect(result.displayMode).toBe(DisplayModes.all);
+	test('return one component', () => {
+		const result = getRouteData(sections, '#/Components/Button');
+		expect(result).toEqual({
+			isolated: false,
+			exampleIndex: undefined,
+			sections: [
+				expect.objectContaining({
+					components: [expect.objectContaining({ name: 'Button' })],
+				}),
+			],
+		});
 	});
 
-	it('should return one component', () => {
-		const result = getRouteData(sections, '#!/Button');
+	test('return one section', () => {
+		const result = getRouteData(sections, '#/Section');
+		expect(result).toEqual({
+			isolated: false,
+			exampleIndex: undefined,
+			sections: [
+				expect.objectContaining({
+					name: 'Section',
+					components: [],
+					sections: [],
+				}),
+			],
+		});
+	});
+
+	test('return isolated flag for isolated mode URLs', () => {
+		const result = getRouteData(sections, '#!/Components/Button');
 		expect(result).toEqual(
 			expect.objectContaining({
-				displayMode: 'component',
-				targetIndex: undefined,
+				isolated: true,
+				exampleIndex: undefined,
 				sections: [
 					expect.objectContaining({
 						components: [expect.objectContaining({ name: 'Button' })],
@@ -98,29 +152,12 @@ describe('getRouteData', () => {
 		);
 	});
 
-	it('should return one section', () => {
-		const result = getRouteData(sections, '#!/Section');
+	test('return example index for a component', () => {
+		const result = getRouteData(sections, '#!/Components/Button//1');
 		expect(result).toEqual(
 			expect.objectContaining({
-				displayMode: 'section',
-				targetIndex: undefined,
-				sections: [
-					expect.objectContaining({
-						name: 'Section',
-						components: [],
-						sections: [],
-					}),
-				],
-			})
-		);
-	});
-
-	it('should return target index for a component', () => {
-		const result = getRouteData(sections, '#!/Button//1');
-		expect(result).toEqual(
-			expect.objectContaining({
-				displayMode: 'example',
-				targetIndex: 1,
+				isolated: true,
+				exampleIndex: 1,
 				sections: [
 					expect.objectContaining({
 						components: [expect.objectContaining({ name: 'Button' })],
@@ -130,12 +167,12 @@ describe('getRouteData', () => {
 		);
 	});
 
-	it('should return target index as a string for a component', () => {
-		const result = getRouteData(sections, '#!/Button//basic');
+	test('return example index as a string for a component', () => {
+		const result = getRouteData(sections, '#!/Components/Button//basic');
 		expect(result).toEqual(
 			expect.objectContaining({
-				displayMode: 'example',
-				targetIndex: 'basic',
+				isolated: true,
+				exampleIndex: 'basic',
 				sections: [
 					expect.objectContaining({
 						components: [expect.objectContaining({ name: 'Button' })],
@@ -145,12 +182,12 @@ describe('getRouteData', () => {
 		);
 	});
 
-	it('should return target index for a section', () => {
+	test('return example index for a section', () => {
 		const result = getRouteData(sections, '#!/Section//1');
 		expect(result).toEqual(
 			expect.objectContaining({
-				displayMode: 'example',
-				targetIndex: 1,
+				isolated: true,
+				exampleIndex: 1,
 				sections: [
 					expect.objectContaining({
 						name: 'Section',
@@ -162,13 +199,13 @@ describe('getRouteData', () => {
 		);
 	});
 
-	it('should return first section if pagePerSection and hash is empty', () => {
-		const subSection = sections[0].sections as Rsg.Section[];
+	test('return first section if pagePerSection and hash are empty', () => {
+		const subSection = sections[0].sections;
 		const result = getRouteData(subSection, '', true);
 		expect(result).toEqual(
 			expect.objectContaining({
-				displayMode: 'all',
-				targetIndex: undefined,
+				isolated: false,
+				exampleIndex: undefined,
 				sections: [
 					expect.objectContaining({
 						name: 'Components',
@@ -183,16 +220,19 @@ describe('getRouteData', () => {
 		);
 	});
 
-	it('should return one section without components if pagePerSection=true', () => {
+	test('return one section with children if pagePerSection=true', () => {
 		const result = getRouteData(sections, '#/Buttons', true);
 		expect(result).toEqual(
 			expect.objectContaining({
-				displayMode: 'all',
-				targetIndex: undefined,
+				isolated: false,
+				exampleIndex: undefined,
 				sections: [
 					expect.objectContaining({
 						name: 'Buttons',
-						components: [],
+						components: [
+							expect.objectContaining({ name: 'Label' }),
+							expect.objectContaining({ name: 'RandomButton' }),
+						],
 						sections: [],
 					}),
 				],
@@ -200,15 +240,15 @@ describe('getRouteData', () => {
 		);
 	});
 
-	it('should return one component if pagePerSection=true and hash has a component', () => {
+	test('return one component without ancestors if pagePerSection=true and hash has a component', () => {
 		const result = getRouteData(sections, '#/Buttons/Label', true);
 		expect(result).toEqual(
 			expect.objectContaining({
-				displayMode: 'all',
-				targetIndex: undefined,
+				isolated: false,
+				exampleIndex: undefined,
 				sections: [
 					expect.objectContaining({
-						slug: 'buttons',
+						name: '',
 						components: [expect.objectContaining({ name: 'Label' })],
 					}),
 				],
@@ -216,12 +256,12 @@ describe('getRouteData', () => {
 		);
 	});
 
-	it('should return not found if pagePerSection=true and hash does not exist', () => {
+	test('return not found if pagePerSection=true and hash does not exist', () => {
 		const result = getRouteData(sections, '#/Buttons/Label/Not', true);
 		expect(result).toEqual(
 			expect.objectContaining({
-				displayMode: 'notFound',
-				targetIndex: undefined,
+				isolated: false,
+				exampleIndex: undefined,
 				sections: [],
 			})
 		);

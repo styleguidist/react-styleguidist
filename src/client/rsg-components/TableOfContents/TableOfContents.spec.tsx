@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { shallow } from 'enzyme';
+import { render, screen, fireEvent } from '../../test';
 import TableOfContents from './TableOfContents';
 import { TableOfContentsRenderer } from './TableOfContentsRenderer';
-import Context from '../Context';
 import * as Rsg from '../../../typings';
 
 const module: Rsg.ExamplesModule = {
@@ -19,24 +17,39 @@ const module: Rsg.ExamplesModule = {
 	__namedExamples: {},
 };
 
-const components = [
+const components: Rsg.Component[] = [
 	{
-		visibleName: 'Button',
 		name: 'Button',
-		href: '#button',
+		visibleName: 'Button',
 		slug: 'button',
+		hashPath: ['Buttons', 'Button'],
+		metadata: {},
+		filepath: 'button.tsx',
+		pathLine: '',
+		hasExamples: false,
+		props: { displayName: 'Button' },
 	},
 	{
-		visibleName: 'Input',
 		name: 'Input',
-		href: '#input',
+		visibleName: 'Input',
 		slug: 'input',
+		hashPath: ['Forms', 'Input'],
+		metadata: {},
+		filepath: 'Input.tsx',
+		pathLine: '',
+		hasExamples: false,
+		props: { displayName: 'Input' },
 	},
 	{
-		visibleName: 'Textarea',
 		name: 'Textarea',
-		href: '#textarea',
+		visibleName: 'Textarea',
 		slug: 'textarea',
+		hashPath: ['Forms', 'Textarea'],
+		metadata: {},
+		filepath: 'Textarea.tsx',
+		pathLine: '',
+		hasExamples: false,
+		props: { displayName: 'Textarea' },
 	},
 ];
 
@@ -45,76 +58,51 @@ const sections: Rsg.Section[] = [
 		exampleMode: 'collapse',
 		visibleName: 'Introduction',
 		name: 'Introduction',
-		href: '#introduction',
+		hashPath: ['Introduction'],
 		slug: 'introduction',
 		content: module,
+		components: [],
+		sections: [],
 	},
 	{
 		exampleMode: 'collapse',
 		visibleName: 'Buttons',
 		name: 'Buttons',
-		href: '#buttons',
+		hashPath: ['Buttons'],
 		slug: 'buttons',
-		components: [
-			{
-				visibleName: 'Button',
-				name: 'Button',
-				href: '#button',
-				slug: 'button',
-			},
-		],
+		components: [components[0]],
+		sections: [],
 	},
 	{
 		exampleMode: 'collapse',
 		visibleName: 'Forms',
 		name: 'Forms',
-		href: '#forms',
+		hashPath: ['Forms'],
 		slug: 'forms',
-		components: [
-			{
-				visibleName: 'Input',
-				name: 'Input',
-				href: '#input',
-				slug: 'input',
-			},
-			{
-				visibleName: 'Textarea',
-				name: 'Textarea',
-				href: '#textarea',
-				slug: 'textarea',
-			},
-		],
+		components: [components[1], components[2]],
+		sections: [],
 	},
 ];
 
 it('should filter list when search field contains a query', () => {
 	const searchTerm = 'put';
-	const { getByPlaceholderText, getAllByTestId, getByTestId } = render(
-		<TableOfContents
-			sections={[
-				{
-					exampleMode: 'collapse',
-					visibleName: 'Input',
-					href: '#input',
-					components,
-				},
-			]}
-			tocMode="expand"
-		/>
-	);
-	expect(getAllByTestId('rsg-toc-link').length).toBe(3);
-	fireEvent.change(getByPlaceholderText('Filter by name'), { target: { value: searchTerm } });
-	expect(getAllByTestId('rsg-toc-link')).toHaveLength(1);
-	expect(getByTestId('rsg-toc-link')).toHaveTextContent('Input');
+	render(<TableOfContents sections={sections} tocMode="expand" />);
+	expect(screen.getAllByTestId('rsg-toc-link').length).toBe(6);
+	fireEvent.change(screen.getByLabelText('Filter by name'), {
+		target: { value: searchTerm },
+	});
+	expect(screen.getAllByTestId('rsg-toc-link')).toHaveLength(2);
+	expect(screen.getByRole('link', { name: 'Forms' })).toBeInTheDocument();
+	expect(screen.getByRole('link', { name: 'Input' })).toBeInTheDocument();
 });
 
 it('should filter section names', () => {
 	const searchTerm = 'frm';
-	const { getByPlaceholderText, getAllByTestId, getByTestId } = render(
+	const { getByLabelText, getAllByTestId, getByTestId } = render(
 		<TableOfContents sections={sections} />
 	);
 	expect(getAllByTestId('rsg-toc-link').length).toBe(6);
-	fireEvent.change(getByPlaceholderText('Filter by name'), { target: { value: searchTerm } });
+	fireEvent.change(getByLabelText('Filter by name'), { target: { value: searchTerm } });
 	expect(getAllByTestId('rsg-toc-link')).toHaveLength(1);
 	expect(getByTestId('rsg-toc-link')).toHaveTextContent('Forms');
 });
@@ -123,7 +111,7 @@ it('should call a callback when input value changed', () => {
 	const onSearchTermChange = jest.fn();
 	const searchTerm = 'foo';
 	const newSearchTerm = 'bar';
-	const actual = shallow(
+	render(
 		<TableOfContentsRenderer
 			classes={{}}
 			searchTerm={searchTerm}
@@ -133,112 +121,21 @@ it('should call a callback when input value changed', () => {
 		</TableOfContentsRenderer>
 	);
 
-	actual.find('input').simulate('change', {
-		target: {
-			value: newSearchTerm,
-		},
-	});
+	fireEvent.change(screen.getByLabelText('Filter by name'), { target: { value: newSearchTerm } });
 
 	expect(onSearchTermChange).toBeCalledWith(newSearchTerm);
 });
 
-it('should render components with useRouterLinks', () => {
-	const { getAllByRole } = render(
-		<TableOfContents
-			useRouterLinks
-			sections={[
-				{
-					exampleMode: 'collapse',
-					sections: [
-						{
-							exampleMode: 'collapse',
-							visibleName: '1',
-							name: 'Components',
-							href: '#/Components',
-							slug: 'components',
-							content: module,
-						},
-						{
-							exampleMode: 'collapse',
-							visibleName: '2',
-							content: module,
-							href: '#/Chap',
-							slug: 'chap',
-						},
-					],
-				},
-			]}
-		/>
-	);
+it('should render anchor links when pagePerSection=false', () => {
+	render(<TableOfContents pagePerSection={false} sections={sections} />);
 
-	expect((getAllByRole('link')[0] as any).href).toMatch(/\/#\/Components$/);
+	expect(screen.getByRole('link', { name: 'Input' })).toHaveAttribute('href', '#input');
 });
 
-/**
- * testing this layer with no mocking makes no sense...
- * This test should not exist but for good coverage policy this is necessary
- */
-it('should detect sections containing current selection when tocMode is collapse', () => {
-	const context = {
-		config: {
-			tocMode: 'collapse',
-		},
-	};
+it('should render page links when pagePerSection=true', () => {
+	render(<TableOfContents pagePerSection sections={sections} />);
 
-	const Provider = (props: any) => <Context.Provider value={context} {...props} />;
-
-	const { getByText } = render(
-		<Provider>
-			<TableOfContents
-				tocMode="collapse"
-				sections={[
-					{
-						exampleMode: 'collapse',
-						sections: [
-							{
-								exampleMode: 'collapse',
-								visibleName: '1',
-								href: '#/components',
-								slug: 'components',
-								sections: [
-									{
-										exampleMode: 'collapse',
-										visibleName: '1.1',
-										href: '#/button',
-										slug: 'button',
-									},
-								],
-							},
-							{
-								exampleMode: 'collapse',
-								visibleName: '2',
-								href: '#/chap',
-								slug: 'chap',
-								content: module,
-								sections: [
-									{
-										exampleMode: 'collapse',
-										visibleName: '2.1',
-										href: '#/chapter-1',
-										slug: 'chapter-1',
-									},
-								],
-							},
-							{
-								exampleMode: 'collapse',
-								visibleName: '3',
-								href: 'http://react-styleguidist.com',
-								slug: 'react-styleguidist',
-							},
-						],
-					},
-				]}
-				loc={{ pathname: '', hash: 'button' }}
-			/>
-		</Provider>
-	);
-
-	expect(getByText('1.1')).not.toBeEmptyDOMElement();
+	expect(screen.getByRole('link', { name: 'Input' })).toHaveAttribute('href', '/#/Forms/Input');
 });
 
 it('should show sections with expand: true when tocMode is collapse', () => {
@@ -247,43 +144,57 @@ it('should show sections with expand: true when tocMode is collapse', () => {
 			tocMode="collapse"
 			sections={[
 				{
-					exampleMode: 'collapse',
+					...sections[0],
 					sections: [
 						{
 							exampleMode: 'collapse',
-							visibleName: '1',
-							expand: true,
-							href: '#/components',
+							visibleName: 'Components',
+							name: 'Components',
+							hashPath: ['Components'],
 							slug: 'components',
+							expand: true,
+							components: [components[0]],
 							sections: [
 								{
 									exampleMode: 'collapse',
 									visibleName: '1.1',
-									href: '#/button',
-									slug: 'button',
+									name: '1.1',
+									hashPath: ['NewButton'],
+									slug: 'new-button',
+									sections: [],
+									components: [],
 								},
-							],
-						},
-						{
-							exampleMode: 'collapse',
-							visibleName: '2',
-							href: '#/chap',
-							slug: 'chap',
-							content: module,
-							sections: [
 								{
 									exampleMode: 'collapse',
-									visibleName: '2.1',
-									href: '#/chapter-1',
-									slug: 'chapter-1',
+									visibleName: '2',
+									name: '2',
+									hashPath: ['Chap'],
+									slug: 'chap',
+									content: module,
+									components: [],
+									sections: [
+										{
+											exampleMode: 'collapse',
+											visibleName: '2.1',
+											name: '2.1',
+											hashPath: ['Chapter-1'],
+											slug: 'chapter-1',
+											sections: [],
+											components: [],
+										},
+									],
+								},
+								{
+									exampleMode: 'collapse',
+									visibleName: '3',
+									name: '3',
+									href: 'https://react-styleguidist.com',
+									hashPath: [],
+									slug: 'react-styleguidist',
+									sections: [],
+									components: [],
 								},
 							],
-						},
-						{
-							exampleMode: 'collapse',
-							visibleName: '3',
-							href: 'http://react-styleguidist.com',
-							slug: 'react-styleguidist',
 						},
 					],
 				},

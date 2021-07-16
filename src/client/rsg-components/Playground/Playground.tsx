@@ -7,11 +7,29 @@ import Slot from 'rsg-components/Slot';
 import PlaygroundRenderer from 'rsg-components/Playground/PlaygroundRenderer';
 import Context from 'rsg-components/Context';
 import { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
-import { DisplayModes, ExampleModes } from '../../consts';
+import { getIsolatedUrl } from '../../utils/getUrl';
+import { ExampleModes } from '../../consts';
 import * as Rsg from '../../../typings';
+
+const getIsolatedButtonUrl = ({
+	isolated,
+	hashPath,
+	exampleIndex,
+}: {
+	isolated: boolean;
+	hashPath: string[];
+	exampleIndex?: number | string;
+}) => {
+	if (isolated) {
+		return getIsolatedUrl(hashPath);
+	} else {
+		return getIsolatedUrl(hashPath, exampleIndex);
+	}
+};
 
 interface PlaygroundProps {
 	componentName: string;
+	componentHashPath: string[];
 	exampleMode: string;
 	code: string;
 	documentScope: Record<string, unknown>;
@@ -27,11 +45,12 @@ interface PlaygroundState {
 
 class Playground extends Component<PlaygroundProps, PlaygroundState> {
 	public static propTypes = {
+		componentName: PropTypes.string.isRequired,
+		componentHashPath: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+		exampleMode: PropTypes.string.isRequired,
 		code: PropTypes.string.isRequired,
 		documentScope: PropTypes.object.isRequired,
 		exampleScope: PropTypes.object.isRequired,
-		componentName: PropTypes.string.isRequired,
-		exampleMode: PropTypes.string.isRequired,
 		modifiers: PropTypes.object.isRequired,
 	};
 
@@ -79,10 +98,19 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 
 	public render() {
 		const { code, activeTab } = this.state;
-		const { documentScope, exampleScope, componentName, modifiers, exampleMode } = this.props;
-		const { displayMode } = this.context;
+		const {
+			documentScope,
+			exampleScope,
+			componentName,
+			componentHashPath,
+			modifiers,
+			exampleMode,
+		} = this.props;
+		const { isolated, exampleIndex } = this.context;
 		const isExampleHidden = exampleMode === ExampleModes.hide;
 		const isEditorHidden = modifiers.noeditor || isExampleHidden;
+		const isolatedButton = isolated && exampleIndex !== undefined;
+
 		const preview = (
 			<Preview code={code} documentScope={documentScope} exampleScope={exampleScope} />
 		);
@@ -116,8 +144,13 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 						name="exampleToolbar"
 						props={{
 							name: componentName,
-							isolated: displayMode === DisplayModes.example,
+							href: getIsolatedButtonUrl({
+								isolated: isolatedButton,
+								hashPath: componentHashPath,
+								exampleIndex: modifiers.index,
+							}),
 							exampleIndex: modifiers.index,
+							isolated: isolatedButton,
 						}}
 					/>
 				}

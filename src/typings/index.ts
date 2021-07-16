@@ -20,3 +20,4 @@ export * from './RsgRequireItResult';
 export * from './RsgSection';
 export * from './RsgStyleguidistConfig';
 export * from './RsgTheme';
+export * from './RsgTOCItem';

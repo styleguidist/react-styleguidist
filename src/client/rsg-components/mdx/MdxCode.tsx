@@ -11,7 +11,13 @@ interface Props extends Rsg.Modifiers {
 }
 
 export default function MdxCode({ className, children, ...modifiers }: Props) {
-	const { componentName, exampleMode, documentScope, exampleScope } = useMdxContext();
+	const {
+		componentName,
+		componentHashPath,
+		exampleMode,
+		documentScope,
+		exampleScope,
+	} = useMdxContext();
 
 	if (modifiers.static) {
 		return (
@@ -24,7 +30,8 @@ export default function MdxCode({ className, children, ...modifiers }: Props) {
 	return (
 		<Playground
 			code={String(children)}
-			componentName={componentName || ''} // TODO
+			componentName={componentName}
+			componentHashPath={componentHashPath}
 			exampleMode={exampleMode}
 			documentScope={documentScope}
 			exampleScope={exampleScope}

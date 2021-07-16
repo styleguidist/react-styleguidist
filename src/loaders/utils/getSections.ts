@@ -12,7 +12,7 @@ import * as Rsg from '../../typings';
 const mdxLoader = path.resolve(__dirname, '../mdx-loader.js');
 
 function processSectionContent(
-	section: Rsg.RawSection,
+	section: Rsg.ConfigSection,
 	config: Rsg.SanitizedStyleguidistConfig
 ): Rsg.RequireItResult | undefined {
 	if (!section.content) {
@@ -29,7 +29,10 @@ function processSectionContent(
 	return requireIt(`!!${mdxLoader}!${contentAbsolutePath}`);
 }
 
-const getSectionComponents = (section: Rsg.RawSection, config: Rsg.SanitizedStyleguidistConfig) => {
+const getSectionComponents = (
+	section: Rsg.ConfigSection,
+	config: Rsg.SanitizedStyleguidistConfig
+) => {
 	let ignore = config.ignore ? _.castArray(config.ignore) : [];
 	if (section.ignore) {
 		ignore = ignore.concat(_.castArray(section.ignore));
@@ -47,7 +50,7 @@ const getSectionComponents = (section: Rsg.RawSection, config: Rsg.SanitizedStyl
  * @returns {Array}
  */
 export default function getSections(
-	sections: Rsg.RawSection[],
+	sections: Rsg.ConfigSection[],
 	config: Rsg.SanitizedStyleguidistConfig,
 	parentDepth?: number
 ): Rsg.LoaderSection[] {
@@ -63,7 +66,7 @@ export default function getSections(
  * @returns {object}
  */
 export function processSection(
-	section: Rsg.RawSection,
+	section: Rsg.ConfigSection,
 	config: Rsg.SanitizedStyleguidistConfig,
 	parentDepth?: number
 ): Rsg.LoaderSection {

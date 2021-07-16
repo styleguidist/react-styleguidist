@@ -233,7 +233,7 @@ Try to install it: npm install --save-dev ${value}`
 	sections: {
 		type: 'array',
 		default: [],
-		process: (val: Rsg.RawSection[], config: Rsg.StyleguidistConfig): Rsg.RawSection[] => {
+		process: (val: Rsg.ConfigSection[], config: Rsg.StyleguidistConfig): Rsg.ConfigSection[] => {
 			if (!val) {
 				// If root `components` isn't empty, make it a first section
 				// If `components` and `sections` weren’t specified, use default pattern

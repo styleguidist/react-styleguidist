@@ -24,6 +24,7 @@ export const getLocalExampleNameById = (id: string) => camelCase(id.replace(/^.*
 export default function Story({ id, name, ...modifiers }: Props) {
 	const {
 		componentName,
+		componentHashPath,
 		exampleMode,
 		documentScope,
 		exampleScope,
@@ -67,7 +68,8 @@ export default function Story({ id, name, ...modifiers }: Props) {
 	return (
 		<Playground
 			code={code}
-			componentName={componentName || ''} // TODO
+			componentName={componentName}
+			componentHashPath={componentHashPath}
 			exampleMode={exampleMode}
 			documentScope={documentScope}
 			exampleScope={exampleScope}

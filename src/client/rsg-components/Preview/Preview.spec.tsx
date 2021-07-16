@@ -1,11 +1,6 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { render } from '@testing-library/react';
+import { render, Provider } from '../../test';
 import Preview from '.';
-import Context, { StyleGuideContextContents } from '../Context';
-import config from '../../../scripts/schemas/config';
-
-const compileExample = config.compileExample.default;
 
 /* eslint-disable no-console */
 
@@ -18,17 +13,6 @@ const defaultProps = {
 	exampleScope: { react: React },
 };
 
-const context = {
-	config: {
-		compileExample,
-	},
-	codeRevision: 0,
-} as StyleGuideContextContents;
-
-const Provider = (props: Record<string, unknown>) => (
-	<Context.Provider value={context} {...props} />
-);
-
 const console$error = console.error;
 const console$clear = console.clear;
 
@@ -38,11 +22,7 @@ afterEach(() => {
 });
 
 it('should unmount Wrapper component', () => {
-	const { unmount, getByTestId } = render(
-		<Provider>
-			<Preview {...defaultProps} />
-		</Provider>
-	);
+	const { unmount, getByTestId } = render(<Preview {...defaultProps} />);
 
 	const node = getByTestId('mountNode');
 
@@ -55,11 +35,7 @@ it('should not fail when Wrapper wasn’t mounted', () => {
 	const consoleError = jest.fn();
 	console.error = consoleError;
 
-	const { unmount, getByTestId } = render(
-		<Provider>
-			<Preview {...defaultProps} code="pizza" />
-		</Provider>
-	);
+	const { unmount, getByTestId } = render(<Preview {...defaultProps} code="pizza" />);
 
 	const node = getByTestId('mountNode');
 
@@ -75,30 +51,18 @@ it('should not fail when Wrapper wasn’t mounted', () => {
 });
 
 it('should update', () => {
-	const { rerender, getByText } = render(
-		<Provider>
-			<Preview {...defaultProps} />
-		</Provider>
-	);
+	const { rerender, getByText } = render(<Preview {...defaultProps} />);
 
 	expect(getByText('Code: OK')).toBeInTheDocument();
 
-	rerender(
-		<Provider>
-			<Preview {...defaultProps} code={newCode} />
-		</Provider>
-	);
+	rerender(<Preview {...defaultProps} code={newCode} />);
 
 	expect(getByText('Code: Cancel')).toBeInTheDocument();
 });
 
 it('should handle no code', () => {
 	console.error = jest.fn();
-	render(
-		<Provider>
-			<Preview {...defaultProps} code="" />
-		</Provider>
-	);
+	render(<Preview {...defaultProps} code="" />);
 
 	expect(console.error).not.toHaveBeenCalled();
 });
@@ -107,11 +71,7 @@ it('should handle errors', () => {
 	const consoleError = jest.fn();
 
 	console.error = consoleError;
-	render(
-		<Provider>
-			<Preview {...defaultProps} code={'<invalid code'} />
-		</Provider>
-	);
+	render(<Preview {...defaultProps} code={'<invalid code'} />);
 
 	expect(
 		consoleError.mock.calls.find((call) =>
@@ -122,18 +82,14 @@ it('should handle errors', () => {
 
 it('should not clear console on initial mount', () => {
 	console.clear = jest.fn();
-	mount(
-		<Provider>
-			<Preview {...defaultProps} code={code} />
-		</Provider>
-	);
+	render(<Preview {...defaultProps} code={code} />);
 	expect(console.clear).toHaveBeenCalledTimes(0);
 });
 
 it('should clear console on second mount', () => {
 	console.clear = jest.fn();
-	mount(
-		<Provider value={{ ...context, codeRevision: 1 }}>
+	render(
+		<Provider codeRevision={1}>
 			<Preview {...defaultProps} code={code} />
 		</Provider>
 	);

@@ -8,7 +8,7 @@ import { RecursivePartial } from './RecursivePartial';
 import { ExpandMode } from './RsgComponent';
 import { PropsObject } from './RsgPropsObject';
 import { CodeExample } from './RsgExample';
-import { RawSection, Section } from './RsgSection';
+import { ConfigSection, Section } from './RsgSection';
 import { Theme } from './RsgTheme';
 
 type Mode = Configuration['mode'];
@@ -103,7 +103,7 @@ export type ProcessedStyleguidistCSSConfig = Pick<ProcessedStyleguidistConfig, '
 	Pick<ProcessedStyleguidistConfig, 'styles'>;
 
 export interface SanitizedStyleguidistConfig extends BaseStyleguidistConfig {
-	sections: RawSection[];
+	sections: ConfigSection[];
 }
 
 /**

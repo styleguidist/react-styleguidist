@@ -1,26 +1,52 @@
+import deepfreeze from 'deepfreeze';
 import findSection from '../findSection';
 import * as Rsg from '../../../typings';
 
-const sections: Rsg.Section[] = [
+const sectionsRaw: Rsg.Section[] = [
 	{
-		exampleMode: 'collapse',
 		name: 'General',
+		visibleName: 'General',
+		slug: 'general',
+		hashPath: ['General'],
+		exampleMode: 'collapse',
+		components: [],
 		sections: [
 			{
-				exampleMode: 'collapse',
 				name: 'Particles',
+				visibleName: 'Particles',
+				slug: 'particles',
+				hashPath: ['Particles'],
+				exampleMode: 'collapse',
+				sections: [],
 				components: [
 					{
 						name: 'Button',
+						visibleName: 'Button',
+						slug: 'button',
+						hashPath: ['Components', 'Button'],
+						metadata: {},
+						filepath: 'button.tsx',
+						pathLine: '',
+						hasExamples: false,
+						props: { displayName: 'Button' },
 					},
 					{
 						name: 'Image',
+						visibleName: 'Image',
+						slug: 'image',
+						hashPath: ['Components', 'Image'],
+						metadata: {},
+						filepath: 'image.tsx',
+						pathLine: '',
+						hasExamples: false,
+						props: { displayName: 'Image' },
 					},
 				],
 			},
 		],
 	},
 ];
+const sections = deepfreeze(sectionsRaw);
 
 describe('findSection', () => {
 	it('should return top level section', () => {

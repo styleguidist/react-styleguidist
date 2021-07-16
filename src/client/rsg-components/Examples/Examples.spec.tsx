@@ -22,7 +22,12 @@ const module: Rsg.ExamplesModule = {
 
 test('should render passed examples component', () => {
 	const { getByText } = render(
-		<Examples content={module} componentName="button" exampleMode="collapse" />
+		<Examples
+			content={module}
+			componentName="button"
+			componentHashPath={['Button']}
+			exampleMode="collapse"
+		/>
 	);
 	expect(getByText(/button\s*\/\s*collapse/i)).toBeInTheDocument();
 });

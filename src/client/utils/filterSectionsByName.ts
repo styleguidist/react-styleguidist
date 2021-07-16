@@ -4,10 +4,6 @@ import * as Rsg from '../../typings';
 
 /**
  * Fuzzy filters sections by section or component name.
- *
- * @param {Array} sections
- * @param {string} query
- * @return {Array}
  */
 export default function filterSectionsByName(
 	sections: Rsg.Section[],
@@ -19,8 +15,8 @@ export default function filterSectionsByName(
 		.map((section) => {
 			return {
 				...section,
-				sections: section.sections ? filterSectionsByName(section.sections, query) : [],
-				components: section.components ? filterComponentsByName(section.components, query) : [],
+				sections: filterSectionsByName(section.sections, query),
+				components: filterComponentsByName(section.components, query),
 			};
 		})
 		.filter(

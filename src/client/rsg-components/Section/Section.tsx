@@ -5,7 +5,6 @@ import Components from 'rsg-components/Components';
 import Sections from 'rsg-components/Sections';
 import SectionRenderer from 'rsg-components/Section/SectionRenderer';
 import { useStyleGuideContext } from 'rsg-components/Context';
-import { DisplayModes } from '../../consts';
 import * as Rsg from '../../../typings';
 
 const Section: React.FunctionComponent<{
@@ -13,13 +12,13 @@ const Section: React.FunctionComponent<{
 	depth: number;
 }> = ({ section, depth }) => {
 	const {
-		displayMode,
+		isolated,
 		config: { pagePerSection },
 	} = useStyleGuideContext();
 	const {
 		name,
+		hashPath,
 		slug,
-		filepath,
 		content,
 		components,
 		sections,
@@ -29,7 +28,12 @@ const Section: React.FunctionComponent<{
 	} = section;
 
 	const contentJsx = content && (
-		<Examples content={content} componentName={name} exampleMode={exampleMode} />
+		<Examples
+			content={content}
+			componentName={name}
+			componentHashPath={hashPath}
+			exampleMode={exampleMode}
+		/>
 	);
 
 	const componentsJsx = components && (
@@ -49,11 +53,11 @@ const Section: React.FunctionComponent<{
 			pagePerSection={pagePerSection}
 			name={name}
 			slug={slug}
-			filepath={filepath}
+			hashPath={hashPath}
 			content={contentJsx}
 			components={componentsJsx}
 			sections={sectionsJsx}
-			isolated={displayMode !== DisplayModes.all}
+			isolated={isolated}
 			depth={depth}
 		/>
 	);

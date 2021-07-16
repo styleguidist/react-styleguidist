@@ -11,7 +11,7 @@ const config = {
 	getComponentPathLine: (a: string) => a,
 } as Rsg.SanitizedStyleguidistConfig;
 
-const sections: Rsg.RawSection[] = [
+const sections: Rsg.ConfigSection[] = [
 	{
 		name: 'Readme',
 		content: 'components/Button/Readme.md',
@@ -69,7 +69,7 @@ const sectionsWithBadDepth = [
 	},
 ];
 
-function filterSectionDepth(section: Rsg.LoaderSection): Rsg.RawSection {
+function filterSectionDepth(section: Rsg.LoaderSection): Rsg.ConfigSection {
 	if (section.sections && section.sections.length) {
 		return {
 			sectionDepth: section.sectionDepth,

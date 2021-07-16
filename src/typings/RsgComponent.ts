@@ -2,23 +2,33 @@ import { MethodDescriptor, PropDescriptor, TagProps } from 'react-docgen';
 import { ExamplesModule } from './RsgExample';
 import { RequireItResult } from './RsgRequireItResult';
 
+// TODO: Move to its own file?
 export type ExpandMode = 'expand' | 'collapse' | 'hide';
 
-export interface BaseComponent {
-	hasExamples?: boolean;
-	name?: string;
-	slug?: string;
+// Stages of component processing:
+// BACKEND:
+// 1. LoaderComponent: returned by the webpack loader
+// FRONTEND:
+// 2. RawComponent: Same LoaderComponent but with actual values instead of require() statements
+// 3. Component: enhanced objects used for rendering
+
+/**
+ * Component object used in the loader
+ */
+export interface LoaderComponent {
+	filepath: string;
+	slug: string;
 	href?: string;
-	filepath?: string;
-	pathLine?: string;
-	description?: string;
-	usageMode?: ExpandMode;
+	pathLine: string;
+	module: RequireItResult;
+	props: RequireItResult;
+	hasExamples: boolean;
+	metadata: RequireItResult | Record<string, unknown>;
 }
 
-export interface Component extends BaseComponent {
-	visibleName?: string;
-	props?: {
-		displayName?: string;
+export interface RawComponent extends Omit<LoaderComponent, 'module' | 'props' | 'metadata'> {
+	props: {
+		displayName: string;
 		visibleName?: string;
 		description?: string;
 		methods?: MethodDescriptor[];
@@ -26,14 +36,16 @@ export interface Component extends BaseComponent {
 		tags?: TagProps;
 		content?: ExamplesModule;
 	};
-	module?: number;
-	metadata?: {
+	metadata: {
 		tags?: string[];
 	};
 }
 
-export interface LoaderComponent extends BaseComponent {
-	module: RequireItResult;
-	props: RequireItResult;
-	metadata: RequireItResult | Record<string, unknown>;
+/**
+ * Enhanced component object used on the client
+ */
+export interface Component extends RawComponent {
+	name: string;
+	visibleName: string;
+	hashPath: string[];
 }

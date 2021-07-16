@@ -9,7 +9,6 @@ import NotFound from 'rsg-components/NotFound';
 import Context from 'rsg-components/Context';
 import MdxProvider from 'rsg-components/mdx/MdxProvider';
 import { HOMEPAGE } from '../../../scripts/consts';
-import { DisplayModes } from '../../consts';
 import * as Rsg from '../../../typings';
 
 /**
@@ -18,18 +17,13 @@ import * as Rsg from '../../../typings';
  * These sorted conditions (highest precedence first) define the visibility
  * state of the sidebar.
  *
- * - Sidebar is hidden for isolated example views
- * - Sidebar is always visible when pagePerSection
+ * - Sidebar is always hidden in isolated mode
+ * - Sidebar is visible when pagePerSection
  * - Sidebar is hidden when showSidebar is set to false
  * - Sidebar is visible when showSidebar is set to true for non-isolated views
- *
- * @param {string} displayMode
- * @param {boolean} showSidebar
- * @param {boolean} pagePerSection
- * @returns {boolean}
  */
-function hasSidebar(displayMode: string | undefined, showSidebar: boolean): boolean {
-	return displayMode === DisplayModes.notFound || (showSidebar && displayMode === DisplayModes.all);
+function hasSidebar(sections: Rsg.Section[], isolated: boolean, showSidebar: boolean): boolean {
+	return sections.length > 0 && !isolated && showSidebar;
 }
 
 export interface StyleGuideProps {
@@ -40,8 +34,8 @@ export interface StyleGuideProps {
 	sections: Rsg.Section[];
 	welcomeScreen?: boolean;
 	patterns?: string[];
-	displayMode?: string;
-	targetIndex?: number | string;
+	isolated: boolean;
+	exampleIndex?: number | string;
 	allSections?: Rsg.Section[];
 	pagePerSection?: boolean;
 }
@@ -60,13 +54,10 @@ export default class StyleGuide extends Component<StyleGuideProps, StyleGuideSta
 		sections: PropTypes.array.isRequired,
 		welcomeScreen: PropTypes.bool,
 		patterns: PropTypes.array,
-		displayMode: PropTypes.string,
-		targetIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+		isolated: PropTypes.bool.isRequired,
+		exampleIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 		allSections: PropTypes.array.isRequired,
 		pagePerSection: PropTypes.bool,
-	};
-	public static defaultProps = {
-		displayMode: DisplayModes.all,
 	};
 
 	public state = {
@@ -88,8 +79,8 @@ export default class StyleGuide extends Component<StyleGuideProps, StyleGuideSta
 			sections,
 			welcomeScreen,
 			patterns,
-			displayMode,
-			targetIndex,
+			isolated,
+			exampleIndex,
 			allSections,
 			pagePerSection,
 			codeRevision,
@@ -111,8 +102,8 @@ export default class StyleGuide extends Component<StyleGuideProps, StyleGuideSta
 					codeRevision,
 					config,
 					slots,
-					displayMode: displayMode || DisplayModes.all,
-					targetIndex,
+					isolated,
+					exampleIndex,
 					cssRevision,
 				}}
 			>
@@ -126,12 +117,12 @@ export default class StyleGuide extends Component<StyleGuideProps, StyleGuideSta
 							allSections ? (
 								<TableOfContents
 									sections={allSections}
-									useRouterLinks={pagePerSection}
+									pagePerSection={pagePerSection}
 									tocMode={config.tocMode}
 								/>
 							) : null
 						}
-						hasSidebar={hasSidebar(displayMode, config.showSidebar)}
+						hasSidebar={hasSidebar(sections, isolated, config.showSidebar)}
 					>
 						{sections.length ? <Sections sections={sections} depth={1} /> : <NotFound />}
 					</StyleGuideRenderer>

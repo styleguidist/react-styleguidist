@@ -11,7 +11,7 @@ import ExamplePlaceholderDefault from 'rsg-components/ExamplePlaceholder';
 import MdxWrapper from 'rsg-components/mdx/MdxWrapper';
 import MdxCode from 'rsg-components/mdx/MdxCode';
 import { DOCS_TAB_USAGE } from '../slots';
-import { DisplayModes, UsageModes } from '../../consts';
+import { UsageModes } from '../../consts';
 import * as Rsg from '../../../typings';
 
 const ExamplePlaceholder =
@@ -30,12 +30,12 @@ export default function ReactComponent(props: ReactComponentProps) {
 	);
 
 	const {
-		displayMode,
-		targetIndex,
+		isolated,
+		exampleIndex,
 		config: { pagePerSection },
 	} = useStyleGuideContext();
 	const { component, depth, usageMode, exampleMode } = props;
-	const { name: componentName, visibleName, slug = '-', filepath, pathLine, href } = component;
+	const { name: componentName, visibleName, slug = '-', filepath, pathLine, hashPath } = component;
 	const { description = '', content, tags = {} } = component.props || {};
 	const { __examples: examples = [], __namedExamples: namedExamples = {} } = content || {};
 
@@ -51,10 +51,15 @@ export default function ReactComponent(props: ReactComponentProps) {
 
 	function getExamples() {
 		// Isolated mode: fenced code block example
-		if (typeof targetIndex === 'number' && examples[targetIndex] && content) {
-			const example = examples[targetIndex];
+		if (typeof exampleIndex === 'number' && examples[exampleIndex] && content) {
+			const example = examples[exampleIndex];
 			return (
-				<MdxWrapper componentName={componentName} exampleMode={exampleMode} {...content}>
+				<MdxWrapper
+					componentName={componentName}
+					componentHashPath={hashPath}
+					exampleMode={exampleMode}
+					{...content}
+				>
 					<MdxCode className={`language-${example.lang}`} {...example.settings}>
 						{example.content}
 					</MdxCode>
@@ -63,20 +68,32 @@ export default function ReactComponent(props: ReactComponentProps) {
 		}
 
 		// Isolated mode: named story imported from a CSF file
-		if (typeof targetIndex === 'string' && namedExamples[targetIndex] && content) {
-			const example = namedExamples[targetIndex];
+		if (typeof exampleIndex === 'string' && namedExamples[exampleIndex] && content) {
+			const example = namedExamples[exampleIndex];
 			return (
-				<MdxWrapper componentName={componentName} exampleMode={exampleMode} {...content}>
-					<MdxCode index={targetIndex} className="language-jsx">
+				<MdxWrapper
+					componentName={componentName}
+					componentHashPath={hashPath}
+					exampleMode={exampleMode}
+					{...content}
+				>
+					<MdxCode index={exampleIndex} className="language-jsx">
 						{example}
 					</MdxCode>
 				</MdxWrapper>
 			);
 		}
 
-		// Static code
+		// All examples
 		if (content) {
-			return <Examples content={content} componentName={componentName} exampleMode={exampleMode} />;
+			return (
+				<Examples
+					content={content}
+					componentName={componentName}
+					componentHashPath={hashPath}
+					exampleMode={exampleMode}
+				/>
+			);
 		}
 
 		return <ExamplePlaceholder name={componentName} />;
@@ -92,16 +109,14 @@ export default function ReactComponent(props: ReactComponentProps) {
 			description={description && <Markdown text={description} />}
 			heading={
 				<SectionHeading
-					id={slug}
+					name={component.name}
+					slug={slug}
+					hashPath={hashPath}
 					pagePerSection={pagePerSection}
 					deprecated={!!tags.deprecated}
-					slotName="componentToolbar"
-					slotProps={{
-						...component,
-						isolated: displayMode !== DisplayModes.all,
-					}}
-					href={href}
+					isolated={isolated}
 					depth={depth}
+					slotName="componentToolbar"
 				>
 					{visibleName}
 				</SectionHeading>

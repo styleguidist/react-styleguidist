@@ -40,5 +40,9 @@ export interface MdxExtras {
 
 export interface ExamplesModule extends MdxExtras {
 	__esModule: true;
-	default: ComponentType<{ componentName?: string; exampleMode: string }>;
+	default: ComponentType<{
+		componentName: string;
+		componentHashPath: string[];
+		exampleMode: string;
+	}>;
 }

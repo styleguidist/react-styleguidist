@@ -1,25 +1,23 @@
 /* eslint-disable compat/compat */
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent, Provider } from '../../test';
 import ComponentsList from './ComponentsList';
-import Context from '../Context';
 import * as Rsg from '../../../typings';
 
-const context = {
-	config: {
-		pagePerSection: true,
-		tocMode: 'collapse',
-	},
+const defaultItemProps = {
+	heading: false,
+	shouldOpenInNewTab: false,
+	selected: false,
+	initialOpen: false,
+	forcedOpen: false,
+	sections: [],
+	components: [],
 };
 
-const Provider = (props: any) => <Context.Provider value={context} {...props} />;
+const context = { config: { pagePerSection: false, tocMode: 'collapse' } } as const;
 
 it('should not render any links when the list is empty', () => {
-	const { queryAllByRole } = render(
-		<Provider>
-			<ComponentsList items={[]} />
-		</Provider>
-	);
+	const { queryAllByRole } = render(<ComponentsList items={[]} />);
 
 	expect(queryAllByRole('link')).toHaveLength(0);
 });
@@ -27,21 +25,22 @@ it('should not render any links when the list is empty', () => {
 it('should ignore items without visibleName', () => {
 	const components: Rsg.TOCItem[] = [
 		{
+			...defaultItemProps,
+			name: 'Button',
 			visibleName: 'Button',
 			slug: 'button',
 			href: '#button',
 		},
 		{
+			...defaultItemProps,
+			name: 'Input',
+			visibleName: '',
 			slug: 'input',
 			href: '#input',
 		},
 	];
 
-	const { getAllByRole } = render(
-		<Provider>
-			<ComponentsList items={components} />
-		</Provider>
-	);
+	const { getAllByRole } = render(<ComponentsList items={components} />);
 
 	expect(Array.from(getAllByRole('link')).map((node) => (node as HTMLAnchorElement).href)).toEqual([
 		'http://localhost/#button',
@@ -51,6 +50,7 @@ it('should ignore items without visibleName', () => {
 it('should show content of items that are open and not what is closed', () => {
 	const components: Rsg.TOCItem[] = [
 		{
+			...defaultItemProps,
 			visibleName: 'Button',
 			name: 'Button',
 			slug: 'button',
@@ -58,6 +58,7 @@ it('should show content of items that are open and not what is closed', () => {
 			content: <div data-testid="content">Content for Button</div>,
 		},
 		{
+			...defaultItemProps,
 			visibleName: 'Input',
 			name: 'Input',
 			slug: 'input',
@@ -67,12 +68,12 @@ it('should show content of items that are open and not what is closed', () => {
 	];
 
 	const { getAllByTestId, getByText } = render(
-		<Provider>
+		<Provider {...context}>
 			<ComponentsList items={components} />
 		</Provider>
 	);
 
-	getByText('Button').click();
+	fireEvent.click(getByText('Button'));
 
 	expect(
 		Array.from(getAllByTestId('content')).map((node) => (node as HTMLDivElement).innerHTML)
@@ -82,6 +83,7 @@ it('should show content of items that are open and not what is closed', () => {
 it('should show content of initialOpen items even if they are not active', () => {
 	const components: Rsg.TOCItem[] = [
 		{
+			...defaultItemProps,
 			visibleName: 'Button',
 			name: 'Button',
 			slug: 'button',
@@ -89,6 +91,7 @@ it('should show content of initialOpen items even if they are not active', () =>
 			content: <div data-testid="content">Content for Button</div>,
 		},
 		{
+			...defaultItemProps,
 			visibleName: 'Input',
 			name: 'Input',
 			slug: 'input',
@@ -98,13 +101,9 @@ it('should show content of initialOpen items even if they are not active', () =>
 		},
 	];
 
-	const { getAllByTestId, getByText } = render(
-		<Provider>
-			<ComponentsList items={components} />
-		</Provider>
-	);
+	const { getAllByTestId, getByText } = render(<ComponentsList items={components} />);
 
-	getByText('Button').click();
+	fireEvent.click(getByText('Button'));
 
 	expect(
 		Array.from(getAllByTestId('content')).map((node) => (node as HTMLDivElement).innerHTML)
@@ -114,6 +113,7 @@ it('should show content of initialOpen items even if they are not active', () =>
 it('should show content of forcedOpen items even if they are initially collapsed', () => {
 	const components: Rsg.TOCItem[] = [
 		{
+			...defaultItemProps,
 			visibleName: 'Button',
 			name: 'Button',
 			slug: 'button',
@@ -122,6 +122,7 @@ it('should show content of forcedOpen items even if they are initially collapsed
 			initialOpen: true,
 		},
 		{
+			...defaultItemProps,
 			visibleName: 'Input',
 			name: 'Input',
 			slug: 'input',
@@ -133,12 +134,12 @@ it('should show content of forcedOpen items even if they are initially collapsed
 	];
 
 	const { getAllByTestId, getByText } = render(
-		<Provider>
+		<Provider {...context}>
 			<ComponentsList items={components} />
 		</Provider>
 	);
 
-	getByText('Input').click();
+	fireEvent.click(getByText('Input'));
 
 	expect(
 		Array.from(getAllByTestId('content')).map((node) => (node as HTMLDivElement).innerHTML)

@@ -5,13 +5,15 @@ import * as Rsg from '../../../typings';
 
 interface Props extends Rsg.MdxExtras {
 	children?: ReactNode;
-	componentName?: string;
+	componentName: string;
+	componentHashPath: string[];
 	exampleMode: string;
 }
 
 export default function MdxWrapper({
 	children,
 	componentName,
+	componentHashPath,
 	exampleMode,
 	__documentScope: documentScope,
 	__exampleScope: exampleScope,
@@ -24,7 +26,7 @@ export default function MdxWrapper({
 		React,
 		// Make the current component available to examples,
 		// non-component sections don't have the current component
-		...(currentComponent && componentName
+		...(currentComponent
 			? {
 					[componentName]: getComponent(currentComponent),
 			  }
@@ -36,6 +38,7 @@ export default function MdxWrapper({
 		<MdxContext.Provider
 			value={{
 				componentName,
+				componentHashPath,
 				exampleMode,
 				documentScope: expandedDocumentScope,
 				exampleScope: expandedExampleScope,

@@ -2,20 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { MdFullscreen, MdFullscreenExit } from 'react-icons/md';
 import ToolbarButton from 'rsg-components/ToolbarButton';
-import getUrl from '../../utils/getUrl';
 
 export interface IsolateButtonProps {
 	name: string;
-	exampleIndex?: number | string;
-	isolated?: boolean;
 	href: string;
+	isolated?: boolean;
+	exampleIndex?: number | string;
 }
 
-const IsolateButton = ({ name, exampleIndex, isolated, href }: IsolateButtonProps) => {
-	if (isolated && !href) {
-		return null;
-	}
-
+const IsolateButton = ({ name, href, isolated, exampleIndex }: IsolateButtonProps) => {
+	// TODO: Rewrite Cypress tests to use Cypress Testing Library and remove this ID
 	const testID = exampleIndex ? `${name}-${exampleIndex}-isolate-button` : `${name}-isolate-button`;
 
 	return isolated ? (
@@ -23,11 +19,7 @@ const IsolateButton = ({ name, exampleIndex, isolated, href }: IsolateButtonProp
 			<MdFullscreenExit />
 		</ToolbarButton>
 	) : (
-		<ToolbarButton
-			href={getUrl({ name, exampleIndex, isolated: true })}
-			title="Open isolated"
-			testId={testID}
-		>
+		<ToolbarButton href={href} title="Open isolated" testId={testID}>
 			<MdFullscreen />
 		</ToolbarButton>
 	);
@@ -35,8 +27,9 @@ const IsolateButton = ({ name, exampleIndex, isolated, href }: IsolateButtonProp
 
 IsolateButton.propTypes = {
 	name: PropTypes.string.isRequired,
-	exampleIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	href: PropTypes.string.isRequired,
 	isolated: PropTypes.bool,
+	exampleIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 export default IsolateButton;

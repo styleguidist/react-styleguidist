@@ -518,7 +518,7 @@ Dev server port. Can also be set via command line `--port=6060`.
 
 Type: `Boolean`, default: `true`
 
-Toggle sidebar visibility. The sidebar will be hidden when opening components or examples in isolation mode even if this value is set to `true`. When set to `false`, the sidebar will always be hidden.
+Toggle sidebar visibility. The sidebar will be hidden when opening components or examples in isolated mode even if this value is set to `true`. When set to `false`, the sidebar will always be hidden.
 
 ## `skipComponentsWithoutExample`
 
