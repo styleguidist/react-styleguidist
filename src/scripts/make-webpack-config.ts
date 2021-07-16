@@ -72,9 +72,15 @@ export default function (config: Rsg.SanitizedStyleguidistConfig, env: Mode): Co
 			rules: [
 				{
 					// Support .mjs modules in dependencies, like Sucrase
-					test: /\.mjs$/,
+					test: /\.m?js$/,
 					include: /node_modules/,
 					type: 'javascript/auto',
+					resolve: {
+						// Avoid errors about imports without extension in webpack 5
+						// https://github.com/webpack/webpack/issues/11467
+						// @ts-ignore
+						fullySpecified: false,
+					},
 				},
 			],
 		},
