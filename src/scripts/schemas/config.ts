@@ -107,6 +107,11 @@ const configSchema: Record<StyleguidistConfigKey, ConfigSchemaOptions<Rsg.Styleg
 		},
 		default: 'collapse',
 	},
+	extraLanguages: {
+		type: 'array',
+		default: [],
+		example: ['yaml'],
+	},
 	getComponentPathLine: {
 		type: 'function',
 		default: (componentPath: string): string => componentPath,

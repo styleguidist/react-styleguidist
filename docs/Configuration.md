@@ -136,6 +136,22 @@ Defines the initial state of the example code tab:
 - `hide`: hide the tab and it can´t be toggled in the UI.
 - `expand`: expand the tab by default.
 
+## `extraLanguages`
+
+Type: `String[]`, default: `[]`
+
+Extra alias languages which can be rendered using syntax highlighter. By default, `styleguidist` only highlight web related languages.
+
+Internally it is rendered by [Prism](https://prismjs.com/). See the [supported languages](https://prismjs.com/#supported-languages) with their corresponding alias.
+
+For example, the following configuration will also highlight yaml and C++ syntax from Markdown code blocks.
+
+```javascript
+module.exports = {
+  extraLanguages: ['yaml', 'cpp']
+}
+```
+
 ## `getComponentPathLine`
 
 Type: `Function`, default: component filename

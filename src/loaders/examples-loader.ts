@@ -29,6 +29,12 @@ export default function examplesLoader(this: Rsg.StyleguidistLoaderContext, sour
 		source = expandDefaultComponent(source, displayName);
 	}
 
+	if (config.extraLanguages) {
+		config.extraLanguages.forEach((lang) => {
+			require('prismjs/components/prism-' + lang);
+		});
+	}
+
 	const updateExample = config.updateExample
 		? (props: Omit<Rsg.CodeExample, 'type'>) => config.updateExample(props, this.resourcePath)
 		: undefined;
@@ -80,7 +86,7 @@ export default function examplesLoader(this: Rsg.StyleguidistLoaderContext, sour
 
 	// Stringify examples object except the evalInContext function
 	const examplesWithEval: (Rsg.RuntimeCodeExample | Rsg.MarkdownExample)[] = examples.map(
-		example => {
+		(example) => {
 			if (example.type === 'code') {
 				return { ...example, evalInContext: { toAST: () => b.identifier('evalInContext') } as any };
 			} else {

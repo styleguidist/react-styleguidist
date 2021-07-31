@@ -15,11 +15,8 @@ const subComponentQuery = {
 	shouldShowDefaultExample: false,
 };
 
-
 const getQuery = (options = {}) => encode({ ...query, ...options }, '?');
 const getSubComponentQuery = (options = {}) => encode({ ...subComponentQuery, ...options }, '?');
-
-
 
 it('should return valid, parsable JS', () => {
 	const exampleMarkdown = `
@@ -93,7 +90,7 @@ it('should pass updateExample function from config to chunkify', () => {
 <h1>Hello world!</h2>
 \`\`\`
 `;
-	const updateExample = jest.fn(props => props);
+	const updateExample = jest.fn((props) => props);
 	examplesLoader.call(
 		{
 			query: getQuery(),
@@ -270,4 +267,28 @@ it('should works for any Markdown file, without a current component', () => {
 		`const React$0 = require('react');\\nconst React = React$0.default || (React$0['React'] || React$0);`
 	);
 	expect(result).not.toMatch('undefined');
+});
+
+it('should format extra languages', () => {
+	const exampleMarkdown = `
+# header
+
+\`\`\`yaml
+- Hello: React
+  Is: !!null
+  There: 3
+  Somebody: 'out there'
+\`\`\`
+`;
+	const result = examplesLoader.call(
+		{
+			query: getQuery(),
+			_styleguidist: { extraLanguages: ['yaml'] },
+		} as any,
+		exampleMarkdown
+	);
+
+	expect(result).toBeTruthy();
+	expect(() => new Function(result)).not.toThrowError(SyntaxError);
+	expect(() => result.includes('<span class="token number">'));
 });

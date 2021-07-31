@@ -65,6 +65,12 @@ const food = ['Pizza', 'Buger', 'Coffee']
 console.log(eatFood(food))
 ```
 
+```yaml
+- number: 4
+  string: 'A yaml file'
+  null: !!null
+```
+
 Some more text here.
 
 ## Details

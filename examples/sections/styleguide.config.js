@@ -4,6 +4,7 @@ module.exports = {
 	title: 'React Style Guide Example',
 	pagePerSection: true,
 	// tocMode: 'collapse',
+	extraLanguages: ['yaml'],
 	sections: [
 		{
 			name: 'Documentation',

@@ -31,6 +31,7 @@ interface BaseStyleguidistConfig {
 	editorConfig: {
 		theme: string;
 	};
+	extraLanguages: string[];
 	getComponentPathLine(componentPath: string): string;
 	getExampleFilename(componentPath: string): string;
 	handlers: (componentPath: string) => Handler[];
