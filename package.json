@@ -75,7 +75,7 @@
     "prop-types": "^15.7.2",
     "q-i": "^2.0.1",
     "qss": "^2.0.3",
-    "react-dev-utils": "^11.0.0",
+    "react-dev-utils": "12.0.0-next.37",
     "react-docgen": "^5.0.0",
     "react-docgen-annotation-resolver": "^2.0.0",
     "react-docgen-displayname-handler": "^3.0.0",
