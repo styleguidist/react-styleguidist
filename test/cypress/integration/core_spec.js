@@ -1,5 +1,5 @@
 describe('Styleguidist core', () => {
-	before(() => cy.visit('/'));
+	beforeEach(() => cy.visit('/'));
 
 	it('loads the page', () => {
 		cy.title().should('include', 'React Styleguidist');
@@ -10,24 +10,40 @@ describe('Styleguidist core', () => {
 	});
 
 	it('toggles isolated component mode correctly', () => {
-		cy.get('[data-testid=sidebar]').as('sidebar');
-
+		cy.get('[data-testid$=-container]').first().as('container');
 		// Toggle into isolated mode
-		cy.get('[data-testid$="-isolate-button"]').first().click();
+		cy.get('[data-testid$=-examples]').find('[data-testid$=-isolate-button]').first().click();
 
 		// Assert there's only one component showing
-		cy.get('[data-testid$=-container]').should('have.length', 1);
+		cy.get('@container').should('have.length', 1);
 
 		// Assert the sidebar is no longer showing
-		cy.get('@sidebar').should('not.exist');
+		cy.get('[data-testid=sidebar]').should('not.exist');
 
-		// Toogle out of isolated mode
-		cy.get('[data-testid$="-isolate-button"]').first().click();
+		// Toggle out of isolated mode
+		cy.go('back');
 
 		// Assert that more than one component is now showing
 		cy.get('[data-testid$=-container]').should('have.length.above', 1);
 
-		// Asser that the sidebar is now showing again
-		cy.get('@sidebar').should('exist');
+		// Assert that the sidebar is now showing again
+		cy.get('[data-testid=sidebar]').should('exist');
 	});
+	
+	it('scrolls to the component clicked in sidebar', () => {
+		//click the first link in the sidebar
+		cy.get('[data-testid="rsg-toc-link"]').first().click();
+		cy.window().its('scrollY').should('equal', cy.$$('#button').offset().top)
+		
+	});
+
+	it('typing in the sidebar should filter components in the table of content', ()=> {
+		cy.get("[class^=rsg--item]").should("have.length.above", 1);
+		cy.get("nav").as('sidebar').within(($sidebar) => {
+			cy.get('input').type("Push");
+			cy.get("[class^=rsg--item]").should("have.length", 1);
+		});
+	
+
+	})
 });
