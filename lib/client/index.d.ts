@@ -1,2 +1,0 @@
-import './polyfills';
-import './styles';
