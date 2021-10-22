@@ -119,8 +119,6 @@ export default function (
 		}
 	} else {
 		webpackConfig = merge(webpackConfig, {
-			entry: [require.resolve('react-dev-utils/webpackHotDevClient')],
-			plugins: [new webpack.HotModuleReplacementPlugin()],
 			devServer: {
 				transportMode: 'ws',
 			},
