@@ -29,7 +29,10 @@ export default function createServer(
 	);
 
 	const compiler = webpack(webpackConfig);
-	const devServer = new WebpackDevServer(compiler, webpackDevServerConfig);
+	const devServer = new WebpackDevServer(
+		webpackDevServerConfig as WebpackDevServer.Configuration,
+		compiler
+	);
 
 	// User defined customizations
 	if (config.configureServer) {
