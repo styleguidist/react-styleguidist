@@ -6,7 +6,7 @@ export default function build(
 	config: Rsg.SanitizedStyleguidistConfig,
 	callback: (err: Error, stats: webpack.Stats) => void
 ) {
-	return webpack(makeWebpackConfig(config, 'production'), (err, stats) => {
+	return webpack(makeWebpackConfig(config, 'development'), (err, stats) => {
 		// require('fs').writeFileSync('stats.json', JSON.stringify(stats.toJson()));
 		callback(err, stats);
 	});

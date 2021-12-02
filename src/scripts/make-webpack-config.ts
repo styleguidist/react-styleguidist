@@ -26,7 +26,7 @@ export default function (
 	config: Rsg.SanitizedStyleguidistConfig,
 	env: 'development' | 'production' | 'none'
 ): Configuration {
-	process.env.NODE_ENV = process.env.NODE_ENV || env;
+	env = process.env.NODE_ENV || env;
 
 	const isProd = env === 'production';
 
