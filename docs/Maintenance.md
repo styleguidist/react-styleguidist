@@ -120,7 +120,7 @@ export default function renderExtra(prop: PropDescriptorWithFlow): React.ReactNo
   if (!prop.type || !type) {
     return null;
   }
-````
+```
 
 Unfortunately, this extra condition has resulted in this method always returning `null` for a Flow typed prop as `prop.type` is always `null` as `prop.type` is never set.
 
@@ -128,7 +128,7 @@ This commit reverts the condition to what it was before the migration to TypeScr
 
 Fixes #1234
 
-```
+````
 
 ## Pull requests
 
@@ -178,4 +178,4 @@ Here’s a [good example of a changelog](https://github.com/styleguidist/react-s
 
 - Information about pull request authors:<br> `(#1040 by @rafaesc)`
 - Open Collective link at the very top:<br> `👋 **[Support Styleguidist](https://opencollective.com/styleguidist) on Open Collective** 👋`
-```
+
