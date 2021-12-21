@@ -1,0 +1,52 @@
+export declare const spaceFactor = 8;
+export declare const space: number[];
+export declare const color: {
+    base: string;
+    light: string;
+    lightest: string;
+    link: string;
+    linkHover: string;
+    focus: string;
+    border: string;
+    name: string;
+    type: string;
+    error: string;
+    baseBackground: string;
+    codeBackground: string;
+    sidebarBackground: string;
+    ribbonBackground: string;
+    ribbonText: string;
+    codeBase: string;
+    codeComment: string;
+    codePunctuation: string;
+    codeProperty: string;
+    codeDeleted: string;
+    codeString: string;
+    codeInserted: string;
+    codeOperator: string;
+    codeKeyword: string;
+    codeFunction: string;
+    codeVariable: string;
+};
+export declare const fontFamily: {
+    base: string[];
+    monospace: string[];
+};
+export declare const fontSize: {
+    base: number;
+    text: number;
+    small: number;
+    h1: number;
+    h2: number;
+    h3: number;
+    h4: number;
+    h5: number;
+    h6: number;
+};
+export declare const mq: {
+    small: string;
+};
+export declare const borderRadius = 3;
+export declare const maxWidth = 1000;
+export declare const sidebarWidth = 200;
+export declare const buttonTextTransform = "uppercase";
