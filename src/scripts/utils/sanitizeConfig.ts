@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import * as isDirectory from 'is-directory';
 import castArray from 'lodash/castArray';
 import isBoolean from 'lodash/isBoolean';
 import isFunction from 'lodash/isFunction';
@@ -33,9 +32,20 @@ const typeCheckers: Record<string, (untypedObject: unknown) => boolean> = {
 };
 
 const typesList = (types: string[]) => listify(types, { finalWord: 'or' });
-const shouldBeFile = (types: string[]) => types.some(type => type.includes('file'));
-const shouldBeDirectory = (types: string[]) => types.some(type => type.includes('directory'));
-const shouldExist = (types: string[]) => types.some(type => type.includes('existing'));
+const shouldBeFile = (types: string[]) => types.some((type) => type.includes('file'));
+const shouldBeDirectory = (types: string[]) => types.some((type) => type.includes('directory'));
+const shouldExist = (types: string[]) => types.some((type) => type.includes('existing'));
+
+function isDirectory(path: string): boolean {
+	try {
+		return fs.lstatSync(path).isDirectory();
+	} catch (e) {
+		if (e.code !== 'ENOENT') {
+			throw e;
+		}
+		return false;
+	}
+}
 
 /**
  * Validates and normalizes config.
@@ -106,7 +116,7 @@ export default function sanitizeConfig<T extends Record<string, any>>(
 			const types = castArray(props.type);
 
 			// Check type
-			const hasRightType = types.some(type => {
+			const hasRightType = types.some((type) => {
 				if (!typeCheckers[type]) {
 					throw new StyleguidistError(
 						`Wrong type ${kleur.bold(type)} specified for ${kleur.bold(key)} in schema.`
@@ -146,7 +156,7 @@ ${stringify(example)}`
 							key
 						);
 					}
-					if (shouldBeDirectory(types) && !isDirectory.sync(value)) {
+					if (shouldBeDirectory(types) && !isDirectory(value)) {
 						throw new StyleguidistError(
 							`A directory specified in ${kleur.bold(key)} config option does not exist:\n${value}`,
 							key
