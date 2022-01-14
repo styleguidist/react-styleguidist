@@ -24,7 +24,7 @@
     "prop-types": "^15.6.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-styleguidist": "^11.1.1",
+    "react-styleguidist": "file:../../",
     "style-loader": "^2.0.0",
     "webpack": "^5.3.2"
   },
