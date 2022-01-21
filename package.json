@@ -53,7 +53,6 @@
     "glob": "^7.1.5",
     "glogg": "^1.0.2",
     "hash-sum": "^2.0.0",
-    "is-directory": "^0.3.1",
     "javascript-stringify": "^2.0.0",
     "jss": "^10.0.0",
     "jss-plugin-camel-case": "^10.0.0",
