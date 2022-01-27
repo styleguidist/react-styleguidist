@@ -28,7 +28,6 @@ Array [
   "a/b.js",
   "c/d.css",
   "~/src/client/index",
-  "~/node_modules/react-dev-utils/webpackHotDevClient.js",
 ]
 `;
 
