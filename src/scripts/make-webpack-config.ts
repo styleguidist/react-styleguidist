@@ -120,7 +120,7 @@ export default function (
 	} else {
 		webpackConfig = merge(webpackConfig, {
 			devServer: {
-				transportMode: 'ws',
+				webSocketServer: 'ws',
 			},
 		});
 	}

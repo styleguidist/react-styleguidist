@@ -9,24 +9,24 @@ export default function createServer(
 	env: 'development' | 'production' | 'none'
 ): { app: WebpackDevServer; compiler: webpack.Compiler } {
 	const webpackConfig = makeWebpackConfig(config, env);
-	const webpackDevServerConfig = merge(
-		{
-			noInfo: true,
-			compress: true,
-			clientLogLevel: 'none',
-			hot: true,
-			quiet: true,
-			watchOptions: {
-				ignored: /node_modules/,
-			},
-			watchContentBase: config.assetsDir !== undefined,
+
+	const baseConfig = {
+		compress: true,
+		hot: true,
+		client: {
+			logging: 'none',
+		},
+		static: {
+			directory: config.assetsDir,
+			watch: config.assetsDir !== undefined,
+			publicPath: '/',
+		},
+		devMiddleware: {
 			stats: webpackConfig.stats || {},
-		} as Configuration,
-		webpackConfig.devServer as Configuration,
-		{
-			contentBase: config.assetsDir,
-		} as Configuration
-	);
+		},
+	} as Configuration;
+
+	const webpackDevServerConfig = merge(baseConfig, webpackConfig.devServer as Configuration);
 
 	const compiler = webpack(webpackConfig);
 	const devServer = new WebpackDevServer(compiler, webpackDevServerConfig);
