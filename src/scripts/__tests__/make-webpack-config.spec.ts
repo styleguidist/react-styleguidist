@@ -1,11 +1,8 @@
-import webpack, { Configuration } from 'webpack';
+import webpack, { Configuration, validate } from 'webpack';
 import { Tapable } from 'tapable';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import makeWebpackConfig from '../make-webpack-config';
 import * as Rsg from '../../typings';
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { validate } = require('webpack');
 
 jest.mock('copy-webpack-plugin');
 
@@ -34,9 +31,7 @@ it('should return a development config', () => {
 	const env = 'development';
 	const config = makeWebpackConfig(styleguideConfig, env);
 
-	const errors = validate(config);
-	expect(errors).toHaveLength(0);
-
+	validate(config);
 	expect(config).toMatchObject({
 		mode: env,
 	});
@@ -46,9 +41,7 @@ it('should return a development config', () => {
 it('should return a production config', () => {
 	const env = 'production';
 	const config = makeWebpackConfig(styleguideConfig, env);
-	const errors = validate(config);
-	expect(errors).toHaveLength(0);
-
+	validate(config);
 	const plugins = getClassNames(config.plugins);
 	expect(plugins).toContain('CleanWebpackPlugin');
 	expect(plugins).not.toContain('HotModuleReplacementPlugin');
