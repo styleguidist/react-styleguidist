@@ -4,7 +4,7 @@ import Logger from 'glogg';
 const logger = Logger('rsg');
 
 export const ACORN_OPTIONS: Options = {
-	ecmaVersion: 2019,
+	ecmaVersion: 'latest',
 	sourceType: 'module',
 };
 
