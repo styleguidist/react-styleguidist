@@ -7,7 +7,7 @@ const options: any = {
 const mockContext: { _styleguidist?: Rsg.StyleguidistConfig } = {};
 
 jest.mock('webpack', () => {
-	const resource = { resource: 'test' };
+	const resource = {};
 	return {
 		NormalModule: {
 			getCompilationHooks: () => {
@@ -23,7 +23,7 @@ jest.mock('webpack', () => {
 	};
 });
 
-it('should attach Styleguidist config options', () => {
+it('should do nothing when resource is empty', () => {
 	const compiler = {
 		hooks: {
 			compilation: {
@@ -35,5 +35,5 @@ it('should attach Styleguidist config options', () => {
 	};
 	const plugin = new StyleguidistOptionsPlugin(options);
 	plugin.apply(compiler as any);
-	expect(mockContext._styleguidist).toEqual(options);
+	expect(mockContext._styleguidist).toBeFalsy();
 });
