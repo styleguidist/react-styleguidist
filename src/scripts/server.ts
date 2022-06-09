@@ -10,7 +10,7 @@ export default function server(
 	const env = 'development';
 	const serverInfo = createServer(config, env);
 
-	serverInfo.app.listen(config.serverPort, config.serverHost, callback);
+	serverInfo.app.startCallback(callback);
 
 	return serverInfo;
 }

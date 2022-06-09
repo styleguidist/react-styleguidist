@@ -10,6 +10,8 @@ export default function createServer(
 	const webpackConfig = makeWebpackConfig(config, env);
 
 	const baseConfig: Partial<Configuration> = {
+		host: config.serverHost,
+		port: config.serverPort,
 		compress: true,
 		hot: true,
 		client: {
