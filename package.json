@@ -80,7 +80,7 @@
     "react-docgen-displayname-handler": "^3.0.0",
     "react-group": "^3.0.2",
     "react-icons": "^3.8.0",
-    "react-simple-code-editor": "^0.10.0",
+    "react-simple-code-editor": "^0.11.2",
     "recast": "~0.18.5",
     "remark": "^13.0.0",
     "strip-html-comments": "^1.0.0",
