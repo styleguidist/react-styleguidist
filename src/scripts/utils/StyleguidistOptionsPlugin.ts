@@ -1,4 +1,4 @@
-import webpack, { compilation, Compiler, WebpackPluginInstance, loader } from 'webpack';
+import webpack, { Compilation, Compiler, WebpackPluginInstance, LoaderContext } from 'webpack';
 
 import * as Rsg from '../../typings';
 
@@ -15,7 +15,10 @@ export default class StyleguidistOptionsPlugin implements WebpackPluginInstance 
 		this.options = options;
 	}
 
-	private pluginFunc = (context: Rsg.StyleguidistLoaderContext, module: loader.LoaderContext) => {
+	private pluginFunc = (
+		context: Rsg.StyleguidistLoaderContext,
+		module: LoaderContext<Rsg.SanitizedStyleguidistConfig>
+	) => {
 		if (!module.resource) {
 			return;
 		}
@@ -24,21 +27,10 @@ export default class StyleguidistOptionsPlugin implements WebpackPluginInstance 
 
 	/**
 	 *
-	 * @param compil webpack 4 `compilation.Compilation`, webpack 5 `Compilation`
+	 * @param compil Compilation
 	 */
-	private plugin = (compil: any) => {
-		// Webpack 5
-		/* istanbul ignore next */
-		if ('NormalModule' in webpack) {
-			// @ts-ignore
-			webpack.NormalModule.getCompilationHooks(compil).loader.tap(
-				'StyleguidistOptionsPlugin',
-				this.pluginFunc as any
-			);
-			return;
-		}
-		// Webpack 4
-		(compil as compilation.Compilation).hooks.normalModuleLoader.tap(
+	private plugin = (compil: Compilation) => {
+		webpack.NormalModule.getCompilationHooks(compil).loader.tap(
 			'StyleguidistOptionsPlugin',
 			this.pluginFunc as any
 		);
