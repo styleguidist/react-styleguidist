@@ -39,7 +39,7 @@ const shouldExist = (types: string[]) => types.some((type) => type.includes('exi
 function isDirectory(path: string): boolean {
 	try {
 		return fs.lstatSync(path).isDirectory();
-	} catch (e) {
+	} catch (e: any) {
 		if (e.code !== 'ENOENT') {
 			throw e;
 		}

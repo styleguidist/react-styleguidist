@@ -88,7 +88,7 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 			try {
 				ReactDOM.render(wrappedComponent, this.mountNode);
 			} catch (err) {
-				this.handleError(err);
+				this.handleError(err as Error);
 			}
 		});
 	}
@@ -107,7 +107,7 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 		const { error } = this.state;
 		return (
 			<>
-				<div data-testid="mountNode" ref={ref => (this.mountNode = ref)} />
+				<div data-testid="mountNode" ref={(ref) => (this.mountNode = ref)} />
 				{error && <PlaygroundError message={error} />}
 			</>
 		);

@@ -23,7 +23,7 @@ export default function compileCode(
 		return transpileImports(compiledCode);
 	} catch (err) {
 		if (onError) {
-			onError(err);
+			onError(err as Error);
 		}
 	}
 	return '';
