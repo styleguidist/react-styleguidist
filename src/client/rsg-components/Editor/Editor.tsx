@@ -6,6 +6,7 @@ import { highlight as prismHighlight, languages } from 'prismjs';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-javascript';
+import { Styles } from 'jss';
 import 'prismjs/components/prism-jsx';
 import { space } from '../../styles/theme';
 import prismTheme from '../../styles/prismTheme';
@@ -13,7 +14,7 @@ import * as Rsg from '../../../typings';
 
 const highlight = (code: string) => prismHighlight(code, languages.jsx, 'jsx');
 
-const styles = ({ fontFamily, fontSize, color, borderRadius }: Rsg.Theme) => ({
+const styles = ({ fontFamily, fontSize, color, borderRadius }: Rsg.Theme): Styles => ({
 	root: {
 		fontFamily: fontFamily.monospace,
 		fontSize: fontSize.small,

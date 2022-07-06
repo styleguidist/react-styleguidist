@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Styles } from 'jss';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import * as Rsg from '../../../typings';
 
-const styles = ({ space, color, fontFamily, fontSize, borderRadius }: Rsg.Theme) => ({
+const styles = ({ space, color, fontFamily, fontSize, borderRadius }: Rsg.Theme): Styles => ({
 	root: {
 		fontFamily: fontFamily.base,
 	},
@@ -58,7 +59,7 @@ export const TableOfContentsRenderer: React.FunctionComponent<TableOfContentsRen
 							className={classes.input}
 							placeholder="Filter by name"
 							aria-label="Filter by name"
-							onChange={event => onSearchTermChange(event.target.value)}
+							onChange={(event) => onSearchTermChange(event.target.value)}
 						/>
 					</div>
 					{children}
