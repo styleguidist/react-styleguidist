@@ -1,4 +1,3 @@
-import { Output } from 'webpack';
 import createServer from '../create-server';
 import getConfig from '../config';
 
@@ -15,13 +14,13 @@ test('createServer should return an object containing a server instance', () => 
 	expect(result.app).toBeTruthy();
 });
 
-test('createServer should return an object containing a production Webpack compiler', done => {
+test('createServer should return an object containing a production Webpack compiler', (done) => {
 	process.chdir('test/apps/basic');
 	const config = getConfig();
 	const result = createServer(config, 'production');
 	expect(result).toBeTruthy();
 	expect(result.compiler).toBeTruthy();
-	let output: Output;
+	let output;
 	if (result.compiler && result.compiler.options && result.compiler.options.output) {
 		output = result.compiler.options.output;
 	} else {
@@ -33,13 +32,13 @@ test('createServer should return an object containing a production Webpack compi
 	done();
 });
 
-test('createServer should return an object containing a development Webpack compiler', done => {
+test('createServer should return an object containing a development Webpack compiler', (done) => {
 	process.chdir('test/apps/basic');
 	const config = getConfig();
 	const result = createServer(config, 'development');
 	expect(result).toBeTruthy();
 	expect(result.compiler).toBeTruthy();
-	let output: Output;
+	let output;
 	if (result.compiler && result.compiler.options && result.compiler.options.output) {
 		output = result.compiler.options.output;
 	} else {
