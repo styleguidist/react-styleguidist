@@ -1,6 +1,6 @@
 import path from 'path';
 import castArray from 'lodash/castArray';
-import webpack, { Configuration, Resolve } from 'webpack';
+import webpack, { Configuration, Resolver } from 'webpack';
 import TerserPlugin from 'terser-webpack-plugin';
 import { MiniHtmlWebpackPlugin } from 'mini-html-webpack-plugin';
 import MiniHtmlWebpackTemplate from '@vxna/mini-html-webpack-template';
@@ -19,7 +19,7 @@ const RENDERER_REGEXP = /Renderer$/;
 const sourceDir = path.resolve(__dirname, '../client');
 
 interface AliasedConfiguration extends Configuration {
-	resolve: Resolve & { alias: Record<string, string> };
+	resolve: Resolver['resolve'] & { alias: Record<string, string> };
 }
 
 export default function (
