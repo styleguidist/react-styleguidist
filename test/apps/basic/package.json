@@ -1,6 +1,6 @@
 {
   "name": "pizza-basic",
   "devDependencies": {
-    "postcss-loader": "~0.13.0"
+    "postcss-loader": "^7.0.0"
   }
 }

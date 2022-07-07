@@ -1,7 +1,7 @@
 {
   "name": "pizza-cra",
   "devDependencies": {
-    "postcss-loader": "~0.13.0",
+    "postcss-loader": "^7.0.0",
     "react-scripts": "~0.6.1"
   }
 }
