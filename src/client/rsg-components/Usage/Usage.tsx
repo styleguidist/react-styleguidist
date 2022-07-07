@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { MethodDescriptor } from 'react-docgen';
 import { PropDescriptor } from 'rsg-components/Props/util';
 import Props from 'rsg-components/Props';
@@ -22,13 +21,6 @@ const Usage: React.FunctionComponent<{
 			{methodsNode}
 		</div>
 	);
-};
-
-Usage.propTypes = {
-	props: PropTypes.shape({
-		props: PropTypes.array,
-		methods: PropTypes.array,
-	}).isRequired,
 };
 
 export default Usage;
