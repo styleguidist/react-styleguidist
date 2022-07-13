@@ -12,8 +12,9 @@ const styleguideConfig = ({
 	title: 'Style Guide',
 } as unknown) as Rsg.SanitizedStyleguidistConfig;
 
-const getClasses = (plugins: Tapable.Plugin[] = [], name: string): Tapable.Plugin[] =>
+const getClasses = (plugins: any[] = [], name: string): Tapable.Plugin[] =>
 	plugins.filter((x) => x.constructor.name === name);
+
 const getClassNames = (plugins: Tapable.Plugin[] = []): string[] =>
 	plugins.map((x) => x.constructor.name);
 
@@ -56,9 +57,8 @@ it('should return a production config', () => {
 	expect(config).toMatchObject({
 		mode: env,
 	});
-	expect(
-		getClasses(config.optimization && config.optimization.minimizer, 'TerserPlugin')
-	).toHaveLength(1);
+	const result = getClasses(config.optimization && config.optimization.minimizer, 'TerserPlugin');
+	expect(result).toHaveLength(1);
 });
 
 it('should set aliases', () => {
