@@ -3,7 +3,6 @@ import filter from 'lodash/filter';
 import map from 'lodash/map';
 import values from 'lodash/values';
 import flatten from 'lodash/flatten';
-import loaderUtils from 'loader-utils';
 import { generate } from 'escodegen';
 import toAst from 'to-ast';
 import { builders as b } from 'ast-types';
@@ -21,8 +20,7 @@ const EVAL_IN_CONTEXT_PATH = absolutize('utils/client/evalInContext');
 
 export default function examplesLoader(this: Rsg.StyleguidistLoaderContext, source: string) {
 	const config = this._styleguidist;
-	const { file, displayName, shouldShowDefaultExample, customLangs } =
-		loaderUtils.getOptions(this) || {};
+	const { file, displayName, shouldShowDefaultExample, customLangs } = this.getOptions();
 
 	// Replace placeholders (__COMPONENT__) with the passed-in component name
 	if (shouldShowDefaultExample) {
@@ -80,7 +78,7 @@ export default function examplesLoader(this: Rsg.StyleguidistLoaderContext, sour
 
 	// Stringify examples object except the evalInContext function
 	const examplesWithEval: (Rsg.RuntimeCodeExample | Rsg.MarkdownExample)[] = examples.map(
-		example => {
+		(example) => {
 			if (example.type === 'code') {
 				return { ...example, evalInContext: { toAST: () => b.identifier('evalInContext') } as any };
 			} else {
