@@ -99,7 +99,7 @@ export default function (
 				new CleanWebpackPlugin({
 					cleanOnceBeforeBuildPatterns: [`${config.styleguideDir}/build/**/*`],
 					verbose: config.verbose === true,
-				} as any),
+				}),
 			],
 			optimization: {
 				minimize: config.minimize === true,
