@@ -21,8 +21,7 @@ const getClassNames = (plugins: Tapable.Plugin[] = []): string[] =>
 const process$env$nodeEnv = process.env.NODE_ENV;
 
 beforeEach(() => {
-	const mockedPlugin = CopyWebpackPlugin as unknown;
-	(mockedPlugin as jest.Mock).mockClear();
+	((CopyWebpackPlugin as unknown) as jest.Mock).mockClear();
 });
 
 afterEach(() => {
