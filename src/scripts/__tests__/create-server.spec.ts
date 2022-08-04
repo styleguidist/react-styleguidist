@@ -14,6 +14,17 @@ test('createServer should return an object containing a server instance', () => 
 	expect(result.app).toBeTruthy();
 });
 
+test('createServer should support an array-valued assetsDir', (done) => {
+	process.chdir('test/apps/basic');
+	const config = getConfig({
+		assetsDir: ['src/components', 'src/components2'],
+	});
+	const result = createServer(config, 'production');
+	expect(result).toBeTruthy();
+	expect(result.app).toBeTruthy();
+	done();
+});
+
 test('createServer should return an object containing a production Webpack compiler', (done) => {
 	process.chdir('test/apps/basic');
 	const config = getConfig();
