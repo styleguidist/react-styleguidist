@@ -1,6 +1,5 @@
 declare module 'webpack-merge' {
-	import { Tapable } from 'tapable';
-	import { Configuration } from 'webpack';
+	import { Configuration, WebpackPluginInstance } from 'webpack';
 
 	type MetaConfig = Configuration | ((env?: string) => Configuration);
 	type mergeFunction = (...configs: MetaConfig[]) => Configuration;
@@ -14,7 +13,7 @@ declare module 'webpack-merge' {
 		unique(
 			key: string,
 			uniques: string[],
-			getter?: (plugin: Tapable.Plugin) => string | undefined | false
+			getter?: (plugin: WebpackPluginInstance) => string | undefined | false
 		): customizeArrayFuntion;
 	};
 	export = webpackMerge;

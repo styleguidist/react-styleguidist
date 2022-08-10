@@ -1,10 +1,11 @@
-import webpack, { Configuration, validate } from 'webpack';
-import { Tapable } from 'tapable';
+import webpack, { Compiler, Configuration, validate, WebpackPluginInstance } from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import makeWebpackConfig from '../make-webpack-config';
 import * as Rsg from '../../typings';
 
 jest.mock('copy-webpack-plugin');
+
+type WebpackPlugin = WebpackPluginInstance | ((this: Compiler, compiler: Compiler) => void) | '...';
 
 const styleguideConfig = ({
 	styleguideDir: __dirname,
@@ -12,10 +13,10 @@ const styleguideConfig = ({
 	title: 'Style Guide',
 } as unknown) as Rsg.SanitizedStyleguidistConfig;
 
-const getClasses = (plugins: any[] = [], name: string): Tapable.Plugin[] =>
+const getClasses = (plugins: WebpackPlugin[] = [], name: string): WebpackPlugin[] =>
 	plugins.filter((x) => x.constructor.name === name);
 
-const getClassNames = (plugins: Tapable.Plugin[] = []): string[] =>
+const getClassNames = (plugins: WebpackPlugin[] = []): string[] =>
 	plugins.map((x) => x.constructor.name);
 
 const process$env$nodeEnv = process.env.NODE_ENV;
