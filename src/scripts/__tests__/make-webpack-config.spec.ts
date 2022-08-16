@@ -1,4 +1,10 @@
-import webpack, { Compiler, Configuration, validate, WebpackPluginInstance } from 'webpack';
+import webpack, {
+	Compiler,
+	Configuration,
+	validate,
+	ValidationError,
+	WebpackPluginInstance,
+} from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import makeWebpackConfig from '../make-webpack-config';
 import * as Rsg from '../../typings';
@@ -33,7 +39,7 @@ it('should return a development config', () => {
 	const env = 'development';
 	const config = makeWebpackConfig(styleguideConfig, env);
 
-	validate(config);
+	expect(() => validate(config)).not.toThrow(ValidationError);
 	expect(config).toMatchObject({
 		mode: env,
 	});
@@ -43,7 +49,8 @@ it('should return a development config', () => {
 it('should return a production config', () => {
 	const env = 'production';
 	const config = makeWebpackConfig(styleguideConfig, env);
-	validate(config);
+	expect(() => validate(config)).not.toThrow(ValidationError);
+
 	const plugins = getClassNames(config.plugins);
 	expect(plugins).toContain('CleanWebpackPlugin');
 	expect(plugins).not.toContain('HotModuleReplacementPlugin');
