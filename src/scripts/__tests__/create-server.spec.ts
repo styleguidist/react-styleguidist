@@ -1,3 +1,4 @@
+import { WebpackOptionsNormalized } from 'webpack';
 import createServer from '../create-server';
 import getConfig from '../config';
 
@@ -31,7 +32,7 @@ test('createServer should return an object containing a production Webpack compi
 	const result = createServer(config, 'production');
 	expect(result).toBeTruthy();
 	expect(result.compiler).toBeTruthy();
-	let output;
+	let output: WebpackOptionsNormalized['output'];
 	if (result.compiler && result.compiler.options && result.compiler.options.output) {
 		output = result.compiler.options.output;
 	} else {
@@ -49,7 +50,7 @@ test('createServer should return an object containing a development Webpack comp
 	const result = createServer(config, 'development');
 	expect(result).toBeTruthy();
 	expect(result.compiler).toBeTruthy();
-	let output;
+	let output: WebpackOptionsNormalized['output'];
 	if (result.compiler && result.compiler.options && result.compiler.options.output) {
 		output = result.compiler.options.output;
 	} else {

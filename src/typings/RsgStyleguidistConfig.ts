@@ -12,7 +12,13 @@ import { CodeExample } from './RsgExample';
 import { ConfigSection, Section } from './RsgSection';
 import { Theme } from './RsgTheme';
 
-export interface StyleguidistLoaderContext extends LoaderContext<any> {
+type OptionsType = {
+	displayName: string;
+	file: string;
+	shouldShowDefaultExample: string;
+	customLangs: string[];
+};
+export interface StyleguidistLoaderContext extends LoaderContext<OptionsType> {
 	_styleguidist: SanitizedStyleguidistConfig;
 }
 

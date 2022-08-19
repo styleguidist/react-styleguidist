@@ -19,8 +19,11 @@ export default function getAst(
 
 	try {
 		return parser.parse(code, ACORN_OPTIONS);
-	} catch (err: any) {
-		logger.debug(`Acorn cannot parse example code: ${err.message}\n\nCode:\n${code}`);
+	} catch (err) {
+		if (err instanceof Error) {
+			logger.debug(`Acorn cannot parse example code: ${err.message}\n\nCode:\n${code}`);
+			return undefined;
+		}
 		return undefined;
 	}
 }

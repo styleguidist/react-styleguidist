@@ -22,8 +22,8 @@ export default function compileCode(
 		const compiledCode = compile(wrappedCode, compilerConfig);
 		return transpileImports(compiledCode);
 	} catch (err) {
-		if (onError) {
-			onError(err as Error);
+		if (onError && err instanceof Error) {
+			onError(err);
 		}
 	}
 	return '';
