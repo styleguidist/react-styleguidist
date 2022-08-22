@@ -58,7 +58,7 @@ interface BaseStyleguidistConfig {
 		code: string,
 		resolver: (
 			ast: ASTNode,
-			parser: { parse: (code: string) => ASTNode }
+			parser: { parse: (input: string) => ASTNode }
 		) => NodePath<any, any> | NodePath[],
 		handlers: Handler[]
 	): DocumentationObject;
