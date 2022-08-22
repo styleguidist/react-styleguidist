@@ -30,7 +30,7 @@ export default function (this: Rsg.StyleguidistLoaderContext, source: string) {
 		code: string,
 		resolver: (
 			ast: ASTNode,
-			parser: { parse: (code: string) => ASTNode }
+			parser: { parse: (input: string) => ASTNode }
 		) => NodePath<any, any> | NodePath[],
 		handlers: Handler[]
 	) => parse(code, resolver, handlers, { filename: filePath });

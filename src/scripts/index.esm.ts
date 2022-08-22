@@ -15,8 +15,8 @@ import * as Rsg from '../typings';
  * @param {object} [config] Styleguidist config.
  * @returns {object} API.
  */
-export default function(configArg?: Rsg.StyleguidistConfig | string) {
-	const config = getConfig(configArg, conf => {
+export default function (configArg?: Rsg.StyleguidistConfig | string) {
+	const config = getConfig(configArg, (conf) => {
 		setupLogger(conf.logger as Record<string, (msg: string) => void>, conf.verbose, {});
 		return conf;
 	});
@@ -29,7 +29,11 @@ export default function(configArg?: Rsg.StyleguidistConfig | string) {
 		 * @return {Compiler} Webpack Compiler instance.
 		 */
 		build(
-			callback: (err: Error, config: Rsg.SanitizedStyleguidistConfig, stats: webpack.Stats) => void
+			callback: (
+				err: Error,
+				styleguidistConfig: Rsg.SanitizedStyleguidistConfig,
+				stats: webpack.Stats
+			) => void
 		) {
 			return build(config, (err: Error, stats: webpack.Stats) => callback(err, config, stats));
 		},
@@ -41,8 +45,13 @@ export default function(configArg?: Rsg.StyleguidistConfig | string) {
 		 * @return {ServerInfo.App} Webpack-Dev-Server.
 		 * @return {ServerInfo.Compiler} Webpack Compiler instance.
 		 */
-		server(callback: (err: Error | undefined, config: Rsg.SanitizedStyleguidistConfig) => void) {
-			return server(config, err => callback(err, config));
+		server(
+			callback: (
+				err: Error | undefined,
+				styleguidistConfig: Rsg.SanitizedStyleguidistConfig
+			) => void
+		) {
+			return server(config, (err) => callback(err, config));
 		},
 
 		/**

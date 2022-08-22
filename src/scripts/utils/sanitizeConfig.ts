@@ -36,9 +36,9 @@ const shouldBeFile = (types: string[]) => types.some((type) => type.includes('fi
 const shouldBeDirectory = (types: string[]) => types.some((type) => type.includes('directory'));
 const shouldExist = (types: string[]) => types.some((type) => type.includes('existing'));
 
-function isDirectory(path: string): boolean {
+function isDirectory(pathString: string): boolean {
 	try {
-		return fs.lstatSync(path).isDirectory();
+		return fs.lstatSync(pathString).isDirectory();
 	} catch (e: any) {
 		if (e.code !== 'ENOENT') {
 			throw e;
