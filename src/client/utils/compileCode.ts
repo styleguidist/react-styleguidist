@@ -22,7 +22,7 @@ export default function compileCode(
 		const compiledCode = compile(wrappedCode, compilerConfig);
 		return transpileImports(compiledCode);
 	} catch (err) {
-		if (onError) {
+		if (onError && err instanceof Error) {
 			onError(err);
 		}
 	}

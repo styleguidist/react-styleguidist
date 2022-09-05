@@ -1,8 +1,7 @@
 import mergeBase from 'webpack-merge';
 import isFunction from 'lodash/isFunction';
 import omit from 'lodash/omit';
-import { Configuration } from 'webpack';
-import { Tapable } from 'tapable';
+import { Configuration, WebpackPluginInstance } from 'webpack';
 
 const IGNORE_SECTIONS = ['entry', 'externals', 'output', 'watch', 'stats', 'styleguidist'];
 const IGNORE_SECTIONS_ENV: Record<string, string[]> = {
@@ -28,7 +27,7 @@ const merge = mergeBase({
 	customizeArray: mergeBase.unique(
 		'plugins',
 		IGNORE_PLUGINS,
-		(plugin: Tapable.Plugin) => plugin.constructor && plugin.constructor.name
+		(plugin: WebpackPluginInstance) => plugin.constructor && plugin.constructor.name
 	),
 });
 

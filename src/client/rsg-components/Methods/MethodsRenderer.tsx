@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Markdown from 'rsg-components/Markdown';
 import Argument from 'rsg-components/Argument';
 import Arguments from 'rsg-components/Arguments';
@@ -39,17 +38,5 @@ export const columns = [
 const MethodsRenderer: React.FunctionComponent<{ methods: MethodDescriptor[] }> = ({ methods }) => (
 	<Table columns={columns} rows={methods} getRowKey={getRowKey} />
 );
-
-MethodsRenderer.propTypes = {
-	methods: PropTypes.arrayOf(
-		PropTypes.shape({
-			name: PropTypes.string.isRequired,
-			description: PropTypes.string,
-			returns: PropTypes.object,
-			params: PropTypes.array,
-			tags: PropTypes.object,
-		}).isRequired
-	).isRequired,
-};
 
 export default MethodsRenderer;

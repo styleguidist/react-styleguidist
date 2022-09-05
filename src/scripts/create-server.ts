@@ -1,6 +1,5 @@
-import webpack, { Configuration } from 'webpack';
-import WebpackDevServer from 'webpack-dev-server';
-import merge from 'webpack-merge';
+import webpack from 'webpack';
+import WebpackDevServer, { Configuration } from 'webpack-dev-server';
 import makeWebpackConfig from './make-webpack-config';
 import * as Rsg from '../typings';
 
@@ -9,27 +8,38 @@ export default function createServer(
 	env: 'development' | 'production' | 'none'
 ): { app: WebpackDevServer; compiler: webpack.Compiler } {
 	const webpackConfig = makeWebpackConfig(config, env);
-	const webpackDevServerConfig = merge(
-		{
-			noInfo: true,
-			compress: true,
-			clientLogLevel: 'none',
-			hot: true,
-			quiet: true,
-			watchOptions: {
-				ignored: /node_modules/,
-			},
-			watchContentBase: config.assetsDir !== undefined,
+
+	const baseConfig: Partial<Configuration> = {
+		host: config.serverHost,
+		port: config.serverPort,
+		compress: true,
+		hot: true,
+		client: {
+			logging: 'none',
+		},
+		static: Array.isArray(config.assetsDir)
+			? config.assetsDir.map((assetsDir) => ({
+					directory: assetsDir,
+					watch: true,
+					publicPath: '/',
+			  }))
+			: {
+					directory: config.assetsDir,
+					watch: true,
+					publicPath: '/',
+			  },
+		devMiddleware: {
 			stats: webpackConfig.stats || {},
-		} as Configuration,
-		webpackConfig.devServer as Configuration,
-		{
-			contentBase: config.assetsDir,
-		} as Configuration
-	);
+		},
+	};
+
+	const webpackDevServerConfig: Configuration = {
+		...webpackConfig.devServer,
+		...baseConfig,
+	};
 
 	const compiler = webpack(webpackConfig);
-	const devServer = new WebpackDevServer(compiler, webpackDevServerConfig);
+	const devServer = new WebpackDevServer(webpackDevServerConfig, compiler);
 
 	// User defined customizations
 	if (config.configureServer) {

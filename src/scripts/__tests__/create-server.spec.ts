@@ -1,4 +1,4 @@
-import { Output } from 'webpack';
+import { WebpackOptionsNormalized } from 'webpack';
 import createServer from '../create-server';
 import getConfig from '../config';
 
@@ -15,13 +15,24 @@ test('createServer should return an object containing a server instance', () => 
 	expect(result.app).toBeTruthy();
 });
 
-test('createServer should return an object containing a production Webpack compiler', done => {
+test('createServer should support an array-valued assetsDir', (done) => {
+	process.chdir('test/apps/basic');
+	const config = getConfig({
+		assetsDir: ['src/components', 'src/components2'],
+	});
+	const result = createServer(config, 'production');
+	expect(result).toBeTruthy();
+	expect(result.app).toBeTruthy();
+	done();
+});
+
+test('createServer should return an object containing a production Webpack compiler', (done) => {
 	process.chdir('test/apps/basic');
 	const config = getConfig();
 	const result = createServer(config, 'production');
 	expect(result).toBeTruthy();
 	expect(result.compiler).toBeTruthy();
-	let output: Output;
+	let output: WebpackOptionsNormalized['output'];
 	if (result.compiler && result.compiler.options && result.compiler.options.output) {
 		output = result.compiler.options.output;
 	} else {
@@ -33,13 +44,13 @@ test('createServer should return an object containing a production Webpack compi
 	done();
 });
 
-test('createServer should return an object containing a development Webpack compiler', done => {
+test('createServer should return an object containing a development Webpack compiler', (done) => {
 	process.chdir('test/apps/basic');
 	const config = getConfig();
 	const result = createServer(config, 'development');
 	expect(result).toBeTruthy();
 	expect(result.compiler).toBeTruthy();
-	let output: Output;
+	let output: WebpackOptionsNormalized['output'];
 	if (result.compiler && result.compiler.options && result.compiler.options.output) {
 		output = result.compiler.options.output;
 	} else {

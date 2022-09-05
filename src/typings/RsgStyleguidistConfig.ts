@@ -1,5 +1,5 @@
 import WebpackDevServer from 'webpack-dev-server';
-import { Configuration, loader } from 'webpack';
+import { Configuration, LoaderContext } from 'webpack';
 import { TransformOptions } from 'buble';
 import { Handler, DocumentationObject, PropDescriptor } from 'react-docgen';
 import { ASTNode } from 'ast-types';
@@ -12,7 +12,13 @@ import { CodeExample } from './RsgExample';
 import { ConfigSection, Section } from './RsgSection';
 import { Theme } from './RsgTheme';
 
-export interface StyleguidistLoaderContext extends loader.LoaderContext {
+type OptionsType = {
+	displayName: string;
+	file: string;
+	shouldShowDefaultExample: string;
+	customLangs: string[];
+};
+export interface StyleguidistLoaderContext extends LoaderContext<OptionsType> {
 	_styleguidist: SanitizedStyleguidistConfig;
 }
 
@@ -52,7 +58,7 @@ interface BaseStyleguidistConfig {
 		code: string,
 		resolver: (
 			ast: ASTNode,
-			parser: { parse: (code: string) => ASTNode }
+			parser: { parse: (input: string) => ASTNode }
 		) => NodePath<any, any> | NodePath[],
 		handlers: Handler[]
 	): DocumentationObject;

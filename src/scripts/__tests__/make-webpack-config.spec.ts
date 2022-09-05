@@ -1,13 +1,17 @@
-import webpack, { Configuration } from 'webpack';
-import { Tapable } from 'tapable';
+import webpack, {
+	Compiler,
+	Configuration,
+	validate,
+	ValidationError,
+	WebpackPluginInstance,
+} from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import makeWebpackConfig from '../make-webpack-config';
 import * as Rsg from '../../typings';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { validate } = require('webpack');
-
 jest.mock('copy-webpack-plugin');
+
+type WebpackPlugin = WebpackPluginInstance | ((this: Compiler, compiler: Compiler) => void) | '...';
 
 const styleguideConfig = ({
 	styleguideDir: __dirname,
@@ -15,15 +19,16 @@ const styleguideConfig = ({
 	title: 'Style Guide',
 } as unknown) as Rsg.SanitizedStyleguidistConfig;
 
-const getClasses = (plugins: Tapable.Plugin[] = [], name: string): Tapable.Plugin[] =>
+const getClasses = (plugins: WebpackPlugin[] = [], name: string): WebpackPlugin[] =>
 	plugins.filter((x) => x.constructor.name === name);
-const getClassNames = (plugins: Tapable.Plugin[] = []): string[] =>
+
+const getClassNames = (plugins: WebpackPlugin[] = []): string[] =>
 	plugins.map((x) => x.constructor.name);
 
 const process$env$nodeEnv = process.env.NODE_ENV;
 
 beforeEach(() => {
-	(CopyWebpackPlugin as jest.Mock).mockClear();
+	((CopyWebpackPlugin as unknown) as jest.Mock).mockClear();
 });
 
 afterEach(() => {
@@ -34,9 +39,7 @@ it('should return a development config', () => {
 	const env = 'development';
 	const config = makeWebpackConfig(styleguideConfig, env);
 
-	const errors = validate(config);
-	expect(errors).toHaveLength(0);
-
+	expect(() => validate(config)).not.toThrow(ValidationError);
 	expect(config).toMatchObject({
 		mode: env,
 	});
@@ -46,8 +49,7 @@ it('should return a development config', () => {
 it('should return a production config', () => {
 	const env = 'production';
 	const config = makeWebpackConfig(styleguideConfig, env);
-	const errors = validate(config);
-	expect(errors).toHaveLength(0);
+	expect(() => validate(config)).not.toThrow(ValidationError);
 
 	const plugins = getClassNames(config.plugins);
 	expect(plugins).toContain('CleanWebpackPlugin');
@@ -63,9 +65,8 @@ it('should return a production config', () => {
 	expect(config).toMatchObject({
 		mode: env,
 	});
-	expect(
-		getClasses(config.optimization && config.optimization.minimizer, 'TerserPlugin')
-	).toHaveLength(1);
+	const result = getClasses(config.optimization && config.optimization.minimizer, 'TerserPlugin');
+	expect(result).toHaveLength(1);
 });
 
 it('should set aliases', () => {

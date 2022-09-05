@@ -88,7 +88,11 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 			try {
 				ReactDOM.render(wrappedComponent, this.mountNode);
 			} catch (err) {
-				this.handleError(err);
+				/* istanbul ignore next: it is near-impossible to trigger a sync error from ReactDOM.render */
+				if (err instanceof Error) {
+					/* istanbul ignore next */
+					this.handleError(err);
+				}
 			}
 		});
 	}
@@ -107,7 +111,7 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 		const { error } = this.state;
 		return (
 			<>
-				<div data-testid="mountNode" ref={ref => (this.mountNode = ref)} />
+				<div data-testid="mountNode" ref={(ref) => (this.mountNode = ref)} />
 				{error && <PlaygroundError message={error} />}
 			</>
 		);

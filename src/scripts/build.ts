@@ -8,6 +8,6 @@ export default function build(
 ) {
 	return webpack(makeWebpackConfig(config, 'production'), (err, stats) => {
 		// require('fs').writeFileSync('stats.json', JSON.stringify(stats.toJson()));
-		callback(err, stats);
+		callback(err as Error, stats as webpack.Stats);
 	});
 }
