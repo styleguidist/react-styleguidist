@@ -61,3 +61,28 @@ test('createServer should return an object containing a development Webpack comp
 	expect(output.chunkFilename).toBe('build/[name].js');
 	done();
 });
+
+test('createServer should return overlay parameter recieved by the user', (done) => {
+	process.chdir('test/apps/basic');
+	const config = {
+		client: {
+		  overlay: {
+			errors: true,
+			warnings: false,
+		  },
+		},
+	};
+	const result = createServer(config, 'development');
+	expect(result).toBeTruthy();
+	expect(result.compiler).toBeTruthy();
+	let output: WebpackOptionsNormalized['output'];
+	if (result.compiler && result.compiler.options && result.compiler.options.output) {
+		output = result.compiler.options.output;
+	} else {
+		done.fail('no output');
+		return;
+	}
+	expect(output.client.overlay.errors).toBeTruthy();
+	expect(output.client.overlay.warnings).not.toBeTruthy();
+	done();
+});

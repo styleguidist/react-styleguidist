@@ -34,8 +34,8 @@ export default function createServer(
 	};
 
 	const webpackDevServerConfig: Configuration = {
-		...webpackConfig.devServer,
 		...baseConfig,
+		...webpackConfig.devServer,
 	};
 
 	const compiler = webpack(webpackConfig);
