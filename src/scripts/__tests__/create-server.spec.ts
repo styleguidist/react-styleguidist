@@ -1,5 +1,6 @@
 import { WebpackOptionsNormalized } from 'webpack';
-import createServer from '../create-server';
+import makeWebpackConfig from '../make-webpack-config';
+import createServer, { creatDevServerConfiguration } from '../create-server';
 import getConfig from '../config';
 
 const cwd = process.cwd();
@@ -62,27 +63,22 @@ test('createServer should return an object containing a development Webpack comp
 	done();
 });
 
-test('createServer should return overlay parameter recieved by the user', (done) => {
+test('creatDevServerConfiguration should return overlay parameter recieved by the user', (done) => {
 	process.chdir('test/apps/basic');
-	const config = {
-		client: {
-		  overlay: {
-			errors: true,
-			warnings: false,
-		  },
+	const config = getConfig({
+		webpackConfig: {
+			devServer: {
+				client: {
+					overlay: {
+						errors: true,
+						warnings: false,
+					},
+				},
+			},
 		},
-	};
-	const result = createServer(config, 'development');
-	expect(result).toBeTruthy();
-	expect(result.compiler).toBeTruthy();
-	let output: WebpackOptionsNormalized['output'];
-	if (result.compiler && result.compiler.options && result.compiler.options.output) {
-		output = result.compiler.options.output;
-	} else {
-		done.fail('no output');
-		return;
-	}
-	expect(output.client.overlay.errors).toBeTruthy();
-	expect(output.client.overlay.warnings).not.toBeTruthy();
+	});
+	const webpackConfig = makeWebpackConfig(config, 'development');
+	const result = creatDevServerConfiguration(config, webpackConfig);
+	expect(result.client?.valueOf()).toEqual({ overlay: { errors: true, warnings: false } });
 	done();
 });

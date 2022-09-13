@@ -3,12 +3,10 @@ import WebpackDevServer, { Configuration } from 'webpack-dev-server';
 import makeWebpackConfig from './make-webpack-config';
 import * as Rsg from '../typings';
 
-export default function createServer(
+export function creatDevServerConfiguration(
 	config: Rsg.SanitizedStyleguidistConfig,
-	env: 'development' | 'production' | 'none'
-): { app: WebpackDevServer; compiler: webpack.Compiler } {
-	const webpackConfig = makeWebpackConfig(config, env);
-
+	webpackConfig: webpack.Configuration
+): Configuration {
 	const baseConfig: Partial<Configuration> = {
 		host: config.serverHost,
 		port: config.serverPort,
@@ -37,6 +35,17 @@ export default function createServer(
 		...baseConfig,
 		...webpackConfig.devServer,
 	};
+
+	return webpackDevServerConfig;
+}
+
+export default function createServer(
+	config: Rsg.SanitizedStyleguidistConfig,
+	env: 'development' | 'production' | 'none'
+): { app: WebpackDevServer; compiler: webpack.Compiler } {
+	const webpackConfig = makeWebpackConfig(config, env);
+
+	const webpackDevServerConfig = creatDevServerConfiguration(config, webpackConfig);
 
 	const compiler = webpack(webpackConfig);
 	const devServer = new WebpackDevServer(webpackDevServerConfig, compiler);
