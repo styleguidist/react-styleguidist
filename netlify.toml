@@ -1,4 +1,0 @@
-[build]
-base = "site/"
-publish = "site/build/"
-command = "npm run deploy"
