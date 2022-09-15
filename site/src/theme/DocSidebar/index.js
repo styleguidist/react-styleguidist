@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import useScript from '@charlietango/use-script';
 import DocSidebarBase from '@theme-original/DocSidebar';
@@ -11,16 +11,29 @@ function Extra({ path }) {
 	// Load the EthicalAds script
 	useScript(SCRIPT_URL);
 
+	const adElement = useRef(null);
+
 	// Update the ad on navigation
 	useEffect(() => {
 		if (window.ethicalads) {
+			adElement.current?.classList.add(styles.hidden);
+			adElement.current?.classList.remove('loaded');
 			window.ethicalads.load_placements();
+			setTimeout(() => {
+				adElement.current?.classList.remove(styles.hidden);
+			}, 500);
 		}
 	}, [path]);
 
 	return (
 		<div className={styles.extra}>
-			<div data-ea-publisher={PUBLISHER_ID} data-ea-type="image" className="bordered"></div>
+			<div
+				ref={adElement}
+				data-ea-publisher={PUBLISHER_ID}
+				data-ea-type="image"
+				data-ea-keywords="frontend|react"
+				className="bordered"
+			></div>
 		</div>
 	);
 }
@@ -32,8 +45,8 @@ Extra.propTypes = {
 function DocSidebar({ showExtra, ...props }) {
 	return (
 		<div className={styles.sidebar}>
-			<DocSidebarBase {...props} />
 			{showExtra && <Extra path={props.path} />}
+			<DocSidebarBase {...props} />
 		</div>
 	);
 }

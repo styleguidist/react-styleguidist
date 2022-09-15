@@ -6,8 +6,13 @@
 .extra {
 	display: flex;
 	justify-content: center;
-	min-height: 12rem;
+	min-height: 12.5rem;
 	background-color: var(--ifm-color-white);
+	transition: opacity 0.2s ease-in-out;
+}
+
+.hidden {
+	opacity: 0;
 }
 
 /* HACK: Horizontal EthicalAds layout */
@@ -31,16 +36,20 @@
 }
 
 @media (min-width: 997px) {
+	.extra {
+		min-height: 24rem;
+		padding-top: var(--ifm-navbar-height);
+	}
+
 	.sidebar {
 		height: 100vh;
 		overflow-y: auto;
 		position: sticky;
 		top: 0;
-		padding-top: var(--ifm-navbar-height);
 	}
 
 	/* HACK: Remove styles from the theme sidebar container */
-	.sidebar > *:first-child {
+	.sidebar > *:first-child + * {
 		height: initial;
 		overflow: initial;
 		position: initial;
