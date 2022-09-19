@@ -33,17 +33,14 @@ export default function createServer(
 		},
 	};
 
-	const webpackDevServerConfig: Configuration = {
-		...webpackConfig.devServer,
+	// Allow custom devServer options to override base config.
+	webpackConfig.devServer = {
 		...baseConfig,
-		client: {
-			...webpackConfig.devServer.client,
-			...baseConfig.client,
-		},
+		...webpackConfig.devServer,
 	};
 
 	const compiler = webpack(webpackConfig);
-	const devServer = new WebpackDevServer(webpackDevServerConfig, compiler);
+	const devServer = new WebpackDevServer(webpackConfig.devServer, compiler);
 
 	// User defined customizations
 	if (config.configureServer) {
