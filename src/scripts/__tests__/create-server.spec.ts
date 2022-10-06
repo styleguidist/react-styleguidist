@@ -61,3 +61,47 @@ test('createServer should return an object containing a development Webpack comp
 	expect(output.chunkFilename).toBe('build/[name].js');
 	done();
 });
+
+test('createServer should apply some base config options', () => {
+	process.chdir('test/apps/basic');
+	const config = {
+		...getConfig(),
+		serverHost: 'localhost',
+		serverPort: 6000,
+	};
+	const result = createServer(config, 'development');
+	expect(result).toBeTruthy();
+	expect(result.compiler).toBeTruthy();
+	expect(result.compiler.options.devServer).toMatchObject({
+		host: 'localhost',
+		port: 6000,
+		compress: true,
+		hot: true,
+		client: { logging: 'none' },
+		webSocketServer: 'ws',
+	});
+});
+
+test('createServer should allow overriding default devServer options', () => {
+	process.chdir('test/apps/basic');
+	const config = {
+		...getConfig(),
+		webpackConfig: {
+			devServer: {
+				client: {
+					overlay: false,
+					progress: true,
+				},
+			},
+		},
+	};
+	const result = createServer(config, 'development');
+	expect(result).toBeTruthy();
+	expect(result.compiler).toBeTruthy();
+	expect(result.compiler.options.devServer).toMatchObject({
+		client: {
+			overlay: false,
+			progress: true,
+		},
+	});
+});
