@@ -1,4 +1,5 @@
 import React from 'react';
+import { fireEvent, render } from '@testing-library/react';
 import { shallow, mount } from 'enzyme';
 import { Editor } from './Editor';
 
@@ -9,7 +10,6 @@ const props = {
 	onChange() {},
 	code,
 };
-
 describe('Editor', () => {
 	it('should renderer and editor', () => {
 		const actual = shallow(<Editor {...props} />);
@@ -27,16 +27,10 @@ describe('Editor', () => {
 
 	it('should call onChange when textarea value changes', () => {
 		const onChange = jest.fn();
-		const actual = mount(<Editor {...props} onChange={onChange} />);
+		const { getByText } = render(<Editor {...props} onChange={onChange} />);
 
-		expect(actual.text()).toMatch(code);
-
-		// Set new value
-		actual.find('textarea').simulate('change', {
-			target: {
-				value: newCode,
-			},
-		});
+		const textarea = getByText(code);
+		fireEvent.change(textarea, { target: { value: newCode } });
 
 		expect(onChange).toBeCalledWith(newCode);
 	});
