@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { createRenderer } from 'react-test-renderer/shallow';
 import noop from 'lodash/noop';
 import Section from '../Section';
 import Sections from './Sections';
@@ -42,13 +42,15 @@ const sections = [
 ] as any;
 
 it('should render component renderer', () => {
-	const actual = shallow(<Sections sections={sections} depth={3} />);
+	const renderer = createRenderer();
+	renderer.render(<Sections sections={sections} depth={3} />);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('render should render styled component', () => {
-	const actual = shallow(
+	const renderer = createRenderer();
+	renderer.render(
 		<StyledSectionsRenderer>
 			<Section key={0} section={sections[0]} depth={3} />
 			<Section key={1} section={sections[1]} depth={3} />
@@ -56,11 +58,12 @@ it('render should render styled component', () => {
 		</StyledSectionsRenderer>
 	);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('render should render component', () => {
-	const actual = shallow(
+	const renderer = createRenderer();
+	renderer.render(
 		<SectionsRenderer classes={{}}>
 			<Section key={0} section={sections[0]} depth={3} />
 			<Section key={1} section={sections[1]} depth={3} />
@@ -68,5 +71,5 @@ it('render should render component', () => {
 		</SectionsRenderer>
 	);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });

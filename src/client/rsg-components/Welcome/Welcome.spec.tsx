@@ -1,9 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { createRenderer } from 'react-test-renderer/shallow';
 import { WelcomeRenderer } from './WelcomeRenderer';
 
 it('renderer should render welcome screen', () => {
-	const actual = shallow(<WelcomeRenderer classes={{}} patterns={['foo/*.js', 'bar/*.js']} />);
+	const renderer = createRenderer();
+	renderer.render(<WelcomeRenderer classes={{}} patterns={['foo/*.js', 'bar/*.js']} />);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });

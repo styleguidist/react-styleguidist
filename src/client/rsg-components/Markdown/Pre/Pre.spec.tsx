@@ -1,19 +1,19 @@
 import React from 'react';
-import { render } from 'enzyme';
+import renderer from 'react-test-renderer';
 
 import Pre from './index';
 
 describe('Markdown Pre', () => {
 	it('should render a pre', () => {
-		const actual = render(<Pre>This is pre-formatted text.</Pre>);
+		const actual = renderer.create(<Pre>This is pre-formatted text.</Pre>);
 
-		expect(actual).toMatchSnapshot();
+		expect(actual.toJSON()).toMatchSnapshot();
 	});
 
 	it('should render highlighted code', () => {
 		const code = '<button>OK</button>';
-		const actual = render(<Pre className="lang-html">{code}</Pre>);
+		const actual = renderer.create(<Pre className="lang-html">{code}</Pre>);
 
-		expect(actual).toMatchSnapshot();
+		expect(actual.toJSON()).toMatchSnapshot();
 	});
 });

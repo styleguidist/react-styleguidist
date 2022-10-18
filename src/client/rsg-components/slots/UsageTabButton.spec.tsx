@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { createRenderer } from 'react-test-renderer/shallow';
 import UsageTabButton from './UsageTabButton';
 
 const props = {
@@ -8,13 +8,15 @@ const props = {
 };
 
 it('should renderer a button', () => {
-	const actual = shallow(<UsageTabButton {...props} props={{ props: [{ name: 'foo' }] }} />);
+	const renderer = createRenderer();
+	renderer.render(<UsageTabButton {...props} props={{ props: [{ name: 'foo' }] }} />);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('should renderer null if there are not props or methods', () => {
-	const actual = shallow(<UsageTabButton {...props} props={{}} />);
+	const renderer = createRenderer();
+	renderer.render(<UsageTabButton {...props} props={{}} />);
 
-	expect(actual.getElement()).toBeFalsy();
+	expect(renderer.getRenderOutput()).toBe(null);
 });

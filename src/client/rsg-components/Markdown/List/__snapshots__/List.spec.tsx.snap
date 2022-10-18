@@ -2,15 +2,15 @@
 
 exports[`Markdown List should render an ordered list 1`] = `
 <ol
-  class="rsg--list-0 rsg--ordered-1"
+  className="rsg--list-0 rsg--ordered-1"
 >
   <li
-    class="rsg--li-2"
+    className="rsg--li-2"
   >
     First
   </li>
   <li
-    class="rsg--li-2"
+    className="rsg--li-2"
   >
     Second
   </li>
@@ -19,15 +19,15 @@ exports[`Markdown List should render an ordered list 1`] = `
 
 exports[`Markdown List should render an unordered list 1`] = `
 <ul
-  class="rsg--list-0"
+  className="rsg--list-0"
 >
   <li
-    class="rsg--li-2"
+    className="rsg--li-2"
   >
     First
   </li>
   <li
-    class="rsg--li-2"
+    className="rsg--li-2"
   >
     Second
   </li>

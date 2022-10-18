@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import { shallow, mount } from 'enzyme';
+import { createRenderer } from 'react-test-renderer/shallow';
 import { Editor } from './Editor';
 
 const code = '<button>MyAwesomeCode</button>';
@@ -12,17 +12,18 @@ const props = {
 };
 describe('Editor', () => {
 	it('should renderer and editor', () => {
-		const actual = shallow(<Editor {...props} />);
+		const renderer = createRenderer();
+		renderer.render(<Editor {...props} />);
 
-		expect(actual).toMatchSnapshot();
+		expect(renderer.getRenderOutput()).toMatchSnapshot();
 	});
 
 	it('should update code', () => {
-		const actual = mount(<Editor {...props} />);
+		const { rerender, getByText } = render(<Editor {...props} />);
 
-		actual.setProps({ code: newCode });
+		rerender(<Editor {...props} code={newCode} />);
 
-		expect(actual.text()).toMatch(newCode);
+		expect(getByText(newCode));
 	});
 
 	it('should call onChange when textarea value changes', () => {

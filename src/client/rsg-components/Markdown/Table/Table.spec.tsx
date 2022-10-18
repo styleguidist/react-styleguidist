@@ -1,11 +1,11 @@
 import React from 'react';
-import { render } from 'enzyme';
+import renderer from 'react-test-renderer';
 
 import { Table, TableHead, TableBody, TableRow, TableCell } from './index';
 
 describe('Markdown Table', () => {
 	it('should render a table', () => {
-		const actual = render(
+		const actual = renderer.create(
 			<Table>
 				<TableHead>
 					<TableRow>
@@ -22,6 +22,6 @@ describe('Markdown Table', () => {
 			</Table>
 		);
 
-		expect(actual).toMatchSnapshot();
+		expect(actual.toJSON()).toMatchSnapshot();
 	});
 });

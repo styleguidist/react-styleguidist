@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { createRenderer } from 'react-test-renderer/shallow';
 import { ParaRenderer, styles } from './ParaRenderer';
 
 const props = {
@@ -7,17 +7,19 @@ const props = {
 };
 
 it('should render paragraph as a <div>', () => {
-	const actual = shallow(<ParaRenderer {...props}>Pizza</ParaRenderer>);
+	const renderer = createRenderer();
+	renderer.render(<ParaRenderer {...props}>Pizza</ParaRenderer>);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('should render paragraph as a <p>', () => {
-	const actual = shallow(
+	const renderer = createRenderer();
+	renderer.render(
 		<ParaRenderer {...props} semantic="p">
 			Pizza
 		</ParaRenderer>
 	);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });

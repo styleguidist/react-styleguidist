@@ -1,9 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { createRenderer } from 'react-test-renderer/shallow';
 import { NotFoundRenderer } from './NotFoundRenderer';
 
 it('renderer should render not found message', () => {
-	const actual = shallow(<NotFoundRenderer classes={{}} />);
+	const renderer = createRenderer();
+	renderer.render(<NotFoundRenderer classes={{}} />);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
