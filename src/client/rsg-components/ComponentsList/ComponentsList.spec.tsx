@@ -1,6 +1,6 @@
 /* eslint-disable compat/compat */
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import ComponentsList from './ComponentsList';
 import Context from '../Context';
 
@@ -42,7 +42,7 @@ it('should ignore items without visibleName', () => {
 		</Provider>
 	);
 
-	expect(Array.from(getAllByRole('link')).map(node => (node as HTMLAnchorElement).href)).toEqual([
+	expect(Array.from(getAllByRole('link')).map((node) => (node as HTMLAnchorElement).href)).toEqual([
 		'http://localhost/#button',
 	]);
 });
@@ -71,10 +71,10 @@ it('should show content of items that are open and not what is closed', () => {
 		</Provider>
 	);
 
-	getByText('Button').click();
+	fireEvent.click(getByText('Button'));
 
 	expect(
-		Array.from(getAllByTestId('content')).map(node => (node as HTMLDivElement).innerHTML)
+		Array.from(getAllByTestId('content')).map((node) => (node as HTMLDivElement).innerHTML)
 	).toEqual(['Content for Button']);
 });
 
@@ -103,10 +103,10 @@ it('should show content of initialOpen items even if they are not active', () =>
 		</Provider>
 	);
 
-	getByText('Button').click();
+	fireEvent.click(getByText('Button'));
 
 	expect(
-		Array.from(getAllByTestId('content')).map(node => (node as HTMLDivElement).innerHTML)
+		Array.from(getAllByTestId('content')).map((node) => (node as HTMLDivElement).innerHTML)
 	).toEqual(['Content for Button', 'Content for Input']);
 });
 
@@ -137,9 +137,9 @@ it('should show content of forcedOpen items even if they are initially collapsed
 		</Provider>
 	);
 
-	getByText('Input').click();
+	fireEvent.click(getByText('Input'));
 
 	expect(
-		Array.from(getAllByTestId('content')).map(node => (node as HTMLDivElement).innerHTML)
+		Array.from(getAllByTestId('content')).map((node) => (node as HTMLDivElement).innerHTML)
 	).toEqual(['Content for Button', 'Content for Input']);
 });

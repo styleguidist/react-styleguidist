@@ -1,23 +1,23 @@
+import { render } from '@testing-library/react';
 import React from 'react';
-import { html } from 'cheerio';
-import { render, mount } from 'enzyme';
+import renderer from 'react-test-renderer';
 import Markdown from './Markdown';
 
 describe('Markdown', () => {
 	const expectSnapshotToMatch = (markdown: string) => {
-		const actual = render(<Markdown text={markdown} />);
+		const actual = renderer.create(<Markdown text={markdown} />);
 
-		expect(html(actual)).toMatchSnapshot();
+		expect(actual.toJSON()).toMatchSnapshot();
 	};
 
 	it('should forward DOM attributes onto resulting HTML', () => {
 		const markdown =
 			'<a href="test.com" id="preserve-my-id" class="preserve-my-class">Something</a>';
 
-		const actual = mount(<Markdown text={markdown} />);
+		const { getByRole } = render(<Markdown text={markdown} />);
 
-		expect(actual.find('a').props().id).toEqual('preserve-my-id');
-		expect(actual.find('a').props().className).toContain('preserve-my-class');
+		expect(getByRole('link').getAttribute('id')).toEqual('preserve-my-id');
+		expect(getByRole('link').className).toContain('preserve-my-class');
 	});
 
 	it('should render links', () => {
@@ -125,40 +125,38 @@ and this is _emphasized_
 `);
 	});
 
-	it('should ignore single line comments', () => {
+	it.only('should ignore single line comments', () => {
 		const markdown = `Hello World
 <!-- This is a single line comment -->
 `;
-		const actual = mount(<Markdown text={markdown} />);
-		const pChildren = actual.find('p').props().children as string[];
+		const { queryByText } = render(<Markdown text={markdown} />);
 
-		expect(pChildren[0]).not.toContain('This is a single line comment');
+		expect(queryByText('This is a single line comment')).toBe(null);
 	});
 
 	it('should ignore multiline comments', () => {
 		const markdown = `Hello World
 <!--
-This is a 
+This is a
 multiline
 comment
 -->
 `;
-		const actual = mount(<Markdown text={markdown} />);
-		const pChildren = actual.find('p').props().children as string[];
+		const { queryByText } = render(<Markdown text={markdown} />);
 
-		expect(pChildren[0]).not.toContain(
-			`This is a 
+		expect(
+			queryByText(`This is a
 multiline
-comment`
-		);
+comment`)
+		).toBe(null);
 	});
 });
 
 describe('Markdown inline', () => {
 	const expectSnapshotToMatch = (markdown: string) => {
-		const actual = render(<Markdown text={markdown} inline />);
+		const actual = renderer.create(<Markdown text={markdown} inline />);
 
-		expect(html(actual)).toMatchSnapshot();
+		expect(actual).toMatchSnapshot();
 	};
 
 	it('should render text in a span', () => {

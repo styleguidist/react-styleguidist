@@ -1,17 +1,19 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { createRenderer } from 'react-test-renderer/shallow';
 import { MessageRenderer } from './MessageRenderer';
 
 it('renderer should render message', () => {
 	const message = 'Hello *world*!';
-	const actual = shallow(<MessageRenderer classes={{}}>{message}</MessageRenderer>);
+	const renderer = createRenderer();
+	renderer.render(<MessageRenderer classes={{}}>{message}</MessageRenderer>);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('renderer should render message for array', () => {
 	const messages = ['Hello *world*!', 'Foo _bar_'];
-	const actual = shallow(<MessageRenderer classes={{}}>{messages}</MessageRenderer>);
+	const renderer = createRenderer();
+	renderer.render(<MessageRenderer classes={{}}>{messages}</MessageRenderer>);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });

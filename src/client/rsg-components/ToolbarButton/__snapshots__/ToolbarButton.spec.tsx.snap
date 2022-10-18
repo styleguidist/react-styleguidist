@@ -1,5 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`should pass a class name to a button 1`] = `
+<button
+  aria-label="Pizza button"
+  className="button foo-class"
+  onClick={[Function]}
+  title="Pizza button"
+  type="button"
+>
+  pizza
+</button>
+`;
+
+exports[`should pass a class name to a link 1`] = `
+<a
+  aria-label="Pizza button"
+  className="button foo-class"
+  href="/foo"
+  title="Pizza button"
+>
+  pizza
+</a>
+`;
+
 exports[`should render a button 1`] = `
 <button
   aria-label="Pizza button"
@@ -9,6 +32,18 @@ exports[`should render a button 1`] = `
   type="button"
 >
   pizza
+</button>
+`;
+
+exports[`should render a button with small styles 1`] = `
+<button
+  aria-label="Pizza button"
+  className="button isSmall"
+  onClick={[Function]}
+  title="Pizza button"
+  type="button"
+>
+  butterbrot
 </button>
 `;
 

@@ -8,8 +8,6 @@ exports[`Editor should renderer and editor 1`] = `
   onValueChange={[Function]}
   padding={16}
   tabSize={2}
-  value=<button>
-  MyAwesomeCode
-</button>
+  value="<button>MyAwesomeCode</button>"
 />
 `;

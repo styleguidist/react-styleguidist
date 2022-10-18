@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { createRenderer } from 'react-test-renderer/shallow';
 import { ArgumentsRenderer, styles } from './ArgumentsRenderer';
 
 const props = {
@@ -18,19 +18,22 @@ const args = [
 ];
 
 it('renderer should render arguments', () => {
-	const actual = shallow(<ArgumentsRenderer {...props} args={args} />);
+	const renderer = createRenderer();
+	renderer.render(<ArgumentsRenderer {...props} args={args} />);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('renderer should render heading', () => {
-	const actual = shallow(<ArgumentsRenderer {...props} args={[args[1]]} heading />);
+	const renderer = createRenderer();
+	renderer.render(<ArgumentsRenderer {...props} args={[args[1]]} heading />);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('renderer should render nothing for empty array', () => {
-	const actual = shallow(<ArgumentsRenderer {...props} args={[]} />);
+	const renderer = createRenderer();
+	renderer.render(<ArgumentsRenderer {...props} args={[]} />);
 
-	expect(actual.getElement()).toBe(null);
+	expect(renderer.getRenderOutput()).toBe(null);
 });

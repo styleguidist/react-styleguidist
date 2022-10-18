@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { parse, MethodDescriptor } from 'react-docgen';
-import { shallow } from 'enzyme';
+import { createRenderer } from 'react-test-renderer/shallow';
 import MethodsRenderer, { columns } from './MethodsRenderer';
 
 // Test renderers with clean readable snapshot diffs
@@ -37,15 +37,19 @@ function render(methods: string[]) {
 		undefined,
 		{ filename: '' }
 	);
+	const renderer = createRenderer();
 	if (Array.isArray(parsed) || !parsed.methods) {
-		return shallow(<div />);
+		renderer.render(<div />);
+	} else {
+		renderer.render(<ColumnsRenderer methods={parsed.methods} />);
 	}
-	return shallow(<ColumnsRenderer methods={parsed.methods} />);
+	return renderer.getRenderOutput();
 }
 
 describe('MethodsRenderer', () => {
 	it('should render a table', () => {
-		const actual = shallow(
+		const renderer = createRenderer();
+		renderer.render(
 			<MethodsRenderer
 				methods={[
 					{
@@ -58,7 +62,7 @@ describe('MethodsRenderer', () => {
 			/>
 		);
 
-		expect(actual).toMatchSnapshot();
+		expect(renderer.getRenderOutput()).toMatchSnapshot();
 	});
 });
 
@@ -86,7 +90,8 @@ describe('PropsRenderer', () => {
 	});
 
 	it('should render JsDoc tags', () => {
-		const actual = shallow(
+		const renderer = createRenderer();
+		renderer.render(
 			<ColumnsRenderer
 				methods={[
 					{
@@ -104,11 +109,12 @@ describe('PropsRenderer', () => {
 			/>
 		);
 
-		expect(actual).toMatchSnapshot();
+		expect(renderer.getRenderOutput()).toMatchSnapshot();
 	});
 
 	it('should render deprecated JsDoc tags', () => {
-		const actual = shallow(
+		const renderer = createRenderer();
+		renderer.render(
 			<ColumnsRenderer
 				methods={[
 					{
@@ -126,6 +132,6 @@ describe('PropsRenderer', () => {
 			/>
 		);
 
-		expect(actual).toMatchSnapshot();
+		expect(renderer.getRenderOutput()).toMatchSnapshot();
 	});
 });

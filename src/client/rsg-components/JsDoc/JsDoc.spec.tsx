@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { createRenderer } from 'react-test-renderer/shallow';
 import JsDoc, { getMarkdown } from './JsDoc';
 
 const tags = {
@@ -73,14 +73,16 @@ describe('getMarkdown', () => {
 
 describe('JsDoc', () => {
 	it('should render Markdown', () => {
-		const actual = shallow(<JsDoc {...tags} />);
+		const renderer = createRenderer();
+		renderer.render(<JsDoc {...tags} />);
 
-		expect(actual).toMatchSnapshot();
+		expect(renderer.getRenderOutput()).toMatchSnapshot();
 	});
 
 	it('should render null for empty tags', () => {
-		const actual = shallow(<JsDoc />);
+		const renderer = createRenderer();
+		renderer.render(<JsDoc />);
 
-		expect(actual.getElement()).toBe(null);
+		expect(renderer.getRenderOutput()).toBe(null);
 	});
 });

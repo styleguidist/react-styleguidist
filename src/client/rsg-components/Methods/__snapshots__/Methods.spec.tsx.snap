@@ -34,28 +34,20 @@ exports[`MethodsRenderer should render a table 1`] = `
 
 exports[`PropsRenderer should render JsDoc tags 1`] = `
 <ul>
-  <li
-    key="0"
-  >
-    <div
-      key="0"
-    >
+  <li>
+    <div>
       <Styled(Name)
         deprecated={false}
       >
         Foo()
       </Styled(Name)>
     </div>
-    <div
-      key="1"
-    >
+    <div>
       <Styled(Arguments)
         args={Array []}
       />
     </div>
-    <div
-      key="2"
-    >
+    <div>
       <div>
         <JsDoc
           since={
@@ -75,28 +67,20 @@ exports[`PropsRenderer should render JsDoc tags 1`] = `
 
 exports[`PropsRenderer should render deprecated JsDoc tags 1`] = `
 <ul>
-  <li
-    key="0"
-  >
-    <div
-      key="0"
-    >
+  <li>
+    <div>
       <Styled(Name)
         deprecated={true}
       >
         Foo()
       </Styled(Name)>
     </div>
-    <div
-      key="1"
-    >
+    <div>
       <Styled(Arguments)
         args={Array []}
       />
     </div>
-    <div
-      key="2"
-    >
+    <div>
       <div>
         <JsDoc
           deprecated={
@@ -116,21 +100,15 @@ exports[`PropsRenderer should render deprecated JsDoc tags 1`] = `
 
 exports[`PropsRenderer should render parameters 1`] = `
 <ul>
-  <li
-    key="0"
-  >
-    <div
-      key="0"
-    >
+  <li>
+    <div>
       <Styled(Name)
         deprecated={false}
       >
         method()
       </Styled(Name)>
     </div>
-    <div
-      key="1"
-    >
+    <div>
       <Styled(Arguments)
         args={
           Array [
@@ -146,9 +124,7 @@ exports[`PropsRenderer should render parameters 1`] = `
         }
       />
     </div>
-    <div
-      key="2"
-    >
+    <div>
       <div>
         <Markdown
           text="Public"
@@ -162,28 +138,20 @@ exports[`PropsRenderer should render parameters 1`] = `
 
 exports[`PropsRenderer should render public method 1`] = `
 <ul>
-  <li
-    key="0"
-  >
-    <div
-      key="0"
-    >
+  <li>
+    <div>
       <Styled(Name)
         deprecated={false}
       >
         method()
       </Styled(Name)>
     </div>
-    <div
-      key="1"
-    >
+    <div>
       <Styled(Arguments)
         args={Array []}
       />
     </div>
-    <div
-      key="2"
-    >
+    <div>
       <div>
         <Markdown
           text="Public"
@@ -197,28 +165,20 @@ exports[`PropsRenderer should render public method 1`] = `
 
 exports[`PropsRenderer should render returns 1`] = `
 <ul>
-  <li
-    key="0"
-  >
-    <div
-      key="0"
-    >
+  <li>
+    <div>
       <Styled(Name)
         deprecated={false}
       >
         method()
       </Styled(Name)>
     </div>
-    <div
-      key="1"
-    >
+    <div>
       <Styled(Arguments)
         args={Array []}
       />
     </div>
-    <div
-      key="2"
-    >
+    <div>
       <div>
         <Styled(Argument)
           block={true}
