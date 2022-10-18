@@ -1,5 +1,4 @@
 import React from 'react';
-import { mount } from 'enzyme';
 import { render } from '@testing-library/react';
 import Preview from '.';
 import Context, { StyleGuideContextContents } from '../Context';
@@ -59,7 +58,7 @@ it('should not fail when Wrapper wasn’t mounted', () => {
 	const node = getByTestId('mountNode');
 
 	expect(
-		consoleError.mock.calls.find(call =>
+		consoleError.mock.calls.find((call) =>
 			call[0].toString().includes('ReferenceError: pizza is not defined')
 		)
 	).toBeTruthy();
@@ -123,7 +122,7 @@ it('should handle errors', () => {
 	);
 
 	expect(
-		consoleError.mock.calls.find(call =>
+		consoleError.mock.calls.find((call) =>
 			call[0].toString().includes('SyntaxError: Unexpected token')
 		)
 	).toBeTruthy();
@@ -131,7 +130,7 @@ it('should handle errors', () => {
 
 it('should not clear console on initial mount', () => {
 	console.clear = jest.fn();
-	mount(
+	render(
 		<Provider>
 			<Preview code={code} evalInContext={evalInContext} />
 		</Provider>
@@ -141,7 +140,7 @@ it('should not clear console on initial mount', () => {
 
 it('should clear console on second mount', () => {
 	console.clear = jest.fn();
-	mount(
+	render(
 		<Provider value={{ ...context, codeRevision: 1 }}>
 			<Preview code={code} evalInContext={evalInContext} />
 		</Provider>

@@ -61,26 +61,9 @@ it('should replace all occurrences of __COMPONENT__ with provided query.displayN
 	);
 	expect(result).not.toMatch(/__COMPONENT__/);
 	const componentHtml = result.match(/<div>(.*?)<\/div>/);
-	expect(componentHtml && componentHtml[0]).toMatchInlineSnapshot(`
-		<div>
-		  \\n\\t
-		  <FooComponent>
-		    \\n\\t\\t
-		    <span>
-		      text
-		    </span>
-		    \\n\\t\\t
-		    <span>
-		      Name of component: FooComponent
-		    </span>
-		    \\n\\t
-		  </FooComponent>
-		  \\n\\t
-		  <FooComponent>
-		  </FooComponent>
-		  \\n
-		</div>
-	`);
+	expect(componentHtml && componentHtml[0]).toMatchInlineSnapshot(
+		`"<div>\\\\n\\\\t<FooComponent>\\\\n\\\\t\\\\t<span>text</span>\\\\n\\\\t\\\\t<span>Name of component: FooComponent</span>\\\\n\\\\t</FooComponent>\\\\n\\\\t<FooComponent />\\\\n</div>"`
+	);
 });
 
 it('should pass updateExample function from config to chunkify', () => {

@@ -1,17 +1,17 @@
 import React from 'react';
-import { render } from 'enzyme';
+import renderer from 'react-test-renderer';
 
 import { Details, DetailsSummary } from './index';
 
 describe('Markdown Details', () => {
 	it('should render a Details', () => {
-		const actual = render(
+		const actual = renderer.create(
 			<Details>
 				<DetailsSummary>Solution</DetailsSummary>
 				This is a hidden text.
 			</Details>
 		);
 
-		expect(actual).toMatchSnapshot();
+		expect(actual.toJSON()).toMatchSnapshot();
 	});
 });

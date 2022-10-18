@@ -10,25 +10,20 @@ exports[`should render a table 1`] = `
     <tr>
       <th
         className="cellHeading"
-        key="Name"
       >
         Name
       </th>
       <th
         className="cellHeading"
-        key="Type"
       >
         Type
       </th>
     </tr>
   </thead>
   <tbody>
-    <tr
-      key="Quattro formaggi"
-    >
+    <tr>
       <td
         className="cell"
-        key="0"
       >
         <span>
           name: 
@@ -37,7 +32,6 @@ exports[`should render a table 1`] = `
       </td>
       <td
         className="cell"
-        key="1"
       >
         <span>
           type: 
@@ -45,12 +39,9 @@ exports[`should render a table 1`] = `
         </span>
       </td>
     </tr>
-    <tr
-      key="Tiramisu"
-    >
+    <tr>
       <td
         className="cell"
-        key="0"
       >
         <span>
           name: 
@@ -59,7 +50,6 @@ exports[`should render a table 1`] = `
       </td>
       <td
         className="cell"
-        key="1"
       >
         <span>
           type: 
@@ -67,12 +57,9 @@ exports[`should render a table 1`] = `
         </span>
       </td>
     </tr>
-    <tr
-      key="Unicorn"
-    >
+    <tr>
       <td
         className="cell"
-        key="0"
       >
         <span>
           name: 
@@ -81,7 +68,6 @@ exports[`should render a table 1`] = `
       </td>
       <td
         className="cell"
-        key="1"
       >
         <span>
           type: 

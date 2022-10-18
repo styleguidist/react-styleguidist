@@ -1,9 +1,9 @@
 import React from 'react';
-import { render } from 'enzyme';
+import renderer from 'react-test-renderer';
 import LogoRenderer from './LogoRenderer';
 
 it('renderer should render header', () => {
-	const actual = render(<LogoRenderer>React Styleguidist</LogoRenderer>);
+	const actual = renderer.create(<LogoRenderer>React Styleguidist</LogoRenderer>);
 
-	expect(actual).toMatchSnapshot();
+	expect(actual.toJSON()).toMatchSnapshot();
 });

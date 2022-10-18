@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { createRenderer } from 'react-test-renderer/shallow';
 import ReactComponent from '../ReactComponent';
 import Components from './Components';
 import ComponentsRenderer from './ComponentsRenderer';
@@ -27,15 +27,17 @@ const components = [
 ];
 
 it('should render components list', () => {
-	const actual = shallow(
+	const renderer = createRenderer();
+	renderer.render(
 		<Components components={components} exampleMode={exampleMode} usageMode={usageMode} depth={3} />
 	);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('renderer should render components list layout', () => {
-	const actual = shallow(
+	const renderer = createRenderer();
+	renderer.render(
 		<ComponentsRenderer>
 			<ReactComponent
 				key={0}
@@ -54,5 +56,5 @@ it('renderer should render components list layout', () => {
 		</ComponentsRenderer>
 	);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });

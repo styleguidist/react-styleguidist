@@ -1,6 +1,7 @@
+import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
 import copy from 'clipboard-copy';
-import { shallow, mount } from 'enzyme';
+import { createRenderer } from 'react-test-renderer/shallow';
 import { PathlineRenderer, styles } from './PathlineRenderer';
 
 jest.mock('clipboard-copy');
@@ -11,12 +12,13 @@ const props = {
 };
 
 it('renderer should a path line', () => {
-	const actual = shallow(<PathlineRenderer {...props}>{pathline}</PathlineRenderer>);
-	expect(actual).toMatchSnapshot();
+	const renderer = createRenderer();
+	renderer.render(<PathlineRenderer {...props}>{pathline}</PathlineRenderer>);
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 test('should copy text on click', () => {
-	const actual = mount(<PathlineRenderer {...props}>{pathline}</PathlineRenderer>);
-	actual.find('button').simulate('click');
+	const { getByRole } = render(<PathlineRenderer {...props}>{pathline}</PathlineRenderer>);
+	fireEvent.click(getByRole('button'));
 	expect(copy).toBeCalledWith(pathline);
 });

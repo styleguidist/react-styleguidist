@@ -1,31 +1,78 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SectionHeading render a deprecated section heading 1`] = `
-<h2
-  className="rsg--heading-5 rsg--heading2-7"
-  id="section"
+exports[`SectionHeading prevent the heading level from exceeding the maximum allowed by the Heading component 1`] = `
+<div
+  className="rsg--wrapper-0"
 >
-  <a
-    className="rsg--sectionName-2 rsg--isDeprecated-3"
-    href="/section"
+  <h6
+    className="rsg--heading-5 rsg--heading6-11"
+    id="section"
   >
-    A Section
-  </a>
-</h2>
+    <a
+      className="rsg--sectionName-2"
+      href="/section"
+    >
+      A Section
+    </a>
+  </h6>
+  <div
+    className="rsg--toolbar-1"
+  >
+    <div>
+      Fake toolbar
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SectionHeading render a deprecated section heading 1`] = `
+<div
+  className="rsg--wrapper-0"
+>
+  <h2
+    className="rsg--heading-5 rsg--heading2-7"
+    id="section"
+  >
+    <a
+      className="rsg--sectionName-2 rsg--isDeprecated-3"
+      href="/section"
+    >
+      A Section
+    </a>
+  </h2>
+  <div
+    className="rsg--toolbar-1"
+  >
+    <div>
+      Fake toolbar
+    </div>
+  </div>
+</div>
 `;
 
 exports[`SectionHeading render a section heading 1`] = `
-<h2
-  className="rsg--heading-5 rsg--heading2-7"
-  id="section"
+<div
+  className="rsg--wrapper-0"
 >
-  <a
-    className="rsg--sectionName-2"
-    href="/section"
+  <h2
+    className="rsg--heading-5 rsg--heading2-7"
+    id="section"
   >
-    A Section
-  </a>
-</h2>
+    <a
+      className="rsg--sectionName-2"
+      href="/section"
+    >
+      A Section
+    </a>
+  </h2>
+  <div
+    className="rsg--toolbar-1"
+  >
+    <div>
+      Fake toolbar
+    </div>
+  </div>
+</div>
 `;
 
 exports[`SectionHeading should forward slot properties to the toolbar 1`] = `

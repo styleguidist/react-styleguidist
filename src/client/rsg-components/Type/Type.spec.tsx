@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { createRenderer } from 'react-test-renderer/shallow';
 import { TypeRenderer, styles } from './TypeRenderer';
 
 const props = {
@@ -7,7 +7,8 @@ const props = {
 };
 
 it('renderer should render type', () => {
-	const actual = shallow(<TypeRenderer {...props}>Array</TypeRenderer>);
+	const renderer = createRenderer();
+	renderer.render(<TypeRenderer {...props}>Array</TypeRenderer>);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
