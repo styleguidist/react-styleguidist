@@ -88,8 +88,8 @@ export default function examplesLoader(this: Rsg.StyleguidistLoaderContext, sour
 	);
 
 	return `
-if (module.hot) {
-	module.hot.accept([])
+if (import.meta.webpackHot) {
+	import.meta.webpackHot.accept([])
 }
 
 var requireMap = ${generate(toAst(allModulesCode))};
@@ -100,6 +100,6 @@ var evalInContext = evalInContextBase.bind(null, ${JSON.stringify(
 		generate(requireContextCode)
 	)}, requireInRuntime);
 
-module.exports = ${generate(toAst(examplesWithEval))}
+export default ${generate(toAst(examplesWithEval))}
 	`;
 }

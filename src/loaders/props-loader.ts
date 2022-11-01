@@ -95,10 +95,10 @@ export default function (this: Rsg.StyleguidistLoaderContext, source: string) {
 	}
 
 	return `
-if (module.hot) {
-	module.hot.accept([])
+if (import.meta.webpackHot) {
+	import.meta.webpackHot.accept([])
 }
 
-module.exports = ${generate(toAst(finalDocs))}
+export default ${generate(toAst(finalDocs))}
 	`;
 }

@@ -149,9 +149,9 @@ export function pitch(this: Rsg.StyleguidistLoaderContext) {
 	};
 
 	return `${generate(b.program(flatten(styleContext)))}
-if (module.hot) {
-	module.hot.accept([])
+if (import.meta.webpackHot) {
+	import.meta.webpackHot.accept([])
 }
-module.exports = ${generate(toAst(styleguide))}
+export default ${generate(toAst(styleguide))}
 `;
 }
