@@ -16,8 +16,8 @@
     "node": ">=10"
   },
   "devDependencies": {
-    "react-scripts": "^3.2.0",
-    "react-styleguidist": "^9.1.16"
+    "react-scripts": "^5.0.1",
+    "react-styleguidist": "^13.0.0"
   },
   "dependencies": {
     "dog-names": "^2.0.0",
