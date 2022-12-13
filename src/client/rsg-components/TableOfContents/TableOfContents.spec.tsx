@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { shallow } from 'enzyme';
+import { createRenderer } from 'react-test-renderer/shallow';
 import TableOfContents from './TableOfContents';
 import { TableOfContentsRenderer } from './TableOfContentsRenderer';
 import Context from '../Context';
@@ -105,7 +105,7 @@ it('should call a callback when input value changed', () => {
 	const onSearchTermChange = jest.fn();
 	const searchTerm = 'foo';
 	const newSearchTerm = 'bar';
-	const actual = shallow(
+	const { getByRole } = render(
 		<TableOfContentsRenderer
 			classes={{}}
 			searchTerm={searchTerm}
@@ -115,101 +115,118 @@ it('should call a callback when input value changed', () => {
 		</TableOfContentsRenderer>
 	);
 
-	actual.find('input').simulate('change', {
-		target: {
-			value: newSearchTerm,
-		},
-	});
+	fireEvent.change(getByRole('textbox'), { target: { value: newSearchTerm } });
 
 	expect(onSearchTermChange).toBeCalledWith(newSearchTerm);
 });
 
 it('should render content of subsections of a section that has no components', () => {
-	const actual = shallow(
+	const renderer = createRenderer();
+	renderer.render(
 		<TableOfContents
 			sections={[{ sections: [{ content: 'intro.md' }, { content: 'chapter.md' }] }]}
 		/>
 	);
 
-	expect(actual.find('ComponentsList').prop('items')).toMatchInlineSnapshot(`
-		Array [
-		  Object {
-		    "components": Array [],
-		    "content": undefined,
-		    "forcedOpen": false,
-		    "heading": false,
-		    "initialOpen": true,
-		    "sections": Array [],
-		    "selected": false,
-		    "shouldOpenInNewTab": false,
-		  },
-		  Object {
-		    "components": Array [],
-		    "content": undefined,
-		    "forcedOpen": false,
-		    "heading": false,
-		    "initialOpen": true,
-		    "sections": Array [],
-		    "selected": false,
-		    "shouldOpenInNewTab": false,
-		  },
-		]
+	expect(renderer.getRenderOutput()).toMatchInlineSnapshot(`
+		<Styled(TableOfContents)
+		  onSearchTermChange={[Function]}
+		  searchTerm=""
+		>
+		  <ComponentsList
+		    items={
+		      Array [
+		        Object {
+		          "components": Array [],
+		          "content": undefined,
+		          "forcedOpen": false,
+		          "heading": false,
+		          "initialOpen": true,
+		          "sections": Array [],
+		          "selected": false,
+		          "shouldOpenInNewTab": false,
+		        },
+		        Object {
+		          "components": Array [],
+		          "content": undefined,
+		          "forcedOpen": false,
+		          "heading": false,
+		          "initialOpen": true,
+		          "sections": Array [],
+		          "selected": false,
+		          "shouldOpenInNewTab": false,
+		        },
+		      ]
+		    }
+		  />
+		</Styled(TableOfContents)>
 	`);
 });
 
 it('should render components of a single top section as root', () => {
-	const actual = shallow(<TableOfContents sections={[{ components }]} />);
+	const renderer = createRenderer();
+	renderer.render(<TableOfContents sections={[{ components }]} />);
 
-	expect(actual.find('ComponentsList').prop('items')).toMatchInlineSnapshot(`
-		Array [
-		  Object {
-		    "components": Array [],
-		    "content": undefined,
-		    "forcedOpen": false,
-		    "heading": false,
-		    "href": "#button",
-		    "initialOpen": true,
-		    "name": "Button",
-		    "sections": Array [],
-		    "selected": false,
-		    "shouldOpenInNewTab": false,
-		    "slug": "button",
-		    "visibleName": "Button",
-		  },
-		  Object {
-		    "components": Array [],
-		    "content": undefined,
-		    "forcedOpen": false,
-		    "heading": false,
-		    "href": "#input",
-		    "initialOpen": true,
-		    "name": "Input",
-		    "sections": Array [],
-		    "selected": false,
-		    "shouldOpenInNewTab": false,
-		    "slug": "input",
-		    "visibleName": "Input",
-		  },
-		  Object {
-		    "components": Array [],
-		    "content": undefined,
-		    "forcedOpen": false,
-		    "heading": false,
-		    "href": "#textarea",
-		    "initialOpen": true,
-		    "name": "Textarea",
-		    "sections": Array [],
-		    "selected": false,
-		    "shouldOpenInNewTab": false,
-		    "slug": "textarea",
-		    "visibleName": "Textarea",
-		  },
-		]
-	`);
+	expect(renderer.getRenderOutput()).toMatchInlineSnapshot(`
+<Styled(TableOfContents)
+  onSearchTermChange={[Function]}
+  searchTerm=""
+>
+  <ComponentsList
+    items={
+      Array [
+        Object {
+          "components": Array [],
+          "content": undefined,
+          "forcedOpen": false,
+          "heading": false,
+          "href": "#button",
+          "initialOpen": true,
+          "name": "Button",
+          "sections": Array [],
+          "selected": false,
+          "shouldOpenInNewTab": false,
+          "slug": "button",
+          "visibleName": "Button",
+        },
+        Object {
+          "components": Array [],
+          "content": undefined,
+          "forcedOpen": false,
+          "heading": false,
+          "href": "#input",
+          "initialOpen": true,
+          "name": "Input",
+          "sections": Array [],
+          "selected": false,
+          "shouldOpenInNewTab": false,
+          "slug": "input",
+          "visibleName": "Input",
+        },
+        Object {
+          "components": Array [],
+          "content": undefined,
+          "forcedOpen": false,
+          "heading": false,
+          "href": "#textarea",
+          "initialOpen": true,
+          "name": "Textarea",
+          "sections": Array [],
+          "selected": false,
+          "shouldOpenInNewTab": false,
+          "slug": "textarea",
+          "visibleName": "Textarea",
+        },
+      ]
+    }
+  />
+</Styled(TableOfContents)>
+`);
 });
 
 it('should render as the link will open in a new window only if external presents as true', () => {
-	const actual = shallow(
+	const renderer = createRenderer();
+	renderer.render(
 		<TableOfContents
 			sections={[
 				{
@@ -222,33 +239,42 @@ it('should render as the link will open in a new window only if external present
 		/>
 	);
 
-	expect(actual.find('ComponentsList').prop('items')).toMatchInlineSnapshot(`
-		Array [
-		  Object {
-		    "components": Array [],
-		    "content": undefined,
-		    "forcedOpen": false,
-		    "heading": false,
-		    "href": "http://example.com",
-		    "initialOpen": true,
-		    "sections": Array [],
-		    "selected": false,
-		    "shouldOpenInNewTab": false,
-		  },
-		  Object {
-		    "components": Array [],
-		    "content": undefined,
-		    "external": true,
-		    "forcedOpen": false,
-		    "heading": false,
-		    "href": "http://example.com",
-		    "initialOpen": true,
-		    "sections": Array [],
-		    "selected": false,
-		    "shouldOpenInNewTab": false,
-		  },
-		]
-	`);
+	expect(renderer.getRenderOutput()).toMatchInlineSnapshot(`
+<Styled(TableOfContents)
+  onSearchTermChange={[Function]}
+  searchTerm=""
+>
+  <ComponentsList
+    items={
+      Array [
+        Object {
+          "components": Array [],
+          "content": undefined,
+          "forcedOpen": false,
+          "heading": false,
+          "href": "http://example.com",
+          "initialOpen": true,
+          "sections": Array [],
+          "selected": false,
+          "shouldOpenInNewTab": false,
+        },
+        Object {
+          "components": Array [],
+          "content": undefined,
+          "external": true,
+          "forcedOpen": false,
+          "heading": false,
+          "href": "http://example.com",
+          "initialOpen": true,
+          "sections": Array [],
+          "selected": false,
+          "shouldOpenInNewTab": false,
+        },
+      ]
+    }
+  />
+</Styled(TableOfContents)>
+`);
 });
 
 /**

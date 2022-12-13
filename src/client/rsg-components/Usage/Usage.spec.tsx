@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { createRenderer } from 'react-test-renderer/shallow';
 import { PropTypeDescriptor, MethodDescriptor } from 'react-docgen';
 import Usage from './Usage';
 
@@ -28,20 +28,23 @@ const methods: MethodDescriptor[] = [
 
 describe('Usage', () => {
 	it('should render props table', () => {
-		const actual = shallow(<Usage props={{ props }} />);
+		const renderer = createRenderer();
+		renderer.render(<Usage props={{ props }} />);
 
-		expect(actual).toMatchSnapshot();
+		expect(renderer.getRenderOutput()).toMatchSnapshot();
 	});
 
 	it('should render methods table', () => {
-		const actual = shallow(<Usage props={{ methods }} />);
+		const renderer = createRenderer();
+		renderer.render(<Usage props={{ methods }} />);
 
-		expect(actual).toMatchSnapshot();
+		expect(renderer.getRenderOutput()).toMatchSnapshot();
 	});
 
 	it('should render nothing without props and methods', () => {
-		const actual = shallow(<Usage props={{}} />);
+		const renderer = createRenderer();
+		renderer.render(<Usage props={{}} />);
 
-		expect(actual.getElement()).toBe(null);
+		expect(renderer.getRenderOutput()).toBe(null);
 	});
 });

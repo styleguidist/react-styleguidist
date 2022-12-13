@@ -1,6 +1,8 @@
+import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
-import { shallow, mount } from 'enzyme';
 import noop from 'lodash/noop';
+import renderer from 'react-test-renderer';
+import { createRenderer } from 'react-test-renderer/shallow';
 import ReactExample from '.';
 
 const evalInContext = (a: string): (() => any) =>
@@ -8,27 +10,31 @@ const evalInContext = (a: string): (() => any) =>
 	new Function('require', 'const React = require("react");' + a).bind(null, require);
 
 it('should render code', () => {
-	const actual = shallow(
+	const testRenderer = createRenderer();
+	testRenderer.render(
 		<ReactExample code={'<button>OK</button>'} evalInContext={evalInContext} onError={noop} />
 	);
 
-	expect(actual).toMatchSnapshot();
+	expect(testRenderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('should wrap code in Fragment when it starts with <', () => {
-	const actual = mount(
+	const actual = renderer.create(
 		<div>
 			<ReactExample code="<span /><span />" evalInContext={evalInContext} onError={noop} />
 		</div>
 	);
 
-	expect(actual.html()).toMatchSnapshot();
+	expect(actual.toJSON()).toMatchSnapshot();
 });
 
 it('should handle errors', () => {
 	const onError = jest.fn();
 
-	shallow(<ReactExample code={'<invalid code'} evalInContext={evalInContext} onError={onError} />);
+	const testRenderer = createRenderer();
+	testRenderer.render(
+		<ReactExample code={'<invalid code'} evalInContext={evalInContext} onError={onError} />
+	);
 
 	expect(onError).toHaveBeenCalledTimes(1);
 });
@@ -38,9 +44,11 @@ it('should set initial state with hooks', () => {
 const [count, setCount] = React.useState(0);
 <button>{count}</button>
 	`;
-	const actual = mount(<ReactExample code={code} evalInContext={evalInContext} onError={noop} />);
+	const { getByRole } = render(
+		<ReactExample code={code} evalInContext={evalInContext} onError={noop} />
+	);
 
-	expect(actual.find('button').text()).toEqual('0');
+	expect(getByRole('button').textContent).toEqual('0');
 });
 
 it('should update state with hooks', () => {
@@ -48,8 +56,10 @@ it('should update state with hooks', () => {
 const [count, setCount] = React.useState(0);
 <button onClick={() => setCount(count+1)}>{count}</button>
 	`;
-	const actual = mount(<ReactExample code={code} evalInContext={evalInContext} onError={noop} />);
-	actual.find('button').simulate('click');
+	const { getByRole } = render(
+		<ReactExample code={code} evalInContext={evalInContext} onError={noop} />
+	);
+	fireEvent.click(getByRole('button'));
 
-	expect(actual.find('button').text()).toEqual('1');
+	expect(getByRole('button').textContent).toEqual('1');
 });

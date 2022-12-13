@@ -2,7 +2,7 @@
 
 exports[`renderer should render header 1`] = `
 <h1
-  class="rsg--logo-0"
+  className="rsg--logo-0"
 >
   React Styleguidist
 </h1>

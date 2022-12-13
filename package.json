@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@tippyjs/react": "4.1.0",
+    "@types/react-test-renderer": "^17.0.0",
     "@vxna/mini-html-webpack-template": "^2.0.0",
     "acorn": "^6.4.1",
     "acorn-jsx": "^5.1.0",
@@ -44,6 +45,7 @@
     "doctrine": "^3.0.0",
     "es6-object-assign": "~1.1.0",
     "es6-promise": "^4.2.8",
+    "escape-string-regexp": "^1.0.5",
     "escodegen": "^1.12.0",
     "estree-walker": "~0.9.0",
     "fastest-levenshtein": "^1.0.9",
@@ -53,6 +55,7 @@
     "glob": "^7.1.5",
     "glogg": "^1.0.2",
     "hash-sum": "^2.0.0",
+    "is-plain-obj": "^1.1.0",
     "javascript-stringify": "^2.0.0",
     "jss": "^10.9.0",
     "jss-plugin-camel-case": "^10.9.0",
@@ -107,7 +110,6 @@
     "@types/buble": "^0.19.2",
     "@types/copy-webpack-plugin": "^5.0.2",
     "@types/doctrine": "0.0.3",
-    "@types/enzyme": "^3.10.3",
     "@types/escodegen": "0.0.6",
     "@types/estree": "^0.0.39",
     "@types/hash-sum": "^1.0.0",
@@ -126,19 +128,15 @@
     "@types/webpack-env": "^1.14.1",
     "@typescript-eslint/eslint-plugin": "^4.4.1",
     "@typescript-eslint/parser": "^4.4.1",
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.7",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.0",
     "babel-loader": "^8.1.0",
-    "cheerio": "^1.0.0-rc.3",
     "css-loader": "^6.7.1",
     "danger": "^10.5.3",
     "deabsdeep": "^1.0.6",
     "deepfreeze": "^2.0.0",
     "dog-names": "^2.0.0",
-    "enzyme": "^3.10.0",
-    "enzyme-to-json": "^3.4.3",
     "eslint": "^7.11.0",
     "eslint-config-tamia": "^7.2.6",
     "eslint-import-resolver-typescript": "^2.3.0",
@@ -150,7 +148,6 @@
     "fs-extra": "^9.0.0",
     "husky": "^4.3.0",
     "jest": "^26.6.0",
-    "jest-serializer-html": "^7.0.0",
     "keymirror": "^0.1.1",
     "lint-staged": "^10.5.1",
     "memfs": "~2.15.5",
@@ -219,9 +216,7 @@
       "<rootDir>/src/scripts/build.js"
     ],
     "snapshotSerializers": [
-      "deabsdeep/serializer",
-      "enzyme-to-json/serializer",
-      "jest-serializer-html"
+      "./test/deabsdeepSerializer"
     ]
   },
   "keywords": [

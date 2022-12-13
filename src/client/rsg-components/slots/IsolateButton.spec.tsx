@@ -1,21 +1,24 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { createRenderer } from 'react-test-renderer/shallow';
 import IsolateButton from './IsolateButton';
 
 it('should renderer a link to isolated mode', () => {
-	const actual = shallow(<IsolateButton name="Pizza" href="/#pizza" />);
+	const renderer = createRenderer();
+	renderer.render(<IsolateButton name="Pizza" href="/#pizza" />);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('should renderer a link to example isolated mode', () => {
-	const actual = shallow(<IsolateButton name="Pizza" href="/#pizza" example={3} />);
+	const renderer = createRenderer();
+	renderer.render(<IsolateButton name="Pizza" href="/#pizza" example={3} />);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('should renderer a link home in isolated mode', () => {
-	const actual = shallow(<IsolateButton name="Pizza" href="/#pizza" isolated />);
+	const renderer = createRenderer();
+	renderer.render(<IsolateButton name="Pizza" href="/#pizza" isolated />);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });

@@ -1,20 +1,18 @@
 import React from 'react';
-import { html } from 'cheerio';
-import { render, shallow } from 'enzyme';
+import renderer from 'react-test-renderer';
 import Heading from './index';
 
 describe('Heading', () => {
 	it('should render a heading according to the level', () => {
-		let actual = shallow(<Heading level={3}>The heading</Heading>);
-		expect(actual.dive().name()).toBe('h3');
+		const actualH3 = renderer.create(<Heading level={3}>The heading</Heading>);
+		expect(actualH3.toJSON()).toMatchSnapshot();
 
-		actual = shallow(<Heading level={5}>The heading</Heading>);
-		expect(actual.dive().name()).toBe('h5');
+		const actualH5 = renderer.create(<Heading level={5}>The heading</Heading>);
+		expect(actualH5.toJSON()).toMatchSnapshot();
 	});
 
 	it('should render a heading', () => {
-		const actual = render(<Heading level={2}>The heading</Heading>);
-
-		expect(html(actual)).toMatchSnapshot();
+		const actual = renderer.create(<Heading level={2}>The heading</Heading>);
+		expect(actual.toJSON()).toMatchSnapshot();
 	});
 });

@@ -2,7 +2,7 @@
 
 exports[`Markdown Blockquote should preserve custom css class 1`] = `
 <blockquote
-  class="rsg--blockquote-0 test-class"
+  className="rsg--blockquote-0 test-class"
 >
   To be, or not to be: that is the question
 </blockquote>
@@ -10,7 +10,7 @@ exports[`Markdown Blockquote should preserve custom css class 1`] = `
 
 exports[`Markdown Blockquote should render a blockquote 1`] = `
 <blockquote
-  class="rsg--blockquote-0"
+  className="rsg--blockquote-0"
 >
   To be, or not to be: that is the question
 </blockquote>

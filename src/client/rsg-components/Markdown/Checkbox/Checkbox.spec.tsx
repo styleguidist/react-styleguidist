@@ -1,12 +1,12 @@
 import React from 'react';
-import { render } from 'enzyme';
+import renderer from 'react-test-renderer';
 
 import Checkbox from './index';
 
 describe('Markdown Checkbox', () => {
 	it('should render a checkbox input', () => {
-		const actual = render(<Checkbox />);
+		const actual = renderer.create(<Checkbox />);
 
-		expect(actual).toMatchSnapshot();
+		expect(actual.toJSON()).toMatchSnapshot();
 	});
 });

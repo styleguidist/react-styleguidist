@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { createRenderer } from 'react-test-renderer/shallow';
 import { TextRenderer, styles } from './TextRenderer';
 
 const props = {
@@ -8,58 +8,64 @@ const props = {
 
 describe('Text', () => {
 	it('should render text', () => {
-		const actual = shallow(<TextRenderer {...props}>Pizza</TextRenderer>);
+		const renderer = createRenderer();
+		renderer.render(<TextRenderer {...props}>Pizza</TextRenderer>);
 
-		expect(actual).toMatchSnapshot();
+		expect(renderer.getRenderOutput()).toMatchSnapshot();
 	});
 
 	it('should render underlined text', () => {
-		const actual = shallow(
+		const renderer = createRenderer();
+		renderer.render(
 			<TextRenderer {...props} underlined>
 				Pizza
 			</TextRenderer>
 		);
 
-		expect(actual).toMatchSnapshot();
+		expect(renderer.getRenderOutput()).toMatchSnapshot();
 	});
 
 	it('should render sized text', () => {
-		const actual = shallow(
+		const renderer = createRenderer();
+		renderer.render(
 			<TextRenderer {...props} size="small">
 				Pizza
 			</TextRenderer>
 		);
 
-		expect(actual).toMatchSnapshot();
+		expect(renderer.getRenderOutput()).toMatchSnapshot();
 	});
 
 	it('should render colored text', () => {
-		const actual = shallow(
+		const renderer = createRenderer();
+		renderer.render(
 			<TextRenderer {...props} color="light">
 				Pizza
 			</TextRenderer>
 		);
 
-		expect(actual).toMatchSnapshot();
+		expect(renderer.getRenderOutput()).toMatchSnapshot();
 	});
 
 	it('should render text with a semantic tag and styles', () => {
-		const actual = shallow(
+		const renderer = createRenderer();
+		renderer.render(
 			<TextRenderer {...props} semantic="strong">
 				Pizza
 			</TextRenderer>
 		);
 
-		expect(actual).toMatchSnapshot();
+		expect(renderer.getRenderOutput()).toMatchSnapshot();
 	});
 
 	it('should render text with a title', () => {
-		const actual = shallow(
+		const renderer = createRenderer();
+		renderer.render(
 			<TextRenderer {...props} title="Pasta">
 				Pizza
 			</TextRenderer>
 		);
 
-		expect(actual).toMatchSnapshot();
+		expect(renderer.getRenderOutput()).toMatchSnapshot();
 	});
 });
