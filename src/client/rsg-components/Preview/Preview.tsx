@@ -61,8 +61,8 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 	}
 
 	public unmountPreview() {
-		if (this.mountNode) {
-			ReactDOM.unmountComponentAtNode(this.mountNode);
+		if (this.mountNode && this.reactRoot) {
+			this.reactRoot.unmount();
 		}
 	}
 
