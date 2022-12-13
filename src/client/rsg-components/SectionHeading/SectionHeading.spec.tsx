@@ -8,8 +8,8 @@ describe('SectionHeading', () => {
 	const FakeToolbar = () => <div>Fake toolbar</div>;
 
 	test('should forward slot properties to the toolbar', () => {
-		const renderer = createRenderer();
-		renderer.render(
+		const testRenderer = createRenderer();
+		testRenderer.render(
 			<SectionHeading
 				id="section"
 				slotName="slot"
@@ -21,7 +21,7 @@ describe('SectionHeading', () => {
 			</SectionHeading>
 		);
 
-		expect(renderer.getRenderOutput()).toMatchSnapshot();
+		expect(testRenderer.getRenderOutput()).toMatchSnapshot();
 	});
 
 	test('render a section heading', () => {

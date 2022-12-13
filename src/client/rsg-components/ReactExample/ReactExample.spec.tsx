@@ -10,12 +10,12 @@ const evalInContext = (a: string): (() => any) =>
 	new Function('require', 'const React = require("react");' + a).bind(null, require);
 
 it('should render code', () => {
-	const renderer = createRenderer();
-	renderer.render(
+	const testRenderer = createRenderer();
+	testRenderer.render(
 		<ReactExample code={'<button>OK</button>'} evalInContext={evalInContext} onError={noop} />
 	);
 
-	expect(renderer.getRenderOutput()).toMatchSnapshot();
+	expect(testRenderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('should wrap code in Fragment when it starts with <', () => {
@@ -31,8 +31,8 @@ it('should wrap code in Fragment when it starts with <', () => {
 it('should handle errors', () => {
 	const onError = jest.fn();
 
-	const renderer = createRenderer();
-	renderer.render(
+	const testRenderer = createRenderer();
+	testRenderer.render(
 		<ReactExample code={'<invalid code'} evalInContext={evalInContext} onError={onError} />
 	);
 
