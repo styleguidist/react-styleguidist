@@ -106,7 +106,7 @@
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
     "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
+    "@testing-library/react": "^13.4.0",
     "@types/buble": "^0.19.2",
     "@types/copy-webpack-plugin": "^5.0.2",
     "@types/doctrine": "0.0.3",
