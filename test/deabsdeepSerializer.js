@@ -35,9 +35,9 @@ function getRootDir(dir) {
 	return m ? dir.substring(0, m.index) : path.resolve(__dirname, '..');
 }
 
+/* istanbul ignore next */
 function mapObj(obj, fn, seen) {
 	seen = seen || new WeakMap();
-
 	if (seen.has(obj)) {
 		return seen.get(obj);
 	}
