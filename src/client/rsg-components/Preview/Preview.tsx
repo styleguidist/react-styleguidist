@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import ReactExample from 'rsg-components/ReactExample';
-import Context from 'rsg-components/Context';
+import Context, { StyleGuideContextContents } from 'rsg-components/Context';
 
 const improveErrorMessage = (message: string) =>
 	message.replace(
@@ -36,7 +36,7 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 	public componentDidMount() {
 		// Clear console after hot reload, do not clear on the first load
 		// to keep any warnings
-		if (this.context.codeRevision > 0) {
+		if ((this.context as StyleGuideContextContents).codeRevision > 0) {
 			// eslint-disable-next-line no-console
 			console.clear();
 		}
@@ -79,7 +79,7 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 				code={code}
 				evalInContext={this.props.evalInContext}
 				onError={this.handleError}
-				compilerConfig={this.context.config.compilerConfig}
+				compilerConfig={(this.context as StyleGuideContextContents).config.compilerConfig}
 			/>
 		);
 
