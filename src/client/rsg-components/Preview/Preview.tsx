@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import ReactExample from 'rsg-components/ReactExample';
 import Context, { StyleGuideContextContents } from 'rsg-components/Context';
+import { createRoot, Root } from 'react-dom/client';
 
 const improveErrorMessage = (message: string) =>
 	message.replace(
@@ -28,6 +29,7 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 	public static contextType = Context;
 
 	private mountNode: Element | null = null;
+	private reactRoot: Root | null = null;
 
 	public state: PreviewState = {
 		error: null,
@@ -86,7 +88,9 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 		window.requestAnimationFrame(() => {
 			// this.unmountPreview();
 			try {
-				ReactDOM.render(wrappedComponent, this.mountNode);
+				if (this.mountNode && this.reactRoot) {
+					this.reactRoot.render(wrappedComponent);
+				}
 			} catch (err) {
 				/* istanbul ignore next: it is near-impossible to trigger a sync error from ReactDOM.render */
 				if (err instanceof Error) {
@@ -107,11 +111,18 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 		console.error(err); // eslint-disable-line no-console
 	};
 
+	private callbackRef = (ref: HTMLDivElement | null) => {
+		this.mountNode = ref;
+		if (!this.reactRoot && ref) {
+			this.reactRoot = createRoot(ref);
+		}
+	};
+
 	public render() {
 		const { error } = this.state;
 		return (
 			<>
-				<div data-testid="mountNode" ref={(ref) => (this.mountNode = ref)} />
+				<div data-testid="mountNode" ref={this.callbackRef} />
 				{error && <PlaygroundError message={error} />}
 			</>
 		);
