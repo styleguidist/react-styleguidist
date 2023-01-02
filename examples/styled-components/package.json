@@ -24,14 +24,14 @@
   "dependencies": {
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.12",
-    "babel-loader": "^8.0.5",
+    "babel-loader": "^8.3.0",
     "babel-plugin-styled-components": "^1.7.1",
     "core-js": "^3.0.1",
     "polished": "^3.2.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-styleguidist": "9.0.8",
+    "react-styleguidist": "13.0.0",
     "styled-components": "^4.2.0",
     "styled-system": "^4.1.0"
   },
@@ -47,6 +47,6 @@
     "@types/styled-components": "^4.1.14",
     "@types/styled-system": "^4.1.0",
     "typescript": "^3.4.4",
-    "webpack": "^4.30.0"
+    "webpack": "^5.75.0"
   }
 }
