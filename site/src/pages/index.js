@@ -68,13 +68,13 @@ const examples = [
 		image: '/img/example1.png',
 	},
 	{
-		title: 'Dialog components',
-		href: 'https://dialogs.github.io/dialog-web-components/',
+		title: 'Semantic UI',
+		href: 'https://hallister.github.io/semantic-react/',
 		image: '/img/example2.png',
 	},
 	{
-		title: 'Everydayhero Constructicon',
-		href: 'https://everydayhero.github.io/constructicon/',
+		title: 'Rumble Charts',
+		href: 'https://rumble-charts.github.io/?path=/docs/guides-introduction--page',
 		image: '/img/example3.png',
 	},
 	{
