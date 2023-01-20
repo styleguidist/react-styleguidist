@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { createRenderer } from 'react-test-renderer/shallow';
 import { NameRenderer, styles } from './NameRenderer';
 
 const props = {
@@ -7,17 +7,19 @@ const props = {
 };
 
 it('renderer should render argument name', () => {
-	const actual = shallow(<NameRenderer {...props}>Foo</NameRenderer>);
+	const renderer = createRenderer();
+	renderer.render(<NameRenderer {...props}>Foo</NameRenderer>);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('renderer should render deprecated argument name', () => {
-	const actual = shallow(
+	const renderer = createRenderer();
+	renderer.render(
 		<NameRenderer {...props} deprecated>
 			Foo
 		</NameRenderer>
 	);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });

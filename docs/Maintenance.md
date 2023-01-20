@@ -15,7 +15,7 @@ Help us develop and maintain Styleguidist:
 
 ## Commit message conventions
 
-We use a simplified [Angular commit message conventions](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit). This makes automated releases with [semantic-release](https://github.com/semantic-release/semantic-release) possible.
+We use a simplified [Angular commit message conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit). This makes automated releases with [semantic-release](https://github.com/semantic-release/semantic-release) possible.
 
 \*\*The main differences with the Angular convention is that all messages are capitalized. Commit messages are written for humans to read, so we should use text convention for humans, not for machines.
 

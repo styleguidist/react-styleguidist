@@ -1,7 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Heading should render a heading 1`] = `
-<h2 class="rsg--heading-8 rsg--heading2-10">
+<h2
+  className="rsg--heading-0 rsg--heading2-2"
+>
   The heading
 </h2>
+`;
+
+exports[`Heading should render a heading according to the level 1`] = `
+<h3
+  className="rsg--heading-0 rsg--heading3-3"
+>
+  The heading
+</h3>
+`;
+
+exports[`Heading should render a heading according to the level 2`] = `
+<h5
+  className="rsg--heading-0 rsg--heading5-5"
+>
+  The heading
+</h5>
 `;

@@ -2,7 +2,7 @@
 
 exports[`Markdown Pre should render a pre 1`] = `
 <pre
-  class="rsg--pre-0"
+  className="rsg--pre-0"
 >
   This is pre-formatted text.
 </pre>
@@ -10,10 +10,11 @@ exports[`Markdown Pre should render a pre 1`] = `
 
 exports[`Markdown Pre should render highlighted code 1`] = `
 <pre
-  class="lang-html rsg--pre-0"
->
-  <button>
-    OK
-  </button>
-</pre>
+  className="lang-html rsg--pre-0"
+  dangerouslySetInnerHTML={
+    Object {
+      "__html": "<button>OK</button>",
+    }
+  }
+/>
 `;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { createRenderer } from 'react-test-renderer/shallow';
 import { ToolbarButtonRenderer, styles } from './ToolbarButtonRenderer';
 
 const props = {
@@ -8,51 +8,56 @@ const props = {
 };
 
 it('should render a button', () => {
-	const actual = shallow(
+	const renderer = createRenderer();
+	renderer.render(
 		<ToolbarButtonRenderer {...props} onClick={() => {}}>
 			pizza
 		</ToolbarButtonRenderer>
 	);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('should render a link', () => {
-	const actual = shallow(
+	const renderer = createRenderer();
+	renderer.render(
 		<ToolbarButtonRenderer {...props} href="/foo">
 			pizza
 		</ToolbarButtonRenderer>
 	);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('should pass a class name to a button', () => {
-	const actual = shallow(
+	const renderer = createRenderer();
+	renderer.render(
 		<ToolbarButtonRenderer {...props} onClick={() => {}} className="foo-class">
 			pizza
 		</ToolbarButtonRenderer>
 	);
 
-	expect(actual.prop('className')).toBe('button foo-class');
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('should pass a class name to a link', () => {
-	const actual = shallow(
+	const renderer = createRenderer();
+	renderer.render(
 		<ToolbarButtonRenderer {...props} href="/foo" className="foo-class">
 			pizza
 		</ToolbarButtonRenderer>
 	);
 
-	expect(actual.prop('className')).toBe('button foo-class');
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('should render a button with small styles', () => {
-	const actual = shallow(
+	const renderer = createRenderer();
+	renderer.render(
 		<ToolbarButtonRenderer {...props} onClick={() => {}} small>
 			butterbrot
 		</ToolbarButtonRenderer>
 	);
 
-	expect(actual.prop('className')).toBe('button isSmall');
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });

@@ -10,9 +10,7 @@ exports[`should render code 1`] = `
 
 exports[`should wrap code in Fragment when it starts with < 1`] = `
 <div>
-  <span>
-  </span>
-  <span>
-  </span>
+  <span />
+  <span />
 </div>
 `;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { createRenderer } from 'react-test-renderer/shallow';
 import { TableRenderer, styles } from './TableRenderer';
 
 const columns = [
@@ -25,7 +25,8 @@ const props = {
 };
 
 it('should render a table', () => {
-	const actual = shallow(<TableRenderer {...props} columns={columns} rows={rows} />);
+	const renderer = createRenderer();
+	renderer.render(<TableRenderer {...props} columns={columns} rows={rows} />);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });

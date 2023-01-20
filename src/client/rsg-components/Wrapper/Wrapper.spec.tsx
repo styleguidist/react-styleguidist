@@ -1,23 +1,25 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { createRenderer } from 'react-test-renderer/shallow';
 import Wrapper from './Wrapper';
 
 it('should render children', () => {
 	const children = <span>Hello</span>;
-	const actual = shallow(<Wrapper onError={() => {}}>{children}</Wrapper>);
+	const renderer = createRenderer();
+	renderer.render(<Wrapper onError={() => {}}>{children}</Wrapper>);
 
-	expect(actual).toMatchSnapshot();
+	expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('should call onError handler when React invokes error handler', () => {
 	const onError = jest.fn();
-	const actual = shallow(<Wrapper onError={onError}>blah</Wrapper>);
+	const renderer = createRenderer();
+	renderer.render(<Wrapper onError={onError}>blah</Wrapper>);
 
 	// faux error
 	const err = new Error('err');
-	const inst = actual.instance();
+	const inst = renderer.getMountedInstance() as Wrapper;
 	if (inst && inst.componentDidCatch) {
-		inst.componentDidCatch(err, { componentStack: '' });
+		inst.componentDidCatch(err);
 	}
 
 	expect(onError).toHaveBeenCalledTimes(1);

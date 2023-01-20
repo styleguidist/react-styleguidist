@@ -1,5 +1,6 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import renderer from 'react-test-renderer';
+import { createRenderer } from 'react-test-renderer/shallow';
 import SectionHeading from './index';
 import SectionHeadingRenderer from './SectionHeadingRenderer';
 
@@ -7,7 +8,8 @@ describe('SectionHeading', () => {
 	const FakeToolbar = () => <div>Fake toolbar</div>;
 
 	test('should forward slot properties to the toolbar', () => {
-		const actual = shallow(
+		const testRenderer = createRenderer();
+		testRenderer.render(
 			<SectionHeading
 				id="section"
 				slotName="slot"
@@ -19,21 +21,21 @@ describe('SectionHeading', () => {
 			</SectionHeading>
 		);
 
-		expect(actual).toMatchSnapshot();
+		expect(testRenderer.getRenderOutput()).toMatchSnapshot();
 	});
 
 	test('render a section heading', () => {
-		const actual = mount(
+		const actual = renderer.create(
 			<SectionHeadingRenderer id="section" href="/section" depth={2} toolbar={<FakeToolbar />}>
 				A Section
 			</SectionHeadingRenderer>
 		);
 
-		expect(actual.find('h2')).toMatchSnapshot();
+		expect(actual.toJSON()).toMatchSnapshot();
 	});
 
 	test('render a deprecated section heading', () => {
-		const actual = mount(
+		const actual = renderer.create(
 			<SectionHeadingRenderer
 				id="section"
 				href="/section"
@@ -45,16 +47,16 @@ describe('SectionHeading', () => {
 			</SectionHeadingRenderer>
 		);
 
-		expect(actual.find('h2')).toMatchSnapshot();
+		expect(actual.toJSON()).toMatchSnapshot();
 	});
 
 	test('prevent the heading level from exceeding the maximum allowed by the Heading component', () => {
-		const actual = mount(
+		const actual = renderer.create(
 			<SectionHeadingRenderer id="section" href="/section" depth={7} toolbar={<FakeToolbar />}>
 				A Section
 			</SectionHeadingRenderer>
 		);
 
-		expect(actual.find('h6')).toHaveLength(1);
+		expect(actual.toJSON()).toMatchSnapshot();
 	});
 });

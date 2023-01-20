@@ -1,9 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Markdown Heading should render a heading with a wrapper that provides margin and an id 1`] = `
-<div class="rsg--spacing-0">
-  <h2 id="the-markdown-heading"
-      class="rsg--heading-2 rsg--heading2-4"
+<div
+  className="rsg--spacing-0"
+>
+  <h2
+    className="rsg--heading-2 rsg--heading2-4"
+    id="the-markdown-heading"
   >
     The markdown heading
   </h2>
