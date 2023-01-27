@@ -20,6 +20,7 @@
     "react-styleguidist": "^9.1.16"
   },
   "dependencies": {
+    "core-js": "^3.27.2",
     "dog-names": "^2.0.0",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",

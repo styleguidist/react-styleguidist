@@ -1,9 +1,11 @@
 /* eslint-disable import/first */
 import './polyfills';
 import './styles';
-import ReactDOM from 'react-dom';
+import { createRoot, Root } from 'react-dom/client';
 import renderStyleguide from './utils/renderStyleguide';
 import { getParameterByName, hasInHash, getHash } from './utils/handleHash';
+
+let reactRoot: Root;
 
 // Examples code revision to rerender only code examples (not the whole page) when code changes
 let codeRevision = 0;
@@ -36,11 +38,10 @@ const scrollToOrigin = () => {
 const render = () => {
 	// eslint-disable-next-line @typescript-eslint/no-var-requires
 	const styleguide = require('!!../loaders/styleguide-loader!./index.js');
-
-	ReactDOM.render(
-		renderStyleguide(styleguide, codeRevision),
-		document.getElementById(styleguide.config.mountPointId)
-	);
+	if (!reactRoot) {
+		reactRoot = createRoot(document.getElementById(styleguide.config.mountPointId));
+	}
+	reactRoot.render(renderStyleguide(styleguide, codeRevision));
 };
 
 window.addEventListener('hashchange', render);

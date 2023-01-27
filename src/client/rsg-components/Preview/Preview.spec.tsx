@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import Preview from '.';
 import Context, { StyleGuideContextContents } from '../Context';
 
@@ -31,7 +31,7 @@ afterEach(() => {
 	console.clear = console$clear;
 });
 
-it('should unmount Wrapper component', () => {
+it('should unmount Wrapper component', async () => {
 	const { unmount, getByTestId } = render(
 		<Provider>
 			<Preview code={code} evalInContext={evalInContext} />
@@ -42,7 +42,8 @@ it('should unmount Wrapper component', () => {
 
 	expect(node.innerHTML).toMatch('<button');
 	unmount();
-	expect(node.innerHTML).toBe('');
+	/** Wait for state-update untill evaluating the node */
+	await waitFor(() => expect(node.innerHTML).toBe(''));
 });
 
 it('should not fail when Wrapper wasn’t mounted', () => {
@@ -138,12 +139,12 @@ it('should not clear console on initial mount', () => {
 	expect(console.clear).toHaveBeenCalledTimes(0);
 });
 
-it('should clear console on second mount', () => {
+it('should clear console on second mount', async () => {
 	console.clear = jest.fn();
 	render(
 		<Provider value={{ ...context, codeRevision: 1 }}>
 			<Preview code={code} evalInContext={evalInContext} />
 		</Provider>
 	);
-	expect(console.clear).toHaveBeenCalledTimes(1);
+	await waitFor(() => expect(console.clear).toHaveBeenCalledTimes(1));
 });

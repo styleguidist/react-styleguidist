@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+import { createRoot, Root } from 'react-dom/client';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import ReactExample from 'rsg-components/ReactExample';
 import Context from 'rsg-components/Context';
@@ -28,6 +28,9 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 	public static contextType = Context;
 
 	private mountNode: Element | null = null;
+
+	private reactRoot: Root | null = null;
+	private renderTimeout = undefined;
 
 	public state: PreviewState = {
 		error: null,
@@ -59,9 +62,15 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 	}
 
 	public unmountPreview() {
-		if (this.mountNode) {
-			ReactDOM.unmountComponentAtNode(this.mountNode);
-		}
+		const self = this;
+		clearTimeout(self.renderTimeout);
+		// https://stackoverflow.com/questions/73459382/react-18-async-way-to-unmount-root
+		setTimeout(() => {
+			if (self.reactRoot) {
+				self.reactRoot.unmount();
+				self.reactRoot = null;
+			}
+		});
 	}
 
 	private executeCode() {
@@ -86,9 +95,12 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 		window.requestAnimationFrame(() => {
 			// this.unmountPreview();
 			try {
-				ReactDOM.render(wrappedComponent, this.mountNode);
+				if (!this.reactRoot) {
+					this.reactRoot = createRoot(this.mountNode);
+				}
+				this.reactRoot.render(wrappedComponent);
 			} catch (err) {
-				/* istanbul ignore next: it is near-impossible to trigger a sync error from ReactDOM.render */
+				/* istanbul ignore next */
 				if (err instanceof Error) {
 					/* istanbul ignore next */
 					this.handleError(err);
