@@ -191,8 +191,7 @@
     "test:cypress:open": "cypress open",
     "test:cypress:run": "cypress run",
     "test:cypress:startServer": "node test/run.server.js",
-    "test:cypress:startServer:post": "wait-on http://localhost:8082",
-    "postinstall": "npm run compile"
+    "test:cypress:startServer:post": "wait-on http://localhost:8082"
   },
   "jest": {
     "testURL": "http://localhost/",
