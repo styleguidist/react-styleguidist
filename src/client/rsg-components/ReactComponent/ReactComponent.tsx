@@ -6,7 +6,7 @@ import JsDoc from 'rsg-components/JsDoc';
 import Markdown from 'rsg-components/Markdown';
 import Slot from 'rsg-components/Slot';
 import ReactComponentRenderer from 'rsg-components/ReactComponent/ReactComponentRenderer';
-import Context from 'rsg-components/Context';
+import Context, { StyleGuideContextContents } from 'rsg-components/Context';
 import ExamplePlaceholderDefault from 'rsg-components/ExamplePlaceholder';
 import { DOCS_TAB_USAGE } from '../slots';
 import { DisplayModes, UsageModes } from '../../consts';
@@ -41,7 +41,7 @@ export default class ReactComponent extends Component<ReactComponentProps, React
 	};
 
 	private handleTabChange = (name: string) => {
-		this.setState(state => ({
+		this.setState((state) => ({
 			activeTab: state.activeTab !== name ? name : undefined,
 		}));
 	};
@@ -51,7 +51,7 @@ export default class ReactComponent extends Component<ReactComponentProps, React
 		const {
 			displayMode,
 			config: { pagePerSection },
-		} = this.context;
+		} = this.context as StyleGuideContextContents;
 		const { component, depth, usageMode, exampleMode } = this.props;
 		const { name, visibleName, slug = '-', filepath, pathLine, href } = component;
 		const { description = '', examples = [], tags = {} } = component.props || {};
