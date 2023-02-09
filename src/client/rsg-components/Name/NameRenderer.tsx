@@ -34,7 +34,7 @@ export const NameRenderer: React.FunctionComponent<NameProps> = ({
 
 NameRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	children: PropTypes.node.isRequired,
+	children: PropTypes.any.isRequired,
 	deprecated: PropTypes.bool,
 };
 

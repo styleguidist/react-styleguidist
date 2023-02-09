@@ -21,7 +21,7 @@ export const TableRenderer: React.FunctionComponent<TableProps> = ({ classes, ch
 
 TableRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	children: PropTypes.node.isRequired,
+	children: PropTypes.any.isRequired,
 };
 
 export default Styled<TableProps>(styles)(TableRenderer);

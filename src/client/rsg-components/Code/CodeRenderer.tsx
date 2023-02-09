@@ -22,7 +22,7 @@ export const CodeRenderer: React.FunctionComponent<CodeProps> = ({ classes, chil
 };
 CodeRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	children: PropTypes.node.isRequired,
+	children: PropTypes.any.isRequired,
 };
 
 export default Styled<CodeProps>(styles)(CodeRenderer);

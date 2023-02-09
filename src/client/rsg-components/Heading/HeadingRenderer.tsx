@@ -44,7 +44,7 @@ const HeadingRenderer: React.FunctionComponent<HeadingProps> = ({
 	children,
 	...props
 }) => {
-	const Tag = `h${level}` as ('h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6');
+	const Tag = `h${level}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 	const headingClasses = cx(classes.heading, classes[`heading${level}`]);
 
 	return (
@@ -57,7 +57,7 @@ const HeadingRenderer: React.FunctionComponent<HeadingProps> = ({
 HeadingRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]).isRequired,
-	children: PropTypes.node,
+	children: PropTypes.any,
 };
 
 export default Styled<HeadingProps>(styles)(HeadingRenderer);

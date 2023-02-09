@@ -24,7 +24,7 @@ interface SectionRendererProps extends JssInjectedProps {
 	[prop: string]: any;
 }
 
-export const SectionRenderer: React.FunctionComponent<SectionRendererProps> = allProps => {
+export const SectionRenderer: React.FunctionComponent<SectionRendererProps> = (allProps) => {
 	const {
 		classes,
 		name,
@@ -63,9 +63,9 @@ SectionRenderer.propTypes = {
 	name: PropTypes.string,
 	description: PropTypes.string,
 	slug: PropTypes.string.isRequired,
-	content: PropTypes.node,
-	components: PropTypes.node,
-	sections: PropTypes.node,
+	content: PropTypes.any,
+	components: PropTypes.any,
+	sections: PropTypes.any,
 	isolated: PropTypes.bool,
 	depth: PropTypes.number.isRequired,
 	pagePerSection: PropTypes.bool,

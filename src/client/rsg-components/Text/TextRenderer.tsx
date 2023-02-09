@@ -74,7 +74,7 @@ TextRenderer.propTypes = {
 	size: PropTypes.oneOf(['inherit', 'small', 'base', 'text']),
 	color: PropTypes.oneOf(['base', 'light']),
 	underlined: PropTypes.bool,
-	children: PropTypes.node.isRequired,
+	children: PropTypes.any.isRequired,
 };
 
 TextRenderer.defaultProps = {

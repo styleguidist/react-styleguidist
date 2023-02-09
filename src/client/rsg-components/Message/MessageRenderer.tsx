@@ -32,7 +32,7 @@ export const MessageRenderer: React.FunctionComponent<MessageProps> = ({ classes
 
 MessageRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	children: PropTypes.node.isRequired,
+	children: PropTypes.any.isRequired,
 };
 
 export default Styled<MessageProps>(styles)(MessageRenderer);

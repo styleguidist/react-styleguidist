@@ -84,11 +84,11 @@ PlaygroundRenderer.propTypes = {
 	exampleIndex: PropTypes.number.isRequired,
 	name: PropTypes.string.isRequired,
 	padded: PropTypes.bool.isRequired,
-	preview: PropTypes.node.isRequired,
+	preview: PropTypes.any.isRequired,
 	previewProps: PropTypes.object.isRequired,
-	tabButtons: PropTypes.node.isRequired,
-	tabBody: PropTypes.node.isRequired,
-	toolbar: PropTypes.node.isRequired,
+	tabButtons: PropTypes.any.isRequired,
+	tabBody: PropTypes.any.isRequired,
+	toolbar: PropTypes.any.isRequired,
 };
 
 export default Styled<PlaygroundRendererProps>(styles)(PlaygroundRenderer);

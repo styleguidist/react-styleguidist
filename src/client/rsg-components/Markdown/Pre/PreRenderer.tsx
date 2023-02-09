@@ -50,7 +50,7 @@ export const PreRenderer: React.FunctionComponent<PrePropsWithClasses> = ({
 PreRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	className: PropTypes.string,
-	children: PropTypes.node.isRequired,
+	children: PropTypes.any.isRequired,
 };
 
 export default Styled<PrePropsWithClasses>(styles)(PreRenderer);

@@ -35,7 +35,7 @@ const SectionHeading: React.FunctionComponent<SectionHeadingProps> = ({
 };
 
 SectionHeading.propTypes = {
-	children: PropTypes.node,
+	children: PropTypes.any,
 	id: PropTypes.string.isRequired,
 	slotName: PropTypes.string.isRequired,
 	slotProps: PropTypes.any.isRequired,

@@ -27,7 +27,7 @@ export const VersionRenderer: React.FunctionComponent<VersionProps> = ({ classes
 
 VersionRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	children: PropTypes.node,
+	children: PropTypes.any,
 };
 
 export default Styled<VersionProps>(styles)(VersionRenderer);
