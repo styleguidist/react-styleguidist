@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const TableBodyRenderer: React.FunctionComponent = ({ children }) => {
+interface Props {
+	children?: React.ReactNode;
+}
+
+export const TableBodyRenderer = ({ children }: Props) => {
 	return <tbody>{children}</tbody>;
 };
 TableBodyRenderer.propTypes = {

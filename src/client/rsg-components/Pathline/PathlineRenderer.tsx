@@ -17,10 +17,11 @@ export const styles = ({ space, fontFamily, fontSize, color }: Rsg.Theme) => ({
 	},
 });
 
-export const PathlineRenderer: React.FunctionComponent<JssInjectedProps> = ({
-	classes,
-	children,
-}) => {
+interface Props extends JssInjectedProps {
+	children?: React.ReactNode;
+}
+
+export const PathlineRenderer = ({ classes, children }: Props) => {
 	return (
 		<div className={classes.pathline}>
 			{children}

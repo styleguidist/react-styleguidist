@@ -1,4 +1,4 @@
-import React, { isValidElement } from 'react';
+import React, { isValidElement, PropsWithChildren } from 'react';
 import PropTypes from 'prop-types';
 import { compiler } from 'markdown-to-jsx';
 import stripHtmlComments from 'strip-html-comments';
@@ -100,7 +100,7 @@ export const baseOverrides = {
 		component: Code as React.FC,
 	},
 	pre: {
-		component: Pre as React.FC,
+		component: Pre as React.FC<PropsWithChildren>,
 	},
 	input: {
 		component: Checkbox as React.FC,
