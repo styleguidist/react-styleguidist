@@ -91,7 +91,9 @@ export default class TableOfContents extends Component<TableOfContentsProps> {
 					? sections[0].sections
 					: sections[0].components
 				: sections;
-		const filtered = firstLevel ? filterSectionsByName(firstLevel, searchTerm) : firstLevel || [];
+		const filtered = firstLevel
+			? filterSectionsByName(firstLevel as Rsg.TOCItem[], searchTerm)
+			: firstLevel || [];
 
 		return this.renderLevel(filtered, useRouterLinks).content;
 	}
