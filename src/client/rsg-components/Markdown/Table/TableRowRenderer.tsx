@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const TableRowRenderer: React.FunctionComponent = ({ children }) => {
+interface Props {
+	children?: React.ReactNode;
+}
+
+export const TableRowRenderer = ({ children }: Props) => {
 	return <tr>{children}</tr>;
 };
 TableRowRenderer.propTypes = {

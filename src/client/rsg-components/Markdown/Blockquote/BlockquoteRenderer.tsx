@@ -32,7 +32,7 @@ export const BlockquoteRenderer: React.FunctionComponent<BlockquoteProps> = ({
 BlockquoteRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	className: PropTypes.string,
-	children: PropTypes.node.isRequired,
+	children: PropTypes.any.isRequired,
 };
 
 export default Styled<BlockquoteProps>(styles)(BlockquoteRenderer);

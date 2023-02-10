@@ -12,7 +12,11 @@ const styles = ({ color, fontFamily, fontSize }: Rsg.Theme) => ({
 	},
 });
 
-export const LogoRenderer: React.FunctionComponent<JssInjectedProps> = ({ classes, children }) => {
+interface Props extends JssInjectedProps {
+	children?: React.ReactNode;
+}
+
+export const LogoRenderer = ({ classes, children }: Props) => {
 	return <h1 className={classes.logo}>{children}</h1>;
 };
 

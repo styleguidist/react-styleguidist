@@ -41,7 +41,7 @@ export const LinkRenderer: React.FunctionComponent<LinkProps> = ({
 
 LinkRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	children: PropTypes.node,
+	children: PropTypes.any,
 	className: PropTypes.string,
 	href: PropTypes.string,
 };

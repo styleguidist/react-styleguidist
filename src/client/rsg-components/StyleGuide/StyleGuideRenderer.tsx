@@ -103,8 +103,8 @@ StyleGuideRenderer.propTypes = {
 	title: PropTypes.string.isRequired,
 	version: PropTypes.string,
 	homepageUrl: PropTypes.string.isRequired,
-	children: PropTypes.node.isRequired,
-	toc: PropTypes.node.isRequired,
+	children: PropTypes.any.isRequired,
+	toc: PropTypes.any.isRequired,
 	hasSidebar: PropTypes.bool,
 };
 

@@ -81,7 +81,7 @@ TabButtonRenderer.propTypes = {
 	className: PropTypes.string,
 	onClick: PropTypes.func.isRequired,
 	active: PropTypes.bool,
-	children: PropTypes.node.isRequired,
+	children: PropTypes.any.isRequired,
 };
 TabButtonRenderer.defaultProps = {
 	active: false,

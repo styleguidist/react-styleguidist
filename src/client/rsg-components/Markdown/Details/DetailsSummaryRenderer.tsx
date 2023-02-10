@@ -32,7 +32,7 @@ export const DetailsSummaryRenderer: React.FunctionComponent<DetailsSummaryProps
 
 DetailsSummaryRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	children: PropTypes.node.isRequired,
+	children: PropTypes.any.isRequired,
 };
 
 export default Styled<DetailsSummaryProps>(styles)(DetailsSummaryRenderer);

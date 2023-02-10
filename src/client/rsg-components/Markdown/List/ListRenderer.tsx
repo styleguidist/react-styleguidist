@@ -39,7 +39,7 @@ export const ListRenderer: React.FunctionComponent<ListProps> = ({
 
 	return (
 		<Tag className={classNames}>
-			{Children.map(children, li =>
+			{Children.map(children, (li) =>
 				React.isValidElement(li) ? cloneElement(li, { className: classes.li }) : li
 			)}
 		</Tag>
@@ -48,7 +48,7 @@ export const ListRenderer: React.FunctionComponent<ListProps> = ({
 ListRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	ordered: PropTypes.bool,
-	children: PropTypes.node.isRequired,
+	children: PropTypes.any.isRequired,
 };
 ListRenderer.defaultProps = {
 	ordered: false,

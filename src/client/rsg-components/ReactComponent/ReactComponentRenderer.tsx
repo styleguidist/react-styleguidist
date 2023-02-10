@@ -79,14 +79,14 @@ export const ReactComponentRenderer: React.FunctionComponent<ReactComponentRende
 ReactComponentRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	name: PropTypes.string.isRequired,
-	heading: PropTypes.node.isRequired,
+	heading: PropTypes.any.isRequired,
 	filepath: PropTypes.string,
 	pathLine: PropTypes.string,
-	tabButtons: PropTypes.node,
-	tabBody: PropTypes.node,
-	description: PropTypes.node,
-	docs: PropTypes.node,
-	examples: PropTypes.node,
+	tabButtons: PropTypes.any,
+	tabBody: PropTypes.any,
+	description: PropTypes.any,
+	docs: PropTypes.any,
+	examples: PropTypes.any,
 	isolated: PropTypes.bool,
 };
 

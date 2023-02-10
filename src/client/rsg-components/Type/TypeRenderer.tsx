@@ -21,7 +21,7 @@ export const TypeRenderer: React.FunctionComponent<TypeProps> = ({ classes, chil
 
 TypeRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	children: PropTypes.node.isRequired,
+	children: PropTypes.any.isRequired,
 };
 
 export default Styled<TypeProps>(styles)(TypeRenderer);

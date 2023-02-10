@@ -27,7 +27,7 @@ export const ExamplesRenderer: React.FunctionComponent<ExamplesRendererProps> = 
 ExamplesRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	name: PropTypes.string.isRequired,
-	children: PropTypes.node,
+	children: PropTypes.any,
 };
 
 export default Styled<ExamplesRendererProps>(styles)(ExamplesRenderer);

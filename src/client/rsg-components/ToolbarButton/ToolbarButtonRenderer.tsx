@@ -87,7 +87,7 @@ ToolbarButtonRenderer.propTypes = {
 	title: PropTypes.string,
 	small: PropTypes.bool,
 	testId: PropTypes.string,
-	children: PropTypes.node,
+	children: PropTypes.any,
 };
 
 export default Styled<ToolbarButtonProps>(styles)(ToolbarButtonRenderer);

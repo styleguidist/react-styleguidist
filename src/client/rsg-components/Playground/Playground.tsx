@@ -5,7 +5,7 @@ import Preview from 'rsg-components/Preview';
 import Para from 'rsg-components/Para';
 import Slot from 'rsg-components/Slot';
 import PlaygroundRenderer from 'rsg-components/Playground/PlaygroundRenderer';
-import Context from 'rsg-components/Context';
+import Context, { StyleGuideContextContents } from 'rsg-components/Context';
 import { EXAMPLE_TAB_CODE_EDITOR } from '../slots';
 import { DisplayModes, ExampleModes } from '../../consts';
 
@@ -46,11 +46,11 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 
 	public static contextType = Context;
 
-	private handleChange = debounce(code => {
+	private handleChange = debounce((code) => {
 		this.setState({
 			code,
 		});
-	}, this.context.config.previewDelay);
+	}, (this.context as StyleGuideContextContents).config.previewDelay);
 
 	public state: PlaygroundState = {
 		code: this.props.code,
@@ -80,7 +80,7 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 	}
 
 	private handleTabChange = (name: string) => {
-		this.setState(state => ({
+		this.setState((state) => ({
 			activeTab: state.activeTab !== name ? name : undefined,
 		}));
 	};
@@ -88,7 +88,7 @@ class Playground extends Component<PlaygroundProps, PlaygroundState> {
 	public render() {
 		const { code, activeTab } = this.state;
 		const { evalInContext, index, name, settings, exampleMode } = this.props;
-		const { displayMode } = this.context;
+		const { displayMode } = this.context as StyleGuideContextContents;
 		const isExampleHidden = exampleMode === ExampleModes.hide;
 		const isEditorHidden = settings.noeditor || isExampleHidden;
 		const preview = <Preview code={code} evalInContext={evalInContext} />;

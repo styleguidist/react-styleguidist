@@ -37,7 +37,7 @@ export const TableCellRenderer: React.FunctionComponent<TableCellProps> = ({
 TableCellRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	header: PropTypes.bool,
-	children: PropTypes.node.isRequired,
+	children: PropTypes.any.isRequired,
 };
 TableCellRenderer.defaultProps = {
 	header: false,
