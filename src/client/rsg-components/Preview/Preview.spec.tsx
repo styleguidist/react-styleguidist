@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import Preview from '.';
 import Context, { StyleGuideContextContents } from '../Context';
 
@@ -31,7 +31,7 @@ afterEach(() => {
 	console.clear = console$clear;
 });
 
-it('should unmount Wrapper component', () => {
+it('should unmount Wrapper component', async () => {
 	const { unmount, getByTestId } = render(
 		<Provider>
 			<Preview code={code} evalInContext={evalInContext} />
@@ -42,7 +42,7 @@ it('should unmount Wrapper component', () => {
 
 	expect(node.innerHTML).toMatch('<button');
 	unmount();
-	expect(node.innerHTML).toBe('');
+	await waitFor(() => expect(node.innerHTML).toBe(''));
 });
 
 it('should not fail when Wrapper wasn’t mounted', () => {
