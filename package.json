@@ -133,7 +133,7 @@
     "babel-jest": "^26.6.0",
     "babel-loader": "^8.1.0",
     "css-loader": "^6.7.1",
-    "danger": "^10.5.3",
+    "danger": "^11.2.3",
     "deabsdeep": "^1.0.6",
     "deepfreeze": "^2.0.0",
     "dog-names": "^2.0.0",
