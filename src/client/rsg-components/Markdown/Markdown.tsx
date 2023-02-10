@@ -1,4 +1,4 @@
-import React, { isValidElement } from 'react';
+import React, { isValidElement, PropsWithChildren } from 'react';
 import PropTypes from 'prop-types';
 import { compiler } from 'markdown-to-jsx';
 import stripHtmlComments from 'strip-html-comments';
@@ -28,112 +28,112 @@ Pre.propTypes = {
 
 export const baseOverrides = {
 	a: {
-		component: Link as React.SFC,
+		component: Link as React.FC,
 	},
 	h1: {
-		component: MarkdownHeading as React.SFC,
+		component: MarkdownHeading as React.FC,
 		props: {
 			level: 1,
 		},
 	},
 	h2: {
-		component: MarkdownHeading as React.SFC,
+		component: MarkdownHeading as React.FC,
 		props: {
 			level: 2,
 		},
 	},
 	h3: {
-		component: MarkdownHeading as React.SFC,
+		component: MarkdownHeading as React.FC,
 		props: {
 			level: 3,
 		},
 	},
 	h4: {
-		component: MarkdownHeading as React.SFC,
+		component: MarkdownHeading as React.FC,
 		props: {
 			level: 4,
 		},
 	},
 	h5: {
-		component: MarkdownHeading as React.SFC,
+		component: MarkdownHeading as React.FC,
 		props: {
 			level: 5,
 		},
 	},
 	h6: {
-		component: MarkdownHeading as React.SFC,
+		component: MarkdownHeading as React.FC,
 		props: {
 			level: 6,
 		},
 	},
 	p: {
-		component: Para as React.SFC,
+		component: Para as React.FC,
 		props: {
 			semantic: 'p',
 		},
 	},
 	em: {
-		component: Text as React.SFC,
+		component: Text as React.FC,
 		props: {
 			semantic: 'em',
 		},
 	},
 	strong: {
-		component: Text as React.SFC,
+		component: Text as React.FC,
 		props: {
 			semantic: 'strong',
 		},
 	},
 	ul: {
-		component: List as React.SFC,
+		component: List as React.FC,
 	},
 	ol: {
-		component: List as React.SFC,
+		component: List as React.FC,
 		props: {
 			ordered: true,
 		},
 	},
 	blockquote: {
-		component: Blockquote as React.SFC,
+		component: Blockquote as React.FC,
 	},
 	code: {
-		component: Code as React.SFC,
+		component: Code as React.FC,
 	},
 	pre: {
-		component: Pre as React.SFC,
+		component: Pre as React.FC<PropsWithChildren>,
 	},
 	input: {
-		component: Checkbox as React.SFC,
+		component: Checkbox as React.FC,
 	},
 	hr: {
-		component: Hr as React.SFC,
+		component: Hr as React.FC,
 	},
 	table: {
-		component: Table as React.SFC,
+		component: Table as React.FC,
 	},
 	thead: {
-		component: TableHead as React.SFC,
+		component: TableHead as React.FC,
 	},
 	th: {
-		component: TableCell as React.SFC,
+		component: TableCell as React.FC,
 		props: {
 			header: true,
 		},
 	},
 	tbody: {
-		component: TableBody as React.SFC,
+		component: TableBody as React.FC,
 	},
 	tr: {
-		component: TableRow as React.SFC,
+		component: TableRow as React.FC,
 	},
 	td: {
-		component: TableCell as React.SFC,
+		component: TableCell as React.FC,
 	},
 	details: {
-		component: Details as React.SFC,
+		component: Details as React.FC,
 	},
 	summary: {
-		component: DetailsSummary as React.SFC,
+		component: DetailsSummary as React.FC,
 	},
 };
 

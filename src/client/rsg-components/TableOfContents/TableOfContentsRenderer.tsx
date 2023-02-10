@@ -71,7 +71,7 @@ export const TableOfContentsRenderer: React.FunctionComponent<TableOfContentsRen
 
 TableOfContentsRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	children: PropTypes.node,
+	children: PropTypes.any,
 	searchTerm: PropTypes.string.isRequired,
 	onSearchTermChange: PropTypes.func.isRequired,
 };

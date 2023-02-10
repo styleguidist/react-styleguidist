@@ -67,8 +67,8 @@ const SectionHeadingRenderer: React.FunctionComponent<SectionHeadingRendererProp
 
 SectionHeadingRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	children: PropTypes.node,
-	toolbar: PropTypes.node,
+	children: PropTypes.any,
+	toolbar: PropTypes.any,
 	id: PropTypes.string.isRequired,
 	href: PropTypes.string,
 	depth: PropTypes.number.isRequired,

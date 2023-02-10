@@ -34,7 +34,7 @@ const MarkdownHeadingRenderer: React.FunctionComponent<MarkdownHeadingProps> = (
 MarkdownHeadingRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]).isRequired,
-	children: PropTypes.node,
+	children: PropTypes.any,
 	id: PropTypes.string,
 };
 

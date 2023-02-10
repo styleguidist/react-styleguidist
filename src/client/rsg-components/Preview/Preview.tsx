@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import ReactExample from 'rsg-components/ReactExample';
-import Context from 'rsg-components/Context';
+import Context, { StyleGuideContextContents } from 'rsg-components/Context';
+import { createRoot, Root } from 'react-dom/client';
 
 const improveErrorMessage = (message: string) =>
 	message.replace(
@@ -28,6 +28,8 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 	public static contextType = Context;
 
 	private mountNode: Element | null = null;
+	private reactRoot: Root | null = null;
+	private timeoutId: number | null = null;
 
 	public state: PreviewState = {
 		error: null,
@@ -36,7 +38,7 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 	public componentDidMount() {
 		// Clear console after hot reload, do not clear on the first load
 		// to keep any warnings
-		if (this.context.codeRevision > 0) {
+		if ((this.context as StyleGuideContextContents).codeRevision > 0) {
 			// eslint-disable-next-line no-console
 			console.clear();
 		}
@@ -59,9 +61,17 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 	}
 
 	public unmountPreview() {
-		if (this.mountNode) {
-			ReactDOM.unmountComponentAtNode(this.mountNode);
+		const self = this;
+		if (self.timeoutId) {
+			clearTimeout(self.timeoutId);
 		}
+		const id = setTimeout(() => {
+			if (self.reactRoot) {
+				self.reactRoot.unmount();
+				self.reactRoot = null;
+			}
+		});
+		self.timeoutId = id;
 	}
 
 	private executeCode() {
@@ -79,14 +89,16 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 				code={code}
 				evalInContext={this.props.evalInContext}
 				onError={this.handleError}
-				compilerConfig={this.context.config.compilerConfig}
+				compilerConfig={(this.context as StyleGuideContextContents).config.compilerConfig}
 			/>
 		);
 
 		window.requestAnimationFrame(() => {
 			// this.unmountPreview();
 			try {
-				ReactDOM.render(wrappedComponent, this.mountNode);
+				if (this.mountNode && this.reactRoot) {
+					this.reactRoot.render(wrappedComponent);
+				}
 			} catch (err) {
 				/* istanbul ignore next: it is near-impossible to trigger a sync error from ReactDOM.render */
 				if (err instanceof Error) {
@@ -107,11 +119,18 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 		console.error(err); // eslint-disable-line no-console
 	};
 
+	private callbackRef = (ref: HTMLDivElement | null) => {
+		this.mountNode = ref;
+		if (!this.reactRoot && ref) {
+			this.reactRoot = createRoot(ref);
+		}
+	};
+
 	public render() {
 		const { error } = this.state;
 		return (
 			<>
-				<div data-testid="mountNode" ref={(ref) => (this.mountNode = ref)} />
+				<div data-testid="mountNode" ref={this.callbackRef} />
 				{error && <PlaygroundError message={error} />}
 			</>
 		);

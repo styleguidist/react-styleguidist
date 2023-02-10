@@ -32,7 +32,7 @@ export const ParaRenderer: React.FunctionComponent<ParaProps> = ({
 ParaRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
 	semantic: PropTypes.oneOf(['p']),
-	children: PropTypes.node.isRequired,
+	children: PropTypes.any.isRequired,
 };
 
 export default Styled<ParaProps>(styles)(ParaRenderer);

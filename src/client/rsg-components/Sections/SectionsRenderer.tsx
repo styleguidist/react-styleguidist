@@ -20,7 +20,7 @@ export const SectionsRenderer: React.FunctionComponent<SectionsRendererProps> = 
 
 SectionsRenderer.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	children: PropTypes.node,
+	children: PropTypes.any,
 };
 
 export default Styled<SectionsRendererProps>(styles)(SectionsRenderer);
