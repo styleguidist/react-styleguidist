@@ -29,6 +29,7 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 
 	private mountNode: Element | null = null;
 	private reactRoot: Root | null = null;
+	private timeoutId: number | null = null;
 
 	public state: PreviewState = {
 		error: null,
@@ -60,9 +61,17 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 	}
 
 	public unmountPreview() {
-		if (this.mountNode && this.reactRoot) {
-			this.reactRoot.unmount();
+		const self = this;
+		if (self.timeoutId) {
+			clearTimeout(self.timeoutId);
 		}
+		const id = setTimeout(() => {
+			if (self.reactRoot) {
+				self.reactRoot.unmount();
+				self.reactRoot = null;
+			}
+		});
+		self.timeoutId = id;
 	}
 
 	private executeCode() {
