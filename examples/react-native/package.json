@@ -27,7 +27,7 @@
     "react-art": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-native-web": "^0.11.7",
-    "react-styleguidist": "^9.1.16",
+    "react-styleguidist": "^13.0.0",
     "webpack": "^4.41.1"
   },
   "private": true
