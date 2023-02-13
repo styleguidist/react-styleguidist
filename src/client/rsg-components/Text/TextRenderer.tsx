@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'clsx';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import * as Rsg from '../../../typings';
@@ -49,9 +48,9 @@ export interface TextProps extends JssInjectedProps {
 export const TextRenderer: React.FunctionComponent<TextProps> = ({
 	classes,
 	semantic,
-	size,
-	color,
-	underlined,
+	size = 'inherit',
+	color = 'base',
+	underlined = false,
 	children,
 	...props
 }) => {
@@ -66,21 +65,6 @@ export const TextRenderer: React.FunctionComponent<TextProps> = ({
 			{children}
 		</Tag>
 	);
-};
-
-TextRenderer.propTypes = {
-	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	semantic: PropTypes.oneOf(['em', 'strong']),
-	size: PropTypes.oneOf(['inherit', 'small', 'base', 'text']),
-	color: PropTypes.oneOf(['base', 'light']),
-	underlined: PropTypes.bool,
-	children: PropTypes.any.isRequired,
-};
-
-TextRenderer.defaultProps = {
-	size: 'inherit',
-	color: 'base',
-	underlined: false,
 };
 
 export default Styled<TextProps>(styles)(TextRenderer);

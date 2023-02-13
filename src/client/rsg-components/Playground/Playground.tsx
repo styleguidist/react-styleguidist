@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 import Preview from 'rsg-components/Preview';
 import Para from 'rsg-components/Para';
@@ -31,19 +30,6 @@ interface PlaygroundState {
 }
 
 class Playground extends Component<PlaygroundProps, PlaygroundState> {
-	public static propTypes = {
-		code: PropTypes.string.isRequired,
-		evalInContext: PropTypes.func.isRequired,
-		index: PropTypes.number.isRequired,
-		name: PropTypes.string.isRequired,
-		exampleMode: PropTypes.string.isRequired,
-		settings: PropTypes.object,
-	};
-
-	public static defaultProps = {
-		settings: {},
-	};
-
 	public static contextType = Context;
 
 	private handleChange = debounce((code) => {

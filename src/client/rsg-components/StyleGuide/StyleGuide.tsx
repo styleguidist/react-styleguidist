@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import TableOfContents from 'rsg-components/TableOfContents';
 import StyleGuideRenderer from 'rsg-components/StyleGuide/StyleGuideRenderer';
 import Sections from 'rsg-components/Sections';
@@ -50,22 +49,6 @@ interface StyleGuideState {
 }
 
 export default class StyleGuide extends Component<StyleGuideProps, StyleGuideState> {
-	public static propTypes = {
-		codeRevision: PropTypes.number.isRequired,
-		cssRevision: PropTypes.string.isRequired,
-		config: PropTypes.object.isRequired,
-		slots: PropTypes.object.isRequired,
-		sections: PropTypes.array.isRequired,
-		welcomeScreen: PropTypes.bool,
-		patterns: PropTypes.array,
-		displayMode: PropTypes.string,
-		allSections: PropTypes.array.isRequired,
-		pagePerSection: PropTypes.bool,
-	};
-	public static defaultProps = {
-		displayMode: DisplayModes.all,
-	};
-
 	public state = {
 		error: false,
 		info: null,
@@ -85,7 +68,7 @@ export default class StyleGuide extends Component<StyleGuideProps, StyleGuideSta
 			sections,
 			welcomeScreen,
 			patterns,
-			displayMode,
+			displayMode = DisplayModes.all,
 			allSections,
 			pagePerSection,
 			codeRevision,
