@@ -29,7 +29,7 @@
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
     "file-loader": "^4.2.0",
-    "react-styleguidist": "^9.1.16",
+    "react-styleguidist": "^13.0.0",
     "style-loader": "^1.0.0",
     "url-loader": "^2.2.0",
     "webpack": "^4.41.1"
