@@ -82,6 +82,11 @@ const examples = [
 		href: 'https://bokuweb.github.io/re-bulma/',
 		image: '/img/example4.png',
 	},
+	{
+		title: 'Atalaya UI Components',
+		href: 'https://atalaya.dev.therms.io/',
+		image: '/img/example5.png',
+	},
 ];
 
 function Feature({ title, subtitle, paragraphs, figure, flipped }) {
