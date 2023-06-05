@@ -158,7 +158,7 @@ The component will be displayed with a custom “The Best Button Ever 🐙” na
 You can use the following [JSDoc](https://jsdoc.app/) tags when documenting components, props and methods:
 
 - [@deprecated](https://jsdoc.app/tags-deprecated.html)
-- [@see, @link](https://jsdoc.app/tags-see.html)
+- [@see](https://jsdoc.app/tags-see.html), [@link](https://jsdoc.app/tags-link.html),
 - [@author](https://jsdoc.app/tags-author.html)
 - [@since](https://jsdoc.app/tags-since.html)
 - [@version](https://jsdoc.app/tags-version.html)
