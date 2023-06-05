@@ -109,7 +109,7 @@ export default class Button extends React.Component {
 
 ## Public methods
 
-By default, any methods your components have are considered to be private and are not published. Mark your public methods with JSDoc [`@public`](http://usejsdoc.org/tags-public.html) tag to get them published in the docs:
+By default, any methods your components have are considered to be private and are not published. Mark your public methods with JSDoc [`@public`](https://jsdoc.app/tags-public.html) tag to get them published in the docs:
 
 ```javascript
 /**
@@ -125,7 +125,7 @@ insertAtCursor(text) {
 
 ## Ignoring props
 
-By default, all props your components have are considered to be public and are published. In some rare cases, you might want to remove a prop from the documentation while keeping it in the code. To do so, mark the prop with JSDoc [`@ignore`](http://usejsdoc.org/tags-ignore.html) tag to remove it from the docs:
+By default, all props your components have are considered to be public and are published. In some rare cases, you might want to remove a prop from the documentation while keeping it in the code. To do so, mark the prop with JSDoc [`@ignore`](https://jsdoc.app/tags-ignore.html) tag to remove it from the docs:
 
 ```javascript
 MyComponent.propTypes = {
@@ -155,17 +155,17 @@ The component will be displayed with a custom “The Best Button Ever 🐙” na
 
 ## Using JSDoc tags
 
-You can use the following [JSDoc](http://usejsdoc.org/) tags when documenting components, props and methods:
+You can use the following [JSDoc](https://jsdoc.app/) tags when documenting components, props and methods:
 
-- [@deprecated](http://usejsdoc.org/tags-deprecated.html)
-- [@see, @link](http://usejsdoc.org/tags-see.html)
-- [@author](http://usejsdoc.org/tags-author.html)
-- [@since](http://usejsdoc.org/tags-since.html)
-- [@version](http://usejsdoc.org/tags-version.html)
+- [@deprecated](https://jsdoc.app/tags-deprecated.html)
+- [@see, @link](https://jsdoc.app/tags-see.html)
+- [@author](https://jsdoc.app/tags-author.html)
+- [@since](https://jsdoc.app/tags-since.html)
+- [@version](https://jsdoc.app/tags-version.html)
 
 When documenting props you can also use:
 
-- [@param, @arg, @argument](http://usejsdoc.org/tags-param.html)
+- [@param, @arg, @argument](https://jsdoc.app/tags-param.html)
 
 All tags can render Markdown.
 
