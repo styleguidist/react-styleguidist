@@ -610,7 +610,7 @@ See examples in the [cookbook](Cookbook.md#how-to-change-styles-of-a-style-guide
 
 ## `title`
 
-Type: `String`, default: `<app name from package.json> Style Guide`
+Type: `String`, default: `<name field from package.json, replacing hyphens with spaces> Style Guide`
 
 Style guide title.
 
