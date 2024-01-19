@@ -106,9 +106,7 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 					this.reactRoot.render(wrappedComponent);
 				}
 			} catch (err) {
-				/* istanbul ignore next: it is near-impossible to trigger a sync error from ReactDOM.render */
 				if (err instanceof Error) {
-					/* istanbul ignore next */
 					this.handleError(err);
 				}
 			}
