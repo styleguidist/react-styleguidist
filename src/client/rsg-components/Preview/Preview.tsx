@@ -93,10 +93,16 @@ export default class Preview extends Component<PreviewProps, PreviewState> {
 			/>
 		);
 
+		/* istanbul ignore next */
 		window.requestAnimationFrame(() => {
-			// this.unmountPreview();
+			if (!this.mountNode) {
+				return;
+			}
 			try {
-				if (this.mountNode && this.reactRoot) {
+				if (this.reactRoot === null) {
+					this.reactRoot = createRoot(this.mountNode);
+					this.reactRoot.render(wrappedComponent);
+				} else {
 					this.reactRoot.render(wrappedComponent);
 				}
 			} catch (err) {
