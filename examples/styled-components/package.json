@@ -31,7 +31,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-styleguidist": "9.0.8",
+    "react-styleguidist": "13.0.0",
     "styled-components": "^4.2.0",
     "styled-system": "^4.1.0"
   },
