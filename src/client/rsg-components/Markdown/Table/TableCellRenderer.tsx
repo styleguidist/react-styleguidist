@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import * as Rsg from '../../../../typings';
 
@@ -24,23 +23,13 @@ interface TableCellProps extends JssInjectedProps {
 
 export const TableCellRenderer: React.FunctionComponent<TableCellProps> = ({
 	classes,
-	header,
+	header = false,
 	children,
 }) => {
 	if (header) {
 		return <th className={classes.th}>{children}</th>;
 	}
-
 	return <td className={classes.td}>{children}</td>;
-};
-
-TableCellRenderer.propTypes = {
-	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	header: PropTypes.bool,
-	children: PropTypes.any.isRequired,
-};
-TableCellRenderer.defaultProps = {
-	header: false,
 };
 
 export default Styled<TableCellProps>(styles)(TableCellRenderer);

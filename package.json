@@ -90,7 +90,7 @@
     "to-ast": "^1.0.0",
     "type-detect": "^4.0.8",
     "unist-util-visit": "^2.0.0",
-    "webpack-dev-server": "^4.9.2",
+    "webpack-dev-server": "^4.15.0",
     "webpack-merge": "^4.2.2"
   },
   "peerDependencies": {

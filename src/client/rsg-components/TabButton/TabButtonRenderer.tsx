@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Styled, { JssInjectedProps } from 'rsg-components/Styled';
 import { Styles } from 'jss';
 import cx from 'clsx';
@@ -55,7 +54,7 @@ export const TabButtonRenderer: React.FunctionComponent<TabButtonProps> = ({
 	name,
 	className,
 	onClick,
-	active,
+	active = false,
 	children,
 }) => {
 	const classNames = cx(classes.button, className, {
@@ -73,18 +72,6 @@ export const TabButtonRenderer: React.FunctionComponent<TabButtonProps> = ({
 			{children}
 		</button>
 	);
-};
-
-TabButtonRenderer.propTypes = {
-	classes: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
-	name: PropTypes.string.isRequired,
-	className: PropTypes.string,
-	onClick: PropTypes.func.isRequired,
-	active: PropTypes.bool,
-	children: PropTypes.any.isRequired,
-};
-TabButtonRenderer.defaultProps = {
-	active: false,
 };
 
 export default Styled<TabButtonProps>(styles)(TabButtonRenderer);

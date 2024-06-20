@@ -26,7 +26,7 @@ const Examples: React.FunctionComponent<ExamplesRenderer> = ({ examples, name, e
 								key={`${codeRevision}/${index}`}
 								name={name}
 								index={index}
-								settings={example.settings}
+								settings={example.settings ?? {}}
 								exampleMode={exampleMode}
 							/>
 						);
