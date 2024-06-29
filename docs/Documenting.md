@@ -279,3 +279,68 @@ If a component uses React Context, you need a context provider in the example or
 ## Limitations
 
 In some cases Styleguidist may not understand your components, [see possible solutions](Thirdparties.md).
+
+
+**Testing Components**
+Ensuring the reliability and stability of your components is crucial for building robust applications. Styleguidist encourages a test-driven development (TDD) approach by providing guidelines for testing your components.
+
+**Unit Testing**
+Unit tests verify that individual components behave as expected in isolation. You can use testing frameworks like Jest or Mocha along with assertion libraries like Chai or Jest's built-in expect to write unit tests for your components.
+
+````jsx
+import React from 'react';
+import { render, fireEvent } from '@testing-library/react';
+import Button from './Button';
+
+test('renders button with correct label', () => {
+  const { getByText } = render(<Button>Click me</Button>);
+  const buttonElement = getByText('Click me');
+  expect(buttonElement).toBeInTheDocument();
+});
+
+test('calls onClick handler when button is clicked', () => {
+  const onClickMock = jest.fn();
+  const { getByText } = render(<Button onClick={onClickMock}>Click me</Button>);
+  const buttonElement = getByText('Click me');
+  fireEvent.click(buttonElement);
+  expect(onClickMock).toHaveBeenCalled();
+});
+````
+**Snapshot Testing**
+Snapshot testing captures the rendered output of your components and compares it against a stored snapshot to detect unintended changes. This is particularly useful for ensuring UI consistency across updates.
+
+````jsx
+import React from 'react';
+import renderer from 'react-test-renderer';
+import Button from './Button';
+
+test('Button snapshot', () => {
+  const component = renderer.create(<Button>Click me</Button>);
+  const tree = component.toJSON();
+  expect(tree).toMatchSnapshot();
+});
+````
+**Integration Testing**
+Integration tests verify interactions between multiple components or between components and external dependencies (such as APIs). You can use tools like React Testing Library or Enzyme to write integration tests for your components.
+
+
+````jsx
+import React from 'react';
+import { render, waitFor } from '@testing-library/react';
+import axiosMock from 'axios';
+import UserList from './UserList';
+
+jest.mock('axios');
+
+test('fetches and displays user list', async () => {
+  axiosMock.get.mockResolvedValueOnce({
+    data: [{ id: 1, name: 'John Doe' }, { id: 2, name: 'Jane Smith' }],
+  });
+  const { getByText } = render(<UserList />);
+  await waitFor(() => {
+    expect(getByText('John Doe')).toBeInTheDocument();
+    expect(getByText('Jane Smith')).toBeInTheDocument();
+  });
+});
+````
+
