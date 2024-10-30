@@ -13,6 +13,8 @@ React Styleguidist is a component development environment with hot reloaded dev 
 
 ![React Styleguidist in action](https://user-images.githubusercontent.com/1703219/74945569-51c6ad00-543b-11ea-8351-f4d86860893a.gif)
 
+[![Washing your code. A book on clean code for frontend developers](https://sapegin.me/images/washing-code-github.jpg)](https://sapegin.me/book/)
+
 ## Usage
 
 - **[Getting Started](https://react-styleguidist.js.org/docs/getting-started): install and run Styleguidist**
