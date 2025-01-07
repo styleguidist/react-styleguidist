@@ -51,18 +51,16 @@ React.createElement( Button, null )"
 `);
 	});
 
-	test('wrap JSX in Fragment', () => {
-		const result = compileCode(
-			`<div>
-  <button>Click</button>
-</div>`,
-			compilerConfig
+	test('wrap JSX in Fragment if adjacent on line 1', () => {
+		const result = compileCode(`<span /><span />`, compilerConfig);
+		expect(result).toMatchInlineSnapshot(
+			`"React.createElement( React.Fragment, null, React.createElement( 'span', null ), React.createElement( 'span', null ) );"`
 		);
-		expect(result).toMatchInlineSnapshot(`
-"React.createElement( React.Fragment, null, React.createElement( 'div', null,
-  React.createElement( 'button', null, \\"Click\\" )
-) );"
-`);
+	});
+
+	test('don’t wrap JSX in Fragment if there is only one statement', () => {
+		const result = compileCode(`<Button />;`, compilerConfig);
+		expect(result).toMatchInlineSnapshot(`"React.createElement( Button, null );"`);
 	});
 
 	test('don’t wrap JSX in Fragment if it’s in the middle', () => {
