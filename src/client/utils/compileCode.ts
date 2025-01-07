@@ -18,9 +18,23 @@ export default function compileCode(
 	onError?: (err: Error) => void
 ): string {
 	try {
-		const wrappedCode = startsWithJsx(code) ? wrapCodeInFragment(code) : code;
-		const compiledCode = compile(wrappedCode, compilerConfig);
-		return transpileImports(compiledCode);
+		let compiledCode;
+
+		try {
+			compiledCode = compile(code, compilerConfig);
+		} catch (err) {
+			if (
+				err instanceof SyntaxError &&
+				err.message.startsWith('Adjacent JSX elements must be wrapped in an enclosing tag')
+			) {
+				const wrappedCode = startsWithJsx(code) ? wrapCodeInFragment(code) : code;
+				compiledCode = compile(wrappedCode, compilerConfig);
+			} else if (onError && err instanceof Error) {
+				onError(err);
+			}
+		}
+
+		return compiledCode ? transpileImports(compiledCode) : '';
 	} catch (err) {
 		if (onError && err instanceof Error) {
 			onError(err);
